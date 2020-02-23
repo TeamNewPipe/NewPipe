@@ -80,7 +80,7 @@ public abstract class Postprocessing implements Serializable {
 
     private transient DownloadMission mission;
 
-    private File tempFile;
+    private transient File tempFile;
 
     Postprocessing(boolean reserveSpace, boolean worksOnSameFile, String algorithmName) {
         this.reserveSpace = reserveSpace;
@@ -95,8 +95,12 @@ public abstract class Postprocessing implements Serializable {
 
     public void cleanupTemporalDir() {
         if (tempFile != null && tempFile.exists()) {
-            //noinspection ResultOfMethodCallIgnored
-            tempFile.delete();
+            try {
+                //noinspection ResultOfMethodCallIgnored
+                tempFile.delete();
+            } catch (Exception e) {
+                // nothing to do
+            }
         }
     }
 

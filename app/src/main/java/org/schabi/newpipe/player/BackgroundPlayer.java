@@ -58,7 +58,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
-
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 /**
  * Base players joining the common properties
@@ -115,7 +115,7 @@ public final class BackgroundPlayer extends Service {
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
         lockManager = new LockManager(this);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
+        assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
         basePlayerImpl = new BasePlayerImpl(this);
         basePlayerImpl.setup();

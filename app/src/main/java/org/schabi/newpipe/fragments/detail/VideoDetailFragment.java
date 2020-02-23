@@ -2,7 +2,6 @@ package org.schabi.newpipe.fragments.detail;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -18,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
@@ -58,6 +56,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -79,6 +78,7 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.InfoCache;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -95,6 +95,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
+import io.noties.markwon.Markwon;
+import io.noties.markwon.linkify.LinkifyPlugin;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -482,7 +484,6 @@ public class VideoDetailFragment
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
         videoDescriptionView = rootView.findViewById(R.id.detail_description_view);
         videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
-        videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
 
         thumbsUpTextView = rootView.findViewById(R.id.detail_thumbs_up_count_view);
         thumbsUpImageView = rootView.findViewById(R.id.detail_thumbs_up_img_view);
@@ -599,22 +600,27 @@ public class VideoDetailFragment
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (isLoading.get()) {
-            // if is still loading block menu
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            NavigationHelper.openSettings(requireContext());
             return true;
         }
 
-        int id = item.getItemId();
+        if (isLoading.get()) {
+            // if still loading, block menu buttons related to video info
+            return true;
+        }
+
         switch (id) {
             case R.id.menu_item_share: {
                 if (currentInfo != null) {
-                    ShareUtils.shareUrl(this.getContext(), currentInfo.getName(), currentInfo.getOriginalUrl());
+                    ShareUtils.shareUrl(requireContext(), currentInfo.getName(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
                 if (currentInfo != null) {
-                    ShareUtils.openUrlInBrowser(this.getContext(), currentInfo.getOriginalUrl());
+                    ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }
@@ -624,22 +630,12 @@ public class VideoDetailFragment
                             url.replace("https", "http")));
                 } catch (Exception e) {
                     if (DEBUG) Log.i(TAG, "Failed to start kore", e);
-                    showInstallKoreDialog(activity);
+                    KoreUtil.showInstallKoreDialog(activity);
                 }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private static void showInstallKoreDialog(final Context context) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(R.string.kore_not_found)
-                .setPositiveButton(R.string.install, (DialogInterface dialog, int which) ->
-                        NavigationHelper.installKore(context))
-                .setNegativeButton(R.string.cancel, (DialogInterface dialog, int which) -> {
-                });
-        builder.create().show();
     }
 
     private void setupActionBarOnError(final String url) {
@@ -928,28 +924,41 @@ public class VideoDetailFragment
         return sortedVideoStreams != null ? sortedVideoStreams.get(selectedVideoStreamIndex) : null;
     }
 
-    private void prepareDescription(final String descriptionHtml) {
-        if (TextUtils.isEmpty(descriptionHtml)) {
+    private void prepareDescription(Description description) {
+        if (TextUtils.isEmpty(description.getContent()) || description == Description.emptyDescription) {
             return;
         }
 
-        disposables.add(Single.just(descriptionHtml)
-                .map((@io.reactivex.annotations.NonNull String description) -> {
-                    Spanned parsedDescription;
-                    if (Build.VERSION.SDK_INT >= 24) {
-                        parsedDescription = Html.fromHtml(description, 0);
-                    } else {
-                        //noinspection deprecation
-                        parsedDescription = Html.fromHtml(description);
-                    }
-                    return parsedDescription;
-                })
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@io.reactivex.annotations.NonNull Spanned spanned) -> {
-                    videoDescriptionView.setText(spanned);
-                    videoDescriptionView.setVisibility(View.VISIBLE);
-                }));
+        if (description.getType() == Description.HTML) {
+            disposables.add(Single.just(description.getContent())
+                    .map((@io.reactivex.annotations.NonNull String descriptionText) -> {
+                        Spanned parsedDescription;
+                        if (Build.VERSION.SDK_INT >= 24) {
+                            parsedDescription = Html.fromHtml(descriptionText, 0);
+                        } else {
+                            //noinspection deprecation
+                            parsedDescription = Html.fromHtml(descriptionText);
+                        }
+                        return parsedDescription;
+                    })
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe((@io.reactivex.annotations.NonNull Spanned spanned) -> {
+                        videoDescriptionView.setText(spanned);
+                        videoDescriptionView.setVisibility(View.VISIBLE);
+                    }));
+        } else if (description.getType() == Description.MARKDOWN) {
+            final Markwon markwon = Markwon.builder(getContext())
+                    .usePlugin(LinkifyPlugin.create())
+                    .build();
+            markwon.setMarkdown(videoDescriptionView, description.getContent());
+            videoDescriptionView.setVisibility(View.VISIBLE);
+        } else {
+            //== Description.PLAIN_TEXT
+            videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
+            videoDescriptionView.setText(description.getContent(), TextView.BufferType.SPANNABLE);
+            videoDescriptionView.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setHeightThumbnail() {
@@ -1070,7 +1079,7 @@ public class VideoDetailFragment
             if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
                 videoCountView.setText(Localization.listeningCount(activity, info.getViewCount()));
             } else if (info.getStreamType().equals(StreamType.LIVE_STREAM)) {
-                videoCountView.setText(Localization.watchingCount(activity, info.getViewCount()));
+                videoCountView.setText(Localization.localizeWatchingCount(activity, info.getViewCount()));
             } else {
                 videoCountView.setText(Localization.localizeViewCount(activity, info.getViewCount()));
             }

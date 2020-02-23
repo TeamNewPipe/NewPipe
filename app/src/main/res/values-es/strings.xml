@@ -115,11 +115,11 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
     <string name="msg_popup_permission">Se necesita este permiso
 \npara abrir en modo emergente</string>
-    <string name="reCaptcha_title">Reto reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Reto reCAPTCHA</string>
     <string name="recaptcha_request_toast">Reto reCAPTCHA requerido</string>
     <string name="popup_mode_share_menu_title">Modo emergente de NewPipe</string>
     <string name="popup_playing_toast">Reproduciendo en modo emergente</string>
@@ -221,7 +221,7 @@
     <string name="select_a_channel">Seleccione un canal</string>
     <string name="no_channel_subscribed_yet">No hay suscripciones a canales todavía</string>
     <string name="select_a_kiosk">Seleccione un kiosco</string>
-    <string name="kiosk">Kiosco</string>
+    <string name="kiosk">Quiosco</string>
     <string name="trending">Tendencias</string>
     <string name="top_50">50 mejores</string>
     <string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de 2.º plano o emergente en la página de detalles del vídeo</string>
@@ -425,7 +425,7 @@
     <string name="grid">Mostrar como grilla</string>
     <string name="list">Mostrar como lista</string>
     <string name="clear_finished_download">Limpiar descargas finalizadas</string>
-    <string name="confirm_prompt">¿Lo confirma\?</string>
+    <string name="confirm_prompt">¿Quiere limpiar su historial de descargas o eliminar todos los ficheros descargados\?</string>
     <string name="stop">Detener</string>
     <string name="max_retry_msg">Intentos máximos</string>
     <string name="max_retry_desc">Cantidad máxima de intentos antes de cancelar la descarga</string>
@@ -517,7 +517,7 @@
         <item quantity="one">%s escucha</item>
         <item quantity="other">%s escuchas</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">El idioma cambiará luego de que la app sea reiniciada.</string>
+    <string name="localization_changes_requires_app_restart">El idioma cambiará luego de que se reinicie la aplicación.</string>
     <string name="seek_duration_title">Duración de búsqueda al avanzar y/o retroceder</string>
     <string name="peertube_instance_url_title">Instancias de PeerTube</string>
     <string name="peertube_instance_url_summary">Selecciona tus instancias favoritas de PeerTube</string>
@@ -525,7 +525,7 @@
     <string name="peertube_instance_add_title">Agregar instancia</string>
     <string name="peertube_instance_add_help">Ingresar URL de la instancia</string>
     <string name="peertube_instance_add_fail">No se pudo validar la instancia</string>
-    <string name="peertube_instance_add_https_only">Sólo URLs con HTTPS son soportados</string>
+    <string name="peertube_instance_add_https_only">Solo se admiten URL HTTPS</string>
     <string name="peertube_instance_add_exists">La instancia ya existe</string>
     <string name="local">Local</string>
     <string name="recently_added">Agregados recientemente</string>
@@ -534,4 +534,12 @@
     <string name="choose_instance_prompt">Elige una instancia</string>
     <string name="enable_lock_screen_video_thumbnail_title">Habilitar miniatura de video de la pantalla de bloqueo</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Al usar el reproductor de fondo, se mostrará una miniatura de video en la pantalla de bloqueo</string>
+    <string name="clear_download_history">Limpiar historial de descargas</string>
+    <string name="delete_downloaded_files">Eliminar archivos descargados</string>
+    <string name="deleted_downloads">Eliminadas %1$s descargas</string>
+    <string name="permission_display_over_apps">Dar permisos para que se muestre por sobre otras apps</string>
+    <string name="app_language_title">Idioma de aplicación</string>
+    <string name="systems_language">Predeterminado del sistema</string>
+    <string name="subtitle_activity_recaptcha">Pulse en «Hecho» cuando esté resuelto</string>
+    <string name="recaptcha_done_button">Hecho</string>
 </resources>
