@@ -30,6 +30,7 @@ android {
             multiDexEnabled true
             debuggable true
 
+            // suffix the app id and the app name with git branch name
             def workingBranch = "git rev-parse --abbrev-ref HEAD".execute().text.trim()
             if (workingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
                 applicationIdSuffix ".debug"
