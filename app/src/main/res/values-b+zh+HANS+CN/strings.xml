@@ -39,7 +39,7 @@
     <string name="network_error">网络错误</string>
     <plurals name="videos">
         <item quantity="one">视频</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="disabled">禁用</string>
     <string name="controls_background_title">后台播放</string>
@@ -70,9 +70,9 @@
     <string name="settings_category_updates_title">更新</string>
     <string name="file_deleted">文件已删除</string>
     <string name="subscribers_count_not_available">无法得知订阅人数</string>
-    <string name="updates_setting_description">每推出新版本时，弹出应用升级通知</string>
+    <string name="updates_setting_description">发布新版本时，通知我升级应用</string>
     <string name="grid">网格</string>
-    <string name="app_update_notification_content_title">新版 NewPipe 已可升级！</string>
+    <string name="app_update_notification_content_title">新版 NewPipe 发布！</string>
     <string name="error_http_unsupported_range">服务器不接受 接收 multi-threaded 下载, 以 @string/msg_threads = 1 重试</string>
     <string name="autoplay_title">自动播放</string>
     <string name="settings_category_clear_data_title">清除数据</string>
@@ -80,7 +80,7 @@
     <string name="detail_likes_img_view_description">喜欢</string>
     <string name="detail_dislikes_img_view_description">不喜欢</string>
     <string name="use_tor_title">使用Tor</string>
-    <string name="use_tor_summary">（实验性）通过 Tor 强制下载流量以增强隐私（暂不支持串流视频）。</string>
+    <string name="use_tor_summary">（实验性）通过 Tor 强制播放来增强隐私（暂不支持串流视频）。</string>
     <string name="report_error">报告错误</string>
     <string name="user_report">用户报告</string>
     <string name="err_dir_create">无法创建下载目录\"%1$s\"</string>
@@ -91,7 +91,7 @@
     <string name="storage_permission_denied">存储访问权限已被拒绝</string>
     <plurals name="views">
         <item quantity="one">%s 次观看</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="short_thousand">千</string>
     <string name="short_million">百万</string>
@@ -131,7 +131,7 @@
     <string name="no_subscribers">没有订阅者</string>
     <plurals name="subscribers">
         <item quantity="one">%s 位订阅者</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_videos">没有视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
@@ -139,8 +139,8 @@
     <string name="delete_one">仅删除一个</string>
     <string name="delete_all">全部删除</string>
     <string name="dismiss">解除</string>
-    <string name="rename">重 命名</string>
-    <string name="toast_no_player">未安装用于播放此文件的应用程序</string>
+    <string name="rename">重命名</string>
+    <string name="toast_no_player">未安装可播放此文件的应用程序</string>
     <string name="one_item_deleted">已删除1个项目。</string>
     <string name="main_page_content_summary">哪些标签需要在主页上展示</string>
     <string name="list_view_mode">列表视图模式</string>
@@ -164,10 +164,10 @@
     <string name="default_resolution_title">默认分辨率</string>
     <string name="kore_not_found">找不到Kore。是否安装？</string>
     <string name="show_play_with_kodi_title">显示“用Kodi播放”选项</string>
-    <string name="show_play_with_kodi_summary">显示“通过Kodi media center播放视频的选项”</string>
+    <string name="show_play_with_kodi_summary">显示“通过Kodi media center播放视频”的选项</string>
     <string name="play_audio">音频</string>
     <string name="default_audio_format_title">默认音频格式</string>
-    <string name="show_next_and_similar_title">显示“下一个”和“类似的”视频</string>
+    <string name="show_next_and_similar_title">显示“下一个”和“相似”视频</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="background_player_playing_toast">在后台播放</string>
     <string name="play_btn_text">播放</string>
@@ -186,17 +186,17 @@
     <string name="content_not_available">内容不可用</string>
     <string name="could_not_setup_download_menu">无法设置下载菜单</string>
     <string name="live_streams_not_supported">暂时不支持观看直播</string>
-    <string name="could_not_get_stream">无法获得任何信息流</string>
+    <string name="could_not_get_stream">无法获得任何串流</string>
     <string name="could_not_load_image">无法加载图像</string>
     <string name="app_ui_crash">App UI 崩溃</string>
-    <string name="sorry_string">抱歉，这不应该发生的。</string>
-    <string name="error_report_button_text">通过电子邮件报告错误</string>
+    <string name="sorry_string">抱歉，这本不应该发生。</string>
+    <string name="error_report_button_text">使用电子邮件报告错误</string>
     <string name="error_snackbar_message">抱歉，发生了一些错误。</string>
     <string name="error_snackbar_action">报告</string>
     <string name="what_device_headline">信息：</string>
     <string name="what_happened_headline">发生了什么：</string>
     <string name="info_labels">详情：\\n请求：\\n内容语言：\\n服务：\\nGMT时间：\\n包：\\n版本：\\n操作系统版本：</string>
-    <string name="your_comment">您的注释（请用英文）：</string>
+    <string name="your_comment">您的附近说明（请用英文）：</string>
     <string name="error_details_headline">详细信息：</string>
     <string name="list_thumbnail_view_description">视频预览缩略图</string>
     <string name="detail_thumbnail_view_description">播放视频，时长：</string>
@@ -221,13 +221,13 @@
     <string name="popup_resizing_indicator_title">调整大小</string>
     <string name="use_external_video_player_summary">隐藏部分没有音频的分辨率</string>
     <string name="player_gesture_controls_title">播放器手势控制</string>
-    <string name="player_gesture_controls_summary">使用手势控制播放器的亮度和音量</string>
+    <string name="player_gesture_controls_summary">允许使用手势控制亮度和音量</string>
     <string name="show_search_suggestions_summary">显示搜索建议</string>
     <string name="best_resolution">最佳分辨率</string>
     <string name="app_description">开源小巧的Android媒体播放器。</string>
     <string name="view_on_github">在GitHub上查看</string>
     <string name="app_license_title">NewPipe开源许可证</string>
-    <string name="contribution_encouragement">你是否有想:翻译、设计、清理或重型代码更改 ——我们始终欢迎你来贡献！</string>
+    <string name="contribution_encouragement">你是否有想:翻译、设计、清理或重构代码更改 ——我们始终欢迎你来贡献！</string>
     <string name="read_full_license">阅读许可证</string>
     <string name="contribution_title">贡献</string>
     <string name="settings_file_replacement_character_title">替换字符</string>
@@ -291,7 +291,7 @@
     <string name="start_here_on_popup">开始在新悬浮窗中播放</string>
     <string name="donation_title">捐赠</string>
     <string name="donation_encouragement">NewPipe 是由志愿者花费时间为您带来最佳体验开发的。回馈帮助开发人员在享用一杯咖啡的同时，让 NewPipe 变得更好。</string>
-    <string name="give_back">回馈</string>
+    <string name="give_back">反馈</string>
     <string name="website_title">网站</string>
     <string name="website_encouragement">请访问 NewPipe 网站了解更多信息和讯息。</string>
     <string name="default_content_country_title">默认国家/地区</string>
@@ -319,17 +319,17 @@
     <string name="import_complete_toast">导入成功</string>
     <string name="no_valid_zip_file">没有有效的ZIP文件</string>
     <string name="could_not_import_all_files">警告：无法导入所有文件。</string>
-    <string name="override_current_data">这将覆盖当前设置。</string>
+    <string name="override_current_data">此操作会<b>覆盖当前设置</b>。</string>
     <string name="show_info">显示信息</string>
     <string name="tab_bookmarks">书签</string>
     <string name="delete_stream_history_prompt">确定要从观看历史记录中删除该项吗？</string>
     <string name="delete_all_history_prompt">是否确实要从历史记录中删除所有项目？</string>
     <string name="title_last_played">最后播放</string>
     <string name="title_most_played">播放最多</string>
-    <string name="always_ask_open_action">总是寻问</string>
+    <string name="always_ask_open_action">总是询问</string>
     <string name="create_playlist">新建播放列表</string>
     <string name="delete_playlist">删除</string>
-    <string name="rename_playlist">重 命名</string>
+    <string name="rename_playlist">重命名</string>
     <string name="playlist_name_input">名称</string>
     <string name="append_playlist">添加到播放列表</string>
     <string name="set_as_playlist_thumbnail">设为播放列表缩略图</string>
@@ -344,7 +344,7 @@
     <string name="resize_fit">适应屏幕</string>
     <string name="resize_fill">填充屏幕</string>
     <string name="resize_zoom">缩放</string>
-    <string name="drawer_header_action_paceholder_text">敬请等待</string>
+    <string name="drawer_header_action_paceholder_text">敬请期待</string>
     <string name="settings_category_debug_title">调试</string>
     <string name="caption_auto_generated">自动生成</string>
     <string name="enable_leak_canary_title">启用LeakCanary</string>
@@ -375,11 +375,11 @@
 \n1. 转到此网站： %1$s
 \n2. 登录（如果需要）
 \n3. 应该立即开始下载（即导出文件）</string>
-    <string name="import_soundcloud_instructions">通过键入网址或你的 ID 导入 SoundCloud 配置文件：
-\n
-\n1. 在浏览器中启用\"电脑模式\"（该网站不适用于移动设备）
-\n2. 转到此 URL： %1$s
-\n3. 登录（如果需要）
+    <string name="import_soundcloud_instructions">通过输入网址或你的 ID 导入 SoundCloud 配置文件： 
+\n 
+\n1. 在浏览器中启用\"电脑模式\"（该网站不适用于移动设备） 
+\n2. 转到此 URL： %1$s 
+\n3. 登录（如果需要） 
 \n4. 复制重定向的配置文件下载地址。</string>
     <string name="import_soundcloud_instructions_hint">你的 ID：soundcloud.com/［你的ID］</string>
     <string name="import_network_expensive_warning">该操作消耗大量流量，
@@ -389,7 +389,7 @@
     <string name="metadata_cache_wipe_title">清空已缓存元数据</string>
     <string name="metadata_cache_wipe_summary">清空已缓存的网页数据</string>
     <string name="metadata_cache_wipe_complete_notice">清空元数据缓存成功</string>
-    <string name="playback_speed_control">播放速度控制</string>
+    <string name="playback_speed_control">播放速度</string>
     <string name="playback_tempo">节奏</string>
     <string name="playback_pitch">音调</string>
     <string name="unhook_checkbox">解除关联（可能导致失真）</string>
@@ -399,7 +399,7 @@
     <string name="caption_setting_title">字幕</string>
     <string name="caption_setting_description">修改播放器字幕比例和背景样式。需要重新启动应用程序才能生效。</string>
     <string name="clear_views_history_summary">删除串流的播放历史和播放位置</string>
-    <string name="delete_view_history_alert">删除全部观看记录？</string>
+    <string name="delete_view_history_alert">删除全部观看历史记录？</string>
     <string name="clear_search_history_title">清除搜索历史记录</string>
     <string name="clear_search_history_summary">清除搜索关键词的历史记录</string>
     <string name="delete_search_history_alert">是否删除全部搜索历史记录？</string>
@@ -460,7 +460,7 @@
     <string name="clear_finished_download">清除已完成的下载</string>
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重试次数</string>
-    <string name="max_retry_desc">取消下载前的最多尝试次数</string>
+    <string name="max_retry_desc">取消下载前的最多重试着次数</string>
     <string name="pause_downloads_on_mobile">在切换到移动流量网络时中断播放</string>
     <string name="pause_downloads_on_mobile_desc">切换至移动数据时可能有用，尽管一些下载无法被暂停</string>
     <string name="events">事件</string>
@@ -469,7 +469,7 @@
     <string name="show_comments_summary">禁用，以停止显示评论</string>
     <plurals name="comments">
         <item quantity="one">%s 条评论</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
@@ -507,12 +507,12 @@
     <string name="no_one_watching">没有人在观看</string>
     <plurals name="watching">
         <item quantity="one">%s 人在观看</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
         <item quantity="one">％s 人在听</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
@@ -534,7 +534,7 @@
     <string name="enable_lock_screen_video_thumbnail_title">在锁屏上显示视频缩略图</string>
     <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
-    <string name="delete_downloaded_files">删除下载了的文件</string>
+    <string name="delete_downloaded_files">删除已下载的文件</string>
     <string name="deleted_downloads">已删除 %1$s 下载</string>
     <string name="permission_display_over_apps">授予在其他应用上层显示的权限</string>
     <string name="app_language_title">Newpipe应用语言</string>
@@ -544,6 +544,6 @@
     <string name="videos_string">视频</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s秒</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
 </resources>
