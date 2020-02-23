@@ -532,6 +532,20 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null) return;
         simpleExoPlayer.setShuffleModeEnabled(!simpleExoPlayer.getShuffleModeEnabled());
     }
+    /*//////////////////////////////////////////////////////////////////////////
+    // Mute / Unmute
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public void onMuteUnmuteButtonClicled(){
+        if (DEBUG) Log.d(TAG, "onMuteUnmuteButtonClicled() called");
+
+        if (simpleExoPlayer.getVolume() != 0) {
+            simpleExoPlayer.setVolume(0);
+        }
+        else {
+            simpleExoPlayer.setVolume(1);
+        }
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Progress Updates

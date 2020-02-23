@@ -40,6 +40,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.DisplayMetrics;
@@ -446,6 +447,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         private ImageButton toggleOrientationButton;
         private ImageButton switchPopupButton;
         private ImageButton switchBackgroundButton;
+        private ImageButton muteButton;
 
         private RelativeLayout windowRootLayout;
         private View secondaryControls;
@@ -482,6 +484,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             this.shareButton = rootView.findViewById(R.id.share);
             this.toggleOrientationButton = rootView.findViewById(R.id.toggleOrientation);
             this.switchBackgroundButton = rootView.findViewById(R.id.switchBackground);
+            this.muteButton = rootView.findViewById(R.id.switchMute);
             this.switchPopupButton = rootView.findViewById(R.id.switchPopup);
 
             this.queueLayout = findViewById(R.id.playQueuePanel);
@@ -533,6 +536,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             shareButton.setOnClickListener(this);
             toggleOrientationButton.setOnClickListener(this);
             switchBackgroundButton.setOnClickListener(this);
+            muteButton.setOnClickListener(this);
             switchPopupButton.setOnClickListener(this);
 
             getRootView().addOnLayoutChangeListener((view, l, t, r, b, ol, ot, or, ob) -> {
@@ -670,6 +674,21 @@ public final class MainVideoPlayer extends AppCompatActivity
             destroy();
             finish();
         }
+        @Override
+        public void onMuteUnmuteButtonClicled() {
+            super.onMuteUnmuteButtonClicled();
+            setMuteIcon();
+        }
+
+        public void setMuteIcon() {
+            if (simpleExoPlayer.getVolume() == 0){
+                muteButton.setColorFilter(ContextCompat.getColor(context, R.color.white));
+            }
+
+            else {
+                muteButton.setColorFilter(ContextCompat.getColor(context, R.color.gray));
+            }
+        }
 
 
         @Override
@@ -707,6 +726,9 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             } else if (v.getId() == switchBackgroundButton.getId()) {
                 onPlayBackgroundButtonClicked();
+
+            } else if (v.getId() == muteButton.getId()) {
+                onMuteUnmuteButtonClicled();
 
             } else if (v.getId() == closeButton.getId()) {
                 onPlaybackShutdown();
