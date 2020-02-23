@@ -491,7 +491,7 @@
     <string name="playback_speed_control">Playback Speed Controls</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Pitch</string>
-    <string name="unhook_checkbox">Unlink (may cause distortion)</string>
+    <string name="unhook_checkbox">Unhook (may cause distortion)</string>
     <string name="skip_silence_checkbox">Fast-forward during silence</string>
     <string name="playback_step">Step</string>
     <string name="playback_reset">Reset</string>
