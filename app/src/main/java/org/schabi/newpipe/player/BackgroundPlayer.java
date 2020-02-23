@@ -399,6 +399,12 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
+        public void onMuteUnmuteButtonClicled() {
+            super.onMuteUnmuteButtonClicled();
+            updatePlayback();
+        }
+
+        @Override
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
             updateProgress(currentProgress, duration, bufferPercent);
 

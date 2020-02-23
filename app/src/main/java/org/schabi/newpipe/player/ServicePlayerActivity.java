@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +23,7 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -560,6 +562,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         onPlayModeChanged(repeatMode, shuffled);
         onPlaybackParameterChanged(parameters);
         onMaybePlaybackAdapterChanged();
+        onMaybeMuteChanged();
     }
 
     @Override
@@ -667,7 +670,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         final int shuffleAlpha = shuffled ? 255 : 77;
         shuffleButton.setImageAlpha(shuffleAlpha);
     }
-    
+
     private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
         if (parameters != null) {
             playbackSpeedButton.setText(formatSpeed(parameters.speed));
@@ -680,6 +683,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         final PlayQueueAdapter maybeNewAdapter = player.getPlayQueueAdapter();
         if (maybeNewAdapter != null && itemsList.getAdapter() != maybeNewAdapter) {
             itemsList.setAdapter(maybeNewAdapter);
+        }
+    }
+
+    private void onMaybeMuteChanged(){
+        if (player.isMuted()) {
+            muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.white));
+        }
+        else {
+            muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.gray));
         }
     }
 }
