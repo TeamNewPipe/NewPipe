@@ -167,10 +167,10 @@
     </plurals>
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
-        <item quantity="one">סרטון</item>
-        <item quantity="two">סרטונים</item>
-        <item quantity="many">סרטונים</item>
-        <item quantity="other">סרטונים</item>
+        <item quantity="one">סרטון %s</item>
+        <item quantity="two">%s סרטונים</item>
+        <item quantity="many">%s סרטונים</item>
+        <item quantity="other">%s סרטונים</item>
     </plurals>
     <string name="start">התחלה</string>
     <string name="pause">השהיה</string>
@@ -473,10 +473,10 @@
     <string name="show_comments_summary">יש להשבית כדי להפסיק הסתרת תגובות</string>
     <string name="autoplay_title">ניגון אוטומטי</string>
     <plurals name="comments">
-        <item quantity="one">תגובות</item>
-        <item quantity="two"/>
-        <item quantity="many"/>
-        <item quantity="other"/>
+        <item quantity="one">תגובה %s</item>
+        <item quantity="two">%s תגובות</item>
+        <item quantity="many">%s תגובות</item>
+        <item quantity="other">%s תגובות</item>
     </plurals>
     <string name="no_comments">אין תגובות</string>
     <string name="error_unable_to_load_comments">לא ניתן לטעון תגובות</string>
@@ -556,4 +556,10 @@
     <string name="subtitle_activity_recaptcha">יש ללחוץ על „סיום” לאחר הפתירה</string>
     <string name="recaptcha_done_button">סיום</string>
     <string name="videos_string">סרטונים</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s שניות</item>
+        <item quantity="two"></item>
+        <item quantity="many"></item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>
