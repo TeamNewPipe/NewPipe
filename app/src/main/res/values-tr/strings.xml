@@ -358,7 +358,7 @@
     <string name="playback_tempo">Hız</string>
     <string name="playback_default">Öntanımlı</string>
     <string name="playback_pitch">Ses yüksekliği</string>
-    <string name="unhook_checkbox">Bağlantısız (bozulmaya neden olabilir)</string>
+    <string name="unhook_checkbox">Ayır (bozulmaya neden olabilir)</string>
     <string name="no_streams_available_download">İndirilebilecek akış yok</string>
     <string name="preferred_open_action_settings_title">Yeğlenen \'aç\' eylemi</string>
     <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
@@ -546,6 +546,6 @@
     <string name="videos_string">Videolar</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s saniye</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
 </resources>
