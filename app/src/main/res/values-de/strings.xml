@@ -339,7 +339,7 @@
     <string name="playback_speed_control">Wiedergabegeschwindigkeitsregler</string>
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
-    <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
+    <string name="unhook_checkbox">Entkoppeln (kann zu Verzerrungen führen)</string>
     <string name="playback_default">Standard</string>
     <string name="download_thumbnail_summary">Abschalten, um das Laden von Miniaturansichten zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
@@ -548,6 +548,6 @@
     <string name="videos_string">Videos</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s Sekunden</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
 </resources>
