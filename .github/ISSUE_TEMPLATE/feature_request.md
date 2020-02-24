@@ -22,3 +22,8 @@ Ex. *I considered Z, but that didn't work because...*
 #### Additional context
 Add any other context or screenshots about the feature request here.
 Ex. *Here's a photo of my cat!*
+
+#### Why do you/everyone wants this feature
+Convince us! How does it change your NewPipe experience and/or your life?
+The better this paragraph is, the more likely a developer will think about developing it
+
