@@ -12,7 +12,7 @@
         android:id="@+id/surfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerInParent="true"/>
 
     <View
         android:id="@+id/surfaceForeground"
@@ -131,6 +131,12 @@
             android:background="@drawable/player_top_controls_bg"
             android:layout_alignParentTop="true" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/player_controls_bg"
+            android:layout_alignParentBottom="true" />
+
         <!-- All top controls in this layout -->
         <RelativeLayout
             android:id="@+id/playbackWindowRoot"
@@ -144,6 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:orientation="vertical"
+                android:minHeight="80dp"
                 android:gravity="top"
                 android:paddingTop="@dimen/player_main_top_padding"
                 android:paddingStart="@dimen/player_main_controls_padding"
@@ -364,31 +371,26 @@
 
             </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/fullScreenButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="@dimen/player_main_buttons_padding"
-                    android:layout_alignParentRight="true"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_fullscreen_white"
-                    tools:ignore="ContentDescription,RtlHardcoded"
-                    android:visibility="gone"
-                    tools:visibility="visible"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@drawable/player_controls_bg"
-                android:layout_alignParentBottom="true" />
+            <ImageButton
+                android:id="@+id/fullScreenButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="@dimen/player_main_buttons_padding"
+                android:layout_alignParentRight="true"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_fullscreen_white"
+                tools:ignore="ContentDescription,RtlHardcoded"
+                android:visibility="gone"
+                tools:visibility="visible"/>
 
             <LinearLayout
                 android:id="@+id/bottomControls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="40dp"
                 android:layout_alignParentBottom="true"
                 android:gravity="center"
                 android:orientation="horizontal"

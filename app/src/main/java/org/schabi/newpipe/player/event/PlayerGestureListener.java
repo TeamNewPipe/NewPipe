@@ -160,9 +160,8 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
         isMovingInMain = true;
 
-        boolean acceptAnyArea = isVolumeGestureEnabled != isBrightnessGestureEnabled;
-        boolean acceptVolumeArea = acceptAnyArea || initialEvent.getX() > playerImpl.getRootView().getWidth() / 2;
-        boolean acceptBrightnessArea = acceptAnyArea || !acceptVolumeArea;
+        boolean acceptVolumeArea = initialEvent.getX() > playerImpl.getRootView().getWidth() / 2.0;
+        boolean acceptBrightnessArea = initialEvent.getX() <= playerImpl.getRootView().getWidth() / 2.0;
 
         if (isVolumeGestureEnabled && acceptVolumeArea) {
             playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);

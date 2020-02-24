@@ -870,7 +870,7 @@ public class VideoDetailFragment
 
         // If we are in fullscreen mode just exit from it via first back press
         if (player != null && player.isInFullscreen()) {
-            player.onPause();
+            if (!PlayerHelper.isTablet(activity)) player.onPause();
             restoreDefaultOrientation();
             setAutoplay(false);
             return true;
@@ -1699,6 +1699,7 @@ public class VideoDetailFragment
         if (currentInfo != null && info.getUrl().equals(currentInfo.getUrl())) return;
 
         currentInfo = info;
+        setInitialData(info.getServiceId(), info.getUrl(),info.getName(), playQueue);
         setAutoplay(false);
         prepareAndHandleInfo(info, true);
     }
@@ -1736,6 +1737,7 @@ public class VideoDetailFragment
         }
 
         if (relatedStreamsLayout != null) relatedStreamsLayout.setVisibility(fullscreen ? View.GONE : View.VISIBLE);
+        scrollToTop();
 
         addVideoPlayerView();
     }
@@ -1842,12 +1844,10 @@ public class VideoDetailFragment
         if ((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
             setAutoplay(true);
 
+        player.checkLandscape();
         boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(activity);
         // Let's give a user time to look at video information page if video is not playing
-        if (player.isPlaying()) {
-            player.checkLandscape();
-        } else if (orientationLocked) {
-            player.checkLandscape();
+        if (orientationLocked && !player.isPlaying()) {
             player.onPlay();
             player.showControlsThenHide();
         }
@@ -1927,6 +1927,7 @@ public class VideoDetailFragment
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
+                        if (player != null) player.onQueueClosed();
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
                     case BottomSheetBehavior.STATE_SETTLING:
