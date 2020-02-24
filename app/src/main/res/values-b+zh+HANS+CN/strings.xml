@@ -392,7 +392,7 @@
     <string name="playback_speed_control">播放速度</string>
     <string name="playback_tempo">节奏</string>
     <string name="playback_pitch">音调</string>
-    <string name="unhook_checkbox">解除关联（可能导致失真）</string>
+    <string name="unhook_checkbox">解除挂钩（可能导致失真）</string>
     <string name="preferred_open_action_settings_title">首选“打开”操作</string>
     <string name="preferred_open_action_settings_summary">打开内容时默认操作： = %s</string>
     <string name="no_streams_available_download">无可下载的串流内容</string>
