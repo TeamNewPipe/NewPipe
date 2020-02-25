@@ -1,6 +1,8 @@
 package org.schabi.newpipe.settings;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import org.schabi.newpipe.BaseFragment;
@@ -43,6 +46,7 @@ public class CheckForUpdatesFragment extends BaseFragment implements CheckForNew
     private ProgressBar mProgressBar;
 
     private boolean checked = false;
+    private String apkUrl;
 
     private File downloads = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
@@ -147,6 +151,37 @@ public class CheckForUpdatesFragment extends BaseFragment implements CheckForNew
      * This downloads a new apk version to the cache and installs it
      */
     private void downloadNewVersion(String apkUrl) {
+
+        this.apkUrl = apkUrl;
+
+        // can't use ActivityCompat.checkWriteStoragePermissions() because it does not work within fragments
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1337);
+        } else {
+            startDownload(this.apkUrl);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        for (int i: grantResults){
+            if (i == PackageManager.PERMISSION_DENIED){
+                return;
+            }
+        }
+        startDownload(this.apkUrl);
+    }
+
+    /**
+     * This starts the download
+     */
+    private void startDownload(String apkUrl) {
+
+        if (apkUrl == null)
+            return;
+
+        Log.i("CheckForUpdatesFragment", "Downloading " + apkUrl);
 
         mActionButton.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
