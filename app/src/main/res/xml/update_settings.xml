@@ -9,7 +9,13 @@
         app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/update_app_key"
-        android:title="@string/updates_setting_title"
+        android:title="@string/update_show_notification"
         android:summary="@string/updates_setting_description"/>
+
+    <PreferenceScreen
+        app:iconSpaceReserved="false"
+        android:title="@string/updates_check_for_updates"
+        android:summary="@string/updates_check_for_updates_summary"
+        android:fragment="org.schabi.newpipe.settings.CheckForUpdatesFragment"/>
 
 </PreferenceScreen>
