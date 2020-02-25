@@ -9,8 +9,8 @@
     <string name="download_path_dialog_title">Choisissez le dossier de téléchargement des fichiers vidéo</string>
     <string name="download_path_summary">Les fichiers vidéo téléchargés sont stockés ici</string>
     <string name="install">Installer</string>
-    <string name="kore_not_found">Impossible de trouver Kore. Voulez-vous l’installer \?</string>
-    <string name="no_player_found">Aucun lecteur de flux multimédias trouvé. Voulez-vous installer VLC \?</string>
+    <string name="kore_not_found">Installer l\'application Kore manquante \?</string>
+    <string name="no_player_found">Aucun lecteur de flux multimédia trouvé. Installer VLC \?</string>
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
     <string name="play_with_kodi_title">Lire avec Kodi</string>
     <string name="screen_rotation">rotation</string>
@@ -74,7 +74,7 @@
     <string name="video">Vidéo</string>
     <string name="audio">Audio</string>
     <string name="retry">Réessayer</string>
-    <string name="storage_permission_denied">Autorisation d’accès au stockage refusée</string>
+    <string name="storage_permission_denied">Accordez d\'abord l\'accès au stockage</string>
     <string name="main_bg_subtitle">Appuyer sur la loupe pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
     <string name="video_is_age_restricted">Affiche les vidéos soumises à une limite d’âge. Autoriser ce type de contenu est possible depuis les paramètres.</string>
@@ -185,7 +185,7 @@
     <string name="notification_channel_name">Notification NewPipe</string>
     <string name="undo">Annuler</string>
     <string name="enable_watch_history_summary">Garde un suivi des vidéos vues</string>
-    <string name="resume_on_audio_focus_gain_title">Reprendre lors du retour dans l\'application</string>
+    <string name="resume_on_audio_focus_gain_title">Reprendre la lecture</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
     <string name="settings_category_history_title">Historique et cache</string>
@@ -449,7 +449,7 @@
     <string name="error_path_creation">Le dossier de destination ne peut pas être créé</string>
     <string name="error_file_creation">Le fichier ne peut pas être créé</string>
     <string name="error_permission_denied">Autorisation refusée par le système</string>
-    <string name="error_ssl_exception">La connexion sécurisée a échoué</string>
+    <string name="error_ssl_exception">Impossible d\'établir une connexion sécurisée</string>
     <string name="error_unknown_host">Impossible de trouver le serveur</string>
     <string name="error_connect_host">Impossible de se connecter au serveur</string>
     <string name="error_http_no_content">Le serveur n’envoie pas de données</string>
@@ -470,8 +470,8 @@
     <string name="show_comments_summary">Désactiver pour masquer les commentaires</string>
     <string name="autoplay_title">Lecture automatique</string>
     <plurals name="comments">
-        <item quantity="one">Commentaire</item>
-        <item quantity="other">Commentaires</item>
+        <item quantity="one">%s commentaire</item>
+        <item quantity="other">%s commentaires</item>
     </plurals>
     <string name="no_comments">Aucun commentaire</string>
     <string name="error_unable_to_load_comments">Impossible de charger les commentaires</string>
@@ -520,7 +520,7 @@
     <string name="seek_duration_title">Avance/rembobinage rapide sur une durée</string>
     <string name="peertube_instance_url_title">Instances PeerTube</string>
     <string name="peertube_instance_url_summary">Choisissez vos instances PeerTube préférées</string>
-    <string name="peertube_instance_url_help">Cherchez des instances qui pourraient vous intéresser sur %s</string>
+    <string name="peertube_instance_url_help">Trouvez les instances que vous aimez sur %s</string>
     <string name="peertube_instance_add_title">Ajouter une instance</string>
     <string name="peertube_instance_add_help">Entrez l’URL de l’instance</string>
     <string name="peertube_instance_add_fail">Échec de validation de l’instance</string>
@@ -544,4 +544,9 @@
     <string name="subtitle_activity_recaptcha">Appuyez sur « Terminé » une fois résolu</string>
     <string name="recaptcha_done_button">Terminé</string>
     <string name="duration_live_button" translatable="false">En direct</string>
+    <string name="videos_string">Vidéos</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s secondes</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>
