@@ -52,6 +52,11 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
     private SharedPreferences mPrefs;
     private OkHttpClient client;
+    private boolean embedded;
+
+    public CheckForNewAppVersionTask(boolean embedded) {
+        this.embedded = embedded;
+    }
 
     @Override
     protected void onPreExecute() {
@@ -111,13 +116,17 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
                 String versionCode = githubStableObject.getString("version_code");
                 String apkLocationUrl = githubStableObject.getString("apk");
 
-                compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode);
+                if (embedded && updateCallback != null)
+                    updateCallback.updateAvailable(versionName, versionCode, apkLocationUrl);
+                else
+                    compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode);
 
             } catch (JSONException ex) {
                 // connectivity problems, do not alarm user and fail silently
                 if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
             }
-        }
+        } else if (updateCallback != null)
+            updateCallback.updateAvailable(null, null, null);
     }
 
     /**
@@ -234,5 +243,19 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
                 (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null
 				&& cm.getActiveNetworkInfo().isConnected();
+    }
+
+    /**
+     * This is the update callback if the checker is embedded
+     */
+
+    public interface UpdateCallback {
+        void updateAvailable(String versionName, String versionCode, String apkUrl);
+    }
+
+    private UpdateCallback updateCallback;
+
+    public void setUpdateCallback(UpdateCallback updateCallback) {
+        this.updateCallback = updateCallback;
     }
 }
