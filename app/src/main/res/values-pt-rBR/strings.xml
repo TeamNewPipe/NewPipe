@@ -551,4 +551,9 @@ abrir em modo popup</string>
     <string name="systems_language">Padrão do sistema</string>
     <string name="subtitle_activity_recaptcha">Toque em \"Feito\" ao resolver</string>
     <string name="recaptcha_done_button">Feito</string>
+    <string name="videos_string">Vídeos</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s segundos</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>
