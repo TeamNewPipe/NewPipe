@@ -63,6 +63,9 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(app);
 
+        if (embedded)
+            return;
+
         // Check if user has enabled/ disabled update checking
         // and if the current apk is a github one or not.
         if (!mPrefs.getBoolean(app.getString(R.string.update_app_key), true)
