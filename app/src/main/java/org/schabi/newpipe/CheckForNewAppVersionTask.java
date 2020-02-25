@@ -9,7 +9,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import androidx.core.app.NotificationCompat;
@@ -20,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -147,7 +147,9 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
         if (BuildConfig.VERSION_CODE < Integer.valueOf(versionCode)) {
 
             // A pending intent to open the apk location url in the browser.
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
+            Intent intent = new Intent(App.getApp(), SettingsActivity.class);
+            intent.putExtra("update", true);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent pendingIntent
                     = PendingIntent.getActivity(app, 0, intent, 0);
 
