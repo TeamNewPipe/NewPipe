@@ -246,12 +246,12 @@
         <item quantity="other">%s مشاهدة</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="zero">فيديوهات</item>
-        <item quantity="one">فيديوهات</item>
-        <item quantity="two">فيديوهات</item>
-        <item quantity="few">فيديوهات</item>
-        <item quantity="many">فيديوهات</item>
-        <item quantity="other">فيديوهات</item>
+        <item quantity="zero">%s فيديو</item>
+        <item quantity="one">%s أشرطة فيديو</item>
+        <item quantity="two">%s أشرطة فيديو</item>
+        <item quantity="few">%s أشرطة فيديو</item>
+        <item quantity="many">%s أشرطة فيديو</item>
+        <item quantity="other">%s أشرطة فيديو</item>
     </plurals>
     <string name="recaptcha_request_toast">طلب اختبار الكابتشا مطلوب</string>
     <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
@@ -556,9 +556,14 @@
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
     <string name="choose_instance_prompt">اختيار مثيل</string>
     <string name="peertube_instance_url_help">ابحث عن الحالات التي تناسبك على %s</string>
-    <string name="enable_lock_screen_video_thumbnail_title">تمكين صور مصغرة قفل شاشة فيديو</string>
+    <string name="enable_lock_screen_video_thumbnail_title">تمكين قفل شاشة الصور المصغرة الفيديو</string>
     <string name="enable_lock_screen_video_thumbnail_summary">عند استخدام مشغل الخلفية ، سيتم عرض صورة مصغرة للفيديو على شاشة القفل</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
     <string name="delete_downloaded_files">حذف الملفات التي تم تنزيلها</string>
     <string name="deleted_downloads">التنزيلات %1$s المحذوفة</string>
+    <string name="permission_display_over_apps">إعطاء إذن لعرضه على التطبيقات الأخرى</string>
+    <string name="app_language_title">لغة التطبيق</string>
+    <string name="systems_language">النظام الافتراضي</string>
+    <string name="subtitle_activity_recaptcha">اضغط على \"تم\" عند حلها</string>
+    <string name="recaptcha_done_button">منجز</string>
 </resources>
