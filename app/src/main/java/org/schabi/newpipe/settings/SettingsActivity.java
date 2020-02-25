@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.ActionBar;
@@ -52,9 +53,12 @@ public class SettingsActivity extends AppCompatActivity implements BasePreferenc
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent intent = getIntent();
+        boolean update = intent.getBooleanExtra("update", false);
+
         if (savedInstanceBundle == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder, new MainSettingsFragment())
+                    .replace(R.id.fragment_holder, update ? new CheckForUpdatesFragment() : new MainSettingsFragment())
                     .commit();
         }
     }
