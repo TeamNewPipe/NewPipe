@@ -36,7 +36,7 @@ public class NewPipeRecyclerView extends RecyclerView {
     private Rect focusRect = new Rect();
     private Rect tempFocus = new Rect();
 
-    private boolean allowDpadScroll;
+    private boolean allowDpadScroll = true;
 
     public NewPipeRecyclerView(@NonNull Context context) {
         super(context);
