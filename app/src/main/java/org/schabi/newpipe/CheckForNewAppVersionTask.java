@@ -125,7 +125,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
                 // connectivity problems, do not alarm user and fail silently
                 if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
             }
-        } else if (updateCallback != null)
+        } else if (embedded && updateCallback != null)
             updateCallback.updateAvailable(null, null, null);
     }
 
