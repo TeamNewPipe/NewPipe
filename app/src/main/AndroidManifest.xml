@@ -243,6 +243,7 @@
                 <data android:host="tube.poal.co"/>
                 <data android:host="invidious.13ad.de"/>
                 <data android:host="yt.elukerio.org"/>
+                <data android:host="yewtu.be"/>
                 <!-- video prefix -->
                 <data android:pathPrefix="/embed/"/>
                 <data android:pathPrefix="/watch"/>
