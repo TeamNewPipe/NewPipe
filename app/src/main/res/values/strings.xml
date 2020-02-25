@@ -593,6 +593,18 @@
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
     <string name="dynamic_seek_duration_description">%s seconds</string>
+    <string name="updates_check_for_updates">Check for updates</string>
+    <string name="updates_check_for_updates_summary">Click here to check for a new version</string>
+    <string name="update_show_notification">Show a notification</string>
+    <string name="updates_checking_for_updates">Checking for updates...</string>
+    <string name="updates_app_up_to_date">NewPipe is up to date</string>
+    <string name="updates_failed_to_check">Update check failed</string>
+    <string name="updates_new_version_available">New version is available (%s)</string>
+    <string name="updates_click_to_download">Click the download button to update</string>
+    <string name="updates_ready">Update is ready</string>
+    <string name="updates_press_to_install">Click install to install the update</string>
+    <string name="updates_downloading">Downloading update...</string>
+    <string name="updates_connecting">Connecting to update server...</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="other">%s seconds</item>
     </plurals>

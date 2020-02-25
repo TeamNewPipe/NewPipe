@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/check_for_updates_icon"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ImageView>
+
+    <TextView
+        android:textColor="@color/white"
+        android:textSize="@dimen/header_footer_text_size"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/check_for_updates_icon"
+        tools:text="Checking for updates..."
+        android:id="@+id/check_for_updates_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <TextView
+        android:id="@+id/check_for_updates_subtitle"
+        tools:text="18.4.0"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/check_for_updates_title"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/check_for_updates_download"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_alignParentBottom="true"
+        android:text="@string/download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Button>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:visibility="gone"
+        android:id="@+id/check_for_updates_progress"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ProgressBar>
+
+</RelativeLayout>
