@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -250,7 +251,7 @@ public class CheckForUpdatesFragment extends BaseFragment implements CheckForNew
                 }
 
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e("CheckForUpdatesFragment", "Update download failed: ", e);
                 return FAILED;
             }
 
@@ -258,10 +259,10 @@ public class CheckForUpdatesFragment extends BaseFragment implements CheckForNew
         }
 
         @Override
-        protected void onPostExecute(Integer aVoid) {
-            super.onPostExecute(aVoid);
-            System.out.println(aVoid);
-            if (aVoid == FAILED) {
+        protected void onPostExecute(Integer res) {
+            super.onPostExecute(res);
+            Log.i("CheckForUpdatesFragment", "Task returned " + res);
+            if (res == FAILED) {
                 listener.fail();
                 return;
             }
