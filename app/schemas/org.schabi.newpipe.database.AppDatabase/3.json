@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "83d5d68663102d5fa28d63caaffb396d",
+    "identityHash": "9f825b1ee281480bedd38b971feac327",
     "entities": [
       {
         "tableName": "subscriptions",
@@ -555,7 +555,7 @@
       },
       {
         "tableName": "feed_group",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `icon_id` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `icon_id` INTEGER NOT NULL, `sort_order` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -574,6 +574,12 @@
             "columnName": "icon_id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sort_order",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -582,7 +588,16 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_feed_group_sort_order",
+            "unique": false,
+            "columnNames": [
+              "sort_order"
+            ],
+            "createSql": "CREATE  INDEX `index_feed_group_sort_order` ON `${TABLE_NAME}` (`sort_order`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
@@ -686,7 +701,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '83d5d68663102d5fa28d63caaffb396d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9f825b1ee281480bedd38b971feac327')"
     ]
   }
 }

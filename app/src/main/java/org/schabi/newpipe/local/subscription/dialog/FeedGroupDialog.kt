@@ -39,6 +39,7 @@ class FeedGroupDialog : DialogFragment() {
     private lateinit var viewModel: FeedGroupDialogViewModel
     private var groupId: Long = NO_GROUP_SELECTED
     private var groupIcon: FeedGroupIcon? = null
+    private var groupSortOrder: Long = -1
 
     sealed class ScreenState : Serializable {
         object InitialScreen : ScreenState()
@@ -145,7 +146,7 @@ class FeedGroupDialog : DialogFragment() {
 
                 when (groupId) {
                     NO_GROUP_SELECTED -> viewModel.createGroup(name, icon, selectedSubscriptions)
-                    else -> viewModel.updateGroup(name, icon, selectedSubscriptions)
+                    else -> viewModel.updateGroup(name, icon, selectedSubscriptions, groupSortOrder)
                 }
             } else {
                 showInitialScreen()
@@ -167,6 +168,7 @@ class FeedGroupDialog : DialogFragment() {
         val icon = feedGroupEntity?.icon ?: FeedGroupIcon.ALL
         val name = feedGroupEntity?.name ?: ""
         groupIcon = feedGroupEntity?.icon
+        groupSortOrder = feedGroupEntity?.sortOrder ?: -1
 
         icon_preview.setImageResource((if (selectedIcon == null) icon else selectedIcon!!).getDrawableRes(requireContext()))
 

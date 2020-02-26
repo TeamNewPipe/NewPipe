@@ -58,9 +58,9 @@ class FeedGroupDialogViewModel(applicationContext: Context, val groupId: Long = 
                 .subscribe { successLiveData.postValue(FeedDialogEvent.SuccessEvent) })
     }
 
-    fun updateGroup(name: String, selectedIcon: FeedGroupIcon, selectedSubscriptions: Set<Long>) {
+    fun updateGroup(name: String, selectedIcon: FeedGroupIcon, selectedSubscriptions: Set<Long>, sortOrder: Long) {
         disposables.add(feedDatabaseManager.updateSubscriptionsForGroup(groupId, selectedSubscriptions.toList())
-                .andThen(feedDatabaseManager.updateGroup(FeedGroupEntity(groupId, name, selectedIcon)))
+                .andThen(feedDatabaseManager.updateGroup(FeedGroupEntity(groupId, name, selectedIcon, sortOrder)))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { successLiveData.postValue(FeedDialogEvent.SuccessEvent) })

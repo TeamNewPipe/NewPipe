@@ -9,14 +9,18 @@ import org.schabi.newpipe.database.feed.model.FeedGroupSubscriptionEntity
 @Dao
 abstract class FeedGroupDAO {
 
-    @Query("SELECT * FROM feed_group")
+    @Query("SELECT * FROM feed_group ORDER BY sort_order ASC")
     abstract fun getAll(): Flowable<List<FeedGroupEntity>>
 
     @Query("SELECT * FROM feed_group WHERE uid = :groupId")
     abstract fun getGroup(groupId: Long): Maybe<FeedGroupEntity>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    abstract fun insert(feedEntity: FeedGroupEntity): Long
+    @Transaction
+    open fun insert(feedGroupEntity: FeedGroupEntity): Long {
+        val nextSortOrder = nextSortOrder()
+        feedGroupEntity.sortOrder = nextSortOrder
+        return insertInternal(feedGroupEntity)
+    }
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
     abstract fun update(feedGroupEntity: FeedGroupEntity): Int
@@ -41,4 +45,18 @@ abstract class FeedGroupDAO {
         deleteSubscriptionsFromGroup(groupId)
         insertSubscriptionsToGroup(subscriptionIds.map { FeedGroupSubscriptionEntity(groupId, it) })
     }
+
+    @Transaction
+    open fun updateOrder(orderMap: Map<Long, Long>) {
+        orderMap.forEach { (groupId, sortOrder) -> updateOrder(groupId, sortOrder) }
+    }
+
+    @Query("UPDATE feed_group SET sort_order = :sortOrder WHERE uid = :groupId")
+    abstract fun updateOrder(groupId: Long, sortOrder: Long): Int
+
+    @Query("SELECT IFNULL(MAX(sort_order) + 1, 0) FROM feed_group")
+    protected abstract fun nextSortOrder(): Long
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    protected abstract fun insertInternal(feedGroupEntity: FeedGroupEntity): Long
 }

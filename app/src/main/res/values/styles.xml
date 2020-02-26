@@ -94,6 +94,7 @@
         <item name="ic_sunny">@drawable/ic_sunny_black_24dp</item>
         <item name="ic_telescope">@drawable/ic_telescope_black_24dp</item>
         <item name="ic_megaphone">@drawable/ic_megaphone_black_24dp</item>
+        <item name="ic_sort">@drawable/ic_sort_black_24dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -198,6 +199,7 @@
         <item name="ic_sunny">@drawable/ic_sunny_white_24dp</item>
         <item name="ic_telescope">@drawable/ic_telescope_white_24dp</item>
         <item name="ic_megaphone">@drawable/ic_megaphone_white_24dp</item>
+        <item name="ic_sort">@drawable/ic_sort_white_24dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>

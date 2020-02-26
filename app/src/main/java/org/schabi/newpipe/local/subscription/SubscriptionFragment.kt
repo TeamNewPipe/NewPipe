@@ -25,8 +25,9 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.fragments.BaseStateFragment
-import org.schabi.newpipe.local.subscription.SubscriptionViewModel.*
+import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionState
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialog
 import org.schabi.newpipe.local.subscription.item.*
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.EXPORT_COMPLETE_ACTION
@@ -34,11 +35,8 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.*
 import org.schabi.newpipe.report.UserAction
+import org.schabi.newpipe.util.*
 import org.schabi.newpipe.util.AnimationUtils.animateView
-import org.schabi.newpipe.util.FilePickerActivityHelper
-import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.OnClickGesture
-import org.schabi.newpipe.util.ShareUtils
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -54,6 +52,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private val feedGroupsSection = Section()
     private var feedGroupsCarousel: FeedGroupCarouselItem? = null
     private lateinit var importExportItem: FeedImportExportItem
+    private lateinit var feedGroupsSortMenuItem: HeaderWithMenuItem
     private val subscriptionsSection = Section()
 
     @State @JvmField var itemsListState: Parcelable? = null
@@ -164,6 +163,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         startActivityForResult(FilePickerActivityHelper.chooseFileToSave(activity, exportFile.absolutePath), REQUEST_EXPORT_CODE)
     }
 
+    private fun openReorderDialog() {
+        FeedGroupReorderDialog().show(requireFragmentManager(), null)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null && data.data != null && resultCode == Activity.RESULT_OK) {
@@ -210,7 +213,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             }
 
             feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter)
-            add(Section(HeaderItem(getString(R.string.feed_groups_header_title)), listOf(feedGroupsCarousel)))
+            feedGroupsSortMenuItem = HeaderWithMenuItem(
+                    getString(R.string.feed_groups_header_title),
+                    ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_sort),
+                    menuItemOnClickListener = ::openReorderDialog
+            )
+            add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))
 
             groupAdapter.add(this)
         }
@@ -332,6 +340,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         if (feedGroupsListState != null) {
             feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListState)
             feedGroupsListState = null
+        }
+
+        if (groups.size < 2) {
+            items_list.post { feedGroupsSortMenuItem.notifyChanged(HeaderWithMenuItem.PAYLOAD_HIDE_MENU_ITEM) }
+        } else {
+            items_list.post { feedGroupsSortMenuItem.notifyChanged(HeaderWithMenuItem.PAYLOAD_SHOW_MENU_ITEM) }
         }
     }
 
