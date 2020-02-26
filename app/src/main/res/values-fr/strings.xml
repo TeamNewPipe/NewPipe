@@ -464,7 +464,7 @@
     <string name="error_postprocessing_failed">Le post-traitement a échoué</string>
     <string name="max_retry_msg">Nombre maximum de tentatives</string>
     <string name="max_retry_desc">Nombre maximum de tentatives avant d’annuler le téléchargement</string>
-    <string name="saved_tabs_invalid_json">En utilisation les onglets par défaut, une erreur est survenue en lisant les onglets sauvegardés</string>
+    <string name="saved_tabs_invalid_json">Erreur durant la lecture des onglets enregistrés. Onglets par défaut utilisés.</string>
     <string name="error_http_unsupported_range">Le serveur n’accepte pas les téléchargements multi-fils, veuillez réessayer avec @string/msg_threads = 1</string>
     <string name="show_comments_title">Afficher les commentaires</string>
     <string name="show_comments_summary">Désactiver pour masquer les commentaires</string>
@@ -533,7 +533,7 @@
     <string name="error_download_resource_gone">Impossible de récupérer ce téléchargement</string>
     <string name="choose_instance_prompt">Choisissez une instance</string>
     <string name="playlist_no_uploader">Généré automatiquement (pas de téléverseur trouvé)</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Activer la vidéo miniaturisée sur l\'écran de verrouillage</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Afficher la miniature de la vidéo sur l\'écran de verrouillage</string>
     <string name="enable_lock_screen_video_thumbnail_summary">La miniature de la vidéo sera affichée sur l\'écran de verrouillage en utilisant le lecteur audio</string>
     <string name="clear_download_history">Effacer l\'historique de téléchargement</string>
     <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
