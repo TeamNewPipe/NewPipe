@@ -219,7 +219,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             playerImpl.setPlaybackQuality(playerState.getPlaybackQuality());
             playerImpl.initPlayback(playerState.getPlayQueue(), playerState.getRepeatMode(),
                     playerState.getPlaybackSpeed(), playerState.getPlaybackPitch(),
-                    playerState.isPlaybackSkipSilence(), playerState.wasPlaying());
+                    playerState.isPlaybackSkipSilence(), playerState.wasPlaying(), playerImpl.isMuted());
         }
     }
 
@@ -642,7 +642,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
                     false,
-                    !isPlaying()
+                    !isPlaying(),
+                    isMuted()
             );
             context.startService(intent);
 
@@ -666,7 +667,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
                     false,
-                    !isPlaying()
+                    !isPlaying(),
+                    isMuted()
             );
             context.startService(intent);
 

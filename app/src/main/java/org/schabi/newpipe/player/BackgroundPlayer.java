@@ -30,15 +30,15 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.IBinder;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
-
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -341,7 +341,6 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void handleIntent(final Intent intent) {
             super.handleIntent(intent);
-
             resetNotification();
             if (bigNotRemoteView != null)
                 bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
@@ -389,7 +388,6 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onPrepared(boolean playWhenReady) {
             super.onPrepared(playWhenReady);
-            simpleExoPlayer.setVolume(1f);
         }
 
         @Override

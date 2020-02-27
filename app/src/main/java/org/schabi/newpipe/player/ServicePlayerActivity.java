@@ -197,7 +197,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getPlaybackSkipSilence(),
                 null,
                 false,
-                false
+                false,
+                this.player.isMuted()
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying());
     }
