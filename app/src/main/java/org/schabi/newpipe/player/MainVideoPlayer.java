@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +44,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;
+
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -115,7 +117,8 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     private SharedPreferences defaultPreferences;
 
-    @Nullable private PlayerState playerState;
+    @Nullable
+    private PlayerState playerState;
     private boolean isInMultiWindow;
     private boolean isBackPressed;
 
@@ -129,11 +132,13 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
-        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         ThemeHelper.setTheme(this);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         WindowManager.LayoutParams lp = getWindow().getAttributes();
@@ -142,7 +147,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         hideSystemUi();
         setContentView(R.layout.activity_main_player);
-        playerImpl = new  VideoPlayerImpl(this);
+        playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
 
         if (savedInstanceState != null && savedInstanceState.get(KEY_SAVED_STATE) != null) {
@@ -247,7 +252,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (playerImpl == null) return;
 
         playerImpl.setRecovery();
-        if(!playerImpl.gotDestroyed()) {
+        if (!playerImpl.gotDestroyed()) {
             playerState = createPlayerState();
         }
         StateSaver.tryToSave(isChangingConfigurations(), null, outState, this);
@@ -395,6 +400,16 @@ public final class MainVideoPlayer extends AppCompatActivity
         shuffleButton.setImageAlpha(shuffleAlpha);
     }
 
+    protected void setMuteButton(final ImageButton muteButton, final boolean isMuted) {
+        if (isMuted) {
+            muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.white));
+        } else {
+            muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+
+        }
+    }
+
+
     private boolean isInMultiWindow() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && isInMultiWindowMode();
     }
@@ -494,7 +509,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
             boolean showKodiButton = PreferenceManager.getDefaultSharedPreferences(this.context).getBoolean(
-					this.context.getString(R.string.show_play_with_kodi_key), false);
+                    this.context.getString(R.string.show_play_with_kodi_key), false);
             kodiButton.setVisibility(showKodiButton ? View.VISIBLE : View.GONE);
 
             getRootView().setKeepScreenOn(true);
@@ -676,20 +691,11 @@ public final class MainVideoPlayer extends AppCompatActivity
             destroy();
             finish();
         }
+
         @Override
         public void onMuteUnmuteButtonClicled() {
             super.onMuteUnmuteButtonClicled();
-            setMuteIcon();
-        }
-
-        public void setMuteIcon() {
-            if (simpleExoPlayer.getVolume() == 0){
-                muteButton.setColorFilter(ContextCompat.getColor(context, R.color.white));
-            }
-
-            else {
-                muteButton.setColorFilter(ContextCompat.getColor(context, R.color.gray));
-            }
+            updatePlaybackButtons();
         }
 
 
@@ -736,7 +742,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 onPlaybackShutdown();
                 return;
             } else if (v.getId() == kodiButton.getId()) {
-            	onKodiShare();
+                onKodiShare();
             }
 
             if (getCurrentState() != STATE_COMPLETED) {
@@ -785,7 +791,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             // share video at the current time (youtube.com/watch?v=ID&t=SECONDS)
             ShareUtils.shareUrl(MainVideoPlayer.this,
                     playerImpl.getVideoTitle(),
-                    playerImpl.getVideoUrl() + "&t=" + String.valueOf(playerImpl.getPlaybackSeekBar().getProgress()/1000));
+                    playerImpl.getVideoUrl() + "&t=" + String.valueOf(playerImpl.getPlaybackSeekBar().getProgress() / 1000));
         }
 
         private void onScreenRotationClicked() {
@@ -978,6 +984,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             setRepeatModeButton(repeatButton, getRepeatMode());
             setShuffleButton(shuffleButton, playQueue.isShuffled());
+            setMuteButton(muteButton, playerImpl.isMuted());
         }
 
         private void buildQueue() {
@@ -1018,7 +1025,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
                 @Override
                 public void onSwiped(int index) {
-                    if(index != -1) playQueue.remove(index);
+                    if (index != -1) playQueue.remove(index);
                 }
             };
         }
@@ -1097,7 +1104,8 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
+            if (DEBUG)
+                Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
 
             if (e.getX() > playerImpl.getRootView().getWidth() * 2 / 3) {
                 playerImpl.onFastForward();
@@ -1193,7 +1201,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                 layoutParams.screenBrightness = currentProgressPercent;
                 getWindow().setAttributes(layoutParams);
 
-                if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentProgressPercent);
+                if (DEBUG)
+                    Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentProgressPercent);
 
                 final int resId =
                         currentProgressPercent < 0.25 ? R.drawable.ic_brightness_low_white_72dp
@@ -1232,7 +1241,8 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             //noinspection PointlessBooleanExpression
-            if (DEBUG && false) Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
+            if (DEBUG && false)
+                Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
             gestureDetector.onTouchEvent(event);
             if (event.getAction() == MotionEvent.ACTION_UP && isMoving) {
                 isMoving = false;
