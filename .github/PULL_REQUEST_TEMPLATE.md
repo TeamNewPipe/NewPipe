@@ -1,4 +1,4 @@
-<!-- Hey there. Thank you so much for improving our app. Please take a moment to fill out the following suggestion on how to structure this PR description. Having roughly the same layout drastically helps everybody :)-->
+<!-- Hey there. Thank you so much for improving NewPipe. Please take a moment to fill out the following suggestion on how to structure this PR description. Having roughly the same layout drastically helps everybody :)-->
 
 #### What is it?
 - [ ] Bug fix
