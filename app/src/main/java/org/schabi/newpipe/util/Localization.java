@@ -18,6 +18,8 @@ import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
@@ -25,6 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
 
 /*
  * Created by chschtsch on 12/29/15.
@@ -110,7 +113,7 @@ public class Localization {
             if (languageCode.length() == 2) {
                 return new Locale(languageCode);
             } else if (languageCode.contains("_")) {
-                String country = languageCode.substring(languageCode.indexOf("_"), languageCode.length());
+                String country = languageCode.substring(languageCode.indexOf("_"));
                 return new Locale(languageCode.substring(0, 2), country);
             }
         } catch (Exception ignored) {
@@ -120,6 +123,10 @@ public class Localization {
     }
 
     public static String localizeNumber(Context context, long number) {
+        return localizeNumber(context, (double) number);
+    }
+
+    public static String localizeNumber(Context context, double number) {
         NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
         return nf.format(number);
     }
@@ -146,14 +153,15 @@ public class Localization {
     }
 
     public static String shortCount(Context context, long count) {
+        double value = (double) count;
         if (count >= 1000000000) {
-            return Long.toString(count / 1000000000) + context.getString(R.string.short_billion);
+            return localizeNumber(context, round(value / 1000000000, 1)) + context.getString(R.string.short_billion);
         } else if (count >= 1000000) {
-            return Long.toString(count / 1000000) + context.getString(R.string.short_million);
+            return localizeNumber(context, round(value / 1000000, 1)) + context.getString(R.string.short_million);
         } else if (count >= 1000) {
-            return Long.toString(count / 1000) + context.getString(R.string.short_thousand);
+            return localizeNumber(context, round(value / 1000, 1)) + context.getString(R.string.short_thousand);
         } else {
-            return Long.toString(count);
+            return localizeNumber(context, value);
         }
     }
 
@@ -253,5 +261,9 @@ public class Localization {
 
     public static void assureCorrectAppLanguage(Context c) {
         changeAppLanguage(getAppLocale(c), c.getResources());
+    }
+
+    private static double round(double value, int places) {
+        return new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).doubleValue();
     }
 }
