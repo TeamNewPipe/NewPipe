@@ -18,6 +18,8 @@ import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
@@ -26,7 +28,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import static org.schabi.newpipe.util.Utils.round;
 
 /*
  * Created by chschtsch on 12/29/15.
@@ -260,5 +261,9 @@ public class Localization {
 
     public static void assureCorrectAppLanguage(Context c) {
         changeAppLanguage(getAppLocale(c), c.getResources());
+    }
+
+    private static double round(double value, int places) {
+        return new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).doubleValue();
     }
 }
