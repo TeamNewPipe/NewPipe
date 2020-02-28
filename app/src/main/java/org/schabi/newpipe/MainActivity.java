@@ -478,6 +478,13 @@ public class MainActivity extends AppCompatActivity {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+
+        //If Drawer is open close it when back is pressed (PlayStore style)
+        if (drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+            return;
+        }
+
         // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
         if (fragment instanceof BackPressable) {
             if (((BackPressable) fragment).onBackPressed()) return;
@@ -607,6 +614,8 @@ public class MainActivity extends AppCompatActivity {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         final Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+
+        //If it's MainFragment enable the Navigation Drawer again
         if (fragment instanceof MainFragment) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             if (toggle != null) {
@@ -614,10 +623,18 @@ public class MainActivity extends AppCompatActivity {
                 toolbar.setNavigationOnClickListener(v -> drawer.openDrawer(GravityCompat.START));
                 drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
             }
-        } else {
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
+            return;
+        }
+
+        //We need to enable the home button for the search fragment to go back to MainFragment
+        if (fragment instanceof SearchFragment) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            if (toggle != null) {
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
+            }
+            return;
         }
     }
 
