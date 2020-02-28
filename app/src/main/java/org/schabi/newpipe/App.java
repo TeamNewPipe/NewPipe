@@ -90,7 +90,6 @@ public class App extends Application {
         }
         refWatcher = installLeakCanary();
 
-
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
 
