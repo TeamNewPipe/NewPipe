@@ -99,8 +99,6 @@ public class VideoDetailFragment
         PlayerServiceEventListener {
     public static final String AUTO_PLAY = "auto_play";
 
-    private boolean isFragmentStopped;
-
     private int updateFlags = 0;
     private static final int RELATED_STREAMS_UPDATE_FLAG = 0x1;
     private static final int RESOLUTIONS_MENU_UPDATE_FLAG = 0x2;
@@ -109,8 +107,10 @@ public class VideoDetailFragment
     private static final float MAX_OVERLAY_ALPHA = 0.9f;
     private static final float MAX_PLAYER_HEIGHT = 0.7f;
 
-    public static final String ACTION_SHOW_MAIN_PLAYER = "org.schabi.newpipe.fragments.VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER";
-    public static final String ACTION_HIDE_MAIN_PLAYER = "org.schabi.newpipe.fragments.VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
+    public static final String ACTION_SHOW_MAIN_PLAYER = "org.schabi.newpipe.VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER";
+    public static final String ACTION_HIDE_MAIN_PLAYER = "org.schabi.newpipe.VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
+    public static final String ACTION_VIDEO_FRAGMENT_RESUMED = "org.schabi.newpipe.VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED";
+    public static final String ACTION_VIDEO_FRAGMENT_STOPPED = "org.schabi.newpipe.VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED";
 
     private boolean showRelatedStreams;
     private boolean showComments;
@@ -233,15 +233,13 @@ public class VideoDetailFragment
                 startPlayerListener();
 
                 // It will do nothing if the player is not in fullscreen mode
-                hideSystemUIIfNeeded();
+                hideSystemUiIfNeeded();
 
                 if (!player.videoPlayerSelected() && !playAfterConnect) return;
 
-                // STATE_IDLE means the player is stopped
-                if (player.getPlayer() != null && player.getPlayer().getPlaybackState() != Player.STATE_IDLE) addVideoPlayerView();
+                if (playerIsNotStopped()) addVideoPlayerView();
 
                 // If the video is playing but orientation changed let's make the video in fullscreen again
-
                 if (isLandscape()) checkLandscape();
                 else if (player.isInFullscreen()) player.toggleFullscreen();
 
@@ -363,7 +361,7 @@ public class VideoDetailFragment
     public void onResume() {
         super.onResume();
 
-        isFragmentStopped = false;
+        activity.sendBroadcast(new Intent(ACTION_VIDEO_FRAGMENT_RESUMED));
 
         setupBrightness(false);
 
@@ -383,20 +381,16 @@ public class VideoDetailFragment
         }
 
         // Check if it was loading when the fragment was stopped/paused
-        if (wasLoading.getAndSet(false) && !wasCleared()) {
+        if (wasLoading.getAndSet(false) && !wasCleared())
             selectAndLoadVideo(serviceId, url, name, playQueue);
-        } else if (currentInfo != null) {
-            updateProgressInfo(currentInfo);
-        }
-
-        if (player != null && player.videoPlayerSelected()) addVideoPlayerView();
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        isFragmentStopped = true;
+        if (!activity.isChangingConfigurations())
+            activity.sendBroadcast(new Intent(ACTION_VIDEO_FRAGMENT_STOPPED));
     }
 
     @Override
@@ -546,7 +540,7 @@ public class VideoDetailFragment
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 break;
             case R.id.overlay_play_pause_button:
-                if (player != null && player.getPlayer() != null && player.getPlayer().getPlaybackState() != Player.STATE_IDLE) {
+                if (playerIsNotStopped()) {
                     player.onPlayPause();
                     player.hideControls(0,0);
                     showSystemUi();
@@ -1632,8 +1626,14 @@ public class VideoDetailFragment
         playQueue = queue;
         // This should be the only place where we push data to stack. It will allow to have live instance of PlayQueue with actual
         // information about deleted/added items inside Channel/Playlist queue and makes possible to have a history of played items
-        if (stack.isEmpty() || !stack.peek().getPlayQueue().equals(queue))
+        if (stack.isEmpty() || !stack.peek().getPlayQueue().equals(queue)) {
             stack.push(new StackItem(serviceId, url, name, playQueue));
+        } else if (stack.peek().getPlayQueue().equals(queue)) {
+            // On every MainPlayer service's destroy() playQueue gets disposed and no longer able to track progress.
+            // That's why we update our cached disposed queue with the new one that is active and have the same history
+            // Without that the cached playQueue will have an old recovery position
+            stack.peek().setPlayQueue(queue);
+        }
 
         if (DEBUG) {
             Log.d(TAG, "onQueueUpdate() called with: serviceId = ["
@@ -1668,21 +1668,6 @@ public class VideoDetailFragment
 
         if (player.getPlayQueue().getItem().getUrl().equals(url))
             showPlaybackProgress(currentProgress, duration);
-
-        // We don't want to interrupt playback and don't want to see notification if player is stopped
-        // since next lines of code will enable background playback if needed
-        if (!player.videoPlayerSelected()) return;
-
-        // This will be called when user goes to another app
-        if (isFragmentStopped) {
-            // Video enabled. Let's think what to do with source in background
-            if (player.backgroundPlaybackEnabled())
-                player.useVideoSource(false);
-            else if (player.minimizeOnPopupEnabled())
-                NavigationHelper.playOnPopupPlayer(activity, playQueue, true);
-            else player.onPause();
-        }
-        else player.useVideoSource(true);
     }
 
     @Override
@@ -1731,7 +1716,7 @@ public class VideoDetailFragment
         if (parent == null) return;
 
         if (fullscreen) {
-            hideSystemUIIfNeeded();
+            hideSystemUiIfNeeded();
         } else {
             showSystemUi();
         }
@@ -1776,11 +1761,6 @@ public class VideoDetailFragment
         valueAnimator.start();
     }
 
-    @Override
-    public boolean isFragmentStopped() {
-        return isFragmentStopped;
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Player related utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -1811,9 +1791,13 @@ public class VideoDetailFragment
     }
 
     // Listener implementation
-    public void hideSystemUIIfNeeded() {
+    public void hideSystemUiIfNeeded() {
         if (player != null && player.isInFullscreen() && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
             hideSystemUi();
+    }
+
+    private boolean playerIsNotStopped() {
+        return player != null && player.getPlayer() != null && player.getPlayer().getPlaybackState() != Player.STATE_IDLE;
     }
 
     private void setupBrightness(boolean save) {
@@ -1916,7 +1900,7 @@ public class VideoDetailFragment
                         bottomSheetBehavior.setPeekHeight(peekHeight);
                         // Disable click because overlay buttons located on top of buttons from the player
                         setOverlayElementsClickable(false);
-                        hideSystemUIIfNeeded();
+                        hideSystemUiIfNeeded();
                         boolean needToExpand = isLandscape()
                                 && player != null
                                 && player.isPlaying()

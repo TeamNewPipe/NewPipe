@@ -177,6 +177,7 @@ public final class MainPlayer extends Service {
         if (playerImpl != null) {
             removeViewFromParent();
 
+            playerImpl.setRecovery();
             playerImpl.savePlaybackState();
             playerImpl.stopActivityBinding();
             playerImpl.removePopupFromView();

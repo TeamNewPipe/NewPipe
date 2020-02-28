@@ -999,6 +999,9 @@ public class VideoPlayerImpl extends VideoPlayer
         intentFilter.addAction(ACTION_FAST_REWIND);
         intentFilter.addAction(ACTION_FAST_FORWARD);
 
+        intentFilter.addAction(VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED);
+        intentFilter.addAction(VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED);
+
         intentFilter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
         intentFilter.addAction(Intent.ACTION_SCREEN_ON);
         intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -1035,6 +1038,24 @@ public class VideoPlayerImpl extends VideoPlayer
                 break;
             case ACTION_REPEAT:
                 onRepeatClicked();
+                break;
+            case VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED:
+                useVideoSource(true);
+                break;
+            case VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED:
+                // This will be called when user goes to another app
+                // We don't want to interrupt playback and don't want to see notification if player is stopped
+                // since next lines of code will enable background playback if needed
+                if (videoPlayerSelected() && isPlaying()) {
+                    if (backgroundPlaybackEnabled()) {
+                        useVideoSource(false);
+                    } else if (minimizeOnPopupEnabled()) {
+                        setRecovery();
+                        NavigationHelper.playOnPopupPlayer(getParentActivity(), playQueue, true);
+                    } else {
+                        onPause();
+                    }
+                }
                 break;
             case Intent.ACTION_CONFIGURATION_CHANGED:
                 // The only situation I need to re-calculate elements sizes is when a user rotates a device from landscape to landscape
@@ -1223,7 +1244,7 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void hideSystemUIIfNeeded() {
         if (fragmentListener != null)
-            fragmentListener.hideSystemUIIfNeeded();
+            fragmentListener.hideSystemUiIfNeeded();
     }
 
     /**
@@ -1327,12 +1348,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     public void useVideoSource(boolean video) {
-        // Return when: old value of audioOnly equals to the new value, audio player is selected,
-        // video player is selected AND fragment is not shown
-        if (playQueue == null
-                || audioOnly == !video
-                || audioPlayerSelected()
-                || (video && videoPlayerSelected() && fragmentListener.isFragmentStopped()))
+        if (playQueue == null || audioOnly == !video || audioPlayerSelected())
             return;
 
         audioOnly = !video;

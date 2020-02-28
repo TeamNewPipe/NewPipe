@@ -8,7 +8,7 @@ class StackItem implements Serializable {
     private final int serviceId;
     private String title;
     private String url;
-    private final PlayQueue playQueue;
+    private PlayQueue playQueue;
 
     StackItem(int serviceId, String url, String title, PlayQueue playQueue) {
         this.serviceId = serviceId;
@@ -23,6 +23,10 @@ class StackItem implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void setPlayQueue(PlayQueue queue) {
+        this.playQueue = queue;
     }
 
     public int getServiceId() {

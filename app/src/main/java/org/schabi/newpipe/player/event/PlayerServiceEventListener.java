@@ -11,7 +11,5 @@ public interface PlayerServiceEventListener extends PlayerEventListener {
 
     void onPlayerError(ExoPlaybackException error);
 
-    boolean isFragmentStopped();
-
-    void hideSystemUIIfNeeded();
+    void hideSystemUiIfNeeded();
 }
