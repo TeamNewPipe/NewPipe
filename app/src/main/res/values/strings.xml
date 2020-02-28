@@ -130,6 +130,7 @@
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
+    <string name="settings_category_backup_restore_title">Backup &amp; Restore</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -177,6 +178,10 @@
     <string name="switch_to_background">Switch to Background</string>
     <string name="switch_to_popup">Switch to Popup</string>
     <string name="switch_to_main">Switch to Main</string>
+    <string name="auto_backup_title">Auto backup</string>
+    <string name="auto_backup_summary">Enable scheduled backups</string>
+    <string name="auto_backup_path_title">Backup location</string>
+    <string name="auto_backup_frequency_title">Backup frequency</string>
     <string name="import_data_title">Import database</string>
     <string name="export_data_title">Export database</string>
     <string name="import_data_summary">Overrides your current history and subscriptions</string>
