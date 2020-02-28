@@ -67,7 +67,6 @@ import io.reactivex.plugins.RxJavaPlugins;
 public class App extends Application {
     protected static final String TAG = App.class.toString();
     private RefWatcher refWatcher;
-    private static App app;
 
     @SuppressWarnings("unchecked")
     private static final Class<? extends ReportSenderFactory>[]
@@ -91,7 +90,6 @@ public class App extends Application {
         }
         refWatcher = installLeakCanary();
 
-        app = this;
 
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
@@ -112,7 +110,7 @@ public class App extends Application {
         configureRxJavaErrorHandler();
 
         // Check for new version
-        new CheckForNewAppVersionTask().execute();
+        new CheckForNewAppVersionTask(this).execute();
     }
 
     protected Downloader getDownloader() {
@@ -265,7 +263,4 @@ public class App extends Application {
         return false;
     }
 
-    public static App getApp() {
-        return app;
-    }
 }

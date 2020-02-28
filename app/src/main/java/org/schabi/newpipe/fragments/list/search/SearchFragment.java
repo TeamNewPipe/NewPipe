@@ -471,7 +471,7 @@ public class SearchFragment
             if (isSuggestionsEnabled && errorPanelRoot.getVisibility() != View.VISIBLE) {
                 showSuggestionsPanel();
             }
-            if(FireTvUtils.isFireTv()){
+            if(FireTvUtils.isFireTv(getActivity().getApplication())){
                 showKeyboardSearch();
             }
         });

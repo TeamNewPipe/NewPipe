@@ -24,6 +24,7 @@ import org.schabi.newpipe.report.UserAction;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateEncodingException;
@@ -45,23 +46,27 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = CheckForNewAppVersionTask.class.getSimpleName();
-    private static final Application app = App.getApp();
     private static final String GITHUB_APK_SHA1 = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
     private static final String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
     private static final int timeoutPeriod = 30;
 
     private SharedPreferences mPrefs;
     private OkHttpClient client;
+    private final WeakReference<Application> app;
+
+    CheckForNewAppVersionTask(Application app){
+        this.app = new WeakReference<Application>(app);
+    }
 
     @Override
     protected void onPreExecute() {
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(app);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(app.get());
 
         // Check if user has enabled/ disabled update checking
         // and if the current apk is a github one or not.
-        if (!mPrefs.getBoolean(app.getString(R.string.update_app_key), true)
-                || !isGithubApk()) {
+        if (!mPrefs.getBoolean(app.get().getString(R.string.update_app_key), true)
+                || !isGithubApk(app.get())) {
             this.cancel(true);
         }
     }
@@ -137,19 +142,19 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             // A pending intent to open the apk location url in the browser.
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
             PendingIntent pendingIntent
-                    = PendingIntent.getActivity(app, 0, intent, 0);
+                    = PendingIntent.getActivity(app.get(), 0, intent, 0);
 
             NotificationCompat.Builder notificationBuilder = new NotificationCompat
-                    .Builder(app, app.getString(R.string.app_update_notification_channel_id))
+                    .Builder(app.get(), app.get().getString(R.string.app_update_notification_channel_id))
                     .setSmallIcon(R.drawable.ic_newpipe_update)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
-                    .setContentTitle(app.getString(R.string.app_update_notification_content_title))
-                    .setContentText(app.getString(R.string.app_update_notification_content_text)
+                    .setContentTitle(app.get().getString(R.string.app_update_notification_content_title))
+                    .setContentText(app.get().getString(R.string.app_update_notification_content_text)
                             + " " + versionName);
 
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(app);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(app.get());
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
         }
     }
@@ -158,7 +163,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
      * Method to get the apk's SHA1 key.
      * https://stackoverflow.com/questions/9293019/get-certificate-fingerprint-from-android-app#22506133
      */
-    private static String getCertificateSHA1Fingerprint() {
+    private static String getCertificateSHA1Fingerprint(Application app) {
 
         PackageManager pm = app.getPackageManager();
         String packageName = app.getPackageName();
@@ -223,15 +228,15 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
         return str.toString();
     }
 
-    public static boolean isGithubApk() {
+    public static boolean isGithubApk(Application app) {
 
-        return getCertificateSHA1Fingerprint().equals(GITHUB_APK_SHA1);
+        return getCertificateSHA1Fingerprint(app).equals(GITHUB_APK_SHA1);
     }
     
     private boolean isConnected() {
      
         ConnectivityManager cm = 
-                (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) app.get().getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null
 				&& cm.getActiveNetworkInfo().isConnected();
     }
