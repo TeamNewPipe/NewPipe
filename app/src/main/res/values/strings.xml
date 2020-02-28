@@ -593,6 +593,7 @@
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
     <string name="dynamic_seek_duration_description">%s seconds</string>
+    <string name="tab_home">Home</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="other">%s seconds</item>
     </plurals>

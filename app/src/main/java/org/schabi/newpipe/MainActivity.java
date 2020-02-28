@@ -92,11 +92,13 @@ public class MainActivity extends AppCompatActivity {
     private boolean servicesShown = false;
     private ImageView serviceArrow;
 
-    private static final int ITEM_ID_SUBSCRIPTIONS = - 1;
-    private static final int ITEM_ID_FEED = - 2;
-    private static final int ITEM_ID_BOOKMARKS = - 3;
-    private static final int ITEM_ID_DOWNLOADS = - 4;
-    private static final int ITEM_ID_HISTORY = - 5;
+
+    private static final int ITEM_ID_HOME = - 1;
+    private static final int ITEM_ID_SUBSCRIPTIONS = - 2;
+    private static final int ITEM_ID_FEED = - 3;
+    private static final int ITEM_ID_BOOKMARKS = - 4;
+    private static final int ITEM_ID_DOWNLOADS = - 5;
+    private static final int ITEM_ID_HISTORY = - 6;
     private static final int ITEM_ID_SETTINGS = 0;
     private static final int ITEM_ID_ABOUT = 1;
 
@@ -141,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
         final Toolbar toolbar = findViewById(R.id.toolbar);
         drawer = findViewById(R.id.drawer_layout);
         drawerItems = findViewById(R.id.navigation);
+
+        //Home button
+        drawerItems.getMenu().add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home);
 
         //Tabs
         int currentServiceId = ServiceHelper.getSelectedServiceId(this);
@@ -236,6 +241,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void tabSelected(MenuItem item) throws ExtractionException {
         switch(item.getItemId()) {
+            case  ITEM_ID_HOME:
+                NavigationHelper.openMainFragment(getSupportFragmentManager());
+                break;
             case ITEM_ID_SUBSCRIPTIONS:
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager());
                 break;
