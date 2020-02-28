@@ -1,4 +1,4 @@
-<!-- Hey there. Thank you so much for improving our app. Please take a moment to fill out the following suggestion on how to structure this PR description. Having roughly the same layout drastically helps everybody :)-->
+<!-- Hey there. Thank you so much for improving NewPipe. Please take a moment to fill out the following suggestion on how to structure this PR description. Having roughly the same layout drastically helps everybody :)-->
 
 #### What is it?
 - [ ] Bug fix
@@ -16,7 +16,7 @@
 - 
 
 #### Testing apk
-<!--Please add ".branchname" at the end of the app signature, only if the current branch name is not "master" or "dev".-->
+<!--Ensure to have your changes on a new branch which has a meaningful name. This name will be used as suffix of the app id to allow installing and testing multiple versions of NewPipe. Do NOT name your branches like "patch-0" and "feature-1".-->
 debug.zip
 
 #### Agreement
