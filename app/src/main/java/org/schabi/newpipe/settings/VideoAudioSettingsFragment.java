@@ -24,32 +24,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //initializing R.array.seek_duration_description to display the translation of seconds
-        Resources res = getResources();
-        String[] durationsValues = res.getStringArray(R.array.seek_duration_value);
-        String[] durationsDescriptions = res.getStringArray(R.array.seek_duration_description);
-        List<String> durationsValResult = new LinkedList<>();
-        List<String> durationsDesResult = new LinkedList<>();
-        int currentDurationValue;
-        final boolean inexactSeek = getPreferenceManager().getSharedPreferences()
-            .getBoolean(res.getString(R.string.use_inexact_seek_key), false);
-
-        for (int i = 0; i < durationsDescriptions.length; i++) {
-            currentDurationValue = Integer.parseInt(durationsValues[i]) / 1000;
-            if (inexactSeek && currentDurationValue % 10 != 5) {
-                try {
-                    durationsValResult.add(durationsValues[i]);
-                    durationsDesResult.add(String.format(
-                        res.getQuantityString(R.plurals.dynamic_seek_duration_description, currentDurationValue),
-                        currentDurationValue));
-                } catch (Resources.NotFoundException ignored) {
-                    //if this happens, the translation is missing, and the english string will be displayed instead
-                }
-            }
-        }
-        ListPreference durations = (ListPreference) findPreference(getString(R.string.seek_duration_key));
-        durations.setEntryValues(durationsValResult.toArray(new CharSequence[0]));
-        durations.setEntries(durationsDesResult.toArray(new CharSequence[0]));
+        updateSeekOptions();
 
         listener = (sharedPreferences, s) -> {
 
@@ -69,8 +44,47 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                             .show();
 
                 }
+            } else if (s.equals(getString(R.string.use_inexact_seek_key))) {
+                updateSeekOptions();
             }
         };
+    }
+
+    /**
+     * Update fast-forward/-rewind seek duration options according to language and inexact seek setting.
+     * Exoplayer can't seek 5 seconds in audio when using inexact seek.
+     */
+    private void updateSeekOptions() {
+        //initializing R.array.seek_duration_description to display the translation of seconds
+        final Resources res = getResources();
+        final String[] durationsValues = res.getStringArray(R.array.seek_duration_value);
+        final List<String> displayedDurationValues = new LinkedList<>();
+        final List<String> displayedDescriptionValues = new LinkedList<>();
+        int currentDurationValue;
+        final boolean inexactSeek = getPreferenceManager().getSharedPreferences()
+            .getBoolean(res.getString(R.string.use_inexact_seek_key), false);
+
+        for (String durationsValue : durationsValues) {
+            currentDurationValue = Integer.parseInt(durationsValue) / 1000;
+            if (inexactSeek && currentDurationValue % 10 == 5) {
+                continue;
+            }
+            try {
+                displayedDurationValues.add(durationsValue);
+                displayedDescriptionValues.add(String.format(
+                    res.getQuantityString(R.plurals.dynamic_seek_duration_description,
+                        currentDurationValue),
+                    currentDurationValue));
+            } catch (Resources.NotFoundException ignored) {
+                //if this happens, the translation is missing, and the english string will be displayed instead
+            }
+        }
+        final ListPreference durations = (ListPreference) findPreference(getString(R.string.seek_duration_key));
+        durations.setEntryValues(displayedDurationValues.toArray(new CharSequence[0]));
+        durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));
+        if (Integer.parseInt(durations.getValue()) / 1000 % 10 == 5) {
+            durations.setValueIndex(0);
+        }
     }
 
     @Override
