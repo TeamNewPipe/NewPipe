@@ -7,11 +7,11 @@
     <string name="download">Télécharger</string>
     <string name="download_path_title">Dossier de téléchargement vidéo</string>
     <string name="download_path_dialog_title">Choisissez le dossier de téléchargement des fichiers vidéo</string>
-    <string name="download_path_summary">Les fichiers vidéo téléchargés sont stockés ici</string>
+    <string name="download_path_summary">Les vidéos téléchargées sont stockées ici</string>
     <string name="install">Installer</string>
     <string name="kore_not_found">Installer l\'application Kore manquante \?</string>
-    <string name="no_player_found">Aucun lecteur de flux multimédia trouvé. Installer VLC \?</string>
-    <string name="open_in_browser">Ouvrir dans le navigateur</string>
+    <string name="no_player_found">Aucun lecteur multimédia trouvé. Voulez-vous installer VLC \?</string>
+    <string name="open_in_browser">Ouvrir dans un navigateur</string>
     <string name="play_with_kodi_title">Lire avec Kodi</string>
     <string name="screen_rotation">rotation</string>
     <string name="search">Rechercher</string>
@@ -64,7 +64,7 @@
     <string name="light_parsing_error">Impossible d’analyser complètement le site web</string>
     <string name="live_streams_not_supported">Les flux en direct ne sont pas encore pris en charge</string>
     <string name="sorry_string">Désolé, une erreur est survenue.</string>
-    <string name="autoplay_by_calling_app_summary">Lire la vidéo lorsque NewPipe est appelée par une autre application</string>
+    <string name="autoplay_by_calling_app_summary">Lire la vidéo lorsque NewPipe est lancée depuis une autre application</string>
     <string name="error_report_button_text">Signaler cette erreur par courriel</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s’est passé :</string>
@@ -122,21 +122,21 @@
     <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
 \nutiliser le mode flottant</string>
-    <string name="controls_background_title">Lire l\'audio</string>
-    <string name="controls_popup_title">Flottant</string>
+    <string name="controls_background_title">Lecture audio</string>
+    <string name="controls_popup_title">Lecture flottante</string>
     <string name="default_popup_resolution_title">Définition de la fenêtre flottante par défaut</string>
     <string name="show_higher_resolutions_title">Afficher des définitions plus élevées</string>
     <string name="show_higher_resolutions_summary">Seuls certains appareils prennent en charge les vidéos 2K et 4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
     <string name="popup_remember_size_pos_title">Mémoriser les taille et position de la fenêtre flottante</string>
     <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
-    <string name="settings_category_popup_title">Fenêtré</string>
+    <string name="settings_category_popup_title">Flottant</string>
     <string name="filter">Filtre</string>
     <string name="refresh">Rafraîchir</string>
     <string name="clear">Effacer</string>
     <string name="popup_resizing_indicator_title">Redimensionner</string>
-    <string name="short_billion">Mrd</string>
-    <string name="use_external_video_player_summary">Retire l’audio à certaines définitions</string>
+    <string name="short_billion">G</string>
+    <string name="use_external_video_player_summary">Le son peut être supprimé à CERTAINES définitions</string>
     <string name="player_gesture_controls_summary">Utiliser des gestes pour contrôler la luminosité et le volume du lecteur</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
     <string name="show_search_suggestions_summary">Affiche les suggestions lors d’une recherche</string>
@@ -173,7 +173,7 @@
     <string name="settings_file_replacement_character_summary">Les caractères invalides sont remplacés par cette valeur</string>
     <string name="settings_file_replacement_character_title">Caractère de remplacement</string>
     <string name="enable_search_history_title">Historique de recherche</string>
-    <string name="enable_search_history_summary">Stocke l’historique de recheche sur l’appareil</string>
+    <string name="enable_search_history_summary">Stocke l’historique de recherche sur l’appareil</string>
     <string name="enable_watch_history_title">Voir l’historique</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
@@ -220,7 +220,7 @@
     <string name="trending">Tendances</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nouveau &amp; populaire</string>
-    <string name="background_player_append">En file d’attente sur le lecteur en arrière-plan</string>
+    <string name="background_player_append">Ajouté à la liste de lecture audio</string>
     <string name="popup_playing_append">En file d’attente sur le lecteur flottant</string>
     <string name="play_all">Tout lire</string>
     <string name="player_stream_failure">Impossible de lire ce flux</string>
@@ -232,7 +232,7 @@
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audios</string>
     <string name="show_hold_to_append_title">Afficher l’astuce « Maintenir pour ajouter »</string>
-    <string name="show_hold_to_append_summary">Afficher l’astuce lors de l’appui du bouton « Arrière-plan » ou « Mode flottant » sur la page de détails d’une vidéo</string>
+    <string name="show_hold_to_append_summary">Afficher l’astuce lors de l’appui du bouton « Lecture audio » ou « Lecture flottante » sur la page de détails d’une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
     <string name="player_recoverable_failure">Récupération depuis l’erreur du lecteur</string>
     <string name="kiosk_page_summary">Kiosque</string>
@@ -257,7 +257,7 @@
     <string name="service_title">Service</string>
     <string name="drawer_open">Ouvrir le menu</string>
     <string name="drawer_close">Fermer le menu</string>
-    <string name="no_player_found_toast">Aucun lecteur de flux multimédias trouvé (vous pouvez installer VLC pour le lire).</string>
+    <string name="no_player_found_toast">Aucun lecteur multimédia trouvé (vous pouvez installer VLC pour continuer).</string>
     <string name="always">Toujours</string>
     <string name="just_once">Une seule fois</string>
     <string name="external_player_unsupported_link_type">Les lecteurs externes ne prennent pas en charge ces types de liens</string>
@@ -278,7 +278,7 @@
     <string name="no_valid_zip_file">Fichier ZIP non valide</string>
     <string name="could_not_import_all_files">Avertissement : Impossible d\'importer tous les fichiers.</string>
     <string name="override_current_data">Cela effacera vos paramètres actuels.</string>
-    <string name="show_info">Afficher les infos</string>
+    <string name="show_info">Voir les détails</string>
     <string name="tab_bookmarks">Listes de lecture enregistrées</string>
     <string name="controls_add_to_playlist_title">Ajouter à</string>
     <string name="detail_drag_description">Glisser pour réordonner</string>
@@ -310,7 +310,7 @@
     <string name="use_inexact_seek_title">Utiliser la recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. La modification de cette option, vide le cache en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. La modification de cette option vide le cache en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les métadonnées en cache</string>
     <string name="metadata_cache_wipe_summary">Efface toutes les données de pages Web en cache</string>
@@ -401,7 +401,7 @@
     <string name="minimize_on_exit_summary">Action lors du basculement à une autre application depuis le lecteur vidéo — %s</string>
     <string name="minimize_on_exit_none_description">Aucune</string>
     <string name="minimize_on_exit_background_description">Minimiser pour lire en arrière-plan</string>
-    <string name="minimize_on_exit_popup_description">Basculer vers le mode fenêtré</string>
+    <string name="minimize_on_exit_popup_description">Réduit vers le lecteur flottant</string>
     <string name="unsubscribe">Se désabonner</string>
     <string name="tab_new">Nouvel onglet</string>
     <string name="tab_choose">Sélectionner un onglet</string>
@@ -428,7 +428,7 @@
     <string name="grid">Grille</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Changer de vue</string>
-    <string name="app_update_notification_content_title">Une mise à jour de NewPipe est disponible !</string>
+    <string name="app_update_notification_content_title">Une mise à jour de NewPipe est disponible !</string>
     <string name="app_update_notification_content_text">Appuyer pour télécharger</string>
     <string name="missions_header_finished">Terminé</string>
     <string name="missions_header_pending">En attente</string>
@@ -438,18 +438,18 @@
     <string name="conferences">Conférences</string>
     <string name="download_finished">Téléchargement terminé</string>
     <string name="download_finished_more">%s téléchargements terminés</string>
-    <string name="queued">Ajouté à la file d’attente</string>
+    <string name="queued">ajouté à la liste de lecture</string>
     <string name="generate_unique_name">Générer un nom unique</string>
     <string name="overwrite">Écraser</string>
     <string name="overwrite_unrelated_warning">Un fichier avec ce nom existe déjà</string>
     <string name="overwrite_finished_warning">Un fichier téléchargé avec ce nom existe déjà</string>
-    <string name="download_already_running">Il y a déjà un téléchargement en cours avec ce nom</string>
+    <string name="download_already_running">Un téléchargement en cours porte déjà ce nom</string>
     <string name="show_error">Afficher l’erreur</string>
     <string name="label_code">Code</string>
     <string name="error_path_creation">Le dossier de destination ne peut pas être créé</string>
     <string name="error_file_creation">Le fichier ne peut pas être créé</string>
-    <string name="error_permission_denied">Autorisation refusée par le système</string>
-    <string name="error_ssl_exception">Impossible d\'établir une connexion sécurisée</string>
+    <string name="error_permission_denied">Permission refusée par le système</string>
+    <string name="error_ssl_exception">Impossible d’établir une connexion sécurisée</string>
     <string name="error_unknown_host">Impossible de trouver le serveur</string>
     <string name="error_connect_host">Impossible de se connecter au serveur</string>
     <string name="error_http_no_content">Le serveur n’envoie pas de données</string>
@@ -457,15 +457,15 @@
     <string name="clear_finished_download">Effacer les téléchargements terminés</string>
     <string name="pause_downloads_on_mobile">Interrompre sur les connexions limitées</string>
     <string name="pause_downloads_on_mobile_desc">Utile lors du passage aux données mobiles, bien que certains téléchargements ne peuvent pas être suspendus</string>
-    <string name="list_view_mode">Mode d’affichage en liste</string>
+    <string name="list_view_mode">Mode de vue en liste</string>
     <string name="post_processing">post-traitement</string>
-    <string name="enqueue">File d’attente</string>
+    <string name="enqueue">Liste de lecture</string>
     <string name="permission_denied">Action refusée par le système</string>
     <string name="error_postprocessing_failed">Le post-traitement a échoué</string>
-    <string name="max_retry_msg">Nombre maximum de tentatives</string>
-    <string name="max_retry_desc">Nombre maximum de tentatives avant d’annuler le téléchargement</string>
-    <string name="saved_tabs_invalid_json">Erreur durant la lecture des onglets enregistrés. Onglets par défaut utilisés.</string>
-    <string name="error_http_unsupported_range">Le serveur n’accepte pas les téléchargements multi-fils, veuillez réessayer avec @string/msg_threads = 1</string>
+    <string name="max_retry_msg">Nombre d’essais maximum</string>
+    <string name="max_retry_desc">Nombre d’essais maximum avant annulation du téléchargement</string>
+    <string name="saved_tabs_invalid_json">Impossible de lire les onglets enregistrés ; utilisation des onglets par défaut</string>
+    <string name="error_http_unsupported_range">Le serveur n’accepte pas les téléchargements multifils, veuillez réessayer avec @string/msg_threads = 1</string>
     <string name="show_comments_title">Afficher les commentaires</string>
     <string name="show_comments_summary">Désactiver pour masquer les commentaires</string>
     <string name="autoplay_title">Lecture automatique</string>
@@ -495,7 +495,7 @@
 \nVeuillez choisir ILAF si vous voulez télécharger sur une carte mémoire externe</string>
     <string name="enable_playback_resume_summary">Reprend la lecture à la dernière position</string>
     <string name="enable_playback_state_lists_title">Positions dans les listes</string>
-    <string name="enable_playback_state_lists_summary">Afficher les indicateurs de position de lecture dans les listes</string>
+    <string name="enable_playback_state_lists_summary">Affiche les indicateurs de position de lecture dans les listes</string>
     <string name="watch_history_states_deleted">Positions de reprise de lecture supprimées.</string>
     <string name="downloads_storage_use_saf_title">Utiliser ILAF</string>
     <string name="downloads_storage_use_saf_summary">L\' « Infrastructure Logicielle d\'Accès au Stockage » permet de télécharger sur une carte mémoire externe. 
@@ -503,7 +503,7 @@
     <string name="clear_playback_states_title">Supprimer les positions de reprise de lecture</string>
     <string name="clear_playback_states_summary">Supprime toutes les positions de reprise de lecture</string>
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise de lecture \?</string>
-    <string name="download_choose_new_path">Changez les dossiers de téléchargement pour que cela prenne effet</string>
+    <string name="download_choose_new_path">Modifiez les dossiers de téléchargement pour que cela prenne effet</string>
     <string name="drawer_header_description">Activer/Désactiver le service, actuellement sélectionné :</string>
     <string name="default_kiosk_page_summary">Kiosque par défaut</string>
     <string name="no_one_watching">Personne ne regarde</string>
@@ -517,7 +517,7 @@
         <item quantity="other">%s auditeurs</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La langue changera lors du redémarrage de l\'application.</string>
-    <string name="seek_duration_title">Avance/rembobinage rapide sur une durée</string>
+    <string name="seek_duration_title">Durée de l’avance et retour rapide</string>
     <string name="peertube_instance_url_title">Instances PeerTube</string>
     <string name="peertube_instance_url_summary">Choisissez vos instances PeerTube préférées</string>
     <string name="peertube_instance_url_help">Trouvez les instances que vous aimez sur %s</string>
