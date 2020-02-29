@@ -144,11 +144,15 @@ public class MainActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawer_layout);
         drawerItems = findViewById(R.id.navigation);
 
-        //Home button
-        drawerItems.getMenu().add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_kiosk_local));
+
 
         //Tabs
+
+        //Home button
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_kiosk_local));
+
         int currentServiceId = ServiceHelper.getSelectedServiceId(this);
         StreamingService service = NewPipe.getService(currentServiceId);
 
@@ -160,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     .setIcon(KioskTranslator.getKioskIcons(ks, this));
             kioskId ++;
         }
+
 
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER, R.string.tab_subscriptions)
@@ -382,6 +387,12 @@ public class MainActivity extends AppCompatActivity {
         serviceArrow.setImageResource(R.drawable.ic_arrow_down_white);
 
         //Tabs
+
+        //Home button
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_kiosk_local));
+
         int currentServiceId = ServiceHelper.getSelectedServiceId(this);
         StreamingService service = NewPipe.getService(currentServiceId);
 
