@@ -325,7 +325,7 @@
     <string name="drawer_header_action_paceholder_text">Quelque chose va bientôt apparaître ici ;D</string>
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d’attente</string>
-    <string name="auto_queue_summary">Lecture automatique après la fin de la file d\'attente</string>
+    <string name="auto_queue_summary">Continuer la liste de lecture finie (non répétitive) en ajoutant un flux lié</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -547,6 +547,6 @@
     <string name="videos_string">Vidéos</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s secondes</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
 </resources>
