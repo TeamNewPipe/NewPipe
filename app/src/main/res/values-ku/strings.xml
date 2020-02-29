@@ -545,4 +545,9 @@
     <string name="systems_language">بنەڕەتی سیستەم</string>
     <string name="subtitle_activity_recaptcha">گرتە بکە لەسەر ”تەواو” کاتێ کە چارەسەرکرا</string>
     <string name="recaptcha_done_button">تەواو</string>
+    <string name="videos_string">ڤیدیۆکان</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s چرکە</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>

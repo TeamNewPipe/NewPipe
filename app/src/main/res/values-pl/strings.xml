@@ -47,7 +47,7 @@
     <string name="play_btn_text">Odtwórz</string>
     <string name="content">Zawartość</string>
     <string name="show_age_restricted_content_title">Treści z ograniczeniem wiekowym</string>
-    <string name="video_is_age_restricted">Pokaż wideo z ograniczeniami wiekowymi. Dopuszczenie takiego materiału jest możliwe z poziomu Ustawienia.</string>
+    <string name="video_is_age_restricted">Pokaż wideo z ograniczeniami wiekowymi. Przyszłe zmiany są możliwe z poziomu ustawień.</string>
     <string name="duration_live">Na żywo</string>
     <string name="downloads">Pobrane</string>
     <string name="downloads_title">Pobrane</string>
@@ -113,7 +113,7 @@
     <string name="controls_background_title">Tło</string>
     <string name="default_popup_resolution_title">Domyślna rozdzielczość dla trybu okienkowego</string>
     <string name="show_higher_resolutions_title">Pokaż wyższe rozdzielczości</string>
-    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia obsługują odtwarzanie filmów 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia mogą odtwarzać filmy 2K/4K</string>
     <string name="default_video_format_title">Domyślny format filmu</string>
     <string name="black_theme_title">Czarny</string>
     <string name="popup_remember_size_pos_title">Zapamiętaj rozmiar i pozycję trybu okienkowego</string>
@@ -216,9 +216,9 @@
     </plurals>
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
-        <item quantity="one">%s Film</item>
-        <item quantity="few">%s Filmy</item>
-        <item quantity="many">%s Filmów</item>
+        <item quantity="one">%s film</item>
+        <item quantity="few">%s filmy</item>
+        <item quantity="many">%s filmów</item>
     </plurals>
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
     <string name="donation_title">Dotacja</string>
@@ -471,9 +471,9 @@
     <string name="show_comments_summary">Wyłącz, aby ukryć komentarze</string>
     <string name="autoplay_title">Automatyczne odtwarzanie</string>
     <plurals name="comments">
-        <item quantity="one">Komentarze</item>
-        <item quantity="few"/>
-        <item quantity="many"/>
+        <item quantity="one">%s komentarz</item>
+        <item quantity="few">%s komentarze</item>
+        <item quantity="many">%s komentarzy</item>
     </plurals>
     <string name="no_comments">Brak komentarzy</string>
     <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
@@ -549,4 +549,10 @@
     <string name="systems_language">Domyślny systemu</string>
     <string name="subtitle_activity_recaptcha">Po rozwiązaniu naciśnij „Gotowe”</string>
     <string name="recaptcha_done_button">Gotowe</string>
+    <string name="videos_string">Filmy</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s sekund</item>
+        <item quantity="few"></item>
+        <item quantity="many"></item>
+    </plurals>
 </resources>

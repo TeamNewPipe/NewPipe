@@ -367,7 +367,7 @@ otevření ve vyskakovacím okně</string>
     <string name="playback_speed_control">Ovládání rychlosti přehrávání</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Výška tónu</string>
-    <string name="unhook_checkbox">Rozpojit (může způsobit zkreslení)</string>
+    <string name="unhook_checkbox">Odpojit (může způsobit zkreslení)</string>
     <string name="playback_default">Výchozí nastavení</string>
     <string name="no_streams_available_download">Ke stažení nejsou dostupné žádné streamy</string>
     <string name="preferred_open_action_settings_title">Preferovaná \'otevřít\' akce</string>
@@ -474,9 +474,9 @@ otevření ve vyskakovacím okně</string>
     <string name="show_comments_summary">Deaktivovat zobrazování komentářů</string>
     <string name="autoplay_title">Automatické přehrávání</string>
     <plurals name="comments">
-        <item quantity="one">Komentáře</item>
-        <item quantity="few"/>
-        <item quantity="other"/>
+        <item quantity="one">%s komentář</item>
+        <item quantity="few">%s komentáře</item>
+        <item quantity="other">%s komentářů</item>
     </plurals>
     <string name="no_comments">Žádné komentáře</string>
     <string name="error_unable_to_load_comments">Nelze načíst komentáře</string>
@@ -552,4 +552,10 @@ otevření ve vyskakovacím okně</string>
     <string name="systems_language">Jazyk systému</string>
     <string name="subtitle_activity_recaptcha">Po vyřešení stiskni \"Hotovo\"</string>
     <string name="recaptcha_done_button">Hotovo</string>
+    <string name="videos_string">Videa</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s sekund</item>
+        <item quantity="few"/>
+        <item quantity="other"/>
+    </plurals>
 </resources>
