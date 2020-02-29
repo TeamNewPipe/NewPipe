@@ -6,142 +6,144 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/options_root"
+    <FrameLayout
+        android:id="@+id/panels_root"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:minHeight="150dp"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:visibility="gone">
+        android:layout_weight="1">
 
-        <ImageButton
-            android:id="@+id/icon_preview"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription"
-            tools:src="?attr/ic_asterisk" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/group_name_input_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:gravity="center_vertical"
-            android:hint="@string/feed_group_dialog_name_input"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/icon_preview"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <EditText
-                android:id="@+id/group_name_input"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:importantForAutofill="no"
-                android:inputType="textCapSentences"
-                android:maxLines="1"
-                tools:ignore="LabelFor,UnusedAttribute" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <TextView
-            android:id="@+id/selected_subscription_count_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/group_name_input_container"
-            tools:text="15 selected" />
-
-        <Button
-            android:id="@+id/select_channel_button"
-            style="@style/Widget.AppCompat.Button.Borderless"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/options_root"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:text="@string/feed_group_dialog_select_subscriptions"
-            android:textAllCaps="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selected_subscription_count_view" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="180dp"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:visibility="gone"
+            tools:visibility="visible">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/icon_selector"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:clipToPadding="false"
-        android:padding="4dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:visibility="gone"
-        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/picker_icon_item"
-        tools:spanCount="7" />
+            <ImageButton
+                android:id="@+id/icon_preview"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"
+                tools:src="?attr/ic_asterisk" />
 
-    <LinearLayout
-        android:id="@+id/subscriptions_selector"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="visible">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingTop="12dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="12dp">
-
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/group_name_input_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start|center_vertical"
-                android:text="@string/tab_subscriptions"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical"
+                android:hint="@string/feed_group_dialog_name_input"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_preview"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/group_name_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    tools:ignore="LabelFor,UnusedAttribute" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <TextView
-                android:id="@+id/subscriptions_selector_header_info"
+                android:id="@+id/selected_subscription_count_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start|center_vertical"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="12sp"
-                tools:text="1 selected" />
-        </LinearLayout>
+                android:layout_marginTop="6dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/group_name_input_container"
+                tools:text="15 selected" />
+
+            <Button
+                android:id="@+id/select_channel_button"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/feed_group_dialog_select_subscriptions"
+                android:textAllCaps="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/selected_subscription_count_view" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/subscriptions_selector_list"
+            android:id="@+id/icon_selector"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:itemCount="200"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:padding="4dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:visibility="gone"
             tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/picker_subscription_item"
-            tools:spanCount="4" />
-    </LinearLayout>
+            tools:listitem="@layout/picker_icon_item"
+            tools:spanCount="7" />
+
+        <LinearLayout
+            android:id="@+id/subscriptions_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingTop="12dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/tab_subscriptions"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/subscriptions_selector_header_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center_vertical"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="12sp"
+                    tools:text="1 selected" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/subscriptions_selector_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="200"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/picker_subscription_item"
+                tools:spanCount="4" />
+        </LinearLayout>
+    </FrameLayout>
 
     <View
         android:id="@+id/separator"
