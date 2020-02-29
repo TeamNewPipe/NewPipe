@@ -320,7 +320,7 @@ public class VideoPlayerImpl extends VideoPlayer
             moreOptionsButton.setVisibility(View.VISIBLE);
             getTopControlsRoot().setOrientation(LinearLayout.VERTICAL);
             primaryControls.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
-            secondaryControls.setVisibility(View.GONE);
+            secondaryControls.setVisibility(View.INVISIBLE);
             moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
                     R.drawable.ic_expand_more_white_24dp));
             shareButton.setVisibility(View.VISIBLE);
@@ -715,7 +715,12 @@ public class VideoPlayerImpl extends VideoPlayer
         animateRotation(moreOptionsButton, DEFAULT_CONTROLS_DURATION,
                 isMoreControlsVisible ? 0 : 180);
         animateView(secondaryControls, SLIDE_AND_ALPHA, !isMoreControlsVisible,
-                DEFAULT_CONTROLS_DURATION);
+                DEFAULT_CONTROLS_DURATION, 0,
+                () -> {
+                    // Fix for a ripple effect on background drawable. When view returns from GONE state it takes more
+                    // milliseconds than returning from INVISIBLE state. And the delay makes ripple background end to fast
+                    if (isMoreControlsVisible) secondaryControls.setVisibility(View.INVISIBLE);
+                });
         showControls(DEFAULT_CONTROLS_DURATION);
     }
 
