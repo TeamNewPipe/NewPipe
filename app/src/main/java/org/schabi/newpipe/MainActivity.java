@@ -145,7 +145,8 @@ public class MainActivity extends AppCompatActivity {
         drawerItems = findViewById(R.id.navigation);
 
         //Home button
-        drawerItems.getMenu().add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home);
+        drawerItems.getMenu().add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_kiosk_local));
 
         //Tabs
         int currentServiceId = ServiceHelper.getSelectedServiceId(this);
