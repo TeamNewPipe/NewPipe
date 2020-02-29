@@ -11,6 +11,8 @@ import androidx.preference.ListPreference;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.LinkedList;
+import java.util.List;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.PermissionHelper;
 
@@ -26,19 +28,28 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         Resources res = getResources();
         String[] durationsValues = res.getStringArray(R.array.seek_duration_value);
         String[] durationsDescriptions = res.getStringArray(R.array.seek_duration_description);
+        List<String> durationsValResult = new LinkedList<>();
+        List<String> durationsDesResult = new LinkedList<>();
         int currentDurationValue;
+        final boolean inexactSeek = getPreferenceManager().getSharedPreferences()
+            .getBoolean(res.getString(R.string.use_inexact_seek_key), false);
+
         for (int i = 0; i < durationsDescriptions.length; i++) {
             currentDurationValue = Integer.parseInt(durationsValues[i]) / 1000;
-            try {
-                durationsDescriptions[i] = String.format(
+            if (inexactSeek && currentDurationValue % 10 != 5) {
+                try {
+                    durationsValResult.add(durationsValues[i]);
+                    durationsDesResult.add(String.format(
                         res.getQuantityString(R.plurals.dynamic_seek_duration_description, currentDurationValue),
-                        currentDurationValue);
-            } catch (Resources.NotFoundException ignored) {
-                //if this happens, the translation is missing, and the english string will be displayed instead
+                        currentDurationValue));
+                } catch (Resources.NotFoundException ignored) {
+                    //if this happens, the translation is missing, and the english string will be displayed instead
+                }
             }
         }
         ListPreference durations = (ListPreference) findPreference(getString(R.string.seek_duration_key));
-        durations.setEntries(durationsDescriptions);
+        durations.setEntryValues(durationsValResult.toArray(new CharSequence[0]));
+        durations.setEntries(durationsDesResult.toArray(new CharSequence[0]));
 
         listener = (sharedPreferences, s) -> {
 
@@ -61,7 +72,6 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             }
         };
     }
-
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
