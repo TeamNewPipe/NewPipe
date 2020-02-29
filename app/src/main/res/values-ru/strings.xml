@@ -19,7 +19,7 @@
     <string name="download_path_dialog_title">Введите путь к папке для скачивания видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
-    <string name="kore_not_found">Приложение Kore не найдено. Установить его?</string>
+    <string name="kore_not_found">Приложение Kore не найдено, установить\?</string>
     <string name="show_play_with_kodi_title">\"Воспроизвести в Kodi\"</string>
     <string name="show_play_with_kodi_summary">Показать опцию воспроизведения через медиацентр Kodi</string>
     <string name="play_audio">Аудио</string>
@@ -48,7 +48,7 @@
     <string name="use_tor_title">Использовать Tor</string>
     <string name="download_path_audio_title">Папка для скачанного аудио</string>
     <string name="download_path_audio_summary">Папка для хранения скачанного аудио</string>
-    <string name="download_path_audio_dialog_title">Введите путь к папке для скачанного аудио</string>
+    <string name="download_path_audio_dialog_title">Введите путь к папке для скачивания аудио</string>
     <string name="main_bg_subtitle">Начните с поиска</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
@@ -88,7 +88,7 @@
     <string name="sorry_string">Простите, это не должно было произойти.</string>
     <string name="error_report_button_text">Отправить отчёт по e-mail</string>
     <string name="error_snackbar_message">Простите, произошли ошибки.</string>
-    <string name="error_snackbar_action">ОТЧЁТ</string>
+    <string name="error_snackbar_action">Отчёт</string>
     <string name="what_device_headline">Информация:</string>
     <string name="what_happened_headline">Что произошло:</string>
     <string name="error_details_headline">Подробности:</string>
@@ -130,7 +130,7 @@
     <string name="later">Позже</string>
     <string name="disabled">Отключено</string>
     <string name="popup_resizing_indicator_title">Изменение размера</string>
-    <string name="use_external_video_player_summary">Убирает звук в НЕКОТОРЫХ разрешениях</string>
+    <string name="use_external_video_player_summary">Убирает звук в некоторых разрешениях</string>
     <string name="short_million">" млн"</string>
     <string name="short_billion">" млрд"</string>
     <string name="short_thousand">" тыс."</string>
@@ -331,7 +331,7 @@
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
     <string name="caption_auto_generated">Создано автоматически</string>
-    <string name="enable_leak_canary_title">Включить LeakCanary</string>
+    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
     <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
     <string name="enable_disposed_exceptions_summary">Принудительно сообщать о недоставляемых Rx-исключениях вне фрагмента или жизненного цикла после удаления</string>
@@ -478,9 +478,9 @@
     <string name="show_comments_summary">Отключите, чтобы скрыть комментарии</string>
     <string name="autoplay_title">Автовоспроизведение</string>
     <plurals name="comments">
-        <item quantity="one">комментарий</item>
-        <item quantity="few">комментария</item>
-        <item quantity="many">комментариев</item>
+        <item quantity="one">%s комментарий</item>
+        <item quantity="few">%s комментария</item>
+        <item quantity="many">%s комментариев</item>
     </plurals>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
@@ -548,4 +548,11 @@
     <string name="systems_language">Как в системе</string>
     <string name="subtitle_activity_recaptcha">По завершении нажмите Готово</string>
     <string name="recaptcha_done_button">Готово</string>
+    <string name="duration_live_button" translatable="false">Трансляция</string>
+    <string name="videos_string">Видео</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s секунд</item>
+        <item quantity="few"></item>
+        <item quantity="many"></item>
+    </plurals>
 </resources>

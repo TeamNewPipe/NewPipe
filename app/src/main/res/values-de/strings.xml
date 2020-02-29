@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
-    <string name="no_player_found">Keinen Stream-Player gefunden. Möchtest du VLC installieren\?</string>
+    <string name="no_player_found">Keinen Stream-Player gefunden. VLC installieren\?</string>
     <string name="install">Installieren</string>
     <string name="cancel">Abbrechen 
 \n</string>
@@ -17,17 +17,17 @@
     <string name="screen_rotation">Bildschirm drehen</string>
     <string name="download_path_title">Downloadordner für Videos</string>
     <string name="download_path_summary">Heruntergeladene Videodateien werden hier gespeichert</string>
-    <string name="download_path_dialog_title">Wähle den Downloadordner für Videodateien aus</string>
+    <string name="download_path_dialog_title">Downloadordner für Videodateien wählen</string>
     <string name="default_resolution_title">Standardauflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
-    <string name="kore_not_found">Kore App wurde nicht gefunden. Kore jetzt installieren?</string>
-    <string name="show_play_with_kodi_title">Option \"Mit Kodi abspielen\" anzeigen</string>
+    <string name="kore_not_found">Fehlende Kore-App installieren\?</string>
+    <string name="show_play_with_kodi_title">Option „Mit Kodi abspielen“ anzeigen</string>
     <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit Kodi abspielen kann</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Bevorzugtes Audioformat</string>
     <string name="download_dialog_title">Herunterladen</string>
     <string name="next_video_title">Nächste</string>
-    <string name="show_next_and_similar_title">\"Nächste\" und \"ähnliche\" Videos anzeigen</string>
+    <string name="show_next_and_similar_title">‚Nächste‘ und ‚ähnliche‘ Videos anzeigen</string>
     <string name="url_not_supported_toast">Nicht unterstützte URL</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="content_language_title">Bevorzugte Sprache des Inhalts</string>
@@ -45,7 +45,7 @@
     <string name="network_error">Netzwerkfehler</string>
     <string name="download_path_audio_title">Downloadordner für Audiodateien</string>
     <string name="download_path_audio_summary">Heruntergeladene Audiodateien werden hier gespeichert</string>
-    <string name="download_path_audio_dialog_title">Wähle den Downloadordner für Audiodateien aus</string>
+    <string name="download_path_audio_dialog_title">Downloadordner für Audiodateien wählen</string>
     <string name="theme_title">Design</string>
     <string name="dark_theme_title">Dunkel</string>
     <string name="light_theme_title">Hell</string>
@@ -60,12 +60,12 @@
     <string name="content_not_available">Inhalt nicht verfügbar</string>
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte</string>
-    <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Das Zulassen dieses Materials ist von den Einstellungen aus möglich.</string>
+    <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Spätere Änderungen sind in den Einstellungen möglich.</string>
     <string name="could_not_setup_download_menu">Konnte Download-Menü nicht einrichten</string>
     <string name="live_streams_not_supported">Live-Streams werden noch nicht unterstützt</string>
     <string name="light_parsing_error">Konnte Webseite nicht vollständig analysieren</string>
     <string name="error_report_button_text">Fehler via E-Mail melden</string>
-    <string name="error_snackbar_action">MELDEN</string>
+    <string name="error_snackbar_action">Melden</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
     <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nPaket:\\nVersion:\\nOS-Version:</string>
@@ -73,17 +73,17 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Wiederholen</string>
-    <string name="storage_permission_denied">Zugriff auf den Speicher wurde verweigert</string>
+    <string name="storage_permission_denied">Gewähre zuerst Speicherzugriff</string>
     <string name="sorry_string">Entschuldigung. Dies hätte nicht passieren sollen.</string>
     <string name="error_snackbar_message">Entschuldigung. Es sind einige Fehler aufgetreten.</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="could_not_get_stream">Konnte keinen Stream abrufen</string>
     <string name="autoplay_by_calling_app_title">Automatische Wiedergabe</string>
     <string name="autoplay_by_calling_app_summary">Video abspielen, wenn NewPipe von einer anderen App aufgerufen wird</string>
-    <string name="report_error">Einen Fehler melden</string>
+    <string name="report_error">Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
-    <string name="duration_live">LIVE</string>
-    <string name="main_bg_subtitle">Suchen antippen, um zu beginnen</string>
+    <string name="duration_live">Live</string>
+    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
@@ -121,17 +121,17 @@
     <string name="disabled">Deaktiviert</string>
     <string name="open_in_popup_mode">Im Pop-up-Modus öffnen</string>
     <string name="default_video_format_title">Bevorzugtes Videoformat</string>
-    <string name="popup_playing_toast">Im Pop-up Modus abspielen</string>
-    <string name="popup_mode_share_menu_title">NewPipe-Pop-up-Modus</string>
+    <string name="popup_playing_toast">Im Pop-up-Modus abspielen</string>
+    <string name="popup_mode_share_menu_title">Pop-up-Modus</string>
     <string name="msg_popup_permission">Diese Berechtigung ist für das
 \nÖffnen im Pop-up-Modus erforderlich</string>
     <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
     <string name="show_higher_resolutions_title">Höhere Auflösungen anzeigen</string>
-    <string name="show_higher_resolutions_summary">Nur manche Geräte unterstützen das Abspielen von 2K-/4K-Videos</string>
+    <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 2K/4K abspielen</string>
     <string name="controls_background_title">Hintergrund</string>
     <string name="controls_popup_title">Pop-up</string>
     <string name="popup_remember_size_pos_title">Größe und Position des Pop-ups merken</string>
-    <string name="use_external_video_player_summary">Entfernt Tonspur bei MANCHEN Auflösungen</string>
+    <string name="use_external_video_player_summary">Entfernt Tonspur bei manchen Auflösungen</string>
     <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Helligkeit und Lautstärke mittels Gesten einstellen</string>
@@ -172,7 +172,7 @@
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Suchanfragen lokal speichern</string>
     <string name="enable_watch_history_title">Verlauf ansehen</string>
-    <string name="enable_watch_history_summary">Speichere den Wiedergabeverlauf</string>
+    <string name="enable_watch_history_summary">Wiedergabeverlauf speichern</string>
     <string name="title_activity_history">Verlauf</string>
     <string name="title_history_search">Gesucht</string>
     <string name="title_history_view">Angesehen</string>
@@ -208,7 +208,7 @@
     </plurals>
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="item_deleted">Element gelöscht</string>
-    <string name="resume_on_audio_focus_gain_title">Fortsetzen bei erneutem Fokussieren</string>
+    <string name="resume_on_audio_focus_gain_title">Wiedergabe fortsetzen</string>
     <string name="settings_category_player_title">Player</string>
     <string name="empty_subscription_feed_subtitle">Nichts hier außer das Zirpen der Grillen</string>
     <string name="delete_item_search_history">Möchtest Du dieses Element aus dem Suchverlauf löschen\?</string>
@@ -234,11 +234,11 @@
     <string name="kiosk_page_summary">Kiosk-Seite</string>
     <string name="select_a_kiosk">Kiosk auswählen</string>
     <string name="kiosk">Kiosk</string>
-    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button auf der Videodetailseite gedrückt gehalten wird</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button \"Details:\" im Video gedrückt wird</string>
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu &amp; Heiß</string>
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
-    <string name="show_hold_to_append_title">\"Gedrückt halten, um hinzuzufügen\" Tipp anzeigen</string>
+    <string name="show_hold_to_append_title">„Zum Anhängen gedrückt halten“ Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
     <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
     <string name="enqueue_on_popup">In Warteschlange in neuen Pop-up</string>
@@ -305,14 +305,14 @@
     <string name="dismiss">Abbrechen</string>
     <string name="controls_download_desc">Stream-Datei herunterladen</string>
     <string name="use_inexact_seek_title">Schnelle, ungenaue Suche verwenden</string>
-    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die Abspielposition schneller erreicht werden, aber auf Kosten der Genauigkeit</string>
+    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden</string>
     <string name="file">Datei</string>
     <string name="invalid_directory">Ordner existiert nicht</string>
     <string name="invalid_file">Die Datei existiert nicht oder die Rechte zum Lesen oder Schreiben fehlen</string>
     <string name="file_name_empty_error">Dateiname darf nicht leer sein</string>
     <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
     <string name="caption_auto_generated">Automatisch erzeugt</string>
-    <string name="enable_leak_canary_title">LeakCanary aktivieren</string>
+    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="import_from">Import von</string>
     <string name="export_to">Export nach</string>
     <string name="import_ongoing">Importiere…</string>
@@ -339,11 +339,11 @@
     <string name="playback_speed_control">Wiedergabegeschwindigkeitsregler</string>
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
-    <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
+    <string name="unhook_checkbox">Entkoppeln (kann zu Verzerrungen führen)</string>
     <string name="playback_default">Standard</string>
     <string name="download_thumbnail_summary">Abschalten, um das Laden von Miniaturansichten zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
-    <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange</string>
+    <string name="auto_queue_summary">Wiedergabe durch Anhängen eines verwandten Streams an die Warteschlange (ohne Wiederholungsschleife) fortsetzen</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
     <string name="bookmark_playlist">Wiedergabeliste mit Lesezeichen versehen</string>
     <string name="resize_fit">Anpassen</string>
@@ -361,8 +361,8 @@
 \n 
 \n1. Aktiviere den \"Desktop-Modus\" in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar) 
 \n2. Gehe zu dieser URL: %1$s 
-\n3. Melden dich an, falls Du dazu aufgefordert wirst 
-\n4. Kopiere die Profil-URL, zu der Du weitergeleitet wurdest.</string>
+\n3. Melde dich an, falls du dazu aufgefordert wirst 
+\n4. Kopiere die Profil-URL, zu der du weitergeleitet wurdest.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
     <string name="preferred_open_action_settings_title">Bevorzugte \"Öffnen\" Aktion</string>
@@ -407,9 +407,9 @@
     <string name="tab_new">Neuer Tab</string>
     <string name="tab_choose">Tab wählen</string>
     <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
-    <string name="volume_gesture_control_summary">Die Player-Lautstärke über Gesten steuern</string>
+    <string name="volume_gesture_control_summary">Player-Lautstärke über Gesten steuern</string>
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
-    <string name="brightness_gesture_control_summary">Die Player-Helligkeit über Gesten steuern</string>
+    <string name="brightness_gesture_control_summary">Player-Helligkeit über Gesten steuern</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
     <string name="file_deleted">Datei gelöscht</string>
     <string name="app_update_notification_channel_name">App Update-Benachrichtigung</string>
@@ -419,7 +419,7 @@
     <string name="saved_tabs_invalid_json">Fehler beim Lesen der gespeicherten Tabs – es werden die Voreinstellungen benutzt</string>
     <string name="restore_defaults">Standardwerte wiederherstellen</string>
     <string name="restore_defaults_confirmation">Möchtest Du die Standardwerte wiederherstellen\?</string>
-    <string name="subscribers_count_not_available">Abonnentenzahl nicht verfügbar</string>
+    <string name="subscribers_count_not_available">Abonnentenzahl nicht abrufbar</string>
     <string name="main_page_content_summary">Welche Tabs auf der Hauptseite angezeigt werden</string>
     <string name="selection">Auswahl</string>
     <string name="updates_setting_title">Updates</string>
@@ -450,7 +450,7 @@
     <string name="error_file_creation">Die Datei kann nicht erstellt werden</string>
     <string name="error_path_creation">Das Zielverzeichnis kann nicht erstellt werden</string>
     <string name="error_permission_denied">System verweigert den Zugriff</string>
-    <string name="error_ssl_exception">Sichere Verbindung fehlgeschlagen</string>
+    <string name="error_ssl_exception">Aufbau einer sicheren Verbindung nicht möglich</string>
     <string name="error_unknown_host">Der Server konnte nicht gefunden werden</string>
     <string name="error_connect_host">Kann nicht mit dem Server verbinden</string>
     <string name="error_http_no_content">Der Server sendet keine Daten</string>
@@ -467,11 +467,11 @@
     <string name="events">Ereignisse</string>
     <string name="error_timeout">Verbindungszeitüberschreitung</string>
     <string name="show_comments_title">Kommentare anzeigen</string>
-    <string name="show_comments_summary">Deaktivieren, um die Anzeige von Kommentaren zu beenden</string>
+    <string name="show_comments_summary">Ausschalten, um Kommentare auszublenden</string>
     <string name="autoplay_title">Autoplay</string>
     <plurals name="comments">
-        <item quantity="one">Kommentar</item>
-        <item quantity="other">Kommentare</item>
+        <item quantity="one">%s Kommentar</item>
+        <item quantity="other">%s Kommentare</item>
     </plurals>
     <string name="no_comments">Keine Kommentare</string>
     <string name="error_unable_to_load_comments">Kommentare konnten nicht geladen werden</string>
@@ -499,7 +499,7 @@
     <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jeden Download speichern willst.
 \nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
     <string name="downloads_storage_use_saf_title">SAF verwenden</string>
-    <string name="downloads_storage_use_saf_summary">Das Storage Access Framework erlaubt Downloads auf eine externe SD-Karte.
+    <string name="downloads_storage_use_saf_summary">Das ‚Storage Access Framework‘ ermöglicht Downloads auf eine externe SD-Karte. 
 \nHinweis: Manche Geräte sind nicht kompatibel</string>
     <string name="clear_playback_states_title">Wiedergabepositionen löschen</string>
     <string name="clear_playback_states_summary">Alle Wiedergabepositionen löschen</string>
@@ -519,7 +519,7 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird.</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
-    <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die am besten zu dir passen</string>
+    <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die dir gefallen</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
     <string name="peertube_instance_add_help">URL der Instanz eingeben</string>
     <string name="peertube_instance_add_fail">Validierung der Instanz fehlgeschlagen</string>
@@ -534,8 +534,8 @@
     <string name="most_liked">Am beliebtesten</string>
     <string name="recovering">Wiederherstellen</string>
     <string name="error_download_resource_gone">Dieser Download kann nicht wiederhergestellt werden</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Video-Vorschaubild für Sperrbildschirm aktivieren</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Bei Verwendung des Hintergrundplayers wird ein Video-Miniaturbild auf dem Sperrbildschirm angezeigt</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Video-Vorschaubild auf Sperrbildschirm</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Ein Video-Miniaturbild wird auf dem Sperrbildschirm angezeigt, wenn der Hintergrundplayer verwendet wird</string>
     <string name="clear_download_history">Downloadverlauf löschen</string>
     <string name="delete_downloaded_files">Heruntergeladene Dateien löschen</string>
     <string name="deleted_downloads">%1$s Downloads gelöscht</string>
@@ -544,4 +544,10 @@
     <string name="systems_language">Systemstandard</string>
     <string name="subtitle_activity_recaptcha">\"Fertig\" drücken, wenn es gelöst wurde</string>
     <string name="recaptcha_done_button">Fertig</string>
+    <string name="duration_live_button" translatable="false">Live</string>
+    <string name="videos_string">Videos</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s Sekunden</item>
+        <item quantity="other"/>
+    </plurals>
 </resources>

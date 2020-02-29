@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s vistas</string>
     <string name="upload_date_text">Publicado el %1$s</string>
-    <string name="no_player_found">No se encontró ningún reproductor de retransmisiones. ¿Quiere instalar VLC\?</string>
+    <string name="no_player_found">No se encontró reproductor. ¿Instalar VLC\?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir en el navegador</string>
@@ -20,7 +20,7 @@
     <string name="download_choose_new_path">Cambie las carpetas de descarga para que tenga efecto</string>
     <string name="default_resolution_title">Resolución predeterminada</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
-    <string name="kore_not_found">No se encontró la aplicación Kore. ¿Quiere instalarla\?</string>
+    <string name="kore_not_found">¿Instalar aplicación Kore faltante\?</string>
     <string name="show_play_with_kodi_title">Mostrar opción «Reproducir con Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostrar una opción para reproducir vídeo en el centro multimedia Kodi</string>
     <string name="play_audio">Audio</string>
@@ -61,11 +61,11 @@
     <string name="live_streams_not_supported">Aún no se admiten las transmisiones en vivo</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Contenido restringido por edad</string>
-    <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Se puede permitir este tipo de material desde Ajustes.</string>
-    <string name="main_bg_subtitle">Toque en buscar para empezar</string>
+    <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Se pueden realizar más cambios desde los ajustes.</string>
+    <string name="main_bg_subtitle">Toque \"Buscar\" para comenzar</string>
     <string name="autoplay_by_calling_app_title">Reproducción automática</string>
     <string name="autoplay_by_calling_app_summary">Reproducir un vídeo cuando NewPipe es llamado desde otra app</string>
-    <string name="duration_live">EN DIRECTO</string>
+    <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
     <string name="error_report_title">Informe de error</string>
@@ -73,19 +73,19 @@
     <string name="could_not_setup_download_menu">No se pudo configurar el menú de descarga</string>
     <string name="could_not_get_stream">No se pudo obtener ninguna transmisión</string>
     <string name="sorry_string">Lo siento, esto no debería haber ocurrido.</string>
-    <string name="error_report_button_text">Reportar error vía email</string>
+    <string name="error_report_button_text">Informar de este error vía email</string>
     <string name="error_snackbar_message">Lo siento, ocurrieron algunos errores.</string>
-    <string name="error_snackbar_action">REPORTAR</string>
+    <string name="error_snackbar_action">Informar</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Qué ha ocurrido:</string>
     <string name="your_comment">Su comentario (en Inglés):</string>
     <string name="error_details_headline">Detalles:</string>
-    <string name="report_error">Reportar un error</string>
+    <string name="report_error">Informar de un error</string>
     <string name="user_report">Reporte de usuario</string>
     <string name="video">Vídeo</string>
     <string name="audio">Audio</string>
     <string name="retry">Reintentar</string>
-    <string name="storage_permission_denied">Permiso de acceso al almacenamiento denegado</string>
+    <string name="storage_permission_denied">Conceder permisos de almacenamiento primero</string>
     <string name="start">Iniciar</string>
     <string name="pause">Pausar</string>
     <string name="view">Reproducir</string>
@@ -126,7 +126,7 @@
     <string name="default_video_format_title">Formato de vídeo predeterminado</string>
     <string name="disabled">Desactivado</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
-    <string name="show_higher_resolutions_summary">Solo algunos dispositivos soportan reproducción de vídeos en 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Solo algunos dispositivos pueden reproducir vídeos en 2K/4K</string>
     <string name="default_popup_resolution_title">Resolución predeterminada de emergente</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="controls_popup_title">Popup</string>
@@ -137,7 +137,7 @@
     <string name="popup_remember_size_pos_summary">Recordar el último tamaño y posición del repr. emerg.</string>
     <string name="settings_category_popup_title">Emergente</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
-    <string name="use_external_video_player_summary">Elimina el audio en ALGUNAS resoluciones</string>
+    <string name="use_external_video_player_summary">Elimina el audio en algunas resoluciones</string>
     <string name="player_gesture_controls_title">Controles del reproductor por gestos</string>
     <string name="player_gesture_controls_summary">Usar gestos para controlar el brillo y volumen del reproductor</string>
     <string name="show_search_suggestions_title">Sugerencias de búsqueda</string>
@@ -167,7 +167,7 @@
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Suscripciones</string>
     <string name="fragment_whats_new">Qué hay de nuevo</string>
-    <string name="resume_on_audio_focus_gain_title">Reanudar al enfocar</string>
+    <string name="resume_on_audio_focus_gain_title">Reanudar reproducción</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproduciendo después de las interrupciones (ej. llamadas telefónicas)</string>
     <string name="settings_category_downloads_title">Descargar</string>
     <string name="settings_file_charset_title">Caracteres permitidos en los nombres de archivo</string>
@@ -224,7 +224,7 @@
     <string name="kiosk">Quiosco</string>
     <string name="trending">Tendencias</string>
     <string name="top_50">50 mejores</string>
-    <string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de 2.º plano o emergente en la página de detalles del vídeo</string>
+    <string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o emergente en la página \"Detalles:\" del vídeo</string>
     <string name="background_player_append">En cola en el reproductor de 2.º plano</string>
     <string name="popup_playing_append">En cola en el reproductor emergente</string>
     <string name="play_all">Reproducir todo</string>
@@ -246,7 +246,7 @@
     <string name="new_and_hot">Novedades</string>
     <string name="hold_to_append">Mantener presionado para agregar a la cola</string>
     <string name="donation_title">Donar</string>
-    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haga una aportación para ayudarlos a crear un NewPipe aún mejor mientras disfrutan de una taza de café.</string>
+    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haga una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
     <string name="give_back">Donar</string>
     <string name="website_title">Sitio web</string>
     <string name="website_encouragement">Visite el sitio web de NewPipe para más información y noticias.</string>
@@ -321,7 +321,7 @@
     <string name="use_inexact_seek_title">Usar búsqueda rápida inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión</string>
     <string name="auto_queue_title">Poner en cola vídeo relacionado siguiente</string>
-    <string name="auto_queue_summary">Añadir de forma automática un vídeo relacionado con el último reproducido en una cola sin repetición</string>
+    <string name="auto_queue_summary">Continuar reproducción sin repetir al añadir de forma automática un vídeo relacionado con el último visto</string>
     <string name="file">Archivo</string>
     <string name="missing_file">Archivo movido o eliminado</string>
     <string name="invalid_directory">La carpeta no existe</string>
@@ -441,7 +441,7 @@
     <string name="error_file_creation">No se puede crear el archivo</string>
     <string name="error_path_creation">No se puede crear la carpeta de destino</string>
     <string name="error_permission_denied">Permiso denegado por el sistema</string>
-    <string name="error_ssl_exception">Fallo la conexión segura</string>
+    <string name="error_ssl_exception">No se pudo establecer una conexión segura</string>
     <string name="error_unknown_host">No se pudo encontrar el servidor</string>
     <string name="error_connect_host">No se puede conectar con el servidor</string>
     <string name="error_http_no_content">El servidor no devolvio datos</string>
@@ -458,7 +458,8 @@
     <string name="downloads_storage_ask_summary_kitkat">Se le preguntará dónde guardar cada descarga.
 \nHabilite esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_use_saf_summary">El Framework de Acceso al Almacenamiento permite descargar en la tarjeta SD externa.\nNota: Algunos los dispositivos no son compatibles</string>
+    <string name="downloads_storage_use_saf_summary">El \'Framework de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa.
+\nNota: algunos dispositivos no son compatibles</string>
     <string name="unsubscribe">Cancelar suscripción</string>
     <string name="tab_new">Pestaña nueva</string>
     <string name="tab_choose">Elija la pestaña</string>
@@ -472,7 +473,7 @@
     <string name="app_update_notification_channel_description">Notificaciones de versiones nuevas de NewPipe</string>
     <string name="download_to_sdcard_error_title">Almacenamiento externo no disponible</string>
     <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
-    <string name="saved_tabs_invalid_json">Usando las pestañas por defecto, error al leer las pestañas guardadas</string>
+    <string name="saved_tabs_invalid_json">No se pudo leer las pestañas guardadas, se usarán las pestañas por defecto</string>
     <string name="restore_defaults">Restaurar valores por defecto</string>
     <string name="restore_defaults_confirmation">¿Quieres restaurar los valores por defecto\?</string>
     <string name="subscribers_count_not_available">Número de suscriptores no disponible</string>
@@ -487,11 +488,11 @@
     <string name="app_update_notification_content_title">¡Actualización de NewPipe disponible!</string>
     <string name="app_update_notification_content_text">Pulsa para descargar</string>
     <string name="show_comments_title">Mostrar comentarios</string>
-    <string name="show_comments_summary">Desactívela para ocultar los comentarios</string>
+    <string name="show_comments_summary">Desactivar para ocultar comentarios</string>
     <string name="autoplay_title">Reproducción automática</string>
     <plurals name="comments">
-        <item quantity="one">Comentario</item>
-        <item quantity="other">Comentarios</item>
+        <item quantity="one">%s comentario</item>
+        <item quantity="other">%s comentarios</item>
     </plurals>
     <string name="no_comments">Sin comentarios</string>
     <string name="error_unable_to_load_comments">No se pudo cargar comentarios</string>
@@ -521,7 +522,7 @@
     <string name="seek_duration_title">Duración de búsqueda al avanzar y/o retroceder</string>
     <string name="peertube_instance_url_title">Instancias de PeerTube</string>
     <string name="peertube_instance_url_summary">Selecciona tus instancias favoritas de PeerTube</string>
-    <string name="peertube_instance_url_help">Encuentra las mejores instancias para ti en %s</string>
+    <string name="peertube_instance_url_help">Encuentra las instancias que te gusten en %s</string>
     <string name="peertube_instance_add_title">Agregar instancia</string>
     <string name="peertube_instance_add_help">Ingresar URL de la instancia</string>
     <string name="peertube_instance_add_fail">No se pudo validar la instancia</string>
@@ -532,8 +533,8 @@
     <string name="most_liked">Más gustados</string>
     <string name="playlist_no_uploader">Generado automáticamente (no se encontró creador)</string>
     <string name="choose_instance_prompt">Elige una instancia</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Habilitar miniatura de video de la pantalla de bloqueo</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Al usar el reproductor de fondo, se mostrará una miniatura de video en la pantalla de bloqueo</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Miniatura de vídeo en la pantalla de bloqueo</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Se mostrará una miniatura del video en la pantalla de bloqueo al usar el reproductor de fondo</string>
     <string name="clear_download_history">Limpiar historial de descargas</string>
     <string name="delete_downloaded_files">Eliminar archivos descargados</string>
     <string name="deleted_downloads">Eliminadas %1$s descargas</string>
@@ -542,4 +543,9 @@
     <string name="systems_language">Predeterminado del sistema</string>
     <string name="subtitle_activity_recaptcha">Pulse en «Hecho» cuando esté resuelto</string>
     <string name="recaptcha_done_button">Hecho</string>
+    <string name="videos_string">Vídeos</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s segundos</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>

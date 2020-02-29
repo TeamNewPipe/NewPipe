@@ -497,7 +497,7 @@
     <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres.
 \nSkru på SAF hvis du vil laste ned til eksternt SD-kort</string>
     <string name="downloads_storage_use_saf_title">Bruk SAF</string>
-    <string name="downloads_storage_use_saf_summary">Lagringstilgangsrammeverk (SAF) tillater nedlastinger til eksternt SD-kort.
+    <string name="downloads_storage_use_saf_summary">\"Lagringstilgangsrammeverk\" (SAF) tillater nedlasting til eksternt SD-kort.
 \nMerk: Noen enheter er ikke kompatible</string>
     <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
     <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
@@ -542,4 +542,9 @@
     <string name="systems_language">Systemforvalg</string>
     <string name="subtitle_activity_recaptcha">Trykk \"Ferdig\" når den er løst</string>
     <string name="recaptcha_done_button">Ferdig</string>
+    <string name="videos_string">Videoer</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s sekunder</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>
