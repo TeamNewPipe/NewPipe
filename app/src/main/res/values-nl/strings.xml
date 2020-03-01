@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Gepubliceerd op %1$s</string>
-    <string name="no_player_found">Geen speler met streamondersteuning gevonden. Wil je VLC installeren?</string>
+    <string name="no_player_found">Geen speler met streamondersteuning gevonden. VLC installeren\?</string>
     <string name="install">Installeren</string>
     <string name="cancel">Annuleren</string>
     <string name="open_in_browser">Openen in browser</string>
@@ -16,7 +16,7 @@
     <string name="screen_rotation">draaiing</string>
     <string name="download_path_title">Downloadlocatie voor video\'s</string>
     <string name="download_path_summary">Locatie om gedownloade video\'s in op te slaan</string>
-    <string name="download_path_dialog_title">Voer downloadlocatie in voor video\'s</string>
+    <string name="download_path_dialog_title">Kies de downloadlocatie voor video\'s</string>
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
     <string name="kore_not_found">Kore-app niet gevonden. Installeren?</string>
@@ -38,7 +38,7 @@
     <string name="detail_dislikes_img_view_description">Vind-ik-niet-leuks</string>
     <string name="download_path_audio_title">Downloadfolder voor audio</string>
     <string name="download_path_audio_summary">Gedownloade muziek wordt hier opgeslagen</string>
-    <string name="download_path_audio_dialog_title">Voer downloadlocatie voor audiobestanden in</string>
+    <string name="download_path_audio_dialog_title">Kies de downloadlocatie voor audiobestanden</string>
     <string name="theme_title">Thema</string>
     <string name="dark_theme_title">Donker</string>
     <string name="light_theme_title">Licht</string>
@@ -75,7 +75,7 @@
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="main_bg_subtitle">Druk op zoeken om te beginnen</string>
+    <string name="main_bg_subtitle">Druk op \"zoeken\" om te beginnen</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
     <string name="autoplay_by_calling_app_summary">Speelt video’s af als NewPipe vanuit een andere app wordt geopend</string>
     <string name="duration_live">LIVE</string>
@@ -120,13 +120,13 @@
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">Deze machtiging is vereist om te
 \nopenen in pop-upmodus</string>
-    <string name="popup_mode_share_menu_title">NewPipe-pop-upmodus</string>
+    <string name="popup_mode_share_menu_title">Pop-up-modus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
     <string name="default_video_format_title">Standaard videoformaat</string>
     <string name="disabled">Uitgeschakeld</string>
     <string name="default_popup_resolution_title">Standaardresolutie van pop-up</string>
     <string name="show_higher_resolutions_title">Hogere resoluties tonen</string>
-    <string name="show_higher_resolutions_summary">2K-/4K-video\'s worden slechts op sommige apparaten ondersteund</string>
+    <string name="show_higher_resolutions_summary">Slechts enkele toestellen kunnen 2K-/4K-video\'s afspelen</string>
     <string name="controls_background_title">Achtergrond</string>
     <string name="controls_popup_title">Pop-up</string>
     <string name="filter">Filter</string>
@@ -136,7 +136,7 @@
     <string name="popup_remember_size_pos_summary">Onthoud laatste grootte en positie van pop-up</string>
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="popup_resizing_indicator_title">Bezig met wijzigen van grootte</string>
-    <string name="use_external_video_player_summary">Verwijdert geluid bij SOMMIGE resoluties</string>
+    <string name="use_external_video_player_summary">Verwijdert geluid bij sommige resoluties</string>
     <string name="show_search_suggestions_title">Zoeksuggesties</string>
     <string name="show_search_suggestions_summary">Toon suggesties bij zoeken</string>
     <string name="player_gesture_controls_title">Gebaarbesturing</string>

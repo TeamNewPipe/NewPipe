@@ -13,7 +13,7 @@
     <string name="did_you_mean">هل تقصد: %1$s\?</string>
     <string name="download">تنزيل</string>
     <string name="download_dialog_title">تنزيل</string>
-    <string name="download_path_audio_dialog_title">اختر مجلد التنزيل لملفات الصوت</string>
+    <string name="download_path_audio_dialog_title">اختر مجلد التنزيل للملفات الصوتية</string>
     <string name="download_path_audio_summary">يتم تخزين الملفات الصوتية التي تم تنزيلها هنا</string>
     <string name="download_path_audio_title">مسار مجلد الصوتيات المحفوظة</string>
     <string name="download_path_dialog_title">اختر مجلد التنزيل لملفات الفيديو</string>
@@ -22,12 +22,12 @@
     <string name="err_dir_create">"لا يمكن إنشاء مجلد للتنزيلات في '%1$s'"</string>
     <string name="info_dir_created">إنشاء دليل التحميل \'%1$s\'</string>
     <string name="install">تثبيت</string>
-    <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تثبيته ؟</string>
+    <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تنصيبه؟</string>
     <string name="light_theme_title">مضيء</string>
     <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="next_video_title">التالي</string>
-    <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
+    <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تنصيب VLC؟</string>
     <string name="open_in_browser">افتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
     <string name="play_btn_text">تشغيل</string>
@@ -57,7 +57,7 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
     <string name="youtube_signature_decryption_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">انقر فوق بحث لتبدأ</string>
+    <string name="main_bg_subtitle">اضغط فوق \"البحث\" لتبدأ</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
@@ -80,8 +80,8 @@
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في وضع منبثق</string>
-    <string name="use_external_video_player_summary">يزيل الصوت في بعض القرارات</string>
-    <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
+    <string name="use_external_video_player_summary">يزيل الصوت في بعض الجودات</string>
+    <string name="popup_mode_share_menu_title">وضع النافذة الطافية</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
@@ -89,7 +89,7 @@
     <string name="autoplay_by_calling_app_summary">تشغيل مقطع الفيديو عند إستدعاء NewPipe من تطبيق آخر</string>
     <string name="default_popup_resolution_title">الدقة الافتراضية لنوافذ المنبثقة</string>
     <string name="show_higher_resolutions_title">عرض أعلى جودة</string>
-    <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل مقاطع الفيديو 2K / 4K</string>
+    <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل مقاطع الفيديو 2K/4K</string>
     <string name="default_video_format_title">تنسيق الفيديو الافتراضي</string>
     <string name="popup_remember_size_pos_title">تذكر حجم النافذة و وضعها</string>
     <string name="popup_remember_size_pos_summary">تذكر آخر مكان و حجم للنافذة المنبثقة</string>
@@ -100,7 +100,7 @@
     <string name="enable_search_history_title">سجل البحث</string>
     <string name="enable_search_history_summary">تخزين طلبات البحث محليا</string>
     <string name="enable_watch_history_summary">تتبع مقاطع الفيديو التي تمت مشاهدتها</string>
-    <string name="resume_on_audio_focus_gain_title">استئناف عند اكتساب التركيز</string>
+    <string name="resume_on_audio_focus_gain_title">استئناف التشغيل</string>
     <string name="resume_on_audio_focus_gain_summary">متابعة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
     <string name="show_hold_to_append_title">إظهار التلميحات \"اضغط للتجاهل\"</string>
     <string name="show_hold_to_append_summary">عرض تلميح على صفحة التفاصيل عند استخدام وضع مشغل الخلفية أو النافذة المنبثقة</string>
@@ -138,9 +138,9 @@
     <string name="player_unrecoverable_failure">حدث خطأ للمشغل غير قابل للاسترداد</string>
     <string name="player_recoverable_failure">استرداد المشغل من الخطأ</string>
     <string name="sorry_string">عذرا، لا ينبغي أن يحدث ذلك.</string>
-    <string name="error_report_button_text">الإبلاغ عن خطأ عبر البريد الإلكتروني</string>
+    <string name="error_report_button_text">الإبلاغ عن هذا الخطأ عبر البريد الإلكتروني</string>
     <string name="error_snackbar_message">عذرا، حدثت بعض الأخطاء.</string>
-    <string name="error_snackbar_action">تقرير</string>
+    <string name="error_snackbar_action">أبلِغ</string>
     <string name="what_device_headline">معلومات:</string>
     <string name="what_happened_headline">ماذا حدث:</string>
     <string name="info_labels">ماذا:\\nطلب:\\nيحتوى اللغة:\\nSالخدمات:\\nتوقيت غرينتش:\\nحزمة:\\nالإصدار:\\nOS إصدار نظام التشغيل:</string>
@@ -152,7 +152,7 @@
     <string name="empty_subscription_feed_subtitle">لا شيء هنا غير الصراصير</string>
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
-    <string name="storage_permission_denied">تم رفض إذن الوصول إلى التخزين</string>
+    <string name="storage_permission_denied">ترخيص الوصول إلى التخزين أوّلا</string>
     <string name="short_thousand">ألف</string>
     <string name="short_million">مليون</string>
     <string name="short_billion">B</string>
@@ -477,7 +477,7 @@
     <string name="pause_downloads_on_mobile">"إنقطع الإتصال بالشبكة عند التحويل  إلى البيانات المتنقلة"</string>
     <string name="pause_downloads_on_mobile_desc">مفيد عند التبديل إلى بيانات الجوال ، على الرغم من أنه لا يمكن تعليق بعض التنزيلات</string>
     <string name="show_comments_title">إظهار التعليقات</string>
-    <string name="show_comments_summary">تعطيل لإيقاف عرض التعليقات</string>
+    <string name="show_comments_summary">عطّله لإخفاء التعليقات</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
     <plurals name="comments">
         <item quantity="zero">التعليقات</item>
@@ -555,7 +555,7 @@
     <string name="recovering">استرد</string>
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
     <string name="choose_instance_prompt">اختيار مثيل</string>
-    <string name="peertube_instance_url_help">ابحث عن الحالات التي تناسبك على %s</string>
+    <string name="peertube_instance_url_help">ابحث عن مثيلات الخوادم التي تناسبك على %s</string>
     <string name="enable_lock_screen_video_thumbnail_title">تمكين قفل شاشة الصور المصغرة الفيديو</string>
     <string name="enable_lock_screen_video_thumbnail_summary">عند استخدام مشغل الخلفية ، سيتم عرض صورة مصغرة للفيديو على شاشة القفل</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
@@ -566,4 +566,13 @@
     <string name="systems_language">النظام الافتراضي</string>
     <string name="subtitle_activity_recaptcha">اضغط على \"تم\" عند حلها</string>
     <string name="recaptcha_done_button">منجز</string>
+    <string name="videos_string">الفيديوهات</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="zero">%s ثوانٍ</item>
+        <item quantity="one"></item>
+        <item quantity="two"></item>
+        <item quantity="few"></item>
+        <item quantity="many"></item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>
