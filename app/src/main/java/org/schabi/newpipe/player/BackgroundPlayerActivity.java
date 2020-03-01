@@ -57,7 +57,10 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
             this.player.setRecovery();
             getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
-            getApplicationContext().startService(getSwitchIntent(PopupVideoPlayer.class));
+            getApplicationContext().startService(
+                getSwitchIntent(PopupVideoPlayer.class)
+                    .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying())
+            );
             return true;
         }
         return false;

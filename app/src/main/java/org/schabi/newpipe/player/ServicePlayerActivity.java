@@ -46,6 +46,7 @@ import java.util.List;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public abstract class ServicePlayerActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -116,6 +117,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
         setContentView(R.layout.activity_player_queue_control);
@@ -154,6 +156,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.action_settings:
+                NavigationHelper.openSettings(this);
+                return true;
             case R.id.action_append_playlist:
                 appendAllToPlaylist();
                 return true;
@@ -163,7 +168,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case R.id.action_switch_main:
                 this.player.setRecovery();
                 getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
-                getApplicationContext().startActivity(getSwitchIntent(MainVideoPlayer.class));
+                getApplicationContext().startActivity(
+                    getSwitchIntent(MainVideoPlayer.class)
+                        .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying())
+                );
                 return true;
         }
         return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
@@ -185,8 +193,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getPlaybackPitch(),
                 this.player.getPlaybackSkipSilence(),
                 null,
+                false,
                 false
-        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying());
     }
 
     ////////////////////////////////////////////////////////////////////////////

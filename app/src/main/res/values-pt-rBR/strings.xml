@@ -50,8 +50,8 @@
     <string name="next_video_title">Próximo</string>
     <string name="open_in_browser">Abrir no navegador</string>
     <string name="pause">Pausar</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Desafio reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="report_error">Reportar um erro</string>
     <string name="retry">Tentar novamente</string>
@@ -496,7 +496,7 @@ abrir em modo popup</string>
     <string name="error_insufficient_storage">Não há espaço disponível no dispositivo</string>
     <string name="error_progress_lost">Progresso perdido devido ao arquivo ter sido apagado</string>
     <string name="error_timeout">Tempo limite de conexão</string>
-    <string name="confirm_prompt">Tem certeza\?</string>
+    <string name="confirm_prompt">Apagar todo o histórico de downloads ou excluir todos os arquivos baixados\?</string>
     <string name="enable_queue_limit">Limitar tamanho da fila de download</string>
     <string name="enable_queue_limit_desc">Um download será executado ao mesmo tempo</string>
     <string name="start_downloads">Iniciar downloads</string>
@@ -543,4 +543,12 @@ abrir em modo popup</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="enable_lock_screen_video_thumbnail_title">Ativar capa do vídeo na tela de bloqueio</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Mostra capa do vídeo na tela de bloqueio ao usar player em segundo plano</string>
+    <string name="clear_download_history">Limpar histórico de downloads</string>
+    <string name="delete_downloaded_files">Excluir arquivos baixados</string>
+    <string name="deleted_downloads">%1$s arquivos excluídos</string>
+    <string name="permission_display_over_apps">Permita sobreposição a outros aplicativos</string>
+    <string name="app_language_title">Idioma do aplicativo</string>
+    <string name="systems_language">Padrão do sistema</string>
+    <string name="subtitle_activity_recaptcha">Toque em \"Feito\" ao resolver</string>
+    <string name="recaptcha_done_button">Feito</string>
 </resources>

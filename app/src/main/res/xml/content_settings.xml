@@ -3,9 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/content">
+
     <ListPreference
         app:iconSpaceReserved="false"
-        android:defaultValue="@string/default_language_value"
+        android:defaultValue="@string/default_localization_key"
+        android:entries="@array/app_language_name"
+        android:entryValues="@array/app_language_code"
+        android:key="@string/app_language_key"
+        android:summary="%s"
+        android:title="@string/app_language_title"/>
+
+    <ListPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="@string/default_localization_key"
         android:entries="@array/language_names"
         android:entryValues="@array/language_codes"
         android:key="@string/content_language_key"
@@ -14,7 +24,7 @@
 
     <ListPreference
         app:iconSpaceReserved="false"
-        android:defaultValue="@string/default_country_value"
+        android:defaultValue="@string/default_localization_key"
         android:entries="@array/country_names"
         android:entryValues="@array/country_codes"
         android:key="@string/content_country_key"

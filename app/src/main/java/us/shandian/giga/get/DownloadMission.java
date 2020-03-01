@@ -223,6 +223,7 @@ public class DownloadMission extends Mission {
         conn.setInstanceFollowRedirects(true);
         conn.setRequestProperty("User-Agent", DownloaderImpl.USER_AGENT);
         conn.setRequestProperty("Accept", "*/*");
+        conn.setRequestProperty("Accept-Encoding", "*");
 
         if (headRequest) conn.setRequestMethod("HEAD");
 

@@ -1,19 +1,24 @@
 package org.schabi.newpipe;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.core.app.NavUtils;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import org.schabi.newpipe.util.ThemeHelper;
+
+import androidx.annotation.NonNull;
 
 /*
  * Created by beneth <bmauduit@beneth.fr> on 06.12.16.
@@ -37,48 +42,46 @@ import android.webkit.WebViewClient;
 public class ReCaptchaActivity extends AppCompatActivity {
     public static final int RECAPTCHA_REQUEST = 10;
     public static final String RECAPTCHA_URL_EXTRA = "recaptcha_url_extra";
-
     public static final String TAG = ReCaptchaActivity.class.toString();
     public static final String YT_URL = "https://www.youtube.com";
 
-    private String url;
+    private WebView webView;
+    private String foundCookies = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recaptcha);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        url = getIntent().getStringExtra(RECAPTCHA_URL_EXTRA);
+        String url = getIntent().getStringExtra(RECAPTCHA_URL_EXTRA);
         if (url == null || url.isEmpty()) {
             url = YT_URL;
         }
 
-
-        // Set return to Cancel by default
+        // set return to Cancel by default
         setResult(RESULT_CANCELED);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(R.string.reCaptcha_title);
-            actionBar.setDisplayShowTitleEnabled(true);
-        }
+        webView = findViewById(R.id.reCaptchaWebView);
 
-        WebView myWebView = findViewById(R.id.reCaptchaWebView);
-
-        // Enable Javascript
-        WebSettings webSettings = myWebView.getSettings();
+        // enable Javascript
+        WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        ReCaptchaWebViewClient webClient = new ReCaptchaWebViewClient(this);
-        myWebView.setWebViewClient(webClient);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                handleCookies(url);
+            }
+        });
 
-        // Cleaning cache, history and cookies from webView
-        myWebView.clearCache(true);
-        myWebView.clearHistory();
+        // cleaning cache, history and cookies from webView
+        webView.clearCache(true);
+        webView.clearHistory();
         android.webkit.CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             cookieManager.removeAllCookies(aBoolean -> {});
@@ -86,77 +89,82 @@ public class ReCaptchaActivity extends AppCompatActivity {
             cookieManager.removeAllCookie();
         }
 
-        myWebView.loadUrl(url);
+        webView.loadUrl(url);
     }
 
-    private class ReCaptchaWebViewClient extends WebViewClient {
-        private final Activity context;
-        private String mCookies;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_recaptcha, menu);
 
-        ReCaptchaWebViewClient(Activity ctx) {
-            context = ctx;
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setTitle(R.string.title_activity_recaptcha);
+            actionBar.setSubtitle(R.string.subtitle_activity_recaptcha);
         }
 
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            // TODO: Start Loader
-            super.onPageStarted(view, url, favicon);
-        }
+        return true;
+    }
 
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            String cookies = CookieManager.getInstance().getCookie(url);
-
-            // TODO: Stop Loader
-
-            // find cookies : s_gl & goojf and Add cookies to Downloader
-            if (find_access_cookies(cookies)) {
-                // Give cookies to Downloader class
-                DownloaderImpl.getInstance().setCookies(mCookies);
-
-                // Closing activity and return to parent
-                setResult(RESULT_OK);
-                finish();
-            }
-        }
-
-        private boolean find_access_cookies(String cookies) {
-            boolean ret = false;
-            String c_s_gl = "";
-            String c_goojf = "";
-
-            String[] parts = cookies.split("; ");
-            for (String part : parts) {
-                if (part.trim().startsWith("s_gl")) {
-                    c_s_gl = part.trim();
-                }
-                if (part.trim().startsWith("goojf")) {
-                    c_goojf = part.trim();
-                }
-            }
-            if (c_s_gl.length() > 0 && c_goojf.length() > 0) {
-                ret = true;
-                //mCookies = c_s_gl + "; " + c_goojf;
-                // Youtube seems to also need the other cookies:
-                mCookies = cookies;
-            }
-
-            return ret;
-        }
+    @Override
+    public void onBackPressed() {
+        saveCookiesAndFinish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case android.R.id.home: {
-                Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                NavUtils.navigateUpTo(this, intent);
+            case R.id.menu_item_done:
+                saveCookiesAndFinish();
                 return true;
-            }
             default:
                 return false;
+        }
+    }
+
+    private void saveCookiesAndFinish() {
+        handleCookies(webView.getUrl()); // try to get cookies of unclosed page
+        if (!foundCookies.isEmpty()) {
+            // give cookies to Downloader class
+            DownloaderImpl.getInstance().setCookies(foundCookies);
+            setResult(RESULT_OK);
+        }
+
+        Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        NavUtils.navigateUpTo(this, intent);
+    }
+
+
+
+    private void handleCookies(String url) {
+        String cookies = CookieManager.getInstance().getCookie(url);
+        if (MainActivity.DEBUG) Log.d(TAG, "handleCookies: url=" + url + "; cookies=" + (cookies == null ? "null" : cookies));
+        if (cookies == null) return;
+
+        addYoutubeCookies(cookies);
+        // add other methods to extract cookies here
+    }
+
+    private void addYoutubeCookies(@NonNull String cookies) {
+        if (cookies.contains("s_gl=") || cookies.contains("goojf=") || cookies.contains("VISITOR_INFO1_LIVE=")) {
+            // youtube seems to also need the other cookies:
+            addCookie(cookies);
+        }
+    }
+
+    private void addCookie(String cookie) {
+        if (foundCookies.contains(cookie)) {
+            return;
+        }
+
+        if (foundCookies.isEmpty() || foundCookies.endsWith("; ")) {
+            foundCookies += cookie;
+        } else if (foundCookies.endsWith(";")) {
+            foundCookies += " " + cookie;
+        } else {
+            foundCookies += "; " + cookie;
         }
     }
 }

@@ -305,12 +305,31 @@
                     tools:text="English" />
 
                 <ImageButton
-                    android:id="@+id/share"
+                    android:id="@+id/kodi"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="2dp"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_cast_white_24dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/play_with_kodi_title"
+                    tools:ignore="RtlHardcoded"
+                    android:visibility="visible"/>
+
+                <ImageButton
+                    android:id="@+id/share"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@id/kodi"
+                    android:layout_alignWithParentIfMissing="true"
                     android:layout_centerVertical="true"
                     android:clickable="true"
                     android:focusable="true"
@@ -423,10 +442,9 @@
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:gravity="center"
-                    android:text="@string/duration_live_button"
+                    android:text="@string/duration_live"
                     android:textAllCaps="true"
                     android:textColor="@android:color/white"
-                    android:maxLength="4"
                     android:visibility="gone"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />

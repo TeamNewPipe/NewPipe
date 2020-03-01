@@ -28,6 +28,7 @@ import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -44,9 +45,11 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.DisplayCutout;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -75,6 +78,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -93,6 +97,7 @@ import static org.schabi.newpipe.util.AnimationUtils.Type.SCALE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.StateSaver.KEY_SAVED_STATE;
 
 /**
@@ -123,6 +128,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -190,6 +196,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     @Override
     protected void onResume() {
         if (DEBUG) Log.d(TAG, "onResume() called");
+        assureCorrectAppLanguage(this);
         super.onResume();
 
         if (globalScreenOrientationLocked()) {
@@ -220,6 +227,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        assureCorrectAppLanguage(this);
 
         if (playerImpl.isSomePopupMenuVisible()) {
             playerImpl.getQualityPopupMenu().dismiss();
@@ -364,8 +372,8 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     private boolean globalScreenOrientationLocked() {
-        // 1: Screen orientation changes using acelerometer
-        // 0: Screen orientatino is locked
+        // 1: Screen orientation changes using accelerometer
+        // 0: Screen orientation is locked
         return !(android.provider.Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
     }
 
@@ -435,6 +443,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         private boolean queueVisible;
 
         private ImageButton moreOptionsButton;
+        private ImageButton kodiButton;
         private ImageButton shareButton;
         private ImageButton toggleOrientationButton;
         private ImageButton switchPopupButton;
@@ -471,6 +480,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
             this.secondaryControls = rootView.findViewById(R.id.secondaryControls);
+            this.kodiButton = rootView.findViewById(R.id.kodi);
             this.shareButton = rootView.findViewById(R.id.share);
             this.toggleOrientationButton = rootView.findViewById(R.id.toggleOrientation);
             this.switchBackgroundButton = rootView.findViewById(R.id.switchBackground);
@@ -482,6 +492,9 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
+            boolean showKodiButton = PreferenceManager.getDefaultSharedPreferences(this.context).getBoolean(
+					this.context.getString(R.string.show_play_with_kodi_key), false);
+            kodiButton.setVisibility(showKodiButton ? View.VISIBLE : View.GONE);
 
             getRootView().setKeepScreenOn(true);
         }
@@ -518,6 +531,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             closeButton.setOnClickListener(this);
 
             moreOptionsButton.setOnClickListener(this);
+            kodiButton.setOnClickListener(this);
             shareButton.setOnClickListener(this);
             toggleOrientationButton.setOnClickListener(this);
             switchBackgroundButton.setOnClickListener(this);
@@ -538,6 +552,19 @@ public final class MainVideoPlayer extends AppCompatActivity
                     setInitialGestureValues();
                 }
             });
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                queueLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                    @Override
+                    public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                        final DisplayCutout cutout = windowInsets.getDisplayCutout();
+                        if (cutout != null)
+                            view.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
+                                    cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
+                        return windowInsets;
+                    }
+                });
+            }
         }
 
         public void minimize() {
@@ -588,6 +615,17 @@ public final class MainVideoPlayer extends AppCompatActivity
             finish();
         }
 
+        public void onKodiShare() {
+            onPause();
+            try {
+                NavigationHelper.playWithKore(this.context, Uri.parse(
+                        playerImpl.getVideoUrl().replace("https", "http")));
+            } catch (Exception e) {
+                if (DEBUG) Log.i(TAG, "Failed to start kore", e);
+                KoreUtil.showInstallKoreDialog(this.context);
+            }
+        }
+
         /*//////////////////////////////////////////////////////////////////////////
         // Player Overrides
         //////////////////////////////////////////////////////////////////////////*/
@@ -614,7 +652,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
-                    false
+                    false,
+                    !isPlaying()
             );
             context.startService(intent);
 
@@ -637,7 +676,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
-                    false
+                    false,
+                    !isPlaying()
             );
             context.startService(intent);
 
@@ -686,6 +726,8 @@ public final class MainVideoPlayer extends AppCompatActivity
             } else if (v.getId() == closeButton.getId()) {
                 onPlaybackShutdown();
                 return;
+            } else if (v.getId() == kodiButton.getId()) {
+            	onKodiShare();
             }
 
             if (getCurrentState() != STATE_COMPLETED) {
@@ -882,6 +924,18 @@ public final class MainVideoPlayer extends AppCompatActivity
                 final float currentVolumeNormalized = (float) getAudioReactor().getVolume() / getAudioReactor().getMaxVolume();
                 volumeProgressBar.setProgress((int) (volumeProgressBar.getMax() * currentVolumeNormalized));
             }
+
+            float screenBrightness = getWindow().getAttributes().screenBrightness;
+            if (screenBrightness < 0)
+                screenBrightness = Settings.System.getInt(getContentResolver(),
+                        Settings.System.SCREEN_BRIGHTNESS, 0) / 255.0f;
+
+            brightnessProgressBar.setProgress((int) (brightnessProgressBar.getMax() * screenBrightness));
+
+            if (DEBUG) Log.d(TAG, "setInitialGestureValues: volumeProgressBar.getProgress() ["
+                    + volumeProgressBar.getProgress() + "] "
+                    + "brightnessProgressBar.getProgress() ["
+                    + brightnessProgressBar.getProgress() + "]");
         }
 
         @Override

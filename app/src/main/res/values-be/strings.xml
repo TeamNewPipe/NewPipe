@@ -247,8 +247,8 @@
     <string name="msg_popup_permission">Гэтае разрозненне трэба для 
 \nпрайгравання ў акне</string>
     <string name="one_item_deleted">1 элемент выдалены.</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Запыт reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Запыт reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запытаны ўвод reCAPTCHA</string>
     <string name="settings_category_downloads_title">Загрузкі</string>
     <string name="settings_file_charset_title">Дапушчальныя сімвалы назвы файлаў</string>
