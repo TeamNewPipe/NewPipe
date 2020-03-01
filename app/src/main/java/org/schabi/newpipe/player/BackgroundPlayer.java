@@ -397,8 +397,8 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onMuteUnmuteButtonClicled() {
-            super.onMuteUnmuteButtonClicled();
+        public void onMuteUnmuteButtonClicked() {
+            super.onMuteUnmuteButtonClicked();
             updatePlayback();
         }
 

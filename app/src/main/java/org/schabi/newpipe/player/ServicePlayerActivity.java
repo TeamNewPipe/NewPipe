@@ -23,7 +23,6 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -453,7 +452,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.onRepeatClicked();
 
         } else if (view.getId() == muteButton.getId()) {
-            player.onMuteUnmuteButtonClicled();
+            player.onMuteUnmuteButtonClicked();
 
         } else if (view.getId() == backwardButton.getId()) {
             player.onPlayPrevious();

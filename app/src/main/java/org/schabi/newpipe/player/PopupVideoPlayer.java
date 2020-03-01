@@ -609,8 +609,8 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void onMuteUnmuteButtonClicled() {
-            super.onMuteUnmuteButtonClicled();
+        public void onMuteUnmuteButtonClicked() {
+            super.onMuteUnmuteButtonClicked();
             updatePlayback();
         }
 

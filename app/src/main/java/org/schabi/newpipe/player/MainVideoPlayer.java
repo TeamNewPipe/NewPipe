@@ -693,8 +693,8 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
 
         @Override
-        public void onMuteUnmuteButtonClicled() {
-            super.onMuteUnmuteButtonClicled();
+        public void onMuteUnmuteButtonClicked() {
+            super.onMuteUnmuteButtonClicked();
             setMuteButton(muteButton, playerImpl.isMuted());
         }
 
@@ -736,7 +736,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 onPlayBackgroundButtonClicked();
 
             } else if (v.getId() == muteButton.getId()) {
-                onMuteUnmuteButtonClicled();
+                onMuteUnmuteButtonClicked();
 
             } else if (v.getId() == closeButton.getId()) {
                 onPlaybackShutdown();
