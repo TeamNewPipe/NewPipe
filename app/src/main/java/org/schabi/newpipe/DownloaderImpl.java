@@ -171,7 +171,8 @@ public class DownloaderImpl extends Downloader {
             responseBodyToReturn = body.string();
         }
 
-        return new Response(response.code(), response.message(), response.headers().toMultimap(), responseBodyToReturn);
+        final String latestUrl = response.request().url().toString();
+        return new Response(response.code(), response.message(), response.headers().toMultimap(), responseBodyToReturn, latestUrl);
     }
 
     /**
