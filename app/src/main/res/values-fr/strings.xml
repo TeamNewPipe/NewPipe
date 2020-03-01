@@ -428,7 +428,7 @@
     <string name="grid">Grille</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Changer de vue</string>
-    <string name="app_update_notification_content_title">Une mise à jour de NewPipe est disponible !</string>
+    <string name="app_update_notification_content_title">Une mise à jour de NewPipe est disponible !</string>
     <string name="app_update_notification_content_text">Appuyer pour télécharger</string>
     <string name="missions_header_finished">Terminé</string>
     <string name="missions_header_pending">En attente</string>
