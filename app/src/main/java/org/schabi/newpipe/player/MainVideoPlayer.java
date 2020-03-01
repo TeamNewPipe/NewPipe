@@ -695,7 +695,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void onMuteUnmuteButtonClicled() {
             super.onMuteUnmuteButtonClicled();
-            updatePlaybackButtons();
+            setMuteButton(muteButton, playerImpl.isMuted());
         }
 
 
@@ -785,6 +785,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             animateView(secondaryControls, SLIDE_AND_ALPHA, !isMoreControlsVisible,
                     DEFAULT_CONTROLS_DURATION);
             showControls(DEFAULT_CONTROLS_DURATION);
+            setMuteButton(muteButton, playerImpl.isMuted());
         }
 
         private void onShareClicked() {
@@ -984,7 +985,6 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             setRepeatModeButton(repeatButton, getRepeatMode());
             setShuffleButton(shuffleButton, playQueue.isShuffled());
-            setMuteButton(muteButton, playerImpl.isMuted());
         }
 
         private void buildQueue() {
@@ -1088,6 +1088,10 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         public ImageButton getRepeatButton() {
             return repeatButton;
+        }
+
+        public ImageButton getMuteButton() {
+            return muteButton;
         }
 
         public ImageButton getPlayPauseButton() {
