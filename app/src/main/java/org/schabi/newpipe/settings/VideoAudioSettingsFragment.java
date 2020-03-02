@@ -82,8 +82,9 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         final ListPreference durations = (ListPreference) findPreference(getString(R.string.seek_duration_key));
         durations.setEntryValues(displayedDurationValues.toArray(new CharSequence[0]));
         durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));
-        if (Integer.parseInt(durations.getValue()) / 1000 % 10 == 5) {
-            durations.setValueIndex(0);
+        final int selectedDuration = Integer.parseInt(durations.getValue());
+        if (selectedDuration / 1000 % 10 == 5) {
+            durations.setValue(Integer.toString(selectedDuration + 5 * 1000));
         }
     }
 
