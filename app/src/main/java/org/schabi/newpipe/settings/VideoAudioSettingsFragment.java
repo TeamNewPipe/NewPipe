@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 
+import android.text.format.DateUtils;
 import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 
@@ -65,7 +66,8 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             .getBoolean(res.getString(R.string.use_inexact_seek_key), false);
 
         for (String durationsValue : durationsValues) {
-            currentDurationValue = Integer.parseInt(durationsValue) / 1000;
+            currentDurationValue =
+                Integer.parseInt(durationsValue) / (int) DateUtils.SECOND_IN_MILLIS;
             if (inexactSeek && currentDurationValue % 10 == 5) {
                 continue;
             }
@@ -83,8 +85,9 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         durations.setEntryValues(displayedDurationValues.toArray(new CharSequence[0]));
         durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));
         final int selectedDuration = Integer.parseInt(durations.getValue());
-        if (selectedDuration / 1000 % 10 == 5) {
-            durations.setValue(Integer.toString(selectedDuration + 5 * 1000));
+        if (selectedDuration / (int) DateUtils.SECOND_IN_MILLIS % 10 == 5) {
+            durations.setValue(
+                Integer.toString(selectedDuration + 5 * (int) DateUtils.SECOND_IN_MILLIS));
         }
     }
 
