@@ -3,15 +3,19 @@ package org.schabi.newpipe.player;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,6 +98,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private TextView playbackSpeedButton;
     private TextView playbackPitchButton;
 
+    private Menu menu;
+
     ////////////////////////////////////////////////////////////////////////////
     // Abstracts
     ////////////////////////////////////////////////////////////////////////////
@@ -147,8 +153,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_play_queue, menu);
         getMenuInflater().inflate(getPlayerOptionMenuResource(), menu);
+        onMaybeMuteChanged();
         return true;
     }
 
@@ -174,8 +182,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.setRecovery();
                 getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
                 getApplicationContext().startActivity(
-                    getSwitchIntent(MainVideoPlayer.class)
-                        .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying())
+                        getSwitchIntent(MainVideoPlayer.class)
+                                .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying())
                 );
                 return true;
         }
@@ -218,7 +226,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void unbind() {
-        if(serviceBound) {
+        if (serviceBound) {
             unbindService(serviceConnection);
             serviceBound = false;
             stopPlayerListener();
@@ -689,7 +697,16 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         }
     }
 
-    private void onMaybeMuteChanged(){
+    private void onMaybeMuteChanged() {
         muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), player.isMuted() ? R.color.white : R.color.gray));
+
+        if (menu != null) {
+            MenuItem item = menu.findItem(R.id.action_mute);
+            TypedArray a = getTheme().obtainStyledAttributes(R.style.Theme_AppCompat, new int[]{R.attr.volume_off});
+            int attributeResourceId = a.getResourceId(0, 0);
+            Drawable drawableMuted = getResources().getDrawable(attributeResourceId);
+            Drawable drawableUnmuted = getResources().getDrawable(R.drawable.ic_volume_off_gray_24dp);
+            item.setIcon(player.isMuted() ? drawableMuted : drawableUnmuted);
+        }
     }
 }
