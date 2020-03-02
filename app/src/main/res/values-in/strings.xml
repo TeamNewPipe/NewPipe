@@ -228,7 +228,7 @@
     <string name="detail_drag_description">Geser untuk ubah urutan</string>
     <string name="no_subscribers">Tidak ada subscriber</string>
     <plurals name="subscribers">
-        <item quantity="other">%s subscriber</item>
+        <item quantity="other">%s subscribers</item>
     </plurals>
     <string name="no_views">Belum ditonton</string>
     <plurals name="views">
@@ -304,7 +304,7 @@
     <string name="playlist_add_stream_success">Diplaylist</string>
     <string name="playlist_thumbnail_change_success">Thumbnail playlist diubah.</string>
     <string name="playlist_delete_failure">Tidak bisa menghapus playlist.</string>
-    <string name="caption_none">Tidak ada Takarir</string>
+    <string name="caption_none">Tanpa Teks</string>
     <string name="resize_fit">Pas</string>
     <string name="resize_fill">Isi</string>
     <string name="resize_zoom">Perbesar</string>
@@ -339,7 +339,7 @@
     <string name="import_settings">Apakah anda juga ingin mengimpor pengaturan\?</string>
     <string name="preferred_open_action_settings_title">Tindakan \'buka\' yang diinginkan</string>
     <string name="preferred_open_action_settings_summary">Tindakan baku ketika membuka konten — %s</string>
-    <string name="caption_setting_title">Takarir</string>
+    <string name="caption_setting_title">Teks</string>
     <string name="caption_setting_description">Ubah skala teks takarir pemutar dan gaya latar belakang. Perlu memulai ulang apl.</string>
     <string name="enable_leak_canary_summary">Pemantauan kebocoran memori dapat menyebabkan apl menjadi tidak responsif saat heap dumping</string>
     <string name="enable_disposed_exceptions_title">Laporkan galat out-of-lifecycle</string>
