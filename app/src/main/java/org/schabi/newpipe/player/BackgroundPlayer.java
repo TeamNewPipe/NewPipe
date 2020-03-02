@@ -341,6 +341,7 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void handleIntent(final Intent intent) {
             super.handleIntent(intent);
+            
             resetNotification();
             if (bigNotRemoteView != null)
                 bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);

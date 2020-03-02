@@ -687,11 +687,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void onMaybeMuteChanged(){
-        if (player.isMuted()) {
-            muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.white));
-        }
-        else {
-            muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.gray));
-        }
+        muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), player.isMuted() ? R.color.white : R.color.gray));
     }
 }

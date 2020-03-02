@@ -332,7 +332,7 @@ public abstract class BasePlayer implements
         if (playQueueAdapter != null) playQueueAdapter.dispose();
         playQueueAdapter = new PlayQueueAdapter(context, playQueue);
 
-        if (isMuted) simpleExoPlayer.setVolume(0);
+        simpleExoPlayer.setVolume(isMuted ? 0 : 1);
     }
 
     public void destroyPlayer() {
