@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.player.NotificationUtil;
 import org.schabi.newpipe.util.Constants;
 
 public class AppearanceSettingsFragment extends BasePreferenceFragment {
@@ -52,7 +53,21 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
             final Preference captionSettings = findPreference(captionSettingsKey);
             getPreferenceScreen().removePreference(captionSettings);
         }
+
+        findPreference(getString(R.string.enable_old_notifications_key))
+                .setOnPreferenceChangeListener(oldNotificationsOnPreferenceChangeListener);
     }
+
+    private Preference.OnPreferenceChangeListener oldNotificationsOnPreferenceChangeListener
+            = (preference, newValue) -> {
+//        NotificationUtil.getInstance().toast(getContext(),
+//                "Killed background / popup player notification(s) !");
+        NotificationUtil.getInstance()
+                .cancelNotification(NotificationUtil.NOTIFICATION_ID_BACKGROUND);
+        NotificationUtil.getInstance().cancelNotification(NotificationUtil.NOTIFICATION_ID_POPUP);
+
+        return true;
+    };
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {

@@ -22,8 +22,6 @@ package org.schabi.newpipe.player;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -48,23 +46,19 @@ import android.view.animation.AnticipateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 
-import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
@@ -89,13 +83,28 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
  * @author mauriciocolli
  */
 public final class PopupVideoPlayer extends Service {
-    public static final String ACTION_CLOSE = "org.schabi.newpipe.player.PopupVideoPlayer.CLOSE";
-    public static final String ACTION_PLAY_PAUSE
-            = "org.schabi.newpipe.player.PopupVideoPlayer.PLAY_PAUSE";
-    public static final String ACTION_REPEAT = "org.schabi.newpipe.player.PopupVideoPlayer.REPEAT";
     private static final String TAG = ".PopupVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
-    private static final int NOTIFICATION_ID = 40028922;
+
+    public static final String ACTION_CLOSE
+            = "org.schabi.newpipe.player.PopupVideoPlayer.CLOSE";
+    public static final String ACTION_PLAY_PAUSE
+            = "org.schabi.newpipe.player.PopupVideoPlayer.PLAY_PAUSE";
+    public static final String ACTION_REPEAT
+            = "org.schabi.newpipe.player.PopupVideoPlayer.REPEAT";
+    public static final String ACTION_FAST_REWIND
+            = "org.schabi.newpipe.player.PopupVideoPlayer.ACTION_FAST_REWIND";
+    public static final String ACTION_FAST_FORWARD
+            = "org.schabi.newpipe.player.PopupVideoPlayer.ACTION_FAST_FORWARD";
+    public static final String ACTION_PLAY_NEXT
+            = "org.schabi.newpipe.player.PopupVideoPlayer.ACTION_PLAY_NEXT";
+    public static final String ACTION_PLAY_PREVIOUS
+            = "org.schabi.newpipe.player.PopupVideoPlayer.ACTION_PLAY_PREVIOUS";
+    public static final String ACTION_BUFFERING
+            = "org.schabi.newpipe.player.PopupVideoPlayer.ACTION_BUFFERING";
+    public static final String ACTION_SHUFFLE
+            = "org.schabi.newpipe.player.PopupVideoPlayer.ACTION_SHUFFLE";
+
     private static final String POPUP_SAVED_WIDTH = "popup_saved_width";
     private static final String POPUP_SAVED_X = "popup_saved_x";
     private static final String POPUP_SAVED_Y = "popup_saved_y";
@@ -126,12 +135,12 @@ public final class PopupVideoPlayer extends Service {
     private float maximumWidth;
     private float maximumHeight;
 
-    private NotificationManager notificationManager;
-    private NotificationCompat.Builder notBuilder;
-    private RemoteViews notRemoteView;
+    private boolean isForwardPressed;
+    private boolean isRewindPressed;
 
     private VideoPlayerImpl playerImpl;
     private boolean isPopupClosing = false;
+    private SharedPreferences sharedPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
@@ -148,7 +157,7 @@ public final class PopupVideoPlayer extends Service {
     public void onCreate() {
         assureCorrectAppLanguage(this);
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         playerImpl = new VideoPlayerImpl(this);
         ThemeHelper.setTheme(this);
@@ -220,9 +229,9 @@ public final class PopupVideoPlayer extends Service {
 
         final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(this);
         final float defaultSize = getResources().getDimension(R.dimen.popup_default_width);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         popupWidth = popupRememberSizeAndPos
-                ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
+                ? sharedPrefs.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
 
         final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O
                 ? WindowManager.LayoutParams.TYPE_PHONE
@@ -236,16 +245,16 @@ public final class PopupVideoPlayer extends Service {
         popupLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
         popupLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
 
-        int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
-        int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
+        final int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
+        final int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
         popupLayoutParams.x = popupRememberSizeAndPos
-                ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
+                ? sharedPrefs.getInt(POPUP_SAVED_X, centerX) : centerX;
         popupLayoutParams.y = popupRememberSizeAndPos
-                ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
+                ? sharedPrefs.getInt(POPUP_SAVED_Y, centerY) : centerY;
 
         checkPopupPositionBounds();
 
-        PopupWindowGestureListener listener = new PopupWindowGestureListener();
+        final PopupWindowGestureListener listener = new PopupWindowGestureListener();
         popupGestureDetector = new GestureDetector(this, listener);
         rootView.setOnTouchListener(listener);
 
@@ -283,71 +292,6 @@ public final class PopupVideoPlayer extends Service {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Notification
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private void resetNotification() {
-        notBuilder = createNotification();
-    }
-
-    private NotificationCompat.Builder createNotification() {
-        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID,
-                R.layout.player_popup_notification);
-
-        notRemoteView.setTextViewText(R.id.notificationSongName, playerImpl.getVideoTitle());
-        notRemoteView.setTextViewText(R.id.notificationArtist, playerImpl.getUploaderName());
-        notRemoteView.setImageViewBitmap(R.id.notificationCover, playerImpl.getThumbnail());
-
-        notRemoteView.setOnClickPendingIntent(R.id.notificationPlayPause,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE),
-                        PendingIntent.FLAG_UPDATE_CURRENT));
-        notRemoteView.setOnClickPendingIntent(R.id.notificationStop,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE),
-                        PendingIntent.FLAG_UPDATE_CURRENT));
-        notRemoteView.setOnClickPendingIntent(R.id.notificationRepeat,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT),
-                        PendingIntent.FLAG_UPDATE_CURRENT));
-
-        // Starts popup player activity -- attempts to unlock lockscreen
-        final Intent intent = NavigationHelper.getPopupPlayerActivityIntent(this);
-        notRemoteView.setOnClickPendingIntent(R.id.notificationContent,
-                PendingIntent.getActivity(this, NOTIFICATION_ID, intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT));
-
-        setRepeatModeRemote(notRemoteView, playerImpl.getRepeatMode());
-
-        NotificationCompat.Builder builder = new NotificationCompat
-                .Builder(this, getString(R.string.notification_channel_id))
-                .setOngoing(true)
-                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setContent(notRemoteView);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
-        return builder;
-    }
-
-    /**
-     * Updates the notification, and the play/pause button in it.
-     * Used for changes on the remoteView
-     *
-     * @param drawableId if != -1, sets the drawable with that id on the play/pause button
-     */
-    private void updateNotification(final int drawableId) {
-        if (DEBUG) {
-            Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
-        }
-        if (notBuilder == null || notRemoteView == null) {
-            return;
-        }
-        if (drawableId != -1) {
-            notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
-        }
-        notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Misc
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -372,9 +316,8 @@ public final class PopupVideoPlayer extends Service {
         }
 
         mBinder = null;
-        if (notificationManager != null) {
-            notificationManager.cancel(NOTIFICATION_ID);
-        }
+
+        NotificationUtil.getInstance().cancelNotification(NotificationUtil.NOTIFICATION_ID_POPUP);
 
         animateOverlayAndFinishService();
     }
@@ -461,11 +404,11 @@ public final class PopupVideoPlayer extends Service {
     }
 
     private void savePositionAndSize() {
-        SharedPreferences sharedPreferences = PreferenceManager
+        final SharedPreferences sharedPrefs = PreferenceManager
                 .getDefaultSharedPreferences(PopupVideoPlayer.this);
-        sharedPreferences.edit().putInt(POPUP_SAVED_X, popupLayoutParams.x).apply();
-        sharedPreferences.edit().putInt(POPUP_SAVED_Y, popupLayoutParams.y).apply();
-        sharedPreferences.edit().putFloat(POPUP_SAVED_WIDTH, popupLayoutParams.width).apply();
+        sharedPrefs.edit().putInt(POPUP_SAVED_X, popupLayoutParams.x).apply();
+        sharedPrefs.edit().putInt(POPUP_SAVED_Y, popupLayoutParams.y).apply();
+        sharedPrefs.edit().putFloat(POPUP_SAVED_WIDTH, popupLayoutParams.width).apply();
     }
 
     private float getMinimumVideoHeight(final float width) {
@@ -530,29 +473,6 @@ public final class PopupVideoPlayer extends Service {
         windowManager.updateViewLayout(playerImpl.getRootView(), popupLayoutParams);
     }
 
-    protected void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
-        final String methodName = "setImageResource";
-
-        if (remoteViews == null) {
-            return;
-        }
-
-        switch (repeatMode) {
-            case Player.REPEAT_MODE_OFF:
-                remoteViews.setInt(R.id.notificationRepeat, methodName,
-                        R.drawable.exo_controls_repeat_off);
-                break;
-            case Player.REPEAT_MODE_ONE:
-                remoteViews.setInt(R.id.notificationRepeat, methodName,
-                        R.drawable.exo_controls_repeat_one);
-                break;
-            case Player.REPEAT_MODE_ALL:
-                remoteViews.setInt(R.id.notificationRepeat, methodName,
-                        R.drawable.exo_controls_repeat_all);
-                break;
-        }
-    }
-
     private void updateWindowFlags(final int flags) {
         if (popupLayoutParams == null || windowManager == null || playerImpl == null) {
             return;
@@ -579,8 +499,11 @@ public final class PopupVideoPlayer extends Service {
         public void handleIntent(final Intent intent) {
             super.handleIntent(intent);
 
-            resetNotification();
-            startForeground(NOTIFICATION_ID, notBuilder.build());
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl, sharedPreferences,
+                    true);
+            startForeground(NotificationUtil.NOTIFICATION_ID_POPUP,
+                    NotificationUtil.getInstance().notificationBuilder.build());
         }
 
         @Override
@@ -622,9 +545,7 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public void destroy() {
-            if (notRemoteView != null) {
-                notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
-            }
+            NotificationUtil.getInstance().unsetImageInOldPopupNotifications();
             super.destroy();
         }
 
@@ -683,6 +604,11 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onShuffleClicked() {
             super.onShuffleClicked();
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl,
+                    sharedPreferences);
+            NotificationUtil.getInstance().updatePopupPlayerNotification(-1,
+                    getBaseContext(), playerImpl, sharedPreferences);
             updatePlayback();
         }
 
@@ -697,6 +623,10 @@ public final class PopupVideoPlayer extends Service {
                                      final int bufferPercent) {
             updateProgress(currentProgress, duration, bufferPercent);
             super.onUpdateProgress(currentProgress, duration, bufferPercent);
+
+            // setMetadata only updates the metadata when any of the metadata keys are null
+            playerImpl.mediaSessionManager.setMetadata(playerImpl.getVideoTitle(),
+                    playerImpl.getUploaderName(), playerImpl.getThumbnail(), duration);
         }
 
         @Override
@@ -724,28 +654,38 @@ public final class PopupVideoPlayer extends Service {
         public void onLoadingComplete(final String imageUri, final View view,
                                       final Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
+
             if (playerImpl == null) {
                 return;
             }
-            // rebuild notification here since remote view does not release bitmaps,
+            // rebuild (old) notification here since remote view does not release bitmaps,
             // causing memory leaks
-            resetNotification();
-            updateNotification(-1);
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl, sharedPreferences,
+                    true);
+            NotificationUtil.getInstance().updatePopupPlayerNotification(-1,
+                    getBaseContext(), playerImpl, sharedPreferences);
         }
 
         @Override
         public void onLoadingFailed(final String imageUri, final View view,
                                     final FailReason failReason) {
             super.onLoadingFailed(imageUri, view, failReason);
-            resetNotification();
-            updateNotification(-1);
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl, sharedPreferences,
+                    true);
+            NotificationUtil.getInstance().updatePopupPlayerNotification(-1,
+                    getBaseContext(), playerImpl, sharedPreferences);
         }
 
         @Override
         public void onLoadingCancelled(final String imageUri, final View view) {
             super.onLoadingCancelled(imageUri, view);
-            resetNotification();
-            updateNotification(-1);
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl, sharedPreferences,
+                    true);
+            NotificationUtil.getInstance().updatePopupPlayerNotification(-1,
+                    getBaseContext(), playerImpl, sharedPreferences);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -799,10 +739,12 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onRepeatModeChanged(final int i) {
             super.onRepeatModeChanged(i);
-            setRepeatModeRemote(notRemoteView, i);
             updatePlayback();
-            resetNotification();
-            updateNotification(-1);
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl,
+                    sharedPreferences);
+            NotificationUtil.getInstance().updatePopupPlayerNotification(-1,
+                    getBaseContext(), playerImpl, sharedPreferences);
         }
 
         @Override
@@ -817,8 +759,11 @@ public final class PopupVideoPlayer extends Service {
 
         protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
             super.onMetadataChanged(tag);
-            resetNotification();
-            updateNotification(-1);
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl,
+                    sharedPreferences);
+            NotificationUtil.getInstance().updatePopupPlayerNotification(-1,
+                    getBaseContext(), playerImpl, sharedPreferences);
             updateMetadata();
         }
 
@@ -833,18 +778,25 @@ public final class PopupVideoPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        protected void setupBroadcastReceiver(final IntentFilter intentFltr) {
-            super.setupBroadcastReceiver(intentFltr);
+
+        protected void setupBroadcastReceiver(final IntentFilter intentFilter) {
+            super.setupBroadcastReceiver(intentFilter);
             if (DEBUG) {
                 Log.d(TAG, "setupBroadcastReceiver() called with: "
-                        + "intentFilter = [" + intentFltr + "]");
+                        + "intentFilter = [" + intentFilter + "]");
             }
-            intentFltr.addAction(ACTION_CLOSE);
-            intentFltr.addAction(ACTION_PLAY_PAUSE);
-            intentFltr.addAction(ACTION_REPEAT);
+            intentFilter.addAction(ACTION_CLOSE);
+            intentFilter.addAction(ACTION_PLAY_PAUSE);
+            intentFilter.addAction(ACTION_REPEAT);
+            intentFilter.addAction(ACTION_PLAY_PREVIOUS);
+            intentFilter.addAction(ACTION_PLAY_NEXT);
+            intentFilter.addAction(ACTION_FAST_REWIND);
+            intentFilter.addAction(ACTION_FAST_FORWARD);
+            intentFilter.addAction(ACTION_BUFFERING);
+            intentFilter.addAction(ACTION_SHUFFLE);
 
-            intentFltr.addAction(Intent.ACTION_SCREEN_ON);
-            intentFltr.addAction(Intent.ACTION_SCREEN_OFF);
+            intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+            intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
         }
 
         @Override
@@ -872,6 +824,26 @@ public final class PopupVideoPlayer extends Service {
                 case Intent.ACTION_SCREEN_OFF:
                     enableVideoRenderer(false);
                     break;
+                case ACTION_PLAY_NEXT:
+                    onPlayNext();
+                    break;
+                case ACTION_PLAY_PREVIOUS:
+                    onPlayPrevious();
+                    break;
+                case ACTION_FAST_FORWARD:
+                    isForwardPressed = true;
+                    onFastForward();
+                    break;
+                case ACTION_FAST_REWIND:
+                    isRewindPressed = true;
+                    onFastRewind();
+                    break;
+                case ACTION_BUFFERING:
+                    onBuffering();
+                    break;
+                case ACTION_SHUFFLE:
+                    onShuffleClicked();
+                    break;
             }
         }
 
@@ -888,8 +860,13 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onBlocked() {
             super.onBlocked();
-            resetNotification();
-            updateNotification(R.drawable.exo_controls_play);
+
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl,
+                    sharedPreferences);
+            NotificationUtil.getInstance()
+                    .updatePopupPlayerNotification(R.drawable.ic_play_arrow_white_24dp,
+                            getBaseContext(), playerImpl, sharedPreferences);
         }
 
         @Override
@@ -898,20 +875,48 @@ public final class PopupVideoPlayer extends Service {
 
             updateWindowFlags(ONGOING_PLAYBACK_WINDOW_FLAGS);
 
-            resetNotification();
-            updateNotification(R.drawable.exo_controls_pause);
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl,
+                    sharedPreferences);
+            NotificationUtil.getInstance()
+                    .updatePopupPlayerNotification(R.drawable.ic_pause_white_24dp, getBaseContext(),
+                            playerImpl, sharedPreferences);
 
             videoPlayPause.setBackgroundResource(R.drawable.exo_controls_pause);
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
 
-            startForeground(NOTIFICATION_ID, notBuilder.build());
+            startForeground(NotificationUtil.NOTIFICATION_ID_POPUP,
+                    NotificationUtil.getInstance().notificationBuilder.build());
         }
 
         @Override
         public void onBuffering() {
             super.onBuffering();
-            resetNotification();
-            updateNotification(R.drawable.exo_controls_play);
+
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl,
+                    sharedPreferences);
+            if (NotificationUtil.getInstance().notificationSlot0.contains("buffering")
+                    || NotificationUtil.getInstance().notificationSlot1.contains("buffering")
+                    || NotificationUtil.getInstance().notificationSlot2.contains("buffering")
+                    || NotificationUtil.getInstance().notificationSlot3.contains("buffering")
+                    || NotificationUtil.getInstance().notificationSlot4.contains("buffering")) {
+                if (playerImpl.getCurrentState() == BasePlayer.STATE_PREFLIGHT
+                        || playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED
+                        || playerImpl.getCurrentState() == BasePlayer.STATE_BUFFERING) {
+                    if (!(isForwardPressed || isRewindPressed)) {
+                        if (DEBUG) {
+                            Log.d(TAG, "N_ onBuffering()");
+                        }
+                        NotificationUtil.getInstance()
+                                .updatePopupPlayerNotification(R.drawable.ic_play_arrow_white_24dp,
+                                        getBaseContext(), playerImpl, sharedPreferences);
+                    } else {
+                        isForwardPressed = false;
+                        isRewindPressed = false;
+                    }
+                }
+            }
         }
 
         @Override
@@ -920,9 +925,14 @@ public final class PopupVideoPlayer extends Service {
 
             updateWindowFlags(IDLE_WINDOW_FLAGS);
 
-            resetNotification();
-            updateNotification(R.drawable.exo_controls_play);
-            videoPlayPause.setBackgroundResource(R.drawable.exo_controls_play);
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl,
+                    sharedPreferences);
+            NotificationUtil.getInstance()
+                    .updatePopupPlayerNotification(R.drawable.ic_play_arrow_white_24dp,
+                            getBaseContext(), playerImpl, sharedPreferences);
+
+            videoPlayPause.setBackgroundResource(R.drawable.ic_play_arrow_white_24dp);
 
             stopForeground(false);
         }
@@ -930,8 +940,13 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onPausedSeek() {
             super.onPausedSeek();
-            resetNotification();
-            updateNotification(R.drawable.exo_controls_play);
+
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl,
+                    sharedPreferences);
+            NotificationUtil.getInstance()
+                    .updatePopupPlayerNotification(R.drawable.ic_play_arrow_white_24dp,
+                            getBaseContext(), playerImpl, sharedPreferences);
 
             videoPlayPause.setBackgroundResource(R.drawable.exo_controls_play);
         }
@@ -942,8 +957,13 @@ public final class PopupVideoPlayer extends Service {
 
             updateWindowFlags(IDLE_WINDOW_FLAGS);
 
-            resetNotification();
-            updateNotification(R.drawable.ic_replay_white_24dp);
+            NotificationUtil.getInstance().recreatePopupPlayerNotification(context,
+                    playerImpl.mediaSessionManager.getSessionToken(), playerImpl,
+                    sharedPreferences);
+            NotificationUtil.getInstance()
+                    .updatePopupPlayerNotification(R.drawable.ic_replay_white_24dp,
+                            getBaseContext(), playerImpl, sharedPreferences);
+
             videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white_24dp);
 
             stopForeground(false);
@@ -1003,7 +1023,6 @@ public final class PopupVideoPlayer extends Service {
         private float initFirstPointerY = -1;
         private float initSecPointerX = -1;
         private float initSecPointerY = -1;
-
 
         @Override
         public boolean onDoubleTap(final MotionEvent e) {

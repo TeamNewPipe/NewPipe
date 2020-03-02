@@ -1,38 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_appearance_title">
 
     <ListPreference
-        app:iconSpaceReserved="false"
         android:defaultValue="@string/default_theme_value"
         android:entries="@array/theme_description_list"
         android:entryValues="@array/theme_values_list"
         android:key="@string/theme_key"
         android:summary="%s"
-        android:title="@string/theme_title"/>
+        android:title="@string/theme_title"
+        app:iconSpaceReserved="false" />
 
     <SwitchPreference
-        app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/show_hold_to_append_key"
+        android:summary="@string/show_hold_to_append_summary"
         android:title="@string/show_hold_to_append_title"
-        android:summary="@string/show_hold_to_append_summary"/>
+        app:iconSpaceReserved="false" />
 
     <ListPreference
-        app:iconSpaceReserved="false"
         android:defaultValue="@string/list_view_mode_value"
         android:entries="@array/list_view_mode_description"
         android:entryValues="@array/list_view_mode_values"
         android:key="@string/list_view_mode_key"
         android:summary="%s"
-        android:title="@string/list_view_mode"/>
+        android:title="@string/list_view_mode"
+        app:iconSpaceReserved="false" />
 
     <Preference
-        app:iconSpaceReserved="false"
         android:key="@string/caption_settings_key"
+        android:summary="@string/caption_setting_description"
         android:title="@string/caption_setting_title"
-        android:summary="@string/caption_setting_description"/>
+        app:iconSpaceReserved="false" />
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_notifications_title"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/enable_old_notifications_key"
+            android:summary="@string/enable_old_notifications_summary"
+            android:title="@string/enable_old_notifications_title"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/scale_to_square_image_in_notifications_key"
+            android:summary="@string/scale_to_square_image_in_notifications_summary"
+            android:title="@string/scale_to_square_image_in_notifications_title"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:defaultValue="@string/notification_slot_0_value"
+            android:entries="@array/notification_slot_0_description_list"
+            android:entryValues="@array/notification_slot_0_values_list"
+            android:key="@string/notification_slot_0_key"
+            android:summary="%s"
+            android:title="@string/default_notification_slot_0_title"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:defaultValue="@string/notification_slot_1_value"
+            android:entries="@array/notification_slot_1_description_list"
+            android:entryValues="@array/notification_slot_1_values_list"
+            android:key="@string/notification_slot_1_key"
+            android:summary="%s"
+            android:title="@string/default_notification_slot_1_title"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:defaultValue="@string/notification_slot_2_value"
+            android:entries="@array/notification_slot_2_description_list"
+            android:entryValues="@array/notification_slot_2_values_list"
+            android:key="@string/notification_slot_2_key"
+            android:summary="%s"
+            android:title="@string/default_notification_slot_2_title"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:defaultValue="@string/notification_slot_3_value"
+            android:entries="@array/notification_slot_3_description_list"
+            android:entryValues="@array/notification_slot_3_values_list"
+            android:key="@string/notification_slot_3_key"
+            android:summary="%s"
+            android:title="@string/default_notification_slot_3_title"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:defaultValue="@string/notification_slot_4_value"
+            android:entries="@array/notification_slot_4_description_list"
+            android:entryValues="@array/notification_slot_4_values_list"
+            android:key="@string/notification_slot_4_key"
+            android:summary="%s"
+            android:title="@string/default_notification_slot_4_title"
+            app:iconSpaceReserved="false" />
+
+        <EditTextPreference
+            android:defaultValue="@string/settings_notifications_compact_view_default_value"
+            android:key="@string/settings_notifications_compact_view_key"
+            android:summary="@string/settings_notifications_compact_view_summary"
+            android:title="@string/settings_notifications_compact_view_title"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
