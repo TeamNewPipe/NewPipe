@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 
 import android.text.format.DateUtils;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 
@@ -86,8 +87,16 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));
         final int selectedDuration = Integer.parseInt(durations.getValue());
         if (selectedDuration / (int) DateUtils.SECOND_IN_MILLIS % 10 == 5) {
-            durations.setValue(
-                Integer.toString(selectedDuration + 5 * (int) DateUtils.SECOND_IN_MILLIS));
+            final int newDuration = selectedDuration / (int) DateUtils.SECOND_IN_MILLIS + 5;
+            durations.setValue(Integer.toString(newDuration * (int) DateUtils.SECOND_IN_MILLIS));
+
+            Toast toast = Toast.makeText(getContext(),
+                getString(R.string.new_seek_duration_toast) + " " + String.format(
+                    res.getQuantityString(R.plurals.dynamic_seek_duration_description,
+                        newDuration),
+                    newDuration),
+                Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 
