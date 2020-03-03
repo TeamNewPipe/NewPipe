@@ -82,6 +82,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                 //if this happens, the translation is missing, and the english string will be displayed instead
             }
         }
+
         final ListPreference durations = (ListPreference) findPreference(getString(R.string.seek_duration_key));
         durations.setEntryValues(displayedDurationValues.toArray(new CharSequence[0]));
         durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));
@@ -90,12 +91,10 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             final int newDuration = selectedDuration / (int) DateUtils.SECOND_IN_MILLIS + 5;
             durations.setValue(Integer.toString(newDuration * (int) DateUtils.SECOND_IN_MILLIS));
 
-            Toast toast = Toast.makeText(getContext(),
-                getString(R.string.new_seek_duration_toast) + " " + String.format(
-                    res.getQuantityString(R.plurals.dynamic_seek_duration_description,
-                        newDuration),
-                    newDuration),
-                Toast.LENGTH_LONG);
+            Toast toast = Toast
+                .makeText(getContext(),
+                    getString(R.string.new_seek_duration_toast, newDuration),
+                    Toast.LENGTH_LONG);
             toast.show();
         }
     }
