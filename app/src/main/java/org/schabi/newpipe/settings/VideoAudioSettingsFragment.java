@@ -72,8 +72,9 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             if (inexactSeek && currentDurationValue % 10 == 5) {
                 continue;
             }
+
+            displayedDurationValues.add(durationsValue);
             try {
-                displayedDurationValues.add(durationsValue);
                 displayedDescriptionValues.add(String.format(
                     res.getQuantityString(R.plurals.dynamic_seek_duration_description,
                         currentDurationValue),
