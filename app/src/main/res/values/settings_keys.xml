@@ -197,6 +197,7 @@
     <string name="backup_path_key" translatable="false">backup_path_key</string>
     <string name="backup_file_name_key" translatable="false">backup_file_name_key</string>
     <string name="backup_frequency_key" translatable="false">backup_frequency_key</string>
+    <string name="backup_password_key" translatable="false">backup_password_key</string>
 
     <string-array name="backup_frequency_values" translatable="false">
         <item>24</item>

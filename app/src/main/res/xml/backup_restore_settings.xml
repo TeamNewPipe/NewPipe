@@ -25,6 +25,15 @@
         android:summary="%s"
         android:title="@string/auto_backup_frequency_title"/>
 
+    <EditTextPreference
+        app:iconSpaceReserved="false"
+        android:dialogLayout="@layout/dialog_password"
+        android:dependency="@string/scheduled_backups_key"
+        android:key="@string/backup_password_key"
+        android:title="@string/auto_backup_password_title"
+        android:summary="@string/auto_backup_password_summary"
+        android:inputType="textPassword" />
+
     <Preference
         android:key="@string/import_data"
         android:summary="@string/import_data_summary"

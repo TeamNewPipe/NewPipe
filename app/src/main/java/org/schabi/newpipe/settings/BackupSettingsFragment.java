@@ -8,6 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,7 +22,11 @@ import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.nononsenseapps.filepicker.Utils;
+
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.BackupRestoreHelper;
@@ -34,6 +41,7 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -110,8 +118,7 @@ public class BackupSettingsFragment extends BasePreferenceFragment {
         });
         autoBackupPathPreference.setSummary(backupRestoreHelper.getAutoBackupPath());
 
-
-        autoBackupSwitchPreference = (SwitchPreference) findPreference(getString(R.string.scheduled_backups_key));
+        autoBackupSwitchPreference = findPreference(getString(R.string.scheduled_backups_key));
         autoBackupSwitchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             if((Boolean) newValue) PermissionHelper.checkStoragePermissions(getActivity(), BACKUP_STORAGE_PERMISSION_REQUEST_CODE);
             return true;
@@ -206,17 +213,88 @@ public class BackupSettingsFragment extends BasePreferenceFragment {
     }
 
     private void exportDatabase(String path) {
-        try {
-            backupRestoreHelper.exportDatabase(path);
-            Toast.makeText(ctx, R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            onError(e);
-        }
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(ctx);
+        LayoutInflater inflater = LayoutInflater.from(ctx);
+        View view = inflater.inflate(R.layout.dialog_password, null);
+        TextInputEditText editText = view.findViewById(android.R.id.edit);
+        alert.setView(view);
+        alert.setTitle(R.string.auto_backup_password_title);
+        alert.setMessage(R.string.backup_password_message);
+
+        alert.setNegativeButton(R.string.backup_no_password, (dialog, which) -> {
+            dialog.dismiss();
+            try {
+                backupRestoreHelper.exportDatabase(path, null);
+                Toast.makeText(ctx, R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                onError(e);
+            }
+        });
+        alert.setPositiveButton(R.string.finish, (dialog, which) -> {
+            dialog.dismiss();
+            char[] password = getPassword(editText);
+            try {
+                backupRestoreHelper.exportDatabase(path, password);
+                Toast.makeText(ctx, R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                onError(e);
+            } finally {
+                clearPassword(password);
+            }
+        });
+
+        alert.show();
+    }
+
+    private char[] getPassword(TextInputEditText editText) {
+        int length = editText.length();
+        char[] password = new char[length];
+        editText.getText().getChars(0, length, password, 0);
+        return password;
+    }
+
+    private void clearPassword(char[] password){
+        Arrays.fill(password,'0');
     }
 
     private void importDatabase(String filePath) {
+
+        ZipFile zipFile = new ZipFile(filePath);
+        if(!zipFile.isValidZipFile()){
+            Toast.makeText(ctx, R.string.no_valid_zip_file, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         try {
-            backupRestoreHelper.importDatabase(filePath);
+            if(zipFile.isEncrypted()){
+                AlertDialog.Builder alert = new AlertDialog.Builder(ctx);
+                LayoutInflater inflater = LayoutInflater.from(ctx);
+                View view = inflater.inflate(R.layout.dialog_password, null);
+                TextInputEditText editText = view.findViewById(android.R.id.edit);
+                alert.setView(view);
+
+                alert.setTitle(R.string.auto_backup_password_title);
+
+                alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                alert.setPositiveButton(R.string.finish, (dialog, which) -> {
+                    dialog.dismiss();
+                    char[] password = getPassword(editText);
+                    try {
+                        backupRestoreHelper.importDatabase(filePath, password);
+                    } catch (Exception e) {
+                        onError(e);
+                    } finally {
+                        clearPassword(password);
+                    }
+                });
+
+                alert.show();
+            }else{
+                backupRestoreHelper.importDatabase(filePath, null);
+            }
         } catch (Exception e) {
             onError(e);
         }
@@ -225,9 +303,13 @@ public class BackupSettingsFragment extends BasePreferenceFragment {
     private void scheduleWork(String tag) {
         Boolean autoBackup = defaultPreferences.getBoolean(getString(R.string.scheduled_backups_key), false);
         if(autoBackup){
+            if(TextUtils.isEmpty(defaultPreferences.getString(ctx.getString(R.string.backup_password_key), null))){
+                Toast.makeText(ctx, R.string.auto_backup_password_mandatory, Toast.LENGTH_LONG).show();
+            }
             Integer interval = Integer.valueOf(defaultPreferences.getString(getString(R.string.backup_frequency_key), "24"));
             PeriodicWorkRequest.Builder autoBackupRequestBuilder =
                     new PeriodicWorkRequest.Builder(AutoBackupWorker.class, interval, TimeUnit.HOURS);
+            autoBackupRequestBuilder.setInitialDelay(15, TimeUnit.MINUTES);
             PeriodicWorkRequest request = autoBackupRequestBuilder.build();
             WorkManager.getInstance(ctx).enqueueUniquePeriodicWork(tag, ExistingPeriodicWorkPolicy.REPLACE , request);
         }else{
@@ -246,12 +328,17 @@ public class BackupSettingsFragment extends BasePreferenceFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     protected void onError(Throwable e) {
-        final Activity activity = getActivity();
-        ErrorActivity.reportError(activity, e,
-                activity.getClass(),
-                null,
-                ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
-                        "none", "", R.string.app_ui_crash));
+
+        if(e instanceof ZipException && ((ZipException)e).getType() == ZipException.Type.WRONG_PASSWORD){
+            Toast.makeText(ctx, R.string.no_valid_password, Toast.LENGTH_SHORT).show();
+        }else{
+            final Activity activity = getActivity();
+            ErrorActivity.reportError(activity, e,
+                    activity.getClass(),
+                    null,
+                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                            "none", "", R.string.app_ui_crash));
+        }
     }
 
 }

@@ -12,7 +12,6 @@ import androidx.annotation.MainThread;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ZipHelper;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,8 +20,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Map;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
 
 public class BackupRestoreHelper {
 
@@ -57,25 +54,23 @@ public class BackupRestoreHelper {
         return autoBackupPath;
     }
 
-    public void exportDatabase(String path) throws Exception {
-        ZipOutputStream outZip = new ZipOutputStream(
-                new BufferedOutputStream(
-                        new FileOutputStream(path)));
-        ZipHelper.addFileToZip(outZip, newpipe_db.getPath(), "newpipe.db");
-
+    public void exportDatabase(String path, char[] password) throws Exception {
+        ZipHelper.addFileToZip(path, newpipe_db.getPath(), "newpipe.db", password);
         saveSharedPreferencesToFile(newpipe_settings);
-        ZipHelper.addFileToZip(outZip, newpipe_settings.getPath(), "newpipe.settings");
-
-        outZip.close();
+        ZipHelper.addFileToZip(path, newpipe_settings.getPath(), "newpipe.settings", password);
     }
 
     private void saveSharedPreferencesToFile(File dst) {
         ObjectOutputStream output = null;
+        SharedPreferences pref = null;
+        String password = null;
         try {
             output = new ObjectOutputStream(new FileOutputStream(dst));
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
+            pref = PreferenceManager.getDefaultSharedPreferences(ctx);
+            // remove password from shared prefs before taking backup
+            password = pref.getString(ctx.getString(R.string.backup_password_key), null);
+            pref.edit().remove(ctx.getString(R.string.backup_password_key)).apply();
             output.writeObject(pref.getAll());
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -88,33 +83,21 @@ public class BackupRestoreHelper {
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
+            } finally {
+                // add password again after taking backup
+                if(pref != null) pref.edit().putString(ctx.getString(R.string.backup_password_key), password).apply();
             }
         }
     }
 
     @MainThread
-    public void importDatabase(String filePath) throws Exception {
-        // check if file is supported
-        ZipFile zipFile = null;
-        try {
-            zipFile = new ZipFile(filePath);
-        } catch (IOException ioe) {
-            Toast.makeText(ctx, R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
-                    .show();
-            return;
-        } finally {
-            try {
-                zipFile.close();
-            } catch (Exception ignored) {
-            }
-        }
+    public void importDatabase(String filePath, char[] password) throws Exception {
 
         if (!databasesDir.exists() && !databasesDir.mkdir()) {
             throw new Exception("Could not create databases dir");
         }
 
-        final boolean isDbFileExtracted = ZipHelper.extractFileFromZip(filePath,
-                newpipe_db.getPath(), "newpipe.db");
+        final boolean isDbFileExtracted = ZipHelper.extractFileFromZip(filePath, "newpipe.db", databasesDir.getPath(), password);
 
         if (isDbFileExtracted) {
             newpipe_db_journal.delete();
@@ -128,7 +111,7 @@ public class BackupRestoreHelper {
         }
 
         //If settings file exist, ask if it should be imported.
-        if (ZipHelper.extractFileFromZip(filePath, newpipe_settings.getPath(), "newpipe.settings")) {
+        if (ZipHelper.extractFileFromZip(filePath, "newpipe.settings", databasesDir.getPath(), password)) {
             AlertDialog.Builder alert = new AlertDialog.Builder(ctx);
             alert.setTitle(R.string.import_settings);
 
