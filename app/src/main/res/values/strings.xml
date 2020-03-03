@@ -71,7 +71,7 @@
     <string name="popup_remember_size_pos_title">Remember popup size and position</string>
     <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
-    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
+    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this.</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
     <string name="show_comments_title">Show comments</string>
@@ -593,6 +593,7 @@
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
     <string name="dynamic_seek_duration_description">%s seconds</string>
+    <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="other">%s seconds</item>
     </plurals>
