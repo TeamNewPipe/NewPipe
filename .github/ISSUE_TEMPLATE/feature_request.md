@@ -16,7 +16,7 @@ Example: *I want to do X, but there is no way to do it.*
 A clear and concise description of what you want to happen.
 Example: *I think it would be nice if you add feature Y which makes X possible.*
 
-#### Describe alternatives you've considered
+#### (Optional) Describe alternatives you've considered
 A clear and concise description of any alternative solutions or features you've considered.
 Example: *I considered Z, but that didn't turn out to be a good idea because...*
 
@@ -27,4 +27,3 @@ Example: *Here's a photo of my cat!*
 #### How will you/everyone benefit from this feature?
 Convince us! How does it change your NewPipe experience and/or your life?
 The better this paragraph is, the more likely a developer will think about working on it.
-
