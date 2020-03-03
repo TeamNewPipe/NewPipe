@@ -593,7 +593,7 @@
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
     <string name="dynamic_seek_duration_description">%s seconds</string>
-    <string name="new_seek_duration_toast">Due to ExoPlayer contraints the seek duration was set to %d seconds</string>
+    <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="other">%s seconds</item>
     </plurals>
