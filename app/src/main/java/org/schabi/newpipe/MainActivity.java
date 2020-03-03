@@ -93,12 +93,12 @@ public class MainActivity extends AppCompatActivity {
     private ImageView serviceArrow;
 
 
-    private static final int ITEM_ID_HOME = - 1;
-    private static final int ITEM_ID_SUBSCRIPTIONS = - 2;
-    private static final int ITEM_ID_FEED = - 3;
-    private static final int ITEM_ID_BOOKMARKS = - 4;
-    private static final int ITEM_ID_DOWNLOADS = - 5;
-    private static final int ITEM_ID_HISTORY = - 6;
+    private static final int ITEM_ID_HOME = 2;
+    private static final int ITEM_ID_SUBSCRIPTIONS = 3;
+    private static final int ITEM_ID_FEED = 4;
+    private static final int ITEM_ID_BOOKMARKS = 5;
+    private static final int ITEM_ID_DOWNLOADS = 6;
+    private static final int ITEM_ID_HISTORY = 7;
     private static final int ITEM_ID_SETTINGS = 0;
     private static final int ITEM_ID_ABOUT = 1;
 
@@ -144,14 +144,15 @@ public class MainActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawer_layout);
         drawerItems = findViewById(R.id.navigation);
 
-
-
         //Tabs
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
 
         //Home button
-        drawerItems.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_kiosk_local));
+        if (!(fragment instanceof MainFragment)) {//We don't need to show the Home button when on home
+            drawerItems.getMenu()
+                    .add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home)
+                    .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_kiosk_local));
+        }
 
         int currentServiceId = ServiceHelper.getSelectedServiceId(this);
         StreamingService service = NewPipe.getService(currentServiceId);
@@ -247,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void tabSelected(MenuItem item) throws ExtractionException {
         switch(item.getItemId()) {
-            case  ITEM_ID_HOME:
+            case ITEM_ID_HOME:
                 NavigationHelper.openMainFragment(getSupportFragmentManager());
                 break;
             case ITEM_ID_SUBSCRIPTIONS:
@@ -648,7 +649,6 @@ public class MainActivity extends AppCompatActivity {
 
         //We need to enable the home button for the search fragment to go back to MainFragment
         if (fragment instanceof SearchFragment) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             if (toggle != null) {
                 drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
