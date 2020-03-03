@@ -588,7 +588,7 @@
     <string name="downloads_storage_ask_summary">You will be asked where to save each download</string>
     <string name="downloads_storage_ask_summary_kitkat">You will be asked where to save each download.\nChoose SAF if you want to download to an external SD card</string>
     <string name="downloads_storage_use_saf_title">Use SAF</string>
-    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card.\nNote: some devices are incompatible</string>
+    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card.\nSome devices are incompatible</string>
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
