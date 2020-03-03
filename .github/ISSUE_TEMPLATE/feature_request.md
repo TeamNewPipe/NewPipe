@@ -18,7 +18,7 @@ Example: *I think it would be nice if you would add feature Y so it will make it
 
 #### Describe alternatives you've considered
 A clear and concise description of any alternative solutions or features you've considered.
-Example: *I considered Z, but that didn't work because...*
+Example: *I considered Z, but that didn't turn out to be a good idea because...*
 
 #### Additional context
 Add any other context or screenshots about the feature request here.
