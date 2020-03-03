@@ -145,14 +145,11 @@ public class MainActivity extends AppCompatActivity {
         drawerItems = findViewById(R.id.navigation);
 
         //Tabs
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-
         //Home button
-        if (!(fragment instanceof MainFragment)) {//We don't need to show the Home button when on home
-            drawerItems.getMenu()
-                    .add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home)
-                    .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_kiosk_local));
-        }
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_HOME, ORDER, R.string.tab_home)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_kiosk_local));
+
 
         int currentServiceId = ServiceHelper.getSelectedServiceId(this);
         StreamingService service = NewPipe.getService(currentServiceId);
