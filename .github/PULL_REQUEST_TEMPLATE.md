@@ -15,11 +15,11 @@
 - 
 
 #### Relies on the following changes
-<!-- Delete this if it doesn't apply to you -->
+<!-- Delete this if it doesn't apply to you. -->
 - 
 
 #### Testing apk
-<!-- Ensure that you have your changes on a new branch which has a meaningful name. This name will be used as a suffix for the app ID to allow installing and testing multiple versions of NewPipe. Do NOT name your branches like "patch-0" and "feature-1". For example, if your PR implements a bug fix for comments, an appropriate branch name would be "commentfix" -->
+<!-- Ensure that you have your changes on a new branch which has a meaningful name. This name will be used as a suffix for the app ID to allow installing and testing multiple versions of NewPipe. Do NOT name your branches like "patch-0" and "feature-1". For example, if your PR implements a bug fix for comments, an appropriate branch name would be "commentfix". -->
 debug.zip
 
 #### Agreement
