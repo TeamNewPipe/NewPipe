@@ -395,7 +395,7 @@
     <string name="minimize_on_exit_none_description">Nihil</string>
     <string name="minimize_on_exit_background_description">Minimalkan ke pemutar latar belakang</string>
     <string name="minimize_on_exit_popup_description">Minimalkan ke pemutar popup</string>
-    <string name="unsubscribe">Berhenti berlangganan</string>
+    <string name="unsubscribe">Berhenti Subscribe</string>
     <string name="tab_new">Tab Baru</string>
     <string name="tab_choose">Pilih Tab</string>
     <string name="theme_title">Tema</string>
