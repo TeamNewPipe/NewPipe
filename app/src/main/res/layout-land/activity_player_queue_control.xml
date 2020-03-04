@@ -192,7 +192,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/control_mute"
+                android:layout_toLeftOf="@+id/control_repeat"
                 android:gravity="center"
                 android:minWidth="50dp"
                 android:text="1x"
@@ -202,29 +202,12 @@
                 tools:ignore="HardcodedText,RtlHardcoded"/>
 
             <ImageButton
-                android:id="@+id/control_mute"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_toLeftOf="@+id/control_repeat"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_volume_off_white_72dp"
-                android:tint="@color/gray"
-                tools:ignore="ContentDescription"/>
-
-            <ImageButton
                 android:id="@+id/control_repeat"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_toLeftOf="@+id/anchor"
                 android:layout_centerVertical="true"
-                android:layout_centerInParent="true"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
@@ -233,12 +216,16 @@
                 android:src="@drawable/ic_repeat_white"
                 tools:ignore="ContentDescription"/>
 
+            <View android:layout_width="10dp"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/anchor"/>
 
             <ImageButton
                 android:id="@+id/control_shuffle"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_toRightOf="@+id/control_repeat"
+                android:layout_toRightOf="@+id/anchor"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
                 android:background="?attr/selectableItemBackgroundBorderless"

@@ -88,7 +88,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private TextView seekDisplay;
 
     private ImageButton repeatButton;
-    private ImageButton muteButton;
     private ImageButton backwardButton;
     private ImageButton playPauseButton;
     private ImageButton forwardButton;
@@ -319,7 +318,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void buildControls() {
         repeatButton = rootView.findViewById(R.id.control_repeat);
-        muteButton = rootView.findViewById(R.id.control_mute);
         backwardButton = rootView.findViewById(R.id.control_backward);
         playPauseButton = rootView.findViewById(R.id.control_play_pause);
         forwardButton = rootView.findViewById(R.id.control_forward);
@@ -329,7 +327,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         progressBar = rootView.findViewById(R.id.control_progress_bar);
 
         repeatButton.setOnClickListener(this);
-        muteButton.setOnClickListener(this);
         backwardButton.setOnClickListener(this);
         playPauseButton.setOnClickListener(this);
         forwardButton.setOnClickListener(this);
@@ -462,10 +459,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (view.getId() == repeatButton.getId()) {
             player.onRepeatClicked();
 
-        } else if (view.getId() == muteButton.getId()) {
-            player.onMuteUnmuteButtonClicked();
-
-        } else if (view.getId() == backwardButton.getId()) {
+        }  else if (view.getId() == backwardButton.getId()) {
             player.onPlayPrevious();
 
         } else if (view.getId() == playPauseButton.getId()) {
@@ -698,9 +692,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void onMaybeMuteChanged() {
-        muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), player.isMuted() ? R.color.white : R.color.gray));
-
-        if (menu != null) {
+        if (menu != null && player != null) {
             MenuItem item = menu.findItem(R.id.action_mute);
             TypedArray a = getTheme().obtainStyledAttributes(R.style.Theme_AppCompat, new int[]{R.attr.volume_off});
             int attributeResourceId = a.getResourceId(0, 0);

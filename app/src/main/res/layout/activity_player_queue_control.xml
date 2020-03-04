@@ -176,7 +176,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/control_mute"
+            android:layout_toLeftOf="@+id/control_repeat"
             android:gravity="center"
             android:minWidth="50dp"
             android:text="1x"
@@ -184,22 +184,6 @@
             android:textStyle="bold"
             android:background="?attr/selectableItemBackground"
             tools:ignore="HardcodedText,RtlHardcoded"/>
-
-        <ImageButton
-            android:id="@+id/control_mute"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_toLeftOf="@+id/control_repeat"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ic_volume_off_white_72dp"
-            android:tint="@color/gray"
-            tools:ignore="ContentDescription"/>
 
         <ImageButton
             android:id="@+id/control_repeat"
