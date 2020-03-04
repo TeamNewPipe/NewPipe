@@ -318,7 +318,7 @@
     <string name="enable_disposed_exceptions_title">Segnala Errori \"Out-of-lifecycle\"</string>
     <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
     <string name="use_inexact_seek_title">Usa Ricerca Rapida (Imprecisa)</string>
-    <string name="use_inexact_seek_summary">Consente al lettore multimediale di spostarsi più velocemente, ma con precisione ridotta</string>
+    <string name="use_inexact_seek_summary">Consente al lettore multimediale di spostarsi più velocemente, ma con precisione ridotta. Spostamenti di 5, 15 o 25 secondi non funzionano con questo.</string>
     <string name="auto_queue_title">Accoda Automaticamente l\'Elemento Successivo</string>
     <string name="auto_queue_summary">Riproduzione continua (non ripetititva) quando si accoda un contenuto consigliato</string>
     <string name="file">File</string>
@@ -499,7 +499,7 @@
     <string name="downloads_storage_ask_summary_kitkat">Ogni volta verrà chiesta la destinazione dei file. 
 \nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" consente di salvare file su una memoria esterna. 
-\nNota: alcuni dispositivi non sono compatibili</string>
+\nAlcuni dispositivi non sono compatibili</string>
     <string name="clear_playback_states_title">Elimina posizioni di riproduzione</string>
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
     <string name="delete_playback_states_alert">Eliminare tutte le posizioni di riproduzione\?</string>
@@ -548,4 +548,5 @@
         <item quantity="one">%s secondi</item>
         <item quantity="other"/>
     </plurals>
+    <string name="new_seek_duration_toast">A causa dei vincoli di ExoPlayer la durata dello spostamento rapido è stata impostata a %d secondi</string>
 </resources>
