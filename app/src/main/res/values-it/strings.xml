@@ -218,13 +218,13 @@
     <string name="feed_page_summary">Feed Iscrizioni</string>
     <string name="channel_page_summary">Canale Personalizzato</string>
     <string name="select_a_channel">Seleziona Canale</string>
-    <string name="no_channel_subscribed_yet">Nessuna Iscrizione</string>
+    <string name="no_channel_subscribed_yet">Ancora nessuna iscrizione ad un canale</string>
     <string name="select_a_kiosk">Seleziona Contenuto</string>
     <string name="kiosk">Locandina</string>
     <string name="trending">Tendenze</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">New &amp; hot</string>
-    <string name="show_hold_to_append_title">Mostra Suggerimento \"Tieni Premuto per Accocodare\"</string>
+    <string name="show_hold_to_append_title">Mostra suggerimento \"Tieni premuto per accodare\"</string>
     <string name="show_hold_to_append_summary">Nei \"Dettagli\" dei video, mostra suggerimento alla pressione dei pulsanti per la riproduzione Popup o in Sottofondo</string>
     <string name="background_player_append">Accoda in Sottofondo</string>
     <string name="popup_playing_append">Accodato in Popup</string>
@@ -352,7 +352,7 @@
     <string name="import_network_expensive_warning">Tieni presente che questa operazione può consumare una grande quantità di traffico dati.
 \n 
 \nVuoi continuare?</string>
-    <string name="download_thumbnail_title">Carica Copertine</string>
+    <string name="download_thumbnail_title">Carica miniature</string>
     <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle anteprime, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache immagini svuotata</string>
     <string name="metadata_cache_wipe_title">Pulisci Cache Metadati</string>
@@ -533,8 +533,8 @@
     <string name="recovering">recupero</string>
     <string name="error_download_resource_gone">Impossibile recuperare questo download</string>
     <string name="choose_instance_prompt">Scegli un\'Istanza</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Copertina sulla Schermata di Blocco</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">La copertina del video verrà mostrata nella schermata di blocco, durante la riproduzione in sottofondo.</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Miniatura del video sulla schermata di blocco</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">La miniatura del video verrà mostrata nella schermata di blocco, durante la riproduzione in sottofondo</string>
     <string name="clear_download_history">Svuota Cronologia Download</string>
     <string name="delete_downloaded_files">Elimina File Scaricati</string>
     <string name="deleted_downloads">%1$s download eliminati</string>
@@ -546,6 +546,6 @@
     <string name="videos_string">Video</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s secondi</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
 </resources>
