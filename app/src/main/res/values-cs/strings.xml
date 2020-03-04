@@ -503,7 +503,7 @@ otevření ve vyskakovacím okně</string>
 \nZvolte SAF, pokud si přejete stahovat na externí SD kartu</string>
     <string name="downloads_storage_use_saf_title">Použít SAF</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje stahovat na externí SD kartu. 
-\nUpozornění: některá zařízení jsou nekompatibilní</string>
+\nNěkterá zařízení nejsou kompatibilní</string>
     <string name="enable_playback_state_lists_summary">Zobrazit pozici přehrávání v seznamech</string>
     <string name="watch_history_states_deleted">Pozice playbacku smazány.</string>
     <string name="error_timeout">Timeout spojení</string>
