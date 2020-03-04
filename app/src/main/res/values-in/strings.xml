@@ -5,13 +5,13 @@
     <string name="upload_date_text">Dipublikasikan tanggal %1$s</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
-    <string name="open_in_browser">Buka di peramban</string>
+    <string name="open_in_browser">Buka di browser</string>
     <string name="share">Bagikan</string>
     <string name="download">Unduh</string>
-    <string name="search">Cari</string>
-    <string name="settings">Pengaturan</string>
+    <string name="search">Telusuri</string>
+    <string name="settings">Setelan</string>
     <string name="share_dialog_title">Bagikan dengan</string>
-    <string name="choose_browser">Pilih peramban</string>
+    <string name="choose_browser">Pilih browser</string>
     <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
     <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
     <string name="download_path_title">Folder unduhan video</string>
@@ -46,7 +46,7 @@
     <string name="video_is_age_restricted">Tampilkan video yang dibatasi usia. Bisa diubah nanti dari pengaturan.</string>
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua thumbnail</string>
-    <string name="did_you_mean">Maksud anda: %1$s\?</string>
+    <string name="did_you_mean">Apakah yang kamu maksud: %1$s\?</string>
     <string name="screen_rotation">rotasi</string>
     <string name="duration_live">Langsung</string>
     <string name="downloads">Unduhan</string>
@@ -116,7 +116,7 @@
     <string name="short_billion">T</string>
     <string name="yes">Ya</string>
     <string name="later">Nanti</string>
-    <string name="open_in_popup_mode">Buka di mode popup</string>
+    <string name="open_in_popup_mode">Buka dalam mode popup</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
 \nmembuka di mode popup</string>
     <string name="popup_mode_share_menu_title">Mode popup</string>
