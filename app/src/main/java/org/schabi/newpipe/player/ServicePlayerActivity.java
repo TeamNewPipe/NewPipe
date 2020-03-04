@@ -459,7 +459,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (view.getId() == repeatButton.getId()) {
             player.onRepeatClicked();
 
-        }  else if (view.getId() == backwardButton.getId()) {
+        } else if (view.getId() == backwardButton.getId()) {
             player.onPlayPrevious();
 
         } else if (view.getId() == playPauseButton.getId()) {
@@ -694,6 +694,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void onMaybeMuteChanged() {
         if (menu != null && player != null) {
             MenuItem item = menu.findItem(R.id.action_mute);
+
+            //Change the mute-button item in ActionBar
+            //1) Text change:
+            item.setTitle(player.isMuted() ? R.string.unmute : R.string.mute);
+
+            //2) Icon change accordingly to current App Theme
             TypedArray a = getTheme().obtainStyledAttributes(R.style.Theme_AppCompat, new int[]{R.attr.volume_off});
             int attributeResourceId = a.getResourceId(0, 0);
             Drawable drawableMuted = getResources().getDrawable(attributeResourceId);
