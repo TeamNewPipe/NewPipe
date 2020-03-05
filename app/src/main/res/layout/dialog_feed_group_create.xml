@@ -143,6 +143,19 @@
                 tools:listitem="@layout/picker_subscription_item"
                 tools:spanCount="4" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/delete_screen_message"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingTop="16dp"
+            android:paddingRight="?dialogPreferredPadding"
+            android:paddingBottom="16dp"
+            android:text="@string/feed_group_dialog_delete_message"
+            android:visibility="visible" />
     </FrameLayout>
 
     <View

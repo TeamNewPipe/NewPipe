@@ -45,6 +45,7 @@ class FeedGroupDialog : DialogFragment() {
         object InitialScreen : ScreenState()
         object SubscriptionsPicker : ScreenState()
         object IconPickerList : ScreenState()
+        object DeleteScreen : ScreenState()
     }
 
     @State @JvmField var selectedIcon: FeedGroupIcon? = null
@@ -104,7 +105,7 @@ class FeedGroupDialog : DialogFragment() {
 
         setupIconPicker()
 
-        delete_button.setOnClickListener { viewModel.deleteGroup() }
+        delete_button.setOnClickListener { showDeleteScreen() }
 
         cancel_button.setOnClickListener {
             if (currentScreen !is ScreenState.InitialScreen) {
@@ -149,6 +150,8 @@ class FeedGroupDialog : DialogFragment() {
                     NO_GROUP_SELECTED -> viewModel.createGroup(name, icon, selectedSubscriptions)
                     else -> viewModel.updateGroup(name, icon, selectedSubscriptions, groupSortOrder)
                 }
+            } else if (currentScreen is ScreenState.DeleteScreen) {
+                viewModel.deleteGroup()
             } else {
                 showInitialScreen()
             }
@@ -158,6 +161,7 @@ class FeedGroupDialog : DialogFragment() {
             is ScreenState.InitialScreen -> showInitialScreen()
             is ScreenState.IconPickerList -> showIconPicker()
             is ScreenState.SubscriptionsPicker -> showSubscriptionsPicker()
+            is ScreenState.DeleteScreen -> showDeleteScreen()
         }
     }
 
@@ -287,6 +291,7 @@ class FeedGroupDialog : DialogFragment() {
         animateView(icon_selector, false, 0)
         animateView(subscriptions_selector, false, 0)
         animateView(options_root, true, 250)
+        animateView(delete_screen_message, false, 0)
 
         separator.visibility = View.GONE
         confirm_button.setText(if (groupId == NO_GROUP_SELECTED) R.string.create else android.R.string.ok)
@@ -299,6 +304,7 @@ class FeedGroupDialog : DialogFragment() {
         animateView(icon_selector, true, 250)
         animateView(subscriptions_selector, false, 0)
         animateView(options_root, false, 0)
+        animateView(delete_screen_message, false, 0)
 
         separator.visibility = View.VISIBLE
         confirm_button.setText(android.R.string.ok)
@@ -313,11 +319,27 @@ class FeedGroupDialog : DialogFragment() {
         animateView(icon_selector, false, 0)
         animateView(subscriptions_selector, true, 250)
         animateView(options_root, false, 0)
+        animateView(delete_screen_message, false, 0)
 
         separator.visibility = View.VISIBLE
         confirm_button.setText(android.R.string.ok)
         delete_button.visibility = View.GONE
         cancel_button.visibility = View.GONE
+
+        hideKeyboard()
+    }
+
+    private fun showDeleteScreen() {
+        currentScreen = ScreenState.DeleteScreen
+        animateView(icon_selector, false, 0)
+        animateView(subscriptions_selector, false, 0)
+        animateView(options_root, false, 0)
+        animateView(delete_screen_message, true, 250)
+
+        separator.visibility = View.GONE
+        confirm_button.setText(android.R.string.ok)
+        delete_button.visibility = View.GONE
+        cancel_button.visibility = View.VISIBLE
 
         hideKeyboard()
     }
