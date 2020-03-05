@@ -92,15 +92,15 @@ public class MainActivity extends AppCompatActivity {
     private boolean servicesShown = false;
     private ImageView serviceArrow;
 
-
+    private static final int ITEM_ID_SETTINGS = 0;
+    private static final int ITEM_ID_ABOUT = 1;
     private static final int ITEM_ID_HOME = 2;
     private static final int ITEM_ID_SUBSCRIPTIONS = 3;
     private static final int ITEM_ID_FEED = 4;
     private static final int ITEM_ID_BOOKMARKS = 5;
     private static final int ITEM_ID_DOWNLOADS = 6;
     private static final int ITEM_ID_HISTORY = 7;
-    private static final int ITEM_ID_SETTINGS = 0;
-    private static final int ITEM_ID_ABOUT = 1;
+
 
     private static final int ORDER = 0;
 
