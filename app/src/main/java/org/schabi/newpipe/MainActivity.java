@@ -633,23 +633,20 @@ public class MainActivity extends AppCompatActivity {
 
         final Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
 
-        //If it's MainFragment enable the Navigation Drawer again
-        if (fragment instanceof MainFragment) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            if (toggle != null) {
-                toggle.syncState();
-                toolbar.setNavigationOnClickListener(v -> drawer.openDrawer(GravityCompat.START));
-                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
-            }
-            return;
-        }
-
         //We need to enable the home button for the search fragment to go back to MainFragment
         if (fragment instanceof SearchFragment) {
             if (toggle != null) {
                 drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
+                return;
+            }
+        }else{
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            if (toggle != null) {
+                toggle.syncState();
+                toolbar.setNavigationOnClickListener(v -> drawer.openDrawer(GravityCompat.START));
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
             }
             return;
         }
