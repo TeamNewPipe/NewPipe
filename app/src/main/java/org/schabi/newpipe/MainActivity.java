@@ -641,9 +641,9 @@ public class MainActivity extends AppCompatActivity {
                 toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
                 return;
             }
-        }else{
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        } else {
             if (toggle != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 toggle.syncState();
                 toolbar.setNavigationOnClickListener(v -> drawer.openDrawer(GravityCompat.START));
                 drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
