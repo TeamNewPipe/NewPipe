@@ -14,7 +14,7 @@ Use this template to notify us if you found a bug.
 
 To make it easier for us to help you please enter detailed information below.
 
-Please note, we only support the latest version of NewPipe and the master branch. Make sure to upgrade & reproduce the problem on the latest version before opening an issue. The release page (https://github.com/TeamNewPipe/NewPipe/releases/latest) is a good start. Make sure its version is the same as in your app (to check your version, open the left drawer and click on "About").
+Please note, we only support the latest version of NewPipe and the master branch. Make sure you have that version installed. If you don't, upgrade & reproduce the problem before opening the issue. The release page (https://github.com/TeamNewPipe/NewPipe/releases/latest) is the go-to place to get this version. In order to check your app version, open the left drawer and click on "About".
 
 P.S.: Our [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md) might be a nice document to read before you fill out the report :)
 -->
