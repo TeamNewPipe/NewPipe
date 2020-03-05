@@ -3,8 +3,8 @@ package org.schabi.newpipe.local.subscription.dialog
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.Completable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
@@ -15,7 +15,7 @@ class FeedGroupReorderDialogViewModel(application: Application) : AndroidViewMod
     val groupsLiveData = MutableLiveData<List<FeedGroupEntity>>()
     val dialogEventLiveData = MutableLiveData<DialogEvent>()
 
-    private val disposables = CompositeDisposable()
+    private var actionProcessingDisposable: Disposable? = null
 
     private var groupsDisposable = feedDatabaseManager.groups()
             .limit(1)
@@ -24,18 +24,26 @@ class FeedGroupReorderDialogViewModel(application: Application) : AndroidViewMod
 
     override fun onCleared() {
         super.onCleared()
+        actionProcessingDisposable?.dispose()
         groupsDisposable.dispose()
-        disposables.dispose()
     }
 
     fun updateOrder(groupIdList: List<Long>) {
-        disposables.add(feedDatabaseManager.updateGroupsOrder(groupIdList)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { dialogEventLiveData.postValue(DialogEvent.SuccessEvent) })
+        doAction(feedDatabaseManager.updateGroupsOrder(groupIdList))
+    }
+
+    private fun doAction(completable: Completable) {
+        if (actionProcessingDisposable == null) {
+            dialogEventLiveData.value = DialogEvent.ProcessingEvent
+
+            actionProcessingDisposable = completable
+                    .subscribeOn(Schedulers.io())
+                    .subscribe { dialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
+        }
     }
 
     sealed class DialogEvent {
+        object ProcessingEvent : DialogEvent()
         object SuccessEvent : DialogEvent()
     }
 }

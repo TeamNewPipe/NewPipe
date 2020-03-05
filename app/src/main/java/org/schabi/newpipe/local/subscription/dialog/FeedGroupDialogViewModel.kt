@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -29,9 +29,9 @@ class FeedGroupDialogViewModel(applicationContext: Context, val groupId: Long = 
 
     val groupLiveData = MutableLiveData<FeedGroupEntity>()
     val subscriptionsLiveData = MutableLiveData<Pair<List<SubscriptionEntity>, Set<Long>>>()
-    val successLiveData = MutableLiveData<FeedDialogEvent>()
+    val dialogEventLiveData = MutableLiveData<DialogEvent>()
 
-    private val disposables = CompositeDisposable()
+    private var actionProcessingDisposable: Disposable? = null
 
     private var feedGroupDisposable = feedDatabaseManager.getGroup(groupId)
             .subscribeOn(Schedulers.io())
@@ -45,35 +45,39 @@ class FeedGroupDialogViewModel(applicationContext: Context, val groupId: Long = 
 
     override fun onCleared() {
         super.onCleared()
+        actionProcessingDisposable?.dispose()
         subscriptionsDisposable.dispose()
         feedGroupDisposable.dispose()
-        disposables.dispose()
     }
 
     fun createGroup(name: String, selectedIcon: FeedGroupIcon, selectedSubscriptions: Set<Long>) {
-        disposables.add(feedDatabaseManager.createGroup(name, selectedIcon)
-                .flatMapCompletable { feedDatabaseManager.updateSubscriptionsForGroup(it, selectedSubscriptions.toList()) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { successLiveData.postValue(FeedDialogEvent.SuccessEvent) })
+        doAction(feedDatabaseManager.createGroup(name, selectedIcon)
+                .flatMapCompletable {
+                    feedDatabaseManager.updateSubscriptionsForGroup(it, selectedSubscriptions.toList())
+                })
     }
 
     fun updateGroup(name: String, selectedIcon: FeedGroupIcon, selectedSubscriptions: Set<Long>, sortOrder: Long) {
-        disposables.add(feedDatabaseManager.updateSubscriptionsForGroup(groupId, selectedSubscriptions.toList())
-                .andThen(feedDatabaseManager.updateGroup(FeedGroupEntity(groupId, name, selectedIcon, sortOrder)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { successLiveData.postValue(FeedDialogEvent.SuccessEvent) })
+        doAction(feedDatabaseManager.updateSubscriptionsForGroup(groupId, selectedSubscriptions.toList())
+                .andThen(feedDatabaseManager.updateGroup(FeedGroupEntity(groupId, name, selectedIcon, sortOrder))))
     }
 
     fun deleteGroup() {
-        disposables.add(feedDatabaseManager.deleteGroup(groupId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { successLiveData.postValue(FeedDialogEvent.SuccessEvent) })
+        doAction(feedDatabaseManager.deleteGroup(groupId))
     }
 
-    sealed class FeedDialogEvent {
-        object SuccessEvent : FeedDialogEvent()
+    private fun doAction(completable: Completable) {
+        if (actionProcessingDisposable == null) {
+            dialogEventLiveData.value = DialogEvent.ProcessingEvent
+
+            actionProcessingDisposable = completable
+                    .subscribeOn(Schedulers.io())
+                    .subscribe { dialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
+        }
+    }
+
+    sealed class DialogEvent {
+        object ProcessingEvent : DialogEvent()
+        object SuccessEvent : DialogEvent()
     }
 }

@@ -19,7 +19,7 @@ import icepick.State
 import kotlinx.android.synthetic.main.dialog_feed_group_reorder.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
-import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.SuccessEvent
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.*
 import org.schabi.newpipe.local.subscription.item.FeedGroupReorderItem
 import org.schabi.newpipe.util.ThemeHelper
 import java.util.*
@@ -50,7 +50,8 @@ class FeedGroupReorderDialog : DialogFragment() {
         viewModel.groupsLiveData.observe(viewLifecycleOwner, Observer(::handleGroups))
         viewModel.dialogEventLiveData.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is SuccessEvent -> dismiss()
+                ProcessingEvent -> disableInput()
+                SuccessEvent -> dismiss()
             }
         })
 
@@ -79,6 +80,11 @@ class FeedGroupReorderDialog : DialogFragment() {
         }
 
         groupAdapter.update(groupList.map { FeedGroupReorderItem(it, itemTouchHelper) })
+    }
+
+    private fun disableInput() {
+        confirm_button?.isEnabled = false
+        isCancelable = false
     }
 
     private fun getItemTouchCallback(): SimpleCallback {

@@ -27,7 +27,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
-import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialogViewModel.FeedDialogEvent
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialogViewModel.DialogEvent.*
 import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
 import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
@@ -95,9 +95,10 @@ class FeedGroupDialog : DialogFragment() {
 
         viewModel.groupLiveData.observe(viewLifecycleOwner, Observer(::handleGroup))
         viewModel.subscriptionsLiveData.observe(viewLifecycleOwner, Observer { setupSubscriptionPicker(it.first, it.second) })
-        viewModel.successLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.dialogEventLiveData.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is FeedDialogEvent.SuccessEvent -> dismiss()
+                ProcessingEvent -> disableInput()
+                SuccessEvent -> dismiss()
             }
         })
 
@@ -329,6 +330,15 @@ class FeedGroupDialog : DialogFragment() {
         val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(group_name_input.windowToken, InputMethodManager.RESULT_UNCHANGED_SHOWN)
         group_name_input.clearFocus()
+    }
+
+    private fun disableInput() {
+        delete_button?.isEnabled = false
+        confirm_button?.isEnabled = false
+        cancel_button?.isEnabled = false
+        isCancelable = false
+
+        hideKeyboard()
     }
 
     companion object {
