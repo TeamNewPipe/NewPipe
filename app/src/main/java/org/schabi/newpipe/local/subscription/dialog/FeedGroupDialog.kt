@@ -27,11 +27,12 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
-import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialogViewModel.DialogEvent.*
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.*
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialogViewModel.DialogEvent.ProcessingEvent
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialogViewModel.DialogEvent.SuccessEvent
 import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
 import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
-import org.schabi.newpipe.util.AnimationUtils.animateView
 import org.schabi.newpipe.util.ThemeHelper
 import java.io.Serializable
 
@@ -43,14 +44,14 @@ class FeedGroupDialog : DialogFragment() {
 
     sealed class ScreenState : Serializable {
         object InitialScreen : ScreenState()
-        object SubscriptionsPicker : ScreenState()
-        object IconPickerList : ScreenState()
+        object IconPickerScreen : ScreenState()
+        object SubscriptionsPickerScreen : ScreenState()
         object DeleteScreen : ScreenState()
     }
 
     @State @JvmField var selectedIcon: FeedGroupIcon? = null
     @State @JvmField var selectedSubscriptions: HashSet<Long> = HashSet()
-    @State @JvmField var currentScreen: ScreenState = ScreenState.InitialScreen
+    @State @JvmField var currentScreen: ScreenState = InitialScreen
 
     @State @JvmField var subscriptionsListState: Parcelable? = null
     @State @JvmField var iconsListState: Parcelable? = null
@@ -70,8 +71,8 @@ class FeedGroupDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(requireActivity(), theme) {
             override fun onBackPressed() {
-                if (currentScreen !is ScreenState.InitialScreen) {
-                    showInitialScreen()
+                if (currentScreen !is InitialScreen) {
+                    showScreen(InitialScreen)
                 } else {
                     super.onBackPressed()
                 }
@@ -104,14 +105,22 @@ class FeedGroupDialog : DialogFragment() {
         })
 
         setupIconPicker()
+        setupListeners()
 
-        delete_button.setOnClickListener { showDeleteScreen() }
+        showScreen(currentScreen)
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Setup
+    ///////////////////////////////////////////////////////////////////////////
+
+    private fun setupListeners() {
+        delete_button.setOnClickListener { showScreen(DeleteScreen) }
 
         cancel_button.setOnClickListener {
-            if (currentScreen !is ScreenState.InitialScreen) {
-                showInitialScreen()
-            } else {
-                dismiss()
+            when (currentScreen) {
+                InitialScreen -> dismiss()
+                else -> showScreen(InitialScreen)
             }
         }
 
@@ -128,46 +137,37 @@ class FeedGroupDialog : DialogFragment() {
         })
 
         confirm_button.setOnClickListener {
-            if (currentScreen is ScreenState.InitialScreen) {
-                val name = group_name_input.text.toString().trim()
-                val icon = selectedIcon ?: groupIcon ?: FeedGroupIcon.ALL
-
-                if (name.isBlank()) {
-                    group_name_input_container.error = getString(R.string.feed_group_dialog_empty_name)
-                    group_name_input.text = null
-                    group_name_input.requestFocus()
-                    return@setOnClickListener
-                } else {
-                    group_name_input_container.error = null
-                }
-
-                if (selectedSubscriptions.isEmpty()) {
-                    Toast.makeText(requireContext(), getString(R.string.feed_group_dialog_empty_selection), Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-
-                when (groupId) {
-                    NO_GROUP_SELECTED -> viewModel.createGroup(name, icon, selectedSubscriptions)
-                    else -> viewModel.updateGroup(name, icon, selectedSubscriptions, groupSortOrder)
-                }
-            } else if (currentScreen is ScreenState.DeleteScreen) {
-                viewModel.deleteGroup()
-            } else {
-                showInitialScreen()
+            when (currentScreen) {
+                InitialScreen -> handlePositiveButtonInitialScreen()
+                DeleteScreen -> viewModel.deleteGroup()
+                else -> showScreen(InitialScreen)
             }
-        }
-
-        when (currentScreen) {
-            is ScreenState.InitialScreen -> showInitialScreen()
-            is ScreenState.IconPickerList -> showIconPicker()
-            is ScreenState.SubscriptionsPicker -> showSubscriptionsPicker()
-            is ScreenState.DeleteScreen -> showDeleteScreen()
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Setup
-    ///////////////////////////////////////////////////////////////////////////
+    private fun handlePositiveButtonInitialScreen() {
+        val name = group_name_input.text.toString().trim()
+        val icon = selectedIcon ?: groupIcon ?: FeedGroupIcon.ALL
+
+        if (name.isBlank()) {
+            group_name_input_container.error = getString(R.string.feed_group_dialog_empty_name)
+            group_name_input.text = null
+            group_name_input.requestFocus()
+            return
+        } else {
+            group_name_input_container.error = null
+        }
+
+        if (selectedSubscriptions.isEmpty()) {
+            Toast.makeText(requireContext(), getString(R.string.feed_group_dialog_empty_selection), Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        when (groupId) {
+            NO_GROUP_SELECTED -> viewModel.createGroup(name, icon, selectedSubscriptions)
+            else -> viewModel.updateGroup(name, icon, selectedSubscriptions, groupSortOrder)
+        }
+    }
 
     private fun handleGroup(feedGroupEntity: FeedGroupEntity? = null) {
         val icon = feedGroupEntity?.icon ?: FeedGroupIcon.ALL
@@ -243,7 +243,7 @@ class FeedGroupDialog : DialogFragment() {
 
         select_channel_button.setOnClickListener {
             subscriptions_selector_list.scrollToPosition(0)
-            showSubscriptionsPicker()
+            showScreen(SubscriptionsPickerScreen)
         }
     }
 
@@ -267,13 +267,13 @@ class FeedGroupDialog : DialogFragment() {
                     selectedIcon = item.icon
                     icon_preview.setImageResource(item.iconRes)
 
-                    showInitialScreen()
+                    showScreen(InitialScreen)
                 }
             }
         }
         icon_preview.setOnClickListener {
             icon_selector.scrollToPosition(0)
-            showIconPicker()
+            showScreen(IconPickerScreen)
         }
 
         if (groupId == NO_GROUP_SELECTED) {
@@ -286,62 +286,36 @@ class FeedGroupDialog : DialogFragment() {
     // Screen Selector
     ///////////////////////////////////////////////////////////////////////////
 
-    private fun showInitialScreen() {
-        currentScreen = ScreenState.InitialScreen
-        animateView(icon_selector, false, 0)
-        animateView(subscriptions_selector, false, 0)
-        animateView(options_root, true, 250)
-        animateView(delete_screen_message, false, 0)
+    private fun showScreen(screen: ScreenState) {
+        currentScreen = screen
 
-        separator.visibility = View.GONE
-        confirm_button.setText(if (groupId == NO_GROUP_SELECTED) R.string.create else android.R.string.ok)
-        delete_button.visibility = if (groupId == NO_GROUP_SELECTED) View.GONE else View.VISIBLE
-        cancel_button.visibility = View.VISIBLE
+        options_root.onlyVisibleIn(InitialScreen)
+        icon_selector.onlyVisibleIn(IconPickerScreen)
+        subscriptions_selector.onlyVisibleIn(SubscriptionsPickerScreen)
+        delete_screen_message.onlyVisibleIn(DeleteScreen)
+
+        separator.onlyVisibleIn(SubscriptionsPickerScreen, IconPickerScreen)
+        cancel_button.onlyVisibleIn(InitialScreen, DeleteScreen)
+
+        confirm_button.setText(when {
+            currentScreen == InitialScreen && groupId == NO_GROUP_SELECTED -> R.string.create
+            else -> android.R.string.ok
+        })
+
+        delete_button.visibility = when {
+            currentScreen != InitialScreen -> View.GONE
+            groupId == NO_GROUP_SELECTED -> View.GONE
+            else -> View.VISIBLE
+        }
+
+        if (currentScreen != InitialScreen) hideKeyboard()
     }
 
-    private fun showIconPicker() {
-        currentScreen = ScreenState.IconPickerList
-        animateView(icon_selector, true, 250)
-        animateView(subscriptions_selector, false, 0)
-        animateView(options_root, false, 0)
-        animateView(delete_screen_message, false, 0)
-
-        separator.visibility = View.VISIBLE
-        confirm_button.setText(android.R.string.ok)
-        delete_button.visibility = View.GONE
-        cancel_button.visibility = View.GONE
-
-        hideKeyboard()
-    }
-
-    private fun showSubscriptionsPicker() {
-        currentScreen = ScreenState.SubscriptionsPicker
-        animateView(icon_selector, false, 0)
-        animateView(subscriptions_selector, true, 250)
-        animateView(options_root, false, 0)
-        animateView(delete_screen_message, false, 0)
-
-        separator.visibility = View.VISIBLE
-        confirm_button.setText(android.R.string.ok)
-        delete_button.visibility = View.GONE
-        cancel_button.visibility = View.GONE
-
-        hideKeyboard()
-    }
-
-    private fun showDeleteScreen() {
-        currentScreen = ScreenState.DeleteScreen
-        animateView(icon_selector, false, 0)
-        animateView(subscriptions_selector, false, 0)
-        animateView(options_root, false, 0)
-        animateView(delete_screen_message, true, 250)
-
-        separator.visibility = View.GONE
-        confirm_button.setText(android.R.string.ok)
-        delete_button.visibility = View.GONE
-        cancel_button.visibility = View.VISIBLE
-
-        hideKeyboard()
+    private fun View.onlyVisibleIn(vararg screens: ScreenState) {
+        visibility = when (currentScreen) {
+            in screens -> View.VISIBLE
+            else -> View.GONE
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
