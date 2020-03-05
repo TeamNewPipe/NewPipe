@@ -8,6 +8,9 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -76,7 +79,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
-    private View headerRemoveWatchedButton;
 
     private ItemTouchHelper itemTouchHelper;
 
@@ -153,7 +155,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
         headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
-        headerRemoveWatchedButton = headerRootLayout.findViewById(R.id.playlist_ctrl_remove_watched_button);
 
         return headerRootLayout;
     }
@@ -253,6 +254,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu +
+                "], inflater = [" + inflater + "]");
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_local_playlist, menu);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
 
@@ -267,9 +276,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         if (headerPopupButton != null) {
             headerPopupButton.setOnClickListener(null);
-        }
-        if (headerRemoveWatchedButton != null) {
-            headerRemoveWatchedButton.setOnClickListener(null);
         }
 
         if (databaseSubscription != null) {
@@ -343,6 +349,20 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_removeWatched:
+                //Solution, Scorched Earth, Copy non duplicates, clear playlist, then copy back over
+                //Other options didn't work as intended, or crashed. Like deleteItem(playlist_item) crashes when called in this function.
+                new RemoveWatchedStreams().execute();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+    @Override
     public void handleResult(@NonNull final List<PlaylistStreamEntry> result) {
         super.handleResult(result);
         if (itemListAdapter == null) {
@@ -369,13 +389,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
-        headerRemoveWatchedButton.setOnClickListener(
-                view -> {
-                    //Solution, Scorched Earth, Copy non duplicates, clear playlist, then copy back over
-                    //Other options didn't work as intended, or crashed. Like deleteItem(playlist_item) crashes when called in this function.
-                    new RemoveWatchedStreams().execute();
-                }
-        );
 
         headerPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
@@ -706,7 +719,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private class RemoveWatchedStreams extends AsyncTask<String, Long, Long> {
         List<PlaylistStreamEntry> localItems = new ArrayList<>();
         Long RemovedItemCount = 0l;
-        boolean thumbNailVideoRemoved = false;
+        boolean thumbnailVideoRemoved = false;
 
         @Override
         protected void onPreExecute() {
@@ -749,7 +762,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     RemovedItemCount++;
                     if(playlistManager.getPlaylistThumbnail(playlistId).equals(playlist_item.thumbnailUrl))
                     {
-                        thumbNailVideoRemoved = true;
+                        thumbnailVideoRemoved = true;
                     }
                 }
             }
@@ -762,13 +775,17 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             itemListAdapter.addItems(localItems);
             localItems.clear();
 
-            if (thumbNailVideoRemoved)
+            if (thumbnailVideoRemoved)
                 updateThumbnailUrl();
 
-            setVideoCount(itemListAdapter.getItemsList().size());
+            int amountOfVideos = itemListAdapter.getItemsList().size();
+            setVideoCount(amountOfVideos);
 
             saveChanges();
             hideLoading();
+
+            if(amountOfVideos == 0)
+                showEmptyState();
         }
     }
 }
