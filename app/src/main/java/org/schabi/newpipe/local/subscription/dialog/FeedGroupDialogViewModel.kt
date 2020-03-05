@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.subscription.dialog
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -27,21 +28,24 @@ class FeedGroupDialogViewModel(applicationContext: Context, val groupId: Long = 
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
     private var subscriptionManager = SubscriptionManager(applicationContext)
 
-    val groupLiveData = MutableLiveData<FeedGroupEntity>()
-    val subscriptionsLiveData = MutableLiveData<Pair<List<SubscriptionEntity>, Set<Long>>>()
-    val dialogEventLiveData = MutableLiveData<DialogEvent>()
+    private val mutableGroupLiveData = MutableLiveData<FeedGroupEntity>()
+    private val mutableSubscriptionsLiveData = MutableLiveData<Pair<List<SubscriptionEntity>, Set<Long>>>()
+    private val mutableDialogEventLiveData = MutableLiveData<DialogEvent>()
+    val groupLiveData: LiveData<FeedGroupEntity> = mutableGroupLiveData
+    val subscriptionsLiveData: LiveData<Pair<List<SubscriptionEntity>, Set<Long>>> = mutableSubscriptionsLiveData
+    val dialogEventLiveData: LiveData<DialogEvent> = mutableDialogEventLiveData
 
     private var actionProcessingDisposable: Disposable? = null
 
     private var feedGroupDisposable = feedDatabaseManager.getGroup(groupId)
             .subscribeOn(Schedulers.io())
-            .subscribe(groupLiveData::postValue)
+            .subscribe(mutableGroupLiveData::postValue)
 
     private var subscriptionsDisposable = Flowable
             .combineLatest(subscriptionManager.subscriptions(), feedDatabaseManager.subscriptionIdsForGroup(groupId),
                     BiFunction { t1: List<SubscriptionEntity>, t2: List<Long> -> t1 to t2.toSet() })
             .subscribeOn(Schedulers.io())
-            .subscribe(subscriptionsLiveData::postValue)
+            .subscribe(mutableSubscriptionsLiveData::postValue)
 
     override fun onCleared() {
         super.onCleared()
@@ -68,11 +72,11 @@ class FeedGroupDialogViewModel(applicationContext: Context, val groupId: Long = 
 
     private fun doAction(completable: Completable) {
         if (actionProcessingDisposable == null) {
-            dialogEventLiveData.value = DialogEvent.ProcessingEvent
+            mutableDialogEventLiveData.value = DialogEvent.ProcessingEvent
 
             actionProcessingDisposable = completable
                     .subscribeOn(Schedulers.io())
-                    .subscribe { dialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
+                    .subscribe { mutableDialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
         }
     }
 

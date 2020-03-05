@@ -2,6 +2,7 @@ package org.schabi.newpipe.local.subscription.dialog
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Completable
 import io.reactivex.disposables.Disposable
@@ -12,15 +13,17 @@ import org.schabi.newpipe.local.feed.FeedDatabaseManager
 class FeedGroupReorderDialogViewModel(application: Application) : AndroidViewModel(application) {
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(application)
 
-    val groupsLiveData = MutableLiveData<List<FeedGroupEntity>>()
-    val dialogEventLiveData = MutableLiveData<DialogEvent>()
+    private val mutableGroupsLiveData = MutableLiveData<List<FeedGroupEntity>>()
+    private val mutableDialogEventLiveData = MutableLiveData<DialogEvent>()
+    val groupsLiveData: LiveData<List<FeedGroupEntity>> = mutableGroupsLiveData
+    val dialogEventLiveData: LiveData<DialogEvent> = mutableDialogEventLiveData
 
     private var actionProcessingDisposable: Disposable? = null
 
     private var groupsDisposable = feedDatabaseManager.groups()
             .limit(1)
             .subscribeOn(Schedulers.io())
-            .subscribe(groupsLiveData::postValue)
+            .subscribe(mutableGroupsLiveData::postValue)
 
     override fun onCleared() {
         super.onCleared()
@@ -34,11 +37,11 @@ class FeedGroupReorderDialogViewModel(application: Application) : AndroidViewMod
 
     private fun doAction(completable: Completable) {
         if (actionProcessingDisposable == null) {
-            dialogEventLiveData.value = DialogEvent.ProcessingEvent
+            mutableDialogEventLiveData.value = DialogEvent.ProcessingEvent
 
             actionProcessingDisposable = completable
                     .subscribeOn(Schedulers.io())
-                    .subscribe { dialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
+                    .subscribe { mutableDialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
         }
     }
 

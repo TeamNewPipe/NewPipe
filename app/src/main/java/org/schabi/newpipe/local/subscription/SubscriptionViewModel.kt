@@ -2,6 +2,7 @@ package org.schabi.newpipe.local.subscription
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.xwray.groupie.Group
 import io.reactivex.schedulers.Schedulers
@@ -12,19 +13,21 @@ import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
 import java.util.concurrent.TimeUnit
 
 class SubscriptionViewModel(application: Application) : AndroidViewModel(application) {
-    val stateLiveData = MutableLiveData<SubscriptionState>()
-    val feedGroupsLiveData = MutableLiveData<List<Group>>()
-
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(application)
     private var subscriptionManager = SubscriptionManager(application)
+
+    private val mutableStateLiveData = MutableLiveData<SubscriptionState>()
+    private val mutableFeedGroupsLiveData = MutableLiveData<List<Group>>()
+    val stateLiveData: LiveData<SubscriptionState> = mutableStateLiveData
+    val feedGroupsLiveData: LiveData<List<Group>> = mutableFeedGroupsLiveData
 
     private var feedGroupItemsDisposable = feedDatabaseManager.groups()
             .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
             .map { it.map(::FeedGroupCardItem) }
             .subscribeOn(Schedulers.io())
             .subscribe(
-                    { feedGroupsLiveData.postValue(it) },
-                    { stateLiveData.postValue(SubscriptionState.ErrorState(it)) }
+                    { mutableFeedGroupsLiveData.postValue(it) },
+                    { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
             )
 
     private var stateItemsDisposable = subscriptionManager.subscriptions()
@@ -32,8 +35,8 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
             .map { it.map { entity -> ChannelItem(entity.toChannelInfoItem(), entity.uid, ChannelItem.ItemVersion.MINI) } }
             .subscribeOn(Schedulers.io())
             .subscribe(
-                    { stateLiveData.postValue(SubscriptionState.LoadedState(it)) },
-                    { stateLiveData.postValue(SubscriptionState.ErrorState(it)) }
+                    { mutableStateLiveData.postValue(SubscriptionState.LoadedState(it)) },
+                    { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
             )
 
     override fun onCleared() {

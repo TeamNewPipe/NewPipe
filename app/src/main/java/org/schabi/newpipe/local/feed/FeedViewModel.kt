@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.feed
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +27,8 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
 
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
 
-    val stateLiveData = MutableLiveData<FeedState>()
+    private val mutableStateLiveData = MutableLiveData<FeedState>()
+    val stateLiveData: LiveData<FeedState> = mutableStateLiveData
 
     private var combineDisposable = Flowable
             .combineLatest(
@@ -48,7 +50,7 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
                 val oldestUpdateCalendar =
                         oldestUpdate?.let { Calendar.getInstance().apply { time = it } }
 
-                stateLiveData.postValue(when (event) {
+                mutableStateLiveData.postValue(when (event) {
                     is IdleEvent -> FeedState.LoadedState(listFromDB, oldestUpdateCalendar, notLoadedCount)
                     is ProgressEvent -> FeedState.ProgressState(event.currentProgress, event.maxProgress, event.progressMessage)
                     is SuccessResultEvent -> FeedState.LoadedState(listFromDB, oldestUpdateCalendar, notLoadedCount, event.itemsErrors)
