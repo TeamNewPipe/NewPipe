@@ -277,7 +277,7 @@ public abstract class BasePlayer implements
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
         final boolean playbackSkipSilence = intent.getBooleanExtra(PLAYBACK_SKIP_SILENCE,
                 getPlaybackSkipSilence());
-        final boolean isMuted = intent.getBooleanExtra(IS_MUTED, isMuted());
+        final boolean isMuted = intent.getBooleanExtra(IS_MUTED, simpleExoPlayer == null ? false : isMuted());
 
         // seek to timestamp if stream is already playing
         if (simpleExoPlayer != null
