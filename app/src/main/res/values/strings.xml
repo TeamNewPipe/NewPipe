@@ -598,6 +598,27 @@
         <item quantity="other">%s seconds</item>
     </plurals>
 
+    <!-- Time duration plurals -->
+    <plurals name="seconds">
+        <item quantity="one">%d second</item>
+        <item quantity="other">%d seconds</item>
+    </plurals>
+
+    <plurals name="minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+
+    <plurals name="hours">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+
+    <plurals name="days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+
     <!-- Feed -->
     <string name="fragment_feed_title">What\'s New</string>
     <string name="feed_groups_header_title">Feed groups</string>

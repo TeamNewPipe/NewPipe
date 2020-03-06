@@ -121,11 +121,11 @@ class FeedLoadService : Service() {
         val useFeedExtractor = defaultSharedPreferences
                 .getBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
 
-        val thresholdOutdatedMinutesString = defaultSharedPreferences
+        val thresholdOutdatedSecondsString = defaultSharedPreferences
                 .getString(getString(R.string.feed_update_threshold_key), getString(R.string.feed_update_threshold_default_value))
-        val thresholdOutdatedMinutes = thresholdOutdatedMinutesString!!.toInt()
+        val thresholdOutdatedSeconds = thresholdOutdatedSecondsString!!.toInt()
 
-        startLoading(groupId, useFeedExtractor, thresholdOutdatedMinutes)
+        startLoading(groupId, useFeedExtractor, thresholdOutdatedSeconds)
 
         return START_NOT_STICKY
     }
@@ -166,11 +166,11 @@ class FeedLoadService : Service() {
         }
     }
 
-    private fun startLoading(groupId: Long = FeedGroupEntity.GROUP_ALL_ID, useFeedExtractor: Boolean, thresholdOutdatedMinutes: Int) {
+    private fun startLoading(groupId: Long = FeedGroupEntity.GROUP_ALL_ID, useFeedExtractor: Boolean, thresholdOutdatedSeconds: Int) {
         feedResultsHolder = ResultsHolder()
 
         val outdatedThreshold = Calendar.getInstance().apply {
-            add(Calendar.MINUTE, -thresholdOutdatedMinutes)
+            add(Calendar.SECOND, -thresholdOutdatedSeconds)
         }.time
 
         val subscriptions = when (groupId) {
