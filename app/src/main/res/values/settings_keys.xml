@@ -1106,12 +1106,17 @@
     </string-array>
 
     <string name="list_view_mode_key" translatable="false">list_view_mode</string>
-    <string name="list_view_mode_value" translatable="false">auto</string>
+    <string name="list_view_mode_value" translatable="false">@string/list_view_mode_auto_key</string>
+
+    <!-- TODO: Use these across the app instead of hardcoding it -->
+    <string name="list_view_mode_auto_key" translatable="false">auto</string>
+    <string name="list_view_mode_list_key" translatable="false">list</string>
+    <string name="list_view_mode_grid_key" translatable="false">grid</string>
 
     <string-array name="list_view_mode_values" translatable="false">
-        <item>auto</item>
-        <item>list</item>
-        <item>grid</item>
+        <item>@string/list_view_mode_auto_key</item>
+        <item>@string/list_view_mode_list_key</item>
+        <item>@string/list_view_mode_grid_key</item>
     </string-array>
     <string-array name="list_view_mode_description" translatable="false">
         <item>@string/auto</item>

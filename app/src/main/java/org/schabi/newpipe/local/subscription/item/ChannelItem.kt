@@ -15,7 +15,7 @@ import org.schabi.newpipe.util.OnClickGesture
 class ChannelItem(
         private val infoItem: ChannelInfoItem,
         private val subscriptionId: Long = -1L,
-        private var itemVersion: ItemVersion = ItemVersion.NORMAL,
+        var itemVersion: ItemVersion = ItemVersion.NORMAL,
         var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
 ) : Item() {
 
