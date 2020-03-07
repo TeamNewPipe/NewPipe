@@ -84,6 +84,10 @@ android {
     androidExtensions {
         experimental = true
     }
+
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
 }
 
 ext {
@@ -100,6 +104,8 @@ ext {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation "android.arch.persistence.room:testing:1.1.1"
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude module: 'support-annotations'
     })
