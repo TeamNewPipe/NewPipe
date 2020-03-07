@@ -43,11 +43,11 @@ public final class NewPipeDatabase {
     }
 
     public static void checkpoint() {
-        if(null == databaseInstance){
+        if (databaseInstance == null) {
             throw new IllegalStateException("database is not initialized");
         }
         Cursor c = databaseInstance.query("pragma wal_checkpoint(full)", null);
-        if(c.moveToFirst() && c.getInt(0) == 1) {
+        if (c.moveToFirst() && c.getInt(0) == 1) {
             throw new RuntimeException("Checkpoint was blocked from completing");
         }
     }
