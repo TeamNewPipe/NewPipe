@@ -569,10 +569,10 @@
     <string name="videos_string">الفيديوهات</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="zero">%s ثوانٍ</item>
-        <item quantity="one"/>
-        <item quantity="two"/>
-        <item quantity="few"/>
-        <item quantity="many"/>
-        <item quantity="other"/>
+        <item quantity="one">%s ثوانٍ</item>
+        <item quantity="two">%s ثوانٍ</item>
+        <item quantity="few">%s ثوانٍ</item>
+        <item quantity="many">%s ثوانٍ</item>
+        <item quantity="other">%s ثوانٍ</item>
     </plurals>
 </resources>

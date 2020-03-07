@@ -548,6 +548,6 @@
     <string name="videos_string">ڤیدیۆکان</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s چرکە</item>
-        <item quantity="other"></item>
+        <item quantity="other">%s چرکە</item>
     </plurals>
 </resources>

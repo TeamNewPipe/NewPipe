@@ -546,7 +546,7 @@
     <string name="videos_string">Bideoak</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s segundu</item>
-        <item quantity="other"/>
+        <item quantity="other">%s segundu</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer-en mugak direla eta bilaketaren iraupena %d segundotan ezarri da</string>
 </resources>

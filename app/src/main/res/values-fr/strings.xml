@@ -543,7 +543,6 @@
     <string name="systems_language">Langue du système</string>
     <string name="subtitle_activity_recaptcha">Appuyez sur « Terminé » une fois résolu</string>
     <string name="recaptcha_done_button">Terminé</string>
-    <string name="duration_live_button" translatable="false">En direct</string>
     <string name="videos_string">Vidéos</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s seconde</item>

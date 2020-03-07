@@ -546,7 +546,7 @@
     <string name="videos_string">Video</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s secondi</item>
-        <item quantity="other"/>
+        <item quantity="other">%s secondi</item>
     </plurals>
     <string name="new_seek_duration_toast">A causa dei vincoli di ExoPlayer la durata dello spostamento rapido è stata impostata a %d secondi</string>
     <string name="mute">Silenzia</string>

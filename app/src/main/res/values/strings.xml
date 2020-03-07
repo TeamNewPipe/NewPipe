@@ -593,9 +593,9 @@
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
-    <string name="dynamic_seek_duration_description">%s seconds</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s second</item>
         <item quantity="other">%s seconds</item>
     </plurals>
 </resources>

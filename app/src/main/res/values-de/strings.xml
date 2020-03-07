@@ -544,11 +544,10 @@
     <string name="systems_language">Systemstandard</string>
     <string name="subtitle_activity_recaptcha">\"Fertig\" drücken, wenn es gelöst wurde</string>
     <string name="recaptcha_done_button">Fertig</string>
-    <string name="duration_live_button" translatable="false">Live</string>
     <string name="videos_string">Videos</string>
     <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s Sekunden</item>
-        <item quantity="other"/>
+        <item quantity="one">%s Sekunde</item>
+        <item quantity="other">%s Sekunden</item>
     </plurals>
     <string name="new_seek_duration_toast">Aufgrund von ExoPlayer-Einschränkungen wurde die Suchdauer auf %d Sekunden gesetzt</string>
     <string name="mute">Stumm</string>

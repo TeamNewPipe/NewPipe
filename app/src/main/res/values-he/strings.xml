@@ -558,9 +558,9 @@
     <string name="videos_string">סרטונים</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s שניות</item>
-        <item quantity="two"/>
-        <item quantity="many"/>
-        <item quantity="other"/>
+        <item quantity="two">%s שניות</item>
+        <item quantity="many">%s שניות</item>
+        <item quantity="other">%s שניות</item>
     </plurals>
     <string name="new_seek_duration_toast">עקב מגבלות של ExoPlayer מגבלות טווחי החיפוש הוגדרו לכדי %d שניות</string>
     <string name="mute">השתקה</string>

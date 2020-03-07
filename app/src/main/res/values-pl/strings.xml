@@ -552,8 +552,8 @@
     <string name="videos_string">Filmy</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s sekund</item>
-        <item quantity="few"/>
-        <item quantity="many"/>
+        <item quantity="few">%s sekund</item>
+        <item quantity="many">%s sekund</item>
     </plurals>
     <string name="new_seek_duration_toast">Ze względu na ograniczenia ExoPlayer, czas trwania wyszukiwania został ustawiony na %d sekund</string>
     <string name="mute">Wycisz</string>
