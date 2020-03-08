@@ -552,7 +552,7 @@
     <string name="videos_string">Видео</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s секунд</item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
+        <item quantity="few"/>
+        <item quantity="many"/>
     </plurals>
 </resources>

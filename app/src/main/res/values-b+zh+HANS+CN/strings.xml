@@ -352,7 +352,7 @@
     <string name="enable_disposed_exceptions_title">报告『提前结束Android生命周期』错误</string>
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的Activity或Fragment生命周期之外的Rx异常</string>
     <string name="use_inexact_seek_title">使用快速不精确搜索</string>
-    <string name="use_inexact_seek_summary">粗略定位播放：允许播放器以略低的精确度为代价换取更快的定位速度</string>
+    <string name="use_inexact_seek_summary">粗略定位播放：允许播放器以略低的精确度为代价换取更快的定位速度。此功能不适用于每隔5、15或25秒定位</string>
     <string name="auto_queue_title">自动播放下一个</string>
     <string name="auto_queue_summary">当播放完非循环列表中的最后一个视频时，自动加入一个相关视频到播放列表</string>
     <string name="invalid_directory">没有此文件夹</string>
@@ -497,8 +497,8 @@
     <string name="downloads_storage_ask_summary_kitkat">系统将询问您将每次下载的保存位置。
 \n（如果要下载到外部 SD 卡，请选择 SAF）</string>
     <string name="downloads_storage_use_saf_title">使用 SAF</string>
-    <string name="downloads_storage_use_saf_summary">存储访问框架(SAF)允许下载文件到外部SD卡。
-\n注：一些设备不兼容SAF</string>
+    <string name="downloads_storage_use_saf_summary">存储访问框架(SAF)允许下载文件到外部SD卡。 
+\n一些设备不兼容SAF</string>
     <string name="clear_playback_states_title">删除播放位置记录</string>
     <string name="clear_playback_states_summary">删除所有播放位置记录</string>
     <string name="delete_playback_states_alert">删除所有播放位置记录？</string>
@@ -546,4 +546,5 @@
         <item quantity="one">%s秒</item>
         <item quantity="other"/>
     </plurals>
+    <string name="new_seek_duration_toast">由于ExoPlayer的限制，搜寻间隔设置为％d秒</string>
 </resources>
