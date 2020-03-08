@@ -448,6 +448,8 @@
     <string name="rename_playlist">Rename</string>
     <string name="playlist_name_input">Name</string>
     <string name="append_playlist">Add To Playlist</string>
+    <string name="mute">Mute</string>
+    <string name="unmute">Unmute</string>
     <string name="set_as_playlist_thumbnail">Set as Playlist Thumbnail</string>
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
