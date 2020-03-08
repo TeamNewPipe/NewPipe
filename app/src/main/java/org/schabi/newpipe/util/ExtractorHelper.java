@@ -35,6 +35,7 @@ import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.channel.ChannelTabInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -128,12 +129,10 @@ public final class ExtractorHelper {
                 ChannelInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<InfoItemsPage> getMoreChannelItems(final int serviceId,
-                                                            final String url,
+    public static Single<InfoItemsPage> getMoreChannelTabItems(final ChannelTabInfo tabInfo,
                                                             final String nextStreamsUrl) {
-        checkServiceId(serviceId);
         return Single.fromCallable(() ->
-                ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl));
+                ChannelTabInfo.getMoreItems(tabInfo, nextStreamsUrl));
     }
 
     public static Single<ListInfo<StreamInfoItem>> getFeedInfoFallbackToChannelInfo(final int serviceId,

@@ -25,9 +25,9 @@
         android:id="@+id/empty_state_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical"
-        android:paddingTop="90dp"
+        android:paddingTop="85dp"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -65,6 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:background="?attr/toolbar_shadow_drawable"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>

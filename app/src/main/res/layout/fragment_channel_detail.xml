@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/video_item_detail"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:focusableInTouchMode="true">
+
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
+		android:id="@+id/detail_main_content"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true">
+
+		<com.google.android.material.appbar.AppBarLayout
+			android:id="@+id/appbarlayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@android:color/transparent"
+			android:fitsSystemWindows="true"
+			app:elevation="0dp"
+			app:layout_behavior="com.google.android.material.appbar.FlingBehavior">
+
+			<!-- CONTENT -->
+			<RelativeLayout
+				android:id="@+id/detail_content_root_layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="?android:windowBackground"
+				app:layout_scrollFlags="scroll">
+
+				<ImageView
+					android:id="@+id/channel_banner_image"
+					android:layout_width="match_parent"
+					android:layout_height="70dp"
+					android:background="@android:color/black"
+					android:fitsSystemWindows="true"
+					android:scaleType="centerCrop"
+					android:src="@drawable/channel_banner"
+					tools:ignore="ContentDescription"/>
+
+				<de.hdodenhof.circleimageview.CircleImageView
+					android:id="@+id/channel_avatar_view"
+					android:layout_width="@dimen/channel_avatar_size"
+					android:layout_height="@dimen/channel_avatar_size"
+					android:layout_alignTop="@id/channel_banner_image"
+					android:layout_marginLeft="8dp"
+					android:layout_marginTop="50dp"
+					android:src="@drawable/buddy"
+					app:civ_border_color="#ffffff"
+					app:civ_border_width="2dp"
+					tools:ignore="RtlHardcoded"/>
+
+				<TextView
+					android:id="@+id/channel_title_view"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_below="@id/channel_banner_image"
+					android:layout_marginLeft="8dp"
+					android:layout_marginRight="8dp"
+					android:layout_marginTop="6dp"
+					android:layout_toLeftOf="@+id/channel_subscribe_button"
+					android:layout_toRightOf="@+id/channel_avatar_view"
+					android:ellipsize="end"
+					android:lines="1"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:textSize="@dimen/video_item_detail_title_text_size"
+					tools:ignore="RtlHardcoded"
+					tools:text="Lorem ipsum dolor"/>
+
+				<TextView
+					android:id="@+id/channel_subscriber_view"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_alignLeft="@+id/channel_title_view"
+					android:layout_alignRight="@+id/channel_title_view"
+					android:layout_below="@+id/channel_title_view"
+					android:ellipsize="end"
+					android:gravity="left|center"
+					android:maxLines="2"
+					android:textSize="@dimen/channel_subscribers_text_size"
+					android:visibility="gone"
+					tools:ignore="RtlHardcoded"
+					tools:text="123,141,411 subscribers"
+					tools:visibility="visible"/>
+
+				<androidx.appcompat.widget.AppCompatButton
+					android:id="@+id/channel_subscribe_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentRight="true"
+					android:layout_below="@+id/channel_banner_image"
+					android:layout_gravity="center_vertical|right"
+					android:layout_marginRight="2dp"
+					android:text="@string/subscribe_button_title"
+					android:textSize="@dimen/channel_rss_title_size"
+					android:theme="@style/RedButton"
+					android:visibility="gone"
+					tools:ignore="RtlHardcoded"
+					tools:visibility="visible"/>
+
+				<!-- LOADING INDICATOR-->
+				<ProgressBar
+					android:id="@+id/loading_progress_bar"
+					style="@style/Widget.AppCompat.ProgressBar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
+					android:indeterminate="true"
+					android:visibility="gone"
+					tools:visibility="visible" />
+
+				<!--ERROR PANEL-->
+				<include
+					android:id="@+id/error_panel"
+					layout="@layout/error_retry"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
+					android:visibility="gone"
+					tools:visibility="visible" />
+
+			</RelativeLayout>
+
+		</com.google.android.material.appbar.AppBarLayout>
+
+
+		<androidx.viewpager.widget.ViewPager
+			android:id="@+id/viewpager"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+		<com.google.android.material.tabs.TabLayout
+			android:id="@+id/tablayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|center"
+			android:background="@color/transparent_background_color"
+			app:tabBackground="@drawable/tab_selector"
+			app:tabGravity="center"
+			app:tabIndicatorHeight="0dp" />
+
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

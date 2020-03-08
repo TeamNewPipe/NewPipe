@@ -33,8 +33,8 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
+import org.schabi.newpipe.fragments.detail.ChannelDetailFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
-import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
@@ -316,7 +316,7 @@ public class NavigationHelper {
             String name) {
         if (name == null) name = "";
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
+                .replace(R.id.fragment_holder, ChannelDetailFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }
