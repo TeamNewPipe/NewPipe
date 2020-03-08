@@ -563,4 +563,6 @@
         <item quantity="other"/>
     </plurals>
     <string name="new_seek_duration_toast">עקב מגבלות של ExoPlayer מגבלות טווחי החיפוש הוגדרו לכדי %d שניות</string>
+    <string name="mute">השתקה</string>
+    <string name="unmute">ביטול השתקה</string>
 </resources>
