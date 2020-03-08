@@ -2,7 +2,6 @@ package org.schabi.newpipe.local.playlist;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -56,6 +55,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.Disposables;
+import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -79,7 +79,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
-
+    
     private ItemTouchHelper itemTouchHelper;
 
     private LocalPlaylistManager playlistManager;
@@ -87,6 +87,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private PublishSubject<Long> debouncedSaveSignal;
     private CompositeDisposable disposables;
+    private Disposable removeWatchedWorker;
 
     /* Has the playlist been fully loaded from db */
     private AtomicBoolean isLoadingComplete;
@@ -151,7 +152,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         headerStreamCount = headerRootLayout.findViewById(R.id.playlist_stream_count);
 
-        playlistControl = headerRootLayout.findViewById(R.id.local_playlist_control);
+        playlistControl = headerRootLayout.findViewById(R.id.playlist_control);
         headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
         headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
@@ -299,6 +300,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             disposables.dispose();
         }
 
+        if(removeWatchedWorker != null) removeWatchedWorker.dispose();
+        removeWatchedWorker = null;
+
         debouncedSaveSignal = null;
         playlistManager = null;
         disposables = null;
@@ -352,9 +356,21 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_removeWatched:
-                //Solution, Scorched Earth, Copy non duplicates, clear playlist, then copy back over
-                //Other options didn't work as intended, or crashed. Like deleteItem(playlist_item) crashes when called in this function.
-                new RemoveWatchedStreams().execute();
+                RemoveWatchedStreams remover = new RemoveWatchedStreams();
+
+                remover.onPreExecute();
+                removeWatchedWorker = Flowable.just(playlistManager.getPlaylistStreams(playlistId).blockingFirst())
+                        .subscribeOn(Schedulers.newThread())
+                        .filter((@NonNull List<PlaylistStreamEntry> playlist) -> {
+                                remover.doInBackground(playlist);
+                                return true;
+                            }
+                        ).observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(playlist -> {
+                            remover.onPostExecute();
+                        }, (@io.reactivex.annotations.NonNull Throwable throwable) -> {
+                            onError(throwable);
+                        });
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -716,27 +732,24 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return new SinglePlayQueue(streamInfoItems, index);
     }
 
-    private class RemoveWatchedStreams extends AsyncTask<String, Long, Long> {
+    private class RemoveWatchedStreams{
         List<PlaylistStreamEntry> localItems = new ArrayList<>();
         Long RemovedItemCount = 0l;
         boolean thumbnailVideoRemoved = false;
 
-        @Override
+        // Do this in the main thread
         protected void onPreExecute() {
-            super.onPreExecute();
             showLoading();
-            localItems.clear();
         }
 
-        @Override
-        protected Long doInBackground(String... urls) {
+        // Do not do this in the main thread
+        protected Long doInBackground(List<PlaylistStreamEntry> playlist) {
 
             HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
             Iterator<StreamHistoryEntry> it_history;
             StreamHistoryEntry history_item;
 
-            Flowable<List<PlaylistStreamEntry>> playlist = playlistManager.getPlaylistStreams(playlistId);
-            Iterator<PlaylistStreamEntry> it_playlist = playlist.blockingFirst().iterator();
+            Iterator<PlaylistStreamEntry> it_playlist = playlist.iterator();
             PlaylistStreamEntry playlist_item = null;
 
             boolean isNonDuplicate;
@@ -769,8 +782,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return this.RemovedItemCount;
         }
 
-        @Override
-        protected void onPostExecute(Long result) {
+        // Do this in the main thread
+        protected void onPostExecute() {
             itemListAdapter.clearStreamItemList();
             itemListAdapter.addItems(localItems);
             localItems.clear();
