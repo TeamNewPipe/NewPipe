@@ -323,7 +323,7 @@
     <string name="privacy_policy_title">NewPipe プライバシーポリシー</string>
     <string name="read_privacy_policy">プライバシーポリシーを確認</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
-    <string name="use_inexact_seek_summary">おおまかなシークを使用すると、正確さが下がりますが高速なシークが可能になります</string>
+    <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません。</string>
     <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します、このオプションを切り替えるとメモリおよびディスク上の画像キャッシュがクリアされます。</string>
     <string name="auto_queue_summary">キューに関連動画を追加し続けて、再生を続ける(リピートしない場合)</string>
     <string name="delete_view_history_alert">すべての再生履歴を削除しますか？</string>
@@ -490,8 +490,8 @@
     <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねられます。
 \n外部 SD カードにダウンロードする場合は SAF を選択してください</string>
     <string name="downloads_storage_use_saf_title">SAF を使用する</string>
-    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。
-\n注: 一部のデバイスは互換性がありません</string>
+    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。 
+\n一部のデバイスは互換性がありません</string>
     <string name="clear_playback_states_title">再生位置の削除</string>
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
@@ -540,4 +540,7 @@
     <plurals name="dynamic_seek_duration_description">
         <item quantity="other">%s 秒</item>
     </plurals>
+    <string name="new_seek_duration_toast">ExoPlayer の制約のためシーク間隔は %d 秒に設定されました</string>
+    <string name="mute">ミュート</string>
+    <string name="unmute">ミュート解除</string>
 </resources>
