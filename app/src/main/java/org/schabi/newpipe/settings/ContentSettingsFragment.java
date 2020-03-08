@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -136,6 +137,20 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE,
                             FilePickerActivityHelper.MODE_DIR);
             startActivityForResult(i, REQUEST_EXPORT_PATH);
+            return true;
+        });
+
+        Preference sponsorblockStatusPreference = findPreference(getString(R.string.sponsorblock_status));
+        sponsorblockStatusPreference.setOnPreferenceClickListener((Preference p) -> {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://status.sponsor.ajay.app/"));
+            startActivity(i);
+            return true;
+        });
+
+        Preference sponsorblockLeaderboardsPreference = findPreference(getString(R.string.sponsorblock_leaderboards));
+        sponsorblockLeaderboardsPreference.setOnPreferenceClickListener((Preference p) -> {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.sponsor.ajay.app/stats"));
+            startActivity(i);
             return true;
         });
     }

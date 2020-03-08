@@ -69,6 +69,10 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.SponsorTimeInfo;
+import org.schabi.newpipe.util.TimeFrame;
+import org.schabi.newpipe.views.MarkableSeekBar;
+import org.schabi.newpipe.views.SeekBarMarker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -621,10 +625,34 @@ public abstract class VideoPlayer extends BasePlayer
 
         super.onPrepared(playWhenReady);
 
+        tryMarkSponsorTimes();
+
         if (simpleExoPlayer.getCurrentPosition() != 0 && !isControlsVisible()) {
             controlsVisibilityHandler.removeCallbacksAndMessages(null);
             controlsVisibilityHandler
                     .postDelayed(this::showControlsThenHide, DEFAULT_CONTROLS_DURATION);
+        }
+    }
+
+    private void tryMarkSponsorTimes() {
+        SponsorTimeInfo sponsorTimeInfo = getSponsorTimeInfo();
+
+        if (sponsorTimeInfo == null) {
+            return;
+        }
+
+        if (!(playbackSeekBar instanceof MarkableSeekBar)) {
+            return;
+        }
+
+        MarkableSeekBar markableSeekBar = (MarkableSeekBar) playbackSeekBar;
+
+        for (TimeFrame timeFrame : sponsorTimeInfo.timeFrames) {
+            SeekBarMarker seekBarMarker = new SeekBarMarker(timeFrame.startTime, timeFrame.endTime, (int) simpleExoPlayer.getDuration(), Color.GREEN);
+            markableSeekBar.seekBarMarkers.add(seekBarMarker);
+            markableSeekBar.invalidate();
+
+            Log.d("SPONSOR_BLOCK", "Progress bar marker: " + seekBarMarker.percentStart + ", " + seekBarMarker.percentEnd);
         }
     }
 

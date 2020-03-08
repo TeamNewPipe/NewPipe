@@ -34,6 +34,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -54,9 +56,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.SponsorBlockApiTask;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
@@ -74,6 +78,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.SerializedCache;
+import org.schabi.newpipe.util.SponsorTimeInfo;
 
 import java.io.IOException;
 
@@ -108,6 +113,11 @@ public abstract class BasePlayer implements
     public static final int STATE_PAUSED = 126;
     public static final int STATE_PAUSED_SEEK = 127;
     public static final int STATE_COMPLETED = 128;
+
+    @NonNull
+    private final SharedPreferences mPrefs;
+
+    private SponsorTimeInfo sponsorTimeInfo;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Intent
@@ -219,6 +229,8 @@ public abstract class BasePlayer implements
 
         this.loadControl = new LoadController();
         this.renderFactory = new DefaultRenderersFactory(context);
+
+        this.mPrefs = PreferenceManager.getDefaultSharedPreferences(App.getApp());
     }
 
     public void setup() {
@@ -648,11 +660,37 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null) {
             return;
         }
+        int currentProgress = Math.max((int) simpleExoPlayer.getCurrentPosition(), 0);
         onUpdateProgress(
-                Math.max((int) simpleExoPlayer.getCurrentPosition(), 0),
+                currentProgress,
                 (int) simpleExoPlayer.getDuration(),
                 simpleExoPlayer.getBufferedPercentage()
         );
+
+        if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable), false) && sponsorTimeInfo != null) {
+            int skipTo = sponsorTimeInfo.getSponsorEndTimeFromProgress(currentProgress);
+
+            if (skipTo == 0) {
+                return;
+            }
+
+            seekTo(skipTo);
+
+            if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_notifications), false)) {
+                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, context.getString(R.string.notification_channel_id))
+                        .setOngoing(false)
+                        .setSmallIcon(R.drawable.ic_sponsor_block)
+                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                        .setContentTitle(context.getString(R.string.settings_category_sponsorblock))
+                        .setContentText(context.getString(R.string.sponsorblock_skipped_sponsor) + " \uD83D\uDC4D");
+
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(App.getApp());
+                notificationManager.notify(0, notificationBuilder.build());
+            }
+
+            if (DEBUG)
+                Log.d("SPONSOR_BLOCK", "Skipped sponsor: currentProgress = [" + currentProgress + "], skipped to = [" + skipTo + "]");
+        }
     }
 
     private Disposable getProgressReactor() {
@@ -1015,6 +1053,15 @@ public abstract class BasePlayer implements
 
         initThumbnail(info.getThumbnailUrl());
         registerView();
+
+        if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable), false)) {
+            try {
+                sponsorTimeInfo = new SponsorBlockApiTask().getVideoSponsorTimes(getVideoUrl());
+            }
+            catch (Exception e) {
+                Log.e("SPONSOR_BLOCK", "Error getting video sponsor times.", e);
+            }
+        }
     }
 
     @Override
@@ -1545,5 +1592,13 @@ public abstract class BasePlayer implements
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)
                 && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true);
+    }
+
+    public SponsorTimeInfo getSponsorTimeInfo() {
+        return sponsorTimeInfo;
+    }
+
+    public void setSponsorTimeInfo(SponsorTimeInfo sponsorTimeInfo) {
+        this.sponsorTimeInfo = sponsorTimeInfo;
     }
 }

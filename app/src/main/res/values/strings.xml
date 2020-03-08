@@ -129,6 +129,7 @@
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
+    <string name="settings_category_sponsorblock">SponsorBlock (beta)</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -181,6 +182,7 @@
     <string name="switch_to_background">Switch to Background</string>
     <string name="switch_to_popup">Switch to Popup</string>
     <string name="switch_to_main">Switch to Main</string>
+    <string name="submit_sponsor_times">Submit Sponsor Times</string>
     <string name="import_data_title">Import database</string>
     <string name="export_data_title">Export database</string>
     <string name="import_data_summary">Overrides your current history and subscriptions</string>
@@ -609,6 +611,7 @@
     <string name="remove_watched_popup_warning">Videos that have been watched before and after being added to the playlist will be removed.\nAre you sure? This cannot be undone!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
+    <string name="sponsorblock_skipped_sponsor">Sponsor skipped</string>
     <!-- Time duration plurals -->
     <plurals name="seconds">
         <item quantity="one">%d second</item>

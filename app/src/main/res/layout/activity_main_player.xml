@@ -406,6 +406,22 @@
                     android:contentDescription="@string/switch_to_background"
                     tools:ignore="RtlHardcoded" />
 
+                <ImageButton
+                    android:id="@+id/submitSponsorTimes"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_toLeftOf="@id/switchMute"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_sponsor_block"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/submit_sponsor_times"
+                    tools:ignore="RtlHardcoded"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -431,7 +447,7 @@
                     tools:text="1:06:29"/>
 
 
-                <androidx.appcompat.widget.AppCompatSeekBar
+                <org.schabi.newpipe.views.MarkableSeekBar
                     android:id="@+id/playbackSeekBar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="0dp"
