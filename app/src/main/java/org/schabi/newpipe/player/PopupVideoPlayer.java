@@ -1217,9 +1217,8 @@ public final class PopupVideoPlayer extends Service {
                 initSecPointerX = event.getX(1);
                 initSecPointerY = event.getY(1);
                 //record distance between fingers
-                float xDiff = event.getX(0) - event.getX(1);
-                float yDiff = event.getY(0) - event.getY(1);
-                initPointerDistance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+                initPointerDistance = Math.hypot(event.getX(0) - event.getX(1),
+                                                event.getY(0) - event.getY(1));
 
                 isResizing = true;
             }
@@ -1277,27 +1276,22 @@ public final class PopupVideoPlayer extends Service {
                 int scaledTouchSlop = ViewConfiguration.get(PopupVideoPlayer.this).getScaledTouchSlop();
 
                 if(firstPointerMoveX > scaledTouchSlop ||firstPointerMoveY > scaledTouchSlop ||
-                        secPointerMoveX > scaledTouchSlop || secPointerMoveY > scaledTouchSlop){
+                        secPointerMoveX > scaledTouchSlop || secPointerMoveY > scaledTouchSlop) {
 
                     double newWidth = popupWidth;
 
                     //calculate current distance between the pointers
-                    float currentXDiff = event.getX(0) - event.getX(1);
-                    float currentYDiff = event.getY(0) - event.getY(1);
-                    double currentPointerDistance = Math.sqrt(currentXDiff * currentXDiff + currentYDiff * currentYDiff);
+                    double currentPointerDistance = Math.hypot(event.getX(0) - event.getX(1),
+                                                                event.getY(0) - event.getY(1));
 
                     //scale popup width
-                    double scale = 1 + (currentPointerDistance - initPointerDistance)/ initPointerDistance;
+                    double scale = currentPointerDistance / initPointerDistance;
 
                     newWidth = (popupWidth * scale);
 
                     //change co-ordinates of popup so the center stays at the same position
-                    if(currentPointerDistance > initPointerDistance){
-                        popupLayoutParams.x -= (newWidth - popupWidth)/2;
-                    }
-                    else{
-                        popupLayoutParams.x += (popupWidth - newWidth)/2;
-                    }
+                    popupLayoutParams.x += (popupWidth - newWidth)/2;
+
 
                     initPointerDistance = currentPointerDistance;
 
