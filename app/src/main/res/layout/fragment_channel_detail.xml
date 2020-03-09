@@ -27,7 +27,7 @@
 				android:id="@+id/detail_content_root_layout"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:background="?android:windowBackground"
+				android:background="?attr/contrast_background_color"
 				app:layout_scrollFlags="scroll">
 
 				<ImageView

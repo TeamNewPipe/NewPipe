@@ -43,6 +43,7 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.InfoCache;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
 
@@ -475,10 +476,7 @@ public class ChannelDetailFragment
         headerTitleView.setText(name != null ? name : "");
 
         imageLoader.cancelDisplayTask(headerAvatarView);
-        headerAvatarView.setImageBitmap(null);
-
         imageLoader.cancelDisplayTask(headerChannelBanner);
-        headerChannelBanner.setImageBitmap(null);
     }
 
     private void initThumbnailViews(@NonNull ChannelInfo info) {
@@ -489,7 +487,7 @@ public class ChannelDetailFragment
 
         if (!TextUtils.isEmpty(info.getBannerUrl())) {
             imageLoader.displayImage(info.getBannerUrl(), headerChannelBanner,
-                    ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
+                    ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
         }
     }
 
@@ -499,7 +497,7 @@ public class ChannelDetailFragment
 
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName());
 
-        for (ChannelTabInfo tabInfo : currentInfo.getTabs()) {
+        for (ChannelTabInfo tabInfo : info.getTabs()) {
             pageAdapter.addFragment(ChannelTabFragment.getInstance(tabInfo), tabInfo.getName());
         }
 
@@ -509,6 +507,13 @@ public class ChannelDetailFragment
             tabLayout.setVisibility(View.GONE);
         } else {
             tabLayout.setVisibility(View.VISIBLE);
+        }
+
+        headerSubscribersTextView.setVisibility(View.VISIBLE);
+        if (info.getSubscriberCount() >= 0) {
+            headerSubscribersTextView.setText(Localization.shortSubscriberCount(activity, info.getSubscriberCount()));
+        } else {
+            headerSubscribersTextView.setText(R.string.subscribers_count_not_available);
         }
 
         pushToStack(serviceId, url, name);
