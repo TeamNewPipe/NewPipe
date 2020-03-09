@@ -194,7 +194,7 @@
     <string name="search_no_results">Brak wyników</string>
     <string name="no_views">Brak wyświetleń</string>
     <string name="show_hold_to_append_title">Pokaż wskazówkę \"Przytrzymaj, aby dodać\"</string>
-    <string name="show_hold_to_append_summary">Pokaż wskazówkę podczas naciśnięcia odtwarzania na stronie szczegółów filmu</string>
+    <string name="show_hold_to_append_summary">Pokaż wskazówkę po naciśnięciu tła lub wyskakującego w filmie przycisku „Szczegóły:”</string>
     <string name="background_player_append">W kolejce odtwarzania w tle</string>
     <string name="popup_playing_append">W kolejce odtwarzania okienkowego</string>
     <string name="play_all">Odtwórz wszystkie</string>
@@ -321,7 +321,7 @@
     <string name="enable_disposed_exceptions_title">Zgłaszanie błędów poza cyklem życia</string>
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
     <string name="use_inexact_seek_title">Użyj szybkiego niedokładnego wyszukiwania</string>
-    <string name="use_inexact_seek_summary">Niedokładne wyszukiwanie pozwala szybciej szukać pozycji z mniejszą precyzją. Wyszukiwanie przez 5, 15 lub 25 sekund nie działa z tym.</string>
+    <string name="use_inexact_seek_summary">Niedokładne wyszukiwanie pozwala szybciej szukać pozycji z mniejszą precyzją. Szukanie przez 5, 15 lub 25 sekund nie działa w tym przypadku.</string>
     <string name="download_thumbnail_title">Załaduj miniatury</string>
     <string name="download_thumbnail_summary">Wyłącz, aby nie ładować miniaturek, oszczędzając dane i zużycie pamięci. Zmienia wyczyszczenie pamięci podręcznej obrazów zarówno w pamięci, jak i na dysku.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
@@ -556,4 +556,6 @@
         <item quantity="many"/>
     </plurals>
     <string name="new_seek_duration_toast">Ze względu na ograniczenia ExoPlayer, czas trwania wyszukiwania został ustawiony na %d sekund</string>
+    <string name="mute">Wycisz</string>
+    <string name="unmute">Wyłącz wyciszenie</string>
 </resources>
