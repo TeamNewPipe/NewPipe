@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.MainThread;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ZipHelper;
 
@@ -55,6 +56,10 @@ public class BackupRestoreHelper {
     }
 
     public void exportDatabase(String path, char[] password) throws Exception {
+
+        //checkpoint before export
+        NewPipeDatabase.checkpoint();
+
         ZipHelper.addFileToZip(path, newpipe_db.getPath(), "newpipe.db", password);
         saveSharedPreferencesToFile(newpipe_settings);
         ZipHelper.addFileToZip(path, newpipe_settings.getPath(), "newpipe.settings", password);
