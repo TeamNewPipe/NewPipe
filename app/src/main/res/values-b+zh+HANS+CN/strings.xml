@@ -547,4 +547,6 @@
         <item quantity="other"/>
     </plurals>
     <string name="new_seek_duration_toast">由于ExoPlayer的限制，搜寻间隔设置为％d秒</string>
+    <string name="mute">静音</string>
+    <string name="unmute">取消静音</string>
 </resources>
