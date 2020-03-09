@@ -549,4 +549,6 @@
         <item quantity="other"/>
     </plurals>
     <string name="new_seek_duration_toast">A causa dei vincoli di ExoPlayer la durata dello spostamento rapido è stata impostata a %d secondi</string>
+    <string name="mute">Silenzia</string>
+    <string name="unmute">Riattiva audio</string>
 </resources>
