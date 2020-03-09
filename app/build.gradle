@@ -122,4 +122,6 @@ dependencies {
     implementation "net.lingala.zip4j:zip4j:${zip4j_version}"
 
     implementation "androidx.preference:preference:${preference_version}"
+
+    implementation 'com.github.yausername:EncryptedSharedPreferences:1.0.0-beta01'
 }

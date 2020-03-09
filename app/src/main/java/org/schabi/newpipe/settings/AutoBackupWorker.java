@@ -1,11 +1,11 @@
 package org.schabi.newpipe.settings;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
@@ -29,7 +29,8 @@ public class AutoBackupWorker extends Worker {
         try {
             new File(autoBackupPath).mkdirs();
             String path = autoBackupPath + File.separator + "NewPipeData-" + Build.MODEL + ".zip";
-            String password = PreferenceManager.getDefaultSharedPreferences(ctx).getString(ctx.getString(R.string.backup_password_key), null);
+            SharedPreferences encryptedSharedPreferences = EncryptedSharedPreferencesHelper.create(ctx);
+            String password = (encryptedSharedPreferences != null) ? encryptedSharedPreferences.getString(ctx.getString(R.string.backup_password_key), null) : null;
             if(TextUtils.isEmpty(password)) return Result.failure();
             backupRestoreHelper.exportDatabase(path, password.toCharArray());
         } catch (Exception e) {

@@ -62,14 +62,9 @@ public class BackupRestoreHelper {
 
     private void saveSharedPreferencesToFile(File dst) {
         ObjectOutputStream output = null;
-        SharedPreferences pref = null;
-        String password = null;
         try {
             output = new ObjectOutputStream(new FileOutputStream(dst));
-            pref = PreferenceManager.getDefaultSharedPreferences(ctx);
-            // remove password from shared prefs before taking backup
-            password = pref.getString(ctx.getString(R.string.backup_password_key), null);
-            pref.edit().remove(ctx.getString(R.string.backup_password_key)).apply();
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
             output.writeObject(pref.getAll());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -83,9 +78,6 @@ public class BackupRestoreHelper {
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
-            } finally {
-                // add password again after taking backup
-                if(pref != null) pref.edit().putString(ctx.getString(R.string.backup_password_key), password).apply();
             }
         }
     }
@@ -158,9 +150,7 @@ public class BackupRestoreHelper {
             prefEdit.commit();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {

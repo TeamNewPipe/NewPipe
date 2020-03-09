@@ -6,6 +6,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -123,6 +124,7 @@ public class BackupSettingsFragment extends BasePreferenceFragment {
             if((Boolean) newValue) PermissionHelper.checkStoragePermissions(getActivity(), BACKUP_STORAGE_PERMISSION_REQUEST_CODE);
             return true;
         });
+
         Boolean autoBackup = defaultPreferences.getBoolean(getString(R.string.scheduled_backups_key), false);
         if(autoBackup) PermissionHelper.checkStoragePermissions(getActivity(), BACKUP_STORAGE_PERMISSION_REQUEST_CODE);
 
@@ -303,7 +305,8 @@ public class BackupSettingsFragment extends BasePreferenceFragment {
     private void scheduleWork(String tag) {
         Boolean autoBackup = defaultPreferences.getBoolean(getString(R.string.scheduled_backups_key), false);
         if(autoBackup){
-            if(TextUtils.isEmpty(defaultPreferences.getString(ctx.getString(R.string.backup_password_key), null))){
+            SharedPreferences encryptedSharedPreferences = EncryptedSharedPreferencesHelper.create(requireContext());
+            if(encryptedSharedPreferences == null || TextUtils.isEmpty(encryptedSharedPreferences.getString(ctx.getString(R.string.backup_password_key), null))){
                 Toast.makeText(ctx, R.string.auto_backup_password_mandatory, Toast.LENGTH_LONG).show();
             }
             Integer interval = Integer.valueOf(defaultPreferences.getString(getString(R.string.backup_frequency_key), "24"));
@@ -316,6 +319,7 @@ public class BackupSettingsFragment extends BasePreferenceFragment {
             WorkManager.getInstance(ctx).cancelUniqueWork(tag);
         }
     }
+
 
     @Override
     public void onPause() {

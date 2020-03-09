@@ -25,8 +25,9 @@
         android:summary="%s"
         android:title="@string/auto_backup_frequency_title"/>
 
-    <EditTextPreference
+    <org.schabi.newpipe.settings.PasswordPreference
         app:iconSpaceReserved="false"
+        android:persistent="false"
         android:dialogLayout="@layout/dialog_password"
         android:dependency="@string/scheduled_backups_key"
         android:key="@string/backup_password_key"
