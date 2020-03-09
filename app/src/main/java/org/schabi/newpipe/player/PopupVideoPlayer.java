@@ -1265,7 +1265,7 @@ public final class PopupVideoPlayer extends Service {
                 return false;
             }
 
-            if(initPointerDistance != -1){
+            if (initPointerDistance != -1) {
 
                 //get the movements of the fingers
                 float firstPointerMoveX = event.getX(0) - initFirstPointerX;
@@ -1275,8 +1275,8 @@ public final class PopupVideoPlayer extends Service {
                 //minimum threshold beyond which pinch gesture will work
                 int scaledTouchSlop = ViewConfiguration.get(PopupVideoPlayer.this).getScaledTouchSlop();
 
-                if(firstPointerMoveX > scaledTouchSlop ||firstPointerMoveY > scaledTouchSlop ||
-                        secPointerMoveX > scaledTouchSlop || secPointerMoveY > scaledTouchSlop) {
+                if (firstPointerMoveX > scaledTouchSlop ||firstPointerMoveY > scaledTouchSlop
+                        || secPointerMoveX > scaledTouchSlop || secPointerMoveY > scaledTouchSlop) {
 
                     double newWidth = popupWidth;
 
