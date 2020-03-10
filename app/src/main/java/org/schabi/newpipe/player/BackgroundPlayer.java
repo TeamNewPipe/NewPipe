@@ -451,7 +451,7 @@ public final class BackgroundPlayer extends Service {
 
         private void updateMetadata() {
             if (activityListener != null && getCurrentMetadata() != null) {
-                activityListener.onMetadataUpdate(getCurrentMetadata().getMetadata());
+                activityListener.onMetadataUpdate(getCurrentMetadata().getMetadata(), playQueue);
             }
         }
 

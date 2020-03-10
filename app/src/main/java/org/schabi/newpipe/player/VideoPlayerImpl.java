@@ -761,7 +761,8 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void setupScreenRotationButton() {
         boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(service);
-        boolean showButton = (orientationLocked || isVerticalVideo || isTablet(service)) && videoPlayerSelected();
+        boolean tabletInLandscape = isTablet(service) && service.isLandscape();
+        boolean showButton = videoPlayerSelected() && (orientationLocked || isVerticalVideo || tabletInLandscape);
         screenRotationButton.setVisibility(showButton ? View.VISIBLE : View.GONE);
         screenRotationButton.setImageDrawable(service.getResources().getDrawable(
                 isInFullscreen() ? R.drawable.ic_fullscreen_exit_white : R.drawable.ic_fullscreen_white));
@@ -1048,10 +1049,10 @@ public class VideoPlayerImpl extends VideoPlayer
                 useVideoSource(true);
                 break;
             case VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED:
-                // This will be called when user goes to another app
-                // We don't want to interrupt playback and don't want to see notification if player is stopped
-                // since next lines of code will enable background playback if needed
-                if (videoPlayerSelected() && isPlaying()) {
+                // This will be called when user goes to another app/activity, turns off a screen.
+                // We don't want to interrupt playback and don't want to see notification if player is stopped.
+                // Next lines of code will enable background playback if needed
+                if (videoPlayerSelected() && (isPlaying() || isLoading())) {
                     if (backgroundPlaybackEnabled()) {
                         useVideoSource(false);
                     } else if (minimizeOnPopupEnabled()) {
@@ -1076,14 +1077,15 @@ public class VideoPlayerImpl extends VideoPlayer
                 break;
             case Intent.ACTION_SCREEN_ON:
                 shouldUpdateOnProgress = true;
-                // Interrupt playback only when screen turns on and user is watching video in fragment
-                if (backgroundPlaybackEnabled() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
+                // Interrupt playback only when screen turns on and user is watching video in popup player
+                // Same action for video player will be handled in ACTION_VIDEO_FRAGMENT_RESUMED event
+                if (backgroundPlaybackEnabled() && popupPlayerSelected() && (isPlaying() || isLoading()))
                     useVideoSource(true);
                 break;
             case Intent.ACTION_SCREEN_OFF:
                 shouldUpdateOnProgress = false;
-                // Interrupt playback only when screen turns off with video working
-                if (backgroundPlaybackEnabled() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
+                // Interrupt playback only when screen turns off with popup player working
+                if (backgroundPlaybackEnabled() && popupPlayerSelected() && (isPlaying() || isLoading()))
                     useVideoSource(false);
                 break;
         }
@@ -1330,7 +1332,7 @@ public class VideoPlayerImpl extends VideoPlayer
         AppCompatActivity parent = getParentActivity();
         boolean videoInLandscapeButNotInFullscreen = service.isLandscape() && !isInFullscreen() && videoPlayerSelected() && !audioOnly;
         boolean playingState = getCurrentState() != STATE_COMPLETED && getCurrentState() != STATE_PAUSED;
-        if (parent != null && videoInLandscapeButNotInFullscreen && playingState)
+        if (parent != null && videoInLandscapeButNotInFullscreen && playingState && !PlayerHelper.isTablet(service))
             toggleFullscreen();
 
         setControlsSize();
@@ -1695,10 +1697,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void updateMetadata() {
         if (fragmentListener != null && getCurrentMetadata() != null) {
-            fragmentListener.onMetadataUpdate(getCurrentMetadata().getMetadata());
+            fragmentListener.onMetadataUpdate(getCurrentMetadata().getMetadata(), playQueue);
         }
         if (activityListener != null && getCurrentMetadata() != null) {
-            activityListener.onMetadataUpdate(getCurrentMetadata().getMetadata());
+            activityListener.onMetadataUpdate(getCurrentMetadata().getMetadata(), playQueue);
         }
     }
 

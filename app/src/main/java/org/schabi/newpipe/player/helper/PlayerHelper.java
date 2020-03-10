@@ -200,6 +200,10 @@ public class PlayerHelper {
         return isAutoQueueEnabled(context, false);
     }
 
+    public static boolean isClearingQueueConfirmationRequired(@NonNull final Context context) {
+        return getPreferences(context).getBoolean(context.getString(R.string.clear_queue_confirmation_key), false);
+    }
+
     @MinimizeMode
     public static int getMinimizeOnExitAction(@NonNull final Context context) {
         final String defaultAction = context.getString(R.string.minimize_on_exit_none_key);

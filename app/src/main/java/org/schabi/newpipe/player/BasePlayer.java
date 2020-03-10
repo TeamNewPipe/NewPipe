@@ -1236,6 +1236,10 @@ public abstract class BasePlayer implements
         return simpleExoPlayer != null && simpleExoPlayer.isPlaying();
     }
 
+    public boolean isLoading() {
+        return simpleExoPlayer != null && simpleExoPlayer.isLoading();
+    }
+
     @Player.RepeatMode
     public int getRepeatMode() {
         return simpleExoPlayer == null

@@ -35,14 +35,17 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
         // Found that user still swiping, continue following
         if (skippingInterception) return false;
 
-        // Without overriding scrolling will not work when user touches these elements
-        for (Integer element : skipInterceptionOfElements) {
-            ViewGroup viewGroup = child.findViewById(element);
-            if (viewGroup != null) {
-                visible = viewGroup.getGlobalVisibleRect(globalRect);
-                if (visible && globalRect.contains((int) event.getRawX(), (int) event.getRawY())) {
-                    skippingInterception = true;
-                    return false;
+        // Don't need to do anything if bottomSheet isn't expanded
+        if (getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            // Without overriding scrolling will not work when user touches these elements
+            for (Integer element : skipInterceptionOfElements) {
+                ViewGroup viewGroup = child.findViewById(element);
+                if (viewGroup != null) {
+                    visible = viewGroup.getGlobalVisibleRect(globalRect);
+                    if (visible && globalRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                        skippingInterception = true;
+                        return false;
+                    }
                 }
             }
         }

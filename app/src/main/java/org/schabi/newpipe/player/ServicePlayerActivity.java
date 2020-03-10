@@ -596,7 +596,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMetadataUpdate(StreamInfo info) {
+    public void onMetadataUpdate(StreamInfo info, PlayQueue queue) {
         if (info != null) {
             metadataTitle.setText(info.getName());
             metadataArtist.setText(info.getUploaderName());
