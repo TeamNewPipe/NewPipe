@@ -12,7 +12,11 @@ android:
 
 before_install: 
   - yes | sdkmanager "platforms;android-28"
+  - echo -e "machine github.com\n  login newpipe-machine-user\n  password $CI_USER_PASSWORD" > ~/.netrc
+  - echo -e "machine api.github.com\n  login newpipe-machine-user\n  password $CI_USER_PASSWORD" >> ~/.netrc
+  - chmod 600 ~/.netrc
+  - chmod +x ./dev-scripts/uploadApkAndCommentOnPR.sh
 script: ./gradlew -Dorg.gradle.jvmargs=-Xmx1536m assembleDebug lintDebug testDebugUnitTest
 
-licenses:
-  - '.+'
+after_success:
+  - ./dev-scripts/uploadApkAndCommentOnPR.sh
