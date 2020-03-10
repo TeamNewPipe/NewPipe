@@ -316,7 +316,7 @@ abrir em modo popup</string>
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o descarte</string>
     <string name="use_inexact_seek_title">Usar pesquisa rápida</string>
-    <string name="use_inexact_seek_summary">A pesquisa rápida permite que o player procure resultados mais rapidamente porém com precisão reduzida</string>
+    <string name="use_inexact_seek_summary">A pesquisa rápida permite que o player procure resultados mais rapidamente porém com precisão reduzida. Pesquisar por 5, 15 ou 25 segundos não funciona com isso.</string>
     <string name="auto_queue_title">Adicionar o próximo vídeo à fila automaticamente</string>
     <string name="auto_queue_summary">Adiciona automaticamente um vídeo relacionado ao último da lista quando a repetição estiver desativada</string>
     <string name="file">Arquivo</string>
