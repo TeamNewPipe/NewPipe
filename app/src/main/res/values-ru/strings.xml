@@ -555,4 +555,7 @@
         <item quantity="few"/>
         <item quantity="many"/>
     </plurals>
+    <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность поиска составляет %d секунд</string>
+    <string name="mute">Отключить звук</string>
+    <string name="unmute">Включить звук</string>
 </resources>
