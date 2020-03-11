@@ -333,7 +333,7 @@
     <string name="playback_tempo">קצב</string>
     <string name="playback_default">ברירת מחדל</string>
     <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
-    <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר</string>
+    <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר. חיפוש של 5, 15 או 25 שניות לא עובד עם ההגדרה הזאת.</string>
     <string name="download_thumbnail_title">טעינת תמונות ממוזערות</string>
     <string name="download_thumbnail_summary">כיבוי האפשרות מונע את טעינת התמונות הממוזערות, חוסך בתקשורת נתונים ובניצולת הזיכרון. שינויים באפשרות זו מוחקים את המטמון בזיכרון ובכונן.</string>
     <string name="metadata_cache_wipe_summary">הסרת כל נתוני העמודים שבמטמון</string>
@@ -383,7 +383,7 @@
     <string name="import_network_expensive_warning">נא לשים לב כי פעולה זו עשויה להעמיס על תקשורת הנתונים. 
 \n 
 \nלהמשיך\?</string>
-    <string name="unhook_checkbox">ניתוק קישור (עלול ליצור עיוות)</string>
+    <string name="unhook_checkbox">ניתוק קשר (עלול ליצור עיוות)</string>
     <string name="skip_silence_checkbox">להאיץ קדימה כאשר שקט</string>
     <string name="playback_step">צעד</string>
     <string name="playback_reset">איפוס</string>
@@ -507,7 +507,7 @@
 \nיש להפעיל זאת אם ברצונך להוריד לכרטיס SD חיצוני</string>
     <string name="downloads_storage_use_saf_title">שימוש ב־SAF</string>
     <string name="downloads_storage_use_saf_summary">‚תשתית גישה לאחסון’ מאפשרת הורדות לכרטיס SD חיצוני. 
-\nלתשומת לבך: חלק מהמכשירים אינם נתמכים</string>
+\nחלק מהמכשירים אינם נתמכים</string>
     <string name="clear_playback_states_title">מחיקת מיקומי נגינה</string>
     <string name="clear_playback_states_summary">מחיקת כל מיקומי הנגינה</string>
     <string name="delete_playback_states_alert">למחוק את מיקומי הנגינה\?</string>
@@ -558,8 +558,11 @@
     <string name="videos_string">סרטונים</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s שניות</item>
-        <item quantity="two"></item>
-        <item quantity="many"></item>
-        <item quantity="other"></item>
+        <item quantity="two"/>
+        <item quantity="many"/>
+        <item quantity="other"/>
     </plurals>
+    <string name="new_seek_duration_toast">עקב מגבלות של ExoPlayer מגבלות טווחי החיפוש הוגדרו לכדי %d שניות</string>
+    <string name="mute">השתקה</string>
+    <string name="unmute">ביטול השתקה</string>
 </resources>

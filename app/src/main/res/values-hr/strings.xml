@@ -466,9 +466,9 @@
     <string name="show_comments_summary">Onemogućite da biste prestali prikazivati komentare</string>
     <string name="autoplay_title">Automatska reprodukcija</string>
     <plurals name="comments">
-        <item quantity="one">Komentari</item>
-        <item quantity="few"/>
-        <item quantity="other"/>
+        <item quantity="one">%s komentar</item>
+        <item quantity="few">%s komentara</item>
+        <item quantity="other">%s komentara</item>
     </plurals>
     <string name="no_comments">Nema komentara</string>
     <string name="error_unable_to_load_comments">Komentare nije moguće učitati</string>

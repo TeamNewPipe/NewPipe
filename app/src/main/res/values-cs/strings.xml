@@ -321,7 +321,7 @@ otevření ve vyskakovacím okně</string>
     <string name="enable_disposed_exceptions_title">Nahlásit mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynutit hlášení nedoručitelných výjimek Rx mimo životnost fragmentu nebo aktivity po odstranění</string>
     <string name="use_inexact_seek_title">Použít rychlé nepřesné hledání</string>
-    <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností</string>
+    <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností. Posouvání po 5, 15 nebo 25 vteřinách s tímto nefunguje.</string>
     <string name="download_thumbnail_title">Načítat náhledy</string>
     <string name="download_thumbnail_summary">Vypnout, aby se zabránilo načítání náhledů a tím se ušetřily data a používání paměti. Změna tohoto nastavení vyčistí mezipamět obrázků v paměti i na disku.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Mezipaměť obrázků vymazána</string>
@@ -503,7 +503,7 @@ otevření ve vyskakovacím okně</string>
 \nZvolte SAF, pokud si přejete stahovat na externí SD kartu</string>
     <string name="downloads_storage_use_saf_title">Použít SAF</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje stahovat na externí SD kartu. 
-\nUpozornění: některá zařízení jsou nekompatibilní</string>
+\nNěkterá zařízení nejsou kompatibilní</string>
     <string name="enable_playback_state_lists_summary">Zobrazit pozici přehrávání v seznamech</string>
     <string name="watch_history_states_deleted">Pozice playbacku smazány.</string>
     <string name="error_timeout">Timeout spojení</string>
@@ -558,4 +558,7 @@ otevření ve vyskakovacím okně</string>
         <item quantity="few"/>
         <item quantity="other"/>
     </plurals>
+    <string name="new_seek_duration_toast">Kvůli omezením ExoPlayer bylo prohledávání nastaveno na %d vteřin</string>
+    <string name="mute">Umlčet</string>
+    <string name="unmute">Odumlčet</string>
 </resources>

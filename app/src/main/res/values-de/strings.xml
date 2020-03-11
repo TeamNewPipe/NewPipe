@@ -305,7 +305,7 @@
     <string name="dismiss">Abbrechen</string>
     <string name="controls_download_desc">Stream-Datei herunterladen</string>
     <string name="use_inexact_seek_title">Schnelle, ungenaue Suche verwenden</string>
-    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden</string>
+    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden. Die Suche nach 5, 15 oder 25 Sekunden funktioniert damit nicht.</string>
     <string name="file">Datei</string>
     <string name="invalid_directory">Ordner existiert nicht</string>
     <string name="invalid_file">Die Datei existiert nicht oder die Rechte zum Lesen oder Schreiben fehlen</string>
@@ -500,7 +500,7 @@
 \nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
     <string name="downloads_storage_use_saf_title">SAF verwenden</string>
     <string name="downloads_storage_use_saf_summary">Das ‚Storage Access Framework‘ ermöglicht Downloads auf eine externe SD-Karte. 
-\nHinweis: Manche Geräte sind nicht kompatibel</string>
+\nManche Geräte sind nicht kompatibel</string>
     <string name="clear_playback_states_title">Wiedergabepositionen löschen</string>
     <string name="clear_playback_states_summary">Alle Wiedergabepositionen löschen</string>
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
@@ -550,4 +550,6 @@
         <item quantity="one">%s Sekunden</item>
         <item quantity="other"/>
     </plurals>
+    <string name="new_seek_duration_toast">Aufgrund von ExoPlayer-Einschränkungen wurde die Suchdauer auf %d Sekunden gesetzt</string>
+    <string name="mute">Stumm</string>
 </resources>

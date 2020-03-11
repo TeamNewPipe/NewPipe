@@ -311,7 +311,7 @@
     <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
     <string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
-    <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置</string>
+    <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置。尋找 5、15或25秒無法與其一同使用。</string>
     <string name="auto_queue_title">自動將下一部影片新增至佇列</string>
     <string name="auto_queue_summary">透過加入相關的串流來繼續結束的（未重複）播放佇列</string>
     <string name="file">檔案</string>
@@ -491,8 +491,8 @@
     <string name="downloads_storage_ask_summary_kitkat">每次下載您都會被詢問要下載到哪裡。
 \n如果您想要下載到外部的 SD 卡的話，請選擇 SAF</string>
     <string name="downloads_storage_use_saf_title">使用 SAF</string>
-    <string name="downloads_storage_use_saf_summary">儲存存取框架讓您可以下載到外部的 SD 卡。
-\n注意：可能與某些裝置不相容</string>
+    <string name="downloads_storage_use_saf_summary">儲存存取框架讓您可以下載到外部的 SD 卡。 
+\n可能與某些裝置不相容</string>
     <string name="clear_playback_states_title">刪除播放位置</string>
     <string name="clear_playback_states_summary">刪除所有播放位置</string>
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
@@ -545,4 +545,7 @@
         <item quantity="one">%s秒</item>
         <item quantity="other"/>
     </plurals>
+    <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
+    <string name="mute">靜音</string>
+    <string name="unmute">取消靜音</string>
 </resources>
