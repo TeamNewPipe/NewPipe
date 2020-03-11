@@ -38,7 +38,7 @@ import okhttp3.ResponseBody;
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
 public class DownloaderImpl extends Downloader {
-    public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
+    public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101 Firefox/68.0";
 
     private static DownloaderImpl instance;
     private String mCookies;
@@ -171,7 +171,8 @@ public class DownloaderImpl extends Downloader {
             responseBodyToReturn = body.string();
         }
 
-        return new Response(response.code(), response.message(), response.headers().toMultimap(), responseBodyToReturn);
+        final String latestUrl = response.request().url().toString();
+        return new Response(response.code(), response.message(), response.headers().toMultimap(), responseBodyToReturn, latestUrl);
     }
 
     /**

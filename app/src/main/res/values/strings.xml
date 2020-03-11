@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">NewPipe</string>
     <string name="main_bg_subtitle">Tap \"Search\" to get started</string>
     <string name="view_count_text">%1$s views</string>
     <string name="upload_date_text">Published on %1$s</string>
@@ -71,7 +70,7 @@
     <string name="popup_remember_size_pos_title">Remember popup size and position</string>
     <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
-    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
+    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this.</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
     <string name="show_comments_title">Show comments</string>
@@ -448,6 +447,8 @@
     <string name="rename_playlist">Rename</string>
     <string name="playlist_name_input">Name</string>
     <string name="append_playlist">Add To Playlist</string>
+    <string name="mute">Mute</string>
+    <string name="unmute">Unmute</string>
     <string name="set_as_playlist_thumbnail">Set as Playlist Thumbnail</string>
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
@@ -588,11 +589,12 @@
     <string name="downloads_storage_ask_summary">You will be asked where to save each download</string>
     <string name="downloads_storage_ask_summary_kitkat">You will be asked where to save each download.\nChoose SAF if you want to download to an external SD card</string>
     <string name="downloads_storage_use_saf_title">Use SAF</string>
-    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card.\nNote: some devices are incompatible</string>
+    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card.\nSome devices are incompatible</string>
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
     <string name="dynamic_seek_duration_description">%s seconds</string>
+    <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="other">%s seconds</item>
     </plurals>

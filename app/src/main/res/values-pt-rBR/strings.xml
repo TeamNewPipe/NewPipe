@@ -7,7 +7,7 @@
     <string name="what_device_headline">Informações:</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
-    <string name="video_is_age_restricted">Contém vídeo com restrição de idade. É possível permitir vídeos com essa restrição em Configurações &gt; Conteúdo.</string>
+    <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. É possível alterar esta opção no menu de configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz um vídeo quando o NewPipe for aberto a partir de outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
@@ -30,9 +30,9 @@
     <string name="download_dialog_title">Baixar</string>
     <string name="error_details_headline">Detalhes:</string>
     <string name="err_dir_create">Não foi possível criar pasta de download \'%1$s\'</string>
-    <string name="error_report_button_text">Reportar erro por e-mail</string>
+    <string name="error_report_button_text">Reportar este erro por e-mail</string>
     <string name="error_report_title">Relatório de erro</string>
-    <string name="error_snackbar_action">RELATÓRIO</string>
+    <string name="error_snackbar_action">Relatório</string>
     <string name="error_snackbar_message">Desculpe, ocorreram alguns erros.</string>
     <string name="finish">OK</string>
     <string name="general_error">Erro</string>
@@ -53,7 +53,7 @@
     <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
-    <string name="report_error">Reportar um erro</string>
+    <string name="report_error">Reportar erro</string>
     <string name="retry">Tentar novamente</string>
     <string name="screen_rotation">Rotação</string>
     <string name="content_language_title">Idioma favorito de conteúdo</string>
@@ -67,12 +67,12 @@
     <string name="show_next_and_similar_title">Mostrar \'Próximo\' e \'Relacionados\'</string>
     <string name="sorry_string">Desculpe, isto não deveria ter acontecido.</string>
     <string name="start">Iniciar</string>
-    <string name="storage_permission_denied">Permissão para acessar armazenamento negada</string>
+    <string name="storage_permission_denied">Permita acesso ao armazenamento primeiramente</string>
     <string name="theme_title">Tema</string>
     <string name="upload_date_text">Publicado em  %1$s</string>
     <string name="url_not_supported_toast">Link não suportado</string>
     <string name="default_language_value">pt</string>
-    <string name="duration_live">AO VIVO</string>
+    <string name="duration_live">Ao vivo</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="did_you_mean">Você quis dizer: %1$s\?</string>
@@ -88,7 +88,7 @@
     <string name="download_path_dialog_title">Escolha a pasta de download para vídeos</string>
     <string name="download_path_summary">Os vídeos baixados serão salvos aqui</string>
     <string name="download_path_title">Pasta para vídeos baixados</string>
-    <string name="kore_not_found">Aplicativo Kore não instalado. Instalar?</string>
+    <string name="kore_not_found">Instalar o aplicativo faltante Kore\?</string>
     <string name="light_parsing_error">Não foi possível interpretar completamente o site</string>
     <string name="list_thumbnail_view_description">Capa do vídeo</string>
     <string name="live_streams_not_supported">Transmissões ao vivo ainda não são suportadas</string>
@@ -97,7 +97,7 @@
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">Link inválido ou internet indisponível</string>
     <string name="no_available_dir">Selecione uma pasta de download posteriormente nas configurações</string>
-    <string name="no_player_found">Nenhum player de vídeo encontrado. Deseja instalar o VLC\?</string>
+    <string name="no_player_found">Nenhum player de vídeo encontrado. Instalar o VLC\?</string>
     <string name="parsing_error">Não foi possível interpretar o site</string>
     <string name="play_audio">Áudio</string>
     <string name="play_btn_text">Reproduzir</string>
@@ -127,7 +127,7 @@
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">Essa permissão é necessária para
 abrir em modo popup</string>
-    <string name="popup_mode_share_menu_title">Modo de popup NewPipe</string>
+    <string name="popup_mode_share_menu_title">Modo popup</string>
     <string name="filter">Filtro</string>
     <string name="refresh">Atualizar</string>
     <string name="clear">Limpar</string>
@@ -137,7 +137,7 @@ abrir em modo popup</string>
     <string name="popup_remember_size_pos_summary">Lembra da última posição e o tamanho usado no popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
-    <string name="use_external_video_player_summary">Remove o áudio em ALGUMAS resoluções</string>
+    <string name="use_external_video_player_summary">Remove o áudio em algumas resoluções</string>
     <string name="player_gesture_controls_title">Controle por gestos do player</string>
     <string name="player_gesture_controls_summary">Use gestos para controlar o volume e o brilho do player</string>
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
@@ -174,7 +174,7 @@ abrir em modo popup</string>
     <string name="tab_subscriptions">Inscrições</string>
     <string name="fragment_whats_new">Novidades</string>
     <string name="resume_on_audio_focus_gain_title">Retomar reprodução</string>
-    <string name="resume_on_audio_focus_gain_summary">Ative para continuar reproduzindo depois de interrupções (por exemplo: ligações)</string>
+    <string name="resume_on_audio_focus_gain_summary">Continuar reproduzindo depois de interrupções (por exemplo: ligações)</string>
     <string name="enable_search_history_title">Histórico de pesquisas</string>
     <string name="enable_search_history_summary">Armazena histórico de pesquisas feitas</string>
     <string name="enable_watch_history_title">Histórico de assistidos</string>
@@ -246,7 +246,7 @@ abrir em modo popup</string>
     <string name="start_here_on_background">Iniciar a reprodução quando estiver em segundo plano</string>
     <string name="start_here_on_popup">Reproduzir em novo popup</string>
     <string name="donation_title">Doar</string>
-    <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que usam seu tempo para trazer a melhor experiência para você. Retribua para ajudar os desenvolvedores a tornarem o NewPipe ainda melhor enquanto desfrutam uma xícara de café.</string>
+    <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que usam seu tempo livre para trazer a melhor experiência para você. Retribua para ajudar os desenvolvedores a tornarem o NewPipe ainda melhor enquanto desfrutam uma xícara de café.</string>
     <string name="give_back">Retribuir</string>
     <string name="website_title">Site oficial</string>
     <string name="website_encouragement">Visite o site do NewPipe para mais informações e novidades.</string>
@@ -311,7 +311,7 @@ abrir em modo popup</string>
     <string name="resize_zoom">Zoom</string>
     <string name="drawer_header_action_paceholder_text">Algo irá aparecer aqui em breve ;D</string>
     <string name="caption_auto_generated">Gerado automaticamente</string>
-    <string name="enable_leak_canary_title">Habilitar LeakCanary</string>
+    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">O monitoramento de vazamento de memória pode fazer com que o aplicativo fique sem responder ao despejar a pilha</string>
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o descarte</string>
@@ -424,7 +424,7 @@ abrir em modo popup</string>
     <string name="app_update_notification_channel_description">Notificações para nova versão do NewPipe</string>
     <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
     <string name="download_to_sdcard_error_message">Não foi possível baixar para o cartão SD externo. Redefinir a pasta de download\?</string>
-    <string name="saved_tabs_invalid_json">Usando abas padrões, erro ao ler abas salvas</string>
+    <string name="saved_tabs_invalid_json">Não foi possível carregar as abas salvas, carregando então as abas padrão</string>
     <string name="restore_defaults">Restaurar padrões</string>
     <string name="restore_defaults_confirmation">Deseja restaurar os padrões\?</string>
     <string name="subscribers_count_not_available">Número de inscritos indisponível</string>
@@ -458,7 +458,7 @@ abrir em modo popup</string>
     <string name="error_file_creation">O arquivo não pode ser criado</string>
     <string name="error_path_creation">Não foi possível criar a pasta de destino</string>
     <string name="error_permission_denied">Permissão negada pelo sistema</string>
-    <string name="error_ssl_exception">Falha na conexão segura</string>
+    <string name="error_ssl_exception">Não foi possível estabelecer uma conexão segura</string>
     <string name="error_unknown_host">Não foi possível encontrar o servidor</string>
     <string name="error_connect_host">Não foi possível conectar ao servidor</string>
     <string name="error_http_no_content">O servidor não envia dados</string>
@@ -476,7 +476,7 @@ abrir em modo popup</string>
     <string name="show_comments_summary">Desative para ocultar comentários</string>
     <string name="autoplay_title">Reprodução automática</string>
     <plurals name="comments">
-        <item quantity="one">Comentário</item>
+        <item quantity="one">%s comentários</item>
         <item quantity="other">Comentários</item>
     </plurals>
     <string name="no_comments">Sem comentários</string>
@@ -528,7 +528,7 @@ abrir em modo popup</string>
     <string name="seek_duration_title">Duração do avançar/retroceder rápido</string>
     <string name="peertube_instance_url_title">Instâncias PeerTube</string>
     <string name="peertube_instance_url_summary">Selecione instâncias PeerTube favoritas</string>
-    <string name="peertube_instance_url_help">Encontre instâncias PeerTube em %s</string>
+    <string name="peertube_instance_url_help">Encontre instâncias que você gosta em %s</string>
     <string name="peertube_instance_add_title">Adicionar instância</string>
     <string name="peertube_instance_add_help">Insira o link aqui</string>
     <string name="peertube_instance_add_fail">Não foi possível acessá-la</string>
@@ -541,8 +541,8 @@ abrir em modo popup</string>
     <string name="recovering">recuperando</string>
     <string name="error_download_resource_gone">Não foi possível recuperar o download</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Ativar capa do vídeo na tela de bloqueio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Mostra capa do vídeo na tela de bloqueio ao usar player em segundo plano</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Capa do vídeo na tela de bloqueio</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">A capa do vídeo é mostrada na tela de bloqueio ao usar player em segundo plano</string>
     <string name="clear_download_history">Limpar histórico de downloads</string>
     <string name="delete_downloaded_files">Excluir arquivos baixados</string>
     <string name="deleted_downloads">%1$s arquivos excluídos</string>
@@ -551,4 +551,9 @@ abrir em modo popup</string>
     <string name="systems_language">Padrão do sistema</string>
     <string name="subtitle_activity_recaptcha">Toque em \"Feito\" ao resolver</string>
     <string name="recaptcha_done_button">Feito</string>
+    <string name="videos_string">Vídeos</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s segundos</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>

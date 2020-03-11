@@ -33,6 +33,13 @@
 
     <PreferenceScreen
         app:iconSpaceReserved="false"
+        android:fragment="org.schabi.newpipe.settings.tabs.ChooseTabsFragment"
+        android:summary="@string/main_page_content_summary"
+        android:key="@string/main_page_content_key"
+        android:title="@string/main_page_content"/>
+
+    <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.PeertubeInstanceListFragment"
         android:key="@string/peertube_instance_setup_key"
         android:title="@string/peertube_instance_url_title"
@@ -57,6 +64,12 @@
         android:key="@string/download_thumbnail_key"
         android:title="@string/download_thumbnail_title"
         android:summary="@string/download_thumbnail_summary"/>
+
+    <SwitchPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="true"
+        android:key="@string/show_next_video_key"
+        android:title="@string/show_next_and_similar_title"/>
 
     <SwitchPreference
         app:iconSpaceReserved="false"

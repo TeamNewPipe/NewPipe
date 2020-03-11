@@ -395,6 +395,24 @@
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="@string/switch_to_background"
                     tools:ignore="RtlHardcoded"/>
+
+                <ImageButton
+                    android:id="@+id/switchMute"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_toLeftOf="@id/switchBackground"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_volume_off_white_24dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/switch_to_background"
+                    tools:ignore="RtlHardcoded"
+                    android:tint="@color/gray"/>
             </RelativeLayout>
 
             <LinearLayout
