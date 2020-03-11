@@ -551,9 +551,9 @@
     <string name="duration_live_button" translatable="false">Трансляция</string>
     <string name="videos_string">Видео</string>
     <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s секунд</item>
-        <item quantity="few"/>
-        <item quantity="many"/>
+        <item quantity="one">%s секунда</item>
+        <item quantity="few">%s секунды</item>
+        <item quantity="many">%s секунд</item>
     </plurals>
     <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность поиска составляет %d секунд</string>
     <string name="mute">Отключить звук</string>
