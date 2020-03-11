@@ -550,5 +550,6 @@
         <item quantity="other">%s secondes</item>
     </plurals>
     <string name="new_seek_duration_toast">En raison des contraintes d’ExoPlayer, le pas de déplacement a été réglée à %d secondes</string>
-    <string name="mute">Silence</string>
+    <string name="mute">Couper le son</string>
+    <string name="unmute">Remettre le son</string>
 </resources>
