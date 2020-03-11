@@ -559,4 +559,6 @@ otevření ve vyskakovacím okně</string>
         <item quantity="other"/>
     </plurals>
     <string name="new_seek_duration_toast">Kvůli omezením ExoPlayer bylo prohledávání nastaveno na %d vteřin</string>
+    <string name="mute">Umlčet</string>
+    <string name="unmute">Odumlčet</string>
 </resources>
