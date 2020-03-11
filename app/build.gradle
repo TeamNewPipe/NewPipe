@@ -3,12 +3,31 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+
+static String getGitWorkingBranch() {
+    try {
+        def gitProcess = "git rev-parse --abbrev-ref HEAD".execute()
+        gitProcess.waitFor()
+        if (gitProcess.exitValue() == 0) {
+            return gitProcess.text.trim()
+        } else {
+            // not a git repository
+            return ""
+        }
+    } catch (IOException ignored) {
+        // git was not found
+        return ""
+    }
+}
+
+
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
+        resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 860
@@ -28,7 +47,18 @@ android {
         debug {
             multiDexEnabled true
             debuggable true
-            applicationIdSuffix ".debug"
+
+            // suffix the app id and the app name with git branch name
+            def workingBranch = getGitWorkingBranch()
+            def normalizedWorkingBranch = workingBranch.replaceAll("[^A-Za-z]+", "").toLowerCase()
+            if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
+                // default values when branch name could not be determined or is master or dev
+                applicationIdSuffix ".debug"
+                resValue "string", "app_name", "NewPipe Debug"
+            } else {
+                applicationIdSuffix ".debug." + normalizedWorkingBranch
+                resValue "string", "app_name", "NewPipe " + workingBranch
+            }
         }
     }
 
