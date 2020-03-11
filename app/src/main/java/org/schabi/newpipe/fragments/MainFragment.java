@@ -136,16 +136,17 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     // Tabs
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void setupTabs() {
+    private void setupTabs() {
         tabsList.clear();
         tabsList.addAll(tabsManager.getTabs());
 
         if (pagerAdapter == null || !pagerAdapter.sameTabs(tabsList)) {
             pagerAdapter = new SelectedTabsPagerAdapter(requireContext(), getChildFragmentManager(), tabsList);
         }
-        // Clear previous tabs/fragments and set new adapter
-        viewPager.setAdapter(pagerAdapter);
+
+        viewPager.setAdapter(null);
         viewPager.setOffscreenPageLimit(tabsList.size());
+        viewPager.setAdapter(pagerAdapter);
 
         updateTabsIconAndDescription();
         updateTitleForTab(viewPager.getCurrentItem());
@@ -194,6 +195,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             this.internalTabsList = new ArrayList<>(tabsList);
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int position) {
             final Tab tab = internalTabsList.get(position);
