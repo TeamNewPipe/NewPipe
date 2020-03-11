@@ -98,6 +98,12 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
                     continue;
                 }
 
+                if (view == focusedItem) {
+                    // do not pass focus back to the item View itself - it makes no sense
+                    // (we can still pass focus to it's children however)
+                    continue;
+                }
+
                 int candidate = getDistance(sourcePosition, view, listDirection);
                 if (candidate < 0) {
                     continue;
