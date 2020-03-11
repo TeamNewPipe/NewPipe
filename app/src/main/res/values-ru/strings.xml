@@ -555,7 +555,7 @@
         <item quantity="few">%s секунды</item>
         <item quantity="many">%s секунд</item>
     </plurals>
-    <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность поиска составляет %d секунд</string>
+    <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность перемотки составляет %d секунд</string>
     <string name="mute">Отключить звук</string>
     <string name="unmute">Включить звук</string>
 </resources>
