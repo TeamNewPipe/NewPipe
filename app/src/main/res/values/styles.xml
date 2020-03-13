@@ -74,10 +74,6 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
-    <style name="LightTheme.Switchable">
-        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
-    </style>
-
     <style name="Base.V7.DarkTheme" parent="Theme.AppCompat.NoActionBar" />
     <style name="Base.DarkTheme" parent="Base.V7.DarkTheme" />
     <style name="DarkTheme" parent="Base.DarkTheme">
@@ -144,10 +140,6 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
-    <style name="DarkTheme.Switchable">
-        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
-    </style>
-
     <style name="Base.V7.BlackTheme" parent="DarkTheme"/>
     <style name="Base.BlackTheme" parent="Base.V7.BlackTheme"/>
     <style name="BlackTheme" parent="Base.BlackTheme">
@@ -156,10 +148,6 @@
 
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
-    </style>
-
-    <style name="BlackTheme.Switchable">
-        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
     </style>
 
     <!-- Dialogs -->
@@ -190,11 +178,6 @@
 
     <style name="BlackSettingsTheme" parent="BlackTheme">
         <item name="colorAccent">@color/black_settings_accent_color</item>
-    </style>
-
-    <style name="SwitchAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:windowEnterAnimation">@anim/switch_service_in</item>
-        <item name="android:windowExitAnimation">@anim/switch_service_out</item>
     </style>
 
     <style name="Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
