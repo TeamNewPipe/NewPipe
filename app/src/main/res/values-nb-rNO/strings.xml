@@ -545,6 +545,6 @@
     <string name="videos_string">Videoer</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s sekunder</item>
-        <item quantity="other"></item>
+        <item quantity="other">%s sekunder</item>
     </plurals>
 </resources>

@@ -462,8 +462,7 @@
     <string name="show_comments_summary">關閉以隱藏留言</string>
     <string name="autoplay_title">自動播放</string>
     <plurals name="comments">
-        <item quantity="one">%s 條留言</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 條留言</item>
     </plurals>
     <string name="no_comments">沒有留言</string>
     <string name="error_unable_to_load_comments">無法載入留言</string>
@@ -499,19 +498,16 @@
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
     <plurals name="videos">
-        <item quantity="one">%s 影片</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 影片</item>
     </plurals>
     <string name="default_kiosk_page_summary">預設 Kiosk</string>
     <string name="no_one_watching">沒有人在看</string>
     <plurals name="watching">
-        <item quantity="one">%s 個觀眾</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 個觀眾</item>
     </plurals>
     <string name="no_one_listening">沒有人正在聽</string>
     <plurals name="listening">
-        <item quantity="one">%s 個聽眾</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 個聽眾</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更。</string>
     <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
@@ -542,8 +538,7 @@
     <string name="recaptcha_done_button">完成</string>
     <string name="videos_string">影片</string>
     <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s秒</item>
-        <item quantity="other"/>
+        <item quantity="other">%s秒</item>
     </plurals>
     <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
     <string name="mute">靜音</string>

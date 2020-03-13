@@ -38,8 +38,7 @@
     <string name="later">稍后</string>
     <string name="network_error">网络错误</string>
     <plurals name="videos">
-        <item quantity="one">视频</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 视频</item>
     </plurals>
     <string name="disabled">禁用</string>
     <string name="controls_background_title">后台播放</string>
@@ -90,8 +89,7 @@
     <string name="retry">重试</string>
     <string name="storage_permission_denied">存储访问权限已被拒绝</string>
     <plurals name="views">
-        <item quantity="one">%s 次观看</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 次观看</item>
     </plurals>
     <string name="short_thousand">千</string>
     <string name="short_million">百万</string>
@@ -130,8 +128,7 @@
     <string name="search_no_results">没有结果</string>
     <string name="no_subscribers">没有订阅者</string>
     <plurals name="subscribers">
-        <item quantity="one">%s 位订阅者</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 位订阅者</item>
     </plurals>
     <string name="no_videos">没有视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
@@ -468,8 +465,7 @@
     <string name="show_comments_title">显示评论</string>
     <string name="show_comments_summary">禁用，以停止显示评论</string>
     <plurals name="comments">
-        <item quantity="one">%s 条评论</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 条评论</item>
     </plurals>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
@@ -506,13 +502,11 @@
     <string name="default_kiosk_page_summary">『时下流行』页-默认</string>
     <string name="no_one_watching">没有人在观看</string>
     <plurals name="watching">
-        <item quantity="one">%s 人在观看</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 人在观看</item>
     </plurals>
     <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
-        <item quantity="one">％s 人在听</item>
-        <item quantity="other"/>
+        <item quantity="other">％s 人在听</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
@@ -543,8 +537,7 @@
     <string name="recaptcha_done_button">完成</string>
     <string name="videos_string">视频</string>
     <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s秒</item>
-        <item quantity="other"/>
+        <item quantity="other">%s秒</item>
     </plurals>
     <string name="new_seek_duration_toast">由于ExoPlayer的限制，搜寻间隔设置为％d秒</string>
     <string name="mute">静音</string>

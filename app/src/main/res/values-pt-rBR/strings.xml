@@ -553,8 +553,8 @@ abrir em modo popup</string>
     <string name="recaptcha_done_button">Feito</string>
     <string name="videos_string">Vídeos</string>
     <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s segundos</item>
-        <item quantity="other"/>
+        <item quantity="one">%s segundo</item>
+        <item quantity="other">%s segundos</item>
     </plurals>
     <string name="new_seek_duration_toast">Devido as configurações do ExoPlayer, a duração de busca foi alterada para %d segundos</string>
     <string name="mute">Desativar som</string>

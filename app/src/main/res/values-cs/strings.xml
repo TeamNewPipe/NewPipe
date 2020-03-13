@@ -555,8 +555,8 @@ otevření ve vyskakovacím okně</string>
     <string name="videos_string">Videa</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s sekund</item>
-        <item quantity="few"/>
-        <item quantity="other"/>
+        <item quantity="few">%s sekund</item>
+        <item quantity="other">%s sekund</item>
     </plurals>
     <string name="new_seek_duration_toast">Kvůli omezením ExoPlayer bylo prohledávání nastaveno na %d vteřin</string>
     <string name="mute">Umlčet</string>

@@ -278,7 +278,7 @@
     <string name="videos_string">Vídeos</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s segundos</item>
-        <item quantity="other"/>
+        <item quantity="other">%s segundos</item>
     </plurals>
     <string name="playback_tempo">Tempu</string>
     <string name="playback_pitch">Tonu</string>
