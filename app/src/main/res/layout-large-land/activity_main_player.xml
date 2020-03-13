@@ -291,7 +291,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_toLeftOf="@id/switchBackground"
+                    android:layout_toLeftOf="@id/switchMute"
                     android:layout_toRightOf="@id/resizeTextView"
                     android:gravity="center|left"
                     android:minHeight="35dp"
