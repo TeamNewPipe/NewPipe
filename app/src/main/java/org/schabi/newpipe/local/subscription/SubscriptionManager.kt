@@ -27,7 +27,7 @@ class SubscriptionManager(context: Context) {
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
-                feedDatabaseManager.upsertAll(listEntities[index].uid, info.relatedItems)
+                feedDatabaseManager.upsertAll(listEntities[index].uid, info.tabs[0].relatedItems as List<StreamInfoItem>)
             }
         }
 
@@ -39,7 +39,7 @@ class SubscriptionManager(context: Context) {
                 Completable.fromRunnable {
                     it.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
                     subscriptionTable.update(it)
-                    feedDatabaseManager.upsertAll(it.uid, info.relatedItems)
+                    feedDatabaseManager.upsertAll(it.uid, info.tabs[0].relatedItems as List<StreamInfoItem>)
                 }
             }
 
@@ -64,7 +64,7 @@ class SubscriptionManager(context: Context) {
     fun insertSubscription(subscriptionEntity: SubscriptionEntity, info: ChannelInfo) {
         database.runInTransaction {
             val subscriptionId = subscriptionTable.insert(subscriptionEntity)
-            feedDatabaseManager.upsertAll(subscriptionId, info.relatedItems)
+            feedDatabaseManager.upsertAll(subscriptionId, info.tabs[0].relatedItems as List<StreamInfoItem>)
         }
     }
 

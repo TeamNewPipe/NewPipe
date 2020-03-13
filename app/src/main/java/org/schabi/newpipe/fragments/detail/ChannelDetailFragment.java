@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments.detail;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -21,13 +22,16 @@ import android.widget.TextView;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
+import com.jakewharton.rxbinding2.view.RxView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
@@ -38,7 +42,9 @@ import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExt
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelTabFragment;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -50,12 +56,22 @@ import org.schabi.newpipe.util.ShareUtils;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import icepick.State;
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+
+import static org.schabi.newpipe.util.AnimationUtils.animateBackgroundColor;
+import static org.schabi.newpipe.util.AnimationUtils.animateTextColor;
+import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class ChannelDetailFragment
         extends BaseStateFragment<ChannelInfo>
@@ -63,6 +79,10 @@ public class ChannelDetailFragment
         SharedPreferences.OnSharedPreferenceChangeListener,
         View.OnClickListener,
         View.OnLongClickListener {
+
+    private CompositeDisposable disposables = new CompositeDisposable();
+    private Disposable subscribeButtonMonitor;
+    private SubscriptionManager subscriptionManager;
 
     private int updateFlags = 0;
 
@@ -75,8 +95,6 @@ public class ChannelDetailFragment
 
     private ChannelInfo currentInfo;
     private Disposable currentWorker;
-    @NonNull
-    private CompositeDisposable disposables = new CompositeDisposable();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -121,6 +139,12 @@ public class ChannelDetailFragment
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        subscriptionManager = new SubscriptionManager(activity);
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_channel_detail, container, false);
     }
@@ -157,6 +181,8 @@ public class ChannelDetailFragment
 
         if (currentWorker != null) currentWorker.dispose();
         if (disposables != null) disposables.clear();
+        if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
+
         currentWorker = null;
         disposables = null;
     }
@@ -387,6 +413,143 @@ public class ChannelDetailFragment
     }
 
     /*//////////////////////////////////////////////////////////////////////////
+    // Channel Subscription
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
+
+    private void monitorSubscription(final ChannelInfo info) {
+        final Consumer<Throwable> onError = (Throwable throwable) -> {
+            animateView(headerSubscribeButton, false, 100);
+            showSnackBarError(throwable, UserAction.SUBSCRIPTION,
+                    NewPipe.getNameOfService(currentInfo.getServiceId()),
+                    "Get subscription status",
+                    0);
+        };
+
+        final Observable<List<SubscriptionEntity>> observable = subscriptionManager.subscriptionTable()
+                .getSubscriptionFlowable(info.getServiceId(), info.getUrl())
+                .toObservable();
+
+        disposables.add(observable
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getSubscribeUpdateMonitor(info), onError));
+
+        disposables.add(observable
+                // Some updates are very rapid (when calling the updateSubscription(info), for example)
+                // so only update the UI for the latest emission ("sync" the subscribe button's state)
+                .debounce(100, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((List<SubscriptionEntity> subscriptionEntities) ->
+                                updateSubscribeButton(!subscriptionEntities.isEmpty())
+                        , onError));
+
+    }
+
+    private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription, ChannelInfo info) {
+        return (@NonNull Object o) -> {
+            subscriptionManager.insertSubscription(subscription, info);
+            return o;
+        };
+    }
+
+    private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
+        return (@NonNull Object o) -> {
+            subscriptionManager.deleteSubscription(subscription);
+            return o;
+        };
+    }
+
+    private void updateSubscription(final ChannelInfo info) {
+        if (DEBUG) Log.d(TAG, "updateSubscription() called with: info = [" + info + "]");
+        final Action onComplete = () -> {
+            if (DEBUG) Log.d(TAG, "Updated subscription: " + info.getUrl());
+        };
+
+        final Consumer<Throwable> onError = (@NonNull Throwable throwable) ->
+                onUnrecoverableError(throwable,
+                        UserAction.SUBSCRIPTION,
+                        NewPipe.getNameOfService(info.getServiceId()),
+                        "Updating Subscription for " + info.getUrl(),
+                        R.string.subscription_update_failed);
+
+        disposables.add(subscriptionManager.updateChannelInfo(info)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onComplete, onError));
+    }
+
+    private Disposable monitorSubscribeButton(final Button subscribeButton, final Function<Object, Object> action) {
+        final Consumer<Object> onNext = (@NonNull Object o) -> {
+            if (DEBUG) Log.d(TAG, "Changed subscription status to this channel!");
+        };
+
+        final Consumer<Throwable> onError = (@NonNull Throwable throwable) ->
+                onUnrecoverableError(throwable,
+                        UserAction.SUBSCRIPTION,
+                        NewPipe.getNameOfService(currentInfo.getServiceId()),
+                        "Subscription Change",
+                        R.string.subscription_change_failed);
+
+        /* Emit clicks from main thread unto io thread */
+        return RxView.clicks(subscribeButton)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.io())
+                .debounce(BUTTON_DEBOUNCE_INTERVAL, TimeUnit.MILLISECONDS) // Ignore rapid clicks
+                .map(action)
+                .subscribe(onNext, onError);
+    }
+
+    private Consumer<List<SubscriptionEntity>> getSubscribeUpdateMonitor(final ChannelInfo info) {
+        return (List<SubscriptionEntity> subscriptionEntities) -> {
+            if (DEBUG)
+                Log.d(TAG, "subscriptionService.subscriptionTable.doOnNext() called with: subscriptionEntities = [" + subscriptionEntities + "]");
+            if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
+
+            if (subscriptionEntities.isEmpty()) {
+                if (DEBUG) Log.d(TAG, "No subscription to this channel!");
+                SubscriptionEntity channel = new SubscriptionEntity();
+                channel.setServiceId(info.getServiceId());
+                channel.setUrl(info.getUrl());
+                channel.setData(info.getName(),
+                        info.getAvatarUrl(),
+                        info.getDescription(),
+                        info.getSubscriberCount());
+                subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnSubscribe(channel, info));
+            } else {
+                if (DEBUG) Log.d(TAG, "Found subscription to this channel!");
+                final SubscriptionEntity subscription = subscriptionEntities.get(0);
+                subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnUnsubscribe(subscription));
+            }
+        };
+    }
+
+    private void updateSubscribeButton(boolean isSubscribed) {
+        if (DEBUG) Log.d(TAG, "updateSubscribeButton() called with: isSubscribed = [" + isSubscribed + "]");
+
+        boolean isButtonVisible = headerSubscribeButton.getVisibility() == View.VISIBLE;
+        int backgroundDuration = isButtonVisible ? 300 : 0;
+        int textDuration = isButtonVisible ? 200 : 0;
+
+        int subscribeBackground = ContextCompat.getColor(activity, R.color.subscribe_background_color);
+        int subscribeText = ContextCompat.getColor(activity, R.color.subscribe_text_color);
+        int subscribedBackground = ContextCompat.getColor(activity, R.color.subscribed_background_color);
+        int subscribedText = ContextCompat.getColor(activity, R.color.subscribed_text_color);
+
+        if (!isSubscribed) {
+            headerSubscribeButton.setText(R.string.subscribe_button_title);
+            animateBackgroundColor(headerSubscribeButton, backgroundDuration, subscribedBackground, subscribeBackground);
+            animateTextColor(headerSubscribeButton, textDuration, subscribedText, subscribeText);
+        } else {
+            headerSubscribeButton.setText(R.string.subscribed_button_title);
+            animateBackgroundColor(headerSubscribeButton, backgroundDuration, subscribeBackground, subscribedBackground);
+            animateTextColor(headerSubscribeButton, textDuration, subscribeText, subscribedText);
+        }
+
+        animateView(headerSubscribeButton, AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA, true, 100);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Info loading and handling
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -477,6 +640,8 @@ public class ChannelDetailFragment
 
         imageLoader.cancelDisplayTask(headerAvatarView);
         imageLoader.cancelDisplayTask(headerChannelBanner);
+
+        animateView(headerSubscribeButton, false, 100);
     }
 
     private void initThumbnailViews(@NonNull ChannelInfo info) {
@@ -515,6 +680,11 @@ public class ChannelDetailFragment
         } else {
             headerSubscribersTextView.setText(R.string.subscribers_count_not_available);
         }
+
+        if (disposables != null) disposables.clear();
+        if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
+        updateSubscription(info);
+        monitorSubscription(info);
 
         pushToStack(serviceId, url, name);
 

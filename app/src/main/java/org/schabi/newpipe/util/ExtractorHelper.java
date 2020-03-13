@@ -59,6 +59,7 @@ import java.util.List;
 
 import io.reactivex.Maybe;
 import io.reactivex.Single;
+import io.reactivex.SingleSource;
 
 public final class ExtractorHelper {
     private static final String TAG = ExtractorHelper.class.getSimpleName();
@@ -148,7 +149,7 @@ public final class ExtractorHelper {
             return FeedInfo.getInfo(feedExtractor);
         });
 
-        return maybeFeedInfo.switchIfEmpty(getChannelInfo(serviceId, url, true));
+        return maybeFeedInfo.switchIfEmpty((SingleSource) getChannelInfo(serviceId, url, true));
     }
 
     public static Single<CommentsInfo> getCommentsInfo(final int serviceId,
