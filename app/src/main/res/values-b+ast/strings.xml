@@ -76,7 +76,7 @@
     <string name="tab_subscriptions">Soscripciones</string>
     <string name="fragment_whats_new">Novedaes</string>
     <string name="enable_search_history_title">Historial de gueta</string>
-    <string name="resume_on_audio_focus_gain_title"></string>
+    <string name="resume_on_audio_focus_gain_title"/>
     <string name="resume_on_audio_focus_gain_summary">Sigue cola reproducción dempués de les interrupciones (llamaes telefóniques, por exemplu)</string>
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Comportamientu</string>
@@ -211,9 +211,9 @@
     <string name="no_comments">Nun hai comentarios</string>
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
     <string name="show_comments_title">Amosar comentarios</string>
-    <string name="show_comments_summary"></string>
+    <string name="show_comments_summary"/>
     <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de NewPipe. Lléila con procuru.
-    <string name="delete_search_history_alert">¿Desaniciar tol historial de gueta\?</string>
+\nHas aceutala unviándonos un informe de fallos.<string name="delete_search_history_alert">¿Desaniciar tol historial de gueta\?</string>
 \nHas aceutala unviándonos un informe de fallos.</string>
     <string name="minimize_on_exit_summary">Aición al cambiar a otra aplicación dende\'l reproductor de vídeos principal — %s</string>
     <string name="max_retry_desc">El númberu máximu d\'intentos enantes d\'encaboxar la descarga</string>
@@ -221,11 +221,11 @@
     <string name="confirm_prompt">¿Quies llimpiar l\'historial de descargues o desaniciar tolos ficheros baxaos\?</string>
     <string name="previous_export">Esportación anterior</string>
     <string name="import_file_title">Importar el ficheru</string>
-    <string name="import_youtube_instructions">Importa les soscripciones de YouTube baxando\'l ficheru d\'esportación:
-\n
-\n1.- Vete a esta URL: %1$s
-\n2.- Anicia sesión cuando se te pida
-\n3.- Debería aniciar una descarga (que ye\'l ficheru d\'esportación)</string>
+    <string name="import_youtube_instructions">Importa les soscripciones de YouTube baxando\'l ficheru d\'esportación: 
+\n 
+\n1.- Vete a esta URL: %1$s 
+\n2.- Anicia sesión cuando se te pida 
+\n3.- Debería aniciase una descarga (que ye\'l ficheru d\'esportación)</string>
     <string name="import_soundcloud_instructions">Importa un perfil de SoundCloud teclexando la URL o la ID de to:
 \n1.- Activa\'l mou escritoriu nun restolador web (el sitiu nun ta disponible pa móviles)
 \n
@@ -278,6 +278,9 @@
     <string name="videos_string">Vídeos</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s segundos</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
+    <string name="playback_tempo">Tempu</string>
+    <string name="playback_pitch">Tonu</string>
+    <string name="decline">Refugar</string>
 </resources>

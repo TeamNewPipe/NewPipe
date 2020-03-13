@@ -316,7 +316,7 @@ abrir em modo popup</string>
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o descarte</string>
     <string name="use_inexact_seek_title">Usar pesquisa rápida</string>
-    <string name="use_inexact_seek_summary">A pesquisa rápida permite que o player procure resultados mais rapidamente porém com precisão reduzida</string>
+    <string name="use_inexact_seek_summary">A pesquisa rápida permite que o player procure resultados mais rapidamente porém com precisão reduzida. Pesquisar por 5, 15 ou 25 segundos não funciona com isso.</string>
     <string name="auto_queue_title">Adicionar o próximo vídeo à fila automaticamente</string>
     <string name="auto_queue_summary">Adiciona automaticamente um vídeo relacionado ao último da lista quando a repetição estiver desativada</string>
     <string name="file">Arquivo</string>
@@ -506,8 +506,8 @@ abrir em modo popup</string>
     <string name="downloads_storage_ask_summary_kitkat">Você será questionado onde salvar o arquivo a cada download 
 \nAtive esta opção caso queira fazer o download para um cartão de memória SD externo</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_use_saf_summary">A Estrutura de Acesso ao Armazenamento permite baixar para um cartão SD.
-\nAviso: alguns dispositivos não são compatíveis</string>
+    <string name="downloads_storage_use_saf_summary">A Estrutura de Acesso ao Armazenamento permite baixar para um cartão SD. 
+\nAlguns dispositivos não são compatíveis</string>
     <string name="clear_playback_states_title">Limpar posição nas reproduções</string>
     <string name="clear_playback_states_summary">Apaga o histórico de posição nas reproduções</string>
     <string name="delete_playback_states_alert">Apagar toda posição nas reproduções\?</string>
@@ -554,6 +554,9 @@ abrir em modo popup</string>
     <string name="videos_string">Vídeos</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s segundos</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
+    <string name="new_seek_duration_toast">Devido as configurações do ExoPlayer, a duração de busca foi alterada para %d segundos</string>
+    <string name="mute">Desativar som</string>
+    <string name="unmute">Ativar som</string>
 </resources>
