@@ -3,24 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-
-static String getGitWorkingBranch() {
-    try {
-        def gitProcess = "git rev-parse --abbrev-ref HEAD".execute()
-        gitProcess.waitFor()
-        if (gitProcess.exitValue() == 0) {
-            return gitProcess.text.trim()
-        } else {
-            // not a git repository
-            return ""
-        }
-    } catch (IOException ignored) {
-        // git was not found
-        return ""
-    }
-}
-
-
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
@@ -142,4 +124,20 @@ dependencies {
 
     implementation "io.noties.markwon:core:${markwonVersion}"
     implementation "io.noties.markwon:linkify:${markwonVersion}"
+}
+
+static String getGitWorkingBranch() {
+    try {
+        def gitProcess = "git rev-parse --abbrev-ref HEAD".execute()
+        gitProcess.waitFor()
+        if (gitProcess.exitValue() == 0) {
+            return gitProcess.text.trim()
+        } else {
+            // not a git repository
+            return ""
+        }
+    } catch (IOException ignored) {
+        // git was not found
+        return ""
+    }
 }
