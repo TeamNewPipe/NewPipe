@@ -115,6 +115,8 @@ public abstract class BaseFragment extends Fragment {
     protected FragmentManager getFM() {
         return getParentFragment() == null
                 ? getFragmentManager()
-                : getParentFragment().getFragmentManager();
+                : (getParentFragment().getParentFragment() == null
+                ? getParentFragment().getFragmentManager()
+                : getParentFragment().getParentFragment().getFragmentManager());
     }
 }
