@@ -123,25 +123,18 @@
 
 			</RelativeLayout>
 
-		</com.google.android.material.appbar.AppBarLayout>
+			<com.google.android.material.tabs.TabLayout
+				android:id="@+id/tablayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" />
 
+		</com.google.android.material.appbar.AppBarLayout>
 
 		<androidx.viewpager.widget.ViewPager
 			android:id="@+id/viewpager"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
-		<com.google.android.material.tabs.TabLayout
-			android:id="@+id/tablayout"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="bottom|center"
-			android:background="@color/transparent_background_color"
-			app:tabBackground="@drawable/tab_selector"
-			app:tabGravity="center"
-			app:tabIndicatorHeight="0dp" />
 
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </FrameLayout>
