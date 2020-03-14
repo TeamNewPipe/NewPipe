@@ -23,8 +23,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.preference.PreferenceManager
 import icepick.State
 import kotlinx.android.synthetic.main.error_retry.*
 import kotlinx.android.synthetic.main.fragment_feed.*
@@ -101,6 +103,38 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         super.onCreateOptionsMenu(menu, inflater)
         activity.supportActionBar?.setTitle(R.string.fragment_feed_title)
         activity.supportActionBar?.subtitle = groupName
+
+        inflater.inflate(R.menu.menu_feed_fragment, menu)
+
+        if (useAsFrontPage) {
+            menu.findItem(R.id.menu_item_feed_help).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_item_feed_help) {
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+            val usingDedicatedMethod = sharedPreferences.getBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
+            val enableDisableButtonText = when {
+                usingDedicatedMethod -> R.string.feed_use_dedicated_fetch_method_disable_button
+                else -> R.string.feed_use_dedicated_fetch_method_enable_button
+            }
+
+            AlertDialog.Builder(requireContext())
+                    .setMessage(R.string.feed_use_dedicated_fetch_method_help_text)
+                    .setNeutralButton(enableDisableButtonText) { _, _ ->
+                        sharedPreferences.edit()
+                                .putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), !usingDedicatedMethod)
+                                .apply()
+                    }
+                    .setPositiveButton(android.R.string.ok, null)
+                    .create()
+                    .show()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroyOptionsMenu() {
