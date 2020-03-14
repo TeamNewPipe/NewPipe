@@ -432,7 +432,7 @@
     <string name="soundcloud" translatable="false">SoundCloud</string>
     <string name="drawer_header_action_paceholder_text">Something will appear here soon ;D</string>
     <!-- Preferred player -->
-    <string name="preferred_open_action_share_menu_title" translatable="false">NewPipe</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">@string/app_name</string>
     <string name="preferred_open_action_settings_title">Preferred \'open\' action</string>
     <string name="preferred_open_action_settings_summary">Default action when opening content — %s</string>
     <string name="video_player">Video player</string>
