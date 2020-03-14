@@ -12,7 +12,7 @@ import java.util.List;
 public class TabAdaptor extends FragmentPagerAdapter {
 
     private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
+    protected final List<String> mFragmentTitleList = new ArrayList<>();
     private final FragmentManager fragmentManager;
 
     public TabAdaptor(FragmentManager fm) {

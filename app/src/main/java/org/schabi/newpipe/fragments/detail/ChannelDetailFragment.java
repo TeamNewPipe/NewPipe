@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
@@ -278,7 +279,15 @@ public class ChannelDetailFragment
 
         appBarLayout = rootView.findViewById(R.id.appbarlayout);
         viewPager = rootView.findViewById(R.id.viewpager);
-        pageAdapter = new TabAdaptor(getChildFragmentManager());
+        pageAdapter = new TabAdaptor(getChildFragmentManager()) {
+            @Nullable
+            public CharSequence getPageTitle(int position) {
+                if (position < 0 || position >= mFragmentTitleList.size()) {
+                    return null;
+                }
+                return mFragmentTitleList.get(position);
+            }
+        };
         viewPager.setAdapter(pageAdapter);
         tabLayout = rootView.findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
