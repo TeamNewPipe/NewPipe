@@ -204,6 +204,7 @@
         <item quantity="one">%s weergave</item>
         <item quantity="other">%s weergaven</item>
     </plurals>
+    <string name="no_items">Geen items</string>
     <string name="no_videos">Geen video\'s</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>

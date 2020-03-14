@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/empty_view_no_videos"
+            android:text="@string/empty_view_no_items"
             android:textSize="24sp"/>
 
     </LinearLayout>

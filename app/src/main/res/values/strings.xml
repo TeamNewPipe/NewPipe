@@ -247,6 +247,7 @@
     <string name="report_error">Report error</string>
     <string name="user_report">User report</string>
     <string name="search_no_results">No results</string>
+    <string name="empty_view_no_items" translatable="false">@string/no_items</string>
     <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
     <string name="empty_view_no_comments" translatable="false">@string/no_comments</string>
     <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
@@ -283,6 +284,7 @@
         <item quantity="one">%s listener</item>
         <item quantity="other">%s listeners</item>
     </plurals>
+    <string name="no_items">No items</string>
     <string name="no_videos">No videos</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
