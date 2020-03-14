@@ -481,4 +481,11 @@
 \nNota: niet alle toestellen zijn compatibel</string>
     <string name="settings_category_clear_data_title">Wis data</string>
     <string name="download_choose_new_path">Verander de downloadmappen om effect te bekomen</string>
+    <string name="channel_tab_videos">Video\'s</string>
+    <string name="channel_tab_playlists">Afspeellijsten</string>
+    <string name="channel_tab_popular_tracks">Populaire tracks</string>
+    <string name="channel_tab_tracks">Tracks</string>
+    <string name="channel_tab_albums">Albums</string>
+    <string name="channel_tab_reposts">Reposts</string>
+    <string name="channel_tab_events">Evenementen</string>
 </resources>

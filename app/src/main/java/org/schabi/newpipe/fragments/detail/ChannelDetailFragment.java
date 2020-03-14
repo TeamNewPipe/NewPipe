@@ -669,7 +669,32 @@ public class ChannelDetailFragment
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName());
 
         for (ChannelTabInfo tabInfo : info.getTabs()) {
-            pageAdapter.addFragment(ChannelTabFragment.getInstance(tabInfo), tabInfo.getName());
+            String name;
+            switch (tabInfo.getName()) {
+                default:
+                case "Videos":
+                    name = getString(R.string.channel_tab_videos);
+                    break;
+                case "Playlists":
+                    name = getString(R.string.channel_tab_playlists);
+                    break;
+                case "Popular tracks":
+                    name = getString(R.string.channel_tab_popular_tracks);
+                    break;
+                case "Tracks":
+                    name = getString(R.string.channel_tab_tracks);
+                    break;
+                case "Albums":
+                    name = getString(R.string.channel_tab_albums);
+                    break;
+                case "Reposts":
+                    name = getString(R.string.channel_tab_reposts);
+                    break;
+                case "Events":
+                    name = getString(R.string.channel_tab_events);
+                    break;
+            }
+            pageAdapter.addFragment(ChannelTabFragment.getInstance(tabInfo), name);
         }
 
         pageAdapter.notifyDataSetUpdate();

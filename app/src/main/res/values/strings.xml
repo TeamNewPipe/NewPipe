@@ -646,4 +646,13 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">Enable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
+
+    <!-- Channel tabs -->
+    <string name="channel_tab_videos">Videos</string>
+    <string name="channel_tab_playlists">Playlists</string>
+    <string name="channel_tab_popular_tracks">Popular tracks</string>
+    <string name="channel_tab_tracks">Tracks</string>
+    <string name="channel_tab_albums">Albums</string>
+    <string name="channel_tab_reposts">Reposts</string>
+    <string name="channel_tab_events">Events</string>
 </resources>
