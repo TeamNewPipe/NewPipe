@@ -27,6 +27,7 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -37,6 +38,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.view.WindowCallbackWrapper;
 
 import org.schabi.newpipe.R;
@@ -212,6 +214,8 @@ public final class FocusOverlayView extends Drawable implements
         ViewGroup decor = (ViewGroup) window.getDecorView();
         decor.getOverlay().add(overlay);
 
+        fixFocusHierarchy(decor);
+
         ViewTreeObserver observer = decor.getViewTreeObserver();
         observer.addOnScrollChangedListener(overlay);
         observer.addOnGlobalFocusChangeListener(overlay);
@@ -244,5 +248,43 @@ public final class FocusOverlayView extends Drawable implements
         updateRect();
 
         animator.sendEmptyMessageDelayed(0, 100);
+    }
+
+    private static void fixFocusHierarchy(View decor) {
+        // During Android 8 development some dumb ass decided, that action bar has to be a keyboard focus cluster.
+        // Unfortunately, keyboard clusters do not work for primary auditory of key navigation — Android TV users
+        // (Android TV remotes do not have keyboard META key for moving between clusters). We have to fix this
+        // unfortunate accident. While we are at it, let's deal with touchscreenBlocksFocus too.
+
+        if (Build.VERSION.SDK_INT < 26) {
+            return;
+        }
+
+        if (!(decor instanceof ViewGroup)) {
+            return;
+        }
+
+        clearFocusObstacles((ViewGroup) decor);
+    }
+
+    @RequiresApi(api = 26)
+    private static void clearFocusObstacles(ViewGroup viewGroup) {
+        viewGroup.setTouchscreenBlocksFocus(false);
+
+        if (viewGroup.isKeyboardNavigationCluster()) {
+            viewGroup.setKeyboardNavigationCluster(false);
+
+            return; // clusters aren't supposed to nest
+        }
+
+        int childCount = viewGroup.getChildCount();
+
+        for (int i = 0; i < childCount; ++i) {
+            View view = viewGroup.getChildAt(i);
+
+            if (view instanceof ViewGroup) {
+                clearFocusObstacles((ViewGroup) view);
+            }
+        }
     }
 }
