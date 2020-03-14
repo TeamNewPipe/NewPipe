@@ -647,9 +647,6 @@ public class ChannelDetailFragment
 
         headerTitleView.setText(name != null ? name : "");
 
-        imageLoader.cancelDisplayTask(headerAvatarView);
-        imageLoader.cancelDisplayTask(headerChannelBanner);
-
         animateView(headerSubscribeButton, false, 100);
     }
 
