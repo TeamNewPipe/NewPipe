@@ -76,11 +76,11 @@ public class StatisticsPlaylistFragment
         switch (sortMode) {
             case LAST_PLAYED:
                 Collections.sort(results, (left, right) ->
-                    right.latestAccessDate.compareTo(left.latestAccessDate));
+                    right.getLatestAccessDate().compareTo(left.getLatestAccessDate()));
                 return results;
             case MOST_PLAYED:
                 Collections.sort(results, (left, right) ->
-                        Long.compare(right.watchCount, left.watchCount));
+                        Long.compare(right.getWatchCount(), left.getWatchCount()));
                 return results;
             default: return null;
         }
@@ -153,9 +153,9 @@ public class StatisticsPlaylistFragment
                 if (selectedItem instanceof StreamStatisticsEntry) {
                     final StreamStatisticsEntry item = (StreamStatisticsEntry) selectedItem;
                     NavigationHelper.openVideoDetailFragment(getFM(),
-                            item.serviceId,
-                            item.url,
-                            item.title);
+                            item.getStreamEntity().getServiceId(),
+                            item.getStreamEntity().getUrl(),
+                            item.getStreamEntity().getTitle());
                 }
             }
 
@@ -402,7 +402,7 @@ public class StatisticsPlaylistFragment
                 .get(index);
         if(infoItem instanceof StreamStatisticsEntry) {
             final StreamStatisticsEntry entry = (StreamStatisticsEntry) infoItem;
-            final Disposable onDelete = recordManager.deleteStreamHistory(entry.streamId)
+            final Disposable onDelete = recordManager.deleteStreamHistory(entry.getStreamId())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             howManyDeleted -> {

@@ -163,7 +163,7 @@
     <string name="subscription_update_failed">Не удалось обновить подписку</string>
     <string name="tab_main">Главная</string>
     <string name="tab_subscriptions">Подписки</string>
-    <string name="fragment_whats_new">Что нового</string>
+    <string name="fragment_feed_title">Что нового</string>
     <string name="enable_search_history_title">История поиска</string>
     <string name="enable_search_history_summary">Хранить запросы поиска локально</string>
     <string name="enable_watch_history_title">История просмотров</string>

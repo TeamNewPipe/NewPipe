@@ -165,7 +165,7 @@
     <string name="subscription_update_failed">チャンネル登録を更新できません</string>
     <string name="tab_main">メイン</string>
     <string name="tab_subscriptions">登録リスト</string>
-    <string name="fragment_whats_new">新着</string>
+    <string name="fragment_feed_title">新着</string>
     <string name="enable_search_history_title">検索履歴</string>
     <string name="enable_search_history_summary">検索した履歴を記憶します</string>
     <string name="enable_watch_history_title">視聴履歴</string>

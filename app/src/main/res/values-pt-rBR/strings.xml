@@ -172,7 +172,7 @@ abrir em modo popup</string>
     <string name="subscription_update_failed">Não foi possível atualizar inscrição</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Inscrições</string>
-    <string name="fragment_whats_new">Novidades</string>
+    <string name="fragment_feed_title">Novidades</string>
     <string name="resume_on_audio_focus_gain_title">Retomar reprodução</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproduzindo depois de interrupções (por exemplo: ligações)</string>
     <string name="enable_search_history_title">Histórico de pesquisas</string>

@@ -8,14 +8,14 @@ import android.util.Log;
 import org.schabi.newpipe.BuildConfig;
 
 public class Migrations {
-
-    public static final int DB_VER_11_0 = 1;
-    public static final int DB_VER_12_0 = 2;
+    public static final int DB_VER_1 = 1;
+    public static final int DB_VER_2 = 2;
+    public static final int DB_VER_3 = 3;
 
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
     private static final String TAG = Migrations.class.getName();
 
-    public static final Migration MIGRATION_11_12 = new Migration(DB_VER_11_0, DB_VER_12_0) {
+    public static final Migration MIGRATION_1_2 = new Migration(DB_VER_1, DB_VER_2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             if(DEBUG) {
@@ -71,4 +71,32 @@ public class Migrations {
             }
         }
     };
+
+    public static final Migration MIGRATION_2_3 = new Migration(DB_VER_2, DB_VER_3) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            // Add NOT NULLs and new fields
+            database.execSQL("CREATE TABLE IF NOT EXISTS streams_new " +
+                    "(uid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, service_id INTEGER NOT NULL, url TEXT NOT NULL, title TEXT NOT NULL, stream_type TEXT NOT NULL," +
+                    " duration INTEGER NOT NULL, uploader TEXT NOT NULL, thumbnail_url TEXT, view_count INTEGER, textual_upload_date TEXT, upload_date INTEGER," +
+                    " is_upload_date_approximation INTEGER)");
+
+            database.execSQL("INSERT INTO streams_new (uid, service_id, url, title, stream_type, duration, uploader, thumbnail_url, view_count, textual_upload_date, upload_date, is_upload_date_approximation)"+
+                    " SELECT uid, service_id, url, title, stream_type, duration, uploader, thumbnail_url, NULL, NULL, NULL, NULL FROM streams");
+
+            database.execSQL("DROP TABLE streams");
+            database.execSQL("ALTER TABLE streams_new RENAME TO streams");
+            database.execSQL("CREATE UNIQUE INDEX index_streams_service_id_url ON streams (service_id, url)");
+
+            // Tables for feed feature
+            database.execSQL("CREATE TABLE IF NOT EXISTS feed (stream_id INTEGER NOT NULL, subscription_id INTEGER NOT NULL, PRIMARY KEY(stream_id, subscription_id), FOREIGN KEY(stream_id) REFERENCES streams(uid) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(subscription_id) REFERENCES subscriptions(uid) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)");
+            database.execSQL("CREATE INDEX index_feed_subscription_id ON feed (subscription_id)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS feed_group (uid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT NOT NULL, icon_id INTEGER NOT NULL, sort_order INTEGER NOT NULL)");
+            database.execSQL("CREATE INDEX index_feed_group_sort_order ON feed_group (sort_order)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS feed_group_subscription_join (group_id INTEGER NOT NULL, subscription_id INTEGER NOT NULL, PRIMARY KEY(group_id, subscription_id), FOREIGN KEY(group_id) REFERENCES feed_group(uid) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(subscription_id) REFERENCES subscriptions(uid) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)");
+            database.execSQL("CREATE INDEX index_feed_group_subscription_join_subscription_id ON feed_group_subscription_join (subscription_id)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS feed_last_updated (subscription_id INTEGER NOT NULL, last_updated INTEGER, PRIMARY KEY(subscription_id), FOREIGN KEY(subscription_id) REFERENCES subscriptions(uid) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)");
+        }
+    };
+
 }

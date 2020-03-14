@@ -119,7 +119,7 @@
     <string name="subscription_update_failed">Не вдалося оновити підписку</string>
     <string name="tab_main">Головна</string>
     <string name="tab_subscriptions">Підписки</string>
-    <string name="fragment_whats_new">Новинки</string>
+    <string name="fragment_feed_title">Новинки</string>
     <string name="controls_background_title">У тлі</string>
     <string name="controls_popup_title">У вікні</string>
     <string name="default_popup_resolution_title">Типова роздільна здатність вікна</string>

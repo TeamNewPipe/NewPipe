@@ -32,7 +32,7 @@
     <string name="tab_main">سه‌ره‌كی</string>
     <string name="tab_subscriptions">به‌شدارییه‌كان</string>
     <string name="tab_bookmarks">خشتەی کارپێکردنەکان نیشانەکران</string>
-    <string name="fragment_whats_new">چی نوێ هه‌یه‌</string>
+    <string name="fragment_feed_title">چی نوێ هه‌یه‌</string>
     <string name="controls_background_title">لە پاشبنەما</string>
     <string name="controls_popup_title">په‌نجه‌ره‌ی بچووک</string>
     <string name="controls_add_to_playlist_title">زیادکردن بۆ</string>

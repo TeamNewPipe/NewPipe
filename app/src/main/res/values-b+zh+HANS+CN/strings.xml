@@ -233,7 +233,7 @@
     <string name="subscription_update_failed">无法更新订阅</string>
     <string name="tab_main">主页</string>
     <string name="tab_subscriptions">订阅</string>
-    <string name="fragment_whats_new">最新</string>
+    <string name="fragment_feed_title">最新</string>
     <string name="resume_on_audio_focus_gain_title">恢复前台焦点</string>
     <string name="resume_on_audio_focus_gain_summary">中断后继续播放（例如突然来电后）</string>
     <string name="enable_search_history_title">搜索历史记录</string>

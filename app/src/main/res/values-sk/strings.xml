@@ -149,7 +149,7 @@
     <string name="subscription_update_failed">Nemožno aktualizovať odber</string>
     <string name="tab_main">Hlavné</string>
     <string name="tab_subscriptions">Odbery</string>
-    <string name="fragment_whats_new">Čo je nové</string>
+    <string name="fragment_feed_title">Čo je nové</string>
     <string name="enable_search_history_title">Hľadať v histórií</string>
     <string name="enable_search_history_summary">Hľadané výrazy ukladať lokálne</string>
     <string name="enable_watch_history_title">História pozretí</string>

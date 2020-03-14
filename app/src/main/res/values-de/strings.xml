@@ -168,7 +168,7 @@
     <string name="subscribed_button_title">Abonniert</string>
     <string name="channel_unsubscribed">Kanal abbestellt</string>
     <string name="tab_subscriptions">Abos</string>
-    <string name="fragment_whats_new">Neuigkeiten</string>
+    <string name="fragment_feed_title">Neuigkeiten</string>
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Suchanfragen lokal speichern</string>
     <string name="enable_watch_history_title">Verlauf ansehen</string>

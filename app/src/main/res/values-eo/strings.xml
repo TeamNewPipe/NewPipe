@@ -81,7 +81,7 @@
     <string name="tab_main">Ĉefa</string>
     <string name="tab_subscriptions">Abonoj</string>
     <string name="tab_bookmarks">Konservitaj ludlistoj</string>
-    <string name="fragment_whats_new">Kio novas</string>
+    <string name="fragment_feed_title">Kio novas</string>
     <string name="controls_background_title">Fono</string>
     <string name="controls_popup_title">Ŝprucfenestro</string>
     <string name="controls_add_to_playlist_title">Aldonu al</string>
@@ -120,7 +120,7 @@
     </plurals>
     <string name="yes">Jes</string>
     <string name="later">Poste</string>
-    <string name="msg_popup_permission">Tiu permeso estas necesa por 
+    <string name="msg_popup_permission">Tiu permeso estas necesa por
 \nmalfermi en ŝprucfenestra modo</string>
     <string name="popup_playing_toast">Ludante en ŝprucfenestra modo</string>
     <string name="disabled">Malŝatitaj</string>
@@ -211,15 +211,15 @@
     <string name="invalid_source">Tia dosiero/enhavo ne ekzistas</string>
     <string name="file_name_empty_error">Dosiernomo ne povas esti malplena</string>
     <string name="error_occurred_detail">Eraro okazis: %1$s</string>
-    <string name="import_youtube_instructions">Importu Jutubajn abonaĵojn per elŝuti la dosieron de eksporto : 
-\n 
-\n1. Iru ĉe tiu retpaĝo: %1$s 
-\n2. Ensalutu kiam oni petas vin 
+    <string name="import_youtube_instructions">Importu Jutubajn abonaĵojn per elŝuti la dosieron de eksporto :
+\n
+\n1. Iru ĉe tiu retpaĝo: %1$s
+\n2. Ensalutu kiam oni petas vin
 \n3. Elŝuto devus komenci (ĝi estas la dosiero de eksporto)</string>
-    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon tajpante ĉu la ligilon, ĉu vian ID : 
+    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon tajpante ĉu la ligilon, ĉu vian ID :
 \n 
-\n1. Ebligu komputilon modon en retumilon (la retejo malhaveblas por poŝtelefonoj) 
-\n2. Iru tien: %1$s 
+\n1. Ebligu komputilon modon en retumilon (la retejo malhaveblas por poŝtelefonoj)
+\n2. Iru tien: %1$s
 \n3. Ensalutu kiam oni petas vin 
 \n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
     <string name="download_thumbnail_summary">Malŝaltu por malebligi ŝarĝajn bildetojn, konservi datumojn kaj uzadon de memoro. Ŝanĝoj forviŝas ambaŭ en-memoro kaj sur-disko bildo kaŝmemoro.</string>
@@ -291,7 +291,7 @@
     <string name="downloads_storage_ask_summary_kitkat">Oni petos vin kie konservi ĉion elŝutaĵon.
 \nElektu AFM se vi volas elŝuti al ekstera SD-karto</string>
     <string name="downloads_storage_use_saf_title">Uzu AFM</string>
-    <string name="downloads_storage_use_saf_summary">La \"Atinga Framo al la Memoro\" ebligas elŝuti al ekstera SD-karto. 
+    <string name="downloads_storage_use_saf_summary">La \"Atinga Framo al la Memoro\" ebligas elŝuti al ekstera SD-karto.
 \nKomento: kelkaj aparatoj malkongruas</string>
     <string name="clear_playback_states_title">Forviŝi ludajn poziciojn</string>
     <string name="clear_playback_states_summary">Forviŝi la totalon de ludaj pozicioj</string>
@@ -440,10 +440,10 @@
     <string name="app_license">NewPipe estas programaro sub rajtoceda permesilo: Vi povas uzi, studi, komuniki kaj plibonigi ĝin kiel vi volas. Precize, vi povas redistribui kaj/aŭ modifi ĝin sub la kondiĉoj de la Ĝenerala Publika Permesilo de GNU, kiel publikigita per la Free Software Foundation, ĉu en la versio 3, ĉu (se vi volas) ajna posta versio.</string>
     <string name="import_settings">Ĉu vi volas ankaŭ importi agordojn\?</string>
     <string name="privacy_policy_title">Privateca politiko de NewPipe</string>
-    <string name="privacy_policy_encouragement">La NewPipe projekto serioze respektas vian privatecon. Konsekvence, la apo ne kolektas ajnan datumon sen via konsento. 
+    <string name="privacy_policy_encouragement">La NewPipe projekto serioze respektas vian privatecon. Konsekvence, la apo ne kolektas ajnan datumon sen via konsento.
 \nLa privateco politiko de NewPipe detale eksplikas kion datumon estas sendita kaj stokita kiam vi sendas falegosignalon.</string>
     <string name="read_privacy_policy">Legi la privatecan politikon</string>
-    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atenton al la privateca politiko de NewPipe. Bonvolu atentive legi ĝin. 
+    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atenton al la privateca politiko de NewPipe. Bonvolu atentive legi ĝin.
 \nVi devas akcepti ĝin por sendi la cimsignalon al ni.</string>
     <string name="accept">Akcepti</string>
     <string name="decline">Rifuzi</string>

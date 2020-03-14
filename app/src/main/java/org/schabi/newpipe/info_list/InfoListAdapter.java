@@ -122,7 +122,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.useGridVariant = useGridVariant;
     }
 
-    public void addInfoItemList(@Nullable final List<InfoItem> data) {
+    public void addInfoItemList(@Nullable final List<? extends InfoItem> data) {
         if (data == null) {
             return;
         }
@@ -145,6 +145,12 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if (DEBUG) Log.d(TAG, "addInfoItemList() footer from " + offsetStart +
                     " to " + footerNow);
         }
+    }
+
+    public void setInfoItemList(List<? extends InfoItem> data) {
+        infoItemList.clear();
+        infoItemList.addAll(data);
+        notifyDataSetChanged();
     }
 
     public void addInfoItem(@Nullable InfoItem data) {

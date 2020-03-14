@@ -169,7 +169,7 @@
     <string name="subscription_update_failed">Nie można zaktualizować subskrypcji</string>
     <string name="tab_main">Główna</string>
     <string name="tab_subscriptions">Subskrypcje</string>
-    <string name="fragment_whats_new">Co nowego</string>
+    <string name="fragment_feed_title">Co nowego</string>
     <string name="enable_search_history_title">Historia wyszukiwania</string>
     <string name="enable_search_history_summary">Zapisuj lokalnie historię wyszukiwania</string>
     <string name="enable_watch_history_title">Historia oglądanych</string>

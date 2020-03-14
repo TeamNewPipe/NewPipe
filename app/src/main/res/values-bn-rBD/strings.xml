@@ -144,7 +144,7 @@
     <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>
     <string name="controls_download_desc">স্ট্রিম ফাইল ডাউনলোড করুন।</string>
     <string name="show_info">তথ্য দেখুন</string>
-    <string name="fragment_whats_new">কি নতুন</string>
+    <string name="fragment_feed_title">কি নতুন</string>
     <string name="controls_add_to_playlist_title">যুক্ত করুন</string>
     <string name="enable_search_history_title">খোজ ইতিহাস</string>
     <string name="enable_watch_history_title">ইতিহাস</string>

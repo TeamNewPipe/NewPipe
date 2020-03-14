@@ -1246,12 +1246,22 @@ public class VideoDetailFragment
         final boolean playbackResumeEnabled =
                 prefs.getBoolean(activity.getString(R.string.enable_watch_history_key), true)
                         && prefs.getBoolean(activity.getString(R.string.enable_playback_resume_key), true);
+
         if (!playbackResumeEnabled || info.getDuration() <= 0) {
             positionView.setVisibility(View.INVISIBLE);
             detailPositionView.setVisibility(View.GONE);
-            return;
+
+            // TODO: Remove this check when separation of concerns is done.
+            //  (live streams weren't getting updated because they are mixed)
+            if (!info.getStreamType().equals(StreamType.LIVE_STREAM) &&
+                    !info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+                return;
+            }
         }
         final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
+
+        // TODO: Separate concerns when updating database data.
+        //  (move the updating part to when the loading happens)
         positionSubscriber = recordManager.loadStreamState(info)
                 .subscribeOn(Schedulers.io())
                 .onErrorComplete()

@@ -36,7 +36,6 @@
     <string name="tab_bookmarks">Bookmarked Playlists</string>
     <string name="tab_new">New Tab</string>
     <string name="tab_choose">Choose Tab</string>
-    <string name="fragment_whats_new">What\'s New</string>
     <string name="controls_background_title">Background</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_add_to_playlist_title">Add To</string>
@@ -192,6 +191,7 @@
     <string name="clear_search_history_summary">Deletes history of search keywords</string>
     <string name="delete_search_history_alert">Delete entire search history?</string>
     <string name="search_history_deleted">Search history deleted.</string>
+    <string name="help">Help</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
@@ -598,4 +598,50 @@
         <item quantity="one">%s second</item>
         <item quantity="other">%s seconds</item>
     </plurals>
+
+    <!-- Time duration plurals -->
+    <plurals name="seconds">
+        <item quantity="one">%d second</item>
+        <item quantity="other">%d seconds</item>
+    </plurals>
+
+    <plurals name="minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+
+    <plurals name="hours">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+
+    <plurals name="days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+
+    <!-- Feed -->
+    <string name="fragment_feed_title">What\'s New</string>
+    <string name="feed_groups_header_title">Feed groups</string>
+    <string name="feed_oldest_subscription_update">Oldest subscription update: %s</string>
+    <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
+    <string name="feed_notification_loading">Loading feed…</string>
+    <string name="feed_processing_message">Processing feed…</string>
+    <string name="feed_group_dialog_select_subscriptions">Select subscriptions</string>
+    <string name="feed_group_dialog_selection_count">Selected: %d</string>
+    <string name="feed_group_dialog_empty_selection">No subscription selected</string>
+    <string name="feed_group_dialog_empty_name">Empty group name</string>
+    <string name="feed_group_dialog_name_input">Name</string>
+    <string name="feed_group_dialog_delete_message">Do you want to delete this group?</string>
+    <string name="feed_create_new_group_button_title">New</string>
+
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Feed update threshold</string>
+    <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated — %s</string>
+    <string name="feed_update_threshold_option_always_update">Always update</string>
+    <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status).</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Enable fast mode</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
 </resources>

@@ -34,10 +34,9 @@ import android.widget.Toast;
 import org.reactivestreams.Publisher;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.local.subscription.ImportExportEventListener;
-import org.schabi.newpipe.local.subscription.SubscriptionService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -57,7 +56,7 @@ public abstract class BaseImportExportService extends Service {
     protected NotificationManagerCompat notificationManager;
     protected NotificationCompat.Builder notificationBuilder;
 
-    protected SubscriptionService subscriptionService;
+    protected SubscriptionManager subscriptionManager;
     protected final CompositeDisposable disposables = new CompositeDisposable();
     protected final PublishProcessor<String> notificationUpdater = PublishProcessor.create();
 
@@ -70,7 +69,7 @@ public abstract class BaseImportExportService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        subscriptionService = SubscriptionService.getInstance(this);
+        subscriptionManager = new SubscriptionManager(this);
         setupNotification();
     }
 

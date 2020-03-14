@@ -171,7 +171,7 @@
     <string name="subscription_update_failed">Abonelik güncellenemedi</string>
     <string name="tab_main">Ana</string>
     <string name="tab_subscriptions">Abonelikler</string>
-    <string name="fragment_whats_new">Yenilikler</string>
+    <string name="fragment_feed_title">Yenilikler</string>
     <string name="enable_search_history_title">Arama geçmişi</string>
     <string name="enable_search_history_summary">Arama sorgularını yerel olarak saklayın</string>
     <string name="enable_watch_history_title">İzleme geçmişi</string>

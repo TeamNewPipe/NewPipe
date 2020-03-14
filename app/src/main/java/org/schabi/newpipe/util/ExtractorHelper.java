@@ -31,18 +31,23 @@ import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
+import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
+import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.extractor.feed.FeedExtractor;
+import org.schabi.newpipe.extractor.feed.FeedInfo;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 
@@ -129,6 +134,22 @@ public final class ExtractorHelper {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl));
+    }
+
+    public static Single<ListInfo<StreamInfoItem>> getFeedInfoFallbackToChannelInfo(final int serviceId,
+                                                                                    final String url) {
+        final Maybe<ListInfo<StreamInfoItem>> maybeFeedInfo = Maybe.fromCallable(() -> {
+            final StreamingService service = NewPipe.getService(serviceId);
+            final FeedExtractor feedExtractor = service.getFeedExtractor(url);
+
+            if (feedExtractor == null) {
+                return null;
+            }
+
+            return FeedInfo.getInfo(feedExtractor);
+        });
+
+        return maybeFeedInfo.switchIfEmpty(getChannelInfo(serviceId, url, true));
     }
 
     public static Single<CommentsInfo> getCommentsInfo(final int serviceId,

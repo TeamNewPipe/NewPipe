@@ -19,14 +19,14 @@ import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCR
         indices = {@Index(value = {SUBSCRIPTION_SERVICE_ID, SUBSCRIPTION_URL}, unique = true)})
 public class SubscriptionEntity {
 
-    final static String SUBSCRIPTION_UID                = "uid";
-    final static String SUBSCRIPTION_TABLE              = "subscriptions";
-    final static String SUBSCRIPTION_SERVICE_ID         = "service_id";
-    final static String SUBSCRIPTION_URL                = "url";
-    final static String SUBSCRIPTION_NAME               = "name";
-    final static String SUBSCRIPTION_AVATAR_URL         = "avatar_url";
-    final static String SUBSCRIPTION_SUBSCRIBER_COUNT   = "subscriber_count";
-    final static String SUBSCRIPTION_DESCRIPTION        = "description";
+    public static final String SUBSCRIPTION_UID                = "uid";
+    public static final String SUBSCRIPTION_TABLE              = "subscriptions";
+    public static final String SUBSCRIPTION_SERVICE_ID         = "service_id";
+    public static final String SUBSCRIPTION_URL                = "url";
+    public static final String SUBSCRIPTION_NAME               = "name";
+    public static final String SUBSCRIPTION_AVATAR_URL         = "avatar_url";
+    public static final String SUBSCRIPTION_SUBSCRIBER_COUNT   = "subscriber_count";
+    public static final String SUBSCRIPTION_DESCRIPTION        = "description";
 
     @PrimaryKey(autoGenerate = true)
     private long uid = 0;
