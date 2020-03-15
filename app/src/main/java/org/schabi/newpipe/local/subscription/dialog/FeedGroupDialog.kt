@@ -189,7 +189,8 @@ class FeedGroupDialog : DialogFragment() {
         val groupAdapter = GroupAdapter<GroupieViewHolder>()
         groupAdapter.spanCount = if (useGridLayout) 4 else 1
 
-        val selectedCountText = getString(R.string.feed_group_dialog_selection_count, this.selectedSubscriptions.size)
+        var subscriptionsCount = this.selectedSubscriptions.size
+        val selectedCountText = resources.getQuantityString(R.plurals.feed_group_dialog_selection_count, subscriptionsCount, subscriptionsCount)
         selected_subscription_count_view.text = selectedCountText
         subscriptions_selector_header_info.text = selectedCountText
 
@@ -234,7 +235,8 @@ class FeedGroupDialog : DialogFragment() {
                     item.isSelected = isSelected
                     item.notifyChanged(PickerSubscriptionItem.UPDATE_SELECTED)
 
-                    val updateSelectedCountText = getString(R.string.feed_group_dialog_selection_count, this.selectedSubscriptions.size)
+                    subscriptionsCount = this.selectedSubscriptions.size
+                    val updateSelectedCountText = resources.getQuantityString(R.plurals.feed_group_dialog_selection_count, subscriptionsCount, subscriptionsCount)
                     selected_subscription_count_view.text = updateSelectedCountText
                     subscriptions_selector_header_info.text = updateSelectedCountText
                 }

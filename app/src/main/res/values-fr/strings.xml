@@ -546,13 +546,12 @@
     <string name="new_seek_duration_toast">En raison des contraintes d’ExoPlayer, le pas de déplacement a été réglée à %d secondes</string>
     <string name="mute">Couper le son</string>
     <string name="unmute">Remettre le son</string>
-
-    <!-- Time duration plurals -->
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s seconde</item>
         <item quantity="other">%s secondes</item>
     </plurals>
 
+    <!-- Time duration plurals -->
     <plurals name="minutes">
         <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
@@ -576,8 +575,11 @@
     <string name="feed_notification_loading">Chargement du flux…</string>
     <string name="feed_processing_message">Préparation du flux…</string>
     <string name="feed_group_dialog_select_subscriptions">Choisir les abonnements</string>
-    <string name="feed_group_dialog_selection_count">Sélectionnés : %d</string>
     <string name="feed_group_dialog_empty_selection">Aucun abonnement sélectionné</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">Sélectionné : %d</item>
+        <item quantity="other">Sélectionnés : %d</item>
+    </plurals>
     <string name="feed_group_dialog_empty_name">Nom de groupe vide</string>
     <string name="feed_group_dialog_name_input">Nom</string>
     <string name="feed_group_dialog_delete_message">Voulez-vous supprimer ce groupe ?</string>
