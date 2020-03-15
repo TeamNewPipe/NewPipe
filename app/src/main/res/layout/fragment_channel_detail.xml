@@ -100,6 +100,20 @@
 					tools:ignore="RtlHardcoded"
 					tools:visibility="visible"/>
 
+				<com.google.android.material.tabs.TabLayout
+					android:id="@+id/tablayout"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_below="@id/channel_avatar_view"
+					android:background="@color/transparent_background_color"
+					app:tabMode="scrollable" />
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
 				<!-- LOADING INDICATOR-->
 				<ProgressBar
 					android:id="@+id/loading_progress_bar"
@@ -122,13 +136,6 @@
 					tools:visibility="visible" />
 
 			</RelativeLayout>
-
-			<com.google.android.material.tabs.TabLayout
-				android:id="@+id/tablayout"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="?attr/contrast_background_color"
-				app:tabMode="scrollable" />
 
 		</com.google.android.material.appbar.AppBarLayout>
 
