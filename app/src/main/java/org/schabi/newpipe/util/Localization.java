@@ -245,7 +245,7 @@ public class Localization {
         } else if (minutes > 0) {
             return resources.getQuantityString(R.plurals.minutes, minutes, minutes);
         } else {
-            return resources.getQuantityString(R.plurals.seconds, seconds, seconds);
+            return resources.getQuantityString(R.plurals.dynamic_seek_duration_description, seconds, seconds);
         }
     }
 
