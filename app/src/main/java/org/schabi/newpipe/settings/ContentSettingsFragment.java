@@ -2,6 +2,7 @@ package org.schabi.newpipe.settings;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import androidx.preference.Preference;
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -56,6 +58,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private File newpipeSettings;
 
     private String thumbnailLoadToggleKey;
+    private String showAgeRestrictedContentKey;
 
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
@@ -65,6 +68,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
+        showAgeRestrictedContentKey = getString(R.string.show_age_restricted_content);
 
         initialSelectedLocalization = org.schabi.newpipe.util.Localization
                 .getPreferredLocalization(requireContext());
@@ -84,6 +88,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             imageLoader.resume();
             Toast.makeText(preference.getContext(), R.string.thumbnail_cache_wipe_complete_notice,
                     Toast.LENGTH_SHORT).show();
+        }
+
+        if (preference.getKey().equals(showAgeRestrictedContentKey)) {
+            Context context = getContext();
+            if(context != null){
+                DownloaderImpl.getInstance().updateAgeRestrictedContentCookies(context);
+            }
         }
 
         return super.onPreferenceTreeClick(preference);

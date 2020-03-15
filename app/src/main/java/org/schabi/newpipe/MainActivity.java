@@ -244,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
         ServiceHelper.setSelectedServiceId(this, item.getItemId());
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this))
                 .setChecked(true);
+        DownloaderImpl.getInstance().updateAgeRestrictedContentCookies(getApplicationContext());
     }
 
     private void tabSelected(final MenuItem item) throws ExtractionException {

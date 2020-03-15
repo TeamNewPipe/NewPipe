@@ -1,15 +1,20 @@
 package org.schabi.newpipe;
 
+import android.content.Context;
 import android.os.Build;
-import android.text.TextUtils;
+import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Request;
 import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.util.CookieUtils;
+import org.schabi.newpipe.util.InfoCache;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 
 import java.io.IOException;
@@ -20,6 +25,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -41,8 +47,11 @@ public final class DownloaderImpl extends Downloader {
     public static final String USER_AGENT
             = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101 Firefox/68.0";
 
+    public static final String YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY = "youtube_age_restricted_content_cookie_key";
+    public static final String YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE = "PREF=f2=8000000";
+
     private static DownloaderImpl instance;
-    private String mCookies;
+    private Map<String, String> mCookies;
     private OkHttpClient client;
 
     private DownloaderImpl(final OkHttpClient.Builder builder) {
@@ -54,6 +63,7 @@ public final class DownloaderImpl extends Downloader {
 //                .cache(new Cache(new File(context.getExternalCacheDir(), "okhttp"),
 //                        16 * 1024 * 1024))
                 .build();
+        this.mCookies = new HashMap<>();
     }
 
     /**
@@ -122,11 +132,35 @@ public final class DownloaderImpl extends Downloader {
     }
 
     public String getCookies() {
-        return mCookies;
+       return CookieUtils.concatCookies(mCookies.values());
     }
 
-    public void setCookies(final String cookies) {
-        mCookies = cookies;
+    public String getCookie(final String key){
+        return mCookies.get(key);
+    }
+
+    public void setCookie(final String key, final String value){
+        mCookies.put(key, value);
+    }
+
+    public void removeCookie(final String key){
+        mCookies.remove(key);
+    }
+
+    public void updateAgeRestrictedContentCookies(Context context){
+        String showAgeRestrictedContentKey = context.getString(R.string.show_age_restricted_content);
+        int currentServiceId = ServiceHelper.getSelectedServiceId(context);
+        boolean showAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(showAgeRestrictedContentKey, false);
+        updateAgeRestrictedContentCookies(currentServiceId, showAgeRestrictedContent);
+    }
+
+    public void updateAgeRestrictedContentCookies(int currentServiceId, boolean showAgeRestrictedContent) {
+        if (currentServiceId == ServiceList.YouTube.getServiceId() && !showAgeRestrictedContent) {
+            setCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY, YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE);
+        } else {
+            removeCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY);
+        }
+        InfoCache.getInstance().clearCache();
     }
 
     /**
@@ -152,8 +186,8 @@ public final class DownloaderImpl extends Downloader {
                     .method("GET", null).url(siteUrl)
                     .addHeader("User-Agent", USER_AGENT);
 
-            if (!TextUtils.isEmpty(mCookies)) {
-                requestBuilder.addHeader("Cookie", mCookies);
+            if (!mCookies.isEmpty()) {
+                requestBuilder.addHeader("Cookie", getCookies());
             }
 
             final okhttp3.Request request = requestBuilder.build();
@@ -192,8 +226,8 @@ public final class DownloaderImpl extends Downloader {
                 .method(httpMethod, requestBody).url(url)
                 .addHeader("User-Agent", USER_AGENT);
 
-        if (!TextUtils.isEmpty(mCookies)) {
-            requestBuilder.addHeader("Cookie", mCookies);
+        if (!mCookies.isEmpty()) {
+            requestBuilder.addHeader("Cookie", getCookies());
         }
 
         for (Map.Entry<String, List<String>> pair : headers.entrySet()) {

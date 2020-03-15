@@ -43,6 +43,7 @@ public class DebugApp extends App {
         DownloaderImpl downloader = DownloaderImpl.init(new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor()));
         setCookiesToDownloader(downloader);
+        downloader.updateAgeRestrictedContentCookies(getApplicationContext());
         return downloader;
     }
 
