@@ -171,7 +171,7 @@
     <string name="subscription_update_failed">Abonelik güncellenemedi</string>
     <string name="tab_main">Ana</string>
     <string name="tab_subscriptions">Abonelikler</string>
-    <string name="fragment_whats_new">Yenilikler</string>
+    <string name="fragment_feed_title">Yenilikler</string>
     <string name="enable_search_history_title">Arama geçmişi</string>
     <string name="enable_search_history_summary">Arama sorgularını yerel olarak saklayın</string>
     <string name="enable_watch_history_title">İzleme geçmişi</string>
@@ -314,7 +314,7 @@
     <string name="enable_disposed_exceptions_title">Yaşam döngüsü dışı hatalarını bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
     <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
-    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının daha düşük hassasiyetle daha hızlı pozisyon aramasını sağlar</string>
+    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının daha düşük hassasiyetle daha hızlı konumlamasını sağlar. 5, 15 veya 25 saniyeye konumlama bununla birlikte çalışmamaktadır.</string>
     <string name="auto_queue_title">Sonraki akışı otomatik kuyruğa ekle</string>
     <string name="auto_queue_summary">İlgili bir akış ekleyerek sonlu (tekrarlanmayan) oynatma sırasını devam ettir</string>
     <string name="file">Dosya</string>
@@ -517,7 +517,7 @@
         <item quantity="other">%s dinleyici</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir.</string>
-    <string name="seek_duration_title">Hızlı ileri/geri sarma süresi</string>
+    <string name="seek_duration_title">Hızlı ileri/geri konumlama süresi</string>
     <string name="peertube_instance_url_title">PeerTube örnekleri</string>
     <string name="peertube_instance_url_summary">Favori PeerTube örneklerinizi seçin</string>
     <string name="peertube_instance_url_help">%s adresinde beğendiğiniz örnekleri bulun</string>
@@ -546,6 +546,7 @@
     <string name="videos_string">Videolar</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="one">%s saniye</item>
-        <item quantity="other"/>
+        <item quantity="other">%s saniye</item>
     </plurals>
+    <string name="new_seek_duration_toast">ExoPlayer kısıtlamaları gereği konumlama süresi %d saniyeye belirlenmiştir</string>
 </resources>

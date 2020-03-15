@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s переглядів</string>
     <string name="upload_date_text">Опубліковано %1$s</string>
-    <string name="no_player_found">Програвач потокового відео не знайдений. Бажаєте встановити VLC\?</string>
+    <string name="no_player_found">Програвач потокового відео не знайдений. Встановити VLC\?</string>
     <string name="install">Встановити</string>
     <string name="cancel">Скасувати</string>
     <string name="open_in_browser">Відкрити у переглядачеві</string>
@@ -17,8 +17,8 @@
     <string name="use_external_video_player_title">Використовувати зовнішній відеопрогравач</string>
     <string name="use_external_audio_player_title">Використовувати зовнішній аудіопрогравач</string>
     <string name="download_path_title">Папка для завантаження відео</string>
-    <string name="download_path_dialog_title">Виберіть папку для завантаження відеофайлів</string>
-    <string name="download_path_audio_dialog_title">Виберіть папку для завантаження аудіофайлів</string>
+    <string name="download_path_dialog_title">Виберіть теку для завантаження відеофайлів</string>
+    <string name="download_path_audio_dialog_title">Виберіть теку для завантаження аудіофайлів</string>
     <string name="download_path_summary">Шлях до папки з завантаженим відео</string>
     <string name="download_path_audio_title">Папка для завантаження аудіо</string>
     <string name="download_path_audio_summary">Завантажені аудіофайли зберігаються тут</string>
@@ -26,7 +26,7 @@
     <string name="autoplay_by_calling_app_summary">Програє відео коли NewPipe викликано з іншого застосунку</string>
     <string name="default_resolution_title">Типова роздільна здатність</string>
     <string name="play_with_kodi_title">Програти у Kodi</string>
-    <string name="kore_not_found">Застосунок Kore не знайдено. Встановити його\?</string>
+    <string name="kore_not_found">Встановити відсутній застосунок Kore\?</string>
     <string name="show_play_with_kodi_title">Показати опцію \"Програти у Kodi\"</string>
     <string name="show_play_with_kodi_summary">Показати опцію програвання відео у Kodi</string>
     <string name="play_audio">Аудіо</string>
@@ -65,7 +65,7 @@
     <string name="error_snackbar_action">ЗВІТ</string>
     <string name="what_device_headline">Інформація:</string>
     <string name="what_happened_headline">Що сталося:</string>
-    <string name="main_bg_subtitle">Натисніть на пошук аби почати</string>
+    <string name="main_bg_subtitle">Натисніть на «пошук» аби почати</string>
     <string name="black_theme_title">Чорна</string>
     <string name="downloads">Завантаження</string>
     <string name="downloads_title">Завантаження</string>
@@ -110,8 +110,8 @@
     <string name="no_available_dir">Вкажіть теку для завантажень пізніше у налаштуваннях</string>
     <string name="no_player_found_toast">Програвач потокового відео не знайдений (ви можете встановити VLC для програвання).</string>
     <string name="open_in_popup_mode">Відкрити у віконному режимі</string>
-    <string name="use_external_video_player_summary">Прибирає звук при ПЕВНИХ роздільних здатностях</string>
-    <string name="popup_mode_share_menu_title">Віконний режим NewPipe</string>
+    <string name="use_external_video_player_summary">Прибирає звук при певних роздільних здатностях</string>
+    <string name="popup_mode_share_menu_title">Віконний режим</string>
     <string name="subscribe_button_title">Підписатися</string>
     <string name="subscribed_button_title">Ви підписалися</string>
     <string name="channel_unsubscribed">Ви відписалися від каналу</string>
@@ -119,11 +119,11 @@
     <string name="subscription_update_failed">Не вдалося оновити підписку</string>
     <string name="tab_main">Головна</string>
     <string name="tab_subscriptions">Підписки</string>
-    <string name="fragment_whats_new">Новинки</string>
+    <string name="fragment_feed_title">Новинки</string>
     <string name="controls_background_title">У тлі</string>
     <string name="controls_popup_title">У вікні</string>
     <string name="default_popup_resolution_title">Типова роздільна здатність вікна</string>
-    <string name="show_higher_resolutions_summary">Лише деякі пристрої підтримують програвання 2K/4K-відео</string>
+    <string name="show_higher_resolutions_summary">Лише деякі пристрої можуть відтворювати 2K/4K-відео</string>
     <string name="show_higher_resolutions_title">Показувати вищі роздільні здатності</string>
     <string name="default_video_format_title">Типовий формат відео</string>
     <string name="popup_remember_size_pos_title">Пам\'ятати розмір і позицію вікна</string>

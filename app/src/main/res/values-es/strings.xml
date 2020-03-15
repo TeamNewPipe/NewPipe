@@ -166,7 +166,7 @@
     <string name="subscription_update_failed">No se pudo actualizar la suscripción</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Suscripciones</string>
-    <string name="fragment_whats_new">Qué hay de nuevo</string>
+    <string name="fragment_feed_title">Qué hay de nuevo</string>
     <string name="resume_on_audio_focus_gain_title">Reanudar reproducción</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproduciendo después de las interrupciones (ej. llamadas telefónicas)</string>
     <string name="settings_category_downloads_title">Descargar</string>
@@ -319,7 +319,7 @@
     <string name="enable_disposed_exceptions_title">Reportar errores fuera del ciclo de duración</string>
     <string name="enable_disposed_exceptions_summary">Forzar reporte de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
     <string name="use_inexact_seek_title">Usar búsqueda rápida inexacta</string>
-    <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión</string>
+    <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión. Buscar de a 5, 15 o 25 segundos no funciona.</string>
     <string name="auto_queue_title">Poner en cola vídeo relacionado siguiente</string>
     <string name="auto_queue_summary">Continuar reproducción sin repetir al añadir de forma automática un vídeo relacionado con el último visto</string>
     <string name="file">Archivo</string>
@@ -363,7 +363,7 @@
     <string name="playback_speed_control">Controles de velocidad de reproducción</string>
     <string name="playback_tempo">Tiempo</string>
     <string name="playback_pitch">Tono</string>
-    <string name="unhook_checkbox">Desenganchar (puede causar distorsión)</string>
+    <string name="unhook_checkbox">Desvincular (puede causar distorsión)</string>
     <string name="no_streams_available_download">No hay streams disponibles para descargar</string>
     <string name="preferred_open_action_settings_title">Acción de apertura preferida</string>
     <string name="preferred_open_action_settings_summary">Acción predeterminada al abrir contenido: %s</string>
@@ -458,8 +458,8 @@
     <string name="downloads_storage_ask_summary_kitkat">Se le preguntará dónde guardar cada descarga.
 \nHabilite esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_use_saf_summary">El \'Framework de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa.
-\nNota: algunos dispositivos no son compatibles</string>
+    <string name="downloads_storage_use_saf_summary">El \'Framework de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa. 
+\nAlgunos dispositivos no son compatibles</string>
     <string name="unsubscribe">Cancelar suscripción</string>
     <string name="tab_new">Pestaña nueva</string>
     <string name="tab_choose">Elija la pestaña</string>
@@ -545,7 +545,10 @@
     <string name="recaptcha_done_button">Hecho</string>
     <string name="videos_string">Vídeos</string>
     <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s segundos</item>
-        <item quantity="other"></item>
+        <item quantity="one">%s segundo</item>
+        <item quantity="other">%s segundos</item>
     </plurals>
+    <string name="new_seek_duration_toast">Debido a limitaciones de ExoPlayer la duración de la búsqueda fue fijada en %d segundos</string>
+    <string name="mute">Silenciar</string>
+    <string name="unmute">Desactivar silencio</string>
 </resources>

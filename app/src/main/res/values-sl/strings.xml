@@ -201,7 +201,7 @@ odpiranje v pojavnem načinu</string>
     <string name="tab_main">Glavno</string>
     <string name="tab_subscriptions">Naročnine</string>
 
-    <string name="fragment_whats_new">Kaj je novega</string>
+    <string name="fragment_feed_title">Kaj je novega</string>
 
     <string name="settings_category_downloads_title">Prejmi</string>
     <string name="settings_file_charset_title">Dovoljeni znaki v imenih datotek</string>

@@ -166,7 +166,7 @@
     <string name="tab_main">Pagrindinis</string>
     <string name="tab_subscriptions">Prenumeratos</string>
 
-    <string name="fragment_whats_new">Kas Naujo</string>
+    <string name="fragment_feed_title">Kas Naujo</string>
 
     <string name="enable_search_history_title">Ieškoti istorijoje</string>
     <string name="enable_search_history_summary">Saugoti paieškos užklausas vietinėje atmintyje</string>

@@ -148,7 +148,7 @@
     <string name="subscription_update_failed">無法更新訂閱</string>
     <string name="tab_main">主頁</string>
     <string name="tab_subscriptions">訂閱清單</string>
-    <string name="fragment_whats_new">新鮮事</string>
+    <string name="fragment_feed_title">新鮮事</string>
     <string name="enable_search_history_title">搜尋紀錄</string>
     <string name="enable_search_history_summary">在本機儲存搜尋紀錄</string>
     <string name="enable_watch_history_title">檢視歷史</string>
@@ -311,7 +311,7 @@
     <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
     <string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
-    <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置</string>
+    <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置。尋找 5、15或25秒無法與其一同使用。</string>
     <string name="auto_queue_title">自動將下一部影片新增至佇列</string>
     <string name="auto_queue_summary">透過加入相關的串流來繼續結束的（未重複）播放佇列</string>
     <string name="file">檔案</string>
@@ -462,8 +462,7 @@
     <string name="show_comments_summary">關閉以隱藏留言</string>
     <string name="autoplay_title">自動播放</string>
     <plurals name="comments">
-        <item quantity="one">%s 條留言</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 條留言</item>
     </plurals>
     <string name="no_comments">沒有留言</string>
     <string name="error_unable_to_load_comments">無法載入留言</string>
@@ -491,27 +490,24 @@
     <string name="downloads_storage_ask_summary_kitkat">每次下載您都會被詢問要下載到哪裡。
 \n如果您想要下載到外部的 SD 卡的話，請選擇 SAF</string>
     <string name="downloads_storage_use_saf_title">使用 SAF</string>
-    <string name="downloads_storage_use_saf_summary">儲存存取框架讓您可以下載到外部的 SD 卡。
-\n注意：可能與某些裝置不相容</string>
+    <string name="downloads_storage_use_saf_summary">儲存存取框架讓您可以下載到外部的 SD 卡。 
+\n可能與某些裝置不相容</string>
     <string name="clear_playback_states_title">刪除播放位置</string>
     <string name="clear_playback_states_summary">刪除所有播放位置</string>
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
     <plurals name="videos">
-        <item quantity="one">%s 影片</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 影片</item>
     </plurals>
     <string name="default_kiosk_page_summary">預設 Kiosk</string>
     <string name="no_one_watching">沒有人在看</string>
     <plurals name="watching">
-        <item quantity="one">%s 個觀眾</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 個觀眾</item>
     </plurals>
     <string name="no_one_listening">沒有人正在聽</string>
     <plurals name="listening">
-        <item quantity="one">%s 個聽眾</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 個聽眾</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更。</string>
     <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
@@ -542,7 +538,9 @@
     <string name="recaptcha_done_button">完成</string>
     <string name="videos_string">影片</string>
     <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s秒</item>
-        <item quantity="other"/>
+        <item quantity="other">%s秒</item>
     </plurals>
+    <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
+    <string name="mute">靜音</string>
+    <string name="unmute">取消靜音</string>
 </resources>

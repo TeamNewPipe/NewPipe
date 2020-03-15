@@ -163,7 +163,7 @@
     <string name="subscription_update_failed">Не удалось обновить подписку</string>
     <string name="tab_main">Главная</string>
     <string name="tab_subscriptions">Подписки</string>
-    <string name="fragment_whats_new">Что нового</string>
+    <string name="fragment_feed_title">Что нового</string>
     <string name="enable_search_history_title">История поиска</string>
     <string name="enable_search_history_summary">Хранить запросы поиска локально</string>
     <string name="enable_watch_history_title">История просмотров</string>
@@ -282,7 +282,7 @@
     <string name="tab_bookmarks">Плейлисты</string>
     <string name="controls_add_to_playlist_title">В плейлист</string>
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
-    <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно</string>
+    <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно. Не работает для перемотки на 5, 15 или 25 секунд</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
     <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
     <string name="settings_category_debug_title">Отладка</string>
@@ -548,11 +548,13 @@
     <string name="systems_language">Как в системе</string>
     <string name="subtitle_activity_recaptcha">По завершении нажмите Готово</string>
     <string name="recaptcha_done_button">Готово</string>
-    <string name="duration_live_button" translatable="false">Трансляция</string>
     <string name="videos_string">Видео</string>
     <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s секунд</item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
+        <item quantity="one">%s секунда</item>
+        <item quantity="few">%s секунды</item>
+        <item quantity="many">%s секунд</item>
     </plurals>
+    <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность перемотки составляет %d секунд</string>
+    <string name="mute">Отключить звук</string>
+    <string name="unmute">Включить звук</string>
 </resources>

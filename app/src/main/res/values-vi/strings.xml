@@ -173,7 +173,7 @@
     <string name="tab_main">Trang chủ</string>
     <string name="tab_subscriptions">Đăng ký</string>
     <string name="tab_bookmarks">Danh sách phát được đánh dấu</string>
-    <string name="fragment_whats_new">Có gì mới</string>
+    <string name="fragment_feed_title">Có gì mới</string>
     <string name="controls_add_to_playlist_title">Thêm vào</string>
     <string name="use_inexact_seek_title">Sử dụng tìm kiếm nhanh không chính xác</string>
     <string name="use_inexact_seek_summary">Tìm kiếm không chính xác cho phép trình phát tìm đến vị trí nhanh hơn với độ chính xác bị hạn chế</string>

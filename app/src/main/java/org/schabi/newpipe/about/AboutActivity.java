@@ -45,7 +45,8 @@ public class AboutActivity extends AppCompatActivity {
             new SoftwareComponent("RxJava", "2016 - 2020", "RxJava Contributors", "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2),
             new SoftwareComponent("RxBinding", "2015 - 2018", "Jake Wharton", "https://github.com/JakeWharton/RxBinding", StandardLicenses.APACHE2),
             new SoftwareComponent("PrettyTime", "2012 - 2020", "Lincoln Baxter, III", "https://github.com/ocpsoft/prettytime", StandardLicenses.APACHE2),
-            new SoftwareComponent("Markwon", "2017 - 2020", "Noties", "https://github.com/noties/Markwon", StandardLicenses.APACHE2)
+            new SoftwareComponent("Markwon", "2017 - 2020", "Noties", "https://github.com/noties/Markwon", StandardLicenses.APACHE2),
+            new SoftwareComponent("Groupie", "2016", "Lisa Wray", "https://github.com/lisawray/groupie", StandardLicenses.MIT)
     };
 
     /**

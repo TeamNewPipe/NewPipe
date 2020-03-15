@@ -171,7 +171,7 @@
     <string name="subscription_update_failed">Kan abonnement niet bijwerken</string>
     <string name="tab_main">Startpagina</string>
     <string name="tab_subscriptions">Abonnementen</string>
-    <string name="fragment_whats_new">Nieuw</string>
+    <string name="fragment_feed_title">Nieuw</string>
     <string name="enable_search_history_title">Zoekgeschiedenis</string>
     <string name="enable_search_history_summary">Sla zoekopdrachten lokaal op</string>
     <string name="enable_watch_history_title">Geschiedenis en cache</string>

@@ -33,7 +33,6 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
-import org.schabi.newpipe.local.subscription.ImportExportJsonHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 
@@ -180,6 +179,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
 
                 .observeOn(Schedulers.io())
                 .doOnNext(getNotificationsConsumer())
+
                 .buffer(BUFFER_COUNT_BEFORE_INSERT)
                 .map(upsertBatch())
 
@@ -204,6 +204,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
 
             @Override
             public void onError(Throwable error) {
+                Log.e(TAG, "Got an error!", error);
                 handleError(error);
             }
 
@@ -242,7 +243,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
                 if (n.isOnNext()) infoList.add(n.getValue());
             }
 
-            return subscriptionService.upsertAll(infoList);
+            return subscriptionManager.upsertAll(infoList);
         };
     }
 

@@ -38,8 +38,8 @@
     <string name="detail_likes_img_view_description">Ŝatoj</string>
     <string name="detail_dislikes_img_view_description">Malŝatoj</string>
     <string name="use_tor_title">Uzi la programon Tor</string>
-    <string name="no_player_found">Neniu elsendlflua ludilo trovita. Ĉu vi volas instali la aplikaĵon VLC\?</string>
-    <string name="kore_not_found">La aplikaĵo Kore ne estas trovita. Ĉu instali ĝin?</string>
+    <string name="no_player_found">Neniu elsendlflua ludilo trovita. Ĉu instali la aplikaĵon VLC\?</string>
+    <string name="kore_not_found">Ĉu instali la mankan aplikaĵon Kore\?</string>
     <string name="show_next_and_similar_title">Montri la sekvan filmeton kaj similajn filmetojn</string>
     <string name="could_not_load_thumbnails">Ĉiuj bildetoj ne ŝargeblas</string>
     <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la filmeto ne malĉifreblas</string>
@@ -58,19 +58,19 @@
     <string name="download_path_dialog_title">Elektu lokon por konservi elŝutitajn filmetojn</string>
     <string name="download_path_audio_dialog_title">Elektu lokon por konservi elŝutitajn muzikojn</string>
     <string name="content">Enhavo</string>
-    <string name="error_report_button_text">Signali eraron per retpoŝto</string>
-    <string name="error_snackbar_action">SIGNALI</string>
+    <string name="error_report_button_text">Signali tion eraron retpoŝte</string>
+    <string name="error_snackbar_action">Signali</string>
     <string name="what_device_headline">Informoj:</string>
     <string name="your_comment">Vian komenton (angle):</string>
     <string name="error_details_headline">Detaloj:</string>
     <string name="report_error">Signali eraron</string>
     <string name="video">Filmeto</string>
     <string name="retry">Reprovi</string>
-    <string name="main_bg_subtitle">Premi serĉon por komenci</string>
+    <string name="main_bg_subtitle">Premi \"Serĉi\" por komenci</string>
     <string name="no_player_found_toast">Neniu elsendlflua ludilo trovita (instalu VLC por ludi ĝin).</string>
     <string name="open_in_popup_mode">Malfermi en ŝprucfenestran modon</string>
-    <string name="use_external_video_player_summary">Forigas aŭdon ĉe KELKAJ rezolucioj</string>
-    <string name="popup_mode_share_menu_title">NewPipe ŝprucfenestran modon</string>
+    <string name="use_external_video_player_summary">Forigas aŭdon ĉe kelkaj rezolucioj</string>
+    <string name="popup_mode_share_menu_title">Ŝprucfenestran modon</string>
     <string name="subscribe_button_title">Aboni</string>
     <string name="subscribed_button_title">Abonita</string>
     <string name="channel_unsubscribed">Kanalo malabonita</string>
@@ -81,7 +81,7 @@
     <string name="tab_main">Ĉefa</string>
     <string name="tab_subscriptions">Abonoj</string>
     <string name="tab_bookmarks">Konservitaj ludlistoj</string>
-    <string name="fragment_whats_new">Kio novas</string>
+    <string name="fragment_feed_title">Kio novas</string>
     <string name="controls_background_title">Fono</string>
     <string name="controls_popup_title">Ŝprucfenestro</string>
     <string name="controls_add_to_playlist_title">Aldonu al</string>
@@ -89,7 +89,7 @@
     <string name="autoplay_by_calling_app_summary">Ludas filmeton kiam NewPipe vokas el alia programo</string>
     <string name="default_popup_resolution_title">Defaŭlta rezolucio de la ŝprucfenestra ludilo</string>
     <string name="show_higher_resolutions_title">Montri pli altajn rezoluciojn</string>
-    <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj subtenas ludi 2K / 4K filmetojn</string>
+    <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj povas ludi 2K / 4K filmetojn</string>
     <string name="default_video_format_title">Defaŭlta fomato de filmeto</string>
     <string name="black_theme_title">Nigra</string>
     <string name="popup_remember_size_pos_title">Memoru ŝprucfenestran grandecon kaj pozicion</string>
@@ -100,10 +100,10 @@
     <string name="could_not_setup_download_menu">Ne povis konstrui la dosierujon de elŝuto</string>
     <string name="live_streams_not_supported">Nunaj filmetoj ne estas ankoraŭ subtenataj</string>
     <string name="show_age_restricted_content_title">Enhavo limigita al aĝo</string>
-    <string name="video_is_age_restricted">Montri limigitan al aĝo filmeto. Permesanta tian materialon eblas el Parametroj.</string>
+    <string name="video_is_age_restricted">Montri limigitan al aĝo filmeto. Postaj ŝanĝoj eblas ĉe la agordoj.</string>
     <string name="light_parsing_error">Ne povis tute analizi la retejon</string>
     <string name="could_not_get_stream">Ne povis akiri ajnan torenton</string>
-    <string name="duration_live">NUNA</string>
+    <string name="duration_live">Nuna</string>
     <string name="downloads">Elŝutoj</string>
     <string name="downloads_title">Elŝutoj</string>
     <string name="error_report_title">Erarosignalo</string>
@@ -120,7 +120,7 @@
     </plurals>
     <string name="yes">Jes</string>
     <string name="later">Poste</string>
-    <string name="msg_popup_permission">Tiu permeso estas necesa por 
+    <string name="msg_popup_permission">Tiu permeso estas necesa por
 \nmalfermi en ŝprucfenestra modo</string>
     <string name="popup_playing_toast">Ludante en ŝprucfenestra modo</string>
     <string name="disabled">Malŝatitaj</string>
@@ -130,7 +130,7 @@
     <string name="settings_category_popup_title">Ŝprucfenestro</string>
     <string name="popup_resizing_indicator_title">Regrandiganta</string>
     <string name="player_gesture_controls_title">Kontrolo de gesto de ludilo</string>
-    <string name="player_gesture_controls_summary">Uzu gestojn por kontroli la brilon kaj volumenon de la ludilo</string>
+    <string name="player_gesture_controls_summary">Uzi gestojn por kontroli la brilon kaj volumenon</string>
     <string name="show_search_suggestions_title">Serĉi sugestojn</string>
     <string name="show_search_suggestions_summary">Montri sugestojn kiam serĉanto</string>
     <string name="best_resolution">Plej bona rezolucio</string>
@@ -138,7 +138,7 @@
     <string name="settings_category_downloads_title">Elŝuti</string>
     <string name="charset_letters_and_digits">Leteroj kaj ciferoj</string>
     <string name="charset_most_special_characters">Plej specialaj karakteroj</string>
-    <string name="resume_on_audio_focus_gain_title">Rekomenci en fokusa gajno</string>
+    <string name="resume_on_audio_focus_gain_title">Ludrekomenci</string>
     <string name="resume_on_audio_focus_gain_summary">Daŭrigi la ludon post la interrompaĵoj (ekzemple telefonadoj)</string>
     <string name="enable_search_history_title">Serĉa historio</string>
     <string name="enable_search_history_summary">Konservi la historio de serĉo lokale</string>
@@ -156,7 +156,7 @@
     <string name="top_50">Supro 50</string>
     <string name="new_and_hot">Nova &amp; varma</string>
     <string name="show_hold_to_append_title">Montri la indiko « Tenu por aldoni »</string>
-    <string name="show_hold_to_append_summary">Montri indikon kiam la fona aŭ ŝprucfenestra butono estas premita en la retpaĝo de dalatadoj de la filmeto</string>
+    <string name="show_hold_to_append_summary">Montri indikon premante la fona aŭ la ŝprucfenestra butono en filmeta \"Detaloj:\"</string>
     <string name="background_player_append">Viciĝita en la fona ludilo</string>
     <string name="popup_playing_append">Viciĝita en ŝprucfenestra ludilo</string>
     <string name="play_all">Ludi ĉiujn</string>
@@ -205,21 +205,21 @@
     <string name="playlist_delete_failure">Ne povis forviŝi ludliston.</string>
     <string name="settings_category_debug_title">Malcimigi</string>
     <string name="auto_queue_title">Auto-vico sekva fluo</string>
-    <string name="auto_queue_summary">Aŭto-aldoni rilatan enhavon kiam ludanta la lasta enhavo en malrepetita atendovico</string>
+    <string name="auto_queue_summary">Daŭrigi finanta (malripetanta) atendovico aldonante rilata enhavo</string>
     <string name="file">Dosiero</string>
     <string name="invalid_directory">Tia dosierujo ne ekzistas</string>
     <string name="invalid_source">Tia dosiero/enhavo ne ekzistas</string>
     <string name="file_name_empty_error">Dosiernomo ne povas esti malplena</string>
     <string name="error_occurred_detail">Eraro okazis: %1$s</string>
-    <string name="import_youtube_instructions">Importu Jutubajn abonaĵojn per elŝuti la dosieron de eksporto : 
-\n 
-\n1. Iru ĉe tiu retpaĝo: %1$s 
-\n2. Ensalutu kiam oni petas vin 
+    <string name="import_youtube_instructions">Importu Jutubajn abonaĵojn per elŝuti la dosieron de eksporto :
+\n
+\n1. Iru ĉe tiu retpaĝo: %1$s
+\n2. Ensalutu kiam oni petas vin
 \n3. Elŝuto devus komenci (ĝi estas la dosiero de eksporto)</string>
-    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon tajpante ĉu la ligilon, ĉu vian ID : 
+    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon tajpante ĉu la ligilon, ĉu vian ID :
 \n 
-\n1. Ebligu komputilon modon en retumilon (la retejo malhaveblas por poŝtelefonoj) 
-\n2. Iru tien: %1$s 
+\n1. Ebligu komputilon modon en retumilon (la retejo malhaveblas por poŝtelefonoj)
+\n2. Iru tien: %1$s
 \n3. Ensalutu kiam oni petas vin 
 \n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
     <string name="download_thumbnail_summary">Malŝaltu por malebligi ŝarĝajn bildetojn, konservi datumojn kaj uzadon de memoro. Ŝanĝoj forviŝas ambaŭ en-memoro kaj sur-disko bildo kaŝmemoro.</string>
@@ -246,9 +246,9 @@
     <string name="tab_new">Nova ongleto</string>
     <string name="tab_choose">Elektu ongleton</string>
     <string name="volume_gesture_control_title">Kontrolo de volumena gesto</string>
-    <string name="volume_gesture_control_summary">Uzu gestojn por kontroli la volumon de la ludilo</string>
+    <string name="volume_gesture_control_summary">Uzi gestojn por kontroli la volumon</string>
     <string name="brightness_gesture_control_title">Kontrolo de gesto de brilo</string>
-    <string name="brightness_gesture_control_summary">Uzu gestojn por kontroli la brilon de la ludilo</string>
+    <string name="brightness_gesture_control_summary">Uzi gestojn por kontroli la brilon</string>
     <string name="settings_category_updates_title">Ĝisdatigoj</string>
     <string name="file_deleted">Dosiero forviŝita</string>
     <string name="app_update_notification_channel_name">Sciigo por ĝisdatigi apon</string>
@@ -264,11 +264,11 @@
     <string name="events">Eventoj</string>
     <string name="conferences">Konferencoj</string>
     <string name="show_comments_title">Montri komentojn</string>
-    <string name="show_comments_summary">Malebligu por malvidigi komentojn</string>
+    <string name="show_comments_summary">Malŝati por malvidigi komentojn</string>
     <string name="autoplay_title">Aŭtoludo</string>
     <plurals name="comments">
-        <item quantity="one">Komentoj</item>
-        <item quantity="other"/>
+        <item quantity="one">%s komento</item>
+        <item quantity="other">%s komentoj</item>
     </plurals>
     <string name="error_unable_to_load_comments">Ne povis ŝarĝi komentojn</string>
     <string name="close">Fermi</string>
@@ -291,8 +291,8 @@
     <string name="downloads_storage_ask_summary_kitkat">Oni petos vin kie konservi ĉion elŝutaĵon.
 \nElektu AFM se vi volas elŝuti al ekstera SD-karto</string>
     <string name="downloads_storage_use_saf_title">Uzu AFM</string>
-    <string name="downloads_storage_use_saf_summary">La Atinga Framo al la Memoro ebligas elŝuti al ekstera SD-karto. 
-\nKomento: kelkaj aparatoj ne kongruas</string>
+    <string name="downloads_storage_use_saf_summary">La \"Atinga Framo al la Memoro\" ebligas elŝuti al ekstera SD-karto.
+\nKomento: kelkaj aparatoj malkongruas</string>
     <string name="clear_playback_states_title">Forviŝi ludajn poziciojn</string>
     <string name="clear_playback_states_summary">Forviŝi la totalon de ludaj pozicioj</string>
     <string name="delete_playback_states_alert">Ĉu vi volas forviŝi ĉiujn ludajn poziciojn \?</string>
@@ -302,7 +302,7 @@
     <string name="what_happened_headline">Kio okazis:</string>
     <string name="info_labels">Kio:\\nPeto:\\nEnhavlingvo:\\nServo:\\nGMT Horo:\\nPako:\\nVersio:\\nOperaciumo versio:</string>
     <string name="audio">Aŭdio</string>
-    <string name="storage_permission_denied">Permeso por atingi la konservon rifuzita</string>
+    <string name="storage_permission_denied">Permesi la konservadon unue</string>
     <string name="user_report">Uzantosignalo</string>
     <string name="start">Komenci</string>
     <string name="pause">Paŭzigi</string>
@@ -377,7 +377,7 @@
     <string name="start_here_on_main">Komenci ludi ĉi tie</string>
     <string name="start_here_on_background">Komenci ludi fone</string>
     <string name="donation_title">Donaci</string>
-    <string name="donation_encouragement">NewPipe estas programadita par volontuoj, elspezante tempo por alporti vin la plej bona sperto. Redoni por helpi programistojn plibonigi NewPipe dum ĝuante tason da kafo.</string>
+    <string name="donation_encouragement">NewPipe estas programadita par volontuoj, elspezante lia tempo por alporti vin la plej bona uzanta sperto. Redoni por helpi programistojn plibonigi NewPipe dum ili ĝuas tason da kafo.</string>
     <string name="give_back">Redoni</string>
     <string name="website_title">Retejo</string>
     <string name="website_encouragement">Viziti la retejon de NewPipe por pli da informoj kaj novaĵoj.</string>
@@ -409,7 +409,7 @@
     <string name="resize_zoom">Zomi</string>
     <string name="drawer_header_action_paceholder_text">Io aperos ĉi tie baldaŭ ;D</string>
     <string name="caption_auto_generated">Aŭtomate generita</string>
-    <string name="enable_leak_canary_title">Ebligi LeakCanary</string>
+    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">La monitorado de la memorlikadoj povas frostigi la apon dum la hejta dumpingo</string>
     <string name="enable_disposed_exceptions_title">Signali ekster-vivciklajn erarojn</string>
     <string name="enable_disposed_exceptions_summary">Perforti signalante neenretigaj Rx esceptoj eksere la fragmento aŭ aktiveco vivciklo post dispono</string>
@@ -440,10 +440,10 @@
     <string name="app_license">NewPipe estas programaro sub rajtoceda permesilo: Vi povas uzi, studi, komuniki kaj plibonigi ĝin kiel vi volas. Precize, vi povas redistribui kaj/aŭ modifi ĝin sub la kondiĉoj de la Ĝenerala Publika Permesilo de GNU, kiel publikigita per la Free Software Foundation, ĉu en la versio 3, ĉu (se vi volas) ajna posta versio.</string>
     <string name="import_settings">Ĉu vi volas ankaŭ importi agordojn\?</string>
     <string name="privacy_policy_title">Privateca politiko de NewPipe</string>
-    <string name="privacy_policy_encouragement">La NewPipe projekto serioze respektas vian privatecon. Konsekvence, la apo ne kolektas ajnan datumon sen via konsento. 
+    <string name="privacy_policy_encouragement">La NewPipe projekto serioze respektas vian privatecon. Konsekvence, la apo ne kolektas ajnan datumon sen via konsento.
 \nLa privateco politiko de NewPipe detale eksplikas kion datumon estas sendita kaj stokita kiam vi sendas falegosignalon.</string>
     <string name="read_privacy_policy">Legi la privatecan politikon</string>
-    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atenton al la privateca politiko de NewPipe. Bonvolu atentive legi ĝin. 
+    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atenton al la privateca politiko de NewPipe. Bonvolu atentive legi ĝin.
 \nVi devas akcepti ĝin por sendi la cimsignalon al ni.</string>
     <string name="accept">Akcepti</string>
     <string name="decline">Rifuzi</string>
@@ -455,10 +455,10 @@
     <string name="skip_silence_checkbox">Plirapidigi dum silentoj</string>
     <string name="playback_step">Paŝo</string>
     <string name="playback_reset">Restarigi</string>
-    <string name="saved_tabs_invalid_json">Uzante defaŭltajn ongletojn, eraro ludante savajn ongletojn</string>
+    <string name="saved_tabs_invalid_json">Ne povis legi konservitajn ongletoj, tial uzante la defaŭltajn</string>
     <string name="restore_defaults">Restaŭri la defaŭltojn</string>
-    <string name="restore_defaults_confirmation">Ĉu vi volas restaŭri la defaŭltojn \?</string>
-    <string name="subscribers_count_not_available">Kalkulo de abonantoj malhavebla</string>
+    <string name="restore_defaults_confirmation">Ĉu vi volas restaŭri la defaŭltojn valorojn\?</string>
+    <string name="subscribers_count_not_available">Abonantoj kalkulo malhaveblas</string>
     <string name="main_page_content_summary">Kioj ongletoj estas montritaj en la ĉefpaĝo</string>
     <string name="selection">Elektaĵo</string>
     <string name="updates_setting_title">Ĝisdatigoj</string>
@@ -486,7 +486,7 @@
     <string name="error_path_creation">La celloko-dosierujo ne povas esti kreita</string>
     <string name="error_file_creation">La dosiero ne povas esti kreita</string>
     <string name="error_permission_denied">Permeso rifuzita kaŭze de la sistemo</string>
-    <string name="error_ssl_exception">Sekura konekto malsukcesis</string>
+    <string name="error_ssl_exception">Ne povis establi sekuran konekton</string>
     <string name="error_unknown_host">Ne povis trovi la servilon</string>
     <string name="error_connect_host">Ne povas konektiĝi al la servilo</string>
     <string name="error_http_no_content">La servilo ne sendas datumojn</string>
@@ -519,7 +519,7 @@
     <string name="seek_duration_title">Rapida antaŭen / posten daŭron</string>
     <string name="peertube_instance_url_title">Instancoj de PeerTube</string>
     <string name="peertube_instance_url_summary">Elekti viajn preferitajn instancojn de PeerTube</string>
-    <string name="peertube_instance_url_help">Trovu la instancojn kiu vi povus ŝati ĉe %s</string>
+    <string name="peertube_instance_url_help">Trovu la instancojn ke vi ŝatas ĉe %s</string>
     <string name="peertube_instance_add_title">Aldoni instanco</string>
     <string name="peertube_instance_add_help">Eniri la ligilon de la instanco</string>
     <string name="peertube_instance_add_fail">Ne povis validigi instanco</string>
@@ -532,8 +532,8 @@
     <string name="recovering">Reakiranta</string>
     <string name="error_download_resource_gone">Ne povas reakiri tion elŝuton</string>
     <string name="choose_instance_prompt">Elektu instancon</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Enablu bildeta filmeton ĉe ŝlosita ekrano</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Uzante la fona ludilo, bildeta filmeto vidiĝos ĉe ŝlosita ekrano</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Bildeta filmeton ĉe ŝlosita ekrano</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Bildeta filmeto estas montrita ĉe ŝlosita ekrano uzante la fona ludilo</string>
     <string name="clear_download_history">Forviŝi la historion de elŝutoj</string>
     <string name="delete_downloaded_files">Forviŝi elŝutitajn dosierojn</string>
     <string name="deleted_downloads">%1$s elŝutoj forviŝitaj</string>
@@ -544,6 +544,7 @@
     <string name="subtitle_activity_recaptcha">Premu « Finita » kiam solvita</string>
     <string name="recaptcha_done_button">Finita</string>
     <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s sekundo</item>
         <item quantity="other">%s sekundoj</item>
     </plurals>
 </resources>

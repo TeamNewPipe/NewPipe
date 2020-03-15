@@ -27,7 +27,7 @@
     <string name="subscription_update_failed">Nije moguće osvježiti pretplatu</string>
     <string name="tab_main">Početna</string>
     <string name="tab_subscriptions">Pretplate</string>
-    <string name="fragment_whats_new">Što je novo</string>
+    <string name="fragment_feed_title">Što je novo</string>
     <string name="controls_background_title">Pozadina</string>
     <string name="controls_popup_title">Skočni prozor</string>
     <string name="download_path_title">Mapa za preuzimanje videozapisa</string>
@@ -466,9 +466,9 @@
     <string name="show_comments_summary">Onemogućite da biste prestali prikazivati komentare</string>
     <string name="autoplay_title">Automatska reprodukcija</string>
     <plurals name="comments">
-        <item quantity="one">Komentari</item>
-        <item quantity="few"/>
-        <item quantity="other"/>
+        <item quantity="one">%s komentar</item>
+        <item quantity="few">%s komentara</item>
+        <item quantity="other">%s komentara</item>
     </plurals>
     <string name="no_comments">Nema komentara</string>
     <string name="error_unable_to_load_comments">Komentare nije moguće učitati</string>

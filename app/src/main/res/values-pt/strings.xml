@@ -165,7 +165,7 @@
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Subscrições</string>
-    <string name="fragment_whats_new">Novidades</string>
+    <string name="fragment_feed_title">Novidades</string>
     <string name="enable_search_history_title">Histórico de pesquisa</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
     <string name="enable_watch_history_title">Ver histórico</string>

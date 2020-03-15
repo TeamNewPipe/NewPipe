@@ -33,7 +33,7 @@ import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.local.subscription.SubscriptionService;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.UserAction;
@@ -66,7 +66,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     private final CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
-    private SubscriptionService subscriptionService;
+    private SubscriptionManager subscriptionManager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -109,7 +109,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        subscriptionService = SubscriptionService.getInstance(activity);
+        subscriptionManager = new SubscriptionManager(activity);
     }
 
     @Override
@@ -212,8 +212,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                         0);
         };
 
-        final Observable<List<SubscriptionEntity>> observable = subscriptionService.subscriptionTable()
-                .getSubscription(info.getServiceId(), info.getUrl())
+        final Observable<List<SubscriptionEntity>> observable = subscriptionManager.subscriptionTable()
+                .getSubscriptionFlowable(info.getServiceId(), info.getUrl())
                 .toObservable();
 
         disposables.add(observable
@@ -231,16 +231,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     }
 
-    private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription) {
+    private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription, ChannelInfo info) {
         return (@NonNull Object o) -> {
-            subscriptionService.subscriptionTable().insert(subscription);
+            subscriptionManager.insertSubscription(subscription, info);
             return o;
         };
     }
 
     private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
         return (@NonNull Object o) -> {
-            subscriptionService.subscriptionTable().delete(subscription);
+            subscriptionManager.deleteSubscription(subscription);
             return o;
         };
     }
@@ -258,7 +258,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                         "Updating Subscription for " + info.getUrl(),
                         R.string.subscription_update_failed);
 
-        disposables.add(subscriptionService.updateChannelInfo(info)
+        disposables.add(subscriptionManager.updateChannelInfo(info)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(onComplete, onError));
@@ -288,7 +288,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private Consumer<List<SubscriptionEntity>> getSubscribeUpdateMonitor(final ChannelInfo info) {
         return (List<SubscriptionEntity> subscriptionEntities) -> {
             if (DEBUG)
-                Log.d(TAG, "subscriptionService.subscriptionTable.doOnNext() called with: subscriptionEntities = [" + subscriptionEntities + "]");
+                Log.d(TAG, "subscriptionManager.subscriptionTable.doOnNext() called with: subscriptionEntities = [" + subscriptionEntities + "]");
             if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
 
             if (subscriptionEntities.isEmpty()) {
@@ -300,7 +300,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                         info.getAvatarUrl(),
                         info.getDescription(),
                         info.getSubscriberCount());
-                subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnSubscribe(channel));
+                subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnSubscribe(channel, info));
             } else {
                 if (DEBUG) Log.d(TAG, "Found subscription to this channel!");
                 final SubscriptionEntity subscription = subscriptionEntities.get(0);

@@ -62,7 +62,7 @@
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
     <string name="tab_subscriptions">الاشتراكات</string>
-    <string name="fragment_whats_new">ما الجديد</string>
+    <string name="fragment_feed_title">ما الجديد</string>
     <string name="controls_background_title">في الخلفية</string>
     <string name="autoplay_by_calling_app_title">تشغيل تلقائي</string>
     <string name="black_theme_title">اسود</string>
@@ -94,7 +94,7 @@
     <string name="popup_remember_size_pos_title">تذكر حجم النافذة و وضعها</string>
     <string name="popup_remember_size_pos_summary">تذكر آخر مكان و حجم للنافذة المنبثقة</string>
     <string name="player_gesture_controls_title">اعدادات إيماءة المشغل</string>
-    <string name="player_gesture_controls_summary">استخدم إيماءات التحكم في سطوع وصوت المشغل</string>
+    <string name="player_gesture_controls_summary">استخدم الإيماءات للتحكم في سطوع وصوت المشغل</string>
     <string name="show_search_suggestions_title">اقتراحات البحث</string>
     <string name="show_search_suggestions_summary">عرض الاقتراحات عند البحث</string>
     <string name="enable_search_history_title">سجل البحث</string>
@@ -111,7 +111,7 @@
     <string name="background_player_append">تم وضعه على قائمة الانتظار في مشغل الخلفية</string>
     <string name="popup_playing_append">تم وضعه على قائمة الانتظار في مشغل النافذة المنبثقة</string>
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
-    <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
+    <string name="video_is_age_restricted">إظهار الفيديو المقيد بحسب العمر. التغييرات المستقبلية ممكنة من \"الإعدادات\".</string>
     <string name="duration_live">بث مباشر</string>
     <string name="error_report_title">تقرير خطأ</string>
     <string name="playlist">قائمة التشغيل</string>
@@ -205,7 +205,7 @@
     <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية ، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل !</string>
     <string name="view_on_github">عرض على GitHub</string>
     <string name="donation_title">تبرع</string>
-    <string name="donation_encouragement">يتم تطوير NewPipe من قبل متطوعين يقضون وقت فراغهم لتقديم أفضل تجربة لك. حان الوقت لرد المساعدة مع المطورين وجعل NewPipe أكثر و أفضل بينما تستمتع بفنجان من القهوة.</string>
+    <string name="donation_encouragement">يتم تطوير NewPipe من قبل متطوعين يقضون وقت فراغهم لتقديم أفضل تجربة لك. حان الوقت لرد المساعدة مع المطورين وجعل NewPipe أكثر و أفضل بينما يستمتعون بفنجان من القهوة.</string>
     <string name="give_back">تبرع</string>
     <string name="website_title">موقع الويب</string>
     <string name="website_encouragement">قم بزيارة موقع NewPipe لمزيد من المعلومات والمستجدات.</string>
@@ -417,7 +417,7 @@
     <string name="unsubscribe">إلغاء الاشتراك</string>
     <string name="tab_new">علامة تبويب جديدة</string>
     <string name="tab_choose">اختر علامة التبويب</string>
-    <string name="volume_gesture_control_summary">استخدم إيماءات التحكم في سطوع وصوت المشغل</string>
+    <string name="volume_gesture_control_summary">استخدم إيماءات التحكم في صوت المشغل</string>
     <string name="brightness_gesture_control_title">التحكم بالإيماءات السطوع</string>
     <string name="brightness_gesture_control_summary">استخدام الإيماءات للتحكم في سطوع المشغل</string>
     <string name="settings_category_updates_title">التحديثات</string>
@@ -463,7 +463,7 @@
     <string name="error_file_creation">لا يمكن إنشاء الملف</string>
     <string name="error_path_creation">لا يمكن إنشاء المجلد الوجهة</string>
     <string name="error_permission_denied">تم رفضها من قبل النظام</string>
-    <string name="error_ssl_exception">فشل اتصال الأمن</string>
+    <string name="error_ssl_exception">فشل الاتصال الآمن</string>
     <string name="error_unknown_host">تعذر العثور على الخادم</string>
     <string name="error_connect_host">لا يمكن الاتصال بالخادم</string>
     <string name="error_http_no_content">الخادم لايقوم بإرسال البيانات</string>
@@ -556,8 +556,8 @@
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
     <string name="choose_instance_prompt">اختيار مثيل</string>
     <string name="peertube_instance_url_help">ابحث عن مثيلات الخوادم التي تناسبك على %s</string>
-    <string name="enable_lock_screen_video_thumbnail_title">تمكين قفل شاشة الصور المصغرة الفيديو</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">عند استخدام مشغل الخلفية ، سيتم عرض صورة مصغرة للفيديو على شاشة القفل</string>
+    <string name="enable_lock_screen_video_thumbnail_title">تمكين صورة العرض للفيديو في شاشة القفل</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">عند استخدام مشغل الخلفية، سيتم عرض صورة العرض للفيديو على شاشة القفل</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
     <string name="delete_downloaded_files">حذف الملفات التي تم تنزيلها</string>
     <string name="deleted_downloads">التنزيلات %1$s المحذوفة</string>
@@ -569,10 +569,10 @@
     <string name="videos_string">الفيديوهات</string>
     <plurals name="dynamic_seek_duration_description">
         <item quantity="zero">%s ثوانٍ</item>
-        <item quantity="one"></item>
-        <item quantity="two"></item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
-        <item quantity="other"></item>
+        <item quantity="one">%s ثوانٍ</item>
+        <item quantity="two">%s ثوانٍ</item>
+        <item quantity="few">%s ثوانٍ</item>
+        <item quantity="many">%s ثوانٍ</item>
+        <item quantity="other">%s ثوانٍ</item>
     </plurals>
 </resources>

@@ -52,12 +52,12 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         if (!(localItem instanceof PlaylistStreamEntry)) return;
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
-        itemVideoTitleView.setText(item.title);
-        itemAdditionalDetailsView.setText(Localization.concatenateStrings(item.uploader,
-                NewPipe.getNameOfService(item.serviceId)));
+        itemVideoTitleView.setText(item.getStreamEntity().getTitle());
+        itemAdditionalDetailsView.setText(Localization.concatenateStrings(item.getStreamEntity().getUploader(),
+                NewPipe.getNameOfService(item.getStreamEntity().getServiceId())));
 
-        if (item.duration > 0) {
-            itemDurationView.setText(Localization.getDurationString(item.duration));
+        if (item.getStreamEntity().getDuration() > 0) {
+            itemDurationView.setText(Localization.getDurationString(item.getStreamEntity().getDuration()));
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
@@ -65,7 +65,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
             StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
             if (state != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
-                itemProgressView.setMax((int) item.duration);
+                itemProgressView.setMax((int) item.getStreamEntity().getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
@@ -75,7 +75,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
+        itemBuilder.displayImage(item.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
@@ -102,8 +102,8 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
         StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
-        if (state != null && item.duration > 0) {
-            itemProgressView.setMax((int) item.duration);
+        if (state != null && item.getStreamEntity().getDuration() > 0) {
+            itemProgressView.setMax((int) item.getStreamEntity().getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
             } else {

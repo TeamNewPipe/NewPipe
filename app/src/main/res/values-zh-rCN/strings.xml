@@ -237,7 +237,7 @@
     <string name="subscription_update_failed">无法更新订阅</string>
     <string name="tab_main">主页</string>
     <string name="tab_subscriptions">订阅</string>
-    <string name="fragment_whats_new">最新</string>
+    <string name="fragment_feed_title">最新</string>
     <string name="resume_on_audio_focus_gain_title">恢复前台焦点</string>
     <string name="resume_on_audio_focus_gain_summary">中断后继续播放（例如突然来电后）</string>
     <string name="enable_search_history_title">搜索历史记录</string>
@@ -411,7 +411,7 @@
     <string name="privacy_policy_encouragement">NewPipe 项目非常重视您的隐私。因此，未经您的同意，应用程序不会收集任何数据。
 \nNewPipe 的隐私政策详细解释了在发送崩溃报告时发送和存储的数据。</string>
     <string name="read_privacy_policy">阅读隐私政策</string>
-    <string name="start_accept_privacy_policy">为了遵守欧盟的《通用数据保护条例》（GDPR），我们特此提醒您注意 NewPipe 的隐私政策。请您仔细阅读。 
+    <string name="start_accept_privacy_policy">为了遵守欧盟的《通用数据保护条例》（GDPR），我们特此提醒您注意 NewPipe 的隐私政策。请您仔细阅读。
 \n您必须在同意以后才能向我们发送错误报告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒绝</string>
