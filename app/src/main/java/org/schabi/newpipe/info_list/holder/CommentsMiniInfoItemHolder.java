@@ -85,7 +85,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             if(StringUtil.isBlank(item.getAuthorEndpoint())) return;
             try {
                 final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
-                NavigationHelper.openChannelFragment(
+                NavigationHelper.openChannelDetailFragment(
                         activity.getSupportFragmentManager(),
                         item.getServiceId(),
                         item.getAuthorEndpoint(),

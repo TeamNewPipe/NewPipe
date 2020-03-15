@@ -396,7 +396,7 @@ public class VideoDetailFragment
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
                     try {
-                    NavigationHelper.openChannelFragment(
+                    NavigationHelper.openChannelDetailFragment(
                             getFragmentManager(),
                             currentInfo.getServiceId(),
                             currentInfo.getUploaderUrl(),

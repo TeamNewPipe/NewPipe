@@ -3,8 +3,6 @@ package org.schabi.newpipe.fragments.detail;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -19,7 +17,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -38,8 +35,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelTabInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelTabFragment;
@@ -76,10 +72,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class ChannelDetailFragment
         extends BaseStateFragment<ChannelInfo>
-        implements BackPressable,
-        SharedPreferences.OnSharedPreferenceChangeListener,
-        View.OnClickListener,
-        View.OnLongClickListener {
+        implements BackPressable {
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
@@ -101,14 +94,10 @@ public class ChannelDetailFragment
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private Menu menu;
-
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
     private TabAdaptor pageAdapter;
     private TabLayout tabLayout;
-
-    private MenuItem menuRssButton;
 
     private ImageView headerChannelBanner;
     private ImageView headerAvatarView;
@@ -119,9 +108,9 @@ public class ChannelDetailFragment
 
     /*////////////////////////////////////////////////////////////////////////*/
 
-    public static ChannelDetailFragment getInstance(int serviceId, String videoUrl, String name) {
+    public static ChannelDetailFragment getInstance(int serviceId, String channelUrl, String name) {
         ChannelDetailFragment instance = new ChannelDetailFragment();
-        instance.setInitialData(serviceId, videoUrl, name);
+        instance.setInitialData(serviceId, channelUrl, name);
         return instance;
     }
 
@@ -133,15 +122,14 @@ public class ChannelDetailFragment
     public void
     onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .registerOnSharedPreferenceChangeListener(this);
+        setHasOptionsMenu(true);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
         subscriptionManager = new SubscriptionManager(activity);
     }
 
@@ -153,6 +141,7 @@ public class ChannelDetailFragment
     @Override
     public void onPause() {
         super.onPause();
+
         if (currentWorker != null) currentWorker.dispose();
         PreferenceManager.getDefaultSharedPreferences(getContext())
                 .edit()
@@ -170,15 +159,13 @@ public class ChannelDetailFragment
 
         // Check if it was loading when the fragment was stopped/paused,
         if (wasLoading.getAndSet(false)) {
-            selectAndLoadVideo(serviceId, url, name);
+            selectAndLoadChannel(serviceId, url, name);
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .unregisterOnSharedPreferenceChangeListener(this);
 
         if (currentWorker != null) currentWorker.dispose();
         if (disposables != null) disposables.clear();
@@ -197,20 +184,14 @@ public class ChannelDetailFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case ReCaptchaActivity.RECAPTCHA_REQUEST:
-                if (resultCode == Activity.RESULT_OK) {
-                    NavigationHelper.openVideoDetailFragment(getFragmentManager(), serviceId, url, name);
-                } else Log.e(TAG, "ReCaptcha failed");
-                break;
-            default:
-                Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
-                break;
+        if (requestCode == ReCaptchaActivity.RECAPTCHA_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
+                NavigationHelper.openChannelDetailFragment(getFragmentManager(), serviceId, url, name);
+            } else Log.e(TAG, "ReCaptcha failed");
+        } else {
+            Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
         }
     }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {}
 
     /*//////////////////////////////////////////////////////////////////////////
     // State Saving
@@ -249,27 +230,6 @@ public class ChannelDetailFragment
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // OnClick
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onClick(View v) {
-        if (isLoading.get() || currentInfo == null) return;
-
-        switch (v.getId()) {
-        }
-    }
-
-    @Override
-    public boolean onLongClick(View v) {
-        if (isLoading.get() || currentInfo == null) return false;
-
-        switch (v.getId()) {}
-
-        return true;
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -299,18 +259,12 @@ public class ChannelDetailFragment
         headerSubscribeButton = rootView.findViewById(R.id.channel_subscribe_button);
     }
 
-    @Override
-    protected void initListeners() {
-        super.initListeners();
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        this.menu = menu;
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (useAsFrontPage && supportActionBar != null) {
@@ -320,17 +274,9 @@ public class ChannelDetailFragment
 
             if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu +
                     "], inflater = [" + inflater + "]");
-            menuRssButton = menu.findItem(R.id.menu_item_rss);
+            MenuItem menuRssButton = menu.findItem(R.id.menu_item_rss);
 
             if (currentInfo != null) menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.getFeedUrl()));
-        }
-    }
-
-    private void openRssFeed() {
-        final ChannelInfo info = currentInfo;
-        if (info != null) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(info.getFeedUrl()));
-            startActivity(intent);
         }
     }
 
@@ -343,7 +289,7 @@ public class ChannelDetailFragment
         }
 
         if (isLoading.get()) {
-            // if still loading, block menu buttons related to video info
+            // if still loading, block menu buttons related to channel info
             return true;
         }
 
@@ -361,7 +307,9 @@ public class ChannelDetailFragment
                 return true;
             }
             case R.id.menu_item_rss:
-                openRssFeed();
+                if (currentInfo != null) {
+                    ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getFeedUrl());
+                }
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -379,27 +327,27 @@ public class ChannelDetailFragment
 
     /**
      * Stack that contains the "navigation history".<br>
-     * The peek is the current video.
+     * The peek is the current channel.
      */
-    protected final LinkedList<StackItem> stack = new LinkedList<>();
+    private final LinkedList<StackItem> stack = new LinkedList<>();
 
-    public void pushToStack(int serviceId, String videoUrl, String name) {
+    private void pushToStack(int serviceId, String channelUrl, String name) {
         if (DEBUG) {
             Log.d(TAG, "pushToStack() called with: serviceId = ["
-                    + serviceId + "], videoUrl = [" + videoUrl + "], name = [" + name + "]");
+                    + serviceId + "], channelUrl = [" + channelUrl + "], name = [" + name + "]");
         }
 
         if (stack.size() > 0
                 && stack.peek().getServiceId() == serviceId
-                && stack.peek().getUrl().equals(videoUrl)) {
+                && stack.peek().getUrl().equals(channelUrl)) {
             Log.d(TAG, "pushToStack() called with: serviceId == peek.serviceId = ["
-                    + serviceId + "], videoUrl == peek.getUrl = [" + videoUrl + "]");
+                    + serviceId + "], channelUrl == peek.getUrl = [" + channelUrl + "]");
             return;
         } else {
             Log.d(TAG, "pushToStack() wasn't equal");
         }
 
-        stack.push(new StackItem(serviceId, videoUrl, name));
+        stack.push(new StackItem(serviceId, channelUrl, name));
     }
 
     @Override
@@ -413,7 +361,7 @@ public class ChannelDetailFragment
         // Get stack item from the new top
         StackItem peek = stack.peek();
 
-        selectAndLoadVideo(peek.getServiceId(),
+        selectAndLoadChannel(peek.getServiceId(),
                 peek.getUrl(),
                 !TextUtils.isEmpty(peek.getTitle())
                         ? peek.getTitle()
@@ -565,28 +513,27 @@ public class ChannelDetailFragment
     @Override
     protected void doInitialLoadLogic() {
         if (currentInfo == null) prepareAndLoadInfo();
-        else prepareAndHandleInfo(currentInfo, false);
+        else prepareAndHandleInfo(currentInfo);
     }
 
-    public void selectAndLoadVideo(int serviceId, String videoUrl, String name) {
-        setInitialData(serviceId, videoUrl, name);
+    private void selectAndLoadChannel(int serviceId, String channelUrl, String name) {
+        setInitialData(serviceId, channelUrl, name);
         prepareAndLoadInfo();
     }
 
-    public void prepareAndHandleInfo(final ChannelInfo info, boolean scrollToTop) {
+    private void prepareAndHandleInfo(final ChannelInfo info) {
         if (DEBUG) Log.d(TAG, "prepareAndHandleInfo() called with: info = ["
-                + info + "], scrollToTop = [" + scrollToTop + "]");
+                + info + "], scrollToTop = [" + false + "]");
 
         setInitialData(info.getServiceId(), info.getUrl(), info.getName());
         pushToStack(serviceId, url, name);
         showLoading();
         initTabs();
 
-        if (scrollToTop) appBarLayout.setExpanded(true, true);
         handleResult(info);
     }
 
-    protected void prepareAndLoadInfo() {
+    private void prepareAndLoadInfo() {
         appBarLayout.setExpanded(true, true);
         pushToStack(serviceId, url, name);
         startLoading(false);
@@ -626,15 +573,6 @@ public class ChannelDetailFragment
         this.serviceId = serviceId;
         this.url = url;
         this.name = !TextUtils.isEmpty(name) ? name : "";
-    }
-
-    @Override
-    public void showError(String message, boolean showRetryButton) {
-        showError(message, showRetryButton, R.drawable.not_available_monkey);
-    }
-
-    protected void showError(String message, boolean showRetryButton, @DrawableRes int imageError) {
-        super.showError(message, showRetryButton);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

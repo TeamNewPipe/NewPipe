@@ -643,7 +643,7 @@ public class MainActivity extends AppCompatActivity {
                         NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay);
                         break;
                     case CHANNEL:
-                        NavigationHelper.openChannelFragment(getSupportFragmentManager(),
+                        NavigationHelper.openChannelDetailFragment(getSupportFragmentManager(),
                                 serviceId,
                                 url,
                                 title);

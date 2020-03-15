@@ -1,7 +1,5 @@
 package org.schabi.newpipe.fragments.list.channel;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,7 +25,7 @@ import io.reactivex.disposables.CompositeDisposable;
 
 import static org.schabi.newpipe.util.ExtractorHelper.getMoreChannelTabItems;
 
-public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> implements SharedPreferences.OnSharedPreferenceChangeListener{
+public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> {
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private ChannelTabInfo relatedStreamInfo;
@@ -45,12 +43,8 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> imp
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        mIsVisibleToUser = isVisibleToUser;
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+        mIsVisibleToUser = isVisibleToUser;
     }
 
     @Override
@@ -61,6 +55,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> imp
     @Override
     public void onDestroy() {
         super.onDestroy();
+
         if (disposables != null) disposables.clear();
     }
 
@@ -77,11 +72,6 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> imp
     /*//////////////////////////////////////////////////////////////////////////
     // Contract
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void showLoading() {
-        super.showLoading();
-    }
 
     @Override
     public void handleResult(@NonNull ChannelTabInfo result) {
@@ -119,6 +109,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> imp
 
         hideLoading();
         showSnackBarError(exception, UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(serviceId), url, R.string.general_error);
+
         return true;
     }
 
@@ -134,31 +125,28 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> imp
 
     private void setInitialData(ChannelTabInfo info) {
         super.setInitialData(info.getServiceId(), info.getUrl(), info.getName());
+
         if(this.relatedStreamInfo == null) this.relatedStreamInfo = info;
     }
-
 
     private static final String INFO_KEY = "related_info_key";
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
         outState.putSerializable(INFO_KEY, relatedStreamInfo);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedState) {
         super.onRestoreInstanceState(savedState);
-        if (savedState != null) {
-            Serializable serializable = savedState.getSerializable(INFO_KEY);
-            if (serializable instanceof ChannelTabInfo){
-                this.relatedStreamInfo = (ChannelTabInfo) serializable;
-            }
+
+        Serializable serializable = savedState.getSerializable(INFO_KEY);
+        if (serializable instanceof ChannelTabInfo) {
+            this.relatedStreamInfo = (ChannelTabInfo) serializable;
         }
     }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {}
 
     @Override
     protected boolean isGridLayout() {

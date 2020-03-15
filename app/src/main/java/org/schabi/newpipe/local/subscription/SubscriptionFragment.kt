@@ -304,7 +304,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private val listenerChannelItem = object : OnClickGesture<ChannelInfoItem>() {
-        override fun selected(selectedItem: ChannelInfoItem) = NavigationHelper.openChannelFragment(fm,
+        override fun selected(selectedItem: ChannelInfoItem) = NavigationHelper.openChannelDetailFragment(fm,
                 selectedItem.serviceId, selectedItem.url, selectedItem.name)
 
         override fun held(selectedItem: ChannelInfoItem) = showLongTapDialog(selectedItem)

@@ -7,16 +7,17 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -214,7 +215,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             public void selected(ChannelInfoItem selectedItem) {
                 try {
                     onItemSelected(selectedItem);
-                    NavigationHelper.openChannelFragment(getFM(),
+                    NavigationHelper.openChannelDetailFragment(getFM(),
                             selectedItem.getServiceId(),
                             selectedItem.getUrl(),
                             selectedItem.getName());
