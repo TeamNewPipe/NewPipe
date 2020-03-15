@@ -19,6 +19,7 @@ package org.schabi.newpipe.views;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -42,6 +43,34 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
 
     public FocusAwareDrawerLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    @Override
+    protected boolean onRequestFocusInDescendants(int direction, Rect previouslyFocusedRect) {
+        // SDK implementation of this method picks whatever visible View takes the focus first without regard to addFocusables
+        // if the open drawer is temporarily empty, the focus escapes outside of it, which can be confusing
+
+        boolean hasOpenPanels = false;
+
+        for (int i = 0; i < getChildCount(); ++i) {
+            View child = getChildAt(i);
+
+            DrawerLayout.LayoutParams lp = (DrawerLayout.LayoutParams) child.getLayoutParams();
+
+            if (lp.gravity != 0 && isDrawerVisible(child)) {
+                hasOpenPanels = true;
+
+                if (child.requestFocus(direction, previouslyFocusedRect)) {
+                    return true;
+                }
+            }
+        }
+
+        if (hasOpenPanels) {
+            return false;
+        }
+
+        return super.onRequestFocusInDescendants(direction, previouslyFocusedRect);
     }
 
     @Override
