@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.navigation.NavigationView android:id="@+id/navigation_layout"
+<com.google.android.material.internal.ScrimInsetsFrameLayout android:id="@+id/navigation_layout"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="wrap_content"
     android:layout_gravity="start"
+    android:focusable="false"
+    android:background="?attr/android:windowBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:clickable="true"
-    android:focusable="true"
     >
 
     <com.google.android.material.navigation.NavigationView
@@ -17,6 +17,7 @@
         app:elevation="0dp"
         android:background="?attr/android:windowBackground"
         app:headerLayout="@layout/drawer_header"
+        android:focusable="false"
         android:theme="@style/NavViewTextStyle"/>
         <!-- app:menu="@menu/drawer_items" -->
 
@@ -33,4 +34,4 @@
         android:layout_alignParentBottom="true">
     </LinearLayout>
 
-</com.google.android.material.navigation.NavigationView>
+</com.google.android.material.internal.ScrimInsetsFrameLayout>
