@@ -115,6 +115,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> {
             case "Videos":
             case "Tracks":
             case "Popular tracks":
+            case "Reposts":
             case "Events":
                 playlistCtrl.setVisibility(View.VISIBLE);
 
