@@ -127,7 +127,8 @@
 				android:id="@+id/tablayout"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:background="?attr/contrast_background_color" />
+				android:background="?attr/contrast_background_color"
+				app:tabMode="scrollable" />
 
 		</com.google.android.material.appbar.AppBarLayout>
 
