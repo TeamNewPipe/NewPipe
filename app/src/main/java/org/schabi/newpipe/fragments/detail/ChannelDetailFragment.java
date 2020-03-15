@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -143,10 +142,6 @@ public class ChannelDetailFragment
         super.onPause();
 
         if (currentWorker != null) currentWorker.dispose();
-        PreferenceManager.getDefaultSharedPreferences(getContext())
-                .edit()
-                .putString(getString(R.string.stream_info_selected_tab_key), pageAdapter.getItemTitle(viewPager.getCurrentItem()))
-                .apply();
     }
 
     @Override
@@ -666,7 +661,7 @@ public class ChannelDetailFragment
 
         if (!info.getErrors().isEmpty()) {
             showSnackBarError(info.getErrors(),
-                    UserAction.REQUESTED_STREAM,
+                    UserAction.REQUESTED_CHANNEL,
                     NewPipe.getNameOfService(info.getServiceId()),
                     info.getUrl(),
                     0);
@@ -674,7 +669,7 @@ public class ChannelDetailFragment
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Stream Results
+    // Channel Results
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override

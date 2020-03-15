@@ -80,7 +80,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> {
         AnimationUtils.slideUp(getView(),120, 96, 0.06f);
 
         if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(), UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
+            showSnackBarError(result.getErrors(), UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
         if (disposables != null) disposables.clear();
@@ -92,7 +92,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> {
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),
-                    UserAction.REQUESTED_STREAM,
+                    UserAction.REQUESTED_CHANNEL,
                     NewPipe.getNameOfService(serviceId),
                     "Get next page of: " + url,
                     R.string.general_error);
