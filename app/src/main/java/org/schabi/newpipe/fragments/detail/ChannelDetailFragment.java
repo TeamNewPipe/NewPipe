@@ -35,7 +35,6 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelTabInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelTabFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
@@ -50,8 +49,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -70,8 +67,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateTextColor;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class ChannelDetailFragment
-        extends BaseStateFragment<ChannelInfo>
-        implements BackPressable {
+        extends BaseStateFragment<ChannelInfo> {
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
@@ -202,8 +198,6 @@ public class ChannelDetailFragment
         if (!isLoading.get() && currentInfo != null && isVisible()) {
             outState.putSerializable(INFO_KEY, currentInfo);
         }
-
-        outState.putSerializable(STACK_KEY, stack);
     }
 
     @Override
@@ -215,13 +209,6 @@ public class ChannelDetailFragment
             currentInfo = (ChannelInfo) serializable;
             InfoCache.getInstance().putInfo(serviceId, url, currentInfo, InfoItem.InfoType.CHANNEL);
         }
-
-        serializable = savedState.getSerializable(STACK_KEY);
-        if (serializable instanceof Collection) {
-            //noinspection unchecked
-            stack.addAll((Collection<? extends StackItem>) serializable);
-        }
-
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -314,54 +301,6 @@ public class ChannelDetailFragment
 
     private void setupActionBar(final ChannelInfo info) {
         if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // OwnStack
-    //////////////////////////////////////////////////////////////////////////*/
-
-    /**
-     * Stack that contains the "navigation history".<br>
-     * The peek is the current channel.
-     */
-    private final LinkedList<StackItem> stack = new LinkedList<>();
-
-    private void pushToStack(int serviceId, String channelUrl, String name) {
-        if (DEBUG) {
-            Log.d(TAG, "pushToStack() called with: serviceId = ["
-                    + serviceId + "], channelUrl = [" + channelUrl + "], name = [" + name + "]");
-        }
-
-        if (stack.size() > 0
-                && stack.peek().getServiceId() == serviceId
-                && stack.peek().getUrl().equals(channelUrl)) {
-            Log.d(TAG, "pushToStack() called with: serviceId == peek.serviceId = ["
-                    + serviceId + "], channelUrl == peek.getUrl = [" + channelUrl + "]");
-            return;
-        } else {
-            Log.d(TAG, "pushToStack() wasn't equal");
-        }
-
-        stack.push(new StackItem(serviceId, channelUrl, name));
-    }
-
-    @Override
-    public boolean onBackPressed() {
-        if (DEBUG) Log.d(TAG, "onBackPressed() called");
-        // That means that we are on the start of the stack,
-        // return false to let the MainActivity handle the onBack
-        if (stack.size() <= 1) return false;
-        // Remove top
-        stack.pop();
-        // Get stack item from the new top
-        StackItem peek = stack.peek();
-
-        selectAndLoadChannel(peek.getServiceId(),
-                peek.getUrl(),
-                !TextUtils.isEmpty(peek.getTitle())
-                        ? peek.getTitle()
-                        : "");
-        return true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -521,7 +460,6 @@ public class ChannelDetailFragment
                 + info + "], scrollToTop = [" + false + "]");
 
         setInitialData(info.getServiceId(), info.getUrl(), info.getName());
-        pushToStack(serviceId, url, name);
         showLoading();
         initTabs();
 
@@ -530,7 +468,6 @@ public class ChannelDetailFragment
 
     private void prepareAndLoadInfo() {
         appBarLayout.setExpanded(true, true);
-        pushToStack(serviceId, url, name);
         startLoading(false);
     }
 
@@ -558,6 +495,7 @@ public class ChannelDetailFragment
 
     private void initTabs() {
         pageAdapter.clearAllItems();
+        pageAdapter.notifyDataSetUpdate();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -630,13 +568,13 @@ public class ChannelDetailFragment
             pageAdapter.addFragment(ChannelTabFragment.getInstance(tabInfo), name);
         }
 
-        pageAdapter.notifyDataSetUpdate();
-
         if (pageAdapter.getCount() < 2) {
             tabLayout.setVisibility(View.GONE);
         } else {
             tabLayout.setVisibility(View.VISIBLE);
         }
+
+        pageAdapter.notifyDataSetUpdate();
 
         headerSubscribersTextView.setVisibility(View.VISIBLE);
         if (info.getSubscriberCount() >= 0) {
@@ -649,8 +587,6 @@ public class ChannelDetailFragment
         if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
         updateSubscription(info);
         monitorSubscription(info);
-
-        pushToStack(serviceId, url, name);
 
         setupActionBar(info);
         initThumbnailViews(info);
