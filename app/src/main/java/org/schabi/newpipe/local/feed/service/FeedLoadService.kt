@@ -211,7 +211,7 @@ class FeedLoadService : Service() {
                         } else {
                             ExtractorHelper
                                     .getChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url, true)
-                                    .blockingGet()
+                                    .blockingGet().tabs[0]
                         } as ListInfo<StreamInfoItem>
 
                         return@map Notification.createOnNext(Pair(subscriptionEntity.uid, listInfo))

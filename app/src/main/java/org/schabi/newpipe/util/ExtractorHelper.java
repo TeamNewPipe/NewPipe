@@ -47,7 +47,6 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -59,7 +58,6 @@ import java.util.List;
 
 import io.reactivex.Maybe;
 import io.reactivex.Single;
-import io.reactivex.SingleSource;
 
 public final class ExtractorHelper {
     private static final String TAG = ExtractorHelper.class.getSimpleName();
@@ -136,9 +134,8 @@ public final class ExtractorHelper {
                 ChannelTabInfo.getMoreItems(tabInfo, nextStreamsUrl));
     }
 
-    public static Single<ListInfo<StreamInfoItem>> getFeedInfoFallbackToChannelInfo(final int serviceId,
-                                                                                    final String url) {
-        final Maybe<ListInfo<StreamInfoItem>> maybeFeedInfo = Maybe.fromCallable(() -> {
+    public static Single<ListInfo<? extends InfoItem>> getFeedInfoFallbackToChannelInfo(final int serviceId, final String url) {
+        final Maybe<ListInfo<? extends InfoItem>> maybeFeedInfo = Maybe.fromCallable(() -> {
             final StreamingService service = NewPipe.getService(serviceId);
             final FeedExtractor feedExtractor = service.getFeedExtractor(url);
 
@@ -149,7 +146,7 @@ public final class ExtractorHelper {
             return FeedInfo.getInfo(feedExtractor);
         });
 
-        return maybeFeedInfo.switchIfEmpty((SingleSource) getChannelInfo(serviceId, url, true));
+        return maybeFeedInfo.switchIfEmpty(Single.fromCallable(() -> getChannelInfo(serviceId, url, true).blockingGet().getTabs().get(0)));
     }
 
     public static Single<CommentsInfo> getCommentsInfo(final int serviceId,
