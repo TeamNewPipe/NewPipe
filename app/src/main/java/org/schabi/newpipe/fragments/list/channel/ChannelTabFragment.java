@@ -108,7 +108,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> {
         if (super.onError(exception)) return true;
 
         hideLoading();
-        showSnackBarError(exception, UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(serviceId), url, R.string.general_error);
+        showSnackBarError(exception, UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(serviceId), url, R.string.general_error);
 
         return true;
     }

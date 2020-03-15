@@ -681,21 +681,16 @@ public class ChannelDetailFragment
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
-        else if (exception instanceof ContentNotAvailableException) {
+        if (exception instanceof ContentNotAvailableException) {
             showError(getString(R.string.content_not_available), false);
         } else {
-            int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
-                    ? R.string.youtube_signature_decryption_error
-                    : exception instanceof ParsingException
-                    ? R.string.parsing_error
-                    : R.string.general_error;
+            int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
             onUnrecoverableError(exception,
-                    UserAction.REQUESTED_STREAM,
+                    UserAction.REQUESTED_CHANNEL,
                     NewPipe.getNameOfService(serviceId),
                     url,
                     errorId);
         }
-
         return true;
     }
 }
