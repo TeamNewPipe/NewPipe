@@ -300,7 +300,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             disposables.dispose();
         }
 
-        if(removeWatchedWorker != null) removeWatchedWorker.dispose();
+        if (removeWatchedWorker != null) removeWatchedWorker.dispose();
         removeWatchedWorker = null;
 
         debouncedSaveSignal = null;
@@ -356,26 +356,88 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_removeWatched:
-                RemoveWatchedStreams remover = new RemoveWatchedStreams();
-
-                remover.onPreExecute();
-                removeWatchedWorker = Flowable.just(playlistManager.getPlaylistStreams(playlistId).blockingFirst())
-                        .subscribeOn(Schedulers.newThread())
-                        .filter((@NonNull List<PlaylistStreamEntry> playlist) -> {
-                                remover.doInBackground(playlist);
-                                return true;
-                            }
-                        ).observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(playlist -> {
-                            remover.onPostExecute();
-                        }, (@io.reactivex.annotations.NonNull Throwable throwable) -> {
-                            onError(throwable);
-                        });
+                removeWatchedStreams();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    public void removeWatchedStreams() {
+        showLoading();
+
+        if (removeWatchedWorker != null) {
+            // In case this is called twice
+            removeWatchedWorker.dispose();
+        }
+
+        removeWatchedWorker = Flowable.just(playlistManager.getPlaylistStreams(playlistId).blockingFirst())
+                .subscribeOn(Schedulers.newThread())
+                .map((@NonNull List<PlaylistStreamEntry> playlist) -> {
+                            List<PlaylistStreamEntry> localItems = new ArrayList<>();
+                            boolean thumbnailVideoRemoved = false;
+                            Long removedItemCount = 0l;
+
+                            HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
+                            Iterator<StreamHistoryEntry> it_history;
+                            StreamHistoryEntry history_item;
+
+                            Iterator<PlaylistStreamEntry> it_playlist = playlist.iterator();
+                            PlaylistStreamEntry playlist_item = null;
+
+                            boolean isNonDuplicate;
+
+                            while (it_playlist.hasNext()) {
+                                playlist_item = it_playlist.next();
+
+                                it_history = recordManager.getStreamHistory().blockingFirst().iterator();
+
+                                isNonDuplicate = true;
+                                while (it_history.hasNext()) {
+                                    history_item = it_history.next();
+                                    if (history_item.streamId == playlist_item.streamId) {
+                                        isNonDuplicate = false;
+                                        break;
+                                    }
+                                }
+                                if (isNonDuplicate) {
+                                    localItems.add(playlist_item);
+                                } else {
+                                    removedItemCount++;
+                                    if (playlistManager.getPlaylistThumbnail(playlistId).equals(playlist_item.thumbnailUrl)) {
+                                        thumbnailVideoRemoved = true;
+                                    }
+                                }
+                            }
+                            return Flowable.just(localItems, removedItemCount, thumbnailVideoRemoved);
+                        }
+                )
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        flow -> {
+                            List<PlaylistStreamEntry> localItems = (List<PlaylistStreamEntry>) flow.blockingFirst();
+                            Boolean thumbnailVideoRemoved = (Boolean) flow.blockingLast();
+
+                            itemListAdapter.clearStreamItemList();
+                            itemListAdapter.addItems(localItems);
+                            localItems.clear();
+
+                            if (thumbnailVideoRemoved)
+                                updateThumbnailUrl();
+
+                            int amountOfVideos = itemListAdapter.getItemsList().size();
+                            setVideoCount(amountOfVideos);
+
+                            saveChanges();
+                            hideLoading();
+
+                            if (amountOfVideos == 0)
+                                showEmptyState();
+                        }, (@io.reactivex.annotations.NonNull Throwable throwable) -> {
+                            onError(throwable);
+                        }
+                );
     }
 
     @Override
@@ -730,76 +792,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);
-    }
-
-    private class RemoveWatchedStreams{
-        List<PlaylistStreamEntry> localItems = new ArrayList<>();
-        Long RemovedItemCount = 0l;
-        boolean thumbnailVideoRemoved = false;
-
-        // Do this in the main thread
-        protected void onPreExecute() {
-            showLoading();
-        }
-
-        // Do not do this in the main thread
-        protected Long doInBackground(List<PlaylistStreamEntry> playlist) {
-
-            HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
-            Iterator<StreamHistoryEntry> it_history;
-            StreamHistoryEntry history_item;
-
-            Iterator<PlaylistStreamEntry> it_playlist = playlist.iterator();
-            PlaylistStreamEntry playlist_item = null;
-
-            boolean isNonDuplicate;
-
-            while (it_playlist.hasNext()) {
-                playlist_item = it_playlist.next();
-
-                it_history = recordManager.getStreamHistory().blockingFirst().iterator();
-
-                isNonDuplicate = true;
-                while (it_history.hasNext()) {
-                    history_item = it_history.next();
-                    if (history_item.streamId == playlist_item.streamId) {
-                        isNonDuplicate = false;
-                        break;
-                    }
-                }
-                if (isNonDuplicate) {
-                    localItems.add(playlist_item);
-                }
-                else
-                {
-                    RemovedItemCount++;
-                    if(playlistManager.getPlaylistThumbnail(playlistId).equals(playlist_item.thumbnailUrl))
-                    {
-                        thumbnailVideoRemoved = true;
-                    }
-                }
-            }
-            return this.RemovedItemCount;
-        }
-
-        // Do this in the main thread
-        protected void onPostExecute() {
-            itemListAdapter.clearStreamItemList();
-            itemListAdapter.addItems(localItems);
-            localItems.clear();
-
-            if (thumbnailVideoRemoved)
-                updateThumbnailUrl();
-
-            int amountOfVideos = itemListAdapter.getItemsList().size();
-            setVideoCount(amountOfVideos);
-
-            saveChanges();
-            hideLoading();
-
-            if(amountOfVideos == 0)
-                showEmptyState();
-        }
     }
 }
 
