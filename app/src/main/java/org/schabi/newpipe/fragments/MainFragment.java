@@ -2,6 +2,7 @@ package org.schabi.newpipe.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -45,6 +46,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     private boolean hasTabsChanged = false;
 
+    private boolean previousShowAgeRestrictedContent;
+    private String showAgeRestrictedContentKey;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -53,7 +57,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
         tabsManager = TabsManager.getManager(activity);
         tabsManager.setSavedTabsListener(() -> {
             if (DEBUG) {
@@ -66,6 +69,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 hasTabsChanged = true;
             }
         });
+
+        showAgeRestrictedContentKey = getString(R.string.show_age_restricted_content);
+        previousShowAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(showAgeRestrictedContentKey, false);
     }
 
     @Override
@@ -92,7 +98,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onResume() {
         super.onResume();
 
-        if (hasTabsChanged) {
+        boolean showAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(showAgeRestrictedContentKey, false);
+        if (previousShowAgeRestrictedContent != showAgeRestrictedContent) {
+            previousShowAgeRestrictedContent = showAgeRestrictedContent;
+            setupTabs();
+        } else if (hasTabsChanged) {
             setupTabs();
         }
     }
