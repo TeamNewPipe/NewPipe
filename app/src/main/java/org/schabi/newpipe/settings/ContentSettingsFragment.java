@@ -94,6 +94,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             Context context = getContext();
             if (context != null) {
                 DownloaderImpl.getInstance().updateAgeRestrictedContentCookies(context);
+            } else {
+                Log.w(TAG, "onPreferenceTreeClick: null context");
             }
         }
 
