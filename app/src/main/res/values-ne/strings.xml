@@ -99,7 +99,7 @@
     <string name="default_content_country_title">पूर्वनिर्धारित सामग्री देश</string>
     <string name="service_title">सेवा</string>
     <string name="content_language_title">पूर्वनिर्धारित सामग्री भाषा</string>
-    <string name="settings_category_player_title">खेलाडी</string>
+    <string name="settings_category_player_title">प्लेयर</string>
     <string name="settings_category_player_behavior_title">व्यवहार</string>
     <string name="settings_category_video_audio_title">भिडियो र अडियोभिडियो र अडियोभिडियो र अडियो</string>
     <string name="settings_category_history_title">इतिहास र क्यास</string>
@@ -516,11 +516,11 @@
     <string name="seek_duration_title">"छिटो-अगाडि /-पछाडी  खोज्न अवधि"</string>
     <string name="peertube_instance_url_title">PeerTube उदाहरणहरू</string>
     <string name="peertube_instance_url_summary">आफ्नो मनपर्ने PeerTube उदाहरणहरू चयन</string>
-    <string name="peertube_instance_url_help">को उदाहरणहरू तपाईँले %s मा जस्तै फेला</string>
+    <string name="peertube_instance_url_help">%s मा तपाईंलाई मनपर्ने ईन्स्टान्सहरू फेला पार्नुहोस्</string>
     <string name="peertube_instance_add_title">add उदाहरणका</string>
     <string name="peertube_instance_add_help">उदाहरणका URL प्रविष्ट गर्नुहोस्</string>
     <string name="peertube_instance_add_fail">उदाहरणका मान्य सकेन</string>
-    <string name="peertube_instance_add_https_only">URL हरू समर्थित मात्र HTTPS</string>
+    <string name="peertube_instance_add_https_only">HTTPS URL हरू मात्र समर्थित</string>
     <string name="peertube_instance_add_exists">उदाहरणका पहिले नै अवस्थित</string>
     <string name="local">स्थानिय</string>
     <string name="recently_added">हालसालै थपिएको</string>
