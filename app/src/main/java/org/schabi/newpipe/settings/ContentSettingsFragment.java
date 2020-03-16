@@ -92,7 +92,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         if (preference.getKey().equals(showAgeRestrictedContentKey)) {
             Context context = getContext();
-            if(context != null){
+            if (context != null) {
                 DownloaderImpl.getInstance().updateAgeRestrictedContentCookies(context);
             }
         }

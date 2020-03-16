@@ -7,14 +7,12 @@ import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Request;
 import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.util.CookieUtils;
 import org.schabi.newpipe.util.InfoCache;
-import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 
 import java.io.IOException;
@@ -49,6 +47,7 @@ public final class DownloaderImpl extends Downloader {
 
     public static final String YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY = "youtube_age_restricted_content_cookie_key";
     public static final String YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE = "PREF=f2=8000000";
+    public static final String YOUTUBE_DOMAIN = "youtube.com";
 
     private static DownloaderImpl instance;
     private Map<String, String> mCookies;
@@ -131,31 +130,42 @@ public final class DownloaderImpl extends Downloader {
         }
     }
 
-    public String getCookies() {
-       return CookieUtils.concatCookies(mCookies.values());
+    public String getCookies(final String url) {
+        List<String> resultCookies = new ArrayList<>();
+        if (url.contains(YOUTUBE_DOMAIN)) {
+            String youtubeCookie = getCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY);
+            if (youtubeCookie != null) {
+                resultCookies.add(youtubeCookie);
+            }
+        }
+        // Recaptcha cookie is always added TODO: not sure if this is necessary
+        String recaptchaCookie = getCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY);
+        if (recaptchaCookie != null) {
+            resultCookies.add(recaptchaCookie);
+        }
+        return CookieUtils.concatCookies(resultCookies);
     }
 
     public String getCookie(final String key){
         return mCookies.get(key);
     }
 
-    public void setCookie(final String key, final String value){
-        mCookies.put(key, value);
+    public void setCookie(final String key, final String cookie){
+        mCookies.put(key, cookie);
     }
 
     public void removeCookie(final String key){
         mCookies.remove(key);
     }
 
-    public void updateAgeRestrictedContentCookies(Context context){
+    public void updateAgeRestrictedContentCookies(final Context context){
         String showAgeRestrictedContentKey = context.getString(R.string.show_age_restricted_content);
-        int currentServiceId = ServiceHelper.getSelectedServiceId(context);
         boolean showAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(showAgeRestrictedContentKey, false);
-        updateAgeRestrictedContentCookies(currentServiceId, showAgeRestrictedContent);
+        updateAgeRestrictedContentCookies(showAgeRestrictedContent);
     }
 
-    public void updateAgeRestrictedContentCookies(int currentServiceId, boolean showAgeRestrictedContent) {
-        if (currentServiceId == ServiceList.YouTube.getServiceId() && !showAgeRestrictedContent) {
+    public void updateAgeRestrictedContentCookies(boolean showAgeRestrictedContent) {
+        if (!showAgeRestrictedContent) {
             setCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY, YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE);
         } else {
             removeCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY);
@@ -186,8 +196,9 @@ public final class DownloaderImpl extends Downloader {
                     .method("GET", null).url(siteUrl)
                     .addHeader("User-Agent", USER_AGENT);
 
-            if (!mCookies.isEmpty()) {
-                requestBuilder.addHeader("Cookie", getCookies());
+            String cookies = getCookies(siteUrl);
+            if (!cookies.isEmpty()) {
+                requestBuilder.addHeader("Cookie", cookies);
             }
 
             final okhttp3.Request request = requestBuilder.build();
@@ -226,8 +237,9 @@ public final class DownloaderImpl extends Downloader {
                 .method(httpMethod, requestBody).url(url)
                 .addHeader("User-Agent", USER_AGENT);
 
-        if (!mCookies.isEmpty()) {
-            requestBuilder.addHeader("Cookie", getCookies());
+        String cookies = getCookies(url);
+        if (!cookies.isEmpty()) {
+            requestBuilder.addHeader("Cookie", cookies);
         }
 
         for (Map.Entry<String, List<String>> pair : headers.entrySet()) {
