@@ -458,6 +458,8 @@
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed.</string>
     <string name="playlist_delete_failure">Could not delete playlist.</string>
     <string name="playlist_no_uploader">Auto-generated (no uploader found)</string>
+    <string name="playlist_more_than_100_items">100+ videos</string>
+    <string name="playlist_infinite_items">∞ videos</string>
     <!-- Players -->
     <string name="caption_none">No Captions</string>
     <string name="resize_fit">Fit</string>
