@@ -596,4 +596,9 @@
     <string name="drawer_header_description">Toggle service, momenteel geselecteerd:</string>
     <string name="most_liked">Meest geliked</string>
     <string name="error_postprocessing_stopped">NewPipe werd gesloten terwijl het bezig was met het bestand</string>
+    <string name="music_songs">Music/Nummers</string>
+    <string name="music_videos">Music/Video\'s</string>
+    <string name="music_albums">Music/Albums</string>
+    <string name="music_playlists">Music/Afspeellijsten</string>
+    <string name="music_artists">Music/Artiesten</string>
 </resources>

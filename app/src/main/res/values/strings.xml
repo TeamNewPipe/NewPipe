@@ -150,6 +150,11 @@
     <string name="tracks">Tracks</string>
     <string name="users">Users</string>
     <string name="events">Events</string>
+    <string name="music_songs">Music/Songs</string>
+    <string name="music_videos">Music/Videos</string>
+    <string name="music_albums">Music/Albums</string>
+    <string name="music_playlists">Music/Playlists</string>
+    <string name="music_artists">Music/Artists</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>

@@ -61,6 +61,16 @@ public final class ServiceHelper {
                 return c.getString(R.string.conferences);
             case "events":
                 return c.getString(R.string.events);
+            case "music_songs":
+                return c.getString(R.string.music_songs);
+            case "music_videos":
+                return c.getString(R.string.music_videos);
+            case "music_albums":
+                return c.getString(R.string.music_albums);
+            case "music_playlists":
+                return c.getString(R.string.music_playlists);
+            case "music_artists":
+                return c.getString(R.string.music_artists);
             default:
                 return filter;
         }
