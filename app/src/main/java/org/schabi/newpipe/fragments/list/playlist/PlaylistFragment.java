@@ -11,12 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -26,8 +26,10 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -44,13 +46,13 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamDialogEntry;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
@@ -58,6 +60,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
 
 public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private CompositeDisposable disposables;
@@ -74,7 +77,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private TextView headerTitleView;
     private View headerUploaderLayout;
     private TextView headerUploaderName;
-    private ImageView headerUploaderAvatar;
+    private CircleImageView headerUploaderAvatar;
     private TextView headerStreamCount;
     private View playlistCtrl;
 
@@ -301,8 +304,22 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         playlistCtrl.setVisibility(View.VISIBLE);
 
-        IMAGE_LOADER.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar,
-                ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
+        final String avatarUrl = result.getUploaderAvatarUrl();
+        if (result.getServiceId() == ServiceList.YouTube.getServiceId()
+                && (YoutubeParsingHelper.isYoutubeMixId(result.getId())
+                || YoutubeParsingHelper.isYoutubeMusicMixId(result.getId()))) {
+            // this is an auto-generated playlist (e.g. Youtube mix), so a radio is shown
+            headerUploaderAvatar.setDisableCircularTransformation(true);
+            headerUploaderAvatar.setBorderColor(
+                    getResources().getColor(R.color.transparent_background_color));
+            headerUploaderAvatar.setImageDrawable(AppCompatResources.getDrawable(requireContext(),
+                    resolveResourceIdFromAttr(requireContext(), R.attr.ic_radio)));
+
+        } else {
+            IMAGE_LOADER.displayImage(avatarUrl, headerUploaderAvatar,
+                    ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
+        }
+
         headerStreamCount.setText(Localization
                 .localizeStreamCount(getContext(), result.getStreamCount()));
 
@@ -476,7 +493,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         final int titleRes = playlistEntity == null
                 ? R.string.bookmark_playlist : R.string.unbookmark_playlist;
 
-        playlistBookmarkButton.setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, iconAttr));
+        playlistBookmarkButton.setIcon(resolveResourceIdFromAttr(activity, iconAttr));
         playlistBookmarkButton.setTitle(titleRes);
     }
 }
