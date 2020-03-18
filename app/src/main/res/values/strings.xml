@@ -625,8 +625,8 @@
     <string name="feed_group_dialog_select_subscriptions">Select subscriptions</string>
     <string name="feed_group_dialog_empty_selection">No subscription selected</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">Selected: %d</item>
-        <item quantity="other">Selected: %d</item>
+        <item quantity="one">%d selected</item>
+        <item quantity="other">%d selected</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Empty group name</string>
     <string name="feed_group_dialog_name_input">Name</string>

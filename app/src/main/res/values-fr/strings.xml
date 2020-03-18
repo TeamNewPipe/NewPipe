@@ -577,8 +577,8 @@
     <string name="feed_group_dialog_select_subscriptions">Choisir les abonnements</string>
     <string name="feed_group_dialog_empty_selection">Aucun abonnement sélectionné</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">Sélectionné : %d</item>
-        <item quantity="other">Sélectionnés : %d</item>
+        <item quantity="one">%d sélectionné</item>
+        <item quantity="other">%d sélectionnés</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nom de groupe vide</string>
     <string name="feed_group_dialog_name_input">Nom</string>
