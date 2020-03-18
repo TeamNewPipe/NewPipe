@@ -87,7 +87,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private PublishSubject<Long> debouncedSaveSignal;
     private CompositeDisposable disposables;
-    private Disposable removeWatchedWorker;
+    private Disposable removeWatchedDisposable;
 
     /* Has the playlist been fully loaded from db */
     private AtomicBoolean isLoadingComplete;
@@ -300,12 +300,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             disposables.dispose();
         }
 
-        if (removeWatchedWorker != null) removeWatchedWorker.dispose();
-        removeWatchedWorker = null;
+        if (removeWatchedDisposable != null) removeWatchedDisposable.dispose();
 
         debouncedSaveSignal = null;
         playlistManager = null;
         disposables = null;
+        removeWatchedDisposable = null;
 
         isLoadingComplete = null;
         isModified = null;
@@ -367,12 +367,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void removeWatchedStreams() {
         showLoading();
 
-        if (removeWatchedWorker != null) {
+        if (removeWatchedDisposable != null) {
             // In case this is called twice
-            removeWatchedWorker.dispose();
+            removeWatchedDisposable.dispose();
         }
 
-        removeWatchedWorker = Flowable.just(playlistManager.getPlaylistStreams(playlistId).blockingFirst())
+        removeWatchedDisposable = Flowable.just(playlistManager.getPlaylistStreams(playlistId).blockingFirst())
                 .subscribeOn(Schedulers.newThread())
                 .map((@NonNull List<PlaylistStreamEntry> playlist) -> {
                             List<PlaylistStreamEntry> localItems = new ArrayList<>();
@@ -380,36 +380,42 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             Long removedItemCount = 0l;
 
                             HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
-                            Iterator<StreamHistoryEntry> it_history;
-                            StreamHistoryEntry history_item;
 
                             Iterator<PlaylistStreamEntry> it_playlist = playlist.iterator();
                             PlaylistStreamEntry playlist_item = null;
 
                             boolean isNonDuplicate;
 
-                            while (it_playlist.hasNext()) {
+                            Iterator<StreamHistoryEntry> it_history = recordManager.getStreamHistory().blockingFirst().iterator();
+                            ArrayList<Long> history_streamIds = new ArrayList<>();
+
+                            while(it_history.hasNext())
+                            {
+                                history_streamIds.add(it_history.next().getStreamId());
+                            }
+
+                            while(it_playlist.hasNext())
+                            {
                                 playlist_item = it_playlist.next();
-
-                                it_history = recordManager.getStreamHistory().blockingFirst().iterator();
-
                                 isNonDuplicate = true;
-                                while (it_history.hasNext()) {
-                                    history_item = it_history.next();
-                                    if (history_item.streamId == playlist_item.streamId) {
+
+                                for (long history_id : history_streamIds) {
+                                    if (history_id == playlist_item.getStreamId()) {
                                         isNonDuplicate = false;
                                         break;
                                     }
                                 }
+
                                 if (isNonDuplicate) {
                                     localItems.add(playlist_item);
                                 } else {
                                     removedItemCount++;
-                                    if (playlistManager.getPlaylistThumbnail(playlistId).equals(playlist_item.thumbnailUrl)) {
+                                    if (!thumbnailVideoRemoved && playlistManager.getPlaylistThumbnail(playlistId).equals(playlist_item.getStreamEntity().getThumbnailUrl())) {
                                         thumbnailVideoRemoved = true;
                                     }
                                 }
                             }
+
                             return Flowable.just(localItems, removedItemCount, thumbnailVideoRemoved);
                         }
                 )
