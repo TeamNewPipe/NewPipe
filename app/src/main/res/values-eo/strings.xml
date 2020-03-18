@@ -570,8 +570,8 @@
     <string name="feed_processing_message">Procesante abonfluon…</string>
     <string name="feed_group_dialog_select_subscriptions">Seletkti abonojn</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">Selektita: %d</item>
-        <item quantity="other">Selektitaj: %d</item>
+        <item quantity="one">%d selektita</item>
+        <item quantity="other">%d selektitaj</item>
     </plurals>
     <string name="feed_group_dialog_empty_selection">No subscription selected</string>
     <string name="feed_group_dialog_empty_name">Malplena grupa nomo</string>
