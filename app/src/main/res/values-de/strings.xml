@@ -550,5 +550,6 @@
         <item quantity="other">%s Sekunden</item>
     </plurals>
     <string name="new_seek_duration_toast">Aufgrund von ExoPlayer-Einschränkungen wurde die Suchdauer auf %d Sekunden gesetzt</string>
-    <string name="mute">Stumm</string>
+    <string name="mute">Stummschaltung</string>
+    <string name="unmute">Stummschaltung aufheben</string>
 </resources>
