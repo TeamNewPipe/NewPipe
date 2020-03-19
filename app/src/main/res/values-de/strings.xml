@@ -552,4 +552,26 @@
     <string name="new_seek_duration_toast">Aufgrund von ExoPlayer-Einschränkungen wurde die Suchdauer auf %d Sekunden gesetzt</string>
     <string name="mute">Stummschaltung</string>
     <string name="unmute">Stummschaltung aufheben</string>
+    <string name="help">Hilfe</string>
+    <plurals name="minutes">
+        <item quantity="one">%d Minute</item>
+        <item quantity="other">%d Minuten</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d Stunde</item>
+        <item quantity="other">%d Stunden</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d Tag</item>
+        <item quantity="other">%d Tage</item>
+    </plurals>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d ausgewählt</item>
+        <item quantity="other">%d ausgewählte</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">Leerer Gruppenname</string>
+    <string name="feed_group_dialog_name_input">Name</string>
+    <string name="feed_group_dialog_delete_message">Möchtest du diese Gruppe löschen\?</string>
+    <string name="feed_create_new_group_button_title">Neu</string>
+    <string name="feed_update_threshold_option_always_update">Immer aktualisieren</string>
 </resources>
