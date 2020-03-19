@@ -2,14 +2,15 @@ package org.schabi.newpipe.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -52,13 +53,19 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     @Override
     public void onViewCreated(View rootView, Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
-        doInitialLoadLogic();
     }
 
     @Override
     public void onPause() {
         super.onPause();
         wasLoading.set(isLoading.get());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        doInitialLoadLogic();
     }
 
 

@@ -9,6 +9,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionDAO
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.channel.ChannelInfo
+import org.schabi.newpipe.extractor.channel.ChannelTabInfo
 import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
@@ -39,7 +40,13 @@ class SubscriptionManager(context: Context) {
                 Completable.fromRunnable {
                     it.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
                     subscriptionTable.update(it)
-                    feedDatabaseManager.upsertAll(it.uid, info.tabs[0].relatedItems as List<StreamInfoItem>)
+                }
+            }
+
+    fun updateChannelTabInfo(info: ChannelTabInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
+            .flatMapCompletable {
+                Completable.fromRunnable {
+                    feedDatabaseManager.upsertAll(it.uid, info.relatedItems as List<StreamInfoItem>)
                 }
             }
 

@@ -18,6 +18,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelTabInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.UserAction;
@@ -80,7 +81,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> {
 
     @Override
     protected Single<ChannelTabInfo> loadResult(boolean forceLoad) {
-        return Single.fromCallable(() -> channelTabInfo);
+        return Single.fromCallable(() -> channelTabInfo.loadTab());
     }
 
     @Override
@@ -125,6 +126,10 @@ public class ChannelTabFragment extends BaseListInfoFragment<ChannelTabInfo> {
                         view -> NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(0), false));
                 headerBackgroundButton.setOnClickListener(
                         view -> NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(0), false));
+        }
+
+        if (channelTabInfo.isUsedForFeed()) {
+            new SubscriptionManager(activity).updateChannelTabInfo(currentInfo);
         }
     }
 
