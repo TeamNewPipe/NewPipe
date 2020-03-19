@@ -542,4 +542,36 @@
         <item quantity="other">%d detik</item>
     </plurals>
     <string name="new_seek_duration_toast">Karena kendala ExoPlayer, durasi pencarian ditetapkan ke %d detik</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="help">Bantuan</string>
+    <plurals name="minutes">
+        <item quantity="other">%d menit</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="other">%d jam</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="other">%d hari</item>
+    </plurals>
+    <string name="feed_groups_header_title">Grup feed</string>
+    <string name="feed_oldest_subscription_update">Pembaruan subscription terlama: %s</string>
+    <string name="feed_subscription_not_loaded_count">Tidak dimuat: %d</string>
+    <string name="feed_notification_loading">Memuat feed…</string>
+    <string name="feed_processing_message">Memproses feed…</string>
+    <string name="feed_group_dialog_select_subscriptions">Pilih subscription</string>
+    <string name="feed_group_dialog_empty_selection">Tidak ada subscription yang dipilih</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="other">%d dipilih</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">Nama grup kosong</string>
+    <string name="feed_group_dialog_name_input">Nama</string>
+    <string name="feed_group_dialog_delete_message">Apakah anda ingin menghapus grup ini\?</string>
+    <string name="feed_create_new_group_button_title">Baru</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Threshold pembaruan feed</string>
+    <string name="feed_update_threshold_summary">Waktu setelah pembaruan terakhir sebelum subscription dianggap kedaluwarsa — %s</string>
+    <string name="feed_update_threshold_option_always_update">Selalu diperbarui</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Tersedia pada beberapa layanan, biasanya lebih cepat tetapi memperbarui lebih sedikit item dan sering kali dengan informasi yang tidak lengkap (mis. tanpa durasi, tanpa tipe item, tanpa status live).</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Aktifkan mode cepat</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Nonaktifkan mode cepat</string>
 </resources>
