@@ -6,7 +6,7 @@ labels: enhancement
 assignees: ''
 
 ---
-<!-- Hey. Our contribution guidelines (https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md) might be a nice
+<!-- Hey. Our contribution guidelines (https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md) might be an approptiate
  document to read before you fill out the request :) -->
 #### Is your feature request related to a problem? Please describe it
 A clear and concise description of what the problem is.
