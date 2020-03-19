@@ -12,8 +12,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 860
-        versionName "0.18.6"
+        versionCode 870
+        versionName "0.18.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -92,7 +92,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:65a7eda'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:2cf8cbf0d'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 
