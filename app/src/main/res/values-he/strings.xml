@@ -556,11 +556,11 @@
     <string name="subtitle_activity_recaptcha">יש ללחוץ על „סיום” לאחר הפתירה</string>
     <string name="recaptcha_done_button">סיום</string>
     <string name="videos_string">סרטונים</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s שניות</item>
-        <item quantity="two">%s שניות</item>
-        <item quantity="many">%s שניות</item>
-        <item quantity="other">%s שניות</item>
+    <plurals name="seconds">
+        <item quantity="one">%d שניות</item>
+        <item quantity="two">%d שניות</item>
+        <item quantity="many">%d שניות</item>
+        <item quantity="other">%d שניות</item>
     </plurals>
     <string name="new_seek_duration_toast">עקב מגבלות של ExoPlayer מגבלות טווחי החיפוש הוגדרו לכדי %d שניות</string>
     <string name="mute">השתקה</string>

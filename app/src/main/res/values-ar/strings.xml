@@ -567,12 +567,12 @@
     <string name="subtitle_activity_recaptcha">اضغط على \"تم\" عند حلها</string>
     <string name="recaptcha_done_button">منجز</string>
     <string name="videos_string">الفيديوهات</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="zero">%s ثوانٍ</item>
-        <item quantity="one">%s ثوانٍ</item>
-        <item quantity="two">%s ثوانٍ</item>
-        <item quantity="few">%s ثوانٍ</item>
-        <item quantity="many">%s ثوانٍ</item>
-        <item quantity="other">%s ثوانٍ</item>
+    <plurals name="seconds">
+        <item quantity="zero">%d ثوانٍ</item>
+        <item quantity="one">%d ثوانٍ</item>
+        <item quantity="two">%d ثوانٍ</item>
+        <item quantity="few">%d ثوانٍ</item>
+        <item quantity="many">%d ثوانٍ</item>
+        <item quantity="other">%d ثوانٍ</item>
     </plurals>
 </resources>

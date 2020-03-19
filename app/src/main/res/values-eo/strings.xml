@@ -94,8 +94,8 @@
     <string name="black_theme_title">Nigra</string>
     <string name="popup_remember_size_pos_title">Memoru ŝprucfenestran grandecon kaj pozicion</string>
     <string name="popup_remember_size_pos_summary">Memoru lastan grandecon kaj pozicion de ŝprucfenestro</string>
-    <string name="use_inexact_seek_title">Uzu rapide, ne preciza serĉon</string>
-    <string name="use_inexact_seek_summary">Ne preciza serĉo permesas al la ludanto serĉi poziciojn pli rapide kun malalta precizeco</string>
+    <string name="use_inexact_seek_title">Uzi rapide, ne precizan serĉon</string>
+    <string name="use_inexact_seek_summary">Ne preciza serĉo permesas al la ludanto serĉi poziciojn pli rapide kun malalta precizeco. Serĉi por 5, 15 kaj 25 sekundoj ne funckios kun tio opcio.</string>
     <string name="download_thumbnail_title">Ŝarĝi bildetojn</string>
     <string name="could_not_setup_download_menu">Ne povis konstrui la dosierujon de elŝuto</string>
     <string name="live_streams_not_supported">Nunaj filmetoj ne estas ankoraŭ subtenataj</string>
@@ -292,7 +292,7 @@
 \nElektu AFM se vi volas elŝuti al ekstera SD-karto</string>
     <string name="downloads_storage_use_saf_title">Uzu AFM</string>
     <string name="downloads_storage_use_saf_summary">La \"Atinga Framo al la Memoro\" ebligas elŝuti al ekstera SD-karto.
-\nKomento: kelkaj aparatoj malkongruas</string>
+\nKelkaj aparatoj malkongruas</string>
     <string name="clear_playback_states_title">Forviŝi ludajn poziciojn</string>
     <string name="clear_playback_states_summary">Forviŝi la totalon de ludaj pozicioj</string>
     <string name="delete_playback_states_alert">Ĉu vi volas forviŝi ĉiujn ludajn poziciojn \?</string>
@@ -516,7 +516,7 @@
         <item quantity="other">%s aŭskultantoj</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La lingvo ŝanĝos kiam la apo restartos.</string>
-    <string name="seek_duration_title">Rapida antaŭen / posten daŭron</string>
+    <string name="seek_duration_title">Rapida antaŭen / posten serĉan daŭron</string>
     <string name="peertube_instance_url_title">Instancoj de PeerTube</string>
     <string name="peertube_instance_url_summary">Elekti viajn preferitajn instancojn de PeerTube</string>
     <string name="peertube_instance_url_help">Trovu la instancojn ke vi ŝatas ĉe %s</string>
@@ -543,8 +543,51 @@
     <string name="systems_language">Sistemnormo</string>
     <string name="subtitle_activity_recaptcha">Premu « Finita » kiam solvita</string>
     <string name="recaptcha_done_button">Finita</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s sekundo</item>
-        <item quantity="other">%s sekundoj</item>
+    <plurals name="seconds">
+        <item quantity="one">%d sekundo</item>
+        <item quantity="other">%d sekundoj</item>
     </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minuto</item>
+        <item quantity="other">%d minutoj</item>
+    </plurals>
+
+    <plurals name="hours">
+        <item quantity="one">%d horo</item>
+        <item quantity="other">%d horoj</item>
+    </plurals>
+
+    <plurals name="days">
+        <item quantity="one">%d tago</item>
+        <item quantity="other">%d tagoj</item>
+    </plurals>
+
+    <!-- Feed -->
+    <string name="feed_groups_header_title">Abonfluoj grupoj</string>
+    <string name="feed_oldest_subscription_update">Lasta ĝisdatigo: %s</string>
+    <string name="feed_subscription_not_loaded_count">Ne ŝarĝitaj: %d</string>
+    <string name="feed_notification_loading">Ŝarĝante abonfluon…</string>
+    <string name="feed_processing_message">Procesante abonfluon…</string>
+    <string name="feed_group_dialog_select_subscriptions">Seletkti abonojn</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d selektita</item>
+        <item quantity="other">%d selektitaj</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">No subscription selected</string>
+    <string name="feed_group_dialog_empty_name">Malplena grupa nomo</string>
+    <string name="feed_group_dialog_name_input">Nomo</string>
+    <string name="feed_group_dialog_delete_message">Ĉu vi volas forviŝi tion grupon?</string>
+    <string name="feed_create_new_group_button_title">Nova</string>
+
+    <string name="settings_category_feed_title">Abonfluo</string>
+    <string name="feed_update_threshold_title">Abonflua ĝisdatiga sojlo</string>
+    <string name="feed_update_threshold_summary">Tempo post lasta ĝisdatigo antaŭ abono estas konsiderita malĝisdatigita — %s</string>
+    <string name="feed_update_threshold_option_always_update">Ĉiam ĝisdatigi</string>
+    <string name="feed_use_dedicated_fetch_method_title">Ŝarĝi el dediĉita abonfluo kiam ĝi haveblas</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Havebla en kelkaj servoj, ĝi estas ĝenerale multe pli rapida, sed povas doni limigita kvanto da aĵoj kaj ofte malpreciza informoj (ekzemple: neniu duracio, ajâ tipo, neniu « nuna » statuso).</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Ŝalti rapidan modon</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Malŝati rapidan modon</string>
+    <string name="new_seek_duration_toast">Pro ExoPlayer limoj, la serĉa daŭro estas metita %d sekundojn</string>
+    <string name="mute">Mutigi</string>
+    <string name="unmute">Malmutigi</string>
 </resources>

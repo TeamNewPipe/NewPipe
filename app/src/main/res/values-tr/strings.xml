@@ -544,9 +544,9 @@
     <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" butonuna basın</string>
     <string name="recaptcha_done_button">Bitti</string>
     <string name="videos_string">Videolar</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s saniye</item>
-        <item quantity="other">%s saniye</item>
+    <plurals name="seconds">
+        <item quantity="one">%d saniye</item>
+        <item quantity="other">%d saniye</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer kısıtlamaları gereği konumlama süresi %d saniyeye belirlenmiştir</string>
 </resources>

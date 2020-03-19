@@ -147,7 +147,6 @@
     <string name="channel_unsubscribed">Désabonné de la chaîne</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Abonnements</string>
-    <string name="fragment_feed_title">Nouveautés</string>
     <string name="settings_category_downloads_title">Téléchargement</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_about">À propos</string>
@@ -544,11 +543,65 @@
     <string name="subtitle_activity_recaptcha">Appuyez sur « Terminé » une fois résolu</string>
     <string name="recaptcha_done_button">Terminé</string>
     <string name="videos_string">Vidéos</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s seconde</item>
-        <item quantity="other">%s secondes</item>
-    </plurals>
     <string name="new_seek_duration_toast">En raison des contraintes d’ExoPlayer, le pas de déplacement a été réglée à %d secondes</string>
     <string name="mute">Couper le son</string>
     <string name="unmute">Remettre le son</string>
+    <plurals name="seconds">
+        <item quantity="one">%d seconde</item>
+        <item quantity="other">%d secondes</item>
+    </plurals>
+
+    <!-- Time duration plurals -->
+    <plurals name="minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+
+    <plurals name="hours">
+        <item quantity="one">%d heure</item>
+        <item quantity="other">%d heures</item>
+    </plurals>
+
+    <plurals name="days">
+        <item quantity="one">%d jour</item>
+        <item quantity="other">%d jours</item>
+    </plurals>
+
+    <!-- feed -->
+    <string name="fragment_feed_title">Nouveautés</string>
+    <string name="feed_groups_header_title">Groupes d\'abonnements</string>
+    <string name="feed_oldest_subscription_update">Dernière mise à jour : %s</string>
+    <string name="feed_subscription_not_loaded_count">Pas chargés : %d</string>
+    <string name="feed_notification_loading">Chargement du flux…</string>
+    <string name="feed_processing_message">Préparation du flux…</string>
+    <string name="feed_group_dialog_select_subscriptions">Choisir les abonnements</string>
+    <string name="feed_group_dialog_empty_selection">Aucun abonnement sélectionné</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d sélectionné</item>
+        <item quantity="other">%d sélectionnés</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">Nom de groupe vide</string>
+    <string name="feed_group_dialog_name_input">Nom</string>
+    <string name="feed_group_dialog_delete_message">Voulez-vous supprimer ce groupe ?</string>
+    <string name="feed_create_new_group_button_title">Nouveau</string>
+
+    <string name="settings_category_feed_title">Flux</string>
+    <string name="feed_update_threshold_title">Seuil de mise à jour du flux</string>
+    <string name="feed_update_threshold_summary">Temps depuis la dernière mise à jour pour que le flux ne soit plus considéré comme à jour — %s</string>
+    <string name="feed_update_threshold_option_always_update">Toujours mettre à jour</string>
+    <string name="feed_use_dedicated_fetch_method_title">Charger depuis un service dédié quand c\'est possible</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponible pour quelques services, c\'est généralement bien plus rapide mais peut retourner un nombre d\'élements limité et des informations souvent incomplètes (ex : pas de durée, pas de statut « En direct ».</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Activer le mode rapide</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Désactiver le mode rapide</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Pensez vous que la chargement du flux est trop lent ? Si c\'est le cas, essayez le mode rapide (vous pouvez changer le mode dans les paramètres ou en pressant le bouton en dessous).\n\n
+
+NewPipe propose deux manières de charger le flux :\n
+• Charger toutes les chaines auquelles vous êtes abonnés, cette manière est lente mais complète.\n
+• Charger depuis un service dédié, cette manière est plus rapide mais souvent incomplète.\n\n
+
+La différence entre les deux est que la méthode rapide manque souvent de quelques informations, comme la durée d\'un élément ou le type (nous ne pouvons pas différencier les vidéos en direct des vidéos normales) et pourrait retourner moins d\'éléments.\n\n
+
+YouTube est un exemple qui offre cette méthode rapide avec le flux RSS.\n\n
+
+Donc le choix vous revient : Preferrez-vous la vitesse où des informations précises ?</string>
 </resources>

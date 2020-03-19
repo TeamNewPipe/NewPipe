@@ -128,7 +128,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
                                 .putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), !usingDedicatedMethod)
                                 .apply()
                     }
-                    .setPositiveButton(android.R.string.ok, null)
+                    .setPositiveButton(resources.getString(R.string.finish), null)
                     .create()
                     .show()
             return true

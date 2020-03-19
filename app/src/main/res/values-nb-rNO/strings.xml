@@ -543,8 +543,8 @@
     <string name="subtitle_activity_recaptcha">Trykk \"Ferdig\" når den er løst</string>
     <string name="recaptcha_done_button">Ferdig</string>
     <string name="videos_string">Videoer</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s sekunder</item>
-        <item quantity="other">%s sekunder</item>
+    <plurals name="seconds">
+        <item quantity="one">%d sekunder</item>
+        <item quantity="other">%d sekunder</item>
     </plurals>
 </resources>

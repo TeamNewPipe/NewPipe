@@ -544,9 +544,9 @@
     <string name="subtitle_activity_recaptcha">Sakatu \"Egina\" konponduta dagoenean</string>
     <string name="recaptcha_done_button">Egina</string>
     <string name="videos_string">Bideoak</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s segundu</item>
-        <item quantity="other">%s segundu</item>
+    <plurals name="seconds">
+        <item quantity="one">%d segundu</item>
+        <item quantity="other">%d segundu</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer-en mugak direla eta bilaketaren iraupena %d segundotan ezarri da</string>
 </resources>

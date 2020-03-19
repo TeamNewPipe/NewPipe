@@ -76,7 +76,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             displayedDurationValues.add(durationsValue);
             try {
                 displayedDescriptionValues.add(String.format(
-                    res.getQuantityString(R.plurals.dynamic_seek_duration_description,
+                    res.getQuantityString(R.plurals.seconds,
                         currentDurationValue),
                     currentDurationValue));
             } catch (Resources.NotFoundException ignored) {
