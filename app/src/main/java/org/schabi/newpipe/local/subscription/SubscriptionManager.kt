@@ -28,7 +28,7 @@ class SubscriptionManager(context: Context) {
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
-                feedDatabaseManager.upsertAll(listEntities[index].uid, info.tabs[0].relatedItems as List<StreamInfoItem>)
+                feedDatabaseManager.upsertAll(listEntities[index].uid, info.tabs[0].loadTab().relatedItems as List<StreamInfoItem>)
             }
         }
 
@@ -46,7 +46,7 @@ class SubscriptionManager(context: Context) {
     fun updateChannelTabInfo(info: ChannelTabInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
             .flatMapCompletable {
                 Completable.fromRunnable {
-                    feedDatabaseManager.upsertAll(it.uid, info.relatedItems as List<StreamInfoItem>)
+                    feedDatabaseManager.upsertAll(it.uid, info.loadTab().relatedItems as List<StreamInfoItem>)
                 }
             }
 
@@ -71,7 +71,7 @@ class SubscriptionManager(context: Context) {
     fun insertSubscription(subscriptionEntity: SubscriptionEntity, info: ChannelInfo) {
         database.runInTransaction {
             val subscriptionId = subscriptionTable.insert(subscriptionEntity)
-            feedDatabaseManager.upsertAll(subscriptionId, info.tabs[0].relatedItems as List<StreamInfoItem>)
+            feedDatabaseManager.upsertAll(subscriptionId, info.tabs[0].loadTab().relatedItems as List<StreamInfoItem>)
         }
     }
 

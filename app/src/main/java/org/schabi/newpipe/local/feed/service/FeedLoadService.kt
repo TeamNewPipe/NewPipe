@@ -46,6 +46,7 @@ import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.ListInfo
+import org.schabi.newpipe.extractor.channel.ChannelTabInfo
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
@@ -211,7 +212,7 @@ class FeedLoadService : Service() {
                         } else {
                             ExtractorHelper
                                     .getChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url, true)
-                                    .blockingGet().tabs[0]
+                                    .blockingGet().tabs[0].loadTab()
                         } as ListInfo<StreamInfoItem>
 
                         return@map Notification.createOnNext(Pair(subscriptionEntity.uid, listInfo))
@@ -303,6 +304,8 @@ class FeedLoadService : Service() {
                     if (notification.isOnNext) {
                         val subscriptionId = notification.value!!.first
                         val info = notification.value!!.second
+
+                        if (info is ChannelTabInfo) info.loadTab()
 
                         feedDatabaseManager.upsertAll(subscriptionId, info.relatedItems)
                         subscriptionManager.updateFromInfo(subscriptionId, info)
