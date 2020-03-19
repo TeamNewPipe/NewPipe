@@ -549,10 +549,10 @@
     <string name="subtitle_activity_recaptcha">По завершении нажмите Готово</string>
     <string name="recaptcha_done_button">Готово</string>
     <string name="videos_string">Видео</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s секунда</item>
-        <item quantity="few">%s секунды</item>
-        <item quantity="many">%s секунд</item>
+    <plurals name="seconds">
+        <item quantity="one">%d секунда</item>
+        <item quantity="few">%d секунды</item>
+        <item quantity="many">%d секунд</item>
     </plurals>
     <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность перемотки составляет %d секунд</string>
     <string name="mute">Отключить звук</string>

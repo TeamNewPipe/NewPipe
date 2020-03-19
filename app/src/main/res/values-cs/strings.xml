@@ -553,10 +553,10 @@ otevření ve vyskakovacím okně</string>
     <string name="subtitle_activity_recaptcha">Po vyřešení stiskni \"Hotovo\"</string>
     <string name="recaptcha_done_button">Hotovo</string>
     <string name="videos_string">Videa</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s sekund</item>
-        <item quantity="few">%s sekund</item>
-        <item quantity="other">%s sekund</item>
+    <plurals name="seconds">
+        <item quantity="one">%d sekund</item>
+        <item quantity="few">%d sekund</item>
+        <item quantity="other">%d sekund</item>
     </plurals>
     <string name="new_seek_duration_toast">Kvůli omezením ExoPlayer bylo prohledávání nastaveno na %d vteřin</string>
     <string name="mute">Umlčet</string>

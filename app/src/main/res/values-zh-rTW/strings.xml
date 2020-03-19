@@ -537,8 +537,8 @@
     <string name="subtitle_activity_recaptcha">解決後請按「完成」</string>
     <string name="recaptcha_done_button">完成</string>
     <string name="videos_string">影片</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="other">%s秒</item>
+    <plurals name="seconds">
+        <item quantity="other">%d秒</item>
     </plurals>
     <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
     <string name="mute">靜音</string>

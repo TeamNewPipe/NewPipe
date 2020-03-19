@@ -276,9 +276,9 @@
     <string name="app_language_title">Llingua de l\'aplicación</string>
     <string name="systems_language">La predeterminada del sistema</string>
     <string name="videos_string">Vídeos</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s segundos</item>
-        <item quantity="other">%s segundos</item>
+    <plurals name="seconds">
+        <item quantity="one">%d segundos</item>
+        <item quantity="other">%d segundos</item>
     </plurals>
     <string name="playback_tempo">Tempu</string>
     <string name="playback_pitch">Tonu</string>

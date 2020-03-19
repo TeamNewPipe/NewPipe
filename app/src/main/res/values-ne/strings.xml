@@ -541,9 +541,9 @@
     <string name="subtitle_activity_recaptcha">प्रेस हल गर्दा \"डन\"</string>
     <string name="recaptcha_done_button">सकियो</string>
     <string name="videos_string">भिडियो</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s सेकेन्ड</item>
-        <item quantity="other"/>
+    <plurals name="seconds">
+        <item quantity="one">%d सेकेन्ड</item>
+        <item quantity="other">%d सेकेन्ड</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer अवरोधका कारण खोजी अवधि %d सेकेन्डमा सेट गरियो</string>
     <string name="mute">म्युट</string>

@@ -546,9 +546,9 @@
     <string name="new_seek_duration_toast">En raison des contraintes d’ExoPlayer, le pas de déplacement a été réglée à %d secondes</string>
     <string name="mute">Couper le son</string>
     <string name="unmute">Remettre le son</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s seconde</item>
-        <item quantity="other">%s secondes</item>
+    <plurals name="seconds">
+        <item quantity="one">%d seconde</item>
+        <item quantity="other">%d secondes</item>
     </plurals>
 
     <!-- Time duration plurals -->

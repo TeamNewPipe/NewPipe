@@ -544,9 +544,9 @@
     <string name="subtitle_activity_recaptcha">Premere \"Fatto\" quando risolto</string>
     <string name="recaptcha_done_button">Fatto</string>
     <string name="videos_string">Video</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s secondi</item>
-        <item quantity="other">%s secondi</item>
+    <plurals name="seconds">
+        <item quantity="one">%d secondi</item>
+        <item quantity="other">%d secondi</item>
     </plurals>
     <string name="new_seek_duration_toast">A causa dei vincoli di ExoPlayer la durata dello spostamento rapido è stata impostata a %d secondi</string>
     <string name="mute">Silenzia</string>

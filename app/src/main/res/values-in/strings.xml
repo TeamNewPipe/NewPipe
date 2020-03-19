@@ -538,8 +538,8 @@
     <string name="seek_duration_title">Durasi maju/mundur cepat</string>
     <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
     <string name="videos_string">Video</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="other">%s detik</item>
+    <plurals name="seconds">
+        <item quantity="other">%d detik</item>
     </plurals>
     <string name="new_seek_duration_toast">Karena kendala ExoPlayer, durasi pencarian ditetapkan ke %d detik</string>
 </resources>

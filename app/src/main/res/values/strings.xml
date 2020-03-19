@@ -595,9 +595,9 @@
     <string name="systems_language">System default</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <!-- Time duration plurals -->
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s second</item>
-        <item quantity="other">%s seconds</item>
+    <plurals name="seconds">
+        <item quantity="one">%d second</item>
+        <item quantity="other">%d seconds</item>
     </plurals>
 
     <plurals name="minutes">

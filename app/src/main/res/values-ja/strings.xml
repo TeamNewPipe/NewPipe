@@ -537,8 +537,8 @@
     <string name="subtitle_activity_recaptcha">解けたら \"完了\" を押してください</string>
     <string name="recaptcha_done_button">完了</string>
     <string name="videos_string">動画</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="other">%s 秒</item>
+    <plurals name="seconds">
+        <item quantity="other">%d 秒</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer の制約のためシーク間隔は %d 秒に設定されました</string>
     <string name="mute">ミュート</string>

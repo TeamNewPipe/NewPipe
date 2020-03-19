@@ -544,9 +544,9 @@
     <string name="subtitle_activity_recaptcha">Pulse en «Hecho» cuando esté resuelto</string>
     <string name="recaptcha_done_button">Hecho</string>
     <string name="videos_string">Vídeos</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s segundo</item>
-        <item quantity="other">%s segundos</item>
+    <plurals name="seconds">
+        <item quantity="one">%d segundo</item>
+        <item quantity="other">%d segundos</item>
     </plurals>
     <string name="new_seek_duration_toast">Debido a limitaciones de ExoPlayer la duración de la búsqueda fue fijada en %d segundos</string>
     <string name="mute">Silenciar</string>
