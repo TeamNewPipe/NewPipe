@@ -1,7 +1,6 @@
 ---
 name: Bug report
 about: Create a bug report to help us improve
-title: "[BUG]"
 labels: bug
 assignees: ''
 
@@ -37,7 +36,7 @@ Tell us what you expected to happen.
 Tell us what happens instead.
 
 ### Screenshots/Screen records
-If applicable, add screenshots or a screen recording to help explain your problem. Github should support uploading them directly in the issue field. If your file is too big, feel free to paste a link from an image/video hoster here instead.
+If applicable, add screenshots or a screen recording to help explain your problem. GitHub should support uploading them directly in the issue field. If your file is too big, feel free to paste a link from an image/video hoster here instead.
 
 ### Logs
 If your bug includes a crash, please head over to the [incredible bugreport to markdown converter](https://teamnewpipe.github.io/CrashReportToMarkdown/). Copy the result. Paste it here:
