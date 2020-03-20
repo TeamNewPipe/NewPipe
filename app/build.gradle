@@ -136,7 +136,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.XiangRongLin:NewPipeExtractor:6a23efa8d41a05f37b8f523aa08af7e0a9d6c4e1'
+    implementation 'com.github.XiangRongLin:NewPipeExtractor:f9a084f8f9611a87d0f8d6f309a40429304b2ac9'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 

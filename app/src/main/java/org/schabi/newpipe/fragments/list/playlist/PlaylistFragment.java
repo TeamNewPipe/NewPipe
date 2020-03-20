@@ -27,7 +27,6 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.playlist.PlaylistExtractor;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -40,6 +39,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamDialogEntry;
@@ -303,15 +303,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         IMAGE_LOADER.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar,
                 ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
-
-        int streamCount = (int) result.getStreamCount();
-        if (streamCount == PlaylistExtractor.MORE_THAN_100_ITEMS) {
-            headerStreamCount.setText(getResources().getString(R.string.playlist_more_than_100_items));
-        } else if (streamCount == PlaylistExtractor.INFINITE_ITEMS) {
-            headerStreamCount.setText(getResources().getString(R.string.playlist_infinite_items));
-        } else {
-            headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos, streamCount, streamCount));
-        }
+        headerStreamCount.setText(Localization
+                .localizeStreamCount(getContext(), result.getStreamCount()));
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST,
