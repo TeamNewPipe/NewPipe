@@ -8,6 +8,7 @@ import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.Localization;
 
 import java.text.DateFormat;
 
@@ -31,7 +32,8 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
         final PlaylistMetadataEntry item = (PlaylistMetadataEntry) localItem;
 
         itemTitleView.setText(item.name);
-        itemStreamCountView.setText(String.valueOf(item.streamCount));
+        itemStreamCountView.setText(Localization.localizeStreamCount(itemStreamCountView.getContext(),
+                item.streamCount));
         itemUploaderView.setVisibility(View.INVISIBLE);
 
         itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
