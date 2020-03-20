@@ -543,4 +543,52 @@
     <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
     <string name="mute">靜音</string>
     <string name="unmute">取消靜音</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="help">說明</string>
+    <plurals name="minutes">
+        <item quantity="one">%d 分鐘</item>
+        <item quantity="other"></item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d 小時</item>
+        <item quantity="other"></item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d 天</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="feed_groups_header_title">Feed 群組</string>
+    <string name="feed_oldest_subscription_update">最舊訂閱更新：%s</string>
+    <string name="feed_subscription_not_loaded_count">未載入：%d</string>
+    <string name="feed_notification_loading">正在載入 feed……</string>
+    <string name="feed_processing_message">正在處理 feed……</string>
+    <string name="feed_group_dialog_select_subscriptions">選取訂閱</string>
+    <string name="feed_group_dialog_empty_selection">未選取訂閱</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">已選取 %d</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">清空群組名稱</string>
+    <string name="feed_group_dialog_name_input">名稱</string>
+    <string name="feed_group_dialog_delete_message">您想要刪除此群組嗎？</string>
+    <string name="feed_create_new_group_button_title">新</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Feed 更新閾值</string>
+    <string name="feed_update_threshold_summary">上次更新後，訂閱被視為過時的時間 — %s</string>
+    <string name="feed_update_threshold_option_always_update">總是更新</string>
+    <string name="feed_use_dedicated_fetch_method_title">在可用時從專用 feed 擷取</string>
+    <string name="feed_use_dedicated_fetch_method_summary">其在某些服務中可用，且通常較快速，但可能只會回傳有限的項目，而且資訊通常不完整（例如：沒有持續時間、項目類型、沒有即時狀態）。</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">啟用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">您覺得 feed 載入太慢了嗎？如果是的話，試著啟用快速載入（您可以在設定中變更或按下下方的按鈕）。
+\n
+\nNewPipe 提供兩個 feed 載入策略：
+\n• 擷取整個訂閱頻道，慢但是完整。
+\n• 使用專用的伺服器端點，較快速但是通常不完整。
+\n
+\n兩者之間的差別是，較快速的通常缺少部份資訊，如項目的持續時間或類型（無法區分直播影片或一般影片），而且其可能會回傳較少項目。
+\n
+\nYouTube 是一種透過其 RSS feed 提供這種快速方式的例子。
+\n
+\n因此，請選取您較偏好的：速度或準確的資訊。</string>
 </resources>
