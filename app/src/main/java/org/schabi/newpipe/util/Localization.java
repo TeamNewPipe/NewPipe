@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.preference.PreferenceManager;
 
 import org.schabi.newpipe.extractor.ListExtractor;
+
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
@@ -155,12 +156,23 @@ public final class Localization {
     public static String localizeStreamCount(final Context context, final long streamCount) {
         switch ((int) streamCount) {
             case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
-                return context.getResources().getString(R.string.playlist_more_than_100_items);
+                return context.getResources().getString(R.string.more_than_100_videos);
             case (int) ListExtractor.ITEM_COUNT_INFINITE:
-                return context.getResources().getString(R.string.playlist_infinite_items);
+                return context.getResources().getString(R.string.infinite_videos);
             default:
                 return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount,
                         localizeNumber(context, streamCount));
+        }
+    }
+
+    public static String localizeStreamCountMini(final Context context, final long streamCount) {
+        switch ((int) streamCount) {
+            case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
+                return context.getResources().getString(R.string.more_than_100_videos_mini);
+            case (int) ListExtractor.ITEM_COUNT_INFINITE:
+                return context.getResources().getString(R.string.infinite_videos_mini);
+            default:
+                return String.valueOf(streamCount);
         }
     }
 

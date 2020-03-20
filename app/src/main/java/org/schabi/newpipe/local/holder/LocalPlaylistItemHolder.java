@@ -32,8 +32,8 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
         final PlaylistMetadataEntry item = (PlaylistMetadataEntry) localItem;
 
         itemTitleView.setText(item.name);
-        itemStreamCountView.setText(Localization.localizeStreamCount(itemStreamCountView.getContext(),
-                item.streamCount));
+        itemStreamCountView.setText(Localization.localizeStreamCountMini(
+                itemStreamCountView.getContext(), item.streamCount));
         itemUploaderView.setVisibility(View.INVISIBLE);
 
         itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
