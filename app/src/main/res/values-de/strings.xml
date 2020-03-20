@@ -574,4 +574,9 @@
     <string name="feed_group_dialog_delete_message">Möchtest du diese Gruppe löschen\?</string>
     <string name="feed_create_new_group_button_title">Neu</string>
     <string name="feed_update_threshold_option_always_update">Immer aktualisieren</string>
+    <string name="feed_groups_header_title">Feed-Gruppen</string>
+    <string name="feed_subscription_not_loaded_count">Nicht geladen: %d</string>
+    <string name="feed_notification_loading">Feed laden…</string>
+    <string name="feed_processing_message">Feed verarbeiten…</string>
+    <string name="settings_category_feed_title">Feed</string>
 </resources>
