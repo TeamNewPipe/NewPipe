@@ -48,10 +48,12 @@ public final class ServiceHelper {
             case "all":
                 return c.getString(R.string.all);
             case "videos":
+            case "music_videos":
                 return c.getString(R.string.videos_string);
             case "channels":
                 return c.getString(R.string.channels);
             case "playlists":
+            case "music_playlists":
                 return c.getString(R.string.playlists);
             case "tracks":
                 return c.getString(R.string.tracks);
@@ -62,15 +64,11 @@ public final class ServiceHelper {
             case "events":
                 return c.getString(R.string.events);
             case "music_songs":
-                return c.getString(R.string.music_songs);
-            case "music_videos":
-                return c.getString(R.string.music_videos);
+                return c.getString(R.string.songs);
             case "music_albums":
-                return c.getString(R.string.music_albums);
-            case "music_playlists":
-                return c.getString(R.string.music_playlists);
+                return c.getString(R.string.albums);
             case "music_artists":
-                return c.getString(R.string.music_artists);
+                return c.getString(R.string.artists);
             default:
                 return filter;
         }

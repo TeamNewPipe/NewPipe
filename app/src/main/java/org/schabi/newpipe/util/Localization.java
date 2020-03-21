@@ -6,9 +6,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
-
-import org.schabi.newpipe.extractor.ListExtractor;
-
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
@@ -19,6 +16,7 @@ import androidx.annotation.StringRes;
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 
 import java.math.BigDecimal;
