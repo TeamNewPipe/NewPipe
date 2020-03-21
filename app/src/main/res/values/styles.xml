@@ -33,6 +33,7 @@
         <item name="expand">@drawable/ic_expand_more_black_24dp</item>
         <item name="collapse">@drawable/ic_expand_less_black_24dp</item>
         <item name="volume_off">@drawable/ic_volume_off_black_24dp</item>
+        <item name="volume_on">@drawable/ic_volume_up_black_24dp</item>
         <item name="palette">@drawable/ic_palette_black_24dp</item>
         <item name="language">@drawable/ic_language_black_24dp</item>
         <item name="history">@drawable/ic_history_black_24dp</item>
@@ -139,6 +140,7 @@
         <item name="expand">@drawable/ic_expand_more_white_24dp</item>
         <item name="collapse">@drawable/ic_expand_less_white_24dp</item>
         <item name="volume_off">@drawable/ic_volume_off_white_24dp</item>
+        <item name="volume_on">@drawable/ic_volume_up_white_24dp</item>
         <item name="palette">@drawable/ic_palette_white_24dp</item>
         <item name="language">@drawable/ic_language_white_24dp</item>
         <item name="history">@drawable/ic_history_white_24dp</item>

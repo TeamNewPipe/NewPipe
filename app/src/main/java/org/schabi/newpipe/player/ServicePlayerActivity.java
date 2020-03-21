@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -700,11 +701,13 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             item.setTitle(player.isMuted() ? R.string.unmute : R.string.mute);
 
             //2) Icon change accordingly to current App Theme
-            TypedArray a = getTheme().obtainStyledAttributes(R.style.Theme_AppCompat, new int[]{R.attr.volume_off});
-            int attributeResourceId = a.getResourceId(0, 0);
-            Drawable drawableMuted = getResources().getDrawable(attributeResourceId);
-            Drawable drawableUnmuted = getResources().getDrawable(R.drawable.ic_volume_off_gray_24dp);
-            item.setIcon(player.isMuted() ? drawableMuted : drawableUnmuted);
+            item.setIcon(player.isMuted() ? getThemedDrawable(R.attr.volume_off) : getThemedDrawable(R.attr.volume_on));
         }
+    }
+
+    private Drawable getThemedDrawable(int attribute) {
+        return getResources().getDrawable(
+                getTheme().obtainStyledAttributes(R.style.Theme_AppCompat, new int[]{attribute})
+                        .getResourceId(0, 0));
     }
 }
