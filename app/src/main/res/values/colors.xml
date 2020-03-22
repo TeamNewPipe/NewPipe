@@ -44,7 +44,7 @@
     <color name="black_border_color">#25FFFFFF</color>
 
     <!-- Miscellaneous -->
-    <color name="drawer_header_font_color">#ddffffff</color>
+    <color name="drawer_header_font_color">#F2FFFFFF</color>
     <color name="duration_background_color">#aa000000</color>
     <color name="live_duration_background_color">#c8E53935</color>
     <color name="playlist_stream_count_background_color">#e6000000</color>

@@ -83,11 +83,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
 
-    private ActionBarDrawerToggle toggle = null;
-    private DrawerLayout drawer = null;
-    private NavigationView drawerItems = null;
-    private TextView headerServiceView = null;
-    private Button toggleServiceButton = null;
+    private ActionBarDrawerToggle toggle;
+    private DrawerLayout drawer;
+    private NavigationView drawerItems;
+    private ImageView headerServiceIcon;
+    private TextView headerServiceView;
+    private Button toggleServiceButton;
 
     private boolean servicesShown = false;
     private ImageView serviceArrow;
@@ -285,11 +286,10 @@ public class MainActivity extends AppCompatActivity {
         View hView =  navigationView.getHeaderView(0);
 
         serviceArrow = hView.findViewById(R.id.drawer_arrow);
+        headerServiceIcon = hView.findViewById(R.id.drawer_header_service_icon);
         headerServiceView = hView.findViewById(R.id.drawer_header_service_view);
         toggleServiceButton = hView.findViewById(R.id.drawer_header_action_button);
-        toggleServiceButton.setOnClickListener(view -> {
-            toggleServices();
-        });
+        toggleServiceButton.setOnClickListener(view -> toggleServices());
     }
 
     private void toggleServices() {
@@ -298,7 +298,6 @@ public class MainActivity extends AppCompatActivity {
         drawerItems.getMenu().removeGroup(R.id.menu_services_group);
         drawerItems.getMenu().removeGroup(R.id.menu_tabs_group);
         drawerItems.getMenu().removeGroup(R.id.menu_options_about_group);
-
 
         if(servicesShown) {
             showServices();
@@ -312,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showServices() {
-        serviceArrow.setImageResource(R.drawable.ic_arrow_up_white);
+        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
 
         for(StreamingService s : NewPipe.getServices()) {
             final String title = s.getServiceInfo().getName() +
@@ -370,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showTabs() throws ExtractionException {
-        serviceArrow.setImageResource(R.drawable.ic_arrow_down_white);
+        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
 
         //Tabs
         int currentServiceId = ServiceHelper.getSelectedServiceId(this);
@@ -428,9 +427,11 @@ public class MainActivity extends AppCompatActivity {
         // when the user returns to MainActivity
         drawer.closeDrawer(GravityCompat.START, false);
         try {
-            String selectedServiceName = NewPipe.getService(
-                    ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
+            final int selectedServiceId = ServiceHelper.getSelectedServiceId(this);
+            final String selectedServiceName = NewPipe.getService(selectedServiceId).getServiceInfo().getName();
             headerServiceView.setText(selectedServiceName);
+            headerServiceIcon.setImageResource(ServiceHelper.getIcon(selectedServiceId));
+
             headerServiceView.post(() -> headerServiceView.setSelected(true));
             toggleServiceButton.setContentDescription(
                     getString(R.string.drawer_header_description) + selectedServiceName);
