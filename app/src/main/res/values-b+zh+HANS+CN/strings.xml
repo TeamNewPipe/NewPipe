@@ -349,7 +349,7 @@
     <string name="enable_disposed_exceptions_title">报告『提前结束Android生命周期』错误</string>
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的Activity或Fragment生命周期之外的Rx异常</string>
     <string name="use_inexact_seek_title">使用快速不精确搜索</string>
-    <string name="use_inexact_seek_summary">粗略定位播放：允许播放器以略低的精确度为代价换取更快的定位速度。此功能不适用于每隔5、15或25秒定位</string>
+    <string name="use_inexact_seek_summary">粗略定位播放：允许播放器以略低的精确度为代价换取更快的定位速度。此功能不适用于每隔5、15或25秒定位.</string>
     <string name="auto_queue_title">自动播放下一个</string>
     <string name="auto_queue_summary">当播放完非循环列表中的最后一个视频时，自动加入一个相关视频到播放列表</string>
     <string name="invalid_directory">没有此文件夹</string>
@@ -542,4 +542,52 @@
     <string name="new_seek_duration_toast">由于ExoPlayer的限制，搜寻间隔设置为％d秒</string>
     <string name="mute">静音</string>
     <string name="unmute">取消静音</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/应用名</string>
+    <string name="help">帮助</string>
+    <plurals name="minutes">
+        <item quantity="one">%d分钟</item>
+        <item quantity="other"></item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%小时</item>
+        <item quantity="other"></item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%天</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="feed_groups_header_title">Feed组</string>
+    <string name="feed_oldest_subscription_update">最早订阅更新:%s</string>
+    <string name="feed_subscription_not_loaded_count">未加载: %d</string>
+    <string name="feed_notification_loading">正在加载feed…</string>
+    <string name="feed_processing_message">正在处理feed…</string>
+    <string name="feed_group_dialog_select_subscriptions">选择订阅</string>
+    <string name="feed_group_dialog_empty_selection">未选中订阅</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">已选中%d</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">组名为空</string>
+    <string name="feed_group_dialog_name_input">名称</string>
+    <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
+    <string name="feed_create_new_group_button_title">新建</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Feed更新阈值</string>
+    <string name="feed_update_threshold_summary">上次更新后，订阅被视为过时的时间-％s</string>
+    <string name="feed_update_threshold_option_always_update">始终更新</string>
+    <string name="feed_use_dedicated_fetch_method_title">可用时从专用feed获取</string>
+    <string name="feed_use_dedicated_fetch_method_summary">在某些服务中可用，通常速度要快得多，但可能返回的条目数量有限，而且信息通常不完整（例如，没有持续时间，条目类型，没有实时状态）。</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">启用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">禁用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">您是否认为Feed加载太慢？如果是这样，请尝试启用快速加载（您可以在设置中更改它，也可以按下面的按钮更改它）。
+\n
+\nNewPipe提供两种feed加载策略:
+\n•获取整个订阅频道，这很慢但是很是完整。
+\n•使用专用的服务端点，这样会比较快但通常不完整。
+\n
+\n两者之间的区别在于，后者通常缺少一些信息，例如条目的持续时间或类型（无法区分直播视频和普通视频），并且可能返回更少的条目。
+\n
+\nYouTube是一个通过其RSS feed提供这种快速方法的服务示例。
+\n
+\n因此，选择哪种方式取决于您更看重什么：是速度还是精确的信息。</string>
 </resources>
