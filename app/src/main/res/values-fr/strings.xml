@@ -550,23 +550,19 @@
         <item quantity="one">%d seconde</item>
         <item quantity="other">%d secondes</item>
     </plurals>
-
     <!-- Time duration plurals -->
     <plurals name="minutes">
         <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
     </plurals>
-
     <plurals name="hours">
         <item quantity="one">%d heure</item>
         <item quantity="other">%d heures</item>
     </plurals>
-
     <plurals name="days">
         <item quantity="one">%d jour</item>
         <item quantity="other">%d jours</item>
     </plurals>
-
     <!-- feed -->
     <string name="fragment_feed_title">Nouveautés</string>
     <string name="feed_groups_header_title">Groupes d\'abonnements</string>
@@ -584,7 +580,6 @@
     <string name="feed_group_dialog_name_input">Nom</string>
     <string name="feed_group_dialog_delete_message">Voulez-vous supprimer ce groupe ?</string>
     <string name="feed_create_new_group_button_title">Nouveau</string>
-
     <string name="settings_category_feed_title">Flux</string>
     <string name="feed_update_threshold_title">Seuil de mise à jour du flux</string>
     <string name="feed_update_threshold_summary">Temps depuis la dernière mise à jour pour que le flux ne soit plus considéré comme à jour — %s</string>
@@ -604,4 +599,6 @@ La différence entre les deux est que la méthode rapide manque souvent de quelq
 YouTube est un exemple qui offre cette méthode rapide avec le flux RSS.\n\n
 
 Donc le choix vous revient : Preferrez-vous la vitesse où des informations précises ?</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="help">Aide</string>
 </resources>

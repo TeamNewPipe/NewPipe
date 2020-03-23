@@ -549,4 +549,66 @@
     <string name="permission_display_over_apps">Súhlas pre zobrazenie cez ďalšie aplikácie</string>
     <string name="app_language_title">Jazyk aplikácie</string>
     <string name="systems_language">Predvolený</string>
+    <string name="subtitle_activity_recaptcha">Vyrieš a stlač \"Hotovo\"</string>
+    <string name="recaptcha_done_button">Hotovo</string>
+    <string name="videos_string">Videá</string>
+    <string name="new_seek_duration_toast">Pre obmedzenie ExoPlayera bolo prehľadávania nastavené na % d sekúnd</string>
+    <string name="mute">Stlmiť</string>
+    <string name="unmute">Povoliť</string>
+    <string name="help">Pomoc</string>
+    <plurals name="seconds">
+        <item quantity="one">%d sekunda</item>
+        <item quantity="few">%d sekundy</item>
+        <item quantity="other">%d sekúnd</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minuta</item>
+        <item quantity="few">%d minuty</item>
+        <item quantity="other">%d minút</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d hodina</item>
+        <item quantity="few">%d hodiny</item>
+        <item quantity="other">%d hodín</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d deň</item>
+        <item quantity="few">%d dni</item>
+        <item quantity="other">%d dní</item>
+    </plurals>
+    <string name="feed_groups_header_title">Skupiny zdrojov</string>
+    <string name="feed_oldest_subscription_update">Najstaršia aktualizácia odberu: %s</string>
+    <string name="feed_subscription_not_loaded_count">Nenačítané: %d</string>
+    <string name="feed_notification_loading">Načítavanie zdroja…</string>
+    <string name="feed_processing_message">Spracovávanie zdroja…</string>
+    <string name="feed_group_dialog_select_subscriptions">Vyberte odbery</string>
+    <string name="feed_group_dialog_empty_selection">Žiadne vybrané odbery</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d vybraný</item>
+        <item quantity="few">%d vybrané</item>
+        <item quantity="other">%d vybraných</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">Bez názvu skupiny</string>
+    <string name="feed_group_dialog_name_input">Názov</string>
+    <string name="feed_group_dialog_delete_message">Chcete zmazať vybranú skupinu\?</string>
+    <string name="feed_create_new_group_button_title">Nová</string>
+    <string name="settings_category_feed_title">Zdroj</string>
+    <string name="feed_update_threshold_title">Interval obnovy zdroja</string>
+    <string name="feed_update_threshold_summary">Čas po ktorom sa kontrola odberu považuje za zastaralú — %s</string>
+    <string name="feed_update_threshold_option_always_update">Vždy aktualizovať</string>
+    <string name="feed_use_dedicated_fetch_method_title">Načítať z vyhradeného zdroja, ak je k dispozícii</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Služba je dostupná len pre určité zdroje, zvyčajne je rýchlejšia ale môže vrátiť obmedzený počet položiek alebo neúplné informácie (napr. dĺžka, typ, status).</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Povoliť rýchly režim</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Zakázať rýchly režim</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že načítavanie informačného kanála je príliš pomalé\? Ak áno, skúste povoliť rýchle načítanie (môžete ho zmeniť v nastaveniach alebo stlačením tlačidla nižšie).
+\n
+\nNewPipe ponúka dve stratégie načítania informačného kanála:
+\n• Načítava sa celý kanál prihlásenia na odber, ktorý je pomalý, ale úplný.
+\n• Používanie vyhradeného koncového bodu služby, ktorý je rýchly, ale zvyčajne nie je kompletný.
+\n
+\nRozdiel medzi nimi je ten, že v prípade rýchleho videa zvyčajne chýbajú nejaké informácie, napríklad trvanie alebo typ položky (nedá sa rozlíšiť medzi živými videami a normálnymi videami) a môže sa vrátiť menej položiek.
+\n
+\nYouTube je príkladom služby, ktorá ponúka túto rýchlu metódu s informačným kanálom RSS.
+\n
+\nTakže výber sa zredukuje na to, čo uprednostňujete: rýchlosť alebo presné informácie.</string>
 </resources>

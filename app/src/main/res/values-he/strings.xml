@@ -557,7 +557,7 @@
     <string name="recaptcha_done_button">סיום</string>
     <string name="videos_string">סרטונים</string>
     <plurals name="seconds">
-        <item quantity="one">%d שניות</item>
+        <item quantity="one">שנייה אחת</item>
         <item quantity="two">%d שניות</item>
         <item quantity="many">%d שניות</item>
         <item quantity="other">%d שניות</item>
@@ -565,4 +565,40 @@
     <string name="new_seek_duration_toast">עקב מגבלות של ExoPlayer מגבלות טווחי החיפוש הוגדרו לכדי %d שניות</string>
     <string name="mute">השתקה</string>
     <string name="unmute">ביטול השתקה</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">נגן מועדף</string>
+    <string name="help">עזרה</string>
+    <plurals name="minutes">
+        <item quantity="one">דקה</item>
+        <item quantity="two">%d דקות</item>
+        <item quantity="many">%d דקות</item>
+        <item quantity="other">%d דקות</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">שעה</item>
+        <item quantity="two">שעתיים</item>
+        <item quantity="many">%d שעות</item>
+        <item quantity="other">%d שעות</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">יום</item>
+        <item quantity="two">יומיים</item>
+        <item quantity="many">%d ימים</item>
+        <item quantity="other">%d ימים</item>
+    </plurals>
+    <string name="feed_groups_header_title">קבוצות הזנות</string>
+    <string name="feed_oldest_subscription_update">העדכון הישן ביותר למינוי: %s</string>
+    <string name="feed_subscription_not_loaded_count">לא נטען: %s</string>
+    <string name="feed_notification_loading">ההזנה נטענת…</string>
+    <string name="feed_processing_message">ההזנה בהליכי עיבוד…</string>
+    <string name="feed_group_dialog_select_subscriptions">בחירת מינויים</string>
+    <string name="feed_group_dialog_empty_selection">לא נבחר מינוי</string>
+    <string name="feed_group_dialog_empty_name">שם הקבוצה ריק</string>
+    <string name="feed_group_dialog_name_input">שם</string>
+    <string name="feed_group_dialog_delete_message">למחוק את הקבוצה הזאת\?</string>
+    <string name="feed_create_new_group_button_title">חדשה</string>
+    <string name="settings_category_feed_title">הזנה</string>
+    <string name="feed_update_threshold_title">סף עדכון ההזנה</string>
+    <string name="feed_update_threshold_option_always_update">לעדכן תמיד</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">הפעלת מצב מהיר</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">השבתת מצב מהיר</string>
 </resources>
