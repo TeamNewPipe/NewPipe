@@ -183,12 +183,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 break;
             case R.id.menu_item_openInBrowser:
                 if (currentInfo != null) {
-                    ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getOriginalUrl());
+                    ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getUrl());
                 }
                 break;
             case R.id.menu_item_share:
                 if (currentInfo != null) {
-                    ShareUtils.shareUrl(requireContext(), name, currentInfo.getOriginalUrl());
+                    ShareUtils.shareUrl(requireContext(), name, currentInfo.getUrl());
                 }
                 break;
             default:
