@@ -16,6 +16,7 @@
     <attr name="expand" format="reference"/>
     <attr name="collapse" format="reference"/>
     <attr name="volume_off" format="reference"/>
+    <attr name="volume_on" format="reference"/>
     <attr name="clear_history" format="reference" />
     <attr name="palette" format="reference"/>
     <attr name="language" format="reference"/>
