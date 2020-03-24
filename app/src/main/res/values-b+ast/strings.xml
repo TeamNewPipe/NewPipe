@@ -212,12 +212,12 @@
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
     <string name="show_comments_title">Amosar comentarios</string>
     <string name="show_comments_summary"/>
-    <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de NewPipe. Lléila con procuru.
+    <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de NewPipe. Lléila con procuru. 
 \nHas aceutala unviándonos un informe de fallos.<string name="delete_search_history_alert">¿Desaniciar tol historial de gueta\?</string>
 \nHas aceutala unviándonos un informe de fallos.</string>
     <string name="minimize_on_exit_summary">Aición al cambiar a otra aplicación dende\'l reproductor de vídeos principal — %s</string>
     <string name="max_retry_desc">El númberu máximu d\'intentos enantes d\'encaboxar la descarga</string>
-    <string name="enable_playback_state_lists_title">Posiciones nes llistes</string>
+    <string name="enable_playback_state_lists_title"></string>
     <string name="confirm_prompt">¿Quies llimpiar l\'historial de descargues o desaniciar tolos ficheros baxaos\?</string>
     <string name="previous_export">Esportación anterior</string>
     <string name="import_file_title">Importar el ficheru</string>
@@ -277,10 +277,36 @@
     <string name="systems_language">La predeterminada del sistema</string>
     <string name="videos_string">Vídeos</string>
     <plurals name="seconds">
-        <item quantity="one">%d segundos</item>
+        <item quantity="one">%d segundu</item>
         <item quantity="other">%d segundos</item>
     </plurals>
     <string name="playback_tempo">Tempu</string>
     <string name="playback_pitch">Tonu</string>
     <string name="decline">Refugar</string>
+    <string name="url_not_supported_toast">La URL nun se sofita</string>
+    <string name="background_player_playing_toast">Reproduciendo en segundu planu</string>
+    <string name="popup_playing_toast">Reproduciendo nel mou ventanu</string>
+    <string name="enable_search_history_summary">Atroxa llocalmente les consultes de gueta</string>
+    <string name="external_player_unsupported_link_type">Los reproductores esternos nun so</string>
+    <string name="export_complete_toast">Esportóse</string>
+    <string name="import_complete_toast">Importóse</string>
+    <string name="could_not_import_all_files">Alvertencia: Nun pudieron importase tolos ficheros.</string>
+    <string name="app_license"></string>
+    <string name="settings_category_updates_title">Anovamientos</string>
+    <string name="download_finished">Finó la descarga</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="peertube_instance_add_fail">Nun pudo validase la instancia</string>
+    <plurals name="minutes">
+        <item quantity="one">%d minutu</item>
+        <item quantity="other">%d minutos</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d hora</item>
+        <item quantity="other">%d hores</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d día</item>
+        <item quantity="other">%d díes</item>
+    </plurals>
+    <string name="feed_group_dialog_delete_message">¿Quies desaniciar esti grupu\?</string>
 </resources>
