@@ -579,4 +579,9 @@
     <string name="feed_notification_loading">Feed laden…</string>
     <string name="feed_processing_message">Feed verarbeiten…</string>
     <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_group_dialog_select_subscriptions">Abonnements auswählen</string>
+    <string name="feed_group_dialog_empty_selection">Kein Abonnement ausgewählt</string>
+    <string name="feed_update_threshold_summary">Zeit nach der letzten Aktualisierung, bevor ein Abonnement als veraltet angesehen wird — %s</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Schnellmodus aktivieren</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Schnellmodus deaktivieren</string>
 </resources>
