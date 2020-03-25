@@ -46,6 +46,7 @@ android {
             } else {
                 applicationIdSuffix ".debug." + normalizedWorkingBranch
                 resValue "string", "app_name", "NewPipe " + workingBranch
+                archivesBaseName = 'NewPipe_' + normalizedWorkingBranch
             }
         }
     }
