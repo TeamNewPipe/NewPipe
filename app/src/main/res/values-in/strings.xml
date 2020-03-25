@@ -542,7 +542,6 @@
         <item quantity="other">%d detik</item>
     </plurals>
     <string name="new_seek_duration_toast">Karena kendala ExoPlayer, durasi pencarian ditetapkan ke %d detik</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">Bantuan</string>
     <plurals name="minutes">
         <item quantity="other">%d menit</item>

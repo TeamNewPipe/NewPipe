@@ -599,6 +599,5 @@ La différence entre les deux est que la méthode rapide manque souvent de quelq
 YouTube est un exemple qui offre cette méthode rapide avec le flux RSS.\n\n
 
 Donc le choix vous revient : Preferrez-vous la vitesse où des informations précises ?</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">Aide</string>
 </resources>

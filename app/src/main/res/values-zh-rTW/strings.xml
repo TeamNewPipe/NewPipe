@@ -543,7 +543,6 @@
     <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
     <string name="mute">靜音</string>
     <string name="unmute">取消靜音</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">說明</string>
     <plurals name="minutes">
         <item quantity="one">%d 分鐘</item>

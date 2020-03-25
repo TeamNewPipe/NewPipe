@@ -551,7 +551,6 @@
     <string name="new_seek_duration_toast">Debido a limitaciones de ExoPlayer la duración de la búsqueda fue fijada en %d segundos</string>
     <string name="mute">Silenciar</string>
     <string name="unmute">Desactivar silencio</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">Ayuda</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
