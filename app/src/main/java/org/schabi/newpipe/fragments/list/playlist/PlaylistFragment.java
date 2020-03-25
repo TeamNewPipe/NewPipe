@@ -64,6 +64,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private RemotePlaylistManager remotePlaylistManager;
     private PlaylistRemoteEntity playlistEntity;
+
+    private String cleanUrl;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -226,10 +228,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 NavigationHelper.openSettings(requireContext());
                 break;
             case R.id.menu_item_openInBrowser:
-                ShareUtils.openUrlInBrowser(requireContext(), url);
+                ShareUtils.openUrlInBrowser(requireContext(), cleanUrl == null ? url : cleanUrl);
                 break;
             case R.id.menu_item_share:
-                ShareUtils.shareUrl(requireContext(), name, url);
+                ShareUtils.shareUrl(requireContext(), name, cleanUrl == null ? url : cleanUrl);
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
@@ -258,6 +260,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     @Override
     public void handleResult(@NonNull final PlaylistInfo result) {
         super.handleResult(result);
+
+        cleanUrl = result.getUrl();
 
         animateView(headerRootLayout, true, 100);
         animateView(headerUploaderLayout, true, 300);
