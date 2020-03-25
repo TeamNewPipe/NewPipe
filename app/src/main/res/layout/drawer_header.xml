@@ -66,27 +66,34 @@
             android:paddingLeft="6dp"
             android:paddingRight="6dp">
 
-            <ImageView
-                android:id="@+id/drawer_header_service_icon"
-                android:layout_width="@dimen/drawer_header_service_icon_size"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:scaleType="fitCenter"
-                app:tint="@color/drawer_header_font_color"
-                tools:ignore="ContentDescription"
-                tools:srcCompat="@drawable/youtube" />
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/drawer_header_service_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/drawer_header_font_color"
-                android:textSize="@dimen/drawer_header_service_title_text_size"
-                android:textStyle="italic"
-                tools:text="YouTube" />
+                <ImageView
+                    android:id="@+id/drawer_header_service_icon"
+                    android:layout_width="@dimen/drawer_header_service_icon_size"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:scaleType="fitCenter"
+                    app:tint="@color/drawer_header_font_color"
+                    tools:ignore="ContentDescription"
+                    tools:srcCompat="@drawable/youtube" />
+
+                <TextView
+                    android:id="@+id/drawer_header_service_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/drawer_header_font_color"
+                    android:textSize="@dimen/drawer_header_service_title_text_size"
+                    tools:text="YouTube" />
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/drawer_arrow"
