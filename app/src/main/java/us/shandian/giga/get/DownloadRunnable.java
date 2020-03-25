@@ -70,7 +70,7 @@ public class DownloadRunnable extends Thread {
                     Log.d(TAG, mId + ":acquired block at position=" + block.position + " done=" + block.done);
             }
 
-            long start = block.position * DownloadMission.BLOCK_SIZE;
+            long start = (long)block.position * DownloadMission.BLOCK_SIZE;
             long end = start + DownloadMission.BLOCK_SIZE - 1;
 
             start += block.done;
