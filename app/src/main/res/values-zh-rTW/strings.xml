@@ -355,7 +355,6 @@
     <string name="playback_tempo">節奏</string>
     <string name="playback_pitch">音高</string>
     <string name="unhook_checkbox">解除掛鉤（可能導致失真）</string>
-    <string name="playback_default">預設</string>
     <string name="preferred_open_action_settings_title">偏好的「開啟」動作</string>
     <string name="preferred_open_action_settings_summary">開啟內容時的預設動作 — %s</string>
     <string name="no_streams_available_download">沒有可供下載的串流</string>

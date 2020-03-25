@@ -424,7 +424,6 @@
     <string name="download_already_pending">Hay una descarga pendiente con este nombre</string>
     <string name="grid">Mostrar como grilla</string>
     <string name="list">Mostrar como lista</string>
-    <string name="clear_finished_download">Limpiar descargas finalizadas</string>
     <string name="confirm_prompt">¿Quiere limpiar su historial de descargas o eliminar todos los ficheros descargados\?</string>
     <string name="stop">Detener</string>
     <string name="max_retry_msg">Intentos máximos</string>

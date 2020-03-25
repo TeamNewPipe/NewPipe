@@ -374,7 +374,6 @@
     <string name="playback_tempo">Rýchlosť</string>
     <string name="playback_pitch">Výška</string>
     <string name="unhook_checkbox">"Spomalenie  (môže spôsobovať skreslenie)"</string>
-    <string name="playback_default">Predvolené</string>
     <string name="clear_views_history_title">Vymazať históriu pozretí</string>
     <string name="clear_views_history_summary">Odstráni históriu a pozície prehrávaných streamov</string>
     <string name="delete_view_history_alert">Vymazať celú históriu pozretí\?</string>

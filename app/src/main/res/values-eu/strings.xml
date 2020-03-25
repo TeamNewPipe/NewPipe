@@ -374,7 +374,6 @@
     <string name="playback_tempo">Tempoa</string>
     <string name="playback_pitch">Tonua</string>
     <string name="unhook_checkbox">Desaktibatu (distortsioa sor lezake)</string>
-    <string name="playback_default">Lehenetsia</string>
     <string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
     <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du. 5, 15 edo 25 segundo bilatzea ez du honekin funtzionatzen.</string>
     <string name="download_thumbnail_summary">Desgaitu koadro txikiak ez kargatzeko, datuak eta memoria aurreztuz. Aldaketak memoria eta diskoko irudien cacheak garbituko ditu.</string>

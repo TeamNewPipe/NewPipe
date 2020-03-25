@@ -329,7 +329,6 @@
     <string name="export_ongoing">عملية التصدير جارية …</string>
     <string name="import_file_title">إستيراد ملف</string>
     <string name="import_soundcloud_instructions_hint">"معرفك , soundcloud.com/ الخاص بك  "</string>
-    <string name="playback_default">إفتراضي</string>
     <string name="download_thumbnail_summary">عند إيقاف تحميل أي صور مصغرة ، وتوفير البيانات واستخدام الذاكرة. تعمل التغييرات على محو ذاكرة التخزين المؤقت للصورة الموجودة على الذاكرة أو على القرص.</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفية المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>

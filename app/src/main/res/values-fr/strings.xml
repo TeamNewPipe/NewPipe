@@ -360,7 +360,6 @@
     <string name="playback_speed_control">Contrôles de vitesse de lecture</string>
     <string name="playback_tempo">Cadence</string>
     <string name="unhook_checkbox">Détacher (peut causer des déformations)</string>
-    <string name="playback_default">Défaut</string>
     <string name="preferred_open_action_settings_title">Ouvrir de préférence avec</string>
     <string name="preferred_open_action_settings_summary">Action par défaut lors de l’ouverture de contenu — %s</string>
     <string name="no_streams_available_download">Aucun flux disponible au téléchargement</string>

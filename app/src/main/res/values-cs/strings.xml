@@ -368,7 +368,6 @@ otevření ve vyskakovacím okně</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Výška tónu</string>
     <string name="unhook_checkbox">Odpojit (může způsobit zkreslení)</string>
-    <string name="playback_default">Výchozí nastavení</string>
     <string name="no_streams_available_download">Ke stažení nejsou dostupné žádné streamy</string>
     <string name="preferred_open_action_settings_title">Preferovaná \'otevřít\' akce</string>
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>

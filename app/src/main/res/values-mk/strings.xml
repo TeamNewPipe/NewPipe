@@ -362,7 +362,6 @@
     <string name="playback_tempo">Темпо</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Откачи (може да создаде мутации)</string>
-    <string name="playback_default">Стандардно</string>
     <string name="clear_views_history_title">Избриши историја на гледаност</string>
     <string name="clear_views_history_summary">Ја брише историјата на пуштени видеа</string>
     <string name="delete_view_history_alert">Избриши ја целата историја на гледаност.</string>

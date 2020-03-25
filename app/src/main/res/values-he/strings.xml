@@ -331,7 +331,6 @@
 \n2. להיכנס אם נתבקשת
 \n3. ההורדה אמורה להתחיל (זה קובץ הייצוא)</string>
     <string name="playback_tempo">קצב</string>
-    <string name="playback_default">ברירת מחדל</string>
     <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
     <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר. חיפוש של 5, 15 או 25 שניות לא עובד עם ההגדרה הזאת.</string>
     <string name="download_thumbnail_title">טעינת תמונות ממוזערות</string>
