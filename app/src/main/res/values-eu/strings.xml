@@ -457,7 +457,6 @@
     <string name="error_http_unsupported_range">Zerbitzariak ez ditu hainbat hariko deskargak onartzen, saiatu @string/msg_threads = 1 erabilita</string>
     <string name="error_http_not_found">Ez aurkitua</string>
     <string name="error_postprocessing_failed">Post-prozesuak huts egin du</string>
-    <string name="clear_finished_download">Garbitu amaitutako deskargak</string>
     <string name="stop">Gelditu</string>
     <string name="max_retry_msg">Gehienezko saiakerak</string>
     <string name="max_retry_desc">Deskarga ezeztatu aurretik saiatu beharreko aldi kopurua</string>

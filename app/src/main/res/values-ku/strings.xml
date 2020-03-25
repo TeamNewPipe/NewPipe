@@ -505,7 +505,6 @@
     <string name="peertube_instance_add_exists">هەمان دۆخ کاراکراوە</string>
     <string name="error_http_not_found">نەدۆزرایەوە</string>
     <string name="error_postprocessing_failed">چارەسەرکردن شکستی هێنا</string>
-    <string name="clear_finished_download">سڕینەوەی داگرتنە تەواوبووەکان</string>
     <string name="stop">ڕاوەستان</string>
     <string name="max_retry_msg">زیاترین هەوڵدانەکان</string>
     <string name="max_retry_desc">زۆرترین ژمارەی هەوڵدان پێش پاشگەزبوونەوە لە داگرتنەکە</string>

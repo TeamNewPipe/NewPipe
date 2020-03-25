@@ -448,7 +448,6 @@
     <string name="error_http_no_content">Серверот не испраќа податоци</string>
     <string name="error_http_unsupported_range">Серверот не прифаќа преземања со повеќе навои, обидете се со @string/msg_threads = 1</string>
     <string name="error_http_not_found">Не е најдено</string>
-    <string name="clear_finished_download">Избриши завршени преземања</string>
     <string name="stop">Стоп</string>
     <string name="max_retry_msg">Максимални обиди</string>
     <string name="max_retry_desc">Максимален број обиди пред откажување на преземањето</string>

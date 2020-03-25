@@ -455,7 +455,6 @@
     <string name="error_http_unsupported_range">De server accepteert geen multi-threaded downloads, probeer het opnieuw met @string/msg_threads = 1</string>
     <string name="error_http_not_found">Niet gevonden</string>
     <string name="error_postprocessing_failed">Nabewerking mislukt</string>
-    <string name="clear_finished_download">Voltooide downloads wissen</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum aantal keer proberen</string>
     <string name="max_retry_desc">Maximum aantal pogingen voordat de download wordt geannuleerd</string>

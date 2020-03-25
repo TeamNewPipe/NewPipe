@@ -446,7 +446,6 @@
     <string name="error_unknown_host">No s\'ha pogut trobar el servidor</string>
     <string name="error_connect_host">No s\'ha pogut connectar amb el servidor</string>
     <string name="error_postprocessing_failed">Ha fallat el post-processament</string>
-    <string name="clear_finished_download">Neteja les baixades finalitzades</string>
     <string name="max_retry_msg">Intents màxims</string>
     <string name="max_retry_desc">Nombre màxim d\'intents abans de cancel·lar la baixada</string>
     <string name="pause_downloads_on_mobile">Interromp en connexions limitades</string>

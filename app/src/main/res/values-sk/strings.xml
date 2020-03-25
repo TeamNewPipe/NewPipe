@@ -463,7 +463,6 @@
     <string name="error_http_unsupported_range">Server neakceptuje preberanie viacerých vlákien, zopakujte s @string/msg_threads = 1</string>
     <string name="error_http_not_found">Nenájdené</string>
     <string name="error_postprocessing_failed">Post-spracovanie zlyhalo</string>
-    <string name="clear_finished_download">Vyčistiť dokončené sťahovania</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum opakovaní</string>
     <string name="max_retry_desc">Maximálny počet pokusov pred zrušením stiahnutia</string>

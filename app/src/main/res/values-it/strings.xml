@@ -455,7 +455,6 @@
     <string name="error_http_unsupported_range">Il server non accetta download multipli, riprovare con @string/msg_threads = 1</string>
     <string name="error_http_not_found">Non trovato</string>
     <string name="error_postprocessing_failed">Post-processing fallito</string>
-    <string name="clear_finished_download">Pulisci i download completati</string>
     <string name="stop">Ferma</string>
     <string name="max_retry_msg">Numero Massimo Tentativi</string>
     <string name="max_retry_desc">Quante volte provare prima di annullare il download</string>

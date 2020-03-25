@@ -493,7 +493,6 @@
     <string name="error_http_unsupported_range">La servilo ne akceptas plurfadenajn elŝutojn, reprovu kun @string/msg_threads = 1</string>
     <string name="error_http_not_found">Ne trovita</string>
     <string name="error_postprocessing_failed">Postprocesado malsukcesis</string>
-    <string name="clear_finished_download">Forviŝi la finitajn elŝutojn</string>
     <string name="pause_downloads_on_mobile_desc">Utila dum la ŝanĝo al poŝdatumoj, kvankam kelkaj elŝutoj ne povas esti interrompitaj</string>
     <string name="no_comments">Neniu komento</string>
     <string name="overwrite_unrelated_warning">Dosiero kun ĉi tiu nomo jam ekzistas</string>

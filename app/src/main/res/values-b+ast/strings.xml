@@ -189,7 +189,6 @@
     <string name="error_path_creation">Nun pue crease la carpeta de destín</string>
     <string name="error_ssl_exception">Nun pudo afitase una conexón segura</string>
     <string name="error_connect_host">Nun pue coneutase col sirvidor</string>
-    <string name="clear_finished_download">Llimpiar les descargues finaes</string>
     <string name="max_retry_msg">Reintentos máximos</string>
     <string name="events">Eventos</string>
     <string name="conferences">Conferencies</string>

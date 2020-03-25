@@ -456,7 +456,6 @@
     <string name="error_http_unsupported_range">Poslužitelj ne prihvaća preuzimanja s više niti, pokušaj ponovo s @string/msg_threads = 1</string>
     <string name="error_http_not_found">Nije pronađeno</string>
     <string name="error_postprocessing_failed">Naknadna obrada nije uspjela</string>
-    <string name="clear_finished_download">Obriši završena preuzimanja</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maksimalnih ponovnih pokušaja</string>
     <string name="max_retry_desc">Maksimalni broj pokušaja prije poništavanja preuzimanja</string>

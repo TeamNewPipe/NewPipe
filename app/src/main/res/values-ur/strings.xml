@@ -451,7 +451,6 @@
     <string name="error_http_unsupported_range">سرور ملٹی تھریڈڈ ڈاؤن لوڈز کو قبول نہیں کرتا ہے، @string/msg_threads = 1 کے ساتھ دوبارہ کوشش کریں</string>
     <string name="error_http_not_found">نہیں ملا</string>
     <string name="error_postprocessing_failed">بعد کا عمل نا کام</string>
-    <string name="clear_finished_download">ختم شدہ ڈاؤن لوڈ صاف کریں</string>
     <string name="stop">روکیں</string>
     <string name="max_retry_msg">زیادہ سے زیادہ کوششیں</string>
     <string name="max_retry_desc">ڈاؤن لوڈ منسوخ کرنے سے پہلے کوششوں کی زیادہ سے زیادہ تعداد</string>
