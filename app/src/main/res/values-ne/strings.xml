@@ -548,4 +548,5 @@
     <string name="new_seek_duration_toast">ExoPlayer अवरोधका कारण खोजी अवधि %d सेकेन्डमा सेट गरियो</string>
     <string name="mute">म्युट</string>
     <string name="unmute">ध्वनि सुचारु</string>
+    <string name="help">मद्दत</string>
 </resources>

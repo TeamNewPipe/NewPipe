@@ -551,4 +551,52 @@
     <string name="new_seek_duration_toast">Debido a limitaciones de ExoPlayer la duración de la búsqueda fue fijada en %d segundos</string>
     <string name="mute">Silenciar</string>
     <string name="unmute">Desactivar silencio</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="help">Ayuda</string>
+    <plurals name="minutes">
+        <item quantity="one">%d minuto</item>
+        <item quantity="other">%d minutos</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d hora</item>
+        <item quantity="other">%d horas</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d día</item>
+        <item quantity="other">%d días</item>
+    </plurals>
+    <string name="feed_groups_header_title">Grupos del feed</string>
+    <string name="feed_oldest_subscription_update">Actualización más antigua de suscripciones: %s</string>
+    <string name="feed_subscription_not_loaded_count">No cargado: %d</string>
+    <string name="feed_notification_loading">Cargando contenidos…</string>
+    <string name="feed_processing_message">Procesando contenidos…</string>
+    <string name="feed_group_dialog_select_subscriptions">Elegir suscripciones</string>
+    <string name="feed_group_dialog_empty_selection">No hay suscripciones seleccionadas</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d elegida</item>
+        <item quantity="other">%d elegidas</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">Nombre de grupo vacío</string>
+    <string name="feed_group_dialog_name_input">Nombre</string>
+    <string name="feed_group_dialog_delete_message">¿Borrar este grupo\?</string>
+    <string name="feed_create_new_group_button_title">Nuevo</string>
+    <string name="settings_category_feed_title">Contenido</string>
+    <string name="feed_update_threshold_title">Velocidad de actualización del feed</string>
+    <string name="feed_update_threshold_summary">Tiempo para que una suscripción se considere desactualizada — %s</string>
+    <string name="feed_update_threshold_option_always_update">Actualizar siempre</string>
+    <string name="feed_use_dedicated_fetch_method_title">Extraer desde feed dedicado cuando esté disponible</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponible para algunos servicios, suele ser más rápido pero puede mostrar una cantidad limitada de ítems y a menudo información incompleta (por ejemplo falta de duración, tipo de ítem o estado).</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Activar modo rápido</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Desactivar modo rápido</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">¿Piensas que la carga de contenidos es muy lenta\? Entonces intenta habilitar la carga rápida (puedes cambiarlo en los ajustes o presionando el botón debajo).
+\n
+\nNewpipe ofrece dos formas de cargar los contenidos:
+\n• Obtener todos los canales con suscripciones, lento pero completo.
+\n• Usar un punto dedicado de servicio, más rápido pero usualmente incompleto.
+\n
+\nLa diferencia es que en la forma rápida usualmente falta algo de información, como la duración o tipo de ítem (no se puede diferenciar entre videos normales y en vivo) y puede que aparezcan menos ítems.
+\n
+\nYouTube es un ejemplo de un servicio que ofrece este método rápido con su listado de contenidos por RSS.
+\n
+\nEntonces la elección se limita a qué prefieres: velocidad o información exacta.</string>
 </resources>
