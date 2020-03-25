@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/notificationContent"
     android:layout_width="match_parent"
@@ -58,7 +59,7 @@
         android:focusable="true"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_repeat_white"
+        app:srcCompat="@drawable/ic_repeat_white_24dp"
         tools:ignore="ContentDescription"/>
 
     <ImageButton
@@ -68,7 +69,7 @@
         android:background="#00000000"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_pause_white"
+        app:srcCompat="@drawable/ic_pause_white_24dp"
         tools:ignore="ContentDescription"/>
 
     <ImageButton

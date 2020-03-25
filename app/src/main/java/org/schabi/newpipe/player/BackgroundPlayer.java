@@ -655,7 +655,7 @@ public final class BackgroundPlayer extends Service {
             super.onPlaying();
             resetNotification();
             updateNotificationThumbnail();
-            updateNotification(R.drawable.ic_pause_white);
+            updateNotification(R.drawable.ic_pause_white_24dp);
         }
 
         @Override
@@ -663,7 +663,7 @@ public final class BackgroundPlayer extends Service {
             super.onPaused();
             resetNotification();
             updateNotificationThumbnail();
-            updateNotification(R.drawable.ic_play_arrow_white);
+            updateNotification(R.drawable.ic_play_arrow_white_24dp);
         }
 
         @Override
@@ -677,7 +677,7 @@ public final class BackgroundPlayer extends Service {
                 notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
             }
             updateNotificationThumbnail();
-            updateNotification(R.drawable.ic_replay_white);
+            updateNotification(R.drawable.ic_replay_white_24dp);
         }
     }
 }

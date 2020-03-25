@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:src="?attr/filter"
+            android:src="?attr/ic_filter_list"
             tools:ignore="ContentDescription,RtlHardcoded"/>
 
         <TextView

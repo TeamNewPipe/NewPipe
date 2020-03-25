@@ -85,6 +85,7 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
+import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 import org.schabi.newpipe.views.LargeTextMovementMethod;
 
@@ -495,13 +496,15 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             videoTitleTextView.setMaxLines(1);
             videoDescriptionRootLayout.setVisibility(View.GONE);
             videoDescriptionView.setFocusable(false);
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            videoTitleToggleArrow.setImageResource(
+                    ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
         } else {
             videoTitleTextView.setMaxLines(10);
             videoDescriptionRootLayout.setVisibility(View.VISIBLE);
             videoDescriptionView.setFocusable(true);
             videoDescriptionView.setMovementMethod(new LargeTextMovementMethod());
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
+            videoTitleToggleArrow.setImageResource(
+                    ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_less));
         }
     }
 
@@ -1114,7 +1117,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         animateView(videoTitleTextView, true, 0);
 
         videoDescriptionRootLayout.setVisibility(View.GONE);
-        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+        videoTitleToggleArrow.setImageResource(R.drawable.ic_expand_more_white_24dp);
         videoTitleToggleArrow.setVisibility(View.GONE);
         videoTitleRoot.setClickable(false);
 
@@ -1230,7 +1233,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         videoDescriptionView.setVisibility(View.GONE);
         videoTitleRoot.setClickable(true);
         videoTitleToggleArrow.setVisibility(View.VISIBLE);
-        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+        videoTitleToggleArrow.setImageResource(R.drawable.ic_expand_more_white_24dp);
         videoDescriptionRootLayout.setVisibility(View.GONE);
 
         if (info.getUploadDate() != null) {

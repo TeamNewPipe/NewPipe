@@ -44,7 +44,7 @@
             android:layout_gravity="center"
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"
-            android:src="?attr/close"
+            android:src="?attr/ic_close"
             tools:ignore="RtlHardcoded"/>
     </FrameLayout>
 

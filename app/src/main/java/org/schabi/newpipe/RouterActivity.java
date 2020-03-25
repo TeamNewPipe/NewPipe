@@ -366,26 +366,26 @@ public class RouterActivity extends AppCompatActivity {
 
         returnList.add(new AdapterChoiceItem(getString(R.string.show_info_key),
                 getString(R.string.show_info),
-                resolveResourceIdFromAttr(context, R.attr.info)));
+                resolveResourceIdFromAttr(context, R.attr.ic_info_outline)));
 
         if (capabilities.contains(VIDEO) && !(isExtVideoEnabled && linkType != LinkType.STREAM)) {
             returnList.add(new AdapterChoiceItem(getString(R.string.video_player_key),
                     getString(R.string.video_player),
-                    resolveResourceIdFromAttr(context, R.attr.play)));
+                    resolveResourceIdFromAttr(context, R.attr.ic_play_arrow)));
             returnList.add(new AdapterChoiceItem(getString(R.string.popup_player_key),
                     getString(R.string.popup_player),
-                    resolveResourceIdFromAttr(context, R.attr.popup)));
+                    resolveResourceIdFromAttr(context, R.attr.ic_popup)));
         }
 
         if (capabilities.contains(AUDIO) && !(isExtAudioEnabled && linkType != LinkType.STREAM)) {
             returnList.add(new AdapterChoiceItem(getString(R.string.background_player_key),
                     getString(R.string.background_player),
-                    resolveResourceIdFromAttr(context, R.attr.audio)));
+                    resolveResourceIdFromAttr(context, R.attr.ic_headset)));
         }
 
         returnList.add(new AdapterChoiceItem(getString(R.string.download_key),
                 getString(R.string.download),
-                resolveResourceIdFromAttr(context, R.attr.download)));
+                resolveResourceIdFromAttr(context, R.attr.ic_file_download)));
 
         return returnList;
     }

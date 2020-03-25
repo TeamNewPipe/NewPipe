@@ -61,7 +61,7 @@ public final class KioskTranslator {
             case "Recently added":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_recent);
             case "Most liked":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.thumbs_up);
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_thumb_up);
             default:
                 return 0;
         }

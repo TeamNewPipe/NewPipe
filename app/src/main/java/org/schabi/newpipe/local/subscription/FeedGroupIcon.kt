@@ -20,10 +20,10 @@ enum class FeedGroupIcon(
     ALL(0, R.attr.ic_asterisk),
     MUSIC(1, R.attr.ic_music_note),
     EDUCATION(2, R.attr.ic_school),
-    FITNESS(3, R.attr.ic_fitness),
+    FITNESS(3, R.attr.ic_fitness_center),
     SPACE(4, R.attr.ic_telescope),
     COMPUTER(5, R.attr.ic_computer),
-    GAMING(6, R.attr.ic_videogame),
+    GAMING(6, R.attr.ic_videogame_asset),
     SPORTS(7, R.attr.ic_sports),
     NEWS(8, R.attr.ic_megaphone),
     FAVORITES(9, R.attr.ic_heart),
@@ -32,17 +32,17 @@ enum class FeedGroupIcon(
     TREND(12, R.attr.ic_trending_up),
     MOVIE(13, R.attr.ic_movie),
     BACKUP(14, R.attr.ic_backup),
-    ART(15, R.attr.palette),
+    ART(15, R.attr.ic_palette),
     PERSON(16, R.attr.ic_person),
     PEOPLE(17, R.attr.ic_people),
     MONEY(18, R.attr.ic_money),
-    KIDS(19, R.attr.ic_kids),
+    KIDS(19, R.attr.ic_child_care),
     FOOD(20, R.attr.ic_fastfood),
     SMILE(21, R.attr.ic_smile),
     EXPLORE(22, R.attr.ic_explore),
     RESTAURANT(23, R.attr.ic_restaurant),
     MIC(24, R.attr.ic_mic),
-    HEADSET(25, R.attr.audio),
+    HEADSET(25, R.attr.ic_headset),
     RADIO(26, R.attr.ic_radio),
     SHOPPING_CART(27, R.attr.ic_shopping_cart),
     WATCH_LATER(28, R.attr.ic_watch_later),
@@ -54,7 +54,7 @@ enum class FeedGroupIcon(
     WORLD(34, R.attr.ic_world),
     STAR(35, R.attr.ic_stars),
     SUN(36, R.attr.ic_sunny),
-    RSS(37, R.attr.rss);
+    RSS(37, R.attr.ic_rss);
 
     @DrawableRes
     fun getDrawableRes(context: Context): Int {

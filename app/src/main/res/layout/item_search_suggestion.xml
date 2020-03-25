@@ -29,7 +29,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             tools:ignore="ContentDescription,RtlHardcoded"
-            tools:src="?attr/history"/>
+            tools:src="?attr/ic_history"/>
 
         <TextView
             android:id="@+id/item_suggestion_query"
@@ -63,7 +63,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="?attr/search_add"
+            android:src="?attr/ic_search_add"
             tools:ignore="ContentDescription,RtlHardcoded"/>
     </LinearLayout>
 

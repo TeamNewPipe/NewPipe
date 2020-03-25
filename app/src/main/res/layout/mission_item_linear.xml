@@ -69,7 +69,7 @@
 			android:layout_alignParentRight="true"
 			android:layout_centerVertical="true"
 			android:layout_marginRight="4dp"
-			android:src="@drawable/ic_menu_more"
+			android:src="@drawable/ic_more_vert_white_24dp"
 			android:scaleType="centerInside"
             android:contentDescription="TODO" />
 

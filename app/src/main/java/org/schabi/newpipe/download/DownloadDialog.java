@@ -399,8 +399,8 @@ public class DownloadDialog extends DialogFragment
         boolean isLight = ThemeHelper.isLightThemeSelected(getActivity());
 
         toolbar.setTitle(R.string.download_dialog_title);
-        toolbar.setNavigationIcon(isLight ? R.drawable.ic_arrow_back_black_24dp
-                : R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationIcon(
+            ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_arrow_back));
         toolbar.inflateMenu(R.menu.dialog_url);
         toolbar.setNavigationOnClickListener(v -> getDialog().dismiss());
         toolbar.setNavigationContentDescription(R.string.cancel);

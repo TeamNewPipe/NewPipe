@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/menu_item_rss"
-        android:icon="?attr/rss"
+        android:icon="?attr/ic_rss"
         android:title="@string/rss_button_title"
         android:visible="false"
         app:showAsAction="ifRoom"
@@ -14,7 +14,7 @@
 
     <item
         android:id="@+id/menu_item_share"
-        android:icon="?attr/share"
+        android:icon="?attr/ic_share"
         android:title="@string/share"
         app:showAsAction="ifRoom"/>
 

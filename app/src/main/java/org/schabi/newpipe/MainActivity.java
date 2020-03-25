@@ -175,24 +175,24 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_rss));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_DOWNLOADS, ORDER, R.string.downloads)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.download));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_file_download));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.history));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_history));
 
         //Settings and About
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.settings));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_settings));
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.info));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_info_outline));
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open,
                 R.string.drawer_close);
@@ -343,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showServices() {
-        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
+        serviceArrow.setImageResource(R.drawable.ic_expand_less_white_24dp);
 
         for (StreamingService s : NewPipe.getServices()) {
             final String title = s.getServiceInfo().getName()
@@ -408,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showTabs() throws ExtractionException {
-        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
+        serviceArrow.setImageResource(R.drawable.ic_expand_more_white_24dp);
 
         //Tabs
         int currentServiceId = ServiceHelper.getSelectedServiceId(this);
@@ -429,24 +429,24 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_rss));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_DOWNLOADS, ORDER, R.string.downloads)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.download));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_file_download));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.history));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_history));
 
         //Settings and About
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.settings));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_settings));
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.info));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_info_outline));
     }
 
     @Override

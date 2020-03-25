@@ -231,7 +231,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.rss);
+            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_rss);
         }
 
         @Override
@@ -281,7 +281,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.history);
+            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_history);
         }
 
         @Override

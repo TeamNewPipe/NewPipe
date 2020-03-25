@@ -13,7 +13,7 @@
     android:paddingLeft="?attr/listPreferredItemPaddingLeft"
     android:paddingRight="?attr/listPreferredItemPaddingRight"
     android:paddingStart="?attr/listPreferredItemPaddingLeft"
-    android:background="?attr/checked_selector_drawable"
+    android:background="?attr/checked_selector"
     android:textColor="?attr/textColorAlertDialogListItem"
-    tools:drawableLeft="?attr/play"
+    tools:drawableLeft="?attr/ic_play"
     tools:text="Lorem ipsum dolor sit amet" />

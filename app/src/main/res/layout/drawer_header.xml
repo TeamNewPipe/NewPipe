@@ -41,7 +41,7 @@
                 android:layout_width="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_height="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
-                app:srcCompat="@drawable/splash_forground"
+                app:srcCompat="@drawable/splash_foreground"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -89,7 +89,7 @@
                     android:scaleType="fitCenter"
                     app:tint="@color/drawer_header_font_color"
                     tools:ignore="ContentDescription"
-                    tools:srcCompat="@drawable/youtube" />
+                    tools:srcCompat="@drawable/place_holder_youtube" />
 
                 <TextView
                     android:id="@+id/drawer_header_service_view"
@@ -107,7 +107,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="4dp"
-                app:srcCompat="@drawable/ic_arrow_drop_down_white_24dp"
+                app:srcCompat="@drawable/ic_expand_more_white_24dp"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>

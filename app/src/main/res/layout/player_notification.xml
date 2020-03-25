@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
              android:layout_height="64dp"
              xmlns:tools="http://schemas.android.com/tools">
 
@@ -60,7 +61,7 @@
             android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_repeat_white"
+            app:srcCompat="@drawable/ic_repeat_white_24dp"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -82,7 +83,7 @@
             android:background="#00000000"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_pause_white"
+            app:srcCompat="@drawable/ic_pause_white_24dp"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -107,7 +108,7 @@
             android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_close_white_24dp"
+            app:srcCompat="@drawable/ic_close_white_24dp"
             tools:ignore="ContentDescription,RtlHardcoded"/>
     </LinearLayout>
 
