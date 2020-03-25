@@ -88,7 +88,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         durations.setEntryValues(displayedDurationValues.toArray(new CharSequence[0]));
         durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));
         final int selectedDuration = Integer.parseInt(durations.getValue());
-        if (selectedDuration / (int) DateUtils.SECOND_IN_MILLIS % 10 == 5) {
+        if (inexactSeek && selectedDuration / (int) DateUtils.SECOND_IN_MILLIS % 10 == 5) {
             final int newDuration = selectedDuration / (int) DateUtils.SECOND_IN_MILLIS + 5;
             durations.setValue(Integer.toString(newDuration * (int) DateUtils.SECOND_IN_MILLIS));
 
