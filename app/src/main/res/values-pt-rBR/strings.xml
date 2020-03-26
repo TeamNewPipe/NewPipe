@@ -537,7 +537,7 @@ abrir em modo popup</string>
     <string name="local">Local</string>
     <string name="recently_added">Recentes</string>
     <string name="most_liked">Em alta</string>
-    <string name="playlist_no_uploader">Gerado automaticamente (sem criador)</string>
+    <string name="playlist_no_uploader">Gerado automaticamente (sem autor)</string>
     <string name="recovering">recuperando</string>
     <string name="error_download_resource_gone">Não foi possível recuperar o download</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
@@ -556,8 +556,55 @@ abrir em modo popup</string>
         <item quantity="one">%d segundo</item>
         <item quantity="other">%d segundos</item>
     </plurals>
-    <string name="new_seek_duration_toast">Devido a restrições do ExoPlayer a duração da pesquisa foi definida como %d segundos</string>
+    <string name="new_seek_duration_toast">Devido às configurações do ExoPlayer a duração da pesquisa foi definida como %d segundos</string>
     <string name="mute">Desativar som</string>
     <string name="unmute">Ativar som</string>
     <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="help">Ajuda</string>
+    <plurals name="minutes">
+        <item quantity="one">%d minuto</item>
+        <item quantity="other">%d minutos</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d hora</item>
+        <item quantity="other">%d horas</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d dia</item>
+        <item quantity="other">%d dias</item>
+    </plurals>
+    <string name="feed_groups_header_title">Grupos de feed</string>
+    <string name="feed_oldest_subscription_update">Última atualização das inscrições: %s</string>
+    <string name="feed_subscription_not_loaded_count">Não carregado: %d</string>
+    <string name="feed_notification_loading">Carregando feed…</string>
+    <string name="feed_processing_message">Processando feed…</string>
+    <string name="feed_group_dialog_select_subscriptions">Selecionar inscrições</string>
+    <string name="feed_group_dialog_empty_selection">Sem inscrições selecionadas</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d selecionada</item>
+        <item quantity="other">%d selecionadas</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">Nome do grupo está vazio</string>
+    <string name="feed_group_dialog_name_input">Nome</string>
+    <string name="feed_group_dialog_delete_message">Deseja excluir este grupo\?</string>
+    <string name="feed_create_new_group_button_title">Novo</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Limiar de atualização do feed</string>
+    <string name="feed_update_threshold_summary">Período para que uma inscrição seja considerada desatualizada — %s</string>
+    <string name="feed_update_threshold_option_always_update">Atualizar sempre</string>
+    <string name="feed_use_dedicated_fetch_method_title">Carregar do feed dedicado, se disponível</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponível em alguns serviços, é mais rápido porém pode apresentar informações limitadas ou incompletas (por exemplo, sem duração, status ao vivo e etc).</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Ativar modo rápido</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Desativar modo rápido</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Achou o carregamento do feed lento\? Se sim, tente ativar o modo rápido (você pode mudar isso nas configurações ou tocando no botão abaixo).
+\n
+\nNewPipe oferece duas estratégias de carregamento do feed:
+\n• Carregando todo o canal que se foi inscrito, lento mas completo.
+\n• Usando ponto de servidor dedicado, rápido mas incompleto.
+\n
+\nA diferença entre os dois é que o mais rápido sofre perda de algumas informações como a duração do vídeo, o status ao vivo dele e etc.
+\n
+\nYouTube é um exemplo de serviço que oferece o modo rápido com seu feed RSS.
+\n
+\nEntão, a escolha é sua: Velocidade ou informações precisas.</string>
 </resources>
