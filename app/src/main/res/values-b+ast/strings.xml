@@ -212,11 +212,10 @@
     <string name="show_comments_title">Amosar comentarios</string>
     <string name="show_comments_summary"/>
     <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de NewPipe. Lléila con procuru. 
-\nHas aceutala unviándonos un informe de fallos.<string name="delete_search_history_alert">¿Desaniciar tol historial de gueta\?</string>
-\nHas aceutala unviándonos un informe de fallos.</string>
+\nHas aceutala unviándonos un informe de fallos.
+    </string>
     <string name="minimize_on_exit_summary">Aición al cambiar a otra aplicación dende\'l reproductor de vídeos principal — %s</string>
     <string name="max_retry_desc">El númberu máximu d\'intentos enantes d\'encaboxar la descarga</string>
-    <string name="enable_playback_state_lists_title"></string>
     <string name="confirm_prompt">¿Quies llimpiar l\'historial de descargues o desaniciar tolos ficheros baxaos\?</string>
     <string name="previous_export">Esportación anterior</string>
     <string name="import_file_title">Importar el ficheru</string>
@@ -230,8 +229,8 @@
 \n
 \n3.- Anicia sesión cuando se te pida
 \n2.- Vete a esta URL: %1$s
-    <string name="import_soundcloud_instructions_hint">LaToID, soundcloud.com/latoid</string>
 \n4.- Copia la URL del perfil al que se te redirixa.</string>
+    <string name="import_soundcloud_instructions_hint">LaToID, soundcloud.com/latoid</string>
     <string name="download_thumbnail_title">Cargar miniatures</string>
     <string name="download_thumbnail_summary">Desactiva esta opción pa evitar la carga de miniatures, aforrar datos y usu de la memoria. Los cambeos van llimpiar la memoria y la caché d\'imáxenes.</string>
     <string name="minimize_on_exit_title">Minimizar al cambiar a otra aplicación</string>
@@ -290,7 +289,6 @@
     <string name="export_complete_toast">Esportóse</string>
     <string name="import_complete_toast">Importóse</string>
     <string name="could_not_import_all_files">Alvertencia: Nun pudieron importase tolos ficheros.</string>
-    <string name="app_license"></string>
     <string name="settings_category_updates_title">Anovamientos</string>
     <string name="download_finished">Finó la descarga</string>
     <string name="peertube_instance_add_fail">Nun pudo validase la instancia</string>

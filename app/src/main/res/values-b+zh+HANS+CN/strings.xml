@@ -543,16 +543,13 @@
     <string name="unmute">取消静音</string>
     <string name="help">帮助</string>
     <plurals name="minutes">
-        <item quantity="one">%d分钟</item>
-        <item quantity="other"></item>
+        <item quantity="other">%d分钟</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="one">%小时</item>
-        <item quantity="other"></item>
+        <item quantity="other">%小时</item>
     </plurals>
     <plurals name="days">
-        <item quantity="one">%天</item>
-        <item quantity="other"></item>
+        <item quantity="other">%天</item>
     </plurals>
     <string name="feed_groups_header_title">Feed组</string>
     <string name="feed_oldest_subscription_update">最早订阅更新:%s</string>
@@ -562,8 +559,7 @@
     <string name="feed_group_dialog_select_subscriptions">选择订阅</string>
     <string name="feed_group_dialog_empty_selection">未选中订阅</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">已选中%d</item>
-        <item quantity="other"></item>
+        <item quantity="other">已选中%d</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">组名为空</string>
     <string name="feed_group_dialog_name_input">名称</string>
