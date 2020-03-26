@@ -556,7 +556,8 @@ abrir em modo popup</string>
         <item quantity="one">%d segundo</item>
         <item quantity="other">%d segundos</item>
     </plurals>
-    <string name="new_seek_duration_toast">Devido as configurações do ExoPlayer, a duração de busca foi alterada para %d segundos</string>
+    <string name="new_seek_duration_toast">Devido às configurações do ExoPlayer, a duração da procura foi alterada para %d segundos</string>
     <string name="mute">Desativar som</string>
     <string name="unmute">Ativar som</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
 </resources>
