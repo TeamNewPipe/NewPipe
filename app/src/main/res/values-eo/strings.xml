@@ -550,17 +550,14 @@
         <item quantity="one">%d minuto</item>
         <item quantity="other">%d minutoj</item>
     </plurals>
-
     <plurals name="hours">
         <item quantity="one">%d horo</item>
         <item quantity="other">%d horoj</item>
     </plurals>
-
     <plurals name="days">
         <item quantity="one">%d tago</item>
         <item quantity="other">%d tagoj</item>
     </plurals>
-
     <!-- Feed -->
     <string name="feed_groups_header_title">Abonfluoj grupoj</string>
     <string name="feed_oldest_subscription_update">Lasta ĝisdatigo: %s</string>
@@ -577,7 +574,6 @@
     <string name="feed_group_dialog_name_input">Nomo</string>
     <string name="feed_group_dialog_delete_message">Ĉu vi volas forviŝi tion grupon?</string>
     <string name="feed_create_new_group_button_title">Nova</string>
-
     <string name="settings_category_feed_title">Abonfluo</string>
     <string name="feed_update_threshold_title">Abonflua ĝisdatiga sojlo</string>
     <string name="feed_update_threshold_summary">Tempo post lasta ĝisdatigo antaŭ abono estas konsiderita malĝisdatigita — %s</string>
@@ -589,4 +585,6 @@
     <string name="new_seek_duration_toast">Pro ExoPlayer limoj, la serĉa daŭro estas metita %d sekundojn</string>
     <string name="mute">Mutigi</string>
     <string name="unmute">Malmutigi</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="help">Helpo</string>
 </resources>

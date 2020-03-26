@@ -599,4 +599,24 @@
     <string name="feed_update_threshold_option_always_update">לעדכן תמיד</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">הפעלת מצב מהיר</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">השבתת מצב מהיר</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">נבחר אחד</item>
+        <item quantity="two">%d נבחרו</item>
+        <item quantity="many">%d נבחרו</item>
+        <item quantity="other">%d נבחרו</item>
+    </plurals>
+    <string name="feed_update_threshold_summary">הזמן לאחר העדכון האחרון בטרם מינוי נחשב לבלתי עדכני — %s</string>
+    <string name="feed_use_dedicated_fetch_method_title">לקבל מהזנה ייעודית כשניתן</string>
+    <string name="feed_use_dedicated_fetch_method_summary">זמין בחלק מהשירותים, האפשרות הזאת בדרך כלל מהירה יותר אך עשויה להחזיר כמות מוגבלת של פריטים ולעתים פרטים חלקיים (למשל: חסר משך הפרק, סוג הפריט, אין מצב חי).</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">לדעתך הטעינה אטית מדי\? אם זה המצב אצלך, כדאי לנסות להפעיל טעינה מהירה (ניתן לשנות בהגדרות או על ידי לחיצה על הכפתור שלהלן).
+\n
+\nהיישומון NewPipe מציע שתי אסטרטגיות לטעינת הזנה:
+\n• הורדת כל ערוץ המינוי, אטי אבל שלם.
+\n• באמצעות נקודת קצה ייעודית, מהיר אבל חלקי.
+\n
+\nההבדל בין השתיים הוא שבמהירה חסרים פרטים, כמו משך הפריט או סוגו (אין אפשרות להבדיל בין סרטונים חיים לרגילים) והיא עשויה להחזיר פחות פריטים.
+\n
+\nYouTube זאת דוגמה לשירות שמציע את השיטה המהירה הזאת עם הזנת ה־RSS שלו.
+\n
+\nלכן עומדת בפניך הבחירה: מהירות או דיוק בפרטים.</string>
 </resources>
