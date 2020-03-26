@@ -175,7 +175,7 @@ public class ThemeHelper {
     }
 
     /**
-     * Get a resource id from a resource styled according to the the context's theme.
+     * Get a resource id from a resource styled according to the context's theme.
      */
     public static int resolveResourceIdFromAttr(Context context, @AttrRes int attr) {
         TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
@@ -185,7 +185,7 @@ public class ThemeHelper {
     }
 
     /**
-     * Get a color from an attr styled according to the the context's theme.
+     * Get a color from an attr styled according to the context's theme.
      */
     public static int resolveColorFromAttr(Context context, @AttrRes int attrColor) {
         final TypedValue value = new TypedValue();
