@@ -543,4 +543,48 @@
     <string name="new_seek_duration_toast">ExoPlayer の制約のためシーク間隔は %d 秒に設定されました</string>
     <string name="mute">ミュート</string>
     <string name="unmute">ミュート解除</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="help">ヘルプ</string>
+    <plurals name="minutes">
+        <item quantity="other">%d 分</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="other">%d 時間</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="other">%d 日</item>
+    </plurals>
+    <string name="feed_groups_header_title">フィード グループ</string>
+    <string name="feed_oldest_subscription_update">最も古い登録チャンネルの更新: %s</string>
+    <string name="feed_subscription_not_loaded_count">読み込み失敗: %d</string>
+    <string name="feed_notification_loading">フィードを読み込み中…</string>
+    <string name="feed_processing_message">フィードを処理中…</string>
+    <string name="feed_group_dialog_select_subscriptions">チャンネルを選択</string>
+    <string name="feed_group_dialog_empty_selection">チャンネルが選択されていません</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="other">%d 選択中</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">グループ名が空です</string>
+    <string name="feed_group_dialog_name_input">グループ名</string>
+    <string name="feed_group_dialog_delete_message">このグループを削除しますか？</string>
+    <string name="feed_create_new_group_button_title">新規</string>
+    <string name="settings_category_feed_title">フィード</string>
+    <string name="feed_update_threshold_title">フィードの更新間隔</string>
+    <string name="feed_update_threshold_summary">最後の更新後、登録チャンネルを更新すべきとするまでの時間 ― %s</string>
+    <string name="feed_update_threshold_option_always_update">常に更新する</string>
+    <string name="feed_use_dedicated_fetch_method_title">利用可能な場合は専用フィードから取得</string>
+    <string name="feed_use_dedicated_fetch_method_summary">いくつかのサービスで利用可能、通常よりも高速ですが制限された情報が取得され、たいていの場合不完全です (例: 再生時間、種類、ライブ ステータスなどがない)。</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">高速モードを有効化</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">高速モードを無効化</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">フィードの読み込みが遅すぎると思いますか？ その場合、高速読み込みを有効化してみてください (設定、もしくは下のボタンを押して変更することができます)。
+\n
+\nNewPipe は2つの読み込み方法を提供します:
+\n・登録チャンネル全体を取得します。これは低速ですが完全です。
+\n・専用のサービス エンドポイントを使用します。これは高速ですが、たいていの場合不完全です。
+\n
+\n2つの違いとして、高速なものは通常、再生時間や種類 (ライブと通常の動画を区別できない) などの情報が不足して、正しい量の情報より少なく取得することがあります。
+\n
+\nYouTubeは、この高速な読み込み方法をRSSフィードで提供するサービスのひとつです。
+\n
+\nつまり、読み込み方法の選択は速度または正確さのどちらを優先するか、あなたの好みによります。</string>
 </resources>
