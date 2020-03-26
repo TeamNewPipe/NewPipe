@@ -547,7 +547,6 @@
         <item quantity="other">%d saniye</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer kısıtlamaları gereği konumlama süresi %d saniyeye belirlenmiştir</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="mute">Sessiz</string>
     <string name="unmute">Sesli</string>
     <string name="help">Yardım</string>

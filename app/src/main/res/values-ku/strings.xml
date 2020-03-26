@@ -549,7 +549,6 @@
         <item quantity="one">%d چرکە</item>
         <item quantity="other">%d چرکە</item>
     </plurals>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/ناوی ئەپ</string>
     <string name="new_seek_duration_toast">بەهۆی ExoPlayer ەوە ماوەی بردنەپێش و بردنەپاش لە %d چرکەدا دیاریکرا</string>
     <string name="mute">بێدەنگکردن</string>
     <string name="unmute">بێدەنگ نەکردن</string>

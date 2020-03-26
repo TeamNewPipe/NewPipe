@@ -541,7 +541,6 @@
     <string name="new_seek_duration_toast">由于ExoPlayer的限制，搜寻间隔设置为％d秒</string>
     <string name="mute">静音</string>
     <string name="unmute">取消静音</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/应用名</string>
     <string name="help">帮助</string>
     <plurals name="minutes">
         <item quantity="one">%d分钟</item>

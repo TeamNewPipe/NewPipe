@@ -585,6 +585,5 @@
     <string name="new_seek_duration_toast">Pro ExoPlayer limoj, la serĉa daŭro estas metita %d sekundojn</string>
     <string name="mute">Mutigi</string>
     <string name="unmute">Malmutigi</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">Helpo</string>
 </resources>

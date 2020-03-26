@@ -541,7 +541,6 @@
     <string name="new_seek_duration_toast">ExoPlayer の制約のためシーク間隔は %d 秒に設定されました</string>
     <string name="mute">ミュート</string>
     <string name="unmute">ミュート解除</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">ヘルプ</string>
     <plurals name="minutes">
         <item quantity="other">%d 分</item>

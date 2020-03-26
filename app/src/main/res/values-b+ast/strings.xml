@@ -293,7 +293,6 @@
     <string name="app_license"></string>
     <string name="settings_category_updates_title">Anovamientos</string>
     <string name="download_finished">Finó la descarga</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="peertube_instance_add_fail">Nun pudo validase la instancia</string>
     <plurals name="minutes">
         <item quantity="one">%d minutu</item>

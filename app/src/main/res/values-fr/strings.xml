@@ -452,7 +452,6 @@
     <string name="error_connect_host">Impossible de se connecter au serveur</string>
     <string name="error_http_no_content">Le serveur n’envoie pas de données</string>
     <string name="error_http_not_found">Introuvable</string>
-    <string name="clear_finished_download">Effacer les téléchargements terminés</string>
     <string name="pause_downloads_on_mobile">Interrompre sur les connexions limitées</string>
     <string name="pause_downloads_on_mobile_desc">Utile lors du basculement aux données mobiles, bien que certains téléchargements ne peuvent pas être suspendus</string>
     <string name="list_view_mode">Mode de vue en liste</string>

@@ -549,7 +549,6 @@
     <string name="new_seek_duration_toast">A causa dei vincoli di ExoPlayer la durata dello spostamento rapido è stata impostata a %d secondi</string>
     <string name="mute">Silenzia</string>
     <string name="unmute">Riattiva audio</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">Aiuto</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
