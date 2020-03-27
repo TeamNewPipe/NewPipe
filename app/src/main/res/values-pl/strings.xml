@@ -551,11 +551,63 @@
     <string name="recaptcha_done_button">Gotowe</string>
     <string name="videos_string">Filmy</string>
     <plurals name="seconds">
-        <item quantity="one">%d sekund</item>
-        <item quantity="few">%d sekund</item>
+        <item quantity="one">%d sekunda</item>
+        <item quantity="few">%d sekundy</item>
         <item quantity="many">%d sekund</item>
     </plurals>
     <string name="new_seek_duration_toast">Ze względu na ograniczenia ExoPlayer, czas trwania wyszukiwania został ustawiony na %d sekund</string>
     <string name="mute">Wycisz</string>
     <string name="unmute">Wyłącz wyciszenie</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Czy uważasz, że ładowanie kanałów jest zbyt powolne\? Jeśli tak, spróbuj włączyć szybkie ładowanie (możesz go zmienić w ustawieniach lub naciskając przycisk poniżej).
+\n
+\nNewPipe oferuje dwie strategie ładowania kanału:
+\n• Pobieranie całego kanału subskrypcji, który jest powolny, ale kompletny.
+\n• Korzystanie z dedykowanego punktu końcowego usługi, który jest szybki, ale zwykle nie jest kompletny.
+\n
+\nRóżnica między nimi polega na tym, że w szybkim zwykle brakuje pewnych informacji, takich jak czas trwania lub typ pozycji (nie można odróżnić filmów na żywo od zwykłych) i może zwrócić mniej pozycji.
+\n
+\nYouTube jest przykładem usługi, która oferuje tę szybką metodę z kanałem RSS.
+\n
+\nTak więc wybór sprowadza się do tego, co wolisz: prędkości lub precyzyjne informacje.</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Wyłącz tryb szybki</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Włącz tryb szybki</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Dostępne w niektórych usługach jest zwykle znacznie szybsze, ale może zwrócić ograniczoną liczbę pozycji i często niekompletne informacje (np. Brak czasu trwania, typ pozycji, brak statusu na żywo).</string>
+    <string name="feed_use_dedicated_fetch_method_title">Pobierz z dedykowanego kanału, jeśli jest dostępny</string>
+    <string name="feed_update_threshold_option_always_update">Zawsze aktualizuj</string>
+    <string name="feed_update_threshold_summary">Czas po ostatniej aktualizacji, zanim subskrypcja zostanie uznana za nieaktualną — %s</string>
+    <string name="feed_update_threshold_title">Próg aktualizacji kanału</string>
+    <string name="settings_category_feed_title">Kanał</string>
+    <string name="feed_create_new_group_button_title">Nowy</string>
+    <string name="feed_group_dialog_delete_message">Czy chcesz usunąć tę grupę\?</string>
+    <string name="feed_group_dialog_name_input">Nazwa</string>
+    <string name="feed_group_dialog_empty_name">Pusta nazwa grupy</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">wybrany %d</item>
+        <item quantity="few">wybrano %d</item>
+        <item quantity="many">wybrano %d</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Nie wybrano żadnej subskrypcji</string>
+    <string name="feed_group_dialog_select_subscriptions">Wybierz subskrypcje</string>
+    <string name="feed_processing_message">Przetwarzam plik danych…</string>
+    <string name="feed_notification_loading">Ładowanie kanału…</string>
+    <string name="feed_subscription_not_loaded_count">Nie uruchamia się: %d</string>
+    <string name="feed_oldest_subscription_update">Najstarsza aktualizacja subskrypcji: %s</string>
+    <string name="feed_groups_header_title">Grupy kanałów</string>
+    <plurals name="days">
+        <item quantity="one">%d dzień</item>
+        <item quantity="few">%d dni</item>
+        <item quantity="many">%d dni</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d godzina</item>
+        <item quantity="few">%d godziny</item>
+        <item quantity="many">%d godzin</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minuta</item>
+        <item quantity="few">%d minuty</item>
+        <item quantity="many">%d minut</item>
+    </plurals>
+    <string name="help">Pomoc</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
 </resources>
