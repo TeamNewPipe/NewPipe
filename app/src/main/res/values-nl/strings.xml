@@ -499,7 +499,7 @@
     <string name="downloads_storage_ask_summary">U zal worden gevraagd waar u bestanden wilt opslaan</string>
     <string name="downloads_storage_ask_summary_kitkat">Je zal gevraagd worden waar elke download op te slaan.
 \nKies SAF als je wilt downloaden naar een externe SD-kaart</string>
-    <string name="downloads_storage_use_saf_title">SAF gebruiken</string>
+    <string name="downloads_storage_use_saf_title">Gebruik SAF</string>
     <string name="clear_playback_states_title">Verwijder afspeelposities</string>
     <string name="clear_playback_states_summary">Verwijder alle afspeelposities</string>
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen\?</string>
@@ -537,7 +537,7 @@
     <string name="deleted_downloads">%1$s downloads verwijderd</string>
     <string name="permission_display_over_apps">Geef toestemming voor weergave over andere apps</string>
     <string name="app_language_title">App-taal</string>
-    <string name="systems_language">Systeemstandaard</string>
+    <string name="systems_language">Systeem taal gebruiken</string>
     <string name="subtitle_activity_recaptcha">Druk op \"Klaar\" zodra opgelost</string>
     <string name="recaptcha_done_button">Klaar</string>
     <string name="videos_string">Video\'s</string>
@@ -566,7 +566,7 @@
     <string name="feed_subscription_not_loaded_count">Niet geladen: %d</string>
     <string name="feed_notification_loading">Feed aan het laden…</string>
     <string name="feed_processing_message">Feed aan het verwerken…</string>
-    <string name="feed_group_dialog_select_subscriptions">Abonnementen selecteren</string>
+    <string name="feed_group_dialog_select_subscriptions">Selecteer abonnementen</string>
     <string name="feed_group_dialog_empty_selection">Geen abonnement geselecteerd</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d geselecteerd</item>
@@ -574,7 +574,7 @@
     </plurals>
     <string name="feed_group_dialog_empty_name">Lege groepsnaam</string>
     <string name="feed_group_dialog_name_input">Naam</string>
-    <string name="feed_group_dialog_delete_message">Wil je deze groep verwijderen\?</string>
+    <string name="feed_group_dialog_delete_message">Wilt u deze groep verwijderen\?</string>
     <string name="feed_create_new_group_button_title">Nieuw</string>
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_update_threshold_title">Drempel voor feedupdate</string>
