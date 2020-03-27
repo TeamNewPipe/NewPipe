@@ -487,7 +487,7 @@
     <string name="missing_file">Bestand verplaatst of verwijderd</string>
     <string name="overwrite_unrelated_warning">Een bestand met dezelfde naam bestaat al</string>
     <string name="overwrite_failed">het is niet mogelijk het bestand te overschrijven</string>
-    <string name="download_already_pending">Er is een download met deze naam bezig</string>
+    <string name="download_already_pending">Er is al een download met deze naam bezig</string>
     <string name="error_insufficient_storage">Geen ruimte meer op het apparaat</string>
     <string name="error_progress_lost">Voortgang verloren, omdat het bestand is verwijderd</string>
     <string name="confirm_prompt">Wil je je downloadgeschiedenis wissen of alle gedownloade bestanden verwijderen\?</string>
