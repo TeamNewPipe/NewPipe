@@ -16,7 +16,7 @@
     <string name="screen_rotation">draaiing</string>
     <string name="download_path_title">Downloadlocatie voor video\'s</string>
     <string name="download_path_summary">Locatie om gedownloade video\'s in op te slaan</string>
-    <string name="download_path_dialog_title">Kies de downloadlocatie voor video\'s</string>
+    <string name="download_path_dialog_title">Voer de downloadlocatie in voor video\'s</string>
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
     <string name="kore_not_found">Installeer ontbrekende Kore-app\?</string>
@@ -38,7 +38,7 @@
     <string name="detail_dislikes_img_view_description">Vind-ik-niet-leuks</string>
     <string name="download_path_audio_title">Downloadfolder voor audio</string>
     <string name="download_path_audio_summary">Gedownloade muziek wordt hier opgeslagen</string>
-    <string name="download_path_audio_dialog_title">Kies de downloadlocatie voor audiobestanden</string>
+    <string name="download_path_audio_dialog_title">Voer de downloadlocatie voor audiobestanden in</string>
     <string name="theme_title">Thema</string>
     <string name="dark_theme_title">Donker</string>
     <string name="light_theme_title">Licht</string>
