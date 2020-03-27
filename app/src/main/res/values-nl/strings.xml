@@ -33,7 +33,7 @@
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
     <string name="settings_category_video_audio_title">Audio en video</string>
     <string name="list_thumbnail_view_description">Videovoorbeeldminiatuur</string>
-    <string name="detail_thumbnail_view_description">Videovoorbeeldminiatuur</string>
+    <string name="detail_thumbnail_view_description">Speel video, tijd:</string>
     <string name="detail_uploader_thumbnail_view_description">Gebruikersafbeelding van uploader</string>
     <string name="detail_dislikes_img_view_description">Vind-ik-niet-leuks</string>
     <string name="download_path_audio_title">Downloadfolder voor audio</string>
@@ -105,7 +105,7 @@
     <string name="msg_running_detail">Druk voor meer informatie</string>
     <string name="msg_wait">Even geduld…</string>
     <string name="msg_copied">Gekopieerd naar klembord</string>
-    <string name="no_available_dir">Kies een beschikbare downloadmap</string>
+    <string name="no_available_dir">Selecteer een downloadmap in de instellingen</string>
     <string name="black_theme_title">Zwart</string>
     <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA-uitdaging</string>
