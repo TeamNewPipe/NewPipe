@@ -105,7 +105,7 @@
     <string name="msg_running_detail">Druk voor meer informatie</string>
     <string name="msg_wait">Even geduld…</string>
     <string name="msg_copied">Gekopieerd naar klembord</string>
-    <string name="no_available_dir">Selecteer een downloadmap in de instellingen</string>
+    <string name="no_available_dir">Selecteer een downloadmap in de Instellingen</string>
     <string name="black_theme_title">Zwart</string>
     <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA-uitdaging</string>
