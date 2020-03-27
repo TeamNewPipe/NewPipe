@@ -85,7 +85,7 @@
     <string name="could_not_load_image">Kan afbeelding niet laden</string>
     <string name="app_ui_crash">App/UI gecrasht</string>
     <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nDienst:\\nTijd in GMT:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
-    <string name="report_error">Probleem melden</string>
+    <string name="report_error">Meld een probleem</string>
     <string name="user_report">Gebruikersrapport</string>
     <string name="storage_permission_denied">Geef eerst toegang tot de opslag</string>
     <string name="start">Begin</string>
@@ -500,15 +500,15 @@
     <string name="downloads_storage_ask_summary_kitkat">Je zal gevraagd worden waar elke download op te slaan.
 \nKies SAF als je wilt downloaden naar een externe SD-kaart</string>
     <string name="downloads_storage_use_saf_title">SAF gebruiken</string>
-    <string name="clear_playback_states_title">Afspeelposities verwijderen</string>
-    <string name="clear_playback_states_summary">Alle afspeelposities verwijderen</string>
+    <string name="clear_playback_states_title">Verwijder afspeelposities</string>
+    <string name="clear_playback_states_summary">Verwijder alle afspeelposities</string>
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen\?</string>
-    <string name="no_one_watching">Niemand kijkt</string>
+    <string name="no_one_watching">Niemand is aan het kijken</string>
     <plurals name="watching">
-        <item quantity="one">%s kijkt</item>
-        <item quantity="other">%s kijken</item>
+        <item quantity="one">%s kijker</item>
+        <item quantity="other">%s kijkers</item>
     </plurals>
-    <string name="no_one_listening">Niemand luistert</string>
+    <string name="no_one_listening">Niemand is aan het luisteren</string>
     <plurals name="listening">
         <item quantity="one">%s luisteraar</item>
         <item quantity="other">%s luisteraars</item>
@@ -516,16 +516,16 @@
     <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart.</string>
     <string name="default_kiosk_page_summary">Standaardkiosk</string>
     <string name="seek_duration_title">Duur van snel voor-/achteruit zoeken</string>
-    <string name="peertube_instance_url_title">PeerTube-instanties</string>
-    <string name="peertube_instance_url_summary">Selecteer je favoriete PeerTube-instanties</string>
-    <string name="peertube_instance_url_help">Zoek de instanties die je leuk vindt op %s</string>
-    <string name="peertube_instance_add_title">Instantie toevoegen</string>
-    <string name="peertube_instance_add_help">Instantie-URL invoeren</string>
+    <string name="peertube_instance_url_title">PeerTube instanties</string>
+    <string name="peertube_instance_url_summary">Favoriete PeerTube instanties instellen</string>
+    <string name="peertube_instance_url_help">Vind het kanaal dat je leuk vind op %s</string>
+    <string name="peertube_instance_add_title">Kanaal toevoegen</string>
+    <string name="peertube_instance_add_help">Kanaal URL invoeren</string>
     <string name="peertube_instance_add_fail">Kon instantie niet valideren</string>
-    <string name="peertube_instance_add_https_only">Alleen HTTPS-URL\'s worden ondersteund</string>
-    <string name="peertube_instance_add_exists">Instantie bestaat al</string>
+    <string name="peertube_instance_add_https_only">Alleen HTTPS links worden ondersteund</string>
+    <string name="peertube_instance_add_exists">Kanaal bestaat al</string>
     <string name="local">Lokaal</string>
-    <string name="recently_added">Onlangs toegevoegd</string>
+    <string name="recently_added">"Recentelijk toegevoegd "</string>
     <string name="playlist_no_uploader">Automatisch gegenereerd (geen uploader gevonden)</string>
     <string name="recovering">herstellen</string>
     <string name="error_download_resource_gone">Kan deze download niet herstellen</string>
