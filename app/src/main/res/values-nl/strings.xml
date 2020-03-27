@@ -475,8 +475,8 @@
     <string name="no_comments">Geen reacties</string>
     <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
     <string name="close">Sluiten</string>
-    <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' laat downloads naar een externe SD kaart toe. 
-\n Niet alle toestellen zijn compatibel</string>
+    <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' laat downloads naar een externe SD kaart toe.
+\nNiet alle toestellen zijn compatibel</string>
     <string name="settings_category_clear_data_title">Wis data</string>
     <string name="download_choose_new_path">Verander de downloadmappen om effect te bekomen</string>
     <string name="enable_playback_resume_title">Hervat afspelen</string>
@@ -536,7 +536,7 @@
     <string name="delete_downloaded_files">Verwijder gedownloade bestanden</string>
     <string name="deleted_downloads">%1$s downloads verwijderd</string>
     <string name="permission_display_over_apps">Geef toestemming voor weergave over andere apps</string>
-    <string name="app_language_title">App-taal</string>
+    <string name="app_language_title">Applicatie taal</string>
     <string name="systems_language">Systeem taal gebruiken</string>
     <string name="subtitle_activity_recaptcha">Druk op \"Klaar\" zodra opgelost</string>
     <string name="recaptcha_done_button">Klaar</string>
@@ -547,7 +547,7 @@
     <string name="help">Hulp</string>
     <plurals name="seconds">
         <item quantity="one">%d seconde</item>
-        <item quantity="other">%d secondes</item>
+        <item quantity="other">%d seconden</item>
     </plurals>
     <plurals name="minutes">
         <item quantity="one">%d minuut</item>
@@ -562,7 +562,7 @@
         <item quantity="other">%d dagen</item>
     </plurals>
     <string name="feed_groups_header_title">Feedgroepen</string>
-    <string name="feed_oldest_subscription_update">Oudste abonnementsupdate: %s</string>
+    <string name="feed_oldest_subscription_update">Oudste abonnements-update: %s</string>
     <string name="feed_subscription_not_loaded_count">Niet geladen: %d</string>
     <string name="feed_notification_loading">Feed aan het laden…</string>
     <string name="feed_processing_message">Feed aan het verwerken…</string>
