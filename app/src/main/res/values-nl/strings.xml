@@ -598,5 +598,5 @@
     <string name="drawer_header_description">Toggle service, momenteel geselecteerd:</string>
     <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="most_liked">Meest leuk gevonden</string>
-    <string name="error_postprocessing_stopped">NewPipe was gesloten terwijl het bezig was met het bestand</string>
+    <string name="error_postprocessing_stopped">NewPipe werd gesloten terwijl het bezig was met het bestand</string>
 </resources>
