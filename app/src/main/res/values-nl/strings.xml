@@ -492,7 +492,7 @@
     <string name="error_progress_lost">Voortgang verloren, omdat bestand was verwijderd</string>
     <string name="confirm_prompt">Wil je je downloadgeschiedenis wissen of alle gedownloade bestanden verwijderen\?</string>
     <string name="enable_queue_limit">Limiteer de download wachtrij</string>
-    <string name="enable_queue_limit_desc">Er zal maximaal 1 bestand tegelijk downloaden</string>
+    <string name="enable_queue_limit_desc">Er zal maximaal 1 bestand tegelijk worden gedownload</string>
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads pauzeren</string>
     <string name="downloads_storage_ask_title">Vraag waar te downloaden</string>
