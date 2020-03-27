@@ -19,7 +19,7 @@
     <string name="download_path_dialog_title">Voer de downloadlocatie in voor video\'s</string>
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
-    <string name="kore_not_found">Installeer ontbrekende Kore-app\?</string>
+    <string name="kore_not_found">Kore-app niet gevonden. Deze Installeren\?</string>
     <string name="show_play_with_kodi_title">\"Afspelen met Kodi\"-optie tonen</string>
     <string name="show_play_with_kodi_summary">Toon een optie om een video af te spelen via Kodi media center</string>
     <string name="play_audio">Audio</string>
@@ -530,7 +530,7 @@
     <string name="recovering">herstellen</string>
     <string name="error_download_resource_gone">Kan deze download niet herstellen</string>
     <string name="choose_instance_prompt">Kies een instantie</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Videominiatuur op vergrendelscherm</string>
+    <string name="enable_lock_screen_video_thumbnail_title">vergrendelscherm video thumbnail activeren</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Een videominiatuur wordt getoond op het vergrendelscherm wanneer de achtergrondspeler wordt gebruikt</string>
     <string name="clear_download_history">Downloadgeschiedenis wissen</string>
     <string name="delete_downloaded_files">Gedownloade bestanden verwijderen</string>
