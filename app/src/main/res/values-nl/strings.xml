@@ -530,7 +530,7 @@
     <string name="recovering">herstellen</string>
     <string name="error_download_resource_gone">Kan deze download niet herstellen</string>
     <string name="choose_instance_prompt">Kies een instantie</string>
-    <string name="enable_lock_screen_video_thumbnail_title">vergrendelscherm video thumbnail activeren</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Vergrendelscherm video thumbnail activeren</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Een videominiatuur wordt getoond op het vergrendelscherm wanneer de achtergrondspeler wordt gebruikt</string>
     <string name="clear_download_history">Downloadgeschiedenis wissen</string>
     <string name="delete_downloaded_files">Gedownloade bestanden verwijderen</string>
