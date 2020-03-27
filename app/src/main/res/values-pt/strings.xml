@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="upload_date_text">Publicado em %1$s</string>
-    <string name="no_player_found">Reprodutor não disponível. Deseja instalar o VLC?</string>
+    <string name="no_player_found">Nenhum reprodutor de vídeo encontrado. Instalar o VLC\?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir no navegador</string>
@@ -21,7 +21,7 @@
     <string name="download_path_dialog_title">Escolha a pasta de descarregamento para ficheiros de vídeo</string>
     <string name="default_resolution_title">Resolução predefinida</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
-    <string name="kore_not_found">Aplicação Kore não encontrada. Instalar?</string>
+    <string name="kore_not_found">Instalar a app Kore\?</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
     <string name="show_play_with_kodi_summary">Exibir uma opção para reproduzir o vídeo via Kodi media center</string>
     <string name="play_audio">Áudio</string>
@@ -76,7 +76,7 @@
     <string name="audio">Áudio</string>
     <string name="retry">Tentar novamente</string>
     <string name="storage_permission_denied">Negada a permissão para aceder ao armazenamento</string>
-    <string name="main_bg_subtitle">Toque para iniciar a pesquisa</string>
+    <string name="main_bg_subtitle">Toque em \"Pesquisar\" para iniciar</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
     <string name="autoplay_by_calling_app_summary">Reproduzir vídeo se o NewPipe for invocado por outra aplicação</string>
     <string name="duration_live">Direto</string>
@@ -120,13 +120,13 @@
     <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
-    <string name="popup_mode_share_menu_title">Modo de janela autónoma do NewPipe</string>
+    <string name="popup_mode_share_menu_title">Modo popup</string>
     <string name="popup_playing_toast">Reproduzir no modo de janela autónoma</string>
     <string name="default_video_format_title">Formato de vídeo predefinido</string>
     <string name="disabled">Desativado</string>
     <string name="default_popup_resolution_title">Resolução da janela autónoma predefinida</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
-    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos suportam a reprodução de vídeos em 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns aparelhos suportam a reprodução de vídeos em 2K/4K</string>
     <string name="controls_popup_title">Janela</string>
     <string name="popup_remember_size_pos_title">Lembrar tamanho e posição da janela</string>
     <string name="settings_category_popup_title">Janela</string>
@@ -262,7 +262,7 @@
     <string name="controls_download_desc">Transferir ficheiro de emissão</string>
     <string name="controls_add_to_playlist_title">Adicionar a</string>
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>
-    <string name="use_inexact_seek_summary">Esta opção permite que a pesquisa seja mais rápida mas diminui a qualidade da precisão</string>
+    <string name="use_inexact_seek_summary">A busca inexata permite que a busca seja mais rápida diminuindo a precisão. Procurar por 5, 15 ou 25 segundos não funciona com isto.</string>
     <string name="download_thumbnail_title">Carregar miniaturas</string>
     <string name="download_thumbnail_summary">Desative para parar o carregamento das miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagem do disco e da memória.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpa</string>
@@ -335,7 +335,7 @@
 \n3. A transferência deveria iniciar (esse é o ficheiro de exportação)</string>
     <string name="import_soundcloud_instructions">Importe o seu perfil do SoundCloud digitando o URL ou a sua Id.: 
 \n 
-\n1. Ative o modo de PC no navegador da Web (o site não está disponível para dispositivos móveis) 
+\n1. Ative o modo de PC no navegador da Web (o site não está disponível para aparelhos móveis) 
 \n2. Aceda a este URL: %1$s 
 \n3. Inicie a sessão 
 \n4. Copie o URL do perfil em que foi redirecionado.</string>
@@ -343,7 +343,7 @@
     <string name="playback_speed_control">Controlos para velocidade de reprodução</string>
     <string name="playback_tempo">Ritmo</string>
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
-    <string name="auto_queue_summary">Auto-aplicar uma emissão relacionada ao reproduzir a último emissão numa fila não repetitiva</string>
+    <string name="auto_queue_summary">Continuar terminando (sem repetição) a fila de reprodução anexando um fluxo relacionado</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
     <string name="show_hold_to_append_summary">Mostrar dica quando o botão de fundo ou da janela for premido na página de detalhes do vídeo</string>
     <string name="channels">Canais</string>
@@ -464,7 +464,7 @@
     <string name="conferences">Conferências</string>
     <string name="missions_header_pending">Pendente</string>
     <string name="show_comments_title">Mostrar comentários</string>
-    <string name="show_comments_summary">Desativar para parar de mostrar os comentários</string>
+    <string name="show_comments_summary">Desativar para ocultar comentários</string>
     <string name="autoplay_title">Reprodução automática</string>
     <plurals name="comments">
         <item quantity="one">Comentário</item>
@@ -497,8 +497,8 @@
     <string name="downloads_storage_ask_summary_kitkat">Será-lhe solicitado para onde guardar cada transferência. 
 \nEscolha SAF se pretender transferir para um cartão SD externo</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_use_saf_summary">A estrutura de acesso ao armazenamento permite transferências para um cartão SD externo. 
-\nNota: alguns dispositivos não são compatíveis</string>
+    <string name="downloads_storage_use_saf_summary">O \'Storage Access Framework\' permite transferências para um cartão SD externo. 
+\nAlguns aparelhos não são compatíveis</string>
     <string name="clear_playback_states_title">Eliminar as posições de reprodução</string>
     <string name="clear_playback_states_summary">Elimina todas as posições de reprodução</string>
     <string name="delete_playback_states_alert">Eliminar todas as posições de reprodução\?</string>
@@ -532,8 +532,8 @@
     <string name="recovering">recuperando</string>
     <string name="error_download_resource_gone">Não é possível recuperar este descarregamento</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Ativar miniatura do vídeo no ecrã de bloqueio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Ao usar o reprodutor de fundo, uma miniatura de vídeo será exibida no ecrã de bloqueio</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Miniatura do vídeo no ecrã de bloqueio</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Uma miniatura de vídeo é mostrada no ecrã de bloqueio quando utilizando o leitor de fundo</string>
     <string name="clear_download_history">Limpar histórico de descarregamentos</string>
     <string name="delete_downloaded_files">Apagar ficheiros descarregados</string>
     <string name="deleted_downloads">%1$s descarregamentos apagados</string>
