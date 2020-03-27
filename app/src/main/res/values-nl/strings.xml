@@ -479,8 +479,8 @@
 \n Niet alle toestellen zijn compatibel</string>
     <string name="settings_category_clear_data_title">Wis data</string>
     <string name="download_choose_new_path">Verander de downloadmappen om effect te bekomen</string>
-    <string name="enable_playback_resume_title">Afspelen hervatten</string>
-    <string name="enable_playback_resume_summary">Laatste afspeelpositie herstellen</string>
+    <string name="enable_playback_resume_title">Hervat afspelen</string>
+    <string name="enable_playback_resume_summary">Herstel laatste afspeelpositie</string>
     <string name="enable_playback_state_lists_title">Posities in lijsten</string>
     <string name="enable_playback_state_lists_summary">Afspeelpositie-indicatoren in lijsten tonen</string>
     <string name="watch_history_states_deleted">Afspeelposities verwijderd.</string>
