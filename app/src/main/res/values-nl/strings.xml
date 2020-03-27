@@ -495,7 +495,7 @@
     <string name="enable_queue_limit_desc">Er zal maximaal 1 bestand tegelijk worden gedownload</string>
     <string name="start_downloads">Download starten</string>
     <string name="pause_downloads">Downloads pauzeren</string>
-    <string name="downloads_storage_ask_title">Vragen waar de download geplaatst moet worden</string>
+    <string name="downloads_storage_ask_title">Vraag waar bestanden geplaatst moeten worden</string>
     <string name="downloads_storage_ask_summary">Je zal gevraagd worden waar elke download op te slaan</string>
     <string name="downloads_storage_ask_summary_kitkat">Je zal gevraagd worden waar elke download op te slaan.
 \nKies SAF als je wilt downloaden naar een externe SD-kaart</string>
