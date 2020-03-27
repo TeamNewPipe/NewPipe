@@ -460,8 +460,8 @@
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum aantal keer proberen</string>
     <string name="max_retry_desc">Maximum aantal pogingen voordat de download wordt geannuleerd</string>
-    <string name="pause_downloads_on_mobile">Onderbreken op netwerken met datalimiet</string>
-    <string name="pause_downloads_on_mobile_desc">Handig bij het overschakelen naar mobiele gegevens, hoewel sommige downloads niet onderbroken kunnen worden</string>
+    <string name="pause_downloads_on_mobile">Pauzeren bij overschakelen naar mobiele data</string>
+    <string name="pause_downloads_on_mobile_desc">Handig voor wanneer u tot mobiel internet overschakelt, hoewel sommige downloads niet gepauzeerd kunnen worden.</string>
     <string name="events">Gebeurtenissen</string>
     <string name="conferences">Conferenties</string>
     <string name="error_timeout">Time-out van verbinding</string>
@@ -489,7 +489,7 @@
     <string name="overwrite_failed">het is niet mogelijk het bestand te overschrijven</string>
     <string name="download_already_pending">Er is al een download met deze naam bezig</string>
     <string name="error_insufficient_storage">Geen ruimte meer op het apparaat</string>
-    <string name="error_progress_lost">Voortgang verloren, omdat het bestand is verwijderd</string>
+    <string name="error_progress_lost">Voortgang verloren, omdat bestand was verwijderd</string>
     <string name="confirm_prompt">Wil je je downloadgeschiedenis wissen of alle gedownloade bestanden verwijderen\?</string>
     <string name="enable_queue_limit">Downloadwachtrij beperken</string>
     <string name="enable_queue_limit_desc">Een download zal tegelijkertijd worden uitgevoerd</string>
@@ -532,8 +532,8 @@
     <string name="choose_instance_prompt">Kies een instantie</string>
     <string name="enable_lock_screen_video_thumbnail_title">Video afbeelding laten zien op vergrendelingsscherm</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Een video afbeelding wordt weergegeven op het vergrendelscherm wanneer de achtergrond speler wordt gebruikt</string>
-    <string name="clear_download_history">Downloadgeschiedenis wissen</string>
-    <string name="delete_downloaded_files">Gedownloade bestanden verwijderen</string>
+    <string name="clear_download_history">Download geschiedenis verwijderen</string>
+    <string name="delete_downloaded_files">Verwijder gedownloade bestanden</string>
     <string name="deleted_downloads">%1$s downloads verwijderd</string>
     <string name="permission_display_over_apps">Geef toestemming voor weergave over andere apps</string>
     <string name="app_language_title">App-taal</string>
