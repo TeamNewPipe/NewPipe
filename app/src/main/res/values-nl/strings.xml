@@ -496,7 +496,7 @@
     <string name="start_downloads">Download starten</string>
     <string name="pause_downloads">Downloads pauzeren</string>
     <string name="downloads_storage_ask_title">Vraag waar bestanden geplaatst moeten worden</string>
-    <string name="downloads_storage_ask_summary">U zal worden gevraagd waar u bestanden wilt plaatsen</string>
+    <string name="downloads_storage_ask_summary">U zal worden gevraagd waar u bestanden wilt opslaan</string>
     <string name="downloads_storage_ask_summary_kitkat">Je zal gevraagd worden waar elke download op te slaan.
 \nKies SAF als je wilt downloaden naar een externe SD-kaart</string>
     <string name="downloads_storage_use_saf_title">SAF gebruiken</string>
