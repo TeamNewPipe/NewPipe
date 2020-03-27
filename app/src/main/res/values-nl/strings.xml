@@ -595,4 +595,5 @@
 \nYouTube is een voorbeeld van een service die deze snelle methode aanbiedt door zijn RSS-feed.
 \n
 \nDe keuze komt dus neer op wat je liever hebt: snelheid of precieze informatie.</string>
+    <string name="drawer_header_description">Toggle service, momenteel geselecteerd:</string>
 </resources>
