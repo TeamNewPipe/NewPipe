@@ -38,7 +38,7 @@
     <string name="detail_dislikes_img_view_description">Vind-ik-niet-leuks</string>
     <string name="download_path_audio_title">Downloadfolder voor audio</string>
     <string name="download_path_audio_summary">Gedownloade muziek wordt hier opgeslagen</string>
-    <string name="download_path_audio_dialog_title">Voer de downloadlocatie voor audiobestanden in</string>
+    <string name="download_path_audio_dialog_title">Voer de downloadlocatie in voor audiobestanden</string>
     <string name="theme_title">Thema</string>
     <string name="dark_theme_title">Donker</string>
     <string name="light_theme_title">Licht</string>
