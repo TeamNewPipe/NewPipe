@@ -466,7 +466,7 @@
     <string name="conferences">Conferenties</string>
     <string name="error_timeout">Time-out van verbinding</string>
     <string name="show_comments_title">Reacties tonen</string>
-    <string name="show_comments_summary">Schakel dit uit om reacties niet meer te tonen</string>
+    <string name="show_comments_summary">Schakel dit uit om reacties te verbergen</string>
     <string name="autoplay_title">Automatisch afspelen</string>
     <plurals name="comments">
         <item quantity="one">%s reactie</item>
