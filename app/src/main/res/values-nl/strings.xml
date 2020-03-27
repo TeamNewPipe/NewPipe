@@ -177,7 +177,7 @@
     <string name="enable_watch_history_title">Kijkgeschiedenis</string>
     <string name="enable_watch_history_summary">Kijkgeschiedenis bijhouden</string>
     <string name="resume_on_audio_focus_gain_title">Hervat afspelen</string>
-    <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (zoals telefoongesprekken)</string>
+    <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (b.v. telefoongesprekken)</string>
     <string name="notification_channel_name">NewPipe-melding</string>
     <string name="notification_channel_description">Meldingen voor NewPipe-achtergrond- en pop-upspelers</string>
     <string name="title_activity_history">Geschiedenis</string>
@@ -212,7 +212,7 @@
     <string name="item_deleted">Item verwijderd</string>
     <string name="delete_item_search_history">Wil je dit item verwijderen uit je zoekgeschiedenis?</string>
     <string name="show_hold_to_append_title">Toon tip \"Ingedrukt houden om toe te voegen\"</string>
-    <string name="show_hold_to_append_summary">Toon tip als achtergrond- of pop-upknop wordt ingedrukt op de videogegevenspagina</string>
+    <string name="show_hold_to_append_summary">Toon tip als de achtergrond- of pop-upknop wordt ingedrukt op de videogegevenspagina</string>
     <string name="background_player_append">Toegevoegd aan wachtrij voor achtergrondspeler</string>
     <string name="popup_playing_append">Toegevoegd aan wachtrij voor pop-upspeler</string>
     <string name="play_all">Alles afspelen</string>
