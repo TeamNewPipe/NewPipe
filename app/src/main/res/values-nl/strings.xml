@@ -461,7 +461,7 @@
     <string name="max_retry_msg">Maximum aantal keer proberen</string>
     <string name="max_retry_desc">Maximum aantal pogingen voordat de download wordt geannuleerd</string>
     <string name="pause_downloads_on_mobile">Pauzeren bij overschakelen naar mobiele data</string>
-    <string name="pause_downloads_on_mobile_desc">Handig voor wanneer u tot mobiel internet overschakelt, hoewel sommige downloads niet gepauzeerd kunnen worden.</string>
+    <string name="pause_downloads_on_mobile_desc">Handig voor wanneer u naar mobiel internet overschakelt, hoewel sommige downloads niet gepauzeerd kunnen worden.</string>
     <string name="events">Gebeurtenissen</string>
     <string name="conferences">Conferenties</string>
     <string name="error_timeout">Time-out van verbinding</string>
