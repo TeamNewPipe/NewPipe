@@ -525,7 +525,7 @@
     <string name="peertube_instance_add_https_only">Alleen HTTPS links worden ondersteund</string>
     <string name="peertube_instance_add_exists">Kanaal bestaat al</string>
     <string name="local">Lokaal</string>
-    <string name="recently_added">"Recentelijk toegevoegd "</string>
+    <string name="recently_added">Recentelijk toegevoegd</string>
     <string name="playlist_no_uploader">Automatisch gegenereerd (geen uploader gevonden)</string>
     <string name="recovering">herstellen</string>
     <string name="error_download_resource_gone">Kan deze download niet herstellen</string>
