@@ -19,7 +19,7 @@
     <string name="download_path_dialog_title">Voer de downloadlocatie in voor video\'s</string>
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
-    <string name="kore_not_found">Kore-app niet gevonden. Deze Installeren\?</string>
+    <string name="kore_not_found">Kore-app niet gevonden. Deze installeren\?</string>
     <string name="show_play_with_kodi_title">\"Afspelen met Kodi\"-optie tonen</string>
     <string name="show_play_with_kodi_summary">Toon een optie om een video af te spelen via Kodi media center</string>
     <string name="play_audio">Audio</string>
@@ -466,7 +466,7 @@
     <string name="conferences">Conferenties</string>
     <string name="error_timeout">Time-out van verbinding</string>
     <string name="show_comments_title">Reacties tonen</string>
-    <string name="show_comments_summary">Schakel uit om reacties niet te tonen</string>
+    <string name="show_comments_summary">Schakel dit uit om reacties niet meer te tonen</string>
     <string name="autoplay_title">Automatisch afspelen</string>
     <plurals name="comments">
         <item quantity="one">%s reactie</item>
@@ -530,8 +530,8 @@
     <string name="recovering">herstellen</string>
     <string name="error_download_resource_gone">Kan deze download niet herstellen</string>
     <string name="choose_instance_prompt">Kies een instantie</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Vergrendelscherm video thumbnail activeren</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Bij gebruik van de achtergrondspeler wordt een videothumbnail weergegeven op het vergrendelscherm</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Video afbeelding laten zien op vergrendelingsscherm</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Een video afbeelding wordt weergegeven op het vergrendelscherm wanneer de achtergrond speler wordt gebruikt</string>
     <string name="clear_download_history">Downloadgeschiedenis wissen</string>
     <string name="delete_downloaded_files">Gedownloade bestanden verwijderen</string>
     <string name="deleted_downloads">%1$s downloads verwijderd</string>
