@@ -237,7 +237,7 @@
     <string name="play_queue_remove">Verwijderen</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio-instellingen</string>
-    <string name="hold_to_append">Ingedrukt houden om toe te voegen aan wachtrij</string>
+    <string name="hold_to_append">Houd ingedrukt om toe te voegen aan de wachtrij</string>
     <string name="unknown_content">[Onbekend]</string>
     <string name="enqueue_on_background">Toevoegen aan wachtrij in de achtergrond</string>
     <string name="enqueue_on_popup">Toevoegen aan wachtrij in nieuwe pop-up</string>
@@ -485,9 +485,9 @@
     <string name="enable_playback_state_lists_summary">Afspeelpositie-indicatoren in lijsten tonen</string>
     <string name="watch_history_states_deleted">Afspeelposities verwijderd.</string>
     <string name="missing_file">Bestand verplaatst of verwijderd</string>
-    <string name="overwrite_unrelated_warning">Een bestand met deze naam bestaat al</string>
-    <string name="overwrite_failed">kan het bestand niet overschrijven</string>
-    <string name="download_already_pending">Er is een download in behandeling met deze naam</string>
+    <string name="overwrite_unrelated_warning">Een bestand met dezelfde naam bestaat al</string>
+    <string name="overwrite_failed">het is niet mogelijk het bestand te overschrijven</string>
+    <string name="download_already_pending">Er is een download met deze naam bezig</string>
     <string name="error_insufficient_storage">Geen ruimte meer op het apparaat</string>
     <string name="error_progress_lost">Voortgang verloren, omdat het bestand is verwijderd</string>
     <string name="confirm_prompt">Wil je je downloadgeschiedenis wissen of alle gedownloade bestanden verwijderen\?</string>
@@ -542,8 +542,8 @@
     <string name="recaptcha_done_button">Klaar</string>
     <string name="videos_string">Video\'s</string>
     <string name="new_seek_duration_toast">Door beperkingen van ExoPlayer is de zoekduur ingesteld op %d seconden</string>
-    <string name="mute">Dempen</string>
-    <string name="unmute">Dempen opheffen</string>
+    <string name="mute">Geluid dempen</string>
+    <string name="unmute">Geluid aanzetten</string>
     <string name="help">Hulp</string>
     <plurals name="seconds">
         <item quantity="one">%d seconde</item>
@@ -597,6 +597,6 @@
 \nDe keuze komt dus neer op wat je liever hebt: snelheid of precieze informatie.</string>
     <string name="drawer_header_description">Toggle service, momenteel geselecteerd:</string>
     <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
-    <string name="most_liked">Meest leuk gevonden</string>
+    <string name="most_liked">Meest geliked</string>
     <string name="error_postprocessing_stopped">NewPipe werd gesloten terwijl het bezig was met het bestand</string>
 </resources>
