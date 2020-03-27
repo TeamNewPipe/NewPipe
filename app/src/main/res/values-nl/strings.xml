@@ -521,7 +521,7 @@
     <string name="peertube_instance_url_help">Vind het kanaal dat je leuk vind op %s</string>
     <string name="peertube_instance_add_title">Kanaal toevoegen</string>
     <string name="peertube_instance_add_help">Kanaal URL invoeren</string>
-    <string name="peertube_instance_add_fail">Kon instantie niet valideren</string>
+    <string name="peertube_instance_add_fail">Kon kanaal niet valideren</string>
     <string name="peertube_instance_add_https_only">Alleen HTTPS links worden ondersteund</string>
     <string name="peertube_instance_add_exists">Kanaal bestaat al</string>
     <string name="local">Lokaal</string>
