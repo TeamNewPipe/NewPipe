@@ -27,7 +27,7 @@ import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
-import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -173,7 +173,7 @@ public class App extends Application {
 
             private boolean isThrowableIgnored(@NonNull final Throwable throwable) {
                 // Don't crash the application over a simple network problem
-                return ExtractorHelper.hasAssignableCauseThrowable(throwable,
+                return ExceptionUtils.hasAssignableCause(throwable,
                         // network api cancellation
                         IOException.class, SocketException.class,
                         // blocking code disposed
@@ -182,7 +182,7 @@ public class App extends Application {
 
             private boolean isThrowableCritical(@NonNull final Throwable throwable) {
                 // Though these exceptions cannot be ignored
-                return ExtractorHelper.hasAssignableCauseThrowable(throwable,
+                return ExceptionUtils.hasAssignableCause(throwable,
                         NullPointerException.class, IllegalArgumentException.class, // bug in app
                         OnErrorNotImplementedException.class, MissingBackpressureException.class,
                         IllegalStateException.class); // bug in operator

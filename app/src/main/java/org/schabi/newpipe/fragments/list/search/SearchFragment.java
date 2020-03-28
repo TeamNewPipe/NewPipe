@@ -41,6 +41,7 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
+import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -764,7 +765,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                         handleSuggestions(listNotification.getValue());
                     } else if (listNotification.isOnError()) {
                         Throwable error = listNotification.getError();
-                        if (!ExtractorHelper.hasAssignableCauseThrowable(error,
+                        if (!ExceptionUtils.hasAssignableCause(error,
                                 IOException.class, SocketException.class,
                                 InterruptedException.class, InterruptedIOException.class)) {
                             onSuggestionError(error);

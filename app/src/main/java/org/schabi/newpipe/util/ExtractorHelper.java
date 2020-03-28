@@ -52,7 +52,6 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 
 import java.io.IOException;
-import java.io.InterruptedIOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -305,86 +304,5 @@ public final class ExtractorHelper {
                                         : optionalErrorMessage), errorId));
             }
         });
-    }
-
-    /**
-     * Check if throwable have the cause that can be assignable from the causes to check.
-     *
-     * @see Class#isAssignableFrom(Class)
-     * @param throwable     the throwable to be checked
-     * @param causesToCheck the causes to check
-     * @return whether the exception is an instance of a subclass of one of the causes
-     * or is caused by an instance of a subclass of one of the causes
-     */
-    public static boolean hasAssignableCauseThrowable(final Throwable throwable,
-                                                      final Class<?>... causesToCheck) {
-        // Check if getCause is not the same as cause (the getCause is already the root),
-        // as it will cause a infinite loop if it is
-        Throwable cause;
-        Throwable getCause = throwable;
-
-        // Check if throwable is a subclass of any of the filtered classes
-        final Class throwableClass = throwable.getClass();
-        for (Class<?> causesEl : causesToCheck) {
-            if (causesEl.isAssignableFrom(throwableClass)) {
-                return true;
-            }
-        }
-
-        // Iteratively checks if the root cause of the throwable is a subclass of the filtered class
-        while ((cause = throwable.getCause()) != null && getCause != cause) {
-            getCause = cause;
-            final Class causeClass = cause.getClass();
-            for (Class<?> causesEl : causesToCheck) {
-                if (causesEl.isAssignableFrom(causeClass)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Check if throwable have the exact cause from one of the causes to check.
-     *
-     * @param throwable     the throwable to be checked
-     * @param causesToCheck the causes to check
-     * @return whether the exception is an instance of one of the causes
-     * or is caused by an instance of one of the causes
-     */
-    public static boolean hasExactCauseThrowable(final Throwable throwable,
-                                                 final Class<?>... causesToCheck) {
-        // Check if getCause is not the same as cause (the getCause is already the root),
-        // as it will cause a infinite loop if it is
-        Throwable cause;
-        Throwable getCause = throwable;
-
-        for (Class<?> causesEl : causesToCheck) {
-            if (throwable.getClass().equals(causesEl)) {
-                return true;
-            }
-        }
-
-        while ((cause = throwable.getCause()) != null && getCause != cause) {
-            getCause = cause;
-            for (Class<?> causesEl : causesToCheck) {
-                if (cause.getClass().equals(causesEl)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Check if throwable have Interrupted* exception as one of its causes.
-     *
-     * @param throwable the throwable to be checkes
-     * @return whether the throwable is caused by an interruption
-     */
-    public static boolean isInterruptedCaused(final Throwable throwable) {
-        return ExtractorHelper.hasExactCauseThrowable(throwable,
-                InterruptedIOException.class,
-                InterruptedException.class);
     }
 }

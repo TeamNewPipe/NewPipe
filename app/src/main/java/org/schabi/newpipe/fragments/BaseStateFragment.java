@@ -23,7 +23,7 @@ import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.InfoCache;
 
 import java.io.IOException;
@@ -200,7 +200,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
             return true;
         }
 
-        if (ExtractorHelper.isInterruptedCaused(exception)) {
+        if (ExceptionUtils.isInterruptedCaused(exception)) {
             if (DEBUG) {
                 Log.w(TAG, "onError() isInterruptedCaused! = [" + exception + "]");
             }
