@@ -20,7 +20,7 @@ Example: *Z is also a good alternative. Not as good as Y, but at least...* or *I
 <!-- Write below this -->
 
 #### Is your feature request related to a problem? Please describe it
-<!-- A clear and concise description of what the problem is. Maybe the developers could brainstorm and come up with a better solution to your problem.
+<!-- A clear and concise description of what the problem is. Maybe the developers could brainstorm and come up with a better solution to your problem. If they exist, link to related Issues and/or PRs for developers to keep track easier.
 Example: *I want to do X, but there is no way to do it.* -->
 
 <!-- Write below this -->
