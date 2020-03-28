@@ -51,7 +51,6 @@ import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -288,7 +287,7 @@ public final class ExtractorHelper {
                 Intent intent = new Intent(context, ReCaptchaActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
-            } else if (exception instanceof IOException) {
+            } else if (ExceptionUtils.isNetworkRelated(exception)) {
                 Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
             } else if (exception instanceof ContentNotAvailableException) {
                 Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();

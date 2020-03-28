@@ -41,7 +41,6 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
-import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -54,9 +53,6 @@ import org.schabi.newpipe.util.FireTvUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
-import java.io.IOException;
-import java.io.InterruptedIOException;
-import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -764,12 +760,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     if (listNotification.isOnNext()) {
                         handleSuggestions(listNotification.getValue());
                     } else if (listNotification.isOnError()) {
-                        Throwable error = listNotification.getError();
-                        if (!ExceptionUtils.hasAssignableCause(error,
-                                IOException.class, SocketException.class,
-                                InterruptedException.class, InterruptedIOException.class)) {
-                            onSuggestionError(error);
-                        }
+                        onSuggestionError(listNotification.getError());
                     }
                 });
     }

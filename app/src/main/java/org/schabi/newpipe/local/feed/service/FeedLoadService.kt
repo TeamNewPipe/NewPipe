@@ -52,6 +52,7 @@ import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.*
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.util.ExceptionUtils
 import org.schabi.newpipe.util.ExtractorHelper
 import java.io.IOException
 import java.util.*
@@ -333,11 +334,12 @@ class FeedLoadService : Service() {
                 val cause = error.cause
 
                 when {
-                    error is IOException -> throw error
-                    cause is IOException -> throw cause
-
                     error is ReCaptchaException -> throw error
                     cause is ReCaptchaException -> throw cause
+
+                    error is IOException -> throw error
+                    cause is IOException -> throw cause
+                    ExceptionUtils.isNetworkRelated(error) -> throw IOException(error)
                 }
             }
         }

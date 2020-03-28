@@ -35,6 +35,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.io.File;
@@ -245,8 +246,10 @@ public class SubscriptionsImportService extends BaseImportExportService {
                 final Throwable cause = error.getCause();
                 if (error instanceof IOException) {
                     throw (IOException) error;
-                } else if (cause != null && cause instanceof IOException) {
+                } else if (cause instanceof IOException) {
                     throw (IOException) cause;
+                } else if (ExceptionUtils.isNetworkRelated(error)) {
+                    throw new IOException(error);
                 }
 
                 eventListener.onItemCompleted("");
