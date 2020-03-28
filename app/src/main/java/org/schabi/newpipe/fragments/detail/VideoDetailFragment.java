@@ -51,7 +51,6 @@ import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
@@ -1220,20 +1219,12 @@ public class VideoDetailFragment
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
-        else if (exception instanceof ContentNotAvailableException) {
-            showError(getString(R.string.content_not_available), false);
-        } else {
-            int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
-                    ? R.string.youtube_signature_decryption_error
-                    : exception instanceof ParsingException
-                    ? R.string.parsing_error
-                    : R.string.general_error;
-            onUnrecoverableError(exception,
-                    UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(serviceId),
-                    url,
-                    errorId);
-        }
+        int errorId = exception instanceof YoutubeStreamExtractor.DecryptException ? R.string.youtube_signature_decryption_error
+                : exception instanceof ExtractionException ? R.string.parsing_error
+                : R.string.general_error;
+
+        onUnrecoverableError(exception, UserAction.REQUESTED_STREAM,
+                NewPipe.getNameOfService(serviceId), url, errorId);
 
         return true;
     }
