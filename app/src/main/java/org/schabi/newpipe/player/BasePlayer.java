@@ -54,7 +54,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import org.jetbrains.annotations.NotNull;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
@@ -1258,7 +1257,7 @@ public abstract class BasePlayer implements
         setPlaybackParameters(speed, getPlaybackPitch(), getPlaybackSkipSilence());
     }
 
-    @NotNull
+    @NonNull
     public PlaybackParameters getPlaybackParameters() {
         return playbackParameters;
     }
