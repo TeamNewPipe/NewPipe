@@ -9,12 +9,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -26,6 +20,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
 
 import org.schabi.newpipe.download.DownloadDialog;
@@ -49,12 +49,11 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.urlfinder.UrlFinder;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import icepick.Icepick;
@@ -625,78 +624,18 @@ public class RouterActivity extends AppCompatActivity {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    /**
-     * Removes invisible separators (\p{Z}) and punctuation characters including
-     * brackets (\p{P}). See http://www.regular-expressions.info/unicode.html for
-     * more details.
-     */
-    private final static String REGEX_REMOVE_FROM_URL = "[\\p{Z}\\p{P}]";
-
+    @Nullable
     private String getUrl(Intent intent) {
-        // first gather data and find service
-        String videoUrl = null;
+        String foundUrl = null;
         if (intent.getData() != null) {
-            // this means the video was called though another app
-            videoUrl = intent.getData().toString();
+            // Called from another app
+            foundUrl = intent.getData().toString();
         } else if (intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
-            //this means that vidoe was called through share menu
-            String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
-            final String[] uris = getUris(extraText);
-            videoUrl = uris.length > 0 ? uris[0] : null;
+            // Called from the share menu
+            final String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
+            foundUrl = UrlFinder.firstUrlFromInput(extraText);
         }
 
-        return videoUrl;
-    }
-
-    private String removeHeadingGibberish(final String input) {
-        int start = 0;
-        for (int i = input.indexOf("://") - 1; i >= 0; i--) {
-            if (!input.substring(i, i + 1).matches("\\p{L}")) {
-                start = i + 1;
-                break;
-            }
-        }
-        return input.substring(start, input.length());
-    }
-
-    private String trim(final String input) {
-        if (input == null || input.length() < 1) {
-            return input;
-        } else {
-            String output = input;
-            while (output.length() > 0 && output.substring(0, 1).matches(REGEX_REMOVE_FROM_URL)) {
-                output = output.substring(1);
-            }
-            while (output.length() > 0
-                    && output.substring(output.length() - 1, output.length()).matches(REGEX_REMOVE_FROM_URL)) {
-                output = output.substring(0, output.length() - 1);
-            }
-            return output;
-        }
-    }
-
-    /**
-     * Retrieves all Strings which look remotely like URLs from a text.
-     * Used if NewPipe was called through share menu.
-     *
-     * @param sharedText text to scan for URLs.
-     * @return potential URLs
-     */
-    protected String[] getUris(final String sharedText) {
-        final Collection<String> result = new HashSet<>();
-        if (sharedText != null) {
-            final String[] array = sharedText.split("\\p{Space}");
-            for (String s : array) {
-                s = trim(s);
-                if (s.length() != 0) {
-                    if (s.matches(".+://.+")) {
-                        result.add(removeHeadingGibberish(s));
-                    } else if (s.matches(".+\\..+")) {
-                        result.add("http://" + s);
-                    }
-                }
-            }
-        }
-        return result.toArray(new String[result.size()]);
+        return foundUrl;
     }
 }
