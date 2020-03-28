@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.view.accessibility.CaptioningManager;
 
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
@@ -293,6 +294,52 @@ public class PlayerHelper {
         setScreenBrightness(context, setScreenBrightness, System.currentTimeMillis());
     }
 
+    public static PlaybackParameters getSavedPlaybackParameters(@NonNull final Context context) {
+        return new PlaybackParameters(
+                (float) getSavedTempo(context),
+                (float) getSavedPitch(context),
+                getSavedSkipSilence(context)
+        );
+    }
+
+    public static void setSavedPlaybackParameters(@NonNull final Context context, PlaybackParameters parameters) {
+        setSavedTempo(context, parameters.speed);
+        setSavedPitch(context, parameters.pitch);
+        setSavedSkipSilence(context, parameters.skipSilence);
+    }
+
+    public static double getSavedTempo(@NonNull final Context context) {
+        return getSavedTempo(context, PlaybackParameters.DEFAULT.speed);
+    }
+
+    public static void setSavedTempo(@NonNull final Context context, final double tempo) {
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        // Android does not support storing a double directly, so convert to string
+        editor.putString(context.getString(R.string.playback_tempo_key), Double.toString(tempo));
+        editor.apply();
+    }
+
+    public static double getSavedPitch(@NonNull final Context context) {
+        return getSavedPitch(context, PlaybackParameters.DEFAULT.pitch);
+    }
+
+    public static void setSavedPitch(@NonNull final Context context, final double pitch) {
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        // Android does not support storing a double directly, so convert to string
+        editor.putString(context.getString(R.string.playback_pitch_key), Double.toString(pitch));
+        editor.apply();
+    }
+
+    public static boolean getSavedSkipSilence(@NonNull final Context context) {
+        return getSavedSkipSilence(context, PlaybackParameters.DEFAULT.skipSilence);
+    }
+
+    public static void setSavedSkipSilence(@NonNull final Context context, final boolean skipSilence) {
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence);
+        editor.apply();
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Private helpers
     ////////////////////////////////////////////////////////////////////////////
@@ -355,5 +402,23 @@ public class PlayerHelper {
         SinglePlayQueue singlePlayQueue = new SinglePlayQueue(streamInfoItem);
         singlePlayQueue.getItem().setAutoQueued(true);
         return singlePlayQueue;
+    }
+
+    private static double getSavedTempo(@NonNull final Context context, final double tempo) {
+        // Android does not support storing a double directly, so convert to string
+        String tempoPref = getPreferences(context).getString(context.getString(R.string.playback_tempo_key),
+                                                                           null);
+        return (tempoPref != null) ? Double.parseDouble(tempoPref) : tempo;
+    }
+
+    private static double getSavedPitch(@NonNull final Context context, final double pitch) {
+        // Android does not support storing a double directly, so convert to string
+        String pitchPref = getPreferences(context).getString(context.getString(R.string.playback_pitch_key),
+                                                             null);
+        return (pitchPref != null) ? Double.parseDouble(pitchPref) : pitch;
+    }
+
+    private static boolean getSavedSkipSilence(@NonNull final Context context, final boolean skipSilence) {
+        return getPreferences(context).getBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence);
     }
 }

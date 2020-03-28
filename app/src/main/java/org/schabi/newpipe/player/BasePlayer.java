@@ -54,6 +54,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import org.jetbrains.annotations.NotNull;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
@@ -124,6 +125,8 @@ public abstract class BasePlayer implements
     final private LoadControl loadControl;
     @NonNull
     final private RenderersFactory renderFactory;
+    @NonNull
+    private PlaybackParameters playbackParameters;
 
     @NonNull
     final private SerialDisposable progressUpdateReactor;
@@ -221,6 +224,8 @@ public abstract class BasePlayer implements
 
         this.loadControl = new LoadController(context);
         this.renderFactory = new DefaultRenderersFactory(context);
+
+        this.playbackParameters = PlayerHelper.getSavedPlaybackParameters(context);
     }
 
     public void setup() {
@@ -237,6 +242,7 @@ public abstract class BasePlayer implements
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
+        simpleExoPlayer.setPlaybackParameters(playbackParameters);
 
         audioReactor = new AudioReactor(context, simpleExoPlayer);
         mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
@@ -606,6 +612,8 @@ public abstract class BasePlayer implements
 
     @Override
     public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+        this.playbackParameters = playbackParameters;
+
         if (DEBUG) Log.d(TAG, "ExoPlayer - playbackParameters(), " +
                 "speed: " + playbackParameters.speed + ", " +
                 "pitch: " + playbackParameters.pitch);
@@ -1250,10 +1258,9 @@ public abstract class BasePlayer implements
         setPlaybackParameters(speed, getPlaybackPitch(), getPlaybackSkipSilence());
     }
 
+    @NotNull
     public PlaybackParameters getPlaybackParameters() {
-        if (simpleExoPlayer == null) return PlaybackParameters.DEFAULT;
-        final PlaybackParameters parameters = simpleExoPlayer.getPlaybackParameters();
-        return parameters == null ? PlaybackParameters.DEFAULT : parameters;
+        return playbackParameters;
     }
 
     public void setPlaybackParameters(float speed, float pitch, boolean skipSilence) {

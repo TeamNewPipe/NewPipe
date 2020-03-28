@@ -121,6 +121,14 @@ public class PlaybackParameterDialog extends DialogFragment {
             pitch = savedInstanceState.getDouble(PITCH_KEY, DEFAULT_PITCH);
             stepSize = savedInstanceState.getDouble(STEP_SIZE_KEY, DEFAULT_STEP);
         }
+        else {
+            initialTempo = PlayerHelper.getSavedTempo(requireContext());
+            initialPitch = PlayerHelper.getSavedPitch(requireContext());
+            initialSkipSilence = PlayerHelper.getSavedSkipSilence(requireContext());
+
+            tempo = initialTempo;
+            pitch = initialPitch;
+        }
     }
 
     @Override
@@ -422,6 +430,10 @@ public class PlaybackParameterDialog extends DialogFragment {
             if (DEBUG) Log.d(TAG, "Setting playback parameters to " +
                     "tempo=[" + tempo + "], " +
                     "pitch=[" + pitch + "]");
+
+            PlayerHelper.setSavedTempo(requireContext(), tempo);
+            PlayerHelper.setSavedPitch(requireContext(), pitch);
+            PlayerHelper.setSavedSkipSilence(requireContext(), skipSilence);
 
             tempoCurrentText.setText(PlayerHelper.formatSpeed(tempo));
             pitchCurrentText.setText(PlayerHelper.formatPitch(pitch));
