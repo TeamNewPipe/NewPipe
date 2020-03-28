@@ -546,10 +546,10 @@
         <item quantity="other">%d分钟</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="other">%小时</item>
+        <item quantity="other">%d小时</item>
     </plurals>
     <plurals name="days">
-        <item quantity="other">%天</item>
+        <item quantity="other">%d天</item>
     </plurals>
     <string name="feed_groups_header_title">Feed组</string>
     <string name="feed_oldest_subscription_update">最早订阅更新:%s</string>
