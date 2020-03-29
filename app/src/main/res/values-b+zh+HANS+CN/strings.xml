@@ -457,7 +457,7 @@
     <string name="clear_finished_download">清除已完成的下载</string>
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重试次数</string>
-    <string name="max_retry_desc">取消下载前的最多重试着次数</string>
+    <string name="max_retry_desc">取消下载前的最多重试次数</string>
     <string name="pause_downloads_on_mobile">在切换到移动流量网络时中断播放</string>
     <string name="pause_downloads_on_mobile_desc">切换至移动数据时可能有用，尽管一些下载无法被暂停</string>
     <string name="events">事件</string>
@@ -546,15 +546,15 @@
     <string name="help">帮助</string>
     <plurals name="minutes">
         <item quantity="one">%d分钟</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%小时</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <plurals name="days">
         <item quantity="one">%天</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="feed_groups_header_title">Feed组</string>
     <string name="feed_oldest_subscription_update">最早订阅更新:%s</string>
@@ -565,13 +565,13 @@
     <string name="feed_group_dialog_empty_selection">未选中订阅</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">已选中%d</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="feed_group_dialog_empty_name">组名为空</string>
     <string name="feed_group_dialog_name_input">名称</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
-    <string name="settings_category_feed_title">Feed</string>
+    <string name="settings_category_feed_title">订阅</string>
     <string name="feed_update_threshold_title">Feed更新阈值</string>
     <string name="feed_update_threshold_summary">上次更新后，订阅被视为过时的时间-％s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>
