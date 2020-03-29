@@ -599,4 +599,5 @@
 \nYouTube ist ein Beispiel für einen Service, der mit seinem RSS-Feed diese schnelle Methode anbietet.
 \n
 \nDie Entscheidung läuft also darauf hinaus, was dir lieber ist: Tempo oder genaue Informationen.</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
 </resources>
