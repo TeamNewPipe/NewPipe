@@ -218,7 +218,7 @@ public abstract class Tab {
 
         @Override
         public String getTabName(Context context) {
-            return context.getString(R.string.fragment_whats_new);
+            return context.getString(R.string.fragment_feed_title);
         }
 
         @DrawableRes

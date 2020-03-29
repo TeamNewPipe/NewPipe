@@ -165,7 +165,7 @@
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Subscrições</string>
-    <string name="fragment_whats_new">Novidades</string>
+    <string name="fragment_feed_title">Novidades</string>
     <string name="enable_search_history_title">Histórico de pesquisa</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
     <string name="enable_watch_history_title">Ver histórico</string>
@@ -454,7 +454,6 @@
     <string name="error_http_unsupported_range">O servidor não aceita transferências de vários processos, tente novamente com @string/msg_threads = 1</string>
     <string name="error_http_not_found">Não encontrado</string>
     <string name="error_postprocessing_failed">Pós-processamento falhado</string>
-    <string name="clear_finished_download">Limpar transferências concluídas</string>
     <string name="stop">Parar</string>
     <string name="max_retry_msg">Tentativas máximas</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar a transferência</string>

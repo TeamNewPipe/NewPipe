@@ -33,7 +33,7 @@
     <string name="tab_bookmarks">เพลย์ลิสต์ที่เก็บไว้</string>
     <string name="tab_new">แท็บใหม่</string>
     <string name="tab_choose">เลือกแท็บ</string>
-    <string name="fragment_whats_new">มีอะไรใหม่</string>
+    <string name="fragment_feed_title">มีอะไรใหม่</string>
     <string name="controls_background_title">พื้นหลัง</string>
     <string name="controls_popup_title">ป๊อปอัพ</string>
     <string name="controls_add_to_playlist_title">เพิ่มไปยัง</string>
@@ -427,7 +427,6 @@
     <string name="error_http_no_content">เซิร์ฟเวอร์ไม่ส่งข้อมูล</string>
     <string name="error_http_unsupported_range">เซิร์ฟเวอร์ไม่รองรับการดาวน์โหลดแบบพร้อมกันหลายส่วน โปรดลองอีกครั้งด้วย @string/msg_threads = 1</string>
     <string name="error_http_not_found">ไม่พบ</string>
-    <string name="clear_finished_download">ล้างการดาวน์โหลดที่เสร็จสิ้นแล้ว</string>
     <string name="stop">หยุด</string>
     <string name="max_retry_msg">จำนวนครั้งสูงสุดที่จะลองใหม่</string>
     <string name="max_retry_desc">จำนวนครั้งสูงสุดที่จะลองใหม่ก่อนจะยกเลิกการดาวน์โหลด</string>

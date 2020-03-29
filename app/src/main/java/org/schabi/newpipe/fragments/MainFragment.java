@@ -16,7 +16,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -136,16 +136,17 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     // Tabs
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void setupTabs() {
+    private void setupTabs() {
         tabsList.clear();
         tabsList.addAll(tabsManager.getTabs());
 
         if (pagerAdapter == null || !pagerAdapter.sameTabs(tabsList)) {
             pagerAdapter = new SelectedTabsPagerAdapter(requireContext(), getChildFragmentManager(), tabsList);
         }
-        // Clear previous tabs/fragments and set new adapter
-        viewPager.setAdapter(pagerAdapter);
+
+        viewPager.setAdapter(null);
         viewPager.setOffscreenPageLimit(tabsList.size());
+        viewPager.setAdapter(pagerAdapter);
 
         updateTabsIconAndDescription();
         updateTitleForTab(viewPager.getCurrentItem());
@@ -184,7 +185,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         updateTitleForTab(tab.getPosition());
     }
 
-    private static class SelectedTabsPagerAdapter extends FragmentStatePagerAdapter {
+    private static class SelectedTabsPagerAdapter extends FragmentStatePagerAdapterMenuWorkaround {
         private final Context context;
         private final List<Tab> internalTabsList;
 
@@ -194,6 +195,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             this.internalTabsList = new ArrayList<>(tabsList);
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int position) {
             final Tab tab = internalTabsList.get(position);

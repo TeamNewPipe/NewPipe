@@ -59,7 +59,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        infoListAdapter = new InfoListAdapter(activity);
+
+        if (infoListAdapter == null) {
+            infoListAdapter = new InfoListAdapter(activity);
+        }
     }
 
     @Override
@@ -78,7 +81,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     @Override
     public void onDestroy() {
         super.onDestroy();
-        StateSaver.onDestroy(savedState);
+        if (useDefaultStateSaving) StateSaver.onDestroy(savedState);
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
@@ -103,6 +106,16 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     //////////////////////////////////////////////////////////////////////////*/
 
     protected StateSaver.SavedState savedState;
+    protected boolean useDefaultStateSaving = true;
+
+    /**
+     * If the default implementation of {@link StateSaver.WriteRead} should be used.
+     *
+     * @see StateSaver
+     */
+    public void useDefaultStateSaving(boolean useDefault) {
+        this.useDefaultStateSaving = useDefault;
+    }
 
     @Override
     public String generateSuffix() {
@@ -112,26 +125,28 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
     @Override
     public void writeTo(Queue<Object> objectsToSave) {
-        objectsToSave.add(infoListAdapter.getItemsList());
+        if (useDefaultStateSaving) objectsToSave.add(infoListAdapter.getItemsList());
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
-        infoListAdapter.getItemsList().clear();
-        infoListAdapter.getItemsList().addAll((List<InfoItem>) savedObjects.poll());
+        if (useDefaultStateSaving) {
+            infoListAdapter.getItemsList().clear();
+            infoListAdapter.getItemsList().addAll((List<InfoItem>) savedObjects.poll());
+        }
     }
 
     @Override
     public void onSaveInstanceState(Bundle bundle) {
         super.onSaveInstanceState(bundle);
-        savedState = StateSaver.tryToSave(activity.isChangingConfigurations(), savedState, bundle, this);
+        if (useDefaultStateSaving) savedState = StateSaver.tryToSave(activity.isChangingConfigurations(), savedState, bundle, this);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle bundle) {
         super.onRestoreInstanceState(bundle);
-        savedState = StateSaver.tryToRestore(bundle, this);
+        if (useDefaultStateSaving) savedState = StateSaver.tryToRestore(bundle, this);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

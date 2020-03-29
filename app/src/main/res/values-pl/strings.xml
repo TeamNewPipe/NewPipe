@@ -16,7 +16,7 @@
     <string name="use_external_audio_player_title">Użyj zewnętrznego odtwarzacza audio</string>
     <string name="view_count_text">%1$s wyświetleń</string>
     <string name="upload_date_text">Opublikowano %1$s</string>
-    <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Zainstalować VLC\?</string>
+    <string name="no_player_found">Nie znaleziono odtwarzacza strumienia. Zainstalować VLC\?</string>
     <string name="download_path_title">Folder pobierania wideo</string>
     <string name="download_path_summary">Pobrane pliki wideo są przechowywane tutaj</string>
     <string name="download_path_dialog_title">Wybierz folder pobierania plików wideo</string>
@@ -169,7 +169,7 @@
     <string name="subscription_update_failed">Nie można zaktualizować subskrypcji</string>
     <string name="tab_main">Główna</string>
     <string name="tab_subscriptions">Subskrypcje</string>
-    <string name="fragment_whats_new">Co nowego</string>
+    <string name="fragment_feed_title">Co nowego</string>
     <string name="enable_search_history_title">Historia wyszukiwania</string>
     <string name="enable_search_history_summary">Zapisuj lokalnie historię wyszukiwania</string>
     <string name="enable_watch_history_title">Historia oglądanych</string>
@@ -194,7 +194,7 @@
     <string name="search_no_results">Brak wyników</string>
     <string name="no_views">Brak wyświetleń</string>
     <string name="show_hold_to_append_title">Pokaż wskazówkę \"Przytrzymaj, aby dodać\"</string>
-    <string name="show_hold_to_append_summary">Pokaż wskazówkę podczas naciśnięcia odtwarzania na stronie szczegółów filmu</string>
+    <string name="show_hold_to_append_summary">Pokaż wskazówkę po naciśnięciu tła lub wyskakującego w filmie przycisku „Szczegóły:”</string>
     <string name="background_player_append">W kolejce odtwarzania w tle</string>
     <string name="popup_playing_append">W kolejce odtwarzania okienkowego</string>
     <string name="play_all">Odtwórz wszystkie</string>
@@ -321,7 +321,7 @@
     <string name="enable_disposed_exceptions_title">Zgłaszanie błędów poza cyklem życia</string>
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
     <string name="use_inexact_seek_title">Użyj szybkiego niedokładnego wyszukiwania</string>
-    <string name="use_inexact_seek_summary">Szybkie wyszukiwanie pozwala przeskoczyć do wybranej pozycji szybciej, lecz jest mniej precyzyjne</string>
+    <string name="use_inexact_seek_summary">Niedokładne wyszukiwanie pozwala szybciej szukać pozycji z mniejszą precyzją. Szukanie przez 5, 15 lub 25 sekund nie działa w tym przypadku.</string>
     <string name="download_thumbnail_title">Załaduj miniatury</string>
     <string name="download_thumbnail_summary">Wyłącz, aby nie ładować miniaturek, oszczędzając dane i zużycie pamięci. Zmienia wyczyszczenie pamięci podręcznej obrazów zarówno w pamięci, jak i na dysku.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
@@ -458,7 +458,6 @@
     <string name="error_http_unsupported_range">Serwer nie akceptuje pobierania wielowątkowego, spróbuj ponownie za pomocą @string/msg_threads = 1</string>
     <string name="error_http_not_found">Nie znaleziono</string>
     <string name="error_postprocessing_failed">Przetwarzanie końcowe nie powiodło się</string>
-    <string name="clear_finished_download">Wyczyść ukończone pobieranie</string>
     <string name="stop">Zatrzymaj</string>
     <string name="max_retry_msg">Maksymalna liczba powtórzeń</string>
     <string name="max_retry_desc">Maksymalna liczba prób przed anulowaniem pobierania</string>
@@ -503,7 +502,7 @@
 \nWybierz SAF, jeśli chcesz pobrać na zewnętrzną kartę SD</string>
     <string name="downloads_storage_use_saf_title">Użyj SAF</string>
     <string name="downloads_storage_use_saf_summary">Struktura dostępu do pamięci masowej umożliwia pobieranie danych na zewnętrzną kartę SD. 
-\nUwagi: Niektóre urządzenia nie są kompatybilne</string>
+\nNiektóre urządzenia nie są kompatybilne</string>
     <string name="clear_playback_states_title">Usuń pozycje odtwarzania</string>
     <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
@@ -550,9 +549,12 @@
     <string name="subtitle_activity_recaptcha">Po rozwiązaniu naciśnij „Gotowe”</string>
     <string name="recaptcha_done_button">Gotowe</string>
     <string name="videos_string">Filmy</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s sekund</item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
+    <plurals name="seconds">
+        <item quantity="one">%d sekund</item>
+        <item quantity="few">%d sekund</item>
+        <item quantity="many">%d sekund</item>
     </plurals>
+    <string name="new_seek_duration_toast">Ze względu na ograniczenia ExoPlayer, czas trwania wyszukiwania został ustawiony na %d sekund</string>
+    <string name="mute">Wycisz</string>
+    <string name="unmute">Wyłącz wyciszenie</string>
 </resources>

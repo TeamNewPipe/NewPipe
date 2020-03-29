@@ -23,7 +23,7 @@ package org.schabi.newpipe.settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.R;

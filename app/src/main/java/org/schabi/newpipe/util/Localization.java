@@ -213,6 +213,42 @@ public class Localization {
         return output;
     }
 
+    /**
+     * Localize an amount of seconds into a human readable string.
+     *
+     * <p>The seconds will be converted to the closest whole time unit.
+     * <p>For example, 60 seconds would give "1 minute", 119 would also give "1 minute".
+     *
+     * @param context used to get plurals resources.
+     * @param durationInSecs an amount of seconds.
+     * @return duration in a human readable string.
+     */
+    @NonNull
+    public static String localizeDuration(Context context, int durationInSecs) {
+        if (durationInSecs < 0) {
+            throw new IllegalArgumentException("duration can not be negative");
+        }
+
+        final int days = (int) (durationInSecs / (24 * 60 * 60L)); /* greater than a day */
+        durationInSecs %= (24 * 60 * 60L);
+        final int hours = (int) (durationInSecs / (60 * 60L)); /* greater than an hour */
+        durationInSecs %= (60 * 60L);
+        final int minutes = (int) (durationInSecs / 60L);
+        final int seconds = (int) (durationInSecs % 60L);
+
+        final Resources resources = context.getResources();
+
+        if (days > 0) {
+            return resources.getQuantityString(R.plurals.days, days, days);
+        } else if (hours > 0) {
+            return resources.getQuantityString(R.plurals.hours, hours, hours);
+        } else if (minutes > 0) {
+            return resources.getQuantityString(R.plurals.minutes, minutes, minutes);
+        } else {
+            return resources.getQuantityString(R.plurals.seconds, seconds, seconds);
+        }
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Pretty Time
     //////////////////////////////////////////////////////////////////////////*/

@@ -571,7 +571,8 @@ public final class PopupVideoPlayer extends Service {
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
                     false,
-                    !isPlaying()
+                    !isPlaying(),
+                    isMuted()
             );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -604,6 +605,12 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onShuffleClicked() {
             super.onShuffleClicked();
+            updatePlayback();
+        }
+
+        @Override
+        public void onMuteUnmuteButtonClicked() {
+            super.onMuteUnmuteButtonClicked();
             updatePlayback();
         }
 

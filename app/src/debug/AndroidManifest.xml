@@ -6,12 +6,5 @@
 
     <application
         android:name=".DebugApp"
-        android:label="NewPipe Debug"
-        tools:replace="android:name, android:label">
-        <activity
-            android:name=".MainActivity"
-            android:label="NewPipe Debug"
-            tools:replace="android:label"/>
-    </application>
-
+        tools:replace="android:name" />
 </manifest>

@@ -37,6 +37,7 @@ public class WebMReader {
     private final static int ID_DefaultDuration = 0x3E383;
     private final static int ID_FlagLacing = 0x1C;
     private final static int ID_CodecDelay = 0x16AA;
+    private final static int ID_SeekPreRoll = 0x16BB;
 
     private final static int ID_Cluster = 0x0F43B675;
     private final static int ID_Timecode = 0x67;
@@ -332,6 +333,10 @@ public class WebMReader {
                         break;
                     case ID_CodecDelay:
                         entry.codecDelay = readNumber(elem);
+                        break;
+                    case ID_SeekPreRoll:
+                        entry.seekPreRoll = readNumber(elem);
+                        break;
                     default:
                         break;
                 }
@@ -414,8 +419,9 @@ public class WebMReader {
         public byte[] codecPrivate;
         public byte[] bMetadata;
         public TrackKind kind;
-        public long defaultDuration;
-        public long codecDelay;
+        public long defaultDuration = -1;
+        public long codecDelay = -1;
+        public long seekPreRoll = -1;
     }
 
     public class Segment {

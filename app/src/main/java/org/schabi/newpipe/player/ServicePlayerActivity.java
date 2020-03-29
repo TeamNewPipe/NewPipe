@@ -3,14 +3,17 @@ package org.schabi.newpipe.player;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -92,6 +95,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private TextView playbackSpeedButton;
     private TextView playbackPitchButton;
 
+    private Menu menu;
+
     ////////////////////////////////////////////////////////////////////////////
     // Abstracts
     ////////////////////////////////////////////////////////////////////////////
@@ -145,8 +150,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_play_queue, menu);
         getMenuInflater().inflate(getPlayerOptionMenuResource(), menu);
+        onMaybeMuteChanged();
         return true;
     }
 
@@ -162,6 +169,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case R.id.action_append_playlist:
                 appendAllToPlaylist();
                 return true;
+            case R.id.action_mute:
+                player.onMuteUnmuteButtonClicked();
+                return true;
             case R.id.action_system_audio:
                 startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
                 return true;
@@ -169,8 +179,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.setRecovery();
                 getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
                 getApplicationContext().startActivity(
-                    getSwitchIntent(MainVideoPlayer.class)
-                        .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying())
+                        getSwitchIntent(MainVideoPlayer.class)
+                                .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying())
                 );
                 return true;
         }
@@ -194,7 +204,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getPlaybackSkipSilence(),
                 null,
                 false,
-                false
+                false,
+                this.player.isMuted()
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying());
     }
@@ -212,7 +223,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void unbind() {
-        if(serviceBound) {
+        if (serviceBound) {
             unbindService(serviceConnection);
             serviceBound = false;
             stopPlayerListener();
@@ -554,6 +565,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         onPlayModeChanged(repeatMode, shuffled);
         onPlaybackParameterChanged(parameters);
         onMaybePlaybackAdapterChanged();
+        onMaybeMuteChanged();
     }
 
     @Override
@@ -675,5 +687,24 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (maybeNewAdapter != null && itemsList.getAdapter() != maybeNewAdapter) {
             itemsList.setAdapter(maybeNewAdapter);
         }
+    }
+
+    private void onMaybeMuteChanged() {
+        if (menu != null && player != null) {
+            MenuItem item = menu.findItem(R.id.action_mute);
+
+            //Change the mute-button item in ActionBar
+            //1) Text change:
+            item.setTitle(player.isMuted() ? R.string.unmute : R.string.mute);
+
+            //2) Icon change accordingly to current App Theme
+            item.setIcon(player.isMuted() ? getThemedDrawable(R.attr.volume_off) : getThemedDrawable(R.attr.volume_on));
+        }
+    }
+
+    private Drawable getThemedDrawable(int attribute) {
+        return getResources().getDrawable(
+                getTheme().obtainStyledAttributes(R.style.Theme_AppCompat, new int[]{attribute})
+                        .getResourceId(0, 0));
     }
 }

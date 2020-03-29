@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">%1$s に公開</string>
-    <string name="no_player_found">動画プレイヤーが見つかりません｡VLC を入手しますか？</string>
+    <string name="no_player_found">動画プレイヤーが見つかりません｡VLC をインストールしますか？</string>
     <string name="install">入手</string>
     <string name="cancel">キャンセル</string>
     <string name="open_in_browser">ブラウザで開く</string>
@@ -18,7 +18,7 @@
     <string name="download_path_dialog_title">動画ファイルをダウンロードするフォルダーを選択して下さい</string>
     <string name="default_resolution_title">デフォルトの解像度</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
-    <string name="kore_not_found">Koreが見つかりません｡Kore を入手しますか？</string>
+    <string name="kore_not_found">Kore をインストールしますか？</string>
     <string name="show_play_with_kodi_title">\"Kodi で再生\" オプションを表示</string>
     <string name="show_play_with_kodi_summary">Kodi メディアセンター経由で動画を再生するための設定を表示します</string>
     <string name="play_audio">音声</string>
@@ -75,13 +75,13 @@
     <string name="video">動画</string>
     <string name="audio">音声</string>
     <string name="retry">再試行</string>
-    <string name="storage_permission_denied">ストレージへのアクセスが拒否されました</string>
+    <string name="storage_permission_denied">初めにストレージへのアクセスを許可する</string>
     <string name="autoplay_by_calling_app_title">自動再生</string>
     <string name="autoplay_by_calling_app_summary">NewPipe が他のアプリから呼び出された時､動画を再生します｡</string>
     <string name="report_error">不具合を報告</string>
     <string name="user_report">利用者レポートを送る</string>
     <string name="duration_live">生放送</string>
-    <string name="main_bg_subtitle">開始するには検索をタップ</string>
+    <string name="main_bg_subtitle">開始するには \"検索\" をタップ</string>
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
     <string name="view">再生</string>
@@ -120,13 +120,13 @@
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
     <string name="msg_popup_permission">ポップアップモードで開くには
 \n権限の許可が必要です</string>
-    <string name="popup_mode_share_menu_title">NewPipe ポップアップモード</string>
+    <string name="popup_mode_share_menu_title">ポップアップモード</string>
     <string name="popup_playing_toast">ポップアップモードで再生中</string>
     <string name="disabled">無効</string>
     <string name="default_video_format_title">デフォルトの動画形式</string>
     <string name="default_popup_resolution_title">デフォルトのポップアップ解像度</string>
     <string name="show_higher_resolutions_title">高い解像度で表示</string>
-    <string name="show_higher_resolutions_summary">2K/4K ビデオの再生は一部のデバイスのみサポートしています</string>
+    <string name="show_higher_resolutions_summary">2K/4K ビデオの再生は一部のデバイスのみ再生できます</string>
     <string name="controls_background_title">バックグラウンド</string>
     <string name="controls_popup_title">ポップアップ</string>
     <string name="filter">フィルター</string>
@@ -165,15 +165,15 @@
     <string name="subscription_update_failed">チャンネル登録を更新できません</string>
     <string name="tab_main">メイン</string>
     <string name="tab_subscriptions">登録リスト</string>
-    <string name="fragment_whats_new">新着</string>
+    <string name="fragment_feed_title">新着</string>
     <string name="enable_search_history_title">検索履歴</string>
     <string name="enable_search_history_summary">検索した履歴を記憶します</string>
     <string name="enable_watch_history_title">視聴履歴</string>
     <string name="enable_watch_history_summary">再生した履歴を記憶します</string>
-    <string name="resume_on_audio_focus_gain_title">オーディオフォーカス復帰で再開する</string>
+    <string name="resume_on_audio_focus_gain_title">再生の再開</string>
     <string name="resume_on_audio_focus_gain_summary">電話などによる中断の後、再生を再開します</string>
     <string name="settings_category_player_title">プレイヤー</string>
-    <string name="show_hold_to_append_summary">動画の詳細ページで、背景またはポップアップボタンが押されたときにヒントを表示する</string>
+    <string name="show_hold_to_append_summary">動画の詳細ページで、\"バックグラウンド\" または \"ポップアップ\" ボタンが押されたときにヒントを表示する</string>
     <string name="settings_category_player_behavior_title">動作</string>
     <string name="settings_category_history_title">履歴とキャッシュ</string>
     <string name="playlist">プレイリスト</string>
@@ -305,7 +305,6 @@
     <string name="subscriptions_export_unsuccessful">登録リストがエクスポートできませんでした</string>
     <string name="playback_tempo">速度</string>
     <string name="playback_pitch">音程</string>
-    <string name="playback_default">デフォルト</string>
     <string name="background_player_append">バックグラウンド再生の順番待ちに追加</string>
     <string name="popup_playing_append">ポップアップ再生の順番待ちに追加</string>
     <string name="clear_views_history_title">再生履歴を消去</string>
@@ -323,14 +322,14 @@
     <string name="privacy_policy_title">NewPipe プライバシーポリシー</string>
     <string name="read_privacy_policy">プライバシーポリシーを確認</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
-    <string name="use_inexact_seek_summary">おおまかなシークを使用すると、正確さが下がりますが高速なシークが可能になります</string>
+    <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません。</string>
     <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します、このオプションを切り替えるとメモリおよびディスク上の画像キャッシュがクリアされます。</string>
-    <string name="auto_queue_summary">繰り返しではないキューの再生後、関連動画を自動的にキューに追加します</string>
+    <string name="auto_queue_summary">キューに関連動画を追加し続けて、再生を続ける(リピートしない場合)</string>
     <string name="delete_view_history_alert">すべての再生履歴を削除しますか？</string>
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
     <string name="invalid_source">このファイル/コンテンツはありません</string>
     <plurals name="subscribers">
-        <item quantity="other">%s を登録しています</item>
+        <item quantity="other">%s が登録しています</item>
     </plurals>
     <string name="no_views">視聴なし</string>
     <plurals name="views">
@@ -375,7 +374,7 @@
     <string name="minimize_on_exit_none_description">何もしない</string>
     <string name="minimize_on_exit_background_description">バックグラウンドに変更</string>
     <string name="minimize_on_exit_popup_description">ポップアップに変更</string>
-    <string name="enable_leak_canary_title">LeakCanary を有効にする</string>
+    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">メモリリークの監視は、ヒープダンピング時にアプリが無反応になる原因となります</string>
     <string name="enable_disposed_exceptions_title">ライフサイクルエラーの報告</string>
     <string name="enable_disposed_exceptions_summary">破棄されたフラグメントまたはアクティビティの、ライフサイクル範囲外での配信不能なRx例外を強制的に報告します</string>
@@ -442,7 +441,6 @@
     <string name="error_http_unsupported_range">サーバが同時接続ダウンロードを受け付けません。再試行してください @string/msg_threads = 1</string>
     <string name="error_http_not_found">見つかりません</string>
     <string name="error_postprocessing_failed">保存処理に失敗しました</string>
-    <string name="clear_finished_download">完了済みを一覧から削除します</string>
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大再試行回数</string>
     <string name="max_retry_desc">ダウンロードを中止するまでの最大再試行回数</string>
@@ -453,7 +451,7 @@
     <string name="file_deleted">ファイルを削除しました</string>
     <string name="app_update_notification_channel_name">アプリの更新通知</string>
     <string name="download_to_sdcard_error_message">外部 SD カードにダウンロードできません。ダウンロードフォルダーの場所をリセットしますか\?</string>
-    <string name="saved_tabs_invalid_json">デフォルトのタブを使用します。保存されたタブの読み込みエラーが発生しました</string>
+    <string name="saved_tabs_invalid_json">保存されたタブを読み込めないため、デフォルトのタブを使用します</string>
     <string name="main_page_content_summary">メインページに表示されるタブ</string>
     <string name="updates_setting_description">新しいバージョンが利用可能なときにアプリの更新を確認する通知を表示します</string>
     <string name="pause_downloads_on_mobile">従量制課金ネットワークの割り込み</string>
@@ -462,7 +460,7 @@
     <string name="show_comments_summary">無効にするとコメントの表示を停止します</string>
     <string name="autoplay_title">自動再生</string>
     <plurals name="comments">
-        <item quantity="other">コメント</item>
+        <item quantity="other">%s コメント</item>
     </plurals>
     <string name="no_comments">コメントはありません</string>
     <string name="error_unable_to_load_comments">コメントを読み込めませんでした</string>
@@ -490,8 +488,8 @@
     <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねられます。
 \n外部 SD カードにダウンロードする場合は SAF を選択してください</string>
     <string name="downloads_storage_use_saf_title">SAF を使用する</string>
-    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。
-\n注: 一部のデバイスは互換性がありません</string>
+    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。 
+\n一部のデバイスは互換性がありません</string>
     <string name="clear_playback_states_title">再生位置の削除</string>
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
@@ -525,7 +523,7 @@
     <string name="recovering">修復中</string>
     <string name="error_download_resource_gone">ダウンロードが修復できません</string>
     <string name="choose_instance_prompt">インスタンスを選択</string>
-    <string name="enable_lock_screen_video_thumbnail_title">ロック画面の動画サムネイルを有効にする</string>
+    <string name="enable_lock_screen_video_thumbnail_title">ロック画面の動画サムネイル</string>
     <string name="enable_lock_screen_video_thumbnail_summary">バックグラウンドプレイヤーを使用中、ロック画面に動画のサムネイルが表示されるようになります</string>
     <string name="clear_download_history">ダウンロード履歴を消去</string>
     <string name="delete_downloaded_files">ダウンロードしたファイルを消去</string>
@@ -536,4 +534,54 @@
     <string name="systems_language">システムの既定</string>
     <string name="subtitle_activity_recaptcha">解けたら \"完了\" を押してください</string>
     <string name="recaptcha_done_button">完了</string>
+    <string name="videos_string">動画</string>
+    <plurals name="seconds">
+        <item quantity="other">%d 秒</item>
+    </plurals>
+    <string name="new_seek_duration_toast">ExoPlayer の制約のためシーク間隔は %d 秒に設定されました</string>
+    <string name="mute">ミュート</string>
+    <string name="unmute">ミュート解除</string>
+    <string name="help">ヘルプ</string>
+    <plurals name="minutes">
+        <item quantity="other">%d 分</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="other">%d 時間</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="other">%d 日</item>
+    </plurals>
+    <string name="feed_groups_header_title">フィード グループ</string>
+    <string name="feed_oldest_subscription_update">最も古い登録チャンネルの更新: %s</string>
+    <string name="feed_subscription_not_loaded_count">読み込み失敗: %d</string>
+    <string name="feed_notification_loading">フィードを読み込み中…</string>
+    <string name="feed_processing_message">フィードを処理中…</string>
+    <string name="feed_group_dialog_select_subscriptions">チャンネルを選択</string>
+    <string name="feed_group_dialog_empty_selection">チャンネルが選択されていません</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="other">%d 選択中</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">グループ名が空です</string>
+    <string name="feed_group_dialog_name_input">グループ名</string>
+    <string name="feed_group_dialog_delete_message">このグループを削除しますか？</string>
+    <string name="feed_create_new_group_button_title">新規</string>
+    <string name="settings_category_feed_title">フィード</string>
+    <string name="feed_update_threshold_title">フィードの更新間隔</string>
+    <string name="feed_update_threshold_summary">最後の更新後、登録チャンネルを更新すべきとするまでの時間 ― %s</string>
+    <string name="feed_update_threshold_option_always_update">常に更新する</string>
+    <string name="feed_use_dedicated_fetch_method_title">利用可能な場合は専用フィードから取得</string>
+    <string name="feed_use_dedicated_fetch_method_summary">いくつかのサービスで利用可能、通常よりも高速ですが制限された情報が取得され、たいていの場合不完全です (例: 再生時間、種類、ライブ ステータスなどがない)。</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">高速モードを有効化</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">高速モードを無効化</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">フィードの読み込みが遅すぎると思いますか？ その場合、高速読み込みを有効化してみてください (設定、もしくは下のボタンを押して変更することができます)。
+\n
+\nNewPipe は2つの読み込み方法を提供します:
+\n・登録チャンネル全体を取得します。これは低速ですが完全です。
+\n・専用のサービス エンドポイントを使用します。これは高速ですが、たいていの場合不完全です。
+\n
+\n2つの違いとして、高速なものは通常、再生時間や種類 (ライブと通常の動画を区別できない) などの情報が不足して、正しい量の情報より少なく取得することがあります。
+\n
+\nYouTubeは、この高速な読み込み方法をRSSフィードで提供するサービスのひとつです。
+\n
+\nつまり、読み込み方法の選択は速度または正確さのどちらを優先するか、あなたの好みによります。</string>
 </resources>

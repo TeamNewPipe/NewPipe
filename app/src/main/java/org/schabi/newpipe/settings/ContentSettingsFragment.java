@@ -17,6 +17,7 @@ import androidx.preference.Preference;
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
@@ -168,6 +169,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private void exportDatabase(String path) {
         try {
+            //checkpoint before export
+            NewPipeDatabase.checkpoint();
+
             ZipOutputStream outZip = new ZipOutputStream(
                     new BufferedOutputStream(
                             new FileOutputStream(path)));

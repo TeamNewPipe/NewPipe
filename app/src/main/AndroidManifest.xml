@@ -74,6 +74,7 @@
 
         <service android:name=".local.subscription.services.SubscriptionsImportService"/>
         <service android:name=".local.subscription.services.SubscriptionsExportService"/>
+        <service android:name=".local.feed.service.FeedLoadService"/>
 
         <activity
             android:name=".PanicResponderActivity"
@@ -146,6 +147,7 @@
                 <data android:host="youtube.com"/>
                 <data android:host="m.youtube.com"/>
                 <data android:host="www.youtube.com"/>
+                <data android:host="music.youtube.com"/>
                 <!-- video prefix -->
                 <data android:pathPrefix="/v/"/>
                 <data android:pathPrefix="/embed/"/>
@@ -244,14 +246,7 @@
                 <data android:host="tube.poal.co"/>
                 <data android:host="invidious.13ad.de"/>
                 <data android:host="yt.elukerio.org"/>
-                <!-- video prefix -->
-                <data android:pathPrefix="/embed/"/>
-                <data android:pathPrefix="/watch"/>
-                <!-- channel prefix -->
-                <data android:pathPrefix="/channel/"/>
-                <data android:pathPrefix="/user/"/>
-                <!-- playlist prefix -->
-                <data android:pathPrefix="/playlist"/>
+                <data android:pathPrefix="/"/>
             </intent-filter>
 
             <!-- Soundcloud filter -->
@@ -277,8 +272,26 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="text/plain"/>
             </intent-filter>
-        </activity>
 
+            <!-- MediaCCC filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="media.ccc.de"/>
+                <!-- video prefix -->
+                <data android:pathPrefix="/v/"/>
+                <!-- channel prefix-->
+                <data android:pathPrefix="/c/"/>
+                <data android:pathPrefix="/b/"/>
+            </intent-filter>
+        </activity>
         <service
             android:name=".RouterActivity$FetcherService"
             android:exported="false"/>

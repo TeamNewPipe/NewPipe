@@ -341,17 +341,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (BuildConfig.DEBUG)
             Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
 
-        Uri uri;
-
-        if (mission.storage.isDirect()) {
-            uri = FileProvider.getUriForFile(
-                    mContext,
-                    BuildConfig.APPLICATION_ID + ".provider",
-                    new File(URI.create(mission.storage.getUri().toString()))
-            );
-        } else {
-            uri = mission.storage.getUri();
-        }
+        Uri uri = resolveShareableUri(mission);
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
@@ -379,9 +369,28 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType(resolveMimeType(mission));
-        intent.putExtra(Intent.EXTRA_STREAM, mission.storage.getUri());
+        intent.putExtra(Intent.EXTRA_STREAM, resolveShareableUri(mission));
+        intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
         mContext.startActivity(Intent.createChooser(intent, null));
+    }
+
+    /**
+     * Returns an Uri which can be shared to other applications.
+     *
+     * @see <a href="https://stackoverflow.com/questions/38200282/android-os-fileuriexposedexception-file-storage-emulated-0-test-txt-exposed">
+     * https://stackoverflow.com/questions/38200282/android-os-fileuriexposedexception-file-storage-emulated-0-test-txt-exposed</a>
+     */
+    private Uri resolveShareableUri(Mission mission) {
+        if (mission.storage.isDirect()) {
+            return FileProvider.getUriForFile(
+                mContext,
+                BuildConfig.APPLICATION_ID + ".provider",
+                new File(URI.create(mission.storage.getUri().toString()))
+            );
+        } else {
+            return mission.storage.getUri();
+        }
     }
 
     private static String resolveMimeType(@NonNull Mission mission) {

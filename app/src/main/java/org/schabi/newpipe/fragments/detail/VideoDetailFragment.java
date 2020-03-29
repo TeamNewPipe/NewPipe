@@ -51,7 +51,6 @@ import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
@@ -1220,20 +1219,12 @@ public class VideoDetailFragment
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
-        else if (exception instanceof ContentNotAvailableException) {
-            showError(getString(R.string.content_not_available), false);
-        } else {
-            int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
-                    ? R.string.youtube_signature_decryption_error
-                    : exception instanceof ParsingException
-                    ? R.string.parsing_error
-                    : R.string.general_error;
-            onUnrecoverableError(exception,
-                    UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(serviceId),
-                    url,
-                    errorId);
-        }
+        int errorId = exception instanceof YoutubeStreamExtractor.DecryptException ? R.string.youtube_signature_decryption_error
+                : exception instanceof ExtractionException ? R.string.parsing_error
+                : R.string.general_error;
+
+        onUnrecoverableError(exception, UserAction.REQUESTED_STREAM,
+                NewPipe.getNameOfService(serviceId), url, errorId);
 
         return true;
     }
@@ -1246,12 +1237,22 @@ public class VideoDetailFragment
         final boolean playbackResumeEnabled =
                 prefs.getBoolean(activity.getString(R.string.enable_watch_history_key), true)
                         && prefs.getBoolean(activity.getString(R.string.enable_playback_resume_key), true);
+
         if (!playbackResumeEnabled || info.getDuration() <= 0) {
             positionView.setVisibility(View.INVISIBLE);
             detailPositionView.setVisibility(View.GONE);
-            return;
+
+            // TODO: Remove this check when separation of concerns is done.
+            //  (live streams weren't getting updated because they are mixed)
+            if (!info.getStreamType().equals(StreamType.LIVE_STREAM) &&
+                    !info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+                return;
+            }
         }
         final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
+
+        // TODO: Separate concerns when updating database data.
+        //  (move the updating part to when the loading happens)
         positionSubscriber = recordManager.loadStreamState(info)
                 .subscribeOn(Schedulers.io())
                 .onErrorComplete()

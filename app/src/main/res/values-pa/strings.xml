@@ -31,7 +31,7 @@
     <string name="subscription_update_failed">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਅੱਪਡੇਟ ਕਰਨ ਵਿਚ ਅਸਮਰੱਥ</string>
     <string name="tab_subscriptions">ਸਬਸਕ੍ਰਿਪਸ਼ਨ</string>
     <string name="tab_bookmarks">ਬੁੱਕਮਾਰਕ ਪਲੇਲਿਸਟਾਂ</string>
-    <string name="fragment_whats_new">ਨਵਾਂ ਕੀ ਹੈ</string>
+    <string name="fragment_feed_title">ਨਵਾਂ ਕੀ ਹੈ</string>
     <string name="controls_background_title">ਬੈਕਗਰਾਊਂਡ</string>
     <string name="controls_popup_title">ਪੋਪ-ਅਪ</string>
     <string name="controls_add_to_playlist_title">ਸ਼ਾਮਿਲ ਕਰੋ</string>
@@ -452,7 +452,6 @@
     <string name="error_http_unsupported_range">ਸਰਵਰ ਮਲਟੀ-Threaded ਡਾਊਨਲੋਡਸ ਨੂੰ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ, ਇਸ ਨਾਲ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ @string/msg_threads = 1</string>
     <string name="error_http_not_found">ਨਹੀਂ ਲਭਿਆ</string>
     <string name="error_postprocessing_failed">Post-processing ਫੇਲ੍ਹ</string>
-    <string name="clear_finished_download">ਮੁਕੰਮਲ ਹੋਈਆਂ ਡਾਊਨਲੋਡ ਸਾਫ਼ ਕਰੋ</string>
     <string name="stop">ਰੁੱਕੋ</string>
     <string name="max_retry_msg">ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
     <string name="max_retry_desc">ਡਾਉਨਲੋਡ ਰੱਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>

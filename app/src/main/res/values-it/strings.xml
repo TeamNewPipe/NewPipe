@@ -164,7 +164,7 @@
     <string name="subscription_change_failed">Impossibile cambiare l\'iscrizione</string>
     <string name="subscription_update_failed">Impossibile aggiornare l\'iscrizione</string>
     <string name="tab_subscriptions">Iscrizioni</string>
-    <string name="fragment_whats_new">Novità</string>
+    <string name="fragment_feed_title">Novità</string>
     <string name="enable_search_history_title">Cronologia Ricerche</string>
     <string name="enable_search_history_summary">Salva le ricerche localmente</string>
     <string name="enable_watch_history_title">Cronologia Visualizzazioni</string>
@@ -218,13 +218,13 @@
     <string name="feed_page_summary">Feed Iscrizioni</string>
     <string name="channel_page_summary">Canale Personalizzato</string>
     <string name="select_a_channel">Seleziona Canale</string>
-    <string name="no_channel_subscribed_yet">Nessuna Iscrizione</string>
+    <string name="no_channel_subscribed_yet">Ancora nessuna iscrizione ad un canale</string>
     <string name="select_a_kiosk">Seleziona Contenuto</string>
     <string name="kiosk">Locandina</string>
     <string name="trending">Tendenze</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">New &amp; hot</string>
-    <string name="show_hold_to_append_title">Mostra Suggerimento \"Tieni Premuto per Accocodare\"</string>
+    <string name="show_hold_to_append_title">Mostra suggerimento \"Tieni premuto per accodare\"</string>
     <string name="show_hold_to_append_summary">Nei \"Dettagli\" dei video, mostra suggerimento alla pressione dei pulsanti per la riproduzione Popup o in Sottofondo</string>
     <string name="background_player_append">Accoda in Sottofondo</string>
     <string name="popup_playing_append">Accodato in Popup</string>
@@ -318,7 +318,7 @@
     <string name="enable_disposed_exceptions_title">Segnala Errori \"Out-of-lifecycle\"</string>
     <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
     <string name="use_inexact_seek_title">Usa Ricerca Rapida (Imprecisa)</string>
-    <string name="use_inexact_seek_summary">Consente al lettore multimediale di spostarsi più velocemente, ma con precisione ridotta</string>
+    <string name="use_inexact_seek_summary">Consente al lettore multimediale di spostarsi più velocemente, ma con precisione ridotta. Spostamenti di 5, 15 o 25 secondi non funzionano con questo.</string>
     <string name="auto_queue_title">Accoda Automaticamente l\'Elemento Successivo</string>
     <string name="auto_queue_summary">Riproduzione continua (non ripetititva) quando si accoda un contenuto consigliato</string>
     <string name="file">File</string>
@@ -352,7 +352,7 @@
     <string name="import_network_expensive_warning">Tieni presente che questa operazione può consumare una grande quantità di traffico dati.
 \n 
 \nVuoi continuare?</string>
-    <string name="download_thumbnail_title">Carica Copertine</string>
+    <string name="download_thumbnail_title">Carica miniature</string>
     <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle anteprime, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache immagini svuotata</string>
     <string name="metadata_cache_wipe_title">Pulisci Cache Metadati</string>
@@ -362,7 +362,6 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Scollega (può causare distorsione)</string>
-    <string name="playback_default">Valore predefinito</string>
     <string name="no_streams_available_download">Nessun flusso disponibile per il download</string>
     <string name="preferred_open_action_settings_title">\'Apri\' preferibilmente con</string>
     <string name="preferred_open_action_settings_summary">Azione predefinita all\'apertura del contenuto — %s</string>
@@ -381,7 +380,7 @@
     <string name="app_license">NewPipe è un software libero con licenza copyleft: si può utilizzare, studiare, condividere e migliorare a proprio piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License (Free Software Foundation), nella versione 3 o successiva, a propria discrezione.</string>
     <string name="import_settings">Vuoi anche importare le impostazioni?</string>
     <string name="privacy_policy_title">Informativa sulla Privacy</string>
-    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso. 
+    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso.
 \nL\'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l\'invio di segnalazioni per arresti anomali.</string>
     <string name="read_privacy_policy">Leggi l\'informativa sulla privacy</string>
     <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), attiriamo la vostra attenzione riguardo l\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
@@ -456,7 +455,6 @@
     <string name="error_http_unsupported_range">Il server non accetta download multipli, riprovare con @string/msg_threads = 1</string>
     <string name="error_http_not_found">Non trovato</string>
     <string name="error_postprocessing_failed">Post-processing fallito</string>
-    <string name="clear_finished_download">Pulisci i download completati</string>
     <string name="stop">Ferma</string>
     <string name="max_retry_msg">Numero Massimo Tentativi</string>
     <string name="max_retry_desc">Quante volte provare prima di annullare il download</string>
@@ -496,10 +494,10 @@
     <string name="downloads_storage_ask_summary">Ogni volta verrà chiesta la destinazione dei file</string>
     <string name="downloads_storage_use_saf_title">Utilizza SAF</string>
     <string name="enable_queue_limit">Limita Coda Download</string>
-    <string name="downloads_storage_ask_summary_kitkat">Ogni volta verrà chiesta la destinazione dei file. 
+    <string name="downloads_storage_ask_summary_kitkat">Ogni volta verrà chiesta la destinazione dei file.
 \nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" consente di salvare file su una memoria esterna. 
-\nNota: alcuni dispositivi non sono compatibili</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" consente di salvare file su una memoria esterna.
+\nAlcuni dispositivi non sono compatibili</string>
     <string name="clear_playback_states_title">Elimina posizioni di riproduzione</string>
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
     <string name="delete_playback_states_alert">Eliminare tutte le posizioni di riproduzione\?</string>
@@ -533,8 +531,8 @@
     <string name="recovering">recupero</string>
     <string name="error_download_resource_gone">Impossibile recuperare questo download</string>
     <string name="choose_instance_prompt">Scegli un\'Istanza</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Copertina sulla Schermata di Blocco</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">La copertina del video verrà mostrata nella schermata di blocco, durante la riproduzione in sottofondo.</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Miniatura del video sulla schermata di blocco</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">La miniatura del video verrà mostrata nella schermata di blocco, durante la riproduzione in sottofondo</string>
     <string name="clear_download_history">Svuota Cronologia Download</string>
     <string name="delete_downloaded_files">Elimina File Scaricati</string>
     <string name="deleted_downloads">%1$s download eliminati</string>
@@ -544,8 +542,57 @@
     <string name="subtitle_activity_recaptcha">Premere \"Fatto\" quando risolto</string>
     <string name="recaptcha_done_button">Fatto</string>
     <string name="videos_string">Video</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s secondi</item>
-        <item quantity="other"></item>
+    <plurals name="seconds">
+        <item quantity="one">%d secondo</item>
+        <item quantity="other">%d secondi</item>
     </plurals>
+    <string name="new_seek_duration_toast">A causa dei vincoli di ExoPlayer la durata dello spostamento rapido è stata impostata a %d secondi</string>
+    <string name="mute">Silenzia</string>
+    <string name="unmute">Riattiva audio</string>
+    <string name="help">Aiuto</string>
+    <plurals name="minutes">
+        <item quantity="one">%d minuto</item>
+        <item quantity="other">%d minuti</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d ora</item>
+        <item quantity="other">%d ore</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d giorno</item>
+        <item quantity="other">%d giorni</item>
+    </plurals>
+    <string name="feed_groups_header_title">Gruppi Feed</string>
+    <string name="feed_oldest_subscription_update">Aggiornamento iscrizioni più vecchie: %s</string>
+    <string name="feed_subscription_not_loaded_count">Non caricate: %d</string>
+    <string name="feed_notification_loading">Caricamento feed…</string>
+    <string name="feed_processing_message">Elaborazione feed…</string>
+    <string name="feed_group_dialog_select_subscriptions">Seleziona Iscrizioni</string>
+    <string name="feed_group_dialog_empty_selection">Nessuna iscrizione selezionata</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d selezionato</item>
+        <item quantity="other">%d selezionati</item>
+    </plurals>
+    <string name="feed_group_dialog_name_input">Nome</string>
+    <string name="feed_group_dialog_delete_message">Eliminare questo gruppo\?</string>
+    <string name="feed_create_new_group_button_title">Nuovo</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Limite Aggiornamento Feed</string>
+    <string name="feed_update_threshold_summary">Tempo che deve trascorrere dopo l\'ultimo aggiornamento, prima che un\'iscrizione venga considerata obsoleta — %s</string>
+    <string name="feed_update_threshold_option_always_update">Aggiorna Sempre</string>
+    <string name="feed_use_dedicated_fetch_method_title">Recupero da Feed Dedicato quando Disponibile</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponibile per alcuni servizi. Solitamente è molto più veloce, ma può restituire una quantità limitata di elementi e informazioni spesso incomplete (es. durata, tipo di elemento, indicatore per video in diretta).</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Attiva Recupero Veloce</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Disattiva Recupero Veloce</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Il caricamento dei feed è troppo lento\? Prova ad abilitare il caricamento veloce (nelle impostazioni o premendo il pulsante qui sotto).
+\n
+\nNewPipe dispone di due metodi per il caricamento dei feed:
+\n• Recuperando l\'intero canale, lento ma completo.
+\n• Utilizzando un endpoint dedicato, veloce ma solitamente incompleto.
+\n
+\nLa differenza è che quello veloce solitamente offre meno informazioni, come la durata o il tipo di elemento (non distingue i video normali da quelli in diretta), e può restituire meno elementi.
+\n
+\nYouTube è un esempio di servizio che offre questo metodo veloce tramite i suoi feed RSS.
+\n
+\nLa scelta va fatta in base alle proprie preferenze: velocità o informazioni precise.</string>
 </resources>

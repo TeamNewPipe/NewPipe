@@ -34,7 +34,7 @@
     <string name="tab_bookmarks">Gemte spillelister</string>
     <string name="tab_new">Ny fane</string>
     <string name="tab_choose">Vælg fane</string>
-    <string name="fragment_whats_new">Nyheder</string>
+    <string name="fragment_feed_title">Nyheder</string>
     <string name="controls_background_title">Baggrund</string>
     <string name="controls_popup_title">Pop op</string>
     <string name="controls_add_to_playlist_title">Føj til</string>
@@ -446,7 +446,6 @@
     <string name="app_update_notification_content_title">NewPipe-opdatering tilgængelig!</string>
     <string name="paused">sat på pause</string>
     <string name="queued">sat i kø</string>
-    <string name="clear_finished_download">Ryd færdige downloads</string>
     <string name="max_retry_msg">Maksimalt antal genforsøg</string>
     <string name="max_retry_desc">Maksimalt antal forsøg før downloaden opgives</string>
     <string name="pause_downloads_on_mobile">Sæt på pause ved skift til mobildata</string>

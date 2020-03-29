@@ -23,6 +23,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.about.AboutActivity;
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -110,13 +111,15 @@ public class NavigationHelper {
                                          final boolean playbackSkipSilence,
                                          @Nullable final String playbackQuality,
                                          final boolean resumePlayback,
-                                         final boolean startPaused) {
+                                         final boolean startPaused,
+                                         final boolean isMuted) {
         return getPlayerIntent(context, targetClazz, playQueue, playbackQuality, resumePlayback)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
                 .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
                 .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch)
                 .putExtra(BasePlayer.PLAYBACK_SKIP_SILENCE, playbackSkipSilence)
-                .putExtra(BasePlayer.START_PAUSED, startPaused);
+                .putExtra(BasePlayer.START_PAUSED, startPaused)
+                .putExtra(BasePlayer.IS_MUTED, isMuted);
     }
 
     public static void playOnMainPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
@@ -341,9 +344,13 @@ public class NavigationHelper {
                 .commit();
     }
 
-    public static void openWhatsNewFragment(FragmentManager fragmentManager) {
+    public static void openFeedFragment(FragmentManager fragmentManager) {
+        openFeedFragment(fragmentManager, FeedGroupEntity.GROUP_ALL_ID, null);
+    }
+
+    public static void openFeedFragment(FragmentManager fragmentManager, long groupId, @Nullable String groupName) {
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, new FeedFragment())
+                .replace(R.id.fragment_holder, FeedFragment.newInstance(groupId, groupName))
                 .addToBackStack(null)
                 .commit();
     }

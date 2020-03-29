@@ -1,13 +1,16 @@
 package org.schabi.newpipe;
 
-import androidx.room.Room;
 import android.content.Context;
+import android.database.Cursor;
+
 import androidx.annotation.NonNull;
+import androidx.room.Room;
 
 import org.schabi.newpipe.database.AppDatabase;
 
 import static org.schabi.newpipe.database.AppDatabase.DATABASE_NAME;
-import static org.schabi.newpipe.database.Migrations.MIGRATION_11_12;
+import static org.schabi.newpipe.database.Migrations.MIGRATION_1_2;
+import static org.schabi.newpipe.database.Migrations.MIGRATION_2_3;
 
 public final class NewPipeDatabase {
 
@@ -20,8 +23,7 @@ public final class NewPipeDatabase {
     private static AppDatabase getDatabase(Context context) {
         return Room
                 .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
-                .addMigrations(MIGRATION_11_12)
-                .fallbackToDestructiveMigration()
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                 .build();
     }
 
@@ -38,5 +40,15 @@ public final class NewPipeDatabase {
         }
 
         return result;
+    }
+
+    public static void checkpoint() {
+        if (databaseInstance == null) {
+            throw new IllegalStateException("database is not initialized");
+        }
+        Cursor c = databaseInstance.query("pragma wal_checkpoint(full)", null);
+        if (c.moveToFirst() && c.getInt(0) == 1) {
+            throw new RuntimeException("Checkpoint was blocked from completing");
+        }
     }
 }

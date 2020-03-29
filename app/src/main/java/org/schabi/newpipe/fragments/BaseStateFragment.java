@@ -17,6 +17,7 @@ import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -180,6 +181,9 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
 
         if (exception instanceof ReCaptchaException) {
             onReCaptchaException((ReCaptchaException) exception);
+            return true;
+        } else if (exception instanceof ContentNotAvailableException) {
+            showError(getString(R.string.content_not_available), false);
             return true;
         } else if (exception instanceof IOException) {
             showError(getString(R.string.network_error), true);
