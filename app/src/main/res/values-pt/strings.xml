@@ -345,7 +345,7 @@
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
     <string name="auto_queue_summary">Continuar terminando (sem repetição) a fila de reprodução anexando um fluxo relacionado</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
-    <string name="show_hold_to_append_summary">Mostrar dica ao pressionar o botão \"Detalhes:\" no fundo ou no popup do vídeo.</string>
+    <string name="show_hold_to_append_summary">Mostrar sugestão quando o botão popup ou ambiente de trabalho é pressionado na página de detalhes do vídeo</string>
     <string name="channels">Canais</string>
     <string name="playlists">Listas de reprodução</string>
     <string name="tracks">Faixas</string>
