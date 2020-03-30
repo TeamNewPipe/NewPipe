@@ -16,7 +16,7 @@
     <string name="use_external_audio_player_title">Użyj zewnętrznego odtwarzacza audio</string>
     <string name="view_count_text">%1$s wyświetleń</string>
     <string name="upload_date_text">Opublikowano %1$s</string>
-    <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Zainstalować VLC\?</string>
+    <string name="no_player_found">Nie znaleziono odtwarzacza strumienia. Zainstalować VLC\?</string>
     <string name="download_path_title">Folder pobierania wideo</string>
     <string name="download_path_summary">Pobrane pliki wideo są przechowywane tutaj</string>
     <string name="download_path_dialog_title">Wybierz folder pobierania plików wideo</string>
@@ -458,7 +458,6 @@
     <string name="error_http_unsupported_range">Serwer nie akceptuje pobierania wielowątkowego, spróbuj ponownie za pomocą @string/msg_threads = 1</string>
     <string name="error_http_not_found">Nie znaleziono</string>
     <string name="error_postprocessing_failed">Przetwarzanie końcowe nie powiodło się</string>
-    <string name="clear_finished_download">Wyczyść ukończone pobieranie</string>
     <string name="stop">Zatrzymaj</string>
     <string name="max_retry_msg">Maksymalna liczba powtórzeń</string>
     <string name="max_retry_desc">Maksymalna liczba prób przed anulowaniem pobierania</string>
@@ -550,10 +549,10 @@
     <string name="subtitle_activity_recaptcha">Po rozwiązaniu naciśnij „Gotowe”</string>
     <string name="recaptcha_done_button">Gotowe</string>
     <string name="videos_string">Filmy</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s sekund</item>
-        <item quantity="few">%s sekund</item>
-        <item quantity="many">%s sekund</item>
+    <plurals name="seconds">
+        <item quantity="one">%d sekund</item>
+        <item quantity="few">%d sekund</item>
+        <item quantity="many">%d sekund</item>
     </plurals>
     <string name="new_seek_duration_toast">Ze względu na ograniczenia ExoPlayer, czas trwania wyszukiwania został ustawiony na %d sekund</string>
     <string name="mute">Wycisz</string>

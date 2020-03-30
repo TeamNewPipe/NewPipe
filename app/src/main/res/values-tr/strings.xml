@@ -356,7 +356,6 @@
     <string name="metadata_cache_wipe_complete_notice">Üstveri önbelleği temizlendi</string>
     <string name="playback_speed_control">Oynatım Hızı Denetimleri</string>
     <string name="playback_tempo">Hız</string>
-    <string name="playback_default">Öntanımlı</string>
     <string name="playback_pitch">Ses yüksekliği</string>
     <string name="unhook_checkbox">Ayır (bozulmaya neden olabilir)</string>
     <string name="no_streams_available_download">İndirilebilecek akış yok</string>
@@ -451,7 +450,6 @@
     <string name="error_http_unsupported_range">Sunucu, çok iş parçacıklı indirmeleri kabul etmez, @string/msg_threads = 1 ile yeniden deneyin</string>
     <string name="error_http_not_found">Bulunamadı</string>
     <string name="error_postprocessing_failed">İşlem sonrası başarısız</string>
-    <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>
     <string name="stop">Durdur</string>
     <string name="max_retry_msg">Azami deneme sayısı</string>
     <string name="max_retry_desc">İndirmeyi iptal etmeden önce azami deneme sayısı</string>
@@ -544,9 +542,58 @@
     <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" butonuna basın</string>
     <string name="recaptcha_done_button">Bitti</string>
     <string name="videos_string">Videolar</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s saniye</item>
-        <item quantity="other">%s saniye</item>
+    <plurals name="seconds">
+        <item quantity="one">%d saniye</item>
+        <item quantity="other">%d saniye</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer kısıtlamaları gereği konumlama süresi %d saniyeye belirlenmiştir</string>
+    <string name="mute">Sessiz</string>
+    <string name="unmute">Sesli</string>
+    <string name="help">Yardım</string>
+    <plurals name="minutes">
+        <item quantity="one">%d dakika</item>
+        <item quantity="other">%d dakika</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d saat</item>
+        <item quantity="other">%d saat</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d gün</item>
+        <item quantity="other">%d gün</item>
+    </plurals>
+    <string name="feed_groups_header_title">Besleme kümeleri</string>
+    <string name="feed_oldest_subscription_update">En eski abonelik güncellemesi: %s</string>
+    <string name="feed_subscription_not_loaded_count">Yüklenmedi: %d</string>
+    <string name="feed_notification_loading">Besleme yükleniyor…</string>
+    <string name="feed_processing_message">Besleme işleniyor…</string>
+    <string name="feed_group_dialog_select_subscriptions">Abonelikleri seç</string>
+    <string name="feed_group_dialog_empty_selection">Abonelik seçilmedi</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d seçildi</item>
+        <item quantity="other">%d seçildi</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">Boş küme adı</string>
+    <string name="feed_group_dialog_name_input">Ad</string>
+    <string name="feed_group_dialog_delete_message">Bu kümeyi silmek istiyor musunuz\?</string>
+    <string name="feed_create_new_group_button_title">Yeni</string>
+    <string name="settings_category_feed_title">Besleme</string>
+    <string name="feed_update_threshold_title">Besleme güncelleme eşiği</string>
+    <string name="feed_update_threshold_summary">Bir aboneliğin eski sayılmadan önce son güncellemeden sonra geçen zaman — %s</string>
+    <string name="feed_update_threshold_option_always_update">Her zaman güncelle</string>
+    <string name="feed_use_dedicated_fetch_method_title">Uygunken adanmış beslemeden edin</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Bazı servislerde kullanılabilir, genellikle daha hızlıdır ancak kısıtlı sayıda öge ve eksik bilgi (örn. süre, öge türü, canlı durumu olmaksızın) getirilebilir.</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Hızlı kipi etkinleştir</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Hızlı kipi devre dışı bırak</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Beslemenin çok yavaş yüklendiğini mi düşünüyorsunuz\? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz).
+\n
+\nNewPipe iki besleme yükleme yordamı sunar:
+\n• Tüm abonelik kanalını edinme, bu yavaş ancak tamdır.
+\n• Adanmış hizmet son noktası kullanır, bu hızlıdır ancak genellikle tam değildir.
+\n
+\nİkisinin arasındaki fark, hızlı olanın genellikle ögenin süresi veya türü (canlı ve sıradan videoları ayrımsayamaz) gibi bazı bilgilerden yoksunluğu ve daha az öge getirmesidir.
+\n
+\nYouTube, RSS beslemesiyle bu hızlı yöntemi sunan servislerden biridir.
+\n
+\nSeçim, sizin neyi yeğlediğinize kalmış: hız veya kusursuz bilgi.</string>
 </resources>

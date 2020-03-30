@@ -446,7 +446,6 @@
     <string name="app_update_notification_content_title">NewPipe-opdatering tilgængelig!</string>
     <string name="paused">sat på pause</string>
     <string name="queued">sat i kø</string>
-    <string name="clear_finished_download">Ryd færdige downloads</string>
     <string name="max_retry_msg">Maksimalt antal genforsøg</string>
     <string name="max_retry_desc">Maksimalt antal forsøg før downloaden opgives</string>
     <string name="pause_downloads_on_mobile">Sæt på pause ved skift til mobildata</string>

@@ -114,7 +114,6 @@
     <string name="import_ongoing">S\'està important…</string>
     <string name="export_ongoing">S\'està exportant…</string>
     <string name="import_file_title">Importa un fitxer</string>
-    <string name="playback_default">Per defecte</string>
     <string name="view_count_text">%1$s reproduccions</string>
     <string name="upload_date_text">Publicat el %1$s</string>
     <string name="no_player_found">No s\'ha trobat cap reproductor de fluxos. Voleu instal·lar el VLC\?</string>
@@ -447,7 +446,6 @@
     <string name="error_unknown_host">No s\'ha pogut trobar el servidor</string>
     <string name="error_connect_host">No s\'ha pogut connectar amb el servidor</string>
     <string name="error_postprocessing_failed">Ha fallat el post-processament</string>
-    <string name="clear_finished_download">Neteja les baixades finalitzades</string>
     <string name="max_retry_msg">Intents màxims</string>
     <string name="max_retry_desc">Nombre màxim d\'intents abans de cancel·lar la baixada</string>
     <string name="pause_downloads_on_mobile">Interromp en connexions limitades</string>

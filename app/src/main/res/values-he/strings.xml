@@ -331,7 +331,6 @@
 \n2. להיכנס אם נתבקשת
 \n3. ההורדה אמורה להתחיל (זה קובץ הייצוא)</string>
     <string name="playback_tempo">קצב</string>
-    <string name="playback_default">ברירת מחדל</string>
     <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
     <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר. חיפוש של 5, 15 או 25 שניות לא עובד עם ההגדרה הזאת.</string>
     <string name="download_thumbnail_title">טעינת תמונות ממוזערות</string>
@@ -463,7 +462,6 @@
     <string name="error_http_unsupported_range">"השרת לא מקבל הורדות רב ערוציות, מוטב לנסות שוב עם ‎@string/msg_threads = 1 "</string>
     <string name="error_http_not_found">לא נמצא</string>
     <string name="error_postprocessing_failed">העיבוד המאוחר נכשל</string>
-    <string name="clear_finished_download">פינוי ההורדות שהסתיימו</string>
     <string name="stop">עצירה</string>
     <string name="max_retry_msg">מספר הניסיונות החוזרים המרבי</string>
     <string name="max_retry_desc">מספר הניסיונות החוזרים המרבי בטרם ביטול ההורדה</string>
@@ -556,13 +554,68 @@
     <string name="subtitle_activity_recaptcha">יש ללחוץ על „סיום” לאחר הפתירה</string>
     <string name="recaptcha_done_button">סיום</string>
     <string name="videos_string">סרטונים</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s שניות</item>
-        <item quantity="two">%s שניות</item>
-        <item quantity="many">%s שניות</item>
-        <item quantity="other">%s שניות</item>
+    <plurals name="seconds">
+        <item quantity="one">שנייה אחת</item>
+        <item quantity="two">%d שניות</item>
+        <item quantity="many">%d שניות</item>
+        <item quantity="other">%d שניות</item>
     </plurals>
     <string name="new_seek_duration_toast">עקב מגבלות של ExoPlayer מגבלות טווחי החיפוש הוגדרו לכדי %d שניות</string>
     <string name="mute">השתקה</string>
     <string name="unmute">ביטול השתקה</string>
+    <string name="help">עזרה</string>
+    <plurals name="minutes">
+        <item quantity="one">דקה</item>
+        <item quantity="two">%d דקות</item>
+        <item quantity="many">%d דקות</item>
+        <item quantity="other">%d דקות</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">שעה</item>
+        <item quantity="two">שעתיים</item>
+        <item quantity="many">%d שעות</item>
+        <item quantity="other">%d שעות</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">יום</item>
+        <item quantity="two">יומיים</item>
+        <item quantity="many">%d ימים</item>
+        <item quantity="other">%d ימים</item>
+    </plurals>
+    <string name="feed_groups_header_title">קבוצות הזנות</string>
+    <string name="feed_oldest_subscription_update">העדכון הישן ביותר למינוי: %s</string>
+    <string name="feed_subscription_not_loaded_count">לא נטען: %s</string>
+    <string name="feed_notification_loading">ההזנה נטענת…</string>
+    <string name="feed_processing_message">ההזנה בהליכי עיבוד…</string>
+    <string name="feed_group_dialog_select_subscriptions">בחירת מינויים</string>
+    <string name="feed_group_dialog_empty_selection">לא נבחר מינוי</string>
+    <string name="feed_group_dialog_empty_name">שם הקבוצה ריק</string>
+    <string name="feed_group_dialog_name_input">שם</string>
+    <string name="feed_group_dialog_delete_message">למחוק את הקבוצה הזאת\?</string>
+    <string name="feed_create_new_group_button_title">חדשה</string>
+    <string name="settings_category_feed_title">הזנה</string>
+    <string name="feed_update_threshold_title">סף עדכון ההזנה</string>
+    <string name="feed_update_threshold_option_always_update">לעדכן תמיד</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">הפעלת מצב מהיר</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">השבתת מצב מהיר</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">נבחר אחד</item>
+        <item quantity="two">%d נבחרו</item>
+        <item quantity="many">%d נבחרו</item>
+        <item quantity="other">%d נבחרו</item>
+    </plurals>
+    <string name="feed_update_threshold_summary">הזמן לאחר העדכון האחרון בטרם מינוי נחשב לבלתי עדכני — %s</string>
+    <string name="feed_use_dedicated_fetch_method_title">לקבל מהזנה ייעודית כשניתן</string>
+    <string name="feed_use_dedicated_fetch_method_summary">זמין בחלק מהשירותים, האפשרות הזאת בדרך כלל מהירה יותר אך עשויה להחזיר כמות מוגבלת של פריטים ולעתים פרטים חלקיים (למשל: חסר משך הפרק, סוג הפריט, אין מצב חי).</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">לדעתך הטעינה אטית מדי\? אם זה המצב אצלך, כדאי לנסות להפעיל טעינה מהירה (ניתן לשנות בהגדרות או על ידי לחיצה על הכפתור שלהלן).
+\n
+\nהיישומון NewPipe מציע שתי אסטרטגיות לטעינת הזנה:
+\n• הורדת כל ערוץ המינוי, אטי אבל שלם.
+\n• באמצעות נקודת קצה ייעודית, מהיר אבל חלקי.
+\n
+\nההבדל בין השתיים הוא שבמהירה חסרים פרטים, כמו משך הפריט או סוגו (אין אפשרות להבדיל בין סרטונים חיים לרגילים) והיא עשויה להחזיר פחות פריטים.
+\n
+\nYouTube זאת דוגמה לשירות שמציע את השיטה המהירה הזאת עם הזנת ה־RSS שלו.
+\n
+\nלכן עומדת בפניך הבחירה: מהירות או דיוק בפרטים.</string>
 </resources>

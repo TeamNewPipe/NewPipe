@@ -458,7 +458,6 @@
     <string name="error_http_unsupported_range">Ο εξυπηρετητής δέν υποστηρίζει πολυνηματικές λήψεις, ξαναπροσπαθήστε με @string/msg_threads = 1</string>
     <string name="error_http_not_found">Δεν βρέθηκε</string>
     <string name="error_postprocessing_failed">Μετεπεξεργασία απέτυχε</string>
-    <string name="clear_finished_download">Εκκαθάριση ολοκληρωμένων λήψεων</string>
     <string name="stop">Διακοπή</string>
     <string name="max_retry_msg">Μέγιστες επαναπροσπάθειες</string>
     <string name="max_retry_desc">Μέγιστος αριθμός προσπαθειών προτού γίνει ακύρωση της λήψης</string>

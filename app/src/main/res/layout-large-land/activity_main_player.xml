@@ -411,8 +411,7 @@
                     android:src="@drawable/ic_volume_off_white_24dp"
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="@string/switch_to_background"
-                    tools:ignore="RtlHardcoded"
-                    android:tint="@color/gray"/>
+                    tools:ignore="RtlHardcoded" />
             </RelativeLayout>
 
             <LinearLayout

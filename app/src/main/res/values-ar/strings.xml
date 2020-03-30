@@ -329,7 +329,6 @@
     <string name="export_ongoing">عملية التصدير جارية …</string>
     <string name="import_file_title">إستيراد ملف</string>
     <string name="import_soundcloud_instructions_hint">"معرفك , soundcloud.com/ الخاص بك  "</string>
-    <string name="playback_default">إفتراضي</string>
     <string name="download_thumbnail_summary">عند إيقاف تحميل أي صور مصغرة ، وتوفير البيانات واستخدام الذاكرة. تعمل التغييرات على محو ذاكرة التخزين المؤقت للصورة الموجودة على الذاكرة أو على القرص.</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفية المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
@@ -470,7 +469,6 @@
     <string name="error_http_unsupported_range">الخادم لا يقبل التنزيل المتعدد، إعادة المحاولة مع @string/msg_threads = 1</string>
     <string name="error_http_not_found">غير موجود</string>
     <string name="error_postprocessing_failed">فشلت المعالجة الاولية</string>
-    <string name="clear_finished_download">حذف التنزيلات المنتهية</string>
     <string name="stop">توقف</string>
     <string name="max_retry_msg">أقصى عدد للمحاولات</string>
     <string name="max_retry_desc">الحد الأقصى لعدد محاولات قبل إلغاء التحميل</string>
@@ -567,12 +565,12 @@
     <string name="subtitle_activity_recaptcha">اضغط على \"تم\" عند حلها</string>
     <string name="recaptcha_done_button">منجز</string>
     <string name="videos_string">الفيديوهات</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="zero">%s ثوانٍ</item>
-        <item quantity="one">%s ثوانٍ</item>
-        <item quantity="two">%s ثوانٍ</item>
-        <item quantity="few">%s ثوانٍ</item>
-        <item quantity="many">%s ثوانٍ</item>
-        <item quantity="other">%s ثوانٍ</item>
+    <plurals name="seconds">
+        <item quantity="zero">%d ثوانٍ</item>
+        <item quantity="one">%d ثوانٍ</item>
+        <item quantity="two">%d ثوانٍ</item>
+        <item quantity="few">%d ثوانٍ</item>
+        <item quantity="many">%d ثوانٍ</item>
+        <item quantity="other">%d ثوانٍ</item>
     </plurals>
 </resources>

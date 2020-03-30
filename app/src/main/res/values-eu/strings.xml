@@ -374,7 +374,6 @@
     <string name="playback_tempo">Tempoa</string>
     <string name="playback_pitch">Tonua</string>
     <string name="unhook_checkbox">Desaktibatu (distortsioa sor lezake)</string>
-    <string name="playback_default">Lehenetsia</string>
     <string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
     <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du. 5, 15 edo 25 segundo bilatzea ez du honekin funtzionatzen.</string>
     <string name="download_thumbnail_summary">Desgaitu koadro txikiak ez kargatzeko, datuak eta memoria aurreztuz. Aldaketak memoria eta diskoko irudien cacheak garbituko ditu.</string>
@@ -458,7 +457,6 @@
     <string name="error_http_unsupported_range">Zerbitzariak ez ditu hainbat hariko deskargak onartzen, saiatu @string/msg_threads = 1 erabilita</string>
     <string name="error_http_not_found">Ez aurkitua</string>
     <string name="error_postprocessing_failed">Post-prozesuak huts egin du</string>
-    <string name="clear_finished_download">Garbitu amaitutako deskargak</string>
     <string name="stop">Gelditu</string>
     <string name="max_retry_msg">Gehienezko saiakerak</string>
     <string name="max_retry_desc">Deskarga ezeztatu aurretik saiatu beharreko aldi kopurua</string>
@@ -544,9 +542,9 @@
     <string name="subtitle_activity_recaptcha">Sakatu \"Egina\" konponduta dagoenean</string>
     <string name="recaptcha_done_button">Egina</string>
     <string name="videos_string">Bideoak</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s segundu</item>
-        <item quantity="other">%s segundu</item>
+    <plurals name="seconds">
+        <item quantity="one">%d segundu</item>
+        <item quantity="other">%d segundu</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer-en mugak direla eta bilaketaren iraupena %d segundotan ezarri da</string>
 </resources>

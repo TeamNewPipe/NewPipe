@@ -455,7 +455,6 @@
     <string name="error_unknown_host">Сервер не найден</string>
     <string name="error_http_unsupported_range">Сервер не принимает многопоточные загрузки, повторная попытка с @string/msg_threads = 1</string>
     <string name="error_http_not_found">Не найдено</string>
-    <string name="clear_finished_download">Очистить завершённые</string>
     <string name="stop">Остановить</string>
     <string name="events">События</string>
     <string name="conferences">Конференции</string>
@@ -549,10 +548,10 @@
     <string name="subtitle_activity_recaptcha">По завершении нажмите Готово</string>
     <string name="recaptcha_done_button">Готово</string>
     <string name="videos_string">Видео</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s секунда</item>
-        <item quantity="few">%s секунды</item>
-        <item quantity="many">%s секунд</item>
+    <plurals name="seconds">
+        <item quantity="one">%d секунда</item>
+        <item quantity="few">%d секунды</item>
+        <item quantity="many">%d секунд</item>
     </plurals>
     <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность перемотки составляет %d секунд</string>
     <string name="mute">Отключить звук</string>

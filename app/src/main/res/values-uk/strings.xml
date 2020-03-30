@@ -462,7 +462,6 @@
     <string name="error_http_unsupported_range">Сервер не підтримує завантаження у декілька потоків, спробуйте з параметром @string/msg_threads = 1</string>
     <string name="error_http_not_found">Не знайдено</string>
     <string name="error_postprocessing_failed">Невдала пост-обробка</string>
-    <string name="clear_finished_download">Очистити завершені завантаження</string>
     <string name="stop">Зупинити</string>
     <string name="max_retry_msg">Максимум спроб</string>
     <string name="max_retry_desc">Максимальна кількість спроб перед скасуванням завантаження</string>

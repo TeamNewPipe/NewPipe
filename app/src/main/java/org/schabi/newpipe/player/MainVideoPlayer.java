@@ -448,7 +448,8 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     protected void setMuteButton(final ImageButton muteButton, final boolean isMuted) {
-        muteButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), isMuted ? R.color.white : R.color.gray));
+        muteButton.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(),
+                isMuted ? R.drawable.ic_volume_off_white_72dp : R.drawable.ic_volume_up_white_72dp));
     }
 
 

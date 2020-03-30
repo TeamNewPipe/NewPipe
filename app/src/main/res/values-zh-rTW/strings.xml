@@ -355,7 +355,6 @@
     <string name="playback_tempo">節奏</string>
     <string name="playback_pitch">音高</string>
     <string name="unhook_checkbox">解除掛鉤（可能導致失真）</string>
-    <string name="playback_default">預設</string>
     <string name="preferred_open_action_settings_title">偏好的「開啟」動作</string>
     <string name="preferred_open_action_settings_summary">開啟內容時的預設動作 — %s</string>
     <string name="no_streams_available_download">沒有可供下載的串流</string>
@@ -449,7 +448,6 @@
     <string name="error_http_unsupported_range">伺服器不接受多執行緒下載，請以 @string/msg_threads = 1 重試</string>
     <string name="error_http_not_found">找不到</string>
     <string name="error_postprocessing_failed">後處理失敗</string>
-    <string name="clear_finished_download">清除已結束的下載</string>
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重試次數</string>
     <string name="max_retry_desc">在取消下載前的最大嘗試數</string>
@@ -537,10 +535,53 @@
     <string name="subtitle_activity_recaptcha">解決後請按「完成」</string>
     <string name="recaptcha_done_button">完成</string>
     <string name="videos_string">影片</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="other">%s秒</item>
+    <plurals name="seconds">
+        <item quantity="other">%d秒</item>
     </plurals>
     <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
     <string name="mute">靜音</string>
     <string name="unmute">取消靜音</string>
+    <string name="help">說明</string>
+    <plurals name="minutes">
+        <item quantity="other">%d 分鐘</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="other">%d 小時</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="other">%d 天</item>
+    </plurals>
+    <string name="feed_groups_header_title">Feed 群組</string>
+    <string name="feed_oldest_subscription_update">最舊訂閱更新：%s</string>
+    <string name="feed_subscription_not_loaded_count">未載入：%d</string>
+    <string name="feed_notification_loading">正在載入 feed……</string>
+    <string name="feed_processing_message">正在處理 feed……</string>
+    <string name="feed_group_dialog_select_subscriptions">選取訂閱</string>
+    <string name="feed_group_dialog_empty_selection">未選取訂閱</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="other">已選取 %d</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">清空群組名稱</string>
+    <string name="feed_group_dialog_name_input">名稱</string>
+    <string name="feed_group_dialog_delete_message">您想要刪除此群組嗎？</string>
+    <string name="feed_create_new_group_button_title">新</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Feed 更新閾值</string>
+    <string name="feed_update_threshold_summary">上次更新後，訂閱被視為過時的時間 — %s</string>
+    <string name="feed_update_threshold_option_always_update">總是更新</string>
+    <string name="feed_use_dedicated_fetch_method_title">在可用時從專用 feed 擷取</string>
+    <string name="feed_use_dedicated_fetch_method_summary">其在某些服務中可用，且通常較快速，但可能只會回傳有限的項目，而且資訊通常不完整（例如：沒有持續時間、項目類型、沒有即時狀態）。</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">啟用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">您覺得 feed 載入太慢了嗎？如果是的話，試著啟用快速載入（您可以在設定中變更或按下下方的按鈕）。
+\n
+\nNewPipe 提供兩個 feed 載入策略：
+\n• 擷取整個訂閱頻道，慢但是完整。
+\n• 使用專用的伺服器端點，較快速但是通常不完整。
+\n
+\n兩者之間的差別是，較快速的通常缺少部份資訊，如項目的持續時間或類型（無法區分直播影片或一般影片），而且其可能會回傳較少項目。
+\n
+\nYouTube 是一種透過其 RSS feed 提供這種快速方式的例子。
+\n
+\n因此，請選取您較偏好的：速度或準確的資訊。</string>
 </resources>

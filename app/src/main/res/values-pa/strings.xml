@@ -452,7 +452,6 @@
     <string name="error_http_unsupported_range">ਸਰਵਰ ਮਲਟੀ-Threaded ਡਾਊਨਲੋਡਸ ਨੂੰ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ, ਇਸ ਨਾਲ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ @string/msg_threads = 1</string>
     <string name="error_http_not_found">ਨਹੀਂ ਲਭਿਆ</string>
     <string name="error_postprocessing_failed">Post-processing ਫੇਲ੍ਹ</string>
-    <string name="clear_finished_download">ਮੁਕੰਮਲ ਹੋਈਆਂ ਡਾਊਨਲੋਡ ਸਾਫ਼ ਕਰੋ</string>
     <string name="stop">ਰੁੱਕੋ</string>
     <string name="max_retry_msg">ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
     <string name="max_retry_desc">ਡਾਉਨਲੋਡ ਰੱਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>

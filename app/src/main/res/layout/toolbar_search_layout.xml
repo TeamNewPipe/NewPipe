@@ -15,8 +15,6 @@
         android:layout_marginRight="48dp"
         android:layout_marginTop="4dp"
         android:background="?attr/colorPrimary"
-        android:drawableLeft="?attr/search"
-        android:drawablePadding="8dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:nextFocusDown="@+id/suggestions_list"

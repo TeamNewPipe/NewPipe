@@ -427,7 +427,6 @@
     <string name="error_http_no_content">เซิร์ฟเวอร์ไม่ส่งข้อมูล</string>
     <string name="error_http_unsupported_range">เซิร์ฟเวอร์ไม่รองรับการดาวน์โหลดแบบพร้อมกันหลายส่วน โปรดลองอีกครั้งด้วย @string/msg_threads = 1</string>
     <string name="error_http_not_found">ไม่พบ</string>
-    <string name="clear_finished_download">ล้างการดาวน์โหลดที่เสร็จสิ้นแล้ว</string>
     <string name="stop">หยุด</string>
     <string name="max_retry_msg">จำนวนครั้งสูงสุดที่จะลองใหม่</string>
     <string name="max_retry_desc">จำนวนครั้งสูงสุดที่จะลองใหม่ก่อนจะยกเลิกการดาวน์โหลด</string>

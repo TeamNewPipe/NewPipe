@@ -460,7 +460,6 @@
     <string name="error_connect_host">ناتوانی در اتصال به کارساز</string>
     <string name="error_http_no_content">کارساز داده‌ای نمی‌فرستد</string>
     <string name="error_http_unsupported_range">کارساز، بارگیری‌های چندرشته‌ای را قبول نمی‌کند، تلاش مجدد با ‎@string/msg_threads = 1</string>
-    <string name="clear_finished_download">پاک کردن بارگیری‌های تمام شده</string>
     <string name="stop">توقف</string>
     <string name="max_retry_msg">بیشینه تلاش مجدد</string>
     <string name="pause_downloads_on_mobile_desc">این ویژگی زمانی که ارتباط را به داده همراه تغییر می‌دهید مفید است هرچند برخی بارگیری‌ها نمی‌توانند تعلیق شوند</string>

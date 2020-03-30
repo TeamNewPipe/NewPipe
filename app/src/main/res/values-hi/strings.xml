@@ -437,7 +437,6 @@
     <string name="error_http_no_content">सर्वर डेटा नहीं भेजता है</string>
     <string name="error_http_not_found">नहीं मिला</string>
     <string name="error_postprocessing_failed">प्रक्रिया के बाद का कार्य विफल रहा</string>
-    <string name="clear_finished_download">समाप्त डाउनलोड साफ़ करें</string>
     <string name="stop">रुको</string>
     <string name="max_retry_msg">अधिकतम पुनर्प्रयास</string>
     <string name="max_retry_desc">डाउनलोड रद्द करने से पहले प्रयासों की अधिकतम संख्या</string>

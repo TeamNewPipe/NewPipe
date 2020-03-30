@@ -358,7 +358,6 @@
     <string name="playback_tempo">템포</string>
     <string name="playback_pitch">피치</string>
     <string name="unhook_checkbox">영상과 소리 분리 (소리가 깨질 수 있음)</string>
-    <string name="playback_default">기본</string>
     <string name="no_streams_available_download">다운로드 가능한 스트림이 없습니다</string>
     <string name="toast_no_player">이 파일을 재생할 수 있는 플레이어 앱이 없습니다</string>
     <string name="preferred_open_action_settings_title">선호하는 열기 동작</string>
@@ -453,7 +452,6 @@
     <string name="error_http_unsupported_range">서버가 다중 스레드 다운로드를 받아들이지 않습니다, @string/msg_threads = 1 를 사용해 다시 시도해보세요</string>
     <string name="error_http_not_found">HTTP 찾을 수 없습니다</string>
     <string name="error_postprocessing_failed">후처리 작업이 실패하였습니다</string>
-    <string name="clear_finished_download">완료된 다운로드 비우기</string>
     <string name="stop">멈추기</string>
     <string name="max_retry_msg">최대 재시도 횟수</string>
     <string name="max_retry_desc">다운로드를 취소하기 전까지 다시 시도할 최대 횟수</string>

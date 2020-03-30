@@ -345,7 +345,6 @@
     <string name="playback_speed_control">Fartskontroller for avspilling</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tonehøyde</string>
-    <string name="playback_default">Forvalg</string>
     <string name="clear_views_history_title">Tøm avspillingshistorikk</string>
     <string name="clear_views_history_summary">Slett historikken og posisjon for avspilte strømmer</string>
     <string name="delete_view_history_alert">Slett hele visningshistorikken\?</string>
@@ -456,7 +455,6 @@
     <string name="error_http_unsupported_range">"Tjeneren godtar ikke flertrådede nedlastinger, prøv igjen med @string/msg_threads = 1 "</string>
     <string name="error_http_not_found">Ikke funnet</string>
     <string name="error_postprocessing_failed">Etterbehandling mislyktes</string>
-    <string name="clear_finished_download">Tøm fullførte nedlastinger</string>
     <string name="stop">Stopp</string>
     <string name="max_retry_msg">Maksimalt antall forsøk</string>
     <string name="max_retry_desc">Maksimalt antall tilkoblingsforsøk før nedlastingen avblåses</string>
@@ -543,8 +541,28 @@
     <string name="subtitle_activity_recaptcha">Trykk \"Ferdig\" når den er løst</string>
     <string name="recaptcha_done_button">Ferdig</string>
     <string name="videos_string">Videoer</string>
-    <plurals name="dynamic_seek_duration_description">
-        <item quantity="one">%s sekunder</item>
-        <item quantity="other">%s sekunder</item>
+    <plurals name="seconds">
+        <item quantity="one">%d sekunder</item>
+        <item quantity="other">%d sekunder</item>
     </plurals>
+    <string name="mute">Forstum</string>
+    <string name="unmute">Opphev forstumming</string>
+    <string name="help">Hjelp</string>
+    <plurals name="minutes">
+        <item quantity="one">%d minutt</item>
+        <item quantity="other">%d minutter</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d time</item>
+        <item quantity="other">%d timer</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d dag</item>
+        <item quantity="other">%d dager</item>
+    </plurals>
+    <string name="feed_subscription_not_loaded_count">Ikke innlastet: %d</string>
+    <string name="feed_group_dialog_empty_name">Tomt gruppenavn</string>
+    <string name="feed_group_dialog_name_input">Navn</string>
+    <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen\?</string>
+    <string name="feed_create_new_group_button_title">Ny</string>
 </resources>
