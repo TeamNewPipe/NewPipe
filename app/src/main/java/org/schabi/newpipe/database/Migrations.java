@@ -85,8 +85,8 @@ public class Migrations {
                     "duration, uploader, thumbnail_url, view_count," +
                     "textual_upload_date, upload_date, is_upload_date_approximation) " +
 
-                    "SELECT uid, service_id, url, IFNULL(title, \"\"), IFNULL(stream_type, \"VIDEO_STREAM\")," +
-                    "IFNULL(duration, 0), IFNULL(uploader, \"\"), IFNULL(thumbnail_url, \"\"), NULL," +
+                    "SELECT uid, service_id, url, ifnull(title, ''), ifnull(stream_type, 'VIDEO_STREAM')," +
+                    "ifnull(duration, 0), ifnull(uploader, ''), ifnull(thumbnail_url, ''), NULL," +
                     "NULL, NULL, NULL " +
 
                     "FROM streams " +
