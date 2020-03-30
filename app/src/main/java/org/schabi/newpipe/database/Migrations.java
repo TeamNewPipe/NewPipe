@@ -81,8 +81,16 @@ public class Migrations {
                     " duration INTEGER NOT NULL, uploader TEXT NOT NULL, thumbnail_url TEXT, view_count INTEGER, textual_upload_date TEXT, upload_date INTEGER," +
                     " is_upload_date_approximation INTEGER)");
 
-            database.execSQL("INSERT INTO streams_new (uid, service_id, url, title, stream_type, duration, uploader, thumbnail_url, view_count, textual_upload_date, upload_date, is_upload_date_approximation)"+
-                    " SELECT uid, service_id, url, title, stream_type, duration, uploader, thumbnail_url, NULL, NULL, NULL, NULL FROM streams");
+            database.execSQL("INSERT INTO streams_new (uid, service_id, url, title, stream_type," +
+                    "duration, uploader, thumbnail_url, view_count," +
+                    "textual_upload_date, upload_date, is_upload_date_approximation) " +
+
+                    "SELECT uid, service_id, url, IFNULL(title, \"\"), IFNULL(stream_type, \"VIDEO_STREAM\")," +
+                    "IFNULL(duration, 0), IFNULL(uploader, \"\"), IFNULL(thumbnail_url, \"\"), NULL," +
+                    "NULL, NULL, NULL " +
+
+                    "FROM streams " +
+                    "WHERE url IS NOT NULL");
 
             database.execSQL("DROP TABLE streams");
             database.execSQL("ALTER TABLE streams_new RENAME TO streams");
