@@ -617,7 +617,7 @@
 
     <!-- Feed -->
     <string name="fragment_feed_title">What\'s New</string>
-    <string name="feed_groups_header_title">Feed groups</string>
+    <string name="feed_groups_header_title">Channel groups</string>
     <string name="feed_oldest_subscription_update">Oldest subscription update: %s</string>
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
     <string name="feed_notification_loading">Loading feed…</string>
