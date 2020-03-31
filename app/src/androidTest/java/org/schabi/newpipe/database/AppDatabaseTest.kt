@@ -25,6 +25,9 @@ class AppDatabaseTest {
         private const val DEFAULT_DURATION = 480L
         private const val DEFAULT_UPLOADER_NAME = "Uploader Test"
         private const val DEFAULT_THUMBNAIL = "https://example.com/example.jpg"
+
+        private const val DEFAULT_SECOND_SERVICE_ID = 0
+        private const val DEFAULT_SECOND_URL = "https://www.youtube.com/watch?v=ncQU6iBn5Fc"
     }
 
     @get:Rule val testHelper = MigrationTestHelper(InstrumentationRegistry.getInstrumentation(),
@@ -45,6 +48,26 @@ class AppDatabaseTest {
                 put("uploader", DEFAULT_UPLOADER_NAME)
                 put("thumbnail_url", DEFAULT_THUMBNAIL)
             })
+            insert("streams", SQLiteDatabase.CONFLICT_FAIL, ContentValues().apply {
+                // put("uid", null)
+                put("service_id", DEFAULT_SECOND_SERVICE_ID)
+                put("url", DEFAULT_SECOND_URL)
+                // put("title", null)
+                // put("stream_type", null)
+                // put("duration", null)
+                // put("uploader", null)
+                // put("thumbnail_url", null)
+            })
+            insert("streams", SQLiteDatabase.CONFLICT_FAIL, ContentValues().apply {
+                // put("uid", null)
+                put("service_id", DEFAULT_SERVICE_ID)
+                // put("url", null)
+                // put("title", null)
+                // put("stream_type", null)
+                // put("duration", null)
+                // put("uploader", null)
+                // put("thumbnail_url", null)
+            })
             close()
         }
 
@@ -53,9 +76,11 @@ class AppDatabaseTest {
 
         val migratedDatabaseV3 = getMigratedDatabase()
         val listFromDB = migratedDatabaseV3.streamDAO().all.blockingFirst()
-        assertEquals(1, listFromDB.size)
 
-        val streamFromMigratedDatabase = listFromDB.first()
+        // Only expect 2, the one with the null url will be ignored
+        assertEquals(2, listFromDB.size)
+
+        val streamFromMigratedDatabase = listFromDB[0]
         assertEquals(DEFAULT_SERVICE_ID, streamFromMigratedDatabase.serviceId)
         assertEquals(DEFAULT_URL, streamFromMigratedDatabase.url)
         assertEquals(DEFAULT_TITLE, streamFromMigratedDatabase.title)
@@ -67,6 +92,20 @@ class AppDatabaseTest {
         assertNull(streamFromMigratedDatabase.textualUploadDate)
         assertNull(streamFromMigratedDatabase.uploadDate)
         assertNull(streamFromMigratedDatabase.isUploadDateApproximation)
+
+        val secondStreamFromMigratedDatabase = listFromDB[1]
+        assertEquals(DEFAULT_SECOND_SERVICE_ID, secondStreamFromMigratedDatabase.serviceId)
+        assertEquals(DEFAULT_SECOND_URL, secondStreamFromMigratedDatabase.url)
+        assertEquals("", secondStreamFromMigratedDatabase.title)
+        // Should fallback to VIDEO_STREAM
+        assertEquals(StreamType.VIDEO_STREAM, secondStreamFromMigratedDatabase.streamType)
+        assertEquals(0, secondStreamFromMigratedDatabase.duration)
+        assertEquals("", secondStreamFromMigratedDatabase.uploader)
+        assertEquals("", secondStreamFromMigratedDatabase.thumbnailUrl)
+        assertNull(secondStreamFromMigratedDatabase.viewCount)
+        assertNull(secondStreamFromMigratedDatabase.textualUploadDate)
+        assertNull(secondStreamFromMigratedDatabase.uploadDate)
+        assertNull(secondStreamFromMigratedDatabase.isUploadDateApproximation)
     }
 
     private fun getMigratedDatabase(): AppDatabase {
