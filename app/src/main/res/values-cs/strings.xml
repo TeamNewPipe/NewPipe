@@ -559,8 +559,8 @@ otevření ve vyskakovacím okně</string>
         <item quantity="other">%d vteřin</item>
     </plurals>
     <string name="new_seek_duration_toast">Kvůli omezením ExoPlayer bylo prohledávání nastaveno na %d vteřin</string>
-    <string name="mute">Umlčet</string>
-    <string name="unmute">Odumlčet</string>
+    <string name="mute">Ztišit</string>
+    <string name="unmute">Obnovit hlasitost</string>
     <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">Nápověda</string>
     <plurals name="minutes">
