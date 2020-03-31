@@ -53,6 +53,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.C;
@@ -892,7 +893,7 @@ public final class PopupVideoPlayer extends Service {
         public void onBlocked() {
             super.onBlocked();
             resetNotification();
-            updateNotification(R.drawable.ic_play_arrow_white_24dp);
+            updateNotification(R.drawable.exo_controls_play);
         }
 
         @Override
@@ -902,9 +903,10 @@ public final class PopupVideoPlayer extends Service {
             updateWindowFlags(ONGOING_PLAYBACK_WINDOW_FLAGS);
 
             resetNotification();
-            updateNotification(R.drawable.ic_pause_white_24dp);
+            updateNotification(R.drawable.exo_controls_pause);
 
-            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white_24dp);
+            videoPlayPause.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
+                    R.drawable.ic_pause_white_24dp));
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
 
             startForeground(NOTIFICATION_ID, notBuilder.build());
@@ -914,7 +916,7 @@ public final class PopupVideoPlayer extends Service {
         public void onBuffering() {
             super.onBuffering();
             resetNotification();
-            updateNotification(R.drawable.ic_play_arrow_white_24dp);
+            updateNotification(R.drawable.exo_controls_play);
         }
 
         @Override
@@ -924,8 +926,9 @@ public final class PopupVideoPlayer extends Service {
             updateWindowFlags(IDLE_WINDOW_FLAGS);
 
             resetNotification();
-            updateNotification(R.drawable.ic_play_arrow_white_24dp);
-            videoPlayPause.setBackgroundResource(R.drawable.ic_play_arrow_white_24dp);
+            updateNotification(R.drawable.exo_controls_play);
+            videoPlayPause.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
+                    R.drawable.ic_play_arrow_white_24dp));
 
             stopForeground(false);
         }
@@ -934,9 +937,10 @@ public final class PopupVideoPlayer extends Service {
         public void onPausedSeek() {
             super.onPausedSeek();
             resetNotification();
-            updateNotification(R.drawable.ic_play_arrow_white_24dp);
+            updateNotification(R.drawable.exo_controls_play);
 
-            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white_24dp);
+            videoPlayPause.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
+                    R.drawable.ic_pause_white_24dp));
         }
 
         @Override
@@ -947,7 +951,8 @@ public final class PopupVideoPlayer extends Service {
 
             resetNotification();
             updateNotification(R.drawable.ic_replay_white_24dp);
-            videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white_24dp);
+            videoPlayPause.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
+                    R.drawable.ic_replay_white_24dp));
 
             stopForeground(false);
         }

@@ -92,7 +92,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         tabLayout = rootView.findViewById(R.id.main_tab_layout);
         viewPager = rootView.findViewById(R.id.pager);
 
-        tabLayout.setTabIconTint(ColorStateList.valueOf(ThemeHelper.resolveColorFromAttr(requireContext(), R.attr.colorAccent)));
+        tabLayout.setTabIconTint(ColorStateList.valueOf(
+                ThemeHelper.resolveColorFromAttr(requireContext(), R.attr.colorAccent)));
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addOnTabSelectedListener(this);
 

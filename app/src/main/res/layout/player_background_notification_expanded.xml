@@ -29,7 +29,7 @@
         android:focusable="true"
         android:padding="8dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_close_white_24dp"
+        android:src="@drawable/ic_close_white_24dp"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 
 
@@ -114,7 +114,7 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/ic_repeat_white_24dp"
+            android:src="@drawable/exo_controls_repeat_all"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -144,7 +144,7 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_pause_white_24dp"
+            android:src="@drawable/exo_controls_pause"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
