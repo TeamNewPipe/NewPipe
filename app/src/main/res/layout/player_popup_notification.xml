@@ -82,6 +82,6 @@
         android:focusable="true"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_close_white_24dp"
+        app:srcCompat="@drawable/ic_close_white_24dp"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 </LinearLayout>

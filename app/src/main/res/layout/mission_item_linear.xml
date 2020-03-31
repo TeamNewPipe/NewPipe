@@ -1,5 +1,6 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_height="wrap_content"
 	android:layout_width="match_parent">
 	
@@ -69,7 +70,7 @@
 			android:layout_alignParentRight="true"
 			android:layout_centerVertical="true"
 			android:layout_marginRight="4dp"
-			android:src="@drawable/ic_more_vert_white_24dp"
+			app:srcCompat="@drawable/ic_more_vert_white_24dp"
 			android:scaleType="centerInside"
             android:contentDescription="TODO" />
 
