@@ -28,7 +28,7 @@
     <attr name="ic_pause" format="reference"/>
     <attr name="ic_bug_report" format="reference"/>
     <attr name="ic_settings" format="reference"/>
-    <attr name="ic_hot" format="reference"/>
+    <attr name="ic_kiosk_hot" format="reference"/>
     <attr name="ic_kiosk_local" format="reference"/>
     <attr name="ic_kiosk_recent" format="reference"/>
     <attr name="ic_channel" format="reference"/>

@@ -165,8 +165,7 @@ public class MainActivity extends AppCompatActivity {
             drawerItems.getMenu()
                     .add(R.id.menu_tabs_group, kioskId, 0, KioskTranslator
                             .getTranslatedKioskName(ks, this))
-                    .setIcon(KioskTranslator.getKioskIcons(ks, this));
-            kioskId++;
+                    .setIcon(KioskTranslator.getKioskIcon(ks, this));
         }
 
         drawerItems.getMenu()
@@ -420,7 +419,7 @@ public class MainActivity extends AppCompatActivity {
             drawerItems.getMenu()
                     .add(R.id.menu_tabs_group, kioskId, ORDER,
                             KioskTranslator.getTranslatedKioskName(ks, this))
-                    .setIcon(KioskTranslator.getKioskIcons(ks, this));
+                    .setIcon(KioskTranslator.getKioskIcon(ks, this));
             kioskId++;
         }
 

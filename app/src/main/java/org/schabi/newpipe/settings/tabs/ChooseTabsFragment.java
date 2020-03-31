@@ -233,7 +233,7 @@ public class ChooseTabsFragment extends Fragment {
                 case KIOSK:
                     returnList.add(new ChooseTabListItem(tab.getTabId(),
                             getString(R.string.kiosk_page_summary),
-                            ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
+                            ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_kiosk_hot)));
                     break;
                 case CHANNEL:
                     returnList.add(new ChooseTabListItem(tab.getTabId(),
@@ -244,7 +244,8 @@ public class ChooseTabsFragment extends Fragment {
                     if (!tabList.contains(tab)) {
                         returnList.add(new ChooseTabListItem(tab.getTabId(),
                                 getString(R.string.default_kiosk_page_summary),
-                                ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
+                                ThemeHelper.resolveResourceIdFromAttr(context,
+                                        R.attr.ic_kiosk_hot)));
                     }
                     break;
                 default:

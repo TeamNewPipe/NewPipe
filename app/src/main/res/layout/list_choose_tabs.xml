@@ -29,7 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             tools:ignore="ContentDescription,RtlHardcoded"
-            tools:src="?attr/ic_hot"/>
+            tools:src="?attr/ic_kiosk_hot"/>
 
         <TextView
             android:id="@+id/tabName"

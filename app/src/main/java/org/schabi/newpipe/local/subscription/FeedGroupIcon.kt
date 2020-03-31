@@ -47,7 +47,7 @@ enum class FeedGroupIcon(
     SHOPPING_CART(27, R.attr.ic_shopping_cart),
     WATCH_LATER(28, R.attr.ic_watch_later),
     WORK(29, R.attr.ic_work),
-    HOT(30, R.attr.ic_hot),
+    HOT(30, R.attr.ic_kiosk_hot),
     CHANNEL(31, R.attr.ic_channel),
     BOOKMARK(32, R.attr.ic_bookmark),
     PETS(33, R.attr.ic_pets),

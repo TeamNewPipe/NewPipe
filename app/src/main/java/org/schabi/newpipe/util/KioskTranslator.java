@@ -55,7 +55,7 @@ public final class KioskTranslator {
             case "Top 50":
             case "New & hot":
             case "conferences":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_hot);
             case "Local":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_local);
             case "Recently added":
