@@ -30,8 +30,9 @@ class AppDatabaseTest {
         private const val DEFAULT_SECOND_URL = "https://www.youtube.com/watch?v=ncQU6iBn5Fc"
     }
 
-    @get:Rule val testHelper = MigrationTestHelper(InstrumentationRegistry.getInstrumentation(),
-            AppDatabase::class.java.canonicalName, FrameworkSQLiteOpenHelperFactory());
+    @get:Rule
+    val testHelper = MigrationTestHelper(InstrumentationRegistry.getInstrumentation(),
+            AppDatabase::class.java.canonicalName, FrameworkSQLiteOpenHelperFactory())
 
     @Test
     fun migrateDatabaseFrom2to3() {
@@ -72,7 +73,7 @@ class AppDatabaseTest {
         }
 
         testHelper.runMigrationsAndValidate(AppDatabase.DATABASE_NAME, Migrations.DB_VER_3,
-                true, Migrations.MIGRATION_2_3);
+                true, Migrations.MIGRATION_2_3)
 
         val migratedDatabaseV3 = getMigratedDatabase()
         val listFromDB = migratedDatabaseV3.streamDAO().all.blockingFirst()

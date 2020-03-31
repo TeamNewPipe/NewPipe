@@ -25,7 +25,7 @@ public final class SinglePlayQueue extends PlayQueue {
         super(index, playQueueItemsOf(items));
     }
 
-    private static List<PlayQueueItem> playQueueItemsOf(List<StreamInfoItem> items) {
+    private static List<PlayQueueItem> playQueueItemsOf(final List<StreamInfoItem> items) {
         List<PlayQueueItem> playQueueItems = new ArrayList<>(items.size());
         for (final StreamInfoItem item : items) {
             playQueueItems.add(new PlayQueueItem(item));
@@ -39,5 +39,6 @@ public final class SinglePlayQueue extends PlayQueue {
     }
 
     @Override
-    public void fetch() {}
+    public void fetch() {
+    }
 }

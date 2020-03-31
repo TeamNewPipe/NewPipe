@@ -1,7 +1,7 @@
 package org.schabi.newpipe.local.subscription.item
 
-import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import com.xwray.groupie.kotlinandroidextensions.Item
 import org.schabi.newpipe.R
 
 class EmptyPlaceholderItem : Item() {

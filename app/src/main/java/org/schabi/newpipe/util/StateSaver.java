@@ -24,10 +24,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -44,14 +45,15 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * A way to save state to disk or in a in-memory map if it's just changing configurations (i.e. rotating the phone).
+ * A way to save state to disk or in a in-memory map
+ * if it's just changing configurations (i.e. rotating the phone).
  */
-public class StateSaver {
-    private static final ConcurrentHashMap<String, Queue<Object>> stateObjectsHolder = new ConcurrentHashMap<>();
+public final class StateSaver {
+    public static final String KEY_SAVED_STATE = "key_saved_state";
+    private static final ConcurrentHashMap<String, Queue<Object>> STATE_OBJECTS_HOLDER
+            = new ConcurrentHashMap<>();
     private static final String TAG = "StateSaver";
     private static final String CACHE_DIR_NAME = "state_cache";
-
-    public static final String KEY_SAVED_STATE = "key_saved_state";
     private static String cacheDirPath;
 
     private StateSaver() {
@@ -59,78 +61,70 @@ public class StateSaver {
     }
 
     /**
-     * Initialize the StateSaver, usually you want to call this in the Application class
+     * Initialize the StateSaver, usually you want to call this in the Application class.
      *
      * @param context used to get the available cache dir
      */
-    public static void init(Context context) {
+    public static void init(final Context context) {
         File externalCacheDir = context.getExternalCacheDir();
-        if (externalCacheDir != null) cacheDirPath = externalCacheDir.getAbsolutePath();
-        if (TextUtils.isEmpty(cacheDirPath)) cacheDirPath = context.getCacheDir().getAbsolutePath();
-    }
-
-    /**
-     * Used for describe how to save/read the objects.
-     * <p>
-     * Queue was chosen by its FIFO property.
-     */
-    public interface WriteRead {
-        /**
-         * Generate a changing suffix that will name the cache file,
-         * and be used to identify if it changed (thus reducing useless reading/saving).
-         *
-         * @return a unique value
-         */
-        String generateSuffix();
-
-        /**
-         * Add to this queue objects that you want to save.
-         */
-        void writeTo(Queue<Object> objectsToSave);
-
-        /**
-         * Poll saved objects from the queue in the order they were written.
-         *
-         * @param savedObjects queue of objects returned by {@link #writeTo(Queue)}
-         */
-        void readFrom(@NonNull Queue<Object> savedObjects) throws Exception;
+        if (externalCacheDir != null) {
+            cacheDirPath = externalCacheDir.getAbsolutePath();
+        }
+        if (TextUtils.isEmpty(cacheDirPath)) {
+            cacheDirPath = context.getCacheDir().getAbsolutePath();
+        }
     }
 
     /**
      * @see #tryToRestore(SavedState, WriteRead)
+     * @param outState
+     * @param writeRead
+     * @return the saved state
      */
-    public static SavedState tryToRestore(Bundle outState, WriteRead writeRead) {
-        if (outState == null || writeRead == null) return null;
+    public static SavedState tryToRestore(final Bundle outState, final WriteRead writeRead) {
+        if (outState == null || writeRead == null) {
+            return null;
+        }
 
         SavedState savedState = outState.getParcelable(KEY_SAVED_STATE);
-        if (savedState == null) return null;
+        if (savedState == null) {
+            return null;
+        }
 
         return tryToRestore(savedState, writeRead);
     }
 
     /**
-     * Try to restore the state from memory and disk, using the {@link StateSaver.WriteRead#readFrom(Queue)} from the writeRead.
+     * Try to restore the state from memory and disk,
+     * using the {@link StateSaver.WriteRead#readFrom(Queue)} from the writeRead.
+     * @param savedState
+     * @param writeRead
+     * @return the saved state
      */
     @Nullable
-    private static SavedState tryToRestore(@NonNull SavedState savedState, @NonNull WriteRead writeRead) {
+    private static SavedState tryToRestore(@NonNull final SavedState savedState,
+                                           @NonNull final WriteRead writeRead) {
         if (MainActivity.DEBUG) {
-            Log.d(TAG, "tryToRestore() called with: savedState = [" + savedState + "], writeRead = [" + writeRead + "]");
+            Log.d(TAG, "tryToRestore() called with: savedState = [" + savedState + "], "
+                    + "writeRead = [" + writeRead + "]");
         }
 
         FileInputStream fileInputStream = null;
         try {
-            Queue<Object> savedObjects = stateObjectsHolder.remove(savedState.getPrefixFileSaved());
+            Queue<Object> savedObjects
+                    = STATE_OBJECTS_HOLDER.remove(savedState.getPrefixFileSaved());
             if (savedObjects != null) {
                 writeRead.readFrom(savedObjects);
                 if (MainActivity.DEBUG) {
-                    Log.d(TAG, "tryToSave: reading objects from holder > " + savedObjects + ", stateObjectsHolder > " + stateObjectsHolder);
+                    Log.d(TAG, "tryToSave: reading objects from holder > " + savedObjects
+                            + ", stateObjectsHolder > " + STATE_OBJECTS_HOLDER);
                 }
                 return savedState;
             }
 
             File file = new File(savedState.getPathFileSaved());
             if (!file.exists()) {
-                if(MainActivity.DEBUG) {
+                if (MainActivity.DEBUG) {
                     Log.d(TAG, "Cache file doesn't exist: " + file.getAbsolutePath());
                 }
                 return null;
@@ -160,9 +154,16 @@ public class StateSaver {
 
     /**
      * @see #tryToSave(boolean, String, String, WriteRead)
+     * @param isChangingConfig
+     * @param savedState
+     * @param outState
+     * @param writeRead
+     * @return the saved state or {@code null}
      */
     @Nullable
-    public static SavedState tryToSave(boolean isChangingConfig, @Nullable SavedState savedState, Bundle outState, WriteRead writeRead) {
+    public static SavedState tryToSave(final boolean isChangingConfig,
+                                       @Nullable final SavedState savedState, final Bundle outState,
+                                       final WriteRead writeRead) {
         @NonNull
         String currentSavedPrefix;
         if (savedState == null || TextUtils.isEmpty(savedState.getPrefixFileSaved())) {
@@ -173,34 +174,45 @@ public class StateSaver {
             currentSavedPrefix = savedState.getPrefixFileSaved();
         }
 
-        savedState = tryToSave(isChangingConfig, currentSavedPrefix, writeRead.generateSuffix(), writeRead);
-        if (savedState != null) {
-            outState.putParcelable(StateSaver.KEY_SAVED_STATE, savedState);
-            return savedState;
+        final SavedState newSavedState = tryToSave(isChangingConfig, currentSavedPrefix,
+                writeRead.generateSuffix(), writeRead);
+        if (newSavedState != null) {
+            outState.putParcelable(StateSaver.KEY_SAVED_STATE, newSavedState);
+            return newSavedState;
         }
 
         return null;
     }
 
     /**
-     * If it's not changing configuration (i.e. rotating screen), try to write the state from {@link StateSaver.WriteRead#writeTo(Queue)}
-     * to the file with the name of prefixFileName + suffixFileName, in a cache folder got from the {@link #init(Context)}.
+     * If it's not changing configuration (i.e. rotating screen),
+     * try to write the state from {@link StateSaver.WriteRead#writeTo(Queue)}
+     * to the file with the name of prefixFileName + suffixFileName,
+     * in a cache folder got from the {@link #init(Context)}.
      * <p>
-     * It checks if the file already exists and if it does, just return the path, so a good way to save is:
+     * It checks if the file already exists and if it does, just return the path,
+     * so a good way to save is:
+     * </p>
      * <ul>
-     * <li> A fixed prefix for the file</li>
-     * <li> A changing suffix</li>
+     * <li>A fixed prefix for the file</li>
+     * <li>A changing suffix</li>
      * </ul>
      *
      * @param isChangingConfig
      * @param prefixFileName
      * @param suffixFileName
      * @param writeRead
+     * @return the saved state or {@code null}
      */
     @Nullable
-    private static SavedState tryToSave(boolean isChangingConfig, final String prefixFileName, String suffixFileName, WriteRead writeRead) {
+    private static SavedState tryToSave(final boolean isChangingConfig, final String prefixFileName,
+                                        final String suffixFileName, final WriteRead writeRead) {
         if (MainActivity.DEBUG) {
-            Log.d(TAG, "tryToSave() called with: isChangingConfig = [" + isChangingConfig + "], prefixFileName = [" + prefixFileName + "], suffixFileName = [" + suffixFileName + "], writeRead = [" + writeRead + "]");
+            Log.d(TAG, "tryToSave() called with: "
+                    + "isChangingConfig = [" + isChangingConfig + "], "
+                    + "prefixFileName = [" + prefixFileName + "], "
+                    + "suffixFileName = [" + suffixFileName + "], "
+                    + "writeRead = [" + writeRead + "]");
         }
 
         LinkedList<Object> savedObjects = new LinkedList<>();
@@ -208,10 +220,12 @@ public class StateSaver {
 
         if (isChangingConfig) {
             if (savedObjects.size() > 0) {
-                stateObjectsHolder.put(prefixFileName, savedObjects);
+                STATE_OBJECTS_HOLDER.put(prefixFileName, savedObjects);
                 return new SavedState(prefixFileName, "");
             } else {
-                if(MainActivity.DEBUG) Log.d(TAG, "Nothing to save");
+                if (MainActivity.DEBUG) {
+                    Log.d(TAG, "Nothing to save");
+                }
                 return null;
             }
         }
@@ -219,19 +233,22 @@ public class StateSaver {
         FileOutputStream fileOutputStream = null;
         try {
             File cacheDir = new File(cacheDirPath);
-            if (!cacheDir.exists()) throw new RuntimeException("Cache dir does not exist > " + cacheDirPath);
+            if (!cacheDir.exists()) {
+                throw new RuntimeException("Cache dir does not exist > " + cacheDirPath);
+            }
             cacheDir = new File(cacheDir, CACHE_DIR_NAME);
             if (!cacheDir.exists()) {
-                if(!cacheDir.mkdir()) {
-                    if(BuildConfig.DEBUG) {
-                        Log.e(TAG, "Failed to create cache directory " + cacheDir.getAbsolutePath());
+                if (!cacheDir.mkdir()) {
+                    if (BuildConfig.DEBUG) {
+                        Log.e(TAG,
+                                "Failed to create cache directory " + cacheDir.getAbsolutePath());
                     }
                     return null;
                 }
             }
 
-            if (TextUtils.isEmpty(suffixFileName)) suffixFileName = ".cache";
-            File file = new File(cacheDir, prefixFileName + suffixFileName);
+            File file = new File(cacheDir, prefixFileName
+                    + (TextUtils.isEmpty(suffixFileName) ? ".cache" : suffixFileName));
             if (file.exists() && file.length() > 0) {
                 // If the file already exists, just return it
                 return new SavedState(prefixFileName, file.getAbsolutePath());
@@ -239,7 +256,7 @@ public class StateSaver {
                 // Delete any file that contains the prefix
                 File[] files = cacheDir.listFiles(new FilenameFilter() {
                     @Override
-                    public boolean accept(File dir, String name) {
+                    public boolean accept(final File dir, final String name) {
                         return name.contains(prefixFileName);
                     }
                 });
@@ -259,21 +276,25 @@ public class StateSaver {
             if (fileOutputStream != null) {
                 try {
                     fileOutputStream.close();
-                } catch (IOException ignored) {
-                }
+                } catch (IOException ignored) { }
             }
         }
         return null;
     }
 
     /**
-     * Delete the cache file contained in the savedState and remove any possible-existing value in the memory-cache.
+     * Delete the cache file contained in the savedState.
+     * Also remove any possible-existing value in the memory-cache.
+     *
+     * @param savedState the saved state to delete
      */
-    public static void onDestroy(SavedState savedState) {
-        if (MainActivity.DEBUG) Log.d(TAG, "onDestroy() called with: savedState = [" + savedState + "]");
+    public static void onDestroy(final SavedState savedState) {
+        if (MainActivity.DEBUG) {
+            Log.d(TAG, "onDestroy() called with: savedState = [" + savedState + "]");
+        }
 
         if (savedState != null && !TextUtils.isEmpty(savedState.getPathFileSaved())) {
-            stateObjectsHolder.remove(savedState.getPrefixFileSaved());
+            STATE_OBJECTS_HOLDER.remove(savedState.getPrefixFileSaved());
             try {
                 //noinspection ResultOfMethodCallIgnored
                 new File(savedState.getPathFileSaved()).delete();
@@ -286,16 +307,51 @@ public class StateSaver {
      * Clear all the files in cache (in memory and disk).
      */
     public static void clearStateFiles() {
-        if (MainActivity.DEBUG) Log.d(TAG, "clearStateFiles() called");
+        if (MainActivity.DEBUG) {
+            Log.d(TAG, "clearStateFiles() called");
+        }
 
-        stateObjectsHolder.clear();
+        STATE_OBJECTS_HOLDER.clear();
         File cacheDir = new File(cacheDirPath);
-        if (!cacheDir.exists()) return;
+        if (!cacheDir.exists()) {
+            return;
+        }
 
         cacheDir = new File(cacheDir, CACHE_DIR_NAME);
         if (cacheDir.exists()) {
-            for (File file : cacheDir.listFiles()) file.delete();
+            for (File file : cacheDir.listFiles()) {
+                file.delete();
+            }
         }
+    }
+
+    /**
+     * Used for describe how to save/read the objects.
+     * <p>
+     * Queue was chosen by its FIFO property.
+     */
+    public interface WriteRead {
+        /**
+         * Generate a changing suffix that will name the cache file,
+         * and be used to identify if it changed (thus reducing useless reading/saving).
+         *
+         * @return a unique value
+         */
+        String generateSuffix();
+
+        /**
+         * Add to this queue objects that you want to save.
+         *
+         * @param objectsToSave the objects to save
+         */
+        void writeTo(Queue<Object> objectsToSave);
+
+        /**
+         * Poll saved objects from the queue in the order they were written.
+         *
+         * @param savedObjects queue of objects returned by {@link #writeTo(Queue)}
+         */
+        void readFrom(@NonNull Queue<Object> savedObjects) throws Exception;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -303,18 +359,31 @@ public class StateSaver {
     //////////////////////////////////////////////////////////////////////////*/
 
     /**
-     * Information about the saved state on the disk
+     * Information about the saved state on the disk.
      */
     public static class SavedState implements Parcelable {
+        @SuppressWarnings("unused")
+        public static final Parcelable.Creator<SavedState> CREATOR
+                = new Parcelable.Creator<SavedState>() {
+            @Override
+            public SavedState createFromParcel(final Parcel in) {
+                return new SavedState(in);
+            }
+
+            @Override
+            public SavedState[] newArray(final int size) {
+                return new SavedState[size];
+            }
+        };
         private final String prefixFileSaved;
         private final String pathFileSaved;
 
-        public SavedState(String prefixFileSaved, String pathFileSaved) {
+        public SavedState(final String prefixFileSaved, final String pathFileSaved) {
             this.prefixFileSaved = prefixFileSaved;
             this.pathFileSaved = pathFileSaved;
         }
 
-        protected SavedState(Parcel in) {
+        protected SavedState(final Parcel in) {
             prefixFileSaved = in.readString();
             pathFileSaved = in.readString();
         }
@@ -330,26 +399,14 @@ public class StateSaver {
         }
 
         @Override
-        public void writeToParcel(Parcel dest, int flags) {
+        public void writeToParcel(final Parcel dest, final int flags) {
             dest.writeString(prefixFileSaved);
             dest.writeString(pathFileSaved);
         }
 
-        @SuppressWarnings("unused")
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
-            @Override
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
-
-            @Override
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
-
         /**
-         * Get the prefix of the saved file
+         * Get the prefix of the saved file.
+         *
          * @return the file prefix
          */
         public String getPrefixFileSaved() {
@@ -357,7 +414,8 @@ public class StateSaver {
         }
 
         /**
-         * Get the path to the saved file
+         * Get the path to the saved file.
+         *
          * @return the path to the saved file
          */
         public String getPathFileSaved() {

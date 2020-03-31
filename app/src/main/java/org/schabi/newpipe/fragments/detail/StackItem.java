@@ -4,16 +4,12 @@ import java.io.Serializable;
 
 class StackItem implements Serializable {
     private final int serviceId;
-    private String title;
     private final String url;
+    private String title;
 
-    StackItem(int serviceId, String url, String title) {
+    StackItem(final int serviceId, final String url, final String title) {
         this.serviceId = serviceId;
         this.url = url;
-        this.title = title;
-    }
-
-    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -23,6 +19,10 @@ class StackItem implements Serializable {
 
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(final String title) {
+        this.title = title;
     }
 
     public String getUrl() {

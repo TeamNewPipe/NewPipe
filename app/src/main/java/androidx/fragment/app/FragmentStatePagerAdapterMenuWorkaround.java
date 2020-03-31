@@ -38,12 +38,15 @@ import java.util.ArrayList;
  * This is a copy from {@link androidx.fragment.app.FragmentStatePagerAdapter}.
  * <p>
  * It includes a workaround to fix the menu visibility when the adapter is restored.
+ * </p>
  * <p>
  * When restoring the state of this adapter, all the fragments' menu visibility were set to false,
- * effectively disabling the menu from the user until he switched pages or another event that triggered the
- * menu to be visible again happened.
+ * effectively disabling the menu from the user until he switched pages or another event
+ * that triggered the menu to be visible again happened.
+ * </p>
  * <p>
- * <br><b>Check out the changes in:</b>
+ * <b>Check out the changes in:</b>
+ * </p>
  * <ul>
  *     <li>{@link #saveState()}</li>
  *     <li>{@link #restoreState(Parcelable, ClassLoader)}</li>
@@ -88,8 +91,8 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
     private Fragment mCurrentPrimaryItem = null;
 
     /**
-     * Constructor for {@link FragmentStatePagerAdapterMenuWorkaround} that sets the fragment manager for the
-     * adapter. This is the equivalent of calling
+     * Constructor for {@link FragmentStatePagerAdapterMenuWorkaround}
+     * that sets the fragment manager for the adapter. This is the equivalent of calling
      * {@link #FragmentStatePagerAdapterMenuWorkaround(FragmentManager, int)} and passing in
      * {@link #BEHAVIOR_SET_USER_VISIBLE_HINT}.
      *
@@ -101,7 +104,7 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
      * {@link #BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT}
      */
     @Deprecated
-    public FragmentStatePagerAdapterMenuWorkaround(@NonNull FragmentManager fm) {
+    public FragmentStatePagerAdapterMenuWorkaround(@NonNull final FragmentManager fm) {
         this(fm, BEHAVIOR_SET_USER_VISIBLE_HINT);
     }
 
@@ -117,20 +120,21 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
      * @param fm fragment manager that will interact with this adapter
      * @param behavior determines if only current fragments are in a resumed state
      */
-    public FragmentStatePagerAdapterMenuWorkaround(@NonNull FragmentManager fm,
-                                     @Behavior int behavior) {
+    public FragmentStatePagerAdapterMenuWorkaround(@NonNull final FragmentManager fm,
+                                                   @Behavior final int behavior) {
         mFragmentManager = fm;
         mBehavior = behavior;
     }
 
     /**
-     * Return the Fragment associated with a specified position.
+     * @param position the position of the item you want
+     * @return the {@link Fragment} associated with a specified position
      */
     @NonNull
     public abstract Fragment getItem(int position);
 
     @Override
-    public void startUpdate(@NonNull ViewGroup container) {
+    public void startUpdate(@NonNull final ViewGroup container) {
         if (container.getId() == View.NO_ID) {
             throw new IllegalStateException("ViewPager with adapter " + this
                     + " requires a view id");
@@ -140,7 +144,7 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
     @SuppressWarnings("deprecation")
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull final ViewGroup container, final int position) {
         // If we already have this item instantiated, there is nothing
         // to do.  This can happen when we are restoring the entire pager
         // from its saved state, where the fragment manager has already
@@ -157,7 +161,9 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
         }
 
         Fragment fragment = getItem(position);
-        if (DEBUG) Log.v(TAG, "Adding item #" + position + ": f=" + fragment);
+        if (DEBUG) {
+            Log.v(TAG, "Adding item #" + position + ": f=" + fragment);
+        }
         if (mSavedState.size() > position) {
             Fragment.SavedState fss = mSavedState.get(position);
             if (fss != null) {
@@ -183,14 +189,17 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+    public void destroyItem(@NonNull final ViewGroup container, final int position,
+                            @NonNull final Object object) {
         Fragment fragment = (Fragment) object;
 
         if (mCurTransaction == null) {
             mCurTransaction = mFragmentManager.beginTransaction();
         }
-        if (DEBUG) Log.v(TAG, "Removing item #" + position + ": f=" + object
-                + " v=" + ((Fragment)object).getView());
+        if (DEBUG) {
+            Log.v(TAG, "Removing item #" + position + ": f=" + object
+                    + " v=" + ((Fragment) object).getView());
+        }
         while (mSavedState.size() <= position) {
             mSavedState.add(null);
         }
@@ -206,8 +215,9 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
 
     @Override
     @SuppressWarnings({"ReferenceEquality", "deprecation"})
-    public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        Fragment fragment = (Fragment)object;
+    public void setPrimaryItem(@NonNull final ViewGroup container, final int position,
+                               @NonNull final Object object) {
+        Fragment fragment = (Fragment) object;
         if (fragment != mCurrentPrimaryItem) {
             if (mCurrentPrimaryItem != null) {
                 mCurrentPrimaryItem.setMenuVisibility(false);
@@ -235,7 +245,7 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
     }
 
     @Override
-    public void finishUpdate(@NonNull ViewGroup container) {
+    public void finishUpdate(@NonNull final ViewGroup container) {
         if (mCurTransaction != null) {
             mCurTransaction.commitNowAllowingStateLoss();
             mCurTransaction = null;
@@ -243,12 +253,12 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
     }
 
     @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return ((Fragment)object).getView() == view;
+    public boolean isViewFromObject(@NonNull final View view, @NonNull final Object object) {
+        return ((Fragment) object).getView() == view;
     }
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    private final String SELECTED_FRAGMENT = "selected_fragment";
+    private final String selectedFragment = "selected_fragment";
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     @Override
@@ -261,7 +271,7 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
             mSavedState.toArray(fss);
             state.putParcelableArray("states", fss);
         }
-        for (int i=0; i<mFragments.size(); i++) {
+        for (int i = 0; i < mFragments.size(); i++) {
             Fragment f = mFragments.get(i);
             if (f != null && f.isAdded()) {
                 if (state == null) {
@@ -273,7 +283,7 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 // Check if it's the same fragment instance
                 if (f == mCurrentPrimaryItem) {
-                    state.putString(SELECTED_FRAGMENT, key);
+                    state.putString(selectedFragment, key);
                 }
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             }
@@ -282,16 +292,16 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
     }
 
     @Override
-    public void restoreState(@Nullable Parcelable state, @Nullable ClassLoader loader) {
+    public void restoreState(@Nullable final Parcelable state, @Nullable final ClassLoader loader) {
         if (state != null) {
-            Bundle bundle = (Bundle)state;
+            Bundle bundle = (Bundle) state;
             bundle.setClassLoader(loader);
             Parcelable[] fss = bundle.getParcelableArray("states");
             mSavedState.clear();
             mFragments.clear();
             if (fss != null) {
-                for (int i=0; i<fss.length; i++) {
-                    mSavedState.add((Fragment.SavedState)fss[i]);
+                for (int i = 0; i < fss.length; i++) {
+                    mSavedState.add((Fragment.SavedState) fss[i]);
                 }
             }
             Iterable<String> keys = bundle.keySet();
@@ -304,7 +314,8 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
                             mFragments.add(null);
                         }
                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        final boolean wasSelected = bundle.getString(SELECTED_FRAGMENT, "").equals(key);
+                        final boolean wasSelected = bundle.getString(selectedFragment, "")
+                                .equals(key);
                         f.setMenuVisibility(wasSelected);
                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         mFragments.set(index, f);

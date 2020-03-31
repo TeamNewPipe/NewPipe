@@ -6,7 +6,7 @@ import org.schabi.newpipe.R;
 
 public class DebugSettingsFragment extends BasePreferenceFragment {
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResource(R.xml.debug_settings);
     }
 }

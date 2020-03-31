@@ -31,59 +31,16 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.Objects;
 
 public abstract class Tab {
-    Tab() {
-    }
+    private static final String JSON_TAB_ID_KEY = "tab_id";
 
-    Tab(@NonNull JsonObject jsonObject) {
+    Tab() { }
+
+    Tab(@NonNull final JsonObject jsonObject) {
         readDataFromJson(jsonObject);
     }
 
-    public abstract int getTabId();
-    public abstract String getTabName(Context context);
-    @DrawableRes public abstract int getTabIconRes(Context context);
-
-    /**
-     * Return a instance of the fragment that this tab represent.
-     */
-    public abstract Fragment getFragment(Context context) throws ExtractionException;
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-
-        return obj instanceof Tab && obj.getClass().equals(this.getClass())
-                && ((Tab) obj).getTabId() == this.getTabId();
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // JSON Handling
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private static final String JSON_TAB_ID_KEY = "tab_id";
-
-    public void writeJsonOn(JsonSink jsonSink) {
-        jsonSink.object();
-
-        jsonSink.value(JSON_TAB_ID_KEY, getTabId());
-        writeDataToJson(jsonSink);
-
-        jsonSink.end();
-    }
-
-    protected void writeDataToJson(JsonSink writerSink) {
-        // No-op
-    }
-
-    protected void readDataFromJson(JsonObject jsonObject) {
-        // No-op
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Tab Handling
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Nullable
-    public static Tab from(@NonNull JsonObject jsonObject) {
+    public static Tab from(@NonNull final JsonObject jsonObject) {
         final int tabId = jsonObject.getInt(Tab.JSON_TAB_ID_KEY, -1);
 
         if (tabId == -1) {
@@ -99,7 +56,7 @@ public abstract class Tab {
     }
 
     @Nullable
-    public static Type typeFrom(int tabId) {
+    public static Type typeFrom(final int tabId) {
         for (Type available : Type.values()) {
             if (available.getTabId() == tabId) {
                 return available;
@@ -109,7 +66,7 @@ public abstract class Tab {
     }
 
     @Nullable
-    private static Tab from(final int tabId, @Nullable JsonObject jsonObject) {
+    private static Tab from(final int tabId, @Nullable final JsonObject jsonObject) {
         final Type type = typeFrom(tabId);
 
         if (type == null) {
@@ -129,6 +86,56 @@ public abstract class Tab {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
+    // JSON Handling
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public abstract int getTabId();
+
+    public abstract String getTabName(Context context);
+
+    @DrawableRes
+    public abstract int getTabIconRes(Context context);
+
+    /**
+     * Return a instance of the fragment that this tab represent.
+     *
+     * @param context Android app context
+     * @return the fragment this tab represents
+     */
+    public abstract Fragment getFragment(Context context) throws ExtractionException;
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Tab Handling
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        return obj instanceof Tab && obj.getClass().equals(this.getClass())
+                && ((Tab) obj).getTabId() == this.getTabId();
+    }
+
+    public void writeJsonOn(final JsonSink jsonSink) {
+        jsonSink.object();
+
+        jsonSink.value(JSON_TAB_ID_KEY, getTabId());
+        writeDataToJson(jsonSink);
+
+        jsonSink.end();
+    }
+
+    protected void writeDataToJson(final JsonSink writerSink) {
+        // No-op
+    }
+
+    protected void readDataFromJson(final JsonObject jsonObject) {
+        // No-op
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Implementations
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -144,7 +151,7 @@ public abstract class Tab {
 
         private Tab tab;
 
-        Type(Tab tab) {
+        Type(final Tab tab) {
             this.tab = tab;
         }
 
@@ -166,18 +173,18 @@ public abstract class Tab {
         }
 
         @Override
-        public String getTabName(Context context) {
+        public String getTabName(final Context context) {
             return "NewPipe"; //context.getString(R.string.blank_page_summary);
         }
 
         @DrawableRes
         @Override
-        public int getTabIconRes(Context context) {
+        public int getTabIconRes(final Context context) {
             return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_blank_page);
         }
 
         @Override
-        public BlankFragment getFragment(Context context) {
+        public BlankFragment getFragment(final Context context) {
             return new BlankFragment();
         }
     }
@@ -191,18 +198,18 @@ public abstract class Tab {
         }
 
         @Override
-        public String getTabName(Context context) {
+        public String getTabName(final Context context) {
             return context.getString(R.string.tab_subscriptions);
         }
 
         @DrawableRes
         @Override
-        public int getTabIconRes(Context context) {
+        public int getTabIconRes(final Context context) {
             return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_channel);
         }
 
         @Override
-        public SubscriptionFragment getFragment(Context context) {
+        public SubscriptionFragment getFragment(final Context context) {
             return new SubscriptionFragment();
         }
 
@@ -217,18 +224,18 @@ public abstract class Tab {
         }
 
         @Override
-        public String getTabName(Context context) {
+        public String getTabName(final Context context) {
             return context.getString(R.string.fragment_feed_title);
         }
 
         @DrawableRes
         @Override
-        public int getTabIconRes(Context context) {
+        public int getTabIconRes(final Context context) {
             return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.rss);
         }
 
         @Override
-        public FeedFragment getFragment(Context context) {
+        public FeedFragment getFragment(final Context context) {
             return new FeedFragment();
         }
     }
@@ -242,18 +249,18 @@ public abstract class Tab {
         }
 
         @Override
-        public String getTabName(Context context) {
+        public String getTabName(final Context context) {
             return context.getString(R.string.tab_bookmarks);
         }
 
         @DrawableRes
         @Override
-        public int getTabIconRes(Context context) {
+        public int getTabIconRes(final Context context) {
             return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_bookmark);
         }
 
         @Override
-        public BookmarkFragment getFragment(Context context) {
+        public BookmarkFragment getFragment(final Context context) {
             return new BookmarkFragment();
         }
     }
@@ -267,41 +274,39 @@ public abstract class Tab {
         }
 
         @Override
-        public String getTabName(Context context) {
+        public String getTabName(final Context context) {
             return context.getString(R.string.title_activity_history);
         }
 
         @DrawableRes
         @Override
-        public int getTabIconRes(Context context) {
+        public int getTabIconRes(final Context context) {
             return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.history);
         }
 
         @Override
-        public StatisticsPlaylistFragment getFragment(Context context) {
+        public StatisticsPlaylistFragment getFragment(final Context context) {
             return new StatisticsPlaylistFragment();
         }
     }
 
     public static class KioskTab extends Tab {
         public static final int ID = 5;
-
-        private int kioskServiceId;
-        private String kioskId;
-
         private static final String JSON_KIOSK_SERVICE_ID_KEY = "service_id";
         private static final String JSON_KIOSK_ID_KEY = "kiosk_id";
+        private int kioskServiceId;
+        private String kioskId;
 
         private KioskTab() {
             this(-1, "<no-id>");
         }
 
-        public KioskTab(int kioskServiceId, String kioskId) {
+        public KioskTab(final int kioskServiceId, final String kioskId) {
             this.kioskServiceId = kioskServiceId;
             this.kioskId = kioskId;
         }
 
-        public KioskTab(JsonObject jsonObject) {
+        public KioskTab(final JsonObject jsonObject) {
             super(jsonObject);
         }
 
@@ -311,13 +316,13 @@ public abstract class Tab {
         }
 
         @Override
-        public String getTabName(Context context) {
+        public String getTabName(final Context context) {
             return KioskTranslator.getTranslatedKioskName(kioskId, context);
         }
 
         @DrawableRes
         @Override
-        public int getTabIconRes(Context context) {
+        public int getTabIconRes(final Context context) {
             final int kioskIcon = KioskTranslator.getKioskIcons(kioskId, context);
 
             if (kioskIcon <= 0) {
@@ -328,26 +333,25 @@ public abstract class Tab {
         }
 
         @Override
-        public KioskFragment getFragment(Context context) throws ExtractionException {
+        public KioskFragment getFragment(final Context context) throws ExtractionException {
             return KioskFragment.getInstance(kioskServiceId, kioskId);
         }
 
         @Override
-        protected void writeDataToJson(JsonSink writerSink) {
+        protected void writeDataToJson(final JsonSink writerSink) {
             writerSink.value(JSON_KIOSK_SERVICE_ID_KEY, kioskServiceId)
                     .value(JSON_KIOSK_ID_KEY, kioskId);
         }
 
         @Override
-        protected void readDataFromJson(JsonObject jsonObject) {
+        protected void readDataFromJson(final JsonObject jsonObject) {
             kioskServiceId = jsonObject.getInt(JSON_KIOSK_SERVICE_ID_KEY, -1);
             kioskId = jsonObject.getString(JSON_KIOSK_ID_KEY, "<no-id>");
         }
 
         @Override
-        public boolean equals(Object obj) {
-            return super.equals(obj) &&
-                    kioskServiceId == ((KioskTab) obj).kioskServiceId
+        public boolean equals(final Object obj) {
+            return super.equals(obj) && kioskServiceId == ((KioskTab) obj).kioskServiceId
                     && Objects.equals(kioskId, ((KioskTab) obj).kioskId);
         }
 
@@ -362,26 +366,25 @@ public abstract class Tab {
 
     public static class ChannelTab extends Tab {
         public static final int ID = 6;
-
-        private int channelServiceId;
-        private String channelUrl;
-        private String channelName;
-
         private static final String JSON_CHANNEL_SERVICE_ID_KEY = "channel_service_id";
         private static final String JSON_CHANNEL_URL_KEY = "channel_url";
         private static final String JSON_CHANNEL_NAME_KEY = "channel_name";
+        private int channelServiceId;
+        private String channelUrl;
+        private String channelName;
 
         private ChannelTab() {
             this(-1, "<no-url>", "<no-name>");
         }
 
-        public ChannelTab(int channelServiceId, String channelUrl, String channelName) {
+        public ChannelTab(final int channelServiceId, final String channelUrl,
+                          final String channelName) {
             this.channelServiceId = channelServiceId;
             this.channelUrl = channelUrl;
             this.channelName = channelName;
         }
 
-        public ChannelTab(JsonObject jsonObject) {
+        public ChannelTab(final JsonObject jsonObject) {
             super(jsonObject);
         }
 
@@ -391,39 +394,38 @@ public abstract class Tab {
         }
 
         @Override
-        public String getTabName(Context context) {
+        public String getTabName(final Context context) {
             return channelName;
         }
 
         @DrawableRes
         @Override
-        public int getTabIconRes(Context context) {
+        public int getTabIconRes(final Context context) {
             return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_channel);
         }
 
         @Override
-        public ChannelFragment getFragment(Context context) {
+        public ChannelFragment getFragment(final Context context) {
             return ChannelFragment.getInstance(channelServiceId, channelUrl, channelName);
         }
 
         @Override
-        protected void writeDataToJson(JsonSink writerSink) {
+        protected void writeDataToJson(final JsonSink writerSink) {
             writerSink.value(JSON_CHANNEL_SERVICE_ID_KEY, channelServiceId)
                     .value(JSON_CHANNEL_URL_KEY, channelUrl)
                     .value(JSON_CHANNEL_NAME_KEY, channelName);
         }
 
         @Override
-        protected void readDataFromJson(JsonObject jsonObject) {
+        protected void readDataFromJson(final JsonObject jsonObject) {
             channelServiceId = jsonObject.getInt(JSON_CHANNEL_SERVICE_ID_KEY, -1);
             channelUrl = jsonObject.getString(JSON_CHANNEL_URL_KEY, "<no-url>");
             channelName = jsonObject.getString(JSON_CHANNEL_NAME_KEY, "<no-name>");
         }
 
         @Override
-        public boolean equals(Object obj) {
-            return super.equals(obj) &&
-                    channelServiceId == ((ChannelTab) obj).channelServiceId
+        public boolean equals(final Object obj) {
+            return super.equals(obj) && channelServiceId == ((ChannelTab) obj).channelServiceId
                     && Objects.equals(channelUrl, ((ChannelTab) obj).channelUrl)
                     && Objects.equals(channelName, ((ChannelTab) obj).channelName);
         }
@@ -450,22 +452,22 @@ public abstract class Tab {
         }
 
         @Override
-        public String getTabName(Context context) {
+        public String getTabName(final Context context) {
             return KioskTranslator.getTranslatedKioskName(getDefaultKioskId(context), context);
         }
 
         @DrawableRes
         @Override
-        public int getTabIconRes(Context context) {
+        public int getTabIconRes(final Context context) {
             return KioskTranslator.getKioskIcons(getDefaultKioskId(context), context);
         }
 
         @Override
-        public DefaultKioskFragment getFragment(Context context) throws ExtractionException {
+        public DefaultKioskFragment getFragment(final Context context) {
             return new DefaultKioskFragment();
         }
 
-        private String getDefaultKioskId(Context context) {
+        private String getDefaultKioskId(final Context context) {
             final int kioskServiceId = ServiceHelper.getSelectedServiceId(context);
 
             String kioskId = "";
@@ -474,7 +476,8 @@ public abstract class Tab {
                 kioskId = service.getKioskList().getDefaultKioskId();
             } catch (ExtractionException e) {
                 ErrorActivity.reportError(context, e, null, null,
-                        ErrorActivity.ErrorInfo.make(UserAction.REQUESTED_KIOSK, "none", "Loading default kiosk from selected service", 0));
+                        ErrorActivity.ErrorInfo.make(UserAction.REQUESTED_KIOSK, "none",
+                                "Loading default kiosk from selected service", 0));
             }
             return kioskId;
         }

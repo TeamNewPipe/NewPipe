@@ -12,9 +12,10 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,62 +43,137 @@ import okhttp3.Response;
  * the notification, the user will be directed to the download link.
  */
 public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
-
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = CheckForNewAppVersionTask.class.getSimpleName();
-    private static final Application app = App.getApp();
-    private static final String GITHUB_APK_SHA1 = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
-    private static final String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
-    private static final int timeoutPeriod = 30;
+    private static final Application APP = App.getApp();
+    private static final String GITHUB_APK_SHA1
+            = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
+    private static final String NEWPIPE_API_URL = "https://newpipe.schabi.org/api/data.json";
+    private static final int TIMEOUT_PERIOD = 30;
 
     private SharedPreferences mPrefs;
     private OkHttpClient client;
 
+    /**
+     * Method to get the apk's SHA1 key. See https://stackoverflow.com/questions/9293019/#22506133.
+     *
+     * @return String with the apk's SHA1 fingeprint in hexadecimal
+     */
+    private static String getCertificateSHA1Fingerprint() {
+        PackageManager pm = APP.getPackageManager();
+        String packageName = APP.getPackageName();
+        int flags = PackageManager.GET_SIGNATURES;
+        PackageInfo packageInfo = null;
+
+        try {
+            packageInfo = pm.getPackageInfo(packageName, flags);
+        } catch (PackageManager.NameNotFoundException ex) {
+            ErrorActivity.reportError(APP, ex, null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "Could not find package info", R.string.app_ui_crash));
+        }
+
+        Signature[] signatures = packageInfo.signatures;
+        byte[] cert = signatures[0].toByteArray();
+        InputStream input = new ByteArrayInputStream(cert);
+
+        CertificateFactory cf = null;
+        X509Certificate c = null;
+
+        try {
+            cf = CertificateFactory.getInstance("X509");
+            c = (X509Certificate) cf.generateCertificate(input);
+        } catch (CertificateException ex) {
+            ErrorActivity.reportError(APP, ex, null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "Certificate error", R.string.app_ui_crash));
+        }
+
+        String hexString = null;
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(c.getEncoded());
+            hexString = byte2HexFormatted(publicKey);
+        } catch (NoSuchAlgorithmException ex1) {
+            ErrorActivity.reportError(APP, ex1, null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "Could not retrieve SHA1 key", R.string.app_ui_crash));
+        } catch (CertificateEncodingException ex2) {
+            ErrorActivity.reportError(APP, ex2, null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "Could not retrieve SHA1 key", R.string.app_ui_crash));
+        }
+
+        return hexString;
+    }
+
+    private static String byte2HexFormatted(final byte[] arr) {
+        StringBuilder str = new StringBuilder(arr.length * 2);
+
+        for (int i = 0; i < arr.length; i++) {
+            String h = Integer.toHexString(arr[i]);
+            int l = h.length();
+            if (l == 1) {
+                h = "0" + h;
+            }
+            if (l > 2) {
+                h = h.substring(l - 2, l);
+            }
+            str.append(h.toUpperCase());
+            if (i < (arr.length - 1)) {
+                str.append(':');
+            }
+        }
+        return str.toString();
+    }
+
+    public static boolean isGithubApk() {
+        return getCertificateSHA1Fingerprint().equals(GITHUB_APK_SHA1);
+    }
+
     @Override
     protected void onPreExecute() {
-
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(app);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(APP);
 
         // Check if user has enabled/ disabled update checking
         // and if the current apk is a github one or not.
-        if (!mPrefs.getBoolean(app.getString(R.string.update_app_key), true)
-                || !isGithubApk()) {
+        if (!mPrefs.getBoolean(APP.getString(R.string.update_app_key), true) || !isGithubApk()) {
             this.cancel(true);
         }
     }
 
     @Override
-    protected String doInBackground(Void... voids) {
-        
-        if(isCancelled() || !isConnected()) return null;
-
-        // Make a network request to get latest NewPipe data.
-        if (client == null) {
-
-            client = new OkHttpClient
-                    .Builder()
-                    .readTimeout(timeoutPeriod, TimeUnit.SECONDS)
-                    .build();
+    protected String doInBackground(final Void... voids) {
+        if (isCancelled() || !isConnected()) {
+            return null;
         }
 
-        Request request = new Request.Builder()
-                .url(newPipeApiUrl)
-                .build();
+        // Make a network request to get latest NewPipe data.
+        // FIXME: Use DownloaderImp
+        if (client == null) {
+
+            client = new OkHttpClient.Builder()
+                    .readTimeout(TIMEOUT_PERIOD, TimeUnit.SECONDS).build();
+        }
+
+        Request request = new Request.Builder().url(NEWPIPE_API_URL).build();
 
         try {
             Response response = client.newCall(request).execute();
             return response.body().string();
         } catch (IOException ex) {
             // connectivity problems, do not alarm user and fail silently
-            if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
+            if (DEBUG) {
+                Log.w(TAG, Log.getStackTraceString(ex));
+            }
         }
 
         return null;
     }
 
     @Override
-    protected void onPostExecute(String response) {
-
+    protected void onPostExecute(final String response) {
         // Parse the json from the response.
         if (response != null) {
 
@@ -115,7 +191,9 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
             } catch (JSONException ex) {
                 // connectivity problems, do not alarm user and fail silently
-                if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
+                if (DEBUG) {
+                    Log.w(TAG, Log.getStackTraceString(ex));
+                }
             }
         }
     }
@@ -123,116 +201,42 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     /**
      * Method to compare the current and latest available app version.
      * If a newer version is available, we show the update notification.
-     * @param versionName
-     * @param apkLocationUrl
+     *
+     * @param versionName    Name of new version
+     * @param apkLocationUrl Url with the new apk
+     * @param versionCode    V
      */
-    private void compareAppVersionAndShowNotification(String versionName,
-                                                      String apkLocationUrl,
-                                                      String versionCode) {
-
-        int NOTIFICATION_ID = 2000;
+    private void compareAppVersionAndShowNotification(final String versionName,
+                                                      final String apkLocationUrl,
+                                                      final String versionCode) {
+        int notificationId = 2000;
 
         if (BuildConfig.VERSION_CODE < Integer.valueOf(versionCode)) {
 
             // A pending intent to open the apk location url in the browser.
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
             PendingIntent pendingIntent
-                    = PendingIntent.getActivity(app, 0, intent, 0);
+                    = PendingIntent.getActivity(APP, 0, intent, 0);
 
             NotificationCompat.Builder notificationBuilder = new NotificationCompat
-                    .Builder(app, app.getString(R.string.app_update_notification_channel_id))
+                    .Builder(APP, APP.getString(R.string.app_update_notification_channel_id))
                     .setSmallIcon(R.drawable.ic_newpipe_update)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
-                    .setContentTitle(app.getString(R.string.app_update_notification_content_title))
-                    .setContentText(app.getString(R.string.app_update_notification_content_text)
+                    .setContentTitle(APP.getString(R.string.app_update_notification_content_title))
+                    .setContentText(APP.getString(R.string.app_update_notification_content_text)
                             + " " + versionName);
 
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(app);
-            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(APP);
+            notificationManager.notify(notificationId, notificationBuilder.build());
         }
     }
 
-    /**
-     * Method to get the apk's SHA1 key.
-     * https://stackoverflow.com/questions/9293019/get-certificate-fingerprint-from-android-app#22506133
-     */
-    private static String getCertificateSHA1Fingerprint() {
-
-        PackageManager pm = app.getPackageManager();
-        String packageName = app.getPackageName();
-        int flags = PackageManager.GET_SIGNATURES;
-        PackageInfo packageInfo = null;
-
-        try {
-            packageInfo = pm.getPackageInfo(packageName, flags);
-        } catch (PackageManager.NameNotFoundException ex) {
-            ErrorActivity.reportError(app, ex, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Could not find package info", R.string.app_ui_crash));
-        }
-
-        Signature[] signatures = packageInfo.signatures;
-        byte[] cert = signatures[0].toByteArray();
-        InputStream input = new ByteArrayInputStream(cert);
-
-        CertificateFactory cf = null;
-        X509Certificate c = null;
-
-        try {
-            cf = CertificateFactory.getInstance("X509");
-            c = (X509Certificate) cf.generateCertificate(input);
-        } catch (CertificateException ex) {
-            ErrorActivity.reportError(app, ex, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Certificate error", R.string.app_ui_crash));
-        }
-
-        String hexString = null;
-
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA1");
-            byte[] publicKey = md.digest(c.getEncoded());
-            hexString = byte2HexFormatted(publicKey);
-        } catch (NoSuchAlgorithmException ex1) {
-            ErrorActivity.reportError(app, ex1, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Could not retrieve SHA1 key", R.string.app_ui_crash));
-        } catch (CertificateEncodingException ex2) {
-            ErrorActivity.reportError(app, ex2, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Could not retrieve SHA1 key", R.string.app_ui_crash));
-        }
-
-        return hexString;
-    }
-
-    private static String byte2HexFormatted(byte[] arr) {
-
-        StringBuilder str = new StringBuilder(arr.length * 2);
-
-        for (int i = 0; i < arr.length; i++) {
-            String h = Integer.toHexString(arr[i]);
-            int l = h.length();
-            if (l == 1) h = "0" + h;
-            if (l > 2) h = h.substring(l - 2, l);
-            str.append(h.toUpperCase());
-            if (i < (arr.length - 1)) str.append(':');
-        }
-        return str.toString();
-    }
-
-    public static boolean isGithubApk() {
-
-        return getCertificateSHA1Fingerprint().equals(GITHUB_APK_SHA1);
-    }
-    
     private boolean isConnected() {
-     
-        ConnectivityManager cm = 
-                (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm =
+                (ConnectivityManager) APP.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null
-				&& cm.getActiveNetworkInfo().isConnected();
+                && cm.getActiveNetworkInfo().isConnected();
     }
 }

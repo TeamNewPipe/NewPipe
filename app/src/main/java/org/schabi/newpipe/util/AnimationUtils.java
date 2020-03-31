@@ -24,48 +24,51 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.res.ColorStateList;
-import androidx.annotation.ColorInt;
-import androidx.annotation.FloatRange;
-import androidx.core.view.ViewCompat;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
+import androidx.core.view.ViewCompat;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+
 import org.schabi.newpipe.MainActivity;
 
-public class AnimationUtils {
+public final class AnimationUtils {
     private static final String TAG = "AnimationUtils";
     private static final boolean DEBUG = MainActivity.DEBUG;
 
-    public enum Type {
-        ALPHA,
-        SCALE_AND_ALPHA, LIGHT_SCALE_AND_ALPHA,
-        SLIDE_AND_ALPHA, LIGHT_SLIDE_AND_ALPHA
-    }
+    private AnimationUtils() { }
 
-    public static void animateView(View view, boolean enterOrExit, long duration) {
+    public static void animateView(final View view, final boolean enterOrExit,
+                                   final long duration) {
         animateView(view, Type.ALPHA, enterOrExit, duration, 0, null);
     }
 
-    public static void animateView(View view, boolean enterOrExit, long duration, long delay) {
+    public static void animateView(final View view, final boolean enterOrExit,
+                                   final long duration, final long delay) {
         animateView(view, Type.ALPHA, enterOrExit, duration, delay, null);
     }
 
-    public static void animateView(View view, boolean enterOrExit, long duration, long delay, Runnable execOnEnd) {
+    public static void animateView(final View view, final boolean enterOrExit, final long duration,
+                                   final long delay, final Runnable execOnEnd) {
         animateView(view, Type.ALPHA, enterOrExit, duration, delay, execOnEnd);
     }
 
-    public static void animateView(View view, Type animationType, boolean enterOrExit, long duration) {
+    public static void animateView(final View view, final Type animationType,
+                                   final boolean enterOrExit, final long duration) {
         animateView(view, animationType, enterOrExit, duration, 0, null);
     }
 
-    public static void animateView(View view, Type animationType, boolean enterOrExit, long duration, long delay) {
+    public static void animateView(final View view, final Type animationType,
+                                   final boolean enterOrExit, final long duration,
+                                   final long delay) {
         animateView(view, animationType, enterOrExit, duration, delay, null);
     }
 
     /**
-     * Animate the view
+     * Animate the view.
      *
      * @param view          view that will be animated
      * @param animationType {@link Type} of the animation
@@ -74,7 +77,9 @@ public class AnimationUtils {
      * @param delay         how long the animation will wait to start, in milliseconds
      * @param execOnEnd     runnable that will be executed when the animation ends
      */
-    public static void animateView(final View view, Type animationType, boolean enterOrExit, long duration, long delay, Runnable execOnEnd) {
+    public static void animateView(final View view, final Type animationType,
+                                   final boolean enterOrExit, final long duration,
+                                   final long delay, final Runnable execOnEnd) {
         if (DEBUG) {
             String id;
             try {
@@ -83,24 +88,33 @@ public class AnimationUtils {
                 id = view.getId() + "";
             }
 
-            String msg = String.format("%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s",
-                    enterOrExit, view.getClass().getSimpleName(), id, animationType, duration, delay, execOnEnd);
+            String msg = String.format("%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s", enterOrExit,
+                    view.getClass().getSimpleName(), id, animationType, duration, delay, execOnEnd);
             Log.d(TAG, "animateView()" + msg);
         }
 
         if (view.getVisibility() == View.VISIBLE && enterOrExit) {
-            if (DEBUG) Log.d(TAG, "animateView() view was already visible > view = [" + view + "]");
+            if (DEBUG) {
+                Log.d(TAG, "animateView() view was already visible > view = [" + view + "]");
+            }
             view.animate().setListener(null).cancel();
             view.setVisibility(View.VISIBLE);
             view.setAlpha(1f);
-            if (execOnEnd != null) execOnEnd.run();
+            if (execOnEnd != null) {
+                execOnEnd.run();
+            }
             return;
-        } else if ((view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) && !enterOrExit) {
-            if (DEBUG) Log.d(TAG, "animateView() view was already gone > view = [" + view + "]");
+        } else if ((view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE)
+                && !enterOrExit) {
+            if (DEBUG) {
+                Log.d(TAG, "animateView() view was already gone > view = [" + view + "]");
+            }
             view.animate().setListener(null).cancel();
             view.setVisibility(View.GONE);
             view.setAlpha(0f);
-            if (execOnEnd != null) execOnEnd.run();
+            if (execOnEnd != null) {
+                execOnEnd.run();
+            }
             return;
         }
 
@@ -126,33 +140,44 @@ public class AnimationUtils {
         }
     }
 
-
     /**
-     * Animate the background color of a view
+     * Animate the background color of a view.
+     *
+     * @param view       the view to animate
+     * @param duration   the duration of the animation
+     * @param colorStart the background color to start with
+     * @param colorEnd   the background color to end with
      */
-    public static void animateBackgroundColor(final View view, long duration, @ColorInt final int colorStart, @ColorInt final int colorEnd) {
+    public static void animateBackgroundColor(final View view, final long duration,
+                                              @ColorInt final int colorStart,
+                                              @ColorInt final int colorEnd) {
         if (DEBUG) {
-            Log.d(TAG, "animateBackgroundColor() called with: view = [" + view + "], duration = [" + duration + "], colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]");
+            Log.d(TAG, "animateBackgroundColor() called with: "
+                    + "view = [" + view + "], duration = [" + duration + "], "
+                    + "colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]");
         }
 
-        final int[][] EMPTY = new int[][]{new int[0]};
-        ValueAnimator viewPropertyAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), colorStart, colorEnd);
+        final int[][] empty = new int[][]{new int[0]};
+        ValueAnimator viewPropertyAnimator = ValueAnimator
+                .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());
         viewPropertyAnimator.setDuration(duration);
         viewPropertyAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                ViewCompat.setBackgroundTintList(view, new ColorStateList(EMPTY, new int[]{(int) animation.getAnimatedValue()}));
+            public void onAnimationUpdate(final ValueAnimator animation) {
+                ViewCompat.setBackgroundTintList(view,
+                        new ColorStateList(empty, new int[]{(int) animation.getAnimatedValue()}));
             }
         });
         viewPropertyAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animation) {
-                ViewCompat.setBackgroundTintList(view, new ColorStateList(EMPTY, new int[]{colorEnd}));
+            public void onAnimationEnd(final Animator animation) {
+                ViewCompat.setBackgroundTintList(view,
+                        new ColorStateList(empty, new int[]{colorEnd}));
             }
 
             @Override
-            public void onAnimationCancel(Animator animation) {
+            public void onAnimationCancel(final Animator animation) {
                 onAnimationEnd(animation);
             }
         });
@@ -160,40 +185,52 @@ public class AnimationUtils {
     }
 
     /**
-     * Animate the text color of any view that extends {@link TextView} (Buttons, EditText...)
+     * Animate the text color of any view that extends {@link TextView} (Buttons, EditText...).
+     *
+     * @param view       the text view to animate
+     * @param duration   the duration of the animation
+     * @param colorStart the text color to start with
+     * @param colorEnd   the text color to end with
      */
-    public static void animateTextColor(final TextView view, long duration, @ColorInt final int colorStart, @ColorInt final int colorEnd) {
+    public static void animateTextColor(final TextView view, final long duration,
+                                        @ColorInt final int colorStart,
+                                        @ColorInt final int colorEnd) {
         if (DEBUG) {
-            Log.d(TAG, "animateTextColor() called with: view = [" + view + "], duration = [" + duration + "], colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]");
+            Log.d(TAG, "animateTextColor() called with: "
+                    + "view = [" + view + "], duration = [" + duration + "], "
+                    + "colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]");
         }
 
-        ValueAnimator viewPropertyAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), colorStart, colorEnd);
+        ValueAnimator viewPropertyAnimator = ValueAnimator
+                .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());
         viewPropertyAnimator.setDuration(duration);
         viewPropertyAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+            public void onAnimationUpdate(final ValueAnimator animation) {
                 view.setTextColor((int) animation.getAnimatedValue());
             }
         });
         viewPropertyAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animation) {
+            public void onAnimationEnd(final Animator animation) {
                 view.setTextColor(colorEnd);
             }
 
             @Override
-            public void onAnimationCancel(Animator animation) {
+            public void onAnimationCancel(final Animator animation) {
                 view.setTextColor(colorEnd);
             }
         });
         viewPropertyAnimator.start();
     }
 
-    public static ValueAnimator animateHeight(final View view, long duration, int targetHeight) {
+    public static ValueAnimator animateHeight(final View view, final long duration,
+                                              final int targetHeight) {
         final int height = view.getHeight();
         if (DEBUG) {
-            Log.d(TAG, "animateHeight: duration = [" + duration + "], from " + height + " to → " + targetHeight + " in: " + view);
+            Log.d(TAG, "animateHeight: duration = [" + duration + "], "
+                    + "from " + height + " to → " + targetHeight + " in: " + view);
         }
 
         ValueAnimator animator = ValueAnimator.ofFloat(height, targetHeight);
@@ -206,13 +243,13 @@ public class AnimationUtils {
         });
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animation) {
+            public void onAnimationEnd(final Animator animation) {
                 view.getLayoutParams().height = targetHeight;
                 view.requestLayout();
             }
 
             @Override
-            public void onAnimationCancel(Animator animation) {
+            public void onAnimationCancel(final Animator animation) {
                 view.getLayoutParams().height = targetHeight;
                 view.requestLayout();
             }
@@ -222,155 +259,211 @@ public class AnimationUtils {
         return animator;
     }
 
-    public static void animateRotation(final View view, long duration, int targetRotation) {
+    public static void animateRotation(final View view, final long duration,
+                                       final int targetRotation) {
         if (DEBUG) {
-            Log.d(TAG, "animateRotation: duration = [" + duration + "], from " + view.getRotation() + " to → " + targetRotation + " in: " + view);
+            Log.d(TAG, "animateRotation: duration = [" + duration + "], "
+                    + "from " + view.getRotation() + " to → " + targetRotation + " in: " + view);
         }
         view.animate().setListener(null).cancel();
 
-        view.animate().rotation(targetRotation).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator())
+        view.animate()
+                .rotation(targetRotation).setDuration(duration)
+                .setInterpolator(new FastOutSlowInInterpolator())
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
-                    public void onAnimationCancel(Animator animation) {
+                    public void onAnimationCancel(final Animator animation) {
                         view.setRotation(targetRotation);
                     }
 
                     @Override
-                    public void onAnimationEnd(Animator animation) {
+                    public void onAnimationEnd(final Animator animation) {
                         view.setRotation(targetRotation);
                     }
                 }).start();
+    }
+
+    private static void animateAlpha(final View view, final boolean enterOrExit,
+                                     final long duration, final long delay,
+                                     final Runnable execOnEnd) {
+        if (enterOrExit) {
+            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(1f)
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(final Animator animation) {
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
+                }
+            }).start();
+        } else {
+            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(0f)
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(final Animator animation) {
+                    view.setVisibility(View.GONE);
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
+                }
+            }).start();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Internals
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static void animateAlpha(final View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
-        if (enterOrExit) {
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(1f)
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    if (execOnEnd != null) execOnEnd.run();
-                }
-            }).start();
-        } else {
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(0f)
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    view.setVisibility(View.GONE);
-                    if (execOnEnd != null) execOnEnd.run();
-                }
-            }).start();
-        }
-    }
-
-    private static void animateScaleAndAlpha(final View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
+    private static void animateScaleAndAlpha(final View view, final boolean enterOrExit,
+                                             final long duration, final long delay,
+                                             final Runnable execOnEnd) {
         if (enterOrExit) {
             view.setScaleX(.8f);
             view.setScaleY(.8f);
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).scaleX(1f).scaleY(1f)
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+            view.animate()
+                    .setInterpolator(new FastOutSlowInInterpolator())
+                    .alpha(1f).scaleX(1f).scaleY(1f)
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
-                    if (execOnEnd != null) execOnEnd.run();
+                public void onAnimationEnd(final Animator animation) {
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
                 }
             }).start();
         } else {
             view.setScaleX(1f);
             view.setScaleY(1f);
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(0f).scaleX(.8f).scaleY(.8f)
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+            view.animate()
+                    .setInterpolator(new FastOutSlowInInterpolator())
+                    .alpha(0f).scaleX(.8f).scaleY(.8f)
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
+                public void onAnimationEnd(final Animator animation) {
                     view.setVisibility(View.GONE);
-                    if (execOnEnd != null) execOnEnd.run();
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
                 }
             }).start();
         }
     }
 
-    private static void animateLightScaleAndAlpha(final View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
+    private static void animateLightScaleAndAlpha(final View view, final boolean enterOrExit,
+                                                  final long duration, final long delay,
+                                                  final Runnable execOnEnd) {
         if (enterOrExit) {
             view.setAlpha(.5f);
             view.setScaleX(.95f);
             view.setScaleY(.95f);
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).scaleX(1f).scaleY(1f)
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+            view.animate()
+                    .setInterpolator(new FastOutSlowInInterpolator())
+                    .alpha(1f).scaleX(1f).scaleY(1f)
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
-                    if (execOnEnd != null) execOnEnd.run();
+                public void onAnimationEnd(final Animator animation) {
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
                 }
             }).start();
         } else {
             view.setAlpha(1f);
             view.setScaleX(1f);
             view.setScaleY(1f);
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(0f).scaleX(.95f).scaleY(.95f)
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+            view.animate()
+                    .setInterpolator(new FastOutSlowInInterpolator())
+                    .alpha(0f).scaleX(.95f).scaleY(.95f)
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
+                public void onAnimationEnd(final Animator animation) {
                     view.setVisibility(View.GONE);
-                    if (execOnEnd != null) execOnEnd.run();
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
                 }
             }).start();
         }
     }
 
-    private static void animateSlideAndAlpha(final View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
+    private static void animateSlideAndAlpha(final View view, final boolean enterOrExit,
+                                             final long duration, final long delay,
+                                             final Runnable execOnEnd) {
         if (enterOrExit) {
             view.setTranslationY(-view.getHeight());
             view.setAlpha(0f);
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).translationY(0)
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+            view.animate()
+                    .setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).translationY(0)
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
-                    if (execOnEnd != null) execOnEnd.run();
+                public void onAnimationEnd(final Animator animation) {
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
                 }
             }).start();
         } else {
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(0f).translationY(-view.getHeight())
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+            view.animate()
+                    .setInterpolator(new FastOutSlowInInterpolator())
+                    .alpha(0f).translationY(-view.getHeight())
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
+                public void onAnimationEnd(final Animator animation) {
                     view.setVisibility(View.GONE);
-                    if (execOnEnd != null) execOnEnd.run();
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
                 }
             }).start();
         }
     }
 
-    private static void animateLightSlideAndAlpha(final View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
+    private static void animateLightSlideAndAlpha(final View view, final boolean enterOrExit,
+                                                  final long duration, final long delay,
+                                                  final Runnable execOnEnd) {
         if (enterOrExit) {
             view.setTranslationY(-view.getHeight() / 2);
             view.setAlpha(0f);
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).translationY(0)
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+            view.animate()
+                    .setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).translationY(0)
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
-                    if (execOnEnd != null) execOnEnd.run();
+                public void onAnimationEnd(final Animator animation) {
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
                 }
             }).start();
         } else {
-            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(0f).translationY(-view.getHeight() / 2)
-                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+            view.animate().setInterpolator(new FastOutSlowInInterpolator())
+                    .alpha(0f).translationY(-view.getHeight() / 2)
+                    .setDuration(duration).setStartDelay(delay)
+                    .setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
+                public void onAnimationEnd(final Animator animation) {
                     view.setVisibility(View.GONE);
-                    if (execOnEnd != null) execOnEnd.run();
+                    if (execOnEnd != null) {
+                        execOnEnd.run();
+                    }
                 }
             }).start();
         }
     }
 
-    public static void slideUp(final View view,
-                               long duration,
-                               long delay,
-                               @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
-        int translationY = (int) (view.getResources().getDisplayMetrics().heightPixels *
-                (translationPercent));
+    public static void slideUp(final View view, final long duration, final long delay,
+                               @FloatRange(from = 0.0f, to = 1.0f)
+                               final float translationPercent) {
+        int translationY = (int) (view.getResources().getDisplayMetrics().heightPixels
+                * (translationPercent));
 
         view.animate().setListener(null).cancel();
         view.setAlpha(0f);
@@ -383,5 +476,11 @@ public class AnimationUtils {
                 .setDuration(duration)
                 .setInterpolator(new FastOutSlowInInterpolator())
                 .start();
+    }
+
+    public enum Type {
+        ALPHA,
+        SCALE_AND_ALPHA, LIGHT_SCALE_AND_ALPHA,
+        SLIDE_AND_ALPHA, LIGHT_SLIDE_AND_ALPHA
     }
 }

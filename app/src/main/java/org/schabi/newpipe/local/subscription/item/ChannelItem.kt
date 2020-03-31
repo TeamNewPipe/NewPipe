@@ -2,8 +2,8 @@ package org.schabi.newpipe.local.subscription.item
 
 import android.content.Context
 import com.nostra13.universalimageloader.core.ImageLoader
-import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.list_channel_item.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem

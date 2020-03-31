@@ -14,28 +14,23 @@ public class SecondaryStreamHelper<T extends Stream> {
     private final int position;
     private final StreamSizeWrapper<T> streams;
 
-    public SecondaryStreamHelper(StreamSizeWrapper<T> streams, T selectedStream) {
+    public SecondaryStreamHelper(final StreamSizeWrapper<T> streams, final T selectedStream) {
         this.streams = streams;
         this.position = streams.getStreamsList().indexOf(selectedStream);
-        if (this.position < 0) throw new RuntimeException("selected stream not found");
-    }
-
-    public T getStream() {
-        return streams.getStreamsList().get(position);
-    }
-
-    public long getSizeInBytes() {
-        return streams.getSizeInBytes(position);
+        if (this.position < 0) {
+            throw new RuntimeException("selected stream not found");
+        }
     }
 
     /**
-     * find the correct audio stream for the desired video stream
+     * Find the correct audio stream for the desired video stream.
      *
      * @param audioStreams list of audio streams
      * @param videoStream  desired video ONLY stream
      * @return selected audio stream or null if a candidate was not found
      */
-    public static AudioStream getAudioStreamFor(@NonNull List<AudioStream> audioStreams, @NonNull VideoStream videoStream) {
+    public static AudioStream getAudioStreamFor(@NonNull final List<AudioStream> audioStreams,
+                                                @NonNull final VideoStream videoStream) {
         switch (videoStream.getFormat()) {
             case WEBM:
             case MPEG_4:// ¿is mpeg-4 DASH?
@@ -52,7 +47,9 @@ public class SecondaryStreamHelper<T extends Stream> {
             }
         }
 
-        if (m4v) return null;
+        if (m4v) {
+            return null;
+        }
 
         // retry, but this time in reverse order
         for (int i = audioStreams.size() - 1; i >= 0; i--) {
@@ -63,5 +60,13 @@ public class SecondaryStreamHelper<T extends Stream> {
         }
 
         return null;
+    }
+
+    public T getStream() {
+        return streams.getStreamsList().get(position);
+    }
+
+    public long getSizeInBytes() {
+        return streams.getSizeInBytes(position);
     }
 }

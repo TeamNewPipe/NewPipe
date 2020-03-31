@@ -3,11 +3,6 @@ package org.schabi.newpipe;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.core.app.NavUtils;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,9 +11,13 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import org.schabi.newpipe.util.ThemeHelper;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
+
+import org.schabi.newpipe.util.ThemeHelper;
 
 /*
  * Created by beneth <bmauduit@beneth.fr> on 06.12.16.
@@ -49,7 +48,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     private String foundCookies = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recaptcha);
@@ -73,7 +72,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
-            public void onPageFinished(WebView view, String url) {
+            public void onPageFinished(final WebView view, final String url) {
                 super.onPageFinished(view, url);
                 handleCookies(url);
             }
@@ -84,7 +83,8 @@ public class ReCaptchaActivity extends AppCompatActivity {
         webView.clearHistory();
         android.webkit.CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cookieManager.removeAllCookies(aBoolean -> {});
+            cookieManager.removeAllCookies(aBoolean -> {
+            });
         } else {
             cookieManager.removeAllCookie();
         }
@@ -93,7 +93,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.menu_recaptcha, menu);
 
         ActionBar actionBar = getSupportActionBar();
@@ -112,7 +112,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_item_done:
@@ -137,24 +137,29 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
 
-
-    private void handleCookies(String url) {
+    private void handleCookies(final String url) {
         String cookies = CookieManager.getInstance().getCookie(url);
-        if (MainActivity.DEBUG) Log.d(TAG, "handleCookies: url=" + url + "; cookies=" + (cookies == null ? "null" : cookies));
-        if (cookies == null) return;
+        if (MainActivity.DEBUG) {
+            Log.d(TAG, "handleCookies: "
+                    + "url=" + url + "; cookies=" + (cookies == null ? "null" : cookies));
+        }
+        if (cookies == null) {
+            return;
+        }
 
         addYoutubeCookies(cookies);
         // add other methods to extract cookies here
     }
 
-    private void addYoutubeCookies(@NonNull String cookies) {
-        if (cookies.contains("s_gl=") || cookies.contains("goojf=") || cookies.contains("VISITOR_INFO1_LIVE=")) {
+    private void addYoutubeCookies(@NonNull final String cookies) {
+        if (cookies.contains("s_gl=") || cookies.contains("goojf=")
+                || cookies.contains("VISITOR_INFO1_LIVE=")) {
             // youtube seems to also need the other cookies:
             addCookie(cookies);
         }
     }
 
-    private void addCookie(String cookie) {
+    private void addCookie(final String cookie) {
         if (foundCookies.contains(cookie)) {
             return;
         }

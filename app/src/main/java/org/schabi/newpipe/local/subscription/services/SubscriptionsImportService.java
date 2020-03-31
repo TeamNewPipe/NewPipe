@@ -20,11 +20,12 @@
 package org.schabi.newpipe.local.subscription.services;
 
 import android.content.Intent;
+import android.text.TextUtils;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import android.text.TextUtils;
-import android.util.Log;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -61,22 +62,33 @@ public class SubscriptionsImportService extends BaseImportExportService {
     public static final String KEY_VALUE = "key_value";
 
     /**
-     * A {@link LocalBroadcastManager local broadcast} will be made with this action when the import is successfully completed.
+     * A {@link LocalBroadcastManager local broadcast} will be made with this action
+     * when the import is successfully completed.
      */
-    public static final String IMPORT_COMPLETE_ACTION = "org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.IMPORT_COMPLETE";
-
+    public static final String IMPORT_COMPLETE_ACTION = "org.schabi.newpipe.local.subscription"
+            + ".services.SubscriptionsImportService.IMPORT_COMPLETE";
+    /**
+     * How many extractions running in parallel.
+     */
+    public static final int PARALLEL_EXTRACTIONS = 8;
+    /**
+     * Number of items to buffer to mass-insert in the subscriptions table,
+     * this leads to a better performance as we can then use db transactions.
+     */
+    public static final int BUFFER_COUNT_BEFORE_INSERT = 50;
     private Subscription subscription;
     private int currentMode;
     private int currentServiceId;
-
     @Nullable
     private String channelUrl;
     @Nullable
     private InputStream inputStream;
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent == null || subscription != null) return START_NOT_STICKY;
+    public int onStartCommand(final Intent intent, final int flags, final int startId) {
+        if (intent == null || subscription != null) {
+            return START_NOT_STICKY;
+        }
 
         currentMode = intent.getIntExtra(KEY_MODE, -1);
         currentServiceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, Constants.NO_SERVICE_ID);
@@ -86,7 +98,9 @@ public class SubscriptionsImportService extends BaseImportExportService {
         } else {
             final String filePath = intent.getStringExtra(KEY_VALUE);
             if (TextUtils.isEmpty(filePath)) {
-                stopAndReportError(new IllegalStateException("Importing from input stream, but file path is empty or null"), "Importing subscriptions");
+                stopAndReportError(new IllegalStateException(
+                        "Importing from input stream, but file path is empty or null"),
+                        "Importing subscriptions");
                 return START_NOT_STICKY;
             }
 
@@ -99,8 +113,12 @@ public class SubscriptionsImportService extends BaseImportExportService {
         }
 
         if (currentMode == -1 || currentMode == CHANNEL_URL_MODE && channelUrl == null) {
-            final String errorDescription = "Some important field is null or in illegal state: currentMode=[" + currentMode + "], channelUrl=[" + channelUrl + "], inputStream=[" + inputStream + "]";
-            stopAndReportError(new IllegalStateException(errorDescription), "Importing subscriptions");
+            final String errorDescription = "Some important field is null or in illegal state: "
+                    + "currentMode=[" + currentMode + "], "
+                    + "channelUrl=[" + channelUrl + "], "
+                    + "inputStream=[" + inputStream + "]";
+            stopAndReportError(new IllegalStateException(errorDescription),
+                    "Importing subscriptions");
             return START_NOT_STICKY;
         }
 
@@ -113,6 +131,10 @@ public class SubscriptionsImportService extends BaseImportExportService {
         return 4568;
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Imports
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Override
     public int getTitle() {
         return R.string.import_ongoing;
@@ -121,23 +143,10 @@ public class SubscriptionsImportService extends BaseImportExportService {
     @Override
     protected void disposeAll() {
         super.disposeAll();
-        if (subscription != null) subscription.cancel();
+        if (subscription != null) {
+            subscription.cancel();
+        }
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Imports
-    //////////////////////////////////////////////////////////////////////////*/
-
-    /**
-     * How many extractions running in parallel.
-     */
-    public static final int PARALLEL_EXTRACTIONS = 8;
-
-    /**
-     * Number of items to buffer to mass-insert in the subscriptions table, this leads to
-     * a better performance as we can then use db transactions.
-     */
-    public static final int BUFFER_COUNT_BEFORE_INSERT = 50;
 
     private void startImport() {
         showToast(R.string.import_ongoing);
@@ -156,12 +165,14 @@ public class SubscriptionsImportService extends BaseImportExportService {
         }
 
         if (flowable == null) {
-            final String message = "Flowable given by \"importFrom\" is null (current mode: " + currentMode + ")";
+            final String message = "Flowable given by \"importFrom\" is null "
+                    + "(current mode: " + currentMode + ")";
             stopAndReportError(new IllegalStateException(message), "Importing subscriptions");
             return;
         }
 
-        flowable.doOnNext(subscriptionItems -> eventListener.onSizeReceived(subscriptionItems.size()))
+        flowable.doOnNext(subscriptionItems ->
+                eventListener.onSizeReceived(subscriptionItems.size()))
                 .flatMap(Flowable::fromIterable)
 
                 .parallel(PARALLEL_EXTRACTIONS)
@@ -169,7 +180,8 @@ public class SubscriptionsImportService extends BaseImportExportService {
                 .map((Function<SubscriptionItem, Notification<ChannelInfo>>) subscriptionItem -> {
                     try {
                         return Notification.createOnNext(ExtractorHelper
-                                .getChannelInfo(subscriptionItem.getServiceId(), subscriptionItem.getUrl(), true)
+                                .getChannelInfo(subscriptionItem.getServiceId(),
+                                        subscriptionItem.getUrl(), true)
                                 .blockingGet());
                     } catch (Throwable e) {
                         return Notification.createOnError(e);
@@ -190,27 +202,30 @@ public class SubscriptionsImportService extends BaseImportExportService {
 
     private Subscriber<List<SubscriptionEntity>> getSubscriber() {
         return new Subscriber<List<SubscriptionEntity>>() {
-
             @Override
-            public void onSubscribe(Subscription s) {
+            public void onSubscribe(final Subscription s) {
                 subscription = s;
                 s.request(Long.MAX_VALUE);
             }
 
             @Override
-            public void onNext(List<SubscriptionEntity> successfulInserted) {
-                if (DEBUG) Log.d(TAG, "startImport() " + successfulInserted.size() + " items successfully inserted into the database");
+            public void onNext(final List<SubscriptionEntity> successfulInserted) {
+                if (DEBUG) {
+                    Log.d(TAG, "startImport() " + successfulInserted.size()
+                            + " items successfully inserted into the database");
+                }
             }
 
             @Override
-            public void onError(Throwable error) {
+            public void onError(final Throwable error) {
                 Log.e(TAG, "Got an error!", error);
                 handleError(error);
             }
 
             @Override
             public void onComplete() {
-                LocalBroadcastManager.getInstance(SubscriptionsImportService.this).sendBroadcast(new Intent(IMPORT_COMPLETE_ACTION));
+                LocalBroadcastManager.getInstance(SubscriptionsImportService.this)
+                        .sendBroadcast(new Intent(IMPORT_COMPLETE_ACTION));
                 showToast(R.string.import_complete_toast);
                 stopService();
             }
@@ -240,7 +255,9 @@ public class SubscriptionsImportService extends BaseImportExportService {
         return notificationList -> {
             final List<ChannelInfo> infoList = new ArrayList<>(notificationList.size());
             for (Notification<ChannelInfo> n : notificationList) {
-                if (n.isOnNext()) infoList.add(n.getValue());
+                if (n.isOnNext()) {
+                    infoList.add(n.getValue());
+                }
             }
 
             return subscriptionManager.upsertAll(infoList);
@@ -263,7 +280,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
         return Flowable.fromCallable(() -> ImportExportJsonHelper.readFrom(inputStream, null));
     }
 
-    protected void handleError(@NonNull Throwable error) {
+    protected void handleError(@NonNull final Throwable error) {
         super.handleError(R.string.subscriptions_import_unsuccessful, error);
     }
 }

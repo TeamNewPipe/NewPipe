@@ -21,23 +21,22 @@ import java.io.File;
 /* package-private */ class CacheFactory implements DataSource.Factory {
     private static final String TAG = "CacheFactory";
     private static final String CACHE_FOLDER_NAME = "exoplayer";
-    private static final int CACHE_FLAGS = CacheDataSource.FLAG_BLOCK_ON_CACHE | CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR;
-
-    private final DefaultDataSourceFactory dataSourceFactory;
-    private final File cacheDir;
-    private final long maxFileSize;
-
+    private static final int CACHE_FLAGS = CacheDataSource.FLAG_BLOCK_ON_CACHE
+            | CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR;
     // Creating cache on every instance may cause problems with multiple players when
     // sources are not ExtractorMediaSource
     // see: https://stackoverflow.com/questions/28700391/using-cache-in-exoplayer
     // todo: make this a singleton?
     private static SimpleCache cache;
+    private final DefaultDataSourceFactory dataSourceFactory;
+    private final File cacheDir;
+    private final long maxFileSize;
 
-    public CacheFactory(@NonNull final Context context,
-                        @NonNull final String userAgent,
-                        @NonNull final TransferListener transferListener) {
-        this(context, userAgent, transferListener, PlayerHelper.getPreferredCacheSize(context),
-                PlayerHelper.getPreferredFileSize(context));
+    CacheFactory(@NonNull final Context context,
+                 @NonNull final String userAgent,
+                 @NonNull final TransferListener transferListener) {
+        this(context, userAgent, transferListener, PlayerHelper.getPreferredCacheSize(),
+                PlayerHelper.getPreferredFileSize());
     }
 
     private CacheFactory(@NonNull final Context context,
@@ -55,7 +54,8 @@ import java.io.File;
         }
 
         if (cache == null) {
-            final LeastRecentlyUsedCacheEvictor evictor = new LeastRecentlyUsedCacheEvictor(maxCacheSize);
+            final LeastRecentlyUsedCacheEvictor evictor
+                    = new LeastRecentlyUsedCacheEvictor(maxCacheSize);
             cache = new SimpleCache(cacheDir, evictor, new ExoDatabaseProvider(context));
         }
     }
@@ -72,7 +72,9 @@ import java.io.File;
     }
 
     public void tryDeleteCacheFiles() {
-        if (!cacheDir.exists() || !cacheDir.isDirectory()) return;
+        if (!cacheDir.exists() || !cacheDir.isDirectory()) {
+            return;
+        }
 
         try {
             for (File file : cacheDir.listFiles()) {

@@ -4,13 +4,18 @@ import android.support.v4.media.MediaDescriptionCompat;
 
 public interface MediaSessionCallback {
     void onSkipToPrevious();
+
     void onSkipToNext();
-    void onSkipToIndex(final int index);
+
+    void onSkipToIndex(int index);
 
     int getCurrentPlayingIndex();
+
     int getQueueSize();
-    MediaDescriptionCompat getQueueMetadata(final int index);
+
+    MediaDescriptionCompat getQueueMetadata(int index);
 
     void onPlay();
+
     void onPause();
 }
