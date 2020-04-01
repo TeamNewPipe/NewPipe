@@ -547,17 +547,17 @@
     <string name="help">說明</string>
     <plurals name="minutes">
         <item quantity="one">%d 分鐘</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d 小時</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d 天</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
-    <string name="feed_groups_header_title">Feed 群組</string>
+    <string name="feed_groups_header_title">頻道群組</string>
     <string name="feed_oldest_subscription_update">最舊訂閱更新：%s</string>
     <string name="feed_subscription_not_loaded_count">未載入：%d</string>
     <string name="feed_notification_loading">正在載入 feed……</string>
@@ -566,7 +566,7 @@
     <string name="feed_group_dialog_empty_selection">未選取訂閱</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">已選取 %d</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="feed_group_dialog_empty_name">清空群組名稱</string>
     <string name="feed_group_dialog_name_input">名稱</string>
