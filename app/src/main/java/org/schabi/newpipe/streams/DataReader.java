@@ -69,6 +69,11 @@ public class DataReader {
         return primitive[0] << 24 | primitive[1] << 16 | primitive[2] << 8 | primitive[3];
     }
 
+    public long readUnsignedInt()  throws IOException {
+        long value = readInt();
+        return value & 0xffffffffL;
+    }
+
     public short readShort() throws IOException {
         primitiveRead(SHORT_SIZE);
         return (short) (primitive[0] << 8 | primitive[1]);
