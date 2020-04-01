@@ -46,7 +46,7 @@ public class Mp4FromDashWriter {
 
     private int overrideMainBrand = 0x00;
 
-    private ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
+    private final ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
 
     public Mp4FromDashWriter(SharpStream... sources) throws IOException {
         for (SharpStream src : sources) {
