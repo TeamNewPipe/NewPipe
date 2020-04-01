@@ -905,8 +905,7 @@ public final class PopupVideoPlayer extends Service {
             resetNotification();
             updateNotification(R.drawable.exo_controls_pause);
 
-            videoPlayPause.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
-                    R.drawable.ic_pause_white_24dp));
+            videoPlayPause.setBackgroundResource(R.drawable.exo_controls_pause);
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
 
             startForeground(NOTIFICATION_ID, notBuilder.build());
@@ -927,8 +926,7 @@ public final class PopupVideoPlayer extends Service {
 
             resetNotification();
             updateNotification(R.drawable.exo_controls_play);
-            videoPlayPause.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
-                    R.drawable.ic_play_arrow_white_24dp));
+            videoPlayPause.setBackgroundResource(R.drawable.exo_controls_play);
 
             stopForeground(false);
         }
@@ -939,8 +937,7 @@ public final class PopupVideoPlayer extends Service {
             resetNotification();
             updateNotification(R.drawable.exo_controls_play);
 
-            videoPlayPause.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
-                    R.drawable.ic_pause_white_24dp));
+            videoPlayPause.setBackgroundResource(R.drawable.exo_controls_play);
         }
 
         @Override
@@ -951,8 +948,7 @@ public final class PopupVideoPlayer extends Service {
 
             resetNotification();
             updateNotification(R.drawable.ic_replay_white_24dp);
-            videoPlayPause.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
-                    R.drawable.ic_replay_white_24dp));
+            videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white_24dp);
 
             stopForeground(false);
         }
