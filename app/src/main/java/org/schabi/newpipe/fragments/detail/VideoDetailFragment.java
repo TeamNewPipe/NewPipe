@@ -1117,7 +1117,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         animateView(videoTitleTextView, true, 0);
 
         videoDescriptionRootLayout.setVisibility(View.GONE);
-        videoTitleToggleArrow.setImageResource(R.drawable.ic_expand_more_white_24dp);
         videoTitleToggleArrow.setVisibility(View.GONE);
         videoTitleRoot.setClickable(false);
 
@@ -1232,8 +1231,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
 
         videoDescriptionView.setVisibility(View.GONE);
         videoTitleRoot.setClickable(true);
+        videoTitleToggleArrow.setImageResource(
+                ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
         videoTitleToggleArrow.setVisibility(View.VISIBLE);
-        videoTitleToggleArrow.setImageResource(R.drawable.ic_expand_more_white_24dp);
         videoDescriptionRootLayout.setVisibility(View.GONE);
 
         if (info.getUploadDate() != null) {
