@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
 
@@ -313,7 +314,9 @@ public class RouterActivity extends AppCompatActivity {
             final RadioButton radioButton
                     = (RadioButton) inflater.inflate(R.layout.list_radio_icon_item, null);
             radioButton.setText(item.description);
-            radioButton.setCompoundDrawablesWithIntrinsicBounds(item.icon, 0, 0, 0);
+            radioButton.setCompoundDrawablesWithIntrinsicBounds(
+                    AppCompatResources.getDrawable(getApplicationContext(), item.icon),
+                    null, null, null);
             radioButton.setChecked(false);
             radioButton.setId(id++);
             radioButton.setLayoutParams(new RadioGroup.LayoutParams(
