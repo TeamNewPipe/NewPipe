@@ -1061,6 +1061,24 @@ public final class MainVideoPlayer extends AppCompatActivity
             };
         }
 
+        private int getNavigationBarHeight()
+        {
+            int resId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resId > 0) {
+                return getResources().getDimensionPixelSize(resId);
+            }
+            return 0;
+        }
+
+        private int getStatusBarHeight()
+        {
+            int resId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (resId > 0) {
+                return getResources().getDimensionPixelSize(resId);
+            }
+            return 0;
+        }
+
         ///////////////////////////////////////////////////////////////////////////
         // Getters
         ///////////////////////////////////////////////////////////////////////////
@@ -1170,6 +1188,13 @@ public final class MainVideoPlayer extends AppCompatActivity
                     ", e1.getRaw = [" + initialEvent.getRawX() + ", " + initialEvent.getRawY() + "]" +
                     ", e2.getRaw = [" + movingEvent.getRawX() + ", " + movingEvent.getRawY() + "]" +
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]");
+
+            final boolean isTouchingStatusBar = initialEvent.getY() < playerImpl.getStatusBarHeight();
+            final boolean isTouchingNavigationBar = initialEvent.getY() > playerImpl.getRootView().getHeight() - playerImpl.getNavigationBarHeight();
+            if (isTouchingStatusBar || isTouchingNavigationBar)
+            {
+                return false;
+            }
 
             final boolean insideThreshold = Math.abs(movingEvent.getY() - initialEvent.getY()) <= MOVEMENT_THRESHOLD;
             if (!isMoving && (insideThreshold || Math.abs(distanceX) > Math.abs(distanceY))
