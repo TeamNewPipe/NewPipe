@@ -557,4 +557,5 @@
     <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность перемотки составляет %d секунд</string>
     <string name="mute">Отключить звук</string>
     <string name="unmute">Включить звук</string>
+    <string name="help">Помощь</string>
 </resources>
