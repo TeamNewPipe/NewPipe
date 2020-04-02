@@ -168,10 +168,10 @@
         <!-- See https://checkstyle.org/config_misc.html -->
         <module name="ArrayTypeStyle"/>
         <module name="FinalParameters"/>
-        <module name="TodoComment">
+        <!--<module name="TodoComment">
             <property name="format" value="(TODO:|FIXME:)"/>
             <property name="severity" value="warning"/>
-        </module>
+        </module>-->
         <module name="UpperEll"/>
 
         <!-- https://checkstyle.org/config_filters.html#SuppressionXpathFilter -->
