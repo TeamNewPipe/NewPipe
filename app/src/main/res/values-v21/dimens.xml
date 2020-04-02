@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Menu Drawer Dimensions -->
-    <dimen name="drawer_header_height">150dp</dimen>
-    <dimen name="drawer_header_padding_top">36dp</dimen>
-</resources>
