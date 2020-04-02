@@ -19,6 +19,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 
@@ -31,11 +32,8 @@ import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * AsyncTask to check if there is a newer version of the NewPipe github apk available or not.
@@ -150,19 +148,9 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
         }
 
         // Make a network request to get latest NewPipe data.
-        // FIXME: Use DownloaderImp
-        if (client == null) {
-
-            client = new OkHttpClient.Builder()
-                    .readTimeout(TIMEOUT_PERIOD, TimeUnit.SECONDS).build();
-        }
-
-        Request request = new Request.Builder().url(NEWPIPE_API_URL).build();
-
         try {
-            Response response = client.newCall(request).execute();
-            return response.body().string();
-        } catch (IOException ex) {
+            return DownloaderImpl.getInstance().get(NEWPIPE_API_URL).responseBody();
+        } catch (IOException | ReCaptchaException ex) {
             // connectivity problems, do not alarm user and fail silently
             if (DEBUG) {
                 Log.w(TAG, Log.getStackTraceString(ex));
