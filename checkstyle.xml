@@ -146,9 +146,9 @@
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
         <!--<module name="MagicNumber"/>-->
-        <module name="MissingSwitchDefault">
+        <!--<module name="MissingSwitchDefault">
             <property name="severity" value="warning"/>
-        </module>
+        </module>-->
         <module name="MultipleVariableDeclarations"/>
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
