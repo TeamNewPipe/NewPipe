@@ -584,6 +584,13 @@
     <string name="feed_group_dialog_name_input">Имя</string>
     <string name="feed_subscription_not_loaded_count">Не загружено: %d</string>
     <string name="feed_create_new_group_button_title">Создать</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">Отключить быстрый режим</string>
-    <string name="feed_use_dedicated_fetch_method_enable_button">Включить быстрый режим</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Откл. быстрый режим</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Вкл. быстрый режим</string>
+    <string name="feed_update_threshold_title">Интервал обновления подписок</string>
+    <string name="settings_category_feed_title">Подписки на каналы</string>
+    <string name="feed_processing_message">Обработка канала…</string>
+    <string name="feed_notification_loading">Загрузка канала…</string>
+    <string name="feed_update_threshold_option_always_update">Обновлять постоянно</string>
+    <string name="feed_group_dialog_empty_selection">Подписки не выбраны</string>
+    <string name="feed_groups_header_title">Группы каналов</string>
 </resources>
