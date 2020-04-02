@@ -553,7 +553,7 @@
     <plurals name="days">
         <item quantity="other">%d hari</item>
     </plurals>
-    <string name="feed_groups_header_title">Grup feed</string>
+    <string name="feed_groups_header_title">Grup channel</string>
     <string name="feed_oldest_subscription_update">Pembaruan subscription terlama: %s</string>
     <string name="feed_subscription_not_loaded_count">Tidak dimuat: %d</string>
     <string name="feed_notification_loading">Memuat feed…</string>
