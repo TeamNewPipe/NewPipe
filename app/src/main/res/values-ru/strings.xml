@@ -558,4 +558,27 @@
     <string name="mute">Отключить звук</string>
     <string name="unmute">Включить звук</string>
     <string name="help">Помощь</string>
+    <string name="feed_group_dialog_empty_name">Введите имя группы</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d выбрана</item>
+        <item quantity="few">%d выбрано</item>
+        <item quantity="many">%d выбрано</item>
+    </plurals>
+    <string name="feed_group_dialog_select_subscriptions">Выберите подписки</string>
+    <string name="feed_oldest_subscription_update">Последнее обновление: %s</string>
+    <plurals name="days">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дней</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d час</item>
+        <item quantity="few">%d часа</item>
+        <item quantity="many">%d часов</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d минута</item>
+        <item quantity="few">%d минуты</item>
+        <item quantity="many">%d минут</item>
+    </plurals>
 </resources>
