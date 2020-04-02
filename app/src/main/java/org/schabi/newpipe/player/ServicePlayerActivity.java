@@ -3,17 +3,9 @@ package org.schabi.newpipe.player;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.ItemTouchHelper;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +17,12 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -698,13 +696,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             item.setTitle(player.isMuted() ? R.string.unmute : R.string.mute);
 
             //2) Icon change accordingly to current App Theme
-            item.setIcon(player.isMuted() ? getThemedDrawable(R.attr.volume_off) : getThemedDrawable(R.attr.volume_on));
+            // using rootView.getContext() because getApplicationContext() didn't work
+            item.setIcon(player.isMuted()
+                    ? ThemeHelper.resolveResourceIdFromAttr(rootView.getContext(), R.attr.volume_off)
+                    : ThemeHelper.resolveResourceIdFromAttr(rootView.getContext(), R.attr.volume_on));
         }
-    }
-
-    private Drawable getThemedDrawable(int attribute) {
-        return getResources().getDrawable(
-                getTheme().obtainStyledAttributes(R.style.Theme_AppCompat, new int[]{attribute})
-                        .getResourceId(0, 0));
     }
 }

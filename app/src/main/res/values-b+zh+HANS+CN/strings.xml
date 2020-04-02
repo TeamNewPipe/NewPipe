@@ -456,7 +456,7 @@
     <string name="error_postprocessing_failed">后期处理失败</string>
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重试次数</string>
-    <string name="max_retry_desc">取消下载前的最多重试着次数</string>
+    <string name="max_retry_desc">取消下载前的最多重试次数</string>
     <string name="pause_downloads_on_mobile">在切换到移动流量网络时中断播放</string>
     <string name="pause_downloads_on_mobile_desc">切换至移动数据时可能有用，尽管一些下载无法被暂停</string>
     <string name="events">事件</string>
@@ -551,7 +551,7 @@
     <plurals name="days">
         <item quantity="other">%d天</item>
     </plurals>
-    <string name="feed_groups_header_title">Feed组</string>
+    <string name="feed_groups_header_title">频道组</string>
     <string name="feed_oldest_subscription_update">最早订阅更新:%s</string>
     <string name="feed_subscription_not_loaded_count">未加载: %d</string>
     <string name="feed_notification_loading">正在加载feed…</string>
@@ -565,7 +565,7 @@
     <string name="feed_group_dialog_name_input">名称</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
-    <string name="settings_category_feed_title">Feed</string>
+    <string name="settings_category_feed_title">订阅</string>
     <string name="feed_update_threshold_title">Feed更新阈值</string>
     <string name="feed_update_threshold_summary">上次更新后，订阅被视为过时的时间-％s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>

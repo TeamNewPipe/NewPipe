@@ -294,10 +294,6 @@ public class Mp4DashReader {
 
 
 
-    private long readUint() throws IOException {
-        return stream.readInt() & 0xffffffffL;
-    }
-
     public static boolean hasFlag(int flags, int mask) {
         return (flags & mask) == mask;
     }
@@ -317,7 +313,7 @@ public class Mp4DashReader {
     private Box readBox() throws IOException {
         Box b = new Box();
         b.offset = stream.position();
-        b.size = stream.readInt();
+        b.size = stream.readUnsignedInt();
         b.type = stream.readInt();
 
         if (b.size == 1) {
@@ -478,7 +474,7 @@ public class Mp4DashReader {
     private long parse_tfdt() throws IOException {
         int version = stream.read();
         stream.skipBytes(3);// flags
-        return version == 0 ? readUint() : stream.readLong();
+        return version == 0 ? stream.readUnsignedInt() : stream.readLong();
     }
 
     private Trun parse_trun() throws IOException {
@@ -551,7 +547,7 @@ public class Mp4DashReader {
         stream.skipBytes(2 * (version == 0 ? 4 : 8));
 
         Mvhd obj = new Mvhd();
-        obj.timeScale = readUint();
+        obj.timeScale = stream.readUnsignedInt();
 
         // chunkDuration
         stream.skipBytes(version == 0 ? 4 : 8);
@@ -563,7 +559,7 @@ public class Mp4DashReader {
         // predefined
         stream.skipBytes(76);
 
-        obj.nextTrackId = readUint();
+        obj.nextTrackId = stream.readUnsignedInt();
 
         return obj;
     }
@@ -582,7 +578,7 @@ public class Mp4DashReader {
 
         stream.skipBytes(4);// reserved
 
-        obj.duration = version == 0 ? readUint() : stream.readLong();
+        obj.duration = version == 0 ? stream.readUnsignedInt() : stream.readLong();
 
         stream.skipBytes(2 * 4);// reserved
 

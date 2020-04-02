@@ -12,8 +12,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 900
-        versionName "0.19.0"
+        versionCode 910
+        versionName "0.19.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -46,6 +46,7 @@ android {
             } else {
                 applicationIdSuffix ".debug." + normalizedWorkingBranch
                 resValue "string", "app_name", "NewPipe " + workingBranch
+                archivesBaseName = 'NewPipe_' + normalizedWorkingBranch
             }
         }
     }

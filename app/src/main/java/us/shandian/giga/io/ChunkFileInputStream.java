@@ -104,7 +104,7 @@ public class ChunkFileInputStream extends SharpStream {
 
     @Override
     public long available() {
-        return (int) (length - position);
+        return length - position;
     }
 
     @SuppressWarnings("EmptyCatchBlock")
