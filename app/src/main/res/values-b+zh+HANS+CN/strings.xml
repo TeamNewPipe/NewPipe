@@ -556,7 +556,7 @@
         <item quantity="one">%天</item>
         <item quantity="other"/>
     </plurals>
-    <string name="feed_groups_header_title">Feed组</string>
+    <string name="feed_groups_header_title">频道组</string>
     <string name="feed_oldest_subscription_update">最早订阅更新:%s</string>
     <string name="feed_subscription_not_loaded_count">未加载: %d</string>
     <string name="feed_notification_loading">正在加载feed…</string>
