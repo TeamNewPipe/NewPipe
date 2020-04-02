@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -160,13 +160,8 @@ public class SelectKioskFragment extends DialogFragment {
             final Entry entry = kioskList.get(position);
             holder.titleView.setText(entry.kioskName);
             holder.thumbnailView
-                    .setImageDrawable(ContextCompat.getDrawable(getContext(), entry.icon));
-            holder.view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    clickedItem(entry);
-                }
-            });
+                    .setImageDrawable(AppCompatResources.getDrawable(requireContext(), entry.icon));
+            holder.view.setOnClickListener(view -> clickedItem(entry));
         }
 
         class Entry {

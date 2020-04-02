@@ -46,7 +46,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -956,7 +956,7 @@ public abstract class VideoPlayer extends BasePlayer
 
 
         controlAnimationView.setVisibility(View.VISIBLE);
-        controlAnimationView.setImageDrawable(ContextCompat.getDrawable(context, drawableId));
+        controlAnimationView.setImageDrawable(AppCompatResources.getDrawable(context, drawableId));
         controlViewAnimator.start();
     }
 

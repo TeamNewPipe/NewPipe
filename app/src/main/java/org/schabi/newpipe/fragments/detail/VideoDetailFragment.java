@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -1076,7 +1078,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             return;
         }
 
-        thumbnailImageView.setImageDrawable(ContextCompat.getDrawable(activity, imageResource));
+        thumbnailImageView.setImageDrawable(AppCompatResources.getDrawable(requireContext(), imageResource));
         animateView(thumbnailImageView, false, 0, 0,
                 () -> animateView(thumbnailImageView, true, 500));
     }
@@ -1168,8 +1170,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             uploaderThumb.setVisibility(View.GONE);
         }
 
-        subChannelThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
-        uploaderThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
+        Drawable buddyDrawable = AppCompatResources.getDrawable(activity, R.drawable.buddy);
+        subChannelThumb.setImageDrawable(buddyDrawable);
+        uploaderThumb.setImageDrawable(buddyDrawable);
 
         if (info.getViewCount() >= 0) {
             if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
