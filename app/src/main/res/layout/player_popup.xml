@@ -138,7 +138,7 @@
                     tools:text="English" />
             </RelativeLayout>
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/fullScreenButton"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
