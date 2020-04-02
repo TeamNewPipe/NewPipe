@@ -32,6 +32,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     private final PlayerDataSource dataSource;
     @NonNull
     private final QualityResolver qualityResolver;
+
     @Nullable
     private String playbackQuality;
 

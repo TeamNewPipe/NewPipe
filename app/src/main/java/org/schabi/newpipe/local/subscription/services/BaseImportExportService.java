@@ -53,9 +53,16 @@ import io.reactivex.processors.PublishProcessor;
 
 public abstract class BaseImportExportService extends Service {
     protected final String TAG = this.getClass().getSimpleName();
-    private static final int NOTIFICATION_SAMPLING_PERIOD = 2500;
+
     protected final CompositeDisposable disposables = new CompositeDisposable();
     protected final PublishProcessor<String> notificationUpdater = PublishProcessor.create();
+
+    protected NotificationManagerCompat notificationManager;
+    protected NotificationCompat.Builder notificationBuilder;
+    protected SubscriptionManager subscriptionManager;
+
+    private static final int NOTIFICATION_SAMPLING_PERIOD = 2500;
+
     protected final AtomicInteger currentProgress = new AtomicInteger(-1);
     protected final AtomicInteger maxProgress = new AtomicInteger(-1);
     protected final ImportExportEventListener eventListener = new ImportExportEventListener() {
@@ -71,13 +78,7 @@ public abstract class BaseImportExportService extends Service {
             notificationUpdater.onNext(itemName);
         }
     };
-    protected NotificationManagerCompat notificationManager;
-    protected NotificationCompat.Builder notificationBuilder;
-    protected SubscriptionManager subscriptionManager;
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Notification Impl
-    //////////////////////////////////////////////////////////////////////////*/
     protected Toast toast;
 
     @Nullable
@@ -102,6 +103,10 @@ public abstract class BaseImportExportService extends Service {
     protected void disposeAll() {
         disposables.clear();
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Notification Impl
+    //////////////////////////////////////////////////////////////////////////*/
 
     protected abstract int getNotificationId();
 

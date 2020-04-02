@@ -90,51 +90,69 @@ public abstract class VideoPlayer extends BasePlayer
         Player.EventListener,
         PopupMenu.OnMenuItemClickListener,
         PopupMenu.OnDismissListener {
+    public final String TAG;
     public static final boolean DEBUG = BasePlayer.DEBUG;
-    public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
     //////////////////////////////////////////////////////////////////////////*/
+
+    public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
     protected static final int RENDERER_UNAVAILABLE = -1;
-    public final String TAG;
+
     @NonNull
     private final VideoPlaybackResolver resolver;
-    private final Handler controlsVisibilityHandler = new Handler();
-    private final int qualityPopupMenuGroupId = 69;
-    private final int playbackSpeedPopupMenuGroupId = 79;
+
+    private List<VideoStream> availableStreams;
+    private int selectedStreamIndex;
+
+    protected boolean wasPlaying = false;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
-    private final int captionPopupMenuGroupId = 89;
-    protected boolean wasPlaying = false;
-    boolean isSomePopupMenuVisible = false;
-    private List<VideoStream> availableStreams;
-    private int selectedStreamIndex;
+
     private View rootView;
+
     private AspectRatioFrameLayout aspectRatioFrameLayout;
     private SurfaceView surfaceView;
     private View surfaceForeground;
+
     private View loadingPanel;
     private ImageView endScreen;
     private ImageView controlAnimationView;
+
     private View controlsRoot;
     private TextView currentDisplaySeek;
+
     private View bottomControlsRoot;
     private SeekBar playbackSeekBar;
     private TextView playbackCurrentTime;
     private TextView playbackEndTime;
     private TextView playbackLiveSync;
     private TextView playbackSpeedTextView;
+
     private View topControlsRoot;
     private TextView qualityTextView;
+
     private SubtitleView subtitleView;
+
     private TextView resizeView;
     private TextView captionTextView;
+
     private ValueAnimator controlViewAnimator;
+    private final Handler controlsVisibilityHandler = new Handler();
+
+    boolean isSomePopupMenuVisible = false;
+
+    private final int qualityPopupMenuGroupId = 69;
     private PopupMenu qualityPopupMenu;
+
+    private final int playbackSpeedPopupMenuGroupId = 79;
     private PopupMenu playbackSpeedPopupMenu;
+
+    private final int captionPopupMenuGroupId = 89;
     private PopupMenu captionPopupMenu;
 
     ///////////////////////////////////////////////////////////////////////////
@@ -238,10 +256,6 @@ public abstract class VideoPlayer extends BasePlayer
         }
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // UI Builders
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void handleIntent(final Intent intent) {
         if (intent == null) {
@@ -254,6 +268,10 @@ public abstract class VideoPlayer extends BasePlayer
 
         super.handleIntent(intent);
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // UI Builders
+    //////////////////////////////////////////////////////////////////////////*/
 
     public void buildQualityMenu() {
         if (qualityPopupMenu == null) {
@@ -354,9 +372,6 @@ public abstract class VideoPlayer extends BasePlayer
         }
         captionPopupMenu.setOnDismissListener(this);
     }
-    /*//////////////////////////////////////////////////////////////////////////
-    // Playback Listener
-    //////////////////////////////////////////////////////////////////////////*/
 
     private void updateStreamRelatedViews() {
         if (getCurrentMetadata() == null) {
@@ -413,6 +428,10 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedTextView.setVisibility(View.VISIBLE);
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playback Listener
+    //////////////////////////////////////////////////////////////////////////*/
+
     protected abstract VideoPlaybackResolver.QualityResolver getQualityResolver();
 
     protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
@@ -420,15 +439,15 @@ public abstract class VideoPlayer extends BasePlayer
         updateStreamRelatedViews();
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // States Implementation
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
         return resolver.resolve(info);
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // States Implementation
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onBlocked() {
@@ -494,10 +513,6 @@ public abstract class VideoPlayer extends BasePlayer
         showAndAnimateControl(-1, true);
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // ExoPlayer Video Listener
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void onCompleted() {
         super.onCompleted();
@@ -509,6 +524,10 @@ public abstract class VideoPlayer extends BasePlayer
 
         animateView(surfaceForeground, true, 100);
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // ExoPlayer Video Listener
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onTracksChanged(final TrackGroupArray trackGroups,
@@ -537,14 +556,14 @@ public abstract class VideoPlayer extends BasePlayer
         aspectRatioFrameLayout.setAspectRatio(((float) width) / height);
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // ExoPlayer Track Updates
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void onRenderedFirstFrame() {
         animateView(surfaceForeground, false, 100);
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // ExoPlayer Track Updates
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void onTextTrackUpdate() {
         final int textRenderer = getRendererIndex(C.TRACK_TYPE_TEXT);

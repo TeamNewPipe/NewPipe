@@ -16,10 +16,11 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> extends PlayQueue {
-    final int serviceId;
-    final String baseUrl;
     boolean isInitial;
     private boolean isComplete;
+
+    final int serviceId;
+    final String baseUrl;
     String nextUrl;
 
     private transient Disposable fetchReactor;
@@ -38,16 +39,6 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
 
         this.isInitial = streams.isEmpty();
         this.isComplete = !isInitial && (nextPageUrl == null || nextPageUrl.isEmpty());
-    }
-
-    private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infos) {
-        List<PlayQueueItem> result = new ArrayList<>();
-        for (final InfoItem stream : infos) {
-            if (stream instanceof StreamInfoItem) {
-                result.add(new PlayQueueItem((StreamInfoItem) stream));
-            }
-        }
-        return result;
     }
 
     protected abstract String getTag();
@@ -133,5 +124,15 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
             fetchReactor.dispose();
         }
         fetchReactor = null;
+    }
+
+    private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infos) {
+        List<PlayQueueItem> result = new ArrayList<>();
+        for (final InfoItem stream : infos) {
+            if (stream instanceof StreamInfoItem) {
+                result.add(new PlayQueueItem((StreamInfoItem) stream));
+            }
+        }
+        return result;
     }
 }

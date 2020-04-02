@@ -54,14 +54,19 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         View.OnClickListener, PlaybackParameterDialog.Callback {
     private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
+
     protected BasePlayer player;
+
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
+
+    private boolean seeking;
+    private boolean redraw;
+
     ////////////////////////////////////////////////////////////////////////////
     // Views
     ////////////////////////////////////////////////////////////////////////////
-    private boolean seeking;
-    private boolean redraw;
+
     private View rootView;
 
     private RecyclerView itemsList;

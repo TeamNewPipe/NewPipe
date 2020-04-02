@@ -58,6 +58,10 @@ public final class PlayerHelper {
 
     private PlayerHelper() { }
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Exposed helpers
+    ////////////////////////////////////////////////////////////////////////////
+
     public static String getTimeString(final int milliSeconds) {
         int seconds = (milliSeconds % 60000) / 1000;
         int minutes = (milliSeconds % 3600000) / 60000;
@@ -72,9 +76,6 @@ public final class PlayerHelper {
                 ? STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds).toString()
                 : STRING_FORMATTER.format("%02d:%02d", minutes, seconds).toString();
     }
-    ////////////////////////////////////////////////////////////////////////////
-    // Exposed helpers
-    ////////////////////////////////////////////////////////////////////////////
 
     public static String formatSpeed(final double speed) {
         return SPEED_FORMATTER.format(speed);
@@ -177,13 +178,13 @@ public final class PlayerHelper {
                 ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
     }
 
-    public static boolean isResumeAfterAudioFocusGain(@NonNull final Context context) {
-        return isResumeAfterAudioFocusGain(context, false);
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // Settings Resolution
     ////////////////////////////////////////////////////////////////////////////
+
+    public static boolean isResumeAfterAudioFocusGain(@NonNull final Context context) {
+        return isResumeAfterAudioFocusGain(context, false);
+    }
 
     public static boolean isVolumeGestureEnabled(@NonNull final Context context) {
         return isVolumeGestureEnabled(context, true);
@@ -322,14 +323,14 @@ public final class PlayerHelper {
         setScreenBrightness(context, setScreenBrightness, System.currentTimeMillis());
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Private helpers
+    ////////////////////////////////////////////////////////////////////////////
+
     @NonNull
     private static SharedPreferences getPreferences(@NonNull final Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Private helpers
-    ////////////////////////////////////////////////////////////////////////////
 
     private static boolean isResumeAfterAudioFocusGain(@NonNull final Context context,
                                                        final boolean b) {

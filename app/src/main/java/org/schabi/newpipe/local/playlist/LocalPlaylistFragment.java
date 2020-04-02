@@ -56,12 +56,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
+
     @State
     protected Long playlistId;
     @State
     protected String name;
     @State
-    protected Parcelable itemsListState;
+    Parcelable itemsListState;
+
     private View headerRootLayout;
     private TextView headerTitleView;
     private TextView headerStreamCount;

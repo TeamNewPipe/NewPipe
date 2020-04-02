@@ -204,7 +204,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
      *
      * @param versionName    Name of new version
      * @param apkLocationUrl Url with the new apk
-     * @param versionCode    V
+     * @param versionCode    Code of new version
      */
     private void compareAppVersionAndShowNotification(final String versionName,
                                                       final String apkLocationUrl,

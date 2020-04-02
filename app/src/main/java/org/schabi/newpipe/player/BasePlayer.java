@@ -99,10 +99,22 @@ import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJ
 @SuppressWarnings({"WeakerAccess"})
 public abstract class BasePlayer implements
         Player.EventListener, PlaybackListener, ImageLoadingListener {
-
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
     @NonNull
     public static final String TAG = "BasePlayer";
+
+    public static final int STATE_PREFLIGHT = -1;
+    public static final int STATE_BLOCKED = 123;
+    public static final int STATE_PLAYING = 124;
+    public static final int STATE_BUFFERING = 125;
+    public static final int STATE_PAUSED = 126;
+    public static final int STATE_PAUSED_SEEK = 127;
+    public static final int STATE_COMPLETED = 128;
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Intent
+    //////////////////////////////////////////////////////////////////////////*/
+
     @NonNull
     public static final String REPEAT_MODE = "repeat_mode";
     @NonNull
@@ -123,26 +135,43 @@ public abstract class BasePlayer implements
     public static final String START_PAUSED = "start_paused";
     @NonNull
     public static final String SELECT_ON_APPEND = "select_on_append";
-    /*//////////////////////////////////////////////////////////////////////////
-    // Intent
-    //////////////////////////////////////////////////////////////////////////*/
     @NonNull
     public static final String IS_MUTED = "is_muted";
-    public static final int STATE_PREFLIGHT = -1;
-    public static final int STATE_BLOCKED = 123;
-    public static final int STATE_PLAYING = 124;
-    public static final int STATE_BUFFERING = 125;
-    public static final int STATE_PAUSED = 126;
-    public static final int STATE_PAUSED_SEEK = 127;
-    public static final int STATE_COMPLETED = 128;
-    protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
-    protected static final int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
-    protected static final int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
-    protected static final int RECOVERY_SKIP_THRESHOLD_MILLIS = 3000; // 3 seconds
+
+    protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
+
+    protected PlayQueue playQueue;
+    protected PlayQueueAdapter playQueueAdapter;
+
+    @Nullable
+    protected MediaSourceManager playbackManager;
+
+    @Nullable
+    private PlayQueueItem currentItem;
+    @Nullable
+    private MediaSourceTag currentMetadata;
+    @Nullable
+    private Bitmap currentThumbnail;
+
+    @Nullable
+    protected Toast errorToast;
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Player
+    //////////////////////////////////////////////////////////////////////////*/
+
+    protected static final int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
+    protected static final int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
+
+    protected SimpleExoPlayer simpleExoPlayer;
+    protected AudioReactor audioReactor;
+    protected MediaSessionManager mediaSessionManager;
+
+
     @NonNull
     protected final Context context;
     @NonNull
@@ -158,39 +187,17 @@ public abstract class BasePlayer implements
     @NonNull
     private final LoadControl loadControl;
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Player
-    //////////////////////////////////////////////////////////////////////////*/
     @NonNull
     private final RenderersFactory renderFactory;
     @NonNull
     private final SerialDisposable progressUpdateReactor;
     @NonNull
     private final CompositeDisposable databaseUpdateReactor;
-    protected PlayQueue playQueue;
-    protected PlayQueueAdapter playQueueAdapter;
-    @Nullable
-    protected MediaSourceManager playbackManager;
-    @Nullable
-    protected Toast errorToast;
-    protected SimpleExoPlayer simpleExoPlayer;
 
-    //////////////////////////////////////////////////////////////////////////*/
-    protected AudioReactor audioReactor;
-    protected MediaSessionManager mediaSessionManager;
-    protected int currentState = STATE_PREFLIGHT;
-    @Nullable
-    private PlayQueueItem currentItem;
-    @Nullable
-    private MediaSourceTag currentMetadata;
-    @Nullable
-    private Bitmap currentThumbnail;
     private boolean isPrepared = false;
     private Disposable stateLoader;
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Thumbnail Loading
-    //////////////////////////////////////////////////////////////////////////*/
+    protected int currentState = STATE_PREFLIGHT;
 
     public BasePlayer(@NonNull final Context context) {
         this.context = context;
@@ -247,8 +254,7 @@ public abstract class BasePlayer implements
         registerBroadcastReceiver();
     }
 
-    public void initListeners() {
-    }
+    public void initListeners() { }
 
     public void handleIntent(final Intent intent) {
         if (DEBUG) {
@@ -324,10 +330,6 @@ public abstract class BasePlayer implements
                 /*playOnInit=*/!intent.getBooleanExtra(START_PAUSED, false), isMuted);
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Broadcast Receiver
-    //////////////////////////////////////////////////////////////////////////*/
-
     protected void initPlayback(@NonNull final PlayQueue queue,
                                 @Player.RepeatMode final int repeatMode,
                                 final float playbackSpeed,
@@ -398,8 +400,11 @@ public abstract class BasePlayer implements
 
         databaseUpdateReactor.clear();
         progressUpdateReactor.set(null);
-
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Thumbnail Loading
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void initThumbnail(final String url) {
         if (DEBUG) {
@@ -412,10 +417,6 @@ public abstract class BasePlayer implements
         ImageLoader.getInstance()
                 .loadImage(url, ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, this);
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // States Implementation
-    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onLoadingStarted(final String imageUri, final View view) {
@@ -453,6 +454,10 @@ public abstract class BasePlayer implements
         currentThumbnail = null;
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Broadcast Receiver
+    //////////////////////////////////////////////////////////////////////////*/
+
     /**
      * Add your action in the intentFilter.
      *
@@ -487,6 +492,10 @@ public abstract class BasePlayer implements
                     + "(" + unregisteredException.getMessage() + ")");
         }
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // States Implementation
+    //////////////////////////////////////////////////////////////////////////*/
 
     public void changeState(final int state) {
         if (DEBUG) {
@@ -1328,6 +1337,7 @@ public abstract class BasePlayer implements
             playQueue.append(autoQueue.getStreams());
         }
     }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/

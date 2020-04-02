@@ -70,6 +70,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
+
     private SubscriptionManager subscriptionManager;
     private View headerRootLayout;
     private ImageView headerChannelBanner;
@@ -82,10 +83,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private LinearLayout headerPopupButton;
     private LinearLayout headerBackgroundButton;
     private MenuItem menuRssButton;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // LifeCycle
-    //////////////////////////////////////////////////////////////////////////*/
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -104,6 +101,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         }
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // LifeCycle
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Override
     public void onAttach(final Context context) {
         super.onAttach(context);
@@ -117,10 +118,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         return inflater.inflate(R.layout.fragment_channel, container, false);
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Init
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -133,7 +130,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Menu
+    // Init
     //////////////////////////////////////////////////////////////////////////*/
 
     protected View getListHeader() {
@@ -153,6 +150,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
         return headerRootLayout;
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Menu
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
@@ -179,10 +180,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Channel Subscription
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
@@ -207,6 +204,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         }
         return true;
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Channel Subscription
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void monitorSubscription(final ChannelInfo info) {
         final Consumer<Throwable> onError = (Throwable throwable) -> {

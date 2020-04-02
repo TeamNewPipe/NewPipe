@@ -86,35 +86,41 @@ public class DownloadDialog extends DialogFragment
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
-    private final CompositeDisposable disposables = new CompositeDisposable();
+
     @State
-    protected StreamInfo currentInfo;
+    StreamInfo currentInfo;
     @State
-    protected StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
+    StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
     @State
-    protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
+    StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
     @State
-    protected StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
+    StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
     @State
-    protected int selectedVideoIndex = 0;
+    int selectedVideoIndex = 0;
     @State
-    protected int selectedAudioIndex = 0;
+    int selectedAudioIndex = 0;
     @State
-    protected int selectedSubtitleIndex = 0;
+    int selectedSubtitleIndex = 0;
+
     private StoredDirectoryHelper mainStorageAudio = null;
     private StoredDirectoryHelper mainStorageVideo = null;
     private DownloadManager downloadManager = null;
     private ActionMenuItemView okButton = null;
     private Context context;
     private boolean askForSavePath;
+
     private StreamItemAdapter<AudioStream, Stream> audioStreamsAdapter;
     private StreamItemAdapter<VideoStream, AudioStream> videoStreamsAdapter;
     private StreamItemAdapter<SubtitlesStream, Stream> subtitleStreamsAdapter;
+
+    private final CompositeDisposable disposables = new CompositeDisposable();
+
     private EditText nameEditText;
     private Spinner streamsSpinner;
     private RadioGroup radioStreamsGroup;
     private TextView threadsCountTextView;
     private SeekBar threadsSeekBar;
+
     private SharedPreferences prefs;
 
     public static DownloadDialog newInstance(final StreamInfo info) {

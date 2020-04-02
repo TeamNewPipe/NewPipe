@@ -92,10 +92,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         return inflater.inflate(R.layout.fragment_bookmarks, container, false);
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Fragment LifeCycle - Views
-    ///////////////////////////////////////////////////////////////////////////
-
     @Override
     public void setUserVisibleHint(final boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -104,14 +100,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment LifeCycle - Views
+    ///////////////////////////////////////////////////////////////////////////
+
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
     }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Fragment LifeCycle - Loading
-    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void initListeners() {
@@ -149,7 +145,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Fragment LifeCycle - Destruction
+    // Fragment LifeCycle - Loading
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
@@ -162,6 +158,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistsSubscriber());
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment LifeCycle - Destruction
+    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     public void onPause() {
@@ -183,10 +183,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         databaseSubscription = null;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Subscriptions Loader
-    ///////////////////////////////////////////////////////////////////////////
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -199,6 +195,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         remotePlaylistManager = null;
         itemsListState = null;
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Subscriptions Loader
+    ///////////////////////////////////////////////////////////////////////////
 
     private Subscriber<List<PlaylistLocalItem>> getPlaylistsSubscriber() {
         return new Subscriber<List<PlaylistLocalItem>>() {
@@ -229,9 +229,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             public void onComplete() { }
         };
     }
-    ///////////////////////////////////////////////////////////////////////////
-    // Fragment Error Handling
-    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     public void handleResult(@NonNull final List<PlaylistLocalItem> result) {
@@ -252,6 +249,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         hideLoading();
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Error Handling
+    ///////////////////////////////////////////////////////////////////////////
+
     @Override
     protected boolean onError(final Throwable exception) {
         if (super.onError(exception)) {
@@ -263,10 +264,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         return true;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Utils
-    ///////////////////////////////////////////////////////////////////////////
-
     @Override
     protected void resetFragment() {
         super.resetFragment();
@@ -274,6 +271,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             disposables.clear();
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Utils
+    ///////////////////////////////////////////////////////////////////////////
 
     private void showRemoteDeleteDialog(final PlaylistRemoteEntity item) {
         showDeleteDialog(item.getName(), remotePlaylistManager.deletePlaylist(item.getUid()));

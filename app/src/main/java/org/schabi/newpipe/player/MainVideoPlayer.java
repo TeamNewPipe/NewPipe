@@ -1181,11 +1181,14 @@ public final class MainVideoPlayer extends AppCompatActivity
     private class PlayerGestureListener extends GestureDetector.SimpleOnGestureListener
             implements View.OnTouchListener {
         private static final int MOVEMENT_THRESHOLD = 40;
+
         private final boolean isVolumeGestureEnabled = PlayerHelper
                 .isVolumeGestureEnabled(getApplicationContext());
         private final boolean isBrightnessGestureEnabled = PlayerHelper
                 .isBrightnessGestureEnabled(getApplicationContext());
+
         private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
+
         private boolean isMoving;
 
         @Override

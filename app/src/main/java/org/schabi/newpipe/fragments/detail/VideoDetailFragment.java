@@ -109,54 +109,55 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener,
         View.OnClickListener, View.OnLongClickListener {
     public static final String AUTO_PLAY = "auto_play";
+
+    private int updateFlags = 0;
     private static final int RELATED_STREAMS_UPDATE_FLAG = 0x1;
     private static final int RESOLUTIONS_MENU_UPDATE_FLAG = 0x2;
     private static final int TOOLBAR_ITEMS_UPDATE_FLAG = 0x4;
     private static final int COMMENTS_UPDATE_FLAG = 0x8;
-    private static final String COMMENTS_TAB_TAG = "COMMENTS";
-    private static final String RELATED_TAB_TAG = "NEXT VIDEO";
-    private static final String EMPTY_TAB_TAG = "EMPTY TAB";
-    private static final String INFO_KEY = "info_key";
-    private static final String STACK_KEY = "stack_key";
-    /**
-     * Stack that contains the "navigation history".<br>
-     * The peek is the current video.
-     */
-    private final LinkedList<StackItem> stack = new LinkedList<>();
+
+    private boolean autoPlayEnabled;
+    private boolean showRelatedStreams;
+    private boolean showComments;
+    private String selectedTabTag;
+
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
     @State
     protected String name;
     @State
     protected String url;
-    private int updateFlags = 0;
-    private boolean autoPlayEnabled;
-    private boolean showRelatedStreams;
-    private boolean showComments;
-    private String selectedTabTag;
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Views
-    //////////////////////////////////////////////////////////////////////////*/
     private StreamInfo currentInfo;
     private Disposable currentWorker;
     @NonNull
     private CompositeDisposable disposables = new CompositeDisposable();
     @Nullable
     private Disposable positionSubscriber = null;
+
     private List<VideoStream> sortedVideoStreams;
     private int selectedVideoStreamIndex = -1;
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Views
+    //////////////////////////////////////////////////////////////////////////*/
+
     private Menu menu;
+
     private Spinner spinnerToolbar;
+
     private LinearLayout contentRootLayoutHiding;
+
     private View thumbnailBackgroundButton;
     private ImageView thumbnailImageView;
     private ImageView thumbnailPlayButton;
     private AnimatedProgressBar positionView;
+
     private View videoTitleRoot;
     private TextView videoTitleTextView;
     private ImageView videoTitleToggleArrow;
     private TextView videoCountView;
+
     private TextView detailControlsBackground;
     private TextView detailControlsPopup;
     private TextView detailControlsAddToPlaylist;
@@ -164,29 +165,41 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     private TextView appendControlsDetail;
     private TextView detailDurationView;
     private TextView detailPositionView;
+
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
     private TextView videoDescriptionView;
+
     private View uploaderRootLayout;
     private TextView uploaderTextView;
     private ImageView uploaderThumb;
+
     private TextView thumbsUpTextView;
     private ImageView thumbsUpImageView;
     private TextView thumbsDownTextView;
     private ImageView thumbsDownImageView;
     private TextView thumbsDisabledTextView;
+
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
-
-
-    /*////////////////////////////////////////////////////////////////////////*/
     private TabAdaptor pageAdapter;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Fragment's Lifecycle
-    //////////////////////////////////////////////////////////////////////////*/
     private TabLayout tabLayout;
     private FrameLayout relatedStreamsLayout;
+
+    /*////////////////////////////////////////////////////////////////////////*/
+
+    private static final String COMMENTS_TAB_TAG = "COMMENTS";
+    private static final String RELATED_TAB_TAG = "NEXT VIDEO";
+    private static final String EMPTY_TAB_TAG = "EMPTY TAB";
+
+    private static final String INFO_KEY = "info_key";
+    private static final String STACK_KEY = "stack_key";
+
+    /**
+     * Stack that contains the "navigation history".<br>
+     * The peek is the current video.
+     */
+    private final LinkedList<StackItem> stack = new LinkedList<>();
 
     public static VideoDetailFragment getInstance(final int serviceId, final String videoUrl,
                                                   final String name) {
@@ -194,6 +207,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         instance.setInitialData(serviceId, videoUrl, name);
         return instance;
     }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Fragment's Lifecycle
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -285,10 +303,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         disposables = null;
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // State Saving
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void onDestroyView() {
         if (DEBUG) {
@@ -336,6 +350,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         }
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // State Saving
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Override
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -350,10 +368,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
 
         outState.putSerializable(STACK_KEY, stack);
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // OnClick
-    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     protected void onRestoreInstanceState(@NonNull final Bundle savedState) {
@@ -371,8 +385,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             //noinspection unchecked
             stack.addAll((Collection<? extends StackItem>) serializable);
         }
-
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // OnClick
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onClick(final View v) {
@@ -449,10 +466,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         return true;
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Init
-    //////////////////////////////////////////////////////////////////////////*/
-
     private void toggleTitleAndDescription() {
         if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
             videoTitleTextView.setMaxLines(1);
@@ -464,6 +477,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
         }
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Init
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
@@ -553,11 +570,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         };
     }
 
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Menu
-    //////////////////////////////////////////////////////////////////////////*/
-
     private void initThumbnailViews(@NonNull final StreamInfo info) {
         thumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
         if (!TextUtils.isEmpty(info.getThumbnailUrl())) {
@@ -580,6 +592,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                     ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Menu
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onCreateOptionsMenu(final Menu m, final MenuInflater inflater) {
@@ -654,10 +670,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         Log.e("-----", "missing code");
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // OwnStack
-    //////////////////////////////////////////////////////////////////////////*/
-
     private void setupActionBar(final StreamInfo info) {
         if (DEBUG) {
             Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
@@ -687,7 +699,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         });
     }
 
-    public void pushToStack(final int sid, final String videoUrl, final String title) {
+    /*//////////////////////////////////////////////////////////////////////////
+    // OwnStack
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void pushToStack(final int sid, final String videoUrl, final String title) {
         if (DEBUG) {
             Log.d(TAG, "pushToStack() called with: serviceId = ["
                     + sid + "], videoUrl = [" + videoUrl + "], title = [" + title + "]");
@@ -706,7 +722,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         stack.push(new StackItem(sid, videoUrl, title));
     }
 
-    public void setTitleToUrl(final int sid, final String videoUrl, final String title) {
+    private void setTitleToUrl(final int sid, final String videoUrl, final String title) {
         if (title != null && !title.isEmpty()) {
             for (StackItem stackItem : stack) {
                 if (stack.peek().getServiceId() == sid
@@ -755,7 +771,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         prepareAndLoadInfo();
     }
 
-    public void prepareAndHandleInfo(final StreamInfo info, final boolean scrollToTop) {
+    private void prepareAndHandleInfo(final StreamInfo info, final boolean scrollToTop) {
         if (DEBUG) {
             Log.d(TAG, "prepareAndHandleInfo() called with: "
                     + "info = [" + info + "], scrollToTop = [" + scrollToTop + "]");
@@ -774,7 +790,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
 
     }
 
-    protected void prepareAndLoadInfo() {
+    private void prepareAndLoadInfo() {
         appBarLayout.setExpanded(true, true);
         pushToStack(serviceId, url, name);
         startLoading(false);

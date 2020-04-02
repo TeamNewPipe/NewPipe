@@ -45,10 +45,11 @@ import static org.schabi.newpipe.settings.tabs.Tab.typeFrom;
 
 public class ChooseTabsFragment extends Fragment {
     private static final int MENU_ITEM_RESTORE_ID = 123456;
-    private ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
+
     private TabsManager tabsManager;
 
     private List<Tab> tabList = new ArrayList<>();
+    private ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -93,15 +94,15 @@ public class ChooseTabsFragment extends Fragment {
         updateTitle();
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Menu
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void onPause() {
         super.onPause();
         saveChanges();
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Menu
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
@@ -216,7 +217,7 @@ public class ChooseTabsFragment extends Fragment {
         }
     }
 
-    public ChooseTabListItem[] getAvailableTabs(final Context context) {
+    private ChooseTabListItem[] getAvailableTabs(final Context context) {
         final ArrayList<ChooseTabListItem> returnList = new ArrayList<>();
 
         for (Tab.Type type : Tab.Type.values()) {

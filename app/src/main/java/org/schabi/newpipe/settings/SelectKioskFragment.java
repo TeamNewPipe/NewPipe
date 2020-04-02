@@ -50,9 +50,6 @@ public class SelectKioskFragment extends DialogFragment {
     private RecyclerView recyclerView = null;
     private SelectKioskAdapter selectKioskAdapter = null;
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Interfaces
-    //////////////////////////////////////////////////////////////////////////*/
     private OnSelectedLisener onSelectedLisener = null;
     private OnCancelListener onCancelListener = null;
 
@@ -80,6 +77,10 @@ public class SelectKioskFragment extends DialogFragment {
         return v;
     }
 
+   /*//////////////////////////////////////////////////////////////////////////
+    // Handle actions
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Override
     public void onCancel(final DialogInterface dialogInterface) {
         super.onCancel(dialogInterface);
@@ -95,8 +96,8 @@ public class SelectKioskFragment extends DialogFragment {
         dismiss();
     }
 
-   /*//////////////////////////////////////////////////////////////////////////
-    // Handle actions
+    /*//////////////////////////////////////////////////////////////////////////
+    // Error
     //////////////////////////////////////////////////////////////////////////*/
 
     protected void onError(final Throwable e) {
@@ -105,6 +106,10 @@ public class SelectKioskFragment extends DialogFragment {
                 .make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Interfaces
+    //////////////////////////////////////////////////////////////////////////*/
+
     public interface OnSelectedLisener {
         void onKioskSelected(int serviceId, String kioskId, String kioskName);
     }
@@ -112,10 +117,6 @@ public class SelectKioskFragment extends DialogFragment {
     public interface OnCancelListener {
         void onCancel();
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Error
-    //////////////////////////////////////////////////////////////////////////*/
 
     private class SelectKioskAdapter
             extends RecyclerView.Adapter<SelectKioskAdapter.SelectKioskItemHolder> {

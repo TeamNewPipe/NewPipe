@@ -294,7 +294,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     }
                 });
             }
-        } else { // Else say we have no uploader
+        } else { // Otherwise say we have no uploader
             headerUploaderName.setText(R.string.playlist_no_uploader);
         }
 

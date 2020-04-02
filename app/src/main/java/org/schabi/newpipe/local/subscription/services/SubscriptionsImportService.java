@@ -67,15 +67,18 @@ public class SubscriptionsImportService extends BaseImportExportService {
      */
     public static final String IMPORT_COMPLETE_ACTION = "org.schabi.newpipe.local.subscription"
             + ".services.SubscriptionsImportService.IMPORT_COMPLETE";
+
     /**
      * How many extractions running in parallel.
      */
     public static final int PARALLEL_EXTRACTIONS = 8;
+
     /**
      * Number of items to buffer to mass-insert in the subscriptions table,
      * this leads to a better performance as we can then use db transactions.
      */
     public static final int BUFFER_COUNT_BEFORE_INSERT = 50;
+
     private Subscription subscription;
     private int currentMode;
     private int currentServiceId;
@@ -131,10 +134,6 @@ public class SubscriptionsImportService extends BaseImportExportService {
         return 4568;
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Imports
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public int getTitle() {
         return R.string.import_ongoing;
@@ -147,6 +146,10 @@ public class SubscriptionsImportService extends BaseImportExportService {
             subscription.cancel();
         }
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Imports
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void startImport() {
         showToast(R.string.import_ongoing);

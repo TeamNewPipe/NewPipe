@@ -47,26 +47,26 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
  * A view that can be fully collapsed and expanded.
  */
 public class CollapsibleView extends LinearLayout {
+    private static final String TAG = CollapsibleView.class.getSimpleName();
+
+    private static final int ANIMATION_DURATION = 420;
+
     public static final int COLLAPSED = 0;
     public static final int EXPANDED = 1;
-    private static final String TAG = CollapsibleView.class.getSimpleName();
-    private static final int ANIMATION_DURATION = 420;
-    private final List<StateListener> listeners = new ArrayList<>();
 
     @State
     @ViewMode
     int currentState = COLLAPSED;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Collapse/expand logic
-    //////////////////////////////////////////////////////////////////////////*/
     private boolean readyToChangeState;
+
     private int targetHeight = -1;
     private ValueAnimator currentAnimator;
+    private final List<StateListener> listeners = new ArrayList<>();
 
     public CollapsibleView(final Context context) {
         super(context);
     }
+
     public CollapsibleView(final Context context, @Nullable final AttributeSet attrs) {
         super(context, attrs);
     }
@@ -75,11 +75,16 @@ public class CollapsibleView extends LinearLayout {
                            final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public CollapsibleView(final Context context, final AttributeSet attrs, final int defStyleAttr,
                            final int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Collapse/expand logic
+    //////////////////////////////////////////////////////////////////////////*/
 
     /**
      * This method recalculates the height of this view so it <b>must</b> be called when
@@ -198,6 +203,10 @@ public class CollapsibleView extends LinearLayout {
         listeners.remove(listener);
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // State Saving
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Nullable
     @Override
     public Parcelable onSaveInstanceState() {
@@ -212,7 +221,7 @@ public class CollapsibleView extends LinearLayout {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // State Saving
+    // Internal
     //////////////////////////////////////////////////////////////////////////*/
 
     public String getDebugLogString(final String description) {
@@ -226,12 +235,7 @@ public class CollapsibleView extends LinearLayout {
 
     @Retention(SOURCE)
     @IntDef({COLLAPSED, EXPANDED})
-    public @interface ViewMode {
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Internal
-    //////////////////////////////////////////////////////////////////////////*/
+    public @interface ViewMode { }
 
     /**
      * Simple interface used for listening state changes of the {@link CollapsibleView}.

@@ -39,6 +39,10 @@ public abstract class Tab {
         readDataFromJson(jsonObject);
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Tab Handling
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Nullable
     public static Tab from(@NonNull final JsonObject jsonObject) {
         final int tabId = jsonObject.getInt(Tab.JSON_TAB_ID_KEY, -1);
@@ -85,10 +89,6 @@ public abstract class Tab {
         return type.getTab();
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // JSON Handling
-    //////////////////////////////////////////////////////////////////////////*/
-
     public abstract int getTabId();
 
     public abstract String getTabName(Context context);
@@ -104,10 +104,6 @@ public abstract class Tab {
      */
     public abstract Fragment getFragment(Context context) throws ExtractionException;
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Tab Handling
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public boolean equals(final Object obj) {
         if (obj == this) {
@@ -117,6 +113,10 @@ public abstract class Tab {
         return obj instanceof Tab && obj.getClass().equals(this.getClass())
                 && ((Tab) obj).getTabId() == this.getTabId();
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // JSON Handling
+    //////////////////////////////////////////////////////////////////////////*/
 
     public void writeJsonOn(final JsonSink jsonSink) {
         jsonSink.object();

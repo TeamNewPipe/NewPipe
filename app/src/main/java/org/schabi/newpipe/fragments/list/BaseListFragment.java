@@ -44,20 +44,22 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, StateSaver.WriteRead,
         SharedPreferences.OnSharedPreferenceChangeListener {
+    private static final int LIST_MODE_UPDATE_FLAG = 0x32;
+    protected StateSaver.SavedState savedState;
+
+    private boolean useDefaultStateSaving = true;
+    private int updateFlags = 0;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static final int LIST_MODE_UPDATE_FLAG = 0x32;
     protected InfoListAdapter infoListAdapter;
     protected RecyclerView itemsList;
-    protected StateSaver.SavedState savedState;
 
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
-    private boolean useDefaultStateSaving = true;
-    private int updateFlags = 0;
 
     @Override
     public void onAttach(final Context context) {
@@ -80,10 +82,6 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .registerOnSharedPreferenceChangeListener(this);
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // State Saving
-    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onDestroy() {
@@ -110,6 +108,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             updateFlags = 0;
         }
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // State Saving
+    //////////////////////////////////////////////////////////////////////////*/
 
     /**
      * If the default implementation of {@link StateSaver.WriteRead} should be used.

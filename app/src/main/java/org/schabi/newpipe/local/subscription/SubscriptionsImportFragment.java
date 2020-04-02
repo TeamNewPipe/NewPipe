@@ -47,18 +47,20 @@ public class SubscriptionsImportFragment extends BaseFragment {
     private static final int REQUEST_IMPORT_FILE_CODE = 666;
 
     @State
-    protected int currentServiceId = Constants.NO_SERVICE_ID;
+    int currentServiceId = Constants.NO_SERVICE_ID;
 
     private List<SubscriptionExtractor.ContentSource> supportedSources;
     private String relatedUrl;
+
     @StringRes
     private int instructionsString;
-    private TextView infoTextView;
-    private EditText inputText;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
+
+    private TextView infoTextView;
+    private EditText inputText;
     private Button inputButton;
 
     public static SubscriptionsImportFragment getInstance(final int serviceId) {
@@ -67,7 +69,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
         return instance;
     }
 
-    public void setInitialData(final int serviceId) {
+    private void setInitialData(final int serviceId) {
         this.currentServiceId = serviceId;
     }
 

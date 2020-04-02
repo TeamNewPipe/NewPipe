@@ -57,18 +57,18 @@ public class SelectChannelFragment extends DialogFragment {
     /**
      * This contains the base display options for images.
      */
-    public static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS
+    private static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS
             = new DisplayImageOptions.Builder().cacheInMemory(true).build();
-    private final ImageLoader imageLoader = ImageLoader.getInstance();
-    OnSelectedLisener onSelectedLisener = null;
-    OnCancelListener onCancelListener = null;
-    private ProgressBar progressBar;
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Interfaces
-    //////////////////////////////////////////////////////////////////////////*/
+    private final ImageLoader imageLoader = ImageLoader.getInstance();
+
+    private OnSelectedLisener onSelectedLisener = null;
+    private OnCancelListener onCancelListener = null;
+
+    private ProgressBar progressBar;
     private TextView emptyView;
     private RecyclerView recyclerView;
+
     private List<SubscriptionEntity> subscriptions = new Vector<>();
 
     public void setOnSelectedLisener(final OnSelectedLisener listener) {
@@ -78,6 +78,10 @@ public class SelectChannelFragment extends DialogFragment {
     public void setOnCancelListener(final OnCancelListener listener) {
         onCancelListener = listener;
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Init
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
@@ -105,7 +109,7 @@ public class SelectChannelFragment extends DialogFragment {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Init
+    // Handle actions
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
@@ -116,11 +120,6 @@ public class SelectChannelFragment extends DialogFragment {
         }
     }
 
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Handle actions
-    //////////////////////////////////////////////////////////////////////////*/
-
     private void clickedItem(final int position) {
         if (onSelectedLisener != null) {
             SubscriptionEntity entry = subscriptions.get(position);
@@ -129,6 +128,10 @@ public class SelectChannelFragment extends DialogFragment {
         }
         dismiss();
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Item handling
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void displayChannels(final List<SubscriptionEntity> newSubscriptions) {
         this.subscriptions = newSubscriptions;
@@ -140,10 +143,6 @@ public class SelectChannelFragment extends DialogFragment {
         recyclerView.setVisibility(View.VISIBLE);
 
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Item handling
-    //////////////////////////////////////////////////////////////////////////*/
 
     private Observer<List<SubscriptionEntity>> getSubscriptionObserver() {
         return new Observer<List<SubscriptionEntity>>() {
@@ -165,28 +164,27 @@ public class SelectChannelFragment extends DialogFragment {
         };
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Error
+    //////////////////////////////////////////////////////////////////////////*/
+
     protected void onError(final Throwable e) {
         final Activity activity = getActivity();
         ErrorActivity.reportError(activity, e, activity.getClass(), null, ErrorActivity.ErrorInfo
                 .make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Interfaces
+    //////////////////////////////////////////////////////////////////////////*/
+
     public interface OnSelectedLisener {
         void onChannelSelected(int serviceId, String url, String name);
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Error
-    //////////////////////////////////////////////////////////////////////////*/
-
     public interface OnCancelListener {
         void onCancel();
     }
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // ImageLoaderOptions
-    //////////////////////////////////////////////////////////////////////////*/
 
     private class SelectChannelAdapter
             extends RecyclerView.Adapter<SelectChannelAdapter.SelectChannelItemHolder> {
@@ -219,8 +217,8 @@ public class SelectChannelFragment extends DialogFragment {
 
         public class SelectChannelItemHolder extends RecyclerView.ViewHolder {
             public final View view;
-            public final CircleImageView thumbnailView;
-            public final TextView titleView;
+            final CircleImageView thumbnailView;
+            final TextView titleView;
             SelectChannelItemHolder(final View v) {
                 super(v);
                 this.view = v;

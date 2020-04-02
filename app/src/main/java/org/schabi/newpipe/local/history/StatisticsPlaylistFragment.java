@@ -80,15 +80,15 @@ public class StatisticsPlaylistFragment
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment LifeCycle - Creation
+    ///////////////////////////////////////////////////////////////////////////
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         recordManager = new HistoryRecordManager(getContext());
     }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Fragment LifeCycle - Creation
-    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
@@ -111,6 +111,10 @@ public class StatisticsPlaylistFragment
         inflater.inflate(R.menu.menu_history, menu);
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment LifeCycle - Views
+    ///////////////////////////////////////////////////////////////////////////
+
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
@@ -118,10 +122,6 @@ public class StatisticsPlaylistFragment
             setTitle(getString(R.string.title_last_played));
         }
     }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Fragment LifeCycle - Views
-    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     protected View getListHeader() {
@@ -210,6 +210,10 @@ public class StatisticsPlaylistFragment
         return true;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment LifeCycle - Loading
+    ///////////////////////////////////////////////////////////////////////////
+
     @Override
     public void startLoading(final boolean forceLoad) {
         super.startLoading(forceLoad);
@@ -219,7 +223,7 @@ public class StatisticsPlaylistFragment
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Fragment LifeCycle - Loading
+    // Fragment LifeCycle - Destruction
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
@@ -227,10 +231,6 @@ public class StatisticsPlaylistFragment
         super.onPause();
         itemsListState = itemsList.getLayoutManager().onSaveInstanceState();
     }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Fragment LifeCycle - Destruction
-    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     public void onDestroyView() {
@@ -261,6 +261,10 @@ public class StatisticsPlaylistFragment
         recordManager = null;
         itemsListState = null;
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Statistics Loader
+    ///////////////////////////////////////////////////////////////////////////
 
     private Subscriber<List<StreamStatisticsEntry>> getHistoryObserver() {
         return new Subscriber<List<StreamStatisticsEntry>>() {
@@ -293,10 +297,6 @@ public class StatisticsPlaylistFragment
             }
         };
     }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Statistics Loader
-    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     public void handleResult(@NonNull final List<StreamStatisticsEntry> result) {
@@ -331,6 +331,10 @@ public class StatisticsPlaylistFragment
         hideLoading();
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Error Handling
+    ///////////////////////////////////////////////////////////////////////////
+
     @Override
     protected void resetFragment() {
         super.resetFragment();
@@ -338,9 +342,6 @@ public class StatisticsPlaylistFragment
             databaseSubscription.cancel();
         }
     }
-    ///////////////////////////////////////////////////////////////////////////
-    // Fragment Error Handling
-    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     protected boolean onError(final Throwable exception) {
@@ -352,6 +353,10 @@ public class StatisticsPlaylistFragment
                 "none", "History Statistics", R.string.general_error);
         return true;
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void toggleSortMode() {
         if (sortMode == StatisticSortMode.LAST_PLAYED) {
@@ -369,10 +374,6 @@ public class StatisticsPlaylistFragment
         }
         startLoading(true);
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
 
     private PlayQueue getPlayQueueStartingAt(final StreamStatisticsEntry infoItem) {
         return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));

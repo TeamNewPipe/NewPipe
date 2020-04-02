@@ -23,19 +23,23 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class PlaybackParameterDialog extends DialogFragment {
     // Minimum allowable range in ExoPlayer
-    public static final double MINIMUM_PLAYBACK_VALUE = 0.10f;
-    public static final double MAXIMUM_PLAYBACK_VALUE = 3.00f;
-    public static final char STEP_UP_SIGN = '+';
-    public static final char STEP_DOWN_SIGN = '-';
-    public static final double STEP_ONE_PERCENT_VALUE = 0.01f;
-    public static final double STEP_FIVE_PERCENT_VALUE = 0.05f;
-    public static final double STEP_TEN_PERCENT_VALUE = 0.10f;
-    public static final double STEP_TWENTY_FIVE_PERCENT_VALUE = 0.25f;
-    public static final double STEP_ONE_HUNDRED_PERCENT_VALUE = 1.00f;
-    public static final double DEFAULT_TEMPO = 1.00f;
-    public static final double DEFAULT_PITCH = 1.00f;
-    public static final double DEFAULT_STEP = STEP_TWENTY_FIVE_PERCENT_VALUE;
-    public static final boolean DEFAULT_SKIP_SILENCE = false;
+    private static final double MINIMUM_PLAYBACK_VALUE = 0.10f;
+    private static final double MAXIMUM_PLAYBACK_VALUE = 3.00f;
+
+    private static final char STEP_UP_SIGN = '+';
+    private static final char STEP_DOWN_SIGN = '-';
+
+    private static final double STEP_ONE_PERCENT_VALUE = 0.01f;
+    private static final double STEP_FIVE_PERCENT_VALUE = 0.05f;
+    private static final double STEP_TEN_PERCENT_VALUE = 0.10f;
+    private static final double STEP_TWENTY_FIVE_PERCENT_VALUE = 0.25f;
+    private static final double STEP_ONE_HUNDRED_PERCENT_VALUE = 1.00f;
+
+    private static final double DEFAULT_TEMPO = 1.00f;
+    private static final double DEFAULT_PITCH = 1.00f;
+    private static final double DEFAULT_STEP = STEP_TWENTY_FIVE_PERCENT_VALUE;
+    private static final boolean DEFAULT_SKIP_SILENCE = false;
+
     @NonNull
     private static final String TAG = "PlaybackParameterDialog";
     @NonNull
@@ -49,18 +53,22 @@ public class PlaybackParameterDialog extends DialogFragment {
     private static final String PITCH_KEY = "pitch_key";
     @NonNull
     private static final String STEP_SIZE_KEY = "step_size_key";
+
     @NonNull
     private final SliderStrategy strategy = new SliderStrategy.Quadratic(
             MINIMUM_PLAYBACK_VALUE, MAXIMUM_PLAYBACK_VALUE,
             /*centerAt=*/1.00f, /*sliderGranularity=*/10000);
+
     @Nullable
     private Callback callback;
+
     private double initialTempo = DEFAULT_TEMPO;
     private double initialPitch = DEFAULT_PITCH;
     private boolean initialSkipSilence = DEFAULT_SKIP_SILENCE;
     private double tempo = DEFAULT_TEMPO;
     private double pitch = DEFAULT_PITCH;
     private double stepSize = DEFAULT_STEP;
+
     @Nullable
     private SeekBar tempoSlider;
     @Nullable
@@ -96,24 +104,9 @@ public class PlaybackParameterDialog extends DialogFragment {
         return dialog;
     }
 
-    @NonNull
-    private static String getStepUpPercentString(final double percent) {
-        return STEP_UP_SIGN + getPercentString(percent);
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
     //////////////////////////////////////////////////////////////////////////*/
-
-    @NonNull
-    private static String getStepDownPercentString(final double percent) {
-        return STEP_DOWN_SIGN + getPercentString(percent);
-    }
-
-    @NonNull
-    private static String getPercentString(final double percent) {
-        return PlayerHelper.formatPitch(percent);
-    }
 
     @Override
     public void onAttach(final Context context) {
@@ -124,10 +117,6 @@ public class PlaybackParameterDialog extends DialogFragment {
             dismiss();
         }
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Dialog
-    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -143,10 +132,6 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Control Views
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -157,6 +142,10 @@ public class PlaybackParameterDialog extends DialogFragment {
         outState.putDouble(PITCH_KEY, getCurrentPitch());
         outState.putDouble(STEP_SIZE_KEY, getCurrentStepSize());
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Dialog
+    //////////////////////////////////////////////////////////////////////////*/
 
     @NonNull
     @Override
@@ -178,6 +167,10 @@ public class PlaybackParameterDialog extends DialogFragment {
 
         return dialogBuilder.create();
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Control Views
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void setupControlViews(@NonNull final View rootView) {
         setupHookingControl(rootView);
@@ -273,10 +266,6 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Sliders
-    //////////////////////////////////////////////////////////////////////////*/
-
     private void setupStepSizeSelector(@NonNull final View rootView) {
         TextView stepSizeOnePercentText = rootView.findViewById(R.id.stepSizeOnePercent);
         TextView stepSizeFivePercentText = rootView.findViewById(R.id.stepSizeFivePercent);
@@ -355,6 +344,10 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Sliders
+    //////////////////////////////////////////////////////////////////////////*/
+
     private SeekBar.OnSeekBarChangeListener getOnTempoChangedListener() {
         return new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -430,10 +423,6 @@ public class PlaybackParameterDialog extends DialogFragment {
         setPitchSlider(newValue);
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Helper
-    //////////////////////////////////////////////////////////////////////////*/
-
     private void setTempoSlider(final double newTempo) {
         if (tempoSlider == null) {
             return;
@@ -447,6 +436,10 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
         pitchSlider.setProgress(strategy.progressOf(newPitch));
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Helper
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void setCurrentPlaybackParameters() {
         setPlaybackParameters(getCurrentTempo(), getCurrentPitch(), getCurrentSkipSilence());
@@ -481,6 +474,21 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private boolean getCurrentSkipSilence() {
         return skipSilenceCheckbox != null && skipSilenceCheckbox.isChecked();
+    }
+
+    @NonNull
+    private static String getStepUpPercentString(final double percent) {
+        return STEP_UP_SIGN + getPercentString(percent);
+    }
+
+    @NonNull
+    private static String getStepDownPercentString(final double percent) {
+        return STEP_DOWN_SIGN + getPercentString(percent);
+    }
+
+    @NonNull
+    private static String getPercentString(final double percent) {
+        return PlayerHelper.formatPitch(percent);
     }
 
     public interface Callback {

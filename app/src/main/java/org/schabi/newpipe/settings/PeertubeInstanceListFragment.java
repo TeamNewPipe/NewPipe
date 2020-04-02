@@ -54,17 +54,20 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PeertubeInstanceListFragment extends Fragment {
     private static final int MENU_ITEM_RESTORE_ID = 123456;
-    public InstanceListAdapter instanceListAdapter;
+
     private List<PeertubeInstance> instanceList = new ArrayList<>();
     private PeertubeInstance selectedInstance;
     private String savedInstanceListKey;
+    private InstanceListAdapter instanceListAdapter;
+
     private ProgressBar progressBar;
     private SharedPreferences sharedPreferences;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
     //////////////////////////////////////////////////////////////////////////*/
-    private CompositeDisposable disposables = new CompositeDisposable();
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -122,9 +125,6 @@ public class PeertubeInstanceListFragment extends Fragment {
         super.onPause();
         saveChanges();
     }
-    /*//////////////////////////////////////////////////////////////////////////
-    // Menu
-    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onDestroy() {
@@ -134,6 +134,10 @@ public class PeertubeInstanceListFragment extends Fragment {
         }
         disposables = null;
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Menu
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
@@ -284,10 +288,6 @@ public class PeertubeInstanceListFragment extends Fragment {
         instanceListAdapter.notifyDataSetChanged();
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // List Handling
-    //////////////////////////////////////////////////////////////////////////*/
-
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                 ItemTouchHelper.START | ItemTouchHelper.END) {
@@ -347,6 +347,10 @@ public class PeertubeInstanceListFragment extends Fragment {
             }
         };
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // List Handling
+    //////////////////////////////////////////////////////////////////////////*/
 
     private class InstanceListAdapter
             extends RecyclerView.Adapter<InstanceListAdapter.TabViewHolder> {

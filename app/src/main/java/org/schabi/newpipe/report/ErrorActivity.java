@@ -181,25 +181,6 @@ public class ErrorActivity extends AppCompatActivity {
         return out;
     }
 
-    /**
-     * Get the checked activity.
-     *
-     * @param returnActivity the activity to return to
-     * @return the casted return activity or null
-     */
-    @Nullable
-    static Class<? extends Activity> getReturnActivity(final Class<?> returnActivity) {
-        Class<? extends Activity> checkedReturnActivity = null;
-        if (returnActivity != null) {
-            if (Activity.class.isAssignableFrom(returnActivity)) {
-                checkedReturnActivity = returnActivity.asSubclass(Activity.class);
-            } else {
-                checkedReturnActivity = MainActivity.class;
-            }
-        }
-        return checkedReturnActivity;
-    }
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
@@ -313,6 +294,25 @@ public class ErrorActivity extends AppCompatActivity {
         }
         text.append("-------------------------------------");
         return text.toString();
+    }
+
+    /**
+     * Get the checked activity.
+     *
+     * @param returnActivity the activity to return to
+     * @return the casted return activity or null
+     */
+    @Nullable
+    static Class<? extends Activity> getReturnActivity(final Class<?> returnActivity) {
+        Class<? extends Activity> checkedReturnActivity = null;
+        if (returnActivity != null) {
+            if (Activity.class.isAssignableFrom(returnActivity)) {
+                checkedReturnActivity = returnActivity.asSubclass(Activity.class);
+            } else {
+                checkedReturnActivity = MainActivity.class;
+            }
+        }
+        return checkedReturnActivity;
     }
 
     private void goToReturnActivity() {

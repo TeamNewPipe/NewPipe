@@ -36,17 +36,22 @@ import io.reactivex.subjects.BehaviorSubject;
  * <p>
  * This class contains basic manipulation of a playlist while also functions as a
  * message bus, providing all listeners with new updates to the play queue.
+ * </p>
  * <p>
  * This class can be serialized for passing intents, but in order to start the
  * message bus, it must be initialized.
+ * </p>
  */
 public abstract class PlayQueue implements Serializable {
-    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
     private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
-    @NonNull
-    private final AtomicInteger queueIndex;
+    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+
     private ArrayList<PlayQueueItem> backup;
     private ArrayList<PlayQueueItem> streams;
+
+    @NonNull
+    private final AtomicInteger queueIndex;
+
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
     private transient Flowable<PlayQueueEvent> broadcastReceiver;
     private transient Subscription reportingReactor;

@@ -41,10 +41,6 @@ public final class TabsManager {
         sharedPreferences.edit().putString(savedTabsKey, jsonToSave).apply();
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Listener
-    //////////////////////////////////////////////////////////////////////////*/
-
     public void resetTabs() {
         sharedPreferences.edit().remove(savedTabsKey).apply();
     }
@@ -52,6 +48,10 @@ public final class TabsManager {
     public List<Tab> getDefaultTabs() {
         return TabsJsonHelper.getDefaultTabs();
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Listener
+    //////////////////////////////////////////////////////////////////////////*/
 
     public void setSavedTabsListener(final SavedTabsChangeListener listener) {
         if (preferenceChangeListener != null) {
@@ -83,12 +83,4 @@ public final class TabsManager {
     public interface SavedTabsChangeListener {
         void onTabsChanged();
     }
-
 }
-
-
-
-
-
-
-

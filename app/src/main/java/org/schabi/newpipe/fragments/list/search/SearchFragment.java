@@ -80,7 +80,6 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.InfoItemsPage>
         implements BackPressable {
-
     /*//////////////////////////////////////////////////////////////////////////
     // Search
     //////////////////////////////////////////////////////////////////////////*/
@@ -97,35 +96,45 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
      */
     private static final int SUGGESTIONS_DEBOUNCE = 120; //ms
     private final PublishSubject<String> suggestionPublisher = PublishSubject.create();
-    private final CompositeDisposable disposables = new CompositeDisposable();
+
     @State
-    protected int filterItemCheckedId = -1;
+    int filterItemCheckedId = -1;
+
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
-    // this three represet the current search query
+
+    // these three represents the current search query
     @State
-    protected String searchString;
+    String searchString;
+
     /**
-     * No content filter should add like contentfilter = all
+     * No content filter should add like contentFilter = all
      * be aware of this when implementing an extractor.
      */
     @State
-    protected String[] contentFilter = new String[0];
+    String[] contentFilter = new String[0];
+
     @State
-    protected String sortFilter;
-    // these represtent the last search
+    String sortFilter;
+
+    // these represents the last search
     @State
-    protected String lastSearchedString;
+    String lastSearchedString;
+
     @State
-    protected boolean wasSearchFocused = false;
+    boolean wasSearchFocused = false;
+
     private Map<Integer, String> menuItemToFilterName;
     private StreamingService service;
     private String currentPageUrl;
     private String nextPageUrl;
     private String contentCountry;
     private boolean isSuggestionsEnabled = true;
+
     private Disposable searchDisposable;
     private Disposable suggestionDisposable;
+    private final CompositeDisposable disposables = new CompositeDisposable();
+
     private SuggestionListAdapter suggestionListAdapter;
     private HistoryRecordManager historyRecordManager;
 
@@ -141,6 +150,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private RecyclerView suggestionsRecyclerView;
 
     /*////////////////////////////////////////////////////////////////////////*/
+
     private TextWatcher textWatcher;
 
     public static SearchFragment getInstance(final int serviceId, final String searchString) {
@@ -154,16 +164,16 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         return searchFragment;
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Fragment's LifeCycle
-    //////////////////////////////////////////////////////////////////////////*/
-
     /**
      * Set wasLoading to true so when the fragment onResume is called, the initial search is done.
      */
     private void setSearchOnResume() {
         wasLoading.set(true);
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Fragment's LifeCycle
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onAttach(final Context context) {
@@ -287,10 +297,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Init
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         switch (requestCode) {
@@ -310,7 +316,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // State Saving
+    // Init
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
@@ -344,6 +350,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // State Saving
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Override
     public void writeTo(final Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
@@ -358,10 +368,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         nextPageUrl = (String) savedObjects.poll();
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Init's
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void onSaveInstanceState(final Bundle bundle) {
         searchString = searchEditText != null
@@ -371,7 +377,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Menu
+    // Init's
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
@@ -389,6 +395,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             animateView(errorPanelRoot, false, 200);
         }
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Menu
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
@@ -430,10 +440,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         return true;
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Search
-    //////////////////////////////////////////////////////////////////////////*/
-
     private void restoreFilterChecked(final Menu menu, final int itemId) {
         if (itemId != -1) {
             MenuItem item = menu.findItem(itemId);
@@ -444,6 +450,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             item.setChecked(true);
         }
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Search
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void showSearchOnStart() {
         if (DEBUG) {

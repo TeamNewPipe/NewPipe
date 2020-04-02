@@ -32,18 +32,20 @@ import org.schabi.newpipe.extractor.InfoItem;
 import java.util.Map;
 
 public final class InfoCache {
+    private final String TAG = getClass().getSimpleName();
     private static final boolean DEBUG = MainActivity.DEBUG;
+
     private static final InfoCache INSTANCE = new InfoCache();
     private static final int MAX_ITEMS_ON_CACHE = 60;
     /**
      * Trim the cache to this size.
      */
     private static final int TRIM_CACHE_TO = 30;
+
     private static final LruCache<String, CacheData> LRU_CACHE = new LruCache<>(MAX_ITEMS_ON_CACHE);
-    private final String TAG = getClass().getSimpleName();
 
     private InfoCache() {
-        //no instance
+        // no instance
     }
 
     public static InfoCache getInstance() {

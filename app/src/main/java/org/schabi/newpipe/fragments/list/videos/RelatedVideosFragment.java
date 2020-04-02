@@ -34,16 +34,15 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     private static final String INFO_KEY = "related_info_key";
     private CompositeDisposable disposables = new CompositeDisposable();
     private RelatedStreamInfo relatedStreamInfo;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
+
     private View headerRootLayout;
     private Switch aSwitch;
-    private boolean mIsVisibleToUser = false;
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // LifeCycle
-    //////////////////////////////////////////////////////////////////////////*/
+    private boolean mIsVisibleToUser = false;
 
     public static RelatedVideosFragment getInstance(final StreamInfo info) {
         RelatedVideosFragment instance = new RelatedVideosFragment();
@@ -56,6 +55,10 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         super.setUserVisibleHint(isVisibleToUser);
         mIsVisibleToUser = isVisibleToUser;
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // LifeCycle
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onAttach(final Context context) {
@@ -141,10 +144,6 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         }
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // OnError
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
@@ -159,7 +158,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Utils
+    // OnError
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
@@ -173,6 +172,10 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
                 NewPipe.getNameOfService(serviceId), url, R.string.general_error);
         return true;
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void setTitle(final String title) {
