@@ -584,4 +584,6 @@
     <string name="feed_group_dialog_delete_message">Удалить эту группу\?</string>
     <string name="feed_group_dialog_name_input">Имя</string>
     <string name="feed_subscription_not_loaded_count">Не загружено: %d</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="feed_create_new_group_button_title">Создать</string>
 </resources>
