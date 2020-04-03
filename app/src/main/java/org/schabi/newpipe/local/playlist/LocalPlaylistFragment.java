@@ -369,12 +369,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     public void removeWatchedStreams() {
-        showLoading();
-
-        if (removeWatchedDisposable != null) {
-            // In case this is called twice
-            removeWatchedDisposable.dispose();
+        if (removeWatchedDisposable != null && !removeWatchedDisposable.isDisposed()) {
+            // already running
+            return;
         }
+        showLoading();
 
         removeWatchedDisposable = Flowable.just(
                 playlistManager.getPlaylistStreams(playlistId).blockingFirst())
@@ -431,8 +430,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     }
 
                     hideLoading();
-                }, this::onError
-                );
+                }, this::onError);
     }
 
     @Override
