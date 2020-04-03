@@ -4,15 +4,14 @@ import java.io.Closeable;
 import java.io.IOException;
 
 /**
- * based on c#
+ * Based on C#'s Stream class.
  */
 public abstract class SharpStream  implements Closeable {
-
     public abstract int read() throws IOException;
 
-    public abstract int read(byte buffer[]) throws IOException;
+    public abstract int read(byte[] buffer) throws IOException;
 
-    public abstract int read(byte buffer[], int offset, int count) throws IOException;
+    public abstract int read(byte[] buffer, int offset, int count) throws IOException;
 
     public abstract long skip(long amount) throws IOException;
 
@@ -49,11 +48,11 @@ public abstract class SharpStream  implements Closeable {
         // STUB
     }
 
-    public void setLength(long length) throws IOException {
+    public void setLength(final long length) throws IOException {
         throw new IOException("Not implemented");
     }
 
-    public void seek(long offset) throws IOException {
+    public void seek(final long offset) throws IOException {
         throw new IOException("Not implemented");
     }
 

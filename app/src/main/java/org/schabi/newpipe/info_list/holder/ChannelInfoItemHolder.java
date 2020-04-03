@@ -31,18 +31,21 @@ import org.schabi.newpipe.util.Localization;
  */
 
 public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
-    public final TextView itemChannelDescriptionView;
+    private final TextView itemChannelDescriptionView;
 
-    public ChannelInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
+    public ChannelInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         super(infoItemBuilder, R.layout.list_channel_item, parent);
         itemChannelDescriptionView = itemView.findViewById(R.id.itemChannelDescriptionView);
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+    public void updateFromItem(final InfoItem infoItem,
+                               final HistoryRecordManager historyRecordManager) {
         super.updateFromItem(infoItem, historyRecordManager);
 
-        if (!(infoItem instanceof ChannelInfoItem)) return;
+        if (!(infoItem instanceof ChannelInfoItem)) {
+            return;
+        }
         final ChannelInfoItem item = (ChannelInfoItem) infoItem;
 
         itemChannelDescriptionView.setText(item.getDescription());

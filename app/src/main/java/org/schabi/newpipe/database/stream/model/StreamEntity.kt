@@ -90,7 +90,8 @@ data class StreamEntity(
         if (viewCount != null) item.viewCount = viewCount as Long
         item.textualUploadDate = textualUploadDate
         item.uploadDate = uploadDate?.let {
-            DateWrapper(Calendar.getInstance().apply { time = it }, isUploadDateApproximation ?: false)
+            DateWrapper(Calendar.getInstance().apply { time = it }, isUploadDateApproximation
+                    ?: false)
         }
 
         return item

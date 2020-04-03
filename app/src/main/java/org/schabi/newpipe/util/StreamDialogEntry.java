@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
+
 import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
@@ -16,26 +17,33 @@ public enum StreamDialogEntry {
     //////////////////////////////////////
 
     enqueue_on_background(R.string.enqueue_on_background, (fragment, item) ->
-            NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(), new SinglePlayQueue(item), false)),
+            NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
+                    new SinglePlayQueue(item), false)),
 
     enqueue_on_popup(R.string.enqueue_on_popup, (fragment, item) ->
-            NavigationHelper.enqueueOnPopupPlayer(fragment.getContext(), new SinglePlayQueue(item), false)),
+            NavigationHelper.enqueueOnPopupPlayer(fragment.getContext(),
+                    new SinglePlayQueue(item), false)),
 
     start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
-            NavigationHelper.playOnBackgroundPlayer(fragment.getContext(), new SinglePlayQueue(item), true)),
+            NavigationHelper.playOnBackgroundPlayer(fragment.getContext(),
+                    new SinglePlayQueue(item), true)),
 
     start_here_on_popup(R.string.start_here_on_popup, (fragment, item) ->
-            NavigationHelper.playOnPopupPlayer(fragment.getContext(), new SinglePlayQueue(item), true)),
+            NavigationHelper.playOnPopupPlayer(fragment.getContext(),
+                    new SinglePlayQueue(item), true)),
 
-    set_as_playlist_thumbnail(R.string.set_as_playlist_thumbnail, (fragment, item) -> {}), // has to be set manually
+    set_as_playlist_thumbnail(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
+    }), // has to be set manually
 
-    delete(R.string.delete, (fragment, item) -> {}), // has to be set manually
+    delete(R.string.delete, (fragment, item) -> {
+    }), // has to be set manually
 
     append_playlist(R.string.append_playlist, (fragment, item) -> {
         if (fragment.getFragmentManager() != null) {
             PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
                     .show(fragment.getFragmentManager(), "StreamDialogEntry@append_playlist");
-        }}),
+        }
+    }),
 
     share(R.string.share, (fragment, item) ->
             ShareUtils.shareUrl(fragment.getContext(), item.getName(), item.getUrl()));
@@ -45,43 +53,28 @@ public enum StreamDialogEntry {
     // variables //
     ///////////////
 
-    public interface StreamDialogEntryAction {
-        void onClick(Fragment fragment, final StreamInfoItem infoItem);
-    }
-
+    private static StreamDialogEntry[] enabledEntries;
     private final int resource;
     private final StreamDialogEntryAction defaultAction;
     private StreamDialogEntryAction customAction;
 
-    private static StreamDialogEntry[] enabledEntries;
+    StreamDialogEntry(final int resource, final StreamDialogEntryAction defaultAction) {
+        this.resource = resource;
+        this.defaultAction = defaultAction;
+        this.customAction = null;
+    }
 
 
     ///////////////////////////////////////////////////////
     // non-static methods to initialize and edit entries //
     ///////////////////////////////////////////////////////
 
-    StreamDialogEntry(final int resource, StreamDialogEntryAction defaultAction) {
-        this.resource = resource;
-        this.defaultAction = defaultAction;
-        this.customAction = null;
-    }
-
     /**
-     * Can be used after {@link #setEnabledEntries(StreamDialogEntry...)} has been called
+     * To be called before using {@link #setCustomAction(StreamDialogEntryAction)}.
+     *
+     * @param entries the entries to be enabled
      */
-    public void setCustomAction(StreamDialogEntryAction action) {
-        this.customAction = action;
-    }
-
-
-    ////////////////////////////////////////////////
-    // static methods that act on enabled entries //
-    ////////////////////////////////////////////////
-
-    /**
-     * To be called before using {@link #setCustomAction(StreamDialogEntryAction)}
-     */
-    public static void setEnabledEntries(StreamDialogEntry... entries) {
+    public static void setEnabledEntries(final StreamDialogEntry... entries) {
         // cleanup from last time StreamDialogEntry was used
         for (StreamDialogEntry streamDialogEntry : values()) {
             streamDialogEntry.customAction = null;
@@ -90,7 +83,7 @@ public enum StreamDialogEntry {
         enabledEntries = entries;
     }
 
-    public static String[] getCommands(Context context) {
+    public static String[] getCommands(final Context context) {
         String[] commands = new String[enabledEntries.length];
         for (int i = 0; i != enabledEntries.length; ++i) {
             commands[i] = context.getResources().getString(enabledEntries[i].resource);
@@ -99,11 +92,30 @@ public enum StreamDialogEntry {
         return commands;
     }
 
-    public static void clickOn(int which, Fragment fragment, StreamInfoItem infoItem) {
+
+    ////////////////////////////////////////////////
+    // static methods that act on enabled entries //
+    ////////////////////////////////////////////////
+
+    public static void clickOn(final int which, final Fragment fragment,
+                               final StreamInfoItem infoItem) {
         if (enabledEntries[which].customAction == null) {
             enabledEntries[which].defaultAction.onClick(fragment, infoItem);
         } else {
             enabledEntries[which].customAction.onClick(fragment, infoItem);
         }
+    }
+
+    /**
+     * Can be used after {@link #setEnabledEntries(StreamDialogEntry...)} has been called.
+     *
+     * @param action the action to be set
+     */
+    public void setCustomAction(final StreamDialogEntryAction action) {
+        this.customAction = action;
+    }
+
+    public interface StreamDialogEntryAction {
+        void onClick(Fragment fragment, StreamInfoItem infoItem);
     }
 }

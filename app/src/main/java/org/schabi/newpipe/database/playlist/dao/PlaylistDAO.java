@@ -24,13 +24,13 @@ public abstract class PlaylistDAO implements BasicDAO<PlaylistEntity> {
     public abstract int deleteAll();
 
     @Override
-    public Flowable<List<PlaylistEntity>> listByService(int serviceId) {
+    public Flowable<List<PlaylistEntity>> listByService(final int serviceId) {
         throw new UnsupportedOperationException();
     }
 
     @Query("SELECT * FROM " + PLAYLIST_TABLE + " WHERE " + PLAYLIST_ID + " = :playlistId")
-    public abstract Flowable<List<PlaylistEntity>> getPlaylist(final long playlistId);
+    public abstract Flowable<List<PlaylistEntity>> getPlaylist(long playlistId);
 
     @Query("DELETE FROM " + PLAYLIST_TABLE + " WHERE " + PLAYLIST_ID + " = :playlistId")
-    public abstract int deletePlaylist(final long playlistId);
+    public abstract int deletePlaylist(long playlistId);
 }

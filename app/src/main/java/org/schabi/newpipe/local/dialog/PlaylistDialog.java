@@ -2,10 +2,11 @@ package org.schabi.newpipe.local.dialog;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.Window;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import android.view.Window;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.util.StateSaver;
@@ -14,7 +15,6 @@ import java.util.List;
 import java.util.Queue;
 
 public abstract class PlaylistDialog extends DialogFragment implements StateSaver.WriteRead {
-
     private List<StreamEntity> streamEntities;
 
     private StateSaver.SavedState savedState;
@@ -32,7 +32,7 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         savedState = StateSaver.tryToRestore(savedInstanceState, this);
     }
@@ -45,7 +45,7 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
 
     @NonNull
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public Dialog onCreateDialog(final Bundle savedInstanceState) {
         final Dialog dialog = super.onCreateDialog(savedInstanceState);
         //remove title
         final Window window = dialog.getWindow();
@@ -66,18 +66,18 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
     }
 
     @Override
-    public void writeTo(Queue<Object> objectsToSave) {
+    public void writeTo(final Queue<Object> objectsToSave) {
         objectsToSave.add(streamEntities);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public void readFrom(@NonNull Queue<Object> savedObjects) {
+    public void readFrom(@NonNull final Queue<Object> savedObjects) {
         streamEntities = (List<StreamEntity>) savedObjects.poll();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
         if (getActivity() != null) {
             savedState = StateSaver.tryToSave(getActivity().isChangingConfigurations(),

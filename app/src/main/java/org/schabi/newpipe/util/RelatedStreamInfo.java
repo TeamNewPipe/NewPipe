@@ -14,15 +14,18 @@ public class RelatedStreamInfo extends ListInfo<InfoItem> {
 
     private StreamInfoItem nextStream;
 
-    public RelatedStreamInfo(int serviceId, ListLinkHandler listUrlIdHandler, String name) {
+    public RelatedStreamInfo(final int serviceId, final ListLinkHandler listUrlIdHandler,
+                             final String name) {
         super(serviceId, listUrlIdHandler, name);
     }
 
-    public static RelatedStreamInfo getInfo(StreamInfo info) {
-        ListLinkHandler handler = new ListLinkHandler(info.getOriginalUrl(), info.getUrl(), info.getId(), Collections.emptyList(), null);
-        RelatedStreamInfo relatedStreamInfo = new RelatedStreamInfo(info.getServiceId(), handler, info.getName());
+    public static RelatedStreamInfo getInfo(final StreamInfo info) {
+        ListLinkHandler handler = new ListLinkHandler(
+                info.getOriginalUrl(), info.getUrl(), info.getId(), Collections.emptyList(), null);
+        RelatedStreamInfo relatedStreamInfo = new RelatedStreamInfo(
+                info.getServiceId(), handler, info.getName());
         List<InfoItem> streams = new ArrayList<>();
-        if(info.getNextVideo() != null){
+        if (info.getNextVideo() != null) {
             streams.add(info.getNextVideo());
         }
         streams.addAll(info.getRelatedStreams());
@@ -35,7 +38,7 @@ public class RelatedStreamInfo extends ListInfo<InfoItem> {
         return nextStream;
     }
 
-    public void setNextStream(StreamInfoItem nextStream) {
+    public void setNextStream(final StreamInfoItem nextStream) {
         this.nextStream = nextStream;
     }
 }

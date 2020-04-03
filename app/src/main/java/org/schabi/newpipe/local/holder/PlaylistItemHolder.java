@@ -13,12 +13,12 @@ import java.text.DateFormat;
 
 public abstract class PlaylistItemHolder extends LocalItemHolder {
     public final ImageView itemThumbnailView;
-    public final TextView itemStreamCountView;
+    final TextView itemStreamCountView;
     public final TextView itemTitleView;
     public final TextView itemUploaderView;
 
-    public PlaylistItemHolder(LocalItemBuilder infoItemBuilder,
-                              int layoutId, ViewGroup parent) {
+    public PlaylistItemHolder(final LocalItemBuilder infoItemBuilder, final int layoutId,
+                              final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
@@ -27,12 +27,14 @@ public abstract class PlaylistItemHolder extends LocalItemHolder {
         itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
     }
 
-    public PlaylistItemHolder(LocalItemBuilder infoItemBuilder, ViewGroup parent) {
+    public PlaylistItemHolder(final LocalItemBuilder infoItemBuilder, final ViewGroup parent) {
         this(infoItemBuilder, R.layout.list_playlist_mini_item, parent);
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem, HistoryRecordManager historyRecordManager, final DateFormat dateFormat) {
+    public void updateFromItem(final LocalItem localItem,
+                               final HistoryRecordManager historyRecordManager,
+                               final DateFormat dateFormat) {
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
                 itemBuilder.getOnItemSelectedListener().selected(localItem);
