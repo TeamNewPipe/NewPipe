@@ -179,10 +179,6 @@ public abstract class BaseImportExportService extends Service {
         notificationManager.notify(getNotificationId(), notificationBuilder.build());
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Toast
-    //////////////////////////////////////////////////////////////////////////*/
-
     protected NotificationCompat.Builder createNotification() {
         return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
@@ -191,6 +187,10 @@ public abstract class BaseImportExportService extends Service {
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setContentTitle(getString(getTitle()));
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Toast
+    //////////////////////////////////////////////////////////////////////////*/
 
     protected void showToast(@StringRes final int message) {
         showToast(getString(message));
