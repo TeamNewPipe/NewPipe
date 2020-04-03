@@ -62,8 +62,19 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         items.addAll(localPlaylists);
         items.addAll(remotePlaylists);
 
-        Collections.sort(items, (left, right) ->
-                left.getOrderingName().compareToIgnoreCase(right.getOrderingName()));
+        Collections.sort(items, (left, right) -> {
+            String on1 = left.getOrderingName();
+            String on2 = right.getOrderingName();
+            if (on1 == null && on2 == null) {
+                return 0;
+            } else if (on1 != null && on2 == null) {
+                return -1;
+            } else if (on1 == null && on2 != null) {
+                return 1;
+            } else {
+                return on1.compareToIgnoreCase(on2);
+            }
+        });
 
         return items;
     }
