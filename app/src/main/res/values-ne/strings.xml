@@ -513,7 +513,7 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">एक चोटि अनुप्रयोग पुनः सुरु गरिन्छ भाषा परिवर्तन हुनेछ।</string>
     <string name="default_kiosk_page_summary">पूर्वनिर्धारित पसल</string>
-    <string name="seek_duration_title">"छिटो-अगाडि /-पछाडी  खोज्न अवधि"</string>
+    <string name="seek_duration_title">छिटो-अगाडि /-पछाडी खोज्न अवधि</string>
     <string name="peertube_instance_url_title">PeerTube उदाहरणहरू</string>
     <string name="peertube_instance_url_summary">आफ्नो मनपर्ने PeerTube उदाहरणहरू चयन</string>
     <string name="peertube_instance_url_help">%s मा तपाईंलाई मनपर्ने ईन्स्टान्सहरू फेला पार्नुहोस्</string>
@@ -530,7 +530,7 @@
     <string name="error_download_resource_gone">यो डाउनलोड ठीक गर्न सकिँदैनयो डाउनलोड ठीक गर्न सकिँदैन</string>
     <string name="choose_instance_prompt">एउटा उदाहरण छनौट गर्नुहोस्</string>
     <string name="enable_lock_screen_video_thumbnail_title">स्क्रिन भिडियो थम्बनेल लक</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">"पृष्ठभूमिमा प्लेयर  प्रयोग गर्दा एउटा भिडियो थम्बनेल लक स्क्रिनमा देखाइएको छ"</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">पृष्ठभूमिमा प्लेयर प्रयोग गर्दा एउटा भिडियो थम्बनेल लक स्क्रिनमा देखाइएको छ</string>
     <string name="clear_download_history">डाउनलोड इतिहास स्पष्ट</string>
     <string name="delete_downloaded_files">डाउनलोड फाइल मेट्न</string>
     <string name="deleted_downloads">मेटिएको% 1 $ को डाउनलोड</string>
