@@ -562,7 +562,7 @@
         <item quantity="one">%d gün</item>
         <item quantity="other">%d gün</item>
     </plurals>
-    <string name="feed_groups_header_title">Besleme kümeleri</string>
+    <string name="feed_groups_header_title">Kanal kümeleri</string>
     <string name="feed_oldest_subscription_update">En eski abonelik güncellemesi: %s</string>
     <string name="feed_subscription_not_loaded_count">Yüklenmedi: %d</string>
     <string name="feed_notification_loading">Besleme yükleniyor…</string>
