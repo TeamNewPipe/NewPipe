@@ -79,7 +79,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
-    
+
     private ItemTouchHelper itemTouchHelper;
 
     private LocalPlaylistManager playlistManager;
@@ -255,9 +255,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu +
-                "], inflater = [" + inflater + "]");
+    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        if (DEBUG) {
+            Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu
+                    + "], inflater = [" + inflater + "]");
+        }
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_local_playlist, menu);
     }
@@ -300,7 +302,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             disposables.dispose();
         }
 
-        if (removeWatchedDisposable != null) removeWatchedDisposable.dispose();
+        if (removeWatchedDisposable != null) {
+            removeWatchedDisposable.dispose();
+        }
 
         debouncedSaveSignal = null;
         playlistManager = null;
@@ -353,7 +357,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_removeWatched:
                 removeWatchedStreams();
@@ -372,7 +376,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             removeWatchedDisposable.dispose();
         }
 
-        removeWatchedDisposable = Flowable.just(playlistManager.getPlaylistStreams(playlistId).blockingFirst())
+        removeWatchedDisposable = Flowable.just(
+                playlistManager.getPlaylistStreams(playlistId).blockingFirst())
                 .subscribeOn(Schedulers.newThread())
                 .map((@NonNull List<PlaylistStreamEntry> playlist) -> {
                     HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
@@ -382,19 +387,22 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                     // already sorted by ^ getStreamHistorySortedById(), binary search can be used
                     ArrayList<Long> historyStreamIds = new ArrayList<>();
-                    while(historyIter.hasNext()) {
+                    while (historyIter.hasNext()) {
                         historyStreamIds.add(historyIter.next().getStreamId());
                     }
 
                     List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
                     boolean thumbnailVideoRemoved = false;
-                    while(playlistIter.hasNext()) {
+                    while (playlistIter.hasNext()) {
                         PlaylistStreamEntry playlistItem = playlistIter.next();
-                        int indexInHistory = Collections.binarySearch(historyStreamIds, playlistItem.getStreamId());
+                        int indexInHistory = Collections.binarySearch(historyStreamIds,
+                                playlistItem.getStreamId());
 
                         if (indexInHistory < 0) {
                             notWatchedItems.add(playlistItem);
-                        } else if (!thumbnailVideoRemoved && playlistManager.getPlaylistThumbnail(playlistId).equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
+                        } else if (!thumbnailVideoRemoved
+                                && playlistManager.getPlaylistThumbnail(playlistId)
+                                .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
                             thumbnailVideoRemoved = true;
                         }
                     }
@@ -403,7 +411,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(flow -> {
-                    List<PlaylistStreamEntry> notWatchedItems = (List<PlaylistStreamEntry>) flow.blockingFirst();
+                    List<PlaylistStreamEntry> notWatchedItems =
+                            (List<PlaylistStreamEntry>) flow.blockingFirst();
                     boolean thumbnailVideoRemoved = (Boolean) flow.blockingLast();
 
                     itemListAdapter.clearStreamItemList();
