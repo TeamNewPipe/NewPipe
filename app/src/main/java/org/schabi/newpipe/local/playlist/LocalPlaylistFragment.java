@@ -375,74 +375,54 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         removeWatchedDisposable = Flowable.just(playlistManager.getPlaylistStreams(playlistId).blockingFirst())
                 .subscribeOn(Schedulers.newThread())
                 .map((@NonNull List<PlaylistStreamEntry> playlist) -> {
-                            List<PlaylistStreamEntry> localItems = new ArrayList<>();
-                            boolean thumbnailVideoRemoved = false;
-                            Long removedItemCount = 0l;
+                    HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
+                    Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
+                    Iterator<StreamHistoryEntry> historyIter = recordManager
+                            .getStreamHistorySortedById().blockingFirst().iterator();
 
-                            HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
+                    // already sorted by ^ getStreamHistorySortedById(), binary search can be used
+                    ArrayList<Long> historyStreamIds = new ArrayList<>();
+                    while(historyIter.hasNext()) {
+                        historyStreamIds.add(historyIter.next().getStreamId());
+                    }
 
-                            Iterator<PlaylistStreamEntry> it_playlist = playlist.iterator();
-                            PlaylistStreamEntry playlist_item = null;
+                    List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
+                    boolean thumbnailVideoRemoved = false;
+                    while(playlistIter.hasNext()) {
+                        PlaylistStreamEntry playlistItem = playlistIter.next();
+                        int indexInHistory = Collections.binarySearch(historyStreamIds, playlistItem.getStreamId());
 
-                            boolean isNonDuplicate;
-
-                            Iterator<StreamHistoryEntry> it_history = recordManager.getStreamHistory().blockingFirst().iterator();
-                            ArrayList<Long> history_streamIds = new ArrayList<>();
-
-                            while(it_history.hasNext())
-                            {
-                                history_streamIds.add(it_history.next().getStreamId());
-                            }
-
-                            while(it_playlist.hasNext())
-                            {
-                                playlist_item = it_playlist.next();
-                                isNonDuplicate = true;
-
-                                for (long history_id : history_streamIds) {
-                                    if (history_id == playlist_item.getStreamId()) {
-                                        isNonDuplicate = false;
-                                        break;
-                                    }
-                                }
-
-                                if (isNonDuplicate) {
-                                    localItems.add(playlist_item);
-                                } else {
-                                    removedItemCount++;
-                                    if (!thumbnailVideoRemoved && playlistManager.getPlaylistThumbnail(playlistId).equals(playlist_item.getStreamEntity().getThumbnailUrl())) {
-                                        thumbnailVideoRemoved = true;
-                                    }
-                                }
-                            }
-
-                            return Flowable.just(localItems, removedItemCount, thumbnailVideoRemoved);
+                        if (indexInHistory < 0) {
+                            notWatchedItems.add(playlistItem);
+                        } else if (!thumbnailVideoRemoved && playlistManager.getPlaylistThumbnail(playlistId).equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
+                            thumbnailVideoRemoved = true;
                         }
-                )
+                    }
+
+                    return Flowable.just(notWatchedItems, thumbnailVideoRemoved);
+                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        flow -> {
-                            List<PlaylistStreamEntry> localItems = (List<PlaylistStreamEntry>) flow.blockingFirst();
-                            Boolean thumbnailVideoRemoved = (Boolean) flow.blockingLast();
+                .subscribe(flow -> {
+                    List<PlaylistStreamEntry> notWatchedItems = (List<PlaylistStreamEntry>) flow.blockingFirst();
+                    boolean thumbnailVideoRemoved = (Boolean) flow.blockingLast();
 
-                            itemListAdapter.clearStreamItemList();
-                            itemListAdapter.addItems(localItems);
-                            localItems.clear();
+                    itemListAdapter.clearStreamItemList();
+                    itemListAdapter.addItems(notWatchedItems);
+                    saveChanges();
 
-                            if (thumbnailVideoRemoved)
-                                updateThumbnailUrl();
 
-                            int amountOfVideos = itemListAdapter.getItemsList().size();
-                            setVideoCount(amountOfVideos);
+                    if (thumbnailVideoRemoved) {
+                        updateThumbnailUrl();
+                    }
 
-                            saveChanges();
-                            hideLoading();
+                    long videoCount = itemListAdapter.getItemsList().size();
+                    setVideoCount(videoCount);
+                    if (videoCount == 0) {
+                        showEmptyState();
+                    }
 
-                            if (amountOfVideos == 0)
-                                showEmptyState();
-                        }, (@io.reactivex.annotations.NonNull Throwable throwable) -> {
-                            onError(throwable);
-                        }
+                    hideLoading();
+                }, this::onError
                 );
     }
 
