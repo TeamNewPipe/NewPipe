@@ -363,7 +363,7 @@
     <string name="decline">Keeldu</string>
     <string name="limit_data_usage_none_description">Piiranguta</string>
     <string name="limit_mobile_data_usage_title">Piira lahutust mobiilse andmeside kasutamisel</string>
-    <string name="tab_main">Peamenüü</string>
+    <string name="tab_main">Peamine</string>
     <string name="channels">Kanalid</string>
     <string name="playlists">Pleilistid</string>
     <string name="tracks">Lood</string>

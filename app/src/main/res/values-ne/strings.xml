@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">सुरू गर्न \"खोज\" चिन्ह दबाउनु होस</string>
     <string name="view_count_text">%1$s हेराइहरू</string>
     <string name="upload_date_text">%1$s मा प्रकाशित</string>
-    <string name="no_player_found">कुनै स्ट्रिम प्लेयर फेला परेन। के तपाईं VLC इन्स्टल गर्न चाहनुहुन्छ \?</string>
+    <string name="no_player_found">कुनै स्ट्रिम प्लेयर फेला परेन। के तपाईं VLC इन्स्टल गर्न चाहनुहुन्छ\?</string>
     <string name="no_player_found_toast">कुनै स्ट्रीम प्लेयर फेला परेन (तपाइँ यसलाई प्ले गर्न VLC इन्स्टल गर्न सक्नुहुन्छ)।</string>
     <string name="install">इन्स्टल गर्नुहोस्</string>
     <string name="cancel">रद्द गर्नुहोस्</string>
@@ -19,11 +19,11 @@
     <string name="choose_browser">ब्राउजर रोज्नुहोस्</string>
     <string name="screen_rotation">स्क्रीन रोटेशन</string>
     <string name="use_external_video_player_title">अन्य भिडियो प्लेयर प्रयोग गर्नुहोस्</string>
-    <string name="use_external_video_player_summary">केही प्रस्तावहरूमा अडियो हटाउँदछ</string>
+    <string name="use_external_video_player_summary">केही रेसोलुशनहरूमा अडियो हटाउँदछ</string>
     <string name="use_external_audio_player_title">अन्य अडियो प्लेयर प्रयोग गर्नुहोस्</string>
     <string name="popup_mode_share_menu_title">नयाँ पाइप पपअप मोड</string>
-    <string name="subscribe_button_title">सदस्यता लिनुहोस्</string>
-    <string name="subscribed_button_title">सदस्यता लिईएको</string>
+    <string name="subscribe_button_title">सब्सक्राइब</string>
+    <string name="subscribed_button_title">सब्सक्राइब गरिएको</string>
     <string name="unsubscribe">सदस्यता रद्द गर्नुहोस्</string>
     <string name="channel_unsubscribed">च्यानल सदस्यता रद्द गरियो</string>
     <string name="subscription_change_failed">सदस्यता परिवर्तन गर्न सकिएन</string>
@@ -53,7 +53,7 @@
     <string name="play_with_kodi_title">Kodi संग खोल्नुहोस</string>
     <string name="kore_not_found">\'Kore\' एप छैन | हाल्न चाहनुहुन्छ\?</string>
     <string name="show_play_with_kodi_title">\"Kodi संग प्ले\" विकल्प देखाउ</string>
-    <string name="show_play_with_kodi_summary">Kodi मिडिया सेन्टर मार्फत भिडियो प्ले गर्न एक विकल्प प्रदर्शन</string>
+    <string name="show_play_with_kodi_summary">(Kodi) कोडि मिडिया सेन्टर मार्फत भिडियो प्ले गर्न एक विकल्प प्रदर्शन</string>
     <string name="play_audio">अडियो</string>
     <string name="default_audio_format_title">पूर्वनिर्धारित अडियो ढाँचा</string>
     <string name="default_video_format_title">पूर्वनिर्धारित भिडियो प्रारूप</string>
@@ -513,7 +513,7 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">एक चोटि अनुप्रयोग पुनः सुरु गरिन्छ भाषा परिवर्तन हुनेछ।</string>
     <string name="default_kiosk_page_summary">पूर्वनिर्धारित पसल</string>
-    <string name="seek_duration_title">"छिटो-अगाडि /-पछाडी  खोज्न अवधि"</string>
+    <string name="seek_duration_title">छिटो-अगाडि /-पछाडी खोज्न अवधि</string>
     <string name="peertube_instance_url_title">PeerTube उदाहरणहरू</string>
     <string name="peertube_instance_url_summary">आफ्नो मनपर्ने PeerTube उदाहरणहरू चयन</string>
     <string name="peertube_instance_url_help">%s मा तपाईंलाई मनपर्ने ईन्स्टान्सहरू फेला पार्नुहोस्</string>
@@ -530,7 +530,7 @@
     <string name="error_download_resource_gone">यो डाउनलोड ठीक गर्न सकिँदैनयो डाउनलोड ठीक गर्न सकिँदैन</string>
     <string name="choose_instance_prompt">एउटा उदाहरण छनौट गर्नुहोस्</string>
     <string name="enable_lock_screen_video_thumbnail_title">स्क्रिन भिडियो थम्बनेल लक</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">"पृष्ठभूमिमा प्लेयर  प्रयोग गर्दा एउटा भिडियो थम्बनेल लक स्क्रिनमा देखाइएको छ"</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">पृष्ठभूमिमा प्लेयर प्रयोग गर्दा एउटा भिडियो थम्बनेल लक स्क्रिनमा देखाइएको छ</string>
     <string name="clear_download_history">डाउनलोड इतिहास स्पष्ट</string>
     <string name="delete_downloaded_files">डाउनलोड फाइल मेट्न</string>
     <string name="deleted_downloads">मेटिएको% 1 $ को डाउनलोड</string>
@@ -549,4 +549,52 @@
     <string name="mute">म्युट</string>
     <string name="unmute">ध्वनि सुचारु</string>
     <string name="help">मद्दत</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false"></string>
+    <string name="feed_use_dedicated_fetch_method_help_text">के तपाईलाई लाग्छ फिड लोडि एकदम ढिलो छ\? यदि हो भने, छिटो लोडिङ् सक्षम गर्न प्रयास गर्नुहोस् (तपाईं यसलाई सेटिंङ्हरूमा वा तलको बटन थिचेर बदल्न सक्नुहुन्छ)।
+\n
+\nनयाँ पाइपले दुई फिड लोड गर्ने रणनीति प्रदान गर्दछ:
+\nसम्पूर्ण सदस्यता च्यानल ल्याउँदै, जुन ढिलो तर पूरा छ।
+\nएक समर्पित सेवा अन्तिम पोइन्ट प्रयोग गर्दै, जुन छिटो छ तर सामान्यतया पूरा हुँदैन।
+\n
+\nदुई बीचको भिन्नता यो छ कि द्रुत गतिमा सामान्यतया केही जानकारीको अभाव हुन्छ, जस्तै वस्तुको अवधि वा प्रकार (प्रत्यक्ष भिडियोहरू र सामान्य बिचमा भिन्नता लिन सक्दैन) र यसले कम वस्तुहरू फिर्ता गर्न सक्छ।
+\n
+\n(YouTube) युटुब एक सेवाको उदाहरण हो जुन यस आरएसएस फिडको साथ यो द्रुत विधि प्रदान गर्दछ।
+\n
+\nत्यसो भए छनौटमा तपाईको प्राथमिकतामा निर्भर छ: गति वा सटीक जानकारी।</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">द्रुत मोड असक्षम गर्नुहोस्</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">फास्ट मोड सक्षम पार्नुहोस्</string>
+    <string name="feed_use_dedicated_fetch_method_summary">केहि सेवाहरूमा उपलब्ध छ, यो प्राय: धेरै छिटो हुन्छ तर सीमित वस्तुहरू र अक्सर अपूर्ण जानकारी फिर्ता गर्न सक्दछ (उदाहरणका लागि कुनै अवधि, वस्तुको प्रकार, कुनै लाइभ स्थिति)।</string>
+    <string name="feed_use_dedicated_fetch_method_title">जब उपलब्ध हुन्छ समर्पित फिडबाट अपडेट गर्नुहोस</string>
+    <string name="feed_update_threshold_option_always_update">सँधै अपडेट गर्नुहोस्</string>
+    <string name="feed_update_threshold_summary">पछिल्लो अपडेट पछिको समय अबधी जस पछि फिड अपडेट पुरानो भएको मानिन्छ — %s</string>
+    <string name="feed_update_threshold_title">अबधि अपडेट अबधि</string>
+    <string name="settings_category_feed_title">फिड</string>
+    <string name="feed_create_new_group_button_title">नयाँ</string>
+    <string name="feed_group_dialog_delete_message">के तपाइँ यो समूह हटाउन चाहानुहुन्छ\?</string>
+    <string name="feed_group_dialog_name_input">नाम</string>
+    <string name="feed_group_dialog_empty_name">खाली समूह नाम</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d चयन</item>
+        <item quantity="other">%d चयन</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">कुनै सदस्यता चयन गरिएको छैन</string>
+    <string name="feed_group_dialog_select_subscriptions">सदस्यताहरू चयन गर्नुहोस्</string>
+    <string name="feed_processing_message">फिड प्रशोधन गर्दै …</string>
+    <string name="feed_notification_loading">फिड लोड गर्दै …</string>
+    <string name="feed_subscription_not_loaded_count">लोड गरिएको छैन:%d</string>
+    <string name="feed_oldest_subscription_update">फिड पछिल्लो अपडेट गरिएको:%s</string>
+    <string name="feed_groups_header_title">च्यानल समूहहरू</string>
+    <string name="fragment_feed_title">के नयाँ छ</string>
+    <plurals name="hours">
+        <item quantity="one">%d घण्टा</item>
+        <item quantity="other">%d घण्टा</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d दिन</item>
+        <item quantity="other">%d दिनहरु</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d मिनेट</item>
+        <item quantity="other">%d मिनेट</item>
+    </plurals>
 </resources>
