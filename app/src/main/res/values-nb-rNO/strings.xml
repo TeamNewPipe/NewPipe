@@ -565,4 +565,5 @@
     <string name="feed_group_dialog_name_input">Navn</string>
     <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen\?</string>
     <string name="feed_create_new_group_button_title">Ny</string>
+    <string name="feed_update_threshold_option_always_update">Alltid oppdater</string>
 </resources>
