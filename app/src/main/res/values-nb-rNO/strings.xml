@@ -566,4 +566,11 @@
     <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen\?</string>
     <string name="feed_create_new_group_button_title">Ny</string>
     <string name="feed_update_threshold_option_always_update">Alltid oppdater</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d valgt</item>
+        <item quantity="other">%d valgt</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Ingen abonnement valgt</string>
+    <string name="feed_group_dialog_select_subscriptions">Velg abonnementer</string>
+    <string name="feed_groups_header_title">Kanalgrupper</string>
 </resources>
