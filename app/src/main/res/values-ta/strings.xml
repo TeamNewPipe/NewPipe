@@ -114,7 +114,7 @@
     <string name="show_play_with_kodi_summary">காணொளிகலை Kodi media center கொண்டு இயக்கும் இடப்பை காண்பி</string>
     <string name="use_inexact_seek_title">வேகமான பொருத்தமற்ற தேடலை பயன்படுத்து</string>
     <string name="player_gesture_controls_title">இயக்கியின் சைகை கட்டுப்பாடுகள்</string>
-    <string name="player_gesture_controls_summary">"இயைக்கியின்  பிரகாசம் மற்றும் ஒலியினை சைகைமூலம் கட்டுப்படுத்து"</string>
+    <string name="player_gesture_controls_summary">இயைக்கியின் பிரகாசம் மற்றும் ஒலியினை சைகைமூலம் கட்டுப்படுத்து</string>
     <string name="show_search_suggestions_summary">தேடும்போது பரிந்துரைகளை கான்பி</string>
     <string name="resume_on_audio_focus_gain_summary">"தொலைபேசி அழைப்பு போன்ற குறுக்கீடுகளுக்கு பிறகு தொடரவும் "</string>
     <string name="show_next_and_similar_title">\'அடுத்து\' மற்றும் \'ஒப்பான\' காணொளிகலை காண்பி</string>

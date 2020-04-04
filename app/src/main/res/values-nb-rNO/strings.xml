@@ -464,8 +464,8 @@
     <string name="show_comments_summary">Skru av for å stoppe visning i kommentarer</string>
     <string name="autoplay_title">Spill av automatisk</string>
     <plurals name="comments">
-        <item quantity="one">Kommentarer</item>
-        <item quantity="other"/>
+        <item quantity="one">%s kommentar</item>
+        <item quantity="other">%s kommentarer</item>
     </plurals>
     <string name="no_comments">Ingen kommenterer</string>
     <string name="error_unable_to_load_comments">Kunne ikke laste inn kommentarer</string>
@@ -542,7 +542,7 @@
     <string name="recaptcha_done_button">Ferdig</string>
     <string name="videos_string">Videoer</string>
     <plurals name="seconds">
-        <item quantity="one">%d sekunder</item>
+        <item quantity="one">%d sekund</item>
         <item quantity="other">%d sekunder</item>
     </plurals>
     <string name="mute">Forstum</string>
@@ -565,4 +565,5 @@
     <string name="feed_group_dialog_name_input">Navn</string>
     <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen\?</string>
     <string name="feed_create_new_group_button_title">Ny</string>
+    <string name="feed_update_threshold_option_always_update">Alltid oppdater</string>
 </resources>
