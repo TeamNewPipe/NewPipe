@@ -355,7 +355,7 @@
     <string name="player_gesture_controls_title">کنترل های اشاره ای پخش کننده</string>
     <string name="player_gesture_controls_summary">از اشارات برای کنترل روشنایی و صدای پخش کننده استفاده کنید</string>
     <string name="volume_gesture_control_title">کنترل اشاره ای صدا</string>
-    <string name="volume_gesture_control_summary">"برای کنترلصدای  پخش کننده از اشارات استفاده کنید"</string>
+    <string name="volume_gesture_control_summary">برای کنترلصدای پخش کننده از اشارات استفاده کنید</string>
     <string name="brightness_gesture_control_title">کنترل روشنایی اشاره ای</string>
     <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی صفحه استفاده کنید</string>
     <string name="undo">بازگردانی</string>
