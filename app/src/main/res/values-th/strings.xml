@@ -18,7 +18,7 @@
     <string name="share_dialog_title">แชร์ด้วย</string>
     <string name="choose_browser">เลือกบราวเซอร์</string>
     <string name="screen_rotation">หมุน</string>
-    <string name="use_external_video_player_title">ใช้แอปเล่นวีดีโอภายนอก</string>
+    <string name="use_external_video_player_title">Use external video player</string>
     <string name="use_external_audio_player_title">ใช้แอปเล่นเสียงภายนอก</string>
     <string name="popup_mode_share_menu_title">NewPipe โหมดป๊อปอัพ</string>
     <string name="subscribe_button_title">ติดตาม</string>
@@ -433,7 +433,7 @@
     <string name="pause_downloads_on_mobile">หยุดชั่วคราวเมื่อเปลี่ยนเป็นข้อมูลมือถือ</string>
     <string name="pause_downloads_on_mobile_desc">การดาวน์โหลดที่ไม่สามารถหยุดพักได้จะเริ่มต้นใหม่</string>
     <string name="close">ปิด</string>
-    <string name="use_external_video_player_summary">บางความละเอียดอาจไม่มีเสียง</string>
+    <string name="use_external_video_player_summary">Removes audio at some resolutions</string>
     <string name="metadata_cache_wipe_complete_notice">แคช metadate ถูกลบแล้ว</string>
     <string name="resume_on_audio_focus_gain_title">เล่นต่อหลังจากการขัดจังหวะ</string>
     <string name="enable_playback_resume_title">เล่นต่อ</string>

@@ -2,14 +2,15 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -36,14 +37,15 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class SettingsActivity extends AppCompatActivity implements BasePreferenceFragment.OnPreferenceStartFragmentCallback {
+public class SettingsActivity extends AppCompatActivity
+        implements BasePreferenceFragment.OnPreferenceStartFragmentCallback {
 
-    public static void initSettings(Context context) {
+    public static void initSettings(final Context context) {
         NewPipeSettings.initSettings(context);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceBundle) {
+    protected void onCreate(final Bundle savedInstanceBundle) {
         setTheme(ThemeHelper.getSettingsThemeStyle(this));
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceBundle);
@@ -60,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity implements BasePreferenc
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -71,22 +73,27 @@ public class SettingsActivity extends AppCompatActivity implements BasePreferenc
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                 finish();
-            } else getSupportFragmentManager().popBackStack();
+            } else {
+                getSupportFragmentManager().popBackStack();
+            }
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference preference) {
-        Fragment fragment = Fragment.instantiate(this, preference.getFragment(), preference.getExtras());
+    public boolean onPreferenceStartFragment(final PreferenceFragmentCompat caller,
+                                             final Preference preference) {
+        Fragment fragment = Fragment
+                .instantiate(this, preference.getFragment(), preference.getExtras());
         getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out,
+                        R.animator.custom_fade_in, R.animator.custom_fade_out)
                 .replace(R.id.fragment_holder, fragment)
                 .addToBackStack(null)
                 .commit();

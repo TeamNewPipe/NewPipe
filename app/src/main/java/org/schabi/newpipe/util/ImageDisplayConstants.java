@@ -8,11 +8,11 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import org.schabi.newpipe.R;
 
-public class ImageDisplayConstants {
+public final class ImageDisplayConstants {
     private static final int BITMAP_FADE_IN_DURATION_MILLIS = 250;
 
     /**
-     * Base display options
+     * This constant contains the base display options.
      */
     private static final DisplayImageOptions BASE_DISPLAY_IMAGE_OPTIONS =
             new DisplayImageOptions.Builder()
@@ -55,4 +55,6 @@ public class ImageDisplayConstants {
                     .showImageForEmptyUri(R.drawable.dummy_thumbnail_playlist)
                     .showImageOnFail(R.drawable.dummy_thumbnail_playlist)
                     .build();
+
+    private ImageDisplayConstants() { }
 }

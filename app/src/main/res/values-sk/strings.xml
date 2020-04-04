@@ -20,11 +20,11 @@
     <string name="download_path_summary">Tu sú uložené stiahnuté video súbory</string>
     <string name="download_path_dialog_title">Vyberte adresár pre ukladanie video súborov</string>
     <string name="download_path_audio_title">Adresár pre stiahnuté audio</string>
-    <string name="download_path_audio_dialog_title">Vložte cestu kam sa budú ukladať zvukové súbory</string>
+    <string name="download_path_audio_dialog_title">Vyberte adresár pre ukladanie audio súborov</string>
     <string name="download_path_audio_summary">Tu sú uložené stiahnuté audio súbory</string>
     <string name="default_resolution_title">Štandardné rozlíšenie</string>
     <string name="play_with_kodi_title">Prehrať cez Kodi</string>
-    <string name="kore_not_found">Aplikácia Kore nie je nainštalovaná. Chcete ju nainštalovať?</string>
+    <string name="kore_not_found">Nainštalovať chýbajúcu aplikáciu Kore\?</string>
     <string name="show_play_with_kodi_title">Zobraziť možnosť \"Prehrať cez Kodi\"</string>
     <string name="show_play_with_kodi_summary">Zobrazovať možnosť prehrať video cez multimediálne centrum Kodi</string>
     <string name="play_audio">Zvuk</string>
@@ -57,7 +57,7 @@
     <string name="use_tor_summary">(Experimentálne) Vyžadovať preberanie cez Tor pre väčšie súkromie (streamovanie videa momentálne nie je podporované).</string>
     <string name="err_dir_create">Nemožno vytvoriť adresár na preberanie \'%1$s\'</string>
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
-    <string name="main_bg_subtitle">Začnite vyhľadaním obsahu</string>
+    <string name="main_bg_subtitle">Ťuknite na \"Vyhľadávanie\" pre začatie</string>
     <string name="autoplay_by_calling_app_title">Automatické prehrávanie</string>
     <string name="autoplay_by_calling_app_summary">Prehrá video pri zavolaní NewPipe inou aplikáciou</string>
     <string name="content">Obsah</string>
@@ -120,7 +120,7 @@
     <string name="open_in_popup_mode">Spustiť v okne</string>
     <string name="msg_popup_permission">Tieto práva sú potrebné pre
 \nprehrávanie v mini okne</string>
-    <string name="popup_mode_share_menu_title">NewPipe v okne</string>
+    <string name="popup_mode_share_menu_title">Popup mód</string>
     <string name="default_video_format_title">Preferovaný formát videa</string>
     <string name="popup_playing_toast">Prehrávanie v mini okne</string>
     <string name="disabled">Vypnuté</string>
@@ -132,7 +132,7 @@
     <string name="filter">Filter</string>
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
-    <string name="use_external_video_player_summary">Odoberie audio pri NIEKTORÝCH rozlíšeniach</string>
+    <string name="use_external_video_player_summary">Odoberie audio pri niektorých rozlíšeniach</string>
     <string name="popup_remember_size_pos_title">Zapamätať si veľkosť a pozíciu mini okna</string>
     <string name="popup_remember_size_pos_summary">Zapamätať si posledné nastavenie veľkosti a pozície mini okna</string>
     <string name="player_gesture_controls_title">Ovládanie prehrávača gestami</string>
@@ -540,7 +540,7 @@
     <string name="error_download_resource_gone">Sťahovanie nemožno obnoviť</string>
     <string name="choose_instance_prompt">Vyberte inštanciu</string>
     <string name="enable_lock_screen_video_thumbnail_title">Náhľad videa na uzamknutej obrazovke</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Pri videu na pozadí sa na zamknutej obrazovke zobrazí náhľad</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Pri prehrávaní videa na pozadí sa na zamknutej obrazovke zobrazí náhľad</string>
     <string name="clear_download_history">Vymazať históriu sťahovania</string>
     <string name="delete_downloaded_files">Vymazať stiahnuté súbory</string>
     <string name="deleted_downloads">%1$s odstránených</string>

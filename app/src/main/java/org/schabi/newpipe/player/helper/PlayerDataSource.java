@@ -24,30 +24,33 @@ public class PlayerDataSource {
     private final DataSource.Factory cacheDataSourceFactory;
     private final DataSource.Factory cachelessDataSourceFactory;
 
-    public PlayerDataSource(@NonNull final Context context,
-                            @NonNull final String userAgent,
+    public PlayerDataSource(@NonNull final Context context, @NonNull final String userAgent,
                             @NonNull final TransferListener transferListener) {
         cacheDataSourceFactory = new CacheFactory(context, userAgent, transferListener);
-        cachelessDataSourceFactory = new DefaultDataSourceFactory(context, userAgent, transferListener);
+        cachelessDataSourceFactory
+                = new DefaultDataSourceFactory(context, userAgent, transferListener);
     }
 
     public SsMediaSource.Factory getLiveSsMediaSourceFactory() {
         return new SsMediaSource.Factory(new DefaultSsChunkSource.Factory(
                 cachelessDataSourceFactory), cachelessDataSourceFactory)
-                .setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY))
+                .setLoadErrorHandlingPolicy(
+                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY))
                 .setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS);
     }
 
     public HlsMediaSource.Factory getLiveHlsMediaSourceFactory() {
         return new HlsMediaSource.Factory(cachelessDataSourceFactory)
                 .setAllowChunklessPreparation(true)
-                .setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
+                .setLoadErrorHandlingPolicy(
+                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
     }
 
     public DashMediaSource.Factory getLiveDashMediaSourceFactory() {
         return new DashMediaSource.Factory(new DefaultDashChunkSource.Factory(
                 cachelessDataSourceFactory), cachelessDataSourceFactory)
-                .setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY))
+                .setLoadErrorHandlingPolicy(
+                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY))
                 .setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS, true);
     }
 
@@ -67,10 +70,12 @@ public class PlayerDataSource {
 
     public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory() {
         return new ProgressiveMediaSource.Factory(cacheDataSourceFactory)
-                .setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
+                .setLoadErrorHandlingPolicy(
+                        new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
     }
 
-    public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory(@NonNull final String key) {
+    public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory(
+            @NonNull final String key) {
         return getExtractorMediaSourceFactory().setCustomCacheKey(key);
     }
 

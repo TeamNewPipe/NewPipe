@@ -1,11 +1,11 @@
 package org.schabi.newpipe.database.subscription;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
-import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
@@ -18,15 +18,14 @@ import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCR
 @Entity(tableName = SUBSCRIPTION_TABLE,
         indices = {@Index(value = {SUBSCRIPTION_SERVICE_ID, SUBSCRIPTION_URL}, unique = true)})
 public class SubscriptionEntity {
-
-    public static final String SUBSCRIPTION_UID                = "uid";
-    public static final String SUBSCRIPTION_TABLE              = "subscriptions";
-    public static final String SUBSCRIPTION_SERVICE_ID         = "service_id";
-    public static final String SUBSCRIPTION_URL                = "url";
-    public static final String SUBSCRIPTION_NAME               = "name";
-    public static final String SUBSCRIPTION_AVATAR_URL         = "avatar_url";
-    public static final String SUBSCRIPTION_SUBSCRIBER_COUNT   = "subscriber_count";
-    public static final String SUBSCRIPTION_DESCRIPTION        = "description";
+    public static final String SUBSCRIPTION_UID = "uid";
+    public static final String SUBSCRIPTION_TABLE = "subscriptions";
+    public static final String SUBSCRIPTION_SERVICE_ID = "service_id";
+    public static final String SUBSCRIPTION_URL = "url";
+    public static final String SUBSCRIPTION_NAME = "name";
+    public static final String SUBSCRIPTION_AVATAR_URL = "avatar_url";
+    public static final String SUBSCRIPTION_SUBSCRIBER_COUNT = "subscriber_count";
+    public static final String SUBSCRIPTION_DESCRIPTION = "description";
 
     @PrimaryKey(autoGenerate = true)
     private long uid = 0;
@@ -49,11 +48,21 @@ public class SubscriptionEntity {
     @ColumnInfo(name = SUBSCRIPTION_DESCRIPTION)
     private String description;
 
+    @Ignore
+    public static SubscriptionEntity from(@NonNull final ChannelInfo info) {
+        SubscriptionEntity result = new SubscriptionEntity();
+        result.setServiceId(info.getServiceId());
+        result.setUrl(info.getUrl());
+        result.setData(info.getName(), info.getAvatarUrl(), info.getDescription(),
+                info.getSubscriberCount());
+        return result;
+    }
+
     public long getUid() {
         return uid;
     }
 
-    public void setUid(long uid) {
+    public void setUid(final long uid) {
         this.uid = uid;
     }
 
@@ -61,7 +70,7 @@ public class SubscriptionEntity {
         return serviceId;
     }
 
-    public void setServiceId(int serviceId) {
+    public void setServiceId(final int serviceId) {
         this.serviceId = serviceId;
     }
 
@@ -69,7 +78,7 @@ public class SubscriptionEntity {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(final String url) {
         this.url = url;
     }
 
@@ -77,7 +86,7 @@ public class SubscriptionEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -85,7 +94,7 @@ public class SubscriptionEntity {
         return avatarUrl;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
+    public void setAvatarUrl(final String avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
 
@@ -93,7 +102,7 @@ public class SubscriptionEntity {
         return subscriberCount;
     }
 
-    public void setSubscriberCount(Long subscriberCount) {
+    public void setSubscriberCount(final Long subscriberCount) {
         this.subscriberCount = subscriberCount;
     }
 
@@ -101,19 +110,16 @@ public class SubscriptionEntity {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
     @Ignore
-    public void setData(final String name,
-                        final String avatarUrl,
-                        final String description,
-                        final Long subscriberCount) {
-        this.setName(name);
-        this.setAvatarUrl(avatarUrl);
-        this.setDescription(description);
-        this.setSubscriberCount(subscriberCount);
+    public void setData(final String n, final String au, final String d, final Long sc) {
+        this.setName(n);
+        this.setAvatarUrl(au);
+        this.setDescription(d);
+        this.setSubscriberCount(sc);
     }
 
     @Ignore
@@ -123,14 +129,5 @@ public class SubscriptionEntity {
         item.setSubscriberCount(getSubscriberCount());
         item.setDescription(getDescription());
         return item;
-    }
-
-    @Ignore
-    public static SubscriptionEntity from(@NonNull ChannelInfo info) {
-        SubscriptionEntity result = new SubscriptionEntity();
-        result.setServiceId(info.getServiceId());
-        result.setUrl(info.getUrl());
-        result.setData(info.getName(), info.getAvatarUrl(), info.getDescription(), info.getSubscriberCount());
-        return result;
     }
 }

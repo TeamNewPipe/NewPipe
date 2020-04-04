@@ -19,10 +19,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PeertubeHelper {
+public final class PeertubeHelper {
+    private PeertubeHelper() { }
 
-    public static List<PeertubeInstance> getInstanceList(Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+    public static List<PeertubeInstance> getInstanceList(final Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
         String savedInstanceListKey = context.getString(R.string.peertube_instance_list_key);
         final String savedJson = sharedPreferences.getString(savedInstanceListKey, null);
         if (null == savedJson) {
@@ -47,8 +49,10 @@ public class PeertubeHelper {
 
     }
 
-    public static PeertubeInstance selectInstance(PeertubeInstance instance, Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+    public static PeertubeInstance selectInstance(final PeertubeInstance instance,
+                                                  final Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
         String selectedInstanceKey = context.getString(R.string.peertube_selected_instance_key);
         JsonStringWriter jsonWriter = JsonWriter.string().object();
         jsonWriter.value("name", instance.getName());
@@ -59,7 +63,7 @@ public class PeertubeHelper {
         return instance;
     }
 
-    public static PeertubeInstance getCurrentInstance(){
+    public static PeertubeInstance getCurrentInstance() {
         return ServiceList.PeerTube.getInstance();
     }
 }

@@ -5,26 +5,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import android.view.*;
-import android.widget.TextView;
+
 import org.schabi.newpipe.R;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * Fragment containing the software licenses
+ * Fragment containing the software licenses.
  */
 public class LicenseFragment extends Fragment {
-
     private static final String ARG_COMPONENTS = "components";
     private SoftwareComponent[] softwareComponents;
     private SoftwareComponent mComponentForContextMenu;
 
-    public static LicenseFragment newInstance(SoftwareComponent[] softwareComponents) {
-        if(softwareComponents == null) {
+    public static LicenseFragment newInstance(final SoftwareComponent[] softwareComponents) {
+        if (softwareComponents == null) {
             throw new NullPointerException("softwareComponents is null");
         }
         LicenseFragment fragment = new LicenseFragment();
@@ -35,23 +41,25 @@ public class LicenseFragment extends Fragment {
     }
 
     /**
-     * Shows a popup containing the license
+     * Shows a popup containing the license.
+     *
      * @param context the context to use
      * @param license the license to show
      */
-    public static void showLicense(Context context, License license) {
+    public static void showLicense(final Context context, final License license) {
         new LicenseFragmentHelper((Activity) context).execute(license);
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        softwareComponents = (SoftwareComponent[]) getArguments().getParcelableArray(ARG_COMPONENTS);
+        softwareComponents = (SoftwareComponent[]) getArguments()
+                .getParcelableArray(ARG_COMPONENTS);
 
         // Sort components by name
         Arrays.sort(softwareComponents, new Comparator<SoftwareComponent>() {
             @Override
-            public int compare(SoftwareComponent o1, SoftwareComponent o2) {
+            public int compare(final SoftwareComponent o1, final SoftwareComponent o2) {
                 return o1.getName().compareTo(o2.getName());
             }
         });
@@ -59,7 +67,8 @@ public class LicenseFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container,
+                             @Nullable final Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_licenses, container, false);
         ViewGroup softwareComponentsView = rootView.findViewById(R.id.software_components);
 
@@ -67,7 +76,8 @@ public class LicenseFragment extends Fragment {
         licenseLink.setOnClickListener(new OnReadFullLicenseClickListener());
 
         for (final SoftwareComponent component : softwareComponents) {
-            View componentView = inflater.inflate(R.layout.item_software_component, container, false);
+            View componentView = inflater
+                    .inflate(R.layout.item_software_component, container, false);
             TextView softwareName = componentView.findViewById(R.id.name);
             TextView copyright = componentView.findViewById(R.id.copyright);
             softwareName.setText(component.getName());
@@ -79,7 +89,7 @@ public class LicenseFragment extends Fragment {
             componentView.setTag(component);
             componentView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(final View v) {
                     Context context = v.getContext();
                     if (context != null) {
                         showLicense(context, component.getLicense());
@@ -93,7 +103,8 @@ public class LicenseFragment extends Fragment {
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(final ContextMenu menu, final View v,
+                                    final ContextMenu.ContextMenuInfo menuInfo) {
         MenuInflater inflater = getActivity().getMenuInflater();
         SoftwareComponent component = (SoftwareComponent) v.getTag();
         menu.setHeaderTitle(component.getName());
@@ -103,7 +114,7 @@ public class LicenseFragment extends Fragment {
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(final MenuItem item) {
         // item.getMenuInfo() is null so we use the tag of the view
         final SoftwareComponent component = mComponentForContextMenu;
         if (component == null) {
@@ -119,14 +130,14 @@ public class LicenseFragment extends Fragment {
         return false;
     }
 
-    private void openWebsite(String componentLink) {
+    private void openWebsite(final String componentLink) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(componentLink));
         startActivity(browserIntent);
     }
 
     private static class OnReadFullLicenseClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             LicenseFragment.showLicense(v.getContext(), StandardLicenses.GPL3);
         }
     }

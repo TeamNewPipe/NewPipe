@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-import androidx.media.session.MediaButtonReceiver;
 import androidx.media.app.NotificationCompat.MediaStyle;
+import androidx.media.session.MediaButtonReceiver;
 
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
@@ -50,7 +50,8 @@ public class MediaSessionManager {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void setLockScreenArt(NotificationCompat.Builder builder, @Nullable Bitmap thumbnailBitmap) {
+    public void setLockScreenArt(final NotificationCompat.Builder builder,
+                                 @Nullable final Bitmap thumbnailBitmap) {
         if (thumbnailBitmap == null || !mediaSession.isActive()) {
             return;
         }
@@ -68,7 +69,7 @@ public class MediaSessionManager {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void clearLockScreenArt(NotificationCompat.Builder builder) {
+    public void clearLockScreenArt(final NotificationCompat.Builder builder) {
         mediaSession.setMetadata(
                 new MediaMetadataCompat.Builder()
                         .putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, null)

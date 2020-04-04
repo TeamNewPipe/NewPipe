@@ -1,18 +1,17 @@
 package org.schabi.newpipe.player.playqueue.events;
 
-
 public class RecoveryEvent implements PlayQueueEvent {
-    final private int index;
-    final private long position;
-
-    @Override
-    public PlayQueueEventType type() {
-        return PlayQueueEventType.RECOVERY;
-    }
+    private final int index;
+    private final long position;
 
     public RecoveryEvent(final int index, final long position) {
         this.index = index;
         this.position = position;
+    }
+
+    @Override
+    public PlayQueueEventType type() {
+        return PlayQueueEventType.RECOVERY;
     }
 
     public int getIndex() {

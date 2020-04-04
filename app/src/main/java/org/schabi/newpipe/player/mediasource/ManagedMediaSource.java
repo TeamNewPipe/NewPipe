@@ -10,18 +10,21 @@ public interface ManagedMediaSource extends MediaSource {
     /**
      * Determines whether or not this {@link ManagedMediaSource} can be replaced.
      *
-     * @param newIdentity a stream the {@link ManagedMediaSource} should encapsulate over, if
-     *                    it is different from the existing stream in the
-     *                    {@link ManagedMediaSource}, then it should be replaced.
+     * @param newIdentity     a stream the {@link ManagedMediaSource} should encapsulate over, if
+     *                        it is different from the existing stream in the
+     *                        {@link ManagedMediaSource}, then it should be replaced.
      * @param isInterruptable specifies if this {@link ManagedMediaSource} potentially
      *                        being played.
-     * */
-    boolean shouldBeReplacedWith(@NonNull final PlayQueueItem newIdentity,
-                                 final boolean isInterruptable);
+     * @return whether this could be replaces
+     */
+    boolean shouldBeReplacedWith(@NonNull PlayQueueItem newIdentity, boolean isInterruptable);
 
     /**
      * Determines if the {@link PlayQueueItem} is the one the
      * {@link ManagedMediaSource} encapsulates over.
-     * */
-    boolean isStreamEqual(@NonNull final PlayQueueItem stream);
+     *
+     * @param stream play queue item to check
+     * @return whether this source is for the specified stream
+     */
+    boolean isStreamEqual(@NonNull PlayQueueItem stream);
 }

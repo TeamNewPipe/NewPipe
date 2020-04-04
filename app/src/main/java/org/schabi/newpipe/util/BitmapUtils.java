@@ -4,10 +4,12 @@ import android.graphics.Bitmap;
 
 import androidx.annotation.Nullable;
 
-public class BitmapUtils {
+public final class BitmapUtils {
+    private BitmapUtils() { }
 
     @Nullable
-    public static Bitmap centerCrop(Bitmap inputBitmap, int newWidth, int newHeight) {
+    public static Bitmap centerCrop(final Bitmap inputBitmap, final int newWidth,
+                                    final int newHeight) {
         if (inputBitmap == null || inputBitmap.isRecycled()) {
             return null;
         }

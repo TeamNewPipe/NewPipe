@@ -2,13 +2,14 @@ package org.schabi.newpipe.fragments.list.comments;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -23,17 +24,12 @@ import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
-
     private CompositeDisposable disposables = new CompositeDisposable();
-    /*//////////////////////////////////////////////////////////////////////////
-    // Views
-    //////////////////////////////////////////////////////////////////////////*/
-
-
 
     private boolean mIsVisibleToUser = false;
 
-    public static CommentsFragment getInstance(int serviceId, String url, String name) {
+    public static CommentsFragment getInstance(final int serviceId, final  String url,
+                                               final String name) {
         CommentsFragment instance = new CommentsFragment();
         instance.setInitialData(serviceId, url, name);
         return instance;
@@ -44,27 +40,30 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
+    public void setUserVisibleHint(final boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         mIsVisibleToUser = isVisibleToUser;
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(final Context context) {
         super.onAttach(context);
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater,
+                             @Nullable final ViewGroup container,
+                             @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_comments, container, false);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposables != null) disposables.clear();
+        if (disposables != null) {
+            disposables.clear();
+        }
     }
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Load and handle
@@ -76,7 +75,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     }
 
     @Override
-    protected Single<CommentsInfo> loadResult(boolean forceLoad) {
+    protected Single<CommentsInfo> loadResult(final boolean forceLoad) {
         return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad);
     }
 
@@ -90,27 +89,28 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     }
 
     @Override
-    public void handleResult(@NonNull CommentsInfo result) {
+    public void handleResult(@NonNull final CommentsInfo result) {
         super.handleResult(result);
 
-        AnimationUtils.slideUp(getView(),120, 150, 0.06f);
+        AnimationUtils.slideUp(getView(), 120, 150, 0.06f);
 
         if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(), UserAction.REQUESTED_COMMENTS, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
+            showSnackBarError(result.getErrors(), UserAction.REQUESTED_COMMENTS,
+                    NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
-        if (disposables != null) disposables.clear();
+        if (disposables != null) {
+            disposables.clear();
+        }
     }
 
     @Override
-    public void handleNextItems(ListExtractor.InfoItemsPage result) {
+    public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
 
         if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(),
-                    UserAction.REQUESTED_COMMENTS,
-                    NewPipe.getNameOfService(serviceId),
-                    "Get next page of: " + url,
+            showSnackBarError(result.getErrors(), UserAction.REQUESTED_COMMENTS,
+                    NewPipe.getNameOfService(serviceId), "Get next page of: " + url,
                     R.string.general_error);
         }
     }
@@ -120,11 +120,14 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected boolean onError(Throwable exception) {
-        if (super.onError(exception)) return true;
+    protected boolean onError(final Throwable exception) {
+        if (super.onError(exception)) {
+            return true;
+        }
 
         hideLoading();
-        showSnackBarError(exception, UserAction.REQUESTED_COMMENTS, NewPipe.getNameOfService(serviceId), url, R.string.error_unable_to_load_comments);
+        showSnackBarError(exception, UserAction.REQUESTED_COMMENTS,
+                NewPipe.getNameOfService(serviceId), url, R.string.error_unable_to_load_comments);
         return true;
     }
 
@@ -133,14 +136,10 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void setTitle(String title) {
-        return;
-    }
+    public void setTitle(final String title) { }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        return;
-    }
+    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) { }
 
     @Override
     protected boolean isGridLayout() {

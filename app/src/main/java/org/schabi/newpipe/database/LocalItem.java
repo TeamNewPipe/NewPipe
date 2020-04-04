@@ -1,6 +1,8 @@
 package org.schabi.newpipe.database;
 
 public interface LocalItem {
+    LocalItemType getLocalItemType();
+
     enum LocalItemType {
         PLAYLIST_LOCAL_ITEM,
         PLAYLIST_REMOTE_ITEM,
@@ -8,6 +10,4 @@ public interface LocalItem {
         PLAYLIST_STREAM_ITEM,
         STATISTIC_STREAM_ITEM,
     }
-
-    LocalItemType getLocalItemType();
 }

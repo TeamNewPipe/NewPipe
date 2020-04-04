@@ -3,11 +3,12 @@ package org.schabi.newpipe.local.dialog;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -19,8 +20,6 @@ import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public final class PlaylistCreationDialog extends PlaylistDialog {
-    private static final String TAG = PlaylistCreationDialog.class.getCanonicalName();
-
     public static PlaylistCreationDialog newInstance(final List<StreamEntity> streams) {
         PlaylistCreationDialog dialog = new PlaylistCreationDialog();
         dialog.setInfo(streams);
@@ -33,8 +32,10 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
 
     @NonNull
     @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        if (getStreams() == null) return super.onCreateDialog(savedInstanceState);
+    public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
+        if (getStreams() == null) {
+            return super.onCreateDialog(savedInstanceState);
+        }
 
         View dialogView = View.inflate(getContext(), R.layout.dialog_playlist_name, null);
         EditText nameInput = dialogView.findViewById(R.id.playlist_name);

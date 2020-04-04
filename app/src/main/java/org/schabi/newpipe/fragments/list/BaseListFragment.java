@@ -7,16 +7,17 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -40,7 +41,14 @@ import java.util.Queue;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implements ListViewContract<I, N>, StateSaver.WriteRead, SharedPreferences.OnSharedPreferenceChangeListener {
+public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
+        implements ListViewContract<I, N>, StateSaver.WriteRead,
+        SharedPreferences.OnSharedPreferenceChangeListener {
+    private static final int LIST_MODE_UPDATE_FLAG = 0x32;
+    protected StateSaver.SavedState savedState;
+
+    private boolean useDefaultStateSaving = true;
+    private int updateFlags = 0;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -48,16 +56,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
     protected InfoListAdapter infoListAdapter;
     protected RecyclerView itemsList;
-    private int updateFlags = 0;
-
-    private static final int LIST_MODE_UPDATE_FLAG = 0x32;
 
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(final Context context) {
         super.onAttach(context);
 
         if (infoListAdapter == null) {
@@ -71,7 +76,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         PreferenceManager.getDefaultSharedPreferences(activity)
@@ -81,7 +86,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (useDefaultStateSaving) StateSaver.onDestroy(savedState);
+        if (useDefaultStateSaving) {
+            StateSaver.onDestroy(savedState);
+        }
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
@@ -93,8 +100,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         if (updateFlags != 0) {
             if ((updateFlags & LIST_MODE_UPDATE_FLAG) != 0) {
                 final boolean useGrid = isGridLayout();
-                itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
-                infoListAdapter.setGridItemVariants(useGrid);
+                itemsList.setLayoutManager(useGrid
+                        ? getGridLayoutManager() : getListLayoutManager());
+                infoListAdapter.setUseGridVariant(useGrid);
                 infoListAdapter.notifyDataSetChanged();
             }
             updateFlags = 0;
@@ -105,16 +113,14 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     // State Saving
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected StateSaver.SavedState savedState;
-    protected boolean useDefaultStateSaving = true;
-
     /**
      * If the default implementation of {@link StateSaver.WriteRead} should be used.
      *
      * @see StateSaver
+     * @param useDefaultStateSaving Whether the default implementation should be used
      */
-    public void useDefaultStateSaving(boolean useDefault) {
-        this.useDefaultStateSaving = useDefault;
+    public void setUseDefaultStateSaving(final boolean useDefaultStateSaving) {
+        this.useDefaultStateSaving = useDefaultStateSaving;
     }
 
     @Override
@@ -124,13 +130,15 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     }
 
     @Override
-    public void writeTo(Queue<Object> objectsToSave) {
-        if (useDefaultStateSaving) objectsToSave.add(infoListAdapter.getItemsList());
+    public void writeTo(final Queue<Object> objectsToSave) {
+        if (useDefaultStateSaving) {
+            objectsToSave.add(infoListAdapter.getItemsList());
+        }
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
+    public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
         if (useDefaultStateSaving) {
             infoListAdapter.getItemsList().clear();
             infoListAdapter.getItemsList().addAll((List<InfoItem>) savedObjects.poll());
@@ -138,15 +146,20 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     }
 
     @Override
-    public void onSaveInstanceState(Bundle bundle) {
+    public void onSaveInstanceState(final Bundle bundle) {
         super.onSaveInstanceState(bundle);
-        if (useDefaultStateSaving) savedState = StateSaver.tryToSave(activity.isChangingConfigurations(), savedState, bundle, this);
+        if (useDefaultStateSaving) {
+            savedState = StateSaver
+                    .tryToSave(activity.isChangingConfigurations(), savedState, bundle, this);
+        }
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle bundle) {
+    protected void onRestoreInstanceState(@NonNull final Bundle bundle) {
         super.onRestoreInstanceState(bundle);
-        if (useDefaultStateSaving) savedState = StateSaver.tryToRestore(bundle, this);
+        if (useDefaultStateSaving) {
+            savedState = StateSaver.tryToRestore(bundle, this);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -169,29 +182,32 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         final Resources resources = activity.getResources();
         int width = resources.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width);
         width += (24 * resources.getDisplayMetrics().density);
-        final int spanCount = (int) Math.floor(resources.getDisplayMetrics().widthPixels / (double)width);
+        final int spanCount = (int) Math.floor(resources.getDisplayMetrics().widthPixels
+                / (double) width);
         final GridLayoutManager lm = new GridLayoutManager(activity, spanCount);
         lm.setSpanSizeLookup(infoListAdapter.getSpanSizeLookup(spanCount));
         return lm;
     }
 
     @Override
-    protected void initViews(View rootView, Bundle savedInstanceState) {
+    protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
         final boolean useGrid = isGridLayout();
         itemsList = rootView.findViewById(R.id.items_list);
         itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
-        infoListAdapter.setGridItemVariants(useGrid);
+        infoListAdapter.setUseGridVariant(useGrid);
         infoListAdapter.setFooter(getListFooter());
         infoListAdapter.setHeader(getListHeader());
 
         itemsList.setAdapter(infoListAdapter);
     }
 
-    protected void onItemSelected(InfoItem selectedItem) {
-        if (DEBUG) Log.d(TAG, "onItemSelected() called with: selectedItem = [" + selectedItem + "]");
+    protected void onItemSelected(final InfoItem selectedItem) {
+        if (DEBUG) {
+            Log.d(TAG, "onItemSelected() called with: selectedItem = [" + selectedItem + "]");
+        }
     }
 
     @Override
@@ -199,19 +215,19 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         super.initListeners();
         infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
-            public void selected(StreamInfoItem selectedItem) {
+            public void selected(final StreamInfoItem selectedItem) {
                 onStreamSelected(selectedItem);
             }
 
             @Override
-            public void held(StreamInfoItem selectedItem) {
+            public void held(final StreamInfoItem selectedItem) {
                 showStreamDialog(selectedItem);
             }
         });
 
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
-            public void selected(ChannelInfoItem selectedItem) {
+            public void selected(final ChannelInfoItem selectedItem) {
                 try {
                     onItemSelected(selectedItem);
                     NavigationHelper.openChannelFragment(getFM(),
@@ -226,7 +242,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
         infoListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<PlaylistInfoItem>() {
             @Override
-            public void selected(PlaylistInfoItem selectedItem) {
+            public void selected(final PlaylistInfoItem selectedItem) {
                 try {
                     onItemSelected(selectedItem);
                     NavigationHelper.openPlaylistFragment(getFM(),
@@ -241,7 +257,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
         infoListAdapter.setOnCommentsSelectedListener(new OnClickGesture<CommentsInfoItem>() {
             @Override
-            public void selected(CommentsInfoItem selectedItem) {
+            public void selected(final CommentsInfoItem selectedItem) {
                 onItemSelected(selectedItem);
             }
         });
@@ -249,13 +265,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         itemsList.clearOnScrollListeners();
         itemsList.addOnScrollListener(new OnScrollBelowItemsListener() {
             @Override
-            public void onScrolledDown(RecyclerView recyclerView) {
+            public void onScrolledDown(final RecyclerView recyclerView) {
                 onScrollToBottom();
             }
         });
     }
 
-    private void onStreamSelected(StreamInfoItem selectedItem) {
+    private void onStreamSelected(final StreamInfoItem selectedItem) {
         onItemSelected(selectedItem);
         NavigationHelper.openVideoDetailFragment(getFM(),
                 selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
@@ -268,12 +284,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     }
 
 
-
-
     protected void showStreamDialog(final StreamInfoItem item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || activity == null) return;
+        if (context == null || context.getResources() == null || activity == null) {
+            return;
+        }
 
         if (item.getStreamType() == StreamType.AUDIO_STREAM) {
             StreamDialogEntry.setEnabledEntries(
@@ -291,8 +307,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                     StreamDialogEntry.share);
         }
 
-        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context), (dialog, which) ->
-            StreamDialogEntry.clickOn(which, this, item)).show();
+        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
+                (dialog, which) -> StreamDialogEntry.clickOn(which, this, item)).show();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -300,8 +316,11 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
+    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        if (DEBUG) {
+            Log.d(TAG, "onCreateOptionsMenu() called with: "
+                    + "menu = [" + menu + "], inflater = [" + inflater + "]");
+        }
         super.onCreateOptionsMenu(menu, inflater);
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
@@ -339,7 +358,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     }
 
     @Override
-    public void showError(String message, boolean showRetryButton) {
+    public void showError(final String message, final boolean showRetryButton) {
         super.showError(message, showRetryButton);
         showListFooter(false);
         animateView(itemsList, false, 200);
@@ -361,25 +380,28 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     }
 
     @Override
-    public void handleNextItems(N result) {
+    public void handleNextItems(final N result) {
         isLoading.set(false);
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
+                                          final String key) {
         if (key.equals(getString(R.string.list_view_mode_key))) {
             updateFlags |= LIST_MODE_UPDATE_FLAG;
         }
     }
 
     protected boolean isGridLayout() {
-        final String list_mode = PreferenceManager.getDefaultSharedPreferences(activity).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
-        if ("auto".equals(list_mode)) {
+        final String listMode = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getString(getString(R.string.list_view_mode_key),
+                        getString(R.string.list_view_mode_value));
+        if ("auto".equals(listMode)) {
             final Configuration configuration = getResources().getConfiguration();
             return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
                     && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
         } else {
-            return "grid".equals(list_mode);
+            return "grid".equals(listMode);
         }
     }
 }

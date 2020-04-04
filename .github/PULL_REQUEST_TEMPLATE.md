@@ -1,10 +1,12 @@
 <!-- Hey there. Thank you so much for improving NewPipe. Please take a moment to fill out the following suggestion on how to structure this PR description. Having roughly the same layout helps everyone considerably :)-->
 
 #### What is it?
-- [ ] Bug fix
-- [ ] Feature
+- [ ] Bug fix (user facing)
+- [ ] Feature (user facing)
+- [ ] Code base improvement (dev facing)
+- [ ] Meta improvement to the project (dev facing)
 
-#### Long description of the changes in your PR
+#### Description of the changes in your PR
 <!-- While bullet points are the norm in this section, feel free to write a text instead if you can't fit it in a list -->
 - record videos
 - create clones

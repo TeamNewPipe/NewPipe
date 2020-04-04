@@ -599,25 +599,21 @@
         <item quantity="one">%d second</item>
         <item quantity="other">%d seconds</item>
     </plurals>
-
     <plurals name="minutes">
         <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
     </plurals>
-
     <plurals name="hours">
         <item quantity="one">%d hour</item>
         <item quantity="other">%d hours</item>
     </plurals>
-
     <plurals name="days">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
     </plurals>
-
     <!-- Feed -->
     <string name="fragment_feed_title">What\'s New</string>
-    <string name="feed_groups_header_title">Feed groups</string>
+    <string name="feed_groups_header_title">Channel groups</string>
     <string name="feed_oldest_subscription_update">Oldest subscription update: %s</string>
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
     <string name="feed_notification_loading">Loading feed…</string>
@@ -632,7 +628,6 @@
     <string name="feed_group_dialog_name_input">Name</string>
     <string name="feed_group_dialog_delete_message">Do you want to delete this group?</string>
     <string name="feed_create_new_group_button_title">New</string>
-
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_update_threshold_title">Feed update threshold</string>
     <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated — %s</string>
