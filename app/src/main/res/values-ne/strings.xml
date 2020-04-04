@@ -380,7 +380,7 @@
     <string name="resize_zoom">जुम</string>
     <string name="caption_auto_generated">स्वतः उत्पन्न</string>
     <string name="caption_setting_title">क्याप्सनहरु</string>
-    <string name="caption_setting_description">"प्लायेरको क्याप्सन आकार मात्रा र पृष्ठभूमि शैलीहरू परिवर्तन। प्रभाव लागु हुन एप  पुन: सुरु गर्न आवश्यक छ।"</string>
+    <string name="caption_setting_description">प्लायेरको क्याप्सन आकार मात्रा र पृष्ठभूमि शैलीहरू परिवर्तन। प्रभाव लागु हुन एप पुन: सुरु गर्न आवश्यक छ।</string>
     <string name="enable_leak_canary_title">लिक केनरी (LeakCanary)</string>
     <string name="enable_leak_canary_summary">मेमोरी लिक अनुगमनका कारण हिप डम्पिङ्ग (heap dumping) गर्दा एप अडकिन सक्छ</string>
     <string name="enable_disposed_exceptions_title">बाहिर-को-जीवनचक्र त्रुटिहरू रिपोर्ट गर</string>
@@ -447,18 +447,18 @@
     <string name="download_failed">डाउनलोड असफल भयो</string>
     <string name="download_finished">डाउनलोड सकियो</string>
     <string name="download_finished_more">%s डाउनलोडहरु समाप्त</string>
-    <string name="generate_unique_name">अवस्थित डाउनलोड बारेमा संवाद</string>
+    <string name="generate_unique_name">एउटा छुट्टै अलग नाम पैदा गर</string>
     <string name="overwrite">अधिलेखन</string>
     <string name="download_already_running">यसै नाम सितको एक डाउनलोड प्रगतिमा छ</string>
     <string name="show_error">डाउनलोड त्रुटि बारेमा सन्देश संवाद</string>
     <string name="label_code">कोड</string>
     <string name="error_path_creation">गन्तव्य फोल्डर सिर्जना गर्न सकिँदैन</string>
     <string name="error_file_creation">फाइल सिर्जना गर्न सकिँदैन</string>
-    <string name="error_permission_denied">अनुमति प्रणाली द्वारा अस्वीकार</string>
+    <string name="error_permission_denied">प्रणाली द्वारा अनुमति अस्वीकार</string>
     <string name="error_ssl_exception">सुरक्षित जडान स्थापना गर्न सकिएन</string>
     <string name="error_unknown_host">सर्भर फेला पार्न सकिएन</string>
     <string name="error_connect_host">सर्भर जडान गर्न सक्दैन</string>
-    <string name="error_http_no_content">सर्भर डाटा पठाउन छैन</string>
+    <string name="error_http_no_content">सर्भर डाटा पठाउदैन</string>
     <string name="error_http_unsupported_range">सर्भर बहु-थ्रेड डाउनलोड स्वीकार गर्दैन @string/msg_threads = 1 प्रयोग गरि पुन प्रयास गर्नुहोस</string>
     <string name="error_http_not_found">फेला परेन</string>
     <string name="error_postprocessing_failed">पोस्ट-प्रक्रिया असफल भयो</string>
@@ -478,11 +478,11 @@
     <string name="missing_file">फाइल सारियो वा मेटिएको</string>
     <string name="overwrite_unrelated_warning">यो नामको फाइल पहिल्यै अवस्थित छ</string>
     <string name="overwrite_finished_warning">यो नाम सितको डाउनलोड गरिएको फाइल पहिले नै अवस्थित छ</string>
-    <string name="overwrite_failed">फाइल अधिलेखन गर्न सक्दैन</string>
+    <string name="overwrite_failed">फाइल अधिलेखन गर्न सकिएन</string>
     <string name="download_already_pending">यसै नाम सितको एक फाइल डाउनलोड हुने प्रक्रियामा छ</string>
     <string name="error_postprocessing_stopped">फाइल मा काम गर्दा NewPipe बन्द भएको थियो</string>
-    <string name="error_insufficient_storage">उपकरणमा बायाँ कुनै ठाउँ</string>
-    <string name="error_progress_lost">फाइल मेटिएको थियो किनभने प्रगति, हराएको</string>
+    <string name="error_insufficient_storage">उपकरणमा कुनै ठाउँ बाकी छैन</string>
+    <string name="error_progress_lost">प्रगति हरायो, किनभने फाइल मेटिएको थियो</string>
     <string name="error_timeout">जडान समय सकियो</string>
     <string name="confirm_prompt">तपाईं आफ्नो डाउनलोड इतिहास वा डाउनलोड फाइल मेटाउन चाहनुहुन्छ\?</string>
     <string name="enable_queue_limit">डाउनलोड लामको सीमा</string>
@@ -493,7 +493,7 @@
     <string name="downloads_storage_ask_summary">प्रत्येक डाउनलोड कहाँ सेव गर्ने भनि आग्रह गरिनेछ</string>
     <string name="downloads_storage_ask_summary_kitkat">प्रत्येक डाउनलोड कहाँ बचत गर्न आग्रह गरिने छ।
 \nतपाईं बाहिरको एसडी कार्डमा डाउनलोड गर्न चाहनुहुन्छ भने SAF चयन गर्नुहोस्</string>
-    <string name="downloads_storage_use_saf_title">SAF प्रयोग</string>
+    <string name="downloads_storage_use_saf_title">साफ (SAF) प्रयोग</string>
     <string name="downloads_storage_use_saf_summary">\'भण्डारण पहुँच फ्रेमवर्क\' बाह्य एसडी कार्डमा डाउनलोड गर्न अनुमति दिन्छ।
 \nकेहि उपकरणहरू असंगत छन्</string>
     <string name="clear_playback_states_title">प्लेब्याक स्थान मेटाउ</string>
@@ -527,7 +527,7 @@
     <string name="most_liked">सबैभन्दा धेरै मनपराइएको</string>
     <string name="playlist_no_uploader">स्वतः उत्पन्न (कुनै अपलोडर भेटिएन)</string>
     <string name="recovering">पुन (recovering)</string>
-    <string name="error_download_resource_gone">यो डाउनलोड पुन: प्राप्त गर्न सकिँदैन</string>
+    <string name="error_download_resource_gone">यो डाउनलोड पुन:प्राप्त गर्न सकिँदैन</string>
     <string name="choose_instance_prompt">एउटा उदाहरण छनौट गर्नुहोस्</string>
     <string name="enable_lock_screen_video_thumbnail_title">स्क्रिन भिडियो थम्बनेल लक</string>
     <string name="enable_lock_screen_video_thumbnail_summary">पृष्ठभूमिमा प्लेयर प्रयोग गर्दा एउटा भिडियो थम्बनेल लक स्क्रिनमा देखाइएको छ</string>
@@ -566,13 +566,13 @@
     <string name="feed_use_dedicated_fetch_method_summary">केहि सेवाहरूमा उपलब्ध छ, यो प्राय: धेरै छिटो हुन्छ तर सीमित वस्तुहरू र अक्सर अपूर्ण जानकारी फिर्ता गर्न सक्दछ (उदाहरणका लागि कुनै अवधि, वस्तुको प्रकार, कुनै लाइभ स्थिति)।</string>
     <string name="feed_use_dedicated_fetch_method_title">जब उपलब्ध हुन्छ समर्पित फिडबाट अपडेट गर्नुहोस</string>
     <string name="feed_update_threshold_option_always_update">सँधै अपडेट गर्नुहोस्</string>
-    <string name="feed_update_threshold_summary">पछिल्लो अपडेट पछिको समय अबधी जस पछि फिड अपडेट पुरानो भएको मानिन्छ — %s</string>
-    <string name="feed_update_threshold_title">अबधि अपडेट अबधि</string>
+    <string name="feed_update_threshold_summary">पछिल्लो अपडेट पछिको समय अबधी जस पछि फिड पुरानो भएको मानिन्छ — %s</string>
+    <string name="feed_update_threshold_title">फिड अपडेट अबधि</string>
     <string name="settings_category_feed_title">फिड</string>
     <string name="feed_create_new_group_button_title">नयाँ</string>
     <string name="feed_group_dialog_delete_message">के तपाइँ यो समूह हटाउन चाहानुहुन्छ\?</string>
     <string name="feed_group_dialog_name_input">नाम</string>
-    <string name="feed_group_dialog_empty_name">खाली समूह नाम</string>
+    <string name="feed_group_dialog_empty_name">समूहको नाम खाली गर</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d चयन</item>
         <item quantity="other">%d चयन</item>
@@ -584,7 +584,7 @@
     <string name="feed_subscription_not_loaded_count">लोड गरिएको छैन:%d</string>
     <string name="feed_oldest_subscription_update">फिड पछिल्लो अपडेट गरिएको:%s</string>
     <string name="feed_groups_header_title">च्यानल समूहहरू</string>
-    <string name="fragment_feed_title">के नयाँ छ</string>
+    <string name="fragment_feed_title">नयाँ के छ</string>
     <plurals name="hours">
         <item quantity="one">%d घण्टा</item>
         <item quantity="other">%d घण्टा</item>
