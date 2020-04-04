@@ -22,7 +22,7 @@ hasn't been reported/requested before.
 
 ## Bug Fixing
 * If you want to help NewPipe to become free of bugs (this is our utopic goal for NewPipe), you can send us an email to
-<a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a> to let me know that you intend to help. We'll send you further instructions. You may, on request,
+<a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a> to let us know that you intend to help. We'll send you further instructions. You may, on request,
 register at our [Sentry](https://sentry.schabi.org) instance (see section "Crash reporting" for more information).
 
 ## Translation
@@ -36,8 +36,8 @@ with your GitHub account.
 * Stick to NewPipe's style conventions: follow [checkStyle](https://github.com/checkstyle/checkstyle). It will run each time you build the project.
 * Do not bring non-free software (e.g. binary blobs) into the project. Also, make sure you do not introduce Google
   libraries.
-* Stick to [F-Droid contribution guidelines](https://f-droid.org/wiki/page/Inclusion_Policy)
-* Make changes on a separate branch with meaningful name, not on the master neither dev branch. This is commonly known as *feature branch workflow*. You
+* Stick to [F-Droid contribution guidelines](https://f-droid.org/wiki/page/Inclusion_Policy).
+* Make changes on a separate branch with a meaningful name, not on the master neither dev branch. This is commonly known as *feature branch workflow*. You
   may then send your changes as a pull request (PR) on GitHub.
 * When submitting changes, you confirm that your code is licensed under the terms of the
   [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html).
