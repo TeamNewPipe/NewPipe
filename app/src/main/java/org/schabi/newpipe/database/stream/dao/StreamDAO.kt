@@ -80,7 +80,12 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
 
         val isNewerStreamLive = newerStream.streamType == AUDIO_LIVE_STREAM || newerStream.streamType == LIVE_STREAM
         if (!isNewerStreamLive) {
-            if (existentMinimalStream.uploadDate != null && existentMinimalStream.isUploadDateApproximation != true) {
+
+            // Use the existent upload date if the newer stream does not have a better precision
+            // (i.e. is an approximation). This is done to prevent unnecessary changes.
+            val hasBetterPrecision =
+                    newerStream.uploadDate != null && newerStream.isUploadDateApproximation != true
+            if (existentMinimalStream.uploadDate != null && !hasBetterPrecision) {
                 newerStream.uploadDate = existentMinimalStream.uploadDate
                 newerStream.textualUploadDate = existentMinimalStream.textualUploadDate
                 newerStream.isUploadDateApproximation = existentMinimalStream.isUploadDateApproximation
