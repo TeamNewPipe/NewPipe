@@ -12,6 +12,7 @@ import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
+import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -38,16 +39,19 @@ class FeedDatabaseManager(context: Context) {
 
     fun database() = database
 
-    fun asStreamItems(groupId: Long = FeedGroupEntity.GROUP_ALL_ID): Flowable<List<StreamInfoItem>> {
-        val streams = when (groupId) {
-            FeedGroupEntity.GROUP_ALL_ID -> feedTable.getAllStreams()
-            else -> feedTable.getAllStreamsFromGroup(groupId)
-        }
-
-        return streams.map {
-            val items = ArrayList<StreamInfoItem>(it.size)
-            it.mapTo(items) { stream -> stream.toStreamInfoItem() }
-            return@map items
+    fun getStreams(
+        groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+        getPlayedStreams: Boolean = true
+    ): Flowable<List<StreamWithState>> {
+        return when (groupId) {
+            FeedGroupEntity.GROUP_ALL_ID -> {
+                if (getPlayedStreams) feedTable.getAllStreams()
+                else feedTable.getLiveOrNotPlayedStreams()
+            }
+            else -> {
+                if (getPlayedStreams) feedTable.getAllStreamsForGroup(groupId)
+                else feedTable.getLiveOrNotPlayedStreamsForGroup(groupId)
+            }
         }
     }
 
@@ -60,8 +64,10 @@ class FeedDatabaseManager(context: Context) {
         }
     }
 
-    fun outdatedSubscriptionsForGroup(groupId: Long = FeedGroupEntity.GROUP_ALL_ID, outdatedThreshold: OffsetDateTime) =
-        feedTable.getAllOutdatedForGroup(groupId, outdatedThreshold)
+    fun outdatedSubscriptionsForGroup(
+        groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+        outdatedThreshold: OffsetDateTime
+    ) = feedTable.getAllOutdatedForGroup(groupId, outdatedThreshold)
 
     fun markAsOutdated(subscriptionId: Long) = feedTable
         .setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId, null))
@@ -93,10 +99,7 @@ class FeedDatabaseManager(context: Context) {
         }
 
         feedTable.setLastUpdatedForSubscription(
-            FeedLastUpdatedEntity(
-                subscriptionId,
-                OffsetDateTime.now(ZoneOffset.UTC)
-            )
+            FeedLastUpdatedEntity(subscriptionId, OffsetDateTime.now(ZoneOffset.UTC))
         )
     }
 
@@ -108,7 +111,12 @@ class FeedDatabaseManager(context: Context) {
     fun clear() {
         feedTable.deleteAll()
         val deletedOrphans = streamTable.deleteOrphans()
-        if (DEBUG) Log.d(this::class.java.simpleName, "clear() → streamTable.deleteOrphans() → $deletedOrphans")
+        if (DEBUG) {
+            Log.d(
+                this::class.java.simpleName,
+                "clear() → streamTable.deleteOrphans() → $deletedOrphans"
+            )
+        }
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -122,7 +130,8 @@ class FeedDatabaseManager(context: Context) {
     }
 
     fun updateSubscriptionsForGroup(groupId: Long, subscriptionIds: List<Long>): Completable {
-        return Completable.fromCallable { feedGroupTable.updateSubscriptionsForGroup(groupId, subscriptionIds) }
+        return Completable
+            .fromCallable { feedGroupTable.updateSubscriptionsForGroup(groupId, subscriptionIds) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
