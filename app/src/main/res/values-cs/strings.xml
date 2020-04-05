@@ -575,8 +575,8 @@ otevření ve vyskakovacím okně</string>
         <item quantity="few">%d dny</item>
         <item quantity="other">%d dnů</item>
     </plurals>
-    <string name="feed_groups_header_title">Přísunové skupiny</string>
-    <string name="feed_oldest_subscription_update">Aktualizace nejstarších objednávek: %s</string>
+    <string name="feed_groups_header_title">Skupiny kanálů</string>
+    <string name="feed_oldest_subscription_update">Přísun naposledy aktualizován: %s</string>
     <string name="feed_subscription_not_loaded_count">Nenačteno: %d</string>
     <string name="feed_notification_loading">Načítám přísun…</string>
     <string name="feed_processing_message">Zpracovávám přísun…</string>

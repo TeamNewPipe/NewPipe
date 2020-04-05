@@ -563,8 +563,8 @@
         <item quantity="one">%d día</item>
         <item quantity="other">%d días</item>
     </plurals>
-    <string name="feed_groups_header_title">Grupos del feed</string>
-    <string name="feed_oldest_subscription_update">Actualización más antigua de suscripciones: %s</string>
+    <string name="feed_groups_header_title">Grupos de canales</string>
+    <string name="feed_oldest_subscription_update">Última actualización de canales: %s</string>
     <string name="feed_subscription_not_loaded_count">No cargado: %d</string>
     <string name="feed_notification_loading">Cargando contenidos…</string>
     <string name="feed_processing_message">Procesando contenidos…</string>

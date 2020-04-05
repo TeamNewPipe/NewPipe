@@ -141,7 +141,7 @@
     <string name="import_data_title">Importar una base de datos</string>
     <string name="export_data_title">Esportar la base de datos</string>
     <string name="import_data_summary">Anula l\'historial y les soscripciones actuales</string>
-    <string name="export_data_summary">Esporta l\'historial, les soscripciones y les llistes de reproducción.</string>
+    <string name="export_data_summary">Esporta l\'historial, les soscripciones y llistes de reproducción.</string>
     <string name="invalid_url_toast">URL nun ye válida</string>
     <string name="override_current_data">Esto va anular la configuración actual.</string>
     <string name="show_info">Amosar la información</string>
@@ -232,7 +232,7 @@
 \n4.- Copia la URL del perfil al que se te redirixa.</string>
     <string name="import_soundcloud_instructions_hint">LaToID, soundcloud.com/latoid</string>
     <string name="download_thumbnail_title">Cargar miniatures</string>
-    <string name="download_thumbnail_summary">Desactiva esta opción pa evitar la carga de miniatures, aforrar datos y usu de la memoria. Los cambeos van llimpiar la memoria y la caché d\'imáxenes.</string>
+    <string name="download_thumbnail_summary">Desactiva esta opción pa evitar la carga de miniatures y aforrar datos y usu de la memoria. Los cambeos van llimpiar la memoria y la caché d\'imáxenes.</string>
     <string name="minimize_on_exit_title">Minimizar al cambiar a otra aplicación</string>
     <string name="minimize_on_exit_background_description">Minimizar al reproductor en segundu planu</string>
     <string name="minimize_on_exit_popup_description">Minimizar al reproductor en ventanu</string>
@@ -263,7 +263,7 @@
     <string name="no_videos">Nun hai vídeos</string>
     <string name="delete_search_history_alert">¿Desaniciar tol historial de guetes\?</string>
     <string name="app_update_notification_content_title">¡Hai un anovamientu disponible pa NewPipe!</string>
-    <string name="app_update_notification_content_text">Toca pa baxalu</string>
+    <string name="app_update_notification_content_text">Toca pa baxar la versión</string>
     <plurals name="comments">
         <item quantity="one">%s comentariu</item>
         <item quantity="other">%s comentarios</item>
@@ -305,4 +305,7 @@
         <item quantity="other">%d díes</item>
     </plurals>
     <string name="feed_group_dialog_delete_message">¿Quies desaniciar esti grupu\?</string>
+    <string name="metadata_cache_wipe_complete_notice">Llipióse la caché de metadatos</string>
+    <string name="metadata_cache_wipe_summary">Desanicia los datos de les páxines web na caché</string>
+    <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
 </resources>
