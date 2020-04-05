@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?attr/colorPrimary">
+    tools:background="?attr/colorPrimary">
 
     <EditText
         android:id="@+id/toolbar_search_edit_text"
@@ -14,7 +15,7 @@
         android:layout_marginBottom="4dp"
         android:layout_marginRight="48dp"
         android:layout_marginTop="4dp"
-        android:background="?attr/colorPrimary"
+        android:background="@null"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:nextFocusDown="@+id/suggestions_list"
@@ -29,6 +30,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="right|center_vertical"
+        android:contentDescription="@string/clear"
         android:focusable="true"
         tools:ignore="RtlHardcoded">
 

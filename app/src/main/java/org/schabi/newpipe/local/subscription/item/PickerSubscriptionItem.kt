@@ -1,39 +1,28 @@
 package org.schabi.newpipe.local.subscription.item
 
 import android.view.View
-import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.picker_subscription_item.selected_highlight
-import kotlinx.android.synthetic.main.picker_subscription_item.thumbnail_view
-import kotlinx.android.synthetic.main.picker_subscription_item.title_view
+import kotlinx.android.synthetic.main.picker_subscription_item.*
+import kotlinx.android.synthetic.main.picker_subscription_item.view.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.util.AnimationUtils
 import org.schabi.newpipe.util.AnimationUtils.animateView
 import org.schabi.newpipe.util.ImageDisplayConstants
 
-data class PickerSubscriptionItem(val subscriptionEntity: SubscriptionEntity, var isSelected: Boolean = false) : Item() {
-    companion object {
-        const val UPDATE_SELECTED = 123
-
-        val IMAGE_LOADING_OPTIONS: DisplayImageOptions = ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS
-    }
-
+data class PickerSubscriptionItem(
+    val subscriptionEntity: SubscriptionEntity,
+    var isSelected: Boolean = false
+) : Item() {
+    override fun getId(): Long = subscriptionEntity.uid
     override fun getLayout(): Int = R.layout.picker_subscription_item
-
-    override fun bind(viewHolder: GroupieViewHolder, position: Int, payloads: MutableList<Any>) {
-        if (payloads.contains(UPDATE_SELECTED)) {
-            animateView(viewHolder.selected_highlight, AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA, isSelected, 150)
-            return
-        }
-
-        super.bind(viewHolder, position, payloads)
-    }
+    override fun getSpanSize(spanCount: Int, position: Int): Int = 1
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        ImageLoader.getInstance().displayImage(subscriptionEntity.avatarUrl, viewHolder.thumbnail_view, IMAGE_LOADING_OPTIONS)
+        ImageLoader.getInstance().displayImage(subscriptionEntity.avatarUrl,
+                viewHolder.thumbnail_view, ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS)
 
         viewHolder.title_view.text = subscriptionEntity.name
         viewHolder.selected_highlight.visibility = if (isSelected) View.VISIBLE else View.GONE
@@ -47,7 +36,9 @@ data class PickerSubscriptionItem(val subscriptionEntity: SubscriptionEntity, va
         viewHolder.selected_highlight.alpha = 1F
     }
 
-    override fun getId(): Long {
-        return subscriptionEntity.uid
+    fun updateSelected(containerView: View, isSelected: Boolean) {
+        this.isSelected = isSelected
+        animateView(containerView.selected_highlight,
+                AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA, isSelected, 150)
     }
 }
