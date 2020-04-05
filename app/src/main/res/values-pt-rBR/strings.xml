@@ -571,7 +571,7 @@ abrir em modo popup</string>
         <item quantity="one">%d dia</item>
         <item quantity="other">%d dias</item>
     </plurals>
-    <string name="feed_groups_header_title">Grupos de feed</string>
+    <string name="feed_groups_header_title">Grupos de canais</string>
     <string name="feed_oldest_subscription_update">Última atualização das inscrições: %s</string>
     <string name="feed_subscription_not_loaded_count">Não carregado: %d</string>
     <string name="feed_notification_loading">Carregando feed…</string>
