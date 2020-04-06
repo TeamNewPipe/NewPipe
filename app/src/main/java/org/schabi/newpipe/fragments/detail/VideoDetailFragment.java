@@ -1078,7 +1078,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             return;
         }
 
-        thumbnailImageView.setImageDrawable(AppCompatResources.getDrawable(requireContext(), imageResource));
+        thumbnailImageView.setImageDrawable(
+                AppCompatResources.getDrawable(requireContext(), imageResource));
         animateView(thumbnailImageView, false, 0, 0,
                 () -> animateView(thumbnailImageView, true, 500));
     }

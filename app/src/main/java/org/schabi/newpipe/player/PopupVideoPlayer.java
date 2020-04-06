@@ -53,7 +53,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.C;
