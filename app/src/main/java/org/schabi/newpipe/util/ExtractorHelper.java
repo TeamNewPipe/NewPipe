@@ -37,6 +37,7 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
+import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.feed.FeedExtractor;
@@ -293,6 +294,8 @@ public final class ExtractorHelper {
                 Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
             } else if (exception instanceof ContentNotAvailableException) {
                 Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
+            } else if (exception instanceof ContentNotSupportedException) {
+                Toast.makeText(context, R.string.content_not_supported, Toast.LENGTH_LONG).show();
             } else {
                 int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
                         ? R.string.youtube_signature_decryption_error
