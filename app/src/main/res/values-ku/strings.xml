@@ -563,7 +563,7 @@
     </plurals>
     <plurals name="days">
         <item quantity="one">%d ڕۆژ</item>
-        <item quantity="other">"%d  ڕۆژەکان"</item>
+        <item quantity="other">%d ڕۆژەکان</item>
     </plurals>
     <string name="feed_groups_header_title">کۆمەڵە دیارەکان</string>
     <string name="feed_oldest_subscription_update">کۆنترین نوێکردنەوەی بەشداری: %s</string>

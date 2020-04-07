@@ -552,7 +552,7 @@
         <item quantity="other">%d 天</item>
     </plurals>
     <string name="feed_groups_header_title">頻道群組</string>
-    <string name="feed_oldest_subscription_update">最舊訂閱更新：%s</string>
+    <string name="feed_oldest_subscription_update">Feed 最後更新：%s</string>
     <string name="feed_subscription_not_loaded_count">未載入：%d</string>
     <string name="feed_notification_loading">正在載入 feed……</string>
     <string name="feed_processing_message">正在處理 feed……</string>
