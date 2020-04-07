@@ -194,7 +194,7 @@ public final class ThemeHelper {
     }
 
     /**
-     * Get a resource id from a resource styled according to the the context's theme.
+     * Get a resource id from a resource styled according to the context's theme.
      *
      * @param context Android app context
      * @param attr    attribute reference of the resource
@@ -208,10 +208,10 @@ public final class ThemeHelper {
     }
 
     /**
-     * Get a color from an attr styled according to the the context's theme.
+     * Get a color from an attr styled according to the context's theme.
      *
-     * @param context Android app context
-     * @param attrColor    attribute reference of the resource
+     * @param context   Android app context
+     * @param attrColor attribute reference of the resource
      * @return the color
      */
     public static int resolveColorFromAttr(final Context context, @AttrRes final int attrColor) {
