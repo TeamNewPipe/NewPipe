@@ -10,13 +10,12 @@ import java.io.InputStream;
  * @author kapodamy
  */
 public class DataReader {
+    public static final int SHORT_SIZE = 2;
+    public static final int LONG_SIZE = 8;
+    public static final int INTEGER_SIZE = 4;
+    public static final int FLOAT_SIZE = 4;
 
-    public final static int SHORT_SIZE = 2;
-    public final static int LONG_SIZE = 8;
-    public final static int INTEGER_SIZE = 4;
-    public final static int FLOAT_SIZE = 4;
-
-    private final static int BUFFER_SIZE = 128 * 1024;// 128 KiB
+    private static final int BUFFER_SIZE = 128 * 1024; // 128 KiB
 
     private long position = 0;
     private final SharpStream stream;
@@ -24,7 +23,7 @@ public class DataReader {
     private InputStream view;
     private int viewSize;
 
-    public DataReader(SharpStream stream) {
+    public DataReader(final SharpStream stream) {
         this.stream = stream;
         this.readOffset = this.readBuffer.length;
     }
@@ -69,6 +68,12 @@ public class DataReader {
         return primitive[0] << 24 | primitive[1] << 16 | primitive[2] << 8 | primitive[3];
     }
 
+    public long readUnsignedInt()  throws IOException {
+        long value = readInt();
+        return value & 0xffffffffL;
+    }
+
+
     public short readShort() throws IOException {
         primitiveRead(SHORT_SIZE);
         return (short) (primitive[0] << 8 | primitive[1]);
@@ -81,11 +86,11 @@ public class DataReader {
         return high << 32 | low;
     }
 
-    public int read(byte[] buffer) throws IOException {
+    public int read(final byte[] buffer) throws IOException {
         return read(buffer, 0, buffer.length);
     }
 
-    public int read(byte[] buffer, int offset, int count) throws IOException {
+    public int read(final byte[] buffer, int offset, int count) throws IOException {
         if (readCount < 0) {
             return -1;
         }
@@ -130,7 +135,7 @@ public class DataReader {
         stream.rewind();
 
         if ((position - viewSize) > 0) {
-            viewSize = 0;// drop view
+            viewSize = 0; // drop view
         } else {
             viewSize += position;
         }
@@ -152,7 +157,7 @@ public class DataReader {
      * @param size the size of the view
      * @return the view
      */
-    public InputStream getView(int size) {
+    public InputStream getView(final int size) {
         if (view == null) {
             view = new InputStream() {
                 @Override
@@ -168,12 +173,13 @@ public class DataReader {
                 }
 
                 @Override
-                public int read(byte[] buffer) throws IOException {
+                public int read(final byte[] buffer) throws IOException {
                     return read(buffer, 0, buffer.length);
                 }
 
                 @Override
-                public int read(byte[] buffer, int offset, int count) throws IOException {
+                public int read(final byte[] buffer, final int offset, final int count)
+                        throws IOException {
                     if (viewSize < 1) {
                         return -1;
                     }
@@ -185,7 +191,7 @@ public class DataReader {
                 }
 
                 @Override
-                public long skip(long amount) throws IOException {
+                public long skip(final long amount) throws IOException {
                     if (viewSize < 1) {
                         return 0;
                     }
@@ -219,16 +225,18 @@ public class DataReader {
 
     private final short[] primitive = new short[LONG_SIZE];
 
-    private void primitiveRead(int amount) throws IOException {
+    private void primitiveRead(final int amount) throws IOException {
         byte[] buffer = new byte[amount];
         int read = read(buffer, 0, amount);
 
         if (read != amount) {
-            throw new EOFException("Truncated stream, missing " + String.valueOf(amount - read) + " bytes");
+            throw new EOFException("Truncated stream, missing "
+                    + String.valueOf(amount - read) + " bytes");
         }
 
         for (int i = 0; i < amount; i++) {
-            primitive[i] = (short) (buffer[i] & 0xFF);// the "byte" data type in java is signed and is very annoying
+            // the "byte" data type in java is signed and is very annoying
+            primitive[i] = (short) (buffer[i] & 0xFF);
         }
     }
 
@@ -251,5 +259,4 @@ public class DataReader {
 
         return readCount < 1;
     }
-
 }

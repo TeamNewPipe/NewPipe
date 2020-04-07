@@ -330,9 +330,5 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
-    <style name="NavViewTextStyle">
-        <item name="android:ellipsize">end</item>
-    </style>
-
     <style name="VideoPlayerTheme" />
 </resources>

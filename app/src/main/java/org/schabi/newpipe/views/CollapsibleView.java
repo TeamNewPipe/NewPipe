@@ -23,12 +23,13 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Build;
 import android.os.Parcelable;
-import androidx.annotation.IntDef;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.LinearLayout;
+
+import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import org.schabi.newpipe.util.AnimationUtils;
 
@@ -48,40 +49,42 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 public class CollapsibleView extends LinearLayout {
     private static final String TAG = CollapsibleView.class.getSimpleName();
 
-    public CollapsibleView(Context context) {
+    private static final int ANIMATION_DURATION = 420;
+
+    public static final int COLLAPSED = 0;
+    public static final int EXPANDED = 1;
+
+    @State
+    @ViewMode
+    int currentState = COLLAPSED;
+    private boolean readyToChangeState;
+
+    private int targetHeight = -1;
+    private ValueAnimator currentAnimator;
+    private final List<StateListener> listeners = new ArrayList<>();
+
+    public CollapsibleView(final Context context) {
         super(context);
     }
 
-    public CollapsibleView(Context context, @Nullable AttributeSet attrs) {
+    public CollapsibleView(final Context context, @Nullable final AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CollapsibleView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CollapsibleView(final Context context, @Nullable final AttributeSet attrs,
+                           final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public CollapsibleView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CollapsibleView(final Context context, final AttributeSet attrs, final int defStyleAttr,
+                           final int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Collapse/expand logic
     //////////////////////////////////////////////////////////////////////////*/
-
-    private static final int ANIMATION_DURATION = 420;
-    public static final int COLLAPSED = 0, EXPANDED = 1;
-
-    @Retention(SOURCE)
-    @IntDef({COLLAPSED, EXPANDED})
-    public @interface ViewMode {}
-
-    @State @ViewMode int currentState = COLLAPSED;
-    private boolean readyToChangeState;
-
-    private int targetHeight = -1;
-    private ValueAnimator currentAnimator;
-    private final List<StateListener> listeners = new ArrayList<>();
 
     /**
      * This method recalculates the height of this view so it <b>must</b> be called when
@@ -92,7 +95,8 @@ public class CollapsibleView extends LinearLayout {
             Log.d(TAG, getDebugLogString("ready() called"));
         }
 
-        measure(MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.AT_MOST), MeasureSpec.UNSPECIFIED);
+        measure(MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.AT_MOST),
+                MeasureSpec.UNSPECIFIED);
         targetHeight = getMeasuredHeight();
 
         getLayoutParams().height = currentState == COLLAPSED ? 0 : targetHeight;
@@ -111,7 +115,9 @@ public class CollapsibleView extends LinearLayout {
             Log.d(TAG, getDebugLogString("collapse() called"));
         }
 
-        if (!readyToChangeState) return;
+        if (!readyToChangeState) {
+            return;
+        }
 
         final int height = getHeight();
         if (height == 0) {
@@ -119,7 +125,9 @@ public class CollapsibleView extends LinearLayout {
             return;
         }
 
-        if (currentAnimator != null && currentAnimator.isRunning()) currentAnimator.cancel();
+        if (currentAnimator != null && currentAnimator.isRunning()) {
+            currentAnimator.cancel();
+        }
         currentAnimator = AnimationUtils.animateHeight(this, ANIMATION_DURATION, 0);
 
         setCurrentState(COLLAPSED);
@@ -130,7 +138,9 @@ public class CollapsibleView extends LinearLayout {
             Log.d(TAG, getDebugLogString("expand() called"));
         }
 
-        if (!readyToChangeState) return;
+        if (!readyToChangeState) {
+            return;
+        }
 
         final int height = getHeight();
         if (height == this.targetHeight) {
@@ -138,13 +148,17 @@ public class CollapsibleView extends LinearLayout {
             return;
         }
 
-        if (currentAnimator != null && currentAnimator.isRunning()) currentAnimator.cancel();
+        if (currentAnimator != null && currentAnimator.isRunning()) {
+            currentAnimator.cancel();
+        }
         currentAnimator = AnimationUtils.animateHeight(this, ANIMATION_DURATION, this.targetHeight);
         setCurrentState(EXPANDED);
     }
 
     public void switchState() {
-        if (!readyToChangeState) return;
+        if (!readyToChangeState) {
+            return;
+        }
 
         if (currentState == COLLAPSED) {
             expand();
@@ -158,7 +172,7 @@ public class CollapsibleView extends LinearLayout {
         return currentState;
     }
 
-    public void setCurrentState(@ViewMode int currentState) {
+    public void setCurrentState(@ViewMode final int currentState) {
         this.currentState = currentState;
         broadcastState();
     }
@@ -171,6 +185,7 @@ public class CollapsibleView extends LinearLayout {
 
     /**
      * Add a listener which will be listening for changes in this view (i.e. collapsed or expanded).
+     * @param listener {@link StateListener} to be added
      */
     public void addListener(final StateListener listener) {
         if (listeners.contains(listener)) {
@@ -182,22 +197,10 @@ public class CollapsibleView extends LinearLayout {
 
     /**
      * Remove a listener so it doesn't receive more state changes.
+     * @param listener {@link StateListener} to be removed
      */
     public void removeListener(final StateListener listener) {
         listeners.remove(listener);
-    }
-
-    /**
-     * Simple interface used for listening state changes of the {@link CollapsibleView}.
-     */
-    public interface StateListener {
-        /**
-         * Called when the state changes.
-         *
-         * @param newState the state that the {@link CollapsibleView} transitioned to,<br/>
-         *                 it's an integer being either {@link #COLLAPSED} or {@link #EXPANDED}
-         */
-        void onStateChanged(@ViewMode int newState);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -211,7 +214,7 @@ public class CollapsibleView extends LinearLayout {
     }
 
     @Override
-    public void onRestoreInstanceState(Parcelable state) {
+    public void onRestoreInstanceState(final Parcelable state) {
         super.onRestoreInstanceState(Icepick.restoreInstanceState(this, state));
 
         ready();
@@ -221,10 +224,29 @@ public class CollapsibleView extends LinearLayout {
     // Internal
     //////////////////////////////////////////////////////////////////////////*/
 
-    public String getDebugLogString(String description) {
+    public String getDebugLogString(final String description) {
         return String.format("%-100s → %s",
-                description, "readyToChangeState = [" + readyToChangeState + "], currentState = [" + currentState + "], targetHeight = [" + targetHeight + "]," +
-                        " mW x mH = [" + getMeasuredWidth() + "x" + getMeasuredHeight() + "]" +
-                        " W x H = [" + getWidth() + "x" + getHeight() + "]");
+                description, "readyToChangeState = [" + readyToChangeState + "], "
+                        + "currentState = [" + currentState + "], "
+                        + "targetHeight = [" + targetHeight + "], "
+                        + "mW x mH = [" + getMeasuredWidth() + "x" + getMeasuredHeight() + "], "
+                        + "W x H = [" + getWidth() + "x" + getHeight() + "]");
+    }
+
+    @Retention(SOURCE)
+    @IntDef({COLLAPSED, EXPANDED})
+    public @interface ViewMode { }
+
+    /**
+     * Simple interface used for listening state changes of the {@link CollapsibleView}.
+     */
+    public interface StateListener {
+        /**
+         * Called when the state changes.
+         *
+         * @param newState the state that the {@link CollapsibleView} transitioned to,<br/>
+         *                 it's an integer being either {@link #COLLAPSED} or {@link #EXPANDED}
+         */
+        void onStateChanged(@ViewMode int newState);
     }
 }

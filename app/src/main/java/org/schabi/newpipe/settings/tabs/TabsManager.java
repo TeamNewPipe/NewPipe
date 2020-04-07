@@ -9,19 +9,21 @@ import org.schabi.newpipe.R;
 
 import java.util.List;
 
-public class TabsManager {
+public final class TabsManager {
     private final SharedPreferences sharedPreferences;
     private final String savedTabsKey;
     private final Context context;
+    private SavedTabsChangeListener savedTabsChangeListener;
+    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
 
-    public static TabsManager getManager(Context context) {
-        return new TabsManager(context);
-    }
-
-    private TabsManager(Context context) {
+    private TabsManager(final Context context) {
         this.context = context;
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         this.savedTabsKey = context.getString(R.string.saved_tabs_key);
+    }
+
+    public static TabsManager getManager(final Context context) {
+        return new TabsManager(context);
     }
 
     public List<Tab> getTabs() {
@@ -34,7 +36,7 @@ public class TabsManager {
         }
     }
 
-    public void saveTabs(List<Tab> tabList) {
+    public void saveTabs(final List<Tab> tabList) {
         final String jsonToSave = TabsJsonHelper.getJsonToSave(tabList);
         sharedPreferences.edit().putString(savedTabsKey, jsonToSave).apply();
     }
@@ -51,14 +53,7 @@ public class TabsManager {
     // Listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    public interface SavedTabsChangeListener {
-        void onTabsChanged();
-    }
-
-    private SavedTabsChangeListener savedTabsChangeListener;
-    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-
-    public void setSavedTabsListener(SavedTabsChangeListener listener) {
+    public void setSavedTabsListener(final SavedTabsChangeListener listener) {
         if (preferenceChangeListener != null) {
             sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
         }
@@ -76,18 +71,16 @@ public class TabsManager {
     }
 
     private SharedPreferences.OnSharedPreferenceChangeListener getPreferenceChangeListener() {
-        return (sharedPreferences, key) -> {
+        return (sp, key) -> {
             if (key.equals(savedTabsKey)) {
-                if (savedTabsChangeListener != null) savedTabsChangeListener.onTabsChanged();
+                if (savedTabsChangeListener != null) {
+                    savedTabsChangeListener.onTabsChanged();
+                }
             }
         };
     }
 
+    public interface SavedTabsChangeListener {
+        void onTabsChanged();
+    }
 }
-
-
-
-
-
-
-

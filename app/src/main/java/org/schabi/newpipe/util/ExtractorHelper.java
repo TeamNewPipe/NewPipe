@@ -61,28 +61,27 @@ import io.reactivex.Single;
 
 public final class ExtractorHelper {
     private static final String TAG = ExtractorHelper.class.getSimpleName();
-    private static final InfoCache cache = InfoCache.getInstance();
+    private static final InfoCache CACHE = InfoCache.getInstance();
 
     private ExtractorHelper() {
         //no instance
     }
 
-    private static void checkServiceId(int serviceId) {
+    private static void checkServiceId(final int serviceId) {
         if (serviceId == Constants.NO_SERVICE_ID) {
             throw new IllegalArgumentException("serviceId is NO_SERVICE_ID");
         }
     }
 
-    public static Single<SearchInfo> searchFor(final int serviceId,
-                                               final String searchString,
+    public static Single<SearchInfo> searchFor(final int serviceId, final String searchString,
                                                final List<String> contentFilter,
                                                final String sortFilter) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-            SearchInfo.getInfo(NewPipe.getService(serviceId),
-                    NewPipe.getService(serviceId)
-                        .getSearchQHFactory()
-                        .fromQuery(searchString, contentFilter, sortFilter)));
+                SearchInfo.getInfo(NewPipe.getService(serviceId),
+                        NewPipe.getService(serviceId)
+                                .getSearchQHFactory()
+                                .fromQuery(searchString, contentFilter, sortFilter)));
     }
 
     public static Single<InfoItemsPage> getMoreSearchItems(final int serviceId,
@@ -94,14 +93,13 @@ public final class ExtractorHelper {
         return Single.fromCallable(() ->
                 SearchInfo.getMoreItems(NewPipe.getService(serviceId),
                         NewPipe.getService(serviceId)
-                            .getSearchQHFactory()
-                            .fromQuery(searchString, contentFilter, sortFilter),
+                                .getSearchQHFactory()
+                                .fromQuery(searchString, contentFilter, sortFilter),
                         pageUrl));
 
     }
 
-    public static Single<List<String>> suggestionsFor(final int serviceId,
-                                                      final String query) {
+    public static Single<List<String>> suggestionsFor(final int serviceId, final String query) {
         checkServiceId(serviceId);
         return Single.fromCallable(() -> {
             SuggestionExtractor extractor = NewPipe.getService(serviceId)
@@ -112,32 +110,30 @@ public final class ExtractorHelper {
         });
     }
 
-    public static Single<StreamInfo> getStreamInfo(final int serviceId,
-                                                   final String url,
-                                                   boolean forceLoad) {
+    public static Single<StreamInfo> getStreamInfo(final int serviceId, final String url,
+                                                   final boolean forceLoad) {
         checkServiceId(serviceId);
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.STREAM, Single.fromCallable(() ->
-                StreamInfo.getInfo(NewPipe.getService(serviceId), url)));
+        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.STREAM,
+                Single.fromCallable(() -> StreamInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<ChannelInfo> getChannelInfo(final int serviceId,
-                                                     final String url,
-                                                     boolean forceLoad) {
+    public static Single<ChannelInfo> getChannelInfo(final int serviceId, final String url,
+                                                     final boolean forceLoad) {
         checkServiceId(serviceId);
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.CHANNEL, Single.fromCallable(() ->
-                ChannelInfo.getInfo(NewPipe.getService(serviceId), url)));
+        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.CHANNEL,
+                Single.fromCallable(() ->
+                        ChannelInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<InfoItemsPage> getMoreChannelItems(final int serviceId,
-                                                            final String url,
+    public static Single<InfoItemsPage> getMoreChannelItems(final int serviceId, final String url,
                                                             final String nextStreamsUrl) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl));
     }
 
-    public static Single<ListInfo<StreamInfoItem>> getFeedInfoFallbackToChannelInfo(final int serviceId,
-                                                                                    final String url) {
+    public static Single<ListInfo<StreamInfoItem>> getFeedInfoFallbackToChannelInfo(
+            final int serviceId, final String url) {
         final Maybe<ListInfo<StreamInfoItem>> maybeFeedInfo = Maybe.fromCallable(() -> {
             final StreamingService service = NewPipe.getService(serviceId);
             final FeedExtractor feedExtractor = service.getFeedExtractor(url);
@@ -152,12 +148,12 @@ public final class ExtractorHelper {
         return maybeFeedInfo.switchIfEmpty(getChannelInfo(serviceId, url, true));
     }
 
-    public static Single<CommentsInfo> getCommentsInfo(final int serviceId,
-                                                       final String url,
-                                                       boolean forceLoad) {
+    public static Single<CommentsInfo> getCommentsInfo(final int serviceId, final String url,
+                                                       final boolean forceLoad) {
         checkServiceId(serviceId);
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.COMMENT, Single.fromCallable(() ->
-                CommentsInfo.getInfo(NewPipe.getService(serviceId), url)));
+        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.COMMENT,
+                Single.fromCallable(() ->
+                        CommentsInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
     public static Single<InfoItemsPage> getMoreCommentItems(final int serviceId,
@@ -168,32 +164,30 @@ public final class ExtractorHelper {
                 CommentsInfo.getMoreItems(NewPipe.getService(serviceId), info, nextPageUrl));
     }
 
-    public static Single<PlaylistInfo> getPlaylistInfo(final int serviceId,
-                                                       final String url,
-                                                       boolean forceLoad) {
+    public static Single<PlaylistInfo> getPlaylistInfo(final int serviceId, final String url,
+                                                       final boolean forceLoad) {
         checkServiceId(serviceId);
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST, Single.fromCallable(() ->
-                PlaylistInfo.getInfo(NewPipe.getService(serviceId), url)));
+        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST,
+                Single.fromCallable(() ->
+                        PlaylistInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<InfoItemsPage> getMorePlaylistItems(final int serviceId,
-                                                             final String url,
+    public static Single<InfoItemsPage> getMorePlaylistItems(final int serviceId, final String url,
                                                              final String nextStreamsUrl) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 PlaylistInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl));
     }
 
-    public static Single<KioskInfo> getKioskInfo(final int serviceId,
-                                                 final String url,
-                                                 boolean forceLoad) {
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST, Single.fromCallable(() ->
-                KioskInfo.getInfo(NewPipe.getService(serviceId), url)));
+    public static Single<KioskInfo> getKioskInfo(final int serviceId, final String url,
+                                                 final boolean forceLoad) {
+        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST,
+                Single.fromCallable(() -> KioskInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
     public static Single<InfoItemsPage> getMoreKioskItems(final int serviceId,
-                                                            final String url,
-                                                            final String nextStreamsUrl) {
+                                                          final String url,
+                                                          final String nextStreamsUrl) {
         return Single.fromCallable(() ->
                 KioskInfo.getMoreItems(NewPipe.getService(serviceId),
                         url, nextStreamsUrl));
@@ -207,23 +201,31 @@ public final class ExtractorHelper {
      * Check if we can load it from the cache (forceLoad parameter), if we can't,
      * load from the network (Single loadFromNetwork)
      * and put the results in the cache.
+     *
+     * @param <I>             the item type's class that extends {@link Info}
+     * @param forceLoad       whether to force loading from the network instead of from the cache
+     * @param serviceId       the service to load from
+     * @param url             the URL to load
+     * @param infoType        the {@link InfoItem.InfoType} of the item
+     * @param loadFromNetwork the {@link Single} to load the item from the network
+     * @return a {@link Single} that loads the item
      */
-    private static <I extends Info> Single<I> checkCache(boolean forceLoad,
-                                                         int serviceId,
-                                                         String url,
-                                                         InfoItem.InfoType infoType,
-                                                         Single<I> loadFromNetwork) {
+    private static <I extends Info> Single<I> checkCache(final boolean forceLoad,
+                                                         final int serviceId, final String url,
+                                                         final InfoItem.InfoType infoType,
+                                                         final Single<I> loadFromNetwork) {
         checkServiceId(serviceId);
-        loadFromNetwork = loadFromNetwork.doOnSuccess(info -> cache.putInfo(serviceId, url, info, infoType));
+        Single<I> actualLoadFromNetwork = loadFromNetwork
+                .doOnSuccess(info -> CACHE.putInfo(serviceId, url, info, infoType));
 
         Single<I> load;
         if (forceLoad) {
-            cache.removeInfo(serviceId, url, infoType);
-            load = loadFromNetwork;
+            CACHE.removeInfo(serviceId, url, infoType);
+            load = actualLoadFromNetwork;
         } else {
             load = Maybe.concat(ExtractorHelper.loadFromCache(serviceId, url, infoType),
-                    loadFromNetwork.toMaybe())
-                    .firstElement() //Take the first valid
+                    actualLoadFromNetwork.toMaybe())
+                    .firstElement() // Take the first valid
                     .toSingle();
         }
 
@@ -231,14 +233,23 @@ public final class ExtractorHelper {
     }
 
     /**
-     * Default implementation uses the {@link InfoCache} to get cached results
+     * Default implementation uses the {@link InfoCache} to get cached results.
+     *
+     * @param <I>             the item type's class that extends {@link Info}
+     * @param serviceId       the service to load from
+     * @param url             the URL to load
+     * @param infoType        the {@link InfoItem.InfoType} of the item
+     * @return a {@link Single} that loads the item
      */
-    public static <I extends Info> Maybe<I> loadFromCache(final int serviceId, final String url, InfoItem.InfoType infoType) {
+    public static <I extends Info> Maybe<I> loadFromCache(final int serviceId, final String url,
+                                                          final InfoItem.InfoType infoType) {
         checkServiceId(serviceId);
         return Maybe.defer(() -> {
             //noinspection unchecked
-            I info = (I) cache.getFromKey(serviceId, url, infoType);
-            if (MainActivity.DEBUG) Log.d(TAG, "loadFromCache() called, info > " + info);
+            I info = (I) CACHE.getFromKey(serviceId, url, infoType);
+            if (MainActivity.DEBUG) {
+                Log.d(TAG, "loadFromCache() called, info > " + info);
+            }
 
             // Only return info if it's not null (it is cached)
             if (info != null) {
@@ -249,14 +260,26 @@ public final class ExtractorHelper {
         });
     }
 
-    public static boolean isCached(final int serviceId, final String url, InfoItem.InfoType infoType) {
+    public static boolean isCached(final int serviceId, final String url,
+                                   final InfoItem.InfoType infoType) {
         return null != loadFromCache(serviceId, url, infoType).blockingGet();
     }
 
     /**
-     * A simple and general error handler that show a Toast for known exceptions, and for others, opens the report error activity with the (optional) error message.
+     * A simple and general error handler that show a Toast for known exceptions,
+     * and for others, opens the report error activity with the (optional) error message.
+     *
+     * @param context              Android app context
+     * @param serviceId            the service the exception happened in
+     * @param url                  the URL where the exception happened
+     * @param exception            the exception to be handled
+     * @param userAction           the action of the user that caused the exception
+     * @param optionalErrorMessage the optional error message
      */
-    public static void handleGeneralException(Context context, int serviceId, String url, Throwable exception, UserAction userAction, String optionalErrorMessage) {
+    public static void handleGeneralException(final Context context, final int serviceId,
+                                              final String url, final Throwable exception,
+                                              final UserAction userAction,
+                                              final String optionalErrorMessage) {
         final Handler handler = new Handler(context.getMainLooper());
 
         handler.post(() -> {
@@ -271,10 +294,15 @@ public final class ExtractorHelper {
             } else if (exception instanceof ContentNotAvailableException) {
                 Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
             } else {
-                int errorId = exception instanceof YoutubeStreamExtractor.DecryptException ? R.string.youtube_signature_decryption_error :
-                        exception instanceof ParsingException ? R.string.parsing_error : R.string.general_error;
-                ErrorActivity.reportError(handler, context, exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(userAction,
-                        serviceId == -1 ? "none" : NewPipe.getNameOfService(serviceId), url + (optionalErrorMessage == null ? "" : optionalErrorMessage), errorId));
+                int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
+                        ? R.string.youtube_signature_decryption_error
+                        : exception instanceof ParsingException
+                        ? R.string.parsing_error : R.string.general_error;
+                ErrorActivity.reportError(handler, context, exception, MainActivity.class, null,
+                        ErrorActivity.ErrorInfo.make(userAction, serviceId == -1 ? "none"
+                                : NewPipe.getNameOfService(serviceId),
+                                url + (optionalErrorMessage == null ? ""
+                                        : optionalErrorMessage), errorId));
             }
         });
     }
@@ -283,12 +311,17 @@ public final class ExtractorHelper {
      * Check if throwable have the cause that can be assignable from the causes to check.
      *
      * @see Class#isAssignableFrom(Class)
+     * @param throwable     the throwable to be checked
+     * @param causesToCheck the causes to check
+     * @return whether the exception is an instance of a subclass of one of the causes
+     * or is caused by an instance of a subclass of one of the causes
      */
-    public static boolean hasAssignableCauseThrowable(Throwable throwable,
-                                                      Class<?>... causesToCheck) {
+    public static boolean hasAssignableCauseThrowable(final Throwable throwable,
+                                                      final Class<?>... causesToCheck) {
         // Check if getCause is not the same as cause (the getCause is already the root),
         // as it will cause a infinite loop if it is
-        Throwable cause, getCause = throwable;
+        Throwable cause;
+        Throwable getCause = throwable;
 
         // Check if throwable is a subclass of any of the filtered classes
         final Class throwableClass = throwable.getClass();
@@ -313,11 +346,18 @@ public final class ExtractorHelper {
 
     /**
      * Check if throwable have the exact cause from one of the causes to check.
+     *
+     * @param throwable     the throwable to be checked
+     * @param causesToCheck the causes to check
+     * @return whether the exception is an instance of one of the causes
+     * or is caused by an instance of one of the causes
      */
-    public static boolean hasExactCauseThrowable(Throwable throwable, Class<?>... causesToCheck) {
+    public static boolean hasExactCauseThrowable(final Throwable throwable,
+                                                 final Class<?>... causesToCheck) {
         // Check if getCause is not the same as cause (the getCause is already the root),
         // as it will cause a infinite loop if it is
-        Throwable cause, getCause = throwable;
+        Throwable cause;
+        Throwable getCause = throwable;
 
         for (Class<?> causesEl : causesToCheck) {
             if (throwable.getClass().equals(causesEl)) {
@@ -338,8 +378,11 @@ public final class ExtractorHelper {
 
     /**
      * Check if throwable have Interrupted* exception as one of its causes.
+     *
+     * @param throwable the throwable to be checkes
+     * @return whether the throwable is caused by an interruption
      */
-    public static boolean isInterruptedCaused(Throwable throwable) {
+    public static boolean isInterruptedCaused(final Throwable throwable) {
         return ExtractorHelper.hasExactCauseThrowable(throwable,
                 InterruptedIOException.class,
                 InterruptedException.class);

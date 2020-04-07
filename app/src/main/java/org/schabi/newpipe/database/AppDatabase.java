@@ -46,14 +46,20 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract SearchHistoryDAO searchHistoryDAO();
 
     public abstract StreamDAO streamDAO();
+
     public abstract StreamHistoryDAO streamHistoryDAO();
+
     public abstract StreamStateDAO streamStateDAO();
 
     public abstract PlaylistDAO playlistDAO();
+
     public abstract PlaylistStreamDAO playlistStreamDAO();
+
     public abstract PlaylistRemoteDAO playlistRemoteDAO();
 
     public abstract FeedDAO feedDAO();
+
     public abstract FeedGroupDAO feedGroupDAO();
+
     public abstract SubscriptionDAO subscriptionDAO();
 }

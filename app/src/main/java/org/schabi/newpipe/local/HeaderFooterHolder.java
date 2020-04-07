@@ -1,12 +1,13 @@
 package org.schabi.newpipe.local;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class HeaderFooterHolder extends RecyclerView.ViewHolder {
     public View view;
 
-    public HeaderFooterHolder(View v) {
+    public HeaderFooterHolder(final View v) {
         super(v);
         view = v;
     }

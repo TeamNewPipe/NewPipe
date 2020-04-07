@@ -221,7 +221,7 @@ public class CircularFileWriter extends SharpStream {
                 available = out.length - offsetOut;
             }
 
-            int length = Math.min(len, (int) available);
+            int length = Math.min(len, (int) Math.min(Integer.MAX_VALUE, available));
             out.write(b, off, length);
 
             len -= length;

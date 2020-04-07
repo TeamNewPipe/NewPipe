@@ -451,7 +451,6 @@
     <string name="error_http_unsupported_range">Server tidak menerima unduhan multi-utas, coba lagi dengan @string/msg_threads = 1</string>
     <string name="error_http_not_found">Tidak ditemukan</string>
     <string name="error_postprocessing_failed">Pengolahan-pasca gagal</string>
-    <string name="clear_finished_download">Hapus unduhan yang sudah selesai</string>
     <string name="stop">Berhenti</string>
     <string name="max_retry_msg">Percobaan maksimum</string>
     <string name="max_retry_desc">Jumlah upaya maksimum sebelum membatalkan unduhan</string>
@@ -551,7 +550,7 @@
     <plurals name="days">
         <item quantity="other">%d hari</item>
     </plurals>
-    <string name="feed_groups_header_title">Grup feed</string>
+    <string name="feed_groups_header_title">Grup channel</string>
     <string name="feed_oldest_subscription_update">Pembaruan subscription terlama: %s</string>
     <string name="feed_subscription_not_loaded_count">Tidak dimuat: %d</string>
     <string name="feed_notification_loading">Memuat feed…</string>

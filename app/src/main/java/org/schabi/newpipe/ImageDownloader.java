@@ -18,7 +18,7 @@ public class ImageDownloader extends BaseImageDownloader {
     private final SharedPreferences preferences;
     private final String downloadThumbnailKey;
 
-    public ImageDownloader(Context context) {
+    public ImageDownloader(final Context context) {
         super(context);
         this.resources = context.getResources();
         this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -31,7 +31,7 @@ public class ImageDownloader extends BaseImageDownloader {
 
     @SuppressLint("ResourceType")
     @Override
-    public InputStream getStream(String imageUri, Object extra) throws IOException {
+    public InputStream getStream(final String imageUri, final Object extra) throws IOException {
         if (isDownloadingThumbnail()) {
             return super.getStream(imageUri, extra);
         } else {
@@ -39,7 +39,8 @@ public class ImageDownloader extends BaseImageDownloader {
         }
     }
 
-    protected InputStream getStreamFromNetwork(String imageUri, Object extra) throws IOException {
+    protected InputStream getStreamFromNetwork(final String imageUri, final Object extra)
+            throws IOException {
         final DownloaderImpl downloader = (DownloaderImpl) NewPipe.getDownloader();
         return downloader.stream(imageUri);
     }

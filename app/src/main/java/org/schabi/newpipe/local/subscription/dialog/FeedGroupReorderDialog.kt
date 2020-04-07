@@ -19,7 +19,8 @@ import icepick.State
 import kotlinx.android.synthetic.main.dialog_feed_group_reorder.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
-import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.*
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.ProcessingEvent
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.SuccessEvent
 import org.schabi.newpipe.local.subscription.item.FeedGroupReorderItem
 import org.schabi.newpipe.util.ThemeHelper
 import java.util.*
@@ -28,7 +29,9 @@ import kotlin.collections.ArrayList
 class FeedGroupReorderDialog : DialogFragment() {
     private lateinit var viewModel: FeedGroupReorderDialogViewModel
 
-    @State @JvmField var groupOrderedIdList = ArrayList<Long>()
+    @State
+    @JvmField
+    var groupOrderedIdList = ArrayList<Long>()
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
     private val itemTouchHelper = ItemTouchHelper(getItemTouchCallback())
 

@@ -452,7 +452,6 @@
     <string name="error_connect_host">Impossible de se connecter au serveur</string>
     <string name="error_http_no_content">Le serveur n’envoie pas de données</string>
     <string name="error_http_not_found">Introuvable</string>
-    <string name="clear_finished_download">Effacer les téléchargements terminés</string>
     <string name="pause_downloads_on_mobile">Interrompre sur les connexions limitées</string>
     <string name="pause_downloads_on_mobile_desc">Utile lors du basculement aux données mobiles, bien que certains téléchargements ne peuvent pas être suspendus</string>
     <string name="list_view_mode">Mode de vue en liste</string>
@@ -587,16 +586,16 @@
     <string name="feed_use_dedicated_fetch_method_summary">Disponible pour quelques services, c\'est généralement bien plus rapide mais peut retourner un nombre d\'élements limité et des informations souvent incomplètes (ex : pas de durée, pas de statut « En direct ».</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activer le mode rapide</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Désactiver le mode rapide</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Pensez vous que la chargement du flux est trop lent ? Si c\'est le cas, essayez le mode rapide (vous pouvez changer le mode dans les paramètres ou en pressant le bouton en dessous).\n\n
-
-NewPipe propose deux manières de charger le flux :\n
-• Charger toutes les chaines auquelles vous êtes abonnés, cette manière est lente mais complète.\n
-• Charger depuis un service dédié, cette manière est plus rapide mais souvent incomplète.\n\n
-
-La différence entre les deux est que la méthode rapide manque souvent de quelques informations, comme la durée d\'un élément ou le type (nous ne pouvons pas différencier les vidéos en direct des vidéos normales) et pourrait retourner moins d\'éléments.\n\n
-
-YouTube est un exemple qui offre cette méthode rapide avec le flux RSS.\n\n
-
-Donc le choix vous revient : Preferrez-vous la vitesse où des informations précises ?</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Pensez-vous que la chargement du flux est trop lent \? Si c\'est le cas, essayez le mode rapide (vous pouvez changer le mode dans les paramètres ou en pressant le bouton en dessous).
+\n
+\n NewPipe propose deux manières de charger le flux :
+\n • Charger toutes les chaines auquelles vous êtes abonnés, cette manière est lente mais complète.
+\n • Charger depuis un service dédié, cette manière est plus rapide mais souvent incomplète.
+\n
+\n La différence entre les deux est que la méthode rapide manque souvent de quelques informations, comme la durée d\'un élément ou le type (nous ne pouvons pas différencier les vidéos en direct des vidéos normales) et pourrait retourner moins d\'éléments.
+\n
+\n YouTube est un exemple qui offre cette méthode rapide avec le flux RSS.
+\n
+\n Donc le choix vous revient : Préferez-vous la vitesse ou des informations précises \?</string>
     <string name="help">Aide</string>
 </resources>

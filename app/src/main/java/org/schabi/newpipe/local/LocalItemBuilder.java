@@ -30,14 +30,12 @@ import org.schabi.newpipe.util.OnClickGesture;
  */
 
 public class LocalItemBuilder {
-    private static final String TAG = LocalItemBuilder.class.toString();
-
     private final Context context;
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
     private OnClickGesture<LocalItem> onSelectedListener;
 
-    public LocalItemBuilder(Context context) {
+    public LocalItemBuilder(final Context context) {
         this.context = context;
     }
 
@@ -54,7 +52,7 @@ public class LocalItemBuilder {
         return onSelectedListener;
     }
 
-    public void setOnItemSelectedListener(OnClickGesture<LocalItem> listener) {
+    public void setOnItemSelectedListener(final OnClickGesture<LocalItem> listener) {
         this.onSelectedListener = listener;
     }
 }

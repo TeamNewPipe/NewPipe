@@ -53,27 +53,24 @@ import io.reactivex.subjects.PublishSubject;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
-
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
-
-    private View headerRootLayout;
-    private TextView headerTitleView;
-    private TextView headerStreamCount;
-
-    private View playlistControl;
-    private View headerPlayAllButton;
-    private View headerPopupButton;
-    private View headerBackgroundButton;
 
     @State
     protected Long playlistId;
     @State
     protected String name;
     @State
-    protected Parcelable itemsListState;
+    Parcelable itemsListState;
 
+    private View headerRootLayout;
+    private TextView headerTitleView;
+    private TextView headerStreamCount;
+    private View playlistControl;
+    private View headerPlayAllButton;
+    private View headerPopupButton;
+    private View headerBackgroundButton;
     private ItemTouchHelper itemTouchHelper;
 
     private LocalPlaylistManager playlistManager;
@@ -87,7 +84,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     /* Has the playlist been modified (e.g. items reordered or deleted) */
     private AtomicBoolean isModified;
 
-    public static LocalPlaylistFragment getInstance(long playlistId, String name) {
+    public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
         LocalPlaylistFragment instance = new LocalPlaylistFragment();
         instance.setInitialData(playlistId, name);
         return instance;
@@ -98,7 +95,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
         debouncedSaveSignal = PublishSubject.create();
@@ -110,9 +107,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater,
+                             @Nullable final ViewGroup container,
+                             @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_playlist, container, false);
     }
 
@@ -130,15 +127,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
-    protected void initViews(View rootView, Bundle savedInstanceState) {
+    protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
         setTitle(name);
     }
 
     @Override
     protected View getListHeader() {
-        headerRootLayout = activity.getLayoutInflater().inflate(R.layout.local_playlist_header,
-                itemsList, false);
+        headerRootLayout = activity.getLayoutInflater()
+                .inflate(R.layout.local_playlist_header, itemsList, false);
 
         headerTitleView = headerRootLayout.findViewById(R.id.playlist_title_view);
         headerTitleView.setSelected(true);
@@ -164,24 +161,28 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
-            public void selected(LocalItem selectedItem) {
+            public void selected(final LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistStreamEntry) {
                     final PlaylistStreamEntry item = (PlaylistStreamEntry) selectedItem;
                     NavigationHelper.openVideoDetailFragment(getFragmentManager(),
-                            item.getStreamEntity().getServiceId(), item.getStreamEntity().getUrl(), item.getStreamEntity().getTitle());
+                            item.getStreamEntity().getServiceId(), item.getStreamEntity().getUrl(),
+                            item.getStreamEntity().getTitle());
                 }
             }
 
             @Override
-            public void held(LocalItem selectedItem) {
+            public void held(final LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistStreamEntry) {
                     showStreamItemDialog((PlaylistStreamEntry) selectedItem);
                 }
             }
 
             @Override
-            public void drag(LocalItem selectedItem, RecyclerView.ViewHolder viewHolder) {
-                if (itemTouchHelper != null) itemTouchHelper.startDrag(viewHolder);
+            public void drag(final LocalItem selectedItem,
+                             final RecyclerView.ViewHolder viewHolder) {
+                if (itemTouchHelper != null) {
+                    itemTouchHelper.startDrag(viewHolder);
+                }
             }
         });
     }
@@ -193,22 +194,32 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void showLoading() {
         super.showLoading();
-        if (headerRootLayout != null) animateView(headerRootLayout, false, 200);
-        if (playlistControl != null) animateView(playlistControl, false, 200);
+        if (headerRootLayout != null) {
+            animateView(headerRootLayout, false, 200);
+        }
+        if (playlistControl != null) {
+            animateView(playlistControl, false, 200);
+        }
     }
 
     @Override
     public void hideLoading() {
         super.hideLoading();
-        if (headerRootLayout != null) animateView(headerRootLayout, true, 200);
-        if (playlistControl != null) animateView(playlistControl, true, 200);
+        if (headerRootLayout != null) {
+            animateView(headerRootLayout, true, 200);
+        }
+        if (playlistControl != null) {
+            animateView(playlistControl, true, 200);
+        }
     }
 
     @Override
-    public void startLoading(boolean forceLoad) {
+    public void startLoading(final boolean forceLoad) {
         super.startLoading(forceLoad);
 
-        if (disposables != null) disposables.clear();
+        if (disposables != null) {
+            disposables.clear();
+        }
         disposables.add(getDebouncedSaver());
 
         isLoadingComplete.set(false);
@@ -237,13 +248,25 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void onDestroyView() {
         super.onDestroyView();
 
-        if (itemListAdapter != null) itemListAdapter.unsetSelectedListener();
-        if (headerBackgroundButton != null) headerBackgroundButton.setOnClickListener(null);
-        if (headerPlayAllButton != null) headerPlayAllButton.setOnClickListener(null);
-        if (headerPopupButton != null) headerPopupButton.setOnClickListener(null);
+        if (itemListAdapter != null) {
+            itemListAdapter.unsetSelectedListener();
+        }
+        if (headerBackgroundButton != null) {
+            headerBackgroundButton.setOnClickListener(null);
+        }
+        if (headerPlayAllButton != null) {
+            headerPlayAllButton.setOnClickListener(null);
+        }
+        if (headerPopupButton != null) {
+            headerPopupButton.setOnClickListener(null);
+        }
 
-        if (databaseSubscription != null) databaseSubscription.cancel();
-        if (disposables != null) disposables.clear();
+        if (databaseSubscription != null) {
+            databaseSubscription.cancel();
+        }
+        if (disposables != null) {
+            disposables.clear();
+        }
 
         databaseSubscription = null;
         itemTouchHelper = null;
@@ -252,8 +275,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (debouncedSaveSignal != null) debouncedSaveSignal.onComplete();
-        if (disposables != null) disposables.dispose();
+        if (debouncedSaveSignal != null) {
+            debouncedSaveSignal.onComplete();
+        }
+        if (disposables != null) {
+            disposables.dispose();
+        }
 
         debouncedSaveSignal = null;
         playlistManager = null;
@@ -270,40 +297,46 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private Subscriber<List<PlaylistStreamEntry>> getPlaylistObserver() {
         return new Subscriber<List<PlaylistStreamEntry>>() {
             @Override
-            public void onSubscribe(Subscription s) {
+            public void onSubscribe(final Subscription s) {
                 showLoading();
                 isLoadingComplete.set(false);
 
-                if (databaseSubscription != null) databaseSubscription.cancel();
+                if (databaseSubscription != null) {
+                    databaseSubscription.cancel();
+                }
                 databaseSubscription = s;
                 databaseSubscription.request(1);
             }
 
             @Override
-            public void onNext(List<PlaylistStreamEntry> streams) {
+            public void onNext(final List<PlaylistStreamEntry> streams) {
                 // Skip handling the result after it has been modified
                 if (isModified == null || !isModified.get()) {
                     handleResult(streams);
                     isLoadingComplete.set(true);
                 }
 
-                if (databaseSubscription != null) databaseSubscription.request(1);
+                if (databaseSubscription != null) {
+                    databaseSubscription.request(1);
+                }
             }
 
             @Override
-            public void onError(Throwable exception) {
+            public void onError(final Throwable exception) {
                 LocalPlaylistFragment.this.onError(exception);
             }
 
             @Override
-            public void onComplete() {}
+            public void onComplete() { }
         };
     }
 
     @Override
-    public void handleResult(@NonNull List<PlaylistStreamEntry> result) {
+    public void handleResult(@NonNull final List<PlaylistStreamEntry> result) {
         super.handleResult(result);
-        if (itemListAdapter == null) return;
+        if (itemListAdapter == null) {
+            return;
+        }
 
         itemListAdapter.clearStreamItemList();
 
@@ -346,12 +379,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     protected void resetFragment() {
         super.resetFragment();
-        if (databaseSubscription != null) databaseSubscription.cancel();
+        if (databaseSubscription != null) {
+            databaseSubscription.cancel();
+        }
     }
 
     @Override
-    protected boolean onError(Throwable exception) {
-        if (super.onError(exception)) return true;
+    protected boolean onError(final Throwable exception) {
+        if (super.onError(exception)) {
+            return true;
+        }
 
         onUnrecoverableError(exception, UserAction.SOMETHING_ELSE,
                 "none", "Local Playlist", R.string.general_error);
@@ -363,7 +400,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     //////////////////////////////////////////////////////////////////////////*/
 
     private void createRenameDialog() {
-        if (playlistId == null || name == null || getContext() == null) return;
+        if (playlistId == null || name == null || getContext() == null) {
+            return;
+        }
 
         final View dialogView = View.inflate(getContext(), R.layout.dialog_playlist_name, null);
         EditText nameEdit = dialogView.findViewById(R.id.playlist_name);
@@ -382,33 +421,37 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         dialogBuilder.show();
     }
 
-    private void changePlaylistName(final String name) {
-        if (playlistManager == null) return;
-
-        this.name = name;
-        setTitle(name);
-
-        if (DEBUG) {
-            Log.d(TAG, "Updating playlist id=[" + playlistId +
-                "] with new name=[" + name + "] items");
+    private void changePlaylistName(final String title) {
+        if (playlistManager == null) {
+            return;
         }
 
-        final Disposable disposable = playlistManager.renamePlaylist(playlistId, name)
+        this.name = title;
+        setTitle(title);
+
+        if (DEBUG) {
+            Log.d(TAG, "Updating playlist id=[" + playlistId + "] "
+                    + "with new title=[" + title + "] items");
+        }
+
+        final Disposable disposable = playlistManager.renamePlaylist(playlistId, title)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(longs -> {/*Do nothing on success*/}, this::onError);
+                .subscribe(longs -> { /*Do nothing on success*/ }, this::onError);
         disposables.add(disposable);
     }
 
     private void changeThumbnailUrl(final String thumbnailUrl) {
-        if (playlistManager == null) return;
+        if (playlistManager == null) {
+            return;
+        }
 
         final Toast successToast = Toast.makeText(getActivity(),
                 R.string.playlist_thumbnail_change_success,
                 Toast.LENGTH_SHORT);
 
         if (DEBUG) {
-            Log.d(TAG, "Updating playlist id=[" + playlistId +
-                "] with new thumbnail url=[" + thumbnailUrl + "]");
+            Log.d(TAG, "Updating playlist id=[" + playlistId + "] "
+                    + "with new thumbnail url=[" + thumbnailUrl + "]");
         }
 
         final Disposable disposable = playlistManager
@@ -422,7 +465,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         String newThumbnailUrl;
 
         if (!itemListAdapter.getItemsList().isEmpty()) {
-            newThumbnailUrl = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0)).getStreamEntity().getThumbnailUrl();
+            newThumbnailUrl = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0))
+                    .getStreamEntity().getThumbnailUrl();
         } else {
             newThumbnailUrl = "drawable://" + R.drawable.dummy_thumbnail_playlist;
         }
@@ -431,25 +475,33 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void deleteItem(final PlaylistStreamEntry item) {
-        if (itemListAdapter == null) return;
+        if (itemListAdapter == null) {
+            return;
+        }
 
         itemListAdapter.removeItem(item);
-        if (playlistManager.getPlaylistThumbnail(playlistId).equals(item.getStreamEntity().getThumbnailUrl()))
+        if (playlistManager.getPlaylistThumbnail(playlistId)
+                .equals(item.getStreamEntity().getThumbnailUrl())) {
             updateThumbnailUrl();
+        }
 
         setVideoCount(itemListAdapter.getItemsList().size());
         saveChanges();
     }
 
     private void saveChanges() {
-        if (isModified == null || debouncedSaveSignal == null) return;
+        if (isModified == null || debouncedSaveSignal == null) {
+            return;
+        }
 
         isModified.set(true);
         debouncedSaveSignal.onNext(System.currentTimeMillis());
     }
 
     private Disposable getDebouncedSaver() {
-        if (debouncedSaveSignal == null) return Disposables.empty();
+        if (debouncedSaveSignal == null) {
+            return Disposables.empty();
+        }
 
         return debouncedSaveSignal
                 .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
@@ -458,13 +510,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void saveImmediate() {
-        if (playlistManager == null || itemListAdapter == null) return;
+        if (playlistManager == null || itemListAdapter == null) {
+            return;
+        }
 
         // List must be loaded and modified in order to save
-        if (isLoadingComplete == null || isModified == null ||
-                !isLoadingComplete.get() || !isModified.get()) {
-            Log.w(TAG, "Attempting to save playlist when local playlist " +
-                    "is not loaded or not modified: playlist id=[" + playlistId + "]");
+        if (isLoadingComplete == null || isModified == null
+                || !isLoadingComplete.get() || !isModified.get()) {
+            Log.w(TAG, "Attempting to save playlist when local playlist "
+                    + "is not loaded or not modified: playlist id=[" + playlistId + "]");
             return;
         }
 
@@ -477,14 +531,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         if (DEBUG) {
-            Log.d(TAG, "Updating playlist id=[" + playlistId +
-                "] with [" + streamIds.size() + "] items");
+            Log.d(TAG, "Updating playlist id=[" + playlistId + "] "
+                    + "with [" + streamIds.size() + "] items");
         }
 
         final Disposable disposable = playlistManager.updateJoin(playlistId, streamIds)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> { if (isModified != null) isModified.set(false); },
+                        () -> {
+                            if (isModified != null) {
+                                isModified.set(false);
+                            }
+                        },
                         this::onError
                 );
         disposables.add(disposable);
@@ -499,28 +557,33 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return new ItemTouchHelper.SimpleCallback(directions,
                 ItemTouchHelper.ACTION_STATE_IDLE) {
             @Override
-            public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
-                                                    int viewSizeOutOfBounds, int totalSize,
-                                                    long msSinceStartScroll) {
-                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
-                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
+            public int interpolateOutOfBoundsScroll(final RecyclerView recyclerView,
+                                                    final int viewSize,
+                                                    final int viewSizeOutOfBounds,
+                                                    final int totalSize,
+                                                    final long msSinceStartScroll) {
+                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView,
+                        viewSize, viewSizeOutOfBounds, totalSize, msSinceStartScroll);
                 final int minimumAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
                         Math.abs(standardSpeed));
                 return minimumAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
             }
 
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
-                                  RecyclerView.ViewHolder target) {
-                if (source.getItemViewType() != target.getItemViewType() ||
-                        itemListAdapter == null) {
+            public boolean onMove(final RecyclerView recyclerView,
+                                  final RecyclerView.ViewHolder source,
+                                  final RecyclerView.ViewHolder target) {
+                if (source.getItemViewType() != target.getItemViewType()
+                        || itemListAdapter == null) {
                     return false;
                 }
 
                 final int sourceIndex = source.getAdapterPosition();
                 final int targetIndex = target.getAdapterPosition();
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
-                if (isSwapped) saveChanges();
+                if (isSwapped) {
+                    saveChanges();
+                }
                 return isSwapped;
             }
 
@@ -535,7 +598,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
+            public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) { }
         };
     }
 
@@ -543,14 +606,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private PlayQueue getPlayQueueStartingAt(PlaylistStreamEntry infoItem) {
+    private PlayQueue getPlayQueueStartingAt(final PlaylistStreamEntry infoItem) {
         return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
     }
 
     protected void showStreamItemDialog(final PlaylistStreamEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || activity == null) return;
+        if (context == null || context.getResources() == null || activity == null) {
+            return;
+        }
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
         if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
@@ -573,23 +638,26 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.share);
 
             StreamDialogEntry.start_here_on_popup.setCustomAction(
-                    (fragment, infoItemDuplicate) -> NavigationHelper.playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
+                    (fragment, infoItemDuplicate) -> NavigationHelper.
+                            playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
         }
 
-        StreamDialogEntry.start_here_on_background.setCustomAction(
-                (fragment, infoItemDuplicate) -> NavigationHelper.playOnBackgroundPlayer(context, getPlayQueueStartingAt(item), true));
+        StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItemDuplicate) ->
+                NavigationHelper.playOnBackgroundPlayer(context,
+                        getPlayQueueStartingAt(item), true));
         StreamDialogEntry.set_as_playlist_thumbnail.setCustomAction(
-                (fragment, infoItemDuplicate) -> changeThumbnailUrl(item.getStreamEntity().getThumbnailUrl()));
-        StreamDialogEntry.delete.setCustomAction(
-                (fragment, infoItemDuplicate) -> deleteItem(item));
+                (fragment, infoItemDuplicate) ->
+                        changeThumbnailUrl(item.getStreamEntity().getThumbnailUrl()));
+        StreamDialogEntry.delete.setCustomAction((fragment, infoItemDuplicate) ->
+                deleteItem(item));
 
-        new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context), (dialog, which) ->
-                StreamDialogEntry.clickOn(which, this, infoItem)).show();
+        new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context),
+                (dialog, which) -> StreamDialogEntry.clickOn(which, this, infoItem)).show();
     }
 
-    private void setInitialData(long playlistId, String name) {
-        this.playlistId = playlistId;
-        this.name = !TextUtils.isEmpty(name) ? name : "";
+    private void setInitialData(final long pid, final String title) {
+        this.playlistId = pid;
+        this.name = !TextUtils.isEmpty(title) ? title : "";
     }
 
     private void setVideoCount(final long count) {
