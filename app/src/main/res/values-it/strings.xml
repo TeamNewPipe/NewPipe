@@ -595,4 +595,5 @@
 \nYouTube è un esempio di servizio che offre questo metodo veloce tramite i suoi feed RSS.
 \n
 \nLa scelta va fatta in base alle proprie preferenze: velocità o informazioni precise.</string>
+    <string name="feed_group_dialog_empty_name">Gruppo senza nome</string>
 </resources>
