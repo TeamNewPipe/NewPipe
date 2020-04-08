@@ -24,7 +24,7 @@ public class SrtFromTtmlWriter {
     private boolean ignoreEmptyFrames;
     private final Charset charset = StandardCharsets.UTF_8;
 
-    private int frameIndex = 0;
+    //private int frameIndex = 0;
 
     public SrtFromTtmlWriter(final SharpStream out, final boolean ignoreEmptyFrames) {
         this.out = out;
@@ -39,8 +39,8 @@ public class SrtFromTtmlWriter {
 
     private void writeFrame(final String begin, final String end, final StringBuilder text)
             throws IOException {
-        writeString(String.valueOf(frameIndex++));
-        writeString(NEW_LINE);
+        //writeString(String.valueOf(frameIndex++));
+        //writeString(NEW_LINE);
         writeString(begin);
         writeString(" --> ");
         writeString(end);
