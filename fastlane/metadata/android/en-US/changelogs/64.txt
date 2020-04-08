@@ -1,7 +1,7 @@
 ### Improvements
-- Added the ability to limit video quality if using mobile data. #1339 
-- Remember brightness for the session #1442 
-- Improve download performance for weaker CPUs #1431 
+- Added the ability to limit video quality if using mobile data. #1339
+- Remember brightness for the session #1442
+- Improve download performance for weaker CPUs #1431
 - add (working) support for media session #1433
 
 ### Fix

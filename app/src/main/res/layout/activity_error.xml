@@ -55,13 +55,13 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/what_device_headline"/>
-            
+
             <LinearLayout
                 android:id="@+id/errorInfoLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                
+
                 <TextView
                     android:id="@+id/errorInfoLabelsView"
                     android:layout_width="wrap_content"

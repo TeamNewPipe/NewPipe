@@ -11,12 +11,12 @@ New
 
 Improved
 • Make the KioskFragment aware of changes in the preferred content country and improve performance of all main tabs #2742
-• Use new Localization and Downloader implementations from extractor #2713 
+• Use new Localization and Downloader implementations from extractor #2713
 • Make "Default kiosk" string translatable
 • Black navigation bar for black theme #2569
 
 Fixed
-• Fixed a bug that could not move the popup player if another finger was placed while moving the popup player #2772 
+• Fixed a bug that could not move the popup player if another finger was placed while moving the popup player #2772
 • Allow playlists missing an uploader and fix crashes related to this problem #2724, TeamNewPipe/NewPipeExtractor#219
 • Enabling TLS1.1/1.2 on Android 4.4 devices (API 19/KitKat) to fix TLS handshake with MediaCCC and some PeerTube instances  #2792
 • [SoundCloud] Fixed client_id extraction TeamNewPipe/NewPipeExtractor#217
@@ -24,5 +24,5 @@ Fixed
 
 Development
 • Update ExoPlayer to 2.10.8 #2791, #2816
-• Update Gradle to 3.5.1 and add Kotlin support #2714 
+• Update Gradle to 3.5.1 and add Kotlin support #2714
 

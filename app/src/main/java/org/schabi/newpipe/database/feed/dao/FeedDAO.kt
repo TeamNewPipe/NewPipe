@@ -60,7 +60,7 @@ abstract class FeedDAO {
 
     @Query("""
         DELETE FROM feed
-        
+
         WHERE feed.subscription_id = :subscriptionId
 
         AND feed.stream_id IN (
@@ -111,12 +111,12 @@ abstract class FeedDAO {
 
     @Query("""
         SELECT COUNT(*) FROM subscriptions s
-        
+
         INNER JOIN feed_group_subscription_join fgs
         ON s.uid = fgs.subscription_id AND fgs.group_id = :groupId
 
         LEFT JOIN feed_last_updated lu
-        ON s.uid = lu.subscription_id 
+        ON s.uid = lu.subscription_id
 
         WHERE lu.last_updated IS NULL
         """)
@@ -126,7 +126,7 @@ abstract class FeedDAO {
         SELECT s.* FROM subscriptions s
 
         LEFT JOIN feed_last_updated lu
-        ON s.uid = lu.subscription_id 
+        ON s.uid = lu.subscription_id
 
         WHERE lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold
         """)

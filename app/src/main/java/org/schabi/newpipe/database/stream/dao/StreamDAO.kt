@@ -32,7 +32,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
     internal abstract fun silentInsertAllInternal(streams: List<StreamEntity>): List<Long>
 
     @Query("""
-        SELECT uid, stream_type, textual_upload_date, upload_date, is_upload_date_approximation, duration 
+        SELECT uid, stream_type, textual_upload_date, upload_date, is_upload_date_approximation, duration
         FROM streams WHERE url = :url AND service_id = :serviceId
         """)
     internal abstract fun getMinimalStreamForCompare(serviceId: Int, url: String): StreamCompareFeed?
