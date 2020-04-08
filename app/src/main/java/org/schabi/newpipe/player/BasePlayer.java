@@ -118,12 +118,6 @@ public abstract class BasePlayer implements
     @NonNull
     public static final String REPEAT_MODE = "repeat_mode";
     @NonNull
-    public static final String PLAYBACK_PITCH = "playback_pitch";
-    @NonNull
-    public static final String PLAYBACK_SPEED = "playback_speed";
-    @NonNull
-    public static final String PLAYBACK_SKIP_SILENCE = "playback_skip_silence";
-    @NonNull
     public static final String PLAYBACK_QUALITY = "playback_quality";
     @NonNull
     public static final String PLAY_QUEUE_KEY = "play_queue_key";
@@ -287,11 +281,12 @@ public abstract class BasePlayer implements
             return;
         }
 
+        final PlaybackParameters savedParameters = retrievePlaybackParametersFromPreferences();
+        final float playbackSpeed = savedParameters.speed;
+        final float playbackPitch = savedParameters.pitch;
+        final boolean playbackSkipSilence = savedParameters.skipSilence;
+
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
-        final float playbackSpeed = intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed());
-        final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
-        final boolean playbackSkipSilence = intent.getBooleanExtra(PLAYBACK_SKIP_SILENCE,
-                getPlaybackSkipSilence());
         final boolean isMuted = intent
                 .getBooleanExtra(IS_MUTED, simpleExoPlayer != null && isMuted());
 
@@ -328,6 +323,20 @@ public abstract class BasePlayer implements
         // Good to go...
         initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
                 /*playOnInit=*/!intent.getBooleanExtra(START_PAUSED, false), isMuted);
+    }
+
+    private PlaybackParameters retrievePlaybackParametersFromPreferences() {
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+
+        final float speed = preferences
+            .getFloat(context.getString(R.string.playback_speed_key), getPlaybackSpeed());
+        final float pitch = preferences.getFloat(context.getString(R.string.playback_pitch_key),
+            getPlaybackPitch());
+        final boolean skipSilence = preferences
+            .getBoolean(context.getString(R.string.playback_skip_silence_key),
+                getPlaybackSkipSilence());
+        return new PlaybackParameters(speed, pitch, skipSilence);
     }
 
     protected void initPlayback(@NonNull final PlayQueue queue,
@@ -1470,7 +1479,18 @@ public abstract class BasePlayer implements
 
     public void setPlaybackParameters(final float speed, final float pitch,
                                       final boolean skipSilence) {
+        savePlaybackParametersToPreferences(speed, pitch, skipSilence);
         simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, pitch, skipSilence));
+    }
+
+    private void savePlaybackParametersToPreferences(final float speed, final float pitch,
+                                                     final boolean skipSilence) {
+        PreferenceManager.getDefaultSharedPreferences(context)
+            .edit()
+            .putFloat(context.getString(R.string.playback_speed_key), speed)
+            .putFloat(context.getString(R.string.playback_pitch_key), pitch)
+            .putBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence)
+            .apply();
     }
 
     public PlayQueue getPlayQueue() {
