@@ -552,7 +552,7 @@
         <item quantity="other">%d 日</item>
     </plurals>
     <string name="feed_groups_header_title">チャンネル グループ</string>
-    <string name="feed_oldest_subscription_update">最も古い登録チャンネルの更新: %s</string>
+    <string name="feed_oldest_subscription_update">フィードの最終更新: %s</string>
     <string name="feed_subscription_not_loaded_count">読み込み失敗: %d</string>
     <string name="feed_notification_loading">フィードを読み込み中…</string>
     <string name="feed_processing_message">フィードを処理中…</string>

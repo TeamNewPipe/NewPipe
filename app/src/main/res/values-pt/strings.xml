@@ -573,8 +573,8 @@
     <string name="feed_processing_message">Processando feed…</string>
     <string name="feed_notification_loading">Carregando feed…</string>
     <string name="feed_subscription_not_loaded_count">Não carregado: %d</string>
-    <string name="feed_oldest_subscription_update">Atualização da assinatura mais antiga: %s</string>
-    <string name="feed_groups_header_title">Grupos de feed</string>
+    <string name="feed_oldest_subscription_update">Última atualização do feed: %s</string>
+    <string name="feed_groups_header_title">Grupos de canais</string>
     <plurals name="days">
         <item quantity="one">%d dia</item>
         <item quantity="other">%d dias</item>
