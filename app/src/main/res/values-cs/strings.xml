@@ -575,13 +575,13 @@ otevření ve vyskakovacím okně</string>
         <item quantity="few">%d dny</item>
         <item quantity="other">%d dnů</item>
     </plurals>
-    <string name="feed_groups_header_title">Přísunové skupiny</string>
-    <string name="feed_oldest_subscription_update">Aktualizace nejstarších objednávek: %s</string>
+    <string name="feed_groups_header_title">Skupiny kanálů</string>
+    <string name="feed_oldest_subscription_update">Novinky naposledy aktualizovány: %s</string>
     <string name="feed_subscription_not_loaded_count">Nenačteno: %d</string>
-    <string name="feed_notification_loading">Načítám přísun…</string>
-    <string name="feed_processing_message">Zpracovávám přísun…</string>
-    <string name="feed_group_dialog_select_subscriptions">Vybrat objednávky</string>
-    <string name="feed_group_dialog_empty_selection">Objednávky nebyly vybrány</string>
+    <string name="feed_notification_loading">Načítám novinky…</string>
+    <string name="feed_processing_message">Zpracovávám novinky…</string>
+    <string name="feed_group_dialog_select_subscriptions">Vybrat odběry</string>
+    <string name="feed_group_dialog_empty_selection">Nebyly vybrány žádné odběry</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d vybrána</item>
         <item quantity="few">%d vybrány</item>
@@ -591,23 +591,23 @@ otevření ve vyskakovacím okně</string>
     <string name="feed_group_dialog_name_input">Jméno</string>
     <string name="feed_group_dialog_delete_message">Přejete si smazat tuto skupinu\?</string>
     <string name="feed_create_new_group_button_title">Nová</string>
-    <string name="settings_category_feed_title">Přísun</string>
-    <string name="feed_update_threshold_title">Limit aktualizace přísunu</string>
-    <string name="feed_update_threshold_summary">Doba po poslední aktualizaci, po níž je objednávka považována za zastaralou — %s</string>
+    <string name="settings_category_feed_title">Novinky</string>
+    <string name="feed_update_threshold_title">Limit aktualizace novinek</string>
+    <string name="feed_update_threshold_summary">Doba po poslední aktualizaci, po níž je odběr považován za zastaralý — %s</string>
     <string name="feed_update_threshold_option_always_update">Vždy aktualizovat</string>
-    <string name="feed_use_dedicated_fetch_method_title">Dodat z vyhrazeného přísunu, je-li dostupný</string>
+    <string name="feed_use_dedicated_fetch_method_title">Dodat z vyhrazeného zdroje, je-li dostupný</string>
     <string name="feed_use_dedicated_fetch_method_summary">K dispozici na některých zařízeních, je obvykle mnohem rychlejší, ale může vrátit omezený počet položek a často neúplné informace (např. bez trvání, typu položky, skutečného stavu).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Zapnout rychlý režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Vypnout rychlý režim</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že náčet přísunu je příliš pomalé\? Pokud ano, zkuste zapnout rychlý náčet (lze změnit v nastavení nebo stiskem tlačítka níže).
-\n
-\nNewPipe nabízí dvě strategie náčtu přísunu:
-\n• Dodání úplného kanálu objednávek, což je pomalé, ale úplné.
-\n• Použití vyhrazeného servisního zakončení, což je rychlé, ale obvykle neúplné.
-\n
-\nRozdíl mezi těmi dvěma je, že tomu rychlému obvykle chybí nějaká informace, např. trvání položky nebo typ (nemůže rozlišit mezi živým a normálním videem) a patrně vrátí méně položek.
-\n
-\nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu.
-\n
-\nVýběr je vposledku určen tím, čemu dáte přednost: rychlosti nebo přesné informaci.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé\? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže). 
+\n 
+\nNewPipe nabízí dvě strategie načítání seznamu novinek
+\n• Stažení celého kanálu vašich odběrů, což je pomalé, ale spolehlivé.
+\n• Použití služby k tomu určené, což je rychlé, ale obvykle neobsahuje všechny potřebné informace. 
+\n 
+\nRozdíl mezi těmi dvěma je, že rychlému způsobu obvykle chybí nějaká informace, např. délka videa nebo typ (nemůže rozlišit mezi živým a normálním videem) a patrně vrátí méně položek. 
+\n 
+\nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu. 
+\n 
+\nVýběr je vposledku určen tím, čemu dáte přednost: rychlosti nebo přesnosti informací.</string>
 </resources>
