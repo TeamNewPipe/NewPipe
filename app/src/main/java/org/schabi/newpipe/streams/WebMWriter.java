@@ -102,10 +102,6 @@ public class WebMWriter implements Closeable {
         return done;
     }
 
-    public boolean isParsed() {
-        return parsed;
-    }
-
     @Override
     public void close() {
         done = true;
@@ -360,7 +356,7 @@ public class WebMWriter implements Closeable {
 
         Block bloq = new Block();
         bloq.data = res.data;
-        bloq.dataSize = (int) res.dataSize;
+        bloq.dataSize = res.dataSize;
         bloq.trackNumber = internalTrackId;
         bloq.flags = res.flags;
         bloq.absoluteTimecode = res.absoluteTimeCodeNs / DEFAULT_TIMECODE_SCALE;
@@ -728,7 +724,7 @@ public class WebMWriter implements Closeable {
         return 0;
     }
 
-    class KeyFrame {
+    static class KeyFrame {
         KeyFrame(final long segment, final long cluster, final long block, final long timecode) {
             clusterPosition = cluster - segment;
             relativePosition = (int) (block - cluster - CLUSTER_HEADER_SIZE);
@@ -740,7 +736,7 @@ public class WebMWriter implements Closeable {
         final long duration;
     }
 
-    class Block {
+    static class Block {
         InputStream data;
         int trackNumber;
         byte flags;
@@ -759,7 +755,7 @@ public class WebMWriter implements Closeable {
         }
     }
 
-    class ClusterInfo {
+    static class ClusterInfo {
         long offset;
         int size;
     }
