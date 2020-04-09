@@ -2,9 +2,11 @@ package org.schabi.newpipe.local.subscription
 
 import android.content.Context
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.schabi.newpipe.NewPipeDatabase
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.SubscriptionDAO
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.ListInfo
@@ -21,11 +23,28 @@ class SubscriptionManager(context: Context) {
     fun subscriptionTable(): SubscriptionDAO = subscriptionTable
     fun subscriptions() = subscriptionTable.all
 
-    fun filterByName(filter: String) = subscriptionTable.filterByName(filter)
+    fun getSubscriptions(
+        currentGroupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+        filterQuery: String = "",
+        showOnlyUngrouped: Boolean = false
+    ): Flowable<List<SubscriptionEntity>> {
+        return when {
+            filterQuery.isNotEmpty() -> {
+                return if (showOnlyUngrouped) {
+                    subscriptionTable.getSubscriptionsOnlyUngroupedFiltered(
+                        currentGroupId, filterQuery)
+                } else {
+                    subscriptionTable.getSubscriptionsFiltered(filterQuery)
+                }
+            }
+            showOnlyUngrouped -> subscriptionTable.getSubscriptionsOnlyUngrouped(currentGroupId)
+            else -> subscriptionTable.all
+        }
+    }
 
     fun upsertAll(infoList: List<ChannelInfo>): List<SubscriptionEntity> {
         val listEntities = subscriptionTable.upsertAll(
-                infoList.map { SubscriptionEntity.from(it) })
+            infoList.map { SubscriptionEntity.from(it) })
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
@@ -37,13 +56,13 @@ class SubscriptionManager(context: Context) {
     }
 
     fun updateChannelInfo(info: ChannelInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
-            .flatMapCompletable {
-                Completable.fromRunnable {
-                    it.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
-                    subscriptionTable.update(it)
-                    feedDatabaseManager.upsertAll(it.uid, info.relatedItems)
-                }
+        .flatMapCompletable {
+            Completable.fromRunnable {
+                it.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
+                subscriptionTable.update(it)
+                feedDatabaseManager.upsertAll(it.uid, info.relatedItems)
             }
+        }
 
     fun updateFromInfo(subscriptionId: Long, info: ListInfo<StreamInfoItem>) {
         val subscriptionEntity = subscriptionTable.getSubscription(subscriptionId)
@@ -59,8 +78,8 @@ class SubscriptionManager(context: Context) {
 
     fun deleteSubscription(serviceId: Int, url: String): Completable {
         return Completable.fromCallable { subscriptionTable.deleteSubscription(serviceId, url) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun insertSubscription(subscriptionEntity: SubscriptionEntity, info: ChannelInfo) {

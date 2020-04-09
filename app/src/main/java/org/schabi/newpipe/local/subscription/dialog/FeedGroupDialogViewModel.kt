@@ -20,24 +20,25 @@ import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 class FeedGroupDialogViewModel(
     applicationContext: Context,
     private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-    initialQuery: String = ""
+    initialQuery: String = "",
+    initialShowOnlyUngrouped: Boolean = false
 ) : ViewModel() {
 
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
     private var subscriptionManager = SubscriptionManager(applicationContext)
 
     private var filterSubscriptions = BehaviorProcessor.create<String>()
-    private var allSubscriptions = subscriptionManager.subscriptions()
+    private var toggleShowOnlyUngrouped = BehaviorProcessor.create<Boolean>()
 
-    private var subscriptionsFlowable = filterSubscriptions
-        .startWith(initialQuery)
+    private var subscriptionsFlowable = Flowable
+        .combineLatest(
+                filterSubscriptions.startWith(initialQuery),
+                toggleShowOnlyUngrouped.startWith(initialShowOnlyUngrouped),
+                BiFunction { t1: String, t2: Boolean -> Filter(t1, t2) }
+        )
         .distinctUntilChanged()
-        .switchMap { query ->
-            if (query.isEmpty()) {
-                allSubscriptions
-            } else {
-                subscriptionManager.filterByName(query)
-            }
+        .switchMap { filter ->
+            subscriptionManager.getSubscriptions(groupId, filter.query, filter.showOnlyUngrouped)
         }.map { list -> list.map { PickerSubscriptionItem(it) } }
 
     private val mutableGroupLiveData = MutableLiveData<FeedGroupEntity>()
@@ -100,20 +101,27 @@ class FeedGroupDialogViewModel(
         filterSubscriptions.onNext("")
     }
 
+    fun toggleShowOnlyUngrouped(showOnlyUngrouped: Boolean) {
+        toggleShowOnlyUngrouped.onNext(showOnlyUngrouped)
+    }
+
     sealed class DialogEvent {
         object ProcessingEvent : DialogEvent()
         object SuccessEvent : DialogEvent()
     }
 
+    data class Filter(val query: String, val showOnlyUngrouped: Boolean)
+
     class Factory(
         private val context: Context,
         private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-        private val initialQuery: String = ""
+        private val initialQuery: String = "",
+        private val initialShowOnlyUngrouped: Boolean = false
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return FeedGroupDialogViewModel(context.applicationContext,
-                groupId, initialQuery) as T
+                groupId, initialQuery, initialShowOnlyUngrouped) as T
         }
     }
 }

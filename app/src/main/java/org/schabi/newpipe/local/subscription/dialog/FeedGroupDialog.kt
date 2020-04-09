@@ -65,6 +65,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     @State @JvmField var iconsListState: Parcelable? = null
     @State @JvmField var wasSearchSubscriptionsVisible = false
     @State @JvmField var subscriptionsCurrentSearchQuery = ""
+    @State @JvmField var subscriptionsShowOnlyUngrouped = false
 
     private val subscriptionMainSection = Section()
     private val subscriptionEmptyFooter = Section()
@@ -116,7 +117,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
         viewModel = ViewModelProvider(this,
             FeedGroupDialogViewModel.Factory(requireContext(),
-                groupId, subscriptionsCurrentSearchQuery)
+                groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped)
         ).get(FeedGroupDialogViewModel::class.java)
 
         viewModel.groupLiveData.observe(viewLifecycleOwner, Observer(::handleGroup))
@@ -214,6 +215,16 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         headerMenu.findItem(R.id.action_search).setOnMenuItemClickListener {
             showSearch()
             true
+        }
+
+        headerMenu.findItem(R.id.feed_group_toggle_show_only_ungrouped_subscriptions).apply {
+            isChecked = subscriptionsShowOnlyUngrouped
+            setOnMenuItemClickListener {
+                subscriptionsShowOnlyUngrouped = !subscriptionsShowOnlyUngrouped
+                it.isChecked = subscriptionsShowOnlyUngrouped
+                viewModel.toggleShowOnlyUngrouped(subscriptionsShowOnlyUngrouped)
+                true
+            }
         }
 
         toolbar_search_clear.setOnClickListener {

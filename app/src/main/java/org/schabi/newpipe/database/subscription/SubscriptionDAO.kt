@@ -22,10 +22,42 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
 
     @Query("""
         SELECT * FROM subscriptions
+
         WHERE name LIKE '%' || :filter || '%'
+
         ORDER BY name COLLATE NOCASE ASC
         """)
-    abstract fun filterByName(filter: String): Flowable<List<SubscriptionEntity>>
+    abstract fun getSubscriptionsFiltered(filter: String): Flowable<List<SubscriptionEntity>>
+
+    @Query("""
+        SELECT * FROM subscriptions s
+
+        LEFT JOIN feed_group_subscription_join fgs
+        ON s.uid = fgs.subscription_id
+
+        WHERE (fgs.subscription_id IS NULL OR fgs.group_id = :currentGroupId)
+
+        ORDER BY name COLLATE NOCASE ASC
+        """)
+    abstract fun getSubscriptionsOnlyUngrouped(
+        currentGroupId: Long
+    ): Flowable<List<SubscriptionEntity>>
+
+    @Query("""
+        SELECT * FROM subscriptions s
+
+        LEFT JOIN feed_group_subscription_join fgs
+        ON s.uid = fgs.subscription_id
+
+        WHERE (fgs.subscription_id IS NULL OR fgs.group_id = :currentGroupId)
+        AND s.name LIKE '%' || :filter || '%'
+
+        ORDER BY name COLLATE NOCASE ASC
+        """)
+    abstract fun getSubscriptionsOnlyUngroupedFiltered(
+        currentGroupId: Long,
+        filter: String
+    ): Flowable<List<SubscriptionEntity>>
 
     @Query("SELECT * FROM subscriptions WHERE url LIKE :url AND service_id = :serviceId")
     abstract fun getSubscriptionFlowable(serviceId: Int, url: String): Flowable<List<SubscriptionEntity>>
@@ -59,7 +91,7 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
                 entity.uid = uidFromInsert
             } else {
                 val subscriptionIdFromDb = getSubscriptionIdInternal(entity.serviceId, entity.url)
-                        ?: throw IllegalStateException("Subscription cannot be null just after insertion.")
+                    ?: throw IllegalStateException("Subscription cannot be null just after insertion.")
                 entity.uid = subscriptionIdFromDb
 
                 update(entity)
