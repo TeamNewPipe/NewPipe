@@ -419,7 +419,7 @@ public class OggFromWebMWriter implements Closeable {
         }
     }
 
-    private int calcCrc32(int initialCrc, byte[] buffer, int size) {
+    private int calcCrc32(int initialCrc, final byte[] buffer, final int size) {
         for (int i = 0; i < size; i++) {
             int reg = (initialCrc >>> 24) & 0xff;
             initialCrc = (initialCrc << 8) ^ crc32Table[reg ^ (buffer[i] & 0xff)];

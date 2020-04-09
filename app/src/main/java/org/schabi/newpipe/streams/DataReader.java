@@ -86,11 +86,11 @@ public class DataReader {
         return high << 32 | low;
     }
 
-    public int read(byte[] buffer) throws IOException {
+    public int read(final byte[] buffer) throws IOException {
         return read(buffer, 0, buffer.length);
     }
 
-    public int read(byte[] buffer, int offset, int count) throws IOException {
+    public int read(final byte[] buffer, int offset, int count) throws IOException {
         if (readCount < 0) {
             return -1;
         }
