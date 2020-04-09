@@ -35,8 +35,8 @@
     <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
     <string name="detail_dislikes_img_view_description">低評価</string>
     <string name="detail_likes_img_view_description">高評価</string>
-    <string name="use_external_video_player_title">外部プレイヤーを使用する</string>
-    <string name="use_external_audio_player_title">外部プレイヤーを使用する</string>
+    <string name="use_external_video_player_title">外部の動画プレイヤーを使用</string>
+    <string name="use_external_audio_player_title">外部の音声プレイヤーを使用</string>
     <string name="background_player_playing_toast">バックグラウンドで再生中</string>
     <string name="play_btn_text">再生</string>
     <string name="use_tor_title">Torを使用する</string>
@@ -244,7 +244,7 @@
     <string name="override_current_data">これにより、現在の設定が上書きされます。</string>
     <string name="title_activity_background_player">バックグラウンド再生</string>
     <string name="start_here_on_main">ここから再生を開始</string>
-    <string name="start_here_on_background">バックグランドで連続再生を開始</string>
+    <string name="start_here_on_background">バックグラウンドで連続再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>
     <string name="drawer_close">ドロワーを閉じる</string>
     <string name="video_player">動画プレイヤー</string>
