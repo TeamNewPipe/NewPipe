@@ -20,6 +20,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
+import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -215,6 +216,9 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
             return true;
         } else if (exception instanceof IOException) {
             showError(getString(R.string.network_error), true);
+            return true;
+        } else if (exception instanceof ContentNotSupportedException) {
+            showError(getString(R.string.content_not_supported), false);
             return true;
         }
 

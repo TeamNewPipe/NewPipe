@@ -586,4 +586,5 @@
     <string name="mute">Mutigi</string>
     <string name="unmute">Malmutigi</string>
     <string name="help">Helpo</string>
+    <string name="content_not_supported">Tio enhavo ne estas ankoraŭ subtenata per NewPipe.\n\nĜi espereble estos en sekvanta versio.</string>
 </resources>
