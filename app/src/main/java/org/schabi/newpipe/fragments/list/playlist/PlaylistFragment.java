@@ -39,6 +39,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamDialogEntry;
@@ -302,8 +303,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         IMAGE_LOADER.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar,
                 ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
-        headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos,
-                (int) result.getStreamCount(), (int) result.getStreamCount()));
+        headerStreamCount.setText(Localization
+                .localizeStreamCount(getContext(), result.getStreamCount()));
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST,

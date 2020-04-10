@@ -416,6 +416,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         boolean isFirstItem = true;
         final Context c = getContext();
         for (String filter : service.getSearchQHFactory().getAvailableContentFilter()) {
+            if (filter.equals("music_songs")) {
+                MenuItem musicItem = menu.add(2,
+                        itemId++,
+                        0,
+                        "YouTube Music");
+                musicItem.setEnabled(false);
+            }
             menuItemToFilterName.put(itemId, filter);
             MenuItem item = menu.add(1,
                     itemId++,
