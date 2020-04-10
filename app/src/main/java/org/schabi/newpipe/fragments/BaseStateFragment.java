@@ -24,10 +24,9 @@ import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.InfoCache;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -201,7 +200,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
             return true;
         }
 
-        if (ExtractorHelper.isInterruptedCaused(exception)) {
+        if (ExceptionUtils.isInterruptedCaused(exception)) {
             if (DEBUG) {
                 Log.w(TAG, "onError() isInterruptedCaused! = [" + exception + "]");
             }
@@ -214,7 +213,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         } else if (exception instanceof ContentNotAvailableException) {
             showError(getString(R.string.content_not_available), false);
             return true;
-        } else if (exception instanceof IOException) {
+        } else if (ExceptionUtils.isNetworkRelated(exception)) {
             showError(getString(R.string.network_error), true);
             return true;
         } else if (exception instanceof ContentNotSupportedException) {
