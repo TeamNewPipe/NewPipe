@@ -45,22 +45,21 @@
 
             <TextView
                 android:id="@+id/drawer_header_newpipe_title"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/drawer_header_newpipe_title_default_width"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
                 android:ellipsize="end"
                 android:gravity="start|center_vertical"
                 android:hyphenationFrequency="full"
-                android:maxWidth="@dimen/drawer_header_newpipe_title_max_width"
-                android:maxLines="2"
-                android:minWidth="@dimen/drawer_header_newpipe_title_min_width"
+                android:maxLines="1"
                 android:text="@string/app_name"
                 android:textColor="@color/drawer_header_font_color"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="@dimen/drawer_header_newpipe_title_max_text_size"
                 app:autoSizeMinTextSize="@dimen/drawer_header_newpipe_title_min_text_size"
                 app:autoSizeTextType="uniform"
-                tools:ignore="UnusedAttribute" />
+                tools:ignore="UnusedAttribute"
+                tools:text="NewPipe" />
         </LinearLayout>
 
         <LinearLayout
