@@ -816,7 +816,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                     isLoading.set(false);
                     if (result.getAgeLimit() != NO_AGE_LIMIT && !prefs.getBoolean(
                             getString(R.string.show_age_restricted_content), false)) {
-                        showError(getString(R.string.restricted_video), false);
+                        hideAgeRestrictedContent();
                     } else {
                         currentInfo = result;
                         handleResult(result);
@@ -1239,6 +1239,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         }
     }
 
+    private void hideAgeRestrictedContent() {
+        showError(getString(R.string.restricted_video), false);
+
+        if (relatedStreamsLayout != null) { // tablet
+            relatedStreamsLayout.setVisibility(View.INVISIBLE);
+        }
+
+        viewPager.setVisibility(View.GONE);
+        tabLayout.setVisibility(View.GONE);
+    }
 
     public void openDownloadDialog() {
         try {
