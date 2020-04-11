@@ -58,7 +58,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private File newpipeSettings;
 
     private String thumbnailLoadToggleKey;
-    private String showAgeRestrictedContentKey;
+    private String restrictedModeEnabledKey;
 
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
@@ -68,7 +68,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
-        showAgeRestrictedContentKey = getString(R.string.show_age_restricted_content);
+        restrictedModeEnabledKey = getString(R.string.restricted_mode_enabled);
 
         initialSelectedLocalization = org.schabi.newpipe.util.Localization
                 .getPreferredLocalization(requireContext());
@@ -90,10 +90,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     Toast.LENGTH_SHORT).show();
         }
 
-        if (preference.getKey().equals(showAgeRestrictedContentKey)) {
+        if (preference.getKey().equals(restrictedModeEnabledKey)) {
             Context context = getContext();
             if (context != null) {
-                DownloaderImpl.getInstance().updateAgeRestrictedContentCookies(context);
+                DownloaderImpl.getInstance().updateRestrictedModeCookies(context);
             } else {
                 Log.w(TAG, "onPreferenceTreeClick: null context");
             }

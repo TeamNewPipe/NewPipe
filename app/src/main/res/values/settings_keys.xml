@@ -170,6 +170,7 @@
     <string name="peertube_instance_list_key" translatable="false">peertube_instance_list</string>
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
+    <string name="restricted_mode_enabled" translatable="false">restricted_mode_enabled</string>
     <string name="use_tor_key" translatable="false">use_tor</string>
     <string name="enable_search_history_key" translatable="false">enable_search_history</string>
     <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>

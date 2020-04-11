@@ -53,6 +53,12 @@
 
     <SwitchPreference
         app:iconSpaceReserved="false"
+        android:defaultValue="false"
+        android:key="@string/restricted_mode_enabled"
+        android:title="@string/restricted_mode_enabled_title"/>
+
+    <SwitchPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/show_search_suggestions_key"
         android:summary="@string/show_search_suggestions_summary"

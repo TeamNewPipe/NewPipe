@@ -44,10 +44,9 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 public final class DownloaderImpl extends Downloader {
     public static final String USER_AGENT
             = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101 Firefox/68.0";
-
-    public static final String YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY =
-            "youtube_age_restricted_content_cookie_key";
-    public static final String YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE = "PREF=f2=8000000";
+    public static final String YOUTUBE_RESTRICTED_MODE_COOKIE_KEY
+            = "youtube_restricted_mode_key";
+    public static final String YOUTUBE_RESTRICTED_MODE_COOKIE = "PREF=f2=8000000";
     public static final String YOUTUBE_DOMAIN = "youtube.com";
 
     private static DownloaderImpl instance;
@@ -134,7 +133,7 @@ public final class DownloaderImpl extends Downloader {
     public String getCookies(final String url) {
         List<String> resultCookies = new ArrayList<>();
         if (url.contains(YOUTUBE_DOMAIN)) {
-            String youtubeCookie = getCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY);
+            String youtubeCookie = getCookie(YOUTUBE_RESTRICTED_MODE_COOKIE_KEY);
             if (youtubeCookie != null) {
                 resultCookies.add(youtubeCookie);
             }
@@ -159,20 +158,20 @@ public final class DownloaderImpl extends Downloader {
         mCookies.remove(key);
     }
 
-    public void updateAgeRestrictedContentCookies(final Context context) {
-        String showAgeRestrictedContentKey =
-                context.getString(R.string.show_age_restricted_content);
-        boolean showAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(showAgeRestrictedContentKey, false);
-        updateAgeRestrictedContentCookies(showAgeRestrictedContent);
+    public void updateRestrictedModeCookies(final Context context) {
+        String restrictedModeEnabledKey =
+                context.getString(R.string.restricted_mode_enabled);
+        boolean restrictedModeEnabled = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(restrictedModeEnabledKey, false);
+        updateRestrictedModeCookies(restrictedModeEnabled);
     }
 
-    public void updateAgeRestrictedContentCookies(final boolean showAgeRestrictedContent) {
-        if (!showAgeRestrictedContent) {
-            setCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY,
-                    YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE);
+    public void updateRestrictedModeCookies(final boolean restrictedModeEnabled) {
+        if (restrictedModeEnabled) {
+            setCookie(YOUTUBE_RESTRICTED_MODE_COOKIE_KEY,
+                    YOUTUBE_RESTRICTED_MODE_COOKIE);
         } else {
-            removeCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY);
+            removeCookie(YOUTUBE_RESTRICTED_MODE_COOKIE_KEY);
         }
         InfoCache.getInstance().clearCache();
     }

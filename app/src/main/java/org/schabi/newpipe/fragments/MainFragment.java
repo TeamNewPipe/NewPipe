@@ -46,8 +46,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     private boolean hasTabsChanged = false;
 
-    private boolean previousShowAgeRestrictedContent;
-    private String showAgeRestrictedContentKey;
+    private boolean previousRestrictedModeEnabled;
+    private String restrictedModeEnabledKey;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -70,10 +70,10 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             }
         });
 
-        showAgeRestrictedContentKey = getString(R.string.show_age_restricted_content);
-        previousShowAgeRestrictedContent =
+        restrictedModeEnabledKey = getString(R.string.restricted_mode_enabled);
+        previousRestrictedModeEnabled =
                 PreferenceManager.getDefaultSharedPreferences(getContext())
-                        .getBoolean(showAgeRestrictedContentKey, false);
+                        .getBoolean(restrictedModeEnabledKey, false);
     }
 
     @Override
@@ -100,11 +100,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onResume() {
         super.onResume();
 
-        boolean showAgeRestrictedContent =
+        boolean restrictedModeEnabled =
                 PreferenceManager.getDefaultSharedPreferences(getContext())
-                        .getBoolean(showAgeRestrictedContentKey, false);
-        if (previousShowAgeRestrictedContent != showAgeRestrictedContent) {
-            previousShowAgeRestrictedContent = showAgeRestrictedContent;
+                        .getBoolean(restrictedModeEnabledKey, false);
+        if (previousRestrictedModeEnabled != restrictedModeEnabled) {
+            previousRestrictedModeEnabled = restrictedModeEnabled;
             setupTabs();
         } else if (hasTabsChanged) {
             setupTabs();
