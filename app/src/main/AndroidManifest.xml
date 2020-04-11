@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.schabi.newpipe">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
 
     <application
-        android:banner="@mipmap/newpipe_tv_banner"
         android:name=".App"
         android:allowBackup="true"
+        android:banner="@mipmap/newpipe_tv_banner"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:logo="@mipmap/ic_launcher"
@@ -27,13 +28,14 @@
             android:label="@string/app_name"
             android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver android:name="androidx.media.session.MediaButtonReceiver" >
+        <receiver android:name="androidx.media.session.MediaButtonReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -49,36 +51,36 @@
 
         <activity
             android:name=".player.BackgroundPlayerActivity"
-            android:launchMode="singleTask"
-            android:label="@string/title_activity_background_player"/>
+            android:label="@string/title_activity_background_player"
+            android:launchMode="singleTask" />
 
         <activity
             android:name=".player.PopupVideoPlayerActivity"
-            android:launchMode="singleTask"
-            android:label="@string/title_activity_popup_player"/>
+            android:label="@string/title_activity_popup_player"
+            android:launchMode="singleTask" />
 
         <service
             android:name=".player.PopupVideoPlayer"
-            android:exported="false"/>
+            android:exported="false" />
 
         <activity
             android:name=".player.MainVideoPlayer"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/VideoPlayerTheme"/>
+            android:theme="@style/VideoPlayerTheme" />
 
         <activity
             android:name=".settings.SettingsActivity"
-            android:label="@string/settings"/>
+            android:label="@string/settings" />
 
         <activity
             android:name=".about.AboutActivity"
-            android:label="@string/title_activity_about"/>
+            android:label="@string/title_activity_about" />
 
-        <service android:name=".local.subscription.services.SubscriptionsImportService"/>
-        <service android:name=".local.subscription.services.SubscriptionsExportService"/>
-        <service android:name=".local.feed.service.FeedLoadService"/>
+        <service android:name=".local.subscription.services.SubscriptionsImportService" />
+        <service android:name=".local.subscription.services.SubscriptionsExportService" />
+        <service android:name=".local.feed.service.FeedLoadService" />
 
         <activity
             android:name=".PanicResponderActivity"
@@ -86,25 +88,25 @@
             android:noHistory="true"
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
-                <action android:name="info.guardianproject.panic.action.TRIGGER"/>
+                <action android:name="info.guardianproject.panic.action.TRIGGER" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".ExitActivity"
             android:label="@string/general_error"
-            android:theme="@android:style/Theme.NoDisplay"/>
-        <activity android:name=".report.ErrorActivity"/>
+            android:theme="@android:style/Theme.NoDisplay" />
+        <activity android:name=".report.ErrorActivity" />
 
         <!-- giga get related -->
         <activity
             android:name=".download.DownloadActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
 
-        <service android:name="us.shandian.giga.service.DownloadManagerService"/>
+        <service android:name="us.shandian.giga.service.DownloadManagerService" />
 
         <activity
             android:name=".util.FilePickerActivityHelper"
@@ -118,7 +120,7 @@
 
         <activity
             android:name=".ReCaptchaActivity"
-            android:label="@string/recaptcha"/>
+            android:label="@string/recaptcha" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -127,7 +129,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/nnf_provider_paths"/>
+                android:resource="@xml/nnf_provider_paths" />
         </provider>
 
         <activity
@@ -139,165 +141,195 @@
 
             <!-- Youtube filter -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="youtube.com"/>
-                <data android:host="m.youtube.com"/>
-                <data android:host="www.youtube.com"/>
-                <data android:host="music.youtube.com"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="youtube.com" />
+                <data android:host="m.youtube.com" />
+                <data android:host="www.youtube.com" />
+                <data android:host="music.youtube.com" />
                 <!-- video prefix -->
-                <data android:pathPrefix="/v/"/>
-                <data android:pathPrefix="/embed/"/>
-                <data android:pathPrefix="/watch"/>
-                <data android:pathPrefix="/attribution_link"/>
+                <data android:pathPrefix="/v/" />
+                <data android:pathPrefix="/embed/" />
+                <data android:pathPrefix="/watch" />
+                <data android:pathPrefix="/attribution_link" />
                 <!-- channel prefix -->
-                <data android:pathPrefix="/channel/"/>
-                <data android:pathPrefix="/user/"/>
-                <data android:pathPrefix="/c/"/>
+                <data android:pathPrefix="/channel/" />
+                <data android:pathPrefix="/user/" />
+                <data android:pathPrefix="/c/" />
                 <!-- playlist prefix -->
-                <data android:pathPrefix="/playlist"/>
+                <data android:pathPrefix="/playlist" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="youtu.be"/>
-                <data android:pathPrefix="/"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="youtu.be" />
+                <data android:pathPrefix="/" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="www.youtube-nocookie.com"/>
-                <data android:pathPrefix="/embed/"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="www.youtube-nocookie.com" />
+                <data android:pathPrefix="/embed/" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="vnd.youtube"/>
-                <data android:scheme="vnd.youtube.launch"/>
+                <data android:scheme="vnd.youtube" />
+                <data android:scheme="vnd.youtube.launch" />
             </intent-filter>
 
             <!-- Hooktube filter -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="hooktube.com"/>
-                <data android:host="*.hooktube.com"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="hooktube.com" />
+                <data android:host="*.hooktube.com" />
                 <!-- video prefix -->
-                <data android:pathPrefix="/v/"/>
-                <data android:pathPrefix="/embed/"/>
-                <data android:pathPrefix="/watch"/>
+                <data android:pathPrefix="/v/" />
+                <data android:pathPrefix="/embed/" />
+                <data android:pathPrefix="/watch" />
                 <!-- channel prefix -->
-                <data android:pathPrefix="/channel/"/>
-                <data android:pathPrefix="/user/"/>
+                <data android:pathPrefix="/channel/" />
+                <data android:pathPrefix="/user/" />
             </intent-filter>
 
             <!-- Invidious filter -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="invidio.us"/>
-                <data android:host="dev.invidio.us"/>
-                <data android:host="www.invidio.us"/>
-                <data android:host="invidious.snopyta.org"/>
-                <data android:host="de.invidious.snopyta.org"/>
-                <data android:host="fi.invidious.snopyta.org"/>
-                <data android:host="vid.wxzm.sx"/>
-                <data android:host="invidious.kabi.tk"/>
-                <data android:host="invidiou.sh"/>
-                <data android:host="www.invidiou.sh"/>
-                <data android:host="no.invidiou.sh"/>
-                <data android:host="invidious.enkirton.net"/>
-                <data android:host="tube.poal.co"/>
-                <data android:host="invidious.13ad.de"/>
-                <data android:host="yt.elukerio.org"/>
-                <data android:pathPrefix="/"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="invidio.us" />
+                <data android:host="dev.invidio.us" />
+                <data android:host="www.invidio.us" />
+                <data android:host="invidious.snopyta.org" />
+                <data android:host="de.invidious.snopyta.org" />
+                <data android:host="fi.invidious.snopyta.org" />
+                <data android:host="vid.wxzm.sx" />
+                <data android:host="invidious.kabi.tk" />
+                <data android:host="invidiou.sh" />
+                <data android:host="www.invidiou.sh" />
+                <data android:host="no.invidiou.sh" />
+                <data android:host="invidious.enkirton.net" />
+                <data android:host="tube.poal.co" />
+                <data android:host="invidious.13ad.de" />
+                <data android:host="yt.elukerio.org" />
+                <data android:pathPrefix="/" />
             </intent-filter>
 
             <!-- Soundcloud filter -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="soundcloud.com"/>
-                <data android:host="m.soundcloud.com"/>
-                <data android:host="www.soundcloud.com"/>
-                <data android:pathPrefix="/"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="soundcloud.com" />
+                <data android:host="m.soundcloud.com" />
+                <data android:host="www.soundcloud.com" />
+                <data android:pathPrefix="/" />
             </intent-filter>
 
             <!-- Share filter -->
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"/>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
             </intent-filter>
 
             <!-- MediaCCC filter -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="media.ccc.de"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="media.ccc.de" />
                 <!-- video prefix -->
-                <data android:pathPrefix="/v/"/>
+                <data android:pathPrefix="/v/" />
                 <!-- channel prefix-->
-                <data android:pathPrefix="/c/"/>
-                <data android:pathPrefix="/b/"/>
+                <data android:pathPrefix="/c/" />
+                <data android:pathPrefix="/b/" />
+            </intent-filter>
+
+            <!-- PeerTube filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <data android:host="framatube.org" />
+                <data android:host="media.assassinate-you.net" />
+                <data android:host="peertube.co.uk" />
+                <data android:host="peertube.cpy.re" />
+                <data android:host="peertube.mastodon.host" />
+                <data android:host="peertube.fr" />
+                <data android:host="peertube.live" />
+                <data android:host="peertube.video" />
+                <data android:host="video.ploud.fr" />
+                <data android:host="video.lqdn.fr" />
+                <data android:host="skeptikon.fr" />
+
+                <data android:pathPrefix="/accounts/" />
+                <data android:pathPrefix="/playlist/" />
+                <data android:pathPrefix="/videos/" />
+                <data android:pathPrefix="/video-channels/" />
             </intent-filter>
         </activity>
         <service
             android:name=".RouterActivity$FetcherService"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 </manifest>
