@@ -234,6 +234,13 @@ public final class MainVideoPlayer extends AppCompatActivity
             case KeyEvent.KEYCODE_DPAD_DOWN:
             case KeyEvent.KEYCODE_DPAD_RIGHT:
             case KeyEvent.KEYCODE_DPAD_CENTER:
+                View playerRoot = playerImpl.getRootView();
+                View controls = playerImpl.getControlsRoot();
+                if (playerRoot.hasFocus() && !controls.hasFocus()) {
+                    // do not interfere with focus in playlist etc.
+                    return super.onKeyDown(keyCode, event);
+                }
+
                 if (playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED) {
                     return true;
                 }
