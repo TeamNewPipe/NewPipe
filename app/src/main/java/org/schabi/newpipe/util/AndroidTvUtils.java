@@ -7,12 +7,12 @@ import android.view.KeyEvent;
 import org.schabi.newpipe.App;
 
 public final class AndroidTvUtils {
+    private static final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
+
     private AndroidTvUtils() { }
 
     @SuppressLint("InlinedApi")
-    public static boolean isTv(){
-        final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
-
+    public static boolean isTv() {
         PackageManager pm =  App.getApp().getPackageManager();
 
         return pm.hasSystemFeature(AMAZON_FEATURE_FIRE_TV)

@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
@@ -35,7 +34,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.StreamDialogEntry;
-import org.schabi.newpipe.views.NewPipeRecyclerView;
 import org.schabi.newpipe.views.SuperScrollLayoutManager;
 
 import java.util.List;
@@ -166,13 +164,15 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         restoreFocus((Integer) savedObjects.poll());
     }
 
-    private void restoreFocus(Integer position) {
+    private void restoreFocus(final Integer position) {
         if (position == null || position < 0) {
             return;
         }
 
         itemsList.post(() -> {
-            RecyclerView.ViewHolder focusedHolder = itemsList.findViewHolderForAdapterPosition(position);
+            RecyclerView.ViewHolder focusedHolder =
+                    itemsList.findViewHolderForAdapterPosition(position);
+
             if (focusedHolder != null) {
                 focusedHolder.itemView.requestFocus();
             }

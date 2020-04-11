@@ -45,7 +45,8 @@ public final class FocusAwareSeekBar extends AppCompatSeekBar {
         super(context, attrs);
     }
 
-    public FocusAwareSeekBar(final Context context, final AttributeSet attrs, final int defStyleAttr) {
+    public FocusAwareSeekBar(final Context context, final AttributeSet attrs,
+                             final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -66,7 +67,8 @@ public final class FocusAwareSeekBar extends AppCompatSeekBar {
     }
 
     @Override
-    protected void onFocusChanged(final boolean gainFocus, final int direction, final Rect previouslyFocusedRect) {
+    protected void onFocusChanged(final boolean gainFocus, final int direction,
+                                  final Rect previouslyFocusedRect) {
         super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
 
         if (!isInTouchMode() && !gainFocus) {
@@ -116,7 +118,8 @@ public final class FocusAwareSeekBar extends AppCompatSeekBar {
         }
 
         @Override
-        public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
+        public void onProgressChanged(final SeekBar seekBar, final int progress,
+                                      final boolean fromUser) {
             if (!seekBar.isInTouchMode() && !isSeeking && fromUser) {
                 isSeeking = true;
 

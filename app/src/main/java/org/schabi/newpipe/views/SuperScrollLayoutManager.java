@@ -39,7 +39,11 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
     }
 
     @Override
-    public boolean requestChildRectangleOnScreen(@NonNull final RecyclerView parent, @NonNull final View child, @NonNull final Rect rect, final boolean immediate, final boolean focusedChildVisible) {
+    public boolean requestChildRectangleOnScreen(@NonNull final RecyclerView parent,
+                                                 @NonNull final View child,
+                                                 @NonNull final Rect rect,
+                                                 final boolean immediate,
+                                                 final boolean focusedChildVisible) {
         if (!parent.isInTouchMode()) {
             // only activate when in directional navigation mode (Android TV etc) — fine grained
             // touch scrolling is better served by nested scroll system
@@ -53,7 +57,8 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
             }
         }
 
-        return super.requestChildRectangleOnScreen(parent, child, rect, immediate, focusedChildVisible);
+        return super.requestChildRectangleOnScreen(parent, child, rect, immediate,
+                focusedChildVisible);
     }
 
     @Nullable
@@ -90,7 +95,9 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
 
         focusables.clear();
 
-        recycler.addFocusables(focusables, direction, recycler.isInTouchMode() ? View.FOCUSABLES_TOUCH_MODE : View.FOCUSABLES_ALL);
+        recycler.addFocusables(focusables, direction, recycler.isInTouchMode()
+                ? View.FOCUSABLES_TOUCH_MODE
+                : View.FOCUSABLES_ALL);
 
         try {
             for (View view : focusables) {

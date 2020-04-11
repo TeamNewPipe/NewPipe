@@ -176,8 +176,10 @@ public final class MainVideoPlayer extends AppCompatActivity
             public void onChange(final boolean selfChange) {
                 super.onChange(selfChange);
                 if (globalScreenOrientationLocked()) {
+                    final String orientKey = getString(R.string.last_orientation_landscape_key);
+
                     final boolean lastOrientationWasLandscape = defaultPreferences
-                            .getBoolean(getString(R.string.last_orientation_landscape_key), AndroidTvUtils.isTv());
+                            .getBoolean(orientKey, AndroidTvUtils.isTv());
                     setLandscape(lastOrientationWasLandscape);
                 } else {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
@@ -216,7 +218,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(final int keyCode, final KeyEvent event) {
         switch (event.getKeyCode()) {
             default:
                 break;
@@ -258,8 +260,10 @@ public final class MainVideoPlayer extends AppCompatActivity
         super.onResume();
 
         if (globalScreenOrientationLocked()) {
+            final String orientKey = getString(R.string.last_orientation_landscape_key);
+
             boolean lastOrientationWasLandscape = defaultPreferences
-                    .getBoolean(getString(R.string.last_orientation_landscape_key), AndroidTvUtils.isTv());
+                    .getBoolean(orientKey, AndroidTvUtils.isTv());
             setLandscape(lastOrientationWasLandscape);
         }
 
@@ -1077,7 +1081,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
 
         @Override
-        public void safeHideControls(long duration, final long delay) {
+        public void safeHideControls(final long duration, final long delay) {
             if (DEBUG) {
                 Log.d(TAG, "safeHideControls() called with: delay = [" + delay + "]");
             }
@@ -1085,8 +1089,9 @@ public final class MainVideoPlayer extends AppCompatActivity
             View controlsRoot = getControlsRoot();
             if (controlsRoot.isInTouchMode()) {
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
-                getControlsVisibilityHandler().postDelayed(
-                        () -> animateView(controlsRoot, false, duration, 0, MainVideoPlayer.this::hideSystemUi), delay);
+                getControlsVisibilityHandler().postDelayed(() ->
+                        animateView(controlsRoot, false, duration, 0,
+                                MainVideoPlayer.this::hideSystemUi), delay);
             }
         }
 

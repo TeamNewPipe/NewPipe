@@ -37,18 +37,23 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
         super(context);
     }
 
-    public FocusAwareDrawerLayout(@NonNull final Context context, @Nullable final AttributeSet attrs) {
+    public FocusAwareDrawerLayout(@NonNull final Context context,
+                                  @Nullable final AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public FocusAwareDrawerLayout(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyle) {
+    public FocusAwareDrawerLayout(@NonNull final Context context,
+                                  @Nullable final AttributeSet attrs,
+                                  final int defStyle) {
         super(context, attrs, defStyle);
     }
 
     @Override
-    protected boolean onRequestFocusInDescendants(final int direction, final Rect previouslyFocusedRect) {
-        // SDK implementation of this method picks whatever visible View takes the focus first without regard to addFocusables
-        // if the open drawer is temporarily empty, the focus escapes outside of it, which can be confusing
+    protected boolean onRequestFocusInDescendants(final int direction,
+                                                  final Rect previouslyFocusedRect) {
+        // SDK implementation of this method picks whatever visible View takes the focus first
+        // without regard to addFocusables. If the open drawer is temporarily empty, the focus
+        // escapes outside of it, which can be confusing
 
         boolean hasOpenPanels = false;
 
@@ -74,7 +79,8 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
     }
 
     @Override
-    public void addFocusables(final ArrayList<View> views, final int direction, final int focusableMode) {
+    public void addFocusables(final ArrayList<View> views, final int direction,
+                              final int focusableMode) {
         boolean hasOpenPanels = false;
         View content = null;
 

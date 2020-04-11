@@ -34,11 +34,13 @@ public final class FocusAwareCoordinator extends CoordinatorLayout {
         super(context);
     }
 
-    public FocusAwareCoordinator(@NonNull final Context context, @Nullable final AttributeSet attrs) {
+    public FocusAwareCoordinator(@NonNull final Context context,
+                                 @Nullable final AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public FocusAwareCoordinator(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr) {
+    public FocusAwareCoordinator(@NonNull final Context context,
+                                 @Nullable final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -54,7 +56,8 @@ public final class FocusAwareCoordinator extends CoordinatorLayout {
             } else {
                 focused.getHitRect(childFocus);
 
-                ((ViewGroup) child).offsetDescendantRectToMyCoords((View) focused.getParent(), childFocus);
+                ((ViewGroup) child).offsetDescendantRectToMyCoords((View) focused.getParent(),
+                        childFocus);
             }
 
             requestChildRectangleOnScreen(child, childFocus, false);

@@ -78,10 +78,8 @@ import org.schabi.newpipe.util.SerializedCache;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
@@ -90,6 +88,8 @@ import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
+import static io.reactivex.android.schedulers.AndroidSchedulers.mainThread;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * Base for the players, joining the common properties.
@@ -304,7 +304,7 @@ public abstract class BasePlayer implements
             final PlayQueueItem item = queue.getItem();
             if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
                 stateLoader = recordManager.loadStreamState(item)
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .observeOn(mainThread())
                         .doFinally(() -> initPlayback(queue, repeatMode, playbackSpeed,
                                 playbackPitch, playbackSkipSilence, true, isMuted))
                         .subscribe(
@@ -655,8 +655,8 @@ public abstract class BasePlayer implements
     }
 
     private Disposable getProgressReactor() {
-        return Observable.interval(PROGRESS_LOOP_INTERVAL_MILLIS, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
+        return Observable.interval(PROGRESS_LOOP_INTERVAL_MILLIS, MILLISECONDS, mainThread())
+                .observeOn(mainThread())
                 .subscribe(ignored -> triggerProgressUpdate(),
                         error -> Log.e(TAG, "Progress update failure: ", error));
     }
@@ -1261,7 +1261,7 @@ public abstract class BasePlayer implements
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
             final Disposable stateSaver = recordManager.saveStreamState(info, progress)
-                    .observeOn(AndroidSchedulers.mainThread())
+                    .observeOn(mainThread())
                     .doOnError((e) -> {
                         if (DEBUG) {
                             e.printStackTrace();
@@ -1281,7 +1281,7 @@ public abstract class BasePlayer implements
         if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
             final Disposable stateSaver = queueItem.getStream()
                     .flatMapCompletable(info -> recordManager.saveStreamState(info, 0))
-                    .observeOn(AndroidSchedulers.mainThread())
+                    .observeOn(mainThread())
                     .doOnError((e) -> {
                         if (DEBUG) {
                             e.printStackTrace();

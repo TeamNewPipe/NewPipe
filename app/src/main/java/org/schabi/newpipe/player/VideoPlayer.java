@@ -969,7 +969,9 @@ public abstract class VideoPlayer extends BasePlayer
             Log.d(TAG, "showControlsThenHide() called");
         }
 
-        final int hideTime = controlsRoot.isInTouchMode() ? DEFAULT_CONTROLS_HIDE_TIME : DPAD_CONTROLS_HIDE_TIME;
+        final int hideTime = controlsRoot.isInTouchMode()
+                ? DEFAULT_CONTROLS_HIDE_TIME
+                : DPAD_CONTROLS_HIDE_TIME;
 
         animateView(controlsRoot, true, DEFAULT_CONTROLS_DURATION, 0,
                 () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));

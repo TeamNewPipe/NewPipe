@@ -44,13 +44,15 @@ public class NewPipeRecyclerView extends RecyclerView {
         init();
     }
 
-    public NewPipeRecyclerView(@NonNull final Context context, @Nullable final AttributeSet attrs) {
+    public NewPipeRecyclerView(@NonNull final Context context,
+                               @Nullable final AttributeSet attrs) {
         super(context, attrs);
 
         init();
     }
 
-    public NewPipeRecyclerView(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyle) {
+    public NewPipeRecyclerView(@NonNull final Context context,
+                               @Nullable final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
 
         init();
@@ -90,9 +92,9 @@ public class NewPipeRecyclerView extends RecyclerView {
         super.removeDetachedView(child, animate);
     }
 
-    // we override focusSearch to always return null, so all moves moves lead to dispatchUnhandledMove()
-    // as added advantage, we can fully swallow some kinds of moves (such as downward movement, that
-    // happens when loading additional contents is in progress
+    // we override focusSearch to always return null, so all moves moves lead to
+    // dispatchUnhandledMove(). As added advantage, we can fully swallow some kinds of moves
+    // (such as downward movement, that happens when loading additional contents is in progress
 
     @Override
     public boolean dispatchUnhandledMove(final View focused, final int direction) {
@@ -116,8 +118,9 @@ public class NewPipeRecyclerView extends RecyclerView {
         }
 
         if (arrowScroll(direction)) {
-            // if RecyclerView can not yield focus, but there is still some scrolling space in indicated,
-            // direction, scroll some fixed amount in that direction (the same logic in ScrollView)
+            // if RecyclerView can not yield focus, but there is still some scrolling space in
+            // indicated, direction, scroll some fixed amount in that direction
+            // (the same logic in ScrollView)
             return true;
         }
 
@@ -140,8 +143,8 @@ public class NewPipeRecyclerView extends RecyclerView {
 
     private boolean tryFocusFinder(final int direction) {
         if (Build.VERSION.SDK_INT >= 28) {
-            // Android 9 implemented bunch of handy changes to focus, that render code below less useful, and
-            // also broke findNextFocusFromRect in way, that render this hack useless
+            // Android 9 implemented bunch of handy changes to focus, that render code below less
+            // useful, and also broke findNextFocusFromRect in way, that render this hack useless
             return false;
         }
 

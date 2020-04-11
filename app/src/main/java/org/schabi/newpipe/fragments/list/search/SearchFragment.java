@@ -511,7 +511,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (isSuggestionsEnabled && errorPanelRoot.getVisibility() != View.VISIBLE) {
                 showSuggestionsPanel();
             }
-            if(AndroidTvUtils.isTv()){
+            if (AndroidTvUtils.isTv()) {
                 showKeyboardSearch();
             }
         });
