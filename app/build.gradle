@@ -27,12 +27,6 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-
         debug {
             multiDexEnabled true
             debuggable true
@@ -49,6 +43,16 @@ android {
                 resValue "string", "app_name", "NewPipe " + workingBranch
                 archivesBaseName = 'NewPipe_' + normalizedWorkingBranch
             }
+        }
+
+        // Keep the release build type at the end of the list to override 'archivesBaseName' of
+        // debug build. This seems to be a Gradle bug, therefore
+        // TODO: update Gradle version
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            archivesBaseName = 'app'
         }
     }
 
