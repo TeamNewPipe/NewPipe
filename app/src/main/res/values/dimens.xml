@@ -5,8 +5,8 @@
     <dimen name="drawer_header_padding_top">16dp</dimen>
     <dimen name="drawer_header_newpipe_icon_size">48dp</dimen>
     <dimen name="drawer_header_newpipe_icon_title_space">12dp</dimen>
-    <dimen name="drawer_header_newpipe_title_min_width">120dp</dimen>
-    <dimen name="drawer_header_newpipe_title_max_width">220dp</dimen>
+    <dimen name="drawer_header_newpipe_title_default_width">130dp</dimen>
+    <dimen name="drawer_header_newpipe_title_max_width">200dp</dimen>
     <dimen name="drawer_header_newpipe_title_min_text_size">18sp</dimen>
     <dimen name="drawer_header_newpipe_title_max_text_size">32sp</dimen>
     <dimen name="drawer_header_service_icon_size">16dp</dimen>

@@ -100,7 +100,6 @@ public class Mp4DashReader {
                     moov = parseMoov(box);
                     break;
                 case ATOM_SIDX:
-                    break;
                 case ATOM_MFRA:
                     break;
             }
@@ -146,52 +145,6 @@ public class Mp4DashReader {
     Mp4Track selectTrack(final int index) {
         selectedTrack = index;
         return tracks[index];
-    }
-
-    /**
-     * Count all fragments present. This operation requires a seekable stream
-     *
-     * @return list with a basic info
-     * @throws IOException if the source stream is not seekeable
-     */
-    int getFragmentsCount() throws IOException {
-        if (selectedTrack < 0) {
-            throw new IllegalStateException("track no selected");
-        }
-        if (!stream.canRewind()) {
-            throw new IOException("The provided stream doesn't allow seek");
-        }
-
-        Box tmp;
-        int count = 0;
-
-        if (box.type == ATOM_MOOF) {
-            tmp = box;
-        } else {
-            ensure(box);
-            tmp = readBox();
-        }
-
-        do {
-            if (tmp.type == ATOM_MOOF) {
-                ensure(readBox(ATOM_MFHD));
-                Box traf;
-                while ((traf = untilBox(tmp, ATOM_TRAF)) != null) {
-                    Box tfhd = readBox(ATOM_TFHD);
-                    if (parseTfhd(tracks[selectedTrack].trak.tkhd.trackId) != null) {
-                        count++;
-                        break;
-                    }
-                    ensure(tfhd);
-                    ensure(traf);
-                }
-            }
-            ensure(tmp);
-        } while (stream.available() && (tmp = readBox()) != null);
-
-        rewind();
-
-        return count;
     }
 
     public int[] getBrands() {

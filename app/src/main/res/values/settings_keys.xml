@@ -177,6 +177,9 @@
     <string name="enable_playback_resume_key" translatable="false">enable_playback_resume</string>
     <string name="enable_playback_state_lists_key" translatable="false">enable_playback_state_lists</string>
     <string name="playback_unhook_key" translatable="false">playback_unhook_key</string>
+    <string name="playback_speed_key" translatable="false">playback_speed_key</string>
+    <string name="playback_pitch_key" translatable="false">playback_pitch_key</string>
+    <string name="playback_skip_silence_key" translatable="false">playback_skip_silence_key</string>
 
     <string name="app_language_key" translatable="false">app_language_key</string>
     <string name="enable_lock_screen_video_thumbnail_key" translatable="false">enable_lock_screen_video_thumbnail</string>

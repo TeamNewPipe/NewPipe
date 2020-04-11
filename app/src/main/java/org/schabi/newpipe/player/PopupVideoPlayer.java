@@ -41,6 +41,7 @@ import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AnticipateInterpolator;
@@ -1010,6 +1011,14 @@ public final class PopupVideoPlayer extends Service {
         private boolean isMoving;
         private boolean isResizing;
 
+        //initial co-ordinates and distance between fingers
+        private double initPointerDistance = -1;
+        private float initFirstPointerX = -1;
+        private float initFirstPointerY = -1;
+        private float initSecPointerX = -1;
+        private float initSecPointerY = -1;
+
+
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
             if (DEBUG) {
@@ -1201,6 +1210,16 @@ public final class PopupVideoPlayer extends Service {
                 playerImpl.hideControls(0, 0);
                 animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
                 animateView(playerImpl.getResizingIndicator(), true, 200, 0);
+
+                //record co-ordinates of fingers
+                initFirstPointerX = event.getX(0);
+                initFirstPointerY = event.getY(0);
+                initSecPointerX = event.getX(1);
+                initSecPointerY = event.getY(1);
+                //record distance between fingers
+                initPointerDistance = Math.hypot(initFirstPointerX - initSecPointerX,
+                                                 initFirstPointerY - initSecPointerY);
+
                 isResizing = true;
             }
 
@@ -1224,6 +1243,13 @@ public final class PopupVideoPlayer extends Service {
 
                 if (isResizing) {
                     isResizing = false;
+
+                    initPointerDistance = -1;
+                    initFirstPointerX = -1;
+                    initFirstPointerY = -1;
+                    initSecPointerX = -1;
+                    initSecPointerY = -1;
+
                     animateView(playerImpl.getResizingIndicator(), false, 100, 0);
                     playerImpl.changeState(playerImpl.getCurrentState());
                 }
@@ -1238,29 +1264,35 @@ public final class PopupVideoPlayer extends Service {
         }
 
         private boolean handleMultiDrag(final MotionEvent event) {
-            if (event.getPointerCount() != 2) {
-                return false;
+            if (initPointerDistance != -1 && event.getPointerCount() == 2) {
+                // get the movements of the fingers
+                double firstPointerMove = Math.hypot(event.getX(0) - initFirstPointerX,
+                                                     event.getY(0) - initFirstPointerY);
+                double secPointerMove = Math.hypot(event.getX(1) - initSecPointerX,
+                                                   event.getY(1) - initSecPointerY);
+
+                // minimum threshold beyond which pinch gesture will work
+                int minimumMove = ViewConfiguration.get(PopupVideoPlayer.this).getScaledTouchSlop();
+
+                if (Math.max(firstPointerMove, secPointerMove) > minimumMove) {
+                    // calculate current distance between the pointers
+                    double currentPointerDistance =
+                            Math.hypot(event.getX(0) - event.getX(1),
+                                       event.getY(0) - event.getY(1));
+
+                    // change co-ordinates of popup so the center stays at the same position
+                    double newWidth = (popupWidth * currentPointerDistance / initPointerDistance);
+                    initPointerDistance = currentPointerDistance;
+                    popupLayoutParams.x += (popupWidth - newWidth) / 2;
+
+                    checkPopupPositionBounds();
+                    updateScreenSize();
+
+                    updatePopupSize((int) Math.min(screenWidth, newWidth), -1);
+                    return true;
+                }
             }
-
-            final float firstPointerX = event.getX(0);
-            final float secondPointerX = event.getX(1);
-
-            final float diff = Math.abs(firstPointerX - secondPointerX);
-            if (firstPointerX > secondPointerX) {
-                // second pointer is the anchor (the leftmost pointer)
-                popupLayoutParams.x = (int) (event.getRawX() - diff);
-            } else {
-                // first pointer is the anchor
-                popupLayoutParams.x = (int) event.getRawX();
-            }
-
-            checkPopupPositionBounds();
-            updateScreenSize();
-
-            final int width = (int) Math.min(screenWidth, diff);
-            updatePopupSize(width, -1);
-
-            return true;
+            return false;
         }
 
         /*//////////////////////////////////////////////////////////////////////////

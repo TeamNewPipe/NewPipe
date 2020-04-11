@@ -120,9 +120,6 @@ public final class NavigationHelper {
                                          final boolean isMuted) {
         return getPlayerIntent(context, targetClazz, playQueue, playbackQuality, resumePlayback)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
-                .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
-                .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch)
-                .putExtra(BasePlayer.PLAYBACK_SKIP_SILENCE, playbackSkipSilence)
                 .putExtra(BasePlayer.START_PAUSED, startPaused)
                 .putExtra(BasePlayer.IS_MUTED, isMuted);
     }

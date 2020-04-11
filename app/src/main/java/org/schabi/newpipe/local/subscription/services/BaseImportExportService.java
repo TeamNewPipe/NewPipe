@@ -38,9 +38,9 @@ import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.ExceptionUtils;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -227,7 +227,7 @@ public abstract class BaseImportExportService extends Service {
             message = getString(R.string.invalid_source);
         } else if (error instanceof FileNotFoundException) {
             message = getString(R.string.invalid_file);
-        } else if (error instanceof IOException) {
+        } else if (ExceptionUtils.isNetworkRelated(error)) {
             message = getString(R.string.network_error);
         }
         return message;
