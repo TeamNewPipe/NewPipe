@@ -242,7 +242,6 @@ public class MainActivity extends AppCompatActivity {
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this))
                 .setChecked(false);
         ServiceHelper.setSelectedServiceId(this, item.getItemId());
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this))
                 .setChecked(true);
     }
