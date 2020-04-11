@@ -64,7 +64,7 @@
     <string name="content">Innehåll</string>
     <string name="show_age_restricted_content_title">Åldersbegränsat innehåll</string>
     <string name="video_is_age_restricted">Videon är åldersbegränsad. Du kan aktivera åldersbegränsade videor i inställningar.</string>
-    <string name="duration_live">LIVE</string>
+    <string name="duration_live">Live</string>
     <string name="downloads">Nedladdningar</string>
     <string name="downloads_title">Nedladdningar</string>
     <string name="error_report_title">Felrapport</string>
@@ -265,7 +265,7 @@
     <string name="metadata_cache_wipe_title">Rensa metadatan i cacheminnet</string>
     <string name="no_player_found_toast">Ingen strömspelare hittades (du kan installera VLC för att spela upp).</string>
     <string name="controls_download_desc">Ladda ned sändning</string>
-    <string name="use_inexact_seek_summary">Inexact sökning ger möjligheten att söka snabbare med mindre precision</string>
+    <string name="use_inexact_seek_summary">Inexakt sökning ger möjligheten att söka snabbare med mindre precision. Sökning med 5, 15 eller 25 sekunder fungerar inte med denna inställning.</string>
     <string name="metadata_cache_wipe_summary">Ta bort alla cachade webbsidor</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache rensad</string>
     <string name="auto_queue_title">"Köa nästa ström automatiskt "</string>
@@ -478,4 +478,7 @@
     <string name="peertube_instance_add_https_only">Enbart HTTPS-URL stöds</string>
     <string name="peertube_instance_add_exists">Instansen finns redan</string>
     <string name="videos_string">Videos</string>
+    <string name="help">Hjälp</string>
+    <string name="delete_playback_states_alert">Ta bort alla uppspelningspositioner\?</string>
+    <string name="clear_playback_states_summary">Tar bort alla uppspelnings positioner</string>
 </resources>
