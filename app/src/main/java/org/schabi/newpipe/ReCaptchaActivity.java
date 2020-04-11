@@ -206,7 +206,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             Log.d(TAG, "handleCookies: cookies=" + (cookies == null ? "null" : cookies));
         }
 
-        if (cookies == null || foundCookies.contains(cookies)) {
+        if (cookies == null) {
             return;
         }
 
