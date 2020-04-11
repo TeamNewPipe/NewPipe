@@ -1,6 +1,7 @@
 package org.schabi.newpipe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -159,6 +161,12 @@ public class ReCaptchaActivity extends AppCompatActivity {
         }
 
         if (!foundCookies.isEmpty()) {
+            // save cookies to preferences
+            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                    getApplicationContext());
+            final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
+            prefs.edit().putString(key, foundCookies).apply();
+
             // give cookies to Downloader class
             DownloaderImpl.getInstance().setCookies(foundCookies);
             setResult(RESULT_OK);
@@ -170,7 +178,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
 
-    private void handleCookiesFromUrl(final @Nullable String url) {
+    private void handleCookiesFromUrl(@Nullable final String url) {
         if (MainActivity.DEBUG) {
             Log.d(TAG, "handleCookiesFromUrl: url=" + (url == null ? "null" : url));
         }
@@ -201,7 +209,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         }
     }
 
-    private void handleCookies(final @Nullable String cookies) {
+    private void handleCookies(@Nullable final String cookies) {
         if (MainActivity.DEBUG) {
             Log.d(TAG, "handleCookies: cookies=" + (cookies == null ? "null" : cookies));
         }
@@ -214,7 +222,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         // add here methods to extract cookies for other services
     }
 
-    private void addYoutubeCookies(final @NonNull String cookies) {
+    private void addYoutubeCookies(@NonNull final String cookies) {
         if (cookies.contains("s_gl=") || cookies.contains("goojf=")
                 || cookies.contains("VISITOR_INFO1_LIVE=")
                 || cookies.contains("GOOGLE_ABUSE_EXEMPTION=")) {

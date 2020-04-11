@@ -40,8 +40,10 @@ public class DebugApp extends App {
 
     @Override
     protected Downloader getDownloader() {
-        return DownloaderImpl.init(new OkHttpClient.Builder()
+        DownloaderImpl downloader = DownloaderImpl.init(new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor()));
+        setCookiesToDownloader(downloader);
+        return downloader;
     }
 
     private void initStetho() {
