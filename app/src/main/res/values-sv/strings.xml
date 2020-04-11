@@ -481,4 +481,7 @@
     <string name="help">Hjälp</string>
     <string name="delete_playback_states_alert">Ta bort alla uppspelningspositioner\?</string>
     <string name="clear_playback_states_summary">Tar bort alla uppspelnings positioner</string>
+    <string name="missing_file"></string>
+    <string name="download_to_sdcard_error_message"></string>
+    <string name="watch_history_states_deleted"></string>
 </resources>
