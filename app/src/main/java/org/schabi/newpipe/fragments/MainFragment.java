@@ -71,7 +71,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         });
 
         showAgeRestrictedContentKey = getString(R.string.show_age_restricted_content);
-        previousShowAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(showAgeRestrictedContentKey, false);
+        previousShowAgeRestrictedContent =
+                PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .getBoolean(showAgeRestrictedContentKey, false);
     }
 
     @Override
@@ -98,7 +100,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onResume() {
         super.onResume();
 
-        boolean showAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(showAgeRestrictedContentKey, false);
+        boolean showAgeRestrictedContent =
+                PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .getBoolean(showAgeRestrictedContentKey, false);
         if (previousShowAgeRestrictedContent != showAgeRestrictedContent) {
             previousShowAgeRestrictedContent = showAgeRestrictedContent;
             setupTabs();

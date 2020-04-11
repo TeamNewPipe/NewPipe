@@ -45,7 +45,8 @@ public final class DownloaderImpl extends Downloader {
     public static final String USER_AGENT
             = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101 Firefox/68.0";
 
-    public static final String YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY = "youtube_age_restricted_content_cookie_key";
+    public static final String YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY =
+            "youtube_age_restricted_content_cookie_key";
     public static final String YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE = "PREF=f2=8000000";
     public static final String YOUTUBE_DOMAIN = "youtube.com";
 
@@ -146,27 +147,30 @@ public final class DownloaderImpl extends Downloader {
         return CookieUtils.concatCookies(resultCookies);
     }
 
-    public String getCookie(final String key){
+    public String getCookie(final String key) {
         return mCookies.get(key);
     }
 
-    public void setCookie(final String key, final String cookie){
+    public void setCookie(final String key, final String cookie) {
         mCookies.put(key, cookie);
     }
 
-    public void removeCookie(final String key){
+    public void removeCookie(final String key) {
         mCookies.remove(key);
     }
 
-    public void updateAgeRestrictedContentCookies(final Context context){
-        String showAgeRestrictedContentKey = context.getString(R.string.show_age_restricted_content);
-        boolean showAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(showAgeRestrictedContentKey, false);
+    public void updateAgeRestrictedContentCookies(final Context context) {
+        String showAgeRestrictedContentKey =
+                context.getString(R.string.show_age_restricted_content);
+        boolean showAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(showAgeRestrictedContentKey, false);
         updateAgeRestrictedContentCookies(showAgeRestrictedContent);
     }
 
-    public void updateAgeRestrictedContentCookies(boolean showAgeRestrictedContent) {
+    public void updateAgeRestrictedContentCookies(final boolean showAgeRestrictedContent) {
         if (!showAgeRestrictedContent) {
-            setCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY, YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE);
+            setCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY,
+                    YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE);
         } else {
             removeCookie(YOUTUBE_AGE_RESTRICTED_CONTENT_COOKIE_KEY);
         }
