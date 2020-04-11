@@ -23,13 +23,14 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+import android.text.TextUtils;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import android.text.TextUtils;
-import android.widget.Toast;
 
 import org.reactivestreams.Publisher;
 import org.schabi.newpipe.R;
@@ -53,16 +54,36 @@ import io.reactivex.processors.PublishProcessor;
 public abstract class BaseImportExportService extends Service {
     protected final String TAG = this.getClass().getSimpleName();
 
-    protected NotificationManagerCompat notificationManager;
-    protected NotificationCompat.Builder notificationBuilder;
-
-    protected SubscriptionManager subscriptionManager;
     protected final CompositeDisposable disposables = new CompositeDisposable();
     protected final PublishProcessor<String> notificationUpdater = PublishProcessor.create();
 
+    protected NotificationManagerCompat notificationManager;
+    protected NotificationCompat.Builder notificationBuilder;
+    protected SubscriptionManager subscriptionManager;
+
+    private static final int NOTIFICATION_SAMPLING_PERIOD = 2500;
+
+    protected final AtomicInteger currentProgress = new AtomicInteger(-1);
+    protected final AtomicInteger maxProgress = new AtomicInteger(-1);
+    protected final ImportExportEventListener eventListener = new ImportExportEventListener() {
+        @Override
+        public void onSizeReceived(final int size) {
+            maxProgress.set(size);
+            currentProgress.set(0);
+        }
+
+        @Override
+        public void onItemCompleted(final String itemName) {
+            currentProgress.incrementAndGet();
+            notificationUpdater.onNext(itemName);
+        }
+    };
+
+    protected Toast toast;
+
     @Nullable
     @Override
-    public IBinder onBind(Intent intent) {
+    public IBinder onBind(final Intent intent) {
         return null;
     }
 
@@ -87,25 +108,8 @@ public abstract class BaseImportExportService extends Service {
     // Notification Impl
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static final int NOTIFICATION_SAMPLING_PERIOD = 2500;
-
-    protected final AtomicInteger currentProgress = new AtomicInteger(-1);
-    protected final AtomicInteger maxProgress = new AtomicInteger(-1);
-    protected final ImportExportEventListener eventListener = new ImportExportEventListener() {
-        @Override
-        public void onSizeReceived(int size) {
-            maxProgress.set(size);
-            currentProgress.set(0);
-        }
-
-        @Override
-        public void onItemCompleted(String itemName) {
-            currentProgress.incrementAndGet();
-            notificationUpdater.onNext(itemName);
-        }
-    };
-
     protected abstract int getNotificationId();
+
     @StringRes
     public abstract int getTitle();
 
@@ -114,8 +118,9 @@ public abstract class BaseImportExportService extends Service {
         notificationBuilder = createNotification();
         startForeground(getNotificationId(), notificationBuilder.build());
 
-        final Function<Flowable<String>, Publisher<String>> throttleAfterFirstEmission = flow -> flow.limit(1)
-                .concatWith(flow.skip(1).throttleLast(NOTIFICATION_SAMPLING_PERIOD, TimeUnit.MILLISECONDS));
+        final Function<Flowable<String>, Publisher<String>> throttleAfterFirstEmission = flow ->
+                flow.limit(1).concatWith(flow.skip(1)
+                        .throttleLast(NOTIFICATION_SAMPLING_PERIOD, TimeUnit.MILLISECONDS));
 
         disposables.add(notificationUpdater
                 .filter(s -> !s.isEmpty())
@@ -124,17 +129,20 @@ public abstract class BaseImportExportService extends Service {
                 .subscribe(this::updateNotification));
     }
 
-    protected void updateNotification(String text) {
-        notificationBuilder.setProgress(maxProgress.get(), currentProgress.get(), maxProgress.get() == -1);
+    protected void updateNotification(final String text) {
+        notificationBuilder
+                .setProgress(maxProgress.get(), currentProgress.get(), maxProgress.get() == -1);
 
         final String progressText = currentProgress + "/" + maxProgress;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (!TextUtils.isEmpty(text)) text = text + "  (" + progressText + ")";
+            if (!TextUtils.isEmpty(text)) {
+                notificationBuilder.setContentText(text + "  (" + progressText + ")");
+            }
         } else {
             notificationBuilder.setContentInfo(progressText);
+            notificationBuilder.setContentText(text);
         }
 
-        if (!TextUtils.isEmpty(text)) notificationBuilder.setContentText(text);
         notificationManager.notify(getNotificationId(), notificationBuilder.build());
     }
 
@@ -142,16 +150,16 @@ public abstract class BaseImportExportService extends Service {
         postErrorResult(null, null);
     }
 
-    protected void stopAndReportError(@Nullable Throwable error, String request) {
+    protected void stopAndReportError(@Nullable final Throwable error, final String request) {
         stopService();
 
-        final ErrorActivity.ErrorInfo errorInfo = ErrorActivity.ErrorInfo.make(UserAction.SUBSCRIPTION, "unknown",
-                request, R.string.general_error);
-        ErrorActivity.reportError(this, error != null ? Collections.singletonList(error) : Collections.emptyList(),
-                null, null, errorInfo);
+        final ErrorActivity.ErrorInfo errorInfo = ErrorActivity.ErrorInfo
+                .make(UserAction.SUBSCRIPTION, "unknown", request, R.string.general_error);
+        ErrorActivity.reportError(this, error != null ? Collections.singletonList(error)
+                        : Collections.emptyList(), null, null, errorInfo);
     }
 
-    protected void postErrorResult(String title, String text) {
+    protected void postErrorResult(final String title, final String text) {
         disposeAll();
         stopForeground(true);
         stopSelf();
@@ -160,13 +168,14 @@ public abstract class BaseImportExportService extends Service {
             return;
         }
 
-        text = text == null ? "" : text;
-        notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+        final String textOrEmpty = text == null ? "" : text;
+        notificationBuilder = new NotificationCompat
+                .Builder(this, getString(R.string.notification_channel_id))
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setContentTitle(title)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
-                .setContentText(text);
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(textOrEmpty))
+                .setContentText(textOrEmpty);
         notificationManager.notify(getNotificationId(), notificationBuilder.build());
     }
 
@@ -183,14 +192,14 @@ public abstract class BaseImportExportService extends Service {
     // Toast
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected Toast toast;
-
-    protected void showToast(@StringRes int message) {
+    protected void showToast(@StringRes final int message) {
         showToast(getString(message));
     }
 
-    protected void showToast(String message) {
-        if (toast != null) toast.cancel();
+    protected void showToast(final String message) {
+        if (toast != null) {
+            toast.cancel();
+        }
 
         toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.show();
@@ -200,7 +209,7 @@ public abstract class BaseImportExportService extends Service {
     // Error handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void handleError(@StringRes int errorTitle, @NonNull Throwable error) {
+    protected void handleError(@StringRes final int errorTitle, @NonNull final Throwable error) {
         String message = getErrorMessage(error);
 
         if (TextUtils.isEmpty(message)) {
@@ -212,7 +221,7 @@ public abstract class BaseImportExportService extends Service {
         postErrorResult(getString(errorTitle), message);
     }
 
-    protected String getErrorMessage(Throwable error) {
+    protected String getErrorMessage(final Throwable error) {
         String message = null;
         if (error instanceof SubscriptionExtractor.InvalidSourceException) {
             message = getString(R.string.invalid_source);

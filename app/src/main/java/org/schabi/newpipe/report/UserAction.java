@@ -25,7 +25,7 @@ public enum UserAction {
 
     private final String message;
 
-    UserAction(String message) {
+    UserAction(final String message) {
         this.message = message;
     }
 

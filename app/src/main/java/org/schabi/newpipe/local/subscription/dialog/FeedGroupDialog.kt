@@ -49,12 +49,22 @@ class FeedGroupDialog : DialogFragment() {
         object DeleteScreen : ScreenState()
     }
 
-    @State @JvmField var selectedIcon: FeedGroupIcon? = null
-    @State @JvmField var selectedSubscriptions: HashSet<Long> = HashSet()
-    @State @JvmField var currentScreen: ScreenState = InitialScreen
+    @State
+    @JvmField
+    var selectedIcon: FeedGroupIcon? = null
+    @State
+    @JvmField
+    var selectedSubscriptions: HashSet<Long> = HashSet()
+    @State
+    @JvmField
+    var currentScreen: ScreenState = InitialScreen
 
-    @State @JvmField var subscriptionsListState: Parcelable? = null
-    @State @JvmField var iconsListState: Parcelable? = null
+    @State
+    @JvmField
+    var subscriptionsListState: Parcelable? = null
+    @State
+    @JvmField
+    var iconsListState: Parcelable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

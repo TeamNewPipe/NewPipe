@@ -30,20 +30,20 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 public final class FocusAwareCoordinator extends CoordinatorLayout {
     private final Rect childFocus = new Rect();
 
-    public FocusAwareCoordinator(@NonNull Context context) {
+    public FocusAwareCoordinator(@NonNull final Context context) {
         super(context);
     }
 
-    public FocusAwareCoordinator(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FocusAwareCoordinator(@NonNull final Context context, @Nullable final AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public FocusAwareCoordinator(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public FocusAwareCoordinator(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    public void requestChildFocus(View child, View focused) {
+    public void requestChildFocus(final View child, final View focused) {
         super.requestChildFocus(child, focused);
 
         if (!isInTouchMode()) {

@@ -1,4 +1,3 @@
-
 package org.schabi.newpipe;
 
 import android.annotation.SuppressLint;
@@ -26,17 +25,18 @@ import android.os.Bundle;
  */
 
 public class PanicResponderActivity extends Activity {
-
     public static final String PANIC_TRIGGER_ACTION = "info.guardianproject.panic.action.TRIGGER";
 
     @SuppressLint("NewApi")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (intent != null && PANIC_TRIGGER_ACTION.equals(intent.getAction())) {
-            // TODO explicitly clear the search results once they are restored when the app restarts
-            // or if the app reloads the current video after being killed, that should be cleared also
+            // TODO: Explicitly clear the search results
+            //  once they are restored when the app restarts
+            //  or if the app reloads the current video after being killed,
+            //  that should be cleared also
             ExitActivity.exitAndRemoveFromRecentApps(this);
         }
 

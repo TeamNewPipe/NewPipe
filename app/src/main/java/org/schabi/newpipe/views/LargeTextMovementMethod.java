@@ -33,19 +33,23 @@ import android.widget.TextView;
 public class LargeTextMovementMethod extends LinkMovementMethod {
     private final Rect visibleRect = new Rect();
 
-    private int dir;
+    private int direction;
 
     @Override
-    public void onTakeFocus(TextView view, Spannable text, int dir) {
+    public void onTakeFocus(final TextView view, final Spannable text, final int dir) {
         Selection.removeSelection(text);
 
         super.onTakeFocus(view, text, dir);
 
-        this.dir = dirToRelative(dir);
+        this.direction = dirToRelative(dir);
     }
 
     @Override
-    protected boolean handleMovementKey(TextView widget, Spannable buffer, int keyCode, int movementMetaState, KeyEvent event) {
+    protected boolean handleMovementKey(final TextView widget,
+                                        final Spannable buffer,
+                                        final int keyCode,
+                                        final int movementMetaState,
+                                        final KeyEvent event) {
         if (!doHandleMovement(widget, buffer, keyCode, movementMetaState, event)) {
             // clear selection to make sure, that it does not confuse focus handling code
             Selection.removeSelection(buffer);
@@ -55,14 +59,18 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
         return true;
     }
 
-    private boolean doHandleMovement(TextView widget, Spannable buffer, int keyCode, int movementMetaState, KeyEvent event) {
+    private boolean doHandleMovement(final TextView widget,
+                                     final Spannable buffer,
+                                     final int keyCode,
+                                     final int movementMetaState,
+                                     final KeyEvent event) {
         int newDir = keyToDir(keyCode);
 
-        if (dir != 0 && newDir != dir) {
+        if (direction != 0 && newDir != direction) {
             return false;
         }
 
-        this.dir = 0;
+        this.direction = 0;
 
         ViewGroup root = findScrollableParent(widget);
 
@@ -74,7 +82,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
     }
 
     @Override
-    protected boolean up(TextView widget, Spannable buffer) {
+    protected boolean up(final TextView widget, final Spannable buffer) {
         if (gotoPrev(widget, buffer)) {
             return true;
         }
@@ -83,7 +91,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
     }
 
     @Override
-    protected boolean left(TextView widget, Spannable buffer) {
+    protected boolean left(final TextView widget, final Spannable buffer) {
         if (gotoPrev(widget, buffer)) {
             return true;
         }
@@ -92,7 +100,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
     }
 
     @Override
-    protected boolean right(TextView widget, Spannable buffer) {
+    protected boolean right(final TextView widget, final Spannable buffer) {
         if (gotoNext(widget, buffer)) {
             return true;
         }
@@ -101,7 +109,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
     }
 
     @Override
-    protected boolean down(TextView widget, Spannable buffer) {
+    protected boolean down(final TextView widget, final Spannable buffer) {
         if (gotoNext(widget, buffer)) {
             return true;
         }
@@ -109,7 +117,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
         return super.down(widget, buffer);
     }
 
-    private boolean gotoPrev(TextView view, Spannable buffer) {
+    private boolean gotoPrev(final TextView view, final Spannable buffer) {
         Layout layout = view.getLayout();
         if (layout == null) {
             return false;
@@ -130,9 +138,12 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
 
         // when deciding whether to pass "focus" to span, account for one more line
         // this ensures, that focus is never passed to spans partially outside scroll window
-        int visibleStart = firstVisibleLineNumber == 0 ? 0 : layout.getLineStart(firstVisibleLineNumber - 1);
+        int visibleStart = firstVisibleLineNumber == 0
+                ? 0
+                : layout.getLineStart(firstVisibleLineNumber - 1);
 
-        ClickableSpan[] candidates = buffer.getSpans(visibleStart, buffer.length(), ClickableSpan.class);
+        ClickableSpan[] candidates = buffer.getSpans(
+                visibleStart, buffer.length(), ClickableSpan.class);
 
         if (candidates.length != 0) {
             int a = Selection.getSelectionStart(buffer);
@@ -172,7 +183,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
         return view.requestRectangleOnScreen(visibleRect);
     }
 
-    private boolean gotoNext(TextView view, Spannable buffer) {
+    private boolean gotoNext(final TextView view, final Spannable buffer) {
         Layout layout = view.getLayout();
         if (layout == null) {
             return false;
@@ -197,7 +208,9 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
 
         // when deciding whether to pass "focus" to span, account for one more line
         // this ensures, that focus is never passed to spans partially outside scroll window
-        int visibleEnd = lastVisibleLineNumber == lineCount - 1 ? buffer.length() : layout.getLineEnd(lastVisibleLineNumber - 1);
+        int visibleEnd = lastVisibleLineNumber == lineCount - 1
+                ? buffer.length()
+                : layout.getLineEnd(lastVisibleLineNumber - 1);
 
         ClickableSpan[] candidates = buffer.getSpans(0, visibleEnd, ClickableSpan.class);
 
@@ -242,7 +255,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
         return view.requestRectangleOnScreen(visibleRect);
     }
 
-    private ViewGroup findScrollableParent(View view) {
+    private ViewGroup findScrollableParent(final View view) {
         View current = view;
 
         ViewParent parent;
@@ -262,7 +275,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
         while (true);
     }
 
-    private int dirToRelative(int dir) {
+    private static int dirToRelative(final int dir) {
         switch (dir) {
             case View.FOCUS_DOWN:
             case View.FOCUS_RIGHT:
@@ -275,7 +288,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
         return dir;
     }
 
-    private int keyToDir(int keyCode) {
+    private int keyToDir(final int keyCode) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_UP:
             case KeyEvent.KEYCODE_DPAD_LEFT:

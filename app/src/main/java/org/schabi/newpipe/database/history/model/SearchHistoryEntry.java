@@ -13,7 +13,6 @@ import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.SEARC
 @Entity(tableName = SearchHistoryEntry.TABLE_NAME,
         indices = {@Index(value = SEARCH)})
 public class SearchHistoryEntry {
-
     public static final String ID = "id";
     public static final String TABLE_NAME = "search_history";
     public static final String SERVICE_ID = "service_id";
@@ -33,7 +32,7 @@ public class SearchHistoryEntry {
     @ColumnInfo(name = SEARCH)
     private String search;
 
-    public SearchHistoryEntry(Date creationDate, int serviceId, String search) {
+    public SearchHistoryEntry(final Date creationDate, final int serviceId, final String search) {
         this.serviceId = serviceId;
         this.creationDate = creationDate;
         this.search = search;
@@ -43,7 +42,7 @@ public class SearchHistoryEntry {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
@@ -51,7 +50,7 @@ public class SearchHistoryEntry {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(final Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -59,7 +58,7 @@ public class SearchHistoryEntry {
         return serviceId;
     }
 
-    public void setServiceId(int serviceId) {
+    public void setServiceId(final int serviceId) {
         this.serviceId = serviceId;
     }
 
@@ -67,13 +66,13 @@ public class SearchHistoryEntry {
         return search;
     }
 
-    public void setSearch(String search) {
+    public void setSearch(final String search) {
         this.search = search;
     }
 
     @Ignore
-    public boolean hasEqualValues(SearchHistoryEntry otherEntry) {
-        return getServiceId() == otherEntry.getServiceId() &&
-                getSearch().equals(otherEntry.getSearch());
+    public boolean hasEqualValues(final SearchHistoryEntry otherEntry) {
+        return getServiceId() == otherEntry.getServiceId()
+                && getSearch().equals(otherEntry.getSearch());
     }
 }

@@ -33,20 +33,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import java.util.ArrayList;
 
 public final class FocusAwareDrawerLayout extends DrawerLayout {
-    public FocusAwareDrawerLayout(@NonNull Context context) {
+    public FocusAwareDrawerLayout(@NonNull final Context context) {
         super(context);
     }
 
-    public FocusAwareDrawerLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FocusAwareDrawerLayout(@NonNull final Context context, @Nullable final AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public FocusAwareDrawerLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public FocusAwareDrawerLayout(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
     }
 
     @Override
-    protected boolean onRequestFocusInDescendants(int direction, Rect previouslyFocusedRect) {
+    protected boolean onRequestFocusInDescendants(final int direction, final Rect previouslyFocusedRect) {
         // SDK implementation of this method picks whatever visible View takes the focus first without regard to addFocusables
         // if the open drawer is temporarily empty, the focus escapes outside of it, which can be confusing
 
@@ -74,7 +74,7 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
     }
 
     @Override
-    public void addFocusables(ArrayList<View> views, int direction, int focusableMode) {
+    public void addFocusables(final ArrayList<View> views, final int direction, final int focusableMode) {
         boolean hasOpenPanels = false;
         View content = null;
 
@@ -98,16 +98,17 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
         }
     }
 
-    // this override isn't strictly necessary, but it is helpful when DrawerLayout isn't the topmost
-    // view in hierarchy (such as when system or builtin appcompat ActionBar is used)
+    // this override isn't strictly necessary, but it is helpful when DrawerLayout isn't
+    // the topmost view in hierarchy (such as when system or builtin appcompat ActionBar is used)
     @Override
     @SuppressLint("RtlHardcoded")
-    public void openDrawer(@NonNull View drawerView, boolean animate) {
+    public void openDrawer(@NonNull final View drawerView, final boolean animate) {
         super.openDrawer(drawerView, animate);
 
         LayoutParams params = (LayoutParams) drawerView.getLayoutParams();
 
-        int gravity = GravityCompat.getAbsoluteGravity(params.gravity, ViewCompat.getLayoutDirection(this));
+        int gravity = GravityCompat.getAbsoluteGravity(
+                params.gravity, ViewCompat.getLayoutDirection(this));
 
         int direction = 0;
 

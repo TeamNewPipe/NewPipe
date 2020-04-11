@@ -1,7 +1,5 @@
 package org.schabi.newpipe.player.helper;
 
-import android.content.Context;
-
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.Renderer;
@@ -20,10 +18,10 @@ public class LoadController implements LoadControl {
     // Default Load Control
     //////////////////////////////////////////////////////////////////////////*/
 
-    public LoadController(final Context context) {
-        this(PlayerHelper.getPlaybackStartBufferMs(context),
-                PlayerHelper.getPlaybackMinimumBufferMs(context),
-                PlayerHelper.getPlaybackOptimalBufferMs(context));
+    public LoadController() {
+        this(PlayerHelper.getPlaybackStartBufferMs(),
+                PlayerHelper.getPlaybackMinimumBufferMs(),
+                PlayerHelper.getPlaybackOptimalBufferMs());
     }
 
     private LoadController(final int initialPlaybackBufferMs,
@@ -47,8 +45,8 @@ public class LoadController implements LoadControl {
     }
 
     @Override
-    public void onTracksSelected(Renderer[] renderers, TrackGroupArray trackGroupArray,
-                                 TrackSelectionArray trackSelectionArray) {
+    public void onTracksSelected(final Renderer[] renderers, final TrackGroupArray trackGroupArray,
+                                 final TrackSelectionArray trackSelectionArray) {
         internalLoadControl.onTracksSelected(renderers, trackGroupArray, trackSelectionArray);
     }
 
@@ -78,17 +76,18 @@ public class LoadController implements LoadControl {
     }
 
     @Override
-    public boolean shouldContinueLoading(long bufferedDurationUs, float playbackSpeed) {
+    public boolean shouldContinueLoading(final long bufferedDurationUs,
+                                         final float playbackSpeed) {
         return internalLoadControl.shouldContinueLoading(bufferedDurationUs, playbackSpeed);
     }
 
     @Override
-    public boolean shouldStartPlayback(long bufferedDurationUs, float playbackSpeed,
-                                       boolean rebuffering) {
-        final boolean isInitialPlaybackBufferFilled = bufferedDurationUs >=
-                this.initialPlaybackBufferUs * playbackSpeed;
-        final boolean isInternalStartingPlayback = internalLoadControl.shouldStartPlayback(
-                bufferedDurationUs, playbackSpeed, rebuffering);
+    public boolean shouldStartPlayback(final long bufferedDurationUs, final float playbackSpeed,
+                                       final boolean rebuffering) {
+        final boolean isInitialPlaybackBufferFilled
+                = bufferedDurationUs >= this.initialPlaybackBufferUs * playbackSpeed;
+        final boolean isInternalStartingPlayback = internalLoadControl
+                .shouldStartPlayback(bufferedDurationUs, playbackSpeed, rebuffering);
         return isInitialPlaybackBufferFilled || isInternalStartingPlayback;
     }
 }

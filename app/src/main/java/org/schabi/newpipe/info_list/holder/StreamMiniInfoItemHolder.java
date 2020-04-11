@@ -1,10 +1,11 @@
 package org.schabi.newpipe.info_list.holder;
 
-import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
@@ -21,14 +22,14 @@ import org.schabi.newpipe.views.AnimatedProgressBar;
 import java.util.concurrent.TimeUnit;
 
 public class StreamMiniInfoItemHolder extends InfoItemHolder {
-
     public final ImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
     public final TextView itemUploaderView;
     public final TextView itemDurationView;
-    public final AnimatedProgressBar itemProgressView;
+    private final AnimatedProgressBar itemProgressView;
 
-    StreamMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
+    StreamMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
+                             final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
@@ -38,13 +39,16 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
-    public StreamMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
+    public StreamMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         this(infoItemBuilder, R.layout.list_stream_mini_item, parent);
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
-        if (!(infoItem instanceof StreamInfoItem)) return;
+    public void updateFromItem(final InfoItem infoItem,
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(infoItem instanceof StreamInfoItem)) {
+            return;
+        }
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
         itemVideoTitleView.setText(item.getName());
@@ -56,11 +60,13 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            StreamStateEntity state2 = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
+            StreamStateEntity state2 = historyRecordManager.loadStreamState(infoItem)
+                    .blockingGet()[0];
             if (state2 != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.getDuration());
-                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state2.getProgressTime()));
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
+                        .toSeconds(state2.getProgressTime()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
             }
@@ -103,16 +109,20 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateState(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+    public void updateState(final InfoItem infoItem,
+                            final HistoryRecordManager historyRecordManager) {
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
         StreamStateEntity state = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
-        if (state != null && item.getDuration() > 0 && item.getStreamType() != StreamType.LIVE_STREAM) {
+        if (state != null && item.getDuration() > 0
+                && item.getStreamType() != StreamType.LIVE_STREAM) {
             itemProgressView.setMax((int) item.getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
-                itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+                itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS
+                        .toSeconds(state.getProgressTime()));
             } else {
-                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
+                        .toSeconds(state.getProgressTime()));
                 AnimationUtils.animateView(itemProgressView, true, 500);
             }
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {

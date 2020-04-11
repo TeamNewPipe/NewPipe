@@ -11,9 +11,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class MediaSourceTag implements Serializable {
-    @NonNull private final StreamInfo metadata;
+    @NonNull
+    private final StreamInfo metadata;
 
-    @NonNull private final List<VideoStream> sortedAvailableVideoStreams;
+    @NonNull
+    private final List<VideoStream> sortedAvailableVideoStreams;
     private final int selectedVideoStreamIndex;
 
     public MediaSourceTag(@NonNull final StreamInfo metadata,
@@ -44,8 +46,8 @@ public class MediaSourceTag implements Serializable {
 
     @Nullable
     public VideoStream getSelectedVideoStream() {
-        return selectedVideoStreamIndex < 0 ||
-                selectedVideoStreamIndex >= sortedAvailableVideoStreams.size() ? null :
-                sortedAvailableVideoStreams.get(selectedVideoStreamIndex);
+        return selectedVideoStreamIndex < 0
+                || selectedVideoStreamIndex >= sortedAvailableVideoStreams.size()
+                ? null : sortedAvailableVideoStreams.get(selectedVideoStreamIndex);
     }
 }

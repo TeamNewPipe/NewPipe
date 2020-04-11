@@ -3,11 +3,12 @@ package org.schabi.newpipe.settings;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
-import android.view.View;
 
 import org.schabi.newpipe.MainActivity;
 
@@ -15,16 +16,16 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
     protected final boolean DEBUG = MainActivity.DEBUG;
 
-    protected SharedPreferences defaultPreferences;
+    SharedPreferences defaultPreferences;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setDivider(null);
         updateTitle();
@@ -39,7 +40,9 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     private void updateTitle() {
         if (getActivity() instanceof AppCompatActivity) {
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null) actionBar.setTitle(getPreferenceScreen().getTitle());
+            if (actionBar != null) {
+                actionBar.setTitle(getPreferenceScreen().getTitle());
+            }
         }
     }
 }

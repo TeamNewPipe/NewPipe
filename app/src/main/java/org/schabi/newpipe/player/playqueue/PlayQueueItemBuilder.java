@@ -12,25 +12,20 @@ import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 public class PlayQueueItemBuilder {
-
     private static final String TAG = PlayQueueItemBuilder.class.toString();
-
-    public interface OnSelectedListener {
-        void selected(PlayQueueItem item, View view);
-        void held(PlayQueueItem item, View view);
-        void onStartDrag(PlayQueueItemHolder viewHolder);
-    }
-
     private OnSelectedListener onItemClickListener;
 
-    public PlayQueueItemBuilder(final Context context) {}
+    public PlayQueueItemBuilder(final Context context) {
+    }
 
-    public void setOnSelectedListener(OnSelectedListener listener) {
+    public void setOnSelectedListener(final OnSelectedListener listener) {
         this.onItemClickListener = listener;
     }
 
     public void buildStreamInfoItem(final PlayQueueItemHolder holder, final PlayQueueItem item) {
-        if (!TextUtils.isEmpty(item.getTitle())) holder.itemVideoTitleView.setText(item.getTitle());
+        if (!TextUtils.isEmpty(item.getTitle())) {
+            holder.itemVideoTitleView.setText(item.getTitle());
+        }
         holder.itemAdditionalDetailsView.setText(Localization.concatenateStrings(item.getUploader(),
                 NewPipe.getNameOfService(item.getServiceId())));
 
@@ -70,5 +65,13 @@ public class PlayQueueItemBuilder {
             }
             return false;
         };
+    }
+
+    public interface OnSelectedListener {
+        void selected(PlayQueueItem item, View view);
+
+        void held(PlayQueueItem item, View view);
+
+        void onStartDrag(PlayQueueItemHolder viewHolder);
     }
 }

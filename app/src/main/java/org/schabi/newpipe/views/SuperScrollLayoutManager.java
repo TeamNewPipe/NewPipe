@@ -34,12 +34,12 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
 
     private final ArrayList<View> focusables = new ArrayList<>();
 
-    public SuperScrollLayoutManager(Context context) {
+    public SuperScrollLayoutManager(final Context context) {
         super(context);
     }
 
     @Override
-    public boolean requestChildRectangleOnScreen(@NonNull RecyclerView parent, @NonNull View child, @NonNull Rect rect, boolean immediate, boolean focusedChildVisible) {
+    public boolean requestChildRectangleOnScreen(@NonNull final RecyclerView parent, @NonNull final View child, @NonNull final Rect rect, final boolean immediate, final boolean focusedChildVisible) {
         if (!parent.isInTouchMode()) {
             // only activate when in directional navigation mode (Android TV etc) — fine grained
             // touch scrolling is better served by nested scroll system
@@ -58,7 +58,7 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
 
     @Nullable
     @Override
-    public View onInterceptFocusSearch(@NonNull View focused, int direction) {
+    public View onInterceptFocusSearch(@NonNull final View focused, final int direction) {
         View focusedItem = findContainingItemView(focused);
         if (focusedItem == null) {
             return super.onInterceptFocusSearch(focused, direction);
@@ -121,7 +121,7 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
         return preferred;
     }
 
-    private int getAbsoluteDirection(int direction) {
+    private int getAbsoluteDirection(final int direction) {
         switch (direction) {
             default:
                 break;
@@ -154,7 +154,7 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
         return 0;
     }
 
-    private int getDistance(int sourcePosition, View candidate, int direction) {
+    private int getDistance(final int sourcePosition, final View candidate, final int direction) {
         View itemView = findContainingItemView(candidate);
         if (itemView == null) {
             return -1;

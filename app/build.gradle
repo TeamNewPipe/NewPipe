@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 28
@@ -12,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 910
-        versionName "0.19.1"
+        versionCode 920
+        versionName "0.19.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -82,10 +83,52 @@ ext {
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
     markwonVersion = '4.2.1'
+    checkstyleVersion = '8.31'
 }
+
+checkstyle {
+    configFile rootProject.file('checkstyle.xml')
+    ignoreFailures false
+    showViolations true
+    toolVersion = "${checkstyleVersion}"
+}
+
+task runCheckstyle(type: Checkstyle) {
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+    exclude 'main/java/us/shandian/giga/**'
+
+    // empty classpath
+    classpath = files()
+
+    showViolations true
+
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+tasks.withType(Checkstyle).each {
+    checkstyleTask -> checkstyleTask.doLast {
+        reports.all { report ->
+            def outputFile = report.destination
+            if (outputFile.exists() && outputFile.text.contains("severity=\"error\"")) {
+                throw new GradleException("There were checkstyle errors! For more info check $outputFile")
+            }
+        }
+    }
+}
+
+preBuild.dependsOn runCheckstyle
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation "android.arch.persistence.room:testing:1.1.1"

@@ -38,19 +38,19 @@ public class NewPipeRecyclerView extends RecyclerView {
 
     private boolean allowDpadScroll = true;
 
-    public NewPipeRecyclerView(@NonNull Context context) {
+    public NewPipeRecyclerView(@NonNull final Context context) {
         super(context);
 
         init();
     }
 
-    public NewPipeRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public NewPipeRecyclerView(@NonNull final Context context, @Nullable final AttributeSet attrs) {
         super(context, attrs);
 
         init();
     }
 
-    public NewPipeRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public NewPipeRecyclerView(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
 
         init();
@@ -62,12 +62,12 @@ public class NewPipeRecyclerView extends RecyclerView {
         setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
     }
 
-    public void setFocusScrollAllowed(boolean allowDpadScroll) {
-        this.allowDpadScroll = allowDpadScroll;
+    public void setFocusScrollAllowed(final boolean allowed) {
+        this.allowDpadScroll = allowed;
     }
 
     @Override
-    public View focusSearch(View focused, int direction) {
+    public View focusSearch(final View focused, final int direction) {
         // RecyclerView has buggy focusSearch(), that calls into Adapter several times,
         // but ultimately fails to produce correct results in many cases. To add insult to injury,
         // it's focusSearch() hard-codes several behaviors, incompatible with widely accepted focus
@@ -78,7 +78,7 @@ public class NewPipeRecyclerView extends RecyclerView {
     }
 
     @Override
-    protected void removeDetachedView(View child, boolean animate) {
+    protected void removeDetachedView(final View child, final boolean animate) {
         if (child.hasFocus()) {
             // If the focused child is being removed (can happen during very fast scrolling),
             // temporarily give focus to ourselves. This will usually result in another child
@@ -95,7 +95,7 @@ public class NewPipeRecyclerView extends RecyclerView {
     // happens when loading additional contents is in progress
 
     @Override
-    public boolean dispatchUnhandledMove(View focused, int direction) {
+    public boolean dispatchUnhandledMove(final View focused, final int direction) {
         tempFocus.setEmpty();
 
         // save focus rect before further manipulation (both focusSearch() and scrollBy()
@@ -138,7 +138,7 @@ public class NewPipeRecyclerView extends RecyclerView {
         return super.dispatchUnhandledMove(focused, direction);
     }
 
-    private boolean tryFocusFinder(int direction) {
+    private boolean tryFocusFinder(final int direction) {
         if (Build.VERSION.SDK_INT >= 28) {
             // Android 9 implemented bunch of handy changes to focus, that render code below less useful, and
             // also broke findNextFocusFromRect in way, that render this hack useless
@@ -180,7 +180,7 @@ public class NewPipeRecyclerView extends RecyclerView {
         return false;
     }
 
-    private boolean arrowScroll(int direction) {
+    private boolean arrowScroll(final int direction) {
         switch (direction) {
             case FOCUS_DOWN:
                 if (!canScrollVertically(1)) {
@@ -213,7 +213,7 @@ public class NewPipeRecyclerView extends RecyclerView {
         return true;
     }
 
-    private boolean isOutside(View view) {
+    private boolean isOutside(final View view) {
         return findContainingItemView(view) == null;
     }
 }

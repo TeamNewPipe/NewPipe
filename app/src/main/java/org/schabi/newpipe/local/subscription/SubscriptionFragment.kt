@@ -59,9 +59,15 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var feedGroupsSortMenuItem: HeaderWithMenuItem
     private val subscriptionsSection = Section()
 
-    @State @JvmField var itemsListState: Parcelable? = null
-    @State @JvmField var feedGroupsListState: Parcelable? = null
-    @State @JvmField var importExportItemExpandedState: Boolean? = null
+    @State
+    @JvmField
+    var itemsListState: Parcelable? = null
+    @State
+    @JvmField
+    var feedGroupsListState: Parcelable? = null
+    @State
+    @JvmField
+    var importExportItemExpandedState: Boolean? = null
 
     init {
         setHasOptionsMenu(true)

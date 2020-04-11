@@ -37,27 +37,27 @@ public final class FocusAwareSeekBar extends AppCompatSeekBar {
 
     private ViewTreeObserver treeObserver;
 
-    public FocusAwareSeekBar(Context context) {
+    public FocusAwareSeekBar(final Context context) {
         super(context);
     }
 
-    public FocusAwareSeekBar(Context context, AttributeSet attrs) {
+    public FocusAwareSeekBar(final Context context, final AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public FocusAwareSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FocusAwareSeekBar(final Context context, final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    public void setOnSeekBarChangeListener(OnSeekBarChangeListener l) {
+    public void setOnSeekBarChangeListener(final OnSeekBarChangeListener l) {
         this.listener = l == null ? null : new NestedListener(l);
 
         super.setOnSeekBarChangeListener(listener);
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(final int keyCode, final KeyEvent event) {
         if (!isInTouchMode() && AndroidTvUtils.isConfirmKey(keyCode)) {
             releaseTrack();
         }
@@ -66,7 +66,7 @@ public final class FocusAwareSeekBar extends AppCompatSeekBar {
     }
 
     @Override
-    protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect) {
+    protected void onFocusChanged(final boolean gainFocus, final int direction, final Rect previouslyFocusedRect) {
         super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
 
         if (!isInTouchMode() && !gainFocus) {
@@ -74,7 +74,11 @@ public final class FocusAwareSeekBar extends AppCompatSeekBar {
         }
     }
 
-    private final ViewTreeObserver.OnTouchModeChangeListener touchModeListener = isInTouchMode -> { if (isInTouchMode) releaseTrack(); };
+    private final ViewTreeObserver.OnTouchModeChangeListener touchModeListener = isInTouchMode -> {
+        if (isInTouchMode) {
+            releaseTrack();
+        }
+    };
 
     @Override
     protected void onAttachedToWindow() {
@@ -107,12 +111,12 @@ public final class FocusAwareSeekBar extends AppCompatSeekBar {
 
         boolean isSeeking;
 
-        private NestedListener(OnSeekBarChangeListener delegate) {
+        private NestedListener(final OnSeekBarChangeListener delegate) {
             this.delegate = delegate;
         }
 
         @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
             if (!seekBar.isInTouchMode() && !isSeeking && fromUser) {
                 isSeeking = true;
 
@@ -123,14 +127,14 @@ public final class FocusAwareSeekBar extends AppCompatSeekBar {
         }
 
         @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
+        public void onStartTrackingTouch(final SeekBar seekBar) {
             isSeeking = true;
 
             delegate.onStartTrackingTouch(seekBar);
         }
 
         @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
+        public void onStopTrackingTouch(final SeekBar seekBar) {
             isSeeking = false;
 
             delegate.onStopTrackingTouch(seekBar);

@@ -1,7 +1,7 @@
 package org.schabi.newpipe.player.playqueue;
 
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleCallback {
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 10;
@@ -11,14 +11,14 @@ public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleC
         super(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.RIGHT);
     }
 
-    public abstract void onMove(final int sourceIndex, final int targetIndex);
+    public abstract void onMove(int sourceIndex, int targetIndex);
 
     public abstract void onSwiped(int index);
 
     @Override
-    public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
-                                            int viewSizeOutOfBounds, int totalSize,
-                                            long msSinceStartScroll) {
+    public int interpolateOutOfBoundsScroll(final RecyclerView recyclerView, final int viewSize,
+                                            final int viewSizeOutOfBounds, final int totalSize,
+                                            final long msSinceStartScroll) {
         final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
                 viewSizeOutOfBounds, totalSize, msSinceStartScroll);
         final int clampedAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
@@ -27,8 +27,8 @@ public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleC
     }
 
     @Override
-    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
-                          RecyclerView.ViewHolder target) {
+    public boolean onMove(final RecyclerView recyclerView, final RecyclerView.ViewHolder source,
+                          final RecyclerView.ViewHolder target) {
         if (source.getItemViewType() != target.getItemViewType()) {
             return false;
         }
@@ -50,7 +50,7 @@ public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleC
     }
 
     @Override
-    public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+    public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
         onSwiped(viewHolder.getAdapterPosition());
     }
 }

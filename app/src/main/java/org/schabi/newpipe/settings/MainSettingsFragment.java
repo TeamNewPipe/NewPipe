@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings;
 
 import android.os.Bundle;
+
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.BuildConfig;
@@ -11,7 +12,7 @@ public class MainSettingsFragment extends BasePreferenceFragment {
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResource(R.xml.main_settings);
 
         if (!CheckForNewAppVersionTask.isGithubApk()) {

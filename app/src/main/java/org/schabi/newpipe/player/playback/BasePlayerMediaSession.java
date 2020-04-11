@@ -27,25 +27,31 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
     }
 
     @Override
-    public void onSkipToIndex(int index) {
-        if (player.getPlayQueue() == null) return;
+    public void onSkipToIndex(final int index) {
+        if (player.getPlayQueue() == null) {
+            return;
+        }
         player.onSelected(player.getPlayQueue().getItem(index));
     }
 
     @Override
     public int getCurrentPlayingIndex() {
-        if (player.getPlayQueue() == null) return -1;
+        if (player.getPlayQueue() == null) {
+            return -1;
+        }
         return player.getPlayQueue().getIndex();
     }
 
     @Override
     public int getQueueSize() {
-        if (player.getPlayQueue() == null) return -1;
+        if (player.getPlayQueue() == null) {
+            return -1;
+        }
         return player.getPlayQueue().size();
     }
 
     @Override
-    public MediaDescriptionCompat getQueueMetadata(int index) {
+    public MediaDescriptionCompat getQueueMetadata(final int index) {
         if (player.getPlayQueue() == null || player.getPlayQueue().getItem(index) == null) {
             return null;
         }
@@ -60,13 +66,17 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
         Bundle additionalMetadata = new Bundle();
         additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, item.getTitle());
         additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, item.getUploader());
-        additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, item.getDuration() * 1000);
+        additionalMetadata
+                .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, item.getDuration() * 1000);
         additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, index + 1);
-        additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, player.getPlayQueue().size());
+        additionalMetadata
+                .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, player.getPlayQueue().size());
         descriptionBuilder.setExtras(additionalMetadata);
 
         final Uri thumbnailUri = Uri.parse(item.getThumbnailUrl());
-        if (thumbnailUri != null) descriptionBuilder.setIconUri(thumbnailUri);
+        if (thumbnailUri != null) {
+            descriptionBuilder.setIconUri(thumbnailUri);
+        }
 
         return descriptionBuilder.build();
     }

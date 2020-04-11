@@ -59,21 +59,21 @@ public final class FocusOverlayView extends Drawable implements
 
     private final Handler animator = new Handler(Looper.getMainLooper()) {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(final Message msg) {
             updateRect();
         }
     };
 
     private WeakReference<View> focused;
 
-    public FocusOverlayView(Context context) {
+    public FocusOverlayView(final Context context) {
         rectPaint.setStyle(Paint.Style.STROKE);
         rectPaint.setStrokeWidth(2);
         rectPaint.setColor(context.getResources().getColor(R.color.white));
     }
 
     @Override
-    public void onGlobalFocusChanged(View oldFocus, View newFocus) {
+    public void onGlobalFocusChanged(final View oldFocus, final View newFocus) {
         int l = focusRect.left;
         int r = focusRect.right;
         int t = focusRect.top;
@@ -89,7 +89,8 @@ public final class FocusOverlayView extends Drawable implements
             focused = null;
         }
 
-        if (l != focusRect.left || r != focusRect.right || t != focusRect.top || b != focusRect.bottom) {
+        if (l != focusRect.left || r != focusRect.right
+                || t != focusRect.top || b != focusRect.bottom) {
             invalidateSelf();
         }
 
@@ -103,20 +104,21 @@ public final class FocusOverlayView extends Drawable implements
             return;
         }
 
-        View focused = this.focused.get();
+        View focusedView = this.focused.get();
 
         int l = focusRect.left;
         int r = focusRect.right;
         int t = focusRect.top;
         int b = focusRect.bottom;
 
-        if (focused != null) {
-            focused.getGlobalVisibleRect(focusRect);
+        if (focusedView != null) {
+            focusedView.getGlobalVisibleRect(focusRect);
         } else {
             focusRect.setEmpty();
         }
 
-        if (l != focusRect.left || r != focusRect.right || t != focusRect.top || b != focusRect.bottom) {
+        if (l != focusRect.left || r != focusRect.right
+                || t != focusRect.top || b != focusRect.bottom) {
             invalidateSelf();
         }
     }
@@ -142,28 +144,28 @@ public final class FocusOverlayView extends Drawable implements
     }
 
     @Override
-    public void onTouchModeChanged(boolean isInTouchMode) {
-        this.isInTouchMode = isInTouchMode;
+    public void onTouchModeChanged(final boolean inTouchMode) {
+        this.isInTouchMode = inTouchMode;
 
-        if (isInTouchMode) {
+        if (inTouchMode) {
             updateRect();
         } else {
             invalidateSelf();
         }
     }
 
-    public void setCurrentFocus(View focused) {
-        if (focused == null) {
+    public void setCurrentFocus(final View newFocus) {
+        if (newFocus == null) {
             return;
         }
 
-        this.isInTouchMode = focused.isInTouchMode();
+        this.isInTouchMode = newFocus.isInTouchMode();
 
-        onGlobalFocusChanged(null, focused);
+        onGlobalFocusChanged(null, newFocus);
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas) {
+    public void draw(@NonNull final Canvas canvas) {
         if (!isInTouchMode && focusRect.width() != 0) {
             canvas.drawRect(focusRect, rectPaint);
         }
@@ -175,14 +177,14 @@ public final class FocusOverlayView extends Drawable implements
     }
 
     @Override
-    public void setAlpha(int alpha) {
+    public void setAlpha(final int alpha) {
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(final ColorFilter colorFilter) {
     }
 
-    public static void setupFocusObserver(Dialog dialog) {
+    public static void setupFocusObserver(final Dialog dialog) {
         Rect displayRect = new Rect();
 
         Window window = dialog.getWindow();
@@ -197,7 +199,7 @@ public final class FocusOverlayView extends Drawable implements
         setupOverlay(window, overlay);
     }
 
-    public static void setupFocusObserver(Activity activity) {
+    public static void setupFocusObserver(final Activity activity) {
         Rect displayRect = new Rect();
 
         Window window = activity.getWindow();
@@ -210,7 +212,7 @@ public final class FocusOverlayView extends Drawable implements
         setupOverlay(window, overlay);
     }
 
-    private static void setupOverlay(Window window, FocusOverlayView overlay) {
+    private static void setupOverlay(final Window window, final FocusOverlayView overlay) {
         ViewGroup decor = (ViewGroup) window.getDecorView();
         decor.getOverlay().add(overlay);
 
@@ -232,7 +234,7 @@ public final class FocusOverlayView extends Drawable implements
         // receiving keys from Window.
         window.setCallback(new WindowCallbackWrapper(window.getCallback()) {
             @Override
-            public boolean dispatchKeyEvent(KeyEvent event) {
+            public boolean dispatchKeyEvent(final KeyEvent event) {
                 boolean res = super.dispatchKeyEvent(event);
                 overlay.onKey(event);
                 return res;
@@ -240,7 +242,7 @@ public final class FocusOverlayView extends Drawable implements
         });
     }
 
-    private void onKey(KeyEvent event) {
+    private void onKey(final KeyEvent event) {
         if (event.getAction() != KeyEvent.ACTION_DOWN) {
             return;
         }
@@ -250,11 +252,12 @@ public final class FocusOverlayView extends Drawable implements
         animator.sendEmptyMessageDelayed(0, 100);
     }
 
-    private static void fixFocusHierarchy(View decor) {
-        // During Android 8 development some dumb ass decided, that action bar has to be a keyboard focus cluster.
-        // Unfortunately, keyboard clusters do not work for primary auditory of key navigation — Android TV users
-        // (Android TV remotes do not have keyboard META key for moving between clusters). We have to fix this
-        // unfortunate accident. While we are at it, let's deal with touchscreenBlocksFocus too.
+    private static void fixFocusHierarchy(final View decor) {
+        // During Android 8 development some dumb ass decided, that action bar has to be
+        // a keyboard focus cluster. Unfortunately, keyboard clusters do not work for primary
+        // auditory of key navigation — Android TV users (Android TV remotes do not have
+        // keyboard META key for moving between clusters). We have to fix this unfortunate accident
+        // While we are at it, let's deal with touchscreenBlocksFocus too.
 
         if (Build.VERSION.SDK_INT < 26) {
             return;
@@ -268,7 +271,7 @@ public final class FocusOverlayView extends Drawable implements
     }
 
     @RequiresApi(api = 26)
-    private static void clearFocusObstacles(ViewGroup viewGroup) {
+    private static void clearFocusObstacles(final ViewGroup viewGroup) {
         viewGroup.setTouchscreenBlocksFocus(false);
 
         if (viewGroup.isKeyboardNavigationCluster()) {
