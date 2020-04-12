@@ -58,7 +58,7 @@
     <string name="youtube_signature_decryption_error">Video URL imzasının şifresi çözülemedi</string>
     <string name="parsing_error">Web sitesi ayrıştırılamadı</string>
     <string name="light_parsing_error">Web sitesi tamamen ayrıştırılamadı</string>
-    <string name="content_not_available">İçerik mevcut değil</string>
+    <string name="content_not_available">İçerik kullanılamıyor</string>
     <string name="live_streams_not_supported">Canlı akışlar henüz desteklenmiyor</string>
     <string name="could_not_get_stream">Herhangi bir akış alınamadı</string>
     <string name="could_not_load_image">Görüntü yüklenemedi</string>
@@ -208,7 +208,7 @@
     <string name="item_deleted">Öge silindi</string>
     <string name="delete_item_search_history">Bu ögeyi arama geçmişinden silmek istiyor musunuz\?</string>
     <string name="show_hold_to_append_title">\"Eklemek için basılı tutun\" ipucunu göster</string>
-    <string name="show_hold_to_append_summary">Video \"Ayrıntılar:\" sayfasında arka plan veya açılır pencere butonuna basıldığında ipucu göster</string>
+    <string name="show_hold_to_append_summary">Video \"Ayrıntılar:\" sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu göster</string>
     <string name="background_player_append">Arka plan oynatıcısı kuyruğuna eklendi</string>
     <string name="popup_playing_append">Açılır pencere oynatıcısı kuyruğuna eklendi</string>
     <string name="play_all">Tümünü Oynat</string>
@@ -410,9 +410,9 @@
     <string name="app_update_notification_channel_description">Yeni NewPipe sürümü için bildirimler</string>
     <string name="download_to_sdcard_error_title">Harici depolama kullanılamıyor</string>
     <string name="download_to_sdcard_error_message">Harici SD karta indirmek mümkün değil. İndirme dizini konumu sıfırlansın mı\?</string>
-    <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle varsayılanlar kullanılıyor</string>
+    <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle öntanımlılar kullanılıyor</string>
     <string name="restore_defaults">Öntanımlıları geri yükle</string>
-    <string name="restore_defaults_confirmation">Varsayılanları geri yüklemek istiyor musunuz\?</string>
+    <string name="restore_defaults_confirmation">Öntanımlıları geri yüklemek istiyor musunuz\?</string>
     <string name="subscribers_count_not_available">Abone sayısı mevcut değil</string>
     <string name="main_page_content_summary">Ana sayfada hangi sekmeler gösterilir</string>
     <string name="selection">Seçim</string>
@@ -539,7 +539,7 @@
     <string name="permission_display_over_apps">Diğer uygulamaların üzerinde görüntüleme izni ver</string>
     <string name="app_language_title">Uygulama dili</string>
     <string name="systems_language">Sistem öntanımlısı</string>
-    <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" butonuna basın</string>
+    <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" düğmesine basın</string>
     <string name="recaptcha_done_button">Bitti</string>
     <string name="videos_string">Videolar</string>
     <plurals name="seconds">
@@ -596,4 +596,15 @@
 \nYouTube, RSS beslemesiyle bu hızlı yöntemi sunan servislerden biridir.
 \n
 \nSeçim, sizin neyi yeğlediğinize kalmış: hız veya kusursuz bilgi.</string>
+    <string name="content_not_supported">Bu içerik henüz NewPipe tarafından desteklenmiyor.
+\n
+\nUmarım gelecekteki bir sürümde desteklenir.</string>
+    <string name="infinite_videos">∞ video</string>
+    <string name="more_than_100_videos">100+ video</string>
+    <string name="artists">Sanatçılar</string>
+    <string name="albums">Albümler</string>
+    <string name="songs">Şarkılar</string>
+    <string name="restricted_video">Bu video yaş kısıtlamalı.
+\n
+\nGörüntülemek istiyorsanız, ayarlarda \"Yaş kısıtlamalı içerik\" seçeneğini etkinleştirin.</string>
 </resources>
