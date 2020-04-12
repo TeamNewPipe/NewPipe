@@ -573,4 +573,18 @@
     <string name="feed_group_dialog_empty_selection">Ingen abonnement valgt</string>
     <string name="feed_group_dialog_select_subscriptions">Velg abonnementer</string>
     <string name="feed_groups_header_title">Kanalgrupper</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Skru av raskt modus</string>
+    <string name="feed_update_threshold_title">Strømoppdateringsterskel</string>
+    <string name="settings_category_feed_title">Strøm</string>
+    <string name="feed_processing_message">Behandler strøm…</string>
+    <string name="feed_notification_loading">Laster inn strøm…</string>
+    <string name="feed_oldest_subscription_update">Strøm sist oppdatert: %s</string>
+    <string name="restricted_video">Denne videoen er aldersbegrenset.
+\n
+\nHvis du ønsker å se den, skru på \"Aldersbegrenset innhold\" i innstillingene.</string>
+    <string name="infinite_videos">∞ videoer</string>
+    <string name="more_than_100_videos">100+ videoer</string>
+    <string name="artists">Artister</string>
+    <string name="albums">Album</string>
+    <string name="songs">Sanger</string>
 </resources>
