@@ -610,4 +610,15 @@ otevření ve vyskakovacím okně</string>
 \nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu. 
 \n 
 \nVýběr je vposledku určen tím, čemu dáte přednost: rychlosti nebo přesnosti informací.</string>
+    <string name="content_not_supported">Tento obsah ještě není podporován NewPipe.
+\n
+\nSnad bude podporován v budoucnu.</string>
+    <string name="infinite_videos">∞ videí</string>
+    <string name="more_than_100_videos">100+ videí</string>
+    <string name="artists">Umělci</string>
+    <string name="albums">Alba</string>
+    <string name="songs">Písně</string>
+    <string name="restricted_video">Toto je video s věkovým omezením.
+\n
+\nPokud ho chcete vidět, povolte \"Věkově omezený obsah\" v \"Nastavení\".</string>
 </resources>
