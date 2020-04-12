@@ -131,8 +131,8 @@
     <string name="disabled">Отключено</string>
     <string name="popup_resizing_indicator_title">Изменение размера</string>
     <string name="use_external_video_player_summary">Убирает звук в некоторых разрешениях</string>
-    <string name="short_million">" млн"</string>
-    <string name="short_billion">" млрд"</string>
+    <string name="short_million">млн</string>
+    <string name="short_billion">млрд</string>
     <string name="short_thousand">" тыс."</string>
     <string name="default_popup_resolution_title">Разрешение очереди всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
@@ -607,4 +607,15 @@
     <string name="feed_use_dedicated_fetch_method_title">Обновление из RSS, если доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, но может возвращать не всё содержимое канала и не содержать часть сведений (длительность, тип, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
+    <string name="restricted_video">Это видео с ограничением по возрасту.
+\n
+\nДля его просмотра включите \"Контент 18+\" в настройках.</string>
+    <string name="content_not_supported">Этот контент не поддерживается NewPipe.
+\n
+\nВозможно, поддержка появится в следующих версиях.</string>
+    <string name="infinite_videos">∞ видео</string>
+    <string name="more_than_100_videos">100+ видео</string>
+    <string name="songs">Треки</string>
+    <string name="artists">Исполнители</string>
+    <string name="albums">Альбомы</string>
 </resources>
