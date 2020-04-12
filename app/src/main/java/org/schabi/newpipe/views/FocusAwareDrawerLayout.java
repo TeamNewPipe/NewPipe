@@ -21,13 +21,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.util.ArrayList;
@@ -111,28 +108,6 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
     public void openDrawer(@NonNull final View drawerView, final boolean animate) {
         super.openDrawer(drawerView, animate);
 
-        LayoutParams params = (LayoutParams) drawerView.getLayoutParams();
-
-        int gravity = GravityCompat.getAbsoluteGravity(
-                params.gravity, ViewCompat.getLayoutDirection(this));
-
-        int direction = 0;
-
-        switch (gravity) {
-            case Gravity.LEFT:
-                direction = FOCUS_LEFT;
-                break;
-            case Gravity.RIGHT:
-                direction = FOCUS_RIGHT;
-                break;
-            case Gravity.TOP:
-                direction = FOCUS_UP;
-                break;
-            case Gravity.BOTTOM:
-                direction = FOCUS_DOWN;
-                break;
-        }
-
-        drawerView.requestFocus(direction);
+        drawerView.requestFocus(FOCUS_FORWARD);
     }
 }
