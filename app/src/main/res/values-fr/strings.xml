@@ -564,7 +564,7 @@
     <!-- feed -->
     <string name="fragment_feed_title">Nouveautés</string>
     <string name="feed_groups_header_title">Groupes d\'abonnements</string>
-    <string name="feed_oldest_subscription_update">Dernière mise à jour : %s</string>
+    <string name="feed_oldest_subscription_update">Dernier flux mis à jour : %s</string>
     <string name="feed_subscription_not_loaded_count">Pas chargés : %d</string>
     <string name="feed_notification_loading">Chargement du flux…</string>
     <string name="feed_processing_message">Préparation du flux…</string>

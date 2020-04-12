@@ -562,8 +562,8 @@
         <item quantity="one">%d giorno</item>
         <item quantity="other">%d giorni</item>
     </plurals>
-    <string name="feed_groups_header_title">Gruppi Feed</string>
-    <string name="feed_oldest_subscription_update">Aggiornamento iscrizioni più vecchie: %s</string>
+    <string name="feed_groups_header_title">Gruppi di canali</string>
+    <string name="feed_oldest_subscription_update">Ultimo aggiornamento iscrizioni: %s</string>
     <string name="feed_subscription_not_loaded_count">Non caricate: %d</string>
     <string name="feed_notification_loading">Caricamento feed…</string>
     <string name="feed_processing_message">Elaborazione feed…</string>
@@ -595,4 +595,5 @@
 \nYouTube è un esempio di servizio che offre questo metodo veloce tramite i suoi feed RSS.
 \n
 \nLa scelta va fatta in base alle proprie preferenze: velocità o informazioni precise.</string>
+    <string name="feed_group_dialog_empty_name">Nome di gruppo vuoto</string>
 </resources>

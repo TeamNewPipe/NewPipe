@@ -582,7 +582,7 @@
     <string name="feed_update_threshold_summary">Zeit nach der letzten Aktualisierung, bevor ein Abonnement als veraltet angesehen wird — %s</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Schnellmodus aktivieren</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Schnellmodus deaktivieren</string>
-    <string name="feed_oldest_subscription_update">Älteste Aboaktualisierung: %s</string>
+    <string name="feed_oldest_subscription_update">Letzte Feed-Aktualisierung: %s</string>
     <string name="feed_update_threshold_title">Grenzwert für Feed-Aktualisierung</string>
     <string name="feed_use_dedicated_fetch_method_title">Aus fest zugeordnetem Feed abholen wenn verfügbar</string>
     <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft inkomplette Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status).</string>

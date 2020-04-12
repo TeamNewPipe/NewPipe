@@ -547,4 +547,54 @@
         <item quantity="other">%d segundu</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer-en mugak direla eta bilaketaren iraupena %d segundotan ezarri da</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Jarioaren karga motelegia dela uste duzu\? Hala bada, saiatu karga azkarra gaitzen (ezarpenetan edo beheko botoia sakatzen aldatu dezakezu).
+\n
+\nNewPipe jarioak kargatzeko bi estrategia eskaintzen ditu:
+\n• Harpidetza kanal osoa eskuratu, motela baina osoa.
+\n• Amaiera-puntu dedikatua erabiliz, arina baina ez osatua.
+\n
+\nBien arteko diferentzia arinak normalean informazioa falta dela da, elementuaren iraupena edo mota adibidez (ezin du bideo normalen eta zuzenekoen artean bereizi) eta elementu gutxiago buelta ditzake.
+\n
+\nYouTube da bere RSS jarioaren bidez metodo azkarra eskaintzen duen zerbitzu bat adibidez.
+\n
+\nBeraz aukerak zure nahietara murrizten dira: abiadura edo informazio zehatza.</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Desgaitu modu azkarra</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Gaitu modu azkarra</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Zenbait zerbitzuetan eskuragarri, normalean askoz azkarragoa da, baina elementu kopuru mugatua eta osatu gabeko informazioa itzuli dezake (adib. iraupenik ez, elementu mota, zuzeneko egoera).</string>
+    <string name="feed_use_dedicated_fetch_method_title">Eskuratu jario dedikatutik eskuragarri dagoenean</string>
+    <string name="feed_update_threshold_option_always_update">Eguneratu beti</string>
+    <string name="feed_update_threshold_summary">Pasatzen den denbora harpidetza bat zaharkituta dagoela kontuan hartzen den arte — %s</string>
+    <string name="feed_update_threshold_title">Jarioaren eguneratze atalasea</string>
+    <string name="settings_category_feed_title">Jarioa</string>
+    <string name="feed_create_new_group_button_title">Berria</string>
+    <string name="feed_group_dialog_delete_message">Talde hau ezabatu nahi duzu\?</string>
+    <string name="feed_group_dialog_name_input">Izena</string>
+    <string name="feed_group_dialog_empty_name">Talde izena hutsik</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d hautatuta</item>
+        <item quantity="other">%d hautatuta</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Ez da harpidetzarik aukeratu</string>
+    <string name="feed_group_dialog_select_subscriptions">Hautatu harpidetzak</string>
+    <string name="feed_processing_message">Jarioa prozesatzen…</string>
+    <string name="feed_notification_loading">Jarioa kargatzen…</string>
+    <string name="feed_subscription_not_loaded_count">Kargatu gabe: %d</string>
+    <string name="feed_oldest_subscription_update">Jarioa azkenik eguneratuta: %s</string>
+    <string name="feed_groups_header_title">Kanal taldeak</string>
+    <plurals name="days">
+        <item quantity="one">egun %d</item>
+        <item quantity="other">%d egun</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">ordu %d</item>
+        <item quantity="other">%d ordu</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">minutu %d</item>
+        <item quantity="other">%d minutu</item>
+    </plurals>
+    <string name="unmute">Aktibatu audioa</string>
+    <string name="mute">Isilarazi</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="help">Laguntza</string>
 </resources>

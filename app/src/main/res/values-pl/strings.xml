@@ -590,7 +590,7 @@
     <string name="feed_processing_message">Przetwarzam plik danych…</string>
     <string name="feed_notification_loading">Ładowanie kanału…</string>
     <string name="feed_subscription_not_loaded_count">Nie uruchamia się: %d</string>
-    <string name="feed_oldest_subscription_update">Najstarsza aktualizacja subskrypcji: %s</string>
+    <string name="feed_oldest_subscription_update">Ostatnia aktualizacja kanału: % s</string>
     <string name="feed_groups_header_title">Grupy kanałów</string>
     <plurals name="days">
         <item quantity="one">%d dzień</item>
