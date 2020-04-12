@@ -158,16 +158,16 @@ public final class DownloaderImpl extends Downloader {
         mCookies.remove(key);
     }
 
-    public void updateRestrictedModeCookies(final Context context) {
+    public void updateYoutubeRestrictedModeCookies(final Context context) {
         String restrictedModeEnabledKey =
-                context.getString(R.string.restricted_mode_enabled);
+                context.getString(R.string.youtube_restricted_mode_enabled);
         boolean restrictedModeEnabled = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(restrictedModeEnabledKey, false);
-        updateRestrictedModeCookies(restrictedModeEnabled);
+        updateYoutubeRestrictedModeCookies(restrictedModeEnabled);
     }
 
-    public void updateRestrictedModeCookies(final boolean restrictedModeEnabled) {
-        if (restrictedModeEnabled) {
+    public void updateYoutubeRestrictedModeCookies(final boolean youtubeRestrictedModeEnabled) {
+        if (youtubeRestrictedModeEnabled) {
             setCookie(YOUTUBE_RESTRICTED_MODE_COOKIE_KEY,
                     YOUTUBE_RESTRICTED_MODE_COOKIE);
         } else {

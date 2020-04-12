@@ -54,8 +54,8 @@
     <SwitchPreference
         app:iconSpaceReserved="false"
         android:defaultValue="false"
-        android:key="@string/restricted_mode_enabled"
-        android:title="@string/restricted_mode_enabled_title"/>
+        android:key="@string/youtube_restricted_mode_enabled"
+        android:title="@string/youtube_restricted_mode_enabled_title"/>
 
     <SwitchPreference
         app:iconSpaceReserved="false"

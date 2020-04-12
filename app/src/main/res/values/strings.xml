@@ -137,7 +137,7 @@
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
     <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
-    <string name="restricted_mode_enabled_title">Restricted mode</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube restricted mode</string>
     <string name="restricted_video">This video is age restricted.\n\nIf you want to view it, enable \"Age restricted content\" in the settings.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>

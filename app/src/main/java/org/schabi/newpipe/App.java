@@ -137,7 +137,7 @@ public class App extends Application {
                 getApplicationContext());
         final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
         downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, prefs.getString(key, ""));
-        downloader.updateRestrictedModeCookies(getApplicationContext());
+        downloader.updateYoutubeRestrictedModeCookies(getApplicationContext());
     }
 
     private void configureRxJavaErrorHandler() {
