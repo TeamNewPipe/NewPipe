@@ -596,4 +596,15 @@
 \n
 \nLa scelta va fatta in base alle proprie preferenze: velocità o informazioni precise.</string>
     <string name="feed_group_dialog_empty_name">Nome di gruppo vuoto</string>
+    <string name="content_not_supported">Questo contenuto non è ancora supportato da NewPipe.
+\n
+\nSi spera che sarà supportato in una versione futura.</string>
+    <string name="infinite_videos">Video ∞</string>
+    <string name="more_than_100_videos">Più di 100 video</string>
+    <string name="artists">Artisti</string>
+    <string name="albums">Album</string>
+    <string name="songs">Canzoni</string>
+    <string name="restricted_video">Questo video ha limiti sull\'età.
+\n
+\nSe vuoi guardarlo, attiva \"Contenuti Vietati ai Minori\" nelle impostazioni.</string>
 </resources>
