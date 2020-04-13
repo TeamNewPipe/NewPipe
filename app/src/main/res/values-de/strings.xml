@@ -225,7 +225,7 @@
     <string name="subscription_page_summary">Abonnement-Seite</string>
     <string name="feed_page_summary">Feed-Seite</string>
     <string name="channel_page_summary">Kanal-Seite</string>
-    <string name="title_activity_background_player">Hintergrund-Player</string>
+    <string name="title_activity_background_player">Wiedergabe im Hintergrund</string>
     <string name="title_activity_popup_player">Pop-up Player</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="top_50">Top 50</string>
@@ -266,7 +266,7 @@
     <string name="drawer_open">Navigationsleiste öffnen</string>
     <string name="drawer_close">Navigationsleiste schließen</string>
     <string name="video_player">Video-Player</string>
-    <string name="background_player">Hintergrund-Player</string>
+    <string name="background_player">Wiedergabe im Hintergrund</string>
     <string name="popup_player">Popup-Player</string>
     <string name="preferred_player_fetcher_notification_title">Informationen werden abgerufen…</string>
     <string name="preferred_player_fetcher_notification_message">Gewünschten Inhalt laden</string>
@@ -305,7 +305,7 @@
     <string name="dismiss">Abbrechen</string>
     <string name="controls_download_desc">Stream-Datei herunterladen</string>
     <string name="use_inexact_seek_title">Schnelle, ungenaue Suche verwenden</string>
-    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden. Die Suche nach 5, 15 oder 25 Sekunden funktioniert damit nicht.</string>
+    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden. Das Spulen um 5, 15 oder 25 Sekunden funktioniert damit nicht.</string>
     <string name="file">Datei</string>
     <string name="invalid_directory">Ordner existiert nicht</string>
     <string name="invalid_file">Die Datei existiert nicht oder die Rechte zum Lesen oder Schreiben fehlen</string>
@@ -393,8 +393,8 @@
     <string name="minimize_on_exit_title">Minimieren beim Appwechsel</string>
     <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere App vom Haupt-Videoplayer — %s</string>
     <string name="minimize_on_exit_none_description">Keine</string>
-    <string name="minimize_on_exit_background_description">Zum Hintergrund-Player minimieren</string>
-    <string name="minimize_on_exit_popup_description">Zum Popup-Player minimieren</string>
+    <string name="minimize_on_exit_background_description">Für die Wiedergabe im Hintergrund minimieren</string>
+    <string name="minimize_on_exit_popup_description">Für die Wiedergabe im Pop-up minimieren</string>
     <string name="skip_silence_checkbox">Vorspulen bei Stille</string>
     <string name="playback_step">Schritt</string>
     <string name="playback_reset">Zurücksetzen</string>
