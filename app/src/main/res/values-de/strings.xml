@@ -597,4 +597,9 @@
 \nYouTube ist ein Beispiel für einen Service, der mit seinem RSS-Feed diese schnelle Methode anbietet.
 \n
 \nDie Entscheidung läuft also darauf hinaus, was dir lieber ist: Tempo oder genaue Informationen.</string>
+    <string name="infinite_videos">∞ Videos</string>
+    <string name="more_than_100_videos">100+ Videos</string>
+    <string name="artists">Künstler</string>
+    <string name="albums">Alben</string>
+    <string name="songs">Lieder</string>
 </resources>
