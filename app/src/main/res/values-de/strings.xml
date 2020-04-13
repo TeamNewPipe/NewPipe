@@ -51,8 +51,8 @@
     <string name="light_theme_title">Hell</string>
     <string name="settings_category_appearance_title">Aussehen</string>
     <string name="settings_category_other_title">Andere</string>
-    <string name="err_dir_create">Kann Downloadverzeichnis \"%1$s\" nicht anlegen</string>
-    <string name="info_dir_created">Downloadverzeichnis \"%1$s\" erstellt</string>
+    <string name="err_dir_create">Kann Downloadverzeichnis „%1$s“ nicht anlegen</string>
+    <string name="info_dir_created">Downloadverzeichnis „%1$s“ erstellt</string>
     <string name="general_error">Fehler</string>
     <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
     <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln</string>
@@ -73,7 +73,7 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Wiederholen</string>
-    <string name="storage_permission_denied">Gewähre zuerst Speicherzugriff</string>
+    <string name="storage_permission_denied">Gewähre zuerst den Zugriff auf den Speicher</string>
     <string name="sorry_string">Entschuldigung. Dies hätte nicht passieren sollen.</string>
     <string name="error_snackbar_message">Entschuldigung. Es sind einige Fehler aufgetreten.</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
@@ -234,7 +234,7 @@
     <string name="kiosk_page_summary">Kiosk-Seite</string>
     <string name="select_a_kiosk">Kiosk auswählen</string>
     <string name="kiosk">Kiosk</string>
-    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button \"Details:\" im Video gedrückt wird</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button „Details:“ im Video gedrückt wird</string>
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu &amp; Heiß</string>
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
@@ -358,13 +358,13 @@
 \n3. Der Ladevorgang sollte beginnen (das ist die Exportdatei)</string>
     <string name="import_soundcloud_instructions">Importiere ein SoundCloud-Profil, indem du entweder die URL oder deine ID eingibst: 
 \n 
-\n1. Aktiviere den \"Desktop-Modus\" in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar) 
+\n1. Aktiviere den Desktop-Modus in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar) 
 \n2. Gehe zu dieser URL: %1$s 
 \n3. Melde dich an, falls du dazu aufgefordert wirst 
 \n4. Kopiere die Profil-URL, zu der du weitergeleitet wurdest.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
-    <string name="preferred_open_action_settings_title">Bevorzugte \"Öffnen\" Aktion</string>
+    <string name="preferred_open_action_settings_title">Bevorzugte „Öffnen“-Aktion</string>
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten — %s</string>
     <string name="caption_setting_title">Untertitel</string>
     <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Wird erst nach Neustart der App wirksam.</string>
@@ -466,7 +466,7 @@
     <string name="error_timeout">Verbindungszeitüberschreitung</string>
     <string name="show_comments_title">Kommentare anzeigen</string>
     <string name="show_comments_summary">Ausschalten, um Kommentare auszublenden</string>
-    <string name="autoplay_title">Autoplay</string>
+    <string name="autoplay_title">Automatische Wiedergabe</string>
     <plurals name="comments">
         <item quantity="one">%s Kommentar</item>
         <item quantity="other">%s Kommentare</item>
@@ -540,7 +540,7 @@
     <string name="permission_display_over_apps">Berechtigung zur Anzeige über andere Apps erteilen</string>
     <string name="app_language_title">Sprache der App</string>
     <string name="systems_language">Systemstandard</string>
-    <string name="subtitle_activity_recaptcha">\"Fertig\" drücken, wenn es gelöst wurde</string>
+    <string name="subtitle_activity_recaptcha">„Fertig“ drücken, wenn es gelöst wurde</string>
     <string name="recaptcha_done_button">Fertig</string>
     <string name="videos_string">Videos</string>
     <plurals name="seconds">
