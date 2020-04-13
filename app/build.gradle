@@ -66,6 +66,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        encoding 'utf-8'
     }
 
     // Required and used only by groupie
