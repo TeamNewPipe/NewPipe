@@ -602,4 +602,10 @@
     <string name="artists">Künstler</string>
     <string name="albums">Alben</string>
     <string name="songs">Lieder</string>
+    <string name="content_not_supported">Dieser Inhalt wird von NewPipe noch nicht unterstützt.
+\n
+\nEs wird hoffentlich in einer zukünftigen Version unterstützt.</string>
+    <string name="restricted_video">Dieses Video ist altersbeschränkt.
+\n
+\nWenn du es ansehen möchtest, aktiviere in den Einstellungen \"Altersbeschränkte Inhalte\".</string>
 </resources>
