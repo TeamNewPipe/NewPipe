@@ -22,7 +22,7 @@
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
     <string name="kore_not_found">Fehlende Kore-App installieren\?</string>
     <string name="show_play_with_kodi_title">Option „Mit Kodi abspielen“ anzeigen</string>
-    <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit Kodi abspielen kann</string>
+    <string name="show_play_with_kodi_summary">Zeigt die Option, Videos in Kodi abzuspielen</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Bevorzugtes Audioformat</string>
     <string name="download_dialog_title">Herunterladen</string>
