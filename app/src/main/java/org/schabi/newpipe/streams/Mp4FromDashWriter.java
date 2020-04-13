@@ -711,7 +711,8 @@ public class Mp4FromDashWriter {
 
         for (int i = 0; i < tracks.length; i++) {
             if (tracks[i].trak.tkhd.matrix.length != 36) {
-                throw new RuntimeException("bad track matrix length (expected 36) in track n°" + i);
+                throw
+                    new RuntimeException("bad track matrix length (expected 36) in track n°" + i);
             }
             makeTrak(i, durations[i], defaultMediaTime[i], tablesInfo[i], is64);
         }

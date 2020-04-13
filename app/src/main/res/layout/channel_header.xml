@@ -23,17 +23,32 @@
             android:src="@drawable/channel_banner"
             tools:ignore="ContentDescription"/>
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/channel_avatar_view"
-            android:layout_width="@dimen/channel_avatar_size"
-            android:layout_height="@dimen/channel_avatar_size"
-            android:layout_alignTop="@id/channel_banner_image"
+        <FrameLayout
+            android:id="@+id/avatars_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/buddy"
-            app:civ_border_color="#ffffff"
-            app:civ_border_width="2dp"
-            tools:ignore="RtlHardcoded"/>
+            android:layout_marginTop="50dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/channel_avatar_view"
+                android:layout_width="@dimen/channel_avatar_size"
+                android:layout_height="@dimen/channel_avatar_size"
+                android:src="@drawable/buddy"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="2dp"
+                tools:ignore="RtlHardcoded" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/parent_channel_avatar_view"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="bottom|right"
+                android:src="@drawable/buddy"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="2dp"
+                tools:ignore="RtlHardcoded" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/channel_title_view"
@@ -41,32 +56,47 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/channel_banner_image"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="6dp"
-            android:layout_toLeftOf="@+id/channel_subscribe_button"
-            android:layout_toRightOf="@+id/channel_avatar_view"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/channel_subscribe_button"
+            android:layout_toRightOf="@id/avatars_layout"
             android:ellipsize="end"
             android:lines="1"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/video_item_detail_title_text_size"
             tools:ignore="RtlHardcoded"
-            tools:text="Lorem ipsum dolor"/>
+            tools:text="Lorem ipsum dolor" />
+
+        <TextView
+            android:id="@+id/parent_channel_title_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/channel_title_view"
+            android:layout_alignLeft="@id/channel_title_view"
+            android:layout_alignRight="@id/channel_title_view"
+            android:ellipsize="end"
+            android:gravity="center|left"
+            android:lines="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12dp"
+            tools:ignore="RtlHardcoded"
+            tools:layout_below="@id/channel_title_view"
+            tools:text="Lorem ipsum dolor" />
 
         <TextView
             android:id="@+id/channel_subscriber_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/channel_title_view"
-            android:layout_alignRight="@+id/channel_title_view"
-            android:layout_below="@+id/channel_title_view"
+            android:layout_below="@id/parent_channel_title_view"
+            android:layout_alignLeft="@id/channel_title_view"
+            android:layout_alignRight="@id/channel_title_view"
             android:ellipsize="end"
-            android:gravity="left|center"
             android:maxLines="2"
             android:textSize="@dimen/channel_subscribers_text_size"
             android:visibility="gone"
             tools:ignore="RtlHardcoded"
             tools:text="123,141,411 subscribers"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/channel_subscribe_button"
