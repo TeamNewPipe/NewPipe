@@ -640,4 +640,15 @@
     <string name="mute">كتم الصوت</string>
     <string name="preferred_open_action_share_menu_title" translatable="false">\@السلسلة/تطبيق _اسم</string>
     <string name="help">مساعدة</string>
+    <string name="content_not_supported">هذا المحتوى ليس مدعوم من قبل NewPipe.
+\n
+\nنامل ان يكون مدعوما في التحديثات القادمة.</string>
+    <string name="infinite_videos">∞ فيديو</string>
+    <string name="more_than_100_videos">+100 فيديو</string>
+    <string name="artists">الفنانين</string>
+    <string name="albums">الالبومات</string>
+    <string name="songs">الأغاني</string>
+    <string name="restricted_video">هذا المحتوى مقيد للبالغين.
+\n
+\n اذا اردت رؤيه المحتوى، يجب عليك تفعيل خيار \"تمكين محتوى البالغين\" من الاعدادات.</string>
 </resources>
