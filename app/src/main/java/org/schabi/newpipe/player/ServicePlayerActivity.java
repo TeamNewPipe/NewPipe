@@ -84,7 +84,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private ImageButton repeatButton;
     private ImageButton backwardButton;
+    private ImageButton fastRewindButton;
     private ImageButton playPauseButton;
+    private ImageButton fastForwardButton;
     private ImageButton forwardButton;
     private ImageButton shuffleButton;
     private ProgressBar progressBar;
@@ -310,7 +312,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void buildControls() {
         repeatButton = rootView.findViewById(R.id.control_repeat);
         backwardButton = rootView.findViewById(R.id.control_backward);
+        fastRewindButton = rootView.findViewById(R.id.control_fast_rewind);
         playPauseButton = rootView.findViewById(R.id.control_play_pause);
+        fastForwardButton = rootView.findViewById(R.id.control_fast_forward);
         forwardButton = rootView.findViewById(R.id.control_forward);
         shuffleButton = rootView.findViewById(R.id.control_shuffle);
         playbackSpeedButton = rootView.findViewById(R.id.control_playback_speed);
@@ -319,7 +323,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
         repeatButton.setOnClickListener(this);
         backwardButton.setOnClickListener(this);
+        fastRewindButton.setOnClickListener(this);
         playPauseButton.setOnClickListener(this);
+        fastForwardButton.setOnClickListener(this);
         forwardButton.setOnClickListener(this);
         shuffleButton.setOnClickListener(this);
         playbackSpeedButton.setOnClickListener(this);
@@ -473,8 +479,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.onRepeatClicked();
         } else if (view.getId() == backwardButton.getId()) {
             player.onPlayPrevious();
+        } else if (view.getId() == fastRewindButton.getId()) {
+            player.onFastRewind();
         } else if (view.getId() == playPauseButton.getId()) {
             player.onPlayPause();
+        } else if (view.getId() == fastForwardButton.getId()) {
+            player.onFastForward();
         } else if (view.getId() == forwardButton.getId()) {
             player.onPlayNext();
         } else if (view.getId() == shuffleButton.getId()) {
