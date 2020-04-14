@@ -2,6 +2,7 @@ package org.schabi.newpipe.local.playlist;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -29,6 +30,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
@@ -360,7 +362,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_removeWatched:
-                removeWatchedStreams();
+                android.app.AlertDialog.Builder builder =
+                new android.app.AlertDialog.Builder(getActivity());
+                builder.setMessage(R.string.remove_watched_popup_warning)
+                        .setTitle(R.string.remove_watched_popup_title)
+                        .setPositiveButton(R.string.remove_watched_popup_yes,
+                                (DialogInterface d, int id) -> removeWatchedStreams(false))
+                        .setNeutralButton(
+                                R.string.remove_watched_popup_yes_and_partially_watched_videos,
+                                (DialogInterface d, int id) -> removeWatchedStreams(true))
+                        .setNegativeButton(R.string.remove_watched_popup_cancel,
+                                (DialogInterface d, int id) -> d.cancel());
+                builder.create().show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -368,21 +381,32 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return true;
     }
 
-    public void removeWatchedStreams() {
+    public void removeWatchedStreams(final boolean removePartiallyWatched) {
         if (removeWatchedDisposable != null && !removeWatchedDisposable.isDisposed()) {
             // already running
             return;
         }
         showLoading();
 
-        removeWatchedDisposable = Flowable.just(
-                playlistManager.getPlaylistStreams(playlistId).blockingFirst())
-                .subscribeOn(Schedulers.newThread())
-                .map((@NonNull List<PlaylistStreamEntry> playlist) -> {
+        removeWatchedDisposable = Flowable.just(Flowable.just(removePartiallyWatched,
+                playlistManager.getPlaylistStreams(playlistId).blockingFirst()))
+                .subscribeOn(Schedulers.io())
+                .map(flow -> {
+                    boolean localRemovePartiallyWatched = (boolean) flow.blockingFirst();
+                    List<PlaylistStreamEntry> playlist
+                            = (List<PlaylistStreamEntry>) flow.blockingLast();
                     HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
                     Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
                     Iterator<StreamHistoryEntry> historyIter = recordManager
                             .getStreamHistorySortedById().blockingFirst().iterator();
+                    List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
+                    Iterator<StreamStateEntity> streamStatesIter = null;
+                    boolean thumbnailVideoRemoved = false;
+
+                    if (!localRemovePartiallyWatched) {
+                        streamStatesIter = recordManager.loadLocalStreamStateBatch(playlist)
+                                .blockingGet().iterator();
+                    }
 
                     // already sorted by ^ getStreamHistorySortedById(), binary search can be used
                     ArrayList<Long> historyStreamIds = new ArrayList<>();
@@ -390,19 +414,35 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         historyStreamIds.add(historyIter.next().getStreamId());
                     }
 
-                    List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
-                    boolean thumbnailVideoRemoved = false;
-                    while (playlistIter.hasNext()) {
-                        PlaylistStreamEntry playlistItem = playlistIter.next();
-                        int indexInHistory = Collections.binarySearch(historyStreamIds,
-                                playlistItem.getStreamId());
+                    if (localRemovePartiallyWatched) {
+                        while (playlistIter.hasNext()) {
+                            PlaylistStreamEntry playlistItem = playlistIter.next();
+                            int indexInHistory = Collections.binarySearch(historyStreamIds,
+                                    playlistItem.getStreamId());
 
-                        if (indexInHistory < 0) {
-                            notWatchedItems.add(playlistItem);
-                        } else if (!thumbnailVideoRemoved
-                                && playlistManager.getPlaylistThumbnail(playlistId)
-                                .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
-                            thumbnailVideoRemoved = true;
+                            if (indexInHistory < 0) {
+                                notWatchedItems.add(playlistItem);
+                            } else if (!thumbnailVideoRemoved
+                                    && playlistManager.getPlaylistThumbnail(playlistId)
+                                    .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
+                                thumbnailVideoRemoved = true;
+                            }
+                        }
+                    } else {
+                        boolean hasState = false;
+                        while (playlistIter.hasNext()) {
+                            PlaylistStreamEntry playlistItem = playlistIter.next();
+                            int indexInHistory = Collections.binarySearch(historyStreamIds,
+                                    playlistItem.getStreamId());
+
+                            hasState = streamStatesIter.next() != null;
+                            if (indexInHistory < 0 ||  hasState) {
+                                notWatchedItems.add(playlistItem);
+                            } else if (!thumbnailVideoRemoved
+                                    && playlistManager.getPlaylistThumbnail(playlistId)
+                                    .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
+                                thumbnailVideoRemoved = true;
+                            }
                         }
                     }
 
