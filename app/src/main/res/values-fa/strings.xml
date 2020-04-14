@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">برای شروع، جست‌وجو را بزنید</string>
+    <string name="main_bg_subtitle">برای شروع، «جست‌وجو» را بزنید</string>
     <string name="view_count_text">‫%1$s مشاهده ها</string>
     <string name="upload_date_text">منتشر شده در %1$s</string>
     <string name="no_player_found">هیچ پخش‌کنندهٔ جریانی پیدا نشد. مایلید وی‌ال‌سی نصب شود؟</string>
@@ -27,7 +27,7 @@
     <string name="autoplay_by_calling_app_summary">هنگامی که نیوپایپ از کارهٔ دیگری فراخوانی می‌شود، ویدیوی به طور خودکار پخش شود</string>
     <string name="default_resolution_title">وضوح پیش‌گزیده</string>
     <string name="play_with_kodi_title">پخش با کودی</string>
-    <string name="kore_not_found">کارهٔ کوره پیدا نشد. نصب شود؟</string>
+    <string name="kore_not_found">کارهٔ کوره (Kore) پیدا نشد. نصب شود؟</string>
     <string name="show_play_with_kodi_title">نمایش گزینهٔ «پخش با کودی»</string>
     <string name="show_play_with_kodi_summary">نمایش گزینه‌ای برای پخش ویدیو با مرکز رسانهٔ کودی</string>
     <string name="play_audio">صدا</string>
@@ -122,7 +122,7 @@
     <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدئوهای 2K و 4K را دارند</string>
     <string name="default_video_format_title">قالب ویدئوی پیش‌فرض</string>
     <string name="black_theme_title">سیاه</string>
-    <string name="download_thumbnail_title">بارگذاری بندانگشتی</string>
+    <string name="download_thumbnail_title">دریافت تصویر بندانگشتی</string>
     <string name="auto_queue_title">قرار دادن خودکار جریان بعدی در صف</string>
     <string name="show_search_suggestions_title">پیشنهادهای جستجو</string>
     <string name="show_search_suggestions_summary">نمایش پیشنهادها حین جستجو</string>
@@ -294,7 +294,7 @@
     <string name="popup_remember_size_pos_title">به یاد داشتن اندازه و موقعیت پنجره جداگانه</string>
     <string name="popup_remember_size_pos_summary">به یاد داشتن آخرین اندازه و موقعیت قبلی پنجره جداگانه</string>
     <string name="use_inexact_seek_title">زمان فعلی پخش کننده را به صورت تقریبی و سریع جلو ببر</string>
-    <string name="use_inexact_seek_summary">این گزینه باعث می شود هنگام جلو/عقب کردن زمان تصویر، به جای زمان دقیق انتخاب شده، به زمان غیر دقیق و نزدیک به مکان انتخاب شده برود که این کار سریع تر انجام می شود</string>
+    <string name="use_inexact_seek_summary">این گزینه باعث می شود هنگام جلو/عقب کردن زمان تصویر، به جای زمان دقیق انتخاب شده، به زمان غیر دقیق و نزدیک به مکان انتخاب شده برود که این کار سریع تر انجام می شود.</string>
     <string name="app_ui_crash">کاره یا رابط کاربری با خطا مواجه شد</string>
     <string name="recaptcha">ریکپچا</string>
     <string name="settings_category_downloads_title">بارگیری</string>
@@ -330,15 +330,15 @@
     <string name="max_retry_desc">بیشینه تعداد تلاش‌ها پیش از لغو بارگیری</string>
     <string name="events">رویدادها</string>
     <string name="show_comments_title">نمایش نظرات</string>
-    <string name="show_comments_summary">غیرفعال کنید تا نمایش نظرات متوقف شود</string>
+    <string name="show_comments_summary">خاموش کنید تا نظرات پنهان شوند</string>
     <string name="autoplay_title">پخش خودکار</string>
     <plurals name="comments">
-        <item quantity="one">نظرات</item>
-        <item quantity="other"/>
+        <item quantity="one">نظر</item>
+        <item quantity="other">نظر</item>
     </plurals>
     <string name="no_comments">بدون نظر</string>
     <string name="error_unable_to_load_comments">ناتوانی در دریافت نظرات</string>
-    <string name="resume_on_audio_focus_gain_title">ادامه پخش به محض فعال شدن</string>
+    <string name="resume_on_audio_focus_gain_title">پخش ادامه یابد</string>
     <string name="enable_search_history_summary">ذخیره محلی نتایج جستجو</string>
     <string name="auto_queue_summary">زمانی که صف پخش در حال پخش تکراری نیست، حین پخش آخرین جریان، یک جریان مرتبط به طور خودکار اضافه شود</string>
     <string name="download_thumbnail_summary">برای جلوگیری از بارگیری تصاویر بندانگشتی و ذخیره فضای ذخیره‌سازی و مصرف داده، خاموش کنید. تغییرات باعث پاک شدن حافظه نهان تصاویر روی حافظه می‌شود.</string>
@@ -348,16 +348,16 @@
     <string name="enable_playback_state_lists_summary">نمایش شاخص موقعیت پخش در فهرست‌ها</string>
     <string name="settings_category_clear_data_title">پاک کردن داده‌ها</string>
     <string name="download_choose_new_path">برای اثرگذاری، پوشه بارگیری را تغییر دهید</string>
-    <string name="resume_on_audio_focus_gain_summary">ادامه پخش بعد از قطع ناگهانی (مثل برقراری تماس)</string>
+    <string name="resume_on_audio_focus_gain_summary">پخش بعد از قطع ناگهانی (مثل برقراری تماس) ادامه یابد</string>
     <string name="show_hold_to_append_title">نمایش نکته «برای افزودن، نگه‌دارید»</string>
-    <string name="show_hold_to_append_summary">نمایش نکته‌ها زمانی که در صفحه جزئیات ویدئو، دکمه تصویر در تصویر یا پخش در پس‌زمینه فشرده شود</string>
+    <string name="show_hold_to_append_summary">با فشردن پس زمینه یا دکمه نمایش پنجره مجزا در قسمت «جزئیات:» ویدئو، راهنما نمایش یابد</string>
     <string name="hold_to_append">برای در صف قرار دادن، نگه دارید</string>
     <string name="player_gesture_controls_title">کنترل های اشاره ای پخش کننده</string>
-    <string name="player_gesture_controls_summary">از اشارات برای کنترل روشنایی و صدای پخش کننده استفاده کنید</string>
+    <string name="player_gesture_controls_summary">از اشارات برای کنترل روشنایی و صدای استفاده شود</string>
     <string name="volume_gesture_control_title">کنترل اشاره ای صدا</string>
-    <string name="volume_gesture_control_summary">برای کنترلصدای پخش کننده از اشارات استفاده کنید</string>
+    <string name="volume_gesture_control_summary">از اشارات برای کنترل حجم صدا استفاده شود</string>
     <string name="brightness_gesture_control_title">کنترل روشنایی اشاره ای</string>
-    <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی صفحه استفاده کنید</string>
+    <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی استفاده شود</string>
     <string name="undo">بازگردانی</string>
     <string name="background_player_append">در صف پخش کننده پس‌زمینه قرار گرفت</string>
     <string name="info_labels">چه:\\nدرخواست:\\nزبان درخواست:\\nخدمت:\\nزمان GMT:\\nنگارش:\\nنگارش س.ع:\\nبازه آی‌پی:</string>
@@ -424,7 +424,7 @@
     <string name="playback_tempo">تندا</string>
     <string name="playback_pitch">زیر و بمی</string>
     <string name="unhook_checkbox">قطع پیوند (ممکن است باعث اعوجاج شود)</string>
-    <string name="preferred_open_action_settings_title">تریجیح کنش «باز کردن»</string>
+    <string name="preferred_open_action_settings_title">ترجیح کنش «باز کردن»</string>
     <string name="preferred_open_action_settings_summary">کنش پیش‌فرض در زمان باز کردن محتوا — %s</string>
     <string name="caption_setting_description">سبک پس‌زمینه و اندازه متن توضیحات پخش‌کننده را تغییر بده. برای تاثیرگذاری، نیازمند بازراه‌اندازی برنامه است.</string>
     <string name="clear_views_history_summary">پاک کردن تاریخچه جریان‌های پخش شه و موقعیت‌های پخش</string>
@@ -497,4 +497,20 @@
     <string name="import_soundcloud_instructions_hint">آی‌دی شما، soundcloud.com/yourid</string>
     <string name="minimize_on_exit_summary">عملکرد هنگام تغییر به برنامه دیگر از پخش‌کننده اصلی فیلم — %s</string>
     <string name="tracks">آهنگ‌ها</string>
+    <string name="videos_string">ویدئوها</string>
+    <string name="restricted_video">این ویدئو دارای محدودیت سنی است.
+\n
+\nاگر می‌خواهید آن را ببینید، گزینه «محتوای دارای محدودیت سنی» را در تنظیمات فعال کنید.</string>
+    <string name="peertube_instance_add_exists">این نمونه قبلا وجود دارد</string>
+    <string name="peertube_instance_add_https_only">تنها نشانی‌های دارای http پشتیبانی می‌شوند</string>
+    <string name="peertube_instance_add_fail">ناتوانی در اعتبارسنجی نشانی نمونه</string>
+    <string name="peertube_instance_add_help">نشانی نمونه را وارد کنید</string>
+    <string name="peertube_instance_add_title">افزودن نمونه</string>
+    <string name="peertube_instance_url_help">نمونه‌های مورد علاقه خود را در %s پیدا کنید</string>
+    <string name="peertube_instance_url_summary">نمونه پیرتیوب مورد علاقه خود در را انتخاب کنید</string>
+    <string name="peertube_instance_url_title">نمونه‌های پیرتیوب</string>
+    <string name="seek_duration_title">مدت زمان حرکت سریع به جلو یا عقب</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">به کمک پخش‌کننده پس‌زمینه، تصویر بندانگشتی ویدئو در حالت قفل صفحه نمایش یابد</string>
+    <string name="enable_lock_screen_video_thumbnail_title">تصویر ویدئو در حالت قفل صفحه</string>
+    <string name="minimize_on_exit_title">کمینه کردن به هنگام تغییر برنامه</string>
 </resources>
