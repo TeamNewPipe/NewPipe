@@ -207,7 +207,7 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:layout_toLeftOf="@+id/control_play_pause"
+            android:layout_toLeftOf="@+id/control_fast_rewind"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
@@ -215,6 +215,20 @@
             android:tint="?attr/colorAccent"
             android:src="@drawable/exo_controls_previous"
             tools:ignore="ContentDescription"/>
+
+        <ImageButton
+            android:id="@+id/control_fast_rewind"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@id/control_play_pause"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+            android:tint="?attr/colorAccent"
+            android:src="@drawable/exo_controls_rewind"/>
 
         <ImageButton
             android:id="@+id/control_play_pause"
@@ -251,13 +265,28 @@
             android:visibility="invisible"
             tools:visibility="visible"/>
 
+
+        <ImageButton
+            android:id="@+id/control_fast_forward"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/control_play_pause"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+            android:tint="?attr/colorAccent"
+            android:src="@drawable/exo_controls_fastforward"/>
+
         <ImageButton
             android:id="@+id/control_forward"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@+id/control_play_pause"
+            android:layout_toRightOf="@+id/control_fast_forward"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
