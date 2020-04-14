@@ -588,4 +588,26 @@
     <string name="feed_use_dedicated_fetch_method_summary">لەهەندێ خزمەتگوزاریدا بەردەستە، هەمیشە خێرایە بەڵام ڕەنگە هەندێ لە بابەتەکان زانیارییەکانیان ناتەواو بێت (وەک نەبوونی ماوە، جۆری بابەت ، نەبوونی پەخش).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">چالاککردنی دۆخی خێرا</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">چالاک نەکردنی دۆخی خێرا</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow\? If so, try enabling fast loading (you can change it in settings or by pressing the button below).
+\n
+\nNewPipe offers two feed loading strategies:
+\n• Fetching the whole subscription channel, which is slow but complete.
+\n• Using a dedicated service endpoint, which is fast but usually not complete.
+\n
+\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.
+\n
+\nYouTube is an example of a service that offers this fast method with its RSS feed.
+\n
+\nSo the choice boils down to what you prefer: speed or precise information.</string>
+    <string name="content_not_supported">ئەم ناوەڕۆکە پشتگیری نەکراوە لەلایەن ئەپەکەمانەوە.
+\n
+\nهیوادارین بتوانین لە وەشانەکانی داهاتوودا پشتگیری بکەین.</string>
+    <string name="restricted_video">تەمەنت بۆ تەماشاکردنی ئەم ڤیدیۆیە ڕێپێنەدراوە.
+\n
+\nگەر دەتەوێت بیبینیت ئەوا ناوەڕۆکە ڕێپێنەدراوەکانی تەمەن لە ڕێکخستنەکان چالاک بکە.</string>
+    <string name="infinite_videos">∞ ڤیدیۆ</string>
+    <string name="more_than_100_videos">+١٠٠ ڤیدیۆ</string>
+    <string name="artists">هونەرمەندەکان</string>
+    <string name="albums">ئەلبوومەکان</string>
+    <string name="songs">گۆرانییەکان</string>
 </resources>
