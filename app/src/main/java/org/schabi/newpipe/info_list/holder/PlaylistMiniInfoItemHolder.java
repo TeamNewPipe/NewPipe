@@ -10,6 +10,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.Localization;
 
 public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
     public final ImageView itemThumbnailView;
@@ -41,7 +42,8 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
         final PlaylistInfoItem item = (PlaylistInfoItem) infoItem;
 
         itemTitleView.setText(item.getName());
-        itemStreamCountView.setText(String.valueOf(item.getStreamCount()));
+        itemStreamCountView.setText(Localization
+                .localizeStreamCountMini(itemStreamCountView.getContext(), item.getStreamCount()));
         itemUploaderView.setText(item.getUploaderName());
 
         itemBuilder.getImageLoader()

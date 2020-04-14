@@ -103,6 +103,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
+import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
@@ -806,19 +807,25 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             currentWorker.dispose();
         }
 
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull StreamInfo result) -> {
+                .subscribe((@NonNull final StreamInfo result) -> {
                     isLoading.set(false);
-                    currentInfo = result;
-                    handleResult(result);
-                    showContent();
-                }, (@NonNull Throwable throwable) -> {
+                    if (result.getAgeLimit() != NO_AGE_LIMIT && !prefs.getBoolean(
+                            getString(R.string.show_age_restricted_content), false)) {
+                        hideAgeRestrictedContent();
+                    } else {
+                        currentInfo = result;
+                        handleResult(result);
+                        showContent();
+                    }
+                }, (@NonNull final Throwable throwable) -> {
                     isLoading.set(false);
                     onError(throwable);
                 });
-
     }
 
     private void initTabs() {
@@ -1232,6 +1239,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         }
     }
 
+    private void hideAgeRestrictedContent() {
+        showError(getString(R.string.restricted_video), false);
+
+        if (relatedStreamsLayout != null) { // tablet
+            relatedStreamsLayout.setVisibility(View.INVISIBLE);
+        }
+
+        viewPager.setVisibility(View.GONE);
+        tabLayout.setVisibility(View.GONE);
+    }
 
     public void openDownloadDialog() {
         try {

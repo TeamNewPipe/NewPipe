@@ -13,31 +13,21 @@
 
   <!-- org.schabi.newpipe.streams -->
   <suppress checks="FinalParameters"
-    files="WebMWriter.java"
-    lines="423,595"/>
-  <suppress checks="LineLength"
-    files="WebMWriter.java"
-    lines="160,162"/>
+      files="DataReader.java"
+      lines="46,93"/>
 
   <suppress checks="FinalParameters"
-    files="OggFromWebMWriter.java"
-    lines="378,420"/>
-  <suppress checks="LineLength"
-    files="OggFromWebMWriter.java"
-    lines="292,296"/>
+      files="Mp4FromDashWriter.java"
+      lines="643"/>
 
   <suppress checks="FinalParameters"
-    files="Mp4FromDashWriter.java"
-    lines="643"/>
-  <suppress checks="LineLength"
-    files="Mp4FromDashWriter.java"
-    lines="677,678,720-724,738,762,848,850-855"/>
-
-  <suppress checks="InnerAssignment"
-    files="Mp4DashReader.java"
-    lines="190"/>
+      files="OggFromWebMWriter.java"
+      lines="380,422"/>
 
   <suppress checks="FinalParameters"
-    files="DataReader.java"
-    lines="46,93"/>
+      files="WebMWriter.java"
+      lines="419,591"/>
+  <suppress checks="LineLength"
+      files="WebMWriter.java"
+      lines="156,158"/>
 </suppressions>

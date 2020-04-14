@@ -598,4 +598,5 @@
 \n
 \n Donc le choix vous revient : Préferez-vous la vitesse ou des informations précises \?</string>
     <string name="help">Aide</string>
+    <string name="content_not_supported">Ce contenu n\'est pas encore supporté par NewPipe.\n\nIl le sera peut-être dans une version future.</string>
 </resources>

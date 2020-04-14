@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,6 +31,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -45,6 +47,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -83,6 +86,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private LinearLayout headerPopupButton;
     private LinearLayout headerBackgroundButton;
     private MenuItem menuRssButton;
+    private TextView contentNotSupportedTextView;
+    private TextView kaomojiTextView;
+    private TextView noVideosTextView;
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -116,6 +122,14 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_channel, container, false);
+    }
+
+    @Override
+    public void onViewCreated(final View rootView, final Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+        contentNotSupportedTextView = rootView.findViewById(R.id.error_content_not_supported);
+        kaomojiTextView = rootView.findViewById(R.id.channel_kaomoji);
+        noVideosTextView = rootView.findViewById(R.id.channel_no_videos);
     }
 
     @Override
@@ -234,7 +248,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 .debounce(100, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((List<SubscriptionEntity> subscriptionEntities) ->
-                                updateSubscribeButton(!subscriptionEntities.isEmpty()), onError));
+                        updateSubscribeButton(!subscriptionEntities.isEmpty()), onError));
 
     }
 
@@ -417,9 +431,23 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
         playlistCtrl.setVisibility(View.VISIBLE);
 
-        if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(), UserAction.REQUESTED_CHANNEL,
-                    NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
+        List<Throwable> errors = new ArrayList<>(result.getErrors());
+        if (!errors.isEmpty()) {
+
+            // handling ContentNotSupportedException not to show the error but an appropriate string
+            // so that crashes won't be sent uselessly and the user will understand what happened
+            for (Iterator<Throwable> it = errors.iterator(); it.hasNext();) {
+                Throwable throwable = it.next();
+                if (throwable instanceof ContentNotSupportedException) {
+                    showContentNotSupported();
+                    it.remove();
+                }
+            }
+
+            if (!errors.isEmpty()) {
+                showSnackBarError(errors, UserAction.REQUESTED_CHANNEL,
+                        NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
+            }
         }
 
         if (disposables != null) {
@@ -437,6 +465,13 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 .playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view -> NavigationHelper
                 .playOnBackgroundPlayer(activity, getPlayQueue(), false));
+    }
+
+    private void showContentNotSupported() {
+        contentNotSupportedTextView.setVisibility(View.VISIBLE);
+        kaomojiTextView.setText("(︶︹︺)");
+        kaomojiTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
+        noVideosTextView.setVisibility(View.GONE);
     }
 
     private PlayQueue getPlayQueue() {

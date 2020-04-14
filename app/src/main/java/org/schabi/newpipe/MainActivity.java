@@ -33,6 +33,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -301,6 +302,20 @@ public class MainActivity extends AppCompatActivity {
         headerServiceView = hView.findViewById(R.id.drawer_header_service_view);
         toggleServiceButton = hView.findViewById(R.id.drawer_header_action_button);
         toggleServiceButton.setOnClickListener(view -> toggleServices());
+
+        // If the current app name is bigger than the default "NewPipe" (7 chars),
+        // let the text view grow a little more as well.
+        if (getString(R.string.app_name).length() > "NewPipe".length()) {
+            final TextView headerTitle = hView.findViewById(R.id.drawer_header_newpipe_title);
+            final ViewGroup.LayoutParams layoutParams = headerTitle.getLayoutParams();
+            layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            headerTitle.setLayoutParams(layoutParams);
+            headerTitle.setMaxLines(2);
+            headerTitle.setMinWidth(getResources()
+                    .getDimensionPixelSize(R.dimen.drawer_header_newpipe_title_default_width));
+            headerTitle.setMaxWidth(getResources()
+                    .getDimensionPixelSize(R.dimen.drawer_header_newpipe_title_max_width));
+        }
     }
 
     private void toggleServices() {

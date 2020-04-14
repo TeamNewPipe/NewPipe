@@ -16,6 +16,7 @@ import androidx.annotation.StringRes;
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 
 import java.math.BigDecimal;
@@ -151,8 +152,30 @@ public final class Localization {
     }
 
     public static String localizeStreamCount(final Context context, final long streamCount) {
-        return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount,
-                localizeNumber(context, streamCount));
+        switch ((int) streamCount) {
+            case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
+                return "";
+            case (int) ListExtractor.ITEM_COUNT_INFINITE:
+                return context.getResources().getString(R.string.infinite_videos);
+            case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
+                return context.getResources().getString(R.string.more_than_100_videos);
+            default:
+                return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount,
+                        localizeNumber(context, streamCount));
+        }
+    }
+
+    public static String localizeStreamCountMini(final Context context, final long streamCount) {
+        switch ((int) streamCount) {
+            case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
+                return "";
+            case (int) ListExtractor.ITEM_COUNT_INFINITE:
+                return context.getResources().getString(R.string.infinite_videos_mini);
+            case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
+                return context.getResources().getString(R.string.more_than_100_videos_mini);
+            default:
+                return String.valueOf(streamCount);
+        }
     }
 
     public static String localizeWatchingCount(final Context context, final long watchingCount) {
