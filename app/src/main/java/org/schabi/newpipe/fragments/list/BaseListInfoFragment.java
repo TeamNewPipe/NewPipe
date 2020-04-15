@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.views.NewPipeRecyclerView;
 
@@ -30,7 +31,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     protected String url;
 
     protected I currentInfo;
-    protected String currentNextPageUrl;
+    protected Page currentNextPage;
     protected Disposable currentWorker;
 
     @Override
@@ -78,7 +79,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     public void writeTo(final Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
         objectsToSave.add(currentInfo);
-        objectsToSave.add(currentNextPageUrl);
+        objectsToSave.add(currentNextPage);
     }
 
     @Override
@@ -86,7 +87,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
         currentInfo = (I) savedObjects.poll();
-        currentNextPageUrl = (String) savedObjects.poll();
+        currentNextPage = (Page) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -130,7 +131,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                 .subscribe((@NonNull I result) -> {
                     isLoading.set(false);
                     currentInfo = result;
-                    currentNextPageUrl = result.getNextPageUrl();
+                    currentNextPage = result.getNextPage();
                     handleResult(result);
                 }, (@NonNull Throwable throwable) -> onError(throwable));
     }
@@ -182,7 +183,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     @Override
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
-        currentNextPageUrl = result.getNextPageUrl();
+        currentNextPage = result.getNextPage();
         infoListAdapter.addInfoItemList(result.getItems());
 
         showListFooter(hasMoreItems());
@@ -190,7 +191,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
 
     @Override
     protected boolean hasMoreItems() {
-        return !TextUtils.isEmpty(currentNextPageUrl);
+        return Page.isValid(currentNextPage);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
