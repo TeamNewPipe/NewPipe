@@ -362,18 +362,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_removeWatched:
-                android.app.AlertDialog.Builder builder =
-                new android.app.AlertDialog.Builder(getActivity());
-                builder.setMessage(R.string.remove_watched_popup_warning)
+                new AlertDialog.Builder(getActivity())
+                        .setMessage(R.string.remove_watched_popup_warning)
                         .setTitle(R.string.remove_watched_popup_title)
-                        .setPositiveButton(R.string.remove_watched_popup_yes,
+                        .setPositiveButton(R.string.yes,
                                 (DialogInterface d, int id) -> removeWatchedStreams(false))
                         .setNeutralButton(
                                 R.string.remove_watched_popup_yes_and_partially_watched_videos,
                                 (DialogInterface d, int id) -> removeWatchedStreams(true))
-                        .setNegativeButton(R.string.remove_watched_popup_cancel,
-                                (DialogInterface d, int id) -> d.cancel());
-                builder.create().show();
+                        .setNegativeButton(R.string.cancel,
+                                (DialogInterface d, int id) -> d.cancel())
+                        .create()
+                        .show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -388,22 +388,23 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         showLoading();
 
-        removeWatchedDisposable = Flowable.just(Flowable.just(removePartiallyWatched,
-                playlistManager.getPlaylistStreams(playlistId).blockingFirst()))
+        removeWatchedDisposable = playlistManager.getPlaylistStreams(playlistId)
                 .subscribeOn(Schedulers.io())
-                .map(flow -> {
-                    boolean localRemovePartiallyWatched = (boolean) flow.blockingFirst();
-                    List<PlaylistStreamEntry> playlist
-                            = (List<PlaylistStreamEntry>) flow.blockingLast();
-                    HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
+                .map((List<PlaylistStreamEntry> playlist) -> {
+                    //Playlist data
                     Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
+
+                    //History data
+                    HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
                     Iterator<StreamHistoryEntry> historyIter = recordManager
                             .getStreamHistorySortedById().blockingFirst().iterator();
-                    List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
                     Iterator<StreamStateEntity> streamStatesIter = null;
+
+                    //Remove Watched, Functionality data
+                    List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
                     boolean thumbnailVideoRemoved = false;
 
-                    if (!localRemovePartiallyWatched) {
+                    if (!removePartiallyWatched) {
                         streamStatesIter = recordManager.loadLocalStreamStateBatch(playlist)
                                 .blockingGet().iterator();
                     }
@@ -414,7 +415,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         historyStreamIds.add(historyIter.next().getStreamId());
                     }
 
-                    if (localRemovePartiallyWatched) {
+                    if (removePartiallyWatched) {
                         while (playlistIter.hasNext()) {
                             PlaylistStreamEntry playlistItem = playlistIter.next();
                             int indexInHistory = Collections.binarySearch(historyStreamIds,
@@ -429,13 +430,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             }
                         }
                     } else {
-                        boolean hasState = false;
                         while (playlistIter.hasNext()) {
                             PlaylistStreamEntry playlistItem = playlistIter.next();
                             int indexInHistory = Collections.binarySearch(historyStreamIds,
                                     playlistItem.getStreamId());
 
-                            hasState = streamStatesIter.next() != null;
+                            boolean hasState = streamStatesIter.next() != null;
                             if (indexInHistory < 0 ||  hasState) {
                                 notWatchedItems.add(playlistItem);
                             } else if (!thumbnailVideoRemoved
@@ -470,6 +470,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     }
 
                     hideLoading();
+
+                    //If this is not done, 'removeWatchedDisposable', will never be disposed of.
+                    //Why: Because using the 'removePartiallyWatched' in this functions parms,
+                    // prevents it from disposing. Exact reason for this behavior is unknown
+                    removeWatchedDisposable.dispose();
+                    removeWatchedDisposable = null;
                 }, this::onError);
     }
 
