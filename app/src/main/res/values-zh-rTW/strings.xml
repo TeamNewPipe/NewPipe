@@ -552,7 +552,7 @@
         <item quantity="other">%d 天</item>
     </plurals>
     <string name="feed_groups_header_title">頻道群組</string>
-    <string name="feed_oldest_subscription_update">最舊訂閱更新：%s</string>
+    <string name="feed_oldest_subscription_update">Feed 最後更新：%s</string>
     <string name="feed_subscription_not_loaded_count">未載入：%d</string>
     <string name="feed_notification_loading">正在載入 feed……</string>
     <string name="feed_processing_message">正在處理 feed……</string>
@@ -584,4 +584,15 @@
 \nYouTube 是一種透過其 RSS feed 提供這種快速方式的例子。
 \n
 \n因此，請選取您較偏好的：速度或準確的資訊。</string>
+    <string name="content_not_supported">NewPipe 尚未支援此內容。
+\n
+\n希望它會在未來的版本中支援。</string>
+    <string name="infinite_videos">∞ 部影片</string>
+    <string name="more_than_100_videos">超過 100 部影片</string>
+    <string name="artists">藝術家</string>
+    <string name="albums">專輯</string>
+    <string name="songs">歌曲</string>
+    <string name="restricted_video">此影片有年鈴限制。
+\n
+\n如果您想要觀看，請在設定中啟用「年齡限制的內容」。</string>
 </resources>

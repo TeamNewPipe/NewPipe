@@ -101,9 +101,9 @@
     <string name="enable_search_history_summary">تخزين طلبات البحث محليا</string>
     <string name="enable_watch_history_summary">تتبع مقاطع الفيديو التي تمت مشاهدتها</string>
     <string name="resume_on_audio_focus_gain_title">استئناف التشغيل</string>
-    <string name="resume_on_audio_focus_gain_summary">متابعة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
+    <string name="resume_on_audio_focus_gain_summary">مواصلة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
     <string name="show_hold_to_append_title">إظهار التلميحات \"اضغط للتجاهل\"</string>
-    <string name="show_hold_to_append_summary">عرض تلميح على صفحة التفاصيل عند استخدام وضع مشغل الخلفية أو النافذة المنبثقة</string>
+    <string name="show_hold_to_append_summary">إظهار تلميح عندما الضغط على الخلفية أو الزر المنبثق في الفيديو \"تفاصيل:\"</string>
     <string name="settings_category_player_title">المشغل</string>
     <string name="settings_category_player_behavior_title">السلوك</string>
     <string name="settings_category_popup_title">الوضع المنبثق</string>
@@ -310,7 +310,7 @@
     <string name="controls_download_desc">تنزيل ملف البث</string>
     <string name="tab_bookmarks">الإشارات المرجعية</string>
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
-    <string name="use_inexact_seek_summary">"التقديم الغير دقيق يسمح للمشغل بالإطلاع الى الأماكن بشكل اسرع مع دقة اقل "</string>
+    <string name="use_inexact_seek_summary">الطلب غير الدقيق يسمح للمشغل بالبحث عن مواقع أسرع ودقة أقل. البحث عن 5 ,15 أو 25 ثانية لا يعمل مع هذا.</string>
     <string name="download_thumbnail_title">تحميل الصور المصغرة</string>
     <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
     <string name="file">الملف</string>
@@ -334,14 +334,14 @@
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
     <string name="auto_queue_title">وضع البث القادم تلقائيا في قائمة الإنتظار</string>
-    <string name="auto_queue_summary">إلحاق التدفق المرتبط تلقائيا عند تشغيل التدفق الأخير في قائمة انتظار مِن دون تكرار</string>
+    <string name="auto_queue_summary">متابعة إنهاء قائمة انتظار التشغيل (غير المتكررة) من خلال إلحاق تدفق ذي صلة</string>
     <string name="set_as_playlist_thumbnail">إضافة صورة مصغرة إلى قائمة التشغيل</string>
     <string name="bookmark_playlist">تفضيل قائمة التشغيل</string>
     <string name="playlist_thumbnail_change_success">تم تغيير الصورة المصغرة لقائمة التشغيل.</string>
     <string name="caption_none">بدون تسميات توضيحية</string>
     <string name="caption_setting_title">تسميات توضيحية</string>
     <string name="caption_setting_description">تعديل مشغل نص التسمية التوضيحية وأنماط الخلفية. يتطلب إعادة تشغيل التطبيق لتصبح التغييرات سارية المفعول.</string>
-    <string name="enable_leak_canary_title">تمكين LeakCanary</string>
+    <string name="enable_leak_canary_title">تمكين تسرب الكناري</string>
     <string name="enable_leak_canary_summary">قد تتسبب مراقبة تسرب الذاكرة في عدم استجابة التطبيق عند تفريغ السجلات</string>
     <string name="enable_disposed_exceptions_title">تقرير الأخطاء خارج دورة الحياة</string>
     <string name="enable_disposed_exceptions_summary">فرض الإبلاغ عن استثناءات Rx غير القابلة للتسليم خارج دورة حياة الجزء أو النشاط بعد التخلص منها</string>
@@ -389,7 +389,7 @@
     <string name="playback_speed_control">ضوابط سرعة التشغيل</string>
     <string name="playback_tempo">سرعة الأداء</string>
     <string name="playback_pitch">تردد الصوت</string>
-    <string name="unhook_checkbox">نزع الإرتباط (قد يسبب تشويه)</string>
+    <string name="unhook_checkbox">حل (قد يسبب تشويه)</string>
     <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
     <string name="privacy_policy_title">"سياسة الخصوصية في NewPipe "</string>
     <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك ، لا يجمع التطبيق أي بيانات دون موافقتك.
@@ -418,7 +418,7 @@
     <string name="tab_choose">اختر علامة التبويب</string>
     <string name="volume_gesture_control_summary">استخدم إيماءات التحكم في صوت المشغل</string>
     <string name="brightness_gesture_control_title">التحكم بالإيماءات السطوع</string>
-    <string name="brightness_gesture_control_summary">استخدام الإيماءات للتحكم في سطوع المشغل</string>
+    <string name="brightness_gesture_control_summary">استخدم الإيماءات للتحكم في سطوع المشغل</string>
     <string name="settings_category_updates_title">التحديثات</string>
     <string name="file_deleted">تم حذف الملف</string>
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
@@ -427,7 +427,7 @@
     <string name="app_update_notification_channel_description">الإخطارات لإصدار NewPipe الجديد</string>
     <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
-    <string name="saved_tabs_invalid_json">باستخدام علامات التبويب الافتراضية ، خطأ أثناء قراءة علامات التبويب المحفوظة</string>
+    <string name="saved_tabs_invalid_json">تعذرت قراءة علامات التبويب المحفوظة, لذا استخدم علامات التبويب الافتراضية</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="restore_defaults_confirmation">هل تريد استعادة الإعدادات الافتراضية؟</string>
     <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
@@ -478,12 +478,12 @@
     <string name="show_comments_summary">عطّله لإخفاء التعليقات</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
     <plurals name="comments">
-        <item quantity="zero">التعليقات</item>
-        <item quantity="one"/>
-        <item quantity="two"/>
-        <item quantity="few"/>
-        <item quantity="many"/>
-        <item quantity="other"/>
+        <item quantity="zero">%s تعليق</item>
+        <item quantity="one">%s تعليقات</item>
+        <item quantity="two">%s تعليقات</item>
+        <item quantity="few">%s تعليقات</item>
+        <item quantity="many">%s تعليقات</item>
+        <item quantity="other">%s تعليقات</item>
     </plurals>
     <string name="no_comments">لا توجد تعليقات</string>
     <string name="error_unable_to_load_comments">تعذر تحميل التعليقات</string>
@@ -511,8 +511,8 @@
     <string name="downloads_storage_ask_summary">سيُطلب منك مكان حفظ كل تنزيل</string>
     <string name="downloads_storage_ask_summary_kitkat">سيُطلب منك مكان حفظ كل تنزيل. اختر SAF إذا كنت تريد التنزيل على بطاقة SD خارجية</string>
     <string name="downloads_storage_use_saf_title">استخدام آمن</string>
-    <string name="downloads_storage_use_saf_summary">إطار وصول التخزين يسمح لتنزيلات على بطاقة SD الخارجية.
-\nملاحظة: بعض الأجهزة غير متوافقة</string>
+    <string name="downloads_storage_use_saf_summary">يسمح \"إطار الوصول إلى التخزين\" بالتنزيل على بطاقة SD خارجية.
+\nبعض الأجهزة غير متوافقة</string>
     <string name="clear_playback_states_title">حذف مواقف التشغيل</string>
     <string name="clear_playback_states_summary">حذف كل مواقف التشغيل</string>
     <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
@@ -566,11 +566,89 @@
     <string name="recaptcha_done_button">منجز</string>
     <string name="videos_string">الفيديوهات</string>
     <plurals name="seconds">
-        <item quantity="zero">%d ثوانٍ</item>
-        <item quantity="one">%d ثوانٍ</item>
-        <item quantity="two">%d ثوانٍ</item>
-        <item quantity="few">%d ثوانٍ</item>
-        <item quantity="many">%d ثوانٍ</item>
-        <item quantity="other">%d ثوانٍ</item>
+        <item quantity="zero">%d ثانية</item>
+        <item quantity="one">%d ثواني</item>
+        <item quantity="two">%d ثواني</item>
+        <item quantity="few">%d ثواني</item>
+        <item quantity="many">%d ثواني</item>
+        <item quantity="other">%d ثواني</item>
     </plurals>
+    <string name="feed_use_dedicated_fetch_method_help_text">هل تعتقد تحميل تغذية بطيء جدا؟ إذا كان الأمر كذلك ، فحاول تمكين التحميل السريع (يمكنك تغييره في الإعدادات أو بالضغط على الزر أدناه).
+\n
+\nيقدم NewPipe استراتيجيتين لتحميل الخلاصة:
+\n• جلب قناة الاشتراك بأكملها ، وهي بطيئة ولكنها كاملة.
+\n• استخدام نقطة نهاية خدمة مخصصة ، وهي سريعة ولكنها عادة لا تكتمل.
+\n
+\nالفرق بين الاثنين هو أن العنصر السريع عادة ما يفتقر إلى بعض المعلومات ، مثل مدة العنصر أو نوعه (لا يمكن التمييز بين مقاطع الفيديو المباشرة والأخرى العادية) وقد يعيد عناصر أقل.
+\n
+\n يوتيوب هو مثال على الخدمة التي تقدمها هذه طريقة سريعة مع تغذية RSS الخاصة بها.
+\n
+\nلذا فإن الاختيار يتلخص في ما تفضله: السرعة أو المعلومات الدقيقة.</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">تعطيل الوضع السريع</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">تمكين الوضع السريع</string>
+    <string name="feed_use_dedicated_fetch_method_summary">متوفر في بعض الخدمات ، وعادة ما يكون أسرع بكثير ولكن قد يُرجع كمية محدودة من العناصر وغالبًا معلومات غير مكتملة (على سبيل المثال ، بدون مدة أو نوع عنصر أو حالة مباشرة).</string>
+    <string name="feed_use_dedicated_fetch_method_title">جلب من تغذية مخصصة عندما تكون متاحة</string>
+    <string name="feed_update_threshold_option_always_update">تحديث دائما</string>
+    <string name="feed_update_threshold_summary">الوقت بعد التحديث الأخير قبل اعتبار الاشتراك قديمًا — %s</string>
+    <string name="feed_update_threshold_title">عتبة تحديث التغذية</string>
+    <string name="settings_category_feed_title">تغذية</string>
+    <string name="feed_create_new_group_button_title">جديد</string>
+    <string name="feed_group_dialog_delete_message">هل تريد حذف هذه المجموعة\?</string>
+    <string name="feed_group_dialog_name_input">الاسم</string>
+    <string name="feed_group_dialog_empty_name">اسم المجموعة فارغ</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="zero">%d تحديد</item>
+        <item quantity="one">%d المحدد</item>
+        <item quantity="two">%d المحدد</item>
+        <item quantity="few">%d المحدد</item>
+        <item quantity="many">%d المحدد</item>
+        <item quantity="other">%d المحدد</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">لم يتم تحديد اشتراك</string>
+    <string name="feed_group_dialog_select_subscriptions">حدد الاشتراكات</string>
+    <string name="feed_processing_message">يتم معالجة التغذية…</string>
+    <string name="feed_notification_loading">تحميل التغذية…</string>
+    <string name="feed_subscription_not_loaded_count">غير محمل: %d</string>
+    <string name="feed_oldest_subscription_update">آخر تحديث للتغذية: %s</string>
+    <string name="feed_groups_header_title">مجموعات القنوات</string>
+    <plurals name="days">
+        <item quantity="zero">%d يوم</item>
+        <item quantity="one">%d أيام</item>
+        <item quantity="two">%d أيام</item>
+        <item quantity="few">%d أيام</item>
+        <item quantity="many">%d أيام</item>
+        <item quantity="other">%d أيام</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="zero">%d ساعة</item>
+        <item quantity="one">%d ساعات</item>
+        <item quantity="two">%d ساعات</item>
+        <item quantity="few">%d ساعات</item>
+        <item quantity="many">%d ساعات</item>
+        <item quantity="other">%d ساعات</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="zero">%d دقيقة</item>
+        <item quantity="one">%d الدقائق</item>
+        <item quantity="two">%d الدقائق</item>
+        <item quantity="few">%d الدقائق</item>
+        <item quantity="many">%d الدقائق</item>
+        <item quantity="other">%d الدقائق</item>
+    </plurals>
+    <string name="new_seek_duration_toast">بسبب قيود ExoPlayer تم تعيين مدة البحث على %d ثانية</string>
+    <string name="unmute">إلغاء كتم الصوت</string>
+    <string name="mute">كتم الصوت</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@السلسلة/تطبيق _اسم</string>
+    <string name="help">مساعدة</string>
+    <string name="content_not_supported">هذا المحتوى ليس مدعوم من قبل NewPipe.
+\n
+\nنامل ان يكون مدعوما في التحديثات القادمة.</string>
+    <string name="infinite_videos">∞ فيديو</string>
+    <string name="more_than_100_videos">+100 فيديو</string>
+    <string name="artists">الفنانين</string>
+    <string name="albums">الالبومات</string>
+    <string name="songs">الأغاني</string>
+    <string name="restricted_video">هذا المحتوى مقيد للبالغين.
+\n
+\n اذا اردت رؤيه المحتوى، يجب عليك تفعيل خيار \"تمكين محتوى البالغين\" من الاعدادات.</string>
 </resources>

@@ -464,8 +464,8 @@
     <string name="show_comments_summary">Skru av for å stoppe visning i kommentarer</string>
     <string name="autoplay_title">Spill av automatisk</string>
     <plurals name="comments">
-        <item quantity="one">Kommentarer</item>
-        <item quantity="other"/>
+        <item quantity="one">%s kommentar</item>
+        <item quantity="other">%s kommentarer</item>
     </plurals>
     <string name="no_comments">Ingen kommenterer</string>
     <string name="error_unable_to_load_comments">Kunne ikke laste inn kommentarer</string>
@@ -542,7 +542,7 @@
     <string name="recaptcha_done_button">Ferdig</string>
     <string name="videos_string">Videoer</string>
     <plurals name="seconds">
-        <item quantity="one">%d sekunder</item>
+        <item quantity="one">%d sekund</item>
         <item quantity="other">%d sekunder</item>
     </plurals>
     <string name="mute">Forstum</string>
@@ -565,4 +565,26 @@
     <string name="feed_group_dialog_name_input">Navn</string>
     <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen\?</string>
     <string name="feed_create_new_group_button_title">Ny</string>
+    <string name="feed_update_threshold_option_always_update">Alltid oppdater</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d valgt</item>
+        <item quantity="other">%d valgt</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Ingen abonnement valgt</string>
+    <string name="feed_group_dialog_select_subscriptions">Velg abonnementer</string>
+    <string name="feed_groups_header_title">Kanalgrupper</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Skru av raskt modus</string>
+    <string name="feed_update_threshold_title">Strømoppdateringsterskel</string>
+    <string name="settings_category_feed_title">Strøm</string>
+    <string name="feed_processing_message">Behandler strøm…</string>
+    <string name="feed_notification_loading">Laster inn strøm…</string>
+    <string name="feed_oldest_subscription_update">Strøm sist oppdatert: %s</string>
+    <string name="restricted_video">Denne videoen er aldersbegrenset.
+\n
+\nHvis du ønsker å se den, skru på \"Aldersbegrenset innhold\" i innstillingene.</string>
+    <string name="infinite_videos">∞ videoer</string>
+    <string name="more_than_100_videos">100+ videoer</string>
+    <string name="artists">Artister</string>
+    <string name="albums">Album</string>
+    <string name="songs">Sanger</string>
 </resources>
