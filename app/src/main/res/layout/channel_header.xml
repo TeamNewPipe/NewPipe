@@ -40,7 +40,7 @@
                 tools:ignore="RtlHardcoded" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/parent_channel_avatar_view"
+                android:id="@+id/sub_channel_avatar_view"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="bottom|right"
@@ -68,7 +68,7 @@
             tools:text="Lorem ipsum dolor" />
 
         <TextView
-            android:id="@+id/parent_channel_title_view"
+            android:id="@+id/sub_channel_title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/channel_title_view"
@@ -87,7 +87,7 @@
             android:id="@+id/channel_subscriber_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/parent_channel_title_view"
+            android:layout_below="@id/sub_channel_title_view"
             android:layout_alignLeft="@id/channel_title_view"
             android:layout_alignRight="@id/channel_title_view"
             android:ellipsize="end"

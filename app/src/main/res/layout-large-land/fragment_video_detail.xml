@@ -264,7 +264,7 @@
                                     android:src="@drawable/buddy" />
 
 								<de.hdodenhof.circleimageview.CircleImageView
-									android:id="@+id/detail_parent_channel_thumbnail_view"
+									android:id="@+id/detail_sub_channel_thumbnail_view"
 									android:layout_width="@dimen/video_item_detail_uploader_image_size"
 									android:layout_height="@dimen/video_item_detail_uploader_image_size"
 									android:layout_gravity="bottom|right"
@@ -280,7 +280,7 @@
 								android:orientation="vertical">
 
 								<TextView
-									android:id="@+id/detail_parent_channel_text_view"
+									android:id="@+id/detail_sub_channel_text_view"
 									android:layout_width="match_parent"
 									android:layout_height="wrap_content"
 									android:layout_marginLeft="15dp"
@@ -290,7 +290,7 @@
 									android:scrollHorizontally="true"
 									android:singleLine="true"
 									android:textAppearance="?android:attr/textAppearanceLarge"
-									android:textSize="@dimen/video_item_detail_parent_channel_text_size"
+									android:textSize="@dimen/video_item_detail_sub_channel_text_size"
 									android:textStyle="bold"
 									tools:ignore="RtlHardcoded"
 									tools:text="Channel" />

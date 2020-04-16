@@ -172,10 +172,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     private TextView videoUploadDateView;
     private TextView videoDescriptionView;
 
+    private View uploaderRootLayout;
     private TextView uploaderTextView;
     private ImageView uploaderThumb;
-    private TextView parentChannelTextView;
-    private ImageView parentChannelThumb;
+    private TextView subChannelTextView;
+    private ImageView subChannelThumb;
 
     private TextView thumbsUpTextView;
     private ImageView thumbsUpImageView;
@@ -419,25 +420,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                     this.openDownloadDialog();
                 }
                 break;
-            case R.id.detail_parent_channel_text_view:
-            case R.id.detail_parent_channel_thumbnail_view:
-                if (TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
-                    Log.w(TAG, "Can't open parent's channel because we got no channel URL");
+            case R.id.detail_uploader_root_layout:
+                if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
+                    Log.w(TAG, "Can't open sub-channel because we got no channel URL");
 
                     if (!TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
                         openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
                     }
                 } else {
-                    openChannel(currentInfo.getParentChannelUrl(),
-                            currentInfo.getParentChannelName());
-                }
-                break;
-            case R.id.detail_uploader_text_view:
-            case R.id.detail_uploader_thumbnail_view:
-                if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
-                    Log.w(TAG, "Can't open channel because we got no channel URL");
-                } else {
-                    openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
+                    openChannel(currentInfo.getSubChannelUrl(),
+                            currentInfo.getSubChannelName());
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
@@ -454,13 +446,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         }
     }
 
-    private void openChannel(final String parentChannelUrl, final String parentChannelName) {
+    private void openChannel(final String subChannelUrl, final String subChannelName) {
         try {
             NavigationHelper.openChannelFragment(
                     getFragmentManager(),
                     currentInfo.getServiceId(),
-                    parentChannelUrl,
-                    parentChannelName);
+                    subChannelUrl,
+                    subChannelName);
         } catch (Exception e) {
             ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
         }
@@ -541,10 +533,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         thumbsDownImageView = rootView.findViewById(R.id.detail_thumbs_down_img_view);
         thumbsDisabledTextView = rootView.findViewById(R.id.detail_thumbs_disabled_view);
 
+        uploaderRootLayout = rootView.findViewById(R.id.detail_uploader_root_layout);
         uploaderTextView = rootView.findViewById(R.id.detail_uploader_text_view);
         uploaderThumb = rootView.findViewById(R.id.detail_uploader_thumbnail_view);
-        parentChannelTextView = rootView.findViewById(R.id.detail_parent_channel_text_view);
-        parentChannelThumb = rootView.findViewById(R.id.detail_parent_channel_thumbnail_view);
+        subChannelTextView = rootView.findViewById(R.id.detail_sub_channel_text_view);
+        subChannelThumb = rootView.findViewById(R.id.detail_sub_channel_thumbnail_view);
 
         appBarLayout = rootView.findViewById(R.id.appbarlayout);
         viewPager = rootView.findViewById(R.id.viewpager);
@@ -574,11 +567,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     protected void initListeners() {
         super.initListeners();
 
-        uploaderTextView.setOnClickListener(this);
-        uploaderThumb.setOnClickListener(this);
-        parentChannelTextView.setOnClickListener(this);
-        parentChannelThumb.setOnClickListener(this);
-
+        uploaderRootLayout.setOnClickListener(this);
         videoTitleRoot.setOnClickListener(this);
         thumbnailBackgroundButton.setOnClickListener(this);
         detailControlsBackground.setOnClickListener(this);
@@ -627,8 +616,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                     ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, onFailListener);
         }
 
-        if (!TextUtils.isEmpty(info.getParentChannelAvatarUrl())) {
-            IMAGE_LOADER.displayImage(info.getParentChannelAvatarUrl(), parentChannelThumb,
+        if (!TextUtils.isEmpty(info.getSubChannelAvatarUrl())) {
+            IMAGE_LOADER.displayImage(info.getSubChannelAvatarUrl(), subChannelThumb,
                     ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
 
@@ -993,7 +982,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                                        @NonNull final StreamInfo info,
                                        @NonNull final Stream selectedStream) {
         NavigationHelper.playOnExternalPlayer(context, currentInfo.getName(),
-                currentInfo.getParentChannelName(), selectedStream);
+                currentInfo.getSubChannelName(), selectedStream);
 
         final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
         disposables.add(recordManager.onViewed(info).onErrorComplete()
@@ -1126,9 +1115,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         }
 
         IMAGE_LOADER.cancelDisplayTask(thumbnailImageView);
-        IMAGE_LOADER.cancelDisplayTask(parentChannelThumb);
+        IMAGE_LOADER.cancelDisplayTask(subChannelThumb);
         thumbnailImageView.setImageBitmap(null);
-        parentChannelThumb.setImageBitmap(null);
+        subChannelThumb.setImageBitmap(null);
     }
 
     @Override
@@ -1156,17 +1145,17 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         animateView(thumbnailPlayButton, true, 200);
         videoTitleTextView.setText(name);
 
-        if (!TextUtils.isEmpty(info.getParentChannelName())) {
-            displayBothUploaderAndParentChannel(info);
+        if (!TextUtils.isEmpty(info.getSubChannelName())) {
+            displayBothUploaderAndSubChannel(info);
         } else if (!TextUtils.isEmpty(info.getUploaderName())) {
-            displayUploaderAsParentChannel(info);
+            displayUploaderAsSubChannel(info);
         } else {
-            parentChannelThumb.setVisibility(View.GONE);
+            subChannelThumb.setVisibility(View.GONE);
             uploaderTextView.setVisibility(View.GONE);
             uploaderThumb.setVisibility(View.GONE);
         }
 
-        parentChannelThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
+        subChannelThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
         uploaderThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
 
         if (info.getViewCount() >= 0) {
@@ -1297,21 +1286,22 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         viewPager.setVisibility(View.GONE);
         tabLayout.setVisibility(View.GONE);
     }
-    private void displayUploaderAsParentChannel(final StreamInfo info) {
-        parentChannelTextView.setText(info.getUploaderName());
-        parentChannelTextView.setVisibility(View.VISIBLE);
-        parentChannelTextView.setSelected(true);
-        parentChannelThumb.setVisibility(View.GONE);
+    private void displayUploaderAsSubChannel(final StreamInfo info) {
+        subChannelTextView.setText(info.getUploaderName());
+        subChannelTextView.setVisibility(View.VISIBLE);
+        subChannelTextView.setSelected(true);
+        subChannelThumb.setVisibility(View.GONE);
         uploaderTextView.setVisibility(View.GONE);
     }
 
-    private void displayBothUploaderAndParentChannel(final StreamInfo info) {
-        parentChannelTextView.setText(info.getParentChannelName());
-        parentChannelTextView.setVisibility(View.VISIBLE);
-        parentChannelTextView.setSelected(true);
+    private void displayBothUploaderAndSubChannel(final StreamInfo info) {
+        subChannelTextView.setText(info.getSubChannelName());
+        subChannelTextView.setVisibility(View.VISIBLE);
+        subChannelTextView.setSelected(true);
 
         if (!TextUtils.isEmpty(info.getUploaderName())) {
-            uploaderTextView.setText("By " + info.getUploaderName());
+            uploaderTextView.setText(
+                    String.format(getString(R.string.video_detail_by), info.getUploaderName()));
             uploaderTextView.setVisibility(View.VISIBLE);
             uploaderTextView.setSelected(true);
         } else {

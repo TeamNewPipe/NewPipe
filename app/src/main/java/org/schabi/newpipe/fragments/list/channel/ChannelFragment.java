@@ -82,8 +82,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     private ImageView headerChannelBanner;
     private ImageView headerAvatarView;
     private TextView headerTitleView;
-    private ImageView headerParentChannelAvatarView;
-    private TextView headerParentChannelTitleView;
+    private ImageView headerSubChannelAvatarView;
+    private TextView headerSubChannelTitleView;
     private TextView headerSubscribersTextView;
     private Button headerSubscribeButton;
     private View playlistCtrl;
@@ -161,10 +161,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         headerSubscribersTextView = headerRootLayout.findViewById(R.id.channel_subscriber_view);
         headerSubscribeButton = headerRootLayout.findViewById(R.id.channel_subscribe_button);
         playlistCtrl = headerRootLayout.findViewById(R.id.playlist_control);
-        headerParentChannelAvatarView =
-                headerRootLayout.findViewById(R.id.parent_channel_avatar_view);
-        headerParentChannelTitleView =
-                headerRootLayout.findViewById(R.id.parent_channel_title_view);
+        headerSubChannelAvatarView =
+                headerRootLayout.findViewById(R.id.sub_channel_avatar_view);
+        headerSubChannelTitleView =
+                headerRootLayout.findViewById(R.id.sub_channel_title_view);
 
         headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
@@ -175,8 +175,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     @Override
     protected void initListeners() {
-        headerParentChannelTitleView.setOnClickListener(this);
-        headerParentChannelAvatarView.setOnClickListener(this);
+        super.initListeners();
+
+        headerSubChannelTitleView.setOnClickListener(this);
+        headerSubChannelAvatarView.setOnClickListener(this);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -408,28 +410,28 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         return ExtractorHelper.getChannelInfo(serviceId, url, forceLoad);
     }
 
-     /*//////////////////////////////////////////////////////////////////////////
+    /*//////////////////////////////////////////////////////////////////////////
     // OnClick
     //////////////////////////////////////////////////////////////////////////*/
 
-     @Override
+    @Override
     public void onClick(final View v) {
         if (isLoading.get() || currentInfo == null) {
             return;
         }
 
         switch (v.getId()) {
-            case R.id.parent_channel_avatar_view:
-            case R.id.parent_channel_title_view:
-                if (TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
-                    Log.w(TAG, "Can't open parent's channel because we got no channel URL");
+            case R.id.sub_channel_avatar_view:
+            case R.id.sub_channel_title_view:
+                if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
+                    Log.w(TAG, "Can't open sub-channel because we got no channel URL");
                 } else {
                     try {
                         NavigationHelper.openChannelFragment(
                                 getFragmentManager(),
                                 currentInfo.getServiceId(),
-                                currentInfo.getParentChannelUrl(),
-                                currentInfo.getParentChannelName());
+                                currentInfo.getSubChannelUrl(),
+                                currentInfo.getSubChannelName());
                     } catch (Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                     }
@@ -448,7 +450,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
         IMAGE_LOADER.cancelDisplayTask(headerChannelBanner);
         IMAGE_LOADER.cancelDisplayTask(headerAvatarView);
-        IMAGE_LOADER.cancelDisplayTask(headerParentChannelAvatarView);
+        IMAGE_LOADER.cancelDisplayTask(headerSubChannelAvatarView);
         animateView(headerSubscribeButton, false, 100);
     }
 
@@ -461,7 +463,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
         IMAGE_LOADER.displayImage(result.getAvatarUrl(), headerAvatarView,
                 ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
-        IMAGE_LOADER.displayImage(result.getParentChannelAvatarUrl(), headerParentChannelAvatarView,
+        IMAGE_LOADER.displayImage(result.getSubChannelAvatarUrl(), headerSubChannelAvatarView,
                 ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
 
         headerSubscribersTextView.setVisibility(View.VISIBLE);
@@ -472,13 +474,15 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             headerSubscribersTextView.setText(R.string.subscribers_count_not_available);
         }
 
-        if (!TextUtils.isEmpty(currentInfo.getParentChannelName())) {
-            headerParentChannelTitleView.setText(
-                    "Created by " + currentInfo.getParentChannelName());
-            headerParentChannelTitleView.setVisibility(View.VISIBLE);
+        if (!TextUtils.isEmpty(currentInfo.getSubChannelName())) {
+            headerSubChannelTitleView.setText(String.format(
+                            getString(R.string.channel_created_by),
+                            currentInfo.getSubChannelName())
+            );
+            headerSubChannelTitleView.setVisibility(View.VISIBLE);
         } else {
-            headerParentChannelTitleView.setVisibility(View.GONE);
-            headerParentChannelAvatarView.setVisibility(View.GONE);
+            headerSubChannelTitleView.setVisibility(View.GONE);
+            headerSubChannelAvatarView.setVisibility(View.GONE);
         }
 
         if (menuRssButton != null) {
