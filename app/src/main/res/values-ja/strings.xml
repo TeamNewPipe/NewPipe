@@ -584,4 +584,15 @@
 \nYouTubeは、この高速な読み込み方法をRSSフィードで提供するサービスのひとつです。
 \n
 \nつまり、読み込み方法の選択は速度または正確さのどちらを優先するか、あなたの好みによります。</string>
+    <string name="infinite_videos">∞ の動画</string>
+    <string name="more_than_100_videos">100 以上の動画</string>
+    <string name="content_not_supported">このコンテンツはまだ NewPipe でサポートされていません。
+\n
+\n今後のバージョンでサポートされるかもしれません。</string>
+    <string name="songs">曲</string>
+    <string name="artists">アーティスト</string>
+    <string name="albums">アルバム</string>
+    <string name="restricted_video">この動画には年齢制限があります。
+\n
+\n閲覧したい場合、設定から \"年齢制限のあるコンテンツを表示する\" を有効化してください。</string>
 </resources>
