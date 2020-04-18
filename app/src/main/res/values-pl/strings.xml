@@ -608,4 +608,15 @@
         <item quantity="many">%d minut</item>
     </plurals>
     <string name="help">Pomoc</string>
+    <string name="content_not_supported">Ta treść nie jest jeszcze obsługiwana przez NewPipe.
+\n
+\nMam nadzieję, że będzie obsługiwana w przyszłej wersji.</string>
+    <string name="infinite_videos">∞ filmy</string>
+    <string name="more_than_100_videos">100+ filmów</string>
+    <string name="artists">Artyści</string>
+    <string name="albums">Albumy</string>
+    <string name="songs">Piosenki</string>
+    <string name="restricted_video">Ten film wideo jest ograniczony wiekiem.
+\n
+\nJeśli chcesz go wyświetlić, włącz w ustawieniach opcję \"Zawartość z ograniczeniami wiekowymi\".</string>
 </resources>
