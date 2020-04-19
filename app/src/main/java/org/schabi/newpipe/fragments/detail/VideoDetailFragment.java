@@ -474,6 +474,15 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             case R.id.detail_controls_download:
                 NavigationHelper.openDownloads(getActivity());
                 break;
+
+            case R.id.detail_uploader_root_layout:
+                if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
+                    Log.w(TAG,
+                            "Can't open parent channel because we got no parent channel URL");
+                } else {
+                    openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
+                }
+                break;
         }
 
         return true;
@@ -568,6 +577,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         super.initListeners();
 
         uploaderRootLayout.setOnClickListener(this);
+        uploaderRootLayout.setOnLongClickListener(this);
         videoTitleRoot.setOnClickListener(this);
         thumbnailBackgroundButton.setOnClickListener(this);
         detailControlsBackground.setOnClickListener(this);
