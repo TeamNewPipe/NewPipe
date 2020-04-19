@@ -565,8 +565,8 @@
         <item quantity="one">%d ڕۆژ</item>
         <item quantity="other">%d ڕۆژەکان</item>
     </plurals>
-    <string name="feed_groups_header_title">کۆمەڵە دیارەکان</string>
-    <string name="feed_oldest_subscription_update">کۆنترین نوێکردنەوەی بەشداری: %s</string>
+    <string name="feed_groups_header_title">کۆمەڵەی کەناڵەکان</string>
+    <string name="feed_oldest_subscription_update">دواین نوێکردنەوە: %s</string>
     <string name="feed_subscription_not_loaded_count">بارنەکراو : %d</string>
     <string name="feed_notification_loading">بارکردن…</string>
     <string name="feed_processing_message">ئامادەکردن…</string>
