@@ -597,4 +597,15 @@
     <string name="mute">Isilarazi</string>
     <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">Laguntza</string>
+    <string name="content_not_supported">Eduki hau ez dago oraindik NewPipengatik onatuta.
+\n
+\nEtorkizuneko bertsio batean onartua izatea espero da.</string>
+    <string name="infinite_videos">∞ bideo</string>
+    <string name="more_than_100_videos">100 bideo baino gehiago</string>
+    <string name="artists">Artistak</string>
+    <string name="albums">Albumak</string>
+    <string name="songs">Abestiak</string>
+    <string name="restricted_video">Bideo hau adinez mugatua dago.
+\n
+\nIkusi nahi baduzu, gaitu ezazu \"Adinez mugatutako edukia\" ezarpenetan.</string>
 </resources>
