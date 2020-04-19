@@ -1129,4 +1129,5 @@
         <item>@string/grid</item>
     </string-array>
 
+    <string name="recaptcha_cookies_key" translatable="false">recaptcha_cookies_key</string>
 </resources>

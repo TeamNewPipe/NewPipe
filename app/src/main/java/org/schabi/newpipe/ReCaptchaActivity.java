@@ -1,23 +1,31 @@
 package org.schabi.newpipe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.CookieManager;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.util.ThemeHelper;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 /*
  * Created by beneth <bmauduit@beneth.fr> on 06.12.16.
@@ -71,10 +79,33 @@ public class ReCaptchaActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
 
         webView.setWebViewClient(new WebViewClient() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public boolean shouldOverrideUrlLoading(final WebView view,
+                                                    final WebResourceRequest request) {
+                String url = request.getUrl().toString();
+                if (MainActivity.DEBUG) {
+                    Log.d(TAG, "shouldOverrideUrlLoading: request.url=" + url);
+                }
+
+                handleCookiesFromUrl(url);
+                return false;
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
+                if (MainActivity.DEBUG) {
+                    Log.d(TAG, "shouldOverrideUrlLoading: url=" + url);
+                }
+
+                handleCookiesFromUrl(url);
+                return false;
+            }
+
             @Override
             public void onPageFinished(final WebView view, final String url) {
                 super.onPageFinished(view, url);
-                handleCookies(url);
+                handleCookiesFromUrl(url);
             }
         });
 
@@ -124,8 +155,18 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     private void saveCookiesAndFinish() {
-        handleCookies(webView.getUrl()); // try to get cookies of unclosed page
+        handleCookiesFromUrl(webView.getUrl()); // try to get cookies of unclosed page
+        if (MainActivity.DEBUG) {
+            Log.d(TAG, "saveCookiesAndFinish: foundCookies=" + foundCookies);
+        }
+
         if (!foundCookies.isEmpty()) {
+            // save cookies to preferences
+            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                    getApplicationContext());
+            final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
+            prefs.edit().putString(key, foundCookies).apply();
+
             // give cookies to Downloader class
             DownloaderImpl.getInstance().setCookies(foundCookies);
             setResult(RESULT_OK);
@@ -137,23 +178,54 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
 
-    private void handleCookies(final String url) {
-        String cookies = CookieManager.getInstance().getCookie(url);
+    private void handleCookiesFromUrl(@Nullable final String url) {
         if (MainActivity.DEBUG) {
-            Log.d(TAG, "handleCookies: "
-                    + "url=" + url + "; cookies=" + (cookies == null ? "null" : cookies));
+            Log.d(TAG, "handleCookiesFromUrl: url=" + (url == null ? "null" : url));
         }
+
+        if (url == null) {
+            return;
+        }
+
+        String cookies = CookieManager.getInstance().getCookie(url);
+        handleCookies(cookies);
+
+        // sometimes cookies are inside the url
+        int abuseStart = url.indexOf("google_abuse=");
+        if (abuseStart != -1) {
+            int abuseEnd = url.indexOf("+path");
+
+            try {
+                String abuseCookie = url.substring(abuseStart + 13, abuseEnd);
+                abuseCookie = URLDecoder.decode(abuseCookie, "UTF-8");
+                handleCookies(abuseCookie);
+            } catch (UnsupportedEncodingException | StringIndexOutOfBoundsException e) {
+                if (MainActivity.DEBUG) {
+                    e.printStackTrace();
+                    Log.d(TAG, "handleCookiesFromUrl: invalid google abuse starting at "
+                            + abuseStart + " and ending at " + abuseEnd + " for url " + url);
+                }
+            }
+        }
+    }
+
+    private void handleCookies(@Nullable final String cookies) {
+        if (MainActivity.DEBUG) {
+            Log.d(TAG, "handleCookies: cookies=" + (cookies == null ? "null" : cookies));
+        }
+
         if (cookies == null) {
             return;
         }
 
         addYoutubeCookies(cookies);
-        // add other methods to extract cookies here
+        // add here methods to extract cookies for other services
     }
 
     private void addYoutubeCookies(@NonNull final String cookies) {
         if (cookies.contains("s_gl=") || cookies.contains("goojf=")
-                || cookies.contains("VISITOR_INFO1_LIVE=")) {
+                || cookies.contains("VISITOR_INFO1_LIVE=")
+                || cookies.contains("GOOGLE_ABUSE_EXEMPTION=")) {
             // youtube seems to also need the other cookies:
             addCookie(cookies);
         }

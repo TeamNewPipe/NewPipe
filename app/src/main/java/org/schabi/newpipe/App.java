@@ -5,10 +5,12 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -125,7 +127,16 @@ public class App extends Application {
     }
 
     protected Downloader getDownloader() {
-        return DownloaderImpl.init(null);
+        DownloaderImpl downloader = DownloaderImpl.init(null);
+        setCookiesToDownloader(downloader);
+        return downloader;
+    }
+
+    protected void setCookiesToDownloader(final DownloaderImpl downloader) {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                getApplicationContext());
+        final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
+        downloader.setCookies(prefs.getString(key, ""));
     }
 
     private void configureRxJavaErrorHandler() {
