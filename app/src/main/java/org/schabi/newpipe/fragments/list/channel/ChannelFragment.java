@@ -465,6 +465,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 .playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view -> NavigationHelper
                 .playOnBackgroundPlayer(activity, getPlayQueue(), false));
+
+        headerPopupButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
+            return true;
+        });
+
+        headerBackgroundButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
+            return true;
+        });
     }
 
     private void showContentNotSupported() {
