@@ -47,8 +47,8 @@
     <string name="storage_permission_denied">У доступі до сховища відмовлено</string>
     <string name="content">Контент</string>
     <string name="show_age_restricted_content_title">Контент з віковими обмеженнями</string>
-    <string name="video_is_age_restricted">Показувати відео з віковими обмеженнями. Дозволити програвання таких записів можна у Налаштуваннях.</string>
-    <string name="duration_live">НАЖИВО</string>
+    <string name="video_is_age_restricted">Показувати відео з віковими обмеженнями. Надалі дозволити програвання таких відео можна у налаштуваннях.</string>
+    <string name="duration_live">Наживо</string>
     <string name="general_error">Помилка</string>
     <string name="network_error">Помилка мережі</string>
     <string name="could_not_load_thumbnails">Не вдалося завантажити всі ескізи</string>
@@ -129,7 +129,7 @@
     <string name="popup_remember_size_pos_title">Пам\'ятати розмір і позицію вікна</string>
     <string name="popup_remember_size_pos_summary">Пам\'ятати останній розмір і позицію вікна</string>
     <string name="player_gesture_controls_title">Жести керування програвачем</string>
-    <string name="player_gesture_controls_summary">Використовувати жести для контролю яскравості та гучності у програвачі</string>
+    <string name="player_gesture_controls_summary">Контролювати яскравость та гучність програвача жестами</string>
     <string name="show_search_suggestions_title">Пошукові пропозиції</string>
     <string name="show_search_suggestions_summary">Показувати пропозиції під час пошуку</string>
     <string name="enable_search_history_title">Історія пошуків</string>
@@ -141,7 +141,7 @@
     <string name="settings_category_clear_data_title">Очистити дані</string>
     <string name="enable_watch_history_summary">Вести облік перегляду відеозаписів</string>
     <string name="enable_watch_history_title">Історія переглядів</string>
-    <string name="resume_on_audio_focus_gain_title">Відновити програвання при поверненні з тла</string>
+    <string name="resume_on_audio_focus_gain_title">Відновити програвання</string>
     <string name="resume_on_audio_focus_gain_summary">Продовжувати програвання після переривань (наприклад, телефонних дзвінків)</string>
     <string name="show_hold_to_append_title">Показати пораду \"Утримуй, щоб додати\"</string>
     <string name="default_content_country_title">Типова країна контенту</string>
@@ -418,7 +418,7 @@
     <string name="volume_gesture_control_title">Жест керування гучністю</string>
     <string name="volume_gesture_control_summary">Змінювати гучність звуку жестами</string>
     <string name="brightness_gesture_control_title">Жест керування яскравістю</string>
-    <string name="brightness_gesture_control_summary">Змінювати яскравість екрану жестами</string>
+    <string name="brightness_gesture_control_summary">Змінювати яскравість програвача жестами</string>
     <string name="settings_category_updates_title">Оновлення</string>
     <string name="events">Події</string>
     <string name="file_deleted">Файл видалено</string>
@@ -472,7 +472,7 @@
     <string name="updates_setting_description">Показувати сповіщення з пропозицією оновити застосунок за наявності нової версії</string>
     <string name="pause_downloads_on_mobile_desc">Корисно під час переходу на мобільні дані, хоча деякі завантаження не можуть бути призупинені</string>
     <string name="show_comments_title">Показувати коментарі</string>
-    <string name="show_comments_summary">Вимнути відображення дописів</string>
+    <string name="show_comments_summary">Вимкніть, щоб сховати коментарі</string>
     <string name="autoplay_title">Автопрогравання</string>
     <plurals name="comments">
         <item quantity="one">Коментарі</item>
@@ -534,8 +534,8 @@
     <string name="recovering">відновлюється</string>
     <string name="error_download_resource_gone">Неможливо відновити це завантаження</string>
     <string name="choose_instance_prompt">Оберіть сервер</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Прев\'ю на екрані блокування</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">При використанні фонового плеєра, прев\'ю відео буде показано на екрані блокування</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Прев’ю відео на екрані блокування</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Прев’ю відео буде показано на екрані блокування при використанні фонового плеєра</string>
     <string name="clear_download_history">Очистити історію завантажень</string>
     <string name="delete_downloaded_files">Видалити завантажені файли</string>
     <string name="permission_display_over_apps">Потрібен дозвіл показувати поверх інших додатків</string>
@@ -543,4 +543,35 @@
     <string name="systems_language">Мова телефону</string>
     <string name="subtitle_activity_recaptcha">Натисніть \"Готово\" по закінченню</string>
     <string name="recaptcha_done_button">Готово</string>
+    <string name="feed_create_new_group_button_title">Нова</string>
+    <string name="feed_group_dialog_delete_message">Ви бажаєте видалити цю групу\?</string>
+    <string name="feed_group_dialog_name_input">Назва</string>
+    <string name="feed_group_dialog_empty_selection">Підписки не вибрані</string>
+    <string name="feed_groups_header_title">Групи каналів</string>
+    <plurals name="days">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дні</item>
+        <item quantity="many">%d днів</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d година</item>
+        <item quantity="few">%d години</item>
+        <item quantity="many">%d годин</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d хвилина</item>
+        <item quantity="few">%d хвилини</item>
+        <item quantity="many">%d хвилин</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d секунда</item>
+        <item quantity="few">%d секунди</item>
+        <item quantity="many">%d секунд</item>
+    </plurals>
+    <string name="mute">Вимкнути звук</string>
+    <string name="unmute">Увімкнути звук</string>
+    <string name="local">Локальне</string>
+    <string name="help">Допомога</string>
+    <string name="videos_string">Відео</string>
+    <string name="peertube_instance_add_fail">Не вдалося перевірити сервер</string>
 </resources>

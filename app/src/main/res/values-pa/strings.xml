@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਸਰਚ ਦਬਾਓ</string>
     <string name="view_count_text">%1$s VIEWS</string>
     <string name="upload_date_text">%1$s ਨੂੰ ਪਬਲਿਸ਼ ਕੀਤੀ ਗਈ</string>
-    <string name="no_player_found">"ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ।  ਤੁਸੀਂ VLC ਭਰਨਾ ਚਾਹੋਗੇ \?"</string>
+    <string name="no_player_found">ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ। ਤੁਸੀਂ VLC ਭਰਨਾ ਚਾਹੋਗੇ \?</string>
     <string name="no_player_found_toast">ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ ਤੁਸੀਂ VLC ਇੰਸਟਾਲ ਕਰ ਸਕਦੇ ਹੋ.</string>
     <string name="install">ਇੰਸਟਾਲ</string>
     <string name="cancel">ਰੱਦ ਕਰੋ</string>
@@ -69,7 +69,7 @@
     <string name="metadata_cache_wipe_summary">ਸਾਰੇ cached ਵੈੱਬ-ਪੇਜਾਂ ਦਾ ਡਾਟਾ ਮਿਟਾਓ</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
     <string name="auto_queue_title">ਅਗਲੀ ਸਟ੍ਰੀਮ ਨੂੰ ਆਟੋ-ਕਤਾਰਬੱਧ ਕਰੋ</string>
-    <string name="auto_queue_summary">"ਇੱਕ ਨਾ-ਦੁਹਰਾਉਣ ਵਾਲੀ ਕਤਾਰ ਵਿੱਚ ਆਖਰੀ ਸਟ੍ਰੀਮ  ਨੂੰ ਚਲਾਉਣ ਵੇਲੇ ਆਪਣੇ-ਆਪ ਸ਼ਾਮਿਲ ਕਰੋ"</string>
+    <string name="auto_queue_summary">ਇੱਕ ਨਾ-ਦੁਹਰਾਉਣ ਵਾਲੀ ਕਤਾਰ ਵਿੱਚ ਆਖਰੀ ਸਟ੍ਰੀਮ ਨੂੰ ਚਲਾਉਣ ਵੇਲੇ ਆਪਣੇ-ਆਪ ਸ਼ਾਮਿਲ ਕਰੋ</string>
     <string name="player_gesture_controls_title">ਵੀਡੀਓ ਪਲੇਯਰ gesture ਕੰਟਰੋਲ</string>
     <string name="player_gesture_controls_summary">ਸਕ੍ਰੀਨ ਲਾਈਟ ਅਤੇ ਆਵਾਜ਼ ਨੂੰ ਕੰਟਰੋਲ ਕਰਨ ਲਈ gestures ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="show_search_suggestions_title">ਖੋਜ ਸੁਝਾਅ</string>
