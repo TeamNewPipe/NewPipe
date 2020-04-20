@@ -127,12 +127,14 @@ tasks.withType(Checkstyle).each {
     }
 }
 
-preBuild.dependsOn runCheckstyle
+afterEvaluate {
+    preDebugBuild.dependsOn runCheckstyle
+}
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
+    debugImplementation "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation "android.arch.persistence.room:testing:1.1.1"
