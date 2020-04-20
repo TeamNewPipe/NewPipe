@@ -48,6 +48,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     private static final String GITHUB_APK_SHA1
             = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
     private static final String NEWPIPE_API_URL = "https://newpipe.schabi.org/api/data.json";
+    private static final String
+            NEWPIPE_GITHUB_RELEASE_PAGE = "https://github.com/TeamNewPipe/NewPipe/releases";
 
     /**
      * Method to get the apk's SHA1 key. See https://stackoverflow.com/questions/9293019/#22506133.
@@ -119,7 +121,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     }
 
     public static boolean isGithubApk() {
-        return getCertificateSHA1Fingerprint().equals(GITHUB_APK_SHA1);
+        return GITHUB_APK_SHA1.equals(getCertificateSHA1Fingerprint());
     }
 
     @Override
@@ -163,9 +165,9 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
                 final String versionName = githubStableObject.getString("version");
                 final int versionCode = githubStableObject.getInt("version_code");
-                final String apkLocationUrl = githubStableObject.getString("apk");
+                final String url = NEWPIPE_GITHUB_RELEASE_PAGE + "/tag/" + versionName;
 
-                compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode);
+                compareAppVersionAndShowNotification(versionName, url, versionCode);
 
             } catch (JsonParserException e) {
                 // connectivity problems, do not alarm user and fail silently
@@ -180,19 +182,19 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
      * Method to compare the current and latest available app version.
      * If a newer version is available, we show the update notification.
      *
-     * @param versionName    Name of new version
-     * @param apkLocationUrl Url with the new apk
-     * @param versionCode    Code of new version
+     * @param versionName Name of new version
+     * @param url         The url where the notification is leading to
+     * @param versionCode Code of new version
      */
     private void compareAppVersionAndShowNotification(final String versionName,
-                                                      final String apkLocationUrl,
+                                                      final String url,
                                                       final int versionCode) {
         int notificationId = 2000;
 
         if (BuildConfig.VERSION_CODE < versionCode) {
 
             // A pending intent to open the apk location url in the browser.
-            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
+            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             final PendingIntent pendingIntent
                     = PendingIntent.getActivity(APP, 0, intent, 0);
 
