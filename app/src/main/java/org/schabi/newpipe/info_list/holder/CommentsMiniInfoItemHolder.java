@@ -1,17 +1,16 @@
 package org.schabi.newpipe.info_list.holder;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.text.method.LinkMovementMethod;
-import android.text.style.URLSpan;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.text.util.Linkify;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
@@ -20,6 +19,7 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
@@ -93,21 +93,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemThumbnailView.setOnClickListener(view -> {
-            if (StringUtil.isBlank(item.getAuthorEndpoint())) {
-                return;
-            }
-            try {
-                final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
-                NavigationHelper.openChannelFragment(
-                        activity.getSupportFragmentManager(),
-                        item.getServiceId(),
-                        item.getAuthorEndpoint(),
-                        item.getAuthorName());
-            } catch (Exception e) {
-                ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
-            }
-        });
+        itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
 
         streamUrl = item.getUrl();
 
@@ -142,19 +128,34 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         });
 
 
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(final View view) {
+        itemView.setOnLongClickListener(view -> {
+            if (!AndroidTvUtils.isTv()) {
                 ClipboardManager clipboardManager = (ClipboardManager) itemBuilder.getContext()
                         .getSystemService(Context.CLIPBOARD_SERVICE);
                 clipboardManager.setPrimaryClip(ClipData.newPlainText(null, commentText));
                 Toast.makeText(itemBuilder.getContext(), R.string.msg_copied, Toast.LENGTH_SHORT)
                         .show();
-                return true;
-
+            } else {
+                openCommentAuthor(item);
             }
+            return true;
         });
+    }
 
+    private void openCommentAuthor(final CommentsInfoItem item) {
+        if (StringUtil.isBlank(item.getAuthorEndpoint())) {
+            return;
+        }
+        try {
+            final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
+            NavigationHelper.openChannelFragment(
+                    activity.getSupportFragmentManager(),
+                    item.getServiceId(),
+                    item.getAuthorEndpoint(),
+                    item.getAuthorName());
+        } catch (Exception e) {
+            ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
+        }
     }
 
     private void allowLinkFocus() {
