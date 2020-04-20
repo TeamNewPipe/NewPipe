@@ -5,8 +5,8 @@ import org.schabi.newpipe.streams.Mp4DashReader.Mdia;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4DashChunk;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4DashSample;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4Track;
-import org.schabi.newpipe.streams.Mp4DashReader.TrackKind;
 import org.schabi.newpipe.streams.Mp4DashReader.TrunEntry;
+import org.schabi.newpipe.streams.Mp4DashReader.TrackKind;
 import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
@@ -640,20 +640,19 @@ public class Mp4FromDashWriter {
         return size;
     }
 
-    private byte[] makeMdat(final long refSize, final boolean is64) {
-        long newRefSize = refSize;
+    private byte[] makeMdat(long refSize, final boolean is64) {
         if (is64) {
-            newRefSize += 16;
+            refSize += 16;
         } else {
-            newRefSize += 8;
+            refSize += 8;
         }
 
         ByteBuffer buffer = ByteBuffer.allocate(is64 ? 16 : 8)
-                .putInt(is64 ? 0x01 : (int) newRefSize)
+                .putInt(is64 ? 0x01 : (int) refSize)
                 .putInt(0x6D646174); // mdat
 
         if (is64) {
-            buffer.putLong(newRefSize);
+            buffer.putLong(refSize);
         }
 
         return buffer.array();
@@ -712,8 +711,7 @@ public class Mp4FromDashWriter {
 
         for (int i = 0; i < tracks.length; i++) {
             if (tracks[i].trak.tkhd.matrix.length != 36) {
-                throw new RuntimeException("bad track matrix length (expected 36) in"
-                        + " track n°" + i);
+                throw new RuntimeException("bad track matrix length (expected 36) in track n°" + i);
             }
             makeTrak(i, durations[i], defaultMediaTime[i], tablesInfo[i], is64);
         }
@@ -878,7 +876,7 @@ public class Mp4FromDashWriter {
     private int makeSbgp() throws IOException {
         int offset = auxOffset();
 
-        auxWrite(new byte[]{
+        auxWrite(new byte[] {
                 0x00, 0x00, 0x00, 0x1C, // box size
                 0x73, 0x62, 0x67, 0x70, // "sbpg"
                 0x00, 0x00, 0x00, 0x00, // default box flags
@@ -905,7 +903,7 @@ public class Mp4FromDashWriter {
          * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
          */
 
-        ByteBuffer buffer = ByteBuffer.wrap(new byte[]{
+        ByteBuffer buffer = ByteBuffer.wrap(new byte[] {
                 0x00, 0x00, 0x00, 0x1A, // box size
                 0x73, 0x67, 0x70, 0x64, // "sgpd"
                 0x01, 0x00, 0x00, 0x00, // box flags (unknown flag sets)
