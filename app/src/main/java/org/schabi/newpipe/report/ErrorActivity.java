@@ -29,11 +29,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.grack.nanojson.JsonWriter;
 
 import org.acra.ReportField;
 import org.acra.collector.CrashReportData;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -43,6 +42,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -346,29 +346,21 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String buildJson() {
-        JSONObject errorObject = new JSONObject();
-
         try {
-            errorObject.put("user_action", getUserActionString(errorInfo.userAction))
-                    .put("request", errorInfo.request)
-                    .put("content_language", getContentLangString())
-                    .put("service", errorInfo.serviceName)
-                    .put("package", getPackageName())
-                    .put("version", BuildConfig.VERSION_NAME)
-                    .put("os", getOsString())
-                    .put("time", currentTimeStamp);
-
-            JSONArray exceptionArray = new JSONArray();
-            if (errorList != null) {
-                for (String e : errorList) {
-                    exceptionArray.put(e);
-                }
-            }
-
-            errorObject.put("exceptions", exceptionArray);
-            errorObject.put("user_comment", userCommentBox.getText().toString());
-
-            return errorObject.toString(3);
+            return JsonWriter.string()
+                    .object()
+                    .value("user_action", getUserActionString(errorInfo.userAction))
+                    .value("request", errorInfo.request)
+                    .value("content_language", getContentLangString())
+                    .value("service", errorInfo.serviceName)
+                    .value("package", getPackageName())
+                    .value("version", BuildConfig.VERSION_NAME)
+                    .value("os", getOsString())
+                    .value("time", currentTimeStamp)
+                    .array("exceptions", Arrays.asList(errorList))
+                    .value("user_comment", userCommentBox.getText().toString())
+                    .end()
+                    .done();
         } catch (Throwable e) {
             Log.e(TAG, "Error while erroring: Could not build json");
             e.printStackTrace();
