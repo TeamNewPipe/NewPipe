@@ -143,6 +143,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private EditText searchEditText;
     private View searchClear;
 
+    private View correctSuggestionPanel;
+    private TextView correctSuggestionText;
+
     private View suggestionsPanel;
     private RecyclerView suggestionsRecyclerView;
 
@@ -345,6 +348,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchToolbarContainer = activity.findViewById(R.id.toolbar_search_container);
         searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
         searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
+
+        correctSuggestionPanel = rootView.findViewById(R.id.correct_suggestion_panel);
+        correctSuggestionText = rootView.findViewById(R.id.correct_suggestion_text);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -497,6 +503,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 return;
             }
 
+            correctSuggestionPanel.setVisibility(View.GONE);
+
             searchEditText.setText("");
             suggestionListAdapter.setItems(new ArrayList<>());
             showKeyboardSearch();
@@ -554,11 +562,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(final CharSequence s, final int start,
-                                          final int count, final int after) { }
+                                          final int count, final int after) {
+            }
 
             @Override
             public void onTextChanged(final CharSequence s, final int start,
-                                      final int before, final int count) { }
+                                      final int before, final int count) {
+            }
 
             @Override
             public void afterTextChanged(final Editable s) {
@@ -961,6 +971,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     NewPipe.getNameOfService(serviceId), searchString, 0);
         }
 
+        handleSearchSuggestion(result);
+
         lastSearchedString = searchString;
         nextPageUrl = result.getNextPageUrl();
         currentPageUrl = result.getUrl();
@@ -976,6 +988,26 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
 
         super.handleResult(result);
+    }
+
+    private void handleSearchSuggestion(@NonNull final SearchInfo result) {
+        if (!TextUtils.isEmpty(result.getSearchSuggestion())) {
+            String helperText = getString(result.isCorrectedSearch()
+                    ? R.string.search_showing_result_for
+                    : R.string.did_you_mean);
+
+            correctSuggestionText.setText(String.format(helperText, result.getSearchSuggestion()));
+
+            correctSuggestionPanel.setOnClickListener(v -> {
+                correctSuggestionPanel.setVisibility(View.GONE);
+                search(result.getSearchSuggestion(), contentFilter, sortFilter);
+                searchEditText.setText(result.getSearchSuggestion());
+            });
+
+            correctSuggestionPanel.setVisibility(View.VISIBLE);
+        } else {
+            correctSuggestionPanel.setVisibility(View.GONE);
+        }
     }
 
     @Override
