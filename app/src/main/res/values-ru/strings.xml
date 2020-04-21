@@ -134,7 +134,7 @@
     <string name="short_million">" млн"</string>
     <string name="short_billion">" млрд"</string>
     <string name="short_thousand">" тыс."</string>
-    <string name="default_popup_resolution_title">Разрешение очереди всплывающего окна</string>
+    <string name="default_popup_resolution_title">Разрешение всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
     <string name="show_search_suggestions_title">Поисковые предложения</string>
     <string name="best_resolution">Лучшее разрешение</string>
