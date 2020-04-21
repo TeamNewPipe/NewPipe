@@ -259,8 +259,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         if (DEBUG) {
-            Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu
-                    + "], inflater = [" + inflater + "]");
+            Log.d(TAG, "onCreateOptionsMenu() called with: "
+                    + "menu = [" + menu + "], inflater = [" + inflater + "]");
         }
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_local_playlist, menu);
@@ -361,7 +361,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_item_removeWatched:
+            case R.id.menu_item_remove_watched:
                 new AlertDialog.Builder(getActivity())
                         .setMessage(R.string.remove_watched_popup_warning)
                         .setTitle(R.string.remove_watched_popup_title)
@@ -391,16 +391,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         removeWatchedDisposable = playlistManager.getPlaylistStreams(playlistId)
                 .subscribeOn(Schedulers.io())
                 .map((List<PlaylistStreamEntry> playlist) -> {
-                    //Playlist data
+                    // Playlist data
                     Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
 
-                    //History data
+                    // History data
                     HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
                     Iterator<StreamHistoryEntry> historyIter = recordManager
                             .getStreamHistorySortedById().blockingFirst().iterator();
                     Iterator<StreamStateEntity> streamStatesIter = null;
 
-                    //Remove Watched, Functionality data
+                    // Remove Watched, Functionality data
                     List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
                     boolean thumbnailVideoRemoved = false;
 
@@ -471,8 +471,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                     hideLoading();
 
-                    //If this is not done, 'removeWatchedDisposable', will never be disposed of.
-                    //Why: Because using the 'removePartiallyWatched' in this functions parms,
+                    // If this is not done, 'removeWatchedDisposable', will never be disposed of.
+                    // Why: Because using the 'removePartiallyWatched' in this functions parms,
                     // prevents it from disposing. Exact reason for this behavior is unknown
                     removeWatchedDisposable.dispose();
                     removeWatchedDisposable = null;
