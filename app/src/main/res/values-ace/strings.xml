@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="choose_browser">Pileh peladen</string>
+    <string name="share_dialog_title">Bagi ngen</string>
+    <string name="did_you_mean">Nyoe meukeusud droe: %1$s\?</string>
+    <string name="settings">Peuato</string>
+    <string name="search">Seutot</string>
+    <string name="controls_download_desc">Peutren berkaih stream</string>
+    <string name="download">Peutren</string>
+    <string name="share">Bagi</string>
+    <string name="open_in_popup_mode">Peuhah bak popup mode</string>
+    <string name="open_in_browser">Peuhah bak peladen</string>
+    <string name="cancel">Peubateu</string>
+    <string name="install">Pasang</string>
+    <string name="no_player_found_toast">Hana jiteumeung player (droe jeut pasang VLC keu puta nyan).</string>
+    <string name="no_player_found">Hana jiteumeung stream player. Pasang VLC\?</string>
+    <string name="upload_date_text">Peuleumah bak %1$s</string>
+    <string name="view_count_text">%1$s ngieng</string>
+    <string name="main_bg_subtitle">Theun \"Seutot\" keu peuphon</string>
+</resources>
