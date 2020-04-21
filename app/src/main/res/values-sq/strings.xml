@@ -55,7 +55,7 @@
     <string name="feed_processing_message">Duke procesuar listën…</string>
     <string name="feed_notification_loading">Duke ngarkuar listën…</string>
     <string name="feed_subscription_not_loaded_count">E pangarkuar: %d</string>
-    <string name="feed_oldest_subscription_update">Lista u përditësuar së fundmi: %s</string>
+    <string name="feed_oldest_subscription_update">Lista u përditësua së fundmi: %s</string>
     <string name="feed_groups_header_title">Grupet e kanaleve</string>
     <plurals name="hours">
         <item quantity="one">%d orë</item>
@@ -67,7 +67,7 @@
     </plurals>
     <plurals name="seconds">
         <item quantity="one">%d sekondë</item>
-        <item quantity="other">$d sekonda</item>
+        <item quantity="other">%d sekonda</item>
     </plurals>
     <string name="new_seek_duration_toast">Për shkak të limitimeve të ExoPlayer kohëzgjatja e kërkimit u vendos në %d sekonda</string>
     <string name="systems_language">E parazgjedhura e sistemit</string>
@@ -338,14 +338,14 @@
     <string name="no_one_listening">Askush nuk po dëgjon</string>
     <string name="no_one_watching">Askush nuk po e sheh</string>
     <plurals name="views">
-        <item quantity="one">shikim</item>
-        <item quantity="other">shikime</item>
+        <item quantity="one">%s shikim</item>
+        <item quantity="other">%s shikime</item>
     </plurals>
     <string name="no_views">Nuk ka shikime</string>
     <string name="subscribers_count_not_available">Numri i abonentëve është i padisponueshëm</string>
     <plurals name="subscribers">
-        <item quantity="one">Abonent</item>
-        <item quantity="other">Abonues</item>
+        <item quantity="one">%s abonent</item>
+        <item quantity="other">%s abonentë</item>
     </plurals>
     <string name="no_subscribers">Nuk ka abonues</string>
     <string name="drawer_header_description">Aktivizoje shërbimin, momentalisht e zgjedhur:</string>
