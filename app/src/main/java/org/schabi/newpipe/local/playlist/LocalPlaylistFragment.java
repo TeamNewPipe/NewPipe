@@ -392,32 +392,27 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .subscribeOn(Schedulers.io())
                 .map((List<PlaylistStreamEntry> playlist) -> {
                     // Playlist data
-                    Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
+                    final Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
 
                     // History data
-                    HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
-                    Iterator<StreamHistoryEntry> historyIter = recordManager
+                    final HistoryRecordManager recordManager
+                            = new HistoryRecordManager(getContext());
+                    final Iterator<StreamHistoryEntry> historyIter = recordManager
                             .getStreamHistorySortedById().blockingFirst().iterator();
-                    Iterator<StreamStateEntity> streamStatesIter = null;
 
                     // Remove Watched, Functionality data
-                    List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
+                    final List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
                     boolean thumbnailVideoRemoved = false;
 
-                    if (!removePartiallyWatched) {
-                        streamStatesIter = recordManager.loadLocalStreamStateBatch(playlist)
-                                .blockingGet().iterator();
-                    }
-
                     // already sorted by ^ getStreamHistorySortedById(), binary search can be used
-                    ArrayList<Long> historyStreamIds = new ArrayList<>();
+                    final ArrayList<Long> historyStreamIds = new ArrayList<>();
                     while (historyIter.hasNext()) {
                         historyStreamIds.add(historyIter.next().getStreamId());
                     }
 
                     if (removePartiallyWatched) {
                         while (playlistIter.hasNext()) {
-                            PlaylistStreamEntry playlistItem = playlistIter.next();
+                            final PlaylistStreamEntry playlistItem = playlistIter.next();
                             int indexInHistory = Collections.binarySearch(historyStreamIds,
                                     playlistItem.getStreamId());
 
@@ -430,12 +425,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             }
                         }
                     } else {
+                        final Iterator<StreamStateEntity> streamStatesIter = recordManager
+                                .loadLocalStreamStateBatch(playlist).blockingGet().iterator();
+
                         while (playlistIter.hasNext()) {
                             PlaylistStreamEntry playlistItem = playlistIter.next();
-                            int indexInHistory = Collections.binarySearch(historyStreamIds,
+                            final int indexInHistory = Collections.binarySearch(historyStreamIds,
                                     playlistItem.getStreamId());
 
-                            boolean hasState = streamStatesIter.next() != null;
+                            final boolean hasState = streamStatesIter.next() != null;
                             if (indexInHistory < 0 ||  hasState) {
                                 notWatchedItems.add(playlistItem);
                             } else if (!thumbnailVideoRemoved
@@ -450,9 +448,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(flow -> {
-                    List<PlaylistStreamEntry> notWatchedItems =
+                    final List<PlaylistStreamEntry> notWatchedItems =
                             (List<PlaylistStreamEntry>) flow.blockingFirst();
-                    boolean thumbnailVideoRemoved = (Boolean) flow.blockingLast();
+                    final boolean thumbnailVideoRemoved = (Boolean) flow.blockingLast();
 
                     itemListAdapter.clearStreamItemList();
                     itemListAdapter.addItems(notWatchedItems);
@@ -463,7 +461,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         updateThumbnailUrl();
                     }
 
-                    long videoCount = itemListAdapter.getItemsList().size();
+                    final long videoCount = itemListAdapter.getItemsList().size();
                     setVideoCount(videoCount);
                     if (videoCount == 0) {
                         showEmptyState();
