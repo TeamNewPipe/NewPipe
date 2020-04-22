@@ -72,6 +72,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -536,6 +537,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         setHeightThumbnail();
 
         thumbnailBackgroundButton.requestFocus();
+
+        if (AndroidTvUtils.isTv()) {
+            // remove ripple effects from detail controls
+            final int transparent = getResources().getColor(R.color.transparent_background_color);
+            detailControlsAddToPlaylist.setBackgroundColor(transparent);
+            detailControlsBackground.setBackgroundColor(transparent);
+            detailControlsPopup.setBackgroundColor(transparent);
+            detailControlsDownload.setBackgroundColor(transparent);
+        }
+
     }
 
     @Override
