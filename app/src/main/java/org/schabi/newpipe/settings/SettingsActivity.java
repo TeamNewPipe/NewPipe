@@ -13,7 +13,9 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusOverlayView;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -58,6 +60,10 @@ public class SettingsActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_holder, new MainSettingsFragment())
                     .commit();
+        }
+
+        if (AndroidTvUtils.isTv()) {
+            FocusOverlayView.setupFocusObserver(this);
         }
     }
 

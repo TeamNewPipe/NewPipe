@@ -65,6 +65,7 @@ import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -74,6 +75,7 @@ import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
             setupDrawer();
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
+        }
+
+        if (AndroidTvUtils.isTv()) {
+            FocusOverlayView.setupFocusObserver(this);
         }
     }
 
@@ -524,6 +530,14 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (DEBUG) {
             Log.d(TAG, "onBackPressed() called");
+        }
+
+        if (AndroidTvUtils.isTv()) {
+            View drawerPanel = findViewById(R.id.navigation);
+            if (drawer.isDrawerOpen(drawerPanel)) {
+                drawer.closeDrawers();
+                return;
+            }
         }
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);

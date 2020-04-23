@@ -99,6 +99,8 @@ public abstract class VideoPlayer extends BasePlayer
 
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
+    public static final int DPAD_CONTROLS_HIDE_TIME = 7000;  // 7 Seconds
+
     protected static final int RENDERER_UNAVAILABLE = -1;
 
     @NonNull
@@ -966,8 +968,13 @@ public abstract class VideoPlayer extends BasePlayer
         if (DEBUG) {
             Log.d(TAG, "showControlsThenHide() called");
         }
-        animateView(controlsRoot, true, DEFAULT_CONTROLS_DURATION, 0, () ->
-                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME));
+
+        final int hideTime = controlsRoot.isInTouchMode()
+                ? DEFAULT_CONTROLS_HIDE_TIME
+                : DPAD_CONTROLS_HIDE_TIME;
+
+        animateView(controlsRoot, true, DEFAULT_CONTROLS_DURATION, 0,
+                () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));
     }
 
     public void showControls(final long duration) {
@@ -976,6 +983,17 @@ public abstract class VideoPlayer extends BasePlayer
         }
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
         animateView(controlsRoot, true, duration);
+    }
+
+    public void safeHideControls(final long duration, final long delay) {
+        if (DEBUG) {
+            Log.d(TAG, "safeHideControls() called with: delay = [" + delay + "]");
+        }
+        if (rootView.isInTouchMode()) {
+            controlsVisibilityHandler.removeCallbacksAndMessages(null);
+            controlsVisibilityHandler.postDelayed(
+                    () -> animateView(controlsRoot, false, duration), delay);
+        }
     }
 
     public void hideControls(final long duration, final long delay) {

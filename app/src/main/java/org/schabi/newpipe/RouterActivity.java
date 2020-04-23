@@ -45,10 +45,12 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusOverlayView;
 import org.schabi.newpipe.util.urlfinder.UrlFinder;
 
 import java.io.Serializable;
@@ -341,6 +343,10 @@ public class RouterActivity extends AppCompatActivity {
         selectedPreviously = selectedRadioPosition;
 
         alertDialog.show();
+
+        if (AndroidTvUtils.isTv()) {
+            FocusOverlayView.setupFocusObserver(alertDialog);
+        }
     }
 
     private List<AdapterChoiceItem> getChoicesForService(final StreamingService service,

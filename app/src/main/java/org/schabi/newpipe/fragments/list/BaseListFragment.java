@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
@@ -35,6 +34,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.StreamDialogEntry;
+import org.schabi.newpipe.views.SuperScrollLayoutManager;
 
 import java.util.List;
 import java.util.Queue;
@@ -56,6 +56,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
     protected InfoListAdapter infoListAdapter;
     protected RecyclerView itemsList;
+    private int focusedPosition = -1;
 
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
@@ -129,20 +130,53 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         return "." + infoListAdapter.getItemsList().size() + ".list";
     }
 
+    private int getFocusedPosition() {
+        View focusedItem = itemsList.getFocusedChild();
+        if (focusedItem != null) {
+            RecyclerView.ViewHolder itemHolder = itemsList.findContainingViewHolder(focusedItem);
+            if (itemHolder != null) {
+                return itemHolder.getAdapterPosition();
+            }
+        }
+
+        return -1;
+    }
+
     @Override
     public void writeTo(final Queue<Object> objectsToSave) {
-        if (useDefaultStateSaving) {
-            objectsToSave.add(infoListAdapter.getItemsList());
+        if (!useDefaultStateSaving) {
+            return;
         }
+
+        objectsToSave.add(infoListAdapter.getItemsList());
+        objectsToSave.add(getFocusedPosition());
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
-        if (useDefaultStateSaving) {
-            infoListAdapter.getItemsList().clear();
-            infoListAdapter.getItemsList().addAll((List<InfoItem>) savedObjects.poll());
+        if (!useDefaultStateSaving) {
+            return;
         }
+
+        infoListAdapter.getItemsList().clear();
+        infoListAdapter.getItemsList().addAll((List<InfoItem>) savedObjects.poll());
+        restoreFocus((Integer) savedObjects.poll());
+    }
+
+    private void restoreFocus(final Integer position) {
+        if (position == null || position < 0) {
+            return;
+        }
+
+        itemsList.post(() -> {
+            RecyclerView.ViewHolder focusedHolder =
+                    itemsList.findViewHolderForAdapterPosition(position);
+
+            if (focusedHolder != null) {
+                focusedHolder.itemView.requestFocus();
+            }
+        });
     }
 
     @Override
@@ -162,6 +196,18 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         }
     }
 
+    @Override
+    public void onStop() {
+        focusedPosition = getFocusedPosition();
+        super.onStop();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        restoreFocus(focusedPosition);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
@@ -175,7 +221,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     }
 
     protected RecyclerView.LayoutManager getListLayoutManager() {
-        return new LinearLayoutManager(activity);
+        return new SuperScrollLayoutManager(activity);
     }
 
     protected RecyclerView.LayoutManager getGridLayoutManager() {

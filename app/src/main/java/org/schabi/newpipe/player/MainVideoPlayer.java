@@ -1,5 +1,6 @@
 /*
  * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
+ * Copyright 2019 Eltex ltd <eltex@eltex-co.ru>
  * MainVideoPlayer.java is part of NewPipe
  *
  * License: GPL-3.0+
@@ -39,6 +40,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.DisplayCutout;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
@@ -79,6 +81,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -86,6 +89,7 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.List;
 import java.util.Queue;
@@ -94,6 +98,7 @@ import java.util.UUID;
 import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
+import static org.schabi.newpipe.player.VideoPlayer.DPAD_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.util.AnimationUtils.Type.SCALE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
@@ -150,6 +155,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         hideSystemUi();
         setContentView(R.layout.activity_main_player);
+
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
 
@@ -170,17 +176,24 @@ public final class MainVideoPlayer extends AppCompatActivity
             public void onChange(final boolean selfChange) {
                 super.onChange(selfChange);
                 if (globalScreenOrientationLocked()) {
+                    final String orientKey = getString(R.string.last_orientation_landscape_key);
+
                     final boolean lastOrientationWasLandscape = defaultPreferences
-                            .getBoolean(getString(R.string.last_orientation_landscape_key), false);
+                            .getBoolean(orientKey, AndroidTvUtils.isTv());
                     setLandscape(lastOrientationWasLandscape);
                 } else {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                 }
             }
         };
+
         getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
                 false, rotationObserver);
+
+        if (AndroidTvUtils.isTv()) {
+            FocusOverlayView.setupFocusObserver(this);
+        }
     }
 
     @Override
@@ -205,6 +218,48 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     @Override
+    public boolean onKeyDown(final int keyCode, final KeyEvent event) {
+        switch (event.getKeyCode()) {
+            default:
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                if (AndroidTvUtils.isTv() && playerImpl.isControlsVisible()) {
+                    playerImpl.hideControls(0, 0);
+                    hideSystemUi();
+                    return true;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                View playerRoot = playerImpl.getRootView();
+                View controls = playerImpl.getControlsRoot();
+                if (playerRoot.hasFocus() && !controls.hasFocus()) {
+                    // do not interfere with focus in playlist etc.
+                    return super.onKeyDown(keyCode, event);
+                }
+
+                if (playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED) {
+                    return true;
+                }
+
+                if (!playerImpl.isControlsVisible()) {
+                    playerImpl.playPauseButton.requestFocus();
+                    playerImpl.showControlsThenHide();
+                    showSystemUi();
+                    return true;
+                } else {
+                    playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME);
+                }
+                break;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
     protected void onResume() {
         if (DEBUG) {
             Log.d(TAG, "onResume() called");
@@ -213,8 +268,10 @@ public final class MainVideoPlayer extends AppCompatActivity
         super.onResume();
 
         if (globalScreenOrientationLocked()) {
+            final String orientKey = getString(R.string.last_orientation_landscape_key);
+
             boolean lastOrientationWasLandscape = defaultPreferences
-                    .getBoolean(getString(R.string.last_orientation_landscape_key), false);
+                    .getBoolean(orientKey, AndroidTvUtils.isTv());
             setLandscape(lastOrientationWasLandscape);
         }
 
@@ -795,7 +852,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
                 animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
                     if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                        hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                        safeHideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
                     }
                 });
             }
@@ -946,6 +1003,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
                 playPauseButton.setImageResource(R.drawable.ic_pause_white);
                 animatePlayButtons(true, 200);
+                playPauseButton.requestFocus();
                 animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
             });
 
@@ -958,6 +1016,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
                 playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
                 animatePlayButtons(true, 200);
+                playPauseButton.requestFocus();
                 animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
             });
 
@@ -1029,6 +1088,21 @@ public final class MainVideoPlayer extends AppCompatActivity
             }
 
             super.showControls(duration);
+        }
+
+        @Override
+        public void safeHideControls(final long duration, final long delay) {
+            if (DEBUG) {
+                Log.d(TAG, "safeHideControls() called with: delay = [" + delay + "]");
+            }
+
+            View controlsRoot = getControlsRoot();
+            if (controlsRoot.isInTouchMode()) {
+                getControlsVisibilityHandler().removeCallbacksAndMessages(null);
+                getControlsVisibilityHandler().postDelayed(() ->
+                        animateView(controlsRoot, false, duration, 0,
+                                MainVideoPlayer.this::hideSystemUi), delay);
+            }
         }
 
         @Override
@@ -1223,9 +1297,11 @@ public final class MainVideoPlayer extends AppCompatActivity
             if (playerImpl.isControlsVisible()) {
                 playerImpl.hideControls(150, 0);
             } else {
+                playerImpl.playPauseButton.requestFocus();
                 playerImpl.showControlsThenHide();
                 showSystemUi();
             }
+
             return true;
         }
 

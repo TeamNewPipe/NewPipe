@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusOverlayView;
 
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.MissionsFragment;
@@ -54,6 +56,10 @@ public class DownloadActivity extends AppCompatActivity {
                 getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
+
+        if (AndroidTvUtils.isTv()) {
+            FocusOverlayView.setupFocusObserver(this);
+        }
     }
 
     private void updateFragments() {

@@ -2,6 +2,7 @@ package org.schabi.newpipe.util;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -103,7 +104,10 @@ public final class PermissionHelper {
             Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + context.getPackageName()));
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
+            try {
+                context.startActivity(i);
+            } catch (ActivityNotFoundException ignored) {
+            }
             return false;
         } else {
             return true;

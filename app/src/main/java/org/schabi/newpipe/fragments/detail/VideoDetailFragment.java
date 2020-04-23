@@ -11,7 +11,6 @@ import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -73,6 +72,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -86,6 +86,7 @@ import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
+import org.schabi.newpipe.views.LargeTextMovementMethod;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -471,10 +472,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
             videoTitleTextView.setMaxLines(1);
             videoDescriptionRootLayout.setVisibility(View.GONE);
+            videoDescriptionView.setFocusable(false);
             videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         } else {
             videoTitleTextView.setMaxLines(10);
             videoDescriptionRootLayout.setVisibility(View.VISIBLE);
+            videoDescriptionView.setFocusable(true);
+            videoDescriptionView.setMovementMethod(new LargeTextMovementMethod());
             videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
         }
     }
@@ -511,7 +515,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
         videoDescriptionView = rootView.findViewById(R.id.detail_description_view);
-        videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
         thumbsUpTextView = rootView.findViewById(R.id.detail_thumbs_up_count_view);
         thumbsUpImageView = rootView.findViewById(R.id.detail_thumbs_up_img_view);
@@ -533,6 +536,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         relatedStreamsLayout = rootView.findViewById(R.id.relatedStreamsLayout);
 
         setHeightThumbnail();
+
+        thumbnailBackgroundButton.requestFocus();
+
+        if (AndroidTvUtils.isTv()) {
+            // remove ripple effects from detail controls
+            final int transparent = getResources().getColor(R.color.transparent_background_color);
+            detailControlsAddToPlaylist.setBackgroundColor(transparent);
+            detailControlsBackground.setBackgroundColor(transparent);
+            detailControlsPopup.setBackgroundColor(transparent);
+            detailControlsDownload.setBackgroundColor(transparent);
+        }
+
     }
 
     @Override

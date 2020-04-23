@@ -41,6 +41,7 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -49,7 +50,6 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.FireTvUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
@@ -511,7 +511,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (isSuggestionsEnabled && errorPanelRoot.getVisibility() != View.VISIBLE) {
                 showSuggestionsPanel();
             }
-            if (FireTvUtils.isFireTv()) {
+            if (AndroidTvUtils.isTv()) {
                 showKeyboardSearch();
             }
         });

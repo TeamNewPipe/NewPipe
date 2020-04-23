@@ -3,8 +3,9 @@ package org.schabi.newpipe.info_list.holder;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.text.util.Linkify;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
@@ -91,21 +93,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemThumbnailView.setOnClickListener(view -> {
-            if (StringUtil.isBlank(item.getAuthorEndpoint())) {
-                return;
-            }
-            try {
-                final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
-                NavigationHelper.openChannelFragment(
-                        activity.getSupportFragmentManager(),
-                        item.getServiceId(),
-                        item.getAuthorEndpoint(),
-                        item.getAuthorName());
-            } catch (Exception e) {
-                ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
-            }
-        });
+        itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
 
         streamUrl = item.getUrl();
 
@@ -140,22 +128,65 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         });
 
 
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(final View view) {
+        itemView.setOnLongClickListener(view -> {
+            if (!AndroidTvUtils.isTv()) {
                 ClipboardManager clipboardManager = (ClipboardManager) itemBuilder.getContext()
                         .getSystemService(Context.CLIPBOARD_SERVICE);
                 clipboardManager.setPrimaryClip(ClipData.newPlainText(null, commentText));
                 Toast.makeText(itemBuilder.getContext(), R.string.msg_copied, Toast.LENGTH_SHORT)
                         .show();
-                return true;
-
+            } else {
+                openCommentAuthor(item);
             }
+            return true;
         });
+    }
 
+    private void openCommentAuthor(final CommentsInfoItem item) {
+        if (StringUtil.isBlank(item.getAuthorEndpoint())) {
+            return;
+        }
+        try {
+            final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
+            NavigationHelper.openChannelFragment(
+                    activity.getSupportFragmentManager(),
+                    item.getServiceId(),
+                    item.getAuthorEndpoint(),
+                    item.getAuthorName());
+        } catch (Exception e) {
+            ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
+        }
+    }
+
+    private void allowLinkFocus() {
+        itemContentView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private void denyLinkFocus() {
+        itemContentView.setMovementMethod(null);
+    }
+
+    private boolean shouldFocusLinks() {
+        if (itemView.isInTouchMode()) {
+            return false;
+        }
+
+        URLSpan[] urls = itemContentView.getUrls();
+
+        return urls != null && urls.length != 0;
+    }
+
+    private void determineLinkFocus() {
+        if (shouldFocusLinks()) {
+            allowLinkFocus();
+        } else {
+            denyLinkFocus();
+        }
     }
 
     private void ellipsize() {
+        boolean hasEllipsis = false;
+
         if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
             int endOfLastLine = itemContentView.getLayout().getLineEnd(COMMENT_DEFAULT_LINES - 1);
             int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine - 2);
@@ -164,8 +195,16 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             }
             String newVal = itemContentView.getText().subSequence(0, end) + " …";
             itemContentView.setText(newVal);
+            hasEllipsis = true;
         }
+
         linkify();
+
+        if (hasEllipsis) {
+            denyLinkFocus();
+        } else {
+            determineLinkFocus();
+        }
     }
 
     private void toggleEllipsize() {
@@ -182,11 +221,11 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemContentView.setMaxLines(COMMENT_EXPANDED_LINES);
         itemContentView.setText(commentText);
         linkify();
+        determineLinkFocus();
     }
 
     private void linkify() {
         Linkify.addLinks(itemContentView, Linkify.WEB_URLS);
         Linkify.addLinks(itemContentView, PATTERN, null, null, timestampLink);
-        itemContentView.setMovementMethod(null);
     }
 }
