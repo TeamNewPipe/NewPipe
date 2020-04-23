@@ -601,6 +601,10 @@
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
+    <string name="remove_watched">Remove watched</string>
+    <string name="remove_watched_popup_title">Remove watched videos?</string>
+    <string name="remove_watched_popup_warning">Videos that have been watched before and after being added to the playlist will be removed.\nAre you sure? This cannot be undone!</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <!-- Time duration plurals -->
     <plurals name="seconds">

@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/playlist_stream_count">
 
-        <include layout="@layout/playlist_control"/>
+        <include layout="@layout/playlist_control" />
     </LinearLayout>
 
 </RelativeLayout>

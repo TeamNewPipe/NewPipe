@@ -2,11 +2,15 @@ package org.schabi.newpipe.local.playlist;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -24,11 +28,14 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
@@ -39,15 +46,18 @@ import org.schabi.newpipe.util.StreamDialogEntry;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
+import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.Disposables;
+import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -71,6 +81,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
+
     private ItemTouchHelper itemTouchHelper;
 
     private LocalPlaylistManager playlistManager;
@@ -83,6 +94,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private AtomicBoolean isLoadingComplete;
     /* Has the playlist been modified (e.g. items reordered or deleted) */
     private AtomicBoolean isModified;
+    /* Is the playlist currently being processed to remove watched videos */
+    private boolean isRemovingWatched = false;
 
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
         LocalPlaylistFragment instance = new LocalPlaylistFragment();
@@ -245,6 +258,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
+    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        if (DEBUG) {
+            Log.d(TAG, "onCreateOptionsMenu() called with: "
+                    + "menu = [" + menu + "], inflater = [" + inflater + "]");
+        }
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_local_playlist, menu);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
 
@@ -329,6 +352,122 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             @Override
             public void onComplete() { }
         };
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_remove_watched:
+                if (!isRemovingWatched) {
+                    new AlertDialog.Builder(requireContext())
+                            .setMessage(R.string.remove_watched_popup_warning)
+                            .setTitle(R.string.remove_watched_popup_title)
+                            .setPositiveButton(R.string.yes,
+                                    (DialogInterface d, int id) -> removeWatchedStreams(false))
+                            .setNeutralButton(
+                                    R.string.remove_watched_popup_yes_and_partially_watched_videos,
+                                    (DialogInterface d, int id) -> removeWatchedStreams(true))
+                            .setNegativeButton(R.string.cancel,
+                                    (DialogInterface d, int id) -> d.cancel())
+                            .create()
+                            .show();
+                }
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+    public void removeWatchedStreams(final boolean removePartiallyWatched) {
+        if (isRemovingWatched) {
+            return;
+        }
+        isRemovingWatched = true;
+        showLoading();
+
+        disposables.add(playlistManager.getPlaylistStreams(playlistId)
+                .subscribeOn(Schedulers.io())
+                .map((List<PlaylistStreamEntry> playlist) -> {
+                    // Playlist data
+                    final Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
+
+                    // History data
+                    final HistoryRecordManager recordManager
+                            = new HistoryRecordManager(getContext());
+                    final Iterator<StreamHistoryEntry> historyIter = recordManager
+                            .getStreamHistorySortedById().blockingFirst().iterator();
+
+                    // Remove Watched, Functionality data
+                    final List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
+                    boolean thumbnailVideoRemoved = false;
+
+                    // already sorted by ^ getStreamHistorySortedById(), binary search can be used
+                    final ArrayList<Long> historyStreamIds = new ArrayList<>();
+                    while (historyIter.hasNext()) {
+                        historyStreamIds.add(historyIter.next().getStreamId());
+                    }
+
+                    if (removePartiallyWatched) {
+                        while (playlistIter.hasNext()) {
+                            final PlaylistStreamEntry playlistItem = playlistIter.next();
+                            int indexInHistory = Collections.binarySearch(historyStreamIds,
+                                    playlistItem.getStreamId());
+
+                            if (indexInHistory < 0) {
+                                notWatchedItems.add(playlistItem);
+                            } else if (!thumbnailVideoRemoved
+                                    && playlistManager.getPlaylistThumbnail(playlistId)
+                                    .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
+                                thumbnailVideoRemoved = true;
+                            }
+                        }
+                    } else {
+                        final Iterator<StreamStateEntity> streamStatesIter = recordManager
+                                .loadLocalStreamStateBatch(playlist).blockingGet().iterator();
+
+                        while (playlistIter.hasNext()) {
+                            PlaylistStreamEntry playlistItem = playlistIter.next();
+                            final int indexInHistory = Collections.binarySearch(historyStreamIds,
+                                    playlistItem.getStreamId());
+
+                            final boolean hasState = streamStatesIter.next() != null;
+                            if (indexInHistory < 0 ||  hasState) {
+                                notWatchedItems.add(playlistItem);
+                            } else if (!thumbnailVideoRemoved
+                                    && playlistManager.getPlaylistThumbnail(playlistId)
+                                    .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
+                                thumbnailVideoRemoved = true;
+                            }
+                        }
+                    }
+
+                    return Flowable.just(notWatchedItems, thumbnailVideoRemoved);
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(flow -> {
+                    final List<PlaylistStreamEntry> notWatchedItems =
+                            (List<PlaylistStreamEntry>) flow.blockingFirst();
+                    final boolean thumbnailVideoRemoved = (Boolean) flow.blockingLast();
+
+                    itemListAdapter.clearStreamItemList();
+                    itemListAdapter.addItems(notWatchedItems);
+                    saveChanges();
+
+
+                    if (thumbnailVideoRemoved) {
+                        updateThumbnailUrl();
+                    }
+
+                    final long videoCount = itemListAdapter.getItemsList().size();
+                    setVideoCount(videoCount);
+                    if (videoCount == 0) {
+                        showEmptyState();
+                    }
+
+                    hideLoading();
+                    isRemovingWatched = false;
+                }, this::onError));
     }
 
     @Override
