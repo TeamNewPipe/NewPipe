@@ -564,7 +564,7 @@
     <!-- feed -->
     <string name="fragment_feed_title">Nouveautés</string>
     <string name="feed_groups_header_title">Groupes d\'abonnements</string>
-    <string name="feed_oldest_subscription_update">Dernière mise à jour : %s</string>
+    <string name="feed_oldest_subscription_update">Dernier flux mis à jour : %s</string>
     <string name="feed_subscription_not_loaded_count">Pas chargés : %d</string>
     <string name="feed_notification_loading">Chargement du flux…</string>
     <string name="feed_processing_message">Préparation du flux…</string>
@@ -599,4 +599,12 @@
 \n Donc le choix vous revient : Préferez-vous la vitesse ou des informations précises \?</string>
     <string name="help">Aide</string>
     <string name="content_not_supported">Ce contenu n\'est pas encore supporté par NewPipe.\n\nIl le sera peut-être dans une version future.</string>
+    <string name="albums">Albums</string>
+    <string name="infinite_videos">∞ vidéos</string>
+    <string name="more_than_100_videos">100+ vidéos</string>
+    <string name="artists">Artistes</string>
+    <string name="songs">Chansons</string>
+    <string name="restricted_video">Cette vidéo est bloquée à cause de la limite d\'âge.
+\n
+\nSi vous voulez la voir, activez « Contenu avec limite d\'âge » dans les paramètres, rubrique « Contenu ».</string>
 </resources>
