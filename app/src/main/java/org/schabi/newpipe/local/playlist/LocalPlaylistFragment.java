@@ -89,12 +89,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private PublishSubject<Long> debouncedSaveSignal;
     private CompositeDisposable disposables;
-    private Disposable removeWatchedDisposable;
 
     /* Has the playlist been fully loaded from db */
     private AtomicBoolean isLoadingComplete;
     /* Has the playlist been modified (e.g. items reordered or deleted) */
     private AtomicBoolean isModified;
+    /* Is the playlist currently being processed to remove watched videos */
+    private boolean isRemovingWatched = false;
 
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
         LocalPlaylistFragment instance = new LocalPlaylistFragment();
@@ -304,14 +305,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             disposables.dispose();
         }
 
-        if (removeWatchedDisposable != null) {
-            removeWatchedDisposable.dispose();
-        }
-
         debouncedSaveSignal = null;
         playlistManager = null;
         disposables = null;
-        removeWatchedDisposable = null;
 
         isLoadingComplete = null;
         isModified = null;
@@ -362,18 +358,20 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_remove_watched:
-                new AlertDialog.Builder(getActivity())
-                        .setMessage(R.string.remove_watched_popup_warning)
-                        .setTitle(R.string.remove_watched_popup_title)
-                        .setPositiveButton(R.string.yes,
-                                (DialogInterface d, int id) -> removeWatchedStreams(false))
-                        .setNeutralButton(
-                                R.string.remove_watched_popup_yes_and_partially_watched_videos,
-                                (DialogInterface d, int id) -> removeWatchedStreams(true))
-                        .setNegativeButton(R.string.cancel,
-                                (DialogInterface d, int id) -> d.cancel())
-                        .create()
-                        .show();
+                if (!isRemovingWatched) {
+                    new AlertDialog.Builder(requireContext())
+                            .setMessage(R.string.remove_watched_popup_warning)
+                            .setTitle(R.string.remove_watched_popup_title)
+                            .setPositiveButton(R.string.yes,
+                                    (DialogInterface d, int id) -> removeWatchedStreams(false))
+                            .setNeutralButton(
+                                    R.string.remove_watched_popup_yes_and_partially_watched_videos,
+                                    (DialogInterface d, int id) -> removeWatchedStreams(true))
+                            .setNegativeButton(R.string.cancel,
+                                    (DialogInterface d, int id) -> d.cancel())
+                            .create()
+                            .show();
+                }
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -382,13 +380,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     public void removeWatchedStreams(final boolean removePartiallyWatched) {
-        if (removeWatchedDisposable != null && !removeWatchedDisposable.isDisposed()) {
-            // already running
+        if (isRemovingWatched) {
             return;
         }
+        isRemovingWatched = true;
         showLoading();
 
-        removeWatchedDisposable = playlistManager.getPlaylistStreams(playlistId)
+        disposables.add(playlistManager.getPlaylistStreams(playlistId)
                 .subscribeOn(Schedulers.io())
                 .map((List<PlaylistStreamEntry> playlist) -> {
                     // Playlist data
@@ -468,13 +466,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     }
 
                     hideLoading();
-
-                    // If this is not done, 'removeWatchedDisposable', will never be disposed of.
-                    // Why: Because using the 'removePartiallyWatched' in this functions parms,
-                    // prevents it from disposing. Exact reason for this behavior is unknown
-                    removeWatchedDisposable.dispose();
-                    removeWatchedDisposable = null;
-                }, this::onError);
+                    isRemovingWatched = false;
+                }, this::onError));
     }
 
     @Override
