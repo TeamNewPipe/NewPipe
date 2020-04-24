@@ -55,13 +55,13 @@ public final class KioskTranslator {
             case "Top 50":
             case "New & hot":
             case "conferences":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_hot);
+                return R.drawable.ic_whatshot_white_24dp;
             case "Local":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_local);
+                return R.drawable.ic_kiosk_local_white_24dp;
             case "Recently added":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_recent);
+                return R.drawable.ic_kiosk_recent_white_24dp;
             case "Most liked":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_thumb_up);
+                return R.drawable.ic_thumb_up_white_24dp;
             default:
                 return 0;
         }
