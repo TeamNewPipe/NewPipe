@@ -588,4 +588,6 @@
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Iya, dan video yang ditonton sebagian</string>
     <string name="remove_watched_popup_warning">Video yang sudah ditonton sebelum dan sesudah ditambahkan ke daftar putar akan dibuang.
 \nApakah anda yakin\? Ini tidak bisa diurungkan!</string>
+    <string name="unmute">Batal bisukan</string>
+    <string name="mute">Bisukan</string>
 </resources>
