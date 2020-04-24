@@ -26,7 +26,6 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Objects;
 
@@ -180,7 +179,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_blank_page);
+            return R.drawable.ic_blank_page_white_24dp;
         }
 
         @Override
@@ -205,7 +204,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_channel);
+            return R.drawable.ic_channel_white_24dp;
         }
 
         @Override
@@ -231,7 +230,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.rss);
+            return R.drawable.ic_rss_feed_white_24dp;
         }
 
         @Override
@@ -256,7 +255,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_bookmark);
+            return R.drawable.ic_bookmark_white_24dp;
         }
 
         @Override
@@ -281,7 +280,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.history);
+            return R.drawable.ic_history_white_24dp;
         }
 
         @Override
@@ -401,7 +400,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_channel);
+            return R.drawable.ic_channel_white_24dp;
         }
 
         @Override

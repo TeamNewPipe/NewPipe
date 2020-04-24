@@ -17,6 +17,8 @@
         android:background="?attr/colorPrimary"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:nextFocusDown="@+id/suggestions_list"
         android:hint="@string/search"
         android:imeOptions="actionSearch|flagNoFullscreen"
@@ -44,7 +46,7 @@
             android:layout_gravity="center"
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"
-            android:src="?attr/close"
+            android:src="@drawable/ic_close_white_24dp"
             tools:ignore="RtlHardcoded"/>
     </FrameLayout>
 

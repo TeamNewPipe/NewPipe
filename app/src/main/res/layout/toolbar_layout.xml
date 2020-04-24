@@ -15,8 +15,8 @@
         android:background="?attr/colorPrimary"
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:theme="@style/ToolbarTheme"
+        app:popupTheme="@style/ToolbarTheme"
         app:titleTextAppearance="@style/Toolbar.Title">
 
         <Spinner
