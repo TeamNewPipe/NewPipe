@@ -629,4 +629,9 @@
     <string name="restricted_video">סרטון זה מוגבל לצפייה מגיל מסוים.
 \n
 \nכדי לצפות בו, יש להפעיל את „תוכן עם הגבלת גיל” בהגדרות.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">כן, לרבות סרטונים שהפסקתי באמצע</string>
+    <string name="remove_watched_popup_warning">סרטונים שלאחר שצפית בהם מופיע לרשימת הנגינה יוסרו.
+\nלהמשיך\? זאת פעולה בלתי הפיכה!</string>
+    <string name="remove_watched">הסרת נצפו</string>
+    <string name="remove_watched_popup_title">להסיר סרטונים שנצפו\?</string>
 </resources>
