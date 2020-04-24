@@ -54,6 +54,11 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     @Override
     public void onViewCreated(final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         doInitialLoadLogic();
     }
 
