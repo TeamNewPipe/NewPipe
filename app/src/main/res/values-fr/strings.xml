@@ -607,4 +607,5 @@
     <string name="restricted_video">Cette vidéo est bloquée à cause de la limite d\'âge.
 \n
 \nSi vous voulez la voir, activez « Contenu avec limite d\'âge » dans les paramètres, rubrique « Contenu ».</string>
+    <string name="remove_watched">Supprimer les vues</string>
 </resources>
