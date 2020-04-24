@@ -608,4 +608,8 @@
 \n
 \nSi vous voulez la voir, activez « Contenu avec limite d\'âge » dans les paramètres, rubrique « Contenu ».</string>
     <string name="remove_watched">Supprimer les vues</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui, et des vidéos partiellement regardées</string>
+    <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
+\nVous êtes sûr \? C\'est irréversible !</string>
+    <string name="remove_watched_popup_title">Supprimer les vidéos regardées \?</string>
 </resources>
