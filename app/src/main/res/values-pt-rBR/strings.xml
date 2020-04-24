@@ -608,4 +608,9 @@ abrir em modo popup</string>
     <string name="restricted_video">Este vídeo tem restrição de idade.
 \n
 \nSe quer vê-lo, ative \"Conteúdo com restrição de idade\" nas configurações.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e vídeos parcialmente assistidos</string>
+    <string name="remove_watched_popup_warning">Os vídeos que foram assistidos antes e depois de serem adicionados à lista de reprodução serão removidos.
+\nVocê tem certeza\? Isto não pode ser desfeito!</string>
+    <string name="remove_watched_popup_title">Remover vídeos assistidos\?</string>
+    <string name="remove_watched">Remover assistido</string>
 </resources>

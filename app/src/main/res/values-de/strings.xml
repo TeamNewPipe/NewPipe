@@ -608,4 +608,9 @@
     <string name="restricted_video">Dieses Video ist altersbeschränkt.
 \n
 \nWenn du es ansehen möchtest, aktiviere in den Einstellungen „Altersbeschränkte Inhalte“.</string>
+    <string name="remove_watched_popup_warning">Videos, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt.
+\nBist du sicher\? Dies kann nicht rückgängig gemacht werden!</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, und teilweise gesehene Videos</string>
+    <string name="remove_watched">Gesehene entfernen</string>
+    <string name="remove_watched_popup_title">Gesehene Videos entfernen\?</string>
 </resources>

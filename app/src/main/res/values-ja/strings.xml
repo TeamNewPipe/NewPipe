@@ -595,4 +595,9 @@
     <string name="restricted_video">この動画には年齢制限があります。
 \n
 \n閲覧したい場合、設定から \"年齢制限のあるコンテンツを表示する\" を有効化してください。</string>
+    <string name="remove_watched_popup_warning">プレイリストに追加される前も追加された後も視聴した動画はプレイリストから削除されます。
+\nよろしいですか？この操作は元に戻せません！</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">はい、部分的に視聴した動画も削除します</string>
+    <string name="remove_watched_popup_title">視聴済みの動画を削除しますか？</string>
+    <string name="remove_watched">視聴済みを削除</string>
 </resources>
