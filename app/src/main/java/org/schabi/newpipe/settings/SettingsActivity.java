@@ -62,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity
                     .commit();
         }
 
-        if (AndroidTvUtils.isTv()) {
+        if (AndroidTvUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
     }

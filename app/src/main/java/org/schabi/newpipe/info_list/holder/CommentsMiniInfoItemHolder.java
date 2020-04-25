@@ -129,7 +129,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
 
         itemView.setOnLongClickListener(view -> {
-            if (!AndroidTvUtils.isTv()) {
+            if (!AndroidTvUtils.isTv(itemBuilder.getContext())) {
                 ClipboardManager clipboardManager = (ClipboardManager) itemBuilder.getContext()
                         .getSystemService(Context.CLIPBOARD_SERVICE);
                 clipboardManager.setPrimaryClip(ClipData.newPlainText(null, commentText));

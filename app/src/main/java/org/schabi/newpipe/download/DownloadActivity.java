@@ -57,7 +57,7 @@ public class DownloadActivity extends AppCompatActivity {
             }
         });
 
-        if (AndroidTvUtils.isTv()) {
+        if (AndroidTvUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
     }
