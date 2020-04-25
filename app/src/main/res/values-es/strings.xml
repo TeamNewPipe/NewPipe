@@ -608,4 +608,9 @@
     <string name="restricted_video">Este video tiene restricción por edades.
 \n
 \nSi quieres verlo, habilita \"Contenido restringido por edades\" en los ajustes.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y también videos vistos parcialmente</string>
+    <string name="remove_watched_popup_warning">Los videos que ya se hayan visto luego de agregados a la lista de reproducción, serán eliminados.
+\n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
+    <string name="remove_watched_popup_title">¿Borrar videos ya vistos\?</string>
+    <string name="remove_watched">Borrar videos ya vistos</string>
 </resources>
