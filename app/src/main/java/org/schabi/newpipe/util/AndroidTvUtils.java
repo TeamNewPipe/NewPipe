@@ -1,11 +1,11 @@
 package org.schabi.newpipe.util;
 
-import android.annotation.SuppressLint;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.view.KeyEvent;
 
 import org.schabi.newpipe.App;
@@ -19,27 +19,30 @@ public final class AndroidTvUtils {
     private AndroidTvUtils() {
     }
 
-    @SuppressLint("InlinedApi")
     public static boolean isTv(final Context context) {
         PackageManager pm = App.getApp().getPackageManager();
 
-
         // from doc: https://developer.android.com/training/tv/start/hardware.html#runtime-check
-        boolean isAndroidTv = ((UiModeManager) context.getSystemService(UI_MODE_SERVICE))
+        boolean isTv = ((UiModeManager) context.getSystemService(UI_MODE_SERVICE))
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
 
-        boolean isBatteryAbsent = ((BatteryManager) context.getSystemService(BATTERY_SERVICE))
-                .getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY) == 0;
-
-        return isAndroidTv
-                || pm.hasSystemFeature(AMAZON_FEATURE_FIRE_TV)
-                || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK)
-                || pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
-
-                //from https://stackoverflow.com/a/58932366
-                || (isBatteryAbsent && !pm.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN)
+        // from https://stackoverflow.com/a/58932366
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            boolean isBatteryAbsent = ((BatteryManager) context.getSystemService(BATTERY_SERVICE))
+                    .getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY) == 0;
+            isTv = isTv || (isBatteryAbsent
+                    && !pm.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN)
                     && pm.hasSystemFeature(PackageManager.FEATURE_USB_HOST)
                     && pm.hasSystemFeature(PackageManager.FEATURE_ETHERNET));
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            isTv = isTv || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+        }
+
+        return isTv
+                || pm.hasSystemFeature(AMAZON_FEATURE_FIRE_TV)
+                || pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);
     }
 
     public static boolean isConfirmKey(final int keyCode) {
