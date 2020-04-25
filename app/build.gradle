@@ -142,7 +142,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:a5155fb562ca99ca4a9c8caa2fd60f2f0a305eb0'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:2780e716b3694ba0f6fe8516847984eadb251f2d'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 
@@ -162,7 +162,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
     // Originally in NewPipeExtractor
-    implementation 'com.grack:nanojson:1.1'
+    implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
     implementation 'org.jsoup:jsoup:1.9.2'
 
     implementation 'ch.acra:acra:4.9.2' //4.11
