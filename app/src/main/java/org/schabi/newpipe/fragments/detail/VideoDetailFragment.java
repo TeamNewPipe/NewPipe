@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -528,7 +529,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
 
         appBarLayout = rootView.findViewById(R.id.appbarlayout);
         viewPager = rootView.findViewById(R.id.viewpager);
-        pageAdapter = new TabAdaptor(getChildFragmentManager());
+
+        Configuration config = getResources().getConfiguration();
+        boolean isRTL = config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+
+        pageAdapter = new TabAdaptor(getChildFragmentManager(), isRTL);
         viewPager.setAdapter(pageAdapter);
         tabLayout = rootView.findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);

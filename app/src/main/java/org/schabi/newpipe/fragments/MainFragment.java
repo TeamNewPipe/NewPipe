@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -150,26 +151,36 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         tabsList.clear();
         tabsList.addAll(tabsManager.getTabs());
 
+        Configuration config = getResources().getConfiguration();
+        boolean isRTL = config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+
         if (pagerAdapter == null || !pagerAdapter.sameTabs(tabsList)) {
             pagerAdapter = new SelectedTabsPagerAdapter(requireContext(),
-                    getChildFragmentManager(), tabsList);
+                    getChildFragmentManager(), tabsList, isRTL);
         }
 
         viewPager.setAdapter(null);
         viewPager.setOffscreenPageLimit(tabsList.size());
         viewPager.setAdapter(pagerAdapter);
 
-        updateTabsIconAndDescription();
+        if (isRTL) {
+            tabLayout.getTabAt(pagerAdapter.getCount() - 1).select();
+        }
+
+        updateTabsIconAndDescription(isRTL);
         updateTitleForTab(viewPager.getCurrentItem());
 
         hasTabsChanged = false;
     }
 
-    private void updateTabsIconAndDescription() {
+    private void updateTabsIconAndDescription(final boolean isRTL) {
         for (int i = 0; i < tabsList.size(); i++) {
             final TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
             if (tabToSet != null) {
-                final Tab tab = tabsList.get(i);
+                final Tab tab = isRTL
+                        ? tabsList.get(tabsList.size() - 1 - i)
+                        : tabsList.get(i);
+
                 tabToSet.setIcon(tab.getTabIconRes(requireContext()));
                 tabToSet.setContentDescription(tab.getTabName(requireContext()));
             }
@@ -203,19 +214,24 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             extends FragmentStatePagerAdapterMenuWorkaround {
         private final Context context;
         private final List<Tab> internalTabsList;
+        private boolean isRTL;
 
         private SelectedTabsPagerAdapter(final Context context,
                                          final FragmentManager fragmentManager,
-                                         final List<Tab> tabsList) {
+                                         final List<Tab> tabsList,
+                                         final boolean isRTL) {
             super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             this.context = context;
             this.internalTabsList = new ArrayList<>(tabsList);
+            this.isRTL = isRTL;
         }
 
         @NonNull
         @Override
         public Fragment getItem(final int position) {
-            final Tab tab = internalTabsList.get(position);
+            final Tab tab = this.isRTL
+                    ? internalTabsList.get(internalTabsList.size() - 1 - position)
+                    : internalTabsList.get(position);
 
             Throwable throwable = null;
             Fragment fragment = null;
