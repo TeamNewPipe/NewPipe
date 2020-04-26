@@ -535,7 +535,7 @@
     <string name="most_liked">Найбільш вподобані</string>
     <string name="recovering">відновлюється</string>
     <string name="error_download_resource_gone">Неможливо відновити це завантаження</string>
-    <string name="choose_instance_prompt">Оберіть сервер</string>
+    <string name="choose_instance_prompt">Вибрати екземпляр</string>
     <string name="enable_lock_screen_video_thumbnail_title">Прев’ю відео на екрані блокування</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Прев’ю відео буде показано на екрані блокування при використанні фонового плеєра</string>
     <string name="clear_download_history">Очистити історію завантажень</string>
