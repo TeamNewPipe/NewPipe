@@ -1,7 +1,6 @@
 package org.schabi.newpipe.fragments;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +28,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
+import org.schabi.newpipe.util.LocalizeLayoutUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.views.ScrollableTabLayout;
@@ -151,8 +151,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         tabsList.clear();
         tabsList.addAll(tabsManager.getTabs());
 
-        Configuration config = getResources().getConfiguration();
-        boolean isRTL = config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+        boolean isRTL = LocalizeLayoutUtils.isRTL(this.getContext());
 
         if (pagerAdapter == null || !pagerAdapter.sameTabs(tabsList)) {
             pagerAdapter = new SelectedTabsPagerAdapter(requireContext(),
@@ -200,7 +199,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     @Override
-    public void onTabUnselected(final TabLayout.Tab tab) { }
+    public void onTabUnselected(final TabLayout.Tab tab) {
+    }
 
     @Override
     public void onTabReselected(final TabLayout.Tab tab) {
@@ -229,9 +229,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         @NonNull
         @Override
         public Fragment getItem(final int position) {
-            final Tab tab = this.isRTL
-                    ? internalTabsList.get(internalTabsList.size() - 1 - position)
-                    : internalTabsList.get(position);
+            final Tab tab = internalTabsList.get(
+                    LocalizeLayoutUtils.getLayoutPosition(
+                            this.isRTL,
+                            internalTabsList.size(),
+                            position)
+            );
 
             Throwable throwable = null;
             Fragment fragment = null;

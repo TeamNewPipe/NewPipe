@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -81,6 +80,7 @@ import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.LocalizeLayoutUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
@@ -530,8 +530,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         appBarLayout = rootView.findViewById(R.id.appbarlayout);
         viewPager = rootView.findViewById(R.id.viewpager);
 
-        Configuration config = getResources().getConfiguration();
-        boolean isRTL = config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+        boolean isRTL = LocalizeLayoutUtils.isRTL(this.getContext());
 
         pageAdapter = new TabAdaptor(getChildFragmentManager(), isRTL);
         viewPager.setAdapter(pageAdapter);

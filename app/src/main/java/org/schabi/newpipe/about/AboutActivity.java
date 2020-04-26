@@ -2,7 +2,6 @@ package org.schabi.newpipe.about;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,6 +23,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.LocalizeLayoutUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
@@ -97,8 +97,7 @@ public class AboutActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);
 
-        Configuration config = getResources().getConfiguration();
-        boolean isRTL = config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+        boolean isRTL = LocalizeLayoutUtils.isRTL(this);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), isRTL);
@@ -221,9 +220,7 @@ public class AboutActivity extends AppCompatActivity {
         }
 
         private int getLayoutPosition(final int position) {
-            return this.isRTL
-                    ? getCount() - 1 - position
-                    : position;
+            return LocalizeLayoutUtils.getLayoutPosition(this.isRTL, getCount(), position);
         }
     }
 }

@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import org.schabi.newpipe.util.LocalizeLayoutUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +26,7 @@ public class TabAdaptor extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(final int position) {
-        int gg = getLayoutPosition(position);
-
-        return mFragmentList.get(gg);
+        return mFragmentList.get(getLayoutPosition(position));
     }
 
     @Override
@@ -94,8 +94,6 @@ public class TabAdaptor extends FragmentPagerAdapter {
     }
 
     private int getLayoutPosition(final int position) {
-        return this.isRTL
-                ? mFragmentList.size() - 1 - position
-                : position;
+        return LocalizeLayoutUtils.getLayoutPosition(this.isRTL, mFragmentList.size(), position);
     }
 }
