@@ -607,4 +607,9 @@
     <string name="restricted_video">Bu video yaş kısıtlamalı.
 \n
 \nGörüntülemek istiyorsanız, ayarlarda \"Yaş kısıtlamalı içerik\" seçeneğini etkinleştirin.</string>
+    <string name="remove_watched_popup_warning">Oynatma listesine eklendikten önce ve sonra izlenen videolar kaldırılacak.
+\nEmin misiniz\? Bu geri döndürülemez!</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Evet ve kısmen izlenmiş videolar</string>
+    <string name="remove_watched_popup_title">İzlenen videoları kaldır\?</string>
+    <string name="remove_watched">İzleneni kaldır</string>
 </resources>
