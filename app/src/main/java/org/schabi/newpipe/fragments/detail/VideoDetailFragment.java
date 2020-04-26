@@ -539,7 +539,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
 
         thumbnailBackgroundButton.requestFocus();
 
-        if (AndroidTvUtils.isTv()) {
+        if (AndroidTvUtils.isTv(getContext())) {
             // remove ripple effects from detail controls
             final int transparent = getResources().getColor(R.color.transparent_background_color);
             detailControlsAddToPlaylist.setBackgroundColor(transparent);

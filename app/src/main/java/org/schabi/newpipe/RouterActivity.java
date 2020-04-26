@@ -344,7 +344,7 @@ public class RouterActivity extends AppCompatActivity {
 
         alertDialog.show();
 
-        if (AndroidTvUtils.isTv()) {
+        if (AndroidTvUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(alertDialog);
         }
     }

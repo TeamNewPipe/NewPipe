@@ -179,7 +179,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                     final String orientKey = getString(R.string.last_orientation_landscape_key);
 
                     final boolean lastOrientationWasLandscape = defaultPreferences
-                            .getBoolean(orientKey, AndroidTvUtils.isTv());
+                            .getBoolean(orientKey, AndroidTvUtils.isTv(getApplicationContext()));
                     setLandscape(lastOrientationWasLandscape);
                 } else {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
@@ -191,7 +191,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
                 false, rotationObserver);
 
-        if (AndroidTvUtils.isTv()) {
+        if (AndroidTvUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
     }
@@ -223,7 +223,8 @@ public final class MainVideoPlayer extends AppCompatActivity
             default:
                 break;
             case KeyEvent.KEYCODE_BACK:
-                if (AndroidTvUtils.isTv() && playerImpl.isControlsVisible()) {
+                if (AndroidTvUtils.isTv(getApplicationContext())
+                        && playerImpl.isControlsVisible()) {
                     playerImpl.hideControls(0, 0);
                     hideSystemUi();
                     return true;
@@ -271,7 +272,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             final String orientKey = getString(R.string.last_orientation_landscape_key);
 
             boolean lastOrientationWasLandscape = defaultPreferences
-                    .getBoolean(orientKey, AndroidTvUtils.isTv());
+                    .getBoolean(orientKey, AndroidTvUtils.isTv(getApplicationContext()));
             setLandscape(lastOrientationWasLandscape);
         }
 
