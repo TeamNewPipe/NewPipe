@@ -607,4 +607,9 @@
     <string name="restricted_video">Questo video ha limiti sull\'età.
 \n
 \nSe vuoi guardarlo, attiva «Contenuti vietati ai minori» nelle impostazioni.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Si, e dei video parzialmente visti</string>
+    <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla lista saranno rimossi.
+\nSei sicuro\? L\'azione è irreversibile!</string>
+    <string name="remove_watched_popup_title">Rimuovere i video visti\?</string>
+    <string name="remove_watched">Rimuovi i visti</string>
 </resources>
