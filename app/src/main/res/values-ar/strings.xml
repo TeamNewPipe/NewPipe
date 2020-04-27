@@ -651,4 +651,9 @@
     <string name="restricted_video">هذا المحتوى مقيد للبالغين.
 \n
 \n اذا اردت رؤيه المحتوى، يجب عليك تفعيل خيار \"تمكين محتوى البالغين\" من الاعدادات.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
+    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل.
+\nهل أنت واثق؟ هذا لا يمكن التراجع عنها!</string>
+    <string name="remove_watched_popup_title">إزالة مقاطع الفيديو التي تمت مشاهدتها؟</string>
+    <string name="remove_watched">إزالة ماتمت مشاهدته</string>
 </resources>

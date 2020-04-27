@@ -603,4 +603,9 @@
     <string name="download_path_dialog_title">Zgjidhni dosjen e shkarkimit për skedarët video</string>
     <string name="download_path_summary">Skedarët video të shkarkuara ruhen këtu</string>
     <string name="no_player_found_toast">Nuk u gjend lexues për stream (ju mund të instaloni VLC për ta lexuar).</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Po, dhe videot e shikuara pjesërisht</string>
+    <string name="remove_watched_popup_warning">Videot që janë shikuar më parë dhe dhe pasi janë shtuar në listën e luajtjes do të hiqen.
+\nA jeni të sigurt\? Kjo nuk mund të zhbëhet!</string>
+    <string name="remove_watched_popup_title">Dëshironi t\'i hiqni videot e para\?</string>
+    <string name="remove_watched">Hiq të parat</string>
 </resources>

@@ -619,4 +619,9 @@
     <string name="restricted_video">Ten film wideo jest ograniczony wiekiem.
 \n
 \nJeśli chcesz go wyświetlić, włącz w ustawieniach opcję \"Zawartość z ograniczeniami wiekowymi\".</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Tak, i częściowo oglądane filmy</string>
+    <string name="remove_watched_popup_warning">Filmy, które zostały obejrzane przed i po dodaniu do playlisty, zostaną usunięte.
+\nJesteś pewien\? Tego nie da się cofnąć!</string>
+    <string name="remove_watched_popup_title">Usunąć oglądane filmy\?</string>
+    <string name="remove_watched">Usuń oglądane</string>
 </resources>
