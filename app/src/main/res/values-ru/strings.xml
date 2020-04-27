@@ -620,8 +620,9 @@
     <string name="artists">Исполнители</string>
     <string name="albums">Альбомы</string>
     <string name="remove_watched">Удалить просмотренные</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, а также частично просмотренные видео</string>
-    <string name="remove_watched_popup_warning">Видео, которые Вы посмотрели до и после добавления в плейлист, будут удалены.
-\nВы уверены\? Это необратимое действие!</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, и частично просмотренные</string>
+    <string name="remove_watched_popup_warning">Видео, которые вы уже смотрели до или после добавления в плейлист, будут удалены.
+\n
+\nПродолжить\?</string>
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
 </resources>
