@@ -251,7 +251,7 @@
     <string name="start_here_on_main">Играть отсюда в плеере</string>
     <string name="start_here_on_background">Играть отсюда в фоне</string>
     <string name="start_here_on_popup">Играть отсюда в окне</string>
-    <string name="no_player_found_toast">Потоковый плеер не найден (можно установить VLC).</string>
+    <string name="no_player_found_toast">Потоковый плеер не найден (можно установить VLC)</string>
     <string name="default_content_country_title">Страна контента по умолчанию</string>
     <string name="service_title">Сервис</string>
     <string name="always">Всегда</string>
@@ -266,7 +266,7 @@
     <string name="video_streams_empty">Видеопотоки не найдены</string>
     <string name="audio_streams_empty">Аудиопотоки не найдены</string>
     <string name="donation_title">Пожертвование</string>
-    <string name="donation_encouragement">NewPipe разрабатывается волонтерами, которые проводят свободное время делают вашу жизнь чуть лучше. Помогите им делать NewPipe ещё круче наслаждаясь чашечкой кофе.</string>
+    <string name="donation_encouragement">Разработчики NewPipe ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать NewPipe ещё круче.</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
     <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
@@ -284,7 +284,7 @@
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
     <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно. Не работает для перемотки на 5, 15 или 25 секунд</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
-    <string name="auto_queue_summary">Продолжить завершение (неповторяющейся) очереди воспроизведения, добавив связанный поток</string>
+    <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
     <string name="settings_category_debug_title">Отладка</string>
     <string name="file">Файл</string>
     <string name="import_data_title">Импорт данных</string>
@@ -341,16 +341,15 @@
     <string name="export_to">Экспорт в</string>
     <string name="import_ongoing">Импорт…</string>
     <string name="export_ongoing">Экспорт…</string>
-    <string name="import_file_title">Выбрать файл</string>
+    <string name="import_file_title">Импорт файла</string>
     <string name="previous_export">Предыдущий экспорт</string>
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
-    <string name="import_youtube_instructions">Выберите экспортированный файл подписок YouTube.
+    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта: 
 \n
-\nДля экспорта ваших подписок из YouTube.
 \n1. Перейдите по ссылке %1$s
-\n2. Если потребуется, войдите в аккаунт.
-\n3. Выберите файл подписок (subscription_manager) в папке загрузок</string>
+\n2. Выполните вход.
+\n3. Дождитесь завершения загрузки файла экспорта.</string>
     <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: 
 \n 
 \n1. Включите режим \"Полная версия сайта\" в браузере.
@@ -502,8 +501,7 @@
     <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения.
 \nИспользуйте SAF для загрузки на внешний накопитель</string>
     <string name="downloads_storage_use_saf_title">Использовать SAF</string>
-    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на SD-карте.
-\nПоддерживается не всеми устройствами</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на внешнем накопителе. Поддерживается не всеми устройствами</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
@@ -561,7 +559,7 @@
     <string name="help">Помощь</string>
     <string name="feed_group_dialog_empty_name">Введите имя группы</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">%d выбран</item>
+        <item quantity="one">%d выбрана</item>
         <item quantity="few">%d выбрано</item>
         <item quantity="many">%d выбрано</item>
         <item quantity="other">%d выбрано</item>
