@@ -505,4 +505,5 @@
     <string name="no_one_watching">Ingen tittar</string>
     <string name="drawer_header_description">Växla tjänst, för närvarande vald:</string>
     <string name="permission_display_over_apps">Ge tillåtelse att visa över andra appar</string>
+    <string name="no_one_listening">Ingen lyssnar</string>
 </resources>
