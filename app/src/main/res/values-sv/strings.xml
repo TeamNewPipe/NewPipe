@@ -89,7 +89,7 @@
     <string name="app_ui_crash">App/Användargränssnittet kraschade</string>
     <string name="sorry_string">Oj, det där skulle inte ha hänt.</string>
     <string name="error_snackbar_message">Tyvärr så inträffade det några fel.</string>
-    <string name="error_snackbar_action">RAPPORTERA</string>
+    <string name="error_snackbar_action">Rapportera</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Vad som skedde:</string>
     <string name="your_comment">Din kommentar (på Engelska):</string>
@@ -133,7 +133,7 @@
     <string name="player_stream_failure">Misslyckades med att spela denna ström</string>
     <string name="player_unrecoverable_failure">Allvarligt spelarfel inträffade</string>
     <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
-    <string name="error_report_button_text">Rapportera fel via e-post</string>
+    <string name="error_report_button_text">Rapportera detta fel via e-post</string>
     <string name="info_labels">Vad:\\nBegäran:\\nInnehållsspråk:\\nTjänst:\\nGMT Tid:\\nPaket:\\nVersion:\\nOS-version:</string>
     <string name="list_thumbnail_view_description">Videons miniatyrbild</string>
     <string name="detail_thumbnail_view_description">Spela video, längd:</string>
@@ -147,7 +147,7 @@
     <string name="video">Video</string>
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>
-    <string name="storage_permission_denied">Tillgång till lagringsområde nekades</string>
+    <string name="storage_permission_denied">Bevilja åtkomst till lagringsutrymme först</string>
     <string name="short_thousand">K</string>
     <string name="short_million">mn</string>
     <string name="short_billion">B</string>
@@ -411,9 +411,9 @@
     <string name="app_update_notification_channel_name">Appuppdateringsnotifikation</string>
     <string name="app_update_notification_channel_description">Notifikationer för nya NewPipe versioner</string>
     <string name="download_to_sdcard_error_title">Extern lagring otillgänglig</string>
-    <string name="saved_tabs_invalid_json">Fel vid läsning av sparade flikar, använder standard flikar istället</string>
+    <string name="saved_tabs_invalid_json">Fel vid läsning av sparade flikar, använder standard flikar</string>
     <string name="restore_defaults">Återställ default</string>
-    <string name="restore_defaults_confirmation">Vill du återställa default\?</string>
+    <string name="restore_defaults_confirmation">Vill du återställa till standard\?</string>
     <string name="subscribers_count_not_available">Antalet prenumeranter är otillgängligt</string>
     <string name="main_page_content_summary">Vilka flikar visas på Huvudsidan</string>
     <string name="selection">Markering</string>
@@ -481,8 +481,8 @@
     <string name="help">Hjälp</string>
     <string name="delete_playback_states_alert">Ta bort alla uppspelningspositioner\?</string>
     <string name="clear_playback_states_summary">Tar bort alla uppspelnings positioner</string>
-    <string name="missing_file"/>
-    <string name="download_to_sdcard_error_message"/>
+    <string name="missing_file">Filen har flyttats eller tagits bort</string>
+    <string name="download_to_sdcard_error_message">Det går inte att ladda ner till externt SD-kort. Återställa nedladdningsmapp\?</string>
     <string name="watch_history_states_deleted">Uppspelningspositionerna har tagits bort.</string>
     <string name="artists">Artister</string>
     <string name="albums">Album</string>
@@ -490,4 +490,19 @@
     <string name="restricted_video">Denna video är åldersbegränsad.
 \n
 \nOm du vill visa den aktiverar du \"Åldersbegränsat innehåll\" i inställningarna.</string>
+    <string name="no_comments">Inga kommentarer</string>
+    <string name="subtitle_activity_recaptcha">Tryck på \"Klar\" när det är löst</string>
+    <string name="infinite_videos">∞ videos</string>
+    <string name="more_than_100_videos">100+ videos</string>
+    <plurals name="listening">
+        <item quantity="one">%s lyssnare</item>
+        <item quantity="other">%s lyssnare</item>
+    </plurals>
+    <plurals name="watching">
+        <item quantity="one">%s tittar</item>
+        <item quantity="other">%s tittar</item>
+    </plurals>
+    <string name="no_one_watching">Ingen tittar</string>
+    <string name="drawer_header_description">Växla tjänst, för närvarande vald:</string>
+    <string name="permission_display_over_apps">Ge tillåtelse att visa över andra appar</string>
 </resources>
