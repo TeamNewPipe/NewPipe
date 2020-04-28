@@ -594,7 +594,7 @@
     <string name="feed_update_threshold_option_always_update">Обновлять постоянно</string>
     <string name="feed_group_dialog_empty_selection">Подписки не выбраны</string>
     <string name="feed_groups_header_title">Группы каналов</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте включить быстрый режим (изменить можно в настройках или кнопкой внизу).
+    <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте быстрый режим (включить можно в настройках или кнопкой внизу).
 \n
 \nNewPipe позволяет обновлять подписки различными способами:
 \n• Получение канала целиком, медленное, но с полными сведениями.
@@ -621,7 +621,7 @@
     <string name="albums">Альбомы</string>
     <string name="remove_watched">Удалить просмотренные</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, и частично просмотренные</string>
-    <string name="remove_watched_popup_warning">Видео, которые вы уже смотрели до или после добавления в плейлист, будут удалены.
+    <string name="remove_watched_popup_warning">Видео, просмотренные до или после добавления в плейлист, будут удалены.
 \n
 \nПродолжить\?</string>
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
