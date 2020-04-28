@@ -468,4 +468,140 @@
     <string name="upload_date_text">%1$s - ന് പ്രസിദ്ധീകരിച്ചു</string>
     <string name="view_count_text">"%1$s  തവണ കാണപ്പെട്ടു"</string>
     <string name="main_bg_subtitle">\"സെർച്ച്\" അമർത്തൂ!; നമുക്ക് തുടങ്ങാം!</string>
+    <string name="content_not_supported">ഈ ഉള്ളടക്കത്തെ ഇതുവരെ ന്യൂ‌പൈപ്പ് പിന്തുണയ്‌ക്കുന്നില്ല.
+\n
+\nഭാവിയിലെ ഒരു പതിപ്പിൽ ഇത് പിന്തുണയ്‌ക്കുമെന്ന് പ്രതീക്ഷിക്കുന്നു.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">ഫീഡ് ലോഡിംഗ് വളരെ മന്ദഗതിയിലാണെന്ന് നിങ്ങൾ കരുതുന്നുണ്ടോ\? അങ്ങനെയാണെങ്കിൽ, വേഗത്തിലുള്ള ലോഡിംഗ് പ്രവർത്തനക്ഷമമാക്കാൻ ശ്രമിക്കുക (നിങ്ങൾക്ക് ഇത് ക്രമീകരണങ്ങളിലോ ചുവടെയുള്ള ബട്ടൺ അമർത്തിയോ മാറ്റാം).
+\n
+\nന്യൂപൈപ്പ് രണ്ട് ഫീഡ് ലോഡിംഗ് തന്ത്രങ്ങൾ വാഗ്ദാനം ചെയ്യുന്നു:
+\nSlow സബ്‌സ്‌ക്രിപ്‌ഷൻ ചാനൽ മുഴുവനും ലഭ്യമാക്കുന്നു, അത് മന്ദഗതിയിലുള്ളതും എന്നാൽ പൂർണ്ണവുമാണ്.
+\nA ഒരു സമർപ്പിത സേവന എൻ‌ഡ്‌പോയിൻറ് ഉപയോഗിക്കുന്നു, അത് വേഗതയേറിയതും എന്നാൽ സാധാരണയായി പൂർത്തിയാകാത്തതുമാണ്.
+\n
+\nരണ്ടും തമ്മിലുള്ള വ്യത്യാസം, വേഗതയേറിയവയ്ക്ക് സാധാരണയായി ഇനത്തിന്റെ ദൈർഘ്യം അല്ലെങ്കിൽ തരം (തത്സമയ വീഡിയോകളും സാധാരണ വീഡിയോകളും തമ്മിൽ വേർതിരിച്ചറിയാൻ കഴിയില്ല) പോലുള്ള ചില വിവരങ്ങൾ ഇല്ല എന്നതാണ്, മാത്രമല്ല ഇത് കുറച്ച് ഇനങ്ങൾ തിരികെ നൽകിയേക്കാം.
+\n
+\nRSS ഫീഡിനൊപ്പം ഈ വേഗത്തിലുള്ള രീതി വാഗ്ദാനം ചെയ്യുന്ന ഒരു സേവനത്തിന്റെ ഉദാഹരണമാണ് YouTube.
+\n
+\nഅതിനാൽ ചോയ്‌സ് നിങ്ങൾ ഇഷ്ടപ്പെടുന്നതിലേക്ക് തിളച്ചുമറിയുന്നു: വേഗത അല്ലെങ്കിൽ കൃത്യമായ വിവരങ്ങൾ.</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">ഫാസ്റ്റ് മോഡ് അപ്രാപ്തമാക്കുക</string>
+    <string name="enqueue">ക്യൂ</string>
+    <string name="recovering">വീണ്ടെടുക്കുന്നു</string>
+    <string name="post_processing">പോസ്റ്റ്-പ്രോസസ്സിംഗ്</string>
+    <string name="queued">ക്യൂവിൽ</string>
+    <string name="paused">താൽക്കാലികമായി നിർത്തി</string>
+    <string name="missions_header_pending">ശേഷിക്കുന്നു</string>
+    <string name="missions_header_finished">പൂർത്തിയായി</string>
+    <string name="app_update_notification_content_text">ഡൗൺലോഡുചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
+    <string name="app_update_notification_content_title">ന്യൂപൈപ്പ് അപ്‌ഡേറ്റ് ലഭ്യമാണ്!</string>
+    <string name="switch_view">കാഴ്ച മാറുക</string>
+    <string name="auto">ഓട്ടോ</string>
+    <string name="grid">ഗ്രിഡ്</string>
+    <string name="list">ലിസ്റ്റ്</string>
+    <string name="list_view_mode">പട്ടിക കാഴ്ച മോഡ്</string>
+    <string name="minimize_on_exit_popup_description">പോപ്പ്അപ്പ് പ്ലെയറിലേക്ക് ചെറുതാക്കുക</string>
+    <string name="minimize_on_exit_background_description">പശ്ചാത്തല പ്ലെയറിലേക്ക് ചെറുതാക്കുക</string>
+    <string name="minimize_on_exit_none_description">ഒന്നുമില്ല</string>
+    <string name="minimize_on_exit_summary">പ്രധാന വീഡിയോ പ്ലെയറിൽ നിന്ന് മറ്റ് അപ്ലിക്കേഷനിലേക്ക് മാറുമ്പോഴുള്ള പ്രവർത്തനം — %s</string>
+    <string name="minimize_on_exit_title">ആപ് മാറ്റുമ്പോൾ മിനിമൈസ് ചെയ്യുക</string>
+    <string name="updates_setting_description">ഒരു പുതിയ പതിപ്പ് ലഭ്യമാകുമ്പോൾ അപ്ലിക്കേഷൻ അപ്‌ഡേറ്റ് ആവശ്യപ്പെടുന്നതിന് ഒരു അറിയിപ്പ് കാണിക്കുക</string>
+    <string name="updates_setting_title">അപ്ഡേറ്റുകൾ</string>
+    <string name="limit_mobile_data_usage_title">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ മിഴിവ് പരിമിതപ്പെടുത്തുക</string>
+    <string name="limit_data_usage_none_description">പരിധിയില്ല</string>
+    <string name="decline">നിരസിക്കുക</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">വേഗത്തിലുള്ള മോഡ് പ്രവർത്തനക്ഷമമാക്കുക</string>
+    <string name="feed_use_dedicated_fetch_method_summary">ചില സേവനങ്ങളിൽ ലഭ്യമാണ്, ഇത് സാധാരണയായി വളരെ വേഗതയുള്ളതാണ്, പക്ഷേ പരിമിതമായ അളവിലുള്ള ഇനങ്ങളും പലപ്പോഴും അപൂർണ്ണമായ വിവരങ്ങളും നൽകാം (ഉദാ. ദൈർഘ്യം, ഇന തരം, തത്സമയ നിലയില്ല).</string>
+    <string name="feed_use_dedicated_fetch_method_title">ലഭ്യമാകുമ്പോൾ സമർപ്പിത ഫീഡിൽ നിന്ന് നേടുക</string>
+    <string name="feed_update_threshold_option_always_update">എപ്പോഴും അപ്‌ഡേറ്റുചെയ്യുക</string>
+    <string name="feed_update_threshold_summary">ഒരു സബ്സ്ക്രിപ്ഷൻ കാലഹരണപ്പെട്ടതായി കണക്കാക്കുന്നതിന് മുമ്പുള്ള അവസാന അപ്‌ഡേറ്റിന് ശേഷമുള്ള സമയം — %s</string>
+    <string name="feed_update_threshold_title">ഫീഡ് അപ്‌ഡേറ്റ് പരിധി</string>
+    <string name="settings_category_feed_title">ഫീഡ്</string>
+    <string name="feed_create_new_group_button_title">പുതിയത്</string>
+    <string name="feed_group_dialog_delete_message">ഈ ഗ്രൂപ്പ് ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ\?</string>
+    <string name="feed_group_dialog_name_input">പേര്</string>
+    <string name="feed_group_dialog_empty_name">ശൂന്യമായ ഗ്രൂപ്പ് പേര്</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d തിരഞ്ഞെടുത്തു</item>
+        <item quantity="other">%d തെരഞ്ഞെടുത്തു</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">സബ്‌സ്‌ക്രിപ്‌ഷനുകളൊന്നും തിരഞ്ഞെടുത്തിട്ടില്ല</string>
+    <string name="feed_group_dialog_select_subscriptions">സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ തിരഞ്ഞെടുക്കുക</string>
+    <string name="feed_processing_message">ഫീഡ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
+    <string name="feed_notification_loading">ഫീഡ് ലോഡുചെയ്യുന്നു…</string>
+    <string name="feed_subscription_not_loaded_count">ലോഡ് ആവാത്തത്: %d</string>
+    <string name="feed_oldest_subscription_update">അവസാനം അപ്‌ഡേറ്റുചെയ്‌ത ഫീഡ്: %s</string>
+    <string name="feed_groups_header_title">ചാനൽ ഗ്രൂപ്പുകൾ</string>
+    <string name="fragment_feed_title">പുതിയതെന്താണ്</string>
+    <plurals name="days">
+        <item quantity="one">%d ദിവസം</item>
+        <item quantity="other">%d ദിവസങ്ങൾ</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d മണിക്കൂർ</item>
+        <item quantity="other">%d മണിക്കൂറുകൾ</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d മിനിറ്റ്</item>
+        <item quantity="other">%d മിനിറ്റുകൾ</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d സെക്കൻഡ്</item>
+        <item quantity="other">%d സെക്കൻഡുകൾ</item>
+    </plurals>
+    <string name="new_seek_duration_toast">എക്സോപ്ലെയർ പരിമിതികൾ കാരണം തിരയൽ ദൈർഘ്യം %d സെക്കൻഡിലേക്ക് സജ്ജമാക്കി</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">അതെ, അതിന്റെകൂടെ ഭാഗികമായി കണ്ട വീഡിയോകളും</string>
+    <string name="remove_watched_popup_warning">പ്ലേലിസ്റ്റിലേക്ക് ചേർക്കുന്നതിന് മുമ്പും ശേഷവും കണ്ട വീഡിയോകൾ നീക്കംചെയ്യും.
+\nനിങ്ങൾക്ക് ഉറപ്പാണോ\? ഇത് പഴയപടിയാക്കാൻ കഴിയില്ല!</string>
+    <string name="remove_watched_popup_title">കണ്ട വീഡിയോകൾ നീക്കംചെയ്യണോ\?</string>
+    <string name="remove_watched">കണ്ടത് നീക്കംചെയ്യുക</string>
+    <string name="systems_language">സിസ്റ്റം ഡിഫോൾട്ട്</string>
+    <string name="app_language_title">അപ്ലിക്കേഷൻ ഭാഷ</string>
+    <string name="choose_instance_prompt">ഒരു സ്ഥിതി തിരഞ്ഞെടുക്കുക</string>
+    <string name="downloads_storage_use_saf_summary">സ്റ്റോറേജ് ആക്സസ് ഫ്രെയിംവർക്ക്\' ഒരു ബാഹ്യ SD കാർഡിലേക്ക് ഡൗൺലോഡുകൾ അനുവദിക്കുന്നു.
+\nചില ഉപകരണങ്ങൾ പൊരുത്തപ്പെടുന്നില്ല</string>
+    <string name="downloads_storage_use_saf_title">SAF ഉപയോഗിക്കുക</string>
+    <string name="downloads_storage_ask_summary_kitkat">ഓരോ ഡൗൺ‌ലോഡും എവിടെ സംരക്ഷിക്കണമെന്ന് നിങ്ങളോട് ചോദിക്കും.
+\nനിങ്ങൾക്ക് ഒരു ബാഹ്യ SD കാർഡിലേക്ക് ഡൗൺലോഡ് ചെയ്യണമെങ്കിൽ SAF തിരഞ്ഞെടുക്കുക</string>
+    <string name="downloads_storage_ask_summary">ഓരോ ഡൗൺ‌ലോഡും എവിടെ സംരക്ഷിക്കണമെന്ന് നിങ്ങളോട് ചോദിക്കും</string>
+    <string name="downloads_storage_ask_title">എവിടെ നിന്ന് ഡൗൺലോഡ് ചെയ്യണമെന്ന് ചോദിക്കുക</string>
+    <string name="pause_downloads">ഡൗൺലോഡുകൾ താൽക്കാലികമായി നിർത്തുക</string>
+    <string name="start_downloads">ഡൗൺലോഡുകൾ ആരംഭിക്കുക</string>
+    <string name="enable_queue_limit_desc">ഒരു ഡൗൺ‌ലോഡ് ഒരേ സമയം പ്രവർത്തിക്കും</string>
+    <string name="enable_queue_limit">ഡൗൺലോഡ് ക്യൂ പരിമിതപ്പെടുത്തുക</string>
+    <string name="close">അടയ്‌ക്കുക</string>
+    <string name="pause_downloads_on_mobile_desc">ചില ഡൗൺ‌ലോഡുകൾ‌ താൽ‌ക്കാലികമായി നിർ‌ത്താൻ‌ കഴിയില്ലെങ്കിലും മൊബൈൽ‌ ഡാറ്റയിലേക്ക് മാറുമ്പോൾ‌ ഉപയോഗപ്രദമാണ്</string>
+    <string name="pause_downloads_on_mobile">മീറ്റർ ചെയ്ത നെറ്റ്‌വർക്കുകളിൽ തടസ്സപ്പെടുത്തുക</string>
+    <string name="max_retry_desc">ഡൗൺലോഡ് റദ്ദാക്കുന്നതിനുമുമ്പ് പരമാവധി ശ്രമങ്ങൾ</string>
+    <string name="max_retry_msg">പരമാവധി വീണ്ടും ശ്രമിക്കുന്നു</string>
+    <string name="stop">നിർത്തുക</string>
+    <string name="deleted_downloads">1$s ഡൗൺ‌ലോഡുകൾ ഇല്ലാതാക്കി</string>
+    <string name="delete_downloaded_files">ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ ഇല്ലാതാക്കുക</string>
+    <string name="confirm_prompt">നിങ്ങളുടെ ഡൗൺലോഡ് ചരിത്രം മായ്‌ക്കണോ ഡൗൺലോഡ് ചെയ്ത എല്ലാ ഫയലുകളും ഇല്ലാതാക്കണോ\?</string>
+    <string name="clear_download_history">ഡൗൺലോഡ് ചരിത്രം മായ്‌ക്കുക</string>
+    <string name="error_download_resource_gone">ഈ ഡൗൺലോഡ് വീണ്ടെടുക്കാനാവില്ല</string>
+    <string name="error_timeout">കണക്ഷൻ കാലഹരണപ്പെട്ടു</string>
+    <string name="error_progress_lost">ഫയൽ ഇല്ലാതാക്കിയതിനാൽ പുരോഗതി നഷ്‌ടപ്പെട്ടു</string>
+    <string name="error_insufficient_storage">ഉപകരണത്തിൽ ഇനിയൊരു സ്ഥലവും ബാക്കിയില്ല</string>
+    <string name="error_postprocessing_stopped">ഫയലിൽ പ്രവർത്തിക്കുമ്പോൾ ന്യൂപൈപ്പ് അടച്ചു</string>
+    <string name="error_postprocessing_failed">പോസ്റ്റ്-പ്രോസസ്സിംഗ് പരാജയപ്പെട്ടു</string>
+    <string name="error_http_not_found">കണ്ടെത്താനായില്ല</string>
+    <string name="error_http_unsupported_range">മൾട്ടി-ത്രെഡഡ് ഡൗൺലോഡുകൾ‌ സെർ‌വർ‌ സ്വീകരിക്കുന്നില്ല, വീണ്ടും ശ്രമിക്കുക @string/msg_threads = 1</string>
+    <string name="error_http_no_content">സെർവർ ഡാറ്റ അയയ്‌ക്കുന്നില്ല</string>
+    <string name="error_connect_host">സെർവറിലേക്ക് ബന്ധിപ്പിക്കാൻ കഴിയില്ല</string>
+    <string name="error_unknown_host">സെർവർ കണ്ടെത്താനായില്ല</string>
+    <string name="error_ssl_exception">ഒരു സുരക്ഷിത കണക്ഷൻ സ്ഥാപിക്കാനായില്ല</string>
+    <string name="error_permission_denied">സിസ്റ്റം അനുമതി തടഞ്ഞു</string>
+    <string name="error_path_creation">ഉദ്ദിഷ്ടസ്ഥാന ഫോൾഡർ സൃഷ്ടിക്കാൻ കഴിയില്ല</string>
+    <string name="error_file_creation">ഫയൽ സൃഷ്ടിക്കാൻ കഴിയില്ല</string>
+    <string name="label_code">കോഡ്</string>
+    <string name="show_error">പിശക് കാണിക്കൂ</string>
+    <string name="download_already_pending">ഈ പേരിൽ ഡൗൺ‌ലോഡ് തീരാത്ത ഒരു ഫയൽ ഉണ്ട്</string>
+    <string name="download_already_running">ഈ പേരിൽ ഒരു ഡൗൺ‌ലോഡ് പുരോഗതിയിലാണ്</string>
+    <string name="overwrite_failed">ഫയൽ പുനരാലേഖനം ചെയ്യാൻ കഴിയില്ല</string>
+    <string name="overwrite_finished_warning">ഈ പേരിൽ ഒരു ഡൗൺ‌ലോഡുചെയ്‌ത ഫയൽ ഇതിനകം നിലവിലുണ്ട്</string>
+    <string name="overwrite_unrelated_warning">ഈ പേരിലുള്ള ഒരു ഫയൽ ഇതിനകം നിലവിലുണ്ട്</string>
+    <string name="overwrite">തിരുത്തിയെഴുതുക</string>
+    <string name="generate_unique_name">അദ്വിതീയ നാമം സൃഷ്ടിക്കുക</string>
+    <string name="download_finished_more">%s ഡൗൺലോഡുകൾ പൂർത്തിയായി</string>
+    <string name="download_finished">ഡൗൺലോഡ് പൂർത്തിയായി</string>
+    <string name="download_failed">ഡൗൺലോഡ് പരാജയപ്പെട്ടു</string>
+    <string name="permission_denied">സിസ്റ്റം പ്രവർത്തനം തടഞ്ഞു</string>
 </resources>
