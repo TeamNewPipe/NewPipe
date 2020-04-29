@@ -591,18 +591,18 @@
     <string name="settings_category_feed_title">Подписки</string>
     <string name="feed_processing_message">Обработка канала…</string>
     <string name="feed_notification_loading">Загрузка канала…</string>
-    <string name="feed_update_threshold_option_always_update">Обновлять постоянно</string>
+    <string name="feed_update_threshold_option_always_update">Обновлять всегда</string>
     <string name="feed_group_dialog_empty_selection">Подписки не выбраны</string>
     <string name="feed_groups_header_title">Группы каналов</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте быстрый режим (включить можно в настройках или кнопкой внизу).
+    <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте быстрый режим (включите в настройках или кнопкой внизу).
 \n
-\nNewPipe позволяет обновлять подписки различными способами:
+\nNewPipe позволяет обновлять подписки двумя способами:
 \n• Получение канала целиком, медленное, но с полными сведениями.
-\n• Обновление через RSS-канал, быстрое, но с потерей сведений.
+\n• Обновление по RSS, быстрое, но с потерей сведений.
 \n
 \nПри быстром обновлении теряются длительность элемента и его тип (нельзя определить, трансляция это или обычное видео), могут быть получены не все элементы канала.
 \n
-\nYouTube является примером такого сервиса, позволяя выполнять быстрое обновление по RSS.
+\nYouTube является примером такого сервиса, допуская быстрое обновление по RSS.
 \n
 \nВыбор за вами: скорость или точность.</string>
     <string name="feed_use_dedicated_fetch_method_title">Обновление из RSS, если доступно</string>
