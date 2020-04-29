@@ -560,7 +560,7 @@
         <item quantity="other">%d dagen</item>
     </plurals>
     <string name="feed_groups_header_title">Feedgroepen</string>
-    <string name="feed_oldest_subscription_update">Oudste abonnements-update: %s</string>
+    <string name="feed_oldest_subscription_update">Nieuws­feed laatste update: %s</string>
     <string name="feed_subscription_not_loaded_count">Niet geladen: %d</string>
     <string name="feed_notification_loading">Feed aan het laden…</string>
     <string name="feed_processing_message">Feed aan het verwerken…</string>
@@ -599,4 +599,16 @@
     <string name="songs">Nummers</string>
     <string name="albums">Albums</string>
     <string name="artists">Artiesten</string>
+    <string name="content_not_supported">Deze inhoud wordt nog niet ondersteund door NewPipe.
+\n
+\nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, en deels bekeken video\'s</string>
+    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na, dat ze werden toegevoegd aan de playlist worden verwijderd.
+\nWeet u het zeker\? Dit kan niet ongedaan gemaakt worden!</string>
+    <string name="remove_watched_popup_title">Verwijder bekeken video\'s\?</string>
+    <string name="infinite_videos">∞ video\'s</string>
+    <string name="more_than_100_videos">100+ video\'s</string>
+    <string name="restricted_video">Deze video heeft een leeftijdsbeperking.
+\n
+\nAls u die wilt zien, schakel \"leeftijdsbeperkende inhoud\" in bij de instellingen.</string>
 </resources>
