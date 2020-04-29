@@ -479,7 +479,7 @@
     <string name="download_choose_new_path">Verander de downloadmappen om effect te bekomen</string>
     <string name="enable_playback_resume_title">Afspelen hervatten</string>
     <string name="enable_playback_resume_summary">Herstel vorige afspeelpositie</string>
-    <string name="enable_playback_state_lists_title">Positie in afspeellijst</string>
+    <string name="enable_playback_state_lists_title">Posities in afspeellijsten</string>
     <string name="enable_playback_state_lists_summary">Afspeelpositie-indicatoren in lijsten tonen</string>
     <string name="watch_history_states_deleted">Afspeelposities verwijderd.</string>
     <string name="missing_file">Bestand verplaatst of verwijderd</string>
