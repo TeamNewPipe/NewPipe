@@ -29,9 +29,8 @@ import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.PlaylistItemsUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import icepick.State;
@@ -53,31 +52,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
     ///////////////////////////////////////////////////////////////////////////
-
-    private static List<PlaylistLocalItem> merge(
-            final List<PlaylistMetadataEntry> localPlaylists,
-            final List<PlaylistRemoteEntity> remotePlaylists) {
-        List<PlaylistLocalItem> items = new ArrayList<>(
-                localPlaylists.size() + remotePlaylists.size());
-        items.addAll(localPlaylists);
-        items.addAll(remotePlaylists);
-
-        Collections.sort(items, (left, right) -> {
-            String on1 = left.getOrderingName();
-            String on2 = right.getOrderingName();
-            if (on1 == null && on2 == null) {
-                return 0;
-            } else if (on1 != null && on2 == null) {
-                return -1;
-            } else if (on1 == null && on2 != null) {
-                return 1;
-            } else {
-                return on1.compareToIgnoreCase(on2);
-            }
-        });
-
-        return items;
-    }
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -164,7 +138,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         super.startLoading(forceLoad);
 
         Flowable.combineLatest(localPlaylistManager.getPlaylists(),
-                remotePlaylistManager.getPlaylists(), BookmarkFragment::merge)
+                remotePlaylistManager.getPlaylists(), PlaylistItemsUtils::merge)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistsSubscriber());

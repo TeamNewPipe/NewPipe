@@ -34,6 +34,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SelectChannelFragment;
 import org.schabi.newpipe.settings.SelectKioskFragment;
+import org.schabi.newpipe.settings.SelectPlaylistFragment;
 import org.schabi.newpipe.settings.tabs.AddTabDialog.ChooseTabListItem;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -211,6 +212,23 @@ public class ChooseTabsFragment extends Fragment {
                         addTab(new Tab.ChannelTab(serviceId, url, name)));
                 selectChannelFragment.show(requireFragmentManager(), "select_channel");
                 return;
+            case PLAYLIST:
+                SelectPlaylistFragment selectPlaylistFragment = new SelectPlaylistFragment();
+                selectPlaylistFragment.setOnSelectedLisener(
+                        new SelectPlaylistFragment.OnSelectedLisener() {
+                            @Override
+                            public void onLocalPlaylistSelected(final long id, final String name) {
+                                addTab(new Tab.PlaylistTab(id, name));
+                            }
+
+                            @Override
+                            public void onRemotePlaylistSelected(
+                                    final int serviceId, final String url, final String name) {
+                                addTab(new Tab.PlaylistTab(serviceId, url, name));
+                            }
+                        });
+                selectPlaylistFragment.show(requireFragmentManager(), "select_playlist");
+                return;
             default:
                 addTab(type.getTab());
                 break;
@@ -247,6 +265,11 @@ public class ChooseTabsFragment extends Fragment {
                                 ThemeHelper.resolveResourceIdFromAttr(context,
                                         R.attr.ic_kiosk_hot)));
                     }
+                    break;
+                case PLAYLIST:
+                    returnList.add(new ChooseTabListItem(tab.getTabId(),
+                            getString(R.string.playlist_page_summary),
+                            tab.getTabIconRes(context)));
                     break;
                 default:
                     if (!tabList.contains(tab)) {
@@ -392,6 +415,13 @@ public class ChooseTabsFragment extends Fragment {
                     case CHANNEL:
                         tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab)
                                 .getChannelServiceId()) + "/" + tab.getTabName(requireContext());
+                        break;
+                    case PLAYLIST:
+                        int serviceId = ((Tab.PlaylistTab) tab).getPlaylistServiceId();
+                        String serviceName = serviceId == -1
+                                ? getString(R.string.local)
+                                : NewPipe.getNameOfService(serviceId);
+                        tabName = serviceName + "/" + tab.getTabName(requireContext());
                         break;
                     default:
                         tabName = tab.getTabName(requireContext());
