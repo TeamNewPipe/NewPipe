@@ -2,7 +2,7 @@ package org.schabi.newpipe.local.feed
 
 import androidx.annotation.StringRes
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import java.util.*
+import java.util.Calendar
 
 sealed class FeedState {
     data class ProgressState(

@@ -1,6 +1,11 @@
 package org.schabi.newpipe.database.stream.dao
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
 import io.reactivex.Flowable
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
@@ -8,8 +13,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Date
 
 @Dao
 abstract class StreamDAO : BasicDAO<StreamEntity> {

@@ -6,7 +6,7 @@ import org.schabi.newpipe.database.LocalItem
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import java.util.*
+import java.util.Date
 
 class StreamStatisticsEntry(
         @Embedded

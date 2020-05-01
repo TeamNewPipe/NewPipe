@@ -2,7 +2,8 @@ package org.schabi.newpipe.local.subscription.item
 
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.feed_group_card_item.*
+import kotlinx.android.synthetic.main.feed_group_card_item.icon
+import kotlinx.android.synthetic.main.feed_group_card_item.title
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.subscription.FeedGroupIcon

@@ -5,7 +5,9 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.picker_subscription_item.*
+import kotlinx.android.synthetic.main.picker_subscription_item.selected_highlight
+import kotlinx.android.synthetic.main.picker_subscription_item.thumbnail_view
+import kotlinx.android.synthetic.main.picker_subscription_item.title_view
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.util.AnimationUtils

@@ -6,8 +6,8 @@ import android.system.ErrnoException;
 import android.system.OsConstants;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.DownloaderImpl;
 

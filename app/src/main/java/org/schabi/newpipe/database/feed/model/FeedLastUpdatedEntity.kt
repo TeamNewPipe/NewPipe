@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity.Companion.FEED_LAST_UPDATED_TABLE
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity.Companion.SUBSCRIPTION_ID
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import java.util.*
+import java.util.Date
 
 @Entity(
         tableName = FEED_LAST_UPDATED_TABLE,

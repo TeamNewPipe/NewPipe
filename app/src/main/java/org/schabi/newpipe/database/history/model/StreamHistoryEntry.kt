@@ -3,7 +3,7 @@ package org.schabi.newpipe.database.history.model
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import org.schabi.newpipe.database.stream.model.StreamEntity
-import java.util.*
+import java.util.Date
 
 data class StreamHistoryEntry(
         @Embedded

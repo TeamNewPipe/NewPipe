@@ -4,7 +4,10 @@ import android.content.Context
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.list_channel_item.*
+import kotlinx.android.synthetic.main.list_channel_item.itemAdditionalDetails
+import kotlinx.android.synthetic.main.list_channel_item.itemChannelDescriptionView
+import kotlinx.android.synthetic.main.list_channel_item.itemThumbnailView
+import kotlinx.android.synthetic.main.list_channel_item.itemTitleView
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.util.ImageDisplayConstants
