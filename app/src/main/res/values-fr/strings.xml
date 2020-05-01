@@ -564,7 +564,7 @@
     <!-- feed -->
     <string name="fragment_feed_title">Nouveautés</string>
     <string name="feed_groups_header_title">Groupes d\'abonnements</string>
-    <string name="feed_oldest_subscription_update">Dernier flux mis à jour : %s</string>
+    <string name="feed_oldest_subscription_update">Dernière mise à jour du flux : %s</string>
     <string name="feed_subscription_not_loaded_count">Pas chargés : %d</string>
     <string name="feed_notification_loading">Chargement du flux…</string>
     <string name="feed_processing_message">Préparation du flux…</string>
@@ -607,7 +607,7 @@
     <string name="restricted_video">Cette vidéo est bloquée à cause de la limite d\'âge.
 \n
 \nSi vous voulez la voir, activez « Contenu avec limite d\'âge » dans les paramètres, rubrique « Contenu ».</string>
-    <string name="remove_watched">Supprimer les vues</string>
+    <string name="remove_watched">Supprimer les vidéos vues</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui, et des vidéos partiellement regardées</string>
     <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
 \nVous êtes sûr \? C\'est irréversible !</string>
