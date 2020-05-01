@@ -49,7 +49,6 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
-import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
@@ -91,7 +90,6 @@ public final class BackgroundPlayer extends Service {
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
-    private LockManager lockManager;
     private SharedPreferences sharedPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -116,7 +114,6 @@ public final class BackgroundPlayer extends Service {
             Log.d(TAG, "onCreate() called");
         }
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
-        lockManager = new LockManager(this);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
@@ -166,9 +163,6 @@ public final class BackgroundPlayer extends Service {
             Log.d(TAG, "onClose() called");
         }
 
-        if (lockManager != null) {
-            lockManager.releaseWifiAndCpu();
-        }
         if (basePlayerImpl != null) {
             basePlayerImpl.savePlaybackState();
             basePlayerImpl.stopActivityBinding();
@@ -179,7 +173,6 @@ public final class BackgroundPlayer extends Service {
         }
         mBinder = null;
         basePlayerImpl = null;
-        lockManager = null;
 
         stopForeground(true);
         stopSelf();
@@ -663,7 +656,6 @@ public final class BackgroundPlayer extends Service {
             resetNotification();
             updateNotificationThumbnail();
             updateNotification(R.drawable.ic_pause_white);
-            lockManager.acquireWifiAndCpu();
         }
 
         @Override
@@ -672,7 +664,6 @@ public final class BackgroundPlayer extends Service {
             resetNotification();
             updateNotificationThumbnail();
             updateNotification(R.drawable.ic_play_arrow_white);
-            lockManager.releaseWifiAndCpu();
         }
 
         @Override
@@ -687,7 +678,6 @@ public final class BackgroundPlayer extends Service {
             }
             updateNotificationThumbnail();
             updateNotification(R.drawable.ic_replay_white);
-            lockManager.releaseWifiAndCpu();
         }
     }
 }
