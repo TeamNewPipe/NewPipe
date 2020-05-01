@@ -190,7 +190,7 @@
     <string name="notification_channel_description">Notificaciones de reproductores en segundo plano o emergentes de NewPipe</string>
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Funcionamiento</string>
-    <string name="settings_category_history_title">Historial y antememoria</string>
+    <string name="settings_category_history_title">Historial y memoria caché</string>
     <string name="playlist">Lista de reproducción</string>
     <string name="undo">Deshacer</string>
     <string name="search_no_results">No hay resultados</string>
@@ -355,11 +355,11 @@
 \n
 \n¿Quiere continuar\?</string>
     <string name="download_thumbnail_title">Cargar miniaturas</string>
-    <string name="download_thumbnail_summary">Desactívela para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la antememoria de imágenes en la memoria volátil y en el disco.</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Se vació la antememoria de imágenes</string>
-    <string name="metadata_cache_wipe_title">Eliminar metadatos en antememoria</string>
-    <string name="metadata_cache_wipe_summary">Eliminar todos los datos de páginas web en antememoria</string>
-    <string name="metadata_cache_wipe_complete_notice">Se vació la antememoria de metadatos</string>
+    <string name="download_thumbnail_summary">Desactívela para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Se vació la caché de imágenes</string>
+    <string name="metadata_cache_wipe_title">Eliminar metadatos en memoria caché</string>
+    <string name="metadata_cache_wipe_summary">Eliminar todos los datos de páginas web en memoria caché</string>
+    <string name="metadata_cache_wipe_complete_notice">Se vació la caché de metadatos</string>
     <string name="playback_speed_control">Controles de velocidad de reproducción</string>
     <string name="playback_tempo">Tiempo</string>
     <string name="playback_pitch">Tono</string>
