@@ -83,7 +83,7 @@ ext {
     icepickVersion = '3.2.0'
     checkstyleVersion = '8.32'
     stethoVersion = '1.5.1'
-    leakCanaryVersion = '1.5.4'
+    leakCanaryVersion = '2.2'
     exoPlayerVersion = '2.11.4'
     androidxLifecycleVersion = '2.2.0'
     androidxRoomVersion = '2.2.5'
@@ -150,7 +150,7 @@ dependencies {
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"
+    implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
 
     debugImplementation "androidx.multidex:multidex:2.0.1"
 
