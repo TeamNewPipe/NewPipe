@@ -16,9 +16,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.acra.ACRA;
-import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
-import org.acra.config.ConfigurationBuilder;
+import org.acra.config.CoreConfiguration;
+import org.acra.config.CoreConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
@@ -202,7 +202,7 @@ public class App extends Application {
 
     private void initACRA() {
         try {
-            final ACRAConfiguration acraConfig = new ConfigurationBuilder(this)
+            final CoreConfiguration acraConfig = new CoreConfigurationBuilder(this)
                     .setReportSenderFactoryClasses(REPORT_SENDER_FACTORY_CLASSES)
                     .setBuildConfigClass(BuildConfig.class)
                     .build();
