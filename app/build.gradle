@@ -116,25 +116,40 @@ task runCheckstyle(type: Checkstyle) {
     }
 }
 
-tasks.withType(Checkstyle).each {
-    checkstyleTask -> checkstyleTask.doLast {
-        reports.all { report ->
-            def outputFile = report.destination
-            if (outputFile.exists() && outputFile.text.contains("severity=\"error\"")) {
-                throw new GradleException("There were checkstyle errors! For more info check $outputFile")
-            }
+runCheckstyle.doLast {
+    reports.all { report ->
+        def outputFile = report.destination
+        if (outputFile.exists() && outputFile.text.contains("severity=\"error\"")) {
+            throw new GradleException("There were checkstyle errors! For more info check $outputFile")
         }
     }
 }
 
+configurations {
+    ktlint
+}
+
+task runKtlint(type: JavaExec) {
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+}
+
+task formatKtlint(type: JavaExec) {
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
+
 afterEvaluate {
-    preDebugBuild.dependsOn runCheckstyle
+    preDebugBuild.dependsOn runCheckstyle, runKtlint
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     debugImplementation "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
+    ktlint "com.pinterest:ktlint:0.35.0"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation "android.arch.persistence.room:testing:1.1.1"
