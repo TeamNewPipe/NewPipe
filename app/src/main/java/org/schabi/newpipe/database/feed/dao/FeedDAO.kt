@@ -7,11 +7,11 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import io.reactivex.Flowable
+import java.util.Date
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import java.util.Date
 
 @Dao
 abstract class FeedDAO {

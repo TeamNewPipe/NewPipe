@@ -29,6 +29,12 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.State
 import io.reactivex.disposables.CompositeDisposable
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import kotlin.math.floor
+import kotlin.math.max
 import kotlinx.android.synthetic.main.dialog_title.view.itemAdditionalDetails
 import kotlinx.android.synthetic.main.dialog_title.view.itemTitleView
 import kotlinx.android.synthetic.main.fragment_subscription.items_list
@@ -62,12 +68,6 @@ import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ShareUtils
 import org.schabi.newpipe.util.ThemeHelper
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import kotlin.math.floor
-import kotlin.math.max
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var viewModel: SubscriptionViewModel
@@ -97,9 +97,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         setHasOptionsMenu(true)
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,9 +143,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         disposables.dispose()
     }
 
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
     // Menu
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -173,7 +173,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                     importExportItem.isExpanded = false
                     importExportItem.notifyChanged(FeedImportExportItem.REFRESH_EXPANDED_STATUS)
                 }
-
             }
         }
 
@@ -221,9 +220,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
     }
 
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
     // Fragment Views
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
 
     private fun setupInitialLayout() {
         Section().apply {
@@ -266,7 +265,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 { onExportSelected() },
                 importExportItemExpandedState ?: false)
         groupAdapter.add(Section(importExportItem, listOf(subscriptionsSection)))
-
     }
 
     override fun initViews(rootView: View, savedInstanceState: Bundle?) {
@@ -389,9 +387,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         items_list.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Contract
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun showLoading() {
         super.showLoading()
@@ -403,9 +401,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         animateView(items_list, true, 200)
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Fragment Error Handling
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun onError(exception: Throwable): Boolean {
         if (super.onError(exception)) return true
@@ -414,9 +412,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         return true
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Grid Mode
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     // TODO: Move these out of this class, as it can be reused
 
@@ -428,8 +426,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             getString(R.string.list_view_mode_auto_key) -> {
                 val configuration = resources.configuration
 
-                (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                        && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE))
+                (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                        configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE))
             }
             getString(R.string.list_view_mode_grid_key) -> true
             else -> false

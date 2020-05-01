@@ -5,6 +5,9 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.io.Serializable
+import java.util.Calendar
+import java.util.Date
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_SERVICE_ID
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_TABLE
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_URL
@@ -13,9 +16,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
-import java.io.Serializable
-import java.util.Calendar
-import java.util.Date
 
 @Entity(tableName = STREAM_TABLE,
         indices = [
@@ -23,42 +23,42 @@ import java.util.Date
         ]
 )
 data class StreamEntity(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = STREAM_ID)
-        var uid: Long = 0,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = STREAM_ID)
+    var uid: Long = 0,
 
-        @ColumnInfo(name = STREAM_SERVICE_ID)
-        var serviceId: Int,
+    @ColumnInfo(name = STREAM_SERVICE_ID)
+    var serviceId: Int,
 
-        @ColumnInfo(name = STREAM_URL)
-        var url: String,
+    @ColumnInfo(name = STREAM_URL)
+    var url: String,
 
-        @ColumnInfo(name = STREAM_TITLE)
-        var title: String,
+    @ColumnInfo(name = STREAM_TITLE)
+    var title: String,
 
-        @ColumnInfo(name = STREAM_TYPE)
-        var streamType: StreamType,
+    @ColumnInfo(name = STREAM_TYPE)
+    var streamType: StreamType,
 
-        @ColumnInfo(name = STREAM_DURATION)
-        var duration: Long,
+    @ColumnInfo(name = STREAM_DURATION)
+    var duration: Long,
 
-        @ColumnInfo(name = STREAM_UPLOADER)
-        var uploader: String,
+    @ColumnInfo(name = STREAM_UPLOADER)
+    var uploader: String,
 
-        @ColumnInfo(name = STREAM_THUMBNAIL_URL)
-        var thumbnailUrl: String? = null,
+    @ColumnInfo(name = STREAM_THUMBNAIL_URL)
+    var thumbnailUrl: String? = null,
 
-        @ColumnInfo(name = STREAM_VIEWS)
-        var viewCount: Long? = null,
+    @ColumnInfo(name = STREAM_VIEWS)
+    var viewCount: Long? = null,
 
-        @ColumnInfo(name = STREAM_TEXTUAL_UPLOAD_DATE)
-        var textualUploadDate: String? = null,
+    @ColumnInfo(name = STREAM_TEXTUAL_UPLOAD_DATE)
+    var textualUploadDate: String? = null,
 
-        @ColumnInfo(name = STREAM_UPLOAD_DATE)
-        var uploadDate: Date? = null,
+    @ColumnInfo(name = STREAM_UPLOAD_DATE)
+    var uploadDate: Date? = null,
 
-        @ColumnInfo(name = STREAM_IS_UPLOAD_DATE_APPROXIMATION)
-        var isUploadDateApproximation: Boolean? = null
+    @ColumnInfo(name = STREAM_IS_UPLOAD_DATE_APPROXIMATION)
+    var isUploadDateApproximation: Boolean? = null
 ) : Serializable {
 
     @Ignore

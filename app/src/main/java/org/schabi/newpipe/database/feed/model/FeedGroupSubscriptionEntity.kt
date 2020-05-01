@@ -29,11 +29,11 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
         ]
 )
 data class FeedGroupSubscriptionEntity(
-        @ColumnInfo(name = GROUP_ID)
-        var feedGroupId: Long,
+    @ColumnInfo(name = GROUP_ID)
+    var feedGroupId: Long,
 
-        @ColumnInfo(name = SUBSCRIPTION_ID)
-        var subscriptionId: Long
+    @ColumnInfo(name = SUBSCRIPTION_ID)
+    var subscriptionId: Long
 ) {
 
     companion object {

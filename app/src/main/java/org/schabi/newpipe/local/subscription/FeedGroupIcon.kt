@@ -7,15 +7,15 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.util.ThemeHelper
 
 enum class FeedGroupIcon(
-        /**
-         * The id that will be used to store and retrieve icons from some persistent storage (e.g. DB).
-         */
-        val id: Int,
+    /**
+     * The id that will be used to store and retrieve icons from some persistent storage (e.g. DB).
+     */
+    val id: Int,
 
-        /**
-         * The attribute that points to a drawable resource. "R.attr" is used here to support multiple themes.
-         */
-        @AttrRes val drawableResourceAttr: Int
+    /**
+     * The attribute that points to a drawable resource. "R.attr" is used here to support multiple themes.
+     */
+    @AttrRes val drawableResourceAttr: Int
 ) {
     ALL(0, R.attr.ic_asterisk),
     MUSIC(1, R.attr.ic_music_note),

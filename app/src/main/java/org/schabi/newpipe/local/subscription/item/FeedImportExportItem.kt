@@ -23,10 +23,10 @@ import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.views.CollapsibleView
 
 class FeedImportExportItem(
-        val onImportPreviousSelected: () -> Unit,
-        val onImportFromServiceSelected: (Int) -> Unit,
-        val onExportSelected: () -> Unit,
-        var isExpanded: Boolean = false
+    val onImportPreviousSelected: () -> Unit,
+    val onImportFromServiceSelected: (Int) -> Unit,
+    val onExportSelected: () -> Unit,
+    var isExpanded: Boolean = false
 ) : Item() {
     companion object {
         const val REFRESH_EXPANDED_STATUS = 123
@@ -108,7 +108,6 @@ class FeedImportExportItem(
             } catch (e: ExtractionException) {
                 throw RuntimeException("Services array contains an entry that it's not a valid service name ($serviceName)", e)
             }
-
         }
     }
 

@@ -4,10 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import java.util.Date
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity.Companion.FEED_LAST_UPDATED_TABLE
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity.Companion.SUBSCRIPTION_ID
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import java.util.Date
 
 @Entity(
         tableName = FEED_LAST_UPDATED_TABLE,
@@ -20,12 +20,12 @@ import java.util.Date
         ]
 )
 data class FeedLastUpdatedEntity(
-        @PrimaryKey
-        @ColumnInfo(name = SUBSCRIPTION_ID)
-        var subscriptionId: Long,
+    @PrimaryKey
+    @ColumnInfo(name = SUBSCRIPTION_ID)
+    var subscriptionId: Long,
 
-        @ColumnInfo(name = LAST_UPDATED)
-        var lastUpdated: Date? = null
+    @ColumnInfo(name = LAST_UPDATED)
+    var lastUpdated: Date? = null
 ) {
 
     companion object {

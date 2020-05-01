@@ -14,12 +14,11 @@ import org.schabi.newpipe.util.ImageDisplayConstants
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.OnClickGesture
 
-
 class ChannelItem(
-        private val infoItem: ChannelInfoItem,
-        private val subscriptionId: Long = -1L,
-        var itemVersion: ItemVersion = ItemVersion.NORMAL,
-        var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
+    private val infoItem: ChannelInfoItem,
+    private val subscriptionId: Long = -1L,
+    var itemVersion: ItemVersion = ItemVersion.NORMAL,
+    var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
 ) : Item() {
 
     override fun getId(): Long = if (subscriptionId == -1L) super.getId() else subscriptionId

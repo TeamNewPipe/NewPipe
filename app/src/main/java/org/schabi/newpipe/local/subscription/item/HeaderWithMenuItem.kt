@@ -11,11 +11,11 @@ import kotlinx.android.synthetic.main.header_with_menu_item.header_title
 import org.schabi.newpipe.R
 
 class HeaderWithMenuItem(
-        val title: String,
-        @DrawableRes val itemIcon: Int = 0,
-        var showMenuItem: Boolean = true,
-        private val onClickListener: (() -> Unit)? = null,
-        private val menuItemOnClickListener: (() -> Unit)? = null
+    val title: String,
+    @DrawableRes val itemIcon: Int = 0,
+    var showMenuItem: Boolean = true,
+    private val onClickListener: (() -> Unit)? = null,
+    private val menuItemOnClickListener: (() -> Unit)? = null
 ) : Item() {
     companion object {
         const val PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM = 1

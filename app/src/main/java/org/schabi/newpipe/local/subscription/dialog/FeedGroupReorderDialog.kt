@@ -16,6 +16,7 @@ import com.xwray.groupie.TouchCallback
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.Icepick
 import icepick.State
+import java.util.Collections
 import kotlinx.android.synthetic.main.dialog_feed_group_reorder.confirm_button
 import kotlinx.android.synthetic.main.dialog_feed_group_reorder.feed_groups_list
 import org.schabi.newpipe.R
@@ -24,7 +25,6 @@ import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewMo
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.SuccessEvent
 import org.schabi.newpipe.local.subscription.item.FeedGroupReorderItem
 import org.schabi.newpipe.util.ThemeHelper
-import java.util.Collections
 
 class FeedGroupReorderDialog : DialogFragment() {
     private lateinit var viewModel: FeedGroupReorderDialogViewModel
@@ -93,8 +93,11 @@ class FeedGroupReorderDialog : DialogFragment() {
     private fun getItemTouchCallback(): SimpleCallback {
         return object : TouchCallback() {
 
-            override fun onMove(recyclerView: RecyclerView, source: RecyclerView.ViewHolder,
-                                target: RecyclerView.ViewHolder): Boolean {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                source: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
                 val sourceIndex = source.adapterPosition
                 val targetIndex = target.adapterPosition
 

@@ -9,6 +9,9 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function4
 import io.reactivex.schedulers.Schedulers
+import java.util.Calendar
+import java.util.Date
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedEventManager
@@ -17,9 +20,6 @@ import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ProgressEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.SuccessResultEvent
 import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
-import java.util.Calendar
-import java.util.Date
-import java.util.concurrent.TimeUnit
 
 class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModel() {
     class Factory(val context: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModelProvider.Factory {

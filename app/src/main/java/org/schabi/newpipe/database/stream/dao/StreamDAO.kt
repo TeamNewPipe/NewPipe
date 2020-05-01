@@ -7,13 +7,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import io.reactivex.Flowable
+import java.util.Date
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
-import java.util.Date
 
 @Dao
 abstract class StreamDAO : BasicDAO<StreamEntity> {
@@ -98,7 +98,6 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
             if (existentMinimalStream.duration > 0 && newerStream.duration < 0) {
                 newerStream.duration = existentMinimalStream.duration
             }
-
         }
     }
 
@@ -120,21 +119,22 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
      * Minimal entry class used when comparing/updating an existent stream.
      */
     internal data class StreamCompareFeed(
-            @ColumnInfo(name = STREAM_ID)
-            var uid: Long = 0,
+        @ColumnInfo(name = STREAM_ID)
+        var uid: Long = 0,
 
-            @ColumnInfo(name = StreamEntity.STREAM_TYPE)
-            var streamType: StreamType,
+        @ColumnInfo(name = StreamEntity.STREAM_TYPE)
+        var streamType: StreamType,
 
-            @ColumnInfo(name = StreamEntity.STREAM_TEXTUAL_UPLOAD_DATE)
-            var textualUploadDate: String? = null,
+        @ColumnInfo(name = StreamEntity.STREAM_TEXTUAL_UPLOAD_DATE)
+        var textualUploadDate: String? = null,
 
-            @ColumnInfo(name = StreamEntity.STREAM_UPLOAD_DATE)
-            var uploadDate: Date? = null,
+        @ColumnInfo(name = StreamEntity.STREAM_UPLOAD_DATE)
+        var uploadDate: Date? = null,
 
-            @ColumnInfo(name = StreamEntity.STREAM_IS_UPLOAD_DATE_APPROXIMATION)
-            var isUploadDateApproximation: Boolean? = null,
+        @ColumnInfo(name = StreamEntity.STREAM_IS_UPLOAD_DATE_APPROXIMATION)
+        var isUploadDateApproximation: Boolean? = null,
 
-            @ColumnInfo(name = StreamEntity.STREAM_DURATION)
-            var duration: Long)
+        @ColumnInfo(name = StreamEntity.STREAM_DURATION)
+        var duration: Long
+    )
 }

@@ -33,6 +33,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.preference.PreferenceManager
 import icepick.State
+import java.util.Calendar
 import kotlinx.android.synthetic.main.error_retry.error_button_retry
 import kotlinx.android.synthetic.main.error_retry.error_message_view
 import kotlinx.android.synthetic.main.fragment_feed.empty_state_view
@@ -50,7 +51,6 @@ import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.report.UserAction
 import org.schabi.newpipe.util.AnimationUtils.animateView
 import org.schabi.newpipe.util.Localization
-import java.util.Calendar
 
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private lateinit var viewModel: FeedViewModel
@@ -111,9 +111,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Menu
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -163,9 +163,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         activity?.supportActionBar?.subtitle = null
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Handling
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun showLoading() {
         animateView(refresh_root_view, false, 0)
@@ -272,7 +272,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         }
     }
 
-
     private fun handleErrorState(errorState: FeedState.ErrorState): Boolean {
         hideLoading()
         errorState.error?.let {
@@ -296,9 +295,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         refresh_text?.text = getString(R.string.feed_oldest_subscription_update, oldestSubscriptionUpdateText)
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Load Service Handling
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun doInitialLoadLogic() {}
     override fun reloadContent() = triggerUpdate()

@@ -8,14 +8,14 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 
 class PlaylistStreamEntry(
-        @Embedded
-        val streamEntity: StreamEntity,
+    @Embedded
+    val streamEntity: StreamEntity,
 
-        @ColumnInfo(name = PlaylistStreamEntity.JOIN_STREAM_ID)
-        val streamId: Long,
+    @ColumnInfo(name = PlaylistStreamEntity.JOIN_STREAM_ID)
+    val streamId: Long,
 
-        @ColumnInfo(name = PlaylistStreamEntity.JOIN_INDEX)
-        val joinIndex: Int
+    @ColumnInfo(name = PlaylistStreamEntity.JOIN_INDEX)
+    val joinIndex: Int
 ) : LocalItem {
 
     @Throws(IllegalArgumentException::class)

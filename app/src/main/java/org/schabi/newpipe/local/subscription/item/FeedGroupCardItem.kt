@@ -9,9 +9,9 @@ import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 
 data class FeedGroupCardItem(
-        val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-        val name: String,
-        val icon: FeedGroupIcon
+    val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+    val name: String,
+    val icon: FeedGroupIcon
 ) : Item() {
     constructor (feedGroupEntity: FeedGroupEntity) : this(feedGroupEntity.uid, feedGroupEntity.name, feedGroupEntity.icon)
 

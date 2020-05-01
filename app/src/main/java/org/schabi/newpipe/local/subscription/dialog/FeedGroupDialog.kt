@@ -22,6 +22,7 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.Icepick
 import icepick.State
+import java.io.Serializable
 import kotlinx.android.synthetic.main.dialog_feed_group_create.cancel_button
 import kotlinx.android.synthetic.main.dialog_feed_group_create.confirm_button
 import kotlinx.android.synthetic.main.dialog_feed_group_create.delete_button
@@ -51,7 +52,6 @@ import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
 import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 import org.schabi.newpipe.util.ThemeHelper
-import java.io.Serializable
 
 class FeedGroupDialog : DialogFragment() {
     private lateinit var viewModel: FeedGroupDialogViewModel
@@ -137,9 +137,9 @@ class FeedGroupDialog : DialogFragment() {
         showScreen(currentScreen)
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Setup
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun setupListeners() {
         delete_button.setOnClickListener { showScreen(DeleteScreen) }
@@ -311,9 +311,9 @@ class FeedGroupDialog : DialogFragment() {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Screen Selector
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun showScreen(screen: ScreenState) {
         currentScreen = screen
@@ -347,9 +347,9 @@ class FeedGroupDialog : DialogFragment() {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Utils
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun hideKeyboard() {
         val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
