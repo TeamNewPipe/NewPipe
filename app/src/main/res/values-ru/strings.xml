@@ -562,6 +562,7 @@
         <item quantity="one">%d выбрана</item>
         <item quantity="few">%d выбрано</item>
         <item quantity="many">%d выбрано</item>
+        <item quantity="other">%d выбрано</item>
     </plurals>
     <string name="feed_group_dialog_select_subscriptions">Выберите подписки</string>
     <string name="feed_oldest_subscription_update">Последнее обновление: %s</string>
@@ -590,18 +591,18 @@
     <string name="settings_category_feed_title">Подписки</string>
     <string name="feed_processing_message">Обработка канала…</string>
     <string name="feed_notification_loading">Загрузка канала…</string>
-    <string name="feed_update_threshold_option_always_update">Обновлять постоянно</string>
+    <string name="feed_update_threshold_option_always_update">Обновлять всегда</string>
     <string name="feed_group_dialog_empty_selection">Подписки не выбраны</string>
     <string name="feed_groups_header_title">Группы каналов</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте включить быстрый режим (изменить можно в настройках или кнопкой внизу).
+    <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте быстрый режим (включите в настройках или кнопкой внизу).
 \n
-\nNewPipe позволяет обновлять подписки различными способами:
+\nNewPipe позволяет обновлять подписки двумя способами:
 \n• Получение канала целиком, медленное, но с полными сведениями.
-\n• Обновление через RSS-канал, быстрое, но с потерей сведений.
+\n• Обновление по RSS, быстрое, но с потерей сведений.
 \n
 \nПри быстром обновлении теряются длительность элемента и его тип (нельзя определить, трансляция это или обычное видео), могут быть получены не все элементы канала.
 \n
-\nYouTube является примером такого сервиса, позволяя выполнять быстрое обновление по RSS.
+\nYouTube является примером такого сервиса, допуская быстрое обновление по RSS.
 \n
 \nВыбор за вами: скорость или точность.</string>
     <string name="feed_use_dedicated_fetch_method_title">Обновление из RSS, если доступно</string>
@@ -610,12 +611,18 @@
     <string name="restricted_video">Это видео с ограничением по возрасту.
 \n
 \nДля его просмотра включите \"Контент 18+\" в настройках.</string>
-    <string name="content_not_supported">Этот контент не поддерживается NewPipe.
-\n
+    <string name="content_not_supported">NewPipe не поддерживает этот контент. 
+\n 
 \nВозможно, поддержка появится в следующих версиях.</string>
     <string name="infinite_videos">∞ видео</string>
     <string name="more_than_100_videos">100+ видео</string>
     <string name="songs">Треки</string>
     <string name="artists">Исполнители</string>
     <string name="albums">Альбомы</string>
+    <string name="remove_watched">Удалить просмотренные</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, и частично просмотренные</string>
+    <string name="remove_watched_popup_warning">Видео, просмотренные до или после добавления в плейлист, будут удалены.
+\n
+\nПродолжить\?</string>
+    <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
 </resources>

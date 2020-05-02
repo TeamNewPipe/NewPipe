@@ -607,4 +607,9 @@
     <string name="restricted_video">Este vídeo tem restrição de idade.
 \n
 \nSe quiser vê-lo, ative \"Conteúdo com restrição de idade\" nas definições.</string>
+    <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
+\nTem certeza\? Isto não pode ser desfeito!</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e tambem os vídeos parcialmente vistos</string>
+    <string name="remove_watched_popup_title">Remover vídeos vistos\?</string>
+    <string name="remove_watched">Remover vistos</string>
 </resources>

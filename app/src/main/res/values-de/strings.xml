@@ -8,7 +8,7 @@
 \n</string>
     <string name="open_in_browser">Im Browser öffnen</string>
     <string name="share">Teilen</string>
-    <string name="download">Download</string>
+    <string name="download">Herunterladen</string>
     <string name="search">Suchen</string>
     <string name="settings">Einstellungen</string>
     <string name="did_you_mean">Meintest du: %1$s\?</string>

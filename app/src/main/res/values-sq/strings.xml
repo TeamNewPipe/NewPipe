@@ -165,10 +165,10 @@
 \n2. Shkoni tek kjo URL: %1$s
 \n3. Hyni kur t\'ju kërkohet
 \n4. Kopjoni URL e profilit drejt të cilit u ridrejtuat.</string>
-    <string name="import_youtube_instructions">Importoni abominet nga YouTube duke shkarkuar skedarin e importuar:
-\n
-\n1. Shkoni tek kjo URL: %1$s
-\n2. Hyni kur t\'ju kërkohet
+    <string name="import_youtube_instructions">Importoni abonimet nga YouTube duke shkarkuar skedarin e importuar: 
+\n 
+\n1. Shkoni tek kjo URL: %1$s 
+\n2. Hyni kur t\'ju kërkohet 
 \n3. Një shkarkim duhet të nisë (ky është skedari i eksportuar)</string>
     <string name="subscriptions_export_unsuccessful">Nuk arritën të eksportohen abonimet</string>
     <string name="subscriptions_import_unsuccessful">Nuk arritën të importohen abonimet</string>
@@ -349,7 +349,7 @@
     </plurals>
     <string name="no_subscribers">Nuk ka abonues</string>
     <string name="drawer_header_description">Aktivizoje shërbimin, momentalisht e zgjedhur:</string>
-    <string name="short_billion">M</string>
+    <string name="short_billion">B</string>
     <string name="short_million">M</string>
     <string name="short_thousand">k</string>
     <string name="storage_permission_denied">Lejo aksesin tek magazina fillimisht</string>
@@ -432,16 +432,16 @@
     <string name="settings_category_popup_title">Popup</string>
     <string name="controls_popup_title">Popup</string>
     <string name="tracks">Pistë</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Mendoni se lista po ngarkohet shumë ngadalë\? Nëse po, provoni të aktivizoni ngarkimin e shpejtë (ju mund ta ndryshoni tek aranzhimet ose duke shtypur butonin më poshtë).
-\n
-\nNewPipe ofron dy strategji të ndryshme të ngarkimit:
-\n• Të merret i gjithi kanali i abonuar, më e ngadaltë por e plotë
-\n• Të përdoret një shërbim i dedikuar, i cili është i shpejtë por jo i plotë.
-\n
-\nNdryshimet midis të dyjave është se i shpejti zakonisht ka më pak informacion, si psh kohëzgjatja e objektit apo lloji (nuk mund të bëjë dallimin midis videove në kohë reale apo atyre normale) dhe mund të kthejë më pas objekte.
-\n
-\nYouTube është një shembull i një shërbimi i cili e ofron këtë metodë të shpejtë me anë të listës së vetë RSS.
-\n
+    <string name="feed_use_dedicated_fetch_method_help_text">Mendoni se lista po ngarkohet shumë ngadalë\? Nëse po, provoni të aktivizoni ngarkimin e shpejtë (ju mund ta ndryshoni tek aranzhimet ose duke shtypur butonin më poshtë). 
+\n 
+\nNewPipe ofron dy strategji të ndryshme të ngarkimit: 
+\n• Të merret i gjithë kanali i abonuar, më e ngadaltë por e plotë 
+\n• Të përdoret një shërbim i dedikuar, i cili është i shpejtë por jo i plotë. 
+\n 
+\nNdryshimi midis të dyjave është se i shpejti zakonisht ka më pak informacion, si psh kohëzgjatja e objektit apo lloji (nuk mund të bëjë dallimin midis videove në kohë reale apo atyre normale) dhe mund të kthejë më pak objekte. 
+\n 
+\nYouTube është një shembull i një shërbimi i cili e ofron këtë metodë të shpejtë me anë të listës së vetë RSS. 
+\n 
 \nSi përfundim, zgjedhja mbetet në dorën tuaj dhe se çfarë ju preferoni: shpejtësi apo informacion të saktë.</string>
     <string name="enable_disposed_exceptions_summary">Detyroni raportimin e përjashtimeve Rx të padërgueshme jashtë fragmentit apo ciklit jetësor të aktivitetit pas hedhjes</string>
     <string name="app_license">NewPipe është program i lirë copyleft: Ju mund ta përdorni, ta studioni, ta ndani me të tjerët dhe ta përmirësoni sipas dëshirës. Specifikisht ju mund ta rishpërndani dhe/ose ta modifikoni sipas kushteve të Licensës GNU General Public siç është publikuar nga Fondacioni për Softuerin e Lirë (FSF), sipas versionit 3 të Licensës, ose (sipas mundësive tuaja) në një version më të ri.</string>
@@ -603,4 +603,9 @@
     <string name="download_path_dialog_title">Zgjidhni dosjen e shkarkimit për skedarët video</string>
     <string name="download_path_summary">Skedarët video të shkarkuara ruhen këtu</string>
     <string name="no_player_found_toast">Nuk u gjend lexues për stream (ju mund të instaloni VLC për ta lexuar).</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Po, dhe videot e shikuara pjesërisht</string>
+    <string name="remove_watched_popup_warning">Videot që janë shikuar më parë dhe dhe pasi janë shtuar në listën e luajtjes do të hiqen.
+\nA jeni të sigurt\? Kjo nuk mund të zhbëhet!</string>
+    <string name="remove_watched_popup_title">Dëshironi t\'i hiqni videot e para\?</string>
+    <string name="remove_watched">Hiq të parat</string>
 </resources>
