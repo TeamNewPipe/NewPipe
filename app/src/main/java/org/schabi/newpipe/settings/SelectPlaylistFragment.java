@@ -35,10 +35,7 @@ import java.util.List;
 import java.util.Vector;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class SelectPlaylistFragment extends DialogFragment {
     /**
@@ -49,17 +46,18 @@ public class SelectPlaylistFragment extends DialogFragment {
 
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
-    private OnSelectedLisener onSelectedLisener = null;
+    private OnSelectedListener onSelectedListener = null;
     private OnCancelListener onCancelListener = null;
 
     private ProgressBar progressBar;
     private TextView emptyView;
     private RecyclerView recyclerView;
+    private Disposable playlistsSubscriber;
 
     private List<PlaylistLocalItem> playlists = new Vector<>();
 
-    public void setOnSelectedLisener(final OnSelectedLisener listener) {
-        onSelectedLisener = listener;
+    public void setOnSelectedListener(final OnSelectedListener listener) {
+        onSelectedListener = listener;
     }
 
     public void setOnCancelListener(final OnCancelListener listener) {
@@ -67,13 +65,14 @@ public class SelectPlaylistFragment extends DialogFragment {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Init
+    // Fragment's Lifecycle
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.select_playlist_fragment, container, false);
+        final View v =
+                inflater.inflate(R.layout.select_playlist_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         SelectPlaylistAdapter playlistAdapter = new SelectPlaylistAdapter();
@@ -86,17 +85,24 @@ public class SelectPlaylistFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
         final AppDatabase database = NewPipeDatabase.getInstance(this.getContext());
-        LocalPlaylistManager localPlaylistManager = new LocalPlaylistManager(database);
-        RemotePlaylistManager remotePlaylistManager = new RemotePlaylistManager(database);
+        final LocalPlaylistManager localPlaylistManager = new LocalPlaylistManager(database);
+        final RemotePlaylistManager remotePlaylistManager = new RemotePlaylistManager(database);
 
-        Flowable.combineLatest(localPlaylistManager.getPlaylists(),
+        playlistsSubscriber = Flowable.combineLatest(localPlaylistManager.getPlaylists(),
                 remotePlaylistManager.getPlaylists(), PlaylistItemsUtils::merge)
-                .toObservable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getPlaylistsObserver());
+                .subscribe(this::displayPlaylists, this::onError);
 
         return v;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (playlistsSubscriber != null) {
+            playlistsSubscriber.dispose();
+            playlistsSubscriber = null;
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -112,17 +118,17 @@ public class SelectPlaylistFragment extends DialogFragment {
     }
 
     private void clickedItem(final int position) {
-        if (onSelectedLisener != null) {
-            LocalItem selectedItem = playlists.get(position);
+        if (onSelectedListener != null) {
+            final LocalItem selectedItem = playlists.get(position);
 
             if (selectedItem instanceof PlaylistMetadataEntry) {
                 final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                onSelectedLisener
+                onSelectedListener
                         .onLocalPlaylistSelected(entry.uid, entry.name);
 
             } else if (selectedItem instanceof PlaylistRemoteEntity) {
                 final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-                onSelectedLisener.onRemotePlaylistSelected(
+                onSelectedListener.onRemotePlaylistSelected(
                         entry.getServiceId(), entry.getUrl(), entry.getName());
             }
         }
@@ -144,26 +150,6 @@ public class SelectPlaylistFragment extends DialogFragment {
 
     }
 
-    private Observer<List<PlaylistLocalItem>> getPlaylistsObserver() {
-        return new Observer<List<PlaylistLocalItem>>() {
-            @Override
-            public void onSubscribe(final Disposable d) { }
-
-            @Override
-            public void onNext(final List<PlaylistLocalItem> newPlaylists) {
-                displayPlaylists(newPlaylists);
-            }
-
-            @Override
-            public void onError(final Throwable exception) {
-                SelectPlaylistFragment.this.onError(exception);
-            }
-
-            @Override
-            public void onComplete() { }
-        };
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Error
     //////////////////////////////////////////////////////////////////////////*/
@@ -178,7 +164,7 @@ public class SelectPlaylistFragment extends DialogFragment {
     // Interfaces
     //////////////////////////////////////////////////////////////////////////*/
 
-    public interface OnSelectedLisener {
+    public interface OnSelectedListener {
         void onLocalPlaylistSelected(long id, String name);
         void onRemotePlaylistSelected(int serviceId, String url, String name);
     }
@@ -192,14 +178,14 @@ public class SelectPlaylistFragment extends DialogFragment {
         @Override
         public SelectPlaylistItemHolder onCreateViewHolder(final ViewGroup parent,
                                                           final int viewType) {
-            View item = LayoutInflater.from(parent.getContext())
+            final View item = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_playlist_mini_item, parent, false);
             return new SelectPlaylistItemHolder(item);
         }
 
         @Override
         public void onBindViewHolder(final SelectPlaylistItemHolder holder, final int position) {
-            PlaylistLocalItem selectedItem = playlists.get(position);
+            final PlaylistLocalItem selectedItem = playlists.get(position);
 
             if (selectedItem instanceof PlaylistMetadataEntry) {
                 final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);

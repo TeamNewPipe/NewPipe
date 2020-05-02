@@ -504,11 +504,7 @@ public abstract class Tab {
         private LocalItemType playlistType;
 
         private PlaylistTab() {
-            this.playlistName = "<no-name>";
-            this.playlistId = -1;
-            this.playlistType = LocalItemType.PLAYLIST_LOCAL_ITEM;
-            this.playlistServiceId = -1;
-            this.playlistUrl = "<no-url>";
+            this(-1, "<no-name>");
         }
 
         public PlaylistTab(final long playlistId, final String playlistName) {
@@ -545,18 +541,16 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_list);
+            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_bookmark);
         }
 
         @Override
         public Fragment getFragment(final Context context) {
             if (playlistType == LocalItemType.PLAYLIST_LOCAL_ITEM) {
-                return LocalPlaylistFragment.getInstance(playlistId,
-                        playlistName == null ? "" : playlistName);
+                return LocalPlaylistFragment.getInstance(playlistId, playlistName);
 
             } else { // playlistType == LocalItemType.PLAYLIST_REMOTE_ITEM
-                return PlaylistFragment.getInstance(playlistServiceId, playlistUrl,
-                        playlistName == null ? "" : playlistName);
+                return PlaylistFragment.getInstance(playlistServiceId, playlistUrl, playlistName);
             }
         }
 
@@ -583,16 +577,16 @@ public abstract class Tab {
 
         @Override
         public boolean equals(final Object obj) {
-            boolean baseEqual = super.equals(obj)
+            final boolean baseEquals = super.equals(obj)
                     && Objects.equals(playlistType, ((PlaylistTab) obj).playlistType)
                     && Objects.equals(playlistName, ((PlaylistTab) obj).playlistName);
 
-            if (!baseEqual) {
+            if (!baseEquals) {
                 return false;
             }
 
-            boolean localPlaylistEquals = playlistId == ((PlaylistTab) obj).playlistId;
-            boolean remotePlaylistEquals =
+            final boolean localPlaylistEquals = playlistId == ((PlaylistTab) obj).playlistId;
+            final boolean remotePlaylistEquals =
                     playlistServiceId == ((PlaylistTab) obj).playlistServiceId
                             && Objects.equals(playlistUrl, ((PlaylistTab) obj).playlistUrl);
 

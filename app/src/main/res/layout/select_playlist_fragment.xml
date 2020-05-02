@@ -23,7 +23,9 @@
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/list_playlist_mini_item"></androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/list_playlist_mini_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
     <TextView

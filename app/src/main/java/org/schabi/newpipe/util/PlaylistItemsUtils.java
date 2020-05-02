@@ -14,7 +14,7 @@ public final class PlaylistItemsUtils {
     public static List<PlaylistLocalItem> merge(
             final List<PlaylistMetadataEntry> localPlaylists,
             final List<PlaylistRemoteEntity> remotePlaylists) {
-        List<PlaylistLocalItem> items = new ArrayList<>(
+        final List<PlaylistLocalItem> items = new ArrayList<>(
                 localPlaylists.size() + remotePlaylists.size());
         items.addAll(localPlaylists);
         items.addAll(remotePlaylists);

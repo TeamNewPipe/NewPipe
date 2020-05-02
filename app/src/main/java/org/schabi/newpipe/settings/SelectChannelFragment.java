@@ -64,7 +64,7 @@ public class SelectChannelFragment extends DialogFragment {
 
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
-    private OnSelectedLisener onSelectedLisener = null;
+    private OnSelectedListener onSelectedListener = null;
     private OnCancelListener onCancelListener = null;
 
     private ProgressBar progressBar;
@@ -73,8 +73,8 @@ public class SelectChannelFragment extends DialogFragment {
 
     private List<SubscriptionEntity> subscriptions = new Vector<>();
 
-    public void setOnSelectedLisener(final OnSelectedLisener listener) {
-        onSelectedLisener = listener;
+    public void setOnSelectedListener(final OnSelectedListener listener) {
+        onSelectedListener = listener;
     }
 
     public void setOnCancelListener(final OnCancelListener listener) {
@@ -129,9 +129,9 @@ public class SelectChannelFragment extends DialogFragment {
     }
 
     private void clickedItem(final int position) {
-        if (onSelectedLisener != null) {
+        if (onSelectedListener != null) {
             SubscriptionEntity entry = subscriptions.get(position);
-            onSelectedLisener
+            onSelectedListener
                     .onChannelSelected(entry.getServiceId(), entry.getUrl(), entry.getName());
         }
         dismiss();
@@ -186,7 +186,7 @@ public class SelectChannelFragment extends DialogFragment {
     // Interfaces
     //////////////////////////////////////////////////////////////////////////*/
 
-    public interface OnSelectedLisener {
+    public interface OnSelectedListener {
         void onChannelSelected(int serviceId, String url, String name);
     }
 
