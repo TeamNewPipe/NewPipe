@@ -51,12 +51,13 @@ public final class TabsJsonHelper {
         final JsonObject outerJsonObject;
         try {
             outerJsonObject = JsonParser.object().from(tabsJson);
-            final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY);
 
-            if (tabsArray == null) {
+            if (!outerJsonObject.has(JSON_TABS_ARRAY_KEY)) {
                 throw new InvalidJsonException("JSON doesn't contain \"" + JSON_TABS_ARRAY_KEY
                         + "\" array");
             }
+
+            final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY);
 
             for (Object o : tabsArray) {
                 if (!(o instanceof JsonObject)) {
