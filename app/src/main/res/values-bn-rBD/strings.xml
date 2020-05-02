@@ -184,4 +184,5 @@
     <string name="show_comments_summary">মতামত প্রদর্শন বন্ধ করতে অপশনটি বন্ধ করুন</string>
     <string name="show_comments_title">মতামত প্রদর্শন করুন</string>
     <string name="download_thumbnail_title">থাম্বনেইল লোড করুন</string>
+    <string name="download_thumbnail_summary">থাম্বনেইল প্রদর্শন বন্ধ করার মাধ্যমে ডাটা এবং মেমোরি সংরক্ষণ করতে চাইলে অপশনটি বন্ধ করুন। অপশনটি‌ পরিবর্তনে ইন-মেমোরি এবং অন-ডিস্ক ইমেজ ক্যাশে উভয়ই মুছে যাবে।</string>
 </resources>
