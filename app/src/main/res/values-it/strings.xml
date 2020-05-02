@@ -5,14 +5,14 @@
     <string name="no_player_found">Nessun lettore multimediale trovato. Installare VLC\?</string>
     <string name="install">Installa</string>
     <string name="cancel">Annulla</string>
-    <string name="open_in_browser">Apri nel browser</string>
+    <string name="open_in_browser">Apri nel Browser</string>
     <string name="share">Condividi</string>
     <string name="download">Scarica</string>
     <string name="search">Cerca</string>
     <string name="settings">Impostazioni</string>
     <string name="did_you_mean">Intendevi: %1$s\?</string>
     <string name="share_dialog_title">Condividi con</string>
-    <string name="choose_browser">Scegli browser</string>
+    <string name="choose_browser">Scegli Browser</string>
     <string name="screen_rotation">rotazione</string>
     <string name="download_path_title">Cartella Video Scaricati</string>
     <string name="download_path_summary">I video scaricati saranno salvati qui</string>
@@ -223,12 +223,12 @@
     <string name="kiosk">Locandina</string>
     <string name="trending">Tendenze</string>
     <string name="top_50">Top 50</string>
-    <string name="new_and_hot">New &amp; hot</string>
+    <string name="new_and_hot">Nuovi e Popolari</string>
     <string name="show_hold_to_append_title">Mostra suggerimento \"Tieni premuto per accodare\"</string>
     <string name="show_hold_to_append_summary">Nei \"Dettagli\" dei video, mostra suggerimento alla pressione dei pulsanti per la riproduzione Popup o in Sottofondo</string>
     <string name="background_player_append">Accoda in Sottofondo</string>
     <string name="popup_playing_append">Accodato in Popup</string>
-    <string name="play_all">Riproduci tutto</string>
+    <string name="play_all">Riproduci Tutto</string>
     <string name="player_stream_failure">Impossibile riprodurre questo flusso</string>
     <string name="player_unrecoverable_failure">Si è verificato un errore irreversibile</string>
     <string name="player_recoverable_failure">Ripristino dell\'errore del lettore multimediale</string>
@@ -267,7 +267,7 @@
     <string name="video_player">Lettore video</string>
     <string name="background_player">Riproduzione in Sottofondo</string>
     <string name="popup_player">Lettore Popup</string>
-    <string name="preferred_player_fetcher_notification_title">Raccogliendo informazioni…</string>
+    <string name="preferred_player_fetcher_notification_title">Raccoglimento informazioni…</string>
     <string name="preferred_player_fetcher_notification_message">Caricamento del contenuto richiesto</string>
     <string name="import_data_title">Importa Database</string>
     <string name="export_data_title">Esporta Database</string>
@@ -279,8 +279,8 @@
     <string name="could_not_import_all_files">Attenzione: Impossibile importare tutti i file.</string>
     <string name="override_current_data">Questa operazione sostituirà le tue impostazioni attuali.</string>
     <string name="controls_download_desc">Scarica il video</string>
-    <string name="show_info">Mostra informazioni</string>
-    <string name="tab_bookmarks">Playlist preferite</string>
+    <string name="show_info">Mostra Informazioni</string>
+    <string name="tab_bookmarks">Playlist Salvate</string>
     <string name="controls_add_to_playlist_title">Aggiungi a</string>
     <string name="detail_drag_description">Trascina per riordinare</string>
     <string name="create">Crea</string>
@@ -298,9 +298,9 @@
     <string name="rename_playlist">Rinomina</string>
     <string name="playlist_name_input">Nome</string>
     <string name="append_playlist">Aggiungi a Playlist</string>
-    <string name="set_as_playlist_thumbnail">Imposta come Copertina della Playlist</string>
-    <string name="bookmark_playlist">Segnalibri playlist</string>
-    <string name="unbookmark_playlist">Rimuovi segnalibro</string>
+    <string name="set_as_playlist_thumbnail">Imposta come Copertina Playlist</string>
+    <string name="bookmark_playlist">Salva Playlist</string>
+    <string name="unbookmark_playlist">Rimuovi Playlist</string>
     <string name="delete_playlist_prompt">Eliminare la playlist\?</string>
     <string name="playlist_creation_success">Playlist creata</string>
     <string name="playlist_add_stream_success">Aggiunto alla Playlist</string>
@@ -342,17 +342,17 @@
 \n1. Vai a questo URL: %1$s 
 \n2. Accedi quando richiesto 
 \n3. Il download del file d\'esportazione dovrebbe partire in automatico</string>
-    <string name="import_soundcloud_instructions">Importa un profilo SoundCloud digitando l\'URL o il tuo ID:
+    <string name="import_soundcloud_instructions">Importa un profilo SoundCloud inserendo l\'URL o il tuo ID: 
 \n 
-\n1. Abilita la \"modalità desktop\" nel browser (il sito non è disponibile per i dispositivi mobili)
-\n2. Vai a questo URL: %1$s
-\n3. Accedi quando richiesto
-\n4. Copia l\'URL del profilo a cui vieni indirizzato.</string>
+\n1. Abilitare la \"modalità desktop\" del browser (il sito non è disponibile per i dispositivi mobili) 
+\n2. Aprire questo URL: %1$s 
+\n3. Accedere quando richiesto 
+\n4. Copiare l\'URL del profilo a cui si viene indirizzati.</string>
     <string name="import_soundcloud_instructions_hint">iltuoID, soundcloud.com/iltuoid</string>
     <string name="import_network_expensive_warning">Tieni presente che questa operazione può consumare una grande quantità di traffico dati.
 \n 
 \nVuoi continuare?</string>
-    <string name="download_thumbnail_title">Carica miniature</string>
+    <string name="download_thumbnail_title">Carica Copertine</string>
     <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle anteprime, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache immagini svuotata</string>
     <string name="metadata_cache_wipe_title">Pulisci Cache Metadati</string>
@@ -488,8 +488,8 @@
     <string name="error_progress_lost">Progresso perso poiché il file è stato eliminato</string>
     <string name="confirm_prompt">Pulire la cronologia dei download o eliminare tutti i file scaricati\?</string>
     <string name="enable_queue_limit_desc">Sarà avviato un solo dowload per volta</string>
-    <string name="start_downloads">Avvia i download</string>
-    <string name="pause_downloads">Sospendi i download</string>
+    <string name="start_downloads">Avvia Download</string>
+    <string name="pause_downloads">Sospendi Download</string>
     <string name="downloads_storage_ask_title">Chiedi Dove Scaricare</string>
     <string name="downloads_storage_ask_summary">Ogni volta verrà chiesta la destinazione dei file</string>
     <string name="downloads_storage_use_saf_title">Utilizza SAF</string>
@@ -531,7 +531,7 @@
     <string name="recovering">recupero</string>
     <string name="error_download_resource_gone">Impossibile recuperare questo download</string>
     <string name="choose_instance_prompt">Scegli un\'Istanza</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Copertina Video sulla Schermata di Blocco</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Copertina nella Schermata di Blocco</string>
     <string name="enable_lock_screen_video_thumbnail_summary">La copertina del video verrà mostrata nella schermata di blocco, durante la riproduzione in sottofondo</string>
     <string name="clear_download_history">Pulisci Cronologia Download</string>
     <string name="delete_downloaded_files">Elimina File Scaricati</string>
@@ -595,7 +595,7 @@
 \nYouTube è un esempio di servizio che offre questo metodo veloce tramite i suoi feed RSS.
 \n
 \nLa scelta va fatta in base alle proprie preferenze: velocità o informazioni precise.</string>
-    <string name="feed_group_dialog_empty_name">Nome di gruppo vuoto</string>
+    <string name="feed_group_dialog_empty_name">Gruppo senza nome</string>
     <string name="content_not_supported">Questo contenuto non è ancora supportato da NewPipe.
 \n
 \nSi spera che sarà supportato in una versione futura.</string>
@@ -607,9 +607,9 @@
     <string name="restricted_video">Questo video ha limiti sull\'età.
 \n
 \nSe vuoi guardarlo, attiva «Contenuti vietati ai minori» nelle impostazioni.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Si, e dei video parzialmente visti</string>
-    <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla lista saranno rimossi.
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visaualizzati parzialmente</string>
+    <string name="remove_watched_popup_warning">Saranno rimossi gli elementi della playlist già visualizzati, sia precedenti che successivi.
 \nSei sicuro\? L\'azione è irreversibile!</string>
-    <string name="remove_watched_popup_title">Rimuovere i video visti\?</string>
-    <string name="remove_watched">Rimuovi i visti</string>
+    <string name="remove_watched_popup_title">Rimuovere i gli elementi già visti\?</string>
+    <string name="remove_watched">Rimuovi Elementi Visti</string>
 </resources>
