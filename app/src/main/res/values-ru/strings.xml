@@ -341,16 +341,15 @@
     <string name="export_to">Экспорт в</string>
     <string name="import_ongoing">Импорт…</string>
     <string name="export_ongoing">Экспорт…</string>
-    <string name="import_file_title">Выбрать файл</string>
+    <string name="import_file_title">Импорт файла</string>
     <string name="previous_export">Предыдущий экспорт</string>
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
-    <string name="import_youtube_instructions">Выберите экспортированный файл подписок YouTube.
+    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта:
 \n
-\nДля экспорта ваших подписок из YouTube.
 \n1. Перейдите по ссылке %1$s
-\n2. Если потребуется, войдите в аккаунт.
-\n3. Выберите файл подписок (subscription_manager) в папке загрузок</string>
+\n2. Выполните вход.
+\n3. Дождитесь завершения загрузки файла экспорта.</string>
     <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: 
 \n 
 \n1. Включите режим \"Полная версия сайта\" в браузере.
@@ -502,8 +501,7 @@
     <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения.
 \nИспользуйте SAF для загрузки на внешний накопитель</string>
     <string name="downloads_storage_use_saf_title">Использовать SAF</string>
-    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на SD-карте.
-\nПоддерживается не всеми устройствами</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на SD-карте. Поддерживается не всеми устройствами</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
