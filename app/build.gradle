@@ -163,10 +163,10 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:f3913e241e379adf0091319091e8f895c5fcfd07'
+    implementation 'com.github.wb9688:NewPipeExtractor:8f71bde776336c442da66f2656e0141881fa9987'
 
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
-    implementation "org.jsoup:jsoup:1.9.2"
+    implementation "org.jsoup:jsoup:1.13.1"
 
     implementation "com.squareup.okhttp3:okhttp:3.12.11"
 
