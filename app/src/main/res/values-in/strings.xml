@@ -551,7 +551,7 @@
         <item quantity="other">%d hari</item>
     </plurals>
     <string name="feed_groups_header_title">Grup channel</string>
-    <string name="feed_oldest_subscription_update">Pembaruan subscription terlama: %s</string>
+    <string name="feed_oldest_subscription_update">Feed terakhir diperbarui: %s</string>
     <string name="feed_subscription_not_loaded_count">Tidak dimuat: %d</string>
     <string name="feed_notification_loading">Memuat feed…</string>
     <string name="feed_processing_message">Memproses feed…</string>
@@ -571,4 +571,23 @@
     <string name="feed_use_dedicated_fetch_method_summary">Tersedia pada beberapa layanan, biasanya lebih cepat tetapi memperbarui lebih sedikit item dan sering kali dengan informasi yang tidak lengkap (mis. tanpa durasi, tanpa tipe item, tanpa status live).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Aktifkan mode cepat</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Nonaktifkan mode cepat</string>
+    <string name="infinite_videos">∞ video</string>
+    <string name="more_than_100_videos">100+ video</string>
+    <string name="artists">Artis</string>
+    <string name="albums">Album</string>
+    <string name="songs">Lagu</string>
+    <string name="feed_use_dedicated_fetch_method_title">Ambil dari feed aslinya jika tersedia</string>
+    <string name="remove_watched_popup_title">Buang video yang sudah ditonton\?</string>
+    <string name="remove_watched">Buang ditonton</string>
+    <string name="restricted_video">Video ini dibatasi usia.
+\n
+\nJika anda ingin menontonnya, aktifkan \"Konten yang dibatasi usia\" di dalam pengaturan.</string>
+    <string name="content_not_supported">Konten ini belum didukung oleh NewPipe.
+\n
+\nSemoga akan didukung pada versi berikutnya.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Iya, dan video yang ditonton sebagian</string>
+    <string name="remove_watched_popup_warning">Video yang sudah ditonton sebelum dan sesudah ditambahkan ke daftar putar akan dibuang.
+\nApakah anda yakin\? Ini tidak bisa diurungkan!</string>
+    <string name="unmute">Batal bisukan</string>
+    <string name="mute">Bisukan</string>
 </resources>

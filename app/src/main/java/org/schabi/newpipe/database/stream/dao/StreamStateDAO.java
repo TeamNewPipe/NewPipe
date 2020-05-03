@@ -27,21 +27,21 @@ public abstract class StreamStateDAO implements BasicDAO<StreamStateEntity> {
     public abstract int deleteAll();
 
     @Override
-    public Flowable<List<StreamStateEntity>> listByService(int serviceId) {
+    public Flowable<List<StreamStateEntity>> listByService(final int serviceId) {
         throw new UnsupportedOperationException();
     }
 
     @Query("SELECT * FROM " + STREAM_STATE_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
-    public abstract Flowable<List<StreamStateEntity>> getState(final long streamId);
+    public abstract Flowable<List<StreamStateEntity>> getState(long streamId);
 
     @Query("DELETE FROM " + STREAM_STATE_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
-    public abstract int deleteState(final long streamId);
+    public abstract int deleteState(long streamId);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract void silentInsertInternal(final StreamStateEntity streamState);
+    abstract void silentInsertInternal(StreamStateEntity streamState);
 
     @Transaction
-    public long upsert(StreamStateEntity stream) {
+    public long upsert(final StreamStateEntity stream) {
         silentInsertInternal(stream);
         return update(stream);
     }

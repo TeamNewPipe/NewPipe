@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -21,21 +22,24 @@ public class ImportConfirmationDialog extends DialogFragment {
     @State
     protected Intent resultServiceIntent;
 
-    public void setResultServiceIntent(Intent resultServiceIntent) {
-        this.resultServiceIntent = resultServiceIntent;
-    }
-
-    public static void show(@NonNull Fragment fragment, @NonNull Intent resultServiceIntent) {
-        if (fragment.getFragmentManager() == null) return;
+    public static void show(@NonNull final Fragment fragment,
+                            @NonNull final Intent resultServiceIntent) {
+        if (fragment.getFragmentManager() == null) {
+            return;
+        }
 
         final ImportConfirmationDialog confirmationDialog = new ImportConfirmationDialog();
         confirmationDialog.setResultServiceIntent(resultServiceIntent);
         confirmationDialog.show(fragment.getFragmentManager(), null);
     }
 
+    public void setResultServiceIntent(final Intent resultServiceIntent) {
+        this.resultServiceIntent = resultServiceIntent;
+    }
+
     @NonNull
     @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+    public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         assureCorrectAppLanguage(getContext());
         return new AlertDialog.Builder(getContext(), ThemeHelper.getDialogTheme(getContext()))
                 .setMessage(R.string.import_network_expensive_warning)
@@ -51,16 +55,18 @@ public class ImportConfirmationDialog extends DialogFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (resultServiceIntent == null) throw new IllegalStateException("Result intent is null");
+        if (resultServiceIntent == null) {
+            throw new IllegalStateException("Result intent is null");
+        }
 
         Icepick.restoreInstanceState(this, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
         Icepick.saveInstanceState(this, outState);
     }

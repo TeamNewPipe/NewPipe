@@ -6,17 +6,21 @@ import android.net.Uri;
 
 import org.schabi.newpipe.R;
 
-public class ShareUtils {
-    public static void openUrlInBrowser(Context context, String url) {
+public final class ShareUtils {
+    private ShareUtils() { }
+
+    public static void openUrlInBrowser(final Context context, final String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_dialog_title)));
+        context.startActivity(Intent.createChooser(
+                intent, context.getString(R.string.share_dialog_title)));
     }
 
-    public static void shareUrl(Context context, String subject, String url) {
+    public static void shareUrl(final Context context, final String subject, final String url) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, url);
-        context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_dialog_title)));
+        context.startActivity(Intent.createChooser(
+                intent, context.getString(R.string.share_dialog_title)));
     }
 }

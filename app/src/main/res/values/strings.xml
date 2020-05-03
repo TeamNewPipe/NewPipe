@@ -136,8 +136,9 @@
     <string name="play_btn_text">Play</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
-    <string name="duration_live">Live</string>
     <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
+    <string name="restricted_video">This video is age restricted.\n\nIf you want to view it, enable \"Age restricted content\" in the settings.</string>
+    <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Error report</string>
@@ -150,6 +151,9 @@
     <string name="tracks">Tracks</string>
     <string name="users">Users</string>
     <string name="events">Events</string>
+    <string name="songs">Songs</string>
+    <string name="albums">Albums</string>
+    <string name="artists">Artists</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
@@ -284,6 +288,10 @@
         <item quantity="other">%s listeners</item>
     </plurals>
     <string name="no_videos">No videos</string>
+    <string name="more_than_100_videos">100+ videos</string>
+    <string name="infinite_videos">∞ videos</string>
+    <string name="more_than_100_videos_mini" translatable="false">100+</string>
+    <string name="infinite_videos_mini" translatable="false">∞</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
         <item quantity="other">%s videos</item>
@@ -593,6 +601,10 @@
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
+    <string name="remove_watched">Remove watched</string>
+    <string name="remove_watched_popup_title">Remove watched videos?</string>
+    <string name="remove_watched_popup_warning">Videos that have been watched before and after being added to the playlist will be removed.\nAre you sure? This cannot be undone!</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <!-- Time duration plurals -->
     <plurals name="seconds">
@@ -614,7 +626,7 @@
     <!-- Feed -->
     <string name="fragment_feed_title">What\'s New</string>
     <string name="feed_groups_header_title">Channel groups</string>
-    <string name="feed_oldest_subscription_update">Oldest subscription update: %s</string>
+    <string name="feed_oldest_subscription_update">Feed last updated: %s</string>
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>
@@ -637,4 +649,5 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">Enable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
+    <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
 </resources>

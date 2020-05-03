@@ -1,8 +1,8 @@
 package org.schabi.newpipe.local.subscription.item
 
 import android.view.View.OnClickListener
-import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.header_item.*
 import org.schabi.newpipe.R
 

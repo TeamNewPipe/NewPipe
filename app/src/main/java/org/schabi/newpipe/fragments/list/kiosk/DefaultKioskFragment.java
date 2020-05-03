@@ -10,9 +10,8 @@ import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
 
 public class DefaultKioskFragment extends KioskFragment {
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (serviceId < 0) {
@@ -25,7 +24,9 @@ public class DefaultKioskFragment extends KioskFragment {
         super.onResume();
 
         if (serviceId != ServiceHelper.getSelectedServiceId(requireContext())) {
-            if (currentWorker != null) currentWorker.dispose();
+            if (currentWorker != null) {
+                currentWorker.dispose();
+            }
             updateSelectedDefaultKiosk();
             reloadContent();
         }
@@ -45,7 +46,8 @@ public class DefaultKioskFragment extends KioskFragment {
             currentInfo = null;
             currentNextPageUrl = null;
         } catch (ExtractionException e) {
-            onUnrecoverableError(e, UserAction.REQUESTED_KIOSK, "none", "Loading default kiosk from selected service", 0);
+            onUnrecoverableError(e, UserAction.REQUESTED_KIOSK, "none",
+                    "Loading default kiosk from selected service", 0);
         }
     }
 }

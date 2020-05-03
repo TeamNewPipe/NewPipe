@@ -26,18 +26,19 @@ public class SrtFromTtmlWriter {
 
     private int frameIndex = 0;
 
-    public SrtFromTtmlWriter(SharpStream out, boolean ignoreEmptyFrames) {
+    public SrtFromTtmlWriter(final SharpStream out, final boolean ignoreEmptyFrames) {
         this.out = out;
         this.ignoreEmptyFrames = ignoreEmptyFrames;
     }
 
-    private static String getTimestamp(Element frame, String attr) {
+    private static String getTimestamp(final Element frame, final String attr) {
         return frame
                 .attr(attr)
-                .replace('.', ',');// SRT subtitles uses comma as decimal separator
+                .replace('.', ','); // SRT subtitles uses comma as decimal separator
     }
 
-    private void writeFrame(String begin, String end, StringBuilder text) throws IOException {
+    private void writeFrame(final String begin, final String end, final StringBuilder text)
+            throws IOException {
         writeString(String.valueOf(frameIndex++));
         writeString(NEW_LINE);
         writeString(begin);
@@ -49,11 +50,11 @@ public class SrtFromTtmlWriter {
         writeString(NEW_LINE);
     }
 
-    private void writeString(String text) throws IOException {
+    private void writeString(final String text) throws IOException {
         out.write(text.getBytes(charset));
     }
 
-    public void build(SharpStream ttml) throws IOException {
+    public void build(final SharpStream ttml) throws IOException {
         /*
          * TTML parser with BASIC support
          * multiple CUE is not supported
@@ -66,25 +67,32 @@ public class SrtFromTtmlWriter {
         // parse XML
         byte[] buffer = new byte[(int) ttml.available()];
         ttml.read(buffer);
-        Document doc = Jsoup.parse(new ByteArrayInputStream(buffer), "UTF-8", "", Parser.xmlParser());
+        Document doc = Jsoup.parse(new ByteArrayInputStream(buffer), "UTF-8", "",
+                Parser.xmlParser());
 
         StringBuilder text = new StringBuilder(128);
-        Elements paragraph_list = doc.select("body > div > p");
+        Elements paragraphList = doc.select("body > div > p");
 
         // check if has frames
-        if (paragraph_list.size() < 1) return;
+        if (paragraphList.size() < 1) {
+            return;
+        }
 
-        for (Element paragraph : paragraph_list) {
+        for (Element paragraph : paragraphList) {
             text.setLength(0);
 
             for (Node children : paragraph.childNodes()) {
-                if (children instanceof TextNode)
+                if (children instanceof TextNode) {
                     text.append(((TextNode) children).text());
-                else if (children instanceof Element && ((Element) children).tagName().equalsIgnoreCase("br"))
+                } else if (children instanceof Element
+                        && ((Element) children).tagName().equalsIgnoreCase("br")) {
                     text.append(NEW_LINE);
+                }
             }
 
-            if (ignoreEmptyFrames && text.length() < 1) continue;
+            if (ignoreEmptyFrames && text.length() < 1) {
+                continue;
+            }
 
             String begin = getTimestamp(paragraph, "begin");
             String end = getTimestamp(paragraph, "end");

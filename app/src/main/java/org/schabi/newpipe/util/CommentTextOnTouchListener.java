@@ -28,14 +28,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class CommentTextOnTouchListener implements View.OnTouchListener {
-
     public static final CommentTextOnTouchListener INSTANCE = new CommentTextOnTouchListener();
 
-    private static final Pattern timestampPattern = Pattern.compile("(.*)#timestamp=(\\d+)");
+    private static final Pattern TIMESTAMP_PATTERN = Pattern.compile("(.*)#timestamp=(\\d+)");
 
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        if(!(v instanceof TextView)){
+    public boolean onTouch(final View v, final MotionEvent event) {
+        if (!(v instanceof TextView)) {
             return false;
         }
         TextView widget = (TextView) v;
@@ -66,10 +65,12 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
                 if (link.length != 0) {
                     if (action == MotionEvent.ACTION_UP) {
                         boolean handled = false;
-                        if(link[0] instanceof URLSpan){
+                        if (link[0] instanceof URLSpan) {
                             handled = handleUrl(v.getContext(), (URLSpan) link[0]);
                         }
-                        if(!handled) link[0].onClick(widget);
+                        if (!handled) {
+                            link[0].onClick(widget);
+                        }
                     } else if (action == MotionEvent.ACTION_DOWN) {
                         Selection.setSelection(buffer,
                                 buffer.getSpanStart(link[0]),
@@ -78,17 +79,15 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
                     return true;
                 }
             }
-
         }
-
         return false;
     }
 
-    private boolean handleUrl(Context context, URLSpan urlSpan) {
+    private boolean handleUrl(final Context context, final URLSpan urlSpan) {
         String url = urlSpan.getURL();
         int seconds = -1;
-        Matcher matcher = timestampPattern.matcher(url);
-        if(matcher.matches()){
+        Matcher matcher = TIMESTAMP_PATTERN.matcher(url);
+        if (matcher.matches()) {
             url = matcher.group(1);
             seconds = Integer.parseInt(matcher.group(2));
         }
@@ -100,18 +99,19 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
         } catch (ExtractionException e) {
             return false;
         }
-        if(linkType == StreamingService.LinkType.NONE){
+        if (linkType == StreamingService.LinkType.NONE) {
             return false;
         }
-        if(linkType == StreamingService.LinkType.STREAM && seconds != -1){
+        if (linkType == StreamingService.LinkType.STREAM && seconds != -1) {
             return playOnPopup(context, url, service, seconds);
-        }else{
+        } else {
             NavigationHelper.openRouterActivity(context, url);
             return true;
         }
     }
 
-    private boolean playOnPopup(Context context, String url, StreamingService service, int seconds) {
+    private boolean playOnPopup(final Context context, final String url,
+                                final StreamingService service, final int seconds) {
         LinkHandlerFactory factory = service.getStreamLHFactory();
         String cleanUrl = null;
         try {
@@ -123,7 +123,7 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    PlayQueue playQueue = new SinglePlayQueue((StreamInfo) info, seconds*1000);
+                    PlayQueue playQueue = new SinglePlayQueue((StreamInfo) info, seconds * 1000);
                     NavigationHelper.playOnPopupPlayer(context, playQueue, false);
                 });
         return true;

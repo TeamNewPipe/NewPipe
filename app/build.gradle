@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 28
@@ -12,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 920
-        versionName "0.19.2"
+        versionCode 930
+        versionName "0.19.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -26,12 +27,6 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-
         debug {
             multiDexEnabled true
             debuggable true
@@ -48,6 +43,16 @@ android {
                 resValue "string", "app_name", "NewPipe " + workingBranch
                 archivesBaseName = 'NewPipe_' + normalizedWorkingBranch
             }
+        }
+
+        // Keep the release build type at the end of the list to override 'archivesBaseName' of
+        // debug build. This seems to be a Gradle bug, therefore
+        // TODO: update Gradle version
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            archivesBaseName = 'app'
         }
     }
 
@@ -82,10 +87,54 @@ ext {
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
     markwonVersion = '4.2.1'
+    checkstyleVersion = '8.31'
+}
+
+checkstyle {
+    configFile rootProject.file('checkstyle.xml')
+    ignoreFailures false
+    showViolations true
+    toolVersion = "${checkstyleVersion}"
+}
+
+task runCheckstyle(type: Checkstyle) {
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+    exclude 'main/java/us/shandian/giga/**'
+
+    // empty classpath
+    classpath = files()
+
+    showViolations true
+
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+tasks.withType(Checkstyle).each {
+    checkstyleTask -> checkstyleTask.doLast {
+        reports.all { report ->
+            def outputFile = report.destination
+            if (outputFile.exists() && outputFile.text.contains("severity=\"error\"")) {
+                throw new GradleException("There were checkstyle errors! For more info check $outputFile")
+            }
+        }
+    }
+}
+
+afterEvaluate {
+    preDebugBuild.dependsOn runCheckstyle
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    debugImplementation "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation "android.arch.persistence.room:testing:1.1.1"
@@ -93,7 +142,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:69e0624e3'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:fc3a69ed54b393e3e4e3a78ae6e89edc1d47c45a'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 
@@ -113,7 +162,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
     // Originally in NewPipeExtractor
-    implementation 'com.grack:nanojson:1.1'
+    implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
     implementation 'org.jsoup:jsoup:1.9.2'
 
     implementation 'ch.acra:acra:4.9.2' //4.11

@@ -190,7 +190,7 @@
     <string name="notification_channel_description">Notificaciones de reproductores en segundo plano o emergentes de NewPipe</string>
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Funcionamiento</string>
-    <string name="settings_category_history_title">Historial y antememoria</string>
+    <string name="settings_category_history_title">Historial y memoria caché</string>
     <string name="playlist">Lista de reproducción</string>
     <string name="undo">Deshacer</string>
     <string name="search_no_results">No hay resultados</string>
@@ -355,11 +355,11 @@
 \n
 \n¿Quiere continuar\?</string>
     <string name="download_thumbnail_title">Cargar miniaturas</string>
-    <string name="download_thumbnail_summary">Desactívela para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la antememoria de imágenes en la memoria volátil y en el disco.</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Se vació la antememoria de imágenes</string>
-    <string name="metadata_cache_wipe_title">Eliminar metadatos en antememoria</string>
-    <string name="metadata_cache_wipe_summary">Eliminar todos los datos de páginas web en antememoria</string>
-    <string name="metadata_cache_wipe_complete_notice">Se vació la antememoria de metadatos</string>
+    <string name="download_thumbnail_summary">Desactívela para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Se vació la caché de imágenes</string>
+    <string name="metadata_cache_wipe_title">Eliminar metadatos en memoria caché</string>
+    <string name="metadata_cache_wipe_summary">Eliminar todos los datos de páginas web en memoria caché</string>
+    <string name="metadata_cache_wipe_complete_notice">Se vació la caché de metadatos</string>
     <string name="playback_speed_control">Controles de velocidad de reproducción</string>
     <string name="playback_tempo">Tiempo</string>
     <string name="playback_pitch">Tono</string>
@@ -563,8 +563,8 @@
         <item quantity="one">%d día</item>
         <item quantity="other">%d días</item>
     </plurals>
-    <string name="feed_groups_header_title">Grupos del feed</string>
-    <string name="feed_oldest_subscription_update">Actualización más antigua de suscripciones: %s</string>
+    <string name="feed_groups_header_title">Grupos de canales</string>
+    <string name="feed_oldest_subscription_update">Última actualización de canales: %s</string>
     <string name="feed_subscription_not_loaded_count">No cargado: %d</string>
     <string name="feed_notification_loading">Cargando contenidos…</string>
     <string name="feed_processing_message">Procesando contenidos…</string>
@@ -597,4 +597,20 @@
 \nYouTube es un ejemplo de un servicio que ofrece este método rápido con su listado de contenidos por RSS.
 \n
 \nEntonces la elección se limita a qué prefieres: velocidad o información exacta.</string>
+    <string name="content_not_supported">Este contenido aún no es soportado por NewPipe.
+\n
+\nEsperamos que sea soportado en una versión futura.</string>
+    <string name="infinite_videos">∞ vídeos</string>
+    <string name="more_than_100_videos">Más de 100 videos</string>
+    <string name="artists">Artistas</string>
+    <string name="albums">Álbumes</string>
+    <string name="songs">Canciones</string>
+    <string name="restricted_video">Este video tiene restricción por edades.
+\n
+\nSi quieres verlo, habilita \"Contenido restringido por edades\" en los ajustes.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y también videos vistos parcialmente</string>
+    <string name="remove_watched_popup_warning">Los videos que ya se hayan visto luego de agregados a la lista de reproducción, serán eliminados.
+\n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
+    <string name="remove_watched_popup_title">¿Borrar videos ya vistos\?</string>
+    <string name="remove_watched">Borrar videos ya vistos</string>
 </resources>

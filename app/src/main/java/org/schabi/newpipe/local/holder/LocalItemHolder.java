@@ -1,8 +1,9 @@
 package org.schabi.newpipe.local.holder;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.local.LocalItemBuilder;
@@ -33,14 +34,15 @@ import java.text.DateFormat;
 public abstract class LocalItemHolder extends RecyclerView.ViewHolder {
     protected final LocalItemBuilder itemBuilder;
 
-    public LocalItemHolder(LocalItemBuilder itemBuilder, int layoutId, ViewGroup parent) {
-        super(LayoutInflater.from(itemBuilder.getContext())
-                .inflate(layoutId, parent, false));
+    public LocalItemHolder(final LocalItemBuilder itemBuilder, final int layoutId,
+                           final ViewGroup parent) {
+        super(LayoutInflater.from(itemBuilder.getContext()).inflate(layoutId, parent, false));
         this.itemBuilder = itemBuilder;
     }
 
-    public abstract void updateFromItem(final LocalItem item, HistoryRecordManager historyRecordManager, final DateFormat dateFormat);
+    public abstract void updateFromItem(LocalItem item, HistoryRecordManager historyRecordManager,
+                                        DateFormat dateFormat);
 
-    public void updateState(final LocalItem localItem, HistoryRecordManager historyRecordManager) {
-    }
+    public void updateState(final LocalItem localItem,
+                            final HistoryRecordManager historyRecordManager) { }
 }

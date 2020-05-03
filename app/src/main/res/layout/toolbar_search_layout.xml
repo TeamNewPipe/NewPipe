@@ -17,6 +17,7 @@
         android:background="?attr/colorPrimary"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:nextFocusDown="@+id/suggestions_list"
         android:hint="@string/search"
         android:imeOptions="actionSearch|flagNoFullscreen"
         android:inputType="textFilter|textNoSuggestions"

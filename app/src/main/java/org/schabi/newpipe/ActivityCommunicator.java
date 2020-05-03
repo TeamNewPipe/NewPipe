@@ -23,17 +23,25 @@ package org.schabi.newpipe;
 /**
  * Singleton:
  * Used to send data between certain Activity/Services within the same process.
- * This can be considered as an ugly hack inside the Android universe. **/
+ * This can be considered as an ugly hack inside the Android universe.
+ **/
 public class ActivityCommunicator {
 
     private static ActivityCommunicator activityCommunicator;
+    private volatile Class returnActivity;
 
     public static ActivityCommunicator getCommunicator() {
-        if(activityCommunicator == null) {
+        if (activityCommunicator == null) {
             activityCommunicator = new ActivityCommunicator();
         }
         return activityCommunicator;
     }
 
-    public volatile Class returnActivity;
+    public Class getReturnActivity() {
+        return returnActivity;
+    }
+
+    public void setReturnActivity(final Class returnActivity) {
+        this.returnActivity = returnActivity;
+    }
 }

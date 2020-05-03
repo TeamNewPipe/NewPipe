@@ -10,14 +10,16 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.Localization;
 
 public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
     public final ImageView itemThumbnailView;
-    public final TextView itemStreamCountView;
+    private final TextView itemStreamCountView;
     public final TextView itemTitleView;
     public final TextView itemUploaderView;
 
-    public PlaylistMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
+    public PlaylistMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
+                                      final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
@@ -26,22 +28,27 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
         itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
     }
 
-    public PlaylistMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
+    public PlaylistMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder,
+                                      final ViewGroup parent) {
         this(infoItemBuilder, R.layout.list_playlist_mini_item, parent);
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
-        if (!(infoItem instanceof PlaylistInfoItem)) return;
+    public void updateFromItem(final InfoItem infoItem,
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(infoItem instanceof PlaylistInfoItem)) {
+            return;
+        }
         final PlaylistInfoItem item = (PlaylistInfoItem) infoItem;
 
         itemTitleView.setText(item.getName());
-        itemStreamCountView.setText(String.valueOf(item.getStreamCount()));
+        itemStreamCountView.setText(Localization
+                .localizeStreamCountMini(itemStreamCountView.getContext(), item.getStreamCount()));
         itemUploaderView.setText(item.getUploaderName());
 
         itemBuilder.getImageLoader()
                 .displayImage(item.getThumbnailUrl(), itemThumbnailView,
-                		ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
+                        ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnPlaylistSelectedListener() != null) {

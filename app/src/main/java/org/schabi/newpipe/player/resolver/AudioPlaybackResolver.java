@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.resolver;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -14,9 +15,10 @@ import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.util.ListHelper;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
-
-    @NonNull private final Context context;
-    @NonNull private final PlayerDataSource dataSource;
+    @NonNull
+    private final Context context;
+    @NonNull
+    private final PlayerDataSource dataSource;
 
     public AudioPlaybackResolver(@NonNull final Context context,
                                  @NonNull final PlayerDataSource dataSource) {
@@ -26,12 +28,16 @@ public class AudioPlaybackResolver implements PlaybackResolver {
 
     @Override
     @Nullable
-    public MediaSource resolve(@NonNull StreamInfo info) {
+    public MediaSource resolve(@NonNull final StreamInfo info) {
         final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
-        if (liveSource != null) return liveSource;
+        if (liveSource != null) {
+            return liveSource;
+        }
 
         final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
-        if (index < 0 || index >= info.getAudioStreams().size()) return null;
+        if (index < 0 || index >= info.getAudioStreams().size()) {
+            return null;
+        }
 
         final AudioStream audio = info.getAudioStreams().get(index);
         final MediaSourceTag tag = new MediaSourceTag(info);

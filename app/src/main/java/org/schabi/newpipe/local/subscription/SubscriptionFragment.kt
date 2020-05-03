@@ -31,6 +31,7 @@ import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionS
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialog
 import org.schabi.newpipe.local.subscription.item.*
+import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem.Companion.PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.EXPORT_COMPLETE_ACTION
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.KEY_FILE_PATH
@@ -59,9 +60,15 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var feedGroupsSortMenuItem: HeaderWithMenuItem
     private val subscriptionsSection = Section()
 
-    @State @JvmField var itemsListState: Parcelable? = null
-    @State @JvmField var feedGroupsListState: Parcelable? = null
-    @State @JvmField var importExportItemExpandedState: Boolean? = null
+    @State
+    @JvmField
+    var itemsListState: Parcelable? = null
+    @State
+    @JvmField
+    var feedGroupsListState: Parcelable? = null
+    @State
+    @JvmField
+    var importExportItemExpandedState: Boolean? = null
 
     init {
         setHasOptionsMenu(true)
@@ -355,11 +362,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             feedGroupsListState = null
         }
 
-        if (groups.size < 2) {
-            items_list.post { feedGroupsSortMenuItem.notifyChanged(HeaderWithMenuItem.PAYLOAD_HIDE_MENU_ITEM) }
-        } else {
-            items_list.post { feedGroupsSortMenuItem.notifyChanged(HeaderWithMenuItem.PAYLOAD_SHOW_MENU_ITEM) }
-        }
+        feedGroupsSortMenuItem.showMenuItem = groups.size > 1
+        items_list.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
     }
 
     ///////////////////////////////////////////////////////////////////////////

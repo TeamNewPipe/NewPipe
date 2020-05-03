@@ -174,7 +174,7 @@
     <string name="fragment_feed_title">Nieuw</string>
     <string name="enable_search_history_title">Zoekgeschiedenis</string>
     <string name="enable_search_history_summary">Sla zoekopdrachten lokaal op</string>
-    <string name="enable_watch_history_title">Kijkgeschiedenis</string>
+    <string name="enable_watch_history_title">Geschiedenis bekijken</string>
     <string name="enable_watch_history_summary">Kijkgeschiedenis bijhouden</string>
     <string name="resume_on_audio_focus_gain_title">Hervat afspelen</string>
     <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (b.v. telefoongesprekken)</string>
@@ -477,14 +477,14 @@
 \nNiet alle toestellen zijn compatibel</string>
     <string name="settings_category_clear_data_title">Wis data</string>
     <string name="download_choose_new_path">Verander de downloadmappen om effect te bekomen</string>
-    <string name="enable_playback_resume_title">Hervat afspelen</string>
-    <string name="enable_playback_resume_summary">Herstel de vorige afspeelpositie</string>
-    <string name="enable_playback_state_lists_title">Posities in lijsten</string>
-    <string name="enable_playback_state_lists_summary">Afspeelpositie-indicatoren in lijsten tonen</string>
+    <string name="enable_playback_resume_title">Afspelen hervatten</string>
+    <string name="enable_playback_resume_summary">Herstel vorige afspeelpositie</string>
+    <string name="enable_playback_state_lists_title">Posities in afspeellijsten</string>
+    <string name="enable_playback_state_lists_summary">Laat afspeeltijd in afspeellijst zien</string>
     <string name="watch_history_states_deleted">Afspeelposities verwijderd.</string>
     <string name="missing_file">Bestand verplaatst of verwijderd</string>
     <string name="overwrite_unrelated_warning">Een bestand met dezelfde naam bestaat al</string>
-    <string name="overwrite_failed">het is niet mogelijk het bestand te overschrijven</string>
+    <string name="overwrite_failed">Kan bestand niet overschrijven</string>
     <string name="download_already_pending">Er is al een download met deze naam bezig</string>
     <string name="error_insufficient_storage">Geen ruimte meer op het apparaat</string>
     <string name="error_progress_lost">Voortgang verloren, omdat bestand was verwijderd</string>
@@ -520,7 +520,7 @@
     <string name="peertube_instance_add_title">Kanaal toevoegen</string>
     <string name="peertube_instance_add_help">Kanaal URL invoeren</string>
     <string name="peertube_instance_add_fail">Kon kanaal niet valideren</string>
-    <string name="peertube_instance_add_https_only">Alleen HTTPS links worden ondersteund</string>
+    <string name="peertube_instance_add_https_only">Alleen HTTPS URL\'s worden ondersteund</string>
     <string name="peertube_instance_add_exists">Kanaal bestaat al</string>
     <string name="local">Lokaal</string>
     <string name="recently_added">Recentelijk toegevoegd</string>
@@ -559,8 +559,8 @@
         <item quantity="one">%d dag</item>
         <item quantity="other">%d dagen</item>
     </plurals>
-    <string name="feed_groups_header_title">Feedgroepen</string>
-    <string name="feed_oldest_subscription_update">Oudste abonnements-update: %s</string>
+    <string name="feed_groups_header_title">Kanaalgroepen</string>
+    <string name="feed_oldest_subscription_update">Nieuws­feed laatste update: %s</string>
     <string name="feed_subscription_not_loaded_count">Niet geladen: %d</string>
     <string name="feed_notification_loading">Feed aan het laden…</string>
     <string name="feed_processing_message">Feed aan het verwerken…</string>
@@ -596,4 +596,20 @@
     <string name="drawer_header_description">Toggle service, momenteel geselecteerd:</string>
     <string name="most_liked">Meest geliked</string>
     <string name="error_postprocessing_stopped">NewPipe werd gesloten terwijl het bezig was met het bestand</string>
+    <string name="songs">Nummers</string>
+    <string name="albums">Albums</string>
+    <string name="artists">Artiesten</string>
+    <string name="content_not_supported">Deze inhoud wordt nog niet ondersteund door NewPipe.
+\n
+\nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, en deels bekeken video\'s</string>
+    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na, dat ze werden toegevoegd aan de playlist worden verwijderd.
+\nWeet u het zeker\? Dit kan niet ongedaan gemaakt worden!</string>
+    <string name="remove_watched_popup_title">Verwijder bekeken video\'s\?</string>
+    <string name="infinite_videos">∞ video\'s</string>
+    <string name="more_than_100_videos">100+ video\'s</string>
+    <string name="restricted_video">Deze video heeft een leeftijdsbeperking.
+\n
+\nAls u die wilt zien, schakel \"leeftijdsbeperkende inhoud\" in bij de instellingen.</string>
+    <string name="remove_watched">Verwijder bekeken</string>
 </resources>

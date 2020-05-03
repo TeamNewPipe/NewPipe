@@ -3,6 +3,7 @@ package org.schabi.newpipe;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
 
@@ -26,7 +27,7 @@ public class DebugApp extends App {
     private static final String TAG = DebugApp.class.toString();
 
     @Override
-    protected void attachBaseContext(Context base) {
+    protected void attachBaseContext(final Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
@@ -39,8 +40,10 @@ public class DebugApp extends App {
 
     @Override
     protected Downloader getDownloader() {
-        return DownloaderImpl.init(new OkHttpClient.Builder()
+        DownloaderImpl downloader = DownloaderImpl.init(new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor()));
+        setCookiesToDownloader(downloader);
+        return downloader;
     }
 
     private void initStetho() {

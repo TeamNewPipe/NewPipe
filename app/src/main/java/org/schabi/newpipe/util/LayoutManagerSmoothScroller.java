@@ -2,35 +2,38 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.graphics.PointF;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class LayoutManagerSmoothScroller extends LinearLayoutManager {
-
-    public LayoutManagerSmoothScroller(Context context) {
+    public LayoutManagerSmoothScroller(final Context context) {
         super(context, VERTICAL, false);
     }
 
-    public LayoutManagerSmoothScroller(Context context, int orientation, boolean reverseLayout) {
+    public LayoutManagerSmoothScroller(final Context context, final int orientation,
+                                       final boolean reverseLayout) {
         super(context, orientation, reverseLayout);
     }
 
     @Override
-    public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
-        RecyclerView.SmoothScroller smoothScroller = new TopSnappedSmoothScroller(recyclerView.getContext());
+    public void smoothScrollToPosition(final RecyclerView recyclerView,
+                                       final RecyclerView.State state, final int position) {
+        RecyclerView.SmoothScroller smoothScroller
+                = new TopSnappedSmoothScroller(recyclerView.getContext());
         smoothScroller.setTargetPosition(position);
         startSmoothScroll(smoothScroller);
     }
 
     private class TopSnappedSmoothScroller extends LinearSmoothScroller {
-        public TopSnappedSmoothScroller(Context context) {
+        TopSnappedSmoothScroller(final Context context) {
             super(context);
 
         }
 
         @Override
-        public PointF computeScrollVectorForPosition(int targetPosition) {
+        public PointF computeScrollVectorForPosition(final int targetPosition) {
             return LayoutManagerSmoothScroller.this
                     .computeScrollVectorForPosition(targetPosition);
         }

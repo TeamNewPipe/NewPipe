@@ -18,6 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
         android:contentDescription="@string/list_thumbnail_view_description"
+        android:focusable="false"
         android:src="@drawable/buddy"
         tools:ignore="RtlHardcoded" />
 

@@ -6,8 +6,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 
 public class ChannelGridInfoItemHolder extends ChannelMiniInfoItemHolder {
-
-	public ChannelGridInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
-		super(infoItemBuilder, R.layout.list_channel_grid_item, parent);
-	}
+    public ChannelGridInfoItemHolder(final InfoItemBuilder infoItemBuilder,
+                                     final ViewGroup parent) {
+        super(infoItemBuilder, R.layout.list_channel_grid_item, parent);
+    }
 }

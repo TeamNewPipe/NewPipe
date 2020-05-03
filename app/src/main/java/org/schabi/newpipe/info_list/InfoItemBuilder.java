@@ -1,9 +1,10 @@
 package org.schabi.newpipe.info_list;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -29,24 +30,26 @@ import org.schabi.newpipe.util.OnClickGesture;
  * <p>
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * InfoItemBuilder.java is part of NewPipe.
+ * </p>
  * <p>
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
+ * </p>
  * <p>
  * NewPipe is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+ * </p>
  * <p>
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
+ * </p>
  */
 
 public class InfoItemBuilder {
-    private static final String TAG = InfoItemBuilder.class.toString();
-
     private final Context context;
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
@@ -55,31 +58,39 @@ public class InfoItemBuilder {
     private OnClickGesture<PlaylistInfoItem> onPlaylistSelectedListener;
     private OnClickGesture<CommentsInfoItem> onCommentsSelectedListener;
 
-    public InfoItemBuilder(Context context) {
+    public InfoItemBuilder(final Context context) {
         this.context = context;
     }
 
-    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+    public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
+                          final HistoryRecordManager historyRecordManager) {
         return buildView(parent, infoItem, historyRecordManager, false);
     }
 
-    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem,
-                          final HistoryRecordManager historyRecordManager, boolean useMiniVariant) {
+    public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
+                          final HistoryRecordManager historyRecordManager,
+                          final boolean useMiniVariant) {
         InfoItemHolder holder = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
         holder.updateFromItem(infoItem, historyRecordManager);
         return holder.itemView;
     }
 
-    private InfoItemHolder holderFromInfoType(@NonNull ViewGroup parent, @NonNull InfoItem.InfoType infoType, boolean useMiniVariant) {
+    private InfoItemHolder holderFromInfoType(@NonNull final ViewGroup parent,
+                                              @NonNull final InfoItem.InfoType infoType,
+                                              final boolean useMiniVariant) {
         switch (infoType) {
             case STREAM:
-                return useMiniVariant ? new StreamMiniInfoItemHolder(this, parent) : new StreamInfoItemHolder(this, parent);
+                return useMiniVariant ? new StreamMiniInfoItemHolder(this, parent)
+                        : new StreamInfoItemHolder(this, parent);
             case CHANNEL:
-                return useMiniVariant ? new ChannelMiniInfoItemHolder(this, parent) : new ChannelInfoItemHolder(this, parent);
+                return useMiniVariant ? new ChannelMiniInfoItemHolder(this, parent)
+                        : new ChannelInfoItemHolder(this, parent);
             case PLAYLIST:
-                return useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent) : new PlaylistInfoItemHolder(this, parent);
+                return useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent)
+                        : new PlaylistInfoItemHolder(this, parent);
             case COMMENT:
-                return useMiniVariant ? new CommentsMiniInfoItemHolder(this, parent) : new CommentsInfoItemHolder(this, parent);
+                return useMiniVariant ? new CommentsMiniInfoItemHolder(this, parent)
+                        : new CommentsInfoItemHolder(this, parent);
             default:
                 throw new RuntimeException("InfoType not expected = " + infoType.name());
         }
@@ -97,7 +108,7 @@ public class InfoItemBuilder {
         return onStreamSelectedListener;
     }
 
-    public void setOnStreamSelectedListener(OnClickGesture<StreamInfoItem> listener) {
+    public void setOnStreamSelectedListener(final OnClickGesture<StreamInfoItem> listener) {
         this.onStreamSelectedListener = listener;
     }
 
@@ -105,7 +116,7 @@ public class InfoItemBuilder {
         return onChannelSelectedListener;
     }
 
-    public void setOnChannelSelectedListener(OnClickGesture<ChannelInfoItem> listener) {
+    public void setOnChannelSelectedListener(final OnClickGesture<ChannelInfoItem> listener) {
         this.onChannelSelectedListener = listener;
     }
 
@@ -113,7 +124,7 @@ public class InfoItemBuilder {
         return onPlaylistSelectedListener;
     }
 
-    public void setOnPlaylistSelectedListener(OnClickGesture<PlaylistInfoItem> listener) {
+    public void setOnPlaylistSelectedListener(final OnClickGesture<PlaylistInfoItem> listener) {
         this.onPlaylistSelectedListener = listener;
     }
 
@@ -121,8 +132,8 @@ public class InfoItemBuilder {
         return onCommentsSelectedListener;
     }
 
-    public void setOnCommentsSelectedListener(OnClickGesture<CommentsInfoItem> onCommentsSelectedListener) {
+    public void setOnCommentsSelectedListener(
+            final OnClickGesture<CommentsInfoItem> onCommentsSelectedListener) {
         this.onCommentsSelectedListener = onCommentsSelectedListener;
     }
-
 }

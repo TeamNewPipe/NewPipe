@@ -582,8 +582,8 @@
         <item quantity="many">%d ימים</item>
         <item quantity="other">%d ימים</item>
     </plurals>
-    <string name="feed_groups_header_title">קבוצות הזנות</string>
-    <string name="feed_oldest_subscription_update">העדכון הישן ביותר למינוי: %s</string>
+    <string name="feed_groups_header_title">קבוצות ערוצים</string>
+    <string name="feed_oldest_subscription_update">עדכון ההזנה האחרון: %s</string>
     <string name="feed_subscription_not_loaded_count">לא נטען: %s</string>
     <string name="feed_notification_loading">ההזנה נטענת…</string>
     <string name="feed_processing_message">ההזנה בהליכי עיבוד…</string>
@@ -618,4 +618,20 @@
 \nYouTube זאת דוגמה לשירות שמציע את השיטה המהירה הזאת עם הזנת ה־RSS שלו.
 \n
 \nלכן עומדת בפניך הבחירה: מהירות או דיוק בפרטים.</string>
+    <string name="content_not_supported">תוכן זה לא נתמך עדיין על ידי NewPipe.
+\n
+\nאנו מקווים שתתווסף תמיכה בגרסאות עתידיות.</string>
+    <string name="infinite_videos">∞ סרטונים</string>
+    <string name="more_than_100_videos">למעלה מ־100 סרטונים</string>
+    <string name="artists">אמנים</string>
+    <string name="albums">אלבומים</string>
+    <string name="songs">שירים</string>
+    <string name="restricted_video">סרטון זה מוגבל לצפייה מגיל מסוים.
+\n
+\nכדי לצפות בו, יש להפעיל את „תוכן עם הגבלת גיל” בהגדרות.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">כן, לרבות סרטונים שהפסקתי באמצע</string>
+    <string name="remove_watched_popup_warning">סרטונים שלאחר שצפית בהם מופיע לרשימת הנגינה יוסרו.
+\nלהמשיך\? זאת פעולה בלתי הפיכה!</string>
+    <string name="remove_watched">הסרת נצפו</string>
+    <string name="remove_watched_popup_title">להסיר סרטונים שנצפו\?</string>
 </resources>

@@ -16,6 +16,7 @@ import androidx.annotation.StringRes;
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 
 import java.math.BigDecimal;
@@ -49,15 +50,14 @@ import java.util.Locale;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Localization {
+public final class Localization {
 
     private static final String DOT_SEPARATOR = " • ";
     private static PrettyTime prettyTime;
 
-    private Localization() {
-    }
+    private Localization() { }
 
-    public static void init(Context context) {
+    public static void init(final Context context) {
         initPrettyTime(context);
     }
 
@@ -68,7 +68,9 @@ public class Localization {
 
     @NonNull
     public static String concatenateStrings(final List<String> strings) {
-        if (strings.isEmpty()) return "";
+        if (strings.isEmpty()) {
+            return "";
+        }
 
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(strings.get(0));
@@ -83,27 +85,31 @@ public class Localization {
         return stringBuilder.toString();
     }
 
-    public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(final Context context) {
+    public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(
+            final Context context) {
         final String contentLanguage = PreferenceManager
                 .getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.content_language_key), context.getString(R.string.default_localization_key));
+                .getString(context.getString(R.string.content_language_key),
+                        context.getString(R.string.default_localization_key));
         if (contentLanguage.equals(context.getString(R.string.default_localization_key))) {
-            return org.schabi.newpipe.extractor.localization.Localization.fromLocale(Locale.getDefault());
+            return org.schabi.newpipe.extractor.localization.Localization
+                    .fromLocale(Locale.getDefault());
         }
-        return org.schabi.newpipe.extractor.localization.Localization.fromLocalizationCode(contentLanguage);
+        return org.schabi.newpipe.extractor.localization.Localization
+                .fromLocalizationCode(contentLanguage);
     }
 
     public static ContentCountry getPreferredContentCountry(final Context context) {
-        final String contentCountry = PreferenceManager
-                .getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.content_country_key), context.getString(R.string.default_localization_key));
+        final String contentCountry = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.content_country_key),
+                        context.getString(R.string.default_localization_key));
         if (contentCountry.equals(context.getString(R.string.default_localization_key))) {
             return new ContentCountry(Locale.getDefault().getCountry());
         }
         return new ContentCountry(contentCountry);
     }
 
-    public static Locale getPreferredLocale(Context context) {
+    public static Locale getPreferredLocale(final Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         String languageCode = sp.getString(context.getString(R.string.content_language_key),
@@ -122,88 +128,125 @@ public class Localization {
         return Locale.getDefault();
     }
 
-    public static String localizeNumber(Context context, long number) {
+    public static String localizeNumber(final Context context, final long number) {
         return localizeNumber(context, (double) number);
     }
 
-    public static String localizeNumber(Context context, double number) {
+    public static String localizeNumber(final Context context, final double number) {
         NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
         return nf.format(number);
     }
 
-    public static String formatDate(Date date, Context context) {
+    public static String formatDate(final Date date, final Context context) {
         return DateFormat.getDateInstance(DateFormat.MEDIUM, getAppLocale(context)).format(date);
     }
 
     @SuppressLint("StringFormatInvalid")
-    public static String localizeUploadDate(Context context, Date date) {
+    public static String localizeUploadDate(final Context context, final Date date) {
         return context.getString(R.string.upload_date_text, formatDate(date, context));
     }
 
-    public static String localizeViewCount(Context context, long viewCount) {
-        return getQuantity(context, R.plurals.views, R.string.no_views, viewCount, localizeNumber(context, viewCount));
+    public static String localizeViewCount(final Context context, final long viewCount) {
+        return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
+                localizeNumber(context, viewCount));
     }
 
-    public static String localizeStreamCount(Context context, long streamCount) {
-        return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount, localizeNumber(context, streamCount));
+    public static String localizeStreamCount(final Context context, final long streamCount) {
+        switch ((int) streamCount) {
+            case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
+                return "";
+            case (int) ListExtractor.ITEM_COUNT_INFINITE:
+                return context.getResources().getString(R.string.infinite_videos);
+            case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
+                return context.getResources().getString(R.string.more_than_100_videos);
+            default:
+                return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount,
+                        localizeNumber(context, streamCount));
+        }
     }
 
-    public static String localizeWatchingCount(Context context, long watchingCount) {
-        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount, localizeNumber(context, watchingCount));
+    public static String localizeStreamCountMini(final Context context, final long streamCount) {
+        switch ((int) streamCount) {
+            case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
+                return "";
+            case (int) ListExtractor.ITEM_COUNT_INFINITE:
+                return context.getResources().getString(R.string.infinite_videos_mini);
+            case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
+                return context.getResources().getString(R.string.more_than_100_videos_mini);
+            default:
+                return String.valueOf(streamCount);
+        }
     }
 
-    public static String shortCount(Context context, long count) {
+    public static String localizeWatchingCount(final Context context, final long watchingCount) {
+        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount,
+                localizeNumber(context, watchingCount));
+    }
+
+    public static String shortCount(final Context context, final long count) {
         double value = (double) count;
         if (count >= 1000000000) {
-            return localizeNumber(context, round(value / 1000000000, 1)) + context.getString(R.string.short_billion);
+            return localizeNumber(context, round(value / 1000000000, 1))
+                    + context.getString(R.string.short_billion);
         } else if (count >= 1000000) {
-            return localizeNumber(context, round(value / 1000000, 1)) + context.getString(R.string.short_million);
+            return localizeNumber(context, round(value / 1000000, 1))
+                    + context.getString(R.string.short_million);
         } else if (count >= 1000) {
-            return localizeNumber(context, round(value / 1000, 1)) + context.getString(R.string.short_thousand);
+            return localizeNumber(context, round(value / 1000, 1))
+                    + context.getString(R.string.short_thousand);
         } else {
             return localizeNumber(context, value);
         }
     }
 
-    public static String listeningCount(Context context, long listeningCount) {
-        return getQuantity(context, R.plurals.listening, R.string.no_one_listening, listeningCount, shortCount(context, listeningCount));
+    public static String listeningCount(final Context context, final long listeningCount) {
+        return getQuantity(context, R.plurals.listening, R.string.no_one_listening, listeningCount,
+                shortCount(context, listeningCount));
     }
 
-    public static String shortWatchingCount(Context context, long watchingCount) {
-        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount, shortCount(context, watchingCount));
+    public static String shortWatchingCount(final Context context, final long watchingCount) {
+        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount,
+                shortCount(context, watchingCount));
     }
 
-    public static String shortViewCount(Context context, long viewCount) {
-        return getQuantity(context, R.plurals.views, R.string.no_views, viewCount, shortCount(context, viewCount));
+    public static String shortViewCount(final Context context, final long viewCount) {
+        return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
+                shortCount(context, viewCount));
     }
 
-    public static String shortSubscriberCount(Context context, long subscriberCount) {
-        return getQuantity(context, R.plurals.subscribers, R.string.no_subscribers, subscriberCount, shortCount(context, subscriberCount));
+    public static String shortSubscriberCount(final Context context, final long subscriberCount) {
+        return getQuantity(context, R.plurals.subscribers, R.string.no_subscribers, subscriberCount,
+                shortCount(context, subscriberCount));
     }
 
-    private static String getQuantity(Context context, @PluralsRes int pluralId, @StringRes int zeroCaseStringId, long count, String formattedCount) {
-        if (count == 0) return context.getString(zeroCaseStringId);
+    private static String getQuantity(final Context context, @PluralsRes final int pluralId,
+                                      @StringRes final int zeroCaseStringId, final long count,
+                                      final String formattedCount) {
+        if (count == 0) {
+            return context.getString(zeroCaseStringId);
+        }
 
-        // As we use the already formatted count, is not the responsibility of this method handle long numbers
-        // (it probably will fall in the "other" category, or some language have some specific rule... then we have to change it)
-        int safeCount = count > Integer.MAX_VALUE ? Integer.MAX_VALUE : count < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) count;
+        // As we use the already formatted count
+        // is not the responsibility of this method handle long numbers
+        // (it probably will fall in the "other" category,
+        // or some language have some specific rule... then we have to change it)
+        int safeCount = count > Integer.MAX_VALUE ? Integer.MAX_VALUE : count < Integer.MIN_VALUE
+                ? Integer.MIN_VALUE : (int) count;
         return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
     }
 
-    public static String getDurationString(long duration) {
-        if (duration < 0) {
-            duration = 0;
-        }
-        String output;
-        long days = duration / (24 * 60 * 60L); /* greater than a day */
-        duration %= (24 * 60 * 60L);
-        long hours = duration / (60 * 60L); /* greater than an hour */
-        duration %= (60 * 60L);
-        long minutes = duration / 60L;
-        long seconds = duration % 60L;
+    public static String getDurationString(final long duration) {
+        final String output;
 
-        //handle days
-        if (days > 0) {
+        final long days = duration / (24 * 60 * 60L); /* greater than a day */
+        final long hours = duration % (24 * 60 * 60L) / (60 * 60L); /* greater than an hour */
+        final long minutes = duration % (24 * 60 * 60L) % (60 * 60L) / 60L;
+        final long seconds = duration % 60L;
+
+        if (duration < 0) {
+            output = "0:00";
+        } else if (days > 0) {
+            //handle days
             output = String.format(Locale.US, "%d:%02d:%02d:%02d", days, hours, minutes, seconds);
         } else if (hours > 0) {
             output = String.format(Locale.US, "%d:%02d:%02d", hours, minutes, seconds);
@@ -219,22 +262,20 @@ public class Localization {
      * <p>The seconds will be converted to the closest whole time unit.
      * <p>For example, 60 seconds would give "1 minute", 119 would also give "1 minute".
      *
-     * @param context used to get plurals resources.
+     * @param context        used to get plurals resources.
      * @param durationInSecs an amount of seconds.
      * @return duration in a human readable string.
      */
     @NonNull
-    public static String localizeDuration(Context context, int durationInSecs) {
+    public static String localizeDuration(final Context context, final int durationInSecs) {
         if (durationInSecs < 0) {
             throw new IllegalArgumentException("duration can not be negative");
         }
 
-        final int days = (int) (durationInSecs / (24 * 60 * 60L)); /* greater than a day */
-        durationInSecs %= (24 * 60 * 60L);
-        final int hours = (int) (durationInSecs / (60 * 60L)); /* greater than an hour */
-        durationInSecs %= (60 * 60L);
-        final int minutes = (int) (durationInSecs / 60L);
-        final int seconds = (int) (durationInSecs % 60L);
+        final int days = (int) (durationInSecs / (24 * 60 * 60L));
+        final int hours = (int) (durationInSecs % (24 * 60 * 60L) / (60 * 60L));
+        final int minutes = (int) (durationInSecs % (24 * 60 * 60L) % (60 * 60L) / 60L);
+        final int seconds = (int) (durationInSecs % (24 * 60 * 60L) % (60 * 60L) % 60L);
 
         final Resources resources = context.getResources();
 
@@ -253,7 +294,7 @@ public class Localization {
     // Pretty Time
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static void initPrettyTime(Context context) {
+    private static void initPrettyTime(final Context context) {
         prettyTime = new PrettyTime(getAppLocale(context));
         // Do not use decades as YouTube doesn't either.
         prettyTime.removeUnit(Decade.class);
@@ -263,20 +304,20 @@ public class Localization {
         return prettyTime;
     }
 
-    public static String relativeTime(Calendar calendarTime) {
+    public static String relativeTime(final Calendar calendarTime) {
         String time = getPrettyTime().formatUnrounded(calendarTime);
         return time.startsWith("-") ? time.substring(1) : time;
         //workaround fix for russian showing -1 day ago, -19hrs ago…
     }
 
-    private static void changeAppLanguage(Locale loc, Resources res) {
+    private static void changeAppLanguage(final Locale loc, final Resources res) {
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
         conf.setLocale(loc);
         res.updateConfiguration(conf, dm);
     }
 
-    public static Locale getAppLocale(Context context) {
+    public static Locale getAppLocale(final Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String lang = prefs.getString(context.getString(R.string.app_language_key), "en");
         Locale loc;
@@ -295,11 +336,11 @@ public class Localization {
         return loc;
     }
 
-    public static void assureCorrectAppLanguage(Context c) {
+    public static void assureCorrectAppLanguage(final Context c) {
         changeAppLanguage(getAppLocale(c), c.getResources());
     }
 
-    private static double round(double value, int places) {
+    private static double round(final double value, final int places) {
         return new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).doubleValue();
     }
 }

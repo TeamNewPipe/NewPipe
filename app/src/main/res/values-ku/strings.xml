@@ -563,10 +563,10 @@
     </plurals>
     <plurals name="days">
         <item quantity="one">%d ڕۆژ</item>
-        <item quantity="other">"%d  ڕۆژەکان"</item>
+        <item quantity="other">%d ڕۆژەکان</item>
     </plurals>
-    <string name="feed_groups_header_title">کۆمەڵە دیارەکان</string>
-    <string name="feed_oldest_subscription_update">کۆنترین نوێکردنەوەی بەشداری: %s</string>
+    <string name="feed_groups_header_title">کۆمەڵەی کەناڵەکان</string>
+    <string name="feed_oldest_subscription_update">دواین نوێکردنەوە: %s</string>
     <string name="feed_subscription_not_loaded_count">بارنەکراو : %d</string>
     <string name="feed_notification_loading">بارکردن…</string>
     <string name="feed_processing_message">ئامادەکردن…</string>
@@ -588,4 +588,25 @@
     <string name="feed_use_dedicated_fetch_method_summary">لەهەندێ خزمەتگوزاریدا بەردەستە، هەمیشە خێرایە بەڵام ڕەنگە هەندێ لە بابەتەکان زانیارییەکانیان ناتەواو بێت (وەک نەبوونی ماوە، جۆری بابەت ، نەبوونی پەخش).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">چالاککردنی دۆخی خێرا</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">چالاک نەکردنی دۆخی خێرا</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">ئایا توانای بارکردن لاوازە؟ گەر وایە ئەوا بارکردنی خێرا تاقی بکەرەوە (دەتوانی بیگۆڕیت لە بەشی ڕێکخستنەکان لەڕێگای گرتەکردن لەم دوگمەیەی خوارەوە).
+\n
+\nئەم ئەپە دوو شێوازی بارکردنت بۆ پێشنیاز دەکات:
+\n- بارکردنی تەواوی کەناڵە بەشدارییەکانت، ئەمەیان خاوە بەڵام تەواوە.
+\n- تەرخانکردنی خزمەتگوزارییەکان ئەمەیان خێرایە بەڵام زۆر تەواو نییە.</string>
+    <string name="content_not_supported">ئەم ناوەڕۆکە پشتگیری نەکراوە لەلایەن ئەپەکەمانەوە.
+\n
+\nهیوادارین بتوانین لە وەشانەکانی داهاتوودا پشتگیری بکەین.</string>
+    <string name="restricted_video">تەمەنت بۆ تەماشاکردنی ئەم ڤیدیۆیە ڕێپێنەدراوە.
+\n
+\nگەر دەتەوێت بیبینیت ئەوا ناوەڕۆکە ڕێپێنەدراوەکانی تەمەن لە ڕێکخستنەکان چالاک بکە.</string>
+    <string name="infinite_videos">∞ ڤیدیۆ</string>
+    <string name="more_than_100_videos">+١٠٠ ڤیدیۆ</string>
+    <string name="artists">هونەرمەندەکان</string>
+    <string name="albums">ئەلبوومەکان</string>
+    <string name="songs">گۆرانییەکان</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">بەڵێ، لەگەڵ ڤیدیۆ تەماشاکراوەکانەوە</string>
+    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ خشتەی کارکردن دەسڕێنەوە.
+\nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
+    <string name="remove_watched_popup_title">ڤیدیۆ تەماشاکراوەکان بسڕێنەوە؟</string>
+    <string name="remove_watched">سڕینەوەی تەماشاکراوەکان</string>
 </resources>

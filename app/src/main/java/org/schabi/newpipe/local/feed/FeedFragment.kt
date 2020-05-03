@@ -41,7 +41,9 @@ import java.util.*
 
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private lateinit var viewModel: FeedViewModel
-    @State @JvmField var listState: Parcelable? = null
+    @State
+    @JvmField
+    var listState: Parcelable? = null
 
     private var groupId = FeedGroupEntity.GROUP_ALL_ID
     private var groupName = ""
@@ -49,13 +51,14 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     init {
         setHasOptionsMenu(true)
-        useDefaultStateSaving(false)
+        setUseDefaultStateSaving(false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        groupId = arguments?.getLong(KEY_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID) ?: FeedGroupEntity.GROUP_ALL_ID
+        groupId = arguments?.getLong(KEY_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID)
+                ?: FeedGroupEntity.GROUP_ALL_ID
         groupName = arguments?.getString(KEY_GROUP_NAME) ?: ""
     }
 
@@ -107,7 +110,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         inflater.inflate(R.menu.menu_feed_fragment, menu)
 
         if (useAsFrontPage) {
-            menu.findItem(R.id.menu_item_feed_help).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            menu.findItem(R.id.menu_item_feed_help).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
         }
     }
 

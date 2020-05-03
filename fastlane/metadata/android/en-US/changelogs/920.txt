@@ -1,6 +1,6 @@
 Improved
 
-• Added upload date on stream grid items
+• Added upload date and view count on stream grid items
 • Improvements for the drawer header layout
 
 Fixed

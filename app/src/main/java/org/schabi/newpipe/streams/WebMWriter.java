@@ -19,14 +19,13 @@ import java.util.ArrayList;
  * @author kapodamy
  */
 public class WebMWriter implements Closeable {
-
-    private final static int BUFFER_SIZE = 8 * 1024;
-    private final static int DEFAULT_TIMECODE_SCALE = 1000000;
-    private final static int INTERV = 100;// 100ms on 1000000us timecode scale
-    private final static int DEFAULT_CUES_EACH_MS = 5000;// 5000ms on 1000000us timecode scale
-    private final static byte CLUSTER_HEADER_SIZE = 8;
-    private final static int CUE_RESERVE_SIZE = 65535;
-    private final static byte MINIMUM_EBML_VOID_SIZE = 4;
+    private static final int BUFFER_SIZE = 8 * 1024;
+    private static final int DEFAULT_TIMECODE_SCALE = 1000000;
+    private static final int INTERV = 100; // 100ms on 1000000us timecode scale
+    private static final int DEFAULT_CUES_EACH_MS = 5000; // 5000ms on 1000000us timecode scale
+    private static final byte CLUSTER_HEADER_SIZE = 8;
+    private static final int CUE_RESERVE_SIZE = 65535;
+    private static final byte MINIMUM_EBML_VOID_SIZE = 4;
 
     private WebMReader.WebMTrack[] infoTracks;
     private SharpStream[] sourceTracks;
@@ -46,7 +45,7 @@ public class WebMWriter implements Closeable {
     private byte[] outBuffer;
     private ByteBuffer outByteBuffer;
 
-    public WebMWriter(SharpStream... source) {
+    public WebMWriter(final SharpStream... source) {
         sourceTracks = source;
         readers = new WebMReader[sourceTracks.length];
         infoTracks = new WebMTrack[sourceTracks.length];
@@ -55,7 +54,7 @@ public class WebMWriter implements Closeable {
         clustersOffsetsSizes = new ArrayList<>(256);
     }
 
-    public WebMTrack[] getTracksFromSource(int sourceIndex) throws IllegalStateException {
+    public WebMTrack[] getTracksFromSource(final int sourceIndex) throws IllegalStateException {
         if (done) {
             throw new IllegalStateException("already done");
         }
@@ -85,7 +84,7 @@ public class WebMWriter implements Closeable {
         }
     }
 
-    public void selectTracks(int... trackIndex) throws IOException {
+    public void selectTracks(final int... trackIndex) throws IOException {
         try {
             readersSegment = new Segment[readers.length];
             readersCluster = new Cluster[readers.length];
@@ -101,10 +100,6 @@ public class WebMWriter implements Closeable {
 
     public boolean isDone() {
         return done;
-    }
-
-    public boolean isParsed() {
-        return parsed;
     }
 
     @Override
@@ -126,7 +121,7 @@ public class WebMWriter implements Closeable {
         clustersOffsetsSizes = null;
     }
 
-    public void build(SharpStream out) throws IOException, RuntimeException {
+    public void build(final SharpStream out) throws IOException, RuntimeException {
         if (!out.canRewind()) {
             throw new IOException("The output stream must be allow seek");
         }
@@ -167,9 +162,9 @@ public class WebMWriter implements Closeable {
         listBuffer.add(new byte[]{
                 0x15, 0x49, (byte) 0xa9, 0x66, (byte) 0xa2, 0x2a, (byte) 0xd7, (byte) 0xb1
         });
-        listBuffer.add(encode(DEFAULT_TIMECODE_SCALE, true));// this value MUST NOT exceed 4 bytes
+        listBuffer.add(encode(DEFAULT_TIMECODE_SCALE, true)); // this value MUST NOT exceed 4 bytes
         listBuffer.add(new byte[]{0x44, (byte) 0x89, (byte) 0x84,
-                0x00, 0x00, 0x00, 0x00,// info.duration
+                0x00, 0x00, 0x00, 0x00, // info.duration
 
                 /* MuxingApp */
                 0x4d, (byte) 0x80, (byte) 0x87, 0x4E,
@@ -187,16 +182,17 @@ public class WebMWriter implements Closeable {
 
         // reserve space for Cues element
         long cueOffset = written;
-        make_EBML_void(out, CUE_RESERVE_SIZE, true);
+        makeEbmlVoid(out, CUE_RESERVE_SIZE, true);
 
         int[] defaultSampleDuration = new int[infoTracks.length];
         long[] duration = new long[infoTracks.length];
 
         for (int i = 0; i < infoTracks.length; i++) {
             if (infoTracks[i].defaultDuration < 0) {
-                defaultSampleDuration[i] = -1;// not available
+                defaultSampleDuration[i] = -1; // not available
             } else {
-                defaultSampleDuration[i] = (int) Math.ceil(infoTracks[i].defaultDuration / (float) DEFAULT_TIMECODE_SCALE);
+                defaultSampleDuration[i] = (int) Math.ceil(infoTracks[i].defaultDuration
+                        / (float) DEFAULT_TIMECODE_SCALE);
             }
             duration[i] = -1;
         }
@@ -228,7 +224,7 @@ public class WebMWriter implements Closeable {
                 }
 
                 if (bloq.data == null) {
-                    blockWritten = 1;// fake block
+                    blockWritten = 1; // fake block
                     newClusterByTrackId = i;
                     i++;
                     continue;
@@ -239,15 +235,18 @@ public class WebMWriter implements Closeable {
                     newClusterByTrackId = -1;
                     baseTimecode = bloq.absoluteTimecode;
                     limitTimecode = baseTimecode + INTERV;
-                    currentClusterOffset = makeCluster(out, baseTimecode, currentClusterOffset, true);
+                    currentClusterOffset = makeCluster(out, baseTimecode, currentClusterOffset,
+                            true);
                 }
 
                 if (cuesForTrackId == i) {
-                    if ((nextCueTime > -1 && bloq.absoluteTimecode >= nextCueTime) || (nextCueTime < 0 && bloq.isKeyframe())) {
+                    if ((nextCueTime > -1 && bloq.absoluteTimecode >= nextCueTime)
+                            || (nextCueTime < 0 && bloq.isKeyframe())) {
                         if (nextCueTime > -1) {
                             nextCueTime += DEFAULT_CUES_EACH_MS;
                         }
-                        keyFrames.add(new KeyFrame(segmentOffset, currentClusterOffset, written, bloq.absoluteTimecode));
+                        keyFrames.add(new KeyFrame(segmentOffset, currentClusterOffset, written,
+                                bloq.absoluteTimecode));
                     }
                 }
 
@@ -255,7 +254,8 @@ public class WebMWriter implements Closeable {
                 blockWritten++;
 
                 if (defaultSampleDuration[i] < 0 && duration[i] >= 0) {
-                    // if the sample duration in unknown, calculate using current_duration - previous_duration
+                    // if the sample duration in unknown,
+                    // calculate using current_duration - previous_duration
                     defaultSampleDuration[i] = (int) (bloq.absoluteTimecode - duration[i]);
                 }
                 duration[i] = bloq.absoluteTimecode;
@@ -305,20 +305,20 @@ public class WebMWriter implements Closeable {
 
         /* Cue */
         short cueSize = 0;
-        dump(new byte[]{0x1c, 0x53, (byte) 0xbb, 0x6b, 0x20, 0x00, 0x00}, out);// header size is 7
+        dump(new byte[]{0x1c, 0x53, (byte) 0xbb, 0x6b, 0x20, 0x00, 0x00}, out); // header size is 7
 
         for (KeyFrame keyFrame : keyFrames) {
             int size = makeCuePoint(cuesForTrackId, keyFrame, outBuffer);
 
             if ((cueSize + size + 7 + MINIMUM_EBML_VOID_SIZE) > CUE_RESERVE_SIZE) {
-                break;// no space left
+                break; // no space left
             }
 
             cueSize += size;
             dump(outBuffer, size, out);
         }
 
-        make_EBML_void(out, CUE_RESERVE_SIZE - cueSize - 7, false);
+        makeEbmlVoid(out, CUE_RESERVE_SIZE - cueSize - 7, false);
 
         seekTo(out, cueOffset + 5);
         outByteBuffer.putShort(0, cueSize);
@@ -332,11 +332,11 @@ public class WebMWriter implements Closeable {
         }
     }
 
-    private Block getNextBlockFrom(int internalTrackId) throws IOException {
+    private Block getNextBlockFrom(final int internalTrackId) throws IOException {
         if (readersSegment[internalTrackId] == null) {
             readersSegment[internalTrackId] = readers[internalTrackId].getNextSegment();
             if (readersSegment[internalTrackId] == null) {
-                return null;// no more blocks in the selected track
+                return null; // no more blocks in the selected track
             }
         }
 
@@ -351,12 +351,12 @@ public class WebMWriter implements Closeable {
         SimpleBlock res = readersCluster[internalTrackId].getNextSimpleBlock();
         if (res == null) {
             readersCluster[internalTrackId] = null;
-            return new Block();// fake block to indicate the end of the cluster
+            return new Block(); // fake block to indicate the end of the cluster
         }
 
         Block bloq = new Block();
         bloq.data = res.data;
-        bloq.dataSize = (int) res.dataSize;
+        bloq.dataSize = res.dataSize;
         bloq.trackNumber = internalTrackId;
         bloq.flags = res.flags;
         bloq.absoluteTimecode = res.absoluteTimeCodeNs / DEFAULT_TIMECODE_SCALE;
@@ -364,7 +364,7 @@ public class WebMWriter implements Closeable {
         return bloq;
     }
 
-    private void seekTo(SharpStream stream, long offset) throws IOException {
+    private void seekTo(final SharpStream stream, final long offset) throws IOException {
         if (stream.canSeek()) {
             stream.seek(offset);
         } else {
@@ -379,13 +379,15 @@ public class WebMWriter implements Closeable {
         written = offset;
     }
 
-    private void writeInt(SharpStream stream, long offset, int number) throws IOException {
+    private void writeInt(final SharpStream stream, final long offset, final int number)
+            throws IOException {
         seekTo(stream, offset);
         outByteBuffer.putInt(0, number);
         dump(outBuffer, DataReader.INTEGER_SIZE, stream);
     }
 
-    private void writeBlock(SharpStream stream, Block bloq, long clusterTimecode) throws IOException {
+    private void writeBlock(final SharpStream stream, final Block bloq, final long clusterTimecode)
+            throws IOException {
         long relativeTimeCode = bloq.absoluteTimecode - clusterTimecode;
 
         if (relativeTimeCode < Short.MIN_VALUE || relativeTimeCode > Short.MAX_VALUE) {
@@ -394,9 +396,10 @@ public class WebMWriter implements Closeable {
 
         ArrayList<byte[]> listBuffer = new ArrayList<>(5);
         listBuffer.add(new byte[]{(byte) 0xa3});
-        listBuffer.add(null);// block size
+        listBuffer.add(null); // block size
         listBuffer.add(encode(bloq.trackNumber + 1, false));
-        listBuffer.add(ByteBuffer.allocate(DataReader.SHORT_SIZE).putShort((short) relativeTimeCode).array());
+        listBuffer.add(ByteBuffer.allocate(DataReader.SHORT_SIZE).putShort((short) relativeTimeCode)
+                .array());
         listBuffer.add(new byte[]{bloq.flags});
 
         int blockSize = bloq.dataSize;
@@ -413,7 +416,8 @@ public class WebMWriter implements Closeable {
         }
     }
 
-    private long makeCluster(SharpStream stream, long timecode, long offset, boolean create) throws IOException {
+    private long makeCluster(final SharpStream stream, final long timecode, long offset,
+                             final boolean create) throws IOException {
         ClusterInfo cluster;
 
         if (offset > 0) {
@@ -444,7 +448,7 @@ public class WebMWriter implements Closeable {
         return offset;
     }
 
-    private void makeEBML(SharpStream stream) throws IOException {
+    private void makeEBML(final SharpStream stream) throws IOException {
         // deafult values
         dump(new byte[]{
                 0x1A, 0x45, (byte) 0xDF, (byte) 0xA3, 0x01, 0x00, 0x00, 0x00,
@@ -468,7 +472,7 @@ public class WebMWriter implements Closeable {
         return lengthFor(buffer);
     }
 
-    private ArrayList<byte[]> makeTrackEntry(int internalTrackId, WebMTrack track) {
+    private ArrayList<byte[]> makeTrackEntry(final int internalTrackId, final WebMTrack track) {
         byte[] id = encode(internalTrackId + 1, true);
         ArrayList<byte[]> buffer = new ArrayList<>(12);
 
@@ -531,10 +535,10 @@ public class WebMWriter implements Closeable {
         }
 
         return lengthFor(buffer);
-
     }
 
-    private int makeCuePoint(int internalTrackId, KeyFrame keyFrame, byte[] buffer) {
+    private int makeCuePoint(final int internalTrackId, final KeyFrame keyFrame,
+                             final byte[] buffer) {
         ArrayList<byte[]> cue = new ArrayList<>(5);
 
         /* CuePoint */
@@ -559,7 +563,8 @@ public class WebMWriter implements Closeable {
         return size;
     }
 
-    private ArrayList<byte[]> makeCueTrackPosition(int internalTrackId, KeyFrame keyFrame) {
+    private ArrayList<byte[]> makeCueTrackPosition(final int internalTrackId,
+                                                   final KeyFrame keyFrame) {
         ArrayList<byte[]> buffer = new ArrayList<>(8);
 
         /* CueTrackPositions */
@@ -583,7 +588,8 @@ public class WebMWriter implements Closeable {
         return lengthFor(buffer);
     }
 
-    private void make_EBML_void(SharpStream out, int size, boolean wipe) throws IOException {
+    private void makeEbmlVoid(final SharpStream out, int size, final boolean wipe)
+            throws IOException {
         /* ebml void */
         outByteBuffer.putShort(0, (short) 0xec20);
         outByteBuffer.putShort(2, (short) (size - 4));
@@ -600,23 +606,25 @@ public class WebMWriter implements Closeable {
         }
     }
 
-    private void dump(byte[] buffer, SharpStream stream) throws IOException {
+    private void dump(final byte[] buffer, final SharpStream stream) throws IOException {
         dump(buffer, buffer.length, stream);
     }
 
-    private void dump(byte[] buffer, int count, SharpStream stream) throws IOException {
+    private void dump(final byte[] buffer, final int count, final SharpStream stream)
+            throws IOException {
         stream.write(buffer, 0, count);
         written += count;
     }
 
-    private void dump(ArrayList<byte[]> buffers, SharpStream stream) throws IOException {
+    private void dump(final ArrayList<byte[]> buffers, final SharpStream stream)
+            throws IOException {
         for (byte[] buffer : buffers) {
             stream.write(buffer);
             written += buffer.length;
         }
     }
 
-    private ArrayList<byte[]> lengthFor(ArrayList<byte[]> buffer) {
+    private ArrayList<byte[]> lengthFor(final ArrayList<byte[]> buffer) {
         long size = 0;
         for (int i = 2; i < buffer.size(); i++) {
             size += buffer.get(i).length;
@@ -625,7 +633,7 @@ public class WebMWriter implements Closeable {
         return buffer;
     }
 
-    private byte[] encode(long number, boolean withLength) {
+    private byte[] encode(final long number, final boolean withLength) {
         int length = -1;
         for (int i = 1; i <= 7; i++) {
             if (number < Math.pow(2, 7 * i)) {
@@ -662,9 +670,9 @@ public class WebMWriter implements Closeable {
         return buffer;
     }
 
-    private ArrayList<byte[]> encode(String value) {
+    private ArrayList<byte[]> encode(final String value) {
         byte[] str;
-        str = value.getBytes(StandardCharsets.UTF_8);// or use "utf-8"
+        str = value.getBytes(StandardCharsets.UTF_8); // or use "utf-8"
 
         ArrayList<byte[]> buffer = new ArrayList<>(2);
         buffer.add(encode(str.length, false));
@@ -673,7 +681,7 @@ public class WebMWriter implements Closeable {
         return buffer;
     }
 
-    private boolean valid(byte[] buffer) {
+    private boolean valid(final byte[] buffer) {
         return buffer != null && buffer.length > 0;
     }
 
@@ -716,9 +724,8 @@ public class WebMWriter implements Closeable {
         return 0;
     }
 
-    class KeyFrame {
-
-        KeyFrame(long segment, long cluster, long block, long timecode) {
+    static class KeyFrame {
+        KeyFrame(final long segment, final long cluster, final long block, final long timecode) {
             clusterPosition = cluster - segment;
             relativePosition = (int) (block - cluster - CLUSTER_HEADER_SIZE);
             duration = timecode;
@@ -729,8 +736,7 @@ public class WebMWriter implements Closeable {
         final long duration;
     }
 
-    class Block {
-
+    static class Block {
         InputStream data;
         int trackNumber;
         byte flags;
@@ -744,14 +750,13 @@ public class WebMWriter implements Closeable {
         @NonNull
         @Override
         public String toString() {
-            return String.format("trackNumber=%s  isKeyFrame=%S  absoluteTimecode=%s", trackNumber, isKeyframe(), absoluteTimecode);
+            return String.format("trackNumber=%s  isKeyFrame=%S  absoluteTimecode=%s", trackNumber,
+                    isKeyframe(), absoluteTimecode);
         }
     }
 
-    class ClusterInfo {
-
+    static class ClusterInfo {
         long offset;
         int size;
     }
-
 }
