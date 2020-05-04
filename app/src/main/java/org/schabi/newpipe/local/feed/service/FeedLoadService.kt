@@ -40,6 +40,11 @@ import io.reactivex.functions.Consumer
 import io.reactivex.functions.Function
 import io.reactivex.processors.PublishProcessor
 import io.reactivex.schedulers.Schedulers
+import java.io.IOException
+import java.util.Calendar
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
 import org.schabi.newpipe.MainActivity.DEBUG
@@ -49,17 +54,14 @@ import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
-import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.*
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ProgressEvent
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.SuccessResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ExceptionUtils
 import org.schabi.newpipe.util.ExtractorHelper
-import java.io.IOException
-import java.util.*
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicInteger
-import kotlin.collections.ArrayList
 
 class FeedLoadService : Service() {
     companion object {
@@ -94,9 +96,9 @@ class FeedLoadService : Service() {
     private var disposables = CompositeDisposable()
     private var notificationUpdater = PublishProcessor.create<String>()
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Lifecycle
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun onCreate() {
         super.onCreate()
@@ -151,9 +153,9 @@ class FeedLoadService : Service() {
         return null
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Loading & Handling
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private class RequestException(val subscriptionId: Long, message: String, cause: Throwable) : Exception(message, cause) {
         companion object {
@@ -312,7 +314,6 @@ class FeedLoadService : Service() {
                             feedResultsHolder.addErrors(RequestException.wrapList(subscriptionId, info))
                             feedDatabaseManager.markAsOutdated(subscriptionId)
                         }
-
                     } else if (notification.isOnError) {
                         val error = notification.error!!
                         feedResultsHolder.addError(error)
@@ -324,7 +325,6 @@ class FeedLoadService : Service() {
                 }
             }
         }
-
 
     private val errorHandlingConsumer: Consumer<Notification<Pair<Long, ListInfo<StreamInfoItem>>>>
         get() = Consumer {
@@ -354,9 +354,9 @@ class FeedLoadService : Service() {
         broadcastProgress()
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Notification
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private lateinit var notificationManager: NotificationManagerCompat
     private lateinit var notificationBuilder: NotificationCompat.Builder
@@ -412,9 +412,9 @@ class FeedLoadService : Service() {
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Notification Actions
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private lateinit var broadcastReceiver: BroadcastReceiver
     private val cancelSignal = AtomicBoolean()
@@ -430,18 +430,18 @@ class FeedLoadService : Service() {
         registerReceiver(broadcastReceiver, IntentFilter(ACTION_CANCEL))
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Error handling
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun handleError(error: Throwable) {
         postEvent(ErrorResultEvent(error))
         stopService()
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Results Holder
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     class ResultsHolder {
         /**

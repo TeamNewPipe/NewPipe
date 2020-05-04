@@ -9,7 +9,11 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.feed_import_export_group.*
+import kotlinx.android.synthetic.main.feed_import_export_group.export_to_options
+import kotlinx.android.synthetic.main.feed_import_export_group.import_export
+import kotlinx.android.synthetic.main.feed_import_export_group.import_export_expand_icon
+import kotlinx.android.synthetic.main.feed_import_export_group.import_export_options
+import kotlinx.android.synthetic.main.feed_import_export_group.import_from_options
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
@@ -19,10 +23,10 @@ import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.views.CollapsibleView
 
 class FeedImportExportItem(
-        val onImportPreviousSelected: () -> Unit,
-        val onImportFromServiceSelected: (Int) -> Unit,
-        val onExportSelected: () -> Unit,
-        var isExpanded: Boolean = false
+    val onImportPreviousSelected: () -> Unit,
+    val onImportFromServiceSelected: (Int) -> Unit,
+    val onExportSelected: () -> Unit,
+    var isExpanded: Boolean = false
 ) : Item() {
     companion object {
         const val REFRESH_EXPANDED_STATUS = 123
@@ -104,7 +108,6 @@ class FeedImportExportItem(
             } catch (e: ExtractionException) {
                 throw RuntimeException("Services array contains an entry that it's not a valid service name ($serviceName)", e)
             }
-
         }
     }
 

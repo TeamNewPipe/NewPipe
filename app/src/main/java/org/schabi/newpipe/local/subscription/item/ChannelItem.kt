@@ -4,19 +4,21 @@ import android.content.Context
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.list_channel_item.*
+import kotlinx.android.synthetic.main.list_channel_item.itemAdditionalDetails
+import kotlinx.android.synthetic.main.list_channel_item.itemChannelDescriptionView
+import kotlinx.android.synthetic.main.list_channel_item.itemThumbnailView
+import kotlinx.android.synthetic.main.list_channel_item.itemTitleView
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.util.ImageDisplayConstants
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.OnClickGesture
 
-
 class ChannelItem(
-        private val infoItem: ChannelInfoItem,
-        private val subscriptionId: Long = -1L,
-        var itemVersion: ItemVersion = ItemVersion.NORMAL,
-        var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
+    private val infoItem: ChannelInfoItem,
+    private val subscriptionId: Long = -1L,
+    var itemVersion: ItemVersion = ItemVersion.NORMAL,
+    var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
 ) : Item() {
 
     override fun getId(): Long = if (subscriptionId == -1L) super.getId() else subscriptionId

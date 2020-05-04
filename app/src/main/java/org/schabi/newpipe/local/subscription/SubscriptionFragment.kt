@@ -2,13 +2,21 @@ package org.schabi.newpipe.local.subscription
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Environment
 import android.os.Parcelable
 import android.preference.PreferenceManager
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -21,8 +29,15 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.State
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.dialog_title.view.*
-import kotlinx.android.synthetic.main.fragment_subscription.*
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import kotlin.math.floor
+import kotlin.math.max
+import kotlinx.android.synthetic.main.dialog_title.view.itemAdditionalDetails
+import kotlinx.android.synthetic.main.dialog_title.view.itemTitleView
+import kotlinx.android.synthetic.main.fragment_subscription.items_list
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
@@ -30,21 +45,29 @@ import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionState
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialog
-import org.schabi.newpipe.local.subscription.item.*
+import org.schabi.newpipe.local.subscription.item.ChannelItem
+import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupAddItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupCarouselItem
+import org.schabi.newpipe.local.subscription.item.FeedImportExportItem
+import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem
 import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem.Companion.PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.EXPORT_COMPLETE_ACTION
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.KEY_FILE_PATH
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
-import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.*
+import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.IMPORT_COMPLETE_ACTION
+import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE
+import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE
+import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE
 import org.schabi.newpipe.report.UserAction
-import org.schabi.newpipe.util.*
 import org.schabi.newpipe.util.AnimationUtils.animateView
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.math.floor
-import kotlin.math.max
+import org.schabi.newpipe.util.FilePickerActivityHelper
+import org.schabi.newpipe.util.NavigationHelper
+import org.schabi.newpipe.util.OnClickGesture
+import org.schabi.newpipe.util.ShareUtils
+import org.schabi.newpipe.util.ThemeHelper
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var viewModel: SubscriptionViewModel
@@ -74,9 +97,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         setHasOptionsMenu(true)
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,9 +143,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         disposables.dispose()
     }
 
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
     // Menu
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -150,7 +173,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                     importExportItem.isExpanded = false
                     importExportItem.notifyChanged(FeedImportExportItem.REFRESH_EXPANDED_STATUS)
                 }
-
             }
         }
 
@@ -198,9 +220,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
     }
 
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
     // Fragment Views
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
 
     private fun setupInitialLayout() {
         Section().apply {
@@ -243,7 +265,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 { onExportSelected() },
                 importExportItemExpandedState ?: false)
         groupAdapter.add(Section(importExportItem, listOf(subscriptionsSection)))
-
     }
 
     override fun initViews(rootView: View, savedInstanceState: Bundle?) {
@@ -366,9 +387,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         items_list.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Contract
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun showLoading() {
         super.showLoading()
@@ -380,9 +401,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         animateView(items_list, true, 200)
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Fragment Error Handling
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun onError(exception: Throwable): Boolean {
         if (super.onError(exception)) return true
@@ -391,9 +412,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         return true
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Grid Mode
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     // TODO: Move these out of this class, as it can be reused
 
@@ -405,8 +426,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             getString(R.string.list_view_mode_auto_key) -> {
                 val configuration = resources.configuration
 
-                (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                        && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE))
+                (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                        configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE))
             }
             getString(R.string.list_view_mode_grid_key) -> true
             else -> false

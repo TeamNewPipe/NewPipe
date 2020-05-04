@@ -22,19 +22,36 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.Icepick
 import icepick.State
-import kotlinx.android.synthetic.main.dialog_feed_group_create.*
+import java.io.Serializable
+import kotlinx.android.synthetic.main.dialog_feed_group_create.cancel_button
+import kotlinx.android.synthetic.main.dialog_feed_group_create.confirm_button
+import kotlinx.android.synthetic.main.dialog_feed_group_create.delete_button
+import kotlinx.android.synthetic.main.dialog_feed_group_create.delete_screen_message
+import kotlinx.android.synthetic.main.dialog_feed_group_create.group_name_input
+import kotlinx.android.synthetic.main.dialog_feed_group_create.group_name_input_container
+import kotlinx.android.synthetic.main.dialog_feed_group_create.icon_preview
+import kotlinx.android.synthetic.main.dialog_feed_group_create.icon_selector
+import kotlinx.android.synthetic.main.dialog_feed_group_create.options_root
+import kotlinx.android.synthetic.main.dialog_feed_group_create.select_channel_button
+import kotlinx.android.synthetic.main.dialog_feed_group_create.selected_subscription_count_view
+import kotlinx.android.synthetic.main.dialog_feed_group_create.separator
+import kotlinx.android.synthetic.main.dialog_feed_group_create.subscriptions_selector
+import kotlinx.android.synthetic.main.dialog_feed_group_create.subscriptions_selector_header_info
+import kotlinx.android.synthetic.main.dialog_feed_group_create.subscriptions_selector_list
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
-import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.*
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.DeleteScreen
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.IconPickerScreen
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.InitialScreen
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.SubscriptionsPickerScreen
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialogViewModel.DialogEvent.ProcessingEvent
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialogViewModel.DialogEvent.SuccessEvent
 import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
 import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 import org.schabi.newpipe.util.ThemeHelper
-import java.io.Serializable
 
 class FeedGroupDialog : DialogFragment() {
     private lateinit var viewModel: FeedGroupDialogViewModel
@@ -120,9 +137,9 @@ class FeedGroupDialog : DialogFragment() {
         showScreen(currentScreen)
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Setup
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun setupListeners() {
         delete_button.setOnClickListener { showScreen(DeleteScreen) }
@@ -294,9 +311,9 @@ class FeedGroupDialog : DialogFragment() {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Screen Selector
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun showScreen(screen: ScreenState) {
         currentScreen = screen
@@ -330,9 +347,9 @@ class FeedGroupDialog : DialogFragment() {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Utils
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun hideKeyboard() {
         val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
