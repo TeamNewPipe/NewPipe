@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s προβολές</string>
     <string name="upload_date_text">Ανέβηκε στις %1$s</string>
-    <string name="no_player_found">Δεν βρέθηκε πρόγραμμα αναπαραγωγής. Θα θέλατε να εγκαταστήσετε το VLC;</string>
+    <string name="no_player_found">Δεν βρέθηκε πρόγραμμα αναπαραγωγής. Εγκατάσταση του VLC;</string>
     <string name="install">Εγκατάσταση</string>
     <string name="cancel">Ακύρωση</string>
     <string name="open_in_browser">Άνοιγμα στο πρόγραμμα περιήγησης ιστού</string>
@@ -18,13 +18,13 @@
     <string name="use_external_audio_player_title">Χρήση εξωτερικής συσκευής αναπαραγωγής ήχου</string>
     <string name="download_path_title">Φάκελος λήψης βίντεο</string>
     <string name="download_path_summary">Τα ληφθέντα αρχεία βίντεο αποθηκεύονται εδώ</string>
-    <string name="download_path_dialog_title">Επιλέξτε το φάκελο λήψης για αρχεία βίντεο</string>
+    <string name="download_path_dialog_title">Επιλέξτε φάκελο λήψης για αρχεία βίντεο</string>
     <string name="download_path_audio_title">Διαδρομή λήψης αρχείων ήχου</string>
     <string name="download_path_audio_summary">Τα ληφθέντα αρχεία ήχου αποθηκεύονται εδώ</string>
-    <string name="download_path_audio_dialog_title">Επιλέξτε το φάκελο λήψης για αρχεία ήχου</string>
+    <string name="download_path_audio_dialog_title">Επιλέξτε φάκελο λήψης για αρχεία ήχου</string>
     <string name="default_resolution_title">Προεπιλεγμένη ανάλυση</string>
     <string name="play_with_kodi_title">Αναπαραγωγή με το Kodi</string>
-    <string name="kore_not_found">Η εφαρμογή Kore δεν βρέθηκε. Εγκατάσταση της;</string>
+    <string name="kore_not_found">Εγκατάσταση της εφαρμογής Kore;</string>
     <string name="show_play_with_kodi_title">Εμφάνιση της επιλογής \"Αναπαραγωγή με το Kodi\"</string>
     <string name="show_play_with_kodi_summary">Προβολή μιας επιλογής για αναπαραγωγή με το Kodi media center</string>
     <string name="play_audio">Ήχος</string>
@@ -56,7 +56,7 @@
     <string name="open_in_popup_mode">Άνοιγμα σε αναδυόμενο παράθυρο</string>
     <string name="subscribe_button_title">Εγγραφή</string>
     <string name="subscribed_button_title">Εγγεγραμμένος</string>
-    <string name="show_higher_resolutions_summary">Μόνο μερικές συσκευές υποστηρίζουν την αναπαραγωγή 2K/4K βίντεο</string>
+    <string name="show_higher_resolutions_summary">Μόνο μερικές συσκευές υποστηρίζουν αναπαραγωγή 2K/4K βίντεο</string>
     <string name="black_theme_title">Μαύρο</string>
     <string name="show_search_suggestions_title">Προτάσεις αναζήτησης</string>
     <string name="enable_search_history_title">Ιστορικό αναζήτησης</string>
@@ -89,11 +89,11 @@
     <string name="title_activity_history">Ιστορικό</string>
     <string name="action_history">Ιστορικό</string>
     <string name="show_info">Εμφάνιση πληροφοριών</string>
-    <string name="main_bg_subtitle">Πατήστε αναζήτηση για να ξεκινήσετε</string>
+    <string name="main_bg_subtitle">Πατήστε \"Αναζήτηση\" για να ξεκινήσετε</string>
     <string name="no_player_found_toast">Δε βρέθηκε πρόγραμμα αναπαραγωγής ροής δεδομένων (μπορείτε να εγκαταστήσετε το VLC για να κάνετε αναπαραγωγή).</string>
     <string name="controls_download_desc">Κατέβασμα του αρχείου ροής</string>
     <string name="use_external_video_player_summary">Αφαίρεση του ήχου από κάποιες αναλύσεις</string>
-    <string name="popup_mode_share_menu_title">NewPipe σε λειτουργία αναδυόμενου παραθύρου</string>
+    <string name="popup_mode_share_menu_title">Λειτουργία αναδυόμενου παραθύρου</string>
     <string name="channel_unsubscribed">Έγινε διαγραφή από το κανάλι</string>
     <string name="subscription_change_failed">Αδύνατη η αλλαγή της εγγραφής</string>
     <string name="subscription_update_failed">Αδύνατη η ενημέρωση της εγγραφής</string>
@@ -112,7 +112,7 @@
     <string name="popup_remember_size_pos_title">Ενθύμιση του μεγέθους και της θέσης του αναδυόμενου παραθύρου</string>
     <string name="popup_remember_size_pos_summary">Ενθύμιση του τελευταίου μεγέθους και θέσης του παραθύρου</string>
     <string name="use_inexact_seek_title">Χρήση γρήγορης μη-ακριβούς αναζήτησης</string>
-    <string name="use_inexact_seek_summary">Η μη-ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια</string>
+    <string name="use_inexact_seek_summary">Η μη ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια. Δε λειτουργεί για διαστήματα των 5, 15 ή 25 δευτερολέπτων.</string>
     <string name="download_thumbnail_title">Φόρτωση thumbnails</string>
     <string name="download_thumbnail_summary">Με την απενεργοποίηση δεν φορτώνονται οι μικρογραφίες, χρησιμοποιώντας λιγότερα δεδομένα και μνήμη. Οι αλλαγές σβήνουν τις προσωρινά αποθηκευμένες εικόνες στην μνήμη.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Εκκαθαρίστηκε η προσωρινή μνήμη εικονών</string>
@@ -521,6 +521,7 @@
     <string name="playlist_no_uploader">Δημιουργήθηκε αυτόματα (δεν βρέθηκε χρήστης μεταφόρτωσης)</string>
     <string name="recovering">Ανάκτηση</string>
     <string name="error_download_resource_gone">Δεν είναι δυνατή η ανάκτηση αυτής της λήψης</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Ενεργοποίηση μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Όταν χρησιμοποιείται αναπαραγωγή παρασκηνίου μια μικρογραφία βίντεο θα εμφανίζεται στην οθόνη κλειδώματος</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Χρήση μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
+    <string name="seek_duration_title">Διάρκεια fastforward και rewind</string>
 </resources>
