@@ -605,7 +605,7 @@
 \nYouTube является примером такого сервиса, допуская быстрое обновление по RSS.
 \n
 \nВыбор за вами: скорость или точность.</string>
-    <string name="feed_use_dedicated_fetch_method_title">Обновление из RSS, если доступно</string>
+    <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, но может возвращать не всё содержимое канала и не содержать часть сведений (длительность, тип элемента, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео с ограничением по возрасту.
@@ -625,4 +625,7 @@
 \n
 \nПродолжить\?</string>
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
+    <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
+    <string name="show_original_time_ago_title">Исходное время публикации</string>
+    <string name="youtube_restricted_mode_enabled_title">Безопасный режим YouTube</string>
 </resources>
