@@ -1098,7 +1098,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             }
 
             View controlsRoot = getControlsRoot();
-            if (controlsRoot.isInTouchMode()) {
+            if (controlsRoot.isInTouchMode() || isPlaying()) {
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
                 getControlsVisibilityHandler().postDelayed(() ->
                         animateView(controlsRoot, false, duration, 0,
