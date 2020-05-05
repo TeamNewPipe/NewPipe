@@ -322,9 +322,8 @@
                 <data android:host="video.lqdn.fr" />
                 <data android:host="skeptikon.fr" />
 
+                <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
                 <data android:pathPrefix="/accounts/" />
-                <data android:pathPrefix="/playlist/" />
-                <data android:pathPrefix="/videos/" />
                 <data android:pathPrefix="/video-channels/" />
             </intent-filter>
         </activity>
