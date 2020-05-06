@@ -565,7 +565,7 @@
         <item quantity="other">%d выбрано</item>
     </plurals>
     <string name="feed_group_dialog_select_subscriptions">Выберите подписки</string>
-    <string name="feed_oldest_subscription_update">Последнее обновление: %s</string>
+    <string name="feed_oldest_subscription_update">Обновлено: %s</string>
     <plurals name="days">
         <item quantity="one">%d день</item>
         <item quantity="few">%d дня</item>
@@ -597,8 +597,8 @@
     <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте быстрый режим (включите в настройках или кнопкой внизу).
 \n
 \nNewPipe позволяет обновлять подписки двумя способами:
-\n• Получение канала целиком, медленное, но с полными сведениями.
-\n• Обновление по RSS, быстрое, но с потерей сведений.
+\n• получение канала целиком, медленное, но с полными сведениями;
+\n• обновление по RSS, быстрое, но с потерей сведений.
 \n
 \nПри быстром обновлении теряются длительность элемента и его тип (нельзя определить, трансляция это или обычное видео), могут быть получены не все элементы канала.
 \n
