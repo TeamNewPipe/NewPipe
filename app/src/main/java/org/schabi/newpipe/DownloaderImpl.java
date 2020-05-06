@@ -208,7 +208,7 @@ public final class DownloaderImpl extends Downloader {
             final okhttp3.Response response = client.newCall(request).execute();
             final ResponseBody body = response.body();
 
-            if (response.code() == 429) {
+            if (response.code() == 429 || response.code() == 503) {
                 throw new ReCaptchaException("reCaptcha Challenge requested", siteUrl);
             }
 
@@ -262,7 +262,7 @@ public final class DownloaderImpl extends Downloader {
 
         final okhttp3.Response response = client.newCall(requestBuilder.build()).execute();
 
-        if (response.code() == 429) {
+        if (response.code() == 429 || response.code() == 503) {
             response.close();
 
             throw new ReCaptchaException("reCaptcha Challenge requested", url);
