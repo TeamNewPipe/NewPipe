@@ -98,8 +98,8 @@ public abstract class VideoPlayer extends BasePlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
-    public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
-    public static final int DPAD_CONTROLS_HIDE_TIME = 7000;  // 7 Seconds
+    public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000; // 2 seconds
+    public static final int DPAD_CONTROLS_HIDE_TIME = 5000; // 5 seconds
 
     protected static final int RENDERER_UNAVAILABLE = -1;
 
