@@ -612,4 +612,7 @@
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e tambem os vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_title">Remover vídeos vistos\?</string>
     <string name="remove_watched">Remover vistos</string>
+    <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de fluxo</string>
+    <string name="show_original_time_ago_title">Mostrar tempo original que passou em itens</string>
+    <string name="youtube_restricted_mode_enabled_title">Modo restrito do YouTube</string>
 </resources>
