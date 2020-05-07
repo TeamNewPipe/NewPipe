@@ -536,19 +536,23 @@
     <string name="recaptcha_done_button">完成</string>
     <string name="videos_string">影片</string>
     <plurals name="seconds">
-        <item quantity="other">%d秒</item>
+        <item quantity="one">%d 秒</item>
+        <item quantity="other">%d 秒</item>
     </plurals>
     <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
     <string name="mute">靜音</string>
     <string name="unmute">取消靜音</string>
     <string name="help">說明</string>
     <plurals name="minutes">
+        <item quantity="one">%d 分鐘</item>
         <item quantity="other">%d 分鐘</item>
     </plurals>
     <plurals name="hours">
+        <item quantity="one">%d 小時</item>
         <item quantity="other">%d 小時</item>
     </plurals>
     <plurals name="days">
+        <item quantity="one">%d 天</item>
         <item quantity="other">%d 天</item>
     </plurals>
     <string name="feed_groups_header_title">頻道群組</string>
@@ -559,7 +563,8 @@
     <string name="feed_group_dialog_select_subscriptions">選取訂閱</string>
     <string name="feed_group_dialog_empty_selection">未選取訂閱</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="other">已選取 %d</item>
+        <item quantity="one">已選取 %d 個</item>
+        <item quantity="other">已選取 %d 個</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">清空群組名稱</string>
     <string name="feed_group_dialog_name_input">名稱</string>
@@ -600,4 +605,7 @@
 \n您確定嗎？此動作無法復原！</string>
     <string name="remove_watched_popup_title">移除已觀看的影片？</string>
     <string name="remove_watched">移除已觀看</string>
+    <string name="show_original_time_ago_summary">來自服務的原始文字將在串流項目中可見</string>
+    <string name="show_original_time_ago_title">在項目上顯示原始時間</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube 受限模式</string>
 </resources>

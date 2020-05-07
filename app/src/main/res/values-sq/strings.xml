@@ -608,4 +608,7 @@
 \nA jeni të sigurt\? Kjo nuk mund të zhbëhet!</string>
     <string name="remove_watched_popup_title">Dëshironi t\'i hiqni videot e para\?</string>
     <string name="remove_watched">Hiq të parat</string>
+    <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do të jenë të dukshme në objektet e stream</string>
+    <string name="show_original_time_ago_title">Shfaq titullin origjinal \"kohë më parë\" në objekte</string>
+    <string name="youtube_restricted_mode_enabled_title">Modaliteti i kufizuar i NewPipe</string>
 </resources>
