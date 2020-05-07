@@ -44,4 +44,13 @@
     <color name="dark_media_ccc_accent_color">#FFFFFF</color>
     <color name="dark_media_ccc_statusbar_color">#afafaf</color>
 
+    <!-- BitChute -->
+    <color name="light_bitchute_primary_color">#ef4038</color>
+    <color name="light_bitchute_dark_color">#b50010</color>
+    <color name="light_bitchute_accent_color">#000000</color>
+
+    <color name="dark_bitchute_primary_color">#ef4038</color>
+    <color name="dark_bitchute_dark_color">#b50010</color>
+    <color name="dark_bitchute_accent_color">#FFFFFF</color>
+
 </resources>

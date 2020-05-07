@@ -70,4 +70,23 @@
         <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
     </style>
 
+    <!-- BitChute -->
+    <style name="LightTheme.BitChute" parent="LightTheme">
+        <item name="colorPrimary">@color/light_bitchute_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_bitchute_dark_color</item>
+        <item name="colorAccent">@color/light_bitchute_accent_color</item>
+    </style>
+
+    <style name="DarkTheme.BitChute" parent="DarkTheme">
+        <item name="colorPrimary">@color/dark_bitchute_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_bitchute_dark_color</item>
+        <item name="colorAccent">@color/dark_bitchute_accent_color</item>
+    </style>
+
+    <style name="BlackTheme.BitChute" parent="BlackTheme">
+        <item name="colorPrimary">@color/dark_bitchute_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_bitchute_dark_color</item>
+        <item name="colorAccent">@color/dark_bitchute_accent_color</item>
+    </style>
+
 </resources>

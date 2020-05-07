@@ -51,6 +51,10 @@ public final class KioskTranslator {
 
     public static int getKioskIcons(final String kioskId, final Context c) {
         switch (kioskId) {
+            case "Trending Today":
+            case "Trending This Week":
+            case "Trending This Month":
+            case "Recommended Channels":
             case "Trending":
             case "Top 50":
             case "New & hot":
