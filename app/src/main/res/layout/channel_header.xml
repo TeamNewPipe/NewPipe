@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/channel_header_layout"
@@ -21,7 +20,7 @@
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
             android:src="@drawable/channel_banner"
-            tools:ignore="ContentDescription"/>
+            tools:ignore="ContentDescription" />
 
         <FrameLayout
             android:id="@+id/avatars_layout"
@@ -36,8 +35,7 @@
                 android:layout_height="@dimen/channel_avatar_size"
                 android:src="@drawable/buddy"
                 app:civ_border_color="#ffffff"
-                app:civ_border_width="2dp"
-                tools:ignore="RtlHardcoded" />
+                app:civ_border_width="2dp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/sub_channel_avatar_view"
@@ -45,9 +43,11 @@
                 android:layout_height="35dp"
                 android:layout_gravity="bottom|right"
                 android:src="@drawable/buddy"
+                android:visibility="gone"
                 app:civ_border_color="#ffffff"
                 app:civ_border_width="2dp"
-                tools:ignore="RtlHardcoded" />
+                tools:ignore="RtlHardcoded"
+                tools:visibility="visible" />
         </FrameLayout>
 
         <TextView
@@ -102,8 +102,8 @@
             android:id="@+id/channel_subscribe_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_below="@+id/channel_banner_image"
+            android:layout_alignParentRight="true"
             android:layout_gravity="center_vertical|right"
             android:layout_marginRight="2dp"
             android:text="@string/subscribe_button_title"
@@ -111,7 +111,7 @@
             android:theme="@style/RedButton"
             android:visibility="gone"
             tools:ignore="RtlHardcoded"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
     </RelativeLayout>
 
     <LinearLayout

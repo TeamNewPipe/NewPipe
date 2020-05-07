@@ -480,9 +480,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                             currentInfo.getSubChannelName())
             );
             headerSubChannelTitleView.setVisibility(View.VISIBLE);
+            headerSubChannelAvatarView.setVisibility(View.VISIBLE);
         } else {
             headerSubChannelTitleView.setVisibility(View.GONE);
-            headerSubChannelAvatarView.setVisibility(View.GONE);
         }
 
         if (menuRssButton != null) {

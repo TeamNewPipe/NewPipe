@@ -1160,7 +1160,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         } else if (!TextUtils.isEmpty(info.getUploaderName())) {
             displayUploaderAsSubChannel(info);
         } else {
-            subChannelThumb.setVisibility(View.GONE);
             uploaderTextView.setVisibility(View.GONE);
             uploaderThumb.setVisibility(View.GONE);
         }
@@ -1296,11 +1295,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         viewPager.setVisibility(View.GONE);
         tabLayout.setVisibility(View.GONE);
     }
+
     private void displayUploaderAsSubChannel(final StreamInfo info) {
         subChannelTextView.setText(info.getUploaderName());
         subChannelTextView.setVisibility(View.VISIBLE);
         subChannelTextView.setSelected(true);
-        subChannelThumb.setVisibility(View.GONE);
         uploaderTextView.setVisibility(View.GONE);
     }
 
@@ -1308,6 +1307,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         subChannelTextView.setText(info.getSubChannelName());
         subChannelTextView.setVisibility(View.VISIBLE);
         subChannelTextView.setSelected(true);
+
+        subChannelThumb.setVisibility(View.VISIBLE);
 
         if (!TextUtils.isEmpty(info.getUploaderName())) {
             uploaderTextView.setText(
