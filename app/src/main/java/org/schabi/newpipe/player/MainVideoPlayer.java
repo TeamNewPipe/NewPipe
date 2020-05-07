@@ -593,9 +593,6 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
-            boolean showKodiButton = PreferenceManager.getDefaultSharedPreferences(this.context)
-                    .getBoolean(this.context.getString(R.string.show_play_with_kodi_key), false);
-            kodiButton.setVisibility(showKodiButton ? View.VISIBLE : View.GONE);
 
             getRootView().setKeepScreenOn(true);
         }
@@ -712,6 +709,13 @@ public final class MainVideoPlayer extends AppCompatActivity
         protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
             super.onMetadataChanged(tag);
 
+            // show kodi button if it supports the current service and it is enabled in settings
+            final boolean showKodiButton =
+                    KoreUtil.isServiceSupportedByKore(tag.getMetadata().getServiceId())
+                    && PreferenceManager.getDefaultSharedPreferences(context)
+                        .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+            kodiButton.setVisibility(showKodiButton ? View.VISIBLE : View.GONE);
+
             titleTextView.setText(tag.getMetadata().getName());
             channelTextView.setText(tag.getMetadata().getUploaderName());
         }
@@ -725,13 +729,12 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void onKodiShare() {
             onPause();
             try {
-                NavigationHelper.playWithKore(this.context,
-                        Uri.parse(playerImpl.getVideoUrl().replace("https", "http")));
+                NavigationHelper.playWithKore(context, Uri.parse(playerImpl.getVideoUrl()));
             } catch (Exception e) {
                 if (DEBUG) {
                     Log.i(TAG, "Failed to start kore", e);
                 }
-                KoreUtil.showInstallKoreDialog(this.context);
+                KoreUtil.showInstallKoreDialog(context);
             }
         }
 

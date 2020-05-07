@@ -317,8 +317,9 @@
                     android:src="@drawable/ic_cast_white_24dp"
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="@string/play_with_kodi_title"
+                    android:visibility="gone"
                     tools:ignore="RtlHardcoded"
-                    android:visibility="visible"/>
+                    tools:visibility="visible"/>
 
                 <ImageButton
                     android:id="@+id/share"

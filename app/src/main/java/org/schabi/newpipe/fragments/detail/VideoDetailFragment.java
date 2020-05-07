@@ -632,9 +632,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     }
 
     private void updateMenuItemVisibility() {
-        // show kodi if set in settings
+        // show kodi button if it supports the current service and it is enabled in settings
         menu.findItem(R.id.action_play_with_kodi).setVisible(
-                PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(
+                KoreUtil.isServiceSupportedByKore(serviceId)
+                && PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(
                         activity.getString(R.string.show_play_with_kodi_key), false));
     }
 
@@ -665,8 +666,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                 return true;
             case R.id.action_play_with_kodi:
                 try {
-                    NavigationHelper.playWithKore(activity, Uri.parse(
-                            url.replace("https", "http")));
+                    NavigationHelper.playWithKore(activity, Uri.parse(currentInfo.getUrl()));
                 } catch (Exception e) {
                     if (DEBUG) {
                         Log.i(TAG, "Failed to start kore", e);
