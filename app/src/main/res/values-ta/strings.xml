@@ -109,7 +109,7 @@
     <string name="video">காணொலி</string>
     <string name="audio">ஒலி</string>
     <string name="retry">மீண்டும் முயற்சி</string>
-    <string name="use_external_video_player_summary">சில பிரிதிறன்கலில் ஒலி நீக்கப்படும்</string>
+    <string name="use_external_video_player_summary">சில பிரிதிறன்களில் ஒலி நீக்கப்படும்</string>
     <string name="show_higher_resolutions_summary">சில சாதனங்கள் மட்டுமெ 2k/4k காணொளிகலை இயக்கும்</string>
     <string name="show_play_with_kodi_summary">காணொளிகலை Kodi media center கொண்டு இயக்கும் இடப்பை காண்பி</string>
     <string name="use_inexact_seek_title">வேகமான பொருத்தமற்ற தேடலை பயன்படுத்து</string>
