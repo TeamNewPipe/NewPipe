@@ -58,7 +58,7 @@
     <string name="use_tor_summary">(Sperimentale) Forza il download tramite Tor per una maggiore riservatezza (lo streaming dei video non è ancora supportato).</string>
     <string name="parsing_error">Impossibile analizzare il sito web</string>
     <string name="could_not_setup_download_menu">Impossibile impostare il menu di download</string>
-    <string name="live_streams_not_supported">I contenuti in diretta non sono al momento supportati</string>
+    <string name="live_streams_not_supported">I contenuti in diretta non sono ancora supportati</string>
     <string name="content">Contenuti</string>
     <string name="show_age_restricted_content_title">Contenuti Vietati ai Minori</string>
     <string name="video_is_age_restricted">Mostra video riservati a un pubblico maggiorenne. Si possono abilitare nelle Impostazioni.</string>
@@ -319,7 +319,7 @@
     <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
     <string name="use_inexact_seek_title">Usa Ricerca Rapida (Imprecisa)</string>
     <string name="use_inexact_seek_summary">Consente al lettore multimediale di spostarsi più velocemente, ma con precisione ridotta. Spostamenti di 5, 15 o 25 secondi non funzionano con questo.</string>
-    <string name="auto_queue_title">Accoda Automaticamente l\'Elemento Successivo</string>
+    <string name="auto_queue_title">Accoda automaticamente l\'elemento successivo</string>
     <string name="auto_queue_summary">Riproduzione continua (non ripetititva) quando si accoda un contenuto consigliato</string>
     <string name="file">File</string>
     <string name="invalid_directory">Nessuna cartella</string>
@@ -612,4 +612,5 @@
 \nSei sicuro\? L\'azione è irreversibile!</string>
     <string name="remove_watched_popup_title">Rimuovere i gli elementi già visti\?</string>
     <string name="remove_watched">Rimuovi Elementi Visti</string>
+    <string name="youtube_restricted_mode_enabled_title">Modalità limitata di YouTube</string>
 </resources>
