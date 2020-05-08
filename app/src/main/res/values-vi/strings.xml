@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Nhấn tìm kiếm để bắt đầu</string>
+    <string name="main_bg_subtitle">Nhấn \"Tìm kiếm\" để bắt đầu</string>
     <string name="view_count_text">%1$s lượt xem</string>
     <string name="upload_date_text">Đăng vào %1$s</string>
     <string name="no_player_found">Không tìm thấy trình phát luồng. Bạn có muốn cài đặt VLC\?</string>
