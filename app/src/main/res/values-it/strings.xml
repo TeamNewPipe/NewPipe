@@ -488,8 +488,8 @@
     <string name="error_progress_lost">Progresso perso poiché il file è stato eliminato</string>
     <string name="confirm_prompt">Pulire la cronologia dei download o eliminare tutti i file scaricati\?</string>
     <string name="enable_queue_limit_desc">Sarà avviato un solo dowload per volta</string>
-    <string name="start_downloads">Avvia Download</string>
-    <string name="pause_downloads">Sospendi Download</string>
+    <string name="start_downloads">Avvia i download</string>
+    <string name="pause_downloads">Sospendi i download</string>
     <string name="downloads_storage_ask_title">Chiedi Dove Scaricare</string>
     <string name="downloads_storage_ask_summary">Ogni volta verrà chiesta la destinazione dei file</string>
     <string name="downloads_storage_use_saf_title">Utilizza SAF</string>
