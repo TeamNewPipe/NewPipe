@@ -66,6 +66,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        encoding 'utf-8'
     }
 
     // Required and used only by groupie
@@ -157,7 +158,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:665c69b5306d335985d5c0692f5119b5172c1b7a'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:f3913e241e379adf0091319091e8f895c5fcfd07'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 

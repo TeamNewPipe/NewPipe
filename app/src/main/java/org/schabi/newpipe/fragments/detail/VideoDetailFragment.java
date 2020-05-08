@@ -175,6 +175,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     private View uploaderRootLayout;
     private TextView uploaderTextView;
     private ImageView uploaderThumb;
+    private TextView subChannelTextView;
+    private ImageView subChannelThumb;
 
     private TextView thumbsUpTextView;
     private ImageView thumbsUpImageView;
@@ -419,18 +421,17 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                 }
                 break;
             case R.id.detail_uploader_root_layout:
-                if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
-                    Log.w(TAG, "Can't open channel because we got no channel URL");
-                } else {
-                    try {
-                        NavigationHelper.openChannelFragment(
-                                getFragmentManager(),
-                                currentInfo.getServiceId(),
-                                currentInfo.getUploaderUrl(),
-                                currentInfo.getUploaderName());
-                    } catch (Exception e) {
-                        ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
+                    if (!TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
+                        openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
                     }
+
+                    if (DEBUG) {
+                        Log.i(TAG, "Can't open sub-channel because we got no channel URL");
+                    }
+                } else {
+                    openChannel(currentInfo.getSubChannelUrl(),
+                            currentInfo.getSubChannelName());
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
@@ -444,6 +445,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             case R.id.detail_title_root_layout:
                 toggleTitleAndDescription();
                 break;
+        }
+    }
+
+    private void openChannel(final String subChannelUrl, final String subChannelName) {
+        try {
+            NavigationHelper.openChannelFragment(
+                    getFragmentManager(),
+                    currentInfo.getServiceId(),
+                    subChannelUrl,
+                    subChannelName);
+        } catch (Exception e) {
+            ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
         }
     }
 
@@ -462,6 +475,15 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                 break;
             case R.id.detail_controls_download:
                 NavigationHelper.openDownloads(getActivity());
+                break;
+
+            case R.id.detail_uploader_root_layout:
+                if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
+                    Log.w(TAG,
+                            "Can't open parent channel because we got no parent channel URL");
+                } else {
+                    openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
+                }
                 break;
         }
 
@@ -525,6 +547,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         uploaderRootLayout = rootView.findViewById(R.id.detail_uploader_root_layout);
         uploaderTextView = rootView.findViewById(R.id.detail_uploader_text_view);
         uploaderThumb = rootView.findViewById(R.id.detail_uploader_thumbnail_view);
+        subChannelTextView = rootView.findViewById(R.id.detail_sub_channel_text_view);
+        subChannelThumb = rootView.findViewById(R.id.detail_sub_channel_thumbnail_view);
 
         appBarLayout = rootView.findViewById(R.id.appbarlayout);
         viewPager = rootView.findViewById(R.id.viewpager);
@@ -554,8 +578,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     protected void initListeners() {
         super.initListeners();
 
-        videoTitleRoot.setOnClickListener(this);
         uploaderRootLayout.setOnClickListener(this);
+        uploaderRootLayout.setOnLongClickListener(this);
+        videoTitleRoot.setOnClickListener(this);
         thumbnailBackgroundButton.setOnClickListener(this);
         detailControlsBackground.setOnClickListener(this);
         detailControlsPopup.setOnClickListener(this);
@@ -601,6 +626,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
 
             IMAGE_LOADER.displayImage(info.getThumbnailUrl(), thumbnailImageView,
                     ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, onFailListener);
+        }
+
+        if (!TextUtils.isEmpty(info.getSubChannelAvatarUrl())) {
+            IMAGE_LOADER.displayImage(info.getSubChannelAvatarUrl(), subChannelThumb,
+                    ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
 
         if (!TextUtils.isEmpty(info.getUploaderAvatarUrl())) {
@@ -964,7 +994,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                                        @NonNull final StreamInfo info,
                                        @NonNull final Stream selectedStream) {
         NavigationHelper.playOnExternalPlayer(context, currentInfo.getName(),
-                currentInfo.getUploaderName(), selectedStream);
+                currentInfo.getSubChannelName(), selectedStream);
 
         final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
         disposables.add(recordManager.onViewed(info).onErrorComplete()
@@ -1097,9 +1127,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         }
 
         IMAGE_LOADER.cancelDisplayTask(thumbnailImageView);
-        IMAGE_LOADER.cancelDisplayTask(uploaderThumb);
+        IMAGE_LOADER.cancelDisplayTask(subChannelThumb);
         thumbnailImageView.setImageBitmap(null);
-        uploaderThumb.setImageBitmap(null);
+        subChannelThumb.setImageBitmap(null);
     }
 
     @Override
@@ -1127,13 +1157,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         animateView(thumbnailPlayButton, true, 200);
         videoTitleTextView.setText(name);
 
-        if (!TextUtils.isEmpty(info.getUploaderName())) {
-            uploaderTextView.setText(info.getUploaderName());
-            uploaderTextView.setVisibility(View.VISIBLE);
-            uploaderTextView.setSelected(true);
+        if (!TextUtils.isEmpty(info.getSubChannelName())) {
+            displayBothUploaderAndSubChannel(info);
+        } else if (!TextUtils.isEmpty(info.getUploaderName())) {
+            displayUploaderAsSubChannel(info);
         } else {
             uploaderTextView.setVisibility(View.GONE);
+            uploaderThumb.setVisibility(View.GONE);
         }
+
+        subChannelThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
         uploaderThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
 
         if (info.getViewCount() >= 0) {
@@ -1264,6 +1297,31 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         viewPager.setVisibility(View.GONE);
         tabLayout.setVisibility(View.GONE);
     }
+
+    private void displayUploaderAsSubChannel(final StreamInfo info) {
+        subChannelTextView.setText(info.getUploaderName());
+        subChannelTextView.setVisibility(View.VISIBLE);
+        subChannelTextView.setSelected(true);
+        uploaderTextView.setVisibility(View.GONE);
+    }
+
+    private void displayBothUploaderAndSubChannel(final StreamInfo info) {
+        subChannelTextView.setText(info.getSubChannelName());
+        subChannelTextView.setVisibility(View.VISIBLE);
+        subChannelTextView.setSelected(true);
+
+        subChannelThumb.setVisibility(View.VISIBLE);
+
+        if (!TextUtils.isEmpty(info.getUploaderName())) {
+            uploaderTextView.setText(
+                    String.format(getString(R.string.video_detail_by), info.getUploaderName()));
+            uploaderTextView.setVisibility(View.VISIBLE);
+            uploaderTextView.setSelected(true);
+        } else {
+            uploaderTextView.setVisibility(View.GONE);
+        }
+    }
+
 
     public void openDownloadDialog() {
         try {
