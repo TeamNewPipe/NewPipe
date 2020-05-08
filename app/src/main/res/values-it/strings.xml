@@ -613,6 +613,6 @@
     <string name="remove_watched_popup_title">Rimuovere i gli elementi già visti\?</string>
     <string name="remove_watched">Rimuovi Elementi Visti</string>
     <string name="youtube_restricted_mode_enabled_title">Modalità limitata di YouTube</string>
-    <string name="show_original_time_ago_summary">I testi originali dei servizi saranno visibili negli elementi stream</string>
+    <string name="show_original_time_ago_summary">I testi originali dei servizi saranno visibili negli elementi video</string>
     <string name="show_original_time_ago_title">Mostra i tempi originali degli elementi</string>
 </resources>
