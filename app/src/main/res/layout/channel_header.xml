@@ -39,8 +39,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/sub_channel_avatar_view"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/sub_channel_avatar_size"
+                android:layout_height="@dimen/sub_channel_avatar_size"
                 android:layout_gravity="bottom|right"
                 android:src="@drawable/buddy"
                 android:visibility="gone"
