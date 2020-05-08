@@ -422,10 +422,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                 break;
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
-                    Log.w(TAG, "Can't open sub-channel because we got no channel URL");
-
                     if (!TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
                         openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
+                    }
+
+                    if (DEBUG) {
+                        Log.i(TAG, "Can't open sub-channel because we got no channel URL");
                     }
                 } else {
                     openChannel(currentInfo.getSubChannelUrl(),

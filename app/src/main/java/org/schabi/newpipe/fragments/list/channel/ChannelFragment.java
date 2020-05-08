@@ -423,18 +423,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         switch (v.getId()) {
             case R.id.sub_channel_avatar_view:
             case R.id.sub_channel_title_view:
-                if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
-                    Log.w(TAG, "Can't open sub-channel because we got no channel URL");
-                } else {
+                if (!TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
                     try {
-                        NavigationHelper.openChannelFragment(
-                                getFragmentManager(),
-                                currentInfo.getServiceId(),
-                                currentInfo.getSubChannelUrl(),
-                                currentInfo.getSubChannelName());
+                        NavigationHelper.openChannelFragment(getFragmentManager(),
+                                currentInfo.getServiceId(), currentInfo.getParentChannelUrl(),
+                                currentInfo.getParentChannelName());
                     } catch (Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                     }
+                } else if (DEBUG) {
+                    Log.i(TAG, "Can't open parent channel because we got no channel URL");
                 }
                 break;
         }
@@ -463,7 +461,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
         IMAGE_LOADER.displayImage(result.getAvatarUrl(), headerAvatarView,
                 ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
-        IMAGE_LOADER.displayImage(result.getSubChannelAvatarUrl(), headerSubChannelAvatarView,
+        IMAGE_LOADER.displayImage(result.getParentChannelAvatarUrl(), headerSubChannelAvatarView,
                 ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
 
         headerSubscribersTextView.setVisibility(View.VISIBLE);
@@ -474,10 +472,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             headerSubscribersTextView.setText(R.string.subscribers_count_not_available);
         }
 
-        if (!TextUtils.isEmpty(currentInfo.getSubChannelName())) {
+        if (!TextUtils.isEmpty(currentInfo.getParentChannelName())) {
             headerSubChannelTitleView.setText(String.format(
                             getString(R.string.channel_created_by),
-                            currentInfo.getSubChannelName())
+                            currentInfo.getParentChannelName())
             );
             headerSubChannelTitleView.setVisibility(View.VISIBLE);
             headerSubChannelAvatarView.setVisibility(View.VISIBLE);
