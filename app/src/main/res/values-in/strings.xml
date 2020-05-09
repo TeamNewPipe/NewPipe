@@ -604,4 +604,7 @@
     <string name="show_original_time_ago_summary">Teks asli dari layanan akan tampil pada item stream</string>
     <string name="show_original_time_ago_title">Tampilkan waktu yang lalu sebenarnya pada item</string>
     <string name="youtube_restricted_mode_enabled_title">Mode terbatas Youtube</string>
+    <string name="video_detail_by">Oleh %s</string>
+    <string name="channel_created_by">Dibuat oleh %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar channel</string>
 </resources>
