@@ -1325,6 +1325,13 @@ public final class MainVideoPlayer extends AppCompatActivity
                 return false;
             }
 
+            final boolean isTouchingStatusBar = initialEvent.getY() < getStatusBarHeight();
+            final boolean isTouchingNavigationBar = initialEvent.getY()
+                            > playerImpl.getRootView().getHeight() - getNavigationBarHeight();
+            if (isTouchingStatusBar || isTouchingNavigationBar) {
+                return false;
+            }
+
 //            if (DEBUG) {
 //                Log.d(TAG, "MainVideoPlayer.onScroll = " +
 //                        "e1.getRaw = [" + initialEvent.getRawX() + ", "
@@ -1411,6 +1418,22 @@ public final class MainVideoPlayer extends AppCompatActivity
                 }
             }
             return true;
+        }
+
+        private int getNavigationBarHeight() {
+            int resId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resId > 0) {
+                return getResources().getDimensionPixelSize(resId);
+            }
+            return 0;
+        }
+
+        private int getStatusBarHeight() {
+            int resId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (resId > 0) {
+                return getResources().getDimensionPixelSize(resId);
+            }
+            return 0;
         }
 
         private void onScrollEnd() {
