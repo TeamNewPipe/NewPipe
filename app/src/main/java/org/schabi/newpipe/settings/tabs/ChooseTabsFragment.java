@@ -33,6 +33,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SelectChannelFragment;
+import org.schabi.newpipe.settings.SelectFeedGroupFragment;
 import org.schabi.newpipe.settings.SelectKioskFragment;
 import org.schabi.newpipe.settings.tabs.AddTabDialog.ChooseTabListItem;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -48,7 +49,7 @@ public class ChooseTabsFragment extends Fragment {
 
     private TabsManager tabsManager;
 
-    private List<Tab> tabList = new ArrayList<>();
+    private final List<Tab> tabList = new ArrayList<>();
     private ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -78,10 +79,10 @@ public class ChooseTabsFragment extends Fragment {
 
         initButton(rootView);
 
-        RecyclerView listSelectedTabs = rootView.findViewById(R.id.selectedTabs);
+        final RecyclerView listSelectedTabs = rootView.findViewById(R.id.selectedTabs);
         listSelectedTabs.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+        final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(listSelectedTabs);
 
         selectedTabsAdapter = new SelectedTabsAdapter(requireContext(), itemTouchHelper);
@@ -138,7 +139,7 @@ public class ChooseTabsFragment extends Fragment {
 
     private void updateTitle() {
         if (getActivity() instanceof AppCompatActivity) {
-            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setTitle(R.string.main_page_content);
             }
@@ -201,15 +202,21 @@ public class ChooseTabsFragment extends Fragment {
         switch (type) {
             case KIOSK:
                 SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
-                selectKioskFragment.setOnSelectedLisener((serviceId, kioskId, kioskName) ->
+                selectKioskFragment.setOnSelectedListener((serviceId, kioskId, kioskName) ->
                         addTab(new Tab.KioskTab(serviceId, kioskId)));
                 selectKioskFragment.show(requireFragmentManager(), "select_kiosk");
                 return;
             case CHANNEL:
                 SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
-                selectChannelFragment.setOnSelectedLisener((serviceId, url, name) ->
+                selectChannelFragment.setOnSelectedListener((serviceId, url, name) ->
                         addTab(new Tab.ChannelTab(serviceId, url, name)));
                 selectChannelFragment.show(requireFragmentManager(), "select_channel");
+                return;
+            case FEED_GROUP:
+                SelectFeedGroupFragment selectFeedGroupFragment = new SelectFeedGroupFragment();
+                selectFeedGroupFragment.setOnSelectedListener((id, name, thumbnailId) ->
+                        addTab(new Tab.FeedGroupTab(id, name, thumbnailId)));
+                selectFeedGroupFragment.show(requireFragmentManager(), "select_feed_group");
                 return;
             default:
                 addTab(type.getTab());
@@ -246,6 +253,11 @@ public class ChooseTabsFragment extends Fragment {
                                 getString(R.string.default_kiosk_page_summary),
                                 ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
                     }
+                    break;
+                case FEED_GROUP:
+                    returnList.add(new ChooseTabListItem(tab.getTabId(),
+                            getString(R.string.feed_group_page_summary),
+                            ThemeHelper.resolveResourceIdFromAttr(context, R.attr.rss)));
                     break;
                 default:
                     if (!tabList.contains(tab)) {
@@ -336,7 +348,7 @@ public class ChooseTabsFragment extends Fragment {
         @Override
         public ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder onCreateViewHolder(
                 @NonNull final ViewGroup parent, final int viewType) {
-            View view = inflater.inflate(R.layout.list_choose_tabs, parent, false);
+            final View view = inflater.inflate(R.layout.list_choose_tabs, parent, false);
             return new ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder(view);
         }
 

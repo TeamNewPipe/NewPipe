@@ -33,7 +33,8 @@ import java.util.Objects;
 public abstract class Tab {
     private static final String JSON_TAB_ID_KEY = "tab_id";
 
-    Tab() { }
+    Tab() {
+    }
 
     Tab(@NonNull final JsonObject jsonObject) {
         readDataFromJson(jsonObject);
@@ -83,6 +84,8 @@ public abstract class Tab {
                     return new KioskTab(jsonObject);
                 case CHANNEL:
                     return new ChannelTab(jsonObject);
+                case FEED_GROUP:
+                    return new FeedGroupTab((jsonObject));
             }
         }
 
@@ -147,7 +150,8 @@ public abstract class Tab {
         BOOKMARKS(new BookmarksTab()),
         HISTORY(new HistoryTab()),
         KIOSK(new KioskTab()),
-        CHANNEL(new ChannelTab());
+        CHANNEL(new ChannelTab()),
+        FEED_GROUP(new FeedGroupTab());
 
         private Tab tab;
 
@@ -480,6 +484,89 @@ public abstract class Tab {
                                 "Loading default kiosk from selected service", 0));
             }
             return kioskId;
+        }
+    }
+
+    public static class FeedGroupTab extends Tab {
+        public static final int ID = 8;
+        private static final String JSON_FEED_GROUP_ID_KEY = "feed_group_id";
+        private static final String JSON_FEED_GROUP_THUMBNAIL_ID_KEY = "feed_group_thumbnail_id";
+        private static final String JSON_FEED_GROUP_NAME_KEY = "feed_group_name";
+        private long feedGroupId;
+
+        private int feedGroupThumbnailId;
+        private String feedGroupName;
+
+        private FeedGroupTab() {
+            this(-1, "<no-name>", -1);
+        }
+
+        public FeedGroupTab(final long feedGroupId, final String feedGroupName,
+                            final int feedGroupThumbnailId) {
+            this.feedGroupId = feedGroupId;
+            this.feedGroupName = feedGroupName;
+            this.feedGroupThumbnailId = feedGroupThumbnailId;
+        }
+
+        public FeedGroupTab(final JsonObject jsonObject) {
+            super(jsonObject);
+        }
+
+        @Override
+        public int getTabId() {
+            return ID;
+        }
+
+        @Override
+        public String getTabName(final Context context) {
+            return feedGroupName;
+        }
+
+        @DrawableRes
+        @Override
+        public int getTabIconRes(final Context context) {
+            return ThemeHelper.resolveResourceIdFromAttr(context, feedGroupThumbnailId);
+        }
+
+        @Override
+        public FeedFragment getFragment(final Context context) {
+            return FeedFragment.newInstance(feedGroupId, feedGroupName);
+        }
+
+        @Override
+        protected void writeDataToJson(final JsonSink writerSink) {
+            writerSink.value(JSON_FEED_GROUP_ID_KEY, feedGroupId)
+                    .value(JSON_FEED_GROUP_NAME_KEY, feedGroupName)
+                    .value(JSON_FEED_GROUP_THUMBNAIL_ID_KEY, feedGroupThumbnailId);
+        }
+
+        @Override
+        protected void readDataFromJson(final JsonObject jsonObject) {
+            feedGroupId = jsonObject.getLong(JSON_FEED_GROUP_ID_KEY, -1);
+            feedGroupName =
+                    jsonObject.getString(JSON_FEED_GROUP_NAME_KEY, "<no-name>");
+            feedGroupThumbnailId = jsonObject.getInt(JSON_FEED_GROUP_THUMBNAIL_ID_KEY, -1);
+        }
+
+        @Override
+        public boolean equals(final Object obj) {
+            return super.equals(obj)
+                    && Objects.equals(feedGroupId, ((FeedGroupTab) obj).feedGroupId)
+                    && Objects.equals(feedGroupName, ((FeedGroupTab) obj).feedGroupName)
+                    && Objects.equals(feedGroupThumbnailId,
+                    ((FeedGroupTab) obj).feedGroupThumbnailId);
+        }
+
+        public long getFeedGroupId() {
+            return feedGroupId;
+        }
+
+        public String getFeedGroupName() {
+            return feedGroupName;
+        }
+
+        public int getFeedGroupThumbnailId() {
+            return feedGroupThumbnailId;
         }
     }
 }

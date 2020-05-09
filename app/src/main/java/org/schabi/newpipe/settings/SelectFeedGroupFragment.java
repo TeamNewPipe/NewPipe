@@ -1,11 +1,13 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,23 +16,16 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.subscription.SubscriptionEntity;
-import org.schabi.newpipe.local.subscription.SubscriptionManager;
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
+import org.schabi.newpipe.local.feed.FeedDatabaseManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 
 import java.util.List;
 import java.util.Vector;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Christian Schabesberger on 26.09.17.
@@ -53,15 +48,7 @@ import io.reactivex.schedulers.Schedulers;
  * </p>
  */
 
-public class SelectChannelFragment extends DialogFragment {
-    /**
-     * This contains the base display options for images.
-     */
-    private static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS
-            = new DisplayImageOptions.Builder().cacheInMemory(true).build();
-
-    private final ImageLoader imageLoader = ImageLoader.getInstance();
-
+public class SelectFeedGroupFragment extends DialogFragment {
     private OnSelectedListener onSelectedListener = null;
     private OnCancelListener onCancelListener = null;
 
@@ -69,7 +56,8 @@ public class SelectChannelFragment extends DialogFragment {
     private TextView emptyView;
     private RecyclerView recyclerView;
 
-    private List<SubscriptionEntity> subscriptions = new Vector<>();
+    private List<FeedGroupEntity> feedGroups = new Vector<>();
+    private Disposable feedGroupsSubscriber;
 
     public void setOnSelectedListener(final OnSelectedListener listener) {
         onSelectedListener = listener;
@@ -80,16 +68,17 @@ public class SelectChannelFragment extends DialogFragment {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Init
+    // Fragment's Lifecycle
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.select_channel_fragment, container, false);
+        final View v = inflater.inflate(
+                R.layout.select_feed_group_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        SelectChannelAdapter channelAdapter = new SelectChannelAdapter();
+        SelectFeedGroupAdapter channelAdapter = new SelectFeedGroupAdapter();
         recyclerView.setAdapter(channelAdapter);
 
         progressBar = v.findViewById(R.id.progressBar);
@@ -98,14 +87,21 @@ public class SelectChannelFragment extends DialogFragment {
         recyclerView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
 
-
-        SubscriptionManager subscriptionManager = new SubscriptionManager(getContext());
-        subscriptionManager.subscriptions().toObservable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getSubscriptionObserver());
+        final FeedDatabaseManager feedDatabaseManager = new FeedDatabaseManager(getContext());
+        feedGroupsSubscriber = feedDatabaseManager.groups().toObservable()
+                .subscribe(this::displayFeedGroups, this::onError);
 
         return v;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (feedGroupsSubscriber != null) {
+            feedGroupsSubscriber.dispose();
+            feedGroupsSubscriber = null;
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -122,9 +118,10 @@ public class SelectChannelFragment extends DialogFragment {
 
     private void clickedItem(final int position) {
         if (onSelectedListener != null) {
-            SubscriptionEntity entry = subscriptions.get(position);
+            FeedGroupEntity entry = feedGroups.get(position);
             onSelectedListener
-                    .onChannelSelected(entry.getServiceId(), entry.getUrl(), entry.getName());
+                    .onFeedGroupSelected(entry.getUid(), entry.getName(),
+                            entry.getIcon().getDrawableResourceAttr());
         }
         dismiss();
     }
@@ -133,35 +130,15 @@ public class SelectChannelFragment extends DialogFragment {
     // Item handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void displayChannels(final List<SubscriptionEntity> newSubscriptions) {
-        this.subscriptions = newSubscriptions;
+    private void displayFeedGroups(final List<FeedGroupEntity> newFeedGroups) {
+        this.feedGroups = newFeedGroups;
         progressBar.setVisibility(View.GONE);
-        if (newSubscriptions.isEmpty()) {
+        if (newFeedGroups.isEmpty()) {
             emptyView.setVisibility(View.VISIBLE);
             return;
         }
+
         recyclerView.setVisibility(View.VISIBLE);
-
-    }
-
-    private Observer<List<SubscriptionEntity>> getSubscriptionObserver() {
-        return new Observer<List<SubscriptionEntity>>() {
-            @Override
-            public void onSubscribe(final Disposable d) { }
-
-            @Override
-            public void onNext(final List<SubscriptionEntity> newSubscriptions) {
-                displayChannels(newSubscriptions);
-            }
-
-            @Override
-            public void onError(final Throwable exception) {
-                SelectChannelFragment.this.onError(exception);
-            }
-
-            @Override
-            public void onComplete() { }
-        };
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -179,47 +156,45 @@ public class SelectChannelFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     public interface OnSelectedListener {
-        void onChannelSelected(int serviceId, String url, String name);
+        void onFeedGroupSelected(long id, String name, int thumbnailId);
     }
 
     public interface OnCancelListener {
         void onCancel();
     }
 
-    private class SelectChannelAdapter
-            extends RecyclerView.Adapter<SelectChannelAdapter.SelectChannelItemHolder> {
+    private class SelectFeedGroupAdapter
+            extends RecyclerView.Adapter<SelectFeedGroupAdapter.SelectFeedGroupItemHolder> {
         @Override
-        public SelectChannelItemHolder onCreateViewHolder(final ViewGroup parent,
-                                                          final int viewType) {
-            View item = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.select_channel_item, parent, false);
-            return new SelectChannelItemHolder(item);
+        public SelectFeedGroupItemHolder onCreateViewHolder(final ViewGroup parent,
+                                                            final int viewType) {
+            final View item = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.select_feed_group_item, parent, false);
+
+            return new SelectFeedGroupItemHolder(item);
         }
 
         @Override
-        public void onBindViewHolder(final SelectChannelItemHolder holder, final int position) {
-            SubscriptionEntity entry = subscriptions.get(position);
+        public void onBindViewHolder(final SelectFeedGroupItemHolder holder, final int position) {
+            final FeedGroupEntity entry = feedGroups.get(position);
             holder.titleView.setText(entry.getName());
-            holder.view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    clickedItem(position);
-                }
-            });
-            imageLoader.displayImage(entry.getAvatarUrl(), holder.thumbnailView,
-                    DISPLAY_IMAGE_OPTIONS);
+            holder.view.setOnClickListener(view -> clickedItem(position));
+
+            final Context context = SelectFeedGroupFragment.this.getContext();
+            holder.thumbnailView.setImageResource(entry.getIcon().getDrawableRes(context));
         }
 
         @Override
         public int getItemCount() {
-            return subscriptions.size();
+            return feedGroups.size();
         }
 
-        public class SelectChannelItemHolder extends RecyclerView.ViewHolder {
+        public class SelectFeedGroupItemHolder extends RecyclerView.ViewHolder {
             public final View view;
-            final CircleImageView thumbnailView;
+            final ImageView thumbnailView;
             final TextView titleView;
-            SelectChannelItemHolder(final View v) {
+
+            SelectFeedGroupItemHolder(final View v) {
                 super(v);
                 this.view = v;
                 thumbnailView = v.findViewById(R.id.itemThumbnailView);

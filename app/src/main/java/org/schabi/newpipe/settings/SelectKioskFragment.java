@@ -50,11 +50,11 @@ public class SelectKioskFragment extends DialogFragment {
     private RecyclerView recyclerView = null;
     private SelectKioskAdapter selectKioskAdapter = null;
 
-    private OnSelectedLisener onSelectedLisener = null;
+    private OnSelectedListener onSelectedListener = null;
     private OnCancelListener onCancelListener = null;
 
-    public void setOnSelectedLisener(final OnSelectedLisener listener) {
-        onSelectedLisener = listener;
+    public void setOnSelectedListener(final OnSelectedListener listener) {
+        onSelectedListener = listener;
     }
 
     public void setOnCancelListener(final OnCancelListener listener) {
@@ -90,8 +90,8 @@ public class SelectKioskFragment extends DialogFragment {
     }
 
     private void clickedItem(final SelectKioskAdapter.Entry entry) {
-        if (onSelectedLisener != null) {
-            onSelectedLisener.onKioskSelected(entry.serviceId, entry.kioskId, entry.kioskName);
+        if (onSelectedListener != null) {
+            onSelectedListener.onKioskSelected(entry.serviceId, entry.kioskId, entry.kioskName);
         }
         dismiss();
     }
@@ -110,7 +110,7 @@ public class SelectKioskFragment extends DialogFragment {
     // Interfaces
     //////////////////////////////////////////////////////////////////////////*/
 
-    public interface OnSelectedLisener {
+    public interface OnSelectedListener {
         void onKioskSelected(int serviceId, String kioskId, String kioskName);
     }
 
