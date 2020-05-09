@@ -613,4 +613,7 @@ abrir em modo popup</string>
 \nVocê tem certeza\? Isto não pode ser desfeito!</string>
     <string name="remove_watched_popup_title">Remover vídeos assistidos\?</string>
     <string name="remove_watched">Remover assistido</string>
+    <string name="show_original_time_ago_summary">Os textos originais dos serviços serão visíveis nos itens de transmissão</string>
+    <string name="show_original_time_ago_title">Mostrar tempo original nos itens</string>
+    <string name="youtube_restricted_mode_enabled_title">Modo restrito do YouTube</string>
 </resources>

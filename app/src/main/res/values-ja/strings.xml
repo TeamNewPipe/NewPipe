@@ -600,4 +600,7 @@
     <string name="remove_watched_popup_yes_and_partially_watched_videos">はい、部分的に視聴した動画も削除します</string>
     <string name="remove_watched_popup_title">視聴済みの動画を削除しますか？</string>
     <string name="remove_watched">視聴済みを削除</string>
+    <string name="show_original_time_ago_summary">サービスのオリジナルのテキストが生放送に表示されます</string>
+    <string name="show_original_time_ago_title">アイテムに元の時間を表示</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube 制限付きモード</string>
 </resources>
