@@ -603,4 +603,7 @@
     <string name="show_original_time_ago_summary">サービスのオリジナルのテキストが生放送に表示されます</string>
     <string name="show_original_time_ago_title">アイテムに元の時間を表示</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube 制限付きモード</string>
+    <string name="video_detail_by">%s による</string>
+    <string name="channel_created_by">%s により作成</string>
+    <string name="detail_sub_channel_thumbnail_view_description">チャンネルのサムネイル</string>
 </resources>
