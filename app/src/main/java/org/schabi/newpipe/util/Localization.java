@@ -7,14 +7,13 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 
-import org.ocpsoft.prettytime.PrettyTime;
-import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
@@ -53,12 +52,11 @@ import java.util.Locale;
 public final class Localization {
 
     private static final String DOT_SEPARATOR = " • ";
-    private static PrettyTime prettyTime;
 
     private Localization() { }
 
     public static void init(final Context context) {
-        initPrettyTime(context);
+
     }
 
     @NonNull
@@ -290,24 +288,10 @@ public final class Localization {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Pretty Time
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private static void initPrettyTime(final Context context) {
-        prettyTime = new PrettyTime(getAppLocale(context));
-        // Do not use decades as YouTube doesn't either.
-        prettyTime.removeUnit(Decade.class);
-    }
-
-    private static PrettyTime getPrettyTime() {
-        return prettyTime;
-    }
-
     public static String relativeTime(final Calendar calendarTime) {
-        String time = getPrettyTime().formatUnrounded(calendarTime);
-        return time.startsWith("-") ? time.substring(1) : time;
-        //workaround fix for russian showing -1 day ago, -19hrs ago…
+        return DateUtils.getRelativeTimeSpanString(
+                calendarTime.getTimeInMillis(), System.currentTimeMillis(),
+                DateUtils.MINUTE_IN_MILLIS).toString();
     }
 
     private static void changeAppLanguage(final Locale loc, final Resources res) {
