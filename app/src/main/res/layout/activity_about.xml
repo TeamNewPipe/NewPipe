@@ -14,18 +14,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/appbar_padding_top"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar">
+        android:theme="@style/ToolbarTheme"
+        app:popupTheme="@style/ToolbarTheme">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            app:titleTextColor="@color/white"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
+            app:tabIndicatorColor="@color/white"
+            app:tabTextColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

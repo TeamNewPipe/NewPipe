@@ -2,9 +2,11 @@ package org.schabi.newpipe.fragments;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -184,8 +187,16 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     private void updateTabsIconAndDescription() {
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        @ColorInt int color = typedValue.data;
+        tabLayout.setBackgroundColor(color);
+
         for (int i = 0; i < tabsList.size(); i++) {
             final TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
+
             if (tabToSet != null) {
                 final Tab tab = tabsList.get(i);
                 tabToSet.setIcon(tab.getTabIconRes(requireContext()));

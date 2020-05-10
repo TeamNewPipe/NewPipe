@@ -121,9 +121,6 @@
     </style>
 
     <style name="ToolbarTheme" parent="DarkTheme">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
-
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">@color/white</item>
 
