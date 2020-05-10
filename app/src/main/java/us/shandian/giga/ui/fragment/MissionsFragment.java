@@ -229,9 +229,9 @@ public class MissionsFragment extends Fragment {
             int icon;
 
             if (mLinear)
-                icon = isLight ? R.drawable.ic_grid_black_24dp : R.drawable.ic_grid_white_24dp;
+                icon = R.drawable.ic_grid_white_24dp;
             else
-                icon = isLight ? R.drawable.ic_list_black_24dp : R.drawable.ic_list_white_24dp;
+                icon = R.drawable.ic_list_white_24dp;
 
             mSwitch.setIcon(icon);
             mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
