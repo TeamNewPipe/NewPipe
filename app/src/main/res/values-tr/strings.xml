@@ -615,4 +615,7 @@
     <string name="show_original_time_ago_summary">Akış ögelerinde hizmetlerden alınan özgün metinler görünecektir</string>
     <string name="show_original_time_ago_title">Ögelerde özgün \'... önce\'yi göster</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube kısıtlı kip</string>
+    <string name="video_detail_by">%s tarafından</string>
+    <string name="channel_created_by">%s tarafından oluşturuldu</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar küçük resmi</string>
 </resources>
