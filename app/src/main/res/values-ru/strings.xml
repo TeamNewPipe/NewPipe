@@ -345,11 +345,12 @@
     <string name="previous_export">Предыдущий экспорт</string>
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
-    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта:
+    <string name="import_youtube_instructions">Выберите экспортированный файл подписок YouTube.
 \n
+\nДля экспорта ваших подписок из YouTube.
 \n1. Перейдите по ссылке %1$s
-\n2. Выполните вход.
-\n3. Дождитесь завершения загрузки файла экспорта.</string>
+\n2. Если потребуется, войдите в аккаунт.
+\n3. Выберите файл подписок (subscription_manager) в папке загрузок</string>
     <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: 
 \n 
 \n1. Включите режим \"Полная версия сайта\" в браузере.
