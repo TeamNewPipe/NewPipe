@@ -416,8 +416,8 @@
     <string name="auto">Автоматически</string>
     <string name="brightness_gesture_control_summary">Менять яркость плеера жестом</string>
     <string name="brightness_gesture_control_title">Жест яркости</string>
-    <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель невозможна. Сбросить расположение папки загрузки\?</string>
-    <string name="download_to_sdcard_error_title">Внешний накопитель недоступен</string>
+    <string name="download_to_sdcard_error_message">Загрузка на SD-карту невозможна. Сбросить расположение папки загрузки\?</string>
+    <string name="download_to_sdcard_error_title">SD-карта недоступна</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">Значения по умолчанию</string>
     <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
@@ -498,8 +498,8 @@
     <string name="pause_downloads">Приостановить загрузку</string>
     <string name="downloads_storage_ask_title">Запрашивать папку загрузки</string>
     <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения</string>
-    <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения.
-\nИспользуйте SAF для загрузки на внешний накопитель</string>
+    <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения. 
+\nИспользуйте SAF для загрузки на SD-карту</string>
     <string name="downloads_storage_use_saf_title">Использовать SAF</string>
     <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на SD-карте. Поддерживается не всеми устройствами</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
