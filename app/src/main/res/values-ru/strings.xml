@@ -345,7 +345,7 @@
     <string name="previous_export">Предыдущий экспорт</string>
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
-    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта: 
+    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта:
 \n
 \n1. Перейдите по ссылке %1$s
 \n2. Выполните вход.
@@ -628,4 +628,7 @@
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
     <string name="youtube_restricted_mode_enabled_title">Безопасный режим YouTube</string>
+    <string name="video_detail_by">От %s</string>
+    <string name="channel_created_by">Создано %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
 </resources>
