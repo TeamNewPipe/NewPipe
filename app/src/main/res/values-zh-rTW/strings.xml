@@ -166,10 +166,12 @@
     <string name="empty_subscription_feed_subtitle">這裡空空如也</string>
     <string name="no_subscribers">無訂閱者</string>
     <plurals name="subscribers">
+        <item quantity="one">%s 位訂閱者</item>
         <item quantity="other">%s 位訂閱者</item>
     </plurals>
     <string name="no_views">無觀看次數</string>
     <plurals name="views">
+        <item quantity="one">%s 次觀看</item>
         <item quantity="other">%s 次觀看</item>
     </plurals>
     <string name="no_videos">沒有影片</string>
@@ -496,15 +498,18 @@
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
     <plurals name="videos">
+        <item quantity="one">%s 影片</item>
         <item quantity="other">%s 影片</item>
     </plurals>
     <string name="default_kiosk_page_summary">預設 Kiosk</string>
     <string name="no_one_watching">沒有人在看</string>
     <plurals name="watching">
+        <item quantity="one">%s 個觀眾</item>
         <item quantity="other">%s 個觀眾</item>
     </plurals>
     <string name="no_one_listening">沒有人正在聽</string>
     <plurals name="listening">
+        <item quantity="one">%s 個聽眾</item>
         <item quantity="other">%s 個聽眾</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更。</string>
@@ -608,4 +613,7 @@
     <string name="show_original_time_ago_summary">來自服務的原始文字將在串流項目中可見</string>
     <string name="show_original_time_ago_title">在項目上顯示原始時間</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube 受限模式</string>
+    <string name="video_detail_by">由 %s</string>
+    <string name="channel_created_by">由 %s 建立</string>
+    <string name="detail_sub_channel_thumbnail_view_description">頻道大頭貼縮圖</string>
 </resources>
