@@ -28,6 +28,6 @@
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"
-        android:theme="@style/RedButton"/>
+        android:theme="@style/ServiceColoredButton"/>
 
 </LinearLayout>
