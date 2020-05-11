@@ -659,4 +659,7 @@
     <string name="show_original_time_ago_summary">ستكون النصوص الأصلية من الخدمات مرئية في عناصر البث</string>
     <string name="show_original_time_ago_title">عرض الوقت الأصلي على العناصر</string>
     <string name="youtube_restricted_mode_enabled_title">وضع مقيد يوتيوب</string>
+    <string name="video_detail_by">لـ %s</string>
+    <string name="channel_created_by">أنشأها %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">الصورة الرمزية للقناة</string>
 </resources>
