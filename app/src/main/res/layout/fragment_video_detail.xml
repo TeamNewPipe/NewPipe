@@ -55,7 +55,7 @@
                         android:layout_height="64dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
-                        app:srcCompat="@drawable/ic_play_arrow_shadow_white_24dp"
+                        app:srcCompat="@drawable/ic_play_arrow_shadow"
                         android:visibility="invisible"
                         tools:ignore="ContentDescription"
                         tools:visibility="visible" />

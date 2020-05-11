@@ -1283,7 +1283,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
 
                 detailControlsPopup.setVisibility(View.GONE);
                 spinnerToolbar.setVisibility(View.GONE);
-                thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
+                thumbnailPlayButton.setImageResource(R.drawable.ic_headset_shadow);
                 break;
         }
 
