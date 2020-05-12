@@ -743,6 +743,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             public void onItemSelected(final AdapterView<?> parent, final View view,
                                        final int position, final long id) {
                 selectedVideoStreamIndex = position;
+                RelativeLayout r = (RelativeLayout) parent.getChildAt(0);
+                ((TextView) r.getChildAt(1)).setTextColor(getResources().getColor(R.color.white));
+                ((TextView) r.getChildAt(2)).setTextColor(getResources().getColor(R.color.white));
             }
 
             @Override

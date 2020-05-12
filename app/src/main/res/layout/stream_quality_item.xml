@@ -31,8 +31,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textSize="12sp"
         tools:ignore="RtlHardcoded"
-        android:textColor="@color/white"
-        android:background="?attr/colorPrimary"
         tools:text="MPEG-4"/>
 
     <TextView
@@ -48,8 +46,6 @@
         android:paddingRight="18dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="14sp"
-        android:textColor="@color/white"
-        android:background="?attr/colorPrimary"
         tools:ignore="RtlHardcoded"
         tools:text="1080p60"/>
 
@@ -65,8 +61,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textSize="12sp"
         android:visibility="gone"
-        android:textColor="@color/white"
-        android:background="?attr/colorPrimary"
         tools:ignore="RtlHardcoded"
         tools:text="123.4 MB"
         tools:visibility="visible"/>

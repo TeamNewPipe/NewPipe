@@ -397,13 +397,13 @@ public class DownloadDialog extends DialogFragment
         }
 
         toolbar.setTitle(R.string.download_dialog_title);
-        toolbar.setNavigationIcon(
-            ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_arrow_back));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.dialog_url);
         toolbar.setNavigationOnClickListener(v -> requireDialog().dismiss());
         toolbar.setNavigationContentDescription(R.string.cancel);
 
         okButton = toolbar.findViewById(R.id.okay);
+        okButton.setTextColor(getResources().getColor(R.color.white));
         okButton.setEnabled(false); // disable until the download service connection is done
 
         toolbar.setOnMenuItemClickListener(item -> {
