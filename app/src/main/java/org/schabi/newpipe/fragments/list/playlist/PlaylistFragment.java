@@ -43,7 +43,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamDialogEntry;
-import org.schabi.newpipe.util.ThemeHelper;
+//import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -471,12 +471,13 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         }
 
         final int iconAttr = playlistEntity == null
-                ? R.attr.ic_playlist_add : R.attr.ic_playlist_check;
+                ? R.drawable.ic_playlist_add_white_24dp
+                : R.drawable.ic_playlist_add_check_white_24dp;
 
         final int titleRes = playlistEntity == null
                 ? R.string.bookmark_playlist : R.string.unbookmark_playlist;
 
-        playlistBookmarkButton.setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, iconAttr));
+        playlistBookmarkButton.setIcon(iconAttr);
         playlistBookmarkButton.setTitle(titleRes);
     }
 }

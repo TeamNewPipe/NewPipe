@@ -15,6 +15,7 @@
         android:background="?attr/colorPrimary"
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/white"
         android:theme="@style/ToolbarTheme"
         app:popupTheme="@style/ToolbarTheme"
         app:titleTextAppearance="@style/Toolbar.Title">

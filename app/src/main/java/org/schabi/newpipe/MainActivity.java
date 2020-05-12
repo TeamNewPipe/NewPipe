@@ -23,14 +23,14 @@ package org.schabi.newpipe;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
+//import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.util.TypedValue;
+//import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +45,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
+//import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -142,12 +142,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = this.getTheme();
-        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
-        @ColorInt int color = typedValue.data;
 
-        toolbar.setBackgroundColor(color);
+        // TODO Refactor code into a function
+        toolbar.setPopupTheme(
+                ThemeHelper.isLightThemeSelected(this)
+                ? R.style.PopupThemeLight
+                : R.style.PopupThemeDark
+        );
+//        TypedValue typedValue = new TypedValue();
+//        Resources.Theme theme = this.getTheme();
+//        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+//        @ColorInt int color = typedValue.data;
+//
+//        toolbar.setBackgroundColor(color);
 
         setSupportActionBar(toolbar);
         try {
