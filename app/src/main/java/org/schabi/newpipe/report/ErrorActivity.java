@@ -229,12 +229,15 @@ public class ErrorActivity extends AppCompatActivity {
                         context.startActivity(webIntent);
                     })
                     .setPositiveButton(R.string.accept, (dialog, which) -> {
-                        Intent i = new Intent(Intent.ACTION_SENDTO);
-                        i.setData(Uri.parse("mailto:" + ERROR_EMAIL_ADDRESS))
+                        final Intent i = new Intent(Intent.ACTION_SENDTO)
+                                .setData(Uri.parse("mailto:")) // only email apps should handle this
+                                .putExtra(Intent.EXTRA_EMAIL, new String[]{ERROR_EMAIL_ADDRESS})
                                 .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
                                 .putExtra(Intent.EXTRA_TEXT, buildJson());
+                        if (i.resolveActivity(getPackageManager()) != null) {
+                            startActivity(i);
+                        }
 
-                        startActivity(Intent.createChooser(i, "Send Email"));
                     })
                     .setNegativeButton(R.string.decline, (dialog, which) -> {
                         // do nothing
