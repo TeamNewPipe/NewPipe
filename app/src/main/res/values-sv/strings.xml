@@ -526,4 +526,6 @@
     <string name="local">Lokala</string>
     <string name="recaptcha_done_button">Klar</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube begränsat läge</string>
+    <string name="localization_changes_requires_app_restart">Språket ändras när appen har startats om.</string>
+    <string name="error_unable_to_load_comments">Det gick inte att ladda kommentarer</string>
 </resources>
