@@ -308,18 +308,6 @@
 
                             </LinearLayout>
 
-                            <!--<Button
-                                android:id="@+id/detail_uploader_subscribe"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical|right"
-                                android:layout_marginRight="12dp"
-                                android:text="@string/rss_button_title"
-                                android:textSize="12sp"
-                                android:theme="@style/RedButton"
-                                android:drawableLeft="@drawable/ic_rss_feed_white_24dp"
-                                tools:ignore="RtlHardcoded"
-                                android:visibility="gone"/>-->
                         </LinearLayout>
 
                         <!-- VIEW & THUMBS -->
