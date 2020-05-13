@@ -615,4 +615,7 @@
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de fluxo</string>
     <string name="show_original_time_ago_title">Mostrar tempo original que passou em itens</string>
     <string name="youtube_restricted_mode_enabled_title">Modo restrito do YouTube</string>
+    <string name="video_detail_by">Por %s</string>
+    <string name="channel_created_by">Criado por %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar do canal</string>
 </resources>
