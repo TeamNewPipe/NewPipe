@@ -15,6 +15,6 @@
 *.classpath
 *.project
 *.settings
-**/bin
-**.vscode
+bin/
+.vscode/
 *.code-workspace
