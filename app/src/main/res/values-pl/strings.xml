@@ -624,4 +624,10 @@
 \nJesteś pewien\? Tego nie da się cofnąć!</string>
     <string name="remove_watched_popup_title">Usunąć oglądane filmy\?</string>
     <string name="remove_watched">Usuń oglądane</string>
+    <string name="show_original_time_ago_summary">Oryginalne teksty z usług będą widoczne w elementach strumienia</string>
+    <string name="show_original_time_ago_title">Pokaż oryginalny czas</string>
+    <string name="youtube_restricted_mode_enabled_title">Tryb ograniczony YouTube</string>
+    <string name="video_detail_by">Przez %s</string>
+    <string name="channel_created_by">Utworzone przez %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Miniatura awatara kanału</string>
 </resources>

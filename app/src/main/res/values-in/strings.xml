@@ -590,4 +590,21 @@
 \nApakah anda yakin\? Ini tidak bisa diurungkan!</string>
     <string name="unmute">Batal bisukan</string>
     <string name="mute">Bisukan</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Apakah kamu berpikir umpan memuat sangat lambat\? Jika iya, coba nyalakan memuat cepat (kamu dapat mengubahnya pada pengaturan atau dengan menekan tombol di bawah)
+\n
+\nNewPipe menyediakan dua strategi memuat umpan:
+\n• Mengambil semua kanal langganan, yang lebih lambat tapi lengkap.
+\n• Menggunakan layanan endpoint khusus, yang lebih cepat namun terkadang tidak lengkap.
+\n
+\nPerbedaan di antara keduanya ialah yang lebih cepat biasanya kekurangan pada beberapa informasi, sepertiitem durasi atau tipe (tidak dapat membedakan antara video langsung atau yang biasa) dan mungkin mengembalikan item yang lebih sedikit.
+\n
+\nYoutube adalah contoh layanan yang menyediakan metode cepat dengan umpan RSS mereka.
+\n
+\nJadi pilihlah yang sesuai yang kamu inginkan: kecepatan atau kelengkapan informasi.</string>
+    <string name="show_original_time_ago_summary">Teks asli dari layanan akan tampil pada item stream</string>
+    <string name="show_original_time_ago_title">Tampilkan waktu yang lalu sebenarnya pada item</string>
+    <string name="youtube_restricted_mode_enabled_title">Mode terbatas Youtube</string>
+    <string name="video_detail_by">Oleh %s</string>
+    <string name="channel_created_by">Dibuat oleh %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar channel</string>
 </resources>

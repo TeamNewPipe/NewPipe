@@ -163,8 +163,8 @@
     </plurals>
     <string name="no_videos">Inga videor</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videor</item>
+        <item quantity="one">%s video</item>
+        <item quantity="other">%s videos</item>
     </plurals>
     <string name="start">Start</string>
     <string name="pause">Pausa</string>
@@ -454,8 +454,8 @@
     <string name="conferences">Konferenser</string>
     <string name="show_comments_title">Visa kommentarer</string>
     <plurals name="comments">
-        <item quantity="one">Kommentarer</item>
-        <item quantity="other"/>
+        <item quantity="one">%s kommentar</item>
+        <item quantity="other">%s kommentarer</item>
     </plurals>
     <string name="show_comments_summary">Inaktivera för att inte visa kommentarer</string>
     <string name="enable_playback_resume_title">Återuppta uppspelning</string>
@@ -506,4 +506,26 @@
     <string name="drawer_header_description">Växla tjänst, för närvarande vald:</string>
     <string name="permission_display_over_apps">Ge tillåtelse att visa över andra appar</string>
     <string name="no_one_listening">Ingen lyssnar</string>
+    <string name="default_kiosk_page_summary">Standardkiosk</string>
+    <string name="error_path_creation">Destinationsmappen kan inte skapas</string>
+    <string name="error_file_creation">Det går inte att skapa filen</string>
+    <string name="download_already_pending">Det finns en pågående nedladdning med det här namnet</string>
+    <string name="overwrite_failed">kan inte skriva över filen</string>
+    <string name="overwrite_finished_warning">Det finns redan en nedladdad fil med det här namnet</string>
+    <string name="overwrite_unrelated_warning">En fil med det här namnet finns redan</string>
+    <string name="recovering">återställer</string>
+    <string name="missions_header_pending">Väntande</string>
+    <string name="show_original_time_ago_summary">Originaltexter från tjänster kommer att synas i streamobjekt</string>
+    <string name="show_original_time_ago_title">Visa ursprungstid på objekt</string>
+    <string name="playlist_no_uploader">Automatiskt genererad (ingen uppladdare hittades)</string>
+    <string name="unmute">Slå på ljudet</string>
+    <string name="mute">Tysta</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="most_liked">Mest gillade</string>
+    <string name="recently_added">Nyligen tillagd</string>
+    <string name="local">Lokala</string>
+    <string name="recaptcha_done_button">Klar</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube begränsat läge</string>
+    <string name="localization_changes_requires_app_restart">Språket ändras när appen har startats om.</string>
+    <string name="error_unable_to_load_comments">Det gick inte att ladda kommentarer</string>
 </resources>
