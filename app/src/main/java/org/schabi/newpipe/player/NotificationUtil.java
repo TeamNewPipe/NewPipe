@@ -356,7 +356,7 @@ public final class NotificationUtil {
                 }
                 break;
             case "close":
-                builder.addAction(R.drawable.ic_close_white_32dp, "Close",
+                builder.addAction(R.drawable.ic_close_white_24dp, "Close",
                         PendingIntent.getBroadcast(context, NOTIFICATION_ID_BACKGROUND,
                                 new Intent(BackgroundPlayer.ACTION_CLOSE),
                                 PendingIntent.FLAG_UPDATE_CURRENT));
@@ -450,7 +450,7 @@ public final class NotificationUtil {
                     notificationBuilder.setSmallIcon(android.R.drawable.stat_sys_download);
                 } else if (basePlayerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) {
                     notificationBuilder.mActions.set(slotNumber,
-                            new NotificationCompat.Action(R.drawable.ic_replay_white_32dp,
+                            new NotificationCompat.Action(R.drawable.ic_replay_white_24dp,
                                     "Completed", PendingIntent.getBroadcast(context,
                                     NOTIFICATION_ID_BACKGROUND,
                                     new Intent(BackgroundPlayer.ACTION_PLAY_PAUSE),
@@ -486,7 +486,7 @@ public final class NotificationUtil {
                                     PendingIntent.FLAG_UPDATE_CURRENT)));
                 } else if (basePlayerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) {
                     notificationBuilder.mActions.set(slotNumber,
-                            new NotificationCompat.Action(R.drawable.ic_replay_white_32dp,
+                            new NotificationCompat.Action(R.drawable.ic_replay_white_24dp,
                                     "Completed", PendingIntent.getBroadcast(context,
                                     NOTIFICATION_ID_BACKGROUND,
                                     new Intent(BackgroundPlayer.ACTION_PLAY_PAUSE),
@@ -611,7 +611,7 @@ public final class NotificationUtil {
                 break;
             case "close":
                 notificationBuilder.mActions.set(slotNumber,
-                        new NotificationCompat.Action(R.drawable.ic_close_white_32dp, "Close",
+                        new NotificationCompat.Action(R.drawable.ic_close_white_24dp, "Close",
                                 PendingIntent.getBroadcast(context, NOTIFICATION_ID_BACKGROUND,
                                         new Intent(BackgroundPlayer.ACTION_CLOSE),
                                         PendingIntent.FLAG_UPDATE_CURRENT)));
@@ -840,7 +840,7 @@ public final class NotificationUtil {
                 }
                 break;
             case "close":
-                builder.addAction(R.drawable.ic_close_white_32dp, "Close",
+                builder.addAction(R.drawable.ic_close_white_24dp, "Close",
                         PendingIntent.getBroadcast(context, NOTIFICATION_ID_POPUP,
                                 new Intent(PopupVideoPlayer.ACTION_CLOSE),
                                 PendingIntent.FLAG_UPDATE_CURRENT));
@@ -927,7 +927,7 @@ public final class NotificationUtil {
                     notificationBuilder.setSmallIcon(android.R.drawable.stat_sys_download);
                 } else if (playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) {
                     notificationBuilder.mActions.set(slotNumber,
-                            new NotificationCompat.Action(R.drawable.ic_replay_white_32dp,
+                            new NotificationCompat.Action(R.drawable.ic_replay_white_24dp,
                                     "Completed", PendingIntent.getBroadcast(context,
                                     NOTIFICATION_ID_POPUP,
                                     new Intent(PopupVideoPlayer.ACTION_PLAY_PAUSE),
@@ -963,7 +963,7 @@ public final class NotificationUtil {
                                     PendingIntent.FLAG_UPDATE_CURRENT)));
                 } else if (playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) {
                     notificationBuilder.mActions.set(slotNumber,
-                            new NotificationCompat.Action(R.drawable.ic_replay_white_32dp,
+                            new NotificationCompat.Action(R.drawable.ic_replay_white_24dp,
                                     "Completed", PendingIntent.getBroadcast(context,
                                     NOTIFICATION_ID_POPUP,
                                     new Intent(PopupVideoPlayer.ACTION_PLAY_PAUSE),
@@ -1090,7 +1090,7 @@ public final class NotificationUtil {
                 break;
             case "close":
                 notificationBuilder.mActions.set(slotNumber,
-                        new NotificationCompat.Action(R.drawable.ic_close_white_32dp, "Close",
+                        new NotificationCompat.Action(R.drawable.ic_close_white_24dp, "Close",
                                 PendingIntent.getBroadcast(context, NOTIFICATION_ID_POPUP,
                                         new Intent(PopupVideoPlayer.ACTION_CLOSE),
                                         PendingIntent.FLAG_UPDATE_CURRENT)));

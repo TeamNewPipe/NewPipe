@@ -63,19 +63,19 @@
                 android:id="@+id/playQueueClose"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="40dp"
-                android:padding="10dp"
+                android:layout_marginRight="40dp"
+                android:background="?android:selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
+                android:padding="10dp"
                 android:scaleType="fitXY"
                 android:tint="?attr/colorAccent"
                 app:srcCompat="@drawable/ic_close_white_24dp"
-                android:background="?android:selectableItemBackground"
-                tools:ignore="ContentDescription"/>
+                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/repeatButton"
