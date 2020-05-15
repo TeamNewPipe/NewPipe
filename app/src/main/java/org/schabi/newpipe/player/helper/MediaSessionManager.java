@@ -16,12 +16,14 @@ import androidx.media.session.MediaButtonReceiver;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
+import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.mediasession.PlayQueueNavigator;
 import org.schabi.newpipe.player.mediasession.PlayQueuePlaybackController;
 
 public class MediaSessionManager {
     private static final String TAG = "MediaSessionManager";
+    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
 
     @NonNull
     private final MediaSessionCompat mediaSession;
@@ -72,33 +74,35 @@ public class MediaSessionManager {
             return;
         }
 
-        if (getMetadataAlbumArt() == null) {
-            Log.d(TAG, "N_getMetadataAlbumArt: thumb == null");
-        }
-        if (getMetadataTitle() == null) {
-            Log.d(TAG, "N_getMetadataTitle: title == null");
-        }
-        if (getMetadataArtist() == null) {
-            Log.d(TAG, "N_getMetadataArtist: artist == null");
-        }
-        if (getMetadataDuration() <= 1) {
-            Log.d(TAG, "N_getMetadataDuration: duration <= 1; " + getMetadataDuration());
+        if (DEBUG) {
+            if (getMetadataAlbumArt() == null) {
+                Log.d(TAG, "N_getMetadataAlbumArt: thumb == null");
+            }
+            if (getMetadataTitle() == null) {
+                Log.d(TAG, "N_getMetadataTitle: title == null");
+            }
+            if (getMetadataArtist() == null) {
+                Log.d(TAG, "N_getMetadataArtist: artist == null");
+            }
+            if (getMetadataDuration() <= 1) {
+                Log.d(TAG, "N_getMetadataDuration: duration <= 1; " + getMetadataDuration());
+            }
         }
 
         if (getMetadataAlbumArt() == null || getMetadataTitle() == null
                 || getMetadataArtist() == null || getMetadataDuration() <= 1
                 || albumArt.hashCode() != tmpThumbHash) {
-            Log.d(TAG, "setMetadata: N_Metadata update: t: " + title + " a: " + artist
-                    + " thumb: " + albumArt.hashCode() + " d: " + duration);
-            mediaSession.setMetadata(
-                    new MediaMetadataCompat.Builder()
-                            .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
-                            .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, artist)
-                            .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt)
-                            .putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, albumArt)
-                            .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration)
-                            .build()
-            );
+            if (DEBUG) {
+                Log.d(TAG, "setMetadata: N_Metadata update: t: " + title + " a: " + artist
+                        + " thumb: " + albumArt.hashCode() + " d: " + duration);
+            }
+
+            mediaSession.setMetadata(new MediaMetadataCompat.Builder()
+                    .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
+                    .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, artist)
+                    .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt)
+                    .putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, albumArt)
+                    .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration).build());
             tmpThumbHash = albumArt.hashCode();
         }
     }

@@ -75,7 +75,9 @@ public final class NotificationUtil {
         if (areOldNotificationsEnabled) {
             notificationBuilder = createOldPopupPlayerNotification(context, playerImpl);
         } else if (notificationBuilder == null || recreate) {
-            Log.d(TAG, "N_ recreatePopupPlayerNotification(true)");
+            if (DEBUG) {
+                Log.d(TAG, "N_ recreatePopupPlayerNotification(true)");
+            }
             notificationBuilder = createPopupPlayerNotification(context, mediaSessionCompatToken,
                     playerImpl, sharedPreferences);
         }
@@ -91,7 +93,9 @@ public final class NotificationUtil {
         if (areOldNotificationsEnabled) {
             notificationBuilder = createOldPopupPlayerNotification(context, playerImpl);
         } else if (notificationBuilder == null) {
-            Log.d(TAG, "N_ recreatePopupPlayerNotification()");
+            if (DEBUG) {
+                Log.d(TAG, "N_ recreatePopupPlayerNotification()");
+            }
             notificationBuilder = createPopupPlayerNotification(context,
                     mediaSessionCompatToken, playerImpl, sharedPreferences);
         }
@@ -105,7 +109,9 @@ public final class NotificationUtil {
         final boolean areOldNotificationsEnabled = sharedPreferences
                 .getBoolean(context.getString(R.string.enable_old_notifications_key), false);
         if (notificationBuilder == null || recreate || areOldNotificationsEnabled) {
-            Log.d(TAG, "N_ recreateBackgroundPlayerNotification(true)");
+            if (DEBUG) {
+                Log.d(TAG, "N_ recreateBackgroundPlayerNotification(true)");
+            }
             notificationBuilder = createBackgroundPlayerNotification(context,
                     mediaSessionCompatToken, basePlayerImpl, sharedPreferences);
         }
@@ -119,7 +125,9 @@ public final class NotificationUtil {
         final boolean areOldNotificationsEnabled = sharedPreferences
                 .getBoolean(context.getString(R.string.enable_old_notifications_key), false);
         if (notificationBuilder == null || areOldNotificationsEnabled) {
-            Log.d(TAG, "N_ recreateBackgroundPlayerNotification()");
+            if (DEBUG) {
+                Log.d(TAG, "N_ recreateBackgroundPlayerNotification()");
+            }
             notificationBuilder = createBackgroundPlayerNotification(context,
                     mediaSessionCompatToken, basePlayerImpl, sharedPreferences);
         }
