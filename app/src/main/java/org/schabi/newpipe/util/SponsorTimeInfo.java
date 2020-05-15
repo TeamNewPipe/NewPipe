@@ -5,21 +5,21 @@ import java.util.ArrayList;
 public class SponsorTimeInfo {
     public ArrayList<TimeFrame> timeFrames = new ArrayList<>();
 
-    public int getSponsorEndTimeFromProgress(int progress) {
+    public int getSponsorEndTimeFromProgress(final int progress) {
         if (timeFrames == null) {
             return 0;
         }
 
-        for (TimeFrame timeFrames : timeFrames) {
-            if (progress < timeFrames.startTime) {
+        for (TimeFrame t : timeFrames) {
+            if (progress < t.startTime) {
                 continue;
             }
 
-            if (progress > timeFrames.endTime) {
+            if (progress > t.endTime) {
                 continue;
             }
 
-            return (int) Math.ceil((timeFrames.endTime));
+            return (int) Math.ceil((t.endTime));
         }
 
         return 0;

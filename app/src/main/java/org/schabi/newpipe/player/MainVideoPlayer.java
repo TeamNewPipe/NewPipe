@@ -92,8 +92,8 @@ import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.SponsorTimeInfo;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.views.FocusOverlayView;
 import org.schabi.newpipe.util.TimeFrame;
+import org.schabi.newpipe.views.FocusOverlayView;
 import org.schabi.newpipe.views.MarkableSeekBar;
 import org.schabi.newpipe.views.SeekBarMarker;
 
@@ -596,7 +596,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             this.switchBackgroundButton = view.findViewById(R.id.switchBackground);
             this.muteButton = view.findViewById(R.id.switchMute);
 
-            this.submitSponsorTimesButton = rootView.findViewById(R.id.submitSponsorTimes);
+            this.submitSponsorTimesButton = view.findViewById(R.id.submitSponsorTimes);
             this.submitSponsorTimesButton.setTag(false);
             this.submitSponsorTimesButton.setOnLongClickListener(v -> {
                 onSponsorBlockButtonLongClicked();
@@ -837,11 +837,16 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
 
         private void onSponsorBlockButtonClicked() {
-            if (DEBUG) Log.d(TAG, "onSponsorBlockButtonClicked() called");
-            if (playerImpl.getPlayer() == null) return;
+            if (DEBUG) {
+                Log.d(TAG, "onSponsorBlockButtonClicked() called");
+            }
+            if (playerImpl.getPlayer() == null) {
+                return;
+            }
 
             if ((boolean) submitSponsorTimesButton.getTag()) {
-                TimeFrame customTimeFrame = new TimeFrame(customSponsorStartTime, simpleExoPlayer.getCurrentPosition());
+                TimeFrame customTimeFrame =
+                        new TimeFrame(customSponsorStartTime, simpleExoPlayer.getCurrentPosition());
                 customTimeFrame.tag = "custom";
 
                 SponsorTimeInfo sponsorTimeInfo = getSponsorTimeInfo();
@@ -853,7 +858,9 @@ public final class MainVideoPlayer extends AppCompatActivity
 
                 sponsorTimeInfo.timeFrames.add(customTimeFrame);
 
-                SeekBarMarker marker = new SeekBarMarker(customTimeFrame.startTime, customTimeFrame.endTime, (int) simpleExoPlayer.getDuration(), Color.BLUE);
+                SeekBarMarker marker =
+                        new SeekBarMarker(customTimeFrame.startTime, customTimeFrame.endTime,
+                                (int) simpleExoPlayer.getDuration(), Color.BLUE);
                 marker.tag = "custom";
 
                 MarkableSeekBar markableSeekBar = (MarkableSeekBar) getPlaybackSeekBar();
@@ -862,8 +869,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
                 submitSponsorTimesButton.setTag(false);
                 submitSponsorTimesButton.setImageResource(R.drawable.ic_sponsor_block);
-            }
-            else {
+            } else {
                 customSponsorStartTime = (int) simpleExoPlayer.getCurrentPosition();
 
                 submitSponsorTimesButton.setTag(true);
@@ -872,8 +878,12 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
 
         private void onSponsorBlockButtonLongClicked() {
-            if (DEBUG) Log.d(TAG, "onSponsorBlockButtonLongClicked() called");
-            if (playerImpl.getPlayer() == null) return;
+            if (DEBUG) {
+                Log.d(TAG, "onSponsorBlockButtonLongClicked() called");
+            }
+            if (playerImpl.getPlayer() == null) {
+                return;
+            }
 
             ArrayList<SeekBarMarker> customMarkers = new ArrayList<>();
             ArrayList<TimeFrame> customTimeFrames = new ArrayList<>();
@@ -901,12 +911,14 @@ public final class MainVideoPlayer extends AppCompatActivity
                     .Builder(context)
                     .setMessage("Submit " + customMarkers.size() + " sponsor time segment(s)?")
                     .setPositiveButton("Yes", (dialog, id) -> {
-                        String username = defaultPreferences.getString(getString(R.string.sponsorblock_username), null);
+                        String username = defaultPreferences
+                                .getString(getString(R.string.sponsorblock_username), null);
                         for (TimeFrame timeFrame : customTimeFrames) {
                             try {
-                                new SponsorBlockApiTask().postVideoSponsorTimes(getVideoUrl(), timeFrame.startTime, timeFrame.endTime, username);
-                            }
-                            catch (Exception e) {
+                                new SponsorBlockApiTask()
+                                        .postVideoSponsorTimes(getVideoUrl(), timeFrame.startTime,
+                                                timeFrame.endTime, username);
+                            } catch (Exception e) {
                                 Log.e("SPONSOR_BLOCK", "Error getting video sponsor times.", e);
                             }
                         }
@@ -962,7 +974,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             } else if (v.getId() == submitSponsorTimesButton.getId()) {
                 onSponsorBlockButtonClicked();
 
-            }else if (v.getId() == closeButton.getId()) {
+            } else if (v.getId() == closeButton.getId()) {
                 onPlaybackShutdown();
                 return;
             } else if (v.getId() == kodiButton.getId()) {

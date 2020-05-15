@@ -32,15 +32,16 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 public class SponsorBlockApiTask extends AsyncTask<String, Void, JSONObject> {
-    private static final Application app = App.getApp();
-    private static final String sponsorBlockApiUrl = "https://api.sponsor.ajay.app/api/";
-    private static final int timeoutPeriod = 30;
+    private static final Application APP = App.getApp();
+    private static final String SPONSOR_BLOCK_API_URL = "https://api.sponsor.ajay.app/api/";
+    private static final int TIMEOUT_PERIOD = 30;
     private static final String TAG = SponsorBlockApiTask.class.getSimpleName();
     private static final boolean DEBUG = MainActivity.DEBUG;
     private OkHttpClient client;
 
     // api methods
-    public SponsorTimeInfo getVideoSponsorTimes(String url) throws ExecutionException, InterruptedException, JSONException {
+    public SponsorTimeInfo getVideoSponsorTimes(final String url) throws ExecutionException,
+            InterruptedException, JSONException {
         String videoId = parseIdFromUrl(url);
         String apiSuffix = "getVideoSponsorTimes?videoID=" + videoId;
 
@@ -63,35 +64,42 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JSONObject> {
         return result;
     }
 
-    public void postVideoSponsorTimes(String url, double startTime, double endTime, String userId) {
-        if (userId == null) {
-            userId = getRandomUserId();
-        }
-
+    public void postVideoSponsorTimes(final String url, final double startTime,
+                                      final double endTime, final String userId) {
         double dStartTime = startTime / 1000.0;
         double dEndTime = endTime / 1000.0;
 
         String videoId = parseIdFromUrl(url);
-        String apiSuffix = "postVideoSponsorTimes?videoID=" + videoId + "&startTime=" + dStartTime + "&endTime=" + dEndTime + "&userID=" + userId;
+        String apiSuffix = "postVideoSponsorTimes?videoID="
+                + videoId
+                + "&startTime="
+                + dStartTime
+                + "&endTime="
+                + dEndTime
+                + "&userID=" + (userId == null
+                ? getRandomUserId()
+                : userId);
 
         execute(apiSuffix);
     }
 
     // task methods
     @Override
-    protected JSONObject doInBackground(String... strings) {
-        if (isCancelled() || !isConnected()) return null;
+    protected JSONObject doInBackground(final String... strings) {
+        if (isCancelled() || !isConnected()) {
+            return null;
+        }
 
         try {
             if (client == null) {
                 client = getUnsafeOkHttpClient()
                         .newBuilder()
-                        .readTimeout(timeoutPeriod, TimeUnit.SECONDS)
+                        .readTimeout(TIMEOUT_PERIOD, TimeUnit.SECONDS)
                         .build();
             }
 
             Request request = new Request.Builder()
-                    .url(sponsorBlockApiUrl + strings[0])
+                    .url(SPONSOR_BLOCK_API_URL + strings[0])
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -101,9 +109,10 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JSONObject> {
                     ? null
                     : new JSONObject(responseBody.string());
 
-        }
-        catch (Exception ex) {
-            if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
+        } catch (Exception ex) {
+            if (DEBUG) {
+                Log.w(TAG, Log.getStackTraceString(ex));
+            }
         }
 
         return null;
@@ -111,26 +120,31 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JSONObject> {
 
     // helper methods
     private boolean isConnected() {
-        ConnectivityManager cm = (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+        ConnectivityManager cm =
+                (ConnectivityManager) APP.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null
+                && cm.getActiveNetworkInfo().isConnected();
     }
 
-    private OkHttpClient getUnsafeOkHttpClient() throws NoSuchAlgorithmException, KeyManagementException {
-        final TrustManager[] trustAllCerts = new TrustManager[]{
+    private OkHttpClient getUnsafeOkHttpClient()
+            throws NoSuchAlgorithmException, KeyManagementException {
+        final TrustManager[] trustAllCerts = new TrustManager[] {
                 new X509TrustManager() {
                     @SuppressLint("TrustAllX509TrustManager")
                     @Override
-                    public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                    public void checkClientTrusted(final java.security.cert.X509Certificate[] chain,
+                                                   final String authType) {
                     }
 
                     @SuppressLint("TrustAllX509TrustManager")
                     @Override
-                    public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                    public void checkServerTrusted(final java.security.cert.X509Certificate[] chain,
+                                                   final String authType) {
                     }
 
                     @Override
                     public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                        return new java.security.cert.X509Certificate[]{};
+                        return new java.security.cert.X509Certificate[] {};
                     }
                 }
         };
@@ -147,14 +161,13 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JSONObject> {
                 .build();
     }
 
-    private String parseIdFromUrl(String youTubeUrl) {
+    private String parseIdFromUrl(final String youTubeUrl) {
         String pattern = "(?<=youtu.be/|watch\\?v=|/videos/|embed/)[^#&?]*";
         Pattern compiledPattern = Pattern.compile(pattern);
         Matcher matcher = compiledPattern.matcher(youTubeUrl);
         if (matcher.find()) {
             return matcher.group();
-        }
-        else {
+        } else {
             return null;
         }
     }

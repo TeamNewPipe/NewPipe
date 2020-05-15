@@ -5,7 +5,7 @@ public class TimeFrame {
     public double endTime;
     public Object tag;
 
-    public TimeFrame(double startTime, double endTime) {
+    public TimeFrame(final double startTime, final double endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
     }

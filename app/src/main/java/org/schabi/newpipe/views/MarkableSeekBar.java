@@ -15,19 +15,21 @@ public class MarkableSeekBar extends AppCompatSeekBar {
     public ArrayList<SeekBarMarker> seekBarMarkers = new ArrayList<>();
     private RectF markerRect = new RectF();
 
-    public MarkableSeekBar(Context context) {
+    public MarkableSeekBar(final Context context) {
         super(context);
     }
 
-    public MarkableSeekBar(Context context, AttributeSet attrs) {
+    public MarkableSeekBar(final Context context, final AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MarkableSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MarkableSeekBar(final Context context,
+                           final AttributeSet attrs,
+                           final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    protected synchronized void onDraw(Canvas canvas) {
+    protected synchronized void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
 
         Drawable progressDrawable = getProgressDrawable();
@@ -39,9 +41,11 @@ public class MarkableSeekBar extends AppCompatSeekBar {
         for (int i = 0; i < seekBarMarkers.size(); i++) {
             SeekBarMarker marker = seekBarMarkers.get(i);
 
-            markerRect.left = width - (float) Math.floor(width * (1.0 - marker.percentStart)) + getPaddingStart();
+            markerRect.left = width - (float) Math.floor(width * (1.0 - marker.percentStart))
+                    + getPaddingStart();
             markerRect.top = progressDrawableBounds.bottom - height - 1;
-            markerRect.right = width - (float) Math.ceil(width * (1.0 - marker.percentEnd)) + getPaddingStart();
+            markerRect.right = width - (float) Math.ceil(width * (1.0 - marker.percentEnd))
+                    + getPaddingStart();
             markerRect.bottom = progressDrawableBounds.bottom;
 
             canvas.drawRect(markerRect, marker.paint);

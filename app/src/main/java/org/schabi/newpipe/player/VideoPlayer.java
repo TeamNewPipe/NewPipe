@@ -648,11 +648,14 @@ public abstract class VideoPlayer extends BasePlayer
         MarkableSeekBar markableSeekBar = (MarkableSeekBar) playbackSeekBar;
 
         for (TimeFrame timeFrame : sponsorTimeInfo.timeFrames) {
-            SeekBarMarker seekBarMarker = new SeekBarMarker(timeFrame.startTime, timeFrame.endTime, (int) simpleExoPlayer.getDuration(), Color.GREEN);
+            SeekBarMarker seekBarMarker =
+                    new SeekBarMarker(timeFrame.startTime, timeFrame.endTime,
+                            (int) simpleExoPlayer.getDuration(), Color.GREEN);
             markableSeekBar.seekBarMarkers.add(seekBarMarker);
             markableSeekBar.invalidate();
 
-            Log.d("SPONSOR_BLOCK", "Progress bar marker: " + seekBarMarker.percentStart + ", " + seekBarMarker.percentEnd);
+            Log.d("SPONSOR_BLOCK", "Progress bar marker: "
+                    + seekBarMarker.percentStart + ", " + seekBarMarker.percentEnd);
         }
     }
 

@@ -140,16 +140,20 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
-        Preference sponsorblockStatusPreference = findPreference(getString(R.string.sponsorblock_status));
+        Preference sponsorblockStatusPreference =
+                findPreference(getString(R.string.sponsorblock_status));
         sponsorblockStatusPreference.setOnPreferenceClickListener((Preference p) -> {
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://status.sponsor.ajay.app/"));
+            Intent i = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://status.sponsor.ajay.app/"));
             startActivity(i);
             return true;
         });
 
-        Preference sponsorblockLeaderboardsPreference = findPreference(getString(R.string.sponsorblock_leaderboards));
+        Preference sponsorblockLeaderboardsPreference =
+                findPreference(getString(R.string.sponsorblock_leaderboards));
         sponsorblockLeaderboardsPreference.setOnPreferenceClickListener((Preference p) -> {
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.sponsor.ajay.app/stats"));
+            Intent i = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://api.sponsor.ajay.app/stats"));
             startActivity(i);
             return true;
         });

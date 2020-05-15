@@ -667,7 +667,8 @@ public abstract class BasePlayer implements
                 simpleExoPlayer.getBufferedPercentage()
         );
 
-        if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable), false) && sponsorTimeInfo != null) {
+        if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable), false)
+                && sponsorTimeInfo != null) {
             int skipTo = sponsorTimeInfo.getSponsorEndTimeFromProgress(currentProgress);
 
             if (skipTo == 0) {
@@ -677,19 +678,24 @@ public abstract class BasePlayer implements
             seekTo(skipTo);
 
             if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_notifications), false)) {
-                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, context.getString(R.string.notification_channel_id))
-                        .setOngoing(false)
-                        .setSmallIcon(R.drawable.ic_sponsor_block)
-                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                        .setContentTitle(context.getString(R.string.settings_category_sponsorblock))
-                        .setContentText(context.getString(R.string.sponsorblock_skipped_sponsor) + " \uD83D\uDC4D");
+                NotificationCompat.Builder notificationBuilder = new NotificationCompat
+                    .Builder(context, context.getString(R.string.notification_channel_id))
+                    .setOngoing(false)
+                    .setSmallIcon(R.drawable.ic_sponsor_block)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setContentTitle(context.getString(R.string.settings_category_sponsorblock))
+                    .setContentText(context.getString(R.string.sponsorblock_skipped_sponsor)
+                            + " \uD83D\uDC4D");
 
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(App.getApp());
+                NotificationManagerCompat notificationManager = NotificationManagerCompat
+                        .from(App.getApp());
                 notificationManager.notify(0, notificationBuilder.build());
             }
 
-            if (DEBUG)
-                Log.d("SPONSOR_BLOCK", "Skipped sponsor: currentProgress = [" + currentProgress + "], skipped to = [" + skipTo + "]");
+            if (DEBUG) {
+                Log.d("SPONSOR_BLOCK", "Skipped sponsor: currentProgress = ["
+                        + currentProgress + "], skipped to = [" + skipTo + "]");
+            }
         }
     }
 
@@ -1057,8 +1063,7 @@ public abstract class BasePlayer implements
         if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable), false)) {
             try {
                 sponsorTimeInfo = new SponsorBlockApiTask().getVideoSponsorTimes(getVideoUrl());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Log.e("SPONSOR_BLOCK", "Error getting video sponsor times.", e);
             }
         }
@@ -1598,7 +1603,7 @@ public abstract class BasePlayer implements
         return sponsorTimeInfo;
     }
 
-    public void setSponsorTimeInfo(SponsorTimeInfo sponsorTimeInfo) {
+    public void setSponsorTimeInfo(final SponsorTimeInfo sponsorTimeInfo) {
         this.sponsorTimeInfo = sponsorTimeInfo;
     }
 }

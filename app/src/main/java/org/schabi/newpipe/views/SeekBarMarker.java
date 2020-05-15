@@ -10,7 +10,10 @@ public class SeekBarMarker {
     public Paint paint;
     public Object tag;
 
-    public SeekBarMarker(double startTime, double endTime, int maxTime, int color) {
+    public SeekBarMarker(final double startTime,
+                         final double endTime,
+                         final int maxTime,
+                         final int color) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.percentStart = Math.round((startTime / maxTime) * 100.0) / 100.0;
@@ -19,14 +22,14 @@ public class SeekBarMarker {
         initPaint(color);
     }
 
-    public SeekBarMarker(double percentStart, double percentEnd, int color) {
+    public SeekBarMarker(final double percentStart, final double percentEnd, final int color) {
         this.percentStart = percentStart;
         this.percentEnd = percentEnd;
 
         initPaint(color);
     }
 
-    private void initPaint(int color) {
+    private void initPaint(final int color) {
         this.paint = new Paint();
         this.paint.setColor(color);
     }
