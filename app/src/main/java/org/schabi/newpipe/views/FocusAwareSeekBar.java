@@ -24,8 +24,6 @@ import android.view.KeyEvent;
 import android.view.ViewTreeObserver;
 import android.widget.SeekBar;
 
-import androidx.appcompat.widget.AppCompatSeekBar;
-
 import org.schabi.newpipe.util.AndroidTvUtils;
 
 /**
@@ -33,7 +31,7 @@ import org.schabi.newpipe.util.AndroidTvUtils;
  * (onStartTrackingTouch/onStopTrackingTouch), so existing code does not need to be changed to
  * work with it.
   */
-public final class FocusAwareSeekBar extends AppCompatSeekBar {
+public final class FocusAwareSeekBar extends MarkableSeekBar {
     private NestedListener listener;
 
     private ViewTreeObserver treeObserver;
