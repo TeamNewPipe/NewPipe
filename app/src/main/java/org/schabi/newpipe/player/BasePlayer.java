@@ -681,7 +681,7 @@ public abstract class BasePlayer implements
                 NotificationCompat.Builder notificationBuilder = new NotificationCompat
                     .Builder(context, context.getString(R.string.notification_channel_id))
                     .setOngoing(false)
-                    .setSmallIcon(R.drawable.ic_sponsor_block)
+                    .setSmallIcon(R.drawable.ic_sponsor_block_white_96dp)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setContentTitle(context.getString(R.string.settings_category_sponsorblock))
                     .setContentText(context.getString(R.string.sponsorblock_skipped_sponsor)
