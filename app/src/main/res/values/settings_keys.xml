@@ -226,6 +226,7 @@
     <string name="sponsorblock_enable" translatable="false">skip_sponsors</string>
     <string name="sponsorblock_notifications" translatable="false">sponsorblock_notifications</string>
     <string name="sponsorblock_status" translatable="false">sponsorblock_status</string>
+    <string name="sponsorblock_privacy" translatable="false">sponsorblock_privacy</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>

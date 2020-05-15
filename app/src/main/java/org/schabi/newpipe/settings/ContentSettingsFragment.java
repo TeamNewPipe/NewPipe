@@ -140,6 +140,17 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
+        Preference sponsorblockPrivacyPreference =
+                findPreference(getString(R.string.sponsorblock_privacy));
+        sponsorblockPrivacyPreference.setOnPreferenceClickListener((Preference p) -> {
+            Intent i = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(
+                            "https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796"
+                                    + "#requests-sent-to-the-server-while-using-the-extension"));
+            startActivity(i);
+            return true;
+        });
+
         Preference sponsorblockStatusPreference =
                 findPreference(getString(R.string.sponsorblock_status));
         sponsorblockStatusPreference.setOnPreferenceClickListener((Preference p) -> {
