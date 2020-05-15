@@ -6,30 +6,31 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.grack.nanojson.JsonArray;
+import com.grack.nanojson.JsonObject;
+import com.grack.nanojson.JsonParser;
+
 import org.schabi.newpipe.util.SponsorTimeInfo;
 import org.schabi.newpipe.util.TimeFrame;
 
 import java.util.concurrent.ExecutionException;
 
-public class SponsorBlockApiTask extends AsyncTask<String, Void, JSONObject> {
+public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonObject> {
     private static final Application APP = App.getApp();
     private static final String SPONSOR_BLOCK_API_URL = "https://sponsor.ajay.app/api/";
     private static final String TAG = SponsorBlockApiTask.class.getSimpleName();
     private static final boolean DEBUG = MainActivity.DEBUG;
 
     public SponsorTimeInfo getYouTubeVideoSponsorTimes(final String videoId)
-            throws ExecutionException, InterruptedException, JSONException {
+            throws ExecutionException, InterruptedException {
 
-        JSONObject obj = execute("getVideoSponsorTimes?videoID=" + videoId).get();
-        JSONArray arrayObj = obj.getJSONArray("sponsorTimes");
+        JsonObject obj = execute("getVideoSponsorTimes?videoID=" + videoId).get();
+        JsonArray arrayObj = obj.getArray("sponsorTimes");
 
         SponsorTimeInfo result = new SponsorTimeInfo();
 
-        for (int i = 0; i < arrayObj.length(); i++) {
-            JSONArray subArrayObj = arrayObj.getJSONArray(i);
+        for (int i = 0; i < arrayObj.size(); i++) {
+            JsonArray subArrayObj = arrayObj.getArray(i);
 
             double startTime = subArrayObj.getDouble(0) * 1000;
             double endTime = subArrayObj.getDouble(1) * 1000;
@@ -43,7 +44,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JSONObject> {
     }
 
     @Override
-    protected JSONObject doInBackground(final String... strings) {
+    protected JsonObject doInBackground(final String... strings) {
         if (isCancelled() || !isConnected()) {
             return null;
         }
@@ -55,7 +56,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JSONObject> {
                             .get(SPONSOR_BLOCK_API_URL + strings[0])
                             .responseBody();
 
-            return new JSONObject(responseBody);
+            return JsonParser.object().from(responseBody);
 
         } catch (Exception ex) {
             if (DEBUG) {
