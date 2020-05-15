@@ -661,4 +661,11 @@
     <string name="channel_created_by">Created by %s</string>
     <string name="video_detail_by">By %s</string>
     <string name="playlist_page_summary">Playlist page</string>
+    <!-- SponsorBlock -->
+    <string name="sponsorblock_enable_title">Skip Sponsors</string>
+    <string name="sponsorblock_enable_summary">Use the SponsorBlock API to automatically skip sponsors in videos.</string>
+    <string name="sponsorblock_notifications_title">Notify when sponsors are skipped</string>
+    <string name="sponsorblock_notifications_summary">Send a notification to your device when a sponsor is automatically skipped.</string>
+    <string name="sponsorblock_status_title">View Online Status</string>
+    <string name="sponsorblock_status_summary">View the online status of the SponsorBlock servers.</string>
 </resources>

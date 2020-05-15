@@ -148,15 +148,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             startActivity(i);
             return true;
         });
-
-        Preference sponsorblockLeaderboardsPreference =
-                findPreference(getString(R.string.sponsorblock_leaderboards));
-        sponsorblockLeaderboardsPreference.setOnPreferenceClickListener((Preference p) -> {
-            Intent i = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://api.sponsor.ajay.app/stats"));
-            startActivity(i);
-            return true;
-        });
     }
 
     @Override

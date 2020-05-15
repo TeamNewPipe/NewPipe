@@ -137,23 +137,10 @@
             android:title="@string/sponsorblock_notifications_title"
             app:iconSpaceReserved="false" />
 
-        <EditTextPreference
-            android:dependency="@string/sponsorblock_enable"
-            android:key="@string/sponsorblock_username"
-            android:summary="@string/sponsorblock_username_summary"
-            android:title="@string/sponsorblock_username_title"
-            app:iconSpaceReserved="false" />
-
         <Preference
             android:key="@string/sponsorblock_status"
             android:summary="@string/sponsorblock_status_summary"
             android:title="@string/sponsorblock_status_title"
-            app:iconSpaceReserved="false" />
-
-        <Preference
-            android:key="@string/sponsorblock_leaderboards"
-            android:summary="@string/sponsorblock_leaderboards_summary"
-            android:title="@string/sponsorblock_leaderboards_title"
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 </PreferenceScreen>

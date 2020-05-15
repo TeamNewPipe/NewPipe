@@ -625,7 +625,7 @@ public abstract class VideoPlayer extends BasePlayer
 
         super.onPrepared(playWhenReady);
 
-        tryMarkSponsorTimes();
+        markSponsorTimes();
 
         if (simpleExoPlayer.getCurrentPosition() != 0 && !isControlsVisible()) {
             controlsVisibilityHandler.removeCallbacksAndMessages(null);
@@ -634,7 +634,7 @@ public abstract class VideoPlayer extends BasePlayer
         }
     }
 
-    private void tryMarkSponsorTimes() {
+    private void markSponsorTimes() {
         SponsorTimeInfo sponsorTimeInfo = getSponsorTimeInfo();
 
         if (sponsorTimeInfo == null) {

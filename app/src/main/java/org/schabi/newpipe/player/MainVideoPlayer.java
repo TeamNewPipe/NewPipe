@@ -20,7 +20,6 @@
 
 package org.schabi.newpipe.player;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -71,7 +70,6 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.SponsorBlockApiTask;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
@@ -89,15 +87,10 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
-import org.schabi.newpipe.util.SponsorTimeInfo;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.util.TimeFrame;
 import org.schabi.newpipe.views.FocusOverlayView;
-import org.schabi.newpipe.views.MarkableSeekBar;
-import org.schabi.newpipe.views.SeekBarMarker;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 import java.util.UUID;
@@ -557,7 +550,6 @@ public final class MainVideoPlayer extends AppCompatActivity
         private ImageButton switchPopupButton;
         private ImageButton switchBackgroundButton;
         private ImageButton muteButton;
-        private ImageButton submitSponsorTimesButton;
 
         private RelativeLayout windowRootLayout;
         private View secondaryControls;
@@ -595,17 +587,6 @@ public final class MainVideoPlayer extends AppCompatActivity
             this.toggleOrientationButton = view.findViewById(R.id.toggleOrientation);
             this.switchBackgroundButton = view.findViewById(R.id.switchBackground);
             this.muteButton = view.findViewById(R.id.switchMute);
-
-            this.submitSponsorTimesButton = view.findViewById(R.id.submitSponsorTimes);
-            this.submitSponsorTimesButton.setTag(false);
-            this.submitSponsorTimesButton.setOnLongClickListener(v -> {
-                onSponsorBlockButtonLongClicked();
-                return true;
-            });
-            if (!defaultPreferences.getBoolean(getString(R.string.sponsorblock_enable), false)) {
-                this.submitSponsorTimesButton.setVisibility(View.GONE);
-            }
-
             this.switchPopupButton = view.findViewById(R.id.switchPopup);
 
             this.queueLayout = findViewById(R.id.playQueuePanel);
@@ -655,7 +636,6 @@ public final class MainVideoPlayer extends AppCompatActivity
             toggleOrientationButton.setOnClickListener(this);
             switchBackgroundButton.setOnClickListener(this);
             muteButton.setOnClickListener(this);
-            submitSponsorTimesButton.setOnClickListener(this);
             switchPopupButton.setOnClickListener(this);
 
             getRootView().addOnLayoutChangeListener((view, l, t, r, b, ol, ot, or, ob) -> {
@@ -836,110 +816,6 @@ public final class MainVideoPlayer extends AppCompatActivity
             setMuteButton(muteButton, playerImpl.isMuted());
         }
 
-        private void onSponsorBlockButtonClicked() {
-            if (DEBUG) {
-                Log.d(TAG, "onSponsorBlockButtonClicked() called");
-            }
-            if (playerImpl.getPlayer() == null) {
-                return;
-            }
-
-            if ((boolean) submitSponsorTimesButton.getTag()) {
-                TimeFrame customTimeFrame =
-                        new TimeFrame(customSponsorStartTime, simpleExoPlayer.getCurrentPosition());
-                customTimeFrame.tag = "custom";
-
-                SponsorTimeInfo sponsorTimeInfo = getSponsorTimeInfo();
-                if (sponsorTimeInfo == null) {
-                    sponsorTimeInfo = new SponsorTimeInfo();
-
-                    setSponsorTimeInfo(sponsorTimeInfo);
-                }
-
-                sponsorTimeInfo.timeFrames.add(customTimeFrame);
-
-                SeekBarMarker marker =
-                        new SeekBarMarker(customTimeFrame.startTime, customTimeFrame.endTime,
-                                (int) simpleExoPlayer.getDuration(), Color.BLUE);
-                marker.tag = "custom";
-
-                MarkableSeekBar markableSeekBar = (MarkableSeekBar) getPlaybackSeekBar();
-                markableSeekBar.seekBarMarkers.add(marker);
-                markableSeekBar.invalidate();
-
-                submitSponsorTimesButton.setTag(false);
-                submitSponsorTimesButton.setImageResource(R.drawable.ic_sponsor_block);
-            } else {
-                customSponsorStartTime = (int) simpleExoPlayer.getCurrentPosition();
-
-                submitSponsorTimesButton.setTag(true);
-                submitSponsorTimesButton.setImageResource(R.drawable.ic_sponsor_block_stop);
-            }
-        }
-
-        private void onSponsorBlockButtonLongClicked() {
-            if (DEBUG) {
-                Log.d(TAG, "onSponsorBlockButtonLongClicked() called");
-            }
-            if (playerImpl.getPlayer() == null) {
-                return;
-            }
-
-            ArrayList<SeekBarMarker> customMarkers = new ArrayList<>();
-            ArrayList<TimeFrame> customTimeFrames = new ArrayList<>();
-
-            for (SeekBarMarker marker : ((MarkableSeekBar) getPlaybackSeekBar()).seekBarMarkers) {
-                if (marker.tag == "custom") {
-                    customMarkers.add(marker);
-                }
-            }
-
-            if (customMarkers.size() == 0) {
-                return;
-            }
-
-            SponsorTimeInfo sponsorTimeInfo = getSponsorTimeInfo();
-            if (sponsorTimeInfo != null) {
-                for (TimeFrame timeFrame : sponsorTimeInfo.timeFrames) {
-                    if (timeFrame.tag == "custom") {
-                        customTimeFrames.add(timeFrame);
-                    }
-                }
-            }
-
-            new AlertDialog
-                    .Builder(context)
-                    .setMessage("Submit " + customMarkers.size() + " sponsor time segment(s)?")
-                    .setPositiveButton("Yes", (dialog, id) -> {
-                        String username = defaultPreferences
-                                .getString(getString(R.string.sponsorblock_username), null);
-                        for (TimeFrame timeFrame : customTimeFrames) {
-                            try {
-                                new SponsorBlockApiTask()
-                                        .postVideoSponsorTimes(getVideoUrl(), timeFrame.startTime,
-                                                timeFrame.endTime, username);
-                            } catch (Exception e) {
-                                Log.e("SPONSOR_BLOCK", "Error getting video sponsor times.", e);
-                            }
-                        }
-                    })
-                    .setNegativeButton("No", null)
-                    .setNeutralButton("Clear", (dialog, id) -> {
-                        for (SeekBarMarker marker : customMarkers) {
-                            ((MarkableSeekBar) getPlaybackSeekBar()).seekBarMarkers.remove(marker);
-                        }
-
-                        if (sponsorTimeInfo != null) {
-                            for (TimeFrame timeFrame : customTimeFrames) {
-                                sponsorTimeInfo.timeFrames.remove(timeFrame);
-                            }
-                        }
-                    })
-                    .create()
-                    .show();
-        }
-
-
         @Override
         public void onClick(final View v) {
             super.onClick(v);
@@ -970,10 +846,6 @@ public final class MainVideoPlayer extends AppCompatActivity
                 onPlayBackgroundButtonClicked();
             } else if (v.getId() == muteButton.getId()) {
                 onMuteUnmuteButtonClicked();
-
-            } else if (v.getId() == submitSponsorTimesButton.getId()) {
-                onSponsorBlockButtonClicked();
-
             } else if (v.getId() == closeButton.getId()) {
                 onPlaybackShutdown();
                 return;

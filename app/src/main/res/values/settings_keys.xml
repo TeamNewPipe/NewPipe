@@ -223,21 +223,9 @@
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
     <string name="storage_use_saf" translatable="false">storage_use_saf</string>
 
-    <string name="sponsorblock_enable">skip_sponsors</string>
-    <string name="sponsorblock_enable_title">Skip Sponsors</string>
-    <string name="sponsorblock_enable_summary">Use the SponsorBlock API to automatically skip sponsors in videos.</string>
-    <string name="sponsorblock_notifications">sponsorblock_notifications</string>
-    <string name="sponsorblock_notifications_title">Notify when sponsors are skipped</string>
-    <string name="sponsorblock_notifications_summary">Send a notification to your device when a sponsor is automatically skipped.</string>
-    <string name="sponsorblock_username">sponsorblock_username</string>
-    <string name="sponsorblock_username_title">Set Username</string>
-    <string name="sponsorblock_username_summary">Set a username used when submitting sponsor times. Leave empty to use a default randomized username.</string>
-    <string name="sponsorblock_status">sponsorblock_status</string>
-    <string name="sponsorblock_status_title">View Online Status</string>
-    <string name="sponsorblock_status_summary">View the online status of the SponsorBlock servers.</string>
-    <string name="sponsorblock_leaderboards">sponsorblock_leaderboards</string>
-    <string name="sponsorblock_leaderboards_title">View Leaderboards</string>
-    <string name="sponsorblock_leaderboards_summary">View the online leaderboards for SponsorBlock.</string>
+    <string name="sponsorblock_enable" translatable="false">skip_sponsors</string>
+    <string name="sponsorblock_notifications" translatable="false">sponsorblock_notifications</string>
+    <string name="sponsorblock_status" translatable="false">sponsorblock_status</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>
