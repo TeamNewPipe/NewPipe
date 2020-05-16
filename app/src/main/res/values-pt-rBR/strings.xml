@@ -250,7 +250,7 @@ abrir em modo popup</string>
     <string name="give_back">Retribuir</string>
     <string name="website_title">Site oficial</string>
     <string name="website_encouragement">Visite o site NewPipe para mais informações e novidades.</string>
-    <string name="no_player_found_toast">Não há player de vídeo (pode instalar VLC para vê-lo).</string>
+    <string name="no_player_found_toast">Não foi encontrado um reprodutor de vídeo (pode instalar VLC para vê-lo).</string>
     <string name="default_content_country_title">País de conteúdo padrão</string>
     <string name="service_title">Serviço</string>
     <string name="always">Sempre</string>
