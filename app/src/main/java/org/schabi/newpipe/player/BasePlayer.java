@@ -35,9 +35,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -232,14 +232,18 @@ public abstract class BasePlayer implements
 
     public void initPlayer(final boolean playOnReady) {
         if (DEBUG) {
-            Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
+            Log.d(TAG, "initPlayer() called with: playOnReady = [" + playOnReady + "]");
         }
 
-        simpleExoPlayer = ExoPlayerFactory
-                .newSimpleInstance(context, renderFactory, trackSelector, loadControl);
+        simpleExoPlayer = new SimpleExoPlayer.Builder(context, renderFactory)
+                .setTrackSelector(trackSelector)
+                .setLoadControl(loadControl)
+                .build();
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
+        simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
+        simpleExoPlayer.setHandleAudioBecomingNoisy(true);
 
         audioReactor = new AudioReactor(context, simpleExoPlayer);
         mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
@@ -666,11 +670,9 @@ public abstract class BasePlayer implements
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onTimelineChanged(final Timeline timeline, final Object manifest,
-                                  @Player.TimelineChangeReason final int reason) {
+    public void onTimelineChanged(final Timeline timeline, final int reason) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onTimelineChanged() called with "
-                    + (manifest == null ? "no manifest" : "available manifest") + ", "
                     + "timeline size = [" + timeline.getWindowCount() + "], "
                     + "reason = [" + reason + "]");
         }
