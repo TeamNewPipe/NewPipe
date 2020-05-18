@@ -490,7 +490,7 @@
     <string name="downloads_storage_ask_title">Hỏi vị trí tải xuống</string>
     <string name="downloads_storage_ask_summary">Bạn sẽ được hỏi vị trí lưu mỗi lần tải xuống</string>
     <string name="downloads_storage_ask_summary_kitkat">Bạn sẽ được hỏi vị trí lưu mỗi lần tải xuống. 
-\nBật tính năng này nếu bạn muốn tải xuống thẻ SD ngoài.</string>
+\nBật tính năng này nếu bạn muốn tải vào thẻ SD ngoài</string>
     <string name="clear_playback_states_title">Xóa vị trí phát</string>
     <string name="clear_playback_states_summary">Xóa toàn bộ vị trí phát</string>
     <string name="delete_playback_states_alert">Xác nhận xóa toàn bộ vị trí phát\?</string>
@@ -521,13 +521,13 @@
     <string name="remove_watched">Xóa đã xem</string>
     <string name="systems_language">Mặt định hệ thống</string>
     <string name="app_language_title">Ngôn ngữ ứng dụng</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD.
-\nMột số thiết bị không tương thích.</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD. 
+\nMột số thiết bị có thể không tương thích</string>
     <string name="downloads_storage_use_saf_title">Dùng SAF</string>
     <string name="deleted_downloads">Đã xóa %1$s file tải về</string>
     <string name="delete_downloaded_files">Xóa file đã tải về</string>
     <string name="clear_download_history">Xóa lịch sử tải về</string>
-    <string name="error_download_resource_gone">Không thể hồi phục tải về</string>
+    <string name="error_download_resource_gone">Không thể khôi phục bản download này</string>
     <string name="unmute">Bật tiếng</string>
     <string name="mute">Tắt tiếng</string>
     <string name="most_liked">Yêu thích nhất</string>
@@ -561,4 +561,51 @@
     <string name="seek_duration_title">Thời lượng tua video</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Một thumbail video hiện trên màn hình khóa khi trình phát chạy trong nền</string>
     <string name="enable_lock_screen_video_thumbnail_title">Thumbnail video màn hình khóa</string>
+    <string name="show_original_time_ago_summary">Dòng chữ mô tả thời gian gốc từ các dịch vụ sẽ được hiển thị thay thế</string>
+    <string name="show_original_time_ago_title">Hiện thời gian gốc trên các item</string>
+    <string name="drawer_header_description">Chọn dịch vụ; dịch vụ hiện tại:</string>
+    <string name="video_detail_by">Bởi %s</string>
+    <string name="channel_created_by">Được tạo bởi %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Ảnh đại diện của kênh</string>
+    <string name="content_not_supported">Nội dung này hiện chưa được hỗ trợ bởi NewPipe.
+\n
+\nCó thể nó sẽ được hỗ trợ bởi một phiên bản mới hơn trong tương lai.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Bạn có thấy feed của mình cập nhật chậm không\? Nếu có thì bạn có thể thử chế độ tăng tốc (bạn có thể bật/tắt chế độ này trong cài đặt hoặc bằng cách nhấn nút bên dưới).
+\n
+\nNewPipe hỗ trợ 2 cách cập nhật feed:
+\n• Tải thông tin cả kênh cho từng kênh một; chậm nhưng chắc.
+\n• Tải từ các nguồn chuyên dụng; nhanh nhưng thường không đầy đủ.
+\n
+\nĐiểm khác biệt giữa 2 cách trên là cách nhanh hơn (chế độ tăng tốc) thường có thể thiếu thông tin - như thời lượng hay loại (VD: không thể phân biệt được giữa video thường và livestream) - và thiếu item hơn.
+\n
+\nYouTube là một trong số các dịch vụ có hỗ trợ cách cập nhật nhanh trên, sử dụng RSS feed.
+\n
+\nSuy cho cùng, việc lựa chọn chế độ trên sẽ tùy thuộc vào mong muốn của bạn: tốc độ cập nhật, hay độ chính xác thông tin.</string>
+    <string name="feed_use_dedicated_fetch_method_title">Tải thông tin từ các nguồn chuyên dụng nếu có thể</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Bật chế độ tăng tốc</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Tắt chế độ tăng tốc</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Áp dụng cho một vài dịch vụ; thường sẽ nhanh hơn nhưng có thể thiếu một vài item và thông tin không đầy đủ (VD: không có thời lượng, loại item, livestreams).</string>
+    <string name="feed_update_threshold_option_always_update">Luôn cập nhật</string>
+    <string name="feed_update_threshold_summary">Khoảng thời gian kể từ lần cuối cập nhật thông tin kênh trước khi nó được coi là hết hạn — %s</string>
+    <string name="feed_update_threshold_title">Ngưỡng thời gian cập nhật feed</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_create_new_group_button_title">Tạo</string>
+    <string name="feed_group_dialog_delete_message">Bạn muốn xóa nhóm kênh này\?</string>
+    <string name="feed_group_dialog_name_input">Tên</string>
+    <string name="feed_group_dialog_empty_name">Tên nhóm kênh trống</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="other">Đã chọn %d</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Chưa chọn kênh nào</string>
+    <string name="feed_group_dialog_select_subscriptions">Chọn kênh</string>
+    <string name="feed_processing_message">Đang xử lý feed…</string>
+    <string name="feed_subscription_not_loaded_count">Số kênh không tải được: %d</string>
+    <string name="feed_notification_loading">Đang tải feed…</string>
+    <string name="feed_oldest_subscription_update">Feed cập nhật lần cuối vào: %s</string>
+    <string name="new_seek_duration_toast">Do giới hạn của ExoPlayer, khoảng thời gian tua đã được đặt lại thành %d giây</string>
+    <string name="recovering">đang khôi phục</string>
+    <string name="playlist_no_uploader">Tự tạo (không tìm thấy người upload)</string>
+    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
+    <string name="local">Cục bộ</string>
+    <string name="default_kiosk_page_summary">Trang chính mặc định</string>
 </resources>
