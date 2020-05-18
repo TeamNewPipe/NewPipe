@@ -117,15 +117,6 @@ task runCheckstyle(type: Checkstyle) {
     }
 }
 
-runCheckstyle.doLast {
-    reports.all { report ->
-        def outputFile = report.destination
-        if (outputFile.exists() && outputFile.text.contains("severity=\"error\"")) {
-            throw new GradleException("There were checkstyle errors! For more info check $outputFile")
-        }
-    }
-}
-
 configurations {
     ktlint
 }
