@@ -16,7 +16,7 @@
     <string name="screen_rotation">rotação</string>
     <string name="use_external_video_player_title">Usar reprodutor de vídeo externo</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
-    <string name="download_path_title">"Pasta  para descarregar o vídeo"</string>
+    <string name="download_path_title">Pasta para transferir o vídeo</string>
     <string name="download_path_summary">Os ficheiros de vídeo transferidos são armazenados aqui</string>
     <string name="download_path_dialog_title">Escolha a pasta de transferencias para ficheiros de vídeo</string>
     <string name="default_resolution_title">Resolução predefinida</string>
@@ -127,9 +127,9 @@
     <string name="default_popup_resolution_title">Resolução da janela popup predefinida</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="show_higher_resolutions_summary">Apenas alguns aparelhos suportam a reprodução de vídeos em 2K/4K</string>
-    <string name="controls_popup_title">Janela</string>
+    <string name="controls_popup_title">Popup</string>
     <string name="popup_remember_size_pos_title">Lembrar tamanho e posição da janela</string>
-    <string name="settings_category_popup_title">Janela</string>
+    <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filtrar</string>
     <string name="refresh">Atualizar</string>
     <string name="clear">Limpar</string>
@@ -170,7 +170,7 @@
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
     <string name="enable_watch_history_title">Ver histórico</string>
     <string name="enable_watch_history_summary">Manter histórico dos vídeos vistos</string>
-    <string name="resume_on_audio_focus_gain_title">Retomar reprodução</string>
+    <string name="resume_on_audio_focus_gain_title">Continuar a reprodução</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reprodução após interrupções (ex. chamadas)</string>
     <string name="settings_category_player_title">Reprodutor</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
@@ -612,4 +612,10 @@
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e tambem os vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_title">Remover vídeos vistos\?</string>
     <string name="remove_watched">Remover vistos</string>
+    <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de fluxo</string>
+    <string name="show_original_time_ago_title">Mostrar tempo original que passou em itens</string>
+    <string name="youtube_restricted_mode_enabled_title">Modo restrito do YouTube</string>
+    <string name="video_detail_by">Por %s</string>
+    <string name="channel_created_by">Criado por %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar do canal</string>
 </resources>

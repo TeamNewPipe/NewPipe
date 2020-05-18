@@ -613,4 +613,10 @@
 \n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
     <string name="remove_watched_popup_title">¿Borrar videos ya vistos\?</string>
     <string name="remove_watched">Borrar videos ya vistos</string>
+    <string name="video_detail_by">Por %s</string>
+    <string name="channel_created_by">Creado por %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Miniatura de avatar del canal</string>
+    <string name="show_original_time_ago_summary">Los textos originales de los servicios serán visibles en los ítems de transmisiones</string>
+    <string name="show_original_time_ago_title">Mostrar tiempo atrás original en ítems</string>
+    <string name="youtube_restricted_mode_enabled_title">Modo restringido de YouTube</string>
 </resources>

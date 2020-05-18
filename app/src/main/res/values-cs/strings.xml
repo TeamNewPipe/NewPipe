@@ -626,4 +626,10 @@ otevření ve vyskakovacím okně</string>
     <string name="remove_watched">Odstranit shlédnutá</string>
     <string name="remove_watched_popup_warning">Videa, která jste shlédli před a po jejich doplnění do playlistu, budou odstraněna.
 \nJste se jisti\? Nelze zvrátit!</string>
+    <string name="show_original_time_ago_summary">Původní texty služeb budou viditelné u položek streamů</string>
+    <string name="show_original_time_ago_title">U položek ukázat původní čas \"před\"</string>
+    <string name="youtube_restricted_mode_enabled_title">Omezený režim YouTube</string>
+    <string name="video_detail_by">%s</string>
+    <string name="channel_created_by">Založil %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Miniatura avatara kanálu</string>
 </resources>
