@@ -30,7 +30,7 @@
     <string name="download_dialog_title">Baixar</string>
     <string name="error_details_headline">Detalhes:</string>
     <string name="err_dir_create">Não foi possível criar pasta de download \'%1$s\'</string>
-    <string name="error_report_button_text">Reportar erro via email</string>
+    <string name="error_report_button_text">Relatar erro via email</string>
     <string name="error_report_title">Relatório de erro</string>
     <string name="error_snackbar_action">Relatório</string>
     <string name="error_snackbar_message">Desculpe, ocorreram alguns erros.</string>
@@ -53,7 +53,7 @@
     <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
-    <string name="report_error">Reportar erro</string>
+    <string name="report_error">Relatar erro</string>
     <string name="retry">Tentar novamente</string>
     <string name="screen_rotation">Rotação</string>
     <string name="content_language_title">Idioma de conteúdo padrão</string>
@@ -65,7 +65,7 @@
     <string name="share_dialog_title">Compartilhar com</string>
     <string name="show_age_restricted_content_title">Conteúdo com restrição de idade</string>
     <string name="show_next_and_similar_title">Mostrar \'Próximo\' e \'Similares\'</string>
-    <string name="sorry_string">Desculpe, isto não deveria ter ocorrido.</string>
+    <string name="sorry_string">Desculpe, isto não devia ter ocorrido.</string>
     <string name="start">Iniciar</string>
     <string name="storage_permission_denied">Permita acesso ao armazenamento primeiramente</string>
     <string name="theme_title">Tema</string>
@@ -78,7 +78,7 @@
     <string name="did_you_mean">Você quis dizer: %1$s\?</string>
     <string name="add">Nova missão</string>
     <string name="app_ui_crash">App/IU parou</string>
-    <string name="background_player_playing_toast">reproduzindo em segundo plano</string>
+    <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
     <string name="could_not_setup_download_menu">O menu de download não pôde ser configurado</string>
     <string name="detail_thumbnail_view_description">Reproduzir vídeo, duração:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura do avatar do uploader</string>
@@ -125,8 +125,8 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="msg_popup_permission">Essa permissão é necessária para
-abrir em modo popup</string>
+    <string name="msg_popup_permission">Essa permissão é necessária
+\npara abrir em modo popup</string>
     <string name="popup_mode_share_menu_title">Modo popup</string>
     <string name="filter">Filtro</string>
     <string name="refresh">Atualizar</string>
@@ -134,7 +134,7 @@ abrir em modo popup</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="popup_remember_size_pos_title">Lembrar tamanho e posição do popup</string>
-    <string name="popup_remember_size_pos_summary">Lembra da última posição e o tamanho usado no popup</string>
+    <string name="popup_remember_size_pos_summary">Lembra do último tamanho e posição usado no popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Remove o som em algumas resoluções</string>
@@ -154,7 +154,7 @@ abrir em modo popup</string>
     <string name="app_description">App leve e livre de transmissão no Android.</string>
     <string name="view_on_github">Ver no GitHub</string>
     <string name="app_license_title">Licença do NewPipe</string>
-    <string name="contribution_encouragement">Sempre que você tiver ideias, traduções, dicas de design, limpeza de código ou grandes alterações de código, a ajuda é bem vinda. Quanto mais for feito, melhor o aplicativo fica!</string>
+    <string name="contribution_encouragement">Se você tem ideias de; tradução, mudança de design, limpeza de código ou grandes mudanças de código—ajuda é sempre bem-vinda. Quanto mais se faz, melhor fica!</string>
     <string name="read_full_license">Ler licença</string>
     <string name="contribution_title">Colaborar</string>
     <string name="copyright" formatted="true">© %1$s %2$s protegido pela licença %3$s</string>
@@ -287,7 +287,7 @@ abrir em modo popup</string>
     <string name="delete_all">Excluir todos</string>
     <string name="dismiss">Dispensar</string>
     <string name="rename">Renomear</string>
-    <string name="delete_stream_history_prompt">Excluir este item do histórico de vistos\?</string>
+    <string name="delete_stream_history_prompt">Excluir este item do histórico de vídeo\?</string>
     <string name="delete_all_history_prompt">Tem certeza que quer excluir todos os itens do histórico\?</string>
     <string name="title_last_played">Último reproduzido</string>
     <string name="title_most_played">Mais reproduzido</string>
@@ -316,7 +316,7 @@ abrir em modo popup</string>
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Força relatório de exceções Rx não entregues fora do ciclo de vida do fragmento ou atividade após o descarte</string>
     <string name="use_inexact_seek_title">Usar avanço rápido</string>
-    <string name="use_inexact_seek_summary">Avanço inexato permite ao player achar posições mais rápido reduzindo a precisão. Avançar por 5, 15 ou 25 segundos não funciona com isto.</string>
+    <string name="use_inexact_seek_summary">Avanço inexato permite ao player achar posições mais rápido reduzindo a precisão. Avançar 5, 15 ou 25 segundos não funciona com isto.</string>
     <string name="auto_queue_title">Pôr próximo vídeo na fila automaticamente</string>
     <string name="auto_queue_summary">Continua fila (sem loop) anexando vídeos similares</string>
     <string name="file">Arquivo</string>
@@ -377,11 +377,11 @@ abrir em modo popup</string>
     <string name="delete_search_history_alert">Excluir todo o histórico de busca\?</string>
     <string name="search_history_deleted">Histórico de busca limpo.</string>
     <string name="one_item_deleted">1 item excluído.</string>
-    <string name="app_license">NewPipe é software livre copyleft: Pode usar, estudar, compartilhar e melhorar o app. Especificamente você pode redistribuir e/ou modificar ele sob os termos da Licença Pública Geral GNU como publicada pela Fundação de Software Livre, tanto a versão 3 da Licença, ou (a sua opção) qualquer versão posterior.</string>
+    <string name="app_license">NewPipe é um software livre copyleft: Pode usar, estudar, compartilhar e melhorar o app. Especificamente você pode redistribuir e/ou modificá-lo sob os termos da Licença Pública Geral GNU, publicada pela Fundação de Software Livre, versão 3 da Licença, ou (a seu critério) qualquer versão posterior.</string>
     <string name="import_settings">Você também quer importar as configurações?</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
-    <string name="privacy_policy_encouragement">O projeto NewPipe leva sua privacidade muito a sério. Portanto, o app não coleta nenhum dado sem sua permissão. 
-\nA política de privacidade do NewPipe explica em detalhes os dados enviados e salvos ao enviar um relatório de erros.</string>
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva sua privacidade muito a sério. Por isso, o app não coleta dado algum sem sua permissão. 
+\nA política de privacidade do NewPipe explica em detalhes os dados enviados e salvos ao enviar um relatório de erro.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
     <string name="start_accept_privacy_policy">A fim de cumprir com o Regulamento Geral sobre a Proteção de Dados da UE (RGPD), chamamos sua atenção para a política de privacidade do NewPipe. Por favor, leia com atenção. 
 \nDeve aceitá-la para nos enviar relatório de erro.</string>
@@ -588,15 +588,15 @@ abrir em modo popup</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desativar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Acha o carregamento do feed lento\? Se sim, tente ativar o modo rápido (pode mudar nas configurações ou tocando no botão abaixo). 
 \n 
-\nNewPipe oferece duas estratégias de carregamento do feed: 
+\nNewPipe oferece duas estratégias para carregar o feed: 
 \n• Obter todo o canal inscrito, lento mas completo. 
-\n• Usar endpoint de serviço dedicado, rápido mas incompleto. 
+\n• Usar um endpoint de serviço dedicado, rápido mas geralmente incompleto. 
 \n 
-\nA diferença entre os dois é que o rápido geralmente falta alguma informação como a duração ou tipo do item (não pode distinguir entre vídeo normal e ao vivo) e pode devolver menos itens.
+\nA diferença entre os dois é que o rápido geralmente falta alguma informação como a duração ou tipo do item (não pode distinguir entre vídeo normal e ao vivo) e pode mostrar menos itens. 
 \n 
 \nYouTube é um exemplo de serviço que oferece o modo rápido com seu feed RSS. 
 \n 
-\nEntão, a escolha é sua: Velocidade ou informação precisa.</string>
+\nAssim, a escolha se resume ao que prefere: Velocidade ou informação precisa.</string>
     <string name="content_not_supported">NewPipe ainda não suporta esse conteúdo.
 \n
 \nO suporte pode aparecer em uma versão futura.</string>
