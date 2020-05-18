@@ -150,15 +150,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             startActivity(i);
             return true;
         });
-
-        Preference sponsorblockStatusPreference =
-                findPreference(getString(R.string.sponsorblock_status));
-        sponsorblockStatusPreference.setOnPreferenceClickListener((Preference p) -> {
-            Intent i = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://status.sponsor.ajay.app/"));
-            startActivity(i);
-            return true;
-        });
     }
 
     @Override

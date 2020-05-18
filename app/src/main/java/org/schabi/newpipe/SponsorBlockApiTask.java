@@ -17,9 +17,13 @@ import java.util.concurrent.ExecutionException;
 
 public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonObject> {
     private static final Application APP = App.getApp();
-    private static final String SPONSOR_BLOCK_API_URL = "https://sponsor.ajay.app/api/";
+    private String apiUrl;
     private static final String TAG = SponsorBlockApiTask.class.getSimpleName();
     private static final boolean DEBUG = MainActivity.DEBUG;
+
+    public SponsorBlockApiTask(final String apiUrl) {
+        this.apiUrl = apiUrl;
+    }
 
     public SponsorTimeInfo getYouTubeVideoSponsorTimes(final String videoId)
             throws ExecutionException, InterruptedException {
@@ -53,7 +57,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonObject> {
             String responseBody =
                     DownloaderImpl
                             .getInstance()
-                            .get(SPONSOR_BLOCK_API_URL + strings[0])
+                            .get(apiUrl + strings[0])
                             .responseBody();
 
             return JsonParser.object().from(responseBody);

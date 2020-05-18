@@ -224,8 +224,8 @@
     <string name="storage_use_saf" translatable="false">storage_use_saf</string>
 
     <string name="sponsorblock_enable" translatable="false">skip_sponsors</string>
+    <string name="sponsorblock_custom_api_url" translatable="false">sponsorblock_custom_api_url</string>
     <string name="sponsorblock_notifications" translatable="false">sponsorblock_notifications</string>
-    <string name="sponsorblock_status" translatable="false">sponsorblock_status</string>
     <string name="sponsorblock_privacy" translatable="false">sponsorblock_privacy</string>
 
     <!-- FileName Downloads  -->

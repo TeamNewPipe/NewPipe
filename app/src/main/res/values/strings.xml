@@ -663,10 +663,10 @@
     <!-- SponsorBlock -->
     <string name="sponsorblock_enable_title">Skip Sponsors</string>
     <string name="sponsorblock_enable_summary">Use the SponsorBlock API to automatically skip sponsors in videos.</string>
+    <string name="sponsorblock_custom_api_url_title">Custom API Url</string>
+    <string name="sponsorblock_custom_api_url_summary">The url to use when querying the SponsorBlock API. Leave empty to use the default.</string>
     <string name="sponsorblock_notifications_title">Notify when sponsors are skipped</string>
     <string name="sponsorblock_notifications_summary">Send a notification to your device when a sponsor is automatically skipped.</string>
     <string name="sponsorblock_privacy_title">View Privacy Policy</string>
     <string name="sponsorblock_privacy_summary">View the privacy policy of the SponsorBlock service.</string>
-    <string name="sponsorblock_status_title">View Online Status</string>
-    <string name="sponsorblock_status_summary">View the online status of the SponsorBlock servers.</string>
 </resources>

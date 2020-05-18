@@ -1063,7 +1063,9 @@ public abstract class BasePlayer implements
         if (info.getUrl().startsWith("https://www.youtube.com")
                 && mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable), false)) {
             try {
-                sponsorTimeInfo = new SponsorBlockApiTask()
+                sponsorTimeInfo = new SponsorBlockApiTask(
+                        mPrefs.getString(context.getString(R.string.sponsorblock_custom_api_url),
+                                "https://sponsor.ajay.app/api/"))
                         .getYouTubeVideoSponsorTimes(info.getId());
             } catch (Exception e) {
                 Log.e("SPONSOR_BLOCK", "Error getting YouTube video sponsor times.", e);
