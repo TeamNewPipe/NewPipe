@@ -188,4 +188,5 @@
     <string name="thumbnail_cache_wipe_complete_notice">ছবির ক্যাশ মুছে ফেলা হয়েছে</string>
     <string name="metadata_cache_wipe_summary">ওয়েবপৃষ্ঠার সকল ক্যাশড তথ্য মুছুন</string>
     <string name="metadata_cache_wipe_title">ক্যাশড মেটাডেটা মুছুন</string>
+    <string name="metadata_cache_wipe_complete_notice">মেটাডেটা ক্যাশে মুছে ফেলা হয়েছে</string>
 </resources>
