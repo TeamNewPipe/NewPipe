@@ -238,10 +238,10 @@
     <string name="play_queue_audio_settings">Configuración de audio</string>
     <string name="unknown_content">[Desconocido]</string>
     <string name="enqueue_on_background">Añadir a cola en segundo plano</string>
-    <string name="enqueue_on_popup">Añadir a cola en reproductor emergente</string>
+    <string name="enqueue_on_popup">Añadir al reproductor emergente</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
-    <string name="start_here_on_popup">Comenzar a reproducir en modo emergente</string>
+    <string name="start_here_on_popup">Reproducir en modo emergente</string>
     <string name="show_hold_to_append_title">Mostrar consejo «Mantener presionado para agregar»</string>
     <string name="new_and_hot">Novedades</string>
     <string name="hold_to_append">Mantener presionado para agregar a la cola</string>
