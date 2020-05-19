@@ -241,10 +241,10 @@
     <string name="hold_to_append">Segure para pôr na fila</string>
     <string name="unknown_content">[Desconhecido]</string>
     <string name="enqueue_on_background">Pôr na fila em segundo plano</string>
-    <string name="enqueue_on_popup">Pôr na fila em um novo popup</string>
+    <string name="enqueue_on_popup">Pôr na fila em um popup</string>
     <string name="start_here_on_main">Reproduzir daqui</string>
     <string name="start_here_on_background">Reproduzir em segundo plano</string>
-    <string name="start_here_on_popup">Reproduzir em um novo popup</string>
+    <string name="start_here_on_popup">Reproduzir em um popup</string>
     <string name="donation_title">Doar</string>
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que usam seu tempo livre para trazer a melhor experiência para você. Retribua para ajudar os desenvolvedores a tornarem o NewPipe ainda melhor enquanto desfrutam uma xícara de café.</string>
     <string name="give_back">Retribuir</string>
