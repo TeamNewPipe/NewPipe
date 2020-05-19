@@ -430,10 +430,10 @@
     <string name="play_queue_audio_settings">Audio Settings</string>
     <string name="hold_to_append">Hold to enqueue</string>
     <string name="enqueue_on_background">Enqueue in the background</string>
-    <string name="enqueue_on_popup">Enqueue in a new popup</string>
+    <string name="enqueue_on_popup">Enqueue in a popup</string>
     <string name="start_here_on_main">Start playing here</string>
     <string name="start_here_on_background">Start playing in the background</string>
-    <string name="start_here_on_popup">Start playing in a new popup</string>
+    <string name="start_here_on_popup">Start playing in a popup</string>
     <!-- Drawer -->
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
