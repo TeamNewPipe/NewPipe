@@ -35,7 +35,7 @@ public final class ShareUtils {
     }
 
     /**
-     * Open the url in the default app set to open this type of link
+     * Open the url in the default app set to open this type of link.
      * <p>
      * If no app is set as default, it will open a chooser
      *
