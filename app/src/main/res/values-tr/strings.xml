@@ -236,10 +236,10 @@
     <string name="play_queue_audio_settings">Ses Ayarları</string>
     <string name="hold_to_append">Kuyruğa eklemek için basılı tutun</string>
     <string name="enqueue_on_background">Arka planda kuyruğa ekle</string>
-    <string name="enqueue_on_popup">Yeni açılır pencerede kuyruğa ekle</string>
+    <string name="enqueue_on_popup">Açılır pencerede kuyruğa ekle</string>
     <string name="start_here_on_main">Burada oynatmaya başla</string>
     <string name="start_here_on_background">Arka planda oynatmayı başlat</string>
-    <string name="start_here_on_popup">Yeni açılır pencerede oynatmayı başlat</string>
+    <string name="start_here_on_popup">Açılır pencerede oynatmayı başlat</string>
     <string name="donation_title">Bağışta bulunun</string>
     <string name="donation_encouragement">NewPipe, boş zamanlarını size en iyi kullanıcı deneyimi sunmak için harcayan gönüllüler tarafından geliştirilmiştir. Geliştiricilerin bir fincan kahvenin tadını çıkarırken NewPipe\'ı daha iyi hale getirmelerine yardımcı olun.</string>
     <string name="give_back">Bağışta bulunun</string>
