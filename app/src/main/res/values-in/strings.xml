@@ -278,10 +278,10 @@
     <string name="play_queue_audio_settings">Pengaturan Audio</string>
     <string name="hold_to_append">Tahan untuk mengantre</string>
     <string name="enqueue_on_background">Antre di latar belakang</string>
-    <string name="enqueue_on_popup">Antre di popup baru</string>
+    <string name="enqueue_on_popup">Antrekan di popup</string>
     <string name="start_here_on_main">Mulai putar di sini</string>
     <string name="start_here_on_background">Mulai putar di latar belakang</string>
-    <string name="start_here_on_popup">Mulai putar di popup baru</string>
+    <string name="start_here_on_popup">Mulai putar di popup</string>
     <string name="drawer_open">Buka Laci</string>
     <string name="drawer_close">Tutup Laci</string>
     <string name="drawer_header_action_paceholder_text">Sesuatu akan segera muncul di sini ;D</string>
