@@ -16,36 +16,33 @@ public final class ShareUtils {
      * Open the url with the system default browser.
      * <p>
      * If no browser is set as default, fallbacks to
-     * {@link ShareUtils#openUrlBrowserChooser(Context, String)}
+     * {@link ShareUtils#openInDefaultApp(Context, String)}
      *
      * @param context the context to use
      * @param url     the url to browse
      */
     public static void openUrlInBrowser(final Context context, final String url) {
-        final Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-
         final String defaultBrowserPackageName = getDefaultBrowserPackageName(context);
 
         if (defaultBrowserPackageName.equals("android")) {
             // no browser set as default
-            openUrlBrowserChooser(context, url);
+            openInDefaultApp(context, url);
         } else {
+            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             intent.setPackage(defaultBrowserPackageName);
             context.startActivity(intent);
         }
     }
 
     /**
-     * Open the url with application chooser, including browser and apps able to open url.
+     * Open the url in the default app set to open this type of link
      * <p>
-     * If any app (except browser, typically NewPipe) is set as default,
-     * it will nor open in browser, neither open the chooser, but just the default app.
+     * If no app is set as default, it will open a chooser
      *
      * @param context the context to use
      * @param url     the url to browse
      */
-    private static void openUrlBrowserChooser(final Context context, final String url) {
+    private static void openInDefaultApp(final Context context, final String url) {
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         context.startActivity(Intent.createChooser(
                 intent, context.getString(R.string.share_dialog_title)));
