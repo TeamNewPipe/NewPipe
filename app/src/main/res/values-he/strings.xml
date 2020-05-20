@@ -251,10 +251,10 @@
     <string name="play_queue_audio_settings">אפשרויות שמע</string>
     <string name="hold_to_append">להחזיק כדי להוסיף לרשימת נגינה</string>
     <string name="enqueue_on_background">להוסיף לרשימת הנגינה ברקע</string>
-    <string name="enqueue_on_popup">הוספה לתור בנגן צף חדש</string>
+    <string name="enqueue_on_popup">הוספה לתור בנגן צף</string>
     <string name="start_here_on_main">להתחיל לנגן מכאן</string>
     <string name="start_here_on_background">להתחיל לנגן ברקע</string>
-    <string name="start_here_on_popup">להתחיל לנגן בנגן צף חדש</string>
+    <string name="start_here_on_popup">להתחיל לנגן בנגן צף</string>
     <string name="controls_download_desc">הורדת קובץ הזרמה</string>
     <string name="show_info">הצגת מידע</string>
     <string name="tab_bookmarks">רשימות נגינה מסומנות</string>
