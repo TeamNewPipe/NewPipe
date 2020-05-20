@@ -244,7 +244,7 @@
     <string name="enqueue_on_popup">In Warteschlange in neuem Pop-up</string>
     <string name="start_here_on_main">Ab hier wiedergeben</string>
     <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
-    <string name="start_here_on_popup">Wiedergabe in einem neuen Pop-up starten</string>
+    <string name="start_here_on_popup">Wiedergabe in einem Pop-up starten</string>
     <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
