@@ -52,12 +52,12 @@
     <string name="item_deleted">Item हटा दिया गया है</string>
     <string name="trending">फ़िलहाल चर्चा में है</string>
     <string name="play_queue_audio_settings">ऑडियो सेटिंग</string>
-    <string name="main_bg_subtitle">आरंम्भ करने के लिए खोज चिह्न दबाएं</string>
+    <string name="main_bg_subtitle">शुरू करने के लिए खोज चिह्न दबाएं</string>
     <string name="cancel">रद्द करें</string>
     <string name="did_you_mean">क्या आप का मतलब %1$s है?</string>
     <string name="share_dialog_title">शेयर करें</string>
     <string name="use_external_video_player_title">अन्य वीडियो प्लेयर उपयोग करें</string>
-    <string name="use_external_video_player_summary">कुछ प्रस्तावों पर ऑडियो निकालता है</string>
+    <string name="use_external_video_player_summary">कुछ प्रस्तावों पर ऑडियो निकाल है</string>
     <string name="use_external_audio_player_title">अन्य ऑडियो प्लेयर उपयोग करें</string>
     <string name="tab_main">मुख्य</string>
     <string name="subscription_change_failed">सदस्यता नहीं बदला जा सका</string>
@@ -68,7 +68,7 @@
     <string name="download_path_dialog_title">वीडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>
     <string name="download_path_audio_title">ऑडियो डाउनलोड फ़ोल्डर</string>
     <string name="download_path_audio_summary">डाउनलोड की गई वीडियो फ़ाइलें यहां संग्रहीत हैं</string>
-    <string name="download_path_audio_dialog_title">ऑडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>
+    <string name="download_path_audio_dialog_title">ऑडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें।</string>
     <string name="autoplay_by_calling_app_summary">अन्य अप्प के द्वारा NewPipe के आह्वान पर वीडियो तुरंत चले</string>
     <string name="default_resolution_title">वीडियो का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="default_popup_resolution_title">विडियो पॉपअप का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
