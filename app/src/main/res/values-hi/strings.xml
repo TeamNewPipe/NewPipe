@@ -513,4 +513,5 @@
         <item quantity="other">% s श्रोता</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी।</string>
+    <string name="enable_lock_screen_video_thumbnail_title">लॉक स्क्रीन पर वीडियो थम्बनेल दिखाए</string>
 </resources>
