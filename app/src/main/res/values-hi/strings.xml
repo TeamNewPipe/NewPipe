@@ -68,14 +68,14 @@
     <string name="download_path_dialog_title">वीडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>
     <string name="download_path_audio_title">ऑडियो डाउनलोड फ़ोल्डर</string>
     <string name="download_path_audio_summary">डाउनलोड की गई वीडियो फ़ाइलें यहां संग्रहीत हैं</string>
-    <string name="download_path_audio_dialog_title">ऑडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें।</string>
+    <string name="download_path_audio_dialog_title">ऑडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>
     <string name="autoplay_by_calling_app_summary">अन्य अप्प के द्वारा NewPipe के आह्वान पर वीडियो तुरंत चले</string>
     <string name="default_resolution_title">वीडियो का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="default_popup_resolution_title">विडियो पॉपअप का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="show_higher_resolutions_title">उच्च रिज़ॉल्यूशन दिखाएं</string>
-    <string name="show_higher_resolutions_summary">केवल कुछ ही फ़ोन है जो 2K/4K विडियो प्ले कर सकते हैं</string>
+    <string name="show_higher_resolutions_summary">केवल कुछ ही यंत्र है जो 2K/4K विडियो चला सकते हैं</string>
     <string name="play_with_kodi_title">Kodi से चलाये</string>
-    <string name="kore_not_found">Kore एप्प नहीं मिला, इसे इनस्टॉल करें?</string>
+    <string name="kore_not_found">Kore एप्प नहीं मिली, इसे इनस्टॉल करें\?</string>
     <string name="show_play_with_kodi_title">\"Kodi से चलाये\" वाला विकल्प दिखाए</string>
     <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर के माध्यम से वीडियो चलाने के लिए एक विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो का फॉर्मेट</string>
