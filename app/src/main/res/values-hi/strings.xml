@@ -12,7 +12,7 @@
     <string name="settings">सेटिंग्स</string>
     <string name="choose_browser">ब्राउज़र चुनें</string>
     <string name="screen_rotation">स्क्रीन रोटेशन</string>
-    <string name="popup_mode_share_menu_title">नयूपाइप पॉपअप मोड</string>
+    <string name="popup_mode_share_menu_title">नयूपाइप पॉपअप प्रकार</string>
     <string name="subscribe_button_title">सदस्य बनें</string>
     <string name="subscribed_button_title">सदस्यता ली</string>
     <string name="channel_unsubscribed">चैनल सदस्यता रद्द करी गयी</string>
