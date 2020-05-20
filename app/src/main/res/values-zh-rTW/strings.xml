@@ -260,10 +260,10 @@
     <string name="play_queue_stream_detail">詳細資訊</string>
     <string name="play_queue_audio_settings">音訊設定</string>
     <string name="enqueue_on_background">在背景加入佇列</string>
-    <string name="enqueue_on_popup">在新的彈出式視窗中加入佇列</string>
+    <string name="enqueue_on_popup">在彈出式視窗中加入佇列</string>
     <string name="start_here_on_main">從這裡開始播放</string>
     <string name="start_here_on_background">在背景開始播放</string>
-    <string name="start_here_on_popup">在新彈出式視窗中開始播放</string>
+    <string name="start_here_on_popup">在彈出式視窗中開始播放</string>
     <string name="hold_to_append">長按以新增至佇列</string>
     <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費他們的空閒時間務求為您帶來最佳的使用體驗。現在是時候回過頭來，讓我們的開發人員能夠在使 NewPipe 更臻完美的同時，享受一杯咖啡。</string>
     <string name="drawer_open">打開抽屜</string>
