@@ -80,7 +80,7 @@ android {
 }
 
 ext {
-    androidxLibVersion = '1.0.0'
+    androidxLibVersion = '1.1.0'
     exoPlayerLibVersion = '2.11.4'
     roomDbLibVersion = '2.1.0'
     leakCanaryLibVersion = '1.5.4' //1.6.1
@@ -153,13 +153,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation "androidx.legacy:legacy-support-v4:${androidxLibVersion}"
+    implementation "androidx.appcompat:appcompat:${androidxLibVersion}"
     implementation "com.google.android.material:material:${androidxLibVersion}"
     implementation "androidx.recyclerview:recyclerview:${androidxLibVersion}"
-    implementation "androidx.legacy:legacy-preference-v14:${androidxLibVersion}"
-    implementation "androidx.cardview:cardview:${androidxLibVersion}"
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.preference:preference:${androidxLibVersion}"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
 
     implementation 'com.xwray:groupie:2.7.0'
     implementation 'com.xwray:groupie-kotlin-android-extensions:2.7.0'

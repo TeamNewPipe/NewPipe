@@ -1,8 +1,8 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/newPlaylist"
@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:src="?attr/ic_playlist_add"
+            app:srcCompat="?attr/ic_playlist_add"
             tools:ignore="ContentDescription,RtlHardcoded"/>
 
         <TextView

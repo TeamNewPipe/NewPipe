@@ -643,13 +643,13 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void onStateChanged(final int state) {
         switch (state) {
             case BasePlayer.STATE_PAUSED:
-                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
+                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
                 break;
             case BasePlayer.STATE_PLAYING:
-                playPauseButton.setImageResource(R.drawable.ic_pause_white);
+                playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
                 break;
             case BasePlayer.STATE_COMPLETED:
-                playPauseButton.setImageResource(R.drawable.ic_replay_white);
+                playPauseButton.setImageResource(R.drawable.ic_replay_white_24dp);
                 break;
             default:
                 break;
@@ -717,9 +717,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             // using rootView.getContext() because getApplicationContext() didn't work
             item.setIcon(player.isMuted()
                     ? ThemeHelper.resolveResourceIdFromAttr(rootView.getContext(),
-                            R.attr.volume_off)
+                            R.attr.ic_volume_off)
                     : ThemeHelper.resolveResourceIdFromAttr(rootView.getContext(),
-                            R.attr.volume_on));
+                            R.attr.ic_volume_up));
         }
     }
 }

@@ -231,7 +231,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.rss);
+            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_rss);
         }
 
         @Override
@@ -281,7 +281,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.history);
+            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_history);
         }
 
         @Override
@@ -323,7 +323,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            final int kioskIcon = KioskTranslator.getKioskIcons(kioskId, context);
+            final int kioskIcon = KioskTranslator.getKioskIcon(kioskId, context);
 
             if (kioskIcon <= 0) {
                 throw new IllegalStateException("Kiosk ID is not valid: \"" + kioskId + "\"");
@@ -459,7 +459,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return KioskTranslator.getKioskIcons(getDefaultKioskId(context), context);
+            return KioskTranslator.getKioskIcon(getDefaultKioskId(context), context);
         }
 
         @Override

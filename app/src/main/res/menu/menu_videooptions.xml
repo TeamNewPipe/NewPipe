@@ -5,17 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/toggleOrientation"
-        android:icon="@drawable/ic_screen_rotation_white"
+        android:icon="@drawable/ic_screen_rotation_white_24dp"
         android:title="@string/toggle_orientation"
         app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/switchPopup"
-        android:icon="@drawable/ic_fullscreen_exit_white"
+        android:icon="@drawable/ic_fullscreen_exit_white_24dp"
         android:title="@string/switch_to_popup"
         app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/switchBackground"
-        android:icon="?audio"
+        android:icon="?attr/ic_headset"
         android:title="@string/switch_to_background"
         app:showAsAction="ifRoom|withText" />
 </menu>
