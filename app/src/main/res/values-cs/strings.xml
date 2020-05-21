@@ -243,10 +243,10 @@ otevření ve vyskakovacím okně</string>
     <string name="hold_to_append">Podrž pro zařazení do fronty</string>
     <string name="unknown_content">[Neznámý]</string>
     <string name="enqueue_on_background">Do fronty na pozadí</string>
-    <string name="enqueue_on_popup">Do fronty v okně</string>
+    <string name="enqueue_on_popup">Do fronty v pop-upu</string>
     <string name="start_here_on_main">Začne hrát zde</string>
     <string name="start_here_on_background">Začít přehrávat na pozadí</string>
-    <string name="start_here_on_popup">Začít přehrávat v okně</string>
+    <string name="start_here_on_popup">Začít přehrávat v pop-upu</string>
     <string name="donation_title">Donate</string>
     <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj volný čas, aby vaše zkušenost s aplikací byla co nejlepší. Vraťte vývojářům něco zpět, aby mohli NewPipe dále zlepšovat a zároveň si vychutnat šálek kávy.</string>
     <string name="give_back">Daruj</string>
