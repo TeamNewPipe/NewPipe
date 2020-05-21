@@ -10,9 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.ItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.AndroidTvUtils;
@@ -61,9 +60,9 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
         }
     };
 
-    CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
+    CommentsMiniInfoItemHolder(final ItemBuilder itemBuilder, final int layoutId,
                                final ViewGroup parent) {
-        super(infoItemBuilder, layoutId, parent);
+        super(itemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
@@ -72,9 +71,9 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
     }
 
-    public CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder,
+    public CommentsMiniInfoItemHolder(final ItemBuilder itemBuilder,
                                       final ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_comments_mini_item, parent);
+        this(itemBuilder, R.layout.list_comments_mini_item, parent);
     }
 
     @Override
@@ -85,10 +84,8 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
         }
         final CommentsInfoItem infoItem = (CommentsInfoItem) item;
 
-        itemBuilder.getImageLoader()
-                .displayImage(infoItem.getUploaderAvatarUrl(),
-                        itemThumbnailView,
-                        ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
+        itemBuilder.displayImage(infoItem.getUploaderAvatarUrl(), itemThumbnailView,
+                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemThumbnailView.setOnClickListener(view -> openCommentAuthor(infoItem));
 

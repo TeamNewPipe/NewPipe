@@ -3,51 +3,47 @@ package org.schabi.newpipe.local.holder;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 
-import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.local.LocalItemBuilder;
+import org.schabi.newpipe.info_list.ItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
-import java.text.DateFormat;
-
 public class RemotePlaylistItemHolder extends PlaylistItemHolder {
-    public RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder,
-                                    final ViewGroup parent) {
-        super(infoItemBuilder, parent);
+    public RemotePlaylistItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
+        super(itemBuilder, parent);
     }
 
-    RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder, final int layoutId,
+    RemotePlaylistItemHolder(final ItemBuilder itemBuilder, final int layoutId,
                              final ViewGroup parent) {
-        super(infoItemBuilder, layoutId, parent);
+        super(itemBuilder, layoutId, parent);
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateFormat dateFormat) {
-        if (!(localItem instanceof PlaylistRemoteEntity)) {
+    public void updateFromItem(final Object item,
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(item instanceof PlaylistRemoteEntity)) {
             return;
         }
-        final PlaylistRemoteEntity item = (PlaylistRemoteEntity) localItem;
+        final PlaylistRemoteEntity localItem = (PlaylistRemoteEntity) item;
 
-        itemTitleView.setText(item.getName());
+        itemTitleView.setText(localItem.getName());
         itemStreamCountView.setText(Localization.localizeStreamCountMini(
-                itemStreamCountView.getContext(), item.getStreamCount()));
+                itemStreamCountView.getContext(), localItem.getStreamCount()));
+
         // Here is where the uploader name is set in the bookmarked playlists library
-        if (!TextUtils.isEmpty(item.getUploader())) {
-            itemUploaderView.setText(Localization.concatenateStrings(item.getUploader(),
-                    NewPipe.getNameOfService(item.getServiceId())));
+        if (!TextUtils.isEmpty(localItem.getUploader())) {
+            itemUploaderView.setText(Localization.concatenateStrings(localItem.getUploader(),
+                    NewPipe.getNameOfService(localItem.getServiceId())));
         } else {
-            itemUploaderView.setText(NewPipe.getNameOfService(item.getServiceId()));
+            itemUploaderView.setText(NewPipe.getNameOfService(localItem.getServiceId()));
         }
 
 
-        itemBuilder.displayImage(item.getThumbnailUrl(), itemThumbnailView,
+        itemBuilder.displayImage(localItem.getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_PLAYLIST_OPTIONS);
 
-        super.updateFromItem(localItem, historyRecordManager, dateFormat);
+        super.updateFromItem(item, historyRecordManager);
     }
 }

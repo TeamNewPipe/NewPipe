@@ -4,9 +4,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.ItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
@@ -18,18 +17,18 @@ public class ChannelMiniInfoItemHolder extends ItemHolder {
     public final TextView itemTitleView;
     private final TextView itemAdditionalDetailView;
 
-    ChannelMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
+    ChannelMiniInfoItemHolder(final ItemBuilder itemBuilder, final int layoutId,
                               final ViewGroup parent) {
-        super(infoItemBuilder, layoutId, parent);
+        super(itemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
         itemAdditionalDetailView = itemView.findViewById(R.id.itemAdditionalDetails);
     }
 
-    public ChannelMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder,
+    public ChannelMiniInfoItemHolder(final ItemBuilder itemBuilder,
                                      final ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_channel_mini_item, parent);
+        this(itemBuilder, R.layout.list_channel_mini_item, parent);
     }
 
     @Override
@@ -43,10 +42,8 @@ public class ChannelMiniInfoItemHolder extends ItemHolder {
         itemTitleView.setText(infoItem.getName());
         itemAdditionalDetailView.setText(getDetailLine(infoItem));
 
-        itemBuilder.getImageLoader()
-                .displayImage(infoItem.getThumbnailUrl(),
-                        itemThumbnailView,
-                        ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
+        itemBuilder.displayImage(infoItem.getThumbnailUrl(), itemThumbnailView,
+                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnChannelSelectedListener() != null) {

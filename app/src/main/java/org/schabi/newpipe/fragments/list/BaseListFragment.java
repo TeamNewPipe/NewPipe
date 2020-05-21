@@ -28,7 +28,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemDialog;
-import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.info_list.ItemListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -54,7 +54,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected InfoListAdapter infoListAdapter;
+    protected ItemListAdapter itemListAdapter;
     protected RecyclerView itemsList;
     private int focusedPosition = -1;
 
@@ -66,8 +66,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     public void onAttach(final Context context) {
         super.onAttach(context);
 
-        if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(activity);
+        if (itemListAdapter == null) {
+            itemListAdapter = new ItemListAdapter(activity);
         }
     }
 
@@ -103,8 +103,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                 final boolean useGrid = isGridLayout();
                 itemsList.setLayoutManager(useGrid
                         ? getGridLayoutManager() : getListLayoutManager());
-                infoListAdapter.setUseGridVariant(useGrid);
-                infoListAdapter.notifyDataSetChanged();
+                itemListAdapter.setUseGridVariant(useGrid);
+                itemListAdapter.notifyDataSetChanged();
             }
             updateFlags = 0;
         }
@@ -127,7 +127,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public String generateSuffix() {
         // Naive solution, but it's good for now (the items don't change)
-        return "." + infoListAdapter.getItemList().size() + ".list";
+        return "." + itemListAdapter.getItemList().size() + ".list";
     }
 
     private int getFocusedPosition() {
@@ -147,7 +147,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             return;
         }
 
-        objectsToSave.add(infoListAdapter.getItemList());
+        objectsToSave.add(itemListAdapter.getItemList());
         objectsToSave.add(getFocusedPosition());
     }
 
@@ -158,8 +158,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             return;
         }
 
-        infoListAdapter.getItemList().clear();
-        infoListAdapter.getItemList().addAll((List<InfoItem>) savedObjects.poll());
+        itemListAdapter.getItemList().clear();
+        itemListAdapter.getItemList().addAll((List<InfoItem>) savedObjects.poll());
         restoreFocus((Integer) savedObjects.poll());
     }
 
@@ -230,7 +230,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         final int spanCount = (int) Math.floor(resources.getDisplayMetrics().widthPixels
                 / (double) width);
         final GridLayoutManager lm = new GridLayoutManager(activity, spanCount);
-        lm.setSpanSizeLookup(infoListAdapter.getSpanSizeLookup(spanCount));
+        lm.setSpanSizeLookup(itemListAdapter.getSpanSizeLookup(spanCount));
         return lm;
     }
 
@@ -242,11 +242,11 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         itemsList = rootView.findViewById(R.id.items_list);
         itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
-        infoListAdapter.setUseGridVariant(useGrid);
-        infoListAdapter.setFooter(getListFooter());
-        infoListAdapter.setHeader(getListHeader());
+        itemListAdapter.setUseGridVariant(useGrid);
+        itemListAdapter.setFooter(getListFooter());
+        itemListAdapter.setHeader(getListHeader());
 
-        itemsList.setAdapter(infoListAdapter);
+        itemsList.setAdapter(itemListAdapter);
     }
 
     protected void onItemSelected(final InfoItem selectedItem) {
@@ -258,7 +258,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
+        itemListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
             public void selected(final StreamInfoItem selectedItem) {
                 onStreamSelected(selectedItem);
@@ -270,7 +270,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
         });
 
-        infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
+        itemListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(final ChannelInfoItem selectedItem) {
                 try {
@@ -285,7 +285,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
         });
 
-        infoListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<PlaylistInfoItem>() {
+        itemListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<PlaylistInfoItem>() {
             @Override
             public void selected(final PlaylistInfoItem selectedItem) {
                 try {
@@ -300,7 +300,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
         });
 
-        infoListAdapter.setOnCommentsSelectedListener(new OnClickGesture<CommentsInfoItem>() {
+        itemListAdapter.setOnCommentsSelectedListener(new OnClickGesture<CommentsInfoItem>() {
             @Override
             public void selected(final CommentsInfoItem selectedItem) {
                 onItemSelected(selectedItem);
@@ -418,8 +418,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public void showListFooter(final boolean show) {
         itemsList.post(() -> {
-            if (infoListAdapter != null && itemsList != null) {
-                infoListAdapter.showFooter(show);
+            if (itemListAdapter != null && itemsList != null) {
+                itemListAdapter.showFooter(show);
             }
         });
     }

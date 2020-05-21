@@ -6,10 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.ItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
 
@@ -42,13 +41,13 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
     public final TextView itemAdditionalDetails;
 
-    public StreamInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_stream_item, parent);
+    public StreamInfoItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
+        this(itemBuilder, R.layout.list_stream_item, parent);
     }
 
-    public StreamInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
+    public StreamInfoItemHolder(final ItemBuilder itemBuilder, final int layoutId,
                                 final ViewGroup parent) {
-        super(infoItemBuilder, layoutId, parent);
+        super(itemBuilder, layoutId, parent);
         itemAdditionalDetails = itemView.findViewById(R.id.itemAdditionalDetails);
     }
 

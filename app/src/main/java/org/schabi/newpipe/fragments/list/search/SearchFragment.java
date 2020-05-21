@@ -257,11 +257,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (!TextUtils.isEmpty(searchString)) {
             if (wasLoading.getAndSet(false)) {
                 search(searchString, contentFilter, sortFilter);
-            } else if (infoListAdapter.getItemList().size() == 0) {
+            } else if (itemListAdapter.getItemList().size() == 0) {
                 if (savedState == null) {
                     search(searchString, contentFilter, sortFilter);
                 } else if (!isLoading.get() && !wasSearchFocused) {
-                    infoListAdapter.clearStreamItemList();
+                    itemListAdapter.clearStreamItemList();
                     showEmptyState();
                 }
             }
@@ -694,7 +694,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public boolean onBackPressed() {
         if (suggestionsPanel.getVisibility() == View.VISIBLE
-                && infoListAdapter.getItemList().size() > 0
+                && itemListAdapter.getItemList().size() > 0
                 && !isLoading.get()) {
             hideSuggestionsPanel();
             hideKeyboardSearch();
@@ -819,7 +819,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         lastSearchedString = this.searchString;
         this.searchString = ss;
-        infoListAdapter.clearStreamItemList();
+        itemListAdapter.clearStreamItemList();
         hideSuggestionsPanel();
         hideKeyboardSearch();
 
@@ -981,11 +981,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         lastSearchedString = searchString;
         nextPage = result.getNextPage();
 
-        if (infoListAdapter.getItemList().size() == 0) {
+        if (itemListAdapter.getItemList().size() == 0) {
             if (!result.getRelatedItems().isEmpty()) {
-                infoListAdapter.addInfoItemList(result.getRelatedItems());
+                itemListAdapter.addItems(result.getRelatedItems());
             } else {
-                infoListAdapter.clearStreamItemList();
+                itemListAdapter.clearStreamItemList();
                 showEmptyState();
                 return;
             }
@@ -1028,7 +1028,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         showListFooter(false);
-        infoListAdapter.addInfoItemList(result.getItems());
+        itemListAdapter.addItems(result.getItems());
         nextPage = result.getNextPage();
 
         if (!result.getErrors().isEmpty()) {
@@ -1048,7 +1048,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
 
         if (exception instanceof SearchExtractor.NothingFoundException) {
-            infoListAdapter.clearStreamItemList();
+            itemListAdapter.clearStreamItemList();
             showEmptyState();
         } else {
             int errorId = exception instanceof ParsingException

@@ -4,9 +4,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.ItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 /*
@@ -32,8 +31,8 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
     public final TextView itemTitleView;
 
-    public CommentsInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
-        super(infoItemBuilder, R.layout.list_comments_item, parent);
+    public CommentsInfoItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
+        super(itemBuilder, R.layout.list_comments_item, parent);
 
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
     }

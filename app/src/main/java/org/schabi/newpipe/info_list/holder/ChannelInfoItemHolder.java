@@ -4,9 +4,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.ItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
 
@@ -33,8 +32,8 @@ import org.schabi.newpipe.util.Localization;
 public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
     private final TextView itemChannelDescriptionView;
 
-    public ChannelInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
-        super(infoItemBuilder, R.layout.list_channel_item, parent);
+    public ChannelInfoItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
+        super(itemBuilder, R.layout.list_channel_item, parent);
         itemChannelDescriptionView = itemView.findViewById(R.id.itemChannelDescriptionView);
     }
 

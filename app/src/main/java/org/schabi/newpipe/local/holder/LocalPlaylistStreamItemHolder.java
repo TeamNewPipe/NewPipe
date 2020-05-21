@@ -13,18 +13,18 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.local.LocalItemBuilder;
+import org.schabi.newpipe.info_list.ItemBuilder;
+import org.schabi.newpipe.info_list.holder.ItemHolder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
+public class LocalPlaylistStreamItemHolder extends ItemHolder {
     public final ImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
     private final TextView itemAdditionalDetailsView;
@@ -32,9 +32,9 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     private final View itemHandleView;
     private final AnimatedProgressBar itemProgressView;
 
-    LocalPlaylistStreamItemHolder(final LocalItemBuilder infoItemBuilder, final int layoutId,
+    LocalPlaylistStreamItemHolder(final ItemBuilder itemBuilder, final int layoutId,
                                   final ViewGroup parent) {
-        super(infoItemBuilder, layoutId, parent);
+        super(itemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
@@ -44,28 +44,26 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
-    public LocalPlaylistStreamItemHolder(final LocalItemBuilder infoItemBuilder,
-                                         final ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_stream_playlist_item, parent);
+    public LocalPlaylistStreamItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
+        this(itemBuilder, R.layout.list_stream_playlist_item, parent);
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateFormat dateFormat) {
-        if (!(localItem instanceof PlaylistStreamEntry)) {
+    public void updateFromItem(final Object item,
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(item instanceof PlaylistStreamEntry)) {
             return;
         }
-        final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
+        final PlaylistStreamEntry localItem = (PlaylistStreamEntry) item;
 
-        itemVideoTitleView.setText(item.getStreamEntity().getTitle());
+        itemVideoTitleView.setText(localItem.getStreamEntity().getTitle());
         itemAdditionalDetailsView.setText(Localization
-                .concatenateStrings(item.getStreamEntity().getUploader(),
-                        NewPipe.getNameOfService(item.getStreamEntity().getServiceId())));
+                .concatenateStrings(localItem.getStreamEntity().getUploader(),
+                        NewPipe.getNameOfService(localItem.getStreamEntity().getServiceId())));
 
-        if (item.getStreamEntity().getDuration() > 0) {
+        if (localItem.getStreamEntity().getDuration() > 0) {
             itemDurationView.setText(Localization
-                    .getDurationString(item.getStreamEntity().getDuration()));
+                    .getDurationString(localItem.getStreamEntity().getDuration()));
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
@@ -76,7 +74,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
             }}).blockingGet().get(0);
             if (state != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
-                itemProgressView.setMax((int) item.getStreamEntity().getDuration());
+                itemProgressView.setMax((int) localItem.getStreamEntity().getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
                         .toSeconds(state.getProgressTime()));
             } else {
@@ -87,41 +85,41 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(item.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
+        itemBuilder.displayImage(localItem.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
-            if (itemBuilder.getOnItemSelectedListener() != null) {
-                itemBuilder.getOnItemSelectedListener().selected(item);
+            if (itemBuilder.getOnLocalItemSelectedListener() != null) {
+                itemBuilder.getOnLocalItemSelectedListener().selected(localItem);
             }
         });
 
         itemView.setLongClickable(true);
         itemView.setOnLongClickListener(view -> {
-            if (itemBuilder.getOnItemSelectedListener() != null) {
-                itemBuilder.getOnItemSelectedListener().held(item);
+            if (itemBuilder.getOnLocalItemSelectedListener() != null) {
+                itemBuilder.getOnLocalItemSelectedListener().held(localItem);
             }
             return true;
         });
 
-        itemThumbnailView.setOnTouchListener(getOnTouchListener(item));
-        itemHandleView.setOnTouchListener(getOnTouchListener(item));
+        itemThumbnailView.setOnTouchListener(getOnTouchListener(localItem));
+        itemHandleView.setOnTouchListener(getOnTouchListener(localItem));
     }
 
     @Override
-    public void updateState(final LocalItem localItem,
+    public void updateState(final Object item,
                             final HistoryRecordManager historyRecordManager) {
-        if (!(localItem instanceof PlaylistStreamEntry)) {
+        if (!(item instanceof PlaylistStreamEntry)) {
             return;
         }
-        final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
+        final PlaylistStreamEntry localItem = (PlaylistStreamEntry) item;
 
         StreamStateEntity state = historyRecordManager
                 .loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{
             add(localItem);
         }}).blockingGet().get(0);
-        if (state != null && item.getStreamEntity().getDuration() > 0) {
-            itemProgressView.setMax((int) item.getStreamEntity().getDuration());
+        if (state != null && localItem.getStreamEntity().getDuration() > 0) {
+            itemProgressView.setMax((int) localItem.getStreamEntity().getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS
                         .toSeconds(state.getProgressTime()));
@@ -138,9 +136,9 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     private View.OnTouchListener getOnTouchListener(final PlaylistStreamEntry item) {
         return (view, motionEvent) -> {
             view.performClick();
-            if (itemBuilder != null && itemBuilder.getOnItemSelectedListener() != null
+            if (itemBuilder != null && itemBuilder.getOnLocalItemSelectedListener() != null
                     && motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                itemBuilder.getOnItemSelectedListener().drag(item,
+                itemBuilder.getOnLocalItemSelectedListener().drag(item,
                         LocalPlaylistStreamItemHolder.this);
             }
             return false;

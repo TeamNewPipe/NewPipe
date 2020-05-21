@@ -11,7 +11,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.ItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -27,9 +27,9 @@ public class StreamMiniInfoItemHolder extends ItemHolder {
     public final TextView itemDurationView;
     private final AnimatedProgressBar itemProgressView;
 
-    StreamMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
+    StreamMiniInfoItemHolder(final ItemBuilder itemBuilder, final int layoutId,
                              final ViewGroup parent) {
-        super(infoItemBuilder, layoutId, parent);
+        super(itemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
@@ -38,8 +38,8 @@ public class StreamMiniInfoItemHolder extends ItemHolder {
         itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
-    public StreamMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_stream_mini_item, parent);
+    public StreamMiniInfoItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
+        this(itemBuilder, R.layout.list_stream_mini_item, parent);
     }
 
     @Override
@@ -81,10 +81,8 @@ public class StreamMiniInfoItemHolder extends ItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.getImageLoader()
-                .displayImage(infoItem.getThumbnailUrl(),
-                        itemThumbnailView,
-                        ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
+        itemBuilder.displayImage(infoItem.getThumbnailUrl(), itemThumbnailView,
+                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnStreamSelectedListener() != null) {

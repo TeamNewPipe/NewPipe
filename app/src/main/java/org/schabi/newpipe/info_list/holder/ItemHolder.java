@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.ItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 /*
@@ -29,12 +29,12 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
  */
 
 public abstract class ItemHolder extends RecyclerView.ViewHolder {
-    protected final InfoItemBuilder itemBuilder;
+    protected final ItemBuilder itemBuilder;
 
-    public ItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
+    public ItemHolder(final ItemBuilder itemBuilder, final int layoutId,
                       final ViewGroup parent) {
-        super(LayoutInflater.from(infoItemBuilder.getContext()).inflate(layoutId, parent, false));
-        this.itemBuilder = infoItemBuilder;
+        super(LayoutInflater.from(itemBuilder.getContext()).inflate(layoutId, parent, false));
+        this.itemBuilder = itemBuilder;
     }
 
     public abstract void updateFromItem(Object item,

@@ -23,7 +23,6 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -136,11 +135,11 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        infoListAdapter.setUseMiniVariant(true);
+        itemListAdapter.setUseMiniVariant(true);
     }
 
     private PlayQueue getPlayQueueStartingAt(final StreamInfoItem infoItem) {
-        return getPlayQueue(Math.max(infoListAdapter.getItemList().indexOf(infoItem), 0));
+        return getPlayQueue(Math.max(itemListAdapter.getItemList().indexOf(infoItem), 0));
     }
 
     @Override
@@ -341,7 +340,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> infoItems = new ArrayList<>();
-        for (Object i : infoListAdapter.getItemList()) {
+        for (Object i : itemListAdapter.getItemList()) {
             if (i instanceof StreamInfoItem) {
                 infoItems.add((StreamInfoItem) i);
             }
