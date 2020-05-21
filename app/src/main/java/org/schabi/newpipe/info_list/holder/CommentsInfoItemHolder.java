@@ -39,15 +39,15 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem,
+    public void updateFromItem(final Object item,
                                final HistoryRecordManager historyRecordManager) {
-        super.updateFromItem(infoItem, historyRecordManager);
+        super.updateFromItem(item, historyRecordManager);
 
-        if (!(infoItem instanceof CommentsInfoItem)) {
+        if (!(item instanceof CommentsInfoItem)) {
             return;
         }
-        final CommentsInfoItem item = (CommentsInfoItem) infoItem;
+        final CommentsInfoItem infoItem = (CommentsInfoItem) item;
 
-        itemTitleView.setText(item.getUploaderName());
+        itemTitleView.setText(infoItem.getUploaderName());
     }
 }

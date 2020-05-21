@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
@@ -21,7 +22,7 @@ import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.InfoItemHolder;
+import org.schabi.newpipe.info_list.holder.ItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
@@ -62,20 +63,29 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int HEADER_TYPE = 0;
     private static final int FOOTER_TYPE = 1;
 
-    private static final int MINI_STREAM_HOLDER_TYPE = 0x100;
+    private static final int STREAM_HOLDER_MINI_TYPE = 0x100;
     private static final int STREAM_HOLDER_TYPE = 0x101;
-    private static final int GRID_STREAM_HOLDER_TYPE = 0x102;
-    private static final int MINI_CHANNEL_HOLDER_TYPE = 0x200;
+    private static final int STREAM_HOLDER_GRID_TYPE = 0x102;
+    private static final int CHANNEL_HOLDER_MINI_TYPE = 0x200;
     private static final int CHANNEL_HOLDER_TYPE = 0x201;
-    private static final int GRID_CHANNEL_HOLDER_TYPE = 0x202;
-    private static final int MINI_PLAYLIST_HOLDER_TYPE = 0x300;
+    private static final int CHANNEL_HOLDER_GRID_TYPE = 0x202;
+    private static final int PLAYLIST_HOLDER_MINI_TYPE = 0x300;
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
-    private static final int GRID_PLAYLIST_HOLDER_TYPE = 0x302;
-    private static final int MINI_COMMENT_HOLDER_TYPE = 0x400;
+    private static final int PLAYLIST_HOLDER_GRID_TYPE = 0x302;
+    private static final int COMMENT_HOLDER_MINI_TYPE = 0x400;
     private static final int COMMENT_HOLDER_TYPE = 0x401;
 
+    private static final int STREAM_STATISTICS_HOLDER_TYPE = 0x1000;
+    private static final int STREAM_STATISTICS_GRID_HOLDER_TYPE = 0x1002;
+    private static final int STREAM_PLAYLIST_HOLDER_TYPE = 0x1001;
+    private static final int STREAM_PLAYLIST_GRID_HOLDER_TYPE = 0x1004;
+    private static final int LOCAL_PLAYLIST_HOLDER_TYPE = 0x2000;
+    private static final int LOCAL_PLAYLIST_GRID_HOLDER_TYPE = 0x2002;
+    private static final int REMOTE_PLAYLIST_HOLDER_TYPE = 0x2001;
+    private static final int REMOTE_PLAYLIST_GRID_HOLDER_TYPE = 0x2004;
+
     private final InfoItemBuilder infoItemBuilder;
-    private final ArrayList<InfoItem> infoItemList;
+    private final ArrayList<Object> itemList;
     private final HistoryRecordManager recordManager;
 
     private boolean useMiniVariant = false;
@@ -87,7 +97,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public InfoListAdapter(final Context context) {
         this.recordManager = new HistoryRecordManager(context);
         infoItemBuilder = new InfoItemBuilder(context);
-        infoItemList = new ArrayList<>();
+        itemList = new ArrayList<>();
     }
 
     public void setOnStreamSelectedListener(final OnClickGesture<StreamInfoItem> listener) {
@@ -120,15 +130,15 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         if (DEBUG) {
             Log.d(TAG, "addInfoItemList() before > infoItemList.size() = "
-                    + infoItemList.size() + ", data.size() = " + data.size());
+                    + itemList.size() + ", data.size() = " + data.size());
         }
 
         int offsetStart = sizeConsideringHeaderOffset();
-        infoItemList.addAll(data);
+        itemList.addAll(data);
 
         if (DEBUG) {
             Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart + ", "
-                    + "infoItemList.size() = " + infoItemList.size() + ", "
+                    + "infoItemList.size() = " + itemList.size() + ", "
                     + "header = " + header + ", footer = " + footer + ", "
                     + "showFooter = " + showFooter);
         }
@@ -145,9 +155,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public void setInfoItemList(final List<? extends InfoItem> data) {
-        infoItemList.clear();
-        infoItemList.addAll(data);
+    public void setItemList(final List<?> data) {
+        itemList.clear();
+        itemList.addAll(data);
         notifyDataSetChanged();
     }
 
@@ -157,15 +167,15 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         if (DEBUG) {
             Log.d(TAG, "addInfoItem() before > infoItemList.size() = "
-                    + infoItemList.size() + ", thread = " + Thread.currentThread());
+                    + itemList.size() + ", thread = " + Thread.currentThread());
         }
 
         int positionInserted = sizeConsideringHeaderOffset();
-        infoItemList.add(data);
+        itemList.add(data);
 
         if (DEBUG) {
             Log.d(TAG, "addInfoItem() after > position = " + positionInserted + ", "
-                    + "infoItemList.size() = " + infoItemList.size() + ", "
+                    + "infoItemList.size() = " + itemList.size() + ", "
                     + "header = " + header + ", footer = " + footer + ", "
                     + "showFooter = " + showFooter);
         }
@@ -183,10 +193,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void clearStreamItemList() {
-        if (infoItemList.isEmpty()) {
+        if (itemList.isEmpty()) {
             return;
         }
-        infoItemList.clear();
+        itemList.clear();
         notifyDataSetChanged();
     }
 
@@ -219,20 +229,20 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private int sizeConsideringHeaderOffset() {
-        int i = infoItemList.size() + (header != null ? 1 : 0);
+        int i = itemList.size() + (header != null ? 1 : 0);
         if (DEBUG) {
             Log.d(TAG, "sizeConsideringHeaderOffset() called → " + i);
         }
         return i;
     }
 
-    public ArrayList<InfoItem> getItemsList() {
-        return infoItemList;
+    public ArrayList<Object> getItemList() {
+        return itemList;
     }
 
     @Override
     public int getItemCount() {
-        int count = infoItemList.size();
+        int count = itemList.size();
         if (header != null) {
             count++;
         }
@@ -242,7 +252,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         if (DEBUG) {
             Log.d(TAG, "getItemCount() called with: "
-                    + "count = " + count + ", infoItemList.size() = " + infoItemList.size() + ", "
+                    + "count = " + count + ", infoItemList.size() = " + itemList.size() + ", "
                     + "header = " + header + ", footer = " + footer + ", "
                     + "showFooter = " + showFooter);
         }
@@ -260,23 +270,60 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (header != null) {
             position--;
         }
-        if (footer != null && position == infoItemList.size() && showFooter) {
+        if (footer != null && position == itemList.size() && showFooter) {
             return FOOTER_TYPE;
         }
-        final InfoItem item = infoItemList.get(position);
+
+        final Object object = itemList.get(position);
+        if (object instanceof InfoItem) {
+            return getRemoteItemViewType((InfoItem) object);
+        } else if (object instanceof LocalItem) {
+            return getLocalItemViewType((LocalItem) object);
+        } else {
+            Log.e(TAG, "No holder type has been considered for item of unknown type: ["
+                    + object + "]");
+            return -1;
+        }
+    }
+
+    private int getRemoteItemViewType(final InfoItem item) {
         switch (item.getInfoType()) {
             case STREAM:
-                return useGridVariant ? GRID_STREAM_HOLDER_TYPE : useMiniVariant
-                        ? MINI_STREAM_HOLDER_TYPE : STREAM_HOLDER_TYPE;
+                return useGridVariant ? STREAM_HOLDER_GRID_TYPE : useMiniVariant
+                        ? STREAM_HOLDER_MINI_TYPE : STREAM_HOLDER_TYPE;
             case CHANNEL:
-                return useGridVariant ? GRID_CHANNEL_HOLDER_TYPE : useMiniVariant
-                        ? MINI_CHANNEL_HOLDER_TYPE : CHANNEL_HOLDER_TYPE;
+                return useGridVariant ? CHANNEL_HOLDER_GRID_TYPE : useMiniVariant
+                        ? CHANNEL_HOLDER_MINI_TYPE : CHANNEL_HOLDER_TYPE;
             case PLAYLIST:
-                return useGridVariant ? GRID_PLAYLIST_HOLDER_TYPE : useMiniVariant
-                        ? MINI_PLAYLIST_HOLDER_TYPE : PLAYLIST_HOLDER_TYPE;
+                return useGridVariant ? PLAYLIST_HOLDER_GRID_TYPE : useMiniVariant
+                        ? PLAYLIST_HOLDER_MINI_TYPE : PLAYLIST_HOLDER_TYPE;
             case COMMENT:
-                return useMiniVariant ? MINI_COMMENT_HOLDER_TYPE : COMMENT_HOLDER_TYPE;
+                return useMiniVariant ? COMMENT_HOLDER_MINI_TYPE : COMMENT_HOLDER_TYPE;
             default:
+                Log.e(TAG, "No holder type has been considered for remote item: ["
+                        + item.getInfoType() + "]");
+                return -1;
+        }
+    }
+
+    private int getLocalItemViewType(final LocalItem item) {
+        switch (item.getLocalItemType()) {
+            case PLAYLIST_LOCAL_ITEM:
+                return useGridVariant
+                        ? LOCAL_PLAYLIST_GRID_HOLDER_TYPE : LOCAL_PLAYLIST_HOLDER_TYPE;
+            case PLAYLIST_REMOTE_ITEM:
+                return useGridVariant
+                        ? REMOTE_PLAYLIST_GRID_HOLDER_TYPE : REMOTE_PLAYLIST_HOLDER_TYPE;
+
+            case PLAYLIST_STREAM_ITEM:
+                return useGridVariant
+                        ? STREAM_PLAYLIST_GRID_HOLDER_TYPE : STREAM_PLAYLIST_HOLDER_TYPE;
+            case STATISTIC_STREAM_ITEM:
+                return useGridVariant
+                        ? STREAM_STATISTICS_GRID_HOLDER_TYPE : STREAM_STATISTICS_HOLDER_TYPE;
+            default:
+                Log.e(TAG, "No holder type has been considered for local item: ["
+                        + item.getLocalItemType() + "]");
                 return -1;
         }
     }
@@ -294,25 +341,25 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new HFHolder(header);
             case FOOTER_TYPE:
                 return new HFHolder(footer);
-            case MINI_STREAM_HOLDER_TYPE:
+            case STREAM_HOLDER_MINI_TYPE:
                 return new StreamMiniInfoItemHolder(infoItemBuilder, parent);
             case STREAM_HOLDER_TYPE:
                 return new StreamInfoItemHolder(infoItemBuilder, parent);
-            case GRID_STREAM_HOLDER_TYPE:
+            case STREAM_HOLDER_GRID_TYPE:
                 return new StreamGridInfoItemHolder(infoItemBuilder, parent);
-            case MINI_CHANNEL_HOLDER_TYPE:
+            case CHANNEL_HOLDER_MINI_TYPE:
                 return new ChannelMiniInfoItemHolder(infoItemBuilder, parent);
             case CHANNEL_HOLDER_TYPE:
                 return new ChannelInfoItemHolder(infoItemBuilder, parent);
-            case GRID_CHANNEL_HOLDER_TYPE:
+            case CHANNEL_HOLDER_GRID_TYPE:
                 return new ChannelGridInfoItemHolder(infoItemBuilder, parent);
-            case MINI_PLAYLIST_HOLDER_TYPE:
+            case PLAYLIST_HOLDER_MINI_TYPE:
                 return new PlaylistMiniInfoItemHolder(infoItemBuilder, parent);
             case PLAYLIST_HOLDER_TYPE:
                 return new PlaylistInfoItemHolder(infoItemBuilder, parent);
-            case GRID_PLAYLIST_HOLDER_TYPE:
+            case PLAYLIST_HOLDER_GRID_TYPE:
                 return new PlaylistGridInfoItemHolder(infoItemBuilder, parent);
-            case MINI_COMMENT_HOLDER_TYPE:
+            case COMMENT_HOLDER_MINI_TYPE:
                 return new CommentsMiniInfoItemHolder(infoItemBuilder, parent);
             case COMMENT_HOLDER_TYPE:
                 return new CommentsInfoItemHolder(infoItemBuilder, parent);
@@ -322,19 +369,20 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
+                                 int position) {
         if (DEBUG) {
             Log.d(TAG, "onBindViewHolder() called with: "
                     + "holder = [" + holder.getClass().getSimpleName() + "], "
                     + "position = [" + position + "]");
         }
-        if (holder instanceof InfoItemHolder) {
+        if (holder instanceof ItemHolder) {
             // If header isn't null, offset the items by -1
             if (header != null) {
                 position--;
             }
 
-            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), recordManager);
+            ((ItemHolder) holder).updateFromItem(itemList.get(position), recordManager);
         } else if (holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
         } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset()
@@ -346,13 +394,13 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
                                  @NonNull final List<Object> payloads) {
-        if (!payloads.isEmpty() && holder instanceof InfoItemHolder) {
+        if (!payloads.isEmpty() && holder instanceof ItemHolder) {
             for (Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
-                    ((InfoItemHolder) holder).updateState(infoItemList
+                    ((ItemHolder) holder).updateState(itemList
                             .get(header == null ? position : position - 1), recordManager);
                 } else if (payload instanceof Boolean) {
-                    ((InfoItemHolder) holder).updateState(infoItemList
+                    ((ItemHolder) holder).updateState(itemList
                             .get(header == null ? position : position - 1), recordManager);
                 }
             }

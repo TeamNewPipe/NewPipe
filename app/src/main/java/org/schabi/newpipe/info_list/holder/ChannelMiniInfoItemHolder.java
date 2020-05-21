@@ -13,7 +13,7 @@ import org.schabi.newpipe.util.Localization;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChannelMiniInfoItemHolder extends InfoItemHolder {
+public class ChannelMiniInfoItemHolder extends ItemHolder {
     public final CircleImageView itemThumbnailView;
     public final TextView itemTitleView;
     private final TextView itemAdditionalDetailView;
@@ -33,30 +33,30 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem,
+    public void updateFromItem(final Object item,
                                final HistoryRecordManager historyRecordManager) {
-        if (!(infoItem instanceof ChannelInfoItem)) {
+        if (!(item instanceof ChannelInfoItem)) {
             return;
         }
-        final ChannelInfoItem item = (ChannelInfoItem) infoItem;
+        final ChannelInfoItem infoItem = (ChannelInfoItem) item;
 
-        itemTitleView.setText(item.getName());
-        itemAdditionalDetailView.setText(getDetailLine(item));
+        itemTitleView.setText(infoItem.getName());
+        itemAdditionalDetailView.setText(getDetailLine(infoItem));
 
         itemBuilder.getImageLoader()
-                .displayImage(item.getThumbnailUrl(),
+                .displayImage(infoItem.getThumbnailUrl(),
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnChannelSelectedListener() != null) {
-                itemBuilder.getOnChannelSelectedListener().selected(item);
+                itemBuilder.getOnChannelSelectedListener().selected(infoItem);
             }
         });
 
         itemView.setOnLongClickListener(view -> {
             if (itemBuilder.getOnChannelSelectedListener() != null) {
-                itemBuilder.getOnChannelSelectedListener().held(item);
+                itemBuilder.getOnChannelSelectedListener().held(infoItem);
             }
             return true;
         });

@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CommentsMiniInfoItemHolder extends InfoItemHolder {
+public class CommentsMiniInfoItemHolder extends ItemHolder {
     private static final int COMMENT_DEFAULT_LINES = 2;
     private static final int COMMENT_EXPANDED_LINES = 1000;
     private static final Pattern PATTERN = Pattern.compile("(\\d+:)?(\\d+)?:(\\d+)");
@@ -78,24 +78,24 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem,
+    public void updateFromItem(final Object item,
                                final HistoryRecordManager historyRecordManager) {
-        if (!(infoItem instanceof CommentsInfoItem)) {
+        if (!(item instanceof CommentsInfoItem)) {
             return;
         }
-        final CommentsInfoItem item = (CommentsInfoItem) infoItem;
+        final CommentsInfoItem infoItem = (CommentsInfoItem) item;
 
         itemBuilder.getImageLoader()
-                .displayImage(item.getUploaderAvatarUrl(),
+                .displayImage(infoItem.getUploaderAvatarUrl(),
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
+        itemThumbnailView.setOnClickListener(view -> openCommentAuthor(infoItem));
 
-        streamUrl = item.getUrl();
+        streamUrl = infoItem.getUrl();
 
         itemContentView.setLines(COMMENT_DEFAULT_LINES);
-        commentText = item.getCommentText();
+        commentText = infoItem.getCommentText();
         itemContentView.setText(commentText);
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
@@ -105,29 +105,29 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             ellipsize();
         }
 
-        if (item.getLikeCount() >= 0) {
-            itemLikesCountView.setText(String.valueOf(item.getLikeCount()));
+        if (infoItem.getLikeCount() >= 0) {
+            itemLikesCountView.setText(String.valueOf(infoItem.getLikeCount()));
         } else {
             itemLikesCountView.setText("-");
         }
 
-        if (item.getUploadDate() != null) {
-            itemPublishedTime.setText(Localization.relativeTime(item.getUploadDate().date()));
+        if (infoItem.getUploadDate() != null) {
+            itemPublishedTime.setText(Localization.relativeTime(infoItem.getUploadDate().date()));
         } else {
-            itemPublishedTime.setText(item.getTextualUploadDate());
+            itemPublishedTime.setText(infoItem.getTextualUploadDate());
         }
 
         itemView.setOnClickListener(view -> {
             toggleEllipsize();
             if (itemBuilder.getOnCommentsSelectedListener() != null) {
-                itemBuilder.getOnCommentsSelectedListener().selected(item);
+                itemBuilder.getOnCommentsSelectedListener().selected(infoItem);
             }
         });
 
 
         itemView.setOnLongClickListener(view -> {
             if (AndroidTvUtils.isTv(itemBuilder.getContext())) {
-                openCommentAuthor(item);
+                openCommentAuthor(infoItem);
             } else {
                 ShareUtils.copyToClipboard(itemBuilder.getContext(), commentText);
             }

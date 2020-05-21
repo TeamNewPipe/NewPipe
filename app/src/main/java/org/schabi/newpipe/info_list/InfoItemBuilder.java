@@ -17,7 +17,7 @@ import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.InfoItemHolder;
+import org.schabi.newpipe.info_list.holder.ItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
@@ -70,14 +70,14 @@ public class InfoItemBuilder {
     public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
                           final HistoryRecordManager historyRecordManager,
                           final boolean useMiniVariant) {
-        InfoItemHolder holder = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
+        ItemHolder holder = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
         holder.updateFromItem(infoItem, historyRecordManager);
         return holder.itemView;
     }
 
-    private InfoItemHolder holderFromInfoType(@NonNull final ViewGroup parent,
-                                              @NonNull final InfoItem.InfoType infoType,
-                                              final boolean useMiniVariant) {
+    private ItemHolder holderFromInfoType(@NonNull final ViewGroup parent,
+                                          @NonNull final InfoItem.InfoType infoType,
+                                          final boolean useMiniVariant) {
         switch (infoType) {
             case STREAM:
                 return useMiniVariant ? new StreamMiniInfoItemHolder(this, parent)

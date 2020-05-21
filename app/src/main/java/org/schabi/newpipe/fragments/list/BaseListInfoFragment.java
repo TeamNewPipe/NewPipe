@@ -54,7 +54,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         super.onResume();
         // Check if it was loading when the fragment was stopped/paused,
         if (wasLoading.getAndSet(false)) {
-            if (hasMoreItems() && infoListAdapter.getItemsList().size() > 0) {
+            if (hasMoreItems() && infoListAdapter.getItemList().size() > 0) {
                 loadMoreItems();
             } else {
                 doInitialLoadLogic();
@@ -204,7 +204,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         name = result.getName();
         setTitle(name);
 
-        if (infoListAdapter.getItemsList().size() == 0) {
+        if (infoListAdapter.getItemList().size() == 0) {
             if (result.getRelatedItems().size() > 0) {
                 infoListAdapter.addInfoItemList(result.getRelatedItems());
                 showListFooter(hasMoreItems());

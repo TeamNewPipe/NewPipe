@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
@@ -29,18 +28,18 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
+public abstract class ItemHolder extends RecyclerView.ViewHolder {
     protected final InfoItemBuilder itemBuilder;
 
-    public InfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
-                          final ViewGroup parent) {
+    public ItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
+                      final ViewGroup parent) {
         super(LayoutInflater.from(infoItemBuilder.getContext()).inflate(layoutId, parent, false));
         this.itemBuilder = infoItemBuilder;
     }
 
-    public abstract void updateFromItem(InfoItem infoItem,
+    public abstract void updateFromItem(Object item,
                                         HistoryRecordManager historyRecordManager);
 
-    public void updateState(final InfoItem infoItem,
+    public void updateState(final Object item,
                             final HistoryRecordManager historyRecordManager) { }
 }

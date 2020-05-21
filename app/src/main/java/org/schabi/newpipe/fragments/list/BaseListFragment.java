@@ -127,7 +127,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public String generateSuffix() {
         // Naive solution, but it's good for now (the items don't change)
-        return "." + infoListAdapter.getItemsList().size() + ".list";
+        return "." + infoListAdapter.getItemList().size() + ".list";
     }
 
     private int getFocusedPosition() {
@@ -147,7 +147,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             return;
         }
 
-        objectsToSave.add(infoListAdapter.getItemsList());
+        objectsToSave.add(infoListAdapter.getItemList());
         objectsToSave.add(getFocusedPosition());
     }
 
@@ -158,8 +158,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             return;
         }
 
-        infoListAdapter.getItemsList().clear();
-        infoListAdapter.getItemsList().addAll((List<InfoItem>) savedObjects.poll());
+        infoListAdapter.getItemList().clear();
+        infoListAdapter.getItemList().addAll((List<InfoItem>) savedObjects.poll());
         restoreFocus((Integer) savedObjects.poll());
     }
 

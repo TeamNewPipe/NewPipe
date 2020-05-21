@@ -12,7 +12,7 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
-public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
+public class PlaylistMiniInfoItemHolder extends ItemHolder {
     public final ImageView itemThumbnailView;
     private final TextView itemStreamCountView;
     public final TextView itemTitleView;
@@ -34,32 +34,32 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem,
+    public void updateFromItem(final Object item,
                                final HistoryRecordManager historyRecordManager) {
-        if (!(infoItem instanceof PlaylistInfoItem)) {
+        if (!(item instanceof PlaylistInfoItem)) {
             return;
         }
-        final PlaylistInfoItem item = (PlaylistInfoItem) infoItem;
+        final PlaylistInfoItem infoItem = (PlaylistInfoItem) item;
 
-        itemTitleView.setText(item.getName());
+        itemTitleView.setText(infoItem.getName());
         itemStreamCountView.setText(Localization
-                .localizeStreamCountMini(itemStreamCountView.getContext(), item.getStreamCount()));
-        itemUploaderView.setText(item.getUploaderName());
+                .localizeStreamCountMini(itemStreamCountView.getContext(), infoItem.getStreamCount()));
+        itemUploaderView.setText(infoItem.getUploaderName());
 
         itemBuilder.getImageLoader()
-                .displayImage(item.getThumbnailUrl(), itemThumbnailView,
+                .displayImage(infoItem.getThumbnailUrl(), itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnPlaylistSelectedListener() != null) {
-                itemBuilder.getOnPlaylistSelectedListener().selected(item);
+                itemBuilder.getOnPlaylistSelectedListener().selected(infoItem);
             }
         });
 
         itemView.setLongClickable(true);
         itemView.setOnLongClickListener(view -> {
             if (itemBuilder.getOnPlaylistSelectedListener() != null) {
-                itemBuilder.getOnPlaylistSelectedListener().held(item);
+                itemBuilder.getOnPlaylistSelectedListener().held(infoItem);
             }
             return true;
         });

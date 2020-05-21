@@ -549,7 +549,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> streamItems = new ArrayList<>();
-        for (InfoItem i : infoListAdapter.getItemsList()) {
+        for (Object i : infoListAdapter.getItemList()) {
             if (i instanceof StreamInfoItem) {
                 streamItems.add((StreamInfoItem) i);
             }

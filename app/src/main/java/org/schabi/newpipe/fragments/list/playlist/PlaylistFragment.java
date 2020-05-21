@@ -140,7 +140,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     private PlayQueue getPlayQueueStartingAt(final StreamInfoItem infoItem) {
-        return getPlayQueue(Math.max(infoListAdapter.getItemsList().indexOf(infoItem), 0));
+        return getPlayQueue(Math.max(infoListAdapter.getItemList().indexOf(infoItem), 0));
     }
 
     @Override
@@ -341,7 +341,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> infoItems = new ArrayList<>();
-        for (InfoItem i : infoListAdapter.getItemsList()) {
+        for (Object i : infoListAdapter.getItemList()) {
             if (i instanceof StreamInfoItem) {
                 infoItems.add((StreamInfoItem) i);
             }

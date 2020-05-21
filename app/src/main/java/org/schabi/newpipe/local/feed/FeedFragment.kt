@@ -245,7 +245,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     }
 
     private fun handleLoadedState(loadedState: FeedState.LoadedState) {
-        infoListAdapter.setInfoItemList(loadedState.items)
+        infoListAdapter.setItemList(loadedState.items)
         listState?.run {
             items_list.layoutManager?.onRestoreInstanceState(listState)
             listState = null

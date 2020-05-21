@@ -257,7 +257,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (!TextUtils.isEmpty(searchString)) {
             if (wasLoading.getAndSet(false)) {
                 search(searchString, contentFilter, sortFilter);
-            } else if (infoListAdapter.getItemsList().size() == 0) {
+            } else if (infoListAdapter.getItemList().size() == 0) {
                 if (savedState == null) {
                     search(searchString, contentFilter, sortFilter);
                 } else if (!isLoading.get() && !wasSearchFocused) {
@@ -694,7 +694,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public boolean onBackPressed() {
         if (suggestionsPanel.getVisibility() == View.VISIBLE
-                && infoListAdapter.getItemsList().size() > 0
+                && infoListAdapter.getItemList().size() > 0
                 && !isLoading.get()) {
             hideSuggestionsPanel();
             hideKeyboardSearch();
@@ -981,7 +981,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         lastSearchedString = searchString;
         nextPage = result.getNextPage();
 
-        if (infoListAdapter.getItemsList().size() == 0) {
+        if (infoListAdapter.getItemList().size() == 0) {
             if (!result.getRelatedItems().isEmpty()) {
                 infoListAdapter.addInfoItemList(result.getRelatedItems());
             } else {

@@ -39,16 +39,16 @@ public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem,
+    public void updateFromItem(final Object item,
                                final HistoryRecordManager historyRecordManager) {
-        super.updateFromItem(infoItem, historyRecordManager);
+        super.updateFromItem(item, historyRecordManager);
 
-        if (!(infoItem instanceof ChannelInfoItem)) {
+        if (!(item instanceof ChannelInfoItem)) {
             return;
         }
-        final ChannelInfoItem item = (ChannelInfoItem) infoItem;
+        final ChannelInfoItem infoItem = (ChannelInfoItem) item;
 
-        itemChannelDescriptionView.setText(item.getDescription());
+        itemChannelDescriptionView.setText(infoItem.getDescription());
     }
 
     @Override
