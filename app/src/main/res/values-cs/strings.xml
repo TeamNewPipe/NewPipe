@@ -243,10 +243,10 @@ otevření ve vyskakovacím okně</string>
     <string name="hold_to_append">Podrž pro zařazení do fronty</string>
     <string name="unknown_content">[Neznámý]</string>
     <string name="enqueue_on_background">Do fronty na pozadí</string>
-    <string name="enqueue_on_popup">Do fronty v okně</string>
+    <string name="enqueue_on_popup">Do fronty v pop-upu</string>
     <string name="start_here_on_main">Začne hrát zde</string>
     <string name="start_here_on_background">Začít přehrávat na pozadí</string>
-    <string name="start_here_on_popup">Začít přehrávat v okně</string>
+    <string name="start_here_on_popup">Začít přehrávat v pop-upu</string>
     <string name="donation_title">Donate</string>
     <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj volný čas, aby vaše zkušenost s aplikací byla co nejlepší. Vraťte vývojářům něco zpět, aby mohli NewPipe dále zlepšovat a zároveň si vychutnat šálek kávy.</string>
     <string name="give_back">Daruj</string>
@@ -626,4 +626,10 @@ otevření ve vyskakovacím okně</string>
     <string name="remove_watched">Odstranit shlédnutá</string>
     <string name="remove_watched_popup_warning">Videa, která jste shlédli před a po jejich doplnění do playlistu, budou odstraněna.
 \nJste se jisti\? Nelze zvrátit!</string>
+    <string name="show_original_time_ago_summary">Původní texty služeb budou viditelné u položek streamů</string>
+    <string name="show_original_time_ago_title">U položek ukázat původní čas \"před\"</string>
+    <string name="youtube_restricted_mode_enabled_title">Omezený režim YouTube</string>
+    <string name="video_detail_by">%s</string>
+    <string name="channel_created_by">Založil %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Miniatura avatara kanálu</string>
 </resources>

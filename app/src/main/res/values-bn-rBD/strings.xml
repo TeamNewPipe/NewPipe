@@ -185,5 +185,9 @@
     <string name="show_comments_title">মতামত প্রদর্শন করুন</string>
     <string name="download_thumbnail_title">থাম্বনেইল লোড করুন</string>
     <string name="download_thumbnail_summary">থাম্বনেইল প্রদর্শন বন্ধ করার মাধ্যমে, ডাটা এবং মেমোরি সংরক্ষণ করুন। অপশনটি‌ পরিবর্তনে ইন-মেমোরি এবং অন-ডিস্ক ইমেজ ক্যাশ উভয়ই মুছে যাবে।</string>
-    <string name="thumbnail_cache_wipe_complete_notice">ইমেজ ক্যাশে মুছে ফেলা হয়েছে</string>
+    <string name="thumbnail_cache_wipe_complete_notice">ছবির ক্যাশ মুছে ফেলা হয়েছে</string>
+    <string name="metadata_cache_wipe_summary">ওয়েবপৃষ্ঠার সকল ক্যাশড তথ্য মুছুন</string>
+    <string name="metadata_cache_wipe_title">ক্যাশড মেটাডেটা মুছুন</string>
+    <string name="metadata_cache_wipe_complete_notice">মেটাডেটা ক্যাশ মুছে ফেলা হয়েছে</string>
+    <string name="auto_queue_title">পরবর্তী স্ট্রিম স্বয়ংক্রিয়ংভাবে সংযোজন করুন</string>
 </resources>
