@@ -21,6 +21,8 @@ package org.schabi.newpipe.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
@@ -39,7 +41,8 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
 public final class ThemeHelper {
-    private ThemeHelper() { }
+    private ThemeHelper() {
+    }
 
     /**
      * Apply the selected theme (on NewPipe settings) in the context
@@ -70,8 +73,13 @@ public final class ThemeHelper {
      * @return whether the light theme is selected
      */
     public static boolean isLightThemeSelected(final Context context) {
-        return getSelectedThemeString(context).equals(context.getResources()
-                .getString(R.string.light_theme_key));
+        final String selectedThemeString = getSelectedThemeString(context);
+        final Resources res = context.getResources();
+
+        return selectedThemeString.equals(res.getString(R.string.light_theme_key))
+                || (selectedThemeString.equals(res.getString(R.string.device_dark_theme_key))
+                || selectedThemeString.equals(res.getString(R.string.device_black_theme_key))
+                && !isDeviceDarkThemeEnabled(context));
     }
 
 
@@ -130,9 +138,12 @@ public final class ThemeHelper {
      */
     @StyleRes
     public static int getThemeForService(final Context context, final int serviceId) {
-        final String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        final String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        final String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        final Resources res = context.getResources();
+        final String lightTheme = res.getString(R.string.light_theme_key);
+        final String darkTheme = res.getString(R.string.dark_theme_key);
+        final String blackTheme = res.getString(R.string.black_theme_key);
+        final String deviceDarkTheme = res.getString(R.string.device_dark_theme_key);
+        final String deviceBlackTheme = res.getString(R.string.device_black_theme_key);
 
         final String selectedTheme = getSelectedThemeString(context);
 
@@ -141,8 +152,18 @@ public final class ThemeHelper {
             defaultTheme = R.style.LightTheme;
         } else if (selectedTheme.equals(blackTheme)) {
             defaultTheme = R.style.BlackTheme;
-        } else if (selectedTheme.equals(darkTheme)) {
-            defaultTheme = R.style.DarkTheme;
+        } else if (selectedTheme.equals(deviceDarkTheme)) {
+            if (isDeviceDarkThemeEnabled(context)) {
+                defaultTheme = R.style.DarkTheme;
+            } else {
+                defaultTheme = R.style.LightTheme;
+            }
+        } else if (selectedTheme.equals(deviceBlackTheme)) {
+            if (isDeviceDarkThemeEnabled(context)) {
+                defaultTheme = R.style.BlackTheme;
+            } else {
+                defaultTheme = R.style.LightTheme;
+            }
         }
 
         if (serviceId <= -1) {
@@ -157,12 +178,10 @@ public final class ThemeHelper {
         }
 
         String themeName = "DarkTheme";
-        if (selectedTheme.equals(lightTheme)) {
+        if (defaultTheme == R.style.LightTheme) {
             themeName = "LightTheme";
-        } else if (selectedTheme.equals(blackTheme)) {
+        } else if (defaultTheme == R.style.BlackTheme) {
             themeName = "BlackTheme";
-        } else if (selectedTheme.equals(darkTheme)) {
-            themeName = "DarkTheme";
         }
 
         themeName += "." + service.getServiceInfo().getName();
@@ -179,9 +198,12 @@ public final class ThemeHelper {
 
     @StyleRes
     public static int getSettingsThemeStyle(final Context context) {
-        final String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        final String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        final String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        final Resources res = context.getResources();
+        final String lightTheme = res.getString(R.string.light_theme_key);
+        final String darkTheme = res.getString(R.string.dark_theme_key);
+        final String blackTheme = res.getString(R.string.black_theme_key);
+        final String deviceDarkTheme = res.getString(R.string.device_dark_theme_key);
+        final String deviceBlackTheme = res.getString(R.string.device_black_theme_key);
 
         final String selectedTheme = getSelectedThemeString(context);
 
@@ -191,6 +213,18 @@ public final class ThemeHelper {
             return R.style.BlackSettingsTheme;
         } else if (selectedTheme.equals(darkTheme)) {
             return R.style.DarkSettingsTheme;
+        } else if (selectedTheme.equals(deviceDarkTheme)) {
+            if (isDeviceDarkThemeEnabled(context)) {
+                return R.style.DarkSettingsTheme;
+            } else {
+                return R.style.LightSettingsTheme;
+            }
+        } else if (selectedTheme.equals(deviceBlackTheme)) {
+            if (isDeviceDarkThemeEnabled(context)) {
+                return R.style.BlackSettingsTheme;
+            } else {
+                return R.style.LightSettingsTheme;
+            }
         } else {
             // Fallback
             return R.style.DarkSettingsTheme;
@@ -239,8 +273,9 @@ public final class ThemeHelper {
     /**
      * Sets the title to the activity, if the activity is an {@link AppCompatActivity} and has an
      * action bar.
+     *
      * @param activity the activity to set the title of
-     * @param title the title to set to the activity
+     * @param title    the title to set to the activity
      */
     public static void setTitleToAppCompatActivity(@Nullable final Activity activity,
                                                    final CharSequence title) {
@@ -249,6 +284,30 @@ public final class ThemeHelper {
             if (actionBar != null) {
                 actionBar.setTitle(title);
             }
+        }
+    }
+
+    /**
+     * Get the device theme
+     * <p>
+     * It will return true if the device 's theme is dark, false otherwise.
+     * <p>
+     * From https://developer.android.com/guide/topics/ui/look-and-feel/darktheme#java
+     *
+     * @param context the context to use
+     * @return true:dark theme, false:light or unknown
+     */
+    private static boolean isDeviceDarkThemeEnabled(final Context context) {
+        int deviceTheme = context.getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK;
+        switch (deviceTheme) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                return true;
+
+            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+            case Configuration.UI_MODE_NIGHT_NO:
+            default:
+                return false;
         }
     }
 }

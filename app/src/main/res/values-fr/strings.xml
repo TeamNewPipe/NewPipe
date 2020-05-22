@@ -43,6 +43,9 @@
     <string name="theme_title">Thème</string>
     <string name="dark_theme_title">Sombre</string>
     <string name="light_theme_title">Clair</string>
+    <string name="black_theme_title">Noir</string>
+    <string name="device_dark_theme_title">Thème de l\'appareil (Sombre)</string>
+    <string name="device_black_theme_title">Thème de l\'appareil (Noir)</string>
     <string name="settings_category_appearance_title">Apparence</string>
     <string name="network_error">Erreur réseau</string>
     <string name="download_path_audio_title">Dossier de téléchargement audio</string>
@@ -103,7 +106,6 @@
     <string name="no_available_dir">Veuillez définir ultérieurement un dossier de téléchargement dans les paramètres</string>
     <string name="could_not_load_image">Impossible de charger l’image</string>
     <string name="app_ui_crash">L’application a planté</string>
-    <string name="black_theme_title">Noir</string>
     <string name="all">Tout</string>
     <string name="channel">Chaîne</string>
     <string name="title_activity_recaptcha">Défi reCAPTCHA</string>

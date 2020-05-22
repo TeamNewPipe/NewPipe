@@ -23,6 +23,9 @@
     <string name="theme_title">Etoso</string>
     <string name="dark_theme_title">Malluma</string>
     <string name="light_theme_title">Luma</string>
+    <string name="black_theme_title">Nigra</string>
+    <string name="device_dark_theme_title">Etoson (Malluma)</string>
+    <string name="device_black_theme_title">Etoson de la aparato (Nigra)</string>
     <string name="download_dialog_title">Elŝuti</string>
     <string name="unsupported_url">Ligilo ne subtenita</string>
     <string name="content_language_title">Preferata enhavlingvo</string>
@@ -90,7 +93,6 @@
     <string name="show_higher_resolutions_title">Montri pli altajn rezoluciojn</string>
     <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj povas ludi 2K / 4K filmetojn</string>
     <string name="default_video_format_title">Defaŭlta fomato de filmeto</string>
-    <string name="black_theme_title">Nigra</string>
     <string name="popup_remember_size_pos_title">Memoru ŝprucfenestran grandecon kaj pozicion</string>
     <string name="popup_remember_size_pos_summary">Memoru lastan grandecon kaj pozicion de ŝprucfenestro</string>
     <string name="use_inexact_seek_title">Uzi rapide, ne precizan serĉon</string>

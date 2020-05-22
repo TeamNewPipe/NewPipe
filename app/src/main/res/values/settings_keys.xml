@@ -179,16 +179,22 @@
     <string name="light_theme_key" translatable="false">light_theme</string>
     <string name="dark_theme_key" translatable="false">dark_theme</string>
     <string name="black_theme_key" translatable="false">black_theme</string>
+    <string name="device_dark_theme_key" translatable="false">device_dark_theme</string>
+    <string name="device_black_theme_key" translatable="false">device_black_theme</string>
     <string name="default_theme_value" translatable="false">@string/dark_theme_key</string>
     <string-array name="theme_values_list" translatable="false">
         <item>@string/light_theme_key</item>
         <item>@string/dark_theme_key</item>
         <item>@string/black_theme_key</item>
+        <item>@string/device_dark_theme_key</item>
+        <item>@string/device_black_theme_key</item>
     </string-array>
     <string-array name="theme_description_list" translatable="false">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
         <item>@string/black_theme_title</item>
+        <item>@string/device_dark_theme_title</item>
+        <item>@string/device_black_theme_title</item>
     </string-array>
 
     <!-- Caption Size -->
