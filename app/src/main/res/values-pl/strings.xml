@@ -248,10 +248,10 @@
     <string name="play_queue_audio_settings">Ustawienia dźwięku</string>
     <string name="hold_to_append">Przytrzymaj, aby zakolejkować</string>
     <string name="enqueue_on_background">Kolejkuj w tle</string>
-    <string name="enqueue_on_popup">Kolejkuj w nowym wyskakującym okienku</string>
+    <string name="enqueue_on_popup">Kolejkuj w wyskakującym okienku</string>
     <string name="start_here_on_main">Zacznij odtwarzać tutaj</string>
     <string name="start_here_on_background">Zacznij odtwarzać w tle</string>
-    <string name="start_here_on_popup">Zacznij odtwarzać w nowym wyskakującym okienku</string>
+    <string name="start_here_on_popup">Zacznij odtwarzać w wyskakującym okienku</string>
     <string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć, możesz zainstalować VLC).</string>
     <string name="default_content_country_title">Domyślny kraj treści</string>
     <string name="service_title">Usługa</string>
