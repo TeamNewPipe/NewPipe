@@ -32,7 +32,7 @@
     <string name="settings_category_video_audio_title">Video e Audio</string>
     <string name="list_thumbnail_view_description">Copertina di anteprima video</string>
     <string name="detail_thumbnail_view_description">Riproduci video, durata:</string>
-    <string name="detail_uploader_thumbnail_view_description">Immagine di profilo dell\'utente</string>
+    <string name="detail_uploader_thumbnail_view_description">Immagine dell\'Utente</string>
     <string name="detail_dislikes_img_view_description">Non mi piace</string>
     <string name="detail_likes_img_view_description">Mi piace</string>
     <string name="err_dir_create">Impossibile creare la cartella di download \'%1$s\'</string>
@@ -615,4 +615,7 @@
     <string name="youtube_restricted_mode_enabled_title">Modalità limitata di YouTube</string>
     <string name="show_original_time_ago_summary">I testi originali dei servizi saranno visibili negli elementi video</string>
     <string name="show_original_time_ago_title">Mostra i tempi originali degli elementi</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Immagine del Canale</string>
+    <string name="video_detail_by">Da %s</string>
+    <string name="channel_created_by">Creato da %s</string>
 </resources>
