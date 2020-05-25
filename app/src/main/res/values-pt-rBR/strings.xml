@@ -430,7 +430,7 @@
     <string name="grid">Grade</string>
     <string name="auto">Automático</string>
     <string name="switch_view">Mudar exibição</string>
-    <string name="app_update_notification_content_title">Atualização do NewPipe disponível!</string>
+    <string name="app_update_notification_content_title">Atualização do NewPipe está disponível!</string>
     <string name="app_update_notification_content_text">Toque para baixar</string>
     <string name="missions_header_finished">Finalizado</string>
     <string name="paused">pausado</string>
