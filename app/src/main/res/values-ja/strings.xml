@@ -13,7 +13,7 @@
     <string name="share_dialog_title">共有</string>
     <string name="choose_browser">ブラウザを選択</string>
     <string name="screen_rotation">回転</string>
-    <string name="download_path_title">動画を保存するフォルダー</string>
+    <string name="download_path_title">動画を保存する場所</string>
     <string name="download_path_summary">ダウンロードした動画をここに保存します</string>
     <string name="download_path_dialog_title">動画ファイルをダウンロードするフォルダーを選択して下さい</string>
     <string name="default_resolution_title">デフォルトの解像度</string>
@@ -35,8 +35,8 @@
     <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
     <string name="detail_dislikes_img_view_description">低評価</string>
     <string name="detail_likes_img_view_description">高評価</string>
-    <string name="use_external_video_player_title">外部の動画プレイヤーを使用</string>
-    <string name="use_external_audio_player_title">外部の音声プレイヤーを使用</string>
+    <string name="use_external_video_player_title">外部動画プレイヤーを使用する</string>
+    <string name="use_external_audio_player_title">外部音声プレイヤーを使用する</string>
     <string name="background_player_playing_toast">バックグラウンドで再生中</string>
     <string name="play_btn_text">再生</string>
     <string name="use_tor_title">Torを使用する</string>
@@ -595,4 +595,9 @@
     <string name="restricted_video">この動画には年齢制限があります。
 \n
 \n閲覧したい場合、設定から \"年齢制限のあるコンテンツを表示する\" を有効化してください。</string>
+    <string name="remove_watched_popup_warning">プレイリストに追加される前も追加された後も視聴した動画はプレイリストから削除されます。
+\nよろしいですか？この操作は元に戻せません！</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">はい、部分的に視聴した動画も削除します</string>
+    <string name="remove_watched_popup_title">視聴済みの動画を削除しますか？</string>
+    <string name="remove_watched">視聴済みを削除</string>
 </resources>

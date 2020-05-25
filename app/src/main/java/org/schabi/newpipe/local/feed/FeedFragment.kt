@@ -22,14 +22,28 @@ package org.schabi.newpipe.local.feed
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.preference.PreferenceManager
 import icepick.State
-import kotlinx.android.synthetic.main.error_retry.*
-import kotlinx.android.synthetic.main.fragment_feed.*
+import java.util.Calendar
+import kotlinx.android.synthetic.main.error_retry.error_button_retry
+import kotlinx.android.synthetic.main.error_retry.error_message_view
+import kotlinx.android.synthetic.main.fragment_feed.empty_state_view
+import kotlinx.android.synthetic.main.fragment_feed.error_panel
+import kotlinx.android.synthetic.main.fragment_feed.items_list
+import kotlinx.android.synthetic.main.fragment_feed.loading_progress_bar
+import kotlinx.android.synthetic.main.fragment_feed.loading_progress_text
+import kotlinx.android.synthetic.main.fragment_feed.refresh_root_view
+import kotlinx.android.synthetic.main.fragment_feed.refresh_subtitle_text
+import kotlinx.android.synthetic.main.fragment_feed.refresh_text
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.fragments.list.BaseListFragment
@@ -37,7 +51,6 @@ import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.report.UserAction
 import org.schabi.newpipe.util.AnimationUtils.animateView
 import org.schabi.newpipe.util.Localization
-import java.util.*
 
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private lateinit var viewModel: FeedViewModel
@@ -98,9 +111,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Menu
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -150,9 +163,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         activity?.supportActionBar?.subtitle = null
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Handling
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun showLoading() {
         animateView(refresh_root_view, false, 0)
@@ -259,7 +272,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         }
     }
 
-
     private fun handleErrorState(errorState: FeedState.ErrorState): Boolean {
         hideLoading()
         errorState.error?.let {
@@ -283,9 +295,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         refresh_text?.text = getString(R.string.feed_oldest_subscription_update, oldestSubscriptionUpdateText)
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Load Service Handling
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     override fun doInitialLoadLogic() {}
     override fun reloadContent() = triggerUpdate()

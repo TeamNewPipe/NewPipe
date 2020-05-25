@@ -13,18 +13,18 @@ import org.schabi.newpipe.local.subscription.FeedGroupIcon
         indices = [Index(SORT_ORDER)]
 )
 data class FeedGroupEntity(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = ID)
-        val uid: Long,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = ID)
+    val uid: Long,
 
-        @ColumnInfo(name = NAME)
-        var name: String,
+    @ColumnInfo(name = NAME)
+    var name: String,
 
-        @ColumnInfo(name = ICON)
-        var icon: FeedGroupIcon,
+    @ColumnInfo(name = ICON)
+    var icon: FeedGroupIcon,
 
-        @ColumnInfo(name = SORT_ORDER)
-        var sortOrder: Long = -1
+    @ColumnInfo(name = SORT_ORDER)
+    var sortOrder: Long = -1
 ) {
     companion object {
         const val FEED_GROUP_TABLE = "feed_group"

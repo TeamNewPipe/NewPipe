@@ -364,7 +364,7 @@
     <string name="no_player_found_toast">Reproduktor za stream nije pronađen (možete instalirati VLC za reprodukciju).</string>
     <string name="controls_download_desc">Preuzmite datoteku za stream</string>
     <string name="use_inexact_seek_title">Koristi brzo netočno premotavanje</string>
-    <string name="use_inexact_seek_summary">Netočno premotavanje omogućava reproduktoru da premota na mjesto brže uz manju preciznost</string>
+    <string name="use_inexact_seek_summary">Netočno premotavanje omogućava reproduktoru da premota na mjesto brže uz manju preciznost. Premotavanje od 5, 15 ili 25 sekundi s ovime nije moguće.</string>
     <string name="unsubscribe">Otkaži pretplatu</string>
     <string name="tab_new">Nova kartica</string>
     <string name="tab_choose">Odaberi karticu</string>

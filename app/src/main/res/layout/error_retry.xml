@@ -29,6 +29,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:background="?attr/colorPrimary"
         android:textSize="16sp"
-        android:theme="@style/RedButton"/>
+        android:theme="@style/ServiceColoredButton"/>
 
 </LinearLayout>

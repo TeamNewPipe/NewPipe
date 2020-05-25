@@ -131,15 +131,14 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     }
 
     private int getFocusedPosition() {
-        View focusedItem = itemsList.getFocusedChild();
-        if (focusedItem != null) {
-            RecyclerView.ViewHolder itemHolder = itemsList.findContainingViewHolder(focusedItem);
-            if (itemHolder != null) {
-                return itemHolder.getAdapterPosition();
-            }
+        try {
+            final View focusedItem = itemsList.getFocusedChild();
+            final RecyclerView.ViewHolder itemHolder =
+                    itemsList.findContainingViewHolder(focusedItem);
+            return itemHolder.getAdapterPosition();
+        } catch (NullPointerException e) {
+            return -1;
         }
-
-        return -1;
     }
 
     @Override

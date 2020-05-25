@@ -396,12 +396,11 @@ public class DownloadDialog extends DialogFragment
             Log.d(TAG, "initToolbar() called with: toolbar = [" + toolbar + "]");
         }
 
-        boolean isLight = ThemeHelper.isLightThemeSelected(getActivity());
-
         toolbar.setTitle(R.string.download_dialog_title);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+
         toolbar.inflateMenu(R.menu.dialog_url);
-        toolbar.setNavigationOnClickListener(v -> getDialog().dismiss());
+        toolbar.setNavigationOnClickListener(v -> requireDialog().dismiss());
         toolbar.setNavigationContentDescription(R.string.cancel);
 
         okButton = toolbar.findViewById(R.id.okay);

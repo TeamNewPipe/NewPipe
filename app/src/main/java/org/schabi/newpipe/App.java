@@ -136,7 +136,8 @@ public class App extends Application {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
                 getApplicationContext());
         final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
-        downloader.setCookies(prefs.getString(key, ""));
+        downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, prefs.getString(key, ""));
+        downloader.updateYoutubeRestrictedModeCookies(getApplicationContext());
     }
 
     private void configureRxJavaErrorHandler() {

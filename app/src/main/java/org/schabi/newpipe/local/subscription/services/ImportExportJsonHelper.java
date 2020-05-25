@@ -74,14 +74,16 @@ public final class ImportExportJsonHelper {
         final List<SubscriptionItem> channels = new ArrayList<>();
 
         try {
-            JsonObject parentObject = JsonParser.object().from(in);
-            JsonArray channelsArray = parentObject.getArray(JSON_SUBSCRIPTIONS_ARRAY_KEY);
-            if (eventListener != null) {
-                eventListener.onSizeReceived(channelsArray.size());
+            final JsonObject parentObject = JsonParser.object().from(in);
+
+            if (!parentObject.has(JSON_SUBSCRIPTIONS_ARRAY_KEY)) {
+                throw new InvalidSourceException("Channels array is null");
             }
 
-            if (channelsArray == null) {
-                throw new InvalidSourceException("Channels array is null");
+            final JsonArray channelsArray = parentObject.getArray(JSON_SUBSCRIPTIONS_ARRAY_KEY);
+
+            if (eventListener != null) {
+                eventListener.onSizeReceived(channelsArray.size());
             }
 
             for (Object o : channelsArray) {

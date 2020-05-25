@@ -595,4 +595,9 @@
     <string name="restricted_video">此影片有年鈴限制。
 \n
 \n如果您想要觀看，請在設定中啟用「年齡限制的內容」。</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">是的，以及部份觀看的影片</string>
+    <string name="remove_watched_popup_warning">在新增到播放清單前後的影片將被移除。
+\n您確定嗎？此動作無法復原！</string>
+    <string name="remove_watched_popup_title">移除已觀看的影片？</string>
+    <string name="remove_watched">移除已觀看</string>
 </resources>

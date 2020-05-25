@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_alignRight="@id/itemThumbnailView"
         android:layout_alignTop="@id/itemThumbnailView"
         android:background="@color/playlist_stream_count_background_color"
-        android:drawableTop="@drawable/ic_playlist_play_white_24dp"
+        app:drawableTopCompat="@drawable/ic_playlist_play_white_24dp"
         android:gravity="center"
         android:paddingBottom="6dp"
         android:paddingTop="4dp"

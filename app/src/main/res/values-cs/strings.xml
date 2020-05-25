@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Publikováno %1$s</string>
-    <string name="no_player_found">Nenalezen žádný přehrávač. Nainstalovat VLC?</string>
+    <string name="no_player_found">Nenalezen žádný streamový přehrávač. Nainstalovat VLC\?</string>
     <string name="install">Instalovat</string>
     <string name="cancel">Zrušit</string>
     <string name="open_in_browser">Otevřít v prohlížeči</string>
     <string name="share">Sdílet</string>
     <string name="download">Stáhnout</string>
-    <string name="search">Vyhledat</string>
+    <string name="search">Hledat</string>
     <string name="settings">Nastavení</string>
     <string name="did_you_mean">Mysleli jste: %1$s\?</string>
     <string name="share_dialog_title">Sdílet s</string>
@@ -17,7 +17,7 @@
     <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
     <string name="download_path_audio_summary">Stažené audio je uloženo zde</string>
     <string name="download_path_audio_dialog_title">Zvolte adresář pro stažené audio soubory</string>
-    <string name="download_path_audio_title">Složka pro stažené audio</string>
+    <string name="download_path_audio_title">Adresář pro stažené audio</string>
     <string name="default_resolution_title">Výchozí rozlišení</string>
     <string name="play_with_kodi_title">Přehrát pomocí Kodi</string>
     <string name="kore_not_found">Nainstalovat chybějící aplikaci Kore\?</string>
@@ -64,7 +64,7 @@
     <string name="video_is_age_restricted">Zobrazit video s věkovým omezením. Změnit tuto volbu v budoucnu lze v \"Nastavení\".</string>
     <string name="duration_live">Živě</string>
     <string name="light_parsing_error">Nebylo možné kompletně analyzovat stránku</string>
-    <string name="main_bg_subtitle">Začni klepnutím na \"Hledat\"</string>
+    <string name="main_bg_subtitle">Začít klepnutím na \"Hledat\"</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">NewPipe stahuje</string>
@@ -621,4 +621,9 @@ otevření ve vyskakovacím okně</string>
     <string name="restricted_video">Toto je video s věkovým omezením.
 \n
 \nPokud ho chcete vidět, povolte \"Věkově omezený obsah\" v \"Nastavení\".</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ano, i zčásti shlédnutá videa</string>
+    <string name="remove_watched_popup_title">Odstranit shlédnutá videa\?</string>
+    <string name="remove_watched">Odstranit shlédnutá</string>
+    <string name="remove_watched_popup_warning">Videa, která jste shlédli před a po jejich doplnění do playlistu, budou odstraněna.
+\nJste se jisti\? Nelze zvrátit!</string>
 </resources>

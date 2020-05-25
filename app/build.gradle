@@ -13,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 920
-        versionName "0.19.2"
+        versionCode 930
+        versionName "0.19.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -66,6 +66,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        encoding 'utf-8'
     }
 
     // Required and used only by groupie
@@ -79,8 +80,8 @@ android {
 }
 
 ext {
-    androidxLibVersion = '1.0.0'
-    exoPlayerLibVersion = '2.10.8'
+    androidxLibVersion = '1.1.0'
+    exoPlayerLibVersion = '2.11.4'
     roomDbLibVersion = '2.1.0'
     leakCanaryLibVersion = '1.5.4' //1.6.1
     okHttpLibVersion = '3.12.6'
@@ -116,25 +117,31 @@ task runCheckstyle(type: Checkstyle) {
     }
 }
 
-tasks.withType(Checkstyle).each {
-    checkstyleTask -> checkstyleTask.doLast {
-        reports.all { report ->
-            def outputFile = report.destination
-            if (outputFile.exists() && outputFile.text.contains("severity=\"error\"")) {
-                throw new GradleException("There were checkstyle errors! For more info check $outputFile")
-            }
-        }
-    }
+configurations {
+    ktlint
+}
+
+task runKtlint(type: JavaExec) {
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+}
+
+task formatKtlint(type: JavaExec) {
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
 }
 
 afterEvaluate {
-    preDebugBuild.dependsOn runCheckstyle
+    preDebugBuild.dependsOn runCheckstyle, runKtlint
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     debugImplementation "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
+    ktlint "com.pinterest:ktlint:0.35.0"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation "android.arch.persistence.room:testing:1.1.1"
@@ -142,17 +149,16 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:a5155fb562ca99ca4a9c8caa2fd60f2f0a305eb0'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:f3913e241e379adf0091319091e8f895c5fcfd07'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation "androidx.legacy:legacy-support-v4:${androidxLibVersion}"
+    implementation "androidx.appcompat:appcompat:${androidxLibVersion}"
     implementation "com.google.android.material:material:${androidxLibVersion}"
     implementation "androidx.recyclerview:recyclerview:${androidxLibVersion}"
-    implementation "androidx.legacy:legacy-preference-v14:${androidxLibVersion}"
-    implementation "androidx.cardview:cardview:${androidxLibVersion}"
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.preference:preference:${androidxLibVersion}"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
 
     implementation 'com.xwray:groupie:2.7.0'
     implementation 'com.xwray:groupie-kotlin-android-extensions:2.7.0'
@@ -162,7 +168,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
     // Originally in NewPipeExtractor
-    implementation 'com.grack:nanojson:1.1'
+    implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
     implementation 'org.jsoup:jsoup:1.9.2'
 
     implementation 'ch.acra:acra:4.9.2' //4.11

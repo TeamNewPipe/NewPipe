@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s приказа</string>
     <string name="upload_date_text">Објављен %1$s</string>
-    <string name="no_player_found">Нема плејера токова. Желите ли да инсталирате ВЛЦ?</string>
+    <string name="no_player_found">Нема плејера токова. Инсталирати ВЛЦ\?</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Одустани</string>
     <string name="open_in_browser">Отвори у прегледачу</string>
@@ -16,10 +16,10 @@
     <string name="screen_rotation">ротација</string>
     <string name="download_path_title">Одредиште преузимања снимака</string>
     <string name="download_path_summary">Преузети снимци се чувају овде</string>
-    <string name="download_path_dialog_title">Изаберите фолдер за преузимање видео снимака</string>
+    <string name="download_path_dialog_title">Изаберите фасциклу за преузимање видео снимака</string>
     <string name="default_resolution_title">Подразумевана резолуција</string>
     <string name="play_with_kodi_title">Пусти помоћу Кодија</string>
-    <string name="kore_not_found">Апликација Кор (Kore) није нађена. Инсталирати је?</string>
+    <string name="kore_not_found">Да инсталирам недостајућу апликација Кор (Kore)\?</string>
     <string name="show_play_with_kodi_title">Прикажи „Пусти помоћу Кодија“</string>
     <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру</string>
     <string name="play_audio">Аудио</string>
@@ -48,7 +48,7 @@
     <string name="settings_category_appearance_title">Изглед</string>
     <string name="network_error">Грешка мреже</string>
     <string name="download_path_audio_title">Фолдер преузимања за аудио</string>
-    <string name="download_path_audio_dialog_title">Унесите путању за преузимање аудио фајлова</string>
+    <string name="download_path_audio_dialog_title">Изаберите фасциклу за преузимање аудио фајлова</string>
     <string name="download_path_audio_summary">Овде се чувају преузети аудио-снимци</string>
     <string name="info_dir_created">Направљен директоријум за преузимање „%1$s“</string>
     <string name="err_dir_create">Не могу да направим директоријум за преузимање„ %1$s“</string>
@@ -126,7 +126,7 @@
     <string name="default_video_format_title">Пожељни формат видеа</string>
     <string name="default_popup_resolution_title">Резолуција искачућег прозора</string>
     <string name="show_higher_resolutions_title">Прикажи више резолуције</string>
-    <string name="show_higher_resolutions_summary">Само неки уређаји подржавају пуштање 2K/4K видеа</string>
+    <string name="show_higher_resolutions_summary">Само неки уређаји могу да пуштају 2K/4K видео</string>
     <string name="filter">Филтер</string>
     <string name="refresh">Освежи</string>
     <string name="clear">Очисти</string>

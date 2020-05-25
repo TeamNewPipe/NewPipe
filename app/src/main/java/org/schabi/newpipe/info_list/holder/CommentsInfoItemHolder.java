@@ -48,6 +48,6 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
         }
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
-        itemTitleView.setText(item.getAuthorName());
+        itemTitleView.setText(item.getUploaderName());
     }
 }

@@ -2,21 +2,21 @@ package org.schabi.newpipe.database.history.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
+import java.util.Date
 import org.schabi.newpipe.database.stream.model.StreamEntity
-import java.util.*
 
 data class StreamHistoryEntry(
-        @Embedded
-        val streamEntity: StreamEntity,
+    @Embedded
+    val streamEntity: StreamEntity,
 
-        @ColumnInfo(name = StreamHistoryEntity.JOIN_STREAM_ID)
-        val streamId: Long,
+    @ColumnInfo(name = StreamHistoryEntity.JOIN_STREAM_ID)
+    val streamId: Long,
 
-        @ColumnInfo(name = StreamHistoryEntity.STREAM_ACCESS_DATE)
-        val accessDate: Date,
+    @ColumnInfo(name = StreamHistoryEntity.STREAM_ACCESS_DATE)
+    val accessDate: Date,
 
-        @ColumnInfo(name = StreamHistoryEntity.STREAM_REPEAT_COUNT)
-        val repeatCount: Long
+    @ColumnInfo(name = StreamHistoryEntity.STREAM_REPEAT_COUNT)
+    val repeatCount: Long
 ) {
 
     fun toStreamHistoryEntity(): StreamHistoryEntity {

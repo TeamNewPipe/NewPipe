@@ -64,7 +64,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:background="?attr/toolbar_shadow_drawable"
+        android:background="?attr/toolbar_shadow"
         android:layout_alignParentTop="true"/>
 
 </RelativeLayout>

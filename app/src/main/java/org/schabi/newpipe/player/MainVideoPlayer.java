@@ -80,8 +80,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -179,7 +179,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                     final String orientKey = getString(R.string.last_orientation_landscape_key);
 
                     final boolean lastOrientationWasLandscape = defaultPreferences
-                            .getBoolean(orientKey, AndroidTvUtils.isTv());
+                            .getBoolean(orientKey, AndroidTvUtils.isTv(getApplicationContext()));
                     setLandscape(lastOrientationWasLandscape);
                 } else {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
@@ -191,7 +191,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
                 false, rotationObserver);
 
-        if (AndroidTvUtils.isTv()) {
+        if (AndroidTvUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
     }
@@ -223,7 +223,8 @@ public final class MainVideoPlayer extends AppCompatActivity
             default:
                 break;
             case KeyEvent.KEYCODE_BACK:
-                if (AndroidTvUtils.isTv() && playerImpl.isControlsVisible()) {
+                if (AndroidTvUtils.isTv(getApplicationContext())
+                        && playerImpl.isControlsVisible()) {
                     playerImpl.hideControls(0, 0);
                     hideSystemUi();
                     return true;
@@ -271,7 +272,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             final String orientKey = getString(R.string.last_orientation_landscape_key);
 
             boolean lastOrientationWasLandscape = defaultPreferences
-                    .getBoolean(orientKey, AndroidTvUtils.isTv());
+                    .getBoolean(orientKey, AndroidTvUtils.isTv(getApplicationContext()));
             setLandscape(lastOrientationWasLandscape);
         }
 
@@ -490,7 +491,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     protected void setMuteButton(final ImageButton muteButton, final boolean isMuted) {
         muteButton.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), isMuted
-                ? R.drawable.ic_volume_off_white_72dp : R.drawable.ic_volume_up_white_72dp));
+                ? R.drawable.ic_volume_off_white_24dp : R.drawable.ic_volume_up_white_24dp));
     }
 
 
@@ -592,9 +593,6 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
-            boolean showKodiButton = PreferenceManager.getDefaultSharedPreferences(this.context)
-                    .getBoolean(this.context.getString(R.string.show_play_with_kodi_key), false);
-            kodiButton.setVisibility(showKodiButton ? View.VISIBLE : View.GONE);
 
             getRootView().setKeepScreenOn(true);
         }
@@ -711,6 +709,13 @@ public final class MainVideoPlayer extends AppCompatActivity
         protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
             super.onMetadataChanged(tag);
 
+            // show kodi button if it supports the current service and it is enabled in settings
+            final boolean showKodiButton =
+                    KoreUtil.isServiceSupportedByKore(tag.getMetadata().getServiceId())
+                    && PreferenceManager.getDefaultSharedPreferences(context)
+                        .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+            kodiButton.setVisibility(showKodiButton ? View.VISIBLE : View.GONE);
+
             titleTextView.setText(tag.getMetadata().getName());
             channelTextView.setText(tag.getMetadata().getUploaderName());
         }
@@ -724,13 +729,12 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void onKodiShare() {
             onPause();
             try {
-                NavigationHelper.playWithKore(this.context,
-                        Uri.parse(playerImpl.getVideoUrl().replace("https", "http")));
+                NavigationHelper.playWithKore(context, Uri.parse(playerImpl.getVideoUrl()));
             } catch (Exception e) {
                 if (DEBUG) {
                     Log.i(TAG, "Failed to start kore", e);
                 }
-                KoreUtil.showInstallKoreDialog(this.context);
+                KoreUtil.showInstallKoreDialog(context);
             }
         }
 
@@ -985,7 +989,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void onBlocked() {
             super.onBlocked();
-            playPauseButton.setImageResource(R.drawable.ic_pause_white);
+            playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
             animatePlayButtons(false, 100);
             animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
             getRootView().setKeepScreenOn(true);
@@ -1001,7 +1005,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void onPlaying() {
             super.onPlaying();
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
-                playPauseButton.setImageResource(R.drawable.ic_pause_white);
+                playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
                 animatePlayButtons(true, 200);
                 playPauseButton.requestFocus();
                 animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
@@ -1014,7 +1018,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void onPaused() {
             super.onPaused();
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
-                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
+                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
                 animatePlayButtons(true, 200);
                 playPauseButton.requestFocus();
                 animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
@@ -1035,7 +1039,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void onCompleted() {
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, () -> {
-                playPauseButton.setImageResource(R.drawable.ic_replay_white);
+                playPauseButton.setImageResource(R.drawable.ic_replay_white_24dp);
                 animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
                 animateView(closeButton, true, DEFAULT_CONTROLS_DURATION);
             });
@@ -1321,6 +1325,13 @@ public final class MainVideoPlayer extends AppCompatActivity
                 return false;
             }
 
+            final boolean isTouchingStatusBar = initialEvent.getY() < getStatusBarHeight();
+            final boolean isTouchingNavigationBar = initialEvent.getY()
+                            > playerImpl.getRootView().getHeight() - getNavigationBarHeight();
+            if (isTouchingStatusBar || isTouchingNavigationBar) {
+                return false;
+            }
+
 //            if (DEBUG) {
 //                Log.d(TAG, "MainVideoPlayer.onScroll = " +
 //                        "e1.getRaw = [" + initialEvent.getRawX() + ", "
@@ -1357,12 +1368,12 @@ public final class MainVideoPlayer extends AppCompatActivity
                 }
 
                 final int resId = currentProgressPercent <= 0
-                        ? R.drawable.ic_volume_off_white_72dp
+                        ? R.drawable.ic_volume_off_white_24dp
                         : currentProgressPercent < 0.25
-                        ? R.drawable.ic_volume_mute_white_72dp
+                        ? R.drawable.ic_volume_mute_white_24dp
                         : currentProgressPercent < 0.75
-                        ? R.drawable.ic_volume_down_white_72dp
-                        : R.drawable.ic_volume_up_white_72dp;
+                        ? R.drawable.ic_volume_down_white_24dp
+                        : R.drawable.ic_volume_up_white_24dp;
 
                 playerImpl.getVolumeImageView().setImageDrawable(
                         AppCompatResources.getDrawable(getApplicationContext(), resId)
@@ -1389,10 +1400,10 @@ public final class MainVideoPlayer extends AppCompatActivity
                 }
 
                 final int resId = currentProgressPercent < 0.25
-                        ? R.drawable.ic_brightness_low_white_72dp
+                        ? R.drawable.ic_brightness_low_white_24dp
                         : currentProgressPercent < 0.75
-                                ? R.drawable.ic_brightness_medium_white_72dp
-                                : R.drawable.ic_brightness_high_white_72dp;
+                                ? R.drawable.ic_brightness_medium_white_24dp
+                                : R.drawable.ic_brightness_high_white_24dp;
 
                 playerImpl.getBrightnessImageView().setImageDrawable(
                         AppCompatResources.getDrawable(getApplicationContext(), resId)
@@ -1407,6 +1418,22 @@ public final class MainVideoPlayer extends AppCompatActivity
                 }
             }
             return true;
+        }
+
+        private int getNavigationBarHeight() {
+            int resId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resId > 0) {
+                return getResources().getDimensionPixelSize(resId);
+            }
+            return 0;
+        }
+
+        private int getStatusBarHeight() {
+            int resId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (resId > 0) {
+                return getResources().getDimensionPixelSize(resId);
+            }
+            return 0;
         }
 
         private void onScrollEnd() {

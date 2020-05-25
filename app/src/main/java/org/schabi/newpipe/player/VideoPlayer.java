@@ -46,7 +46,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -682,13 +682,13 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     public void onFastRewind() {
         super.onFastRewind();
-        showAndAnimateControl(R.drawable.ic_action_av_fast_rewind, true);
+        showAndAnimateControl(R.drawable.ic_fast_rewind_white_24dp, true);
     }
 
     @Override
     public void onFastForward() {
         super.onFastForward();
-        showAndAnimateControl(R.drawable.ic_action_av_fast_forward, true);
+        showAndAnimateControl(R.drawable.ic_fast_forward_white_24dp, true);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -956,7 +956,7 @@ public abstract class VideoPlayer extends BasePlayer
 
 
         controlAnimationView.setVisibility(View.VISIBLE);
-        controlAnimationView.setImageDrawable(ContextCompat.getDrawable(context, drawableId));
+        controlAnimationView.setImageDrawable(AppCompatResources.getDrawable(context, drawableId));
         controlViewAnimator.start();
     }
 

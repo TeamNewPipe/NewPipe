@@ -8,7 +8,7 @@
     android:layout_margin="2dp"
     android:clickable="true"
     android:focusable="true"
-    android:background="?attr/focused_selector_drawable">
+    android:background="?attr/focused_selector">
 
     <LinearLayout
         android:layout_width="match_parent"

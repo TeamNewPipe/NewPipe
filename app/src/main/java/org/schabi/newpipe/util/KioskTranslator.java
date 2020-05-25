@@ -49,7 +49,7 @@ public final class KioskTranslator {
         }
     }
 
-    public static int getKioskIcons(final String kioskId, final Context c) {
+    public static int getKioskIcon(final String kioskId, final Context c) {
         switch (kioskId) {
             case "Trending":
             case "Top 50":

@@ -137,6 +137,7 @@
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
     <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube restricted mode</string>
     <string name="restricted_video">This video is age restricted.\n\nIf you want to view it, enable \"Age restricted content\" in the settings.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
@@ -429,10 +430,10 @@
     <string name="play_queue_audio_settings">Audio Settings</string>
     <string name="hold_to_append">Hold to enqueue</string>
     <string name="enqueue_on_background">Enqueue in the background</string>
-    <string name="enqueue_on_popup">Enqueue in a new popup</string>
+    <string name="enqueue_on_popup">Enqueue in a popup</string>
     <string name="start_here_on_main">Start playing here</string>
     <string name="start_here_on_background">Start playing in the background</string>
-    <string name="start_here_on_popup">Start playing in a new popup</string>
+    <string name="start_here_on_popup">Start playing in a popup</string>
     <!-- Drawer -->
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
@@ -480,8 +481,8 @@
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
-    <string name="show_original_time_ago_title" translatable="false">Show original time ago on items</string>
-    <string name="show_original_time_ago_summary" translatable="false">Original texts from services will be visible in stream items</string>
+    <string name="show_original_time_ago_title">Show original time ago on items</string>
+    <string name="show_original_time_ago_summary">Original texts from services will be visible in stream items</string>
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/export</string>
     <string name="import_title">Import</string>
@@ -650,4 +651,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
+    <string name="channel_created_by">Created by %s</string>
+    <string name="video_detail_by">By %s</string>
 </resources>

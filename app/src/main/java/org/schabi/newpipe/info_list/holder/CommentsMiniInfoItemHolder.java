@@ -89,7 +89,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
         itemBuilder.getImageLoader()
-                .displayImage(item.getAuthorThumbnail(),
+                .displayImage(item.getUploaderAvatarUrl(),
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
@@ -114,10 +114,10 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             itemLikesCountView.setText("-");
         }
 
-        if (item.getPublishedTime() != null) {
-            itemPublishedTime.setText(Localization.relativeTime(item.getPublishedTime().date()));
+        if (item.getUploadDate() != null) {
+            itemPublishedTime.setText(Localization.relativeTime(item.getUploadDate().date()));
         } else {
-            itemPublishedTime.setText(item.getTextualPublishedTime());
+            itemPublishedTime.setText(item.getTextualUploadDate());
         }
 
         itemView.setOnClickListener(view -> {
@@ -129,7 +129,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
 
         itemView.setOnLongClickListener(view -> {
-            if (!AndroidTvUtils.isTv()) {
+            if (!AndroidTvUtils.isTv(itemBuilder.getContext())) {
                 ClipboardManager clipboardManager = (ClipboardManager) itemBuilder.getContext()
                         .getSystemService(Context.CLIPBOARD_SERVICE);
                 clipboardManager.setPrimaryClip(ClipData.newPlainText(null, commentText));
@@ -143,7 +143,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     private void openCommentAuthor(final CommentsInfoItem item) {
-        if (StringUtil.isBlank(item.getAuthorEndpoint())) {
+        if (StringUtil.isBlank(item.getUploaderUrl())) {
             return;
         }
         try {
@@ -151,8 +151,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             NavigationHelper.openChannelFragment(
                     activity.getSupportFragmentManager(),
                     item.getServiceId(),
-                    item.getAuthorEndpoint(),
-                    item.getAuthorName());
+                    item.getUploaderUrl(),
+                    item.getUploaderName());
         } catch (Exception e) {
             ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
         }

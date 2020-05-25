@@ -362,14 +362,14 @@ public class StatisticsPlaylistFragment
         if (sortMode == StatisticSortMode.LAST_PLAYED) {
             sortMode = StatisticSortMode.MOST_PLAYED;
             setTitle(getString(R.string.title_most_played));
-            sortButtonIcon
-                    .setImageResource(ThemeHelper.getIconByAttr(R.attr.history, getContext()));
+            sortButtonIcon.setImageResource(
+                ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_history));
             sortButtonText.setText(R.string.title_last_played);
         } else {
             sortMode = StatisticSortMode.LAST_PLAYED;
             setTitle(getString(R.string.title_last_played));
-            sortButtonIcon
-                    .setImageResource(ThemeHelper.getIconByAttr(R.attr.filter, getContext()));
+            sortButtonIcon.setImageResource(
+                ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_filter_list));
             sortButtonText.setText(R.string.title_most_played);
         }
         startLoading(true);

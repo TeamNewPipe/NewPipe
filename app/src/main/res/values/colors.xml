@@ -56,7 +56,6 @@
     <color name="background_title_color">#ffffff</color>
     <color name="background_subtext_color">#999999</color>
 
-    <color name="subscribe_background_color">#e53935</color>
     <color name="subscribe_text_color">#fff</color>
     <color name="subscribed_background_color">#d6d6d6</color>
     <color name="subscribed_text_color">#717171</color>

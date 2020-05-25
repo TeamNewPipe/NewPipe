@@ -3,8 +3,8 @@ package org.schabi.newpipe.local.feed.service
 import androidx.annotation.StringRes
 import io.reactivex.Flowable
 import io.reactivex.processors.BehaviorProcessor
-import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
 import java.util.concurrent.atomic.AtomicBoolean
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
 
 object FeedEventManager {
     private var processor: BehaviorProcessor<Event> = BehaviorProcessor.create()
@@ -34,5 +34,4 @@ object FeedEventManager {
         data class SuccessResultEvent(val itemsErrors: List<Throwable> = emptyList()) : Event()
         data class ErrorResultEvent(val error: Throwable) : Event()
     }
-
 }

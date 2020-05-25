@@ -1,7 +1,9 @@
 package org.schabi.newpipe.fragments;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,6 +32,7 @@ import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
@@ -45,6 +48,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     private boolean hasTabsChanged = false;
 
+    private boolean previousYoutubeRestrictedModeEnabled;
+    private String youtubeRestrictedModeEnabledKey;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -53,7 +59,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
         tabsManager = TabsManager.getManager(activity);
         tabsManager.setSavedTabsListener(() -> {
             if (DEBUG) {
@@ -66,6 +71,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 hasTabsChanged = true;
             }
         });
+
+        youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
+        previousYoutubeRestrictedModeEnabled =
+                PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
     }
 
     @Override
@@ -82,6 +92,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         tabLayout = rootView.findViewById(R.id.main_tab_layout);
         viewPager = rootView.findViewById(R.id.pager);
 
+        tabLayout.setTabIconTint(ColorStateList.valueOf(
+                ThemeHelper.resolveColorFromAttr(requireContext(), R.attr.colorAccent)));
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addOnTabSelectedListener(this);
 
@@ -92,7 +104,13 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onResume() {
         super.onResume();
 
-        if (hasTabsChanged) {
+        boolean youtubeRestrictedModeEnabled =
+                PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
+        if (previousYoutubeRestrictedModeEnabled != youtubeRestrictedModeEnabled) {
+            previousYoutubeRestrictedModeEnabled = youtubeRestrictedModeEnabled;
+            setupTabs();
+        } else if (hasTabsChanged) {
             setupTabs();
         }
     }
