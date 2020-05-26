@@ -412,7 +412,7 @@
     <string name="grid">グリッド</string>
     <string name="auto">自動</string>
     <string name="switch_view">スイッチビュー</string>
-    <string name="app_update_notification_content_title">NewPipeのアップデートがあります！</string>
+    <string name="app_update_notification_content_title">NewPipe のアップデートがあります！</string>
     <string name="app_update_notification_content_text">タップでダウンロード</string>
     <string name="missions_header_finished">完了</string>
     <string name="missions_header_pending">保留中</string>
