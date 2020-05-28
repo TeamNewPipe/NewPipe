@@ -17,7 +17,6 @@
         android:background="?attr/colorPrimary"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:nextFocusDown="@+id/suggestions_list"
         android:hint="@string/search"

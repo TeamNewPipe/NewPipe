@@ -140,12 +140,6 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
-        toolbar.setPopupTheme(
-                ThemeHelper.isLightThemeSelected(this)
-                ? R.style.PopupThemeLight
-                : R.style.PopupThemeDark
-        );
-
         setSupportActionBar(toolbar);
         try {
             setupDrawer();

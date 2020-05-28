@@ -228,7 +228,7 @@ public class MissionsFragment extends Fragment {
             int icon;
 
             if (mLinear)
-                icon = R.drawable.ic_grid_white_24dp;
+                icon = R.drawable.ic_apps_white_24dp;
             else
                 icon = R.drawable.ic_list_white_24dp;
 

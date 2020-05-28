@@ -57,9 +57,9 @@ public final class KioskTranslator {
             case "conferences":
                 return R.drawable.ic_whatshot_white_24dp;
             case "Local":
-                return R.drawable.ic_kiosk_local_white_24dp;
+                return R.drawable.ic_home_white_24dp;
             case "Recently added":
-                return R.drawable.ic_kiosk_recent_white_24dp;
+                return R.drawable.ic_add_circle_outline_white_24dp;
             case "Most liked":
                 return R.drawable.ic_thumb_up_white_24dp;
             default:

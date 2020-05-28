@@ -179,7 +179,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return R.drawable.ic_blank_page_white_24dp;
+            return R.drawable.ic_crop_portrait_white_24dp;
         }
 
         @Override
@@ -204,7 +204,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return R.drawable.ic_channel_white_24dp;
+            return R.drawable.ic_tv_white_24dp;
         }
 
         @Override
@@ -400,7 +400,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return R.drawable.ic_channel_white_24dp;
+            return R.drawable.ic_tv_white_24dp;
         }
 
         @Override

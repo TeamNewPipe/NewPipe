@@ -32,7 +32,6 @@ import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
@@ -93,7 +92,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         viewPager = rootView.findViewById(R.id.pager);
 
         tabLayout.setTabIconTint(ColorStateList.valueOf(
-                ThemeHelper.resolveColorFromAttr(requireContext(), R.attr.colorAccent)));
+                getResources().getColor(R.color.white)));
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addOnTabSelectedListener(this);
 
