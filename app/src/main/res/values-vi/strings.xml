@@ -135,7 +135,6 @@
     <string name="no_available_dir">Chọn một thư mục tải về có sẵn trong cài đặt</string>
     <string name="msg_popup_permission">Cần quyền này để 
 \nmở trong chế độ popup</string>
-    <string name="recaptcha">ReCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
     <string name="title_activity_about">Giới thiệu về NewPipe</string>
@@ -605,7 +604,6 @@
     <string name="new_seek_duration_toast">Do giới hạn của ExoPlayer, khoảng thời gian tua đã được đặt lại thành %d giây</string>
     <string name="recovering">đang khôi phục</string>
     <string name="playlist_no_uploader">Tự tạo (không tìm thấy người upload)</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="local">Cục bộ</string>
     <string name="default_kiosk_page_summary">Trang chính mặc định</string>
 </resources>

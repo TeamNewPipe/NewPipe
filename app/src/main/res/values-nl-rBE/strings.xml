@@ -230,7 +230,6 @@
     <string name="msg_copied">Gekopieerd naar klembord</string>
     <string name="no_available_dir">Kies een beschikbare downloadmap</string>
     <string name="msg_popup_permission">Deze toestemming is vereist voor te openen in pop-upmodus</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA-uitdaging</string>
     <string name="recaptcha_request_toast">reCAPTCHA-uitdaging gevraagd</string>
     <string name="settings_category_downloads_title">Download</string>

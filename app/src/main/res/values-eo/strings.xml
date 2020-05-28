@@ -109,7 +109,6 @@
     <string name="error_report_title">Erarosignalo</string>
     <string name="could_not_load_image">Ne povis ŝarĝi bildon</string>
     <string name="app_ui_crash">Apo kraŝis</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA defio</string>
     <string name="recaptcha_request_toast">reCAPTCHA defio petita</string>
     <string name="all">Ĉiuj</string>

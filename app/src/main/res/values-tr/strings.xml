@@ -124,7 +124,6 @@
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
 \naçmak için gereklidir</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
     <string name="recaptcha_request_toast">reCAPTCHA formu istendi</string>
     <string name="controls_background_title">Arka plan</string>

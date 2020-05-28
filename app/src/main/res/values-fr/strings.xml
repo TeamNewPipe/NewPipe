@@ -105,7 +105,6 @@
     <string name="no_available_dir">Veuillez définir ultérieurement un dossier de téléchargement dans les paramètres</string>
     <string name="could_not_load_image">Impossible de charger l’image</string>
     <string name="app_ui_crash">L’application a planté</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="black_theme_title">Noir</string>
     <string name="all">Tout</string>
     <string name="channel">Chaîne</string>

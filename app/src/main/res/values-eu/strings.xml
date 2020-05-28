@@ -139,7 +139,6 @@
     <string name="no_available_dir">Ezarri deskargetarako karpeta bat ezarpenetan geroago</string>
     <string name="msg_popup_permission">Baimen hau beharrezkoa da
 \nlaster-leiho moduan irekitzeko</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA erronka</string>
     <string name="recaptcha_request_toast">reCAPTCHA erronka eskatu da</string>
     <string name="title_activity_about">NewPipe aplikazioari buruz</string>
@@ -595,7 +594,6 @@
     </plurals>
     <string name="unmute">Aktibatu audioa</string>
     <string name="mute">Isilarazi</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="help">Laguntza</string>
     <string name="content_not_supported">Eduki hau ez dago oraindik NewPipengatik onatuta.
 \n

@@ -237,7 +237,6 @@
     <string name="no_available_dir">ਬਾਅਦ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਵਿਚੋਂ ਇੱਕ ਡਾਉਨਲੋਡ ਫੋਲਡਰ ਨੂੰ ਚੁਣੋ</string>
     <string name="msg_popup_permission">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਖੋਲ੍ਹਣ ਵਾਸਤੇ ਇਸ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ</string>
     <string name="one_item_deleted">1 ਆਈਟਮ ਮਿਟਾਈ ਗਈ.</string>
-    <string name="recaptcha">ReCaptcha</string>
     <string name="title_activity_recaptcha">ReCaptcha ਚੁਣੌਤੀ</string>
     <string name="recaptcha_request_toast">ReCaptcha ਚੁਣੌਤੀ ਲਈ ਬੇਨਤੀ</string>
     <string name="settings_category_downloads_title">ਡਾਊਨਲੋਡ</string>

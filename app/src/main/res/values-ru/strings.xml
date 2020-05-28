@@ -124,7 +124,6 @@
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
     <string name="show_search_suggestions_summary">Предлагать варианты при поиске</string>
     <string name="later">Позже</string>
@@ -399,7 +398,6 @@
     <string name="limit_mobile_data_usage_title">Предел разрешения в мобильной сети</string>
     <string name="channels">Каналы</string>
     <string name="playlists">Плейлисты</string>
-    <string name="videos">Видео</string>
     <string name="tracks">Треки</string>
     <string name="users">Пользователи</string>
     <string name="skip_silence_checkbox">Проматывать тишину</string>

@@ -153,7 +153,6 @@
     <string name="no_available_dir">Kasnije odredite mapu za preuzimanje u postavkama</string>
     <string name="msg_popup_permission">Ova dozvola je potrebna za
 \notvaranje skočnog prozora</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA zadatak</string>
     <string name="recaptcha_request_toast">Traži se reCAPTCHA zadatak</string>
     <string name="settings_category_downloads_title">Preuzimanja</string>

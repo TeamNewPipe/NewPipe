@@ -192,7 +192,6 @@
     <string name="no_available_dir">נא לציין תיקיית הורדה בהגדרות בהמשך</string>
     <string name="msg_popup_permission">הרשאה זו נדרשת לטובת 
 \nפתיחה בחלון צף</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">אתגר reCAPTCHA</string>
     <string name="recaptcha_request_toast">התקבלה בקשה לאתגר reCAPTCHA</string>
     <string name="settings_category_downloads_title">הורדה</string>
@@ -584,7 +583,7 @@
     </plurals>
     <string name="feed_groups_header_title">קבוצות ערוצים</string>
     <string name="feed_oldest_subscription_update">עדכון ההזנה האחרון: %s</string>
-    <string name="feed_subscription_not_loaded_count">לא נטען: %s</string>
+    <string name="feed_subscription_not_loaded_count">לא נטען: %d</string>
     <string name="feed_notification_loading">ההזנה נטענת…</string>
     <string name="feed_processing_message">ההזנה בהליכי עיבוד…</string>
     <string name="feed_group_dialog_select_subscriptions">בחירת מינויים</string>

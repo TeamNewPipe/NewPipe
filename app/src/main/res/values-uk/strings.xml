@@ -184,7 +184,6 @@
     <string name="msg_url_malform">Помилковий URL або немає доступу в Інтернет</string>
     <string name="msg_popup_permission">Цей дозвіл потрібен для перегляду
 \nу віконному режимі</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="settings_category_downloads_title">Завантаження</string>
     <string name="settings_file_charset_title">Допустимі символи у іменах файлів</string>
     <string name="settings_file_replacement_character_summary">Недопустимі символи замінити на цей</string>
@@ -526,7 +525,7 @@
     <string name="seek_duration_title">Швидке перемотування</string>
     <string name="peertube_instance_url_title">Не вдалося перевірити екземпляр</string>
     <string name="peertube_instance_url_summary">Оберіть сервер PeerTube</string>
-    <string name="peertube_instance_url_help">Каталог серверів:% s</string>
+    <string name="peertube_instance_url_help">Каталог серверів: %s</string>
     <string name="peertube_instance_add_title">Додати екземпляр</string>
     <string name="peertube_instance_add_help">Введіть посилання на сервер</string>
     <string name="peertube_instance_add_https_only">Підтримуються лише HTTP посилання</string>
@@ -576,7 +575,6 @@
     <string name="help">Допомога</string>
     <string name="videos_string">Відео</string>
     <string name="peertube_instance_add_fail">Не вдалося перевірити сервер</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string / app_name</string>
     <string name="content_not_supported">NewPipe ще не підтримує цей контент .
 \n 
 \nМожливо, підтримка з\'явиться в наступних версіях.</string>

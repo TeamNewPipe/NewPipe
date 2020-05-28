@@ -230,7 +230,6 @@
     <string name="no_available_dir">Одберете достапна локација за превземања</string>
     <string name="msg_popup_permission">Оваа привилегија е потребна за
 \nотворање во подпрозорче</string>
-    <string name="recaptcha">„reCAPTCHA“</string>
     <string name="title_activity_recaptcha">reCAPTCHA Предизвик</string>
     <string name="recaptcha_request_toast">Потребен е reCAPTCHA предизвик</string>
     <string name="settings_category_downloads_title">Превземања</string>

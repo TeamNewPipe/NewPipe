@@ -206,7 +206,6 @@
     <string name="msg_copied">क्लिपबोर्ड पर कॉपी हो गया है</string>
     <string name="no_available_dir">कृपया बाद में सेटिंग्स में डाउनलोड स्थान चुने</string>
     <string name="msg_popup_permission">पॉपअप के तरीके में खोलने के लिए अनुमति की जरुरत है</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA चुनौती</string>
     <string name="recaptcha_request_toast">reCAPTCHA चुनौती का अनुरोध किया</string>
     <string name="settings_category_downloads_title">डाउनलोड</string>

@@ -105,7 +105,6 @@
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="user_report">Laporan pengguna</string>
     <string name="msg_threads">Thread</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Tantangan reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
     <string name="black_theme_title">Hitam</string>

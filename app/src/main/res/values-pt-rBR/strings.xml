@@ -50,7 +50,6 @@
     <string name="next_video_title">Próximo</string>
     <string name="open_in_browser">Abrir no navegador</string>
     <string name="pause">Pausar</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="report_error">Relatar erro</string>
@@ -71,7 +70,6 @@
     <string name="theme_title">Tema</string>
     <string name="upload_date_text">Publicado em  %1$s</string>
     <string name="url_not_supported_toast">Link não suportado</string>
-    <string name="default_language_value">pt</string>
     <string name="duration_live">Ao vivo</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>

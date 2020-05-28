@@ -137,7 +137,6 @@
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে।</string>
     <string name="no_available_dir">অনুগ্রহ করে একটি উপলব্ধ ডাউনলোড ডিরেক্টরি নির্বাচন করো।</string>
     <string name="msg_popup_permission">এই অনুমতিটি পপআপ মোডে খুলতে প্রয়োজন</string>
-    <string name="recaptcha">রিক্যাপচা</string>
     <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
     <!-- End of GigaGet's Strings -->

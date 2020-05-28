@@ -102,7 +102,6 @@
     <string name="view">Přehrát</string>
     <string name="add">Nová mise</string>
     <string name="finish">OK</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="recaptcha_request_toast">Požadována výzva reCAPTCHA</string>
     <string name="black_theme_title">Černé</string>

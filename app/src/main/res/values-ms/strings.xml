@@ -258,7 +258,6 @@
     <string name="msg_popup_permission">Kebenaran ini diperlukan untuk
 \nbuka dalam mod popup</string>
     <string name="one_item_deleted">1 item dipadamkan.</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Cabaran reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kod reCAPTCHA</string>
     <string name="settings_category_downloads_title">Muat turun</string>

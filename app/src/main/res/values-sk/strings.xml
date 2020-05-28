@@ -106,7 +106,6 @@
     <string name="could_not_load_image">Nemožno načítať obrázok</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
     <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="black_theme_title">Čierna</string>
     <string name="all">Všetko</string>
