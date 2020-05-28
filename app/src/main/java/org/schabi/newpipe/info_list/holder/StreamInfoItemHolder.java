@@ -8,7 +8,7 @@ import android.widget.TextView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
-import org.schabi.newpipe.info_list.ItemBuilder;
+import org.schabi.newpipe.info_list.ItemHandler;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
 
@@ -41,45 +41,39 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
     public final TextView itemAdditionalDetails;
 
-    public StreamInfoItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
-        this(itemBuilder, R.layout.list_stream_item, parent);
+    public StreamInfoItemHolder(final ItemHandler itemHandler, final ViewGroup parent) {
+        this(itemHandler, R.layout.list_stream_item, parent);
     }
 
-    public StreamInfoItemHolder(final ItemBuilder itemBuilder, final int layoutId,
+    public StreamInfoItemHolder(final ItemHandler itemHandler, final int layoutId,
                                 final ViewGroup parent) {
-        super(itemBuilder, layoutId, parent);
+        super(itemHandler, layoutId, parent);
         itemAdditionalDetails = itemView.findViewById(R.id.itemAdditionalDetails);
     }
 
     @Override
-    public void updateFromItem(final Object item,
+    public void updateFromItem(final StreamInfoItem item,
                                final HistoryRecordManager historyRecordManager) {
         super.updateFromItem(item, historyRecordManager);
-
-        if (!(item instanceof StreamInfoItem)) {
-            return;
-        }
-        final StreamInfoItem infoItem = (StreamInfoItem) item;
-
-        itemAdditionalDetails.setText(getStreamInfoDetailLine(infoItem));
+        itemAdditionalDetails.setText(getStreamInfoDetailLine(item));
     }
 
-    private String getStreamInfoDetailLine(final StreamInfoItem infoItem) {
+    private String getStreamInfoDetailLine(final StreamInfoItem item) {
         String viewsAndDate = "";
-        if (infoItem.getViewCount() >= 0) {
-            if (infoItem.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+        if (item.getViewCount() >= 0) {
+            if (item.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
                 viewsAndDate = Localization
-                        .listeningCount(itemBuilder.getContext(), infoItem.getViewCount());
-            } else if (infoItem.getStreamType().equals(StreamType.LIVE_STREAM)) {
+                        .listeningCount(itemHandler.getContext(), item.getViewCount());
+            } else if (item.getStreamType().equals(StreamType.LIVE_STREAM)) {
                 viewsAndDate = Localization
-                        .shortWatchingCount(itemBuilder.getContext(), infoItem.getViewCount());
+                        .shortWatchingCount(itemHandler.getContext(), item.getViewCount());
             } else {
                 viewsAndDate = Localization
-                        .shortViewCount(itemBuilder.getContext(), infoItem.getViewCount());
+                        .shortViewCount(itemHandler.getContext(), item.getViewCount());
             }
         }
 
-        final String uploadDate = getFormattedRelativeUploadDate(infoItem);
+        final String uploadDate = getFormattedRelativeUploadDate(item);
         if (!TextUtils.isEmpty(uploadDate)) {
             if (viewsAndDate.isEmpty()) {
                 return uploadDate;
@@ -91,19 +85,19 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
         return viewsAndDate;
     }
 
-    private String getFormattedRelativeUploadDate(final StreamInfoItem infoItem) {
-        if (infoItem.getUploadDate() != null) {
+    private String getFormattedRelativeUploadDate(final StreamInfoItem item) {
+        if (item.getUploadDate() != null) {
             String formattedRelativeTime = Localization
-                    .relativeTime(infoItem.getUploadDate().date());
+                    .relativeTime(item.getUploadDate().date());
 
-            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(itemBuilder.getContext())
-                    .getBoolean(itemBuilder.getContext()
+            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(itemHandler.getContext())
+                    .getBoolean(itemHandler.getContext()
                             .getString(R.string.show_original_time_ago_key), false)) {
-                formattedRelativeTime += " (" + infoItem.getTextualUploadDate() + ")";
+                formattedRelativeTime += " (" + item.getTextualUploadDate() + ")";
             }
             return formattedRelativeTime;
         } else {
-            return infoItem.getTextualUploadDate();
+            return item.getTextualUploadDate();
         }
     }
 }

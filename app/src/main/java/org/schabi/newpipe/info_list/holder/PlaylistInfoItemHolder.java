@@ -3,10 +3,10 @@ package org.schabi.newpipe.info_list.holder;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.info_list.ItemBuilder;
+import org.schabi.newpipe.info_list.ItemHandler;
 
 public class PlaylistInfoItemHolder extends PlaylistMiniInfoItemHolder {
-    public PlaylistInfoItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
-        super(itemBuilder, R.layout.list_playlist_item, parent);
+    public PlaylistInfoItemHolder(final ItemHandler itemHandler, final ViewGroup parent) {
+        super(itemHandler, R.layout.list_playlist_item, parent);
     }
 }

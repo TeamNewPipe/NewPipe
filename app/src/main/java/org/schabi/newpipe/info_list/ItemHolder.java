@@ -1,11 +1,10 @@
-package org.schabi.newpipe.info_list.holder;
+package org.schabi.newpipe.info_list;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.schabi.newpipe.info_list.ItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 /*
@@ -29,17 +28,17 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
  */
 
 public abstract class ItemHolder extends RecyclerView.ViewHolder {
-    protected final ItemBuilder itemBuilder;
+    protected final ItemHandler itemHandler;
 
-    public ItemHolder(final ItemBuilder itemBuilder, final int layoutId,
-                      final ViewGroup parent) {
-        super(LayoutInflater.from(itemBuilder.getContext()).inflate(layoutId, parent, false));
-        this.itemBuilder = itemBuilder;
+    public ItemHolder(final ItemHandler itemHandler, final int layoutId, final ViewGroup parent) {
+        super(LayoutInflater.from(itemHandler.getContext()).inflate(layoutId, parent, false));
+        this.itemHandler = itemHandler;
     }
 
-    public abstract void updateFromItem(Object item,
-                                        HistoryRecordManager historyRecordManager);
+    public abstract void updateFromObject(Object itemObject,
+                                          HistoryRecordManager historyRecordManager);
 
-    public void updateState(final Object item,
-                            final HistoryRecordManager historyRecordManager) { }
+    public void updateStateFromObject(final Object itemObject,
+                                      final HistoryRecordManager historyRecordManager) {
+    }
 }

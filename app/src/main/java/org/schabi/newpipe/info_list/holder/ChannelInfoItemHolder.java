@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
-import org.schabi.newpipe.info_list.ItemBuilder;
+import org.schabi.newpipe.info_list.ItemHandler;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
 
@@ -32,22 +32,16 @@ import org.schabi.newpipe.util.Localization;
 public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
     private final TextView itemChannelDescriptionView;
 
-    public ChannelInfoItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
-        super(itemBuilder, R.layout.list_channel_item, parent);
+    public ChannelInfoItemHolder(final ItemHandler itemHandler, final ViewGroup parent) {
+        super(itemHandler, R.layout.list_channel_item, parent);
         itemChannelDescriptionView = itemView.findViewById(R.id.itemChannelDescriptionView);
     }
 
     @Override
-    public void updateFromItem(final Object item,
+    public void updateFromItem(final ChannelInfoItem item,
                                final HistoryRecordManager historyRecordManager) {
         super.updateFromItem(item, historyRecordManager);
-
-        if (!(item instanceof ChannelInfoItem)) {
-            return;
-        }
-        final ChannelInfoItem infoItem = (ChannelInfoItem) item;
-
-        itemChannelDescriptionView.setText(infoItem.getDescription());
+        itemChannelDescriptionView.setText(item.getDescription());
     }
 
     @Override
@@ -55,7 +49,7 @@ public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
         String details = super.getDetailLine(item);
 
         if (item.getStreamCount() >= 0) {
-            String formattedVideoAmount = Localization.localizeStreamCount(itemBuilder.getContext(),
+            String formattedVideoAmount = Localization.localizeStreamCount(itemHandler.getContext(),
                     item.getStreamCount());
 
             if (!details.isEmpty()) {

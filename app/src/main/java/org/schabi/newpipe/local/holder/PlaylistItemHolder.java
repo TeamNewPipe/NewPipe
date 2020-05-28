@@ -5,20 +5,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.info_list.ItemBuilder;
-import org.schabi.newpipe.info_list.holder.ItemHolder;
+import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
+import org.schabi.newpipe.info_list.ItemHandler;
+import org.schabi.newpipe.info_list.ItemHolderWithToolbar;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
-public abstract class PlaylistItemHolder extends ItemHolder {
+public abstract class PlaylistItemHolder extends ItemHolderWithToolbar<PlaylistLocalItem> {
     public final ImageView itemThumbnailView;
     final TextView itemStreamCountView;
     public final TextView itemTitleView;
     public final TextView itemUploaderView;
 
-    public PlaylistItemHolder(final ItemBuilder itemBuilder, final int layoutId,
+    public PlaylistItemHolder(final ItemHandler itemHandler, final int layoutId,
                               final ViewGroup parent) {
-        super(itemBuilder, layoutId, parent);
+        super(PlaylistLocalItem.class, itemHandler, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
@@ -26,28 +26,17 @@ public abstract class PlaylistItemHolder extends ItemHolder {
         itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
     }
 
-    public PlaylistItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
-        this(itemBuilder, R.layout.list_playlist_mini_item, parent);
+    public PlaylistItemHolder(final ItemHandler itemHandler, final ViewGroup parent) {
+        this(itemHandler, R.layout.list_playlist_mini_item, parent);
     }
 
     @Override
-    public void updateFromItem(final Object item,
+    public void updateFromItem(final PlaylistLocalItem item,
                                final HistoryRecordManager historyRecordManager) {
-        if (!(item instanceof LocalItem)) {
-            return;
-        }
-        LocalItem localItem = (LocalItem) item;
-
-        itemView.setOnClickListener(view -> {
-            if (itemBuilder.getOnLocalItemSelectedListener() != null) {
-                itemBuilder.getOnLocalItemSelectedListener().selected(localItem);
-            }
-        });
-
         itemView.setLongClickable(true);
         itemView.setOnLongClickListener(view -> {
-            if (itemBuilder.getOnLocalItemSelectedListener() != null) {
-                itemBuilder.getOnLocalItemSelectedListener().held(localItem);
+            if (itemHandler.getOnLocalItemSelectedListener() != null) {
+                itemHandler.getOnLocalItemSelectedListener().held(item);
             }
             return true;
         });

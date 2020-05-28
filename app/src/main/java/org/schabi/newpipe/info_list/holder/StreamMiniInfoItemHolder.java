@@ -11,7 +11,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
-import org.schabi.newpipe.info_list.ItemBuilder;
+import org.schabi.newpipe.info_list.ItemHandler;
+import org.schabi.newpipe.info_list.ItemHolderWithToolbar;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -20,16 +21,16 @@ import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.util.concurrent.TimeUnit;
 
-public class StreamMiniInfoItemHolder extends ItemHolder {
+public class StreamMiniInfoItemHolder extends ItemHolderWithToolbar<StreamInfoItem> {
     public final ImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
     public final TextView itemUploaderView;
     public final TextView itemDurationView;
     private final AnimatedProgressBar itemProgressView;
 
-    StreamMiniInfoItemHolder(final ItemBuilder itemBuilder, final int layoutId,
+    StreamMiniInfoItemHolder(final ItemHandler itemHandler, final int layoutId,
                              final ViewGroup parent) {
-        super(itemBuilder, layoutId, parent);
+        super(StreamInfoItem.class, itemHandler, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
@@ -38,40 +39,35 @@ public class StreamMiniInfoItemHolder extends ItemHolder {
         itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
-    public StreamMiniInfoItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
-        this(itemBuilder, R.layout.list_stream_mini_item, parent);
+    public StreamMiniInfoItemHolder(final ItemHandler itemHandler, final ViewGroup parent) {
+        this(itemHandler, R.layout.list_stream_mini_item, parent);
     }
 
     @Override
-    public void updateFromItem(final Object item,
+    public void updateFromItem(final StreamInfoItem item,
                                final HistoryRecordManager historyRecordManager) {
-        if (!(item instanceof StreamInfoItem)) {
-            return;
-        }
-        final StreamInfoItem infoItem = (StreamInfoItem) item;
+        itemVideoTitleView.setText(item.getName());
+        itemUploaderView.setText(item.getUploaderName());
 
-        itemVideoTitleView.setText(infoItem.getName());
-        itemUploaderView.setText(infoItem.getUploaderName());
-
-        if (infoItem.getDuration() > 0) {
-            itemDurationView.setText(Localization.getDurationString(infoItem.getDuration()));
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
+        if (item.getDuration() > 0) {
+            itemDurationView.setText(Localization.getDurationString(item.getDuration()));
+            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemHandler.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            StreamStateEntity state2 = historyRecordManager.loadStreamState(infoItem)
+            StreamStateEntity state2 = historyRecordManager.loadStreamState(item)
                     .blockingGet()[0];
             if (state2 != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
-                itemProgressView.setMax((int) infoItem.getDuration());
+                itemProgressView.setMax((int) item.getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
                         .toSeconds(state2.getProgressTime()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
             }
-        } else if (infoItem.getStreamType() == StreamType.LIVE_STREAM) {
+        } else if (item.getStreamType() == StreamType.LIVE_STREAM) {
             itemDurationView.setText(R.string.duration_live);
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
+            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemHandler.getContext(),
                     R.color.live_duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
             itemProgressView.setVisibility(View.GONE);
@@ -81,21 +77,16 @@ public class StreamMiniInfoItemHolder extends ItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(infoItem.getThumbnailUrl(), itemThumbnailView,
+        itemHandler.displayImage(item.getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemView.setOnClickListener(view -> {
-            if (itemBuilder.getOnStreamSelectedListener() != null) {
-                itemBuilder.getOnStreamSelectedListener().selected(infoItem);
-            }
-        });
 
-        switch (infoItem.getStreamType()) {
+        switch (item.getStreamType()) {
             case AUDIO_STREAM:
             case VIDEO_STREAM:
             case LIVE_STREAM:
             case AUDIO_LIVE_STREAM:
-                enableLongClick(infoItem);
+                enableLongClick(item);
                 break;
             case FILE:
             case NONE:
@@ -106,17 +97,12 @@ public class StreamMiniInfoItemHolder extends ItemHolder {
     }
 
     @Override
-    public void updateState(final Object item,
-                            final HistoryRecordManager historyRecordManager) {
-        if (!(item instanceof StreamInfoItem)) {
-            return;
-        }
-        final StreamInfoItem infoItem = (StreamInfoItem) item;
-
-        StreamStateEntity state = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
-        if (state != null && infoItem.getDuration() > 0
-                && infoItem.getStreamType() != StreamType.LIVE_STREAM) {
-            itemProgressView.setMax((int) infoItem.getDuration());
+    public void updateStateFromItem(final StreamInfoItem item,
+                                    final HistoryRecordManager historyRecordManager) {
+        StreamStateEntity state = historyRecordManager.loadStreamState(item).blockingGet()[0];
+        if (state != null && item.getDuration() > 0
+                && item.getStreamType() != StreamType.LIVE_STREAM) {
+            itemProgressView.setMax((int) item.getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS
                         .toSeconds(state.getProgressTime()));
@@ -133,8 +119,8 @@ public class StreamMiniInfoItemHolder extends ItemHolder {
     private void enableLongClick(final StreamInfoItem item) {
         itemView.setLongClickable(true);
         itemView.setOnLongClickListener(view -> {
-            if (itemBuilder.getOnStreamSelectedListener() != null) {
-                itemBuilder.getOnStreamSelectedListener().held(item);
+            if (itemHandler.getOnStreamSelectedListener() != null) {
+                itemHandler.getOnStreamSelectedListener().held(item);
             }
             return true;
         });

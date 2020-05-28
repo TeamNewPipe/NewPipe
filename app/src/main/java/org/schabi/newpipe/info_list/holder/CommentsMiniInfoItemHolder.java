@@ -11,7 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
-import org.schabi.newpipe.info_list.ItemBuilder;
+import org.schabi.newpipe.info_list.ItemHandler;
+import org.schabi.newpipe.info_list.ItemHolder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.AndroidTvUtils;
@@ -60,9 +61,9 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
         }
     };
 
-    CommentsMiniInfoItemHolder(final ItemBuilder itemBuilder, final int layoutId,
+    CommentsMiniInfoItemHolder(final ItemHandler itemHandler, final int layoutId,
                                final ViewGroup parent) {
-        super(itemBuilder, layoutId, parent);
+        super(itemHandler, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
@@ -71,28 +72,28 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
     }
 
-    public CommentsMiniInfoItemHolder(final ItemBuilder itemBuilder,
+    public CommentsMiniInfoItemHolder(final ItemHandler itemHandler,
                                       final ViewGroup parent) {
-        this(itemBuilder, R.layout.list_comments_mini_item, parent);
+        this(itemHandler, R.layout.list_comments_mini_item, parent);
     }
 
     @Override
-    public void updateFromItem(final Object item,
-                               final HistoryRecordManager historyRecordManager) {
-        if (!(item instanceof CommentsInfoItem)) {
+    public void updateFromObject(final Object object,
+                                 final HistoryRecordManager historyRecordManager) {
+        if (!(object instanceof CommentsInfoItem)) {
             return;
         }
-        final CommentsInfoItem infoItem = (CommentsInfoItem) item;
+        final CommentsInfoItem item = (CommentsInfoItem) object;
 
-        itemBuilder.displayImage(infoItem.getUploaderAvatarUrl(), itemThumbnailView,
+        itemHandler.displayImage(item.getUploaderAvatarUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemThumbnailView.setOnClickListener(view -> openCommentAuthor(infoItem));
+        itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
 
-        streamUrl = infoItem.getUrl();
+        streamUrl = item.getUrl();
 
         itemContentView.setLines(COMMENT_DEFAULT_LINES);
-        commentText = infoItem.getCommentText();
+        commentText = item.getCommentText();
         itemContentView.setText(commentText);
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
@@ -102,31 +103,31 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
             ellipsize();
         }
 
-        if (infoItem.getLikeCount() >= 0) {
-            itemLikesCountView.setText(String.valueOf(infoItem.getLikeCount()));
+        if (item.getLikeCount() >= 0) {
+            itemLikesCountView.setText(String.valueOf(item.getLikeCount()));
         } else {
             itemLikesCountView.setText("-");
         }
 
-        if (infoItem.getUploadDate() != null) {
-            itemPublishedTime.setText(Localization.relativeTime(infoItem.getUploadDate().date()));
+        if (item.getUploadDate() != null) {
+            itemPublishedTime.setText(Localization.relativeTime(item.getUploadDate().date()));
         } else {
-            itemPublishedTime.setText(infoItem.getTextualUploadDate());
+            itemPublishedTime.setText(item.getTextualUploadDate());
         }
 
         itemView.setOnClickListener(view -> {
             toggleEllipsize();
-            if (itemBuilder.getOnCommentsSelectedListener() != null) {
-                itemBuilder.getOnCommentsSelectedListener().selected(infoItem);
+            if (itemHandler.getOnCommentsSelectedListener() != null) {
+                itemHandler.getOnCommentsSelectedListener().selected(item);
             }
         });
 
 
         itemView.setOnLongClickListener(view -> {
-            if (AndroidTvUtils.isTv(itemBuilder.getContext())) {
-                openCommentAuthor(infoItem);
+            if (AndroidTvUtils.isTv(itemHandler.getContext())) {
+                openCommentAuthor(item);
             } else {
-                ShareUtils.copyToClipboard(itemBuilder.getContext(), commentText);
+                ShareUtils.copyToClipboard(itemHandler.getContext(), commentText);
             }
             return true;
         });
@@ -137,14 +138,14 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
             return;
         }
         try {
-            final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
+            final AppCompatActivity activity = (AppCompatActivity) itemHandler.getContext();
             NavigationHelper.openChannelFragment(
                     activity.getSupportFragmentManager(),
                     item.getServiceId(),
                     item.getUploaderUrl(),
                     item.getUploaderName());
         } catch (Exception e) {
-            ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
+            ErrorActivity.reportUiError((AppCompatActivity) itemHandler.getContext(), e);
         }
     }
 

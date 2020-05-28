@@ -1,32 +1,18 @@
 package org.schabi.newpipe.info_list;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.ItemHolder;
-import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.OnClickGesture;
 
 import java.text.DateFormat;
@@ -55,7 +41,7 @@ import java.text.DateFormat;
  * </p>
  */
 
-public class ItemBuilder {
+public class ItemHandler {
     private final Context context;
     private final ImageLoader imageLoader = ImageLoader.getInstance();
     private final DateFormat dateFormat;
@@ -66,44 +52,11 @@ public class ItemBuilder {
     @Nullable private OnClickGesture<CommentsInfoItem> onCommentsSelectedListener;
     @Nullable private OnClickGesture<LocalItem> onLocalItemSelectedListener;
 
-    public ItemBuilder(final Context context, final DateFormat dateFormat) {
+    public ItemHandler(final Context context, final DateFormat dateFormat) {
         this.context = context;
         this.dateFormat = dateFormat;
     }
 
-    public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
-                          final HistoryRecordManager historyRecordManager) {
-        return buildView(parent, infoItem, historyRecordManager, false);
-    }
-
-    public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
-                          final HistoryRecordManager historyRecordManager,
-                          final boolean useMiniVariant) {
-        ItemHolder holder = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
-        holder.updateFromItem(infoItem, historyRecordManager);
-        return holder.itemView;
-    }
-
-    private ItemHolder holderFromInfoType(@NonNull final ViewGroup parent,
-                                          @NonNull final InfoItem.InfoType infoType,
-                                          final boolean useMiniVariant) {
-        switch (infoType) {
-            case STREAM:
-                return useMiniVariant ? new StreamMiniInfoItemHolder(this, parent)
-                        : new StreamInfoItemHolder(this, parent);
-            case CHANNEL:
-                return useMiniVariant ? new ChannelMiniInfoItemHolder(this, parent)
-                        : new ChannelInfoItemHolder(this, parent);
-            case PLAYLIST:
-                return useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent)
-                        : new PlaylistInfoItemHolder(this, parent);
-            case COMMENT:
-                return useMiniVariant ? new CommentsMiniInfoItemHolder(this, parent)
-                        : new CommentsInfoItemHolder(this, parent);
-            default:
-                throw new RuntimeException("InfoType not expected = " + infoType.name());
-        }
-    }
 
     public Context getContext() {
         return context;
@@ -117,6 +70,7 @@ public class ItemBuilder {
     public DateFormat getDateFormat() {
         return dateFormat;
     }
+
 
     @Nullable
     public OnClickGesture<StreamInfoItem> getOnStreamSelectedListener() {

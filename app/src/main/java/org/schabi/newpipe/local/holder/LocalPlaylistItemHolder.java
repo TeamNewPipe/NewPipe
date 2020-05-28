@@ -3,36 +3,34 @@ package org.schabi.newpipe.local.holder;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
-import org.schabi.newpipe.info_list.ItemBuilder;
+import org.schabi.newpipe.info_list.ItemHandler;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 public class LocalPlaylistItemHolder extends PlaylistItemHolder {
-    public LocalPlaylistItemHolder(final ItemBuilder itemBuilder, final ViewGroup parent) {
-        super(itemBuilder, parent);
+    public LocalPlaylistItemHolder(final ItemHandler itemHandler, final ViewGroup parent) {
+        super(itemHandler, parent);
     }
 
-    LocalPlaylistItemHolder(final ItemBuilder itemBuilder, final int layoutId,
+    LocalPlaylistItemHolder(final ItemHandler itemHandler, final int layoutId,
                             final ViewGroup parent) {
-        super(itemBuilder, layoutId, parent);
+        super(itemHandler, layoutId, parent);
     }
 
     @Override
-    public void updateFromItem(final Object item,
+    public void updateFromItem(final PlaylistLocalItem item,
                                final HistoryRecordManager historyRecordManager) {
-        if (!(item instanceof PlaylistMetadataEntry)) {
-            return;
-        }
-        final PlaylistMetadataEntry localItem = (PlaylistMetadataEntry) item;
+        PlaylistMetadataEntry entry = (PlaylistMetadataEntry) item;
 
-        itemTitleView.setText(localItem.name);
+        itemTitleView.setText(entry.name);
         itemStreamCountView.setText(Localization.localizeStreamCountMini(
-                itemStreamCountView.getContext(), localItem.streamCount));
+                itemStreamCountView.getContext(), entry.streamCount));
         itemUploaderView.setVisibility(View.INVISIBLE);
 
-        itemBuilder.displayImage(localItem.thumbnailUrl, itemThumbnailView,
+        itemHandler.displayImage(entry.thumbnailUrl, itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_PLAYLIST_OPTIONS);
 
         super.updateFromItem(item, historyRecordManager);

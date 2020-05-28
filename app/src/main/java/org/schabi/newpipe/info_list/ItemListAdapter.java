@@ -22,7 +22,6 @@ import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.ItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
@@ -94,7 +93,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int REMOTE_PLAYLIST_HOLDER_TYPE = 0x2001;
     private static final int REMOTE_PLAYLIST_GRID_HOLDER_TYPE = 0x2004;
 
-    private final ItemBuilder itemBuilder;
+    private final ItemHandler itemHandler;
     private final ArrayList<Object> itemList;
     private final HistoryRecordManager recordManager;
 
@@ -106,34 +105,34 @@ public class ItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public ItemListAdapter(final Context context) {
         this.recordManager = new HistoryRecordManager(context);
-        itemBuilder = new ItemBuilder(context, DateFormat.getDateInstance(DateFormat.SHORT,
+        itemHandler = new ItemHandler(context, DateFormat.getDateInstance(DateFormat.SHORT,
                 Localization.getPreferredLocale(context)));
         itemList = new ArrayList<>();
     }
 
     public void setOnStreamSelectedListener(
             @Nullable final OnClickGesture<StreamInfoItem> listener) {
-        itemBuilder.setOnStreamSelectedListener(listener);
+        itemHandler.setOnStreamSelectedListener(listener);
     }
 
     public void setOnChannelSelectedListener(
             @Nullable final OnClickGesture<ChannelInfoItem> listener) {
-        itemBuilder.setOnChannelSelectedListener(listener);
+        itemHandler.setOnChannelSelectedListener(listener);
     }
 
     public void setOnPlaylistSelectedListener(
             @Nullable final OnClickGesture<PlaylistInfoItem> listener) {
-        itemBuilder.setOnPlaylistSelectedListener(listener);
+        itemHandler.setOnPlaylistSelectedListener(listener);
     }
 
     public void setOnCommentsSelectedListener(
             @Nullable final OnClickGesture<CommentsInfoItem> listener) {
-        itemBuilder.setOnCommentsSelectedListener(listener);
+        itemHandler.setOnCommentsSelectedListener(listener);
     }
 
     public void setOnLocalItemSelectedListener(
             @Nullable final OnClickGesture<LocalItem> listener) {
-        itemBuilder.setOnLocalItemSelectedListener(listener);
+        itemHandler.setOnLocalItemSelectedListener(listener);
     }
 
     public void setUseMiniVariant(final boolean useMiniVariant) {
@@ -356,43 +355,43 @@ public class ItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case FOOTER_TYPE:
                 return new HFHolder(footer);
             case STREAM_HOLDER_MINI_TYPE:
-                return new StreamMiniInfoItemHolder(itemBuilder, parent);
+                return new StreamMiniInfoItemHolder(itemHandler, parent);
             case STREAM_HOLDER_TYPE:
-                return new StreamInfoItemHolder(itemBuilder, parent);
+                return new StreamInfoItemHolder(itemHandler, parent);
             case STREAM_HOLDER_GRID_TYPE:
-                return new StreamGridInfoItemHolder(itemBuilder, parent);
+                return new StreamGridInfoItemHolder(itemHandler, parent);
             case CHANNEL_HOLDER_MINI_TYPE:
-                return new ChannelMiniInfoItemHolder(itemBuilder, parent);
+                return new ChannelMiniInfoItemHolder(itemHandler, parent);
             case CHANNEL_HOLDER_TYPE:
-                return new ChannelInfoItemHolder(itemBuilder, parent);
+                return new ChannelInfoItemHolder(itemHandler, parent);
             case CHANNEL_HOLDER_GRID_TYPE:
-                return new ChannelGridInfoItemHolder(itemBuilder, parent);
+                return new ChannelGridInfoItemHolder(itemHandler, parent);
             case PLAYLIST_HOLDER_MINI_TYPE:
-                return new PlaylistMiniInfoItemHolder(itemBuilder, parent);
+                return new PlaylistMiniInfoItemHolder(itemHandler, parent);
             case PLAYLIST_HOLDER_TYPE:
-                return new PlaylistInfoItemHolder(itemBuilder, parent);
+                return new PlaylistInfoItemHolder(itemHandler, parent);
             case PLAYLIST_HOLDER_GRID_TYPE:
-                return new PlaylistGridInfoItemHolder(itemBuilder, parent);
+                return new PlaylistGridInfoItemHolder(itemHandler, parent);
             case COMMENT_HOLDER_MINI_TYPE:
-                return new CommentsMiniInfoItemHolder(itemBuilder, parent);
+                return new CommentsMiniInfoItemHolder(itemHandler, parent);
             case COMMENT_HOLDER_TYPE:
-                return new CommentsInfoItemHolder(itemBuilder, parent);
+                return new CommentsInfoItemHolder(itemHandler, parent);
             case LOCAL_PLAYLIST_HOLDER_TYPE:
-                return new LocalPlaylistItemHolder(itemBuilder, parent);
+                return new LocalPlaylistItemHolder(itemHandler, parent);
             case LOCAL_PLAYLIST_GRID_HOLDER_TYPE:
-                return new LocalPlaylistGridItemHolder(itemBuilder, parent);
+                return new LocalPlaylistGridItemHolder(itemHandler, parent);
             case REMOTE_PLAYLIST_HOLDER_TYPE:
-                return new RemotePlaylistItemHolder(itemBuilder, parent);
+                return new RemotePlaylistItemHolder(itemHandler, parent);
             case REMOTE_PLAYLIST_GRID_HOLDER_TYPE:
-                return new RemotePlaylistGridItemHolder(itemBuilder, parent);
+                return new RemotePlaylistGridItemHolder(itemHandler, parent);
             case STREAM_PLAYLIST_HOLDER_TYPE:
-                return new LocalPlaylistStreamItemHolder(itemBuilder, parent);
+                return new LocalPlaylistStreamItemHolder(itemHandler, parent);
             case STREAM_PLAYLIST_GRID_HOLDER_TYPE:
-                return new LocalPlaylistStreamGridItemHolder(itemBuilder, parent);
+                return new LocalPlaylistStreamGridItemHolder(itemHandler, parent);
             case STREAM_STATISTICS_HOLDER_TYPE:
-                return new LocalStatisticStreamItemHolder(itemBuilder, parent);
+                return new LocalStatisticStreamItemHolder(itemHandler, parent);
             case STREAM_STATISTICS_GRID_HOLDER_TYPE:
-                return new LocalStatisticStreamGridItemHolder(itemBuilder, parent);
+                return new LocalStatisticStreamGridItemHolder(itemHandler, parent);
             default:
                 Log.e(TAG, "Invalid view holder type: [" + type + "]");
                 return new FallbackViewHolder(new View(parent.getContext()));
@@ -412,7 +411,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 position--;
             }
 
-            ((ItemHolder) holder).updateFromItem(itemList.get(position), recordManager);
+            ((ItemHolder) holder).updateFromObject(itemList.get(position), recordManager);
         } else if (holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
         } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset()
@@ -427,10 +426,10 @@ public class ItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (!payloads.isEmpty() && holder instanceof ItemHolder) {
             for (Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
-                    ((ItemHolder) holder).updateState(itemList
+                    ((ItemHolder) holder).updateStateFromObject(itemList
                             .get(header == null ? position : position - 1), recordManager);
                 } else if (payload instanceof Boolean) {
-                    ((ItemHolder) holder).updateState(itemList
+                    ((ItemHolder) holder).updateStateFromObject(itemList
                             .get(header == null ? position : position - 1), recordManager);
                 }
             }
