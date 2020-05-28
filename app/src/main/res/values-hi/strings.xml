@@ -185,8 +185,7 @@
     </plurals>
     <plurals name="videos">
         <item quantity="one">%s वीडियो</item>
-        <item quantity="other">%s
-            वीडियो</item>
+        <item quantity="other">%s वीडियो</item>
     </plurals>
     <string name="start">शुरू</string>
     <string name="pause">रोके</string>
