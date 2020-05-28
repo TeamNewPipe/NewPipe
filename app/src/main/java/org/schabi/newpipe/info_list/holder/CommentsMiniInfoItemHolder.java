@@ -3,6 +3,7 @@ package org.schabi.newpipe.info_list.holder;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
@@ -12,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -143,7 +143,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     private void openCommentAuthor(final CommentsInfoItem item) {
-        if (StringUtil.isBlank(item.getUploaderUrl())) {
+        if (TextUtils.isEmpty(item.getUploaderUrl())) {
             return;
         }
         try {

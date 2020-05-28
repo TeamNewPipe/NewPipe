@@ -32,7 +32,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.grack.nanojson.JsonWriter;
 
 import org.acra.ReportField;
-import org.acra.collector.CrashReportData;
+import org.acra.data.CrashReportData;
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -149,14 +149,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     public static void reportError(final Context context, final CrashReportData report,
                                    final ErrorInfo errorInfo) {
-        // get key first (don't ask about this solution)
-        ReportField key = null;
-        for (ReportField k : report.keySet()) {
-            if (k.toString().equals("STACK_TRACE")) {
-                key = k;
-            }
-        }
-        String[] el = new String[]{report.get(key).toString()};
+        String[] el = new String[]{report.getString(ReportField.STACK_TRACE)};
 
         Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);
