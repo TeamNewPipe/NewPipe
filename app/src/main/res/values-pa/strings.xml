@@ -199,8 +199,8 @@
     <string name="short_billion">ਬਿਲੀਅਨ</string>
     <string name="no_subscribers">ਕੋਈ ਸਬਸਕ੍ਰਾਇਬਰ ਨਹੀਂ</string>
     <plurals name="subscribers">
-        <item quantity="one">ਸਬਸਕ੍ਰਾਇਬਰ</item>
-        <item quantity="other">ਸਬਸਕ੍ਰਾਇਬਰਸ</item>
+        <item quantity="one">%s ਸਬਸਕ੍ਰਾਇਬਰ</item>
+        <item quantity="other">%s ਸਬਸਕ੍ਰਾਇਬਰਸ</item>
     </plurals>
     <string name="no_views">ਕੋਈ views ਨਹੀਂ</string>
     <plurals name="views">

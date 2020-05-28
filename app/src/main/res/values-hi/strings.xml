@@ -184,8 +184,9 @@
         <item quantity="other">%s दर्शके</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">वीडियो</item>
-        <item quantity="other">वीडियो</item>
+        <item quantity="one">%s वीडियो</item>
+        <item quantity="other">%s
+            वीडियो</item>
     </plurals>
     <string name="start">शुरू</string>
     <string name="pause">रोके</string>
@@ -499,13 +500,13 @@
     <string name="default_kiosk_page_summary">सामान्य कीओस्क</string>
     <string name="no_one_watching">कोई नहीं देख रहा है</string>
     <plurals name="watching">
-        <item quantity="one">% s आदमी देख रहा है</item>
-        <item quantity="other">% s आदमी देख रहे है</item>
+        <item quantity="one">%s आदमी देख रहा है</item>
+        <item quantity="other">%s आदमी देख रहे है</item>
     </plurals>
     <string name="no_one_listening">कोई नहीं सुन रहा है</string>
     <plurals name="listening">
-        <item quantity="one">% s श्रोता</item>
-        <item quantity="other">% s श्रोता</item>
+        <item quantity="one">%s श्रोता</item>
+        <item quantity="other">%s श्रोता</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी।</string>
     <string name="enable_lock_screen_video_thumbnail_title">लॉक स्क्रीन पर वीडियो की छोटी तस्वीर दिखाए</string>
