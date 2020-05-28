@@ -128,10 +128,6 @@
         <item quantity="one">%s भिडियो</item>
         <item quantity="other">%s भिडियोहरू</item>
     </plurals>
-    <plurals name="comments">
-        <item quantity="one">%s टिप्पणी</item>
-        <item quantity="other">%s टिप्पणीहरू</item>
-    </plurals>
     <string name="tracks">ट्रयाकहरु</string>
     <string name="users">प्रयोगकर्ताहरु</string>
     <string name="events">घटनाहरू</string>

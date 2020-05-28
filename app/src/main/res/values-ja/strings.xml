@@ -458,9 +458,6 @@
     <string name="show_comments_title">コメントを表示</string>
     <string name="show_comments_summary">無効にするとコメントの表示を停止します</string>
     <string name="autoplay_title">自動再生</string>
-    <plurals name="comments">
-        <item quantity="other">%s コメント</item>
-    </plurals>
     <string name="no_comments">コメントはありません</string>
     <string name="error_unable_to_load_comments">コメントを読み込めませんでした</string>
     <string name="close">閉じる</string>

@@ -470,11 +470,6 @@ otevření ve vyskakovacím okně</string>
     <string name="show_comments_title">Zobrazit komentáře</string>
     <string name="show_comments_summary">Deaktivovat zobrazování komentářů</string>
     <string name="autoplay_title">Automatické přehrávání</string>
-    <plurals name="comments">
-        <item quantity="one">%s komentář</item>
-        <item quantity="few">%s komentáře</item>
-        <item quantity="other">%s komentářů</item>
-    </plurals>
     <string name="no_comments">Žádné komentáře</string>
     <string name="error_unable_to_load_comments">Nelze načíst komentáře</string>
     <string name="close">Zavřít</string>

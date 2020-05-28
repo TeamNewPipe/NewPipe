@@ -476,14 +476,6 @@
     <string name="show_comments_title">إظهار التعليقات</string>
     <string name="show_comments_summary">عطّله لإخفاء التعليقات</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
-    <plurals name="comments">
-        <item quantity="zero">%s تعليق</item>
-        <item quantity="one">%s تعليقات</item>
-        <item quantity="two">%s تعليقات</item>
-        <item quantity="few">%s تعليقات</item>
-        <item quantity="many">%s تعليقات</item>
-        <item quantity="other">%s تعليقات</item>
-    </plurals>
     <string name="no_comments">لا توجد تعليقات</string>
     <string name="error_unable_to_load_comments">تعذر تحميل التعليقات</string>
     <string name="close">إغلاق</string>

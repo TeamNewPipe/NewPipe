@@ -460,10 +460,6 @@
     <string name="show_comments_title">Yorumları göster</string>
     <string name="show_comments_summary">Yorumları gizlemek için kapatın</string>
     <string name="autoplay_title">Otomatik oynat</string>
-    <plurals name="comments">
-        <item quantity="one">%s yorum</item>
-        <item quantity="other">%s yorum</item>
-    </plurals>
     <string name="no_comments">Yorum yok</string>
     <string name="error_unable_to_load_comments">Yorumlar yüklenemedi</string>
     <string name="close">Kapat</string>

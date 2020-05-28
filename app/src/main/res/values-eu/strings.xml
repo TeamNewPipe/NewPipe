@@ -465,10 +465,6 @@
     <string name="show_comments_title">Erakutsi iruzkinak</string>
     <string name="show_comments_summary">Desgaitu iruzkinak ezkutatzeko</string>
     <string name="autoplay_title">Erreprodukzio automatikoa</string>
-    <plurals name="comments">
-        <item quantity="one">Iruzkin %s</item>
-        <item quantity="other">%s iruzkin</item>
-    </plurals>
     <string name="no_comments">Iruzkinik ez</string>
     <string name="error_unable_to_load_comments">Ezin izan dira iruzkinak kargatu</string>
     <string name="close">Itxi</string>

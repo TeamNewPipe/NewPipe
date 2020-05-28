@@ -393,11 +393,6 @@ pentru a deschide în mod pop-up</string>
     <string name="show_comments_title">Afișare comentarii</string>
     <string name="show_comments_summary">Dezactivează pentru oprirea afișării comentariilor</string>
     <string name="autoplay_title">Redare automată</string>
-    <plurals name="comments">
-        <item quantity="one">Comentarii</item>
-        <item quantity="few"/>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">Niciun comentariu</string>
     <string name="error_unable_to_load_comments">Nu s-au putut încărca comentariile</string>
     <string name="enable_playback_resume_title">Reluare redare</string>

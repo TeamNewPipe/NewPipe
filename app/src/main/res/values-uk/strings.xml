@@ -474,12 +474,6 @@
     <string name="show_comments_title">Показувати коментарі</string>
     <string name="show_comments_summary">Вимкніть, щоб сховати коментарі</string>
     <string name="autoplay_title">Автопрогравання</string>
-    <plurals name="comments">
-        <item quantity="one">%s коментар</item>
-        <item quantity="few">%s коментарі</item>
-        <item quantity="many">%s коментарів</item>
-        <item quantity="other">%s коментарів</item>
-    </plurals>
     <string name="no_comments">Коментарі відсутні</string>
     <string name="error_unable_to_load_comments">Не вдалося підвантажити коментарів</string>
     <string name="close">Закрити</string>

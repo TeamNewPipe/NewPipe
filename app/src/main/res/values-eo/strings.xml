@@ -265,10 +265,6 @@
     <string name="show_comments_title">Montri komentojn</string>
     <string name="show_comments_summary">Malŝati por malvidigi komentojn</string>
     <string name="autoplay_title">Aŭtoludo</string>
-    <plurals name="comments">
-        <item quantity="one">%s komento</item>
-        <item quantity="other">%s komentoj</item>
-    </plurals>
     <string name="error_unable_to_load_comments">Ne povis ŝarĝi komentojn</string>
     <string name="close">Fermi</string>
     <string name="enable_playback_resume_title">Repreni la ludon</string>

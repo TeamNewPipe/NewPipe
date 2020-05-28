@@ -468,11 +468,6 @@
     <string name="show_comments_title">Pokaż komentarze</string>
     <string name="show_comments_summary">Wyłącz, aby ukryć komentarze</string>
     <string name="autoplay_title">Automatyczne odtwarzanie</string>
-    <plurals name="comments">
-        <item quantity="one">%s komentarz</item>
-        <item quantity="few">%s komentarze</item>
-        <item quantity="many">%s komentarzy</item>
-    </plurals>
     <string name="no_comments">Brak komentarzy</string>
     <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
     <string name="close">Zamknij</string>

@@ -465,10 +465,6 @@
     <string name="show_comments_title">Προβολή σχολίων</string>
     <string name="show_comments_summary">Απενεργοποίηση για διακοπή της εμφάνιση σχολίων</string>
     <string name="autoplay_title">Αυτόματη αναπαραγωγή</string>
-    <plurals name="comments">
-        <item quantity="one">Σχόλια</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">Χωρίς σχόλια</string>
     <string name="error_unable_to_load_comments">Δεν ήταν δυνατή η φόρτωση σχολίων</string>
     <string name="close">Κλείσιμο</string>

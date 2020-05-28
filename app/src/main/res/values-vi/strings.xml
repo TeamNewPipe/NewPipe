@@ -461,9 +461,6 @@
     <string name="show_comments_title">Hiện bình luận</string>
     <string name="show_comments_summary">Tắt để ẩn bình luận</string>
     <string name="autoplay_title">Tự động phát</string>
-    <plurals name="comments">
-        <item quantity="other">%s bình luận</item>
-    </plurals>
     <string name="no_comments">Không có bình luận</string>
     <string name="error_unable_to_load_comments">Không thể tải bình luận</string>
     <string name="close">Đóng</string>

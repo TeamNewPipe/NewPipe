@@ -462,10 +462,6 @@
     <string name="show_comments_title">Commentaren weergeven</string>
     <string name="show_comments_summary">Schakelt dit uit voor reacties niet meer weer te geven</string>
     <string name="autoplay_title">Automatisch afspelen</string>
-    <plurals name="comments">
-        <item quantity="one">Commentaren</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">Geen commentaren</string>
     <string name="error_unable_to_load_comments">Kan commentaren niet laden</string>
     <string name="close">Sluiten</string>

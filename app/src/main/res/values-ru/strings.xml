@@ -474,11 +474,6 @@
     <string name="show_comments_title">Показать комментарии</string>
     <string name="show_comments_summary">Отключите, чтобы скрыть комментарии</string>
     <string name="autoplay_title">Автовоспроизведение</string>
-    <plurals name="comments">
-        <item quantity="one">%s комментарий</item>
-        <item quantity="few">%s комментария</item>
-        <item quantity="many">%s комментариев</item>
-    </plurals>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
     <string name="watch_history_states_deleted">Позиции воспроизведения удалены</string>

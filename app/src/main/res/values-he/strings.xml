@@ -469,12 +469,6 @@
     <string name="show_comments_title">הצגת תגובות</string>
     <string name="show_comments_summary">יש להשבית כדי להפסיק הסתרת תגובות</string>
     <string name="autoplay_title">ניגון אוטומטי</string>
-    <plurals name="comments">
-        <item quantity="one">תגובה %s</item>
-        <item quantity="two">%s תגובות</item>
-        <item quantity="many">%s תגובות</item>
-        <item quantity="other">%s תגובות</item>
-    </plurals>
     <string name="no_comments">אין תגובות</string>
     <string name="error_unable_to_load_comments">לא ניתן לטעון תגובות</string>
     <string name="close">סגירה</string>

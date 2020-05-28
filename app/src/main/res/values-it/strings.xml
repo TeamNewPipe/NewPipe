@@ -465,10 +465,6 @@
     <string name="show_comments_title">Mostra Commenti</string>
     <string name="show_comments_summary">Disattiva per nascondere i commenti</string>
     <string name="autoplay_title">Riproduzione Automatica</string>
-    <plurals name="comments">
-        <item quantity="one">%s commento</item>
-        <item quantity="other">%s commenti</item>
-    </plurals>
     <string name="no_comments">Nessun commento</string>
     <string name="error_unable_to_load_comments">Impossibile caricare i commenti</string>
     <string name="close">Chiudi</string>

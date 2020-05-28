@@ -460,9 +460,6 @@
     <string name="show_comments_title">顯示留言</string>
     <string name="show_comments_summary">關閉以隱藏留言</string>
     <string name="autoplay_title">自動播放</string>
-    <plurals name="comments">
-        <item quantity="other">%s 條留言</item>
-    </plurals>
     <string name="no_comments">沒有留言</string>
     <string name="error_unable_to_load_comments">無法載入留言</string>
     <string name="close">關閉</string>

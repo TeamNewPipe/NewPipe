@@ -331,10 +331,6 @@
     <string name="show_comments_title">نمایش نظرات</string>
     <string name="show_comments_summary">خاموش کنید تا نظرات پنهان شوند</string>
     <string name="autoplay_title">پخش خودکار</string>
-    <plurals name="comments">
-        <item quantity="one">نظر</item>
-        <item quantity="other">نظر</item>
-    </plurals>
     <string name="no_comments">بدون نظر</string>
     <string name="error_unable_to_load_comments">ناتوانی در دریافت نظرات</string>
     <string name="resume_on_audio_focus_gain_title">پخش ادامه یابد</string>
