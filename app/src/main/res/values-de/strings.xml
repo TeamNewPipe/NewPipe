@@ -33,7 +33,7 @@
     <string name="content_language_title">Bevorzugte Sprache des Inhalts</string>
     <string name="list_thumbnail_view_description">Video-Vorschaubild</string>
     <string name="detail_thumbnail_view_description">Video abspielen, Dauer:</string>
-    <string name="detail_uploader_thumbnail_view_description">Nutzerbild</string>
+    <string name="detail_uploader_thumbnail_view_description">Avatarbild des Uploaders</string>
     <string name="detail_dislikes_img_view_description">Gefällt nicht</string>
     <string name="detail_likes_img_view_description">Gefällt</string>
     <string name="use_external_video_player_title">Externen Video-Player verwenden</string>
@@ -244,7 +244,7 @@
     <string name="enqueue_on_popup">In Warteschlange in neuem Pop-up</string>
     <string name="start_here_on_main">Ab hier wiedergeben</string>
     <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
-    <string name="start_here_on_popup">Wiedergabe in einem neuen Pop-up starten</string>
+    <string name="start_here_on_popup">Wiedergabe in einem Pop-up starten</string>
     <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
@@ -572,7 +572,7 @@
     <string name="feed_group_dialog_delete_message">Möchtest du diese Gruppe löschen\?</string>
     <string name="feed_create_new_group_button_title">Neu</string>
     <string name="feed_update_threshold_option_always_update">Immer aktualisieren</string>
-    <string name="feed_groups_header_title">Channel-Gruppen</string>
+    <string name="feed_groups_header_title">Kanalgruppen</string>
     <string name="feed_subscription_not_loaded_count">Nicht geladen: %d</string>
     <string name="feed_notification_loading">Feed laden…</string>
     <string name="feed_processing_message">Feed verarbeiten…</string>
@@ -613,4 +613,10 @@
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, und teilweise gesehene Videos</string>
     <string name="remove_watched">Gesehene entfernen</string>
     <string name="remove_watched_popup_title">Gesehene Videos entfernen\?</string>
+    <string name="show_original_time_ago_title">Originalzeit vor Elementen anzeigen</string>
+    <string name="show_original_time_ago_summary">Originaltexte von Diensten werden in Stream-Elementen sichtbar sein</string>
+    <string name="youtube_restricted_mode_enabled_title">Eingeschränkter YouTube-Modus</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Avatarbild des Kanals</string>
+    <string name="channel_created_by">Erstellt von %s</string>
+    <string name="video_detail_by">Von %s</string>
 </resources>
