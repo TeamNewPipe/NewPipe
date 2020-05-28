@@ -110,7 +110,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
+        playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
         debouncedSaveSignal = PublishSubject.create();
 
         disposables = new CompositeDisposable();
@@ -230,7 +230,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void startLoading(final boolean forceLoad) {
         super.startLoading(forceLoad);
 
-        if (disposables != null) {
+        if (disposables == null) {
+            disposables = new CompositeDisposable();
+        } else {
             disposables.clear();
         }
         disposables.add(getDebouncedSaver());
