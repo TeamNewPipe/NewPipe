@@ -240,10 +240,10 @@
     <string name="hold_to_append">Houd ingedrukt om toe te voegen aan de wachtrij</string>
     <string name="unknown_content">[Onbekend]</string>
     <string name="enqueue_on_background">Toevoegen aan wachtrij in de achtergrond</string>
-    <string name="enqueue_on_popup">Toevoegen aan wachtrij in nieuwe pop-up</string>
+    <string name="enqueue_on_popup">Toevoegen aan wachtrij in pop-up</string>
     <string name="start_here_on_main">Begin hier met afspelen</string>
     <string name="start_here_on_background">Begin hier met afspelen in de achtergrond</string>
-    <string name="start_here_on_popup">Begin met afspelen in nieuwe pop-up</string>
+    <string name="start_here_on_popup">Begin met afspelen in pop-up</string>
     <string name="donation_title">Doneren</string>
     <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Geef wat terug zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun kopje koffie genieten.</string>
     <string name="give_back">Teruggeven</string>
@@ -427,7 +427,7 @@
     <string name="grid">Raster</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Wissel van weergave</string>
-    <string name="app_update_notification_content_title">NewPipe-update beschikbaar!</string>
+    <string name="app_update_notification_content_title">NewPipe-update is beschikbaar!</string>
     <string name="app_update_notification_content_text">Tik om te downloaden</string>
     <string name="missions_header_finished">Voltooid</string>
     <string name="missions_header_pending">In afwachting van</string>
@@ -615,4 +615,7 @@
     <string name="show_original_time_ago_summary">Originele teksten van services zijn zichtbaar in stream-items</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube beperkte modus</string>
     <string name="show_original_time_ago_title">Laat orginele tijd geleden zien</string>
+    <string name="detail_sub_channel_thumbnail_view_description">De avatar-miniatuur van het kanaal</string>
+    <string name="video_detail_by">Door %s</string>
+    <string name="channel_created_by">Gecreëerd door %s</string>
 </resources>
