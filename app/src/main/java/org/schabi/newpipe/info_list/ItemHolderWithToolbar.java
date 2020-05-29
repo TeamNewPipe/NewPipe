@@ -1,37 +1,83 @@
 package org.schabi.newpipe.info_list;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
+import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
+import org.schabi.newpipe.player.playqueue.LocalPlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ShareUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
+    private static final String TAG = ItemHolderWithToolbar.class.getSimpleName();
     private static final int TOGGLE_ITEM_TOOLBAR_ANIMATION_DURATION = 70; // ms
 
-    private static PlayQueue queueFromObject(Object itemObject) {
-        /*  */ if (itemObject instanceof StreamInfoItem) {
-            return new SinglePlayQueue((StreamInfoItem) itemObject);
-        } /*else if (itemObject instanceof PlaylistInfoItem) {
-            return new PlaylistPlayQueue((PlaylistInfoItem) itemObject);
-        } else if (itemObject instanceof ChannelInfoItem) {
 
-        }*/ else {
-            throw new IllegalArgumentException("invalid item object: " + itemObject);
+    private static StreamInfoItem toStreamInfoItem(final Object itemObject) {
+        if (itemObject instanceof StreamInfoItem) {
+            return (StreamInfoItem) itemObject;
+        } else if (itemObject instanceof StreamStatisticsEntry) {
+            return ((StreamStatisticsEntry) itemObject).toStreamInfoItem();
+        } else if (itemObject instanceof PlaylistStreamEntry) {
+            return ((PlaylistStreamEntry) itemObject).toStreamInfoItem();
+        }
+
+        throw new IllegalArgumentException("toStreamInfoItem: invalid item object: " + itemObject);
+    }
+
+    private PlayQueue queueFromObject(final Object itemObject) {
+        if (itemObject instanceof PlaylistInfoItem) {
+            return new PlaylistPlayQueue((PlaylistInfoItem) itemObject);
+        } else if (itemObject instanceof PlaylistRemoteEntity) {
+            final PlaylistRemoteEntity item = (PlaylistRemoteEntity) itemObject;
+            return new PlaylistPlayQueue(
+                    new PlaylistInfoItem(item.getServiceId(), item.getUrl(), item.getName()));
+        } else if (itemObject instanceof PlaylistMetadataEntry) {
+            return new LocalPlaylistPlayQueue(
+                    itemHandler.getActivity(), (PlaylistMetadataEntry) itemObject);
+        } else if (itemObject instanceof ChannelInfoItem) {
+            return new ChannelPlayQueue((ChannelInfoItem) itemObject);
+        } else {
+            return new SinglePlayQueue(toStreamInfoItem(itemObject));
         }
     }
+
 
     private final Class<ItemType> itemClass;
     @NonNull
     private LinearLayout itemToolbarView;
+    private final ImageButton share;
+    private final ImageButton addToPlaylist;
+    private final ImageButton delete;
+    private final ImageButton setAsPlaylistThumbnail;
+    private final ImageButton download;
+    private final ImageButton playBackground;
+    private final ImageButton playPopup;
+    private final ImageButton playMain;
 
     public ItemHolderWithToolbar(final Class<ItemType> itemClass,
                                  final ItemHandler itemHandler,
@@ -49,6 +95,16 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
                         "getToolbarViewFromItem(): no item toolbars found for itemView");
             }
         }
+
+        share = itemToolbarView.findViewById(R.id.shareToolbarButton);
+        addToPlaylist = itemToolbarView.findViewById(R.id.addToPlaylistToolbarButton);
+        delete = itemToolbarView.findViewById(R.id.delete);
+        setAsPlaylistThumbnail =
+                itemToolbarView.findViewById(R.id.setAsPlaylistThumbnailToolbarButton);
+        download = itemToolbarView.findViewById(R.id.downloadToolbarButton);
+        playBackground = itemToolbarView.findViewById(R.id.playBackgroundToolbarButton);
+        playPopup = itemToolbarView.findViewById(R.id.playPopupToolbarButton);
+        playMain = itemToolbarView.findViewById(R.id.playMainToolbarButton);
     }
 
 
@@ -65,10 +121,9 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
         resetItemToolbar();
         itemView.setOnClickListener(view -> {
             if (itemToolbarView.getVisibility() == View.VISIBLE) {
-                NavigationHelper.playOnMainPlayer(
-                        itemHandler.getContext(), queueFromObject(itemObject), true);
+                onShowInfo(itemObject);
             } else {
-                showItemToolbar();
+                showItemToolbar(itemObject);
             }
         });
 
@@ -100,7 +155,7 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
         }
     }
 
-    private void showItemToolbar() {
+    private void showItemToolbar(final Object itemObject) {
         final Animation animation;
         switch (itemToolbarView.getId()) {
             case R.id.toolbarOverlayItem:
@@ -116,5 +171,92 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
                         "Invalid itemToolbarView passed to toggleItemToolbar()");
         }
         itemToolbarView.startAnimation(animation);
+
+        share.setOnClickListener(v -> onShare(itemObject));
+        playMain.setOnClickListener(v -> onPlayMain(itemObject));
+        playPopup.setOnClickListener(v -> onPlayPopup(itemObject));
+        playPopup.setOnLongClickListener(v -> {
+            onEnqueuePopup(itemObject);
+            return true;
+        });
+        playBackground.setOnClickListener(v -> onPlayBackground(itemObject));
+        playBackground.setOnLongClickListener(v -> {
+            onEnqueueBackground(itemObject);
+            return true;
+        });
+    }
+
+
+    private void onShowInfo(final Object itemObject) {
+        if (itemObject instanceof PlaylistInfoItem) {
+            PlaylistInfoItem item = (PlaylistInfoItem) itemObject;
+            NavigationHelper.openPlaylistFragment(itemHandler.getFragmentManager(),
+                    item.getServiceId(), item.getUrl(), item.getName());
+
+        } else if (itemObject instanceof ChannelInfoItem) {
+            ChannelInfoItem item = (ChannelInfoItem) itemObject;
+            NavigationHelper.openChannelFragment(itemHandler.getFragmentManager(),
+                    item.getServiceId(), item.getUrl(), item.getName());
+            NavigationHelper.openVideoDetailFragment(itemHandler.getFragmentManager(),
+                    item.getServiceId(), item.getUrl(), item.getName());
+
+        } else if (itemObject instanceof PlaylistRemoteEntity) {
+            PlaylistRemoteEntity item = (PlaylistRemoteEntity) itemObject;
+            NavigationHelper.openPlaylistFragment(itemHandler.getFragmentManager(),
+                    item.getServiceId(), item.getUrl(), item.getName());
+
+        } else if (itemObject instanceof PlaylistMetadataEntry) {
+            PlaylistMetadataEntry item = (PlaylistMetadataEntry) itemObject;
+            NavigationHelper.openLocalPlaylistFragment(itemHandler.getFragmentManager(),
+                    item.uid, item.name);
+
+        } else {
+            StreamInfoItem item = toStreamInfoItem(itemObject);
+            NavigationHelper.openVideoDetailFragment(itemHandler.getFragmentManager(),
+                    item.getServiceId(), item.getUrl(), item.getName());
+        }
+    }
+
+    private void onShare(final Object itemObject) {
+        if (itemObject instanceof PlaylistRemoteEntity) {
+            PlaylistRemoteEntity item = (PlaylistRemoteEntity) itemObject;
+            ShareUtils.shareUrl(itemHandler.getActivity(), item.getName(), item.getUrl());
+        } else if (itemObject instanceof PlaylistMetadataEntry) {
+            Log.e(TAG, "onShare: tried to share local playlist: " + itemObject.toString());
+        } else {
+            InfoItem item;
+            if (itemObject instanceof InfoItem) {
+                item = (InfoItem) itemObject;
+            } else {
+                item = toStreamInfoItem(itemObject);
+            }
+
+            ShareUtils.shareUrl(itemHandler.getActivity(), item.getName(), item.getUrl());
+        }
+    }
+
+    private void onPlayMain(final Object itemObject) {
+        NavigationHelper.playOnMainPlayer(
+                itemHandler.getActivity(), queueFromObject(itemObject), true);
+    }
+
+    private void onPlayPopup(final Object itemObject) {
+        NavigationHelper.playOnPopupPlayer(
+                itemHandler.getActivity(), queueFromObject(itemObject), true);
+    }
+
+    private void onEnqueuePopup(final Object itemObject) {
+        NavigationHelper.enqueueOnPopupPlayer(
+                itemHandler.getActivity(), queueFromObject(itemObject), false);
+    }
+
+    private void onPlayBackground(final Object itemObject) {
+        NavigationHelper.playOnBackgroundPlayer(
+                itemHandler.getActivity(), queueFromObject(itemObject), true);
+    }
+
+    private void onEnqueueBackground(final Object itemObject) {
+        NavigationHelper.enqueueOnBackgroundPlayer(
+                itemHandler.getActivity(), queueFromObject(itemObject), false);
     }
 }

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -42,7 +45,7 @@ import java.text.DateFormat;
  */
 
 public class ItemHandler {
-    private final Context context;
+    private final FragmentActivity activity;
     private final ImageLoader imageLoader = ImageLoader.getInstance();
     private final DateFormat dateFormat;
 
@@ -52,14 +55,18 @@ public class ItemHandler {
     @Nullable private OnClickGesture<CommentsInfoItem> onCommentsSelectedListener;
     @Nullable private OnClickGesture<LocalItem> onLocalItemSelectedListener;
 
-    public ItemHandler(final Context context, final DateFormat dateFormat) {
-        this.context = context;
+    public ItemHandler(final FragmentActivity activity, final DateFormat dateFormat) {
+        this.activity = activity;
         this.dateFormat = dateFormat;
     }
 
 
-    public Context getContext() {
-        return context;
+    public FragmentActivity getActivity() {
+        return activity;
+    }
+
+    public FragmentManager getFragmentManager() {
+        return activity.getSupportFragmentManager();
     }
 
     public void displayImage(final String url, final ImageView view,

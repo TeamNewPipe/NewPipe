@@ -31,7 +31,7 @@ public abstract class ItemHolder extends RecyclerView.ViewHolder {
     protected final ItemHandler itemHandler;
 
     public ItemHolder(final ItemHandler itemHandler, final int layoutId, final ViewGroup parent) {
-        super(LayoutInflater.from(itemHandler.getContext()).inflate(layoutId, parent, false));
+        super(LayoutInflater.from(itemHandler.getActivity()).inflate(layoutId, parent, false));
         this.itemHandler = itemHandler;
     }
 

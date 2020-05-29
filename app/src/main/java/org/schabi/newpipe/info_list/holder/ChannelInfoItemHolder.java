@@ -49,7 +49,7 @@ public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
         String details = super.getDetailLine(item);
 
         if (item.getStreamCount() >= 0) {
-            String formattedVideoAmount = Localization.localizeStreamCount(itemHandler.getContext(),
+            String formattedVideoAmount = Localization.localizeStreamCount(itemHandler.getActivity(),
                     item.getStreamCount());
 
             if (!details.isEmpty()) {

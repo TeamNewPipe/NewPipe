@@ -74,7 +74,7 @@ public class LocalStatisticStreamItemHolder extends ItemHolderWithToolbar<Stream
     private String getStreamInfoDetailLine(final StreamStatisticsEntry entry,
                                            final DateFormat dateFormat) {
         final String watchCount = Localization
-                .shortViewCount(itemHandler.getContext(), entry.getWatchCount());
+                .shortViewCount(itemHandler.getActivity(), entry.getWatchCount());
         final String uploadDate = dateFormat.format(entry.getLatestAccessDate());
         final String serviceName = NewPipe.getNameOfService(entry.getStreamEntity().getServiceId());
         return Localization.concatenateStrings(watchCount, uploadDate, serviceName);
@@ -89,7 +89,7 @@ public class LocalStatisticStreamItemHolder extends ItemHolderWithToolbar<Stream
         if (item.getStreamEntity().getDuration() > 0) {
             itemDurationView.setText(
                     Localization.getDurationString(item.getStreamEntity().getDuration()));
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemHandler.getContext(),
+            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemHandler.getActivity(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 

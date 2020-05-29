@@ -124,10 +124,10 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
 
 
         itemView.setOnLongClickListener(view -> {
-            if (AndroidTvUtils.isTv(itemHandler.getContext())) {
+            if (AndroidTvUtils.isTv(itemHandler.getActivity())) {
                 openCommentAuthor(item);
             } else {
-                ShareUtils.copyToClipboard(itemHandler.getContext(), commentText);
+                ShareUtils.copyToClipboard(itemHandler.getActivity(), commentText);
             }
             return true;
         });
@@ -138,14 +138,14 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
             return;
         }
         try {
-            final AppCompatActivity activity = (AppCompatActivity) itemHandler.getContext();
+            final AppCompatActivity activity = (AppCompatActivity) itemHandler.getActivity();
             NavigationHelper.openChannelFragment(
                     activity.getSupportFragmentManager(),
                     item.getServiceId(),
                     item.getUploaderUrl(),
                     item.getUploaderName());
         } catch (Exception e) {
-            ErrorActivity.reportUiError((AppCompatActivity) itemHandler.getContext(), e);
+            ErrorActivity.reportUiError((AppCompatActivity) itemHandler.getActivity(), e);
         }
     }
 

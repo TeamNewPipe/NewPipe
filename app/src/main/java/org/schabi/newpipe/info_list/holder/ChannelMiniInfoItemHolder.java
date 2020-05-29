@@ -51,7 +51,7 @@ public class ChannelMiniInfoItemHolder extends ItemHolderWithToolbar<ChannelInfo
     protected String getDetailLine(final ChannelInfoItem item) {
         String details = "";
         if (item.getSubscriberCount() >= 0) {
-            details += Localization.shortSubscriberCount(itemHandler.getContext(),
+            details += Localization.shortSubscriberCount(itemHandler.getActivity(),
                     item.getSubscriberCount());
         }
         return details;

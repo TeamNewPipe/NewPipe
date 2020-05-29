@@ -51,7 +51,7 @@ public class StreamMiniInfoItemHolder extends ItemHolderWithToolbar<StreamInfoIt
 
         if (item.getDuration() > 0) {
             itemDurationView.setText(Localization.getDurationString(item.getDuration()));
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemHandler.getContext(),
+            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemHandler.getActivity(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
@@ -67,7 +67,7 @@ public class StreamMiniInfoItemHolder extends ItemHolderWithToolbar<StreamInfoIt
             }
         } else if (item.getStreamType() == StreamType.LIVE_STREAM) {
             itemDurationView.setText(R.string.duration_live);
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemHandler.getContext(),
+            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemHandler.getActivity(),
                     R.color.live_duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
             itemProgressView.setVisibility(View.GONE);

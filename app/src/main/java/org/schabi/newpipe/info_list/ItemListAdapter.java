@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -103,10 +105,10 @@ public class ItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View header = null;
     private View footer = null;
 
-    public ItemListAdapter(final Context context) {
-        this.recordManager = new HistoryRecordManager(context);
-        itemHandler = new ItemHandler(context, DateFormat.getDateInstance(DateFormat.SHORT,
-                Localization.getPreferredLocale(context)));
+    public ItemListAdapter(final FragmentActivity activity) {
+        this.recordManager = new HistoryRecordManager(activity);
+        itemHandler = new ItemHandler(activity, DateFormat.getDateInstance(DateFormat.SHORT,
+                Localization.getPreferredLocale(activity)));
         itemList = new ArrayList<>();
     }
 

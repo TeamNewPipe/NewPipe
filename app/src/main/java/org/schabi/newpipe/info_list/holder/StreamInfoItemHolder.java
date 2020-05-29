@@ -63,13 +63,13 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
         if (item.getViewCount() >= 0) {
             if (item.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
                 viewsAndDate = Localization
-                        .listeningCount(itemHandler.getContext(), item.getViewCount());
+                        .listeningCount(itemHandler.getActivity(), item.getViewCount());
             } else if (item.getStreamType().equals(StreamType.LIVE_STREAM)) {
                 viewsAndDate = Localization
-                        .shortWatchingCount(itemHandler.getContext(), item.getViewCount());
+                        .shortWatchingCount(itemHandler.getActivity(), item.getViewCount());
             } else {
                 viewsAndDate = Localization
-                        .shortViewCount(itemHandler.getContext(), item.getViewCount());
+                        .shortViewCount(itemHandler.getActivity(), item.getViewCount());
             }
         }
 
@@ -90,8 +90,8 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
             String formattedRelativeTime = Localization
                     .relativeTime(item.getUploadDate().date());
 
-            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(itemHandler.getContext())
-                    .getBoolean(itemHandler.getContext()
+            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(itemHandler.getActivity())
+                    .getBoolean(itemHandler.getActivity()
                             .getString(R.string.show_original_time_ago_key), false)) {
                 formattedRelativeTime += " (" + item.getTextualUploadDate() + ")";
             }

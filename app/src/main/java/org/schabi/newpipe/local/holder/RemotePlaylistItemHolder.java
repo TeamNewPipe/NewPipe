@@ -11,35 +11,33 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
-public class RemotePlaylistItemHolder extends PlaylistItemHolder {
+public class RemotePlaylistItemHolder extends PlaylistItemHolder<PlaylistRemoteEntity> {
     public RemotePlaylistItemHolder(final ItemHandler itemHandler, final ViewGroup parent) {
-        super(itemHandler, parent);
+        super(PlaylistRemoteEntity.class, itemHandler, parent);
     }
 
-    RemotePlaylistItemHolder(final ItemHandler itemHandler, final int layoutId,
+    RemotePlaylistItemHolder(final ItemHandler itemHandler,
+                             final int layoutId,
                              final ViewGroup parent) {
-        super(itemHandler, layoutId, parent);
+        super(PlaylistRemoteEntity.class, itemHandler, layoutId, parent);
     }
 
     @Override
-    public void updateFromItem(final PlaylistLocalItem item,
+    public void updateFromItem(final PlaylistRemoteEntity item,
                                final HistoryRecordManager historyRecordManager) {
-        PlaylistRemoteEntity entity = (PlaylistRemoteEntity) item;
-
-        itemTitleView.setText(entity.getName());
+        itemTitleView.setText(item.getName());
         itemStreamCountView.setText(Localization.localizeStreamCountMini(
-                itemStreamCountView.getContext(), entity.getStreamCount()));
+                itemStreamCountView.getContext(), item.getStreamCount()));
 
         // Here is where the uploader name is set in the bookmarked playlists library
-        if (!TextUtils.isEmpty(entity.getUploader())) {
-            itemUploaderView.setText(Localization.concatenateStrings(entity.getUploader(),
-                    NewPipe.getNameOfService(entity.getServiceId())));
+        if (!TextUtils.isEmpty(item.getUploader())) {
+            itemUploaderView.setText(Localization.concatenateStrings(item.getUploader(),
+                    NewPipe.getNameOfService(item.getServiceId())));
         } else {
-            itemUploaderView.setText(NewPipe.getNameOfService(entity.getServiceId()));
+            itemUploaderView.setText(NewPipe.getNameOfService(item.getServiceId()));
         }
 
-
-        itemHandler.displayImage(entity.getThumbnailUrl(), itemThumbnailView,
+        itemHandler.displayImage(item.getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_PLAYLIST_OPTIONS);
 
         super.updateFromItem(item, historyRecordManager);
