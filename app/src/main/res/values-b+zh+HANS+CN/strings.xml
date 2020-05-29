@@ -463,9 +463,6 @@
     <string name="conferences">近期大会</string>
     <string name="show_comments_title">显示评论</string>
     <string name="show_comments_summary">禁用，以停止显示评论</string>
-    <plurals name="comments">
-        <item quantity="other">%s 条评论</item>
-    </plurals>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
     <string name="enable_playback_resume_title">恢复播放</string>
@@ -596,4 +593,15 @@
     <string name="restricted_video">该视频有年龄限制。
 \n
 \n如果您想要观看，请在设置中启用“年龄限制内容”。</string>
+    <string name="video_detail_by">由 %s</string>
+    <string name="channel_created_by">由%s创建</string>
+    <string name="detail_sub_channel_thumbnail_view_description">频道的头像缩略图</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">是的，包括没看完的视频</string>
+    <string name="remove_watched_popup_warning">已经看过且在之后被加入播放列表的视频将被移除。
+\n您确定吗？这不能被撤消！</string>
+    <string name="remove_watched_popup_title">移除看过的视频？</string>
+    <string name="remove_watched">移除看过的视频</string>
+    <string name="show_original_time_ago_summary">来自服务的原始文本将在流项目中可见</string>
+    <string name="show_original_time_ago_title">在项目上显示原始时间</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube受限模式</string>
 </resources>

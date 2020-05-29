@@ -1,6 +1,10 @@
 package org.schabi.newpipe.database.subscription
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import org.schabi.newpipe.database.BasicDAO

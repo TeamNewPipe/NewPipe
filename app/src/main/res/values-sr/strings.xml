@@ -106,7 +106,6 @@
     <string name="could_not_load_image">Не могох да учитам слику</string>
     <string name="app_ui_crash">Апликација/УИ је краховала</string>
     <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nУслуга:\\nГМТ време:\\nПакет:\\nИздање:\\nИздање ОС-а:\\nГлоб. ИП распон:</string>
-    <string name="recaptcha">Стопка</string>
     <string name="title_activity_recaptcha">reCAPTCHA стопка</string>
     <string name="recaptcha_request_toast">Решите reCAPTCHA стопку</string>
     <string name="black_theme_title">Црна</string>

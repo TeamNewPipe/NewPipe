@@ -105,7 +105,6 @@
     <string name="no_available_dir">Veuillez définir ultérieurement un dossier de téléchargement dans les paramètres</string>
     <string name="could_not_load_image">Impossible de charger l’image</string>
     <string name="app_ui_crash">L’application a planté</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="black_theme_title">Noir</string>
     <string name="all">Tout</string>
     <string name="channel">Chaîne</string>
@@ -239,10 +238,10 @@
     <string name="kiosk">Kiosque</string>
     <string name="hold_to_append">Maintenir pour mettre en liste de lecture</string>
     <string name="enqueue_on_background">Mettre en liste du lecteur en arrière-plan</string>
-    <string name="enqueue_on_popup">Mettre en liste d’une nouvelle fenêtre flottante</string>
+    <string name="enqueue_on_popup">Mettre en liste d’une fenêtre flottante</string>
     <string name="start_here_on_main">Démarrer la lecture ici</string>
     <string name="start_here_on_background">Démarrer la lecture en arrière-plan</string>
-    <string name="start_here_on_popup">Démarrer la lecture dans une nouvelle fenêtre flottante</string>
+    <string name="start_here_on_popup">Démarrer la lecture dans une fenêtre flottante</string>
     <string name="donation_title">Donner</string>
     <string name="donation_encouragement">NewPipe est développé par des volontaires sur leur temps libre afin de vous proposer la meilleure expérience possible. Vous pouvez leur offrir un café pour les soutenir dans leurs efforts et rendre NewPipe encore meilleur.</string>
     <string name="website_title">Site Web</string>
@@ -466,10 +465,6 @@
     <string name="show_comments_title">Afficher les commentaires</string>
     <string name="show_comments_summary">Désactiver pour masquer les commentaires</string>
     <string name="autoplay_title">Lecture automatique</string>
-    <plurals name="comments">
-        <item quantity="one">%s commentaire</item>
-        <item quantity="other">%s commentaires</item>
-    </plurals>
     <string name="no_comments">Aucun commentaire</string>
     <string name="error_unable_to_load_comments">Impossible de charger les commentaires</string>
     <string name="close">Fermer</string>
@@ -537,7 +532,7 @@
     <string name="deleted_downloads">%1$s téléchargements supprimés</string>
     <string name="permission_display_over_apps">Autoriser l’affichage au-dessus d’autres applications</string>
     <string name="app_language_title">Langue de l’application</string>
-    <string name="systems_language">Langue du système</string>
+    <string name="systems_language">Prédéfini par le système</string>
     <string name="subtitle_activity_recaptcha">Appuyez sur « Terminé » une fois résolu</string>
     <string name="recaptcha_done_button">Terminé</string>
     <string name="videos_string">Vidéos</string>
@@ -612,4 +607,10 @@
     <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
 \nVous êtes sûr \? C\'est irréversible !</string>
     <string name="remove_watched_popup_title">Supprimer les vidéos regardées \?</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Miniature de la chaine</string>
+    <string name="video_detail_by">De %s</string>
+    <string name="channel_created_by">Créé par %s</string>
+    <string name="show_original_time_ago_summary">Les textes originaux des services vont être visibles dans les items</string>
+    <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
+    <string name="youtube_restricted_mode_enabled_title">Mode restreint de YouTube</string>
 </resources>

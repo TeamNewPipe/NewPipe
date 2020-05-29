@@ -41,7 +41,7 @@
                 android:layout_width="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_height="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
-                app:srcCompat="@drawable/splash_forground"
+                app:srcCompat="@drawable/splash_foreground"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -89,7 +89,7 @@
                     android:scaleType="fitCenter"
                     app:tint="@color/drawer_header_font_color"
                     tools:ignore="ContentDescription"
-                    tools:srcCompat="@drawable/youtube" />
+                    tools:srcCompat="@drawable/place_holder_youtube" />
 
                 <TextView
                     android:id="@+id/drawer_header_service_view"

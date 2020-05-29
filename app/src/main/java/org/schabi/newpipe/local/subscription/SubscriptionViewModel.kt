@@ -6,11 +6,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.xwray.groupie.Group
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.item.ChannelItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
-import java.util.concurrent.TimeUnit
 
 class SubscriptionViewModel(application: Application) : AndroidViewModel(application) {
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(application)

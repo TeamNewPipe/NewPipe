@@ -180,7 +180,6 @@
     <string name="no_available_dir">다운로드 할 폴더를 설정에서 지정하세요</string>
     <string name="msg_popup_permission">이 권한은 팝업 모드에서
 \n열기 위해 필요합니다</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">reCAPTCHA 확인 요청됨</string>
     <string name="settings_category_downloads_title">다운로드</string>
     <string name="settings_file_charset_title">파일명에 허용되는 문자</string>
@@ -461,9 +460,6 @@
     <string name="show_comments_title">댓글 보기</string>
     <string name="show_comments_summary">댓글을 보지 않으려면 비활성화하세요</string>
     <string name="autoplay_title">자동 재생</string>
-    <plurals name="comments">
-        <item quantity="other">댓글</item>
-    </plurals>
     <string name="no_comments">댓글 없음</string>
     <string name="error_unable_to_load_comments">댓글을 불러올 수 없음</string>
     <string name="close">닫기</string>

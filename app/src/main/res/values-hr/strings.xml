@@ -153,7 +153,6 @@
     <string name="no_available_dir">Kasnije odredite mapu za preuzimanje u postavkama</string>
     <string name="msg_popup_permission">Ova dozvola je potrebna za
 \notvaranje skočnog prozora</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA zadatak</string>
     <string name="recaptcha_request_toast">Traži se reCAPTCHA zadatak</string>
     <string name="settings_category_downloads_title">Preuzimanja</string>
@@ -464,11 +463,6 @@
     <string name="show_comments_title">Prikaži komentare</string>
     <string name="show_comments_summary">Onemogućite da biste prestali prikazivati komentare</string>
     <string name="autoplay_title">Automatska reprodukcija</string>
-    <plurals name="comments">
-        <item quantity="one">%s komentar</item>
-        <item quantity="few">%s komentara</item>
-        <item quantity="other">%s komentara</item>
-    </plurals>
     <string name="no_comments">Nema komentara</string>
     <string name="error_unable_to_load_comments">Komentare nije moguće učitati</string>
     <string name="close">Zatvori</string>

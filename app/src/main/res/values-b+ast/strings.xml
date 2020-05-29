@@ -264,10 +264,6 @@
     <string name="delete_search_history_alert">¿Desaniciar tol historial de guetes\?</string>
     <string name="app_update_notification_content_title">¡Hai un anovamientu disponible pa NewPipe!</string>
     <string name="app_update_notification_content_text">Toca pa baxar la versión</string>
-    <plurals name="comments">
-        <item quantity="one">%s comentariu</item>
-        <item quantity="other">%s comentarios</item>
-    </plurals>
     <string name="error_progress_lost">Perdióse\'l progresu porque se desanició\'l ficheru</string>
     <string name="peertube_instance_url_title">Instancies de PeerTube</string>
     <string name="peertube_instance_add_exists">La instancia yá esiste</string>

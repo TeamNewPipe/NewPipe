@@ -281,7 +281,7 @@
     <string name="donation_encouragement">NewPipe zhvillohet nga zhvillues të cilët shpenzojnë kohën e tyre të lirë për t\'u prurë juve eksperiencën më të mirë për përdoruesin. Ktheni nderin duke ndihmuar zhvilluesit që ta bëjnë NewPipe akoma edhe më të mirë ndërkohë që ata pijnë një filxhan kafe.</string>
     <string name="donation_title">Dhuro</string>
     <string name="view_on_github">Shikoje në GitHub</string>
-    <string name="contribution_encouragement">Nëse keni ide rreth; përkthimeve, ndryshimeve në dizajn, pastrimit të kodit, apo ndryshime rrënjësore të kodit--ndihma është gjithnjë e mirëpritur. Sa më shumë të bëhet aq më mirë do jetë!</string>
+    <string name="contribution_encouragement">Nëse keni ide rreth; përkthimeve, ndryshimeve në dizajn, pastrimit të kodit, apo ndryshime rrënjësore të kodit—ndihma është gjithnjë e mirëpritur. Sa më shumë të bëhet aq më mirë do jetë!</string>
     <string name="contribution_title">Kontribuo</string>
     <string name="app_description">Streaming i lirë dhe i lehtë në Android.</string>
     <string name="tab_licenses">Licensat</string>
@@ -412,7 +412,6 @@
     <string name="controls_download_desc">Shkarko skedarin stream</string>
     <string name="open_in_popup_mode">Hape në modalitetin popup</string>
     <string name="no_player_found">Nuk u gjend lexues për stream. Instalo VLC\?</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
         <item quantity="other">%s video</item>
@@ -608,4 +607,7 @@
 \nA jeni të sigurt\? Kjo nuk mund të zhbëhet!</string>
     <string name="remove_watched_popup_title">Dëshironi t\'i hiqni videot e para\?</string>
     <string name="remove_watched">Hiq të parat</string>
+    <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do të jenë të dukshme në objektet e stream</string>
+    <string name="show_original_time_ago_title">Shfaq titullin origjinal \"kohë më parë\" në objekte</string>
+    <string name="youtube_restricted_mode_enabled_title">Modaliteti i kufizuar i NewPipe</string>
 </resources>

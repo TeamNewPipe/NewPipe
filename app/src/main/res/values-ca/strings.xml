@@ -67,7 +67,6 @@
     <string name="finish">D\'acord</string>
     <string name="msg_name">Nom de fitxer</string>
     <string name="msg_error">Error</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="settings_category_downloads_title">Baixades</string>
     <string name="action_settings">Paràmetres</string>
     <string name="action_about">Quant a</string>
@@ -311,7 +310,7 @@
     <string name="settings_file_replacement_character_summary">Se substituiran els caràcters no vàlids amb aquest valor</string>
     <string name="settings_file_replacement_character_title">Caràcter de substitució</string>
     <string name="charset_most_special_characters">Principals caràcters especials</string>
-    <string name="contribution_encouragement">Idees, traduccions, canvis en el disseny, neteja del codi, canvis importants de programació... La vostra ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
+    <string name="contribution_encouragement">Idees, traduccions, canvis en el disseny, neteja del codi, canvis importants de programació… La vostra ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
     <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per oferir-vos la millor experiència possible. Feu una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè.</string>
     <string name="give_back">Feu la vostra aportació</string>
     <string name="title_history_search">Cerques</string>
@@ -463,10 +462,6 @@
     <string name="updates_setting_description">Mostra una notificació per demanar l\'actualització de l\'aplicació si hi ha una versió nova disponible</string>
     <string name="app_update_notification_content_text">Toqueu per baixar</string>
     <string name="error_http_no_content">El servidor no està enviant dades</string>
-    <plurals name="comments">
-        <item quantity="one">Comentaris</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="app_update_notification_channel_name">Notificació d\'actualització de l\'aplicació</string>
     <string name="enable_playback_resume_title">Reprèn la reproducció</string>
     <string name="overwrite_failed">No es pot sobreescriure el fitxer</string>

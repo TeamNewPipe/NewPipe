@@ -106,7 +106,6 @@
     <string name="could_not_load_image">Nemožno načítať obrázok</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
     <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="black_theme_title">Čierna</string>
     <string name="all">Všetko</string>
@@ -471,11 +470,6 @@
     <string name="show_comments_title">Zobraziť komentáre</string>
     <string name="show_comments_summary">Vypnutím tejto funkcie sa nebudú zobrazovať komentáre</string>
     <string name="autoplay_title">Automatické prehrávanie</string>
-    <plurals name="comments">
-        <item quantity="one">Komentáre</item>
-        <item quantity="few"/>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">Žiadne komentáre</string>
     <string name="error_unable_to_load_comments">Nemožno načítať komentáre</string>
     <string name="close">Zatvoriť</string>
@@ -609,4 +603,23 @@
 \nYouTube je príkladom služby, ktorá ponúka túto rýchlu metódu s informačným kanálom RSS.
 \n
 \nTakže výber sa zredukuje na to, čo uprednostňujete: rýchlosť alebo presné informácie.</string>
+    <string name="content_not_supported">Tento obsah ešte nie je podporovaný v NwPipe.
+\n
+\nMožno v budúcnosti sa to zmení.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Áno aj čiastočne pozreté videá</string>
+    <string name="remove_watched_popup_warning">Pozreté videá, ktoré ste pozreli pred a po ich pridaní do zoznamu, budú odstránené.
+\nSte si istí ich odstránením zo zoznamu\? Táto operácia je nezvratná!</string>
+    <string name="remove_watched_popup_title">Odstrániť pozreté videá\?</string>
+    <string name="remove_watched">Odstrániť pozreté</string>
+    <string name="show_original_time_ago_summary">Pôvodné texty zo služieb budú viditeľné v položkách streamu</string>
+    <string name="show_original_time_ago_title">Zobrazovať pôvodný čas</string>
+    <string name="infinite_videos">∞ videí</string>
+    <string name="more_than_100_videos">100+ videí</string>
+    <string name="artists">Umelci</string>
+    <string name="songs">Skladby</string>
+    <string name="albums">Albumy</string>
+    <string name="restricted_video">Vekovo obmedzené video.
+\n
+\nPokiaľ ho chcete pozerať, musíte povoliť \"Vekovo obmedzený obsah\" v nastaveniach.</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube v obmedzenom režime</string>
 </resources>

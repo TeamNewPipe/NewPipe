@@ -170,6 +170,7 @@
     <string name="peertube_instance_list_key" translatable="false">peertube_instance_list</string>
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
+    <string name="youtube_restricted_mode_enabled" translatable="false">youtube_restricted_mode_enabled</string>
     <string name="use_tor_key" translatable="false">use_tor</string>
     <string name="enable_search_history_key" translatable="false">enable_search_history</string>
     <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
@@ -323,7 +324,6 @@
         <item>is</item>
         <item>it</item>
         <item>sw</item>
-        <item>lv</item>
         <item>lt</item>
         <item>hu</item>
         <item>nl</item>
@@ -403,7 +403,6 @@
         <item>Íslenska</item>
         <item>Italiano</item>
         <item>Kiswahili</item>
-        <item>Latviešu valoda</item>
         <item>Lietuvių</item>
         <item>Magyar</item>
         <item>Nederlands</item>
@@ -1008,7 +1007,6 @@
         <item>oc</item>
         <item>pa</item>
         <item>pl</item>
-        <item>pr</item>
         <item>pt</item>
         <item>pt-br</item>
         <item>ro</item>
@@ -1074,7 +1072,6 @@
         <item>Occitan</item>
         <item>ਪੰਜਾਬੀ</item>
         <item>Polski</item>
-        <item>Pirate Language</item>
         <item>Português (PT)</item>
         <item>Português (BR)</item>
         <item>Română</item>

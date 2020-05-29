@@ -16,7 +16,6 @@ import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 
-
 class FeedGroupDialogViewModel(applicationContext: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModel() {
     class Factory(val context: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")

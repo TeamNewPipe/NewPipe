@@ -124,7 +124,6 @@
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
     <string name="show_search_suggestions_summary">Предлагать варианты при поиске</string>
     <string name="later">Позже</string>
@@ -345,7 +344,7 @@
     <string name="previous_export">Предыдущий экспорт</string>
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
-    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта: 
+    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта:
 \n
 \n1. Перейдите по ссылке %1$s
 \n2. Выполните вход.
@@ -399,7 +398,6 @@
     <string name="limit_mobile_data_usage_title">Предел разрешения в мобильной сети</string>
     <string name="channels">Каналы</string>
     <string name="playlists">Плейлисты</string>
-    <string name="videos">Видео</string>
     <string name="tracks">Треки</string>
     <string name="users">Пользователи</string>
     <string name="skip_silence_checkbox">Проматывать тишину</string>
@@ -416,8 +414,8 @@
     <string name="auto">Автоматически</string>
     <string name="brightness_gesture_control_summary">Менять яркость плеера жестом</string>
     <string name="brightness_gesture_control_title">Жест яркости</string>
-    <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель невозможна. Сбросить расположение папки загрузки\?</string>
-    <string name="download_to_sdcard_error_title">Внешний накопитель недоступен</string>
+    <string name="download_to_sdcard_error_message">Загрузка на SD-карту невозможна. Сбросить расположение папки загрузки\?</string>
+    <string name="download_to_sdcard_error_title">SD-карта недоступна</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">Значения по умолчанию</string>
     <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
@@ -476,11 +474,6 @@
     <string name="show_comments_title">Показать комментарии</string>
     <string name="show_comments_summary">Отключите, чтобы скрыть комментарии</string>
     <string name="autoplay_title">Автовоспроизведение</string>
-    <plurals name="comments">
-        <item quantity="one">%s комментарий</item>
-        <item quantity="few">%s комментария</item>
-        <item quantity="many">%s комментариев</item>
-    </plurals>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
     <string name="watch_history_states_deleted">Позиции воспроизведения удалены</string>
@@ -498,10 +491,10 @@
     <string name="pause_downloads">Приостановить загрузку</string>
     <string name="downloads_storage_ask_title">Запрашивать папку загрузки</string>
     <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения</string>
-    <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения.
-\nИспользуйте SAF для загрузки на внешний накопитель</string>
+    <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения. 
+\nИспользуйте SAF для загрузки на SD-карту</string>
     <string name="downloads_storage_use_saf_title">Использовать SAF</string>
-    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на внешнем накопителе. Поддерживается не всеми устройствами</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на SD-карте. Поддерживается не всеми устройствами</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
@@ -565,7 +558,7 @@
         <item quantity="other">%d выбрано</item>
     </plurals>
     <string name="feed_group_dialog_select_subscriptions">Выберите подписки</string>
-    <string name="feed_oldest_subscription_update">Последнее обновление: %s</string>
+    <string name="feed_oldest_subscription_update">Обновлено: %s</string>
     <plurals name="days">
         <item quantity="one">%d день</item>
         <item quantity="few">%d дня</item>
@@ -597,15 +590,15 @@
     <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте быстрый режим (включите в настройках или кнопкой внизу).
 \n
 \nNewPipe позволяет обновлять подписки двумя способами:
-\n• Получение канала целиком, медленное, но с полными сведениями.
-\n• Обновление по RSS, быстрое, но с потерей сведений.
+\n• получение канала целиком, медленное, но с полными сведениями;
+\n• обновление по RSS, быстрое, но с потерей сведений.
 \n
 \nПри быстром обновлении теряются длительность элемента и его тип (нельзя определить, трансляция это или обычное видео), могут быть получены не все элементы канала.
 \n
 \nYouTube является примером такого сервиса, допуская быстрое обновление по RSS.
 \n
 \nВыбор за вами: скорость или точность.</string>
-    <string name="feed_use_dedicated_fetch_method_title">Обновление из RSS, если доступно</string>
+    <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, но может возвращать не всё содержимое канала и не содержать часть сведений (длительность, тип элемента, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео с ограничением по возрасту.
@@ -625,4 +618,10 @@
 \n
 \nПродолжить\?</string>
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
+    <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
+    <string name="show_original_time_ago_title">Исходное время публикации</string>
+    <string name="youtube_restricted_mode_enabled_title">Безопасный режим YouTube</string>
+    <string name="video_detail_by">От %s</string>
+    <string name="channel_created_by">Создано %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
 </resources>

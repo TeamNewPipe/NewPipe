@@ -49,19 +49,19 @@ public final class KioskTranslator {
         }
     }
 
-    public static int getKioskIcons(final String kioskId, final Context c) {
+    public static int getKioskIcon(final String kioskId, final Context c) {
         switch (kioskId) {
             case "Trending":
             case "Top 50":
             case "New & hot":
             case "conferences":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_hot);
             case "Local":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_local);
             case "Recently added":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_recent);
             case "Most liked":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.thumbs_up);
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_thumb_up);
             default:
                 return 0;
         }

@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.squareup.leakcanary.RefWatcher;
 
 import icepick.Icepick;
 import icepick.State;
+import leakcanary.AppWatcher;
 
 public abstract class BaseFragment extends Fragment {
     public static final ImageLoader IMAGE_LOADER = ImageLoader.getInstance();
@@ -78,16 +78,14 @@ public abstract class BaseFragment extends Fragment {
         Icepick.saveInstanceState(this, outState);
     }
 
-    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) { }
+    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
+    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        RefWatcher refWatcher = App.getRefWatcher(getActivity());
-        if (refWatcher != null) {
-            refWatcher.watch(this);
-        }
+        AppWatcher.INSTANCE.getObjectWatcher().watch(this);
     }
 
     @Override
@@ -100,9 +98,11 @@ public abstract class BaseFragment extends Fragment {
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void initViews(final View rootView, final Bundle savedInstanceState) { }
+    protected void initViews(final View rootView, final Bundle savedInstanceState) {
+    }
 
-    protected void initListeners() { }
+    protected void initListeners() {
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils

@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
+import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 import java.util.Vector;
@@ -59,6 +61,16 @@ public class SelectKioskFragment extends DialogFragment {
 
     public void setOnCancelListener(final OnCancelListener listener) {
         onCancelListener = listener;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Init
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(STYLE_NO_TITLE, ThemeHelper.getMinWidthDialogTheme(requireContext()));
     }
 
     @Override
@@ -148,13 +160,8 @@ public class SelectKioskFragment extends DialogFragment {
             final Entry entry = kioskList.get(position);
             holder.titleView.setText(entry.kioskName);
             holder.thumbnailView
-                    .setImageDrawable(ContextCompat.getDrawable(getContext(), entry.icon));
-            holder.view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    clickedItem(entry);
-                }
-            });
+                    .setImageDrawable(AppCompatResources.getDrawable(requireContext(), entry.icon));
+            holder.view.setOnClickListener(view -> clickedItem(entry));
         }
 
         class Entry {

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.picker_icon_item.*
+import kotlinx.android.synthetic.main.picker_icon_item.icon_view
 import org.schabi.newpipe.R
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 

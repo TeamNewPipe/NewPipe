@@ -25,7 +25,8 @@
     <dimen name="video_item_detail_title_text_size">16sp</dimen>
     <dimen name="video_item_detail_views_text_size">14sp</dimen>
     <dimen name="video_item_detail_likes_text_size">13sp</dimen>
-    <dimen name="video_item_detail_uploader_text_size">16sp</dimen>
+    <dimen name="video_item_detail_uploader_text_size">12sp</dimen>
+    <dimen name="video_item_detail_sub_channel_text_size">16sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">14sp</dimen>
     <dimen name="video_item_detail_description_text_size">14sp</dimen>
     <dimen name="video_item_detail_next_text_size">17sp</dimen>
@@ -33,9 +34,11 @@
     <dimen name="channel_rss_title_size">14sp</dimen>
     <!-- Elements Size -->
     <dimen name="video_item_detail_uploader_image_size">42dp</dimen>
+    <dimen name="video_item_detail_sub_channel_image_size">21dp</dimen>
     <dimen name="video_item_detail_like_image_height">20sp</dimen>
     <dimen name="video_item_detail_like_image_width">20sp</dimen>
     <dimen name="channel_avatar_size">90dp</dimen>
+    <dimen name="sub_channel_avatar_size">45dp</dimen>
     <!-- Paddings & Margins -->
     <dimen name="video_item_detail_like_margin">8dp</dimen>
     <dimen name="video_item_detail_error_panel_margin">4dp</dimen>

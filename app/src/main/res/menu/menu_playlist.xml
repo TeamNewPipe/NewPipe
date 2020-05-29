@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/menu_item_share"
-        android:icon="?attr/share"
+        android:icon="?attr/ic_share"
         android:title="@string/share"
         app:showAsAction="ifRoom"/>
 

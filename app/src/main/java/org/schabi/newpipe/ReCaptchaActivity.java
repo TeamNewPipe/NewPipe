@@ -51,6 +51,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     public static final String RECAPTCHA_URL_EXTRA = "recaptcha_url_extra";
     public static final String TAG = ReCaptchaActivity.class.toString();
     public static final String YT_URL = "https://www.youtube.com";
+    public static final String RECAPTCHA_COOKIES_KEY = "recaptcha_cookies";
 
     private WebView webView;
     private String foundCookies = "";
@@ -168,7 +169,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             prefs.edit().putString(key, foundCookies).apply();
 
             // give cookies to Downloader class
-            DownloaderImpl.getInstance().setCookies(foundCookies);
+            DownloaderImpl.getInstance().setCookie(RECAPTCHA_COOKIES_KEY, foundCookies);
             setResult(RESULT_OK);
         }
 

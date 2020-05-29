@@ -25,6 +25,7 @@ import android.view.ViewTreeObserver;
 import android.widget.SeekBar;
 
 import androidx.appcompat.widget.AppCompatSeekBar;
+
 import org.schabi.newpipe.util.AndroidTvUtils;
 
 /**

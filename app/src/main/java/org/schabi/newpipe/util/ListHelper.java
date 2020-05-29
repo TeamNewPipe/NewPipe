@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import org.schabi.newpipe.R;
@@ -267,23 +268,22 @@ public final class ListHelper {
     }
 
     /**
-     * Get the audio from the list with the highest quality. Format will be ignored if it yields
-     * no results.
+     * Get the audio from the list with the highest quality.
+     * Format will be ignored if it yields no results.
      *
-     * @param format       the format to look for
-     * @param audioStreams list the audio streams
-     * @return index of the audio with the highest average bitrate of the default format
+     * @param format       The target format type or null if it doesn't matter
+     * @param audioStreams List of audio streams
+     * @return Index of audio stream that produces the most compact results or -1 if not found
      */
-    static int getHighestQualityAudioIndex(final MediaFormat format,
+    static int getHighestQualityAudioIndex(@Nullable MediaFormat format,
                                            final List<AudioStream> audioStreams) {
         int result = -1;
-        boolean hasOneFormat = false;
         if (audioStreams != null) {
             while (result == -1) {
                 AudioStream prevStream = null;
                 for (int idx = 0; idx < audioStreams.size(); idx++) {
                     AudioStream stream = audioStreams.get(idx);
-                    if ((format == null || stream.getFormat() == format || hasOneFormat)
+                    if ((format == null || stream.getFormat() == format)
                             && (prevStream == null || compareAudioStreamBitrate(prevStream, stream,
                                     AUDIO_FORMAT_QUALITY_RANKING) < 0)) {
                         prevStream = stream;
@@ -293,30 +293,29 @@ public final class ListHelper {
                 if (result == -1 && format == null) {
                     break;
                 }
-                hasOneFormat = true;
+                format = null;
             }
         }
         return result;
     }
 
     /**
-     * Get the audio from the list with the lowest bitrate and efficient format. Format will be
-     * ignored if it yields no results.
+     * Get the audio from the list with the lowest bitrate and most efficient format.
+     * Format will be ignored if it yields no results.
      *
      * @param format       The target format type or null if it doesn't matter
      * @param audioStreams List of audio streams
-     * @return Index of audio stream that can produce the most compact results or -1 if not found
+     * @return Index of audio stream that produces the most compact results or -1 if not found
      */
-    static int getMostCompactAudioIndex(final MediaFormat format,
+    static int getMostCompactAudioIndex(@Nullable MediaFormat format,
                                         final List<AudioStream> audioStreams) {
         int result = -1;
-        boolean hasOneFormat = false;
         if (audioStreams != null) {
             while (result == -1) {
                 AudioStream prevStream = null;
                 for (int idx = 0; idx < audioStreams.size(); idx++) {
                     AudioStream stream = audioStreams.get(idx);
-                    if ((format == null || stream.getFormat() == format || hasOneFormat)
+                    if ((format == null || stream.getFormat() == format)
                             && (prevStream == null || compareAudioStreamBitrate(prevStream, stream,
                                     AUDIO_FORMAT_EFFICIENCY_RANKING) > 0)) {
                         prevStream = stream;
@@ -326,7 +325,7 @@ public final class ListHelper {
                 if (result == -1 && format == null) {
                     break;
                 }
-                hasOneFormat = true;
+                format = null;
             }
         }
         return result;

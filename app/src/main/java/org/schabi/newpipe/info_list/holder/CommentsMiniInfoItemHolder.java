@@ -3,6 +3,7 @@ package org.schabi.newpipe.info_list.holder;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
@@ -12,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -89,7 +89,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
         itemBuilder.getImageLoader()
-                .displayImage(item.getAuthorThumbnail(),
+                .displayImage(item.getUploaderAvatarUrl(),
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
@@ -114,10 +114,10 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             itemLikesCountView.setText("-");
         }
 
-        if (item.getPublishedTime() != null) {
-            itemPublishedTime.setText(Localization.relativeTime(item.getPublishedTime().date()));
+        if (item.getUploadDate() != null) {
+            itemPublishedTime.setText(Localization.relativeTime(item.getUploadDate().date()));
         } else {
-            itemPublishedTime.setText(item.getTextualPublishedTime());
+            itemPublishedTime.setText(item.getTextualUploadDate());
         }
 
         itemView.setOnClickListener(view -> {
@@ -143,7 +143,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     private void openCommentAuthor(final CommentsInfoItem item) {
-        if (StringUtil.isBlank(item.getAuthorEndpoint())) {
+        if (TextUtils.isEmpty(item.getUploaderUrl())) {
             return;
         }
         try {
@@ -151,8 +151,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             NavigationHelper.openChannelFragment(
                     activity.getSupportFragmentManager(),
                     item.getServiceId(),
-                    item.getAuthorEndpoint(),
-                    item.getAuthorName());
+                    item.getUploaderUrl(),
+                    item.getUploaderName());
         } catch (Exception e) {
             ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
         }

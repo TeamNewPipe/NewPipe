@@ -17,7 +17,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="5dp"
-        android:src="@drawable/service"
         tools:ignore="RtlHardcoded"
         android:contentDescription="TODO" />
 

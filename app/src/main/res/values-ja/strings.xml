@@ -106,7 +106,6 @@
     <string name="could_not_load_image">画像を読み込みできません</string>
     <string name="app_ui_crash">アプリ/UI がクラッシュしました</string>
     <string name="info_labels">何:\\\\n提案:\\\\nコンテンツ言語:\\\\nサービス:\\\\nGMT 時間:\\\\nパッケージ:\\\\nバージョン:\\\\nOSバージョン:</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA の要求</string>
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
     <string name="black_theme_title">ブラック</string>
@@ -459,9 +458,6 @@
     <string name="show_comments_title">コメントを表示</string>
     <string name="show_comments_summary">無効にするとコメントの表示を停止します</string>
     <string name="autoplay_title">自動再生</string>
-    <plurals name="comments">
-        <item quantity="other">%s コメント</item>
-    </plurals>
     <string name="no_comments">コメントはありません</string>
     <string name="error_unable_to_load_comments">コメントを読み込めませんでした</string>
     <string name="close">閉じる</string>
@@ -600,4 +596,10 @@
     <string name="remove_watched_popup_yes_and_partially_watched_videos">はい、部分的に視聴した動画も削除します</string>
     <string name="remove_watched_popup_title">視聴済みの動画を削除しますか？</string>
     <string name="remove_watched">視聴済みを削除</string>
+    <string name="show_original_time_ago_summary">サービスのオリジナルのテキストが生放送に表示されます</string>
+    <string name="show_original_time_ago_title">アイテムに元の時間を表示</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube 制限付きモード</string>
+    <string name="video_detail_by">%s による</string>
+    <string name="channel_created_by">%s により作成</string>
+    <string name="detail_sub_channel_thumbnail_view_description">チャンネルのサムネイル</string>
 </resources>

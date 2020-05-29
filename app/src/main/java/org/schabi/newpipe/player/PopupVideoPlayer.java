@@ -68,7 +68,6 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
-import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
@@ -132,7 +131,6 @@ public final class PopupVideoPlayer extends Service {
     private RemoteViews notRemoteView;
 
     private VideoPlayerImpl playerImpl;
-    private LockManager lockManager;
     private boolean isPopupClosing = false;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -152,7 +150,6 @@ public final class PopupVideoPlayer extends Service {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
 
-        lockManager = new LockManager(this);
         playerImpl = new VideoPlayerImpl(this);
         ThemeHelper.setTheme(this);
 
@@ -378,9 +375,6 @@ public final class PopupVideoPlayer extends Service {
         }
 
         mBinder = null;
-        if (lockManager != null) {
-            lockManager.releaseWifiAndCpu();
-        }
         if (notificationManager != null) {
             notificationManager.cancel(NOTIFICATION_ID);
         }
@@ -898,7 +892,7 @@ public final class PopupVideoPlayer extends Service {
         public void onBlocked() {
             super.onBlocked();
             resetNotification();
-            updateNotification(R.drawable.ic_play_arrow_white);
+            updateNotification(R.drawable.exo_controls_play);
         }
 
         @Override
@@ -908,20 +902,19 @@ public final class PopupVideoPlayer extends Service {
             updateWindowFlags(ONGOING_PLAYBACK_WINDOW_FLAGS);
 
             resetNotification();
-            updateNotification(R.drawable.ic_pause_white);
+            updateNotification(R.drawable.exo_controls_pause);
 
-            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
+            videoPlayPause.setBackgroundResource(R.drawable.exo_controls_pause);
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
 
             startForeground(NOTIFICATION_ID, notBuilder.build());
-            lockManager.acquireWifiAndCpu();
         }
 
         @Override
         public void onBuffering() {
             super.onBuffering();
             resetNotification();
-            updateNotification(R.drawable.ic_play_arrow_white);
+            updateNotification(R.drawable.exo_controls_play);
         }
 
         @Override
@@ -931,10 +924,8 @@ public final class PopupVideoPlayer extends Service {
             updateWindowFlags(IDLE_WINDOW_FLAGS);
 
             resetNotification();
-            updateNotification(R.drawable.ic_play_arrow_white);
-
-            videoPlayPause.setBackgroundResource(R.drawable.ic_play_arrow_white);
-            lockManager.releaseWifiAndCpu();
+            updateNotification(R.drawable.exo_controls_play);
+            videoPlayPause.setBackgroundResource(R.drawable.exo_controls_play);
 
             stopForeground(false);
         }
@@ -943,9 +934,9 @@ public final class PopupVideoPlayer extends Service {
         public void onPausedSeek() {
             super.onPausedSeek();
             resetNotification();
-            updateNotification(R.drawable.ic_play_arrow_white);
+            updateNotification(R.drawable.exo_controls_play);
 
-            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
+            videoPlayPause.setBackgroundResource(R.drawable.exo_controls_play);
         }
 
         @Override
@@ -955,10 +946,8 @@ public final class PopupVideoPlayer extends Service {
             updateWindowFlags(IDLE_WINDOW_FLAGS);
 
             resetNotification();
-            updateNotification(R.drawable.ic_replay_white);
-
-            videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white);
-            lockManager.releaseWifiAndCpu();
+            updateNotification(R.drawable.ic_replay_white_24dp);
+            videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white_24dp);
 
             stopForeground(false);
         }

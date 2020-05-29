@@ -9,19 +9,16 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 import org.acra.ACRA;
-import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
-import org.acra.config.ConfigurationBuilder;
+import org.acra.config.CoreConfiguration;
+import org.acra.config.CoreConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
@@ -72,13 +69,6 @@ public class App extends Application {
     private static final Class<? extends ReportSenderFactory>[]
             REPORT_SENDER_FACTORY_CLASSES = new Class[]{AcraReportSenderFactory.class};
     private static App app;
-    private RefWatcher refWatcher;
-
-    @Nullable
-    public static RefWatcher getRefWatcher(final Context context) {
-        final App application = (App) context.getApplicationContext();
-        return application.refWatcher;
-    }
 
     public static App getApp() {
         return app;
@@ -94,13 +84,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        refWatcher = installLeakCanary();
 
         app = this;
 
@@ -136,7 +119,8 @@ public class App extends Application {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
                 getApplicationContext());
         final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
-        downloader.setCookies(prefs.getString(key, ""));
+        downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, prefs.getString(key, ""));
+        downloader.updateYoutubeRestrictedModeCookies(getApplicationContext());
     }
 
     private void configureRxJavaErrorHandler() {
@@ -218,7 +202,7 @@ public class App extends Application {
 
     private void initACRA() {
         try {
-            final ACRAConfiguration acraConfig = new ConfigurationBuilder(this)
+            final CoreConfiguration acraConfig = new CoreConfigurationBuilder(this)
                     .setReportSenderFactoryClasses(REPORT_SENDER_FACTORY_CLASSES)
                     .setBuildConfigClass(BuildConfig.class)
                     .build();
@@ -277,10 +261,6 @@ public class App extends Application {
         NotificationManager appUpdateNotificationManager
                 = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         appUpdateNotificationManager.createNotificationChannel(appUpdateChannel);
-    }
-
-    protected RefWatcher installLeakCanary() {
-        return RefWatcher.DISABLED;
     }
 
     protected boolean isDisposedRxExceptionsReported() {

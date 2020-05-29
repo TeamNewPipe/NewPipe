@@ -60,7 +60,7 @@ public final class AddTabDialog {
         private DialogListAdapter(final Context context, final ChooseTabListItem[] items) {
             this.inflater = LayoutInflater.from(context);
             this.items = items;
-            this.fallbackIcon = ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot);
+            this.fallbackIcon = ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_kiosk_hot);
         }
 
         @Override

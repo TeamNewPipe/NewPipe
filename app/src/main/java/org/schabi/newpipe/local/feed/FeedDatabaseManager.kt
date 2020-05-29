@@ -7,6 +7,8 @@ import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.Calendar
+import java.util.Date
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.feed.model.FeedEntity
@@ -16,8 +18,6 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
-import java.util.*
-import kotlin.collections.ArrayList
 
 class FeedDatabaseManager(context: Context) {
     private val database = NewPipeDatabase.getInstance(context)
@@ -70,8 +70,11 @@ class FeedDatabaseManager(context: Context) {
     fun markAsOutdated(subscriptionId: Long) = feedTable
             .setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId, null))
 
-    fun upsertAll(subscriptionId: Long, items: List<StreamInfoItem>,
-                  oldestAllowedDate: Date = FEED_OLDEST_ALLOWED_DATE.time) {
+    fun upsertAll(
+        subscriptionId: Long,
+        items: List<StreamInfoItem>,
+        oldestAllowedDate: Date = FEED_OLDEST_ALLOWED_DATE.time
+    ) {
         val itemsToInsert = ArrayList<StreamInfoItem>()
         loop@ for (streamItem in items) {
             val uploadDate = streamItem.uploadDate
@@ -107,9 +110,9 @@ class FeedDatabaseManager(context: Context) {
         if (DEBUG) Log.d(this::class.java.simpleName, "clear() → streamTable.deleteOrphans() → $deletedOrphans")
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Feed Groups
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     fun subscriptionIdsForGroup(groupId: Long): Flowable<List<Long>> {
         return feedGroupTable.getSubscriptionIdsFor(groupId)
@@ -161,6 +164,5 @@ class FeedDatabaseManager(context: Context) {
             FeedGroupEntity.GROUP_ALL_ID -> feedTable.oldestSubscriptionUpdateFromAll()
             else -> feedTable.oldestSubscriptionUpdate(groupId)
         }
-
     }
 }

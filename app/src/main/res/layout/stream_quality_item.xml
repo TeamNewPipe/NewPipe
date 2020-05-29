@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="48dp">
+    android:layout_height="48dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/wo_sound_icon"
@@ -13,7 +13,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="6dp"
         android:scaleType="fitCenter"
-        android:src="?attr/volume_off"
+        app:srcCompat="?attr/ic_volume_off"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 
     <TextView

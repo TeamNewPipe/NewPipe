@@ -105,7 +105,6 @@
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="user_report">Laporan pengguna</string>
     <string name="msg_threads">Thread</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Tantangan reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
     <string name="black_theme_title">Hitam</string>
@@ -278,10 +277,10 @@
     <string name="play_queue_audio_settings">Pengaturan Audio</string>
     <string name="hold_to_append">Tahan untuk mengantre</string>
     <string name="enqueue_on_background">Antre di latar belakang</string>
-    <string name="enqueue_on_popup">Antre di popup baru</string>
+    <string name="enqueue_on_popup">Antrekan di popup</string>
     <string name="start_here_on_main">Mulai putar di sini</string>
     <string name="start_here_on_background">Mulai putar di latar belakang</string>
-    <string name="start_here_on_popup">Mulai putar di popup baru</string>
+    <string name="start_here_on_popup">Mulai putar di popup</string>
     <string name="drawer_open">Buka Laci</string>
     <string name="drawer_close">Tutup Laci</string>
     <string name="drawer_header_action_paceholder_text">Sesuatu akan segera muncul di sini ;D</string>
@@ -459,9 +458,6 @@
     <string name="show_comments_title">Tampilkan komentar</string>
     <string name="show_comments_summary">Nonaktifkan untuk menyembunyikan komentar</string>
     <string name="autoplay_title">Putar otomatis</string>
-    <plurals name="comments">
-        <item quantity="other">%s komentar</item>
-    </plurals>
     <string name="no_comments">Tidak ada komentar</string>
     <string name="error_unable_to_load_comments">Tidak bisa memuat komentar</string>
     <string name="close">Tutup</string>
@@ -590,4 +586,21 @@
 \nApakah anda yakin\? Ini tidak bisa diurungkan!</string>
     <string name="unmute">Batal bisukan</string>
     <string name="mute">Bisukan</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Apakah kamu berpikir umpan memuat sangat lambat\? Jika iya, coba nyalakan memuat cepat (kamu dapat mengubahnya pada pengaturan atau dengan menekan tombol di bawah)
+\n
+\nNewPipe menyediakan dua strategi memuat umpan:
+\n• Mengambil semua kanal langganan, yang lebih lambat tapi lengkap.
+\n• Menggunakan layanan endpoint khusus, yang lebih cepat namun terkadang tidak lengkap.
+\n
+\nPerbedaan di antara keduanya ialah yang lebih cepat biasanya kekurangan pada beberapa informasi, sepertiitem durasi atau tipe (tidak dapat membedakan antara video langsung atau yang biasa) dan mungkin mengembalikan item yang lebih sedikit.
+\n
+\nYoutube adalah contoh layanan yang menyediakan metode cepat dengan umpan RSS mereka.
+\n
+\nJadi pilihlah yang sesuai yang kamu inginkan: kecepatan atau kelengkapan informasi.</string>
+    <string name="show_original_time_ago_summary">Teks asli dari layanan akan tampil pada item stream</string>
+    <string name="show_original_time_ago_title">Tampilkan waktu yang lalu sebenarnya pada item</string>
+    <string name="youtube_restricted_mode_enabled_title">Mode terbatas Youtube</string>
+    <string name="video_detail_by">Oleh %s</string>
+    <string name="channel_created_by">Dibuat oleh %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar channel</string>
 </resources>

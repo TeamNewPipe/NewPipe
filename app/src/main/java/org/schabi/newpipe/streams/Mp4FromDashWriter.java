@@ -5,8 +5,8 @@ import org.schabi.newpipe.streams.Mp4DashReader.Mdia;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4DashChunk;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4DashSample;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4Track;
-import org.schabi.newpipe.streams.Mp4DashReader.TrunEntry;
 import org.schabi.newpipe.streams.Mp4DashReader.TrackKind;
+import org.schabi.newpipe.streams.Mp4DashReader.TrunEntry;
 import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
@@ -711,7 +711,8 @@ public class Mp4FromDashWriter {
 
         for (int i = 0; i < tracks.length; i++) {
             if (tracks[i].trak.tkhd.matrix.length != 36) {
-                throw new RuntimeException("bad track matrix length (expected 36) in track n°" + i);
+                throw
+                    new RuntimeException("bad track matrix length (expected 36) in track n°" + i);
             }
             makeTrak(i, durations[i], defaultMediaTime[i], tablesInfo[i], is64);
         }

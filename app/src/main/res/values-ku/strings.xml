@@ -371,10 +371,6 @@
     <string name="show_comments_title">پیشاندانی لێدوانەکان</string>
     <string name="show_comments_summary">ناچالاککردن بۆ پیشان نەدانی لێدوانەکان</string>
     <string name="autoplay_title">کارپێکردنی خۆکاری</string>
-    <plurals name="comments">
-        <item quantity="one">%s لێدوان</item>
-        <item quantity="other">%s لێدوانەکان</item>
-    </plurals>
     <string name="no_comments">هیچ لێدوانێک نییە</string>
     <string name="enable_playback_resume_title">کارپێکردنەوەی لیست</string>
     <string name="enable_playback_resume_summary">گێڕانەوەی لیست بۆ شوێنی پێشووتر</string>
@@ -609,4 +605,10 @@
 \nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
     <string name="remove_watched_popup_title">ڤیدیۆ تەماشاکراوەکان بسڕێنەوە؟</string>
     <string name="remove_watched">سڕینەوەی تەماشاکراوەکان</string>
+    <string name="show_original_time_ago_summary">دەقە بنچینەییەکان لە خزمەتگوزارییەکانەوە لە بابەتی پەخشەکاندا دیار دەبن</string>
+    <string name="show_original_time_ago_title">پیشاندانی کاتی بنچینەیی پێشوو لەسەر بابەتەکان</string>
+    <string name="youtube_restricted_mode_enabled_title">دۆخی قەدەغەکراوی یوتوب</string>
+    <string name="video_detail_by">لەلایەن %s</string>
+    <string name="channel_created_by">دروستکراو لەلایەن %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">وێنۆچکەی کەناڵ</string>
 </resources>
