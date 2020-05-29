@@ -13,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 930
-        versionName "0.19.3"
+        versionCode 940
+        versionName "0.19.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -163,7 +163,7 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:0b4977bb0c7c9928cd8904951cfe94c71b4e81de'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:98055a3c3c17f2543a63d375a44c1d1f557fa76e'
 
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
     implementation "org.jsoup:jsoup:1.13.1"
