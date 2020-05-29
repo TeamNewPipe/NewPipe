@@ -117,7 +117,6 @@
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">Esta permissão é necessária 
 \npara o modo de janela popup</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="popup_mode_share_menu_title">Modo popup</string>
@@ -465,10 +464,6 @@
     <string name="show_comments_title">Mostrar comentários</string>
     <string name="show_comments_summary">Desativar para ocultar comentários</string>
     <string name="autoplay_title">Reprodução automática</string>
-    <plurals name="comments">
-        <item quantity="one">%s comentário</item>
-        <item quantity="other">%s comentários</item>
-    </plurals>
     <string name="no_comments">Sem comentários</string>
     <string name="error_unable_to_load_comments">Não foi possível carregar os comentários</string>
     <string name="close">Fechar</string>

@@ -187,7 +187,6 @@
     <string name="no_available_dir">يرجى تحديد مجلد التنزيل لاحقا في الإعدادات</string>
     <string name="msg_popup_permission">هذا الإذن مطلوب
 \nللفتح في وضع النافذة المنبثقة</string>
-    <string name="recaptcha">اختبار reCAPTCHA</string>
     <string name="settings_file_charset_title">السماح بالرموز في أسماء الملفات</string>
     <string name="settings_file_replacement_character_summary">يتم استبدال الرموز غير المسموح بها بهذه القيمة</string>
     <string name="settings_file_replacement_character_title">استبدال الحرف</string>
@@ -477,14 +476,6 @@
     <string name="show_comments_title">إظهار التعليقات</string>
     <string name="show_comments_summary">عطّله لإخفاء التعليقات</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
-    <plurals name="comments">
-        <item quantity="zero">%s تعليق</item>
-        <item quantity="one">%s تعليقات</item>
-        <item quantity="two">%s تعليقات</item>
-        <item quantity="few">%s تعليقات</item>
-        <item quantity="many">%s تعليقات</item>
-        <item quantity="other">%s تعليقات</item>
-    </plurals>
     <string name="no_comments">لا توجد تعليقات</string>
     <string name="error_unable_to_load_comments">تعذر تحميل التعليقات</string>
     <string name="close">إغلاق</string>
@@ -638,7 +629,6 @@
     <string name="new_seek_duration_toast">بسبب قيود ExoPlayer تم تعيين مدة البحث على %d ثانية</string>
     <string name="unmute">إلغاء كتم الصوت</string>
     <string name="mute">كتم الصوت</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@السلسلة/تطبيق _اسم</string>
     <string name="help">مساعدة</string>
     <string name="content_not_supported">هذا المحتوى ليس مدعوم من قبل NewPipe.
 \n

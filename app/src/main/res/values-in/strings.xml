@@ -105,7 +105,6 @@
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="user_report">Laporan pengguna</string>
     <string name="msg_threads">Thread</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Tantangan reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
     <string name="black_theme_title">Hitam</string>
@@ -459,9 +458,6 @@
     <string name="show_comments_title">Tampilkan komentar</string>
     <string name="show_comments_summary">Nonaktifkan untuk menyembunyikan komentar</string>
     <string name="autoplay_title">Putar otomatis</string>
-    <plurals name="comments">
-        <item quantity="other">%s komentar</item>
-    </plurals>
     <string name="no_comments">Tidak ada komentar</string>
     <string name="error_unable_to_load_comments">Tidak bisa memuat komentar</string>
     <string name="close">Tutup</string>

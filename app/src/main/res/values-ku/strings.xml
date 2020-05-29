@@ -371,10 +371,6 @@
     <string name="show_comments_title">پیشاندانی لێدوانەکان</string>
     <string name="show_comments_summary">ناچالاککردن بۆ پیشان نەدانی لێدوانەکان</string>
     <string name="autoplay_title">کارپێکردنی خۆکاری</string>
-    <plurals name="comments">
-        <item quantity="one">%s لێدوان</item>
-        <item quantity="other">%s لێدوانەکان</item>
-    </plurals>
     <string name="no_comments">هیچ لێدوانێک نییە</string>
     <string name="enable_playback_resume_title">کارپێکردنەوەی لیست</string>
     <string name="enable_playback_resume_summary">گێڕانەوەی لیست بۆ شوێنی پێشووتر</string>

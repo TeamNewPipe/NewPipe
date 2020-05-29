@@ -107,7 +107,6 @@
     <string name="msg_copied">Gekopieerd naar klembord</string>
     <string name="no_available_dir">Selecteer een downloadmap in de Instellingen</string>
     <string name="black_theme_title">Zwart</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA-uitdaging</string>
     <string name="recaptcha_request_toast">reCAPTCHA-uitdaging gevraagd</string>
     <string name="open_in_popup_mode">Openen in pop-upmodus</string>
@@ -466,10 +465,6 @@
     <string name="show_comments_title">Reacties tonen</string>
     <string name="show_comments_summary">Schakel dit uit om reacties te verbergen</string>
     <string name="autoplay_title">Automatisch afspelen</string>
-    <plurals name="comments">
-        <item quantity="one">%s reactie</item>
-        <item quantity="other">%s reacties</item>
-    </plurals>
     <string name="no_comments">Geen reacties</string>
     <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
     <string name="close">Sluiten</string>

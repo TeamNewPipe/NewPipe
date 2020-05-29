@@ -124,7 +124,6 @@
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
 \naçmak için gereklidir</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
     <string name="recaptcha_request_toast">reCAPTCHA formu istendi</string>
     <string name="controls_background_title">Arka plan</string>
@@ -461,10 +460,6 @@
     <string name="show_comments_title">Yorumları göster</string>
     <string name="show_comments_summary">Yorumları gizlemek için kapatın</string>
     <string name="autoplay_title">Otomatik oynat</string>
-    <plurals name="comments">
-        <item quantity="one">%s yorum</item>
-        <item quantity="other">%s yorum</item>
-    </plurals>
     <string name="no_comments">Yorum yok</string>
     <string name="error_unable_to_load_comments">Yorumlar yüklenemedi</string>
     <string name="close">Kapat</string>
@@ -613,7 +608,7 @@
     <string name="remove_watched_popup_title">İzlenen videoları kaldır\?</string>
     <string name="remove_watched">İzleneni kaldır</string>
     <string name="show_original_time_ago_summary">Akış ögelerinde hizmetlerden alınan özgün metinler görünecektir</string>
-    <string name="show_original_time_ago_title">Ögelerde özgün \'... önce\'yi göster</string>
+    <string name="show_original_time_ago_title">Ögelerde özgün \'… önce\'yi göster</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube kısıtlı kip</string>
     <string name="video_detail_by">%s tarafından</string>
     <string name="channel_created_by">%s tarafından oluşturuldu</string>

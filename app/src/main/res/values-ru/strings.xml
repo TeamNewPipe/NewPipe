@@ -124,7 +124,6 @@
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
     <string name="show_search_suggestions_summary">Предлагать варианты при поиске</string>
     <string name="later">Позже</string>
@@ -399,7 +398,6 @@
     <string name="limit_mobile_data_usage_title">Предел разрешения в мобильной сети</string>
     <string name="channels">Каналы</string>
     <string name="playlists">Плейлисты</string>
-    <string name="videos">Видео</string>
     <string name="tracks">Треки</string>
     <string name="users">Пользователи</string>
     <string name="skip_silence_checkbox">Проматывать тишину</string>
@@ -476,11 +474,6 @@
     <string name="show_comments_title">Показать комментарии</string>
     <string name="show_comments_summary">Отключите, чтобы скрыть комментарии</string>
     <string name="autoplay_title">Автовоспроизведение</string>
-    <plurals name="comments">
-        <item quantity="one">%s комментарий</item>
-        <item quantity="few">%s комментария</item>
-        <item quantity="many">%s комментариев</item>
-    </plurals>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
     <string name="watch_history_states_deleted">Позиции воспроизведения удалены</string>

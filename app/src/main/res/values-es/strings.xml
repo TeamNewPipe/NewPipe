@@ -115,7 +115,6 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
     <string name="msg_popup_permission">Se necesita este permiso
 \npara abrir en modo emergente</string>
@@ -489,10 +488,6 @@
     <string name="show_comments_title">Mostrar comentarios</string>
     <string name="show_comments_summary">Desactivar para ocultar comentarios</string>
     <string name="autoplay_title">Reproducción automática</string>
-    <plurals name="comments">
-        <item quantity="one">%s comentario</item>
-        <item quantity="other">%s comentarios</item>
-    </plurals>
     <string name="no_comments">Sin comentarios</string>
     <string name="error_unable_to_load_comments">No se pudo cargar comentarios</string>
     <string name="close">Cerrar</string>

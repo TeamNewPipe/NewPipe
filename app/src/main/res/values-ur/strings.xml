@@ -461,10 +461,6 @@
     <string name="show_comments_title">تبصرے دکھائیں</string>
     <string name="show_comments_summary">تبصرے دکھانا بند کریں</string>
     <string name="autoplay_title">آٹوپلے</string>
-    <plurals name="comments">
-        <item quantity="one">تبصرہ</item>
-        <item quantity="other">تبصرے</item>
-    </plurals>
     <string name="no_comments">کوئی تبصرہ نہیں</string>
     <string name="error_unable_to_load_comments">تبصرے لوڈ نہیں ہو سکے</string>
     <string name="close">بند کریں</string>

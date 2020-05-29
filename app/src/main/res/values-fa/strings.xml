@@ -296,7 +296,6 @@
     <string name="use_inexact_seek_title">زمان فعلی پخش کننده را به صورت تقریبی و سریع جلو ببر</string>
     <string name="use_inexact_seek_summary">این گزینه باعث می شود هنگام جلو/عقب کردن زمان تصویر، به جای زمان دقیق انتخاب شده، به زمان غیر دقیق و نزدیک به مکان انتخاب شده برود که این کار سریع تر انجام می شود.</string>
     <string name="app_ui_crash">کاره یا رابط کاربری با خطا مواجه شد</string>
-    <string name="recaptcha">ریکپچا</string>
     <string name="settings_category_downloads_title">بارگیری</string>
     <string name="toggle_orientation">تغییر جهت</string>
     <string name="switch_to_background">تغییر وضعیت به پس‌زمینه</string>
@@ -332,10 +331,6 @@
     <string name="show_comments_title">نمایش نظرات</string>
     <string name="show_comments_summary">خاموش کنید تا نظرات پنهان شوند</string>
     <string name="autoplay_title">پخش خودکار</string>
-    <plurals name="comments">
-        <item quantity="one">نظر</item>
-        <item quantity="other">نظر</item>
-    </plurals>
     <string name="no_comments">بدون نظر</string>
     <string name="error_unable_to_load_comments">ناتوانی در دریافت نظرات</string>
     <string name="resume_on_audio_focus_gain_title">پخش ادامه یابد</string>

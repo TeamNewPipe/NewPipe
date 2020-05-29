@@ -249,7 +249,6 @@
     <string name="no_available_dir">Vælg venligst en tilgængelig downloadmappe</string>
     <string name="msg_popup_permission">Denne tilladelse er nødvendig for at kunne åbne i pop op-tilstand</string>
     <string name="one_item_deleted">1 element slettet.</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA-udfordring</string>
     <string name="recaptcha_request_toast">Der blev anmodet om en reCAPTCHA-udfordring</string>
     <string name="settings_category_downloads_title">Download</string>

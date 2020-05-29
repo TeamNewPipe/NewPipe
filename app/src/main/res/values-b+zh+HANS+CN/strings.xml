@@ -463,9 +463,6 @@
     <string name="conferences">近期大会</string>
     <string name="show_comments_title">显示评论</string>
     <string name="show_comments_summary">禁用，以停止显示评论</string>
-    <plurals name="comments">
-        <item quantity="other">%s 条评论</item>
-    </plurals>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
     <string name="enable_playback_resume_title">恢复播放</string>

@@ -230,7 +230,6 @@
     <string name="no_available_dir">Одберете достапна локација за превземања</string>
     <string name="msg_popup_permission">Оваа привилегија е потребна за
 \nотворање во подпрозорче</string>
-    <string name="recaptcha">„reCAPTCHA“</string>
     <string name="title_activity_recaptcha">reCAPTCHA Предизвик</string>
     <string name="recaptcha_request_toast">Потребен е reCAPTCHA предизвик</string>
     <string name="settings_category_downloads_title">Превземања</string>
@@ -456,10 +455,6 @@
     <string name="conferences">Конференции</string>
     <string name="show_comments_title">Прикажи коментари</string>
     <string name="autoplay_title">Автоматско пуштање</string>
-    <plurals name="comments">
-        <item quantity="one">Коментари</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">Нема коментари</string>
     <string name="error_unable_to_load_comments">Не може да се вчитаат коментарите</string>
     <string name="close">Затвори</string>

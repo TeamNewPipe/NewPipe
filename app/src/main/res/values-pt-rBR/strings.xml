@@ -50,7 +50,6 @@
     <string name="next_video_title">Próximo</string>
     <string name="open_in_browser">Abrir no navegador</string>
     <string name="pause">Pausar</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="report_error">Relatar erro</string>
@@ -71,7 +70,6 @@
     <string name="theme_title">Tema</string>
     <string name="upload_date_text">Publicado em  %1$s</string>
     <string name="url_not_supported_toast">Link não suportado</string>
-    <string name="default_language_value">pt</string>
     <string name="duration_live">Ao vivo</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -466,10 +464,6 @@
     <string name="show_comments_title">Mostrar comentários</string>
     <string name="show_comments_summary">Desative para ocultar comentários</string>
     <string name="autoplay_title">Autorreprodução</string>
-    <plurals name="comments">
-        <item quantity="one">%s comentários</item>
-        <item quantity="other">Comentários</item>
-    </plurals>
     <string name="no_comments">Sem comentários</string>
     <string name="error_unable_to_load_comments">Não foi possível carregar os comentários</string>
     <string name="close">Fechar</string>

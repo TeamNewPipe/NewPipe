@@ -192,7 +192,6 @@
     <string name="no_available_dir">נא לציין תיקיית הורדה בהגדרות בהמשך</string>
     <string name="msg_popup_permission">הרשאה זו נדרשת לטובת 
 \nפתיחה בחלון צף</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">אתגר reCAPTCHA</string>
     <string name="recaptcha_request_toast">התקבלה בקשה לאתגר reCAPTCHA</string>
     <string name="settings_category_downloads_title">הורדה</string>
@@ -470,12 +469,6 @@
     <string name="show_comments_title">הצגת תגובות</string>
     <string name="show_comments_summary">יש להשבית כדי להפסיק הסתרת תגובות</string>
     <string name="autoplay_title">ניגון אוטומטי</string>
-    <plurals name="comments">
-        <item quantity="one">תגובה %s</item>
-        <item quantity="two">%s תגובות</item>
-        <item quantity="many">%s תגובות</item>
-        <item quantity="other">%s תגובות</item>
-    </plurals>
     <string name="no_comments">אין תגובות</string>
     <string name="error_unable_to_load_comments">לא ניתן לטעון תגובות</string>
     <string name="close">סגירה</string>
@@ -584,7 +577,7 @@
     </plurals>
     <string name="feed_groups_header_title">קבוצות ערוצים</string>
     <string name="feed_oldest_subscription_update">עדכון ההזנה האחרון: %s</string>
-    <string name="feed_subscription_not_loaded_count">לא נטען: %s</string>
+    <string name="feed_subscription_not_loaded_count">לא נטען: %d</string>
     <string name="feed_notification_loading">ההזנה נטענת…</string>
     <string name="feed_processing_message">ההזנה בהליכי עיבוד…</string>
     <string name="feed_group_dialog_select_subscriptions">בחירת מינויים</string>

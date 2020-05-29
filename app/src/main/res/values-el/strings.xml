@@ -251,7 +251,6 @@
     <string name="msg_popup_permission">Αυτή η άδεια είναι απαραίτητη για
 \nτο άνοιγμα αναδυόμενων παραθύρων</string>
     <string name="one_item_deleted">1 αντικείμενο διαγράφηκε.</string>
-    <string name="recaptcha">Αυτόματο τεστ</string>
     <string name="title_activity_recaptcha">Πρόκληση reCAPTCHA</string>
     <string name="recaptcha_request_toast">Ζητήθηκε πρόκληση reCAPTCHA</string>
     <string name="settings_file_charset_title">Επιτρεπόμενοι χαρακτήρες σε ονόματα αρχείων</string>
@@ -466,10 +465,6 @@
     <string name="show_comments_title">Προβολή σχολίων</string>
     <string name="show_comments_summary">Απενεργοποίηση για διακοπή της εμφάνιση σχολίων</string>
     <string name="autoplay_title">Αυτόματη αναπαραγωγή</string>
-    <plurals name="comments">
-        <item quantity="one">Σχόλια</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">Χωρίς σχόλια</string>
     <string name="error_unable_to_load_comments">Δεν ήταν δυνατή η φόρτωση σχολίων</string>
     <string name="close">Κλείσιμο</string>

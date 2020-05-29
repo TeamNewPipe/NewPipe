@@ -105,7 +105,6 @@
     <string name="no_available_dir">Veuillez définir ultérieurement un dossier de téléchargement dans les paramètres</string>
     <string name="could_not_load_image">Impossible de charger l’image</string>
     <string name="app_ui_crash">L’application a planté</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="black_theme_title">Noir</string>
     <string name="all">Tout</string>
     <string name="channel">Chaîne</string>
@@ -466,10 +465,6 @@
     <string name="show_comments_title">Afficher les commentaires</string>
     <string name="show_comments_summary">Désactiver pour masquer les commentaires</string>
     <string name="autoplay_title">Lecture automatique</string>
-    <plurals name="comments">
-        <item quantity="one">%s commentaire</item>
-        <item quantity="other">%s commentaires</item>
-    </plurals>
     <string name="no_comments">Aucun commentaire</string>
     <string name="error_unable_to_load_comments">Impossible de charger les commentaires</string>
     <string name="close">Fermer</string>

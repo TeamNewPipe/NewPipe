@@ -106,7 +106,6 @@
     <string name="app_ui_crash">Awaria aplikacji/interfejsu</string>
     <string name="use_tor_summary">(Eksperymentalne) Wymuś pobieranie przez Tora w celu zwiększenia prywatności (strumieniowe wideo nie jest jeszcze obsługiwane).</string>
     <string name="start">Start</string>
-    <string name="recaptcha">CAPTCHA</string>
     <string name="title_activity_recaptcha">Wyzwanie reCAPTCHA</string>
     <string name="recaptcha_request_toast">Wymagane wyzwanie dotyczące reCAPTCHA</string>
     <string name="use_external_video_player_summary">Usuwa dźwięk w niektórych rozdzielczościach</string>
@@ -469,11 +468,6 @@
     <string name="show_comments_title">Pokaż komentarze</string>
     <string name="show_comments_summary">Wyłącz, aby ukryć komentarze</string>
     <string name="autoplay_title">Automatyczne odtwarzanie</string>
-    <plurals name="comments">
-        <item quantity="one">%s komentarz</item>
-        <item quantity="few">%s komentarze</item>
-        <item quantity="many">%s komentarzy</item>
-    </plurals>
     <string name="no_comments">Brak komentarzy</string>
     <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
     <string name="close">Zamknij</string>
@@ -590,7 +584,7 @@
     <string name="feed_processing_message">Przetwarzam plik danych…</string>
     <string name="feed_notification_loading">Ładowanie kanału…</string>
     <string name="feed_subscription_not_loaded_count">Nie uruchamia się: %d</string>
-    <string name="feed_oldest_subscription_update">Ostatnia aktualizacja kanału: % s</string>
+    <string name="feed_oldest_subscription_update">Ostatnia aktualizacja kanału: %s</string>
     <string name="feed_groups_header_title">Grupy kanałów</string>
     <plurals name="days">
         <item quantity="one">%d dzień</item>
