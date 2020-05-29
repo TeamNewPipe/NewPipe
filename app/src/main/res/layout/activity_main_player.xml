@@ -484,10 +484,8 @@
             android:id="@+id/playPreviousButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginRight="30dp"
             android:layout_marginEnd="30dp"
             android:layout_centerInParent="true"
-            android:layout_toLeftOf="@id/playPauseButton"
             android:layout_toStartOf="@id/playPauseButton"
             android:clickable="true"
             android:focusable="true"
@@ -500,10 +498,8 @@
             android:id="@+id/playNextButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_centerInParent="true"
-            android:layout_toRightOf="@id/playPauseButton"
             android:layout_toEndOf="@id/playPauseButton"
             android:clickable="true"
             android:focusable="true"
@@ -541,6 +537,7 @@
             android:id="@+id/controlAnimationView"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:padding="15dp"
             android:background="@drawable/background_oval_black_transparent"
             android:visibility="gone"
             tools:ignore="ContentDescription"
@@ -593,8 +590,8 @@
 
             <ImageView
                 android:id="@+id/volumeImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_centerInParent="true"
                 tools:ignore="ContentDescription"
                 tools:src="@drawable/ic_volume_up_white_24dp" />
@@ -619,8 +616,8 @@
 
             <ImageView
                 android:id="@+id/brightnessImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_centerInParent="true"
                 tools:ignore="ContentDescription"
                 tools:src="@drawable/ic_brightness_high_white_24dp" />
