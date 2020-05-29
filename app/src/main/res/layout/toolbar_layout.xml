@@ -14,6 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:gravity="center_vertical"
+        app:subtitleTextColor="@color/light_gray"
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@color/white"
         android:theme="@style/ToolbarTheme"

@@ -224,15 +224,9 @@ public class MissionsFragment extends Fragment {
         mList.setAdapter(mAdapter);
 
         if (mSwitch != null) {
-            boolean isLight = ThemeHelper.isLightThemeSelected(mContext);
-            int icon;
-
-            if (mLinear)
-                icon = R.drawable.ic_apps_white_24dp;
-            else
-                icon = R.drawable.ic_list_white_24dp;
-
-            mSwitch.setIcon(icon);
+            mSwitch.setIcon(mLinear
+                    ? R.drawable.ic_apps_white_24dp
+                    : R.drawable.ic_list_white_24dp);
             mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
             mPrefs.edit().putBoolean("linear", mLinear).apply();
         }

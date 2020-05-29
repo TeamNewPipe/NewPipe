@@ -138,8 +138,7 @@ public class MainActivity extends AppCompatActivity {
             initFragments();
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(findViewById(R.id.toolbar));
         try {
             setupDrawer();
         } catch (Exception e) {

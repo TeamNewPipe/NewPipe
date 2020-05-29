@@ -469,14 +469,12 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             return;
         }
 
-        final int iconAttr = playlistEntity == null
+        playlistBookmarkButton.setIcon(playlistEntity == null
                 ? R.drawable.ic_playlist_add_white_24dp
-                : R.drawable.ic_playlist_add_check_white_24dp;
+                : R.drawable.ic_playlist_add_check_white_24dp);
 
-        final int titleRes = playlistEntity == null
-                ? R.string.bookmark_playlist : R.string.unbookmark_playlist;
-
-        playlistBookmarkButton.setIcon(iconAttr);
-        playlistBookmarkButton.setTitle(titleRes);
+        playlistBookmarkButton.setTitle(playlistEntity == null
+                ? R.string.bookmark_playlist
+                : R.string.unbookmark_playlist);
     }
 }

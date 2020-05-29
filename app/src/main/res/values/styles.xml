@@ -124,6 +124,8 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">@color/white</item>
 
+        <item name="android:textColorHint">@color/light_gray</item>
+
         <item name="ic_thumb_up">@drawable/ic_thumb_up_white_24dp</item>
         <item name="ic_thumb_down">@drawable/ic_thumb_down_white_24dp</item>
         <item name="ic_headset">@drawable/ic_headset_white_24dp</item>
