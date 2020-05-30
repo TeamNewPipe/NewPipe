@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -40,20 +39,12 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     //////////////////////////////////////////////////////////////////////////*/
 
     private View headerRootLayout;
-    private Switch aSwitch;
-
-    private boolean mIsVisibleToUser = false;
+    private Switch autoplaySwitch;
 
     public static RelatedVideosFragment getInstance(final StreamInfo info) {
         RelatedVideosFragment instance = new RelatedVideosFragment();
         instance.setInitialData(info);
         return instance;
-    }
-
-    @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        mIsVisibleToUser = isVisibleToUser;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -81,22 +72,18 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     }
 
     protected View getListHeader() {
-        if (relatedStreamInfo != null && relatedStreamInfo.getNextStream() != null) {
+        if (relatedStreamInfo != null && relatedStreamInfo.getRelatedItems() != null) {
             headerRootLayout = activity.getLayoutInflater()
                     .inflate(R.layout.related_streams_header, itemsList, false);
-            aSwitch = headerRootLayout.findViewById(R.id.autoplay_switch);
+            autoplaySwitch = headerRootLayout.findViewById(R.id.autoplay_switch);
 
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
-            Boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
-            aSwitch.setChecked(autoplay);
-            aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(final CompoundButton compoundButton,
-                                             final boolean b) {
+            final SharedPreferences pref = PreferenceManager
+                    .getDefaultSharedPreferences(getContext());
+            final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
+            autoplaySwitch.setChecked(autoplay);
+            autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
                     PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
-                            .putBoolean(getString(R.string.auto_queue_key), b).apply();
-                }
-            });
+                    .putBoolean(getString(R.string.auto_queue_key), b).apply());
             return headerRootLayout;
         } else {
             return null;
@@ -105,7 +92,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
 
     @Override
     protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        return Single.fromCallable(() -> ListExtractor.InfoItemsPage.emptyPage());
+        return Single.fromCallable(ListExtractor.InfoItemsPage::emptyPage);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -216,8 +203,8 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
                                           final String s) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
-        if (null != aSwitch) {
-            aSwitch.setChecked(autoplay);
+        if (autoplaySwitch != null) {
+            autoplaySwitch.setChecked(autoplay);
         }
     }
 

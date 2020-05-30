@@ -365,10 +365,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        // Check if the next video label and video is visible,
-        // if it is, include the two elements in the next check
-        int nextCount = currentInfo != null && currentInfo.getNextVideo() != null ? 2 : 0;
-
         if (!isLoading.get() && currentInfo != null && isVisible()) {
             outState.putSerializable(INFO_KEY, currentInfo);
         }
