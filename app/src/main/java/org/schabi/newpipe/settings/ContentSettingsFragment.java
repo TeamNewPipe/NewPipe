@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
@@ -119,7 +121,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         Preference importDataPreference = findPreference(getString(R.string.import_data));
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
+            String startPath = defaultPreferences.getString(Constants.IMPORT_PATH_DIRECTORY,
+                    Environment.getExternalStorageDirectory().getPath());
             Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_START_PATH, startPath)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE,
@@ -129,8 +134,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         });
 
         Preference exportDataPreference = findPreference(getString(R.string.export_data));
+
         exportDataPreference.setOnPreferenceClickListener((Preference p) -> {
+            String startPath = defaultPreferences.getString(Constants.EXPORT_PATH_DIRECTORY,
+                    Environment.getExternalStorageDirectory().getPath());
             Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_START_PATH, startPath)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE,
@@ -177,9 +186,14 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
             String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
             if (requestCode == REQUEST_EXPORT_PATH) {
+                defaultPreferences.edit().putString(Constants.EXPORT_PATH_DIRECTORY,
+                        path.toString()).apply();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
                 exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");
             } else {
+                String importDir = new File(path).getParent();
+                defaultPreferences.edit().putString(Constants.IMPORT_PATH_DIRECTORY,
+                        importDir).apply();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage(R.string.override_current_data)
                         .setPositiveButton(getString(R.string.finish),

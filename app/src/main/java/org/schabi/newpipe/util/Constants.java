@@ -11,6 +11,9 @@ public final class Constants {
     public static final String KEY_THEME_CHANGE = "key_theme_change";
     public static final String KEY_MAIN_PAGE_CHANGE = "key_main_page_change";
 
+    public static final String EXPORT_PATH_DIRECTORY = "export_path_directory";
+    public static final String IMPORT_PATH_DIRECTORY = "import_path_directory";
+
     public static final int NO_SERVICE_ID = -1;
 
     private Constants() { }
