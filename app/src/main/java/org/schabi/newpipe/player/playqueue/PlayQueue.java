@@ -305,25 +305,16 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * Report an exception for the item at the current index in order and the course of action:
-     * if the error can be skipped or the current item should be removed.
+     * Report an exception for the item at the current index in order and skip to the next one
      * <p>
      * This is done as a separate event as the underlying manager may have
      * different implementation regarding exceptions.
      * </p>
-     *
-     * @param skippable whether the error could be skipped
      */
-    public synchronized void error(final boolean skippable) {
-        final int index = getIndex();
-
-        if (skippable) {
-            queueIndex.incrementAndGet();
-        } else {
-            removeInternal(index);
-        }
-
-        broadcast(new ErrorEvent(index, getIndex(), skippable));
+    public synchronized void error() {
+        final int oldIndex = getIndex();
+        queueIndex.incrementAndGet();
+        broadcast(new ErrorEvent(oldIndex, getIndex()));
     }
 
     private synchronized void removeInternal(final int removeIndex) {

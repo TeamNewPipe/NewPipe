@@ -64,7 +64,6 @@ import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.mediasource.FailedMediaSource;
 import org.schabi.newpipe.player.playback.BasePlayerMediaSession;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
@@ -77,7 +76,6 @@ import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.SerializedCache;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
@@ -835,16 +833,8 @@ public abstract class BasePlayer implements
         final Throwable cause = error.getCause();
         if (error instanceof BehindLiveWindowException) {
             reload();
-        } else if (cause instanceof UnknownHostException) {
-            playQueue.error(/*isNetworkProblem=*/true);
-        } else if (isCurrentWindowValid()) {
-            playQueue.error(/*isTransitioningToBadStream=*/true);
-        } else if (cause instanceof FailedMediaSource.MediaSourceResolutionException) {
-            playQueue.error(/*recoverableWithNoAvailableStream=*/false);
-        } else if (cause instanceof FailedMediaSource.StreamInfoLoadException) {
-            playQueue.error(/*recoverableIfLoadFailsWhenNetworkIsFine=*/false);
         } else {
-            playQueue.error(/*noIdeaWhatHappenedAndLetUserChooseWhatToDo=*/true);
+            playQueue.error();
         }
     }
 
