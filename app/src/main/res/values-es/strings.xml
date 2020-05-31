@@ -115,7 +115,6 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
     <string name="msg_popup_permission">Se necesita este permiso
 \npara abrir en modo emergente</string>
@@ -238,10 +237,10 @@
     <string name="play_queue_audio_settings">Configuración de audio</string>
     <string name="unknown_content">[Desconocido]</string>
     <string name="enqueue_on_background">Añadir a cola en segundo plano</string>
-    <string name="enqueue_on_popup">Añadir a cola en reproductor emergente</string>
+    <string name="enqueue_on_popup">Añadir al reproductor emergente</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
-    <string name="start_here_on_popup">Comenzar a reproducir en modo emergente</string>
+    <string name="start_here_on_popup">Reproducir en modo emergente</string>
     <string name="show_hold_to_append_title">Mostrar consejo «Mantener presionado para agregar»</string>
     <string name="new_and_hot">Novedades</string>
     <string name="hold_to_append">Mantener presionado para agregar a la cola</string>
@@ -489,10 +488,6 @@
     <string name="show_comments_title">Mostrar comentarios</string>
     <string name="show_comments_summary">Desactivar para ocultar comentarios</string>
     <string name="autoplay_title">Reproducción automática</string>
-    <plurals name="comments">
-        <item quantity="one">%s comentario</item>
-        <item quantity="other">%s comentarios</item>
-    </plurals>
     <string name="no_comments">Sin comentarios</string>
     <string name="error_unable_to_load_comments">No se pudo cargar comentarios</string>
     <string name="close">Cerrar</string>
@@ -613,4 +608,10 @@
 \n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
     <string name="remove_watched_popup_title">¿Borrar videos ya vistos\?</string>
     <string name="remove_watched">Borrar videos ya vistos</string>
+    <string name="video_detail_by">Por %s</string>
+    <string name="channel_created_by">Creado por %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Miniatura de avatar del canal</string>
+    <string name="show_original_time_ago_summary">Los textos originales de los servicios serán visibles en los ítems de transmisiones</string>
+    <string name="show_original_time_ago_title">Mostrar tiempo atrás original en ítems</string>
+    <string name="youtube_restricted_mode_enabled_title">Modo restringido de YouTube</string>
 </resources>

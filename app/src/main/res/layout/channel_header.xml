@@ -108,7 +108,7 @@
             android:layout_marginRight="2dp"
             android:text="@string/subscribe_button_title"
             android:textSize="@dimen/channel_rss_title_size"
-            android:theme="@style/RedButton"
+            android:theme="@style/ServiceColoredButton"
             android:visibility="gone"
             tools:ignore="RtlHardcoded"
             tools:visibility="visible" />

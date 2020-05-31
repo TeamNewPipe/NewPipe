@@ -47,6 +47,7 @@ import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -374,8 +375,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         int backgroundDuration = isButtonVisible ? 300 : 0;
         int textDuration = isButtonVisible ? 200 : 0;
 
-        int subscribeBackground = ContextCompat
-                .getColor(activity, R.color.subscribe_background_color);
+        int subscribeBackground = ThemeHelper
+                .resolveColorFromAttr(activity, R.attr.colorPrimary);
         int subscribeText = ContextCompat.getColor(activity, R.color.subscribe_text_color);
         int subscribedBackground = ContextCompat
                 .getColor(activity, R.color.subscribed_background_color);

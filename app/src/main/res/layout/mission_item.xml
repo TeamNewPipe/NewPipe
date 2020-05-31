@@ -1,85 +1,86 @@
 <RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_height="wrap_content"
-	android:layout_width="match_parent">
-	
-	<RelativeLayout
-		android:id="@+id/item_bkg"
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:layout_margin="2dp"
-		android:background="@color/bluegray">
-		
-		<RelativeLayout
-			android:id="@+id/item_title_line"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_alignParentTop="true"
-			android:layout_marginTop="2dp">
-			
-			<TextView
-				android:id="@+id/item_status"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true"
-				android:layout_centerVertical="true"
-				android:layout_marginLeft="6dp"
-				android:singleLine="true"
-				android:text="0%"
-				android:textSize="20sp"
-				android:textColor="@color/white"/>
-			
-			<ImageView
-				style="?attr/buttonBarButtonStyle"
-				android:id="@+id/item_more"
-				android:layout_width="49dp"
-				android:layout_height="49dp"
-				android:layout_alignParentRight="true"
-				android:layout_centerVertical="true"
-				android:layout_marginRight="1dp"
-				android:src="@drawable/ic_menu_more"
-				android:scaleType="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/item_bkg"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="2dp"
+        android:background="@color/bluegray">
+
+        <RelativeLayout
+            android:id="@+id/item_title_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:id="@+id/item_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:singleLine="true"
+                android:text="0%"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+
+            <ImageView
+                style="?attr/buttonBarButtonStyle"
+                android:id="@+id/item_more"
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="1dp"
+                app:srcCompat="@drawable/ic_more_vert_white_24dp"
+                android:scaleType="center"
                 android:contentDescription="TODO" />
-			
-		</RelativeLayout>
-		
-		<ImageView
-			android:id="@+id/item_icon"
-			android:layout_width="72dp"
-			android:layout_height="72dp"
-			android:layout_below="@id/item_title_line"
-			android:layout_centerHorizontal="true"
-			android:scaleType="fitXY"
-			android:gravity="center"
-			android:padding="10dp"
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/item_icon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_below="@id/item_title_line"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:gravity="center"
+            android:padding="10dp"
             android:contentDescription="TODO" />
-		
-		<TextView
-			android:id="@+id/item_name"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/item_icon"
-			android:padding="6dp"
-			android:singleLine="true"
-			android:ellipsize="marquee"
-			android:marqueeRepeatLimit="marquee_forever"
-			android:scrollHorizontally="true"
-			android:text="XXX.xx"
-			android:textSize="16sp"
-			android:textStyle="bold"
-			android:textColor="@color/white"/>
-		
-		<TextView
-			android:id="@+id/item_size"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/item_name"
-			android:padding="6dp"
-			android:singleLine="true"
-			android:text="100.00MB"
-			android:textSize="12sp"
-			android:textColor="@color/white"/>
-		
-	</RelativeLayout>
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_icon"
+            android:padding="6dp"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:text="XXX.xx"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/item_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name"
+            android:padding="6dp"
+            android:singleLine="true"
+            android:text="100.00MB"
+            android:textSize="12sp"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
     
 </RelativeLayout>

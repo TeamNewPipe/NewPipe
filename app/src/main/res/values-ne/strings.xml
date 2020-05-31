@@ -34,7 +34,6 @@
     <string name="tab_bookmarks">बुकमार्क गरिएको प्लेलिस्टहरू</string>
     <string name="tab_new">नयाँ ट्याब</string>
     <string name="tab_choose">ट्याब छनौट गर्नुहोस्</string>
-    <string name="fragment_whats_new">नयाँ के छ</string>
     <string name="controls_background_title">पृष्ठभूमि</string>
     <string name="controls_popup_title">पपअप</string>
     <string name="controls_add_to_playlist_title">थप्नुहोस</string>
@@ -128,10 +127,6 @@
     <plurals name="videos">
         <item quantity="one">%s भिडियो</item>
         <item quantity="other">%s भिडियोहरू</item>
-    </plurals>
-    <plurals name="comments">
-        <item quantity="one">%s टिप्पणी</item>
-        <item quantity="other">%s टिप्पणीहरू</item>
     </plurals>
     <string name="tracks">ट्रयाकहरु</string>
     <string name="users">प्रयोगकर्ताहरु</string>
@@ -549,7 +544,6 @@
     <string name="mute">म्युट</string>
     <string name="unmute">ध्वनि सुचारु</string>
     <string name="help">मद्दत</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false"/>
     <string name="feed_use_dedicated_fetch_method_help_text">के तपाईलाई लाग्छ फिड लोडि एकदम ढिलो छ\? यदि हो भने, छिटो लोडिङ् सक्षम गर्न प्रयास गर्नुहोस् (तपाईं यसलाई सेटिंङ्हरूमा वा तलको बटन थिचेर बदल्न सक्नुहुन्छ)।
 \n
 \nनयाँ पाइपले दुई फिड लोड गर्ने रणनीति प्रदान गर्दछ:

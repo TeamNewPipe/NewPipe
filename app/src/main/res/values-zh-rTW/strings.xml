@@ -136,7 +136,6 @@
     <string name="msg_copied">已複製至剪貼簿</string>
     <string name="no_available_dir">稍後請在設定中選擇下載資料夾</string>
     <string name="msg_popup_permission">使用懸浮視窗模式需要此權限</string>
-    <string name="recaptcha">reCAPTCHA 驗證</string>
     <string name="title_activity_recaptcha">reCAPTCHA 驗證</string>
     <string name="recaptcha_request_toast">已請求 reCAPTCHA 驗證</string>
     <string name="controls_popup_title">懸浮視窗</string>
@@ -258,10 +257,10 @@
     <string name="play_queue_stream_detail">詳細資訊</string>
     <string name="play_queue_audio_settings">音訊設定</string>
     <string name="enqueue_on_background">在背景加入佇列</string>
-    <string name="enqueue_on_popup">在新的彈出式視窗中加入佇列</string>
+    <string name="enqueue_on_popup">在彈出式視窗中加入佇列</string>
     <string name="start_here_on_main">從這裡開始播放</string>
     <string name="start_here_on_background">在背景開始播放</string>
-    <string name="start_here_on_popup">在新彈出式視窗中開始播放</string>
+    <string name="start_here_on_popup">在彈出式視窗中開始播放</string>
     <string name="hold_to_append">長按以新增至佇列</string>
     <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費他們的空閒時間務求為您帶來最佳的使用體驗。現在是時候回過頭來，讓我們的開發人員能夠在使 NewPipe 更臻完美的同時，享受一杯咖啡。</string>
     <string name="drawer_open">打開抽屜</string>
@@ -459,9 +458,6 @@
     <string name="show_comments_title">顯示留言</string>
     <string name="show_comments_summary">關閉以隱藏留言</string>
     <string name="autoplay_title">自動播放</string>
-    <plurals name="comments">
-        <item quantity="other">%s 條留言</item>
-    </plurals>
     <string name="no_comments">沒有留言</string>
     <string name="error_unable_to_load_comments">無法載入留言</string>
     <string name="close">關閉</string>
@@ -536,7 +532,7 @@
     <string name="recaptcha_done_button">完成</string>
     <string name="videos_string">影片</string>
     <plurals name="seconds">
-        <item quantity="other">%d秒</item>
+        <item quantity="other">%d 秒</item>
     </plurals>
     <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
     <string name="mute">靜音</string>
@@ -559,7 +555,7 @@
     <string name="feed_group_dialog_select_subscriptions">選取訂閱</string>
     <string name="feed_group_dialog_empty_selection">未選取訂閱</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="other">已選取 %d</item>
+        <item quantity="other">已選取 %d 個</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">清空群組名稱</string>
     <string name="feed_group_dialog_name_input">名稱</string>
@@ -600,4 +596,10 @@
 \n您確定嗎？此動作無法復原！</string>
     <string name="remove_watched_popup_title">移除已觀看的影片？</string>
     <string name="remove_watched">移除已觀看</string>
+    <string name="show_original_time_ago_summary">來自服務的原始文字將在串流項目中可見</string>
+    <string name="show_original_time_ago_title">在項目上顯示原始時間</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube 受限模式</string>
+    <string name="video_detail_by">由 %s</string>
+    <string name="channel_created_by">由 %s 建立</string>
+    <string name="detail_sub_channel_thumbnail_view_description">頻道大頭貼縮圖</string>
 </resources>

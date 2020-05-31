@@ -232,7 +232,6 @@
     <string name="rename">Átnevezés</string>
     <string name="msg_popup_permission">Ez az engedély szükséges a felugró ablakban történő megnyitáshoz</string>
     <string name="one_item_deleted">1 elem törölve.</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA rejtvény</string>
     <string name="recaptcha_request_toast">reCAPTCHA rejtvény igényelve</string>
     <string name="settings_category_downloads_title">Letöltés</string>

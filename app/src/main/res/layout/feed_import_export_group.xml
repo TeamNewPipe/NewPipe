@@ -16,7 +16,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="?attr/toolbar_shadow_drawable"/>
+            android:background="?attr/toolbar_shadow"/>
     </FrameLayout>
 
     <View
@@ -54,7 +54,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginRight="16dp"
-            app:srcCompat="?attr/expand"
+            app:srcCompat="?attr/ic_expand_more"
             tools:ignore="ContentDescription,RtlHardcoded"/>
     </LinearLayout>
 

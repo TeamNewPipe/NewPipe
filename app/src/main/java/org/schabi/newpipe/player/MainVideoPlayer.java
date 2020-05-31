@@ -491,7 +491,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     protected void setMuteButton(final ImageButton muteButton, final boolean isMuted) {
         muteButton.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), isMuted
-                ? R.drawable.ic_volume_off_white_72dp : R.drawable.ic_volume_up_white_72dp));
+                ? R.drawable.ic_volume_off_white_24dp : R.drawable.ic_volume_up_white_24dp));
     }
 
 
@@ -989,7 +989,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void onBlocked() {
             super.onBlocked();
-            playPauseButton.setImageResource(R.drawable.ic_pause_white);
+            playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
             animatePlayButtons(false, 100);
             animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
             getRootView().setKeepScreenOn(true);
@@ -1005,7 +1005,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void onPlaying() {
             super.onPlaying();
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
-                playPauseButton.setImageResource(R.drawable.ic_pause_white);
+                playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
                 animatePlayButtons(true, 200);
                 playPauseButton.requestFocus();
                 animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
@@ -1018,7 +1018,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void onPaused() {
             super.onPaused();
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
-                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
+                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
                 animatePlayButtons(true, 200);
                 playPauseButton.requestFocus();
                 animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
@@ -1039,7 +1039,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void onCompleted() {
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, () -> {
-                playPauseButton.setImageResource(R.drawable.ic_replay_white);
+                playPauseButton.setImageResource(R.drawable.ic_replay_white_24dp);
                 animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
                 animateView(closeButton, true, DEFAULT_CONTROLS_DURATION);
             });
@@ -1368,12 +1368,12 @@ public final class MainVideoPlayer extends AppCompatActivity
                 }
 
                 final int resId = currentProgressPercent <= 0
-                        ? R.drawable.ic_volume_off_white_72dp
+                        ? R.drawable.ic_volume_off_white_24dp
                         : currentProgressPercent < 0.25
-                        ? R.drawable.ic_volume_mute_white_72dp
+                        ? R.drawable.ic_volume_mute_white_24dp
                         : currentProgressPercent < 0.75
-                        ? R.drawable.ic_volume_down_white_72dp
-                        : R.drawable.ic_volume_up_white_72dp;
+                        ? R.drawable.ic_volume_down_white_24dp
+                        : R.drawable.ic_volume_up_white_24dp;
 
                 playerImpl.getVolumeImageView().setImageDrawable(
                         AppCompatResources.getDrawable(getApplicationContext(), resId)
@@ -1400,10 +1400,10 @@ public final class MainVideoPlayer extends AppCompatActivity
                 }
 
                 final int resId = currentProgressPercent < 0.25
-                        ? R.drawable.ic_brightness_low_white_72dp
+                        ? R.drawable.ic_brightness_low_white_24dp
                         : currentProgressPercent < 0.75
-                                ? R.drawable.ic_brightness_medium_white_72dp
-                                : R.drawable.ic_brightness_high_white_72dp;
+                                ? R.drawable.ic_brightness_medium_white_24dp
+                                : R.drawable.ic_brightness_high_white_24dp;
 
                 playerImpl.getBrightnessImageView().setImageDrawable(
                         AppCompatResources.getDrawable(getApplicationContext(), resId)

@@ -36,14 +36,19 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public void prepareSource(final SourceInfoRefreshListener listener,
+    public void prepareSource(final MediaSourceCaller mediaSourceCaller,
                               @Nullable final TransferListener mediaTransferListener) {
-        source.prepareSource(listener, mediaTransferListener);
+        source.prepareSource(mediaSourceCaller, mediaTransferListener);
     }
 
     @Override
     public void maybeThrowSourceInfoRefreshError() throws IOException {
         source.maybeThrowSourceInfoRefreshError();
+    }
+
+    @Override
+    public void enable(final MediaSourceCaller caller) {
+        source.enable(caller);
     }
 
     @Override
@@ -58,8 +63,13 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public void releaseSource(final SourceInfoRefreshListener listener) {
-        source.releaseSource(listener);
+    public void disable(final MediaSourceCaller caller) {
+        source.disable(caller);
+    }
+
+    @Override
+    public void releaseSource(final MediaSourceCaller mediaSourceCaller) {
+        source.releaseSource(mediaSourceCaller);
     }
 
     @Override

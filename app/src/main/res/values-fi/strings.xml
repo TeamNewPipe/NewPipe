@@ -17,7 +17,7 @@
     <string name="choose_browser">Valitse selain</string>
     <string name="screen_rotation">kierto</string>
     <string name="use_external_video_player_title">Käytä ulkoista videosoitinta</string>
-    <string name="use_external_video_player_summary">Poistaa äänen JOILLAIN resoluutioilla</string>
+    <string name="use_external_video_player_summary">Poistaa äänen joillakin resoluutioilla</string>
     <string name="use_external_audio_player_title">Käytä ulkoista äänisoitinta</string>
     <string name="popup_mode_share_menu_title">NewPipe ponnahdusikkuna</string>
     <string name="subscribe_button_title">Tilaa</string>
@@ -32,8 +32,8 @@
     <string name="controls_popup_title">Ikkuna</string>
     <string name="download_path_title">Videolatausten sijainti</string>
     <string name="download_path_summary">Sijainti ladatuille videoille</string>
-    <string name="download_path_dialog_title">Aseta sijainti minne videot tallennetaan</string>
-    <string name="download_path_audio_title">Äänilatausten sijainti</string>
+    <string name="download_path_dialog_title">Aseta videoiden tallennussijainti</string>
+    <string name="download_path_audio_title">Äänilatausten sijaintikansio</string>
     <string name="download_path_audio_summary">Sijainti ladatuille äänitiedostoille</string>
     <string name="download_path_audio_dialog_title">Aseta sijainti minne äänitiedostot tallennetaan</string>
     <string name="autoplay_by_calling_app_title">Automaattitoisto</string>
@@ -173,7 +173,6 @@
     <string name="msg_copied">Kopioitu leikepöydälle</string>
     <string name="no_available_dir">Valitse saatavilla oleva latauskansio</string>
     <string name="msg_popup_permission">Tämä käyttöoikeus tarvitaan ponnahdusikkunan käytölle</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA Haaste</string>
     <string name="recaptcha_request_toast">reCAPTCHA Haaste pyydetty</string>
     <string name="settings_category_downloads_title">Lataus</string>
@@ -251,7 +250,7 @@
     <string name="no_player_found_toast">Soitinta ei löytynyt (voit asentaa VLC:n toistaaksesi).</string>
     <string name="controls_download_desc">Lataa toistotiedosto</string>
     <string name="show_info">Näytä lisätietoja</string>
-    <string name="tab_bookmarks">Kirjanmerkit</string>
+    <string name="tab_bookmarks">Kirjamerkityt soittolistat</string>
     <string name="controls_add_to_playlist_title">Lisää soittolistaan</string>
     <string name="use_inexact_seek_title">Käytä nopeampaa epätarkkaa pikakelausta</string>
     <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin, huonommalla tarkkuudella</string>

@@ -191,12 +191,12 @@ public class Utility {
     public static int getIconForFileType(FileType type) {
         switch (type) {
             case MUSIC:
-                return R.drawable.music;
+                return R.drawable.ic_headset_white_24dp;
             default:
             case VIDEO:
-                return R.drawable.video;
+                return R.drawable.ic_movie_white_24dp;
             case SUBTITLE:
-                return R.drawable.subtitle;
+                return R.drawable.ic_subtitles_white_24dp;
         }
     }
 

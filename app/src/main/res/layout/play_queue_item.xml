@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:foreground="?attr/selectableItemBackground"
-    android:background="?attr/selector_drawable"
+    android:background="?attr/selector"
     android:clickable="true"
     android:focusable="true"
     android:paddingTop="6dp"
@@ -22,7 +22,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:scaleType="fitXY"
-        android:src="?attr/selected"
+        app:srcCompat="?attr/ic_selected"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 
     <ImageView
@@ -46,7 +46,7 @@
         android:layout_alignParentRight="true"
         android:padding="@dimen/video_item_search_image_right_margin"
         android:scaleType="center"
-        android:src="?attr/drag_handle"
+        app:srcCompat="?attr/ic_drag_handle"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 
     <TextView

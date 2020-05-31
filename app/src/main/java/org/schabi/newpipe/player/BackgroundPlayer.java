@@ -49,7 +49,6 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
-import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
@@ -91,7 +90,6 @@ public final class BackgroundPlayer extends Service {
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
-    private LockManager lockManager;
     private SharedPreferences sharedPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -116,7 +114,6 @@ public final class BackgroundPlayer extends Service {
             Log.d(TAG, "onCreate() called");
         }
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
-        lockManager = new LockManager(this);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
@@ -166,9 +163,6 @@ public final class BackgroundPlayer extends Service {
             Log.d(TAG, "onClose() called");
         }
 
-        if (lockManager != null) {
-            lockManager.releaseWifiAndCpu();
-        }
         if (basePlayerImpl != null) {
             basePlayerImpl.savePlaybackState();
             basePlayerImpl.stopActivityBinding();
@@ -179,7 +173,6 @@ public final class BackgroundPlayer extends Service {
         }
         mBinder = null;
         basePlayerImpl = null;
-        lockManager = null;
 
         stopForeground(true);
         stopSelf();
@@ -208,9 +201,10 @@ public final class BackgroundPlayer extends Service {
     }
 
     private NotificationCompat.Builder createNotification() {
-        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID,
+                R.layout.player_background_notification);
         bigNotRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID,
-                R.layout.player_notification_expanded);
+                R.layout.player_background_notification_expanded);
 
         setupNotification(notRemoteView);
         setupNotification(bigNotRemoteView);
@@ -662,8 +656,7 @@ public final class BackgroundPlayer extends Service {
             super.onPlaying();
             resetNotification();
             updateNotificationThumbnail();
-            updateNotification(R.drawable.ic_pause_white);
-            lockManager.acquireWifiAndCpu();
+            updateNotification(R.drawable.exo_controls_pause);
         }
 
         @Override
@@ -671,8 +664,7 @@ public final class BackgroundPlayer extends Service {
             super.onPaused();
             resetNotification();
             updateNotificationThumbnail();
-            updateNotification(R.drawable.ic_play_arrow_white);
-            lockManager.releaseWifiAndCpu();
+            updateNotification(R.drawable.exo_controls_play);
         }
 
         @Override
@@ -686,8 +678,7 @@ public final class BackgroundPlayer extends Service {
                 notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
             }
             updateNotificationThumbnail();
-            updateNotification(R.drawable.ic_replay_white);
-            lockManager.releaseWifiAndCpu();
+            updateNotification(R.drawable.ic_replay_white_24dp);
         }
     }
 }

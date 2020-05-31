@@ -27,7 +27,7 @@
     <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="next_video_title">التالي</string>
-    <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تنصيب VLC؟</string>
+    <string name="no_player_found">لم يتم العثور على مشغل بث. تثبيت VLC؟</string>
     <string name="open_in_browser">افتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
     <string name="play_btn_text">تشغيل</string>
@@ -45,19 +45,19 @@
     <string name="show_play_with_kodi_summary">اعرض خيار لتشغيل الفيديو عبر مركز وسائط Kodi</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
-    <string name="upload_date_text">تم النشر يوم %1$s</string>
+    <string name="upload_date_text">تم النشر بتاريخ %1$s</string>
     <string name="url_not_supported_toast">رابط URL غير معتمد</string>
     <string name="use_external_audio_player_title">استخدام مشغل صوت خارجي</string>
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
     <string name="use_tor_title">استخدام تور</string>
-    <string name="view_count_text">مشاهدات %1$s</string>
+    <string name="view_count_text">%1$s من المشاهدات</string>
     <string name="content_not_available">محتوى غير متوفر</string>
     <string name="could_not_load_thumbnails">تعذرت عملية تحميل كافة صور المعاينة</string>
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
     <string name="youtube_signature_decryption_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">انقر فوق \"بحث\" للبدء</string>
+    <string name="main_bg_subtitle">انقر على \"بحث\" للبدء</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
@@ -187,7 +187,6 @@
     <string name="no_available_dir">يرجى تحديد مجلد التنزيل لاحقا في الإعدادات</string>
     <string name="msg_popup_permission">هذا الإذن مطلوب
 \nللفتح في وضع النافذة المنبثقة</string>
-    <string name="recaptcha">اختبار reCAPTCHA</string>
     <string name="settings_file_charset_title">السماح بالرموز في أسماء الملفات</string>
     <string name="settings_file_replacement_character_summary">يتم استبدال الرموز غير المسموح بها بهذه القيمة</string>
     <string name="settings_file_replacement_character_title">استبدال الحرف</string>
@@ -272,7 +271,7 @@
     <string name="always">دائماً</string>
     <string name="just_once">مرة واحدة فقط</string>
     <string name="invalid_url_toast">العنوان خاطئ</string>
-    <string name="no_player_found_toast">لم يتم العثور على مشغل الفديو (يمكنك تثبيت VLC لتشغيله).</string>
+    <string name="no_player_found_toast">لم يتم العثور على مشغل دفق (يمكنك تثبيت VLC لتشغيله).</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
     <string name="import_data_summary">"الكتابة فوق سجل التاريخ  والاشتراكات الحالية "</string>
@@ -477,14 +476,6 @@
     <string name="show_comments_title">إظهار التعليقات</string>
     <string name="show_comments_summary">عطّله لإخفاء التعليقات</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
-    <plurals name="comments">
-        <item quantity="zero">%s تعليق</item>
-        <item quantity="one">%s تعليقات</item>
-        <item quantity="two">%s تعليقات</item>
-        <item quantity="few">%s تعليقات</item>
-        <item quantity="many">%s تعليقات</item>
-        <item quantity="other">%s تعليقات</item>
-    </plurals>
     <string name="no_comments">لا توجد تعليقات</string>
     <string name="error_unable_to_load_comments">تعذر تحميل التعليقات</string>
     <string name="close">إغلاق</string>
@@ -638,7 +629,6 @@
     <string name="new_seek_duration_toast">بسبب قيود ExoPlayer تم تعيين مدة البحث على %d ثانية</string>
     <string name="unmute">إلغاء كتم الصوت</string>
     <string name="mute">كتم الصوت</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@السلسلة/تطبيق _اسم</string>
     <string name="help">مساعدة</string>
     <string name="content_not_supported">هذا المحتوى ليس مدعوم من قبل NewPipe.
 \n
@@ -656,4 +646,10 @@
 \nهل أنت واثق؟ هذا لا يمكن التراجع عنها!</string>
     <string name="remove_watched_popup_title">إزالة مقاطع الفيديو التي تمت مشاهدتها؟</string>
     <string name="remove_watched">إزالة ماتمت مشاهدته</string>
+    <string name="show_original_time_ago_summary">ستكون النصوص الأصلية من الخدمات مرئية في عناصر البث</string>
+    <string name="show_original_time_ago_title">عرض الوقت الأصلي على العناصر</string>
+    <string name="youtube_restricted_mode_enabled_title">وضع مقيد يوتيوب</string>
+    <string name="video_detail_by">لـ %s</string>
+    <string name="channel_created_by">أنشأها %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">الصورة الرمزية للقناة</string>
 </resources>

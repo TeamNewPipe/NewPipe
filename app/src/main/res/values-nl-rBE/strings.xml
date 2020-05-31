@@ -230,7 +230,6 @@
     <string name="msg_copied">Gekopieerd naar klembord</string>
     <string name="no_available_dir">Kies een beschikbare downloadmap</string>
     <string name="msg_popup_permission">Deze toestemming is vereist voor te openen in pop-upmodus</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA-uitdaging</string>
     <string name="recaptcha_request_toast">reCAPTCHA-uitdaging gevraagd</string>
     <string name="settings_category_downloads_title">Download</string>
@@ -463,10 +462,6 @@
     <string name="show_comments_title">Commentaren weergeven</string>
     <string name="show_comments_summary">Schakelt dit uit voor reacties niet meer weer te geven</string>
     <string name="autoplay_title">Automatisch afspelen</string>
-    <plurals name="comments">
-        <item quantity="one">Commentaren</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">Geen commentaren</string>
     <string name="error_unable_to_load_comments">Kan commentaren niet laden</string>
     <string name="close">Sluiten</string>

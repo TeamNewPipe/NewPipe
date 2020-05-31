@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.acra.config.ACRAConfiguration;
+import org.acra.config.CoreConfiguration;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderFactory;
 
@@ -31,7 +31,7 @@ import org.acra.sender.ReportSenderFactory;
 public class AcraReportSenderFactory implements ReportSenderFactory {
     @NonNull
     public ReportSender create(@NonNull final Context context,
-                               @NonNull final ACRAConfiguration config) {
+                               @NonNull final CoreConfiguration config) {
         return new AcraReportSender();
     }
 }

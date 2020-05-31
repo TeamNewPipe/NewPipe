@@ -55,7 +55,7 @@
                         android:layout_height="64dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/new_play_arrow"
+                        app:srcCompat="@drawable/ic_play_arrow_shadow"
                         android:visibility="invisible"
                         tools:ignore="ContentDescription"
                         tools:visibility="visible" />
@@ -160,31 +160,31 @@
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp">
+                    android:paddingStart="12dp"
+                    tools:ignore="RtlSymmetry">
 
                     <TextView
                         android:id="@+id/detail_video_title_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginEnd="30dp"
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:paddingTop="12dp"
                         android:paddingBottom="8dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/video_item_detail_title_text_size"
-                        tools:ignore="RtlHardcoded"
-                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
+                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
                     <ImageView
                         android:id="@+id/detail_toggle_description_view"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center_vertical|right"
-                        android:layout_marginLeft="5dp"
-                        android:src="@drawable/arrow_down"
-                        tools:ignore="ContentDescription,RtlHardcoded" />
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginEnd="10dp"
+                        app:srcCompat="@drawable/ic_expand_more_white_24dp"
+                        tools:ignore="ContentDescription" />
 
                 </FrameLayout>
 
@@ -317,7 +317,7 @@
                                 android:text="@string/rss_button_title"
                                 android:textSize="12sp"
                                 android:theme="@style/RedButton"
-                                android:drawableLeft="@drawable/ic_rss_feed_white_24dp"
+                                app:drawableLeftCompat="@drawable/ic_rss_feed_white_24dp"
                                 tools:ignore="RtlHardcoded"
                                 android:visibility="gone"/>-->
                         </LinearLayout>
@@ -351,7 +351,7 @@
                                 android:layout_height="@dimen/video_item_detail_like_image_height"
                                 android:layout_below="@id/detail_view_count_view"
                                 android:contentDescription="@string/detail_likes_img_view_description"
-                                android:src="?attr/thumbs_up" />
+                                app:srcCompat="?attr/ic_thumb_up" />
 
                             <TextView
                                 android:id="@+id/detail_thumbs_up_count_view"
@@ -375,7 +375,7 @@
                                 android:layout_marginLeft="12dp"
                                 android:layout_toRightOf="@id/detail_thumbs_up_count_view"
                                 android:contentDescription="@string/detail_dislikes_img_view_description"
-                                android:src="?attr/thumbs_down"
+                                app:srcCompat="?attr/ic_thumb_down"
                                 tools:ignore="RtlHardcoded" />
 
                             <TextView
@@ -427,7 +427,7 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
                             android:contentDescription="@string/append_playlist"
-                            android:drawableTop="?attr/ic_playlist_add"
+                            app:drawableTopCompat="?attr/ic_playlist_add"
                             android:focusable="true"
                             android:gravity="center"
                             android:paddingTop="6dp"
@@ -444,7 +444,7 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
                             android:contentDescription="@string/play_audio"
-                            android:drawableTop="?attr/audio"
+                            app:drawableTopCompat="?attr/ic_headset"
                             android:focusable="true"
                             android:gravity="center"
                             android:paddingTop="6dp"
@@ -461,7 +461,7 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
                             android:contentDescription="@string/open_in_popup_mode"
-                            android:drawableTop="?attr/popup"
+                            app:drawableTopCompat="?attr/ic_popup"
                             android:focusable="true"
                             android:gravity="center"
                             android:paddingTop="6dp"
@@ -478,7 +478,7 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
                             android:contentDescription="@string/controls_download_desc"
-                            android:drawableTop="?attr/download"
+                            app:drawableTopCompat="?attr/ic_file_download"
                             android:focusable="true"
                             android:gravity="center"
                             android:paddingTop="6dp"

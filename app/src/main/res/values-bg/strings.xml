@@ -269,7 +269,6 @@
     <string name="msg_popup_permission">Това разрешение се изисква за
 \nвъзпроизвеждане в отделен прозорец</string>
     <string name="one_item_deleted">1 елемент е изтрит.</string>
-    <string name="recaptcha">преКАПЧА</string>
     <string name="title_activity_recaptcha">reCAPTCHA заявка</string>
     <string name="recaptcha_request_toast">Изисква се въвеждане на reCAPTCHA</string>
     <string name="settings_category_downloads_title">Изтегляне</string>
@@ -411,10 +410,6 @@
     <string name="show_comments_title">Показвай коментари</string>
     <string name="show_comments_summary">Деактивиране за скриване на коментарите</string>
     <string name="autoplay_title">Автоматично пускане</string>
-    <plurals name="comments">
-        <item quantity="one">Коментари</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="tab_new">Нов раздел</string>
     <string name="tab_choose">Избери раздел</string>
     <string name="settings_category_updates_title">Промени</string>

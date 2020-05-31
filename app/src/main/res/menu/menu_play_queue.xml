@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/action_mute"
-        android:icon="?attr/volume_off"
+        android:icon="?attr/ic_volume_off"
         android:title="@string/mute"
         android:visible="true"
         app:showAsAction="ifRoom"/>

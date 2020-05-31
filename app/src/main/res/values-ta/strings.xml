@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">தொடங்க தேடலை அழுத்தவும்</string>
+    <string name="main_bg_subtitle">தொடங்க \"தேடல்\" ஐ தட்டவும்</string>
     <string name="view_count_text">%1$s பார்வைகள்</string>
     <string name="upload_date_text">%1$s அன்று வெளியிடப்பட்டது</string>
     <string name="no_player_found">நிகழ்பட ஓட்டி கண்டறியப்படவில்லை. VLC நிறுவ வேண்டுமா\?</string>
@@ -109,7 +109,7 @@
     <string name="video">காணொலி</string>
     <string name="audio">ஒலி</string>
     <string name="retry">மீண்டும் முயற்சி</string>
-    <string name="use_external_video_player_summary">சில பிரிதிறன்கலில் ஒலி நீக்கப்படும்</string>
+    <string name="use_external_video_player_summary">சில பிரிதிறன்களில் ஒலி நீக்கப்படும்</string>
     <string name="show_higher_resolutions_summary">சில சாதனங்கள் மட்டுமெ 2k/4k காணொளிகலை இயக்கும்</string>
     <string name="show_play_with_kodi_summary">காணொளிகலை Kodi media center கொண்டு இயக்கும் இடப்பை காண்பி</string>
     <string name="use_inexact_seek_title">வேகமான பொருத்தமற்ற தேடலை பயன்படுத்து</string>
@@ -206,10 +206,6 @@
     <string name="show_comments_title">கருத்துக்களை காண்பி</string>
     <string name="show_comments_summary">கருத்துக்களை காண்பிப்பதை நிறுத்துதலை செயலிழக்கசெய்</string>
     <string name="autoplay_title">தானாக ஓட்டு</string>
-    <plurals name="comments">
-        <item quantity="one">கருத்துக்கள்</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="enable_playback_resume_title">திரையிடலை தொடங்கு</string>
     <string name="enable_playback_state_lists_title">பட்டியலில் இடங்கள்</string>
     <string name="settings_category_clear_data_title">தரவை நீக்கு</string>

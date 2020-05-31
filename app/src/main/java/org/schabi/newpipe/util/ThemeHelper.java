@@ -231,16 +231,4 @@ public final class ThemeHelper {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(themeKey, defaultTheme);
     }
-
-    /**
-     * This will get the R.drawable.* resource to which attr is currently pointing to.
-     *
-     * @param attr    a R.attribute.* resource value
-     * @param context the context to use
-     * @return a R.drawable.* resource value
-     */
-    public static int getIconByAttr(final int attr, final Context context) {
-        return context.obtainStyledAttributes(new int[]{attr})
-                .getResourceId(0, -1);
-    }
 }

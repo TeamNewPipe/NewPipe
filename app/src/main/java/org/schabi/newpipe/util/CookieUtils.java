@@ -1,6 +1,6 @@
 package org.schabi.newpipe.util;
 
-import org.jsoup.helper.StringUtil;
+import android.text.TextUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,7 +16,7 @@ public final class CookieUtils {
         for (String cookies : cookieStrings) {
             cookieSet.addAll(splitCookies(cookies));
         }
-        return StringUtil.join(cookieSet, "; ").trim();
+        return TextUtils.join("; ", cookieSet).trim();
     }
 
     public static Set<String> splitCookies(final String cookies) {
