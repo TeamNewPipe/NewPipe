@@ -19,7 +19,7 @@
     <string name="download_path_dialog_title">Válassza ki a videófájlok letöltési helyét</string>
     <string name="default_resolution_title">Alapértelmezett felbontás</string>
     <string name="play_with_kodi_title">Lejátszás Kodi-val</string>
-    <string name="kore_not_found">A Kore alkalmazás nem található. Telepíted a Kore lejátszót?</string>
+    <string name="kore_not_found">Telepíted a Kore lejátszót\?</string>
     <string name="show_play_with_kodi_title">\"Lejátszás Kodi-val\" opció mutatása</string>
     <string name="show_play_with_kodi_summary">Opció mutatása a videók Kodi médiaközponttal való lejátszására</string>
     <string name="play_audio">Hang</string>
@@ -78,7 +78,7 @@
     <string name="user_report">Felhasználói jelentés</string>
     <string name="video">Videó</string>
     <string name="audio">Audio</string>
-    <string name="main_bg_subtitle">A kezdéshez koppints a keresésre</string>
+    <string name="main_bg_subtitle">A kezdéshez koppints a \"Keresés\"-re!</string>
     <string name="could_not_load_thumbnails">Nem sikerült az összes előnézeti kép betöltése</string>
     <string name="parsing_error">Nem sikerült a weblap betöltése</string>
     <string name="light_parsing_error">Nem sikerült a weblap teljes betöltése</string>
@@ -115,13 +115,13 @@
     <string name="no_player_found_toast">Nem található stream lejátszó alkalmazás (feltelepítheted a VLC-t a lejátszáshoz).</string>
     <string name="open_in_popup_mode">Megnyitás felugró ablakként</string>
     <string name="use_external_video_player_summary">Néhány felbontásnál eltávolítja a hangot</string>
-    <string name="popup_mode_share_menu_title">NewPipe felugró ablak</string>
+    <string name="popup_mode_share_menu_title">Felugró ablak</string>
     <string name="subscribe_button_title">Feliratkozás</string>
     <string name="subscribed_button_title">Feliratkozva</string>
     <string name="show_info">Több infó</string>
     <string name="default_popup_resolution_title">Alapértelmezett felugró ablak felbontása</string>
     <string name="show_higher_resolutions_title">Mutassa a magasabb felbontásokat</string>
-    <string name="show_higher_resolutions_summary">Csak néhány eszköz támogatja a 2K/4K videók lejátszását</string>
+    <string name="show_higher_resolutions_summary">Csak néhány eszköz tud lejátszani 2K/4K videókat</string>
     <string name="default_video_format_title">Alapértelmezett videó formátum</string>
     <string name="black_theme_title">Fekete</string>
     <string name="popup_remember_size_pos_title">Jegyezze meg a felugró ablak helyét és méretét</string>
@@ -173,7 +173,7 @@
     <string name="controls_download_desc">Adatfolyam fájl letöltése</string>
     <string name="controls_add_to_playlist_title">Hozzáadás ehhez</string>
     <string name="use_inexact_seek_title">Gyorsabb, de pontatlan tekerés használata</string>
-    <string name="use_inexact_seek_summary">A pontatlan tekerés lehetővé teszi, hogy gyorsabban ugorjon a pozíciókra, de kevesebb pontossággal</string>
+    <string name="use_inexact_seek_summary">A pontatlan tekerés lehetővé teszi, hogy gyorsabban ugorjon a pozíciókra, de kevesebb pontossággal. Az 5, 15, vagy 25 másodperces tekerés nem működik ebben a módban.</string>
     <string name="download_thumbnail_title">Bélyegképek betöltése</string>
     <string name="download_thumbnail_summary">Kapcsold ki, hogy a megelőzzed bélyegképek betöltését, így csökkentve az adat és memória használatot. Ennek az értéknek a megváltoztatása törli a memóriában és a meghajtón lévő bélyegkép gyorsítótárat.</string>
     <string name="thumbnail_cache_wipe_complete_notice">A bélyegkép gyorsítótár törölve</string>
@@ -375,7 +375,7 @@
     <string name="tab_new">Új fül</string>
     <string name="tab_choose">Válassz fület</string>
     <string name="show_comments_title">Kommentek mutatása</string>
-    <string name="show_comments_summary">Kapcsold ki, hogy ne mutassa a kommenteket</string>
+    <string name="show_comments_summary">Kapcsold ki a kommentek elrejtéséhez</string>
     <string name="default_content_country_title">Tartalmak alapértelmezett országa</string>
     <string name="switch_to_main">Folytatás főnézetben</string>
     <string name="dismiss">Figyelmen kívül hagy</string>
@@ -384,5 +384,9 @@
     <string name="enqueue">Sor</string>
     <string name="overwrite_failed">a fájl nem írható felül</string>
     <string name="seek_duration_title">Az előre- és visszatekerés időtartama</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Videó előnézet megjelenítése a lezárási képernyőn</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Videó előnézet a lezárási képernyőn</string>
+    <string name="enable_playback_resume_summary">Legutóbbi lejátszási pozíció visszaállítása</string>
+    <string name="enable_playback_resume_title">Lejátszás folytatása</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Megjeleníti a videó bélyegképét a képernyőzáron, amikor a háttér lejátszó van használva</string>
+    <string name="download_choose_new_path">Változtasd meg a letöltési helyet, hogy érvénybe lépjen</string>
 </resources>
