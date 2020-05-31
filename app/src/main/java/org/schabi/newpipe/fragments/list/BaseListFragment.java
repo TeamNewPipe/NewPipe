@@ -98,6 +98,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        itemsList = null;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
 
