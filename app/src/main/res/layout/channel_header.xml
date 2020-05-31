@@ -119,7 +119,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/channel_metadata">
 
-        <include layout="@layout/playlist_control" />
+        <include
+            android:id="@+id/playlist_control"
+            layout="@layout/playlist_control" />
     </LinearLayout>
 
 </RelativeLayout>
