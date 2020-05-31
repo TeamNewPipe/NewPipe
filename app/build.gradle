@@ -77,6 +77,10 @@ android {
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 ext {
