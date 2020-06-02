@@ -696,11 +696,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                 return true;
             case R.id.menu_item_share_stream:
                 if (currentInfo != null) {
-                    VideoStream selectedVideoStream = getSelectedVideoStream();
-                    if (selectedVideoStream != null) {
-                        ShareUtils.shareUrl(requireContext(), currentInfo.getName(),
-                                selectedVideoStream.getUrl());
+                    Stream stream;
+                    if (currentInfo.getVideoStreams().isEmpty()
+                            && currentInfo.getVideoOnlyStreams().isEmpty()) {
+                        stream = getSelectedAudioStream();
+                    } else {
+                        stream = getSelectedVideoStream();
                     }
+                    ShareUtils.shareUrl(requireContext(), currentInfo.getName(), stream.getUrl());
                 }
                 return true;
             case R.id.menu_item_openInBrowser:
@@ -936,8 +939,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     private void openBackgroundPlayer(final boolean append) {
-        AudioStream audioStream = currentInfo.getAudioStreams()
-                .get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
+        AudioStream audioStream = getSelectedAudioStream();
 
         boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
@@ -1021,6 +1023,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     @Nullable
     private VideoStream getSelectedVideoStream() {
         return sortedVideoStreams != null ? sortedVideoStreams.get(selectedVideoStreamIndex) : null;
+    }
+
+    @Nullable
+    private AudioStream getSelectedAudioStream() {
+        int streamIndex = ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams());
+        return currentInfo.getAudioStreams().get(streamIndex);
     }
 
     private void prepareDescription(final Description description) {
