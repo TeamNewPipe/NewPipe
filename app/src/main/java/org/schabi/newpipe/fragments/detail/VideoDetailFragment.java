@@ -92,7 +92,6 @@ import org.schabi.newpipe.views.AnimatedProgressBar;
 import org.schabi.newpipe.views.LargeTextMovementMethod;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -696,24 +695,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                 }
                 return true;
             case R.id.menu_item_share_stream:
-                if (currentInfo == null) {
-                    return true;
+                if (currentInfo != null) {
+                    VideoStream selectedVideoStream = getSelectedVideoStream();
+                    if (selectedVideoStream != null) {
+                        ShareUtils.shareUrl(requireContext(), currentInfo.getName(),
+                                selectedVideoStream.getUrl());
+                    }
                 }
-                final Context context = requireContext();
-                ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
-                        ListHelper.getSortedStreamVideosList(context, currentInfo.getVideoStreams(),
-                                null, false));
-                int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
-
-                if (index == -1) {
-                    Toast.makeText(context, R.string.video_streams_empty, Toast.LENGTH_SHORT)
-                            .show();
-                    return true;
-                }
-
-                VideoStream videoStream = videoStreamsList.get(index);
-
-                ShareUtils.shareUrl(context, currentInfo.getName(), videoStream.getUrl());
                 return true;
             case R.id.menu_item_openInBrowser:
                 if (currentInfo != null) {
