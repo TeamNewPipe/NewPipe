@@ -315,7 +315,7 @@
     <string name="resize_fill">Wypełnij</string>
     <string name="resize_zoom">Powiększ</string>
     <string name="caption_auto_generated">Wygenerowane automatycznie</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
+    <string name="enable_leak_canary_title">Wyciek danych</string>
     <string name="enable_leak_canary_summary">Monitorowanie wycieków pamięci może powodować niestabilność aplikacji podczas zrzutu pamięci</string>
     <string name="enable_disposed_exceptions_title">Zgłaszanie błędów poza cyklem życia</string>
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
