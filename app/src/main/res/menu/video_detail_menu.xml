@@ -15,12 +15,6 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/menu_item_share_stream"
-        android:icon="?attr/share"
-        android:title="@string/share_stream"
-        app:showAsAction="ifRoom"/>
-
-    <item
         android:id="@+id/action_settings"
         android:orderInCategory="1"
         android:title="@string/settings"
@@ -30,5 +24,11 @@
         android:id="@+id/menu_item_openInBrowser"
         android:orderInCategory="2"
         android:title="@string/open_in_browser"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_item_share_stream"
+        android:orderInCategory="3"
+        android:title="@string/share_stream"
         app:showAsAction="never"/>
 </menu>
