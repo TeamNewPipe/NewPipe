@@ -941,7 +941,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     private void openBackgroundPlayer(final boolean append) {
         final AudioStream audioStream = getDefaultAudioStream();
 
-        final boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
+        final boolean useExternalAudioPlayer = PreferenceManager
+                .getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
@@ -1034,8 +1035,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
      * @return AudioStream instance according to user settings
      */
     private AudioStream getDefaultAudioStream() {
-        final int streamIndex = ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams());
-        return currentInfo.getAudioStreams().get(streamIndex);
+        final List<AudioStream> audioStreams = currentInfo.getAudioStreams();
+        final int streamIndex = ListHelper.getDefaultAudioFormat(activity, audioStreams);
+        return audioStreams.get(streamIndex);
     }
 
     private void prepareDescription(final Description description) {
