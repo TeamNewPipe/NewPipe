@@ -650,4 +650,6 @@
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
     <string name="video_detail_by">By %s</string>
+    <string name="featured">Featured</string>
+    <string name="radio">Radio</string>
 </resources>
