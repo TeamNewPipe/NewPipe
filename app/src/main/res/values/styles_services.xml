@@ -70,4 +70,23 @@
         <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
     </style>
 
+    <!-- Bandcamp -->
+    <style name="LightTheme.Bandcamp" parent="LightTheme">
+        <item name="colorPrimary">@color/light_bandcamp_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_bandcamp_statusbar_color</item>
+        <item name="colorAccent">@color/light_bandcamp_accent_color</item>
+    </style>
+
+    <style name="DarkTheme.Bandcamp" parent="DarkTheme">
+        <item name="colorPrimary">@color/dark_bandcamp_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_bandcamp_statusbar_color</item>
+        <item name="colorAccent">@color/dark_bandcamp_accent_color</item>
+    </style>
+
+    <style name="BlackTheme.Bandcamp" parent="BlackTheme">
+        <item name="colorPrimary">@color/dark_bandcamp_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_bandcamp_statusbar_color</item>
+        <item name="colorAccent">@color/dark_bandcamp_accent_color</item>
+    </style>
+
 </resources>

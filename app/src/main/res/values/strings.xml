@@ -707,4 +707,6 @@
     <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="featured">Featured</string>
+    <string name="radio">Radio</string>
 </resources>
