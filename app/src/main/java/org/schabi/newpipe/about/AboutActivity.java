@@ -1,8 +1,6 @@
 package org.schabi.newpipe.about;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -26,6 +24,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+import static org.schabi.newpipe.util.ShareUtils.openUrlInBrowser;
 
 public class AboutActivity extends AppCompatActivity {
     /**
@@ -143,26 +142,21 @@ public class AboutActivity extends AppCompatActivity {
 
             View githubLink = rootView.findViewById(R.id.github_link);
             githubLink.setOnClickListener(nv ->
-                    openWebsite(context.getString(R.string.github_url), context));
+                    openUrlInBrowser(context, context.getString(R.string.github_url)));
 
             View donationLink = rootView.findViewById(R.id.donation_link);
             donationLink.setOnClickListener(v ->
-                    openWebsite(context.getString(R.string.donation_url), context));
+                    openUrlInBrowser(context, context.getString(R.string.donation_url)));
 
             View websiteLink = rootView.findViewById(R.id.website_link);
             websiteLink.setOnClickListener(nv ->
-                    openWebsite(context.getString(R.string.website_url), context));
+                    openUrlInBrowser(context, context.getString(R.string.website_url)));
 
             View privacyPolicyLink = rootView.findViewById(R.id.privacy_policy_link);
             privacyPolicyLink.setOnClickListener(v ->
-                    openWebsite(context.getString(R.string.privacy_policy_url), context));
+                    openUrlInBrowser(context, context.getString(R.string.privacy_policy_url)));
 
             return rootView;
-        }
-
-        private void openWebsite(final String url, final Context context) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            context.startActivity(intent);
         }
 
     }
