@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.playback;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -26,8 +27,9 @@ import com.google.android.exoplayer2.util.Assertions;
 public class CustomTrackSelector extends DefaultTrackSelector {
     private String preferredTextLanguage;
 
-    public CustomTrackSelector(final TrackSelection.Factory adaptiveTrackSelectionFactory) {
-        super(adaptiveTrackSelectionFactory);
+    public CustomTrackSelector(final Context context,
+                               final TrackSelection.Factory adaptiveTrackSelectionFactory) {
+        super(context, adaptiveTrackSelectionFactory);
     }
 
     private static boolean formatHasLanguage(final Format format, final String language) {
