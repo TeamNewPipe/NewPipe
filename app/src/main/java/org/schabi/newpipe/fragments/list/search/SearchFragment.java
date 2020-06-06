@@ -119,6 +119,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     String lastSearchedString;
 
     @State
+    String searchSuggestionString;
+
+    @State
+    boolean isCorrectedSearch;
+
+    @State
     boolean wasSearchFocused = false;
 
     private Map<Integer, String> menuItemToFilterName;
@@ -258,6 +264,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     showEmptyState();
                 }
             }
+        }
+
+        if (!TextUtils.isEmpty(searchSuggestionString)) {
+            handleSearchSuggestion(searchSuggestionString, isCorrectedSearch);
         }
 
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
@@ -971,8 +981,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     NewPipe.getNameOfService(serviceId), searchString, 0);
         }
 
-        handleSearchSuggestion(result);
+        handleSearchSuggestion(result.getSearchSuggestion(), result.isCorrectedSearch());
 
+        searchSuggestionString = result.getSearchSuggestion();
+        isCorrectedSearch = result.isCorrectedSearch();
         lastSearchedString = searchString;
         nextPageUrl = result.getNextPageUrl();
         currentPageUrl = result.getUrl();
@@ -990,18 +1002,19 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         super.handleResult(result);
     }
 
-    private void handleSearchSuggestion(@NonNull final SearchInfo result) {
-        if (!TextUtils.isEmpty(result.getSearchSuggestion())) {
-            String helperText = getString(result.isCorrectedSearch()
+    private void handleSearchSuggestion(@NonNull final String searchSuggestion,
+                                        @NonNull final Boolean isCorrected) {
+        if (!TextUtils.isEmpty(searchSuggestion)) {
+            String helperText = getString(isCorrected
                     ? R.string.search_showing_result_for
                     : R.string.did_you_mean);
 
-            correctSuggestionText.setText(String.format(helperText, result.getSearchSuggestion()));
+            correctSuggestionText.setText(String.format(helperText, searchSuggestion));
 
             correctSuggestionPanel.setOnClickListener(v -> {
                 correctSuggestionPanel.setVisibility(View.GONE);
-                search(result.getSearchSuggestion(), contentFilter, sortFilter);
-                searchEditText.setText(result.getSearchSuggestion());
+                search(searchSuggestion, contentFilter, sortFilter);
+                searchEditText.setText(searchSuggestion);
             });
 
             correctSuggestionPanel.setVisibility(View.VISIBLE);
