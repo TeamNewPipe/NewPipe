@@ -1020,6 +1020,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public int getSuggestionMovementFlags(@NonNull final RecyclerView recyclerView,
                                           @NonNull final RecyclerView.ViewHolder viewHolder) {
         final int position = viewHolder.getAdapterPosition();
+        if (position == RecyclerView.NO_POSITION) {
+            return 0;
+        }
+
         final SuggestionItem item = suggestionListAdapter.getItem(position);
         return item.fromHistory ? makeMovementFlags(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) : 0;
