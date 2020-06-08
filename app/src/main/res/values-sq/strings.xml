@@ -610,4 +610,7 @@
     <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do të jenë të dukshme në objektet e stream</string>
     <string name="show_original_time_ago_title">Shfaq titullin origjinal \"kohë më parë\" në objekte</string>
     <string name="youtube_restricted_mode_enabled_title">Modaliteti i kufizuar i NewPipe</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Pamja statike e avatarit të kanalit</string>
+    <string name="video_detail_by">Nga %s</string>
+    <string name="channel_created_by">Krijuar nga %s</string>
 </resources>
