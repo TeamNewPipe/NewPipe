@@ -440,7 +440,7 @@
     <string name="grid">الشبكة</string>
     <string name="auto">تلقائي</string>
     <string name="switch_view">تبديل طريقة العرض</string>
-    <string name="app_update_notification_content_title">يتوفر تحديث ل newpipe!</string>
+    <string name="app_update_notification_content_title">تحديث NewPipe متاح!</string>
     <string name="app_update_notification_content_text">اضغط لتنزيل</string>
     <string name="missions_header_finished">انتهى</string>
     <string name="missions_header_pending">ريثما</string>
