@@ -155,7 +155,7 @@
         <item quantity="other">%s videoita</item>
     </plurals>
     <string name="start">Aloita</string>
-    <string name="pause">Keskeytä</string>
+    <string name="pause">Tauota</string>
     <string name="view">Toista</string>
     <string name="delete">Poista</string>
     <string name="checksum">Tarkistus-suma</string>
@@ -487,4 +487,128 @@
     <string name="detail_sub_channel_thumbnail_view_description">Kanavan hahmokuvake</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Videon esikatselukuva näytetään lukitusnäytöllä, kun käytetään taustasoitinta</string>
     <string name="enable_lock_screen_video_thumbnail_title">Videon esikatselukuva lukitusnäytöllä</string>
+    <string name="video_detail_by">Kenen toimesta: %s</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Onko syötteen lataaminen mielestäsi liian hidas\? Voit koittaa ottaa käyttöön nopean lataamisen (voit vaihtaa sen asetuksista tai painamalla alla olevaa painiketta).
+\n
+\nNewPipe tarjoaa kaksi tapaa ladata syöte:
+\n• Koko tilatun kanavan lataaminen, mikä on hidasta, mutta lataa syötteen kokonaisuudessaan.
+\n• Erityisen palvelu-endpointin käyttö, mikä on nopeaa, mutta yleensä ei lataa syötettä kokonaisuudessaan.
+\n
+\nNäiden kahden välinen ero on, että nopean lataamista tiedoista yleensä puuttuu esim. sisällön kesto tai tyyppi (ei voi erotella livevideoita ja tavallisia) tai se ei lataa kaikkea sisältöä.
+\n
+\nYouTuve on esimerkki palvelusta, joka tarjoaa nopean tavan RSS-syötteen avulla.
+\n
+\nValinta riippuu siitä, mitä halutaan: nopeutta vai tarkkoja tietoja.</string>
+    <string name="default_kiosk_page_summary">Oletuskioski</string>
+    <string name="channel_created_by">%s:n luoma</string>
+    <string name="content_not_supported">NewPipe ei vielä tue tätä sisältöä.
+\n
+\nToivottavasti sitä tuetaan myöhemmässä versiossa.</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Poista nopea tila käytöstä</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Ota nopea tila käyttöön</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Saatavilla joissakin palveluissa, on yleensä paljon nopeampi, mutta voi palauttaa rajallisen määrän sisältöä ja usein epätäydelliset tiedot (esim. ei kestoa, ei sisällön tyyppiä, ei livestatusta).</string>
+    <string name="feed_use_dedicated_fetch_method_title">Hae erityisestä syötteestä, kun sellainen on saatavilla</string>
+    <string name="feed_update_threshold_option_always_update">Päivitä aina</string>
+    <string name="feed_update_threshold_summary">Edellisestä päivityksestä kulunut aika, jonka jälkeen tilaus katsotaan vanhentuneeksi</string>
+    <string name="feed_update_threshold_title">Syötteen päivitysvälin kynnysarvo</string>
+    <string name="settings_category_feed_title">Syöte</string>
+    <string name="feed_create_new_group_button_title">Uusi</string>
+    <string name="feed_group_dialog_delete_message">Haluatko poistaa tämän ryhmän\?</string>
+    <string name="feed_group_dialog_name_input">Nimi</string>
+    <string name="feed_group_dialog_empty_name">Tyhjä ryhmän nimi</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d valittu</item>
+        <item quantity="other">%d valittu</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Tilausta ei valittuna</string>
+    <string name="feed_group_dialog_select_subscriptions">Valitse tilaukset</string>
+    <string name="feed_processing_message">Käsitellään syötettä…</string>
+    <string name="feed_notification_loading">Ladataan syötettä…</string>
+    <string name="feed_subscription_not_loaded_count">Ei ladattu: %d</string>
+    <string name="feed_oldest_subscription_update">Syöte viimeksi päivitetty: %s</string>
+    <string name="feed_groups_header_title">Kanavaryhmät</string>
+    <plurals name="days">
+        <item quantity="one">%d päivä</item>
+        <item quantity="other">%d päivää</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d tunti</item>
+        <item quantity="other">%d tuntia</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minuutti</item>
+        <item quantity="other">%d minuuttia</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d sekunti</item>
+        <item quantity="other">%d sekuntia</item>
+    </plurals>
+    <string name="new_seek_duration_toast">ExoPlayerin rajoitusten takia kelauksen aika-askel asetettiin %d sekuntiin</string>
+    <string name="remove_watched">Poista katsotut</string>
+    <string name="systems_language">Järjestelmän oletus</string>
+    <string name="app_language_title">Sovelluksen kieli</string>
+    <string name="choose_instance_prompt">Valitse instanssi</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' sallii lataukset ulkoiselle SD-kortille.
+\nJotkin laitteet eivät ole yhteensopivia</string>
+    <string name="downloads_storage_use_saf_title">Käytä SAF:ää</string>
+    <string name="downloads_storage_ask_summary_kitkat">Jokaisen latauksen kohde kysytään.
+\nValitse SAF, jos haluat ladata ulkoiselle SD-kortille</string>
+    <string name="downloads_storage_ask_summary">Jokaisen latauksen kohde kysytään</string>
+    <string name="downloads_storage_ask_title">Kysy mihin ladataan</string>
+    <string name="start_downloads">Aloita lataukset</string>
+    <string name="enable_queue_limit_desc">Yksi lataus kerrallaan on käynnissä</string>
+    <string name="enable_queue_limit">Rajoita latausjonon kokoa</string>
+    <string name="max_retry_desc">Suurin määrä yrityksiä ennen kuin lataus perutaan</string>
+    <string name="max_retry_msg">Uudelleenyritysten maksimimäärä</string>
+    <string name="deleted_downloads">Poistettiin %1$s latausta</string>
+    <string name="error_download_resource_gone">Tätä latausta ei voi palauttaa</string>
+    <string name="error_timeout">Yhteys aikakatkaistiin</string>
+    <string name="error_progress_lost">Eteneminen menetettiin, koska tiedosto poistettiin</string>
+    <string name="error_insufficient_storage">Laitteella ei ole tilaa</string>
+    <string name="error_postprocessing_stopped">NewPipe suljettiin, kun se käsitteli tiedostoa</string>
+    <string name="error_postprocessing_failed">Jälkikäsittely epäonnistui</string>
+    <string name="error_http_not_found">Ei löytynyt</string>
+    <string name="error_http_unsupported_range">Palvelin ei hyväksy monisäikeisiä latauksia, yritä uudelleen asetuksella @string/msg_threads = 1</string>
+    <string name="error_http_no_content">Palvelin ei lähetä dataa</string>
+    <string name="error_connect_host">Palvelimelle ei voi yhdistää</string>
+    <string name="error_unknown_host">Palvelinta ei löytynyt</string>
+    <string name="error_ssl_exception">Turvallista yhteyttä ei voitu muodostaa</string>
+    <string name="error_permission_denied">Järjestelmä esti käyttöoikeuden</string>
+    <string name="error_path_creation">Kohdekansiota ei voi luoda</string>
+    <string name="error_file_creation">Tiedostoa ei voi luoda</string>
+    <string name="label_code">Koodi</string>
+    <string name="show_error">Näytä virhe</string>
+    <string name="download_already_pending">Tällä nimellä on jo lataus odottamassa</string>
+    <string name="download_already_running">Tällä nimellä on jo lataus käynnissä</string>
+    <string name="overwrite_failed">tiedostoa ei voi ylikirjoittaa</string>
+    <string name="overwrite_finished_warning">Ladattu tiedosto, jolla on tämä nimi, on jo olemassa</string>
+    <string name="overwrite_unrelated_warning">Tämän niminen tiedosto on jo olemassa</string>
+    <string name="overwrite">Ylikirjoita</string>
+    <string name="generate_unique_name">Luo uniikki nimi</string>
+    <string name="download_finished_more">%s latausta valmiina</string>
+    <string name="download_finished">Lataus valmis</string>
+    <string name="download_failed">Lataus epäonnistui</string>
+    <string name="permission_denied">Järjestelmä kieltäytyi toiminnosta</string>
+    <string name="recovering">palautetaan</string>
+    <string name="post_processing">jälkikäsitellään</string>
+    <string name="queued">lisätty jonoon</string>
+    <string name="missions_header_pending">Odottaa</string>
+    <string name="show_original_time_ago_title">Näytä alkuperäinen aika sisällölle</string>
+    <string name="pause_downloads">Tauota lataukset</string>
+    <string name="pause_downloads_on_mobile_desc">Hyödyllinen vaihdettaessa mobiilidataan, vaikka joitakin latauksia ei voi pysäyttää</string>
+    <string name="pause_downloads_on_mobile">Keskeytä käytön mukaan laskutettavilla yhteyksillä</string>
+    <string name="paused">tauotettu</string>
+    <string name="app_update_notification_content_text">Napauta ladataksesi</string>
+    <string name="app_update_notification_content_title">NewPipe-päivitys on saatavilla!</string>
+    <string name="switch_view">Vaihda näkymää</string>
+    <string name="list_view_mode">Listanäkymän ulkoasu</string>
+    <string name="auto">Automaattinen</string>
+    <string name="grid">Ruudukko</string>
+    <string name="list">Lista</string>
+    <string name="updates_setting_description">Näytä ilmoitus sovelluspäivityksestä, kun uusi versio on saatavilla</string>
+    <string name="updates_setting_title">Päivitykset</string>
+    <string name="playlist_no_uploader">Automaattisesti luotu (lataajaa ei löytynyt)</string>
+    <string name="unmute">Poista mykistys</string>
+    <string name="mute">Mykistä</string>
+    <string name="conferences">Konferenssit</string>
 </resources>
