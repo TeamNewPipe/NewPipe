@@ -606,4 +606,10 @@
     <string name="download_finished">ഡൗൺലോഡ് പൂർത്തിയായി</string>
     <string name="download_failed">ഡൗൺലോഡ് പരാജയപ്പെട്ടു</string>
     <string name="permission_denied">സിസ്റ്റം പ്രവർത്തനം തടഞ്ഞു</string>
+    <string name="video_detail_by">% മുഖാന്തരം</string>
+    <string name="channel_created_by">%s സൃഷ്ടിച്ചത്</string>
+    <string name="detail_sub_channel_thumbnail_view_description">ചാനൽ ലഘുചിത്രം</string>
+    <string name="show_original_time_ago_summary">സേവനങ്ങളിൽ നിന്നുള്ള യഥാർത്ഥ വാചകങ്ങൾ സ്ട്രീം ഇനങ്ങളിൽ ദൃശ്യമാകും</string>
+    <string name="show_original_time_ago_title">ഇനങ്ങളിൽ യഥാർത്ഥ സമയം മുമ്പ് കാണിക്കുക</string>
+    <string name="youtube_restricted_mode_enabled_title">യുട്യൂബ് നിയന്ത്രിത മോഡ്</string>
 </resources>
