@@ -1,15 +1,11 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +20,7 @@ import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ShareUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -130,11 +127,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
         itemView.setOnLongClickListener(view -> {
             if (!AndroidTvUtils.isTv(itemBuilder.getContext())) {
-                ClipboardManager clipboardManager = (ClipboardManager) itemBuilder.getContext()
-                        .getSystemService(Context.CLIPBOARD_SERVICE);
-                clipboardManager.setPrimaryClip(ClipData.newPlainText(null, commentText));
-                Toast.makeText(itemBuilder.getContext(), R.string.msg_copied, Toast.LENGTH_SHORT)
-                        .show();
+                ShareUtils.copyToClipboard(itemBuilder.getContext(), commentText);
             } else {
                 openCommentAuthor(item);
             }
