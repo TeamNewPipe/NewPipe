@@ -479,7 +479,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             case R.id.detail_controls_download:
                 NavigationHelper.openDownloads(getActivity());
                 break;
-
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
                     Log.w(TAG,
@@ -487,6 +486,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                 } else {
                     openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
                 }
+                break;
+            case R.id.detail_title_root_layout:
+                copyTitleText();
                 break;
         }
 
@@ -582,6 +584,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     @Override
     protected void initListeners() {
         super.initListeners();
+
+        videoTitleRoot.setLongClickable(true);
+        videoTitleRoot.setOnLongClickListener(this);
 
         uploaderRootLayout.setOnClickListener(this);
         uploaderRootLayout.setOnLongClickListener(this);
@@ -1421,5 +1426,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                     animateView(positionView, false, 500);
                     animateView(detailPositionView, false, 500);
                 });
+    }
+
+    private void copyTitleText() {
+
     }
 }
