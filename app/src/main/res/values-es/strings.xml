@@ -165,7 +165,7 @@
     <string name="subscription_update_failed">No se pudo actualizar la suscripción</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Suscripciones</string>
-    <string name="fragment_feed_title">Qué hay de nuevo</string>
+    <string name="fragment_feed_title">Novedades</string>
     <string name="resume_on_audio_focus_gain_title">Reanudar reproducción</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproduciendo después de las interrupciones (ej. llamadas telefónicas)</string>
     <string name="settings_category_downloads_title">Descargar</string>
@@ -213,7 +213,7 @@
     <string name="delete_item_search_history">¿Quiere eliminar este elemento del historial de búsquedas\?</string>
     <string name="main_page_content">Contenido de la página principal</string>
     <string name="blank_page_summary">Página en blanco</string>
-    <string name="kiosk_page_summary">Página del kiosco</string>
+    <string name="kiosk_page_summary">Página del quiosco</string>
     <string name="subscription_page_summary">Página de suscripción</string>
     <string name="feed_page_summary">Página de novedades</string>
     <string name="channel_page_summary">Página del canal</string>
@@ -354,10 +354,10 @@
 \n
 \n¿Quiere continuar\?</string>
     <string name="download_thumbnail_title">Cargar miniaturas</string>
-    <string name="download_thumbnail_summary">Desactive esta opción para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco.</string>
+    <string name="download_thumbnail_summary">Desactivar para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Se vació la caché de imágenes</string>
-    <string name="metadata_cache_wipe_title">Vaciar metadatos en la caché</string>
-    <string name="metadata_cache_wipe_summary">Eliminar todos los datos de páginas web en la caché</string>
+    <string name="metadata_cache_wipe_title">Vaciar metadatos en memoria caché</string>
+    <string name="metadata_cache_wipe_summary">Eliminar todos los datos de páginas web en antememoria</string>
     <string name="metadata_cache_wipe_complete_notice">Se vació la caché de metadatos</string>
     <string name="playback_speed_control">Controles de velocidad de reproducción</string>
     <string name="playback_tempo">Tiempo</string>
@@ -501,7 +501,7 @@
     <string name="clear_playback_states_summary">Elimina todas las posiciones de reproducción</string>
     <string name="delete_playback_states_alert">¿Quiere eliminar todas las posiciones de reproducción\?</string>
     <string name="drawer_header_description">Activar/desactivar servicio, seleccionados actualmente:</string>
-    <string name="default_kiosk_page_summary">kiosco predeterminado</string>
+    <string name="default_kiosk_page_summary">Quiosco predeterminado</string>
     <string name="no_one_watching">Nadie está viendo</string>
     <plurals name="watching">
         <item quantity="one">%s viendo</item>
