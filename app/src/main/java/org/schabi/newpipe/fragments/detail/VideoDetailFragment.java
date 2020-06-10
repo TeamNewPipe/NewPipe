@@ -105,6 +105,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
@@ -1429,6 +1430,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     }
 
     private void copyTitleText() {
-
+        Utility.copyToClipboard(getContext(), videoTitleTextView.getText().toString());
     }
 }
