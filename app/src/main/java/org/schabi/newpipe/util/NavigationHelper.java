@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -547,9 +546,7 @@ public final class NavigationHelper {
         Intent rIntent = getOpenIntent(context, url, service.getServiceId(), linkType);
 
         if (linkType == StreamingService.LinkType.STREAM) {
-            rIntent.putExtra(VideoDetailFragment.AUTO_PLAY,
-                    PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                            context.getString(R.string.autoplay_through_intent_key), false));
+            rIntent.putExtra(VideoDetailFragment.AUTO_PLAY, false);
         }
 
         return rIntent;
