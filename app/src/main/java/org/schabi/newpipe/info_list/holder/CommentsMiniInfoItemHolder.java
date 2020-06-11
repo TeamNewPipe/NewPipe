@@ -126,10 +126,10 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
 
         itemView.setOnLongClickListener(view -> {
-            if (!AndroidTvUtils.isTv(itemBuilder.getContext())) {
-                ShareUtils.copyToClipboard(itemBuilder.getContext(), commentText);
-            } else {
+            if (AndroidTvUtils.isTv(itemBuilder.getContext())) {
                 openCommentAuthor(item);
+            } else {
+                ShareUtils.copyToClipboard(itemBuilder.getContext(), commentText);
             }
             return true;
         });
