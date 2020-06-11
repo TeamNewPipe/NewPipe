@@ -90,7 +90,7 @@ public final class ShareUtils {
      * @param text    the text to copy
      */
     public static void copyToClipboard(final Context context, final String text) {
-        ClipboardManager clipboardManager =
+        final ClipboardManager clipboardManager =
                 (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 
         if (clipboardManager == null) {
