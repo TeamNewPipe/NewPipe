@@ -585,9 +585,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     protected void initListeners() {
         super.initListeners();
 
-        videoTitleRoot.setLongClickable(true);
         videoTitleRoot.setOnLongClickListener(this);
-
         uploaderRootLayout.setOnClickListener(this);
         uploaderRootLayout.setOnLongClickListener(this);
         videoTitleRoot.setOnClickListener(this);
