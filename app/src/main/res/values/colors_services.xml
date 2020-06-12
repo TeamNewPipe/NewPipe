@@ -4,44 +4,44 @@
     <color name="light_youtube_primary_color">#e53935</color>
     <color name="light_youtube_dark_color">#992722</color>
     <color name="light_youtube_accent_color">#000000</color>
-    <color name="light_youtube_statusbar_color">#ff4336</color>
+    <color name="light_youtube_statusbar_color">#e53935</color>
 
     <color name="dark_youtube_primary_color">#CD322E</color>
     <color name="dark_youtube_dark_color">#992722</color>
     <color name="dark_youtube_accent_color">#FFFFFF</color>
-    <color name="dark_youtube_statusbar_color">#ff4336</color>
+    <color name="dark_youtube_statusbar_color">#CD322E</color>
 
     <!-- SoundCloud -->
     <color name="light_soundcloud_primary_color">#f57c00</color>
     <color name="light_soundcloud_dark_color">#995700</color>
     <color name="light_soundcloud_accent_color">#000000</color>
-    <color name="light_soundcloud_statusbar_color">#ff9100</color>
+    <color name="light_soundcloud_statusbar_color">#f57c00</color>
 
     <color name="dark_soundcloud_primary_color">#f57c00</color>
     <color name="dark_soundcloud_dark_color">#995700</color>
     <color name="dark_soundcloud_accent_color">#FFFFFF</color>
-    <color name="dark_soundcloud_statusbar_color">#ff9100</color>
+    <color name="dark_soundcloud_statusbar_color">#f57c00</color>
 
     <!-- PeerTube -->
     <color name="light_peertube_primary_color">#ff6f00</color>
     <color name="light_peertube_dark_color">#c43e00</color>
     <color name="light_peertube_accent_color">#000000</color>
-    <color name="light_peertube_statusbar_color">#ff833a</color>
+    <color name="light_peertube_statusbar_color">#ff6f00</color>
 
     <color name="dark_peertube_primary_color">#ff6f00</color>
     <color name="dark_peertube_dark_color">#c43e00</color>
     <color name="dark_peertube_accent_color">#FFFFFF</color>
-    <color name="dark_peertube_statusbar_color">#ff833a</color>
+    <color name="dark_peertube_statusbar_color">#ff6f00</color>
 
     <!-- Media.CCC -->
     <color name="light_media_ccc_primary_color">#9e9e9e</color>
     <color name="light_media_ccc_dark_color">#616161</color>
     <color name="light_media_ccc_accent_color">#000000</color>
-    <color name="light_media_ccc_statusbar_color">#afafaf</color>
+    <color name="light_media_ccc_statusbar_color">#9e9e9e</color>
 
     <color name="dark_media_ccc_primary_color">#9e9e9e</color>
     <color name="dark_media_ccc_dark_color">#616161</color>
     <color name="dark_media_ccc_accent_color">#FFFFFF</color>
-    <color name="dark_media_ccc_statusbar_color">#afafaf</color>
+    <color name="dark_media_ccc_statusbar_color">#9e9e9e</color>
 
 </resources>
