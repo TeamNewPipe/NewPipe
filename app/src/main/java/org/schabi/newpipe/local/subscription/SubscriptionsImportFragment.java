@@ -18,8 +18,6 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.text.util.LinkifyCompat;
 
-import com.nononsenseapps.filepicker.Utils;
-
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -29,13 +27,13 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.Collections;
 import java.util.List;
 
 import icepick.State;
+import us.shandian.giga.io.StoredFileHelper;
 
 import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
@@ -172,8 +170,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportFile() {
-        startActivityForResult(FilePickerActivityHelper.chooseSingleFile(activity),
-                REQUEST_IMPORT_FILE_CODE);
+        startActivityForResult(StoredFileHelper.getPicker(activity), REQUEST_IMPORT_FILE_CODE);
     }
 
     @Override
@@ -185,10 +182,10 @@ public class SubscriptionsImportFragment extends BaseFragment {
 
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMPORT_FILE_CODE
                 && data.getData() != null) {
-            final String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
             ImportConfirmationDialog.show(this,
                     new Intent(activity, SubscriptionsImportService.class)
-                            .putExtra(KEY_MODE, INPUT_STREAM_MODE).putExtra(KEY_VALUE, path)
+                            .putExtra(KEY_MODE, INPUT_STREAM_MODE)
+                            .putExtra(KEY_VALUE, data.getData())
                             .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
         }
     }
