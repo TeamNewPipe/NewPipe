@@ -9,11 +9,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.preference.Preference;
+import androidx.preference.SwitchPreference;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -57,6 +57,14 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         prefPathVideo = findPreference(downloadPathVideoPreference);
         prefPathAudio = findPreference(downloadPathAudioPreference);
         prefStorageAsk = findPreference(downloadStorageAsk);
+
+        final SwitchPreference prefUseSaf = findPreference(storageUseSafPreference);
+        prefUseSaf.setDefaultValue(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
+        prefUseSaf.setChecked(NewPipeSettings.useStorageAccessFramework(ctx));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            prefUseSaf.setEnabled(false);
+        }
 
         updatePreferencesSummary();
         updatePathPickers(!defaultPreferences.getBoolean(downloadStorageAsk, false));
@@ -179,12 +187,18 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
                     + "preference = [" + preference + "]");
         }
 
-        String key = preference.getKey();
-        int request;
+        final String key = preference.getKey();
+        final int request;
 
         if (key.equals(storageUseSafPreference)) {
-            Toast.makeText(getContext(), R.string.download_choose_new_path,
-                    Toast.LENGTH_LONG).show();
+            if (!NewPipeSettings.useStorageAccessFramework(ctx)) {
+                NewPipeSettings.saveDefaultVideoDownloadDirectory(ctx);
+                NewPipeSettings.saveDefaultAudioDownloadDirectory(ctx);
+            } else {
+                defaultPreferences.edit().putString(downloadPathVideoPreference, null)
+                        .putString(downloadPathAudioPreference, null).apply();
+            }
+            updatePreferencesSummary();
             return true;
         } else if (key.equals(downloadPathVideoPreference)) {
             request = REQUEST_DOWNLOAD_VIDEO_PATH;
@@ -194,22 +208,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return super.onPreferenceTreeClick(preference);
         }
 
-        Intent i;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && NewPipeSettings.useStorageAccessFramework(ctx)) {
-            i = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-                    .putExtra("android.content.extra.SHOW_ADVANCED", true)
-                    .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-                            | StoredDirectoryHelper.PERMISSION_FLAGS);
-        } else {
-            i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_DIR);
-        }
-
-        startActivityForResult(i, request);
+        startActivityForResult(StoredDirectoryHelper.getPicker(ctx), request);
 
         return true;
     }

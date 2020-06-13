@@ -24,7 +24,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -82,7 +82,7 @@ public class App extends Application {
         app = this;
 
         // Initialize settings first because others inits can use its values
-        SettingsActivity.initSettings(this);
+        NewPipeSettings.initSettings(this);
 
         NewPipe.init(getDownloader(),
                 Localization.getPreferredLocalization(this),

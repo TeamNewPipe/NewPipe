@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,25 +26,6 @@ import java.io.File;
 
 public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.FilePickerActivity {
     private CustomFilePickerFragment currentFragment;
-
-    public static Intent chooseSingleFile(@NonNull final Context context) {
-        return new Intent(context, FilePickerActivityHelper.class)
-                .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
-                .putExtra(FilePickerActivityHelper.EXTRA_SINGLE_CLICK, true)
-                .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_FILE);
-    }
-
-    public static Intent chooseFileToSave(@NonNull final Context context,
-                                          @Nullable final String startPath) {
-        return new Intent(context, FilePickerActivityHelper.class)
-                .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_EXISTING_FILE, true)
-                .putExtra(FilePickerActivityHelper.EXTRA_START_PATH, startPath)
-                .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                        FilePickerActivityHelper.MODE_NEW_FILE);
-    }
 
     public static boolean isOwnFileUri(@NonNull final Context context, @NonNull final Uri uri) {
         if (uri.getAuthority() == null) {

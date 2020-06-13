@@ -331,6 +331,7 @@
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
     <string name="no_available_dir">Please define a download folder later in settings</string>
+    <string name="no_dir_yet">No download folder set yet, choose the default download folder now</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
     <string name="one_item_deleted">1 item deleted.</string>
     <!-- Checksum types -->
