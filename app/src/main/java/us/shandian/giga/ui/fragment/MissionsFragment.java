@@ -242,27 +242,21 @@ public class MissionsFragment extends Fragment {
     private void recoverMission(@NonNull DownloadMission mission) {
         unsafeMissionTarget = mission;
 
+        final String startPath;
         if (NewPipeSettings.useStorageAccessFramework(mContext)) {
-            StoredFileHelper.requestSafWithFileCreation(
-                    MissionsFragment.this,
-                    REQUEST_DOWNLOAD_SAVE_AS,
-                    mission.storage.getName(),
-                    mission.storage.getType()
-            );
-
+            startPath = null;
         } else {
-            File initialSavePath;
-            if (DownloadManager.TAG_VIDEO.equals(mission.storage.getType()))
-                initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
-            else
+            final File initialSavePath;
+            if (DownloadManager.TAG_AUDIO.equals(mission.storage.getType())) {
                 initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
-
-            initialSavePath = new File(initialSavePath, mission.storage.getName());
-            startActivityForResult(
-                    FilePickerActivityHelper.chooseFileToSave(mContext, initialSavePath.getAbsolutePath()),
-                    REQUEST_DOWNLOAD_SAVE_AS
-            );
+            } else {
+                initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
+            }
+            startPath = initialSavePath.getAbsolutePath();
         }
+
+        startActivityForResult(StoredFileHelper.getNewPicker(mContext, startPath,
+                mission.storage.getName()), REQUEST_DOWNLOAD_SAVE_AS);
     }
 
     @Override

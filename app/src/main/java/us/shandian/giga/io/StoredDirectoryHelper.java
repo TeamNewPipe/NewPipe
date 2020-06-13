@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.documentfile.provider.DocumentFile;
 
+import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.FilePickerActivityHelper;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -287,4 +290,18 @@ public class StoredDirectoryHelper {
         return null;
     }
 
+    public static Intent getPicker(final Context ctx) {
+        if (NewPipeSettings.useStorageAccessFramework(ctx)) {
+            return new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+                    .putExtra("android.content.extra.SHOW_ADVANCED", true)
+                    .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                            | StoredDirectoryHelper.PERMISSION_FLAGS);
+        } else {
+            return new Intent(ctx, FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_DIR);
+        }
+    }
 }

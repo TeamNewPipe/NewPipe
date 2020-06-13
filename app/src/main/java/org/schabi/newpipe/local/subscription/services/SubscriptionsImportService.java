@@ -20,6 +20,7 @@
 package org.schabi.newpipe.local.subscription.services;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -36,12 +37,10 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
 import org.schabi.newpipe.ktx.ExceptionUtils;
+import org.schabi.newpipe.streams.io.SharpInputStream;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -53,8 +52,10 @@ import io.reactivex.rxjava3.core.Notification;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import us.shandian.giga.io.StoredFileHelper;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
+import static us.shandian.giga.io.StoredFileHelper.DEFAULT_MIME;
 
 public class SubscriptionsImportService extends BaseImportExportService {
     public static final int CHANNEL_URL_MODE = 0;
@@ -101,17 +102,18 @@ public class SubscriptionsImportService extends BaseImportExportService {
         if (currentMode == CHANNEL_URL_MODE) {
             channelUrl = intent.getStringExtra(KEY_VALUE);
         } else {
-            final String filePath = intent.getStringExtra(KEY_VALUE);
-            if (TextUtils.isEmpty(filePath)) {
+            final Uri uri = intent.getParcelableExtra(KEY_VALUE);
+            if (uri == null) {
                 stopAndReportError(new IllegalStateException(
-                        "Importing from input stream, but file path is empty or null"),
+                        "Importing from input stream, but file path is null"),
                         "Importing subscriptions");
                 return START_NOT_STICKY;
             }
 
             try {
-                inputStream = new FileInputStream(new File(filePath));
-            } catch (final FileNotFoundException e) {
+                inputStream = new SharpInputStream(
+                        new StoredFileHelper(this, uri, DEFAULT_MIME).getStream());
+            } catch (final IOException e) {
                 handleError(e);
                 return START_NOT_STICKY;
             }
