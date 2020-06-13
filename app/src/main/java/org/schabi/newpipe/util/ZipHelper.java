@@ -1,5 +1,7 @@
 package org.schabi.newpipe.util;
 
+import org.schabi.newpipe.streams.io.SharpInputStream;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,6 +9,8 @@ import java.io.FileOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+
+import us.shandian.giga.io.StoredFileHelper;
 
 /**
  * Created by Christian Schabesberger on 28.01.18.
@@ -57,21 +61,19 @@ public final class ZipHelper {
     }
 
     /**
-     * This will extract data from Zipfiles.
+     * This will extract data from ZipInputStream.
      * Caution this will override the original file.
      *
-     * @param filePath The path of the zip
+     * @param zipFile The zip file
      * @param file The path of the file on the disk where the data should be extracted to.
      * @param name The path of the file inside the zip.
      * @return will return true if the file was found within the zip file
      * @throws Exception
      */
-    public static boolean extractFileFromZip(final String filePath, final String file,
+    public static boolean extractFileFromZip(final StoredFileHelper zipFile, final String file,
                                              final String name) throws Exception {
-
-        final ZipInputStream inZip = new ZipInputStream(
-                new BufferedInputStream(
-                        new FileInputStream(filePath)));
+        final ZipInputStream inZip = new ZipInputStream(new BufferedInputStream(
+                new SharpInputStream(zipFile.getStream())));
 
         final byte[] data = new byte[BUFFER_SIZE];
 

@@ -8,8 +8,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.Menu
@@ -29,7 +29,6 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.State
 import io.reactivex.disposables.CompositeDisposable
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -55,7 +54,6 @@ import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem
 import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem.Companion.PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.EXPORT_COMPLETE_ACTION
-import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.KEY_FILE_PATH
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.IMPORT_COMPLETE_ACTION
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE
@@ -68,6 +66,7 @@ import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ShareUtils
 import org.schabi.newpipe.util.ThemeHelper
+import us.shandian.giga.io.StoredFileHelper
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var viewModel: SubscriptionViewModel
@@ -185,15 +184,14 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun onImportPreviousSelected() {
-        startActivityForResult(FilePickerActivityHelper.chooseSingleFile(activity), REQUEST_IMPORT_CODE)
+        startActivityForResult(StoredFileHelper.getPicker(activity), REQUEST_IMPORT_CODE)
     }
 
     private fun onExportSelected() {
         val date = SimpleDateFormat("yyyyMMddHHmm", Locale.ENGLISH).format(Date())
         val exportName = "newpipe_subscriptions_$date.json"
-        val exportFile = File(Environment.getExternalStorageDirectory(), exportName)
 
-        startActivityForResult(FilePickerActivityHelper.chooseFileToSave(activity, exportFile.absolutePath), REQUEST_EXPORT_CODE)
+        startActivityForResult(StoredFileHelper.getNewPicker(activity, null, exportName), REQUEST_EXPORT_CODE)
     }
 
     private fun openReorderDialog() {
@@ -204,18 +202,16 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null && data.data != null && resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_EXPORT_CODE) {
-                val exportFile = Utils.getFileForUri(data.data!!)
-                if (!exportFile.parentFile.canWrite() || !exportFile.parentFile.canRead()) {
-                    Toast.makeText(activity, R.string.invalid_directory, Toast.LENGTH_SHORT).show()
-                } else {
-                    activity.startService(Intent(activity, SubscriptionsExportService::class.java)
-                            .putExtra(KEY_FILE_PATH, exportFile.absolutePath))
+                var uri = data.data!!
+                if (FilePickerActivityHelper.isOwnFileUri(activity, uri)) {
+                    uri = Uri.fromFile(Utils.getFileForUri(uri))
                 }
+                activity.startService(Intent(activity, SubscriptionsExportService::class.java)
+                        .putExtra(SubscriptionsExportService.KEY_FILE_PATH, uri))
             } else if (requestCode == REQUEST_IMPORT_CODE) {
-                val path = Utils.getFileForUri(data.data!!).absolutePath
                 ImportConfirmationDialog.show(this, Intent(activity, SubscriptionsImportService::class.java)
                         .putExtra(KEY_MODE, PREVIOUS_EXPORT_MODE)
-                        .putExtra(KEY_VALUE, path))
+                        .putExtra(KEY_VALUE, data.data))
             }
         }
     }

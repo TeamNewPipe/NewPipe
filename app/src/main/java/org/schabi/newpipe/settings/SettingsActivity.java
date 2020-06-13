@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,11 +40,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class SettingsActivity extends AppCompatActivity
         implements BasePreferenceFragment.OnPreferenceStartFragmentCallback {
-
-    public static void initSettings(final Context context) {
-        NewPipeSettings.initSettings(context);
-    }
-
     @Override
     protected void onCreate(final Bundle savedInstanceBundle) {
         setTheme(ThemeHelper.getSettingsThemeStyle(this));

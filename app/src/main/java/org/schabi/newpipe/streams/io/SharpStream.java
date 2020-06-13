@@ -1,12 +1,13 @@
 package org.schabi.newpipe.streams.io;
 
 import java.io.Closeable;
+import java.io.Flushable;
 import java.io.IOException;
 
 /**
  * Based on C#'s Stream class.
  */
-public abstract class SharpStream  implements Closeable {
+public abstract class SharpStream implements Closeable, Flushable {
     public abstract int read() throws IOException;
 
     public abstract int read(byte[] buffer) throws IOException;

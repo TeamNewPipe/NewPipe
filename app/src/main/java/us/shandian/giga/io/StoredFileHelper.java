@@ -6,14 +6,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.documentfile.provider.DocumentFile;
-import androidx.fragment.app.Fragment;
 
+import com.nononsenseapps.filepicker.Utils;
+
+import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.streams.io.SharpStream;
+import org.schabi.newpipe.util.FilePickerActivityHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +40,19 @@ public class StoredFileHelper implements Serializable {
 
     private String srcName;
     private String srcType;
+
+    public StoredFileHelper(final Context context, final Uri uri, final String mime) {
+        if (FilePickerActivityHelper.isOwnFileUri(context, uri)) {
+            ioFile = Utils.getFileForUri(uri);
+            source = Uri.fromFile(ioFile).toString();
+        } else {
+            docFile = DocumentFile.fromSingleUri(context, uri);
+            source = uri.toString();
+        }
+
+        this.context = context;
+        this.srcType = mime;
+    }
 
     public StoredFileHelper(@Nullable Uri parent, String filename, String mime, String tag) {
         this.source = null;// this instance will be "invalid" see invalidate()/isInvalid() methods
@@ -138,22 +155,6 @@ public class StoredFileHelper implements Serializable {
 
         return instance;
     }
-
-    public static void requestSafWithFileCreation(@NonNull Fragment who, int requestCode, String filename, String mime) {
-        // SAF notes:
-        //           ACTION_OPEN_DOCUMENT       Do not let you create the file, useful for overwrite files
-        //           ACTION_CREATE_DOCUMENT     No overwrite support, useless the file provider resolve the conflict
-
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
-                .addCategory(Intent.CATEGORY_OPENABLE)
-                .setType(mime)
-                .putExtra(Intent.EXTRA_TITLE, filename)
-                .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | StoredDirectoryHelper.PERMISSION_FLAGS)
-                .putExtra("android.content.extra.SHOW_ADVANCED", true);// hack, show all storage disks
-
-        who.startActivityForResult(intent, requestCode);
-    }
-
 
     public SharpStream getStream() throws IOException {
         invalid();
@@ -380,5 +381,65 @@ public class StoredFileHelper implements Serializable {
         if ((str1 == null) != (str2 == null)) return true;
 
         return !str1.equals(str2);
+    }
+
+    public static Intent getPicker(final Context ctx) {
+        if (NewPipeSettings.useStorageAccessFramework(ctx)) {
+            return new Intent(Intent.ACTION_OPEN_DOCUMENT)
+                    .putExtra("android.content.extra.SHOW_ADVANCED", true)
+                    .setType("*/*")
+                    .addCategory(Intent.CATEGORY_OPENABLE)
+                    .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                            | StoredDirectoryHelper.PERMISSION_FLAGS);
+        } else {
+            return new Intent(ctx, FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_SINGLE_CLICK, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_FILE);
+        }
+    }
+
+    public static Intent getNewPicker(@NonNull final Context ctx, @Nullable final String startPath,
+                                      @Nullable final String filename) {
+        final Intent i;
+        if (NewPipeSettings.useStorageAccessFramework(ctx)) {
+            i = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+                    .putExtra("android.content.extra.SHOW_ADVANCED", true)
+                    .setType("*/*")
+                    .addCategory(Intent.CATEGORY_OPENABLE)
+                    .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                            | StoredDirectoryHelper.PERMISSION_FLAGS);
+
+            if (startPath != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                i.putExtra(DocumentsContract.EXTRA_INITIAL_URI, Uri.parse(startPath));
+            }
+            if (filename != null) {
+                i.putExtra(Intent.EXTRA_TITLE, filename);
+            }
+        } else {
+            i = new Intent(ctx, FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_EXISTING_FILE, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_NEW_FILE);
+
+            if (startPath != null || filename != null) {
+                File fullStartPath;
+                if (startPath == null) {
+                    fullStartPath = Environment.getExternalStorageDirectory();
+                } else {
+                    fullStartPath = new File(startPath);
+                }
+                if (filename != null) {
+                    fullStartPath = new File(fullStartPath, filename);
+                }
+                i.putExtra(FilePickerActivityHelper.EXTRA_START_PATH,
+                        fullStartPath.getAbsolutePath());
+            }
+        }
+        return i;
     }
 }
