@@ -479,7 +479,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             case R.id.detail_controls_download:
                 NavigationHelper.openDownloads(getActivity());
                 break;
-
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
                     Log.w(TAG,
@@ -487,6 +486,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                 } else {
                     openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
                 }
+                break;
+            case R.id.detail_title_root_layout:
+                ShareUtils.copyToClipboard(getContext(), videoTitleTextView.getText().toString());
                 break;
         }
 
@@ -583,6 +585,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     protected void initListeners() {
         super.initListeners();
 
+        videoTitleRoot.setOnLongClickListener(this);
         uploaderRootLayout.setOnClickListener(this);
         uploaderRootLayout.setOnLongClickListener(this);
         videoTitleRoot.setOnClickListener(this);
