@@ -692,7 +692,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
         if (parameters != null) {
             if (menu != null && player != null) {
-                MenuItem item = menu.findItem(R.id.action_playback_speed);
+                final MenuItem item = menu.findItem(R.id.action_playback_speed);
                 item.setTitle(formatSpeed(parameters.speed));
             }
         }
