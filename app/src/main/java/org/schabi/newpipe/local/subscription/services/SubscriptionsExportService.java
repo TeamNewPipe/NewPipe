@@ -32,6 +32,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
 import org.schabi.newpipe.streams.io.SharpOutputStream;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -41,7 +42,6 @@ import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import us.shandian.giga.io.StoredFileHelper;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 

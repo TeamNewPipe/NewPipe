@@ -38,6 +38,7 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.streams.io.SharpInputStream;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 
@@ -52,10 +53,9 @@ import io.reactivex.rxjava3.core.Notification;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import us.shandian.giga.io.StoredFileHelper;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
-import static us.shandian.giga.io.StoredFileHelper.DEFAULT_MIME;
+import static org.schabi.newpipe.streams.io.StoredFileHelper.DEFAULT_MIME;
 
 public class SubscriptionsImportService extends BaseImportExportService {
     public static final int CHANNEL_URL_MODE = 0;
