@@ -427,7 +427,7 @@
     <string name="grid">Gitter</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Ansicht wechseln</string>
-    <string name="app_update_notification_content_title">NewPipe-Update verfügbar!</string>
+    <string name="app_update_notification_content_title">NewPipe-Update ist verfügbar!</string>
     <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
     <string name="missions_header_finished">Fertig</string>
     <string name="missions_header_pending">Ausstehend</string>
