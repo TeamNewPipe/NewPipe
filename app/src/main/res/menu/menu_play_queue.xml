@@ -10,6 +10,14 @@
         android:visible="true"
         app:showAsAction="ifRoom"/>
 
+
+    <item
+        android:id="@+id/action_playback_speed"
+        android:title="1x"
+        android:tooltipText="@string/playback_speed_control"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_mute"
         android:icon="?attr/volume_off"

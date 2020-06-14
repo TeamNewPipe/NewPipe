@@ -164,6 +164,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case R.id.action_append_playlist:
                 appendAllToPlaylist();
                 return true;
+            case R.id.action_playback_speed:
+                openPlaybackParameterDialog();
+                return true;
             case R.id.action_mute:
                 player.onMuteUnmuteButtonClicked();
                 return true;
@@ -688,7 +691,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
         if (parameters != null) {
-            Log.d("Dupa", "12");
+            if (menu != null && player != null) {
+                MenuItem item = menu.findItem(R.id.action_playback_speed);
+                item.setTitle(formatSpeed(parameters.speed));
+            }
         }
     }
 
