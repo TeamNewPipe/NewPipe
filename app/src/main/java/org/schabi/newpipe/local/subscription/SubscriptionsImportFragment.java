@@ -33,7 +33,7 @@ import java.util.Collections;
 import java.util.List;
 
 import icepick.State;
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;

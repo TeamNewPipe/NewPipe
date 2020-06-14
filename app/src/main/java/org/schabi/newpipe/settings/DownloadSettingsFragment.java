@@ -27,7 +27,7 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
-import us.shandian.giga.io.StoredDirectoryHelper;
+import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 

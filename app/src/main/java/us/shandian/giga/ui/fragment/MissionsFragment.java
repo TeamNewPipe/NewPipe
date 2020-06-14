@@ -36,7 +36,7 @@ import java.io.File;
 import java.io.IOException;
 
 import us.shandian.giga.get.DownloadMission;
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;

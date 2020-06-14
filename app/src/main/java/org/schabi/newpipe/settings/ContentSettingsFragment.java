@@ -47,8 +47,8 @@ import java.util.Map;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-import us.shandian.giga.io.StoredDirectoryHelper;
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
