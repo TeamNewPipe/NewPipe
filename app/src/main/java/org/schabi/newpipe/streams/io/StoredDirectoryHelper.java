@@ -1,6 +1,5 @@
-package us.shandian.giga.io;
+package org.schabi.newpipe.streams.io;
 
-import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,10 +23,11 @@ import java.util.Collections;
 
 import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
 import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
-
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 public class StoredDirectoryHelper {
-    public final static int PERMISSION_FLAGS = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+    public static final int PERMISSION_FLAGS = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 
     private File ioTree;
     private DocumentFile docTree;
@@ -36,7 +36,8 @@ public class StoredDirectoryHelper {
 
     private String tag;
 
-    public StoredDirectoryHelper(@NonNull Context context, @NonNull Uri path, String tag) throws IOException {
+    public StoredDirectoryHelper(@NonNull final Context context, @NonNull final Uri path,
+                                 final String tag) throws IOException {
         this.tag = tag;
 
         if (ContentResolver.SCHEME_FILE.equalsIgnoreCase(path.getScheme())) {
@@ -52,47 +53,45 @@ public class StoredDirectoryHelper {
             throw new IOException(e);
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             throw new IOException("Storage Access Framework with Directory API is not available");
+        }
 
         this.docTree = DocumentFile.fromTreeUri(context, path);
 
-        if (this.docTree == null)
+        if (this.docTree == null) {
             throw new IOException("Failed to create the tree from Uri");
+        }
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public StoredDirectoryHelper(@NonNull URI location, String tag) {
-        ioTree = new File(location);
-        this.tag = tag;
-    }
-
-    public StoredFileHelper createFile(String filename, String mime) {
+    public StoredFileHelper createFile(final String filename, final String mime) {
         return createFile(filename, mime, false);
     }
 
-    public StoredFileHelper createUniqueFile(String name, String mime) {
-        ArrayList<String> matches = new ArrayList<>();
-        String[] filename = splitFilename(name);
-        String lcFilename = filename[0].toLowerCase();
+    public StoredFileHelper createUniqueFile(final String name, final String mime) {
+        final ArrayList<String> matches = new ArrayList<>();
+        final String[] filename = splitFilename(name);
+        final String lcFilename = filename[0].toLowerCase();
 
         if (docTree == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            for (File file : ioTree.listFiles())
+            for (final File file : ioTree.listFiles()) {
                 addIfStartWith(matches, lcFilename, file.getName());
+            }
         } else {
             // warning: SAF file listing is very slow
-            Uri docTreeChildren = DocumentsContract.buildChildDocumentsUriUsingTree(
-                    docTree.getUri(), DocumentsContract.getDocumentId(docTree.getUri())
-            );
+            final Uri docTreeChildren = DocumentsContract.buildChildDocumentsUriUsingTree(
+                    docTree.getUri(), DocumentsContract.getDocumentId(docTree.getUri()));
 
-            String[] projection = new String[]{COLUMN_DISPLAY_NAME};
-            String selection = "(LOWER(" + COLUMN_DISPLAY_NAME + ") LIKE ?%";
-            ContentResolver cr = context.getContentResolver();
+            final String[] projection = new String[]{COLUMN_DISPLAY_NAME};
+            final String selection = "(LOWER(" + COLUMN_DISPLAY_NAME + ") LIKE ?%";
+            final ContentResolver cr = context.getContentResolver();
 
-            try (Cursor cursor = cr.query(docTreeChildren, projection, selection, new String[]{lcFilename}, null)) {
+            try (Cursor cursor = cr.query(docTreeChildren, projection, selection,
+                    new String[]{lcFilename}, null)) {
                 if (cursor != null) {
-                    while (cursor.moveToNext())
+                    while (cursor.moveToNext()) {
                         addIfStartWith(matches, lcFilename, cursor.getString(0));
+                    }
                 }
             }
         }
@@ -102,7 +101,7 @@ public class StoredDirectoryHelper {
         } else {
             // check if the filename is in use
             String lcName = name.toLowerCase();
-            for (String testName : matches) {
+            for (final String testName : matches) {
                 if (testName.equals(lcName)) {
                     lcName = null;
                     break;
@@ -110,27 +109,33 @@ public class StoredDirectoryHelper {
             }
 
             // check if not in use
-            if (lcName != null) return createFile(name, mime, true);
+            if (lcName != null) {
+                return createFile(name, mime, true);
+            }
         }
 
         Collections.sort(matches, String::compareTo);
 
         for (int i = 1; i < 1000; i++) {
-            if (Collections.binarySearch(matches, makeFileName(lcFilename, i, filename[1])) < 0)
+            if (Collections.binarySearch(matches, makeFileName(lcFilename, i, filename[1])) < 0) {
                 return createFile(makeFileName(filename[0], i, filename[1]), mime, true);
+            }
         }
 
-        return createFile(String.valueOf(System.currentTimeMillis()).concat(filename[1]), mime, false);
+        return createFile(String.valueOf(System.currentTimeMillis()).concat(filename[1]), mime,
+                false);
     }
 
-    private StoredFileHelper createFile(String filename, String mime, boolean safe) {
-        StoredFileHelper storage;
+    private StoredFileHelper createFile(final String filename, final String mime,
+                                        final boolean safe) {
+        final StoredFileHelper storage;
 
         try {
-            if (docTree == null)
+            if (docTree == null) {
                 storage = new StoredFileHelper(ioTree, filename, mime);
-            else
+            } else {
                 storage = new StoredFileHelper(context, docTree, filename, mime, safe);
+            }
         } catch (IOException e) {
             return null;
         }
@@ -149,7 +154,7 @@ public class StoredDirectoryHelper {
     }
 
     /**
-     * Indicates whatever if is possible access using the {@code java.io} API
+     * Indicates whether it's using the {@code java.io} API.
      *
      * @return {@code true} for Java I/O API, otherwise, {@code false} for Storage Access Framework
      */
@@ -172,7 +177,9 @@ public class StoredDirectoryHelper {
             return ioTree.exists() || ioTree.mkdirs();
         }
 
-        if (docTree.exists()) return true;
+        if (docTree.exists()) {
+            return true;
+        }
 
         try {
             DocumentFile parent;
@@ -180,14 +187,18 @@ public class StoredDirectoryHelper {
 
             while (true) {
                 parent = docTree.getParentFile();
-                if (parent == null || child == null) break;
-                if (parent.exists()) return true;
+                if (parent == null || child == null) {
+                    break;
+                }
+                if (parent.exists()) {
+                    return true;
+                }
 
                 parent.createDirectory(child);
 
-                child = parent.getName();// for the next iteration
+                child = parent.getName(); // for the next iteration
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
             // no more parent directories or unsupported by the storage provider
         }
 
@@ -198,13 +209,13 @@ public class StoredDirectoryHelper {
         return tag;
     }
 
-    public Uri findFile(String filename) {
+    public Uri findFile(final String filename) {
         if (docTree == null) {
-            File res = new File(ioTree, filename);
+            final File res = new File(ioTree, filename);
             return res.exists() ? Uri.fromFile(res) : null;
         }
 
-        DocumentFile res = findFileSAFHelper(context, docTree, filename);
+        final DocumentFile res = findFileSAFHelper(context, docTree, filename);
         return res == null ? null : res.getUri();
     }
 
@@ -218,72 +229,82 @@ public class StoredDirectoryHelper {
         return docTree == null ? Uri.fromFile(ioTree).toString() : docTree.getUri().toString();
     }
 
-
     ////////////////////
     //      Utils
     ///////////////////
 
-    private static void addIfStartWith(ArrayList<String> list, @NonNull String base, String str) {
-        if (str == null || str.isEmpty()) return;
-        str = str.toLowerCase();
-        if (str.startsWith(base)) list.add(str);
+    private static void addIfStartWith(final ArrayList<String> list, @NonNull final String base,
+                                       final String str) {
+        if (isNullOrEmpty(str)) {
+            return;
+        }
+        final String lowerStr = str.toLowerCase();
+        if (lowerStr.startsWith(base)) {
+            list.add(lowerStr);
+        }
     }
 
-    private static String[] splitFilename(@NonNull String filename) {
+    private static String[] splitFilename(@NonNull final String filename) {
         int dotIndex = filename.lastIndexOf('.');
 
-        if (dotIndex < 0 || (dotIndex == filename.length() - 1))
+        if (dotIndex < 0 || (dotIndex == filename.length() - 1)) {
             return new String[]{filename, ""};
+        }
 
         return new String[]{filename.substring(0, dotIndex), filename.substring(dotIndex)};
     }
 
-    private static String makeFileName(String name, int idx, String ext) {
+    private static String makeFileName(final String name, final int idx, final String ext) {
         return name.concat(" (").concat(String.valueOf(idx)).concat(")").concat(ext);
     }
 
     /**
-     * Fast (but not enough) file/directory finder under the storage access framework
+     * Fast (but not enough) file/directory finder under the storage access framework.
      *
      * @param context  The context
      * @param tree     Directory where search
      * @param filename Target filename
      * @return A {@link DocumentFile} contain the reference, otherwise, null
      */
-    static DocumentFile findFileSAFHelper(@Nullable Context context, DocumentFile tree, String filename) {
+    static DocumentFile findFileSAFHelper(@Nullable final Context context, final DocumentFile tree,
+                                          final String filename) {
         if (context == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return tree.findFile(filename);// warning: this is very slow
+            return tree.findFile(filename); // warning: this is very slow
         }
 
-        if (!tree.canRead()) return null;// missing read permission
+        if (!tree.canRead()) {
+            return null; // missing read permission
+        }
 
         final int name = 0;
         final int documentId = 1;
 
         // LOWER() SQL function is not supported
-        String selection = COLUMN_DISPLAY_NAME + " = ?";
-        //String selection = COLUMN_DISPLAY_NAME + " LIKE ?%";
+        final String selection = COLUMN_DISPLAY_NAME + " = ?";
+        //final String selection = COLUMN_DISPLAY_NAME + " LIKE ?%";
 
-        Uri childrenUri = DocumentsContract.buildChildDocumentsUriUsingTree(
-                tree.getUri(), DocumentsContract.getDocumentId(tree.getUri())
-        );
-        String[] projection = {COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID};
-        ContentResolver contentResolver = context.getContentResolver();
+        final Uri childrenUri = DocumentsContract.buildChildDocumentsUriUsingTree(tree.getUri(),
+                DocumentsContract.getDocumentId(tree.getUri()));
+        final String[] projection = {COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID};
+        final ContentResolver contentResolver = context.getContentResolver();
 
-        filename = filename.toLowerCase();
+        final String lowerFilename = filename.toLowerCase();
 
-        try (Cursor cursor = contentResolver.query(childrenUri, projection, selection, new String[]{filename}, null)) {
-            if (cursor == null) return null;
+        try (Cursor cursor = contentResolver.query(childrenUri, projection, selection,
+                new String[]{lowerFilename}, null)) {
+            if (cursor == null) {
+                return null;
+            }
 
             while (cursor.moveToNext()) {
-                if (cursor.isNull(name) || !cursor.getString(name).toLowerCase().startsWith(filename))
+                if (cursor.isNull(name)
+                        || !cursor.getString(name).toLowerCase().startsWith(lowerFilename)) {
                     continue;
+                }
 
-                return DocumentFile.fromSingleUri(
-                        context, DocumentsContract.buildDocumentUriUsingTree(
-                                tree.getUri(), cursor.getString(documentId)
-                        )
-                );
+                return DocumentFile.fromSingleUri(context,
+                        DocumentsContract.buildDocumentUriUsingTree(tree.getUri(),
+                                cursor.getString(documentId)));
             }
         }
 

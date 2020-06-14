@@ -51,10 +51,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
-import static us.shandian.giga.io.StoredFileHelper.DEFAULT_MIME;
+import static org.schabi.newpipe.streams.io.StoredFileHelper.DEFAULT_MIME;
 
 public class SubscriptionsImportService extends BaseImportExportService {
     public static final int CHANNEL_URL_MODE = 0;
