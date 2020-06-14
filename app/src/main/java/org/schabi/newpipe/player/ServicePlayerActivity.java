@@ -45,7 +45,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.Collections;
 import java.util.List;
 
-import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -90,9 +89,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private ImageButton forwardButton;
     private ImageButton shuffleButton;
     private ProgressBar progressBar;
-
-    private TextView playbackSpeedButton;
-    private TextView playbackPitchButton;
 
     private Menu menu;
 
@@ -317,8 +313,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         fastForwardButton = rootView.findViewById(R.id.control_fast_forward);
         forwardButton = rootView.findViewById(R.id.control_forward);
         shuffleButton = rootView.findViewById(R.id.control_shuffle);
-        playbackSpeedButton = rootView.findViewById(R.id.control_playback_speed);
-        playbackPitchButton = rootView.findViewById(R.id.control_playback_pitch);
         progressBar = rootView.findViewById(R.id.control_progress_bar);
 
         repeatButton.setOnClickListener(this);
@@ -328,8 +322,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         fastForwardButton.setOnClickListener(this);
         forwardButton.setOnClickListener(this);
         shuffleButton.setOnClickListener(this);
-        playbackSpeedButton.setOnClickListener(this);
-        playbackPitchButton.setOnClickListener(this);
     }
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
@@ -489,10 +481,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.onPlayNext();
         } else if (view.getId() == shuffleButton.getId()) {
             player.onShuffleClicked();
-        } else if (view.getId() == playbackSpeedButton.getId()) {
-            openPlaybackParameterDialog();
-        } else if (view.getId() == playbackPitchButton.getId()) {
-            openPlaybackParameterDialog();
         } else if (view.getId() == metadata.getId()) {
             scrollToSelected();
         } else if (view.getId() == progressLiveSync.getId()) {
@@ -700,8 +688,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
         if (parameters != null) {
-            playbackSpeedButton.setText(formatSpeed(parameters.speed));
-            playbackPitchButton.setText(formatPitch(parameters.pitch));
+            Log.d("Dupa", "12");
         }
     }
 

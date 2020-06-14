@@ -169,22 +169,6 @@
         android:orientation="horizontal"
         tools:ignore="RtlHardcoded">
 
-        <TextView
-            android:id="@+id/control_playback_speed"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/control_repeat"
-            android:gravity="center"
-            android:minWidth="50dp"
-            android:text="1x"
-            android:textColor="?attr/colorAccent"
-            android:textStyle="bold"
-            android:background="?attr/selectableItemBackground"
-            tools:ignore="HardcodedText,RtlHardcoded"/>
-
         <ImageButton
             android:id="@+id/control_repeat"
             android:layout_width="30dp"
@@ -311,21 +295,6 @@
             android:src="@drawable/ic_shuffle_white_24dp"
             tools:ignore="ContentDescription"/>
 
-        <TextView
-            android:id="@+id/control_playback_pitch"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/control_shuffle"
-            android:gravity="center"
-            android:minWidth="50dp"
-            android:text="100%"
-            android:textColor="?attr/colorAccent"
-            android:textStyle="bold"
-            android:background="?attr/selectableItemBackground"
-            tools:ignore="HardcodedText,RtlHardcoded"/>
     </RelativeLayout>
 
 </RelativeLayout>
