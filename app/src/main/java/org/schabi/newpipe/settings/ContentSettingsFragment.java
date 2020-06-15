@@ -47,7 +47,6 @@ import java.util.Map;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
@@ -130,8 +129,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         final Preference exportDataPreference = findPreference(getString(R.string.export_data));
         exportDataPreference.setOnPreferenceClickListener((final Preference p) -> {
-            startActivityForResult(StoredDirectoryHelper.getPicker(getContext()),
-                    REQUEST_EXPORT_PATH);
+            final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
+            startActivityForResult(StoredFileHelper.getNewPicker(getContext(), null,
+                    "NewPipeData-" + sdf.format(new Date()) + ".zip"), REQUEST_EXPORT_PATH);
             return true;
         });
     }
@@ -171,31 +171,22 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
-            try {
-                Uri uri = data.getData();
-                if (FilePickerActivityHelper.isOwnFileUri(getContext(), uri)) {
-                    uri = Uri.fromFile(Utils.getFileForUri(uri));
-                }
-                if (requestCode == REQUEST_EXPORT_PATH) {
-                    final StoredDirectoryHelper directory
-                            = new StoredDirectoryHelper(getContext(), uri, null);
-                    final SimpleDateFormat sdf
-                            = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
-                    exportDatabase(directory.createFile("NewPipeData-"
-                            + sdf.format(new Date()) + ".zip", "application/zip"));
-                } else {
-                    final StoredFileHelper file = new StoredFileHelper(getContext(), uri,
-                            StoredFileHelper.DEFAULT_MIME);
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(R.string.override_current_data)
-                            .setPositiveButton(R.string.finish,
-                                    (DialogInterface d, int id) -> importDatabase(file))
-                            .setNegativeButton(R.string.cancel,
-                                    (DialogInterface d, int id) -> d.cancel());
-                    builder.create().show();
-                }
-            } catch (final IOException e) {
-                e.printStackTrace();
+            Uri uri = data.getData();
+            if (FilePickerActivityHelper.isOwnFileUri(getContext(), uri)) {
+                uri = Uri.fromFile(Utils.getFileForUri(uri));
+            }
+            final StoredFileHelper file = new StoredFileHelper(getContext(), uri,
+                    "application/zip");
+            if (requestCode == REQUEST_EXPORT_PATH) {
+                exportDatabase(file);
+            } else {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage(R.string.override_current_data)
+                        .setPositiveButton(R.string.finish,
+                                (DialogInterface d, int id) -> importDatabase(file))
+                        .setNegativeButton(R.string.cancel,
+                                (DialogInterface d, int id) -> d.cancel());
+                builder.create().show();
             }
         }
     }
