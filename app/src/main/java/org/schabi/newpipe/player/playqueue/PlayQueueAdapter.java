@@ -115,9 +115,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 break;
             case ERROR:
                 final ErrorEvent errorEvent = (ErrorEvent) message;
-                if (!errorEvent.isSkippable()) {
-                    notifyItemRemoved(errorEvent.getErrorIndex());
-                }
                 notifyItemChanged(errorEvent.getErrorIndex());
                 notifyItemChanged(errorEvent.getQueueIndex());
                 break;
