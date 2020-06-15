@@ -2,8 +2,8 @@ package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
 import org.schabi.newpipe.streams.io.SharpOutputStream
+import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.ZipHelper
-import us.shandian.giga.io.StoredFileHelper
 import java.io.BufferedOutputStream
 import java.io.FileInputStream
 import java.io.FileOutputStream
