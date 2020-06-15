@@ -1131,6 +1131,7 @@ public abstract class BasePlayer implements
             Log.d(TAG, "onFastRewind() called");
         }
         seekBy(-getSeekDuration());
+        triggerProgressUpdate();
     }
 
     public void onFastForward() {
@@ -1138,6 +1139,7 @@ public abstract class BasePlayer implements
             Log.d(TAG, "onFastForward() called");
         }
         seekBy(getSeekDuration());
+        triggerProgressUpdate();
     }
 
     private int getSeekDuration() {
