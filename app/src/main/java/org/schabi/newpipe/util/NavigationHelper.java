@@ -30,6 +30,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.DeliveryFormat;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -223,9 +224,21 @@ public final class NavigationHelper {
 
     public static void playOnExternalPlayer(final Context context, final String name,
                                             final String artist, final Stream stream) {
+        final String url;
+        final DeliveryFormat deliveryFormat = stream.getDeliveryFormat();
+        if (deliveryFormat instanceof DeliveryFormat.Direct) {
+            url = ((DeliveryFormat.Direct) deliveryFormat).getUrl();
+        } else if (deliveryFormat instanceof DeliveryFormat.HLS) {
+            url = ((DeliveryFormat.HLS) deliveryFormat).getUrl();
+        } else {
+            Toast.makeText(context, R.string.selected_stream_external_player_not_supported,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.parse(stream.getUrl()), stream.getFormat().getMimeType());
+        intent.setDataAndType(Uri.parse(url), stream.getFormat().getMimeType());
         intent.putExtra(Intent.EXTRA_TITLE, name);
         intent.putExtra("title", name);
         intent.putExtra("artist", artist);

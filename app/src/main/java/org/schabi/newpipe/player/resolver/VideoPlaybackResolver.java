@@ -69,7 +69,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         @Nullable final VideoStream video = tag.getSelectedVideoStream();
 
         if (video != null) {
-            final MediaSource streamSource = buildMediaSource(dataSource, video.getUrl(),
+            final MediaSource streamSource = buildMediaSource(dataSource, video,
                     PlayerHelper.cacheKeyOf(info, video),
                     MediaFormat.getSuffixById(video.getFormatId()), tag);
             mediaSources.add(streamSource);
@@ -82,7 +82,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         // Use the audio stream if there is no video stream, or
         // Merge with audio stream in case if video does not contain audio
         if (audio != null && (video == null || video.isVideoOnly)) {
-            final MediaSource audioSource = buildMediaSource(dataSource, audio.getUrl(),
+            final MediaSource audioSource = buildMediaSource(dataSource, audio,
                     PlayerHelper.cacheKeyOf(info, audio),
                     MediaFormat.getSuffixById(audio.getFormatId()), tag);
             mediaSources.add(audioSource);
@@ -106,7 +106,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                         SELECTION_FLAG_AUTOSELECT,
                         PlayerHelper.captionLanguageOf(context, subtitle));
                 final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                        .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
+                        .createMediaSource(Uri.parse(subtitle.getUrl()), textFormat, TIME_UNSET);
                 mediaSources.add(textSource);
             }
         }

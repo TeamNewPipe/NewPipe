@@ -41,7 +41,7 @@ public class AudioPlaybackResolver implements PlaybackResolver {
 
         final AudioStream audio = info.getAudioStreams().get(index);
         final MediaSourceTag tag = new MediaSourceTag(info);
-        return buildMediaSource(dataSource, audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
+        return buildMediaSource(dataSource, audio, PlayerHelper.cacheKeyOf(info, audio),
                 MediaFormat.getSuffixById(audio.getFormatId()), tag);
     }
 }

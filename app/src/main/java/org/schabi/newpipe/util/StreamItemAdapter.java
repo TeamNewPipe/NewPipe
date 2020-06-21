@@ -13,6 +13,7 @@ import android.widget.TextView;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.DeliveryFormat;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -209,9 +210,15 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                         continue;
                     }
 
+                    final DeliveryFormat deliveryFormat = stream.getDeliveryFormat();
+                    if (!(deliveryFormat instanceof DeliveryFormat.Direct)) {
+                        continue;
+                    }
+
                     final long contentLength = DownloaderImpl.getInstance().getContentLength(
-                            stream.getUrl());
+                            ((DeliveryFormat.Direct) deliveryFormat).getUrl());
                     streamsWrapper.setSize(stream, contentLength);
+
                     hasChanged = true;
                 }
                 return hasChanged;

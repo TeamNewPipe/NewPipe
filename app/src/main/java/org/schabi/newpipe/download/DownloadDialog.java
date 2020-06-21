@@ -44,6 +44,7 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.DeliveryFormat;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
@@ -64,6 +65,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -149,7 +151,11 @@ public class DownloadDialog extends DialogFragment
     }
 
     public void setAudioStreams(final List<AudioStream> audioStreams) {
-        setAudioStreams(new StreamSizeWrapper<>(audioStreams, getContext()));
+        // TODO: Remove this when the downloader support other types of stream deliveries
+        final List<AudioStream> listAudioStreams = new ArrayList<>(audioStreams);
+        wasSomeStreamRemoved = removeNotDirectStreams(listAudioStreams) || wasSomeStreamRemoved;
+
+        setAudioStreams(new StreamSizeWrapper<>(listAudioStreams, getContext()));
     }
 
     public void setAudioStreams(final StreamSizeWrapper<AudioStream> was) {
@@ -157,7 +163,47 @@ public class DownloadDialog extends DialogFragment
     }
 
     public void setVideoStreams(final List<VideoStream> videoStreams) {
-        setVideoStreams(new StreamSizeWrapper<>(videoStreams, getContext()));
+        // TODO: Remove this when the downloader support other types of stream deliveries
+        final List<VideoStream> listVideoStreams = new ArrayList<>(videoStreams);
+        wasSomeStreamRemoved = removeNotDirectStreams(listVideoStreams) || wasSomeStreamRemoved;
+
+        setVideoStreams(new StreamSizeWrapper<>(listVideoStreams, getContext()));
+    }
+
+    public void setSubtitleStreams(final List<SubtitlesStream> subtitleStreams) {
+        // TODO: Remove this when the downloader support other types of stream deliveries
+        final List<SubtitlesStream>  listSubtitleStreams = new ArrayList<>(subtitleStreams);
+        wasSomeStreamRemoved = removeNotDirectStreams(listSubtitleStreams) || wasSomeStreamRemoved;
+
+        setSubtitleStreams(new StreamSizeWrapper<>(listSubtitleStreams, getContext()));
+    }
+
+    private Toast removedStreamToast = null;
+    boolean wasSomeStreamRemoved = false;
+
+    private void showIfStreamsWereRemovedMessage() {
+        if (wasSomeStreamRemoved && removedStreamToast == null) {
+            removedStreamToast = Toast.makeText(
+                    requireContext(),
+                    R.string.streams_hidden_download_not_supported_yet,
+                    Toast.LENGTH_LONG
+            );
+            removedStreamToast.show();
+        }
+    }
+
+    private static boolean removeNotDirectStreams(final List<? extends Stream> streamList) {
+        boolean wasSomeStreamRemoved = false;
+        final Iterator<? extends Stream> streamIterator = streamList.iterator();
+        while (streamIterator.hasNext()) {
+            final Stream stream = streamIterator.next();
+            if (!(stream.getDeliveryFormat() instanceof DeliveryFormat.Direct)) {
+                streamIterator.remove();
+                wasSomeStreamRemoved = true;
+            }
+        }
+
+        return wasSomeStreamRemoved;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -166,10 +212,6 @@ public class DownloadDialog extends DialogFragment
 
     public void setVideoStreams(final StreamSizeWrapper<VideoStream> wvs) {
         this.wrappedVideoStreams = wvs;
-    }
-
-    public void setSubtitleStreams(final List<SubtitlesStream> subtitleStreams) {
-        setSubtitleStreams(new StreamSizeWrapper<>(subtitleStreams, getContext()));
     }
 
     public void setSubtitleStreams(
@@ -204,6 +246,7 @@ public class DownloadDialog extends DialogFragment
         }
 
         context = getContext();
+        showIfStreamsWereRemovedMessage();
 
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
         Icepick.restoreInstanceState(this, savedInstanceState);
@@ -277,8 +320,10 @@ public class DownloadDialog extends DialogFragment
         super.onViewCreated(view, savedInstanceState);
         nameEditText = view.findViewById(R.id.file_name);
         nameEditText.setText(FilenameUtils.createFilename(getContext(), currentInfo.getName()));
-        selectedAudioIndex = ListHelper
-                .getDefaultAudioFormat(getContext(), currentInfo.getAudioStreams());
+        selectedAudioIndex = ListHelper.getDefaultAudioFormat(getContext(),
+                wrappedAudioStreams.getStreamsList());
+        final int videoStreamListSize = wrappedVideoStreams.getStreamsList().size();
+        selectedVideoIndex = Math.max(0, Math.min(selectedVideoIndex, videoStreamListSize - 1));
 
         selectedSubtitleIndex = getSubtitleIndexBy(subtitleStreamsAdapter.getAll());
 
@@ -898,16 +943,25 @@ public class DownloadDialog extends DialogFragment
                 return;
         }
 
+        if (!(selectedStream.getDeliveryFormat() instanceof DeliveryFormat.Direct)) {
+            throw new IllegalArgumentException("Unsupported stream delivery format");
+        }
+
         if (secondaryStream == null) {
             urls = new String[]{
-                    selectedStream.getUrl()
+                    ((DeliveryFormat.Direct) selectedStream.getDeliveryFormat()).getUrl()
             };
             recoveryInfo = new MissionRecoveryInfo[]{
                     new MissionRecoveryInfo(selectedStream)
             };
         } else {
+            if (!(secondaryStream.getDeliveryFormat() instanceof DeliveryFormat.Direct)) {
+                throw new IllegalArgumentException("Unsupported stream delivery format");
+            }
+
             urls = new String[]{
-                    selectedStream.getUrl(), secondaryStream.getUrl()
+                    ((DeliveryFormat.Direct) selectedStream.getDeliveryFormat()).getUrl(),
+                    ((DeliveryFormat.Direct) secondaryStream.getDeliveryFormat()).getUrl()
             };
             recoveryInfo = new MissionRecoveryInfo[]{new MissionRecoveryInfo(selectedStream),
                     new MissionRecoveryInfo(secondaryStream)};

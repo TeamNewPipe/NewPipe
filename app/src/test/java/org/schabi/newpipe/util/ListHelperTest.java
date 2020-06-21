@@ -3,6 +3,7 @@ package org.schabi.newpipe.util;
 import org.junit.Test;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.DeliveryFormat;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 
 import java.util.ArrayList;
@@ -13,36 +14,38 @@ import static org.junit.Assert.assertEquals;
 
 public class ListHelperTest {
     private static final String BEST_RESOLUTION_KEY = "best_resolution";
+    private static final DeliveryFormat DEFAULT_DELIVERY_FORMAT = DeliveryFormat.direct("");
+
     private static final List<AudioStream> AUDIO_STREAMS_TEST_LIST = Arrays.asList(
-            new AudioStream("", MediaFormat.M4A,   /**/ 128),
-            new AudioStream("", MediaFormat.WEBMA, /**/ 192),
-            new AudioStream("", MediaFormat.MP3,   /**/ 64),
-            new AudioStream("", MediaFormat.WEBMA, /**/ 192),
-            new AudioStream("", MediaFormat.M4A,   /**/ 128),
-            new AudioStream("", MediaFormat.MP3,   /**/ 128),
-            new AudioStream("", MediaFormat.WEBMA, /**/ 64),
-            new AudioStream("", MediaFormat.M4A,   /**/ 320),
-            new AudioStream("", MediaFormat.MP3,   /**/ 192),
-            new AudioStream("", MediaFormat.WEBMA, /**/ 320));
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 128),
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192),
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MP3,   /**/ 64),
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192),
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 128),
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MP3,   /**/ 128),
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 64),
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 320),
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MP3,   /**/ 192),
+            new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 320));
 
     private static final List<VideoStream> VIDEO_STREAMS_TEST_LIST = Arrays.asList(
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p"),
-            new VideoStream("", MediaFormat.v3GPP,    /**/ "240p"),
-            new VideoStream("", MediaFormat.WEBM,     /**/ "480p"),
-            new VideoStream("", MediaFormat.v3GPP,    /**/ "144p"),
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "360p"),
-            new VideoStream("", MediaFormat.WEBM,     /**/ "360p"));
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "720p"),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.v3GPP,    /**/ "240p"),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "480p"),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.v3GPP,    /**/ "144p"),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "360p"),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "360p"));
 
     private static final List<VideoStream> VIDEO_ONLY_STREAMS_TEST_LIST = Arrays.asList(
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p", true),
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p", true),
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "2160p", true),
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "1440p60", true),
-            new VideoStream("", MediaFormat.WEBM,     /**/ "720p60", true),
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "2160p60", true),
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p60", true),
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "1080p", true),
-            new VideoStream("", MediaFormat.MPEG_4,   /**/ "1080p60", true));
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "720p", true),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "720p", true),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "2160p", true),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "1440p60", true),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "720p60", true),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "2160p60", true),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "720p60", true),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "1080p", true),
+            new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "1080p60", true));
 
     @Test
     public void getSortedStreamVideosListTest() {
@@ -95,14 +98,14 @@ public class ListHelperTest {
     @Test
     public void getDefaultResolutionTest() {
         List<VideoStream> testList = Arrays.asList(
-                new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p"),
-                new VideoStream("", MediaFormat.v3GPP,    /**/ "240p"),
-                new VideoStream("", MediaFormat.WEBM,     /**/ "480p"),
-                new VideoStream("", MediaFormat.WEBM,     /**/ "240p"),
-                new VideoStream("", MediaFormat.MPEG_4,   /**/ "240p"),
-                new VideoStream("", MediaFormat.WEBM,     /**/ "144p"),
-                new VideoStream("", MediaFormat.MPEG_4,   /**/ "360p"),
-                new VideoStream("", MediaFormat.WEBM,     /**/ "360p"));
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "720p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.v3GPP,    /**/ "240p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "480p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "240p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "240p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "144p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "360p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "360p"));
         VideoStream result = testList.get(ListHelper.getDefaultResolutionIndex(
                 "720p", BEST_RESOLUTION_KEY, MediaFormat.MPEG_4, testList));
         assertEquals("720p", result.resolution);
@@ -177,8 +180,8 @@ public class ListHelperTest {
         ////////////////////////////////////////
 
         List<AudioStream> testList = Arrays.asList(
-                new AudioStream("", MediaFormat.M4A,   /**/ 128),
-                new AudioStream("", MediaFormat.WEBMA, /**/ 192));
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 128),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192));
         // List doesn't contains this format
         // It should fallback to the highest bitrate audio no matter what format it is
         AudioStream stream = testList.get(ListHelper.getHighestQualityAudioIndex(
@@ -191,13 +194,13 @@ public class ListHelperTest {
         //////////////////////////////////////////////////////
 
         testList = new ArrayList<>(Arrays.asList(
-                new AudioStream("", MediaFormat.WEBMA, /**/ 192),
-                new AudioStream("", MediaFormat.M4A,   /**/ 192),
-                new AudioStream("", MediaFormat.WEBMA, /**/ 192),
-                new AudioStream("", MediaFormat.M4A,   /**/ 192),
-                new AudioStream("", MediaFormat.WEBMA, /**/ 192),
-                new AudioStream("", MediaFormat.M4A,   /**/ 192),
-                new AudioStream("", MediaFormat.WEBMA, /**/ 192)));
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192)));
         // List doesn't contains this format, it should fallback to the highest bitrate audio and
         // the highest quality format.
         stream = testList.get(ListHelper.getHighestQualityAudioIndex(MediaFormat.MP3, testList));
@@ -206,7 +209,7 @@ public class ListHelperTest {
 
         // Adding a new format and bitrate. Adding another stream will have no impact since
         // it's not a prefered format.
-        testList.add(new AudioStream("", MediaFormat.WEBMA, /**/ 192));
+        testList.add(new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192));
         stream = testList.get(ListHelper.getHighestQualityAudioIndex(MediaFormat.MP3, testList));
         assertEquals(192, stream.average_bitrate);
         assertEquals(MediaFormat.M4A, stream.getFormat());
@@ -244,8 +247,8 @@ public class ListHelperTest {
         ////////////////////////////////////////
 
         List<AudioStream> testList = new ArrayList<>(Arrays.asList(
-                new AudioStream("", MediaFormat.M4A,   /**/ 128),
-                new AudioStream("", MediaFormat.WEBMA, /**/ 192)));
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 128),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192)));
         // List doesn't contains this format
         // It should fallback to the most compact audio no matter what format it is.
         AudioStream stream = testList.get(ListHelper.getMostCompactAudioIndex(
@@ -254,7 +257,7 @@ public class ListHelperTest {
         assertEquals(MediaFormat.M4A, stream.getFormat());
 
         // WEBMA is more compact than M4A
-        testList.add(new AudioStream("", MediaFormat.WEBMA,   /**/ 128));
+        testList.add(new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA,   /**/ 128));
         stream = testList.get(ListHelper.getMostCompactAudioIndex(MediaFormat.MP3, testList));
         assertEquals(128, stream.average_bitrate);
         assertEquals(MediaFormat.WEBMA, stream.getFormat());
@@ -264,12 +267,12 @@ public class ListHelperTest {
         //////////////////////////////////////////////////////
 
         testList = new ArrayList<>(Arrays.asList(
-                new AudioStream("", MediaFormat.WEBMA, /**/ 192),
-                new AudioStream("", MediaFormat.M4A,   /**/ 192),
-                new AudioStream("", MediaFormat.WEBMA, /**/ 256),
-                new AudioStream("", MediaFormat.M4A,   /**/ 192),
-                new AudioStream("", MediaFormat.WEBMA, /**/ 192),
-                new AudioStream("", MediaFormat.M4A,   /**/ 192)));
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 256),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBMA, /**/ 192),
+                new AudioStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.M4A,   /**/ 192)));
         // List doesn't contain this format
         // It should fallback to the most compact audio no matter what format it is.
         stream = testList.get(ListHelper.getMostCompactAudioIndex(MediaFormat.MP3, testList));
@@ -291,14 +294,14 @@ public class ListHelperTest {
     @Test
     public void getVideoDefaultStreamIndexCombinations() {
         List<VideoStream> testList = Arrays.asList(
-                new VideoStream("", MediaFormat.MPEG_4,   /**/ "1080p"),
-                new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p60"),
-                new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p"),
-                new VideoStream("", MediaFormat.WEBM,     /**/ "480p"),
-                new VideoStream("", MediaFormat.MPEG_4,   /**/ "360p"),
-                new VideoStream("", MediaFormat.WEBM,     /**/ "360p"),
-                new VideoStream("", MediaFormat.v3GPP,    /**/ "240p60"),
-                new VideoStream("", MediaFormat.WEBM,     /**/ "144p"));
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "1080p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "720p60"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "720p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "480p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.MPEG_4,   /**/ "360p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "360p"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.v3GPP,    /**/ "240p60"),
+                new VideoStream(DEFAULT_DELIVERY_FORMAT, MediaFormat.WEBM,     /**/ "144p"));
 
         // exact matches
         assertEquals(1, ListHelper.getVideoStreamIndex("720p60", MediaFormat.MPEG_4, testList));
