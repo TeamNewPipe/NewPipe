@@ -40,6 +40,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Collections;
@@ -485,7 +486,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         } else if (view.getId() == shuffleButton.getId()) {
             player.onShuffleClicked();
         } else if (view.getId() == metadata.getId()) {
-            scrollToSelected();
+            onOpenDetail(ServiceHelper.getSelectedServiceId(getApplicationContext()),
+                    player.getVideoUrl(), player.getVideoTitle());
         } else if (view.getId() == progressLiveSync.getId()) {
             player.seekToDefault();
         }

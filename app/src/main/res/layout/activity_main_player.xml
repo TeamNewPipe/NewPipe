@@ -157,6 +157,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_toLeftOf="@+id/qualityTextView"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="top"
                     android:orientation="vertical"
                     android:paddingLeft="8dp"
@@ -167,6 +169,7 @@
                         android:id="@+id/titleTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
                         android:ellipsize="marquee"
                         android:fadingEdge="horizontal"
                         android:marqueeRepeatLimit="marquee_forever"
@@ -175,8 +178,6 @@
                         android:textColor="@android:color/white"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        android:clickable="true"
-                        android:focusable="true"
                         tools:ignore="RtlHardcoded"
                         tools:text="The Video Title LONG very LONG"/>
 
@@ -184,6 +185,7 @@
                         android:id="@+id/channelTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
                         android:ellipsize="marquee"
                         android:fadingEdge="horizontal"
                         android:marqueeRepeatLimit="marquee_forever"
@@ -191,8 +193,6 @@
                         android:singleLine="true"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
-                        android:clickable="true"
-                        android:focusable="true"
                         tools:text="The Video Artist  LONG very LONG very Long"/>
                 </LinearLayout>
 
