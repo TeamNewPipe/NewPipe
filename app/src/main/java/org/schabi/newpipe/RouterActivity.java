@@ -473,9 +473,15 @@ public class RouterActivity extends AppCompatActivity {
         finish();
     }
 
+    private Disposable downloadDisposable;
+
     @SuppressLint("CheckResult")
     private void openDownloadDialog() {
-        ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
+        if (downloadDisposable != null) {
+            return;
+        }
+
+        downloadDisposable = ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((@NonNull StreamInfo result) -> {
@@ -492,9 +498,14 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
-                    downloadDialog.getDialog().setOnDismissListener(dialog -> {
+                    // TODO: Improve this dialog dismiss logic
+                    if (downloadDialog.getDialog() != null) {
+                        downloadDialog.getDialog().setOnDismissListener(dialog -> {
+                            finish();
+                        });
+                    } else {
                         finish();
-                    });
+                    }
                 }, (@NonNull Throwable throwable) -> {
                     onError();
                 });
