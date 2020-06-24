@@ -241,7 +241,7 @@ public class DownloadDialog extends DialogFragment
 
         if (!PermissionHelper.checkStoragePermissions(getActivity(),
                 PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-            getDialog().dismiss();
+            dismiss();
             return;
         }
 
@@ -572,7 +572,7 @@ public class DownloadDialog extends DialogFragment
         } else {
             Toast.makeText(getContext(), R.string.no_streams_available_download,
                     Toast.LENGTH_SHORT).show();
-            getDialog().dismiss();
+            dismiss();
         }
     }
 
