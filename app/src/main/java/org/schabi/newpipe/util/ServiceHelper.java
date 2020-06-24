@@ -153,7 +153,7 @@ public final class ServiceHelper {
 
     public static long getCacheExpirationMillis(final int serviceId) {
         if (serviceId == SoundCloud.getServiceId()) {
-            return TimeUnit.MILLISECONDS.convert(5, TimeUnit.MINUTES);
+            return TimeUnit.MILLISECONDS.convert(2, TimeUnit.MINUTES);
         } else {
             return TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS);
         }
