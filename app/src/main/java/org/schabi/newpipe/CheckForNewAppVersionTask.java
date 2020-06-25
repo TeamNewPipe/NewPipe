@@ -2,7 +2,6 @@ package org.schabi.newpipe;
 
 import android.app.Application;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -16,6 +15,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
@@ -213,8 +213,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     }
 
     private boolean isConnected() {
-        final ConnectivityManager cm =
-                (ConnectivityManager) APP.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager cm = ContextCompat.getSystemService(APP,
+                ConnectivityManager.class);
         return cm.getActiveNetworkInfo() != null
                 && cm.getActiveNetworkInfo().isConnected();
     }

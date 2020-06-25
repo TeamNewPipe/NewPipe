@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -538,7 +539,7 @@ public final class ListHelper {
      */
     private static boolean isMeteredNetwork(final Context context) {
         ConnectivityManager manager
-                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                = ContextCompat.getSystemService(context, ConnectivityManager.class);
         if (manager == null || manager.getActiveNetworkInfo() == null) {
             return false;
         }

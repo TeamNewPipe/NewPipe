@@ -39,6 +39,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -113,7 +114,7 @@ public final class BackgroundPlayer extends Service {
         if (DEBUG) {
             Log.d(TAG, "onCreate() called");
         }
-        notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
+        notificationManager = ContextCompat.getSystemService(this, NotificationManager.class);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);

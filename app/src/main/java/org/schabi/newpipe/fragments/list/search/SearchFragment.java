@@ -28,6 +28,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -628,8 +629,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
 
         if (searchEditText.requestFocus()) {
-            InputMethodManager imm = (InputMethodManager) activity.getSystemService(
-                    Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = ContextCompat.getSystemService(activity,
+                    InputMethodManager.class);
             imm.showSoftInput(searchEditText, InputMethodManager.SHOW_FORCED);
         }
     }
@@ -642,8 +643,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             return;
         }
 
-        InputMethodManager imm = (InputMethodManager) activity
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = ContextCompat.getSystemService(activity,
+                InputMethodManager.class);
         imm.hideSoftInputFromWindow(searchEditText.getWindowToken(),
                 InputMethodManager.RESULT_UNCHANGED_SHOWN);
 

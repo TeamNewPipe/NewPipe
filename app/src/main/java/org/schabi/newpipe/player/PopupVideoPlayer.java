@@ -54,6 +54,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -147,8 +148,8 @@ public final class PopupVideoPlayer extends Service {
     @Override
     public void onCreate() {
         assureCorrectAppLanguage(this);
-        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
+        windowManager = ContextCompat.getSystemService(this, WindowManager.class);
+        notificationManager = ContextCompat.getSystemService(this, NotificationManager.class);
 
         playerImpl = new VideoPlayerImpl(this);
         ThemeHelper.setTheme(this);

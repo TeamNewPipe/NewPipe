@@ -34,6 +34,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
+import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
@@ -157,8 +158,10 @@ public class DownloadManagerService extends Service {
 
         mNotification = builder.build();
 
-        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        mNotificationManager = ContextCompat.getSystemService(this,
+                NotificationManager.class);
+        mConnectivityManager = ContextCompat.getSystemService(this,
+                ConnectivityManager.class);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mNetworkStateListenerL = new ConnectivityManager.NetworkCallback() {
