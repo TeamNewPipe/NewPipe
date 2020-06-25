@@ -84,7 +84,7 @@ ext {
     checkstyleVersion = '8.32'
     stethoVersion = '1.5.1'
     leakCanaryVersion = '2.2'
-    exoPlayerVersion = '2.11.5'
+    exoPlayerVersion = '2.11.6'
     androidxLifecycleVersion = '2.2.0'
     androidxRoomVersion = '2.2.5'
     groupieVersion = '2.8.0'
