@@ -13,7 +13,7 @@
 
   <suppress checks="FinalParameters"
       files="ListHelper.java"
-      lines="278,310"/>
+      lines="279,311"/>
 
   <!-- org.schabi.newpipe.streams -->
   <suppress checks="FinalParameters"
