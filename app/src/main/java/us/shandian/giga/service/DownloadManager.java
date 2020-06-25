@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 import us.shandian.giga.get.DownloadMission;
@@ -198,7 +199,7 @@ public class DownloadManager {
         }
 
         if (mMissionsPending.size() > 1)
-            Collections.sort(mMissionsPending, (mission1, mission2) -> Long.compare(mission1.timestamp, mission2.timestamp));
+            Collections.sort(mMissionsPending, Comparator.comparingLong(Mission::getTimestamp));
     }
 
     /**

@@ -19,6 +19,7 @@ import org.schabi.newpipe.util.ShareUtils;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * Fragment containing the software licenses.
@@ -64,7 +65,7 @@ public class LicenseFragment extends Fragment {
             }
         }
         // Sort components by name
-        Arrays.sort(softwareComponents, (o1, o2) -> o1.getName().compareTo(o2.getName()));
+        Arrays.sort(softwareComponents, Comparator.comparing(SoftwareComponent::getName));
     }
 
     @Nullable

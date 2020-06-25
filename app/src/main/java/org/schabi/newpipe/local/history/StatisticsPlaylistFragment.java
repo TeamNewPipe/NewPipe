@@ -43,6 +43,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import icepick.State;
@@ -68,18 +69,19 @@ public class StatisticsPlaylistFragment
     private HistoryRecordManager recordManager;
 
     private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
+        final Comparator<StreamStatisticsEntry> comparator;
         switch (sortMode) {
             case LAST_PLAYED:
-                Collections.sort(results, (left, right) ->
-                        right.getLatestAccessDate().compareTo(left.getLatestAccessDate()));
-                return results;
+                comparator = Comparator.comparing(StreamStatisticsEntry::getLatestAccessDate);
+                break;
             case MOST_PLAYED:
-                Collections.sort(results, (left, right) ->
-                        Long.compare(right.getWatchCount(), left.getWatchCount()));
-                return results;
+                comparator = Comparator.comparingLong(StreamStatisticsEntry::getWatchCount);
+                break;
             default:
                 return null;
         }
+        Collections.sort(results, comparator.reversed());
+        return results;
     }
 
     ///////////////////////////////////////////////////////////////////////////
