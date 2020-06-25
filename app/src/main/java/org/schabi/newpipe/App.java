@@ -233,8 +233,7 @@ public class App extends Application {
         NotificationChannel mChannel = new NotificationChannel(id, name, importance);
         mChannel.setDescription(description);
 
-        NotificationManager mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mNotificationManager = getSystemService(NotificationManager.class);
         mNotificationManager.createNotificationChannel(mChannel);
 
         setUpUpdateNotificationChannel(importance);
@@ -259,7 +258,7 @@ public class App extends Application {
         appUpdateChannel.setDescription(appUpdateDescription);
 
         NotificationManager appUpdateNotificationManager
-                = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                = getSystemService(NotificationManager.class);
         appUpdateNotificationManager.createNotificationChannel(appUpdateChannel);
     }
 
