@@ -215,7 +215,7 @@ public abstract class BasePlayer implements
 
         final TrackSelection.Factory trackSelectionFactory = PlayerHelper
                 .getQualitySelector(context);
-        this.trackSelector = new CustomTrackSelector(trackSelectionFactory);
+        this.trackSelector = new CustomTrackSelector(context, trackSelectionFactory);
 
         this.loadControl = new LoadController();
         this.renderFactory = new DefaultRenderersFactory(context);
