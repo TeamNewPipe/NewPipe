@@ -166,9 +166,6 @@ public final class PopupVideoPlayer extends Service {
             initPopup();
             initPopupCloseOverlay();
         }
-        if (!playerImpl.isPlaying()) {
-            playerImpl.getPlayer().setPlayWhenReady(true);
-        }
 
         playerImpl.handleIntent(intent);
 
