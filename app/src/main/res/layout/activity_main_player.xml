@@ -178,8 +178,9 @@
                         android:textColor="@android:color/white"
                         android:textSize="15sp"
                         android:textStyle="bold"
+                        android:focusable="true"
                         tools:ignore="RtlHardcoded"
-                        tools:text="The Video Title LONG very LONG"/>
+                        tools:text="The Video Title LONG very LONG" />
 
                     <TextView
                         android:id="@+id/channelTextView"
@@ -193,6 +194,7 @@
                         android:singleLine="true"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
+                        android:focusable="true"
                         tools:text="The Video Artist  LONG very LONG very Long"/>
                 </LinearLayout>
 
