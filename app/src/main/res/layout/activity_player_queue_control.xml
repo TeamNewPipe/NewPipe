@@ -55,7 +55,6 @@
 
             <TextView
                 android:id="@+id/song_name"
-                style="@android:style/TextAppearance.StatusBar.EventContent.Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
@@ -63,14 +62,13 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="14sp"
-                android:textColor="?attr/colorAccent"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."
                 />
 
             <TextView
                 android:id="@+id/artist_name"
-                style="@android:style/TextAppearance.StatusBar.EventContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
@@ -78,6 +76,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="12sp"
                 tools:text="Duis posuere arcu condimentum lobortis mattis."/>
         </LinearLayout>
