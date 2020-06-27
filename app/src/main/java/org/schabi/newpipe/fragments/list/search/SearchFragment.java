@@ -436,16 +436,16 @@ public class SearchFragment
 
         if (TextUtils.isEmpty(searchString) || TextUtils.isEmpty(searchEditText.getText())) {
             searchToolbarContainer.setTranslationX(100);
-            searchToolbarContainer.setAlpha(0f);
+            searchToolbarContainer.setAlpha(0.0f);
             searchToolbarContainer.setVisibility(View.VISIBLE);
             searchToolbarContainer.animate()
                     .translationX(0)
-                    .alpha(1f)
+                    .alpha(1.0f)
                     .setDuration(200)
                     .setInterpolator(new DecelerateInterpolator()).start();
         } else {
             searchToolbarContainer.setTranslationX(0);
-            searchToolbarContainer.setAlpha(1f);
+            searchToolbarContainer.setAlpha(1.0f);
             searchToolbarContainer.setVisibility(View.VISIBLE);
         }
     }

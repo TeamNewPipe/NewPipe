@@ -606,13 +606,8 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         private void openMainPlayer(PlayQueue playQueue, Choice choice) {
-            Intent intent = NavigationHelper.getPlayerIntent(this, MainActivity.class, playQueue, true);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(Constants.KEY_LINK_TYPE, choice.linkType);
-            intent.putExtra(Constants.KEY_URL, choice.url);
-            intent.putExtra(Constants.KEY_TITLE, "");
-            intent.putExtra(VideoDetailFragment.AUTO_PLAY, true);
-            this.startActivity(intent);
+            NavigationHelper.playOnMainPlayer(this, playQueue, choice.linkType,
+                    choice.url, "", true, true);
         }
 
         @Override

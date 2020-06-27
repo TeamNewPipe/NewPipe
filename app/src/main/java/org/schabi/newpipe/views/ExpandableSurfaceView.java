@@ -11,7 +11,7 @@ public class ExpandableSurfaceView extends SurfaceView {
     private int resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
     private int baseHeight = 0;
     private int maxHeight = 0;
-    private float videoAspectRatio = 0f;
+    private float videoAspectRatio = 0.0f;
     private float scaleX = 1.0f;
     private float scaleY = 1.0f;
 
@@ -22,7 +22,7 @@ public class ExpandableSurfaceView extends SurfaceView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if (videoAspectRatio == 0f) return;
+        if (videoAspectRatio == 0.0f) return;
 
         int width = MeasureSpec.getSize(widthMeasureSpec);
         boolean verticalVideo = videoAspectRatio < 1;

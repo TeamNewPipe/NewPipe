@@ -456,7 +456,10 @@ public class MainActivity extends AppCompatActivity {
         FrameLayout bottomSheetLayout = findViewById(R.id.fragment_player_holder);
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
 
-        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
+        final int sheetState = bottomSheetBehavior.getState();
+        // In case bottomSheet is not visible on the screen or collapsed we can assume that the user interacts with a fragment
+        // inside fragment_holder so all back presses should be handled by it
+        if (sheetState == BottomSheetBehavior.STATE_HIDDEN || sheetState == BottomSheetBehavior.STATE_COLLAPSED) {
             Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
             // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
             if (fragment instanceof BackPressable) {
@@ -540,10 +543,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        if (!(fragment instanceof VideoDetailFragment)) {
-            findViewById(R.id.toolbar).findViewById(R.id.toolbar_spinner).setVisibility(View.GONE);
-        }
-
         if (!(fragment instanceof SearchFragment)) {
             findViewById(R.id.toolbar).findViewById(R.id.toolbar_search_container).setVisibility(View.GONE);
 

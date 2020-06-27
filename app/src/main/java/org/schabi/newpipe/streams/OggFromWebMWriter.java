@@ -158,7 +158,7 @@ public class OggFromWebMWriter implements Closeable {
         switch (webm_track.kind) {
             case Audio:
                 resolution = getSampleFrequencyFromTrack(webm_track.bMetadata);
-                if (resolution == 0f) {
+                if (resolution == 0.0f) {
                     throw new RuntimeException("cannot get the audio sample rate");
                 }
                 break;
@@ -167,7 +167,7 @@ public class OggFromWebMWriter implements Closeable {
                 if (webm_track.defaultDuration == 0) {
                     throw new RuntimeException("missing default frame time");
                 }
-                resolution = 1000f / ((float) webm_track.defaultDuration / webm_segment.info.timecodeScale);
+                resolution = 1000.0f / ((float) webm_track.defaultDuration / webm_segment.info.timecodeScale);
                 break;
             default:
                 throw new RuntimeException("not implemented");
@@ -358,7 +358,7 @@ public class OggFromWebMWriter implements Closeable {
             }
         }
 
-        return 0f;
+        return 0.0f;
     }
 
     private void clearSegmentTable() {

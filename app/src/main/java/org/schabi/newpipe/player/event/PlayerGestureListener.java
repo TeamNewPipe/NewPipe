@@ -160,10 +160,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
         isMovingInMain = true;
 
-        boolean acceptVolumeArea = initialEvent.getX() > playerImpl.getRootView().getWidth() / 2.0;
-        boolean acceptBrightnessArea = initialEvent.getX() <= playerImpl.getRootView().getWidth() / 2.0;
-
-        if (isVolumeGestureEnabled && acceptVolumeArea) {
+        if (isVolumeGestureEnabled && initialEvent.getX() > playerImpl.getRootView().getWidth() / 2.0) {
             playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);
             float currentProgressPercent =
                     (float) playerImpl.getVolumeProgressBar().getProgress() / playerImpl.getMaxGestureLength();
@@ -172,14 +169,11 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
             if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
 
-            final int resId =
-                    currentProgressPercent <= 0 ? R.drawable.ic_volume_off_white_72dp
+            playerImpl.getVolumeImageView().setImageDrawable(
+                    AppCompatResources.getDrawable(service, currentProgressPercent <= 0 ? R.drawable.ic_volume_off_white_72dp
                             : currentProgressPercent < 0.25 ? R.drawable.ic_volume_mute_white_72dp
                             : currentProgressPercent < 0.75 ? R.drawable.ic_volume_down_white_72dp
-                            : R.drawable.ic_volume_up_white_72dp;
-
-            playerImpl.getVolumeImageView().setImageDrawable(
-                    AppCompatResources.getDrawable(service, resId)
+                            : R.drawable.ic_volume_up_white_72dp)
             );
 
             if (playerImpl.getVolumeRelativeLayout().getVisibility() != View.VISIBLE) {
@@ -188,7 +182,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
                 playerImpl.getBrightnessRelativeLayout().setVisibility(View.GONE);
             }
-        } else if (isBrightnessGestureEnabled && acceptBrightnessArea) {
+        } else if (isBrightnessGestureEnabled && initialEvent.getX() <= playerImpl.getRootView().getWidth() / 2.0) {
             Activity parent = playerImpl.getParentActivity();
             if (parent == null) return true;
 
@@ -203,13 +197,11 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
             if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentProgressPercent);
 
-            final int resId =
-                    currentProgressPercent < 0.25 ? R.drawable.ic_brightness_low_white_72dp
-                            : currentProgressPercent < 0.75 ? R.drawable.ic_brightness_medium_white_72dp
-                            : R.drawable.ic_brightness_high_white_72dp;
-
             playerImpl.getBrightnessImageView().setImageDrawable(
-                    AppCompatResources.getDrawable(service, resId)
+                    AppCompatResources.getDrawable(service,
+                            currentProgressPercent < 0.25 ? R.drawable.ic_brightness_low_white_72dp
+                            : currentProgressPercent < 0.75 ? R.drawable.ic_brightness_medium_white_72dp
+                                    : R.drawable.ic_brightness_high_white_72dp)
             );
 
             if (playerImpl.getBrightnessRelativeLayout().getVisibility() != View.VISIBLE) {
@@ -247,7 +239,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-                v.getParent().requestDisallowInterceptTouchEvent(playerImpl.isInFullscreen());
+                v.getParent().requestDisallowInterceptTouchEvent(playerImpl.isFullscreen());
                 return true;
             case MotionEvent.ACTION_UP:
                 v.getParent().requestDisallowInterceptTouchEvent(false);

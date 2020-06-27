@@ -270,14 +270,14 @@ public class VideoPlayerImpl extends VideoPlayer
                                      final float captionScale,
                                      @NonNull final CaptionStyleCompat captionStyle) {
         if (popupPlayerSelected()) {
-            float captionRatio = (captionScale - 1f) / 5f + 1f;
+            float captionRatio = (captionScale - 1.0f) / 5.0f + 1.0f;
             view.setFractionalTextSize(SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionRatio);
             view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
             view.setStyle(captionStyle);
         } else {
             final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
             final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
-            final float captionRatioInverse = 20f + 4f * (1f - captionScale);
+            final float captionRatioInverse = 20f + 4f * (1.0f - captionScale);
             view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
                     (float) minimumLength / captionRatioInverse);
             view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
@@ -300,7 +300,7 @@ public class VideoPlayerImpl extends VideoPlayer
             moreOptionsButton.setVisibility(View.GONE);
             getTopControlsRoot().setOrientation(LinearLayout.HORIZONTAL);
             primaryControls.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
-            secondaryControls.setAlpha(1f);
+            secondaryControls.setAlpha(1.0f);
             secondaryControls.setVisibility(View.VISIBLE);
             secondaryControls.setTranslationY(0);
             shareButton.setVisibility(View.GONE);
@@ -333,7 +333,7 @@ public class VideoPlayerImpl extends VideoPlayer
             getTopControlsRoot().setClickable(true);
             getTopControlsRoot().setFocusable(true);
         }
-        if (!isInFullscreen()) {
+        if (!isFullscreen()) {
             titleTextView.setVisibility(View.GONE);
             channelTextView.setVisibility(View.GONE);
         } else {
@@ -602,10 +602,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
             isFullscreen = !isFullscreen;
             setControlsSize();
-            fragmentListener.onFullscreenStateChanged(isInFullscreen());
+            fragmentListener.onFullscreenStateChanged(isFullscreen());
         }
 
-        if (!isInFullscreen()) {
+        if (!isFullscreen()) {
             titleTextView.setVisibility(View.GONE);
             channelTextView.setVisibility(View.GONE);
             playerCloseButton.setVisibility(videoPlayerSelected() ? View.VISIBLE : View.GONE);
@@ -674,7 +674,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public boolean onLongClick(View v) {
-        if (v.getId() == moreOptionsButton.getId() && isInFullscreen()) {
+        if (v.getId() == moreOptionsButton.getId() && isFullscreen()) {
             fragmentListener.onMoreOptionsLongClicked();
             hideControls(0, 0);
             hideSystemUIIfNeeded();
@@ -690,7 +690,7 @@ public class VideoPlayerImpl extends VideoPlayer
         updatePlaybackButtons();
 
         getControlsRoot().setVisibility(View.INVISIBLE);
-        animateView(queueLayout, SLIDE_AND_ALPHA, /*visible=*/true,
+        animateView(queueLayout, SLIDE_AND_ALPHA,true,
                 DEFAULT_CONTROLS_DURATION);
 
         itemsList.scrollToPosition(playQueue.getIndex());
@@ -699,7 +699,7 @@ public class VideoPlayerImpl extends VideoPlayer
     public void onQueueClosed() {
         if (!queueVisible) return;
 
-        animateView(queueLayout, SLIDE_AND_ALPHA, /*visible=*/false,
+        animateView(queueLayout, SLIDE_AND_ALPHA,false,
                 DEFAULT_CONTROLS_DURATION, 0, () -> {
                     // Even when queueLayout is GONE it receives touch events and ruins normal behavior of the app. This line fixes it
                     queueLayout.setTranslationY(-queueLayout.getHeight() * 5);
@@ -765,12 +765,12 @@ public class VideoPlayerImpl extends VideoPlayer
         boolean showButton = videoPlayerSelected() && (orientationLocked || isVerticalVideo || tabletInLandscape);
         screenRotationButton.setVisibility(showButton ? View.VISIBLE : View.GONE);
         screenRotationButton.setImageDrawable(service.getResources().getDrawable(
-                isInFullscreen() ? R.drawable.ic_fullscreen_exit_white : R.drawable.ic_fullscreen_white));
+                isFullscreen() ? R.drawable.ic_fullscreen_exit_white : R.drawable.ic_fullscreen_white));
     }
 
     private void prepareOrientation() {
         boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(service);
-        if (orientationLocked && isInFullscreen() && service.isLandscape() == isVerticalVideo && fragmentListener != null)
+        if (orientationLocked && isFullscreen() && service.isLandscape() == isVerticalVideo && fragmentListener != null)
             fragmentListener.onScreenRotationButtonClicked();
     }
 
@@ -893,7 +893,7 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onBlocked() {
         super.onBlocked();
-        playPauseButton.setImageResource(R.drawable.ic_pause_white);
+        playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
         animatePlayButtons(false, 100);
         getRootView().setKeepScreenOn(false);
 
@@ -1185,7 +1185,7 @@ public class VideoPlayerImpl extends VideoPlayer
         return distanceFromCloseButton(popupMotionEvent) <= getClosingRadius();
     }
 
-    public boolean isInFullscreen() {
+    public boolean isFullscreen() {
         return isFullscreen;
     }
 
@@ -1216,8 +1216,7 @@ public class VideoPlayerImpl extends VideoPlayer
         getControlsVisibilityHandler().removeCallbacksAndMessages(null);
         getControlsVisibilityHandler().postDelayed(() ->
                         animateView(getControlsRoot(), false, duration, 0,
-                                this::hideSystemUIIfNeeded),
-                /*delayMillis=*/delay
+                                this::hideSystemUIIfNeeded), delay
         );
     }
 
@@ -1225,24 +1224,13 @@ public class VideoPlayerImpl extends VideoPlayer
         if (playQueue == null)
             return;
 
-        if (playQueue.getIndex() == 0)
-            playPreviousButton.setVisibility(View.INVISIBLE);
-        else
-            playPreviousButton.setVisibility(View.VISIBLE);
-
-        if (playQueue.getIndex() + 1 == playQueue.getStreams().size())
-            playNextButton.setVisibility(View.INVISIBLE);
-        else
-            playNextButton.setVisibility(View.VISIBLE);
-
-        if (playQueue.getStreams().size() <= 1 || popupPlayerSelected())
-            queueButton.setVisibility(View.GONE);
-        else
-            queueButton.setVisibility(View.VISIBLE);
+        playPreviousButton.setVisibility(playQueue.getIndex() == 0 ? View.INVISIBLE : View.VISIBLE);
+        playNextButton.setVisibility(playQueue.getIndex() + 1 == playQueue.getStreams().size() ? View.INVISIBLE : View.VISIBLE);
+        queueButton.setVisibility(playQueue.getStreams().size() <= 1 || popupPlayerSelected() ? View.GONE : View.VISIBLE);
     }
 
     private void showSystemUIPartially() {
-        if (isInFullscreen() && getParentActivity() != null) {
+        if (isFullscreen() && getParentActivity() != null) {
             int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             getParentActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
         }
@@ -1330,7 +1318,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public void checkLandscape() {
         AppCompatActivity parent = getParentActivity();
-        boolean videoInLandscapeButNotInFullscreen = service.isLandscape() && !isInFullscreen() && videoPlayerSelected() && !audioOnly;
+        boolean videoInLandscapeButNotInFullscreen = service.isLandscape() && !isFullscreen() && videoPlayerSelected() && !audioOnly;
         boolean playingState = getCurrentState() != STATE_COMPLETED && getCurrentState() != STATE_PAUSED;
         if (parent != null && videoInLandscapeButNotInFullscreen && playingState && !PlayerHelper.isTablet(service))
             toggleFullscreen();
@@ -1421,7 +1409,7 @@ public class VideoPlayerImpl extends VideoPlayer
         if (DEBUG) Log.d(TAG, "initPopup() called");
 
         // Popup is already added to windowManager
-        if (isPopupHasParent()) return;
+        if (popupHasParent()) return;
 
         updateScreenSize();
 
@@ -1430,13 +1418,10 @@ public class VideoPlayerImpl extends VideoPlayer
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(service);
         popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
         popupHeight = getMinimumVideoHeight(popupWidth);
-        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ?
-                WindowManager.LayoutParams.TYPE_PHONE :
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 
         popupLayoutParams = new WindowManager.LayoutParams(
                 (int) popupWidth, (int) popupHeight,
-                layoutParamType,
+                popupLayoutParamType(),
                 IDLE_WINDOW_FLAGS,
                 PixelFormat.TRANSLUCENT);
         popupLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
@@ -1470,15 +1455,12 @@ public class VideoPlayerImpl extends VideoPlayer
         closeOverlayView = View.inflate(service, R.layout.player_popup_close_overlay, null);
         closeOverlayButton = closeOverlayView.findViewById(R.id.closeButton);
 
-        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ?
-                WindowManager.LayoutParams.TYPE_PHONE :
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
 
         WindowManager.LayoutParams closeOverlayLayoutParams = new WindowManager.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,
-                layoutParamType,
+                popupLayoutParamType(),
                 flags,
                 PixelFormat.TRANSLUCENT);
         closeOverlayLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
@@ -1600,6 +1582,12 @@ public class VideoPlayerImpl extends VideoPlayer
         windowManager.updateViewLayout(getRootView(), popupLayoutParams);
     }
 
+    private int popupLayoutParamType() {
+        return Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ?
+                WindowManager.LayoutParams.TYPE_PHONE :
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Misc
     //////////////////////////////////////////////////////////////////////////*/
@@ -1617,7 +1605,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public void removePopupFromView() {
         boolean isCloseOverlayHasParent = closeOverlayView != null && closeOverlayView.getParent() != null;
-        if (isPopupHasParent())
+        if (popupHasParent())
             windowManager.removeView(getRootView());
         if (isCloseOverlayHasParent)
             windowManager.removeView(closeOverlayView);
@@ -1651,7 +1639,7 @@ public class VideoPlayerImpl extends VideoPlayer
                 }).start();
     }
 
-    private boolean isPopupHasParent() {
+    private boolean popupHasParent() {
         View root = getRootView();
         return root != null && root.getLayoutParams() instanceof WindowManager.LayoutParams && root.getParent() != null;
     }

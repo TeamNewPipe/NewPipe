@@ -222,14 +222,10 @@ public class PlayerHelper {
 
     @AutoplayType
     public static int getAutoplayType(@NonNull final Context context) {
-        final String defaultType = context.getString(R.string.autoplay_wifi_key);
-        final String always = context.getString(R.string.autoplay_always_key);
-        final String never = context.getString(R.string.autoplay_never_key);
-
-        final String type = getAutoplayType(context, defaultType);
-        if (type.equals(always)) {
+        final String type = getAutoplayType(context, context.getString(R.string.autoplay_wifi_key));
+        if (type.equals(context.getString(R.string.autoplay_always_key))) {
             return AUTOPLAY_TYPE_ALWAYS;
-        } else if (type.equals(never)) {
+        } else if (type.equals(context.getString(R.string.autoplay_never_key))) {
             return AUTOPLAY_TYPE_NEVER;
         } else {
             return AUTOPLAY_TYPE_WIFI;
@@ -307,12 +303,12 @@ public class PlayerHelper {
      * Very small - 0.25f, Small - 0.5f, Normal - 1.0f, Large - 1.5f, Very Large - 2.0f
      * */
     public static float getCaptionScale(@NonNull final Context context) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return 1f;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return 1.0f;
 
         final CaptioningManager captioningManager = (CaptioningManager)
                 context.getSystemService(Context.CAPTIONING_SERVICE);
         if (captioningManager == null || !captioningManager.isEnabled()) {
-            return 1f;
+            return 1.0f;
         }
 
         return captioningManager.getFontScale();
@@ -330,8 +326,8 @@ public class PlayerHelper {
     public static boolean globalScreenOrientationLocked(Context context) {
         // 1: Screen orientation changes using accelerometer
         // 0: Screen orientation is locked
-        return !(android.provider.Settings.System.getInt(
-                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
+        return android.provider.Settings.System.getInt(
+                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0;
     }
 
     public static boolean isTablet(@NonNull final Context context) {

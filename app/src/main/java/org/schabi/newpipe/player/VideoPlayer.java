@@ -797,9 +797,9 @@ public abstract class VideoPlayer extends BasePlayer
         if (drawableId == -1) {
             if (controlAnimationView.getVisibility() == View.VISIBLE) {
                 controlViewAnimator = ObjectAnimator.ofPropertyValuesHolder(controlAnimationView,
-                        PropertyValuesHolder.ofFloat(View.ALPHA, 1f, 0f),
-                        PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1f),
-                        PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1f)
+                        PropertyValuesHolder.ofFloat(View.ALPHA, 1.0f, 0.0f),
+                        PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1.0f),
+                        PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1.0f)
                 ).setDuration(DEFAULT_CONTROLS_DURATION);
                 controlViewAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -812,8 +812,8 @@ public abstract class VideoPlayer extends BasePlayer
             return;
         }
 
-        float scaleFrom = goneOnEnd ? 1f : 1f, scaleTo = goneOnEnd ? 1.8f : 1.4f;
-        float alphaFrom = goneOnEnd ? 1f : 0f, alphaTo = goneOnEnd ? 0f : 1f;
+        float scaleFrom = goneOnEnd ? 1.0f : 1.0f, scaleTo = goneOnEnd ? 1.8f : 1.4f;
+        float alphaFrom = goneOnEnd ? 1.0f : 0.0f, alphaTo = goneOnEnd ? 0.0f : 1.0f;
 
 
         controlViewAnimator = ObjectAnimator.ofPropertyValuesHolder(controlAnimationView,

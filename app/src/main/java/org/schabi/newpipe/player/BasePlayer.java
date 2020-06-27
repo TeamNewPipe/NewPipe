@@ -158,7 +158,7 @@ public abstract class BasePlayer implements
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
+    protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f};
 
     protected PlayQueue playQueue;
     protected PlayQueueAdapter playQueueAdapter;
@@ -227,7 +227,7 @@ public abstract class BasePlayer implements
 
     public void setup() {
         if (simpleExoPlayer == null) {
-            initPlayer(/*playOnInit=*/true);
+            initPlayer(true);
         }
         initListeners();
     }
@@ -274,7 +274,7 @@ public abstract class BasePlayer implements
             return;
         }
 
-        boolean same = playQueue != null && playQueue.equals(queue);
+        boolean samePlayQueue = playQueue != null && playQueue.equals(queue);
 
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final float playbackSpeed = intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed());
@@ -282,6 +282,14 @@ public abstract class BasePlayer implements
         final boolean playbackSkipSilence = intent.getBooleanExtra(PLAYBACK_SKIP_SILENCE,
                 getPlaybackSkipSilence());
 
+        /*
+        * There are 3 situations when playback shouldn't be started from scratch (zero timestamp):
+        * 1. User pressed on a timestamp link and the same video should be rewound to that timestamp
+        * 2. User changed a player from, for example. main to popup, or from audio to main, etc
+        * 3. User chose to resume a video based on a saved timestamp from history of played videos
+        * In those cases time will be saved because re-init of the play queue is a not an instant task
+        * and requires network calls
+        * */
         // seek to timestamp if stream is already playing
         if (simpleExoPlayer != null
                 && queue.size() == 1
@@ -289,21 +297,20 @@ public abstract class BasePlayer implements
                 && playQueue.size() == 1
                 && playQueue.getItem() != null
                 && queue.getItem().getUrl().equals(playQueue.getItem().getUrl())
-                && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET
-                && simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) {
+                && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
             // Player can have state = IDLE when playback is stopped or failed and we should retry() in this case
             if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) simpleExoPlayer.retry();
             simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
             return;
 
-        } else if (same && !playQueue.isDisposed() && simpleExoPlayer != null) {
+        } else if (samePlayQueue && !playQueue.isDisposed() && simpleExoPlayer != null) {
             // Do not re-init the same PlayQueue. Save time
             // Player can have state = IDLE when playback is stopped or failed and we should retry() in this case
             if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) simpleExoPlayer.retry();
             return;
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
                 && isPlaybackResumeEnabled()
-                && !same) {
+                && !samePlayQueue) {
             final PlayQueueItem item = queue.getItem();
             if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
                 stateLoader = recordManager.loadStreamState(item)
@@ -313,19 +320,16 @@ public abstract class BasePlayer implements
                         .subscribe(
                                 state -> {
                                     queue.setRecovery(queue.getIndex(), state.getProgressTime());
-                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
-                                            /*playOnInit=*/true);
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, true);
                                 },
                                 error -> {
                                     if (DEBUG) error.printStackTrace();
                                     // In case any error we can start playback without history
-                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
-                                            /*playOnInit=*/true);
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, true);
                                 },
                                 () -> {
                                     // Completed but not found in history
-                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
-                                            /*playOnInit=*/true);
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, true);
                                 }
                         );
                 databaseUpdateReactor.add(stateLoader);
@@ -334,8 +338,7 @@ public abstract class BasePlayer implements
         }
         // Good to go...
         // In a case of equal PlayQueues we can re-init old one but only when it is disposed
-        initPlayback(same ? playQueue : queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
-                /*playOnInit=*/true);
+        initPlayback(samePlayQueue ? playQueue : queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, true);
     }
 
     protected void initPlayback(@NonNull final PlayQueue queue,

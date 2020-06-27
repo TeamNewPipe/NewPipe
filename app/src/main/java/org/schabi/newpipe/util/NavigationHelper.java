@@ -73,9 +73,7 @@ public class NavigationHelper {
         if (cacheKey != null) intent.putExtra(VideoPlayer.PLAY_QUEUE_KEY, cacheKey);
         if (quality != null) intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
         intent.putExtra(VideoPlayer.RESUME_PLAYBACK, resumePlayback);
-
-        int playerType = intent.getIntExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_VIDEO);
-        intent.putExtra(VideoPlayer.PLAYER_TYPE, playerType);
+        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_VIDEO);
 
         return intent;
     }
@@ -122,7 +120,24 @@ public class NavigationHelper {
 
     public static void playOnMainPlayer(final FragmentManager fragmentManager, final PlayQueue queue, boolean autoPlay) {
         PlayQueueItem currentStream = queue.getItem();
-        NavigationHelper.openVideoDetailFragment(fragmentManager, currentStream.getServiceId(), currentStream.getUrl(), currentStream.getTitle(), autoPlay, queue);
+        openVideoDetailFragment(fragmentManager, currentStream.getServiceId(), currentStream.getUrl(), currentStream.getTitle(), autoPlay, queue);
+    }
+
+    public static void playOnMainPlayer(@NonNull final Context context,
+                                        @NonNull final PlayQueue queue,
+                                        @NonNull final StreamingService.LinkType linkType,
+                                        @NonNull final String url,
+                                        @NonNull final String title,
+                                        final boolean autoPlay,
+                                        final boolean resumePlayback) {
+
+        Intent intent = getPlayerIntent(context, MainActivity.class, queue, resumePlayback);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(Constants.KEY_LINK_TYPE, linkType);
+        intent.putExtra(Constants.KEY_URL, url);
+        intent.putExtra(Constants.KEY_TITLE, title);
+        intent.putExtra(VideoDetailFragment.AUTO_PLAY, autoPlay);
+        context.startActivity(intent);
     }
 
     public static void playOnPopupPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {

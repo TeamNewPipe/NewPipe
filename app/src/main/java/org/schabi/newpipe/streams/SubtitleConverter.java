@@ -292,7 +292,7 @@ public class SubtitleConverter {
 
         time += Integer.parseInt(units[0]) * 3600000;// hours
         time += Integer.parseInt(units[1]) * 60000;//minutes
-        time += Float.parseFloat(units[2]) * 1000f;// seconds and milliseconds (if present)
+        time += Float.parseFloat(units[2]) * 1000.0f;// seconds and milliseconds (if present)
 
         // frames and sub-frames are ignored (not implemented)
         // time += units[3] * fps;

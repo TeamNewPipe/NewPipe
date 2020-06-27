@@ -337,7 +337,7 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onPrepared(boolean playWhenReady) {
             super.onPrepared(playWhenReady);
-            simpleExoPlayer.setVolume(1f);
+            simpleExoPlayer.setVolume(1.0f);
         }
 
         @Override
