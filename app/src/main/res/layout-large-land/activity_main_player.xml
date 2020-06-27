@@ -182,7 +182,7 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         tools:ignore="RtlHardcoded"
-                        tools:text="The Video Title LONG very LONG" />
+                        tools:text="The Video Title LONG very LONG"/>
 
                     <TextView
                         android:id="@+id/channelTextView"
@@ -197,7 +197,7 @@
                         android:singleLine="true"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
-                        tools:text="The Video Artist  LONG very LONG very Long" />
+                        tools:text="The Video Artist  LONG very LONG very Long"/>
                 </LinearLayout>
 
                 <Button
