@@ -577,20 +577,15 @@ public abstract class Tab {
 
         @Override
         public boolean equals(final Object obj) {
-            final boolean baseEquals = super.equals(obj)
+            if (!(super.equals(obj)
                     && Objects.equals(playlistType, ((PlaylistTab) obj).playlistType)
-                    && Objects.equals(playlistName, ((PlaylistTab) obj).playlistName);
-
-            if (!baseEquals) {
-                return false;
+                    && Objects.equals(playlistName, ((PlaylistTab) obj).playlistName))) {
+                return false; // base objects are different
             }
 
-            final boolean localPlaylistEquals = playlistId == ((PlaylistTab) obj).playlistId;
-            final boolean remotePlaylistEquals =
-                    playlistServiceId == ((PlaylistTab) obj).playlistServiceId
-                            && Objects.equals(playlistUrl, ((PlaylistTab) obj).playlistUrl);
-
-            return localPlaylistEquals || remotePlaylistEquals;
+            return (playlistId == ((PlaylistTab) obj).playlistId)                     // local
+                    || (playlistServiceId == ((PlaylistTab) obj).playlistServiceId    // remote
+                    && Objects.equals(playlistUrl, ((PlaylistTab) obj).playlistUrl));
         }
 
         public int getPlaylistServiceId() {
