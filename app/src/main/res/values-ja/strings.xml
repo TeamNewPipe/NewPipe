@@ -26,7 +26,7 @@
     <string name="download_dialog_title">保存</string>
     <string name="next_video_title">次</string>
     <string name="show_next_and_similar_title">「次の動画」と「関連動画」を表示</string>
-    <string name="url_not_supported_toast">URLは使用できません</string>
+    <string name="unsupported_url">URLは使用できません</string>
     <string name="content_language_title">優先言語</string>
     <string name="settings_category_video_audio_title">動画と音声</string>
     <string name="view_count_text">%1$s ビュー</string>

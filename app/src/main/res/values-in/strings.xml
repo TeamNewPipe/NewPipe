@@ -34,7 +34,7 @@
     <string name="download_dialog_title">Unduh</string>
     <string name="next_video_title">Berikutnya</string>
     <string name="show_next_and_similar_title">Tampilkan video \'Berikutnya\' dan \'Serupa\'</string>
-    <string name="url_not_supported_toast">URL tidak didukung</string>
+    <string name="unsupported_url">URL tidak didukung</string>
     <string name="content_language_title">Bahasa konten</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="settings_category_appearance_title">Tampilan</string>

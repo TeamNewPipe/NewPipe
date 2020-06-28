@@ -366,7 +366,7 @@
     <string name="content_language_title">സ്ഥിര കന്റെന്റ്‌ ഭാഷ</string>
     <string name="service_title">സേവനം</string>
     <string name="default_content_country_title">സ്ഥിര കന്റെന്റ് രാജ്യം</string>
-    <string name="url_not_supported_toast">അനുയോജ്യമല്ലാത്ത URL</string>
+    <string name="unsupported_url">അനുയോജ്യമല്ലാത്ത URL</string>
     <string name="show_hold_to_append_summary">പോപ്പപ്പ്/ബാക്ക്ഗ്രൗണ്ട് ബട്ടൺ അമർത്തുമ്പോൾ \"വിശദാംശങ്ങൾ\" എന്ന ടിപ് കാണിക്കും</string>
     <string name="show_hold_to_append_title">\"ഹോൾഡ് ടു അപ്പെൻഡ്\" എന്ന ടിപ് കാണിക്കുക</string>
     <string name="show_next_and_similar_title">\'അടുത്ത\' , \'സമാനമായ\' വീഡിയോകൾ കാണിക്കുക</string>

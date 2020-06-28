@@ -84,7 +84,7 @@
     <string name="show_next_and_similar_title">Kuva \'järgmine\' ja \'sarnased\' videod</string>
     <string name="show_hold_to_append_title">Kuva vihjet \"lisamiseks hoia\"</string>
     <string name="show_hold_to_append_summary">Kuva vihje, kui videoandmete lehel vajutatakse tausta või hüpikakna nupule</string>
-    <string name="url_not_supported_toast">Mitte toetatud URL</string>
+    <string name="unsupported_url">Mitte toetatud URL</string>
     <string name="default_content_country_title">Sisu vaikimisi riik</string>
     <string name="service_title">Teenus</string>
     <string name="content_language_title">Sisu vaikimisi keel</string>

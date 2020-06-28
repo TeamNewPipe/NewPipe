@@ -85,7 +85,7 @@
     <string name="show_next_and_similar_title">\'ਅੱਗੇ\' ਅਤੇ \'ਸਮਾਨਅੰਤਰ\' ਵੀਡੀਓ ਦਿਖਾਓ</string>
     <string name="show_hold_to_append_title">\"Hold to append\" ਸੁਝਾਅ ਦਿਖਾਓ</string>
     <string name="show_hold_to_append_summary">ਵੀਡੀਓ ਵੇਰਵੇ ਪੰਨੇ ਤੇ ਬੈਕਗ੍ਰਾਉਂਡ ਜਾਂ ਪੌਪ-ਅਪ ਬਟਨ ਦਬਾਉਣ ਤੇ ਸੰਕੇਤ ਦਿਖਾਓ</string>
-    <string name="url_not_supported_toast">ਅਣ-ਸਹਾਇਕ URL</string>
+    <string name="unsupported_url">ਅਣ-ਸਹਾਇਕ URL</string>
     <string name="default_content_country_title">ਮੂਲ ਦੇਸ਼ Content</string>
     <string name="service_title">ਸੇਵਾ</string>
     <string name="settings_category_player_title">ਪਲੇਯਰ</string>

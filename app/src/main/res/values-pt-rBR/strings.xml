@@ -69,7 +69,7 @@
     <string name="storage_permission_denied">Permita acesso ao armazenamento primeiramente</string>
     <string name="theme_title">Tema</string>
     <string name="upload_date_text">Publicado em  %1$s</string>
-    <string name="url_not_supported_toast">Link não suportado</string>
+    <string name="unsupported_url">Link não suportado</string>
     <string name="duration_live">Ao vivo</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>

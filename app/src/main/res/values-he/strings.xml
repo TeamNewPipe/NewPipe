@@ -54,7 +54,7 @@
     <string name="download_dialog_title">הורדה</string>
     <string name="next_video_title">הבא</string>
     <string name="show_next_and_similar_title">להציג סרטונים דומים ובאים בתור</string>
-    <string name="url_not_supported_toast">כתובת לא נתמכת</string>
+    <string name="unsupported_url">כתובת לא נתמכת</string>
     <string name="content_language_title">שפת התוכן המועדפת</string>
     <string name="settings_category_video_audio_title">סרטונים ושמע</string>
     <string name="settings_category_popup_title">חלון צף</string>

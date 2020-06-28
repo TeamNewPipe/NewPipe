@@ -46,7 +46,7 @@
     <string name="next_video_title">తదుపరి వీడియో</string>
     <string name="show_next_and_similar_title">తదుపరి వీడియో మరియు ఇలాంటి వీడియో</string>
     <string name="show_hold_to_append_title">చిట్కాను అనుబంధించడానికి హోల్డ్ను చూపు</string>
-    <string name="url_not_supported_toast">Url మద్దతు లేదు</string>
+    <string name="unsupported_url">Url మద్దతు లేదు</string>
     <string name="content_language_title">డిఫాల్ట్ భాష</string>
     <string name="settings_category_player_title">ప్లేయర్</string>
     <string name="settings_category_player_behavior_title">ప్రవర్తన</string>

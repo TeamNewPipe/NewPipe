@@ -798,7 +798,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             getFragmentManager().popBackStackImmediate();
                             activity.startActivity(intent);
                         }, throwable ->
-                                showError(getString(R.string.url_not_supported_toast), false)));
+                                showError(getString(R.string.unsupported_url), false)));
                 return;
             }
         } catch (Exception ignored) {

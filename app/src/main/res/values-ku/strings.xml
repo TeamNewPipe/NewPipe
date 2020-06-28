@@ -81,7 +81,7 @@
     <string name="download_dialog_title">داگرتن</string>
     <string name="next_video_title">دواتر</string>
     <string name="show_next_and_similar_title">پیشاندانی ’دواتر’ و ڤیدیۆ ’هاوشێوەکان’</string>
-    <string name="url_not_supported_toast">بەستەرەکە پشتگیری نەکراوە</string>
+    <string name="unsupported_url">بەستەرەکە پشتگیری نەکراوە</string>
     <string name="default_content_country_title">وڵاتی بنەڕەتی</string>
     <string name="service_title">خزمەتگوزاری</string>
     <string name="settings_category_player_title">کارپێکەر</string>

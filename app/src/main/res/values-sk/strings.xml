@@ -35,7 +35,7 @@
     <string name="download_dialog_title">Prevziať</string>
     <string name="next_video_title">Ďalšie</string>
     <string name="show_next_and_similar_title">Ukázať \'Ďalšie\' a \'Podobné\' videá</string>
-    <string name="url_not_supported_toast">URL nie je podporovaná</string>
+    <string name="unsupported_url">URL nie je podporovaná</string>
     <string name="content_language_title">Preferovaný jazyk obsahu</string>
     <string name="settings_category_video_audio_title">Video &amp; zvuk</string>
     <string name="settings_category_appearance_title">Vzhľad</string>
