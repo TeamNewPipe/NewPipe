@@ -119,7 +119,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     String lastSearchedString;
 
     @State
-    String searchSuggestionString;
+    String searchSuggestion;
 
     @State
     boolean isCorrectedSearch;
@@ -266,9 +266,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             }
         }
 
-        if (!TextUtils.isEmpty(searchSuggestionString)) {
-            handleSearchSuggestion(searchSuggestionString, isCorrectedSearch);
-        }
+        handleSearchSuggestion();
 
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
@@ -981,10 +979,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     NewPipe.getNameOfService(serviceId), searchString, 0);
         }
 
-        handleSearchSuggestion(result.getSearchSuggestion(), result.isCorrectedSearch());
-
-        searchSuggestionString = result.getSearchSuggestion();
+        searchSuggestion = result.getSearchSuggestion();
         isCorrectedSearch = result.isCorrectedSearch();
+
+        handleSearchSuggestion();
+
         lastSearchedString = searchString;
         nextPageUrl = result.getNextPageUrl();
         currentPageUrl = result.getUrl();
@@ -1002,10 +1001,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         super.handleResult(result);
     }
 
-    private void handleSearchSuggestion(@NonNull final String searchSuggestion,
-                                        @NonNull final Boolean isCorrected) {
+    private void handleSearchSuggestion() {
         if (!TextUtils.isEmpty(searchSuggestion)) {
-            String helperText = getString(isCorrected
+            final String helperText = getString(isCorrectedSearch
                     ? R.string.search_showing_result_for
                     : R.string.did_you_mean);
 
