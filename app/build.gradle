@@ -91,6 +91,11 @@ ext {
     markwonVersion = '4.3.1'
 }
 
+configurations {
+    checkstyle
+    ktlint
+}
+
 checkstyle {
     configFile rootProject.file('checkstyle.xml')
     ignoreFailures false
@@ -106,8 +111,7 @@ task runCheckstyle(type: Checkstyle) {
     exclude '**/BuildConfig.java'
     exclude 'main/java/us/shandian/giga/**'
 
-    // empty classpath
-    classpath = files()
+    classpath = configurations.checkstyle
 
     showViolations true
 
@@ -115,10 +119,6 @@ task runCheckstyle(type: Checkstyle) {
         xml.enabled true
         html.enabled true
     }
-}
-
-configurations {
-    ktlint
 }
 
 task runKtlint(type: JavaExec) {
@@ -143,7 +143,7 @@ dependencies {
     implementation "frankiesardo:icepick:${icepickVersion}"
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
-    debugImplementation "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
+    checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
     ktlint "com.pinterest:ktlint:0.35.0"
 
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
