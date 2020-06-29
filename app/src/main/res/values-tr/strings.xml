@@ -5,7 +5,7 @@
     <string name="upload_date_text">Yayınlanma: %1$s</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC yüklensin mi\?</string>
     <string name="install">Yükle</string>
-    <string name="cancel">Vazgeç</string>
+    <string name="cancel">İptal</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
     <string name="share">Paylaş</string>
     <string name="download">İndir</string>
@@ -422,7 +422,7 @@
     <string name="grid">Izgara</string>
     <string name="auto">Otomatik</string>
     <string name="switch_view">Görünümü Değiştir</string>
-    <string name="app_update_notification_content_title">NewPipe Güncellemesi Var!</string>
+    <string name="app_update_notification_content_title">NewPipe güncellemesi var!</string>
     <string name="app_update_notification_content_text">İndirmek için dokunun</string>
     <string name="missions_header_finished">Tamamlandı</string>
     <string name="paused">durduruldu</string>
