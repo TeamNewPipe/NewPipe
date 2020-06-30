@@ -194,4 +194,6 @@
     <string name="brightness_gesture_control_title">উজ্জ্বলতার নিয়ন্ত্রণ সংকেত</string>
     <string name="volume_gesture_control_summary">প্লেয়ারের ভলিউম নিয়ন্ত্রণ করতে সংকেত ব্যবহার করো</string>
     <string name="volume_gesture_control_title">ভলিউম সংকেত নিয়ন্ত্রণ</string>
+    <string name="missions_header_finished">সম্পূর্ণ</string>
+    <string name="list">তালিকা</string>
 </resources>
