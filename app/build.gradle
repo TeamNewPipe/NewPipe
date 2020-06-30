@@ -163,7 +163,7 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.mauriciocolli:NewPipeExtractor:c234a6d2bdce228ed3a9e84952e7389afca13fa8'
+    implementation 'com.github.yausername:NewPipeExtractor:bbc_sounds-SNAPSHOT'
 
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
     implementation "org.jsoup:jsoup:1.13.1"
@@ -207,6 +207,7 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
     implementation "org.ocpsoft.prettytime:prettytime:4.0.5.Final"
+    implementation 'com.caverock:androidsvg-aar:1.4'
 }
 
 static String getGitWorkingBranch() {

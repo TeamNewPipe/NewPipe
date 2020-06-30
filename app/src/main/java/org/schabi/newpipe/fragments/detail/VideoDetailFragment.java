@@ -644,6 +644,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         if (!TextUtils.isEmpty(info.getUploaderAvatarUrl())) {
             IMAGE_LOADER.displayImage(info.getUploaderAvatarUrl(), uploaderThumb,
                     ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
+
         }
     }
 
@@ -1227,7 +1228,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
             detailDurationView.setBackgroundColor(
                     ContextCompat.getColor(activity, R.color.duration_background_color));
             animateView(detailDurationView, true, 100);
-        } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
+        } else if (info.getStreamType() == StreamType.LIVE_STREAM
+                || info.getStreamType() == StreamType.AUDIO_LIVE_STREAM) {
             detailDurationView.setText(R.string.duration_live);
             detailDurationView.setBackgroundColor(
                     ContextCompat.getColor(activity, R.color.live_duration_background_color));

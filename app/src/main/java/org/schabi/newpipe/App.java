@@ -197,6 +197,7 @@ public class App extends Application {
                 .memoryCache(new LRULimitedMemoryCache(memoryCacheSizeMb * 1024 * 1024))
                 .diskCacheSize(diskCacheSizeMb * 1024 * 1024)
                 .imageDownloader(new ImageDownloader(getApplicationContext()))
+                .imageDecoder(new ImageDecoder(false))
                 .build();
     }
 

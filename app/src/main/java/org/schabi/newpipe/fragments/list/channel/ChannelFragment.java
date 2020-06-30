@@ -460,6 +460,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         headerRootLayout.setVisibility(View.VISIBLE);
         IMAGE_LOADER.displayImage(result.getBannerUrl(), headerChannelBanner,
                 ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
+
         IMAGE_LOADER.displayImage(result.getAvatarUrl(), headerAvatarView,
                 ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         IMAGE_LOADER.displayImage(result.getParentChannelAvatarUrl(), headerSubChannelAvatarView,
