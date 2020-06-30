@@ -331,13 +331,12 @@ public abstract class BasePlayer implements
         final SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(context);
 
-        final float speed = preferences
-            .getFloat(context.getString(R.string.playback_speed_key), getPlaybackSpeed());
-        final float pitch = preferences.getFloat(context.getString(R.string.playback_pitch_key),
-            getPlaybackPitch());
-        final boolean skipSilence = preferences
-            .getBoolean(context.getString(R.string.playback_skip_silence_key),
-                getPlaybackSkipSilence());
+        final float speed = preferences.getFloat(
+                context.getString(R.string.playback_speed_key), getPlaybackSpeed());
+        final float pitch = preferences.getFloat(
+                context.getString(R.string.playback_pitch_key), getPlaybackPitch());
+        final boolean skipSilence = preferences.getBoolean(
+                context.getString(R.string.playback_skip_silence_key), getPlaybackSkipSilence());
         return new PlaybackParameters(speed, pitch, skipSilence);
     }
 
@@ -1471,10 +1470,21 @@ public abstract class BasePlayer implements
         return parameters == null ? PlaybackParameters.DEFAULT : parameters;
     }
 
+    /**
+     * Sets the playback parameters of the player, and also saves them to shared preferences.
+     * Speed and pitch are rounded up to 2 decimal places before being used or saved.
+     * @param speed the playback speed, will be rounded to up to 2 decimal places
+     * @param pitch the playback pitch, will be rounded to up to 2 decimal places
+     * @param skipSilence skip silence during playback
+     */
     public void setPlaybackParameters(final float speed, final float pitch,
                                       final boolean skipSilence) {
-        savePlaybackParametersToPreferences(speed, pitch, skipSilence);
-        simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, pitch, skipSilence));
+        final float roundedSpeed = Math.round(speed * 100.0f) / 100.0f;
+        final float roundedPitch = Math.round(pitch * 100.0f) / 100.0f;
+
+        savePlaybackParametersToPreferences(roundedSpeed, roundedPitch, skipSilence);
+        simpleExoPlayer.setPlaybackParameters(
+                new PlaybackParameters(roundedSpeed, roundedPitch, skipSilence));
     }
 
     private void savePlaybackParametersToPreferences(final float speed, final float pitch,
