@@ -9,42 +9,55 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiFunction
+import io.reactivex.processors.BehaviorProcessor
 import io.reactivex.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
-import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 
-class FeedGroupDialogViewModel(applicationContext: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModel() {
-    class Factory(val context: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return FeedGroupDialogViewModel(context.applicationContext, groupId) as T
-        }
-    }
+class FeedGroupDialogViewModel(
+    applicationContext: Context,
+    private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+    initialQuery: String = ""
+) : ViewModel() {
 
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
     private var subscriptionManager = SubscriptionManager(applicationContext)
 
+    private var filterSubscriptions = BehaviorProcessor.create<String>()
+    private var allSubscriptions = subscriptionManager.subscriptions()
+
+    private var subscriptionsFlowable = filterSubscriptions
+        .startWith(initialQuery)
+        .distinctUntilChanged()
+        .switchMap { query ->
+            if (query.isEmpty()) {
+                allSubscriptions
+            } else {
+                subscriptionManager.filterByName(query)
+            }
+        }.map { list -> list.map { PickerSubscriptionItem(it) } }
+
     private val mutableGroupLiveData = MutableLiveData<FeedGroupEntity>()
-    private val mutableSubscriptionsLiveData = MutableLiveData<Pair<List<SubscriptionEntity>, Set<Long>>>()
+    private val mutableSubscriptionsLiveData = MutableLiveData<Pair<List<PickerSubscriptionItem>, Set<Long>>>()
     private val mutableDialogEventLiveData = MutableLiveData<DialogEvent>()
     val groupLiveData: LiveData<FeedGroupEntity> = mutableGroupLiveData
-    val subscriptionsLiveData: LiveData<Pair<List<SubscriptionEntity>, Set<Long>>> = mutableSubscriptionsLiveData
+    val subscriptionsLiveData: LiveData<Pair<List<PickerSubscriptionItem>, Set<Long>>> = mutableSubscriptionsLiveData
     val dialogEventLiveData: LiveData<DialogEvent> = mutableDialogEventLiveData
 
     private var actionProcessingDisposable: Disposable? = null
 
     private var feedGroupDisposable = feedDatabaseManager.getGroup(groupId)
-            .subscribeOn(Schedulers.io())
-            .subscribe(mutableGroupLiveData::postValue)
+        .subscribeOn(Schedulers.io())
+        .subscribe(mutableGroupLiveData::postValue)
 
     private var subscriptionsDisposable = Flowable
-            .combineLatest(subscriptionManager.subscriptions(), feedDatabaseManager.subscriptionIdsForGroup(groupId),
-                    BiFunction { t1: List<SubscriptionEntity>, t2: List<Long> -> t1 to t2.toSet() })
-            .subscribeOn(Schedulers.io())
-            .subscribe(mutableSubscriptionsLiveData::postValue)
+        .combineLatest(subscriptionsFlowable, feedDatabaseManager.subscriptionIdsForGroup(groupId),
+            BiFunction { t1: List<PickerSubscriptionItem>, t2: List<Long> -> t1 to t2.toSet() })
+        .subscribeOn(Schedulers.io())
+        .subscribe(mutableSubscriptionsLiveData::postValue)
 
     override fun onCleared() {
         super.onCleared()
@@ -55,14 +68,14 @@ class FeedGroupDialogViewModel(applicationContext: Context, val groupId: Long = 
 
     fun createGroup(name: String, selectedIcon: FeedGroupIcon, selectedSubscriptions: Set<Long>) {
         doAction(feedDatabaseManager.createGroup(name, selectedIcon)
-                .flatMapCompletable {
-                    feedDatabaseManager.updateSubscriptionsForGroup(it, selectedSubscriptions.toList())
-                })
+            .flatMapCompletable {
+                feedDatabaseManager.updateSubscriptionsForGroup(it, selectedSubscriptions.toList())
+            })
     }
 
     fun updateGroup(name: String, selectedIcon: FeedGroupIcon, selectedSubscriptions: Set<Long>, sortOrder: Long) {
         doAction(feedDatabaseManager.updateSubscriptionsForGroup(groupId, selectedSubscriptions.toList())
-                .andThen(feedDatabaseManager.updateGroup(FeedGroupEntity(groupId, name, selectedIcon, sortOrder))))
+            .andThen(feedDatabaseManager.updateGroup(FeedGroupEntity(groupId, name, selectedIcon, sortOrder))))
     }
 
     fun deleteGroup() {
@@ -74,13 +87,33 @@ class FeedGroupDialogViewModel(applicationContext: Context, val groupId: Long = 
             mutableDialogEventLiveData.value = DialogEvent.ProcessingEvent
 
             actionProcessingDisposable = completable
-                    .subscribeOn(Schedulers.io())
-                    .subscribe { mutableDialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
+                .subscribeOn(Schedulers.io())
+                .subscribe { mutableDialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
         }
+    }
+
+    fun filterSubscriptionsBy(query: String) {
+        filterSubscriptions.onNext(query)
+    }
+
+    fun clearSubscriptionsFilter() {
+        filterSubscriptions.onNext("")
     }
 
     sealed class DialogEvent {
         object ProcessingEvent : DialogEvent()
         object SuccessEvent : DialogEvent()
+    }
+
+    class Factory(
+        private val context: Context,
+        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+        private val initialQuery: String = ""
+    ) : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return FeedGroupDialogViewModel(context.applicationContext,
+                groupId, initialQuery) as T
+        }
     }
 }

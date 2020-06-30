@@ -21,6 +21,8 @@ class SubscriptionManager(context: Context) {
     fun subscriptionTable(): SubscriptionDAO = subscriptionTable
     fun subscriptions() = subscriptionTable.all
 
+    fun filterByName(filter: String) = subscriptionTable.filterByName(filter)
+
     fun upsertAll(infoList: List<ChannelInfo>): List<SubscriptionEntity> {
         val listEntities = subscriptionTable.upsertAll(
                 infoList.map { SubscriptionEntity.from(it) })

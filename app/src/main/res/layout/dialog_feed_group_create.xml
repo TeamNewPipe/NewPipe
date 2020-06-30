@@ -102,42 +102,56 @@
             android:id="@+id/subscriptions_selector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/subscriptions_header_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp"
-                android:paddingTop="12dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="12dp">
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center_vertical"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:titleTextAppearance="@style/Toolbar.Title">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:id="@+id/subscriptions_header_info_container"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="start|center_vertical"
-                    android:text="@string/tab_subscriptions"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/subscriptions_selector_header_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="start|center_vertical"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="12sp"
-                    tools:text="1 selected" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center_vertical"
+                        android:text="@string/tab_subscriptions"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/subscriptions_header_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center_vertical"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        tools:text="1 selected" />
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/subscriptions_header_search_container"
+                    layout="@layout/toolbar_search_layout"
+                    android:visibility="gone"/>
+
+            </androidx.appcompat.widget.Toolbar>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/subscriptions_selector_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:clipToPadding="false"
                 tools:itemCount="200"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/picker_subscription_item"

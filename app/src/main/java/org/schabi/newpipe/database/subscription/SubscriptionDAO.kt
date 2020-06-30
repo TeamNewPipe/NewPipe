@@ -20,6 +20,13 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     @Query("SELECT * FROM subscriptions ORDER BY name COLLATE NOCASE ASC")
     abstract override fun getAll(): Flowable<List<SubscriptionEntity>>
 
+    @Query("""
+        SELECT * FROM subscriptions
+        WHERE name LIKE '%' || :filter || '%'
+        ORDER BY name COLLATE NOCASE ASC
+        """)
+    abstract fun filterByName(filter: String): Flowable<List<SubscriptionEntity>>
+
     @Query("SELECT * FROM subscriptions WHERE url LIKE :url AND service_id = :serviceId")
     abstract fun getSubscriptionFlowable(serviceId: Int, url: String): Flowable<List<SubscriptionEntity>>
 
