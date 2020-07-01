@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -140,7 +141,7 @@ public final class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        startService(context,
+        ContextCompat.startForegroundService(context,
                 getPlayerIntent(context, PopupVideoPlayer.class, queue, resumePlayback));
     }
 
@@ -148,7 +149,7 @@ public final class NavigationHelper {
                                               final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
                 .show();
-        startService(context,
+        ContextCompat.startForegroundService(context,
                 getPlayerIntent(context, BackgroundPlayer.class, queue, resumePlayback));
     }
 
@@ -166,8 +167,8 @@ public final class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
-        startService(context, getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue,
-                selectOnAppend, resumePlayback));
+        ContextCompat.startForegroundService(context, getPlayerEnqueueIntent(context,
+                PopupVideoPlayer.class, queue, selectOnAppend, resumePlayback));
     }
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue,
@@ -179,16 +180,8 @@ public final class NavigationHelper {
                                                  final boolean selectOnAppend,
                                                  final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
-        startService(context, getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue,
-                selectOnAppend, resumePlayback));
-    }
-
-    public static void startService(@NonNull final Context context, @NonNull final Intent intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(intent);
-        } else {
-            context.startService(intent);
-        }
+        ContextCompat.startForegroundService(context, getPlayerEnqueueIntent(context,
+                BackgroundPlayer.class, queue, selectOnAppend, resumePlayback));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
