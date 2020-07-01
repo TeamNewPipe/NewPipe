@@ -358,14 +358,12 @@
     <string name="playback_pitch">Wysokość dźwięku</string>
     <string name="import_soundcloud_instructions_hint">twojeID, soundcloud.com/yourid</string>
     <string name="unhook_checkbox">Odłącz (może powodować zniekształcenia)</string>
-    <string name="import_soundcloud_instructions">Aby zaimportować obserwowane z SoundCloud, musisz znać identyfikator lub link do swojego profilu. Jeśli znasz którykolwiek z nich, po prostu wpisz go w polu poniżej. 
-\n 
-\nW przeciwnym wypadku spróbuj poniższych kroków: 
-\n 
-\n1. Włącz \"tryb stacjonarny\" w przeglądarce (strona, z której zaraz skorzystasz, nie jest dostępna w trybie mobilnym) 
-\n2. Odwiedź stronę: %1$s 
-\n3. Zaloguj się na swoje konto 
-\n4. Skopiuj adres, na który przeglądarka przekieruje cię po zalogowaniu (to jest adres twojego profilu).</string>
+    <string name="import_soundcloud_instructions">Zaimportuj profil SoundCloud, wpisując adres URL lub identyfikator:
+\n
+\n1. Włącz „tryb pulpitu” w przeglądarce internetowej (strona nie jest dostępna dla urządzeń mobilnych)
+\n2. Przejdź do tego adresu URL: %1$s
+\n3. Zaloguj się, gdy zostaniesz o to poproszony
+\n4. Skopiuj adres URL profilu, na który zostałeś przekierowany.</string>
     <string name="no_streams_available_download">Brak źródeł do pobrania</string>
     <string name="preferred_open_action_settings_title">Preferowana akcja \'otwórz\'</string>
     <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania zawartości - %s</string>
@@ -384,7 +382,8 @@
     <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, udostępniać i ulepszać je do woli. W szczególności możesz redystrybuować i/lub modyfikować go zgodnie z warunkami GNU General Public License opublikowanej przez Free Software Fundation w wersji 3, albo (według twojego wyboru) jakąkolwiek późniejszą wersją.</string>
     <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
     <string name="privacy_policy_title">Polityka prywatności NewPipe</string>
-    <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuję politykę prywatności. Aplikacja nie zbiera żadnych danych bez Twojej zgody. Polityka prywatności programu NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, kiedy wysyłasz raport o błędach aplikacji.</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuje Twoją prywatność. Dlatego aplikacja nie gromadzi żadnych danych bez Twojej zgody.
+\nPolityka prywatności programu NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, kiedy wysyłasz raport o błędach aplikacji.</string>
     <string name="read_privacy_policy">Przeczytaj politykę prywatności</string>
     <string name="start_accept_privacy_policy">Ze względu na wprowadzenie Ogólnego Rozporządzenia o ochronie danych (RODO), chcielibyśmy zwrócić Twoją uwagę na politykę prywatności NewPipe. Proszę przeczytać ją uważnie.
 \nMusisz ją zaakceptować, aby przesyłać raporty o błędach.</string>
