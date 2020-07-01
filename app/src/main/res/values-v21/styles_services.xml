@@ -34,19 +34,19 @@
     <!-- PeerTube -->
     <style name="LightTheme.PeerTube" parent="LightTheme">
         <item name="colorPrimary">@color/light_peertube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_peertube_dark_color</item>
+        <item name="colorPrimaryDark">@color/light_peertube_statusbar_color</item>
         <item name="colorAccent">@color/light_peertube_accent_color</item>
     </style>
 
     <style name="DarkTheme.PeerTube" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_peertube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_peertube_dark_color</item>
+        <item name="colorPrimaryDark">@color/dark_peertube_statusbar_color</item>
         <item name="colorAccent">@color/dark_peertube_accent_color</item>
     </style>
 
     <style name="BlackTheme.PeerTube" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_peertube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_peertube_dark_color</item>
+        <item name="colorPrimaryDark">@color/dark_peertube_statusbar_color</item>
         <item name="colorAccent">@color/dark_peertube_accent_color</item>
     </style>
 
