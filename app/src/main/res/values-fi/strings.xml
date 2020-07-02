@@ -264,7 +264,7 @@
     <string name="auto_queue_summary">Jatka päättyvää (ei uudelleentoistettavaa) toistojonoa lisäämällä siihen aiheeseen liittyvä suoratoistosisältö</string>
     <string name="default_content_country_title">Sisällön oletusmaa</string>
     <string name="service_title">Palvelu</string>
-    <string name="settings_category_debug_title">"Virheenkorjaus "</string>
+    <string name="settings_category_debug_title">Virheenkorjaus</string>
     <string name="channels">Kanavat</string>
     <string name="playlists">Soittolistat</string>
     <string name="tracks">Ääniraidat</string>
@@ -306,7 +306,8 @@
     <string name="one_item_deleted">1 poistettu.</string>
     <string name="toast_no_player">Ohjelmaa tämän toistamiseen ei ole asennettu</string>
     <string name="privacy_policy_title">NewPipen tietosuojakäytäntö</string>
-    <string name="privacy_policy_encouragement">NewPipe ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi. NewPipen tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>
+    <string name="privacy_policy_encouragement">NewPipe ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi.
+\nNewPipen tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>
     <string name="read_privacy_policy">Lue tietosuojakäytäntö</string>
     <string name="auto_queue_title">Lisää ehdotettu suoratoistosisältö automaattisesti soittolistaan</string>
     <string name="no_streams_available_download">Suoratoistosisältöä ei saatavilla ladattavaksi</string>
@@ -378,8 +379,9 @@
 \n3. Kirjaudu sisään kysyttäessä.
 \n4. Kopioi se nettiosoite johon sinut ohjattiin.</string>
     <string name="import_soundcloud_instructions_hint">sinun käyttäjänimesi, soundcloud.com/&lt;sinun käyttäjänimesi&gt;</string>
-    <string name="import_network_expensive_warning">Ota huomioon että tämä operaatio voi käyttää paljon dataa.
-\nHaluatko jatkaa?</string>
+    <string name="import_network_expensive_warning">Ota huomioon että tämä operaatio voi käyttää paljon dataa. 
+\n
+\nHaluatko jatkaa\?</string>
     <string name="playback_speed_control">Toistonopeuden säätimet</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Sävelkorkeus</string>
@@ -387,7 +389,8 @@
     <string name="skip_silence_checkbox">Kelaa eteenpäin hiljaisissa kohdissa</string>
     <string name="playback_step">Askel</string>
     <string name="playback_reset">Nollaa</string>
-    <string name="start_accept_privacy_policy">Jotta olisimme kelpoisia EU:n uuden yleisen tietosuoja-asetuksen (GDPR) kannalta, meidän pitää muistuttaa sinua lukemaan NewPipen tietosuojakäytäntö. Lue se oikeasti. Sinun pitää myös hyväksyä se jotta voit lähettää virheraportin.</string>
+    <string name="start_accept_privacy_policy">Noudattaaksemme EU:n yleistä tietosuoja-asetusta (GDPR), meidän pitää muistuttaa sinua lukemaan NewPipen tietosuojakäytäntö. Lue se tarkkaan.
+\nSinun pitää myös hyväksyä se, jotta voit lähettää virheraportin.</string>
     <string name="accept">Hyväksy</string>
     <string name="decline">Hylkää</string>
     <string name="limit_data_usage_none_description">Ei rajaa</string>
