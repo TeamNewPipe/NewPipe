@@ -344,7 +344,7 @@
     <string name="enqueue_on_popup">नयाँ पपअपमा लामबद्ध</string>
     <string name="start_here_on_main">यहाँ प्ले सुरु</string>
     <string name="start_here_on_background">पृष्ठभूमिमा बजाउन सुरु गर्नुहोस</string>
-    <string name="start_here_on_popup">नयाँ पपअपमा बजाउन सुरु गर्नुहोस</string>
+    <string name="start_here_on_popup">पपअपमा बजाउन सुरु गर्नुहोस</string>
     <string name="drawer_open">ड्रअर खोल्नुहोस</string>
     <string name="drawer_close">ड्रअर बन्द</string>
     <string name="drawer_header_action_paceholder_text">यहाँ केही चाँडै प्रकट हुनेछ ;D</string>
@@ -591,4 +591,28 @@
         <item quantity="one">%d मिनेट</item>
         <item quantity="other">%d मिनेट</item>
     </plurals>
+    <string name="detail_sub_channel_thumbnail_view_description">च्यानल अवतार थम्बनेल</string>
+    <string name="remove_watched_popup_warning">भिडियोहरू जुन प्लेलिस्टमा थपिनु अघि र पछि हेरिएको थियो हटाइनेछ।
+\n…
+\n के तपाईँ निश्चित हुनुहुन्छ\? यो उल्ट्याउन सकिदैन!</string>
+    <string name="remove_watched_popup_title">हेरिएका भिडियोहरू हटाउने हो\?</string>
+    <string name="remove_watched">हेरिएको हटाउनुहोस्</string>
+    <string name="show_original_time_ago_summary">सेवाहरूबाट मूल पाठहरू स्ट्रिम वस्तुहरूमा देखिने छन्</string>
+    <string name="show_original_time_ago_title">आईटमहरूमा मूल समय पहिले देखाउनुहोस्</string>
+    <string name="infinite_videos">आनंत भिडियोहरू</string>
+    <string name="more_than_100_videos">१००+ भिडियोहरू</string>
+    <string name="artists">कलाकारहरू</string>
+    <string name="albums">एल्बमहरू</string>
+    <string name="songs">गित</string>
+    <string name="restricted_video">यो भिडियो उमेर प्रतिबन्धित छ।…
+\n…
+\nएदी तपैंलाई हेर्न परेमा, सेटिंगमा गई “उमेर प्रतिबन्धित समाग्री” सक्षम गर्नुहोस्।</string>
+    <string name="youtube_restricted_mode_enabled_title">यूट्यूब प्रतिबन्धित मोड</string>
+    <string name="video_detail_by">%s द्वरा</string>
+    <string name="channel_created_by">%s द्वरा सिर्जना गरिएको</string>
+    <string name="content_not_supported">यो सामग्री अझै NewPipeमा समर्थित छैन।
+\n…
+\n…
+\nआशा छ कि भविष्यको संस्करणमा समर्थित हुनेछ।</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">हो र आंशिक रूपमा हेरिएको भिडियोहरू</string>
 </resources>

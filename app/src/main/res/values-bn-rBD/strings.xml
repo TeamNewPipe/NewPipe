@@ -185,8 +185,15 @@
     <string name="download_thumbnail_title">থাম্বনেইল লোড করুন</string>
     <string name="download_thumbnail_summary">থাম্বনেইল প্রদর্শন বন্ধ করার মাধ্যমে, ডাটা এবং মেমোরি সংরক্ষণ করুন। অপশনটি‌ পরিবর্তনে ইন-মেমোরি এবং অন-ডিস্ক ইমেজ ক্যাশ উভয়ই মুছে যাবে।</string>
     <string name="thumbnail_cache_wipe_complete_notice">ছবির ক্যাশ মুছে ফেলা হয়েছে</string>
-    <string name="metadata_cache_wipe_summary">ওয়েবপৃষ্ঠার সকল ক্যাশড তথ্য মুছুন</string>
-    <string name="metadata_cache_wipe_title">ক্যাশড মেটাডেটা মুছুন</string>
+    <string name="metadata_cache_wipe_summary">সব ক্যাশড ওয়েবপেজ ডেটা মুছে ফেলো</string>
+    <string name="metadata_cache_wipe_title">ক্যাশ করা মেটাডেটা মুছো</string>
     <string name="metadata_cache_wipe_complete_notice">মেটাডেটা ক্যাশ মুছে ফেলা হয়েছে</string>
     <string name="auto_queue_title">পরবর্তী স্ট্রিম স্বয়ংক্রিয়ংভাবে সংযোজন করুন</string>
+    <string name="player_gesture_controls_title">প্লেয়ারের নিয়ন্ত্রণ সংকেত</string>
+    <string name="brightness_gesture_control_summary">প্লেয়ারের উজ্জ্বলতা নিয়ন্ত্রণ করতে সংকেত ব্যবহার করো</string>
+    <string name="brightness_gesture_control_title">উজ্জ্বলতার নিয়ন্ত্রণ সংকেত</string>
+    <string name="volume_gesture_control_summary">প্লেয়ারের ভলিউম নিয়ন্ত্রণ করতে সংকেত ব্যবহার করো</string>
+    <string name="volume_gesture_control_title">ভলিউম সংকেত নিয়ন্ত্রণ</string>
+    <string name="missions_header_finished">সম্পূর্ণ</string>
+    <string name="list">তালিকা</string>
 </resources>

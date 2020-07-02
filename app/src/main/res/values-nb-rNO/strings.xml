@@ -582,4 +582,9 @@
     <string name="artists">Artister</string>
     <string name="albums">Album</string>
     <string name="songs">Sanger</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, og delvist sette videoer</string>
+    <string name="remove_watched_popup_title">Fjern sette videoer\?</string>
+    <string name="remove_watched">Fjern sette</string>
+    <string name="channel_created_by">Opprettet av %s</string>
+    <string name="video_detail_by">Av %s</string>
 </resources>
