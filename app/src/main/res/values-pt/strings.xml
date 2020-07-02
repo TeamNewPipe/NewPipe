@@ -232,7 +232,7 @@
     <string name="play_queue_audio_settings">Definições de áudio</string>
     <string name="start_here_on_main">Iniciar reprodução aqui</string>
     <string name="start_here_on_background">Iniciar reprodução em segundo plano</string>
-    <string name="start_here_on_popup">Iniciar reprodução numa nova janela</string>
+    <string name="start_here_on_popup">Iniciar reprodução num popup</string>
     <string name="show_info">Mostrar informação</string>
     <string name="tab_bookmarks">Listas de reprodução favoritas</string>
     <string name="service_title">Serviço</string>
@@ -369,7 +369,7 @@
     <string name="import_settings">Também deseja importar as definições\?</string>
     <string name="hold_to_append">Toque longo para enfileirar</string>
     <string name="enqueue_on_background">Colocar em fila em segundo plano</string>
-    <string name="enqueue_on_popup">Colocar em fila num nova janela</string>
+    <string name="enqueue_on_popup">Pôr na fila num popup</string>
     <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Ação predefinida ao abrir o conteúdo — %s</string>
     <string name="set_as_playlist_thumbnail">Definir como Miniatura da Lista de Reprodução</string>
