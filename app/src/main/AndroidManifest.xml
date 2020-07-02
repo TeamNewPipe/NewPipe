@@ -242,17 +242,19 @@
                 <data android:host="dev.invidio.us" />
                 <data android:host="www.invidio.us" />
                 <data android:host="invidious.snopyta.org" />
-                <data android:host="de.invidious.snopyta.org" />
                 <data android:host="fi.invidious.snopyta.org" />
-                <data android:host="vid.wxzm.sx" />
-                <data android:host="invidious.kabi.tk" />
-                <data android:host="invidiou.sh" />
-                <data android:host="www.invidiou.sh" />
-                <data android:host="no.invidiou.sh" />
-                <data android:host="invidious.enkirton.net" />
-                <data android:host="tube.poal.co" />
+                <data android:host="yewtu.be" />
+                <data android:host="invidious.ggc-project.de" />
+                <data android:host="yt.maisputain.ovh" />
                 <data android:host="invidious.13ad.de" />
-                <data android:host="yt.elukerio.org" />
+                <data android:host="invidious.toot.koeln" />
+                <data android:host="invidious.fdn.fr" />
+                <data android:host="watch.nettohikari.com" />
+                <data android:host="invidious.snwmds.net" />
+                <data android:host="invidious.snwmds.org" />
+                <data android:host="invidious.snwmds.com" />
+                <data android:host="invidious.sunsetravens.com" />
+                <data android:host="invidious.gachirangers.com" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
