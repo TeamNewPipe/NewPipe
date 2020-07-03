@@ -408,15 +408,18 @@ public class WebMWriter implements Closeable {
         }
     }
 
-    private long makeCluster(final SharpStream stream, final long timecode, final long offset,
+    private long makeCluster(final SharpStream stream, final long timecode, final long offsetStart,
                              final boolean create) throws IOException {
         ClusterInfo cluster;
+        long offset = offsetStart;
 
         if (offset > 0) {
             // save the size of the previous cluster (maximum 256 MiB)
             cluster = clustersOffsetsSizes.get(clustersOffsetsSizes.size() - 1);
             cluster.size = (int) (written - offset - CLUSTER_HEADER_SIZE);
         }
+
+        offset = written;
 
         if (create) {
             /* cluster */
@@ -435,11 +438,11 @@ public class WebMWriter implements Closeable {
             dump(encode(timecode, true), stream);
         }
 
-        return written;
+        return offset;
     }
 
     private void makeEBML(final SharpStream stream) throws IOException {
-        // deafult values
+        // default values
         dump(new byte[]{
                 0x1A, 0x45, (byte) 0xDF, (byte) 0xA3, 0x01, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x1F, 0x42, (byte) 0x86, (byte) 0x81, 0x01,
