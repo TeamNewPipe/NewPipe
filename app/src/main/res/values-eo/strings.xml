@@ -24,8 +24,6 @@
     <string name="dark_theme_title">Malluma</string>
     <string name="light_theme_title">Luma</string>
     <string name="black_theme_title">Nigra</string>
-    <string name="device_dark_theme_title">Etoson (Malluma)</string>
-    <string name="device_black_theme_title">Etoson de la aparato (Nigra)</string>
     <string name="download_dialog_title">Elŝuti</string>
     <string name="unsupported_url">Ligilo ne subtenita</string>
     <string name="content_language_title">Preferata enhavlingvo</string>
@@ -581,4 +579,6 @@
     <string name="artists">Artistoj</string>
     <string name="albums">Albumoj</string>
     <string name="songs">Kantoj</string>
+    <string name="follow_device_theme_title">Sekvi la etoson de la aparato</string>
+    <string name="follow_device_theme_summary">La apo sekvos la etoson de la aparato. Ĝi povus malfunkcii se via Android versiono malsupras Android 10.</string>
 </resources>

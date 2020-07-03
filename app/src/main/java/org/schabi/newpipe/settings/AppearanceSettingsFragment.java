@@ -1,5 +1,6 @@
 package org.schabi.newpipe.settings;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
@@ -38,6 +39,20 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
             return false;
         }
     };
+    private final Preference.OnPreferenceChangeListener deviceThemePreferenceChange
+            = new Preference.OnPreferenceChangeListener() {
+        @Override
+        public boolean onPreferenceChange(final Preference preference, final Object newValue) {
+            defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
+
+            final Activity activity = getActivity();
+            if (activity != null) {
+                activity.recreate();
+            }
+
+            return true;
+        }
+    };
     private String captionSettingsKey;
 
     @Override
@@ -47,6 +62,9 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         startThemeKey = defaultPreferences
                 .getString(themeKey, getString(R.string.default_theme_value));
         findPreference(themeKey).setOnPreferenceChangeListener(themePreferenceChange);
+
+        findPreference(getString(R.string.use_device_theme_key))
+                .setOnPreferenceChangeListener(deviceThemePreferenceChange);
 
         captionSettingsKey = getString(R.string.caption_settings_key);
         if (!CAPTIONING_SETTINGS_ACCESSIBLE) {

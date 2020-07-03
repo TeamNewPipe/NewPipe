@@ -77,9 +77,7 @@ public final class ThemeHelper {
         final Resources res = context.getResources();
 
         return selectedThemeString.equals(res.getString(R.string.light_theme_key))
-                || (selectedThemeString.equals(res.getString(R.string.device_dark_theme_key))
-                || selectedThemeString.equals(res.getString(R.string.device_black_theme_key))
-                && !isDeviceDarkThemeEnabled(context));
+                || (shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context));
     }
 
 
@@ -142,8 +140,6 @@ public final class ThemeHelper {
         final String lightTheme = res.getString(R.string.light_theme_key);
         final String darkTheme = res.getString(R.string.dark_theme_key);
         final String blackTheme = res.getString(R.string.black_theme_key);
-        final String deviceDarkTheme = res.getString(R.string.device_dark_theme_key);
-        final String deviceBlackTheme = res.getString(R.string.device_black_theme_key);
 
         final String selectedTheme = getSelectedThemeString(context);
 
@@ -151,19 +147,11 @@ public final class ThemeHelper {
         if (selectedTheme.equals(lightTheme)) {
             defaultTheme = R.style.LightTheme;
         } else if (selectedTheme.equals(blackTheme)) {
-            defaultTheme = R.style.BlackTheme;
-        } else if (selectedTheme.equals(deviceDarkTheme)) {
-            if (isDeviceDarkThemeEnabled(context)) {
-                defaultTheme = R.style.DarkTheme;
-            } else {
-                defaultTheme = R.style.LightTheme;
-            }
-        } else if (selectedTheme.equals(deviceBlackTheme)) {
-            if (isDeviceDarkThemeEnabled(context)) {
-                defaultTheme = R.style.BlackTheme;
-            } else {
-                defaultTheme = R.style.LightTheme;
-            }
+            defaultTheme = shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context)
+                    ? R.style.LightTheme : R.style.BlackTheme;
+        } else if (selectedTheme.equals(darkTheme)) {
+            defaultTheme = shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context)
+                    ? R.style.LightTheme : R.style.DarkTheme;
         }
 
         if (serviceId <= -1) {
@@ -202,29 +190,17 @@ public final class ThemeHelper {
         final String lightTheme = res.getString(R.string.light_theme_key);
         final String darkTheme = res.getString(R.string.dark_theme_key);
         final String blackTheme = res.getString(R.string.black_theme_key);
-        final String deviceDarkTheme = res.getString(R.string.device_dark_theme_key);
-        final String deviceBlackTheme = res.getString(R.string.device_black_theme_key);
 
         final String selectedTheme = getSelectedThemeString(context);
 
         if (selectedTheme.equals(lightTheme)) {
             return R.style.LightSettingsTheme;
         } else if (selectedTheme.equals(blackTheme)) {
-            return R.style.BlackSettingsTheme;
+            return shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context)
+                    ? R.style.LightSettingsTheme : R.style.BlackSettingsTheme;
         } else if (selectedTheme.equals(darkTheme)) {
-            return R.style.DarkSettingsTheme;
-        } else if (selectedTheme.equals(deviceDarkTheme)) {
-            if (isDeviceDarkThemeEnabled(context)) {
-                return R.style.DarkSettingsTheme;
-            } else {
-                return R.style.LightSettingsTheme;
-            }
-        } else if (selectedTheme.equals(deviceBlackTheme)) {
-            if (isDeviceDarkThemeEnabled(context)) {
-                return R.style.BlackSettingsTheme;
-            } else {
-                return R.style.LightSettingsTheme;
-            }
+            return shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context)
+                    ? R.style.LightSettingsTheme : R.style.DarkSettingsTheme;
         } else {
             // Fallback
             return R.style.DarkSettingsTheme;
@@ -297,8 +273,8 @@ public final class ThemeHelper {
      * @param context the context to use
      * @return true:dark theme, false:light or unknown
      */
-    private static boolean isDeviceDarkThemeEnabled(final Context context) {
-        int deviceTheme = context.getResources().getConfiguration().uiMode
+    public static boolean isDeviceDarkThemeEnabled(final Context context) {
+        final int deviceTheme = context.getResources().getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK;
         switch (deviceTheme) {
             case Configuration.UI_MODE_NIGHT_YES:
@@ -309,5 +285,16 @@ public final class ThemeHelper {
             default:
                 return false;
         }
+    }
+
+    /**
+     * Tells if the user wants the theme to follow the device theme.
+     *
+     * @param context the context to use
+     * @return whether the user wants the theme to follow the device's theme
+     */
+    public static boolean shouldFollowDeviceTheme(final Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.use_device_theme_key), false);
     }
 }
