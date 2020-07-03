@@ -604,4 +604,5 @@
     <string name="show_original_time_ago_summary">来自服务的原始文本将在流项目中可见</string>
     <string name="show_original_time_ago_title">在项目上显示原始时间</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube受限模式</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">仅显示未分组订阅</string>
 </resources>
