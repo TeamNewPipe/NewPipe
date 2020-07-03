@@ -151,7 +151,7 @@ public class WebMWriter implements Closeable {
                 (byte) 0xac, (byte) 0x81, /*info offset*/ 0x43,
                 0x4d, (byte) 0xbb, (byte) 0x8b, 0x53, (byte) 0xab,
                 (byte) 0x84, 0x16, 0x54, (byte) 0xae, 0x6b, 0x53, (byte) 0xac, (byte) 0x81,
-                /*tracks offset*/ 0x6a,
+                /*tracks offset*/ 0x56,
                 0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1f,
                 0x43, (byte) 0xb6, 0x75, 0x53, (byte) 0xac, (byte) 0x84, /*cluster offset [2]*/ 0x00, 0x00, 0x00, 0x00,
                 0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1c, 0x53,
@@ -160,19 +160,11 @@ public class WebMWriter implements Closeable {
 
         /* info */
         listBuffer.add(new byte[]{
-                0x15, 0x49, (byte) 0xa9, 0x66, (byte) 0xa2, 0x2a, (byte) 0xd7, (byte) 0xb1
+                0x15, 0x49, (byte) 0xa9, 0x66, (byte) 0x8e, 0x2a, (byte) 0xd7, (byte) 0xb1
         });
         listBuffer.add(encode(DEFAULT_TIMECODE_SCALE, true)); // this value MUST NOT exceed 4 bytes
         listBuffer.add(new byte[]{0x44, (byte) 0x89, (byte) 0x84,
                 0x00, 0x00, 0x00, 0x00, // info.duration
-
-                /* MuxingApp */
-                0x4d, (byte) 0x80, (byte) 0x87, 0x4E,
-                0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
-
-                /* WritingApp */
-                0x57, 0x41, (byte) 0x87, 0x4E,
-                0x65, 0x77, 0x50, 0x69, 0x70, 0x65// "NewPipe" binary string
         });
 
         /* tracks */
@@ -416,7 +408,7 @@ public class WebMWriter implements Closeable {
         }
     }
 
-    private long makeCluster(final SharpStream stream, final long timecode, long offset,
+    private long makeCluster(final SharpStream stream, final long timecode, final long offset,
                              final boolean create) throws IOException {
         ClusterInfo cluster;
 
@@ -425,8 +417,6 @@ public class WebMWriter implements Closeable {
             cluster = clustersOffsetsSizes.get(clustersOffsetsSizes.size() - 1);
             cluster.size = (int) (written - offset - CLUSTER_HEADER_SIZE);
         }
-
-        offset = written;
 
         if (create) {
             /* cluster */
@@ -445,7 +435,7 @@ public class WebMWriter implements Closeable {
             dump(encode(timecode, true), stream);
         }
 
-        return offset;
+        return written;
     }
 
     private void makeEBML(final SharpStream stream) throws IOException {
@@ -588,8 +578,10 @@ public class WebMWriter implements Closeable {
         return lengthFor(buffer);
     }
 
-    private void makeEbmlVoid(final SharpStream out, int size, final boolean wipe)
+    private void makeEbmlVoid(final SharpStream out, final int amount, final boolean wipe)
             throws IOException {
+        int size = amount;
+
         /* ebml void */
         outByteBuffer.putShort(0, (short) 0xec20);
         outByteBuffer.putShort(2, (short) (size - 4));
