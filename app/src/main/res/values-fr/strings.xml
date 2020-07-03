@@ -613,4 +613,5 @@
     <string name="show_original_time_ago_summary">Les textes originaux des services vont être visibles dans les items</string>
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
     <string name="youtube_restricted_mode_enabled_title">Mode restreint de YouTube</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Afficher les abonnements sans groupes uniquement</string>
 </resources>
