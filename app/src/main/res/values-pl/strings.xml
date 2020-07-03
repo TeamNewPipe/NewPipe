@@ -623,4 +623,5 @@
     <string name="video_detail_by">Przez %s</string>
     <string name="channel_created_by">Utworzone przez %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura awatara kanału</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Pokaż tylko niezgrupowane subskrypcje</string>
 </resources>
