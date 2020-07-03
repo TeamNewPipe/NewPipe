@@ -587,4 +587,5 @@
     <string name="remove_watched">Fjern sette</string>
     <string name="channel_created_by">Opprettet av %s</string>
     <string name="video_detail_by">Av %s</string>
+    <string name="youtube_restricted_mode_enabled_title">Begrenset YouTube-modus</string>
 </resources>
