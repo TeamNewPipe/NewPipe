@@ -704,10 +704,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         return false;
     }
 
-    public void giveSearchEditTextFocus() {
-        showKeyboardSearch();
-    }
-
     private void initSuggestionObserver() {
         if (DEBUG) {
             Log.d(TAG, "initSuggestionObserver() called");
@@ -1000,7 +996,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     private void handleSearchSuggestion() {
-        if (!TextUtils.isEmpty(searchSuggestion)) {
+        if (TextUtils.isEmpty(searchSuggestion)) {
+            correctSuggestion.setVisibility(View.GONE);
+        } else {
             final String helperText = getString(isCorrectedSearch
                     ? R.string.search_showing_result_for
                     : R.string.did_you_mean);
@@ -1013,9 +1011,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 searchEditText.setText(searchSuggestion);
             });
 
+            correctSuggestion.setOnLongClickListener(v -> {
+                searchEditText.setText(searchSuggestion);
+                searchEditText.setSelection(searchSuggestion.length());
+                showKeyboardSearch();
+                return true;
+            });
+
             correctSuggestion.setVisibility(View.VISIBLE);
-        } else {
-            correctSuggestion.setVisibility(View.GONE);
         }
     }
 
