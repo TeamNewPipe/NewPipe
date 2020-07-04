@@ -29,7 +29,6 @@ import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.PlaylistItemsUtils;
 
 import java.util.List;
 import java.util.Vector;
@@ -84,12 +83,12 @@ public class SelectPlaylistFragment extends DialogFragment {
         recyclerView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
 
-        final AppDatabase database = NewPipeDatabase.getInstance(this.getContext());
+        final AppDatabase database = NewPipeDatabase.getInstance(requireContext());
         final LocalPlaylistManager localPlaylistManager = new LocalPlaylistManager(database);
         final RemotePlaylistManager remotePlaylistManager = new RemotePlaylistManager(database);
 
         playlistsSubscriber = Flowable.combineLatest(localPlaylistManager.getPlaylists(),
-                remotePlaylistManager.getPlaylists(), PlaylistItemsUtils::merge)
+                remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)
                 .subscribe(this::displayPlaylists, this::onError);
 
         return v;

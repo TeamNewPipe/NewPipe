@@ -29,7 +29,6 @@ import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
-import org.schabi.newpipe.util.PlaylistItemsUtils;
 
 import java.util.List;
 
@@ -138,7 +137,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         super.startLoading(forceLoad);
 
         Flowable.combineLatest(localPlaylistManager.getPlaylists(),
-                remotePlaylistManager.getPlaylists(), PlaylistItemsUtils::merge)
+                remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistsSubscriber());
