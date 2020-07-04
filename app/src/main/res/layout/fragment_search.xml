@@ -6,31 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/correct_suggestion_panel"
+    <TextView
+        android:id="@+id/correct_suggestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/error_panel"
-        android:layout_marginTop="0dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/correct_suggestion_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:textColor="@color/background_title_color"
-            android:textSize="@dimen/search_suggestion_text_size" />
-    </LinearLayout>
+        android:background="?attr/selectableItemBackground"
+        android:padding="10dp"
+        android:textColor="@color/background_title_color"
+        android:textSize="@dimen/search_suggestion_text_size"
+        tools:text="Showing results for lorem ipsum dolor sit amet consectetur adipisci elit" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/correct_suggestion_panel"
+        android:layout_below="@+id/correct_suggestion"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/list_stream_item" />

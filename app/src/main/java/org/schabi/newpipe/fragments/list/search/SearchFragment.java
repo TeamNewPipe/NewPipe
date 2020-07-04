@@ -149,8 +149,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private EditText searchEditText;
     private View searchClear;
 
-    private View correctSuggestionPanel;
-    private TextView correctSuggestionText;
+    private TextView correctSuggestion;
 
     private View suggestionsPanel;
     private RecyclerView suggestionsRecyclerView;
@@ -357,8 +356,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
         searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
 
-        correctSuggestionPanel = rootView.findViewById(R.id.correct_suggestion_panel);
-        correctSuggestionText = rootView.findViewById(R.id.correct_suggestion_text);
+        correctSuggestion = rootView.findViewById(R.id.correct_suggestion);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -511,7 +509,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 return;
             }
 
-            correctSuggestionPanel.setVisibility(View.GONE);
+            correctSuggestion.setVisibility(View.GONE);
 
             searchEditText.setText("");
             suggestionListAdapter.setItems(new ArrayList<>());
@@ -1007,17 +1005,17 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     ? R.string.search_showing_result_for
                     : R.string.did_you_mean);
 
-            correctSuggestionText.setText(String.format(helperText, searchSuggestion));
+            correctSuggestion.setText(String.format(helperText, searchSuggestion));
 
-            correctSuggestionPanel.setOnClickListener(v -> {
-                correctSuggestionPanel.setVisibility(View.GONE);
+            correctSuggestion.setOnClickListener(v -> {
+                correctSuggestion.setVisibility(View.GONE);
                 search(searchSuggestion, contentFilter, sortFilter);
                 searchEditText.setText(searchSuggestion);
             });
 
-            correctSuggestionPanel.setVisibility(View.VISIBLE);
+            correctSuggestion.setVisibility(View.VISIBLE);
         } else {
-            correctSuggestionPanel.setVisibility(View.GONE);
+            correctSuggestion.setVisibility(View.GONE);
         }
     }
 
