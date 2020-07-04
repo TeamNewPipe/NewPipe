@@ -613,4 +613,5 @@
     <string name="video_detail_by">%s tarafından</string>
     <string name="channel_created_by">%s tarafından oluşturuldu</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar küçük resmi</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Yalnızca kümelenmemiş abonelikleri göster</string>
 </resources>
