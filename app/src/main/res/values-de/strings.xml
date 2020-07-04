@@ -613,4 +613,5 @@
     <string name="detail_sub_channel_thumbnail_view_description">Avatarbild des Kanals</string>
     <string name="channel_created_by">Erstellt von %s</string>
     <string name="video_detail_by">Von %s</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Nur nicht gruppierte Abonnements anzeigen</string>
 </resources>
