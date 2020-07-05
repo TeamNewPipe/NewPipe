@@ -616,7 +616,6 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             PlayerGestureListener listener = new PlayerGestureListener();
             gestureDetector = new GestureDetector(context, listener);
-            gestureDetector.setIsLongpressEnabled(false);
             getRootView().setOnTouchListener(listener);
 
             queueButton.setOnClickListener(this);
@@ -1267,7 +1266,8 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
 
-        private boolean isMoving;
+        private boolean isMoving = false;
+        private boolean onUpHideControls = false;
 
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
@@ -1315,12 +1315,26 @@ public final class MainVideoPlayer extends AppCompatActivity
                 Log.d(TAG, "onDown() called with: e = [" + e + "]");
             }
 
+            if (playerImpl.isControlsVisible()) {
+                // prevent controls from hiding if the user is touching the screen
+                playerImpl.getControlsVisibilityHandler().removeCallbacksAndMessages(null);
+            }
             return super.onDown(e);
+        }
+
+        @Override
+        public void onLongPress(final MotionEvent e) {
+            if (DEBUG) {
+                Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
+            }
+
+            onUpHideControls = true;
         }
 
         @Override
         public boolean onScroll(final MotionEvent initialEvent, final MotionEvent movingEvent,
                                 final float distanceX, final float distanceY) {
+            onUpHideControls = true;
             if (!isVolumeGestureEnabled && !isBrightnessGestureEnabled) {
                 return false;
             }
@@ -1449,10 +1463,6 @@ public final class MainVideoPlayer extends AppCompatActivity
                 animateView(playerImpl.getBrightnessRelativeLayout(), SCALE_AND_ALPHA, false,
                         200, 200);
             }
-
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
-                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-            }
         }
 
         @Override
@@ -1461,9 +1471,22 @@ public final class MainVideoPlayer extends AppCompatActivity
 //                Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
 //            }
             gestureDetector.onTouchEvent(event);
-            if (event.getAction() == MotionEvent.ACTION_UP && isMoving) {
-                isMoving = false;
-                onScrollEnd();
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (isMoving) {
+                    isMoving = false;
+                    onScrollEnd();
+                }
+                if (onUpHideControls) {
+                    onUpHideControls = false;
+                    if (playerImpl.isControlsVisible()) {
+                        if (playerImpl.getCurrentState() == STATE_PLAYING) {
+                            playerImpl.hideControls(DEFAULT_CONTROLS_DURATION,
+                                    DEFAULT_CONTROLS_HIDE_TIME);
+                        }
+                    } else {
+                        playerImpl.showControls(DEFAULT_CONTROLS_DURATION);
+                    }
+                }
             }
             return true;
         }

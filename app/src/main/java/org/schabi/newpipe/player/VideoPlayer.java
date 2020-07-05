@@ -973,8 +973,8 @@ public abstract class VideoPlayer extends BasePlayer
                 ? DEFAULT_CONTROLS_HIDE_TIME
                 : DPAD_CONTROLS_HIDE_TIME;
 
-        animateView(controlsRoot, true, DEFAULT_CONTROLS_DURATION, 0,
-                () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));
+        animateView(controlsRoot, true, DEFAULT_CONTROLS_DURATION);
+        hideControls(DEFAULT_CONTROLS_DURATION, hideTime + DEFAULT_CONTROLS_DURATION);
     }
 
     public void showControls(final long duration) {
