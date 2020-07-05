@@ -34,6 +34,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SelectChannelFragment;
 import org.schabi.newpipe.settings.SelectKioskFragment;
+import org.schabi.newpipe.settings.SelectPlaylistFragment;
 import org.schabi.newpipe.settings.tabs.AddTabDialog.ChooseTabListItem;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -48,7 +49,7 @@ public class ChooseTabsFragment extends Fragment {
 
     private TabsManager tabsManager;
 
-    private List<Tab> tabList = new ArrayList<>();
+    private final List<Tab> tabList = new ArrayList<>();
     private ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -78,10 +79,10 @@ public class ChooseTabsFragment extends Fragment {
 
         initButton(rootView);
 
-        RecyclerView listSelectedTabs = rootView.findViewById(R.id.selectedTabs);
+        final RecyclerView listSelectedTabs = rootView.findViewById(R.id.selectedTabs);
         listSelectedTabs.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+        final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(listSelectedTabs);
 
         selectedTabsAdapter = new SelectedTabsAdapter(requireContext(), itemTouchHelper);
@@ -138,7 +139,7 @@ public class ChooseTabsFragment extends Fragment {
 
     private void updateTitle() {
         if (getActivity() instanceof AppCompatActivity) {
-            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setTitle(R.string.main_page_content);
             }
@@ -201,15 +202,32 @@ public class ChooseTabsFragment extends Fragment {
         switch (type) {
             case KIOSK:
                 SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
-                selectKioskFragment.setOnSelectedLisener((serviceId, kioskId, kioskName) ->
+                selectKioskFragment.setOnSelectedListener((serviceId, kioskId, kioskName) ->
                         addTab(new Tab.KioskTab(serviceId, kioskId)));
                 selectKioskFragment.show(requireFragmentManager(), "select_kiosk");
                 return;
             case CHANNEL:
                 SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
-                selectChannelFragment.setOnSelectedLisener((serviceId, url, name) ->
+                selectChannelFragment.setOnSelectedListener((serviceId, url, name) ->
                         addTab(new Tab.ChannelTab(serviceId, url, name)));
                 selectChannelFragment.show(requireFragmentManager(), "select_channel");
+                return;
+            case PLAYLIST:
+                SelectPlaylistFragment selectPlaylistFragment = new SelectPlaylistFragment();
+                selectPlaylistFragment.setOnSelectedListener(
+                        new SelectPlaylistFragment.OnSelectedListener() {
+                            @Override
+                            public void onLocalPlaylistSelected(final long id, final String name) {
+                                addTab(new Tab.PlaylistTab(id, name));
+                            }
+
+                            @Override
+                            public void onRemotePlaylistSelected(
+                                    final int serviceId, final String url, final String name) {
+                                addTab(new Tab.PlaylistTab(serviceId, url, name));
+                            }
+                        });
+                selectPlaylistFragment.show(requireFragmentManager(), "select_playlist");
                 return;
             default:
                 addTab(type.getTab());
@@ -247,6 +265,11 @@ public class ChooseTabsFragment extends Fragment {
                                 ThemeHelper.resolveResourceIdFromAttr(context,
                                         R.attr.ic_kiosk_hot)));
                     }
+                    break;
+                case PLAYLIST:
+                    returnList.add(new ChooseTabListItem(tab.getTabId(),
+                            getString(R.string.playlist_page_summary),
+                            tab.getTabIconRes(context)));
                     break;
                 default:
                     if (!tabList.contains(tab)) {
@@ -337,7 +360,7 @@ public class ChooseTabsFragment extends Fragment {
         @Override
         public ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder onCreateViewHolder(
                 @NonNull final ViewGroup parent, final int viewType) {
-            View view = inflater.inflate(R.layout.list_choose_tabs, parent, false);
+            final View view = inflater.inflate(R.layout.list_choose_tabs, parent, false);
             return new ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder(view);
         }
 
@@ -392,6 +415,13 @@ public class ChooseTabsFragment extends Fragment {
                     case CHANNEL:
                         tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab)
                                 .getChannelServiceId()) + "/" + tab.getTabName(requireContext());
+                        break;
+                    case PLAYLIST:
+                        final int serviceId = ((Tab.PlaylistTab) tab).getPlaylistServiceId();
+                        final String serviceName = serviceId == -1
+                                ? getString(R.string.local)
+                                : NewPipe.getNameOfService(serviceId);
+                        tabName = serviceName + "/" + tab.getTabName(requireContext());
                         break;
                     default:
                         tabName = tab.getTabName(requireContext());

@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,44 +18,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.subscription.SubscriptionEntity;
-import org.schabi.newpipe.local.subscription.SubscriptionManager;
+import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
+import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
+import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
+import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 import java.util.Vector;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.Flowable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
-/**
- * Created by Christian Schabesberger on 26.09.17.
- * SelectChannelFragment.java is part of NewPipe.
- * <p>
- * NewPipe is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * </p>
- * <p>
- * NewPipe is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * </p>
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
- * </p>
- */
-
-public class SelectChannelFragment extends DialogFragment {
+public class SelectPlaylistFragment extends DialogFragment {
     /**
      * This contains the base display options for images.
      */
@@ -70,8 +51,9 @@ public class SelectChannelFragment extends DialogFragment {
     private ProgressBar progressBar;
     private TextView emptyView;
     private RecyclerView recyclerView;
+    private Disposable playlistsSubscriber;
 
-    private List<SubscriptionEntity> subscriptions = new Vector<>();
+    private List<PlaylistLocalItem> playlists = new Vector<>();
 
     public void setOnSelectedListener(final OnSelectedListener listener) {
         onSelectedListener = listener;
@@ -82,23 +64,18 @@ public class SelectChannelFragment extends DialogFragment {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Init
+    // Fragment's Lifecycle
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_TITLE, ThemeHelper.getMinWidthDialogTheme(requireContext()));
-    }
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.select_channel_fragment, container, false);
+        final View v =
+                inflater.inflate(R.layout.select_playlist_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        SelectChannelAdapter channelAdapter = new SelectChannelAdapter();
-        recyclerView.setAdapter(channelAdapter);
+        SelectPlaylistAdapter playlistAdapter = new SelectPlaylistAdapter();
+        recyclerView.setAdapter(playlistAdapter);
 
         progressBar = v.findViewById(R.id.progressBar);
         emptyView = v.findViewById(R.id.empty_state_view);
@@ -106,14 +83,25 @@ public class SelectChannelFragment extends DialogFragment {
         recyclerView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
 
+        final AppDatabase database = NewPipeDatabase.getInstance(requireContext());
+        final LocalPlaylistManager localPlaylistManager = new LocalPlaylistManager(database);
+        final RemotePlaylistManager remotePlaylistManager = new RemotePlaylistManager(database);
 
-        SubscriptionManager subscriptionManager = new SubscriptionManager(getContext());
-        subscriptionManager.subscriptions().toObservable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getSubscriptionObserver());
+        playlistsSubscriber = Flowable.combineLatest(localPlaylistManager.getPlaylists(),
+                remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)
+                .subscribe(this::displayPlaylists, this::onError);
 
         return v;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (playlistsSubscriber != null) {
+            playlistsSubscriber.dispose();
+            playlistsSubscriber = null;
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -130,9 +118,18 @@ public class SelectChannelFragment extends DialogFragment {
 
     private void clickedItem(final int position) {
         if (onSelectedListener != null) {
-            SubscriptionEntity entry = subscriptions.get(position);
-            onSelectedListener
-                    .onChannelSelected(entry.getServiceId(), entry.getUrl(), entry.getName());
+            final LocalItem selectedItem = playlists.get(position);
+
+            if (selectedItem instanceof PlaylistMetadataEntry) {
+                final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
+                onSelectedListener
+                        .onLocalPlaylistSelected(entry.uid, entry.name);
+
+            } else if (selectedItem instanceof PlaylistRemoteEntity) {
+                final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
+                onSelectedListener.onRemotePlaylistSelected(
+                        entry.getServiceId(), entry.getUrl(), entry.getName());
+            }
         }
         dismiss();
     }
@@ -141,35 +138,15 @@ public class SelectChannelFragment extends DialogFragment {
     // Item handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void displayChannels(final List<SubscriptionEntity> newSubscriptions) {
-        this.subscriptions = newSubscriptions;
+    private void displayPlaylists(final List<PlaylistLocalItem> newPlaylists) {
+        this.playlists = newPlaylists;
         progressBar.setVisibility(View.GONE);
-        if (newSubscriptions.isEmpty()) {
+        if (newPlaylists.isEmpty()) {
             emptyView.setVisibility(View.VISIBLE);
             return;
         }
         recyclerView.setVisibility(View.VISIBLE);
 
-    }
-
-    private Observer<List<SubscriptionEntity>> getSubscriptionObserver() {
-        return new Observer<List<SubscriptionEntity>>() {
-            @Override
-            public void onSubscribe(final Disposable d) { }
-
-            @Override
-            public void onNext(final List<SubscriptionEntity> newSubscriptions) {
-                displayChannels(newSubscriptions);
-            }
-
-            @Override
-            public void onError(final Throwable exception) {
-                SelectChannelFragment.this.onError(exception);
-            }
-
-            @Override
-            public void onComplete() { }
-        };
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -187,47 +164,57 @@ public class SelectChannelFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     public interface OnSelectedListener {
-        void onChannelSelected(int serviceId, String url, String name);
+        void onLocalPlaylistSelected(long id, String name);
+        void onRemotePlaylistSelected(int serviceId, String url, String name);
     }
 
     public interface OnCancelListener {
         void onCancel();
     }
 
-    private class SelectChannelAdapter
-            extends RecyclerView.Adapter<SelectChannelAdapter.SelectChannelItemHolder> {
+    private class SelectPlaylistAdapter
+            extends RecyclerView.Adapter<SelectPlaylistAdapter.SelectPlaylistItemHolder> {
         @Override
-        public SelectChannelItemHolder onCreateViewHolder(final ViewGroup parent,
+        public SelectPlaylistItemHolder onCreateViewHolder(final ViewGroup parent,
                                                           final int viewType) {
-            View item = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.select_channel_item, parent, false);
-            return new SelectChannelItemHolder(item);
+            final View item = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_playlist_mini_item, parent, false);
+            return new SelectPlaylistItemHolder(item);
         }
 
         @Override
-        public void onBindViewHolder(final SelectChannelItemHolder holder, final int position) {
-            SubscriptionEntity entry = subscriptions.get(position);
-            holder.titleView.setText(entry.getName());
-            holder.view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    clickedItem(position);
-                }
-            });
-            imageLoader.displayImage(entry.getAvatarUrl(), holder.thumbnailView,
-                    DISPLAY_IMAGE_OPTIONS);
+        public void onBindViewHolder(final SelectPlaylistItemHolder holder, final int position) {
+            final PlaylistLocalItem selectedItem = playlists.get(position);
+
+            if (selectedItem instanceof PlaylistMetadataEntry) {
+                final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
+
+                holder.titleView.setText(entry.name);
+                holder.view.setOnClickListener(view -> clickedItem(position));
+                imageLoader.displayImage(entry.thumbnailUrl, holder.thumbnailView,
+                        DISPLAY_IMAGE_OPTIONS);
+
+            } else if (selectedItem instanceof PlaylistRemoteEntity) {
+                final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
+
+                holder.titleView.setText(entry.getName());
+                holder.view.setOnClickListener(view -> clickedItem(position));
+                imageLoader.displayImage(entry.getThumbnailUrl(), holder.thumbnailView,
+                        DISPLAY_IMAGE_OPTIONS);
+            }
         }
 
         @Override
         public int getItemCount() {
-            return subscriptions.size();
+            return playlists.size();
         }
 
-        public class SelectChannelItemHolder extends RecyclerView.ViewHolder {
+        public class SelectPlaylistItemHolder extends RecyclerView.ViewHolder {
             public final View view;
-            final CircleImageView thumbnailView;
+            final ImageView thumbnailView;
             final TextView titleView;
-            SelectChannelItemHolder(final View v) {
+
+            SelectPlaylistItemHolder(final View v) {
                 super(v);
                 this.view = v;
                 thumbnailView = v.findViewById(R.id.itemThumbnailView);
