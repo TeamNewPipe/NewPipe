@@ -321,6 +321,7 @@
                 <data android:host="peertube.fr" />
                 <data android:host="peertube.live" />
                 <data android:host="peertube.video" />
+                <data android:host="tube.privacytools.io" />
                 <data android:host="video.ploud.fr" />
                 <data android:host="video.lqdn.fr" />
                 <data android:host="skeptikon.fr" />
