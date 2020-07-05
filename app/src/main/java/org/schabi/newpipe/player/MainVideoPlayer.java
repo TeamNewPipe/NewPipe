@@ -1267,7 +1267,8 @@ public final class MainVideoPlayer extends AppCompatActivity
         private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
 
         private boolean isMoving = false;
-        private boolean onUpHideControls = false;
+        private boolean wereControlsShownBeforeMoving = false;
+        private boolean onUpSetControlsCooldown = false;
 
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
@@ -1299,10 +1300,14 @@ public final class MainVideoPlayer extends AppCompatActivity
             }
 
             if (playerImpl.isControlsVisible()) {
-                playerImpl.hideControls(150, 0);
+                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, 0);
             } else {
                 playerImpl.playPauseButton.requestFocus();
-                playerImpl.showControlsThenHide();
+                if (playerImpl.getCurrentState() == STATE_PLAYING) {
+                    playerImpl.showControlsThenHide();
+                } else {
+                    playerImpl.showControls(DEFAULT_CONTROLS_DURATION);
+                }
                 showSystemUi();
             }
 
@@ -1328,13 +1333,13 @@ public final class MainVideoPlayer extends AppCompatActivity
                 Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
             }
 
-            onUpHideControls = true;
+            onUpSetControlsCooldown = true;
         }
 
         @Override
         public boolean onScroll(final MotionEvent initialEvent, final MotionEvent movingEvent,
                                 final float distanceX, final float distanceY) {
-            onUpHideControls = true;
+            onUpSetControlsCooldown = true;
             if (!isVolumeGestureEnabled && !isBrightnessGestureEnabled) {
                 return false;
             }
@@ -1476,15 +1481,20 @@ public final class MainVideoPlayer extends AppCompatActivity
                     isMoving = false;
                     onScrollEnd();
                 }
-                if (onUpHideControls) {
-                    onUpHideControls = false;
+
+                if (onUpSetControlsCooldown) {
+                    onUpSetControlsCooldown = false;
                     if (playerImpl.isControlsVisible()) {
                         if (playerImpl.getCurrentState() == STATE_PLAYING) {
                             playerImpl.hideControls(DEFAULT_CONTROLS_DURATION,
                                     DEFAULT_CONTROLS_HIDE_TIME);
                         }
                     } else {
-                        playerImpl.showControls(DEFAULT_CONTROLS_DURATION);
+                        if (playerImpl.getCurrentState() == STATE_PLAYING) {
+                            playerImpl.showControlsThenHide();
+                        } else {
+                            playerImpl.showControls(DEFAULT_CONTROLS_DURATION);
+                        }
                     }
                 }
             }
