@@ -464,16 +464,16 @@ public class Mp4FromDashWriter {
     }
 
     private void initChunkTables(final TablesInfo tables, final int firstCount,
-                                 final int succesiveCount) {
+                                 final int successiveCount) {
         // tables.stsz holds amount of samples of the track (total)
         int totalSamples = (tables.stsz - firstCount);
-        float chunkAmount = totalSamples / (float) succesiveCount;
+        float chunkAmount = totalSamples / (float) successiveCount;
         int remainChunkOffset = (int) Math.ceil(chunkAmount);
         boolean remain = remainChunkOffset != (int) chunkAmount;
         int index = 0;
 
         tables.stsc = 1;
-        if (firstCount != succesiveCount) {
+        if (firstCount != successiveCount) {
             tables.stsc++;
         }
         if (remain) {
@@ -488,15 +488,15 @@ public class Mp4FromDashWriter {
         tables.stscBEntries[index++] = firstCount;
         tables.stscBEntries[index++] = 1;
 
-        if (firstCount != succesiveCount) {
+        if (firstCount != successiveCount) {
             tables.stscBEntries[index++] = 2;
-            tables.stscBEntries[index++] = succesiveCount;
+            tables.stscBEntries[index++] = successiveCount;
             tables.stscBEntries[index++] = 1;
         }
 
         if (remain) {
             tables.stscBEntries[index++] = remainChunkOffset + 1;
-            tables.stscBEntries[index++] = totalSamples % succesiveCount;
+            tables.stscBEntries[index++] = totalSamples % successiveCount;
             tables.stscBEntries[index] = 1;
         }
     }
@@ -640,19 +640,20 @@ public class Mp4FromDashWriter {
         return size;
     }
 
-    private byte[] makeMdat(long refSize, final boolean is64) {
+    private byte[] makeMdat(final long refSize, final boolean is64) {
+        long size = refSize;
         if (is64) {
-            refSize += 16;
+            size += 16;
         } else {
-            refSize += 8;
+            size += 8;
         }
 
         ByteBuffer buffer = ByteBuffer.allocate(is64 ? 16 : 8)
-                .putInt(is64 ? 0x01 : (int) refSize)
+                .putInt(is64 ? 0x01 : (int) size)
                 .putInt(0x6D646174); // mdat
 
         if (is64) {
-            buffer.putLong(refSize);
+            buffer.putLong(size);
         }
 
         return buffer.array();

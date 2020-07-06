@@ -282,7 +282,7 @@ public class OggFromWebMWriter implements Closeable {
                     0x03, // ¿¿¿???
                     0x76, 0x6f, 0x72, 0x62, 0x69, 0x73, // "vorbis" binary string
                     0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
-                    0x00, 0x00, 0x00, 0x00, // additional tags count (zero means no tags)
+                    0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
             };
         }
 
