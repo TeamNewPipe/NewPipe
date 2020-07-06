@@ -65,10 +65,12 @@
     <string name="live_streams_not_supported">Live-Streams werden noch nicht unterstützt</string>
     <string name="light_parsing_error">Konnte Webseite nicht vollständig analysieren</string>
     <string name="error_report_button_text">Fehler via E-Mail melden</string>
+    <string name="copy_for_github">Formatierten Fehlerbericht kopieren</string>
+    <string name="error_report_open_issue_button_text">Fehler auf GitHub melden</string>
     <string name="error_snackbar_action">Melden</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
-    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nPaket:\\nVersion:\\nOS-Version:</string>
+    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nLand des Inhalts:\\nSprache der App:\\nDienst:\\nZeit (GMT):\\nPaket:\\nVersion:\\nOS-Version:</string>
     <string name="error_details_headline">Details:</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
