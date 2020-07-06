@@ -596,7 +596,7 @@
 \n…
 \n के तपाईँ निश्चित हुनुहुन्छ\? यो उल्ट्याउन सकिदैन!</string>
     <string name="remove_watched_popup_title">हेरिएका भिडियोहरू हटाउने हो\?</string>
-    <string name="remove_watched">हेरीसकेको हटाउ</string>
+    <string name="remove_watched">हेरिसकेको हटाउनुहोस</string>
     <string name="show_original_time_ago_summary">सेवाहरूबाट मूल पाठहरू स्ट्रिम वस्तुहरूमा देखिने छन्</string>
     <string name="show_original_time_ago_title">आईटमहरूमा मूल समय पहिले देखाउनुहोस्</string>
     <string name="infinite_videos">आनंत भिडियोहरू</string>
