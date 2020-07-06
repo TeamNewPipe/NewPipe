@@ -430,7 +430,7 @@
     <string name="grid">ग्रिड</string>
     <string name="auto">स्वतः</string>
     <string name="switch_view">स्विच दृश्य</string>
-    <string name="app_update_notification_content_title">नयाँ पाइप अपडेट उपलब्ध छ!</string>
+    <string name="app_update_notification_content_title">NewPipe अपडेट उपलब्ध छ!</string>
     <string name="app_update_notification_content_text">डाउनलोड गर्न ट्याप गर्नुहोस्</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">रोकिएको</string>
@@ -576,7 +576,7 @@
     <string name="feed_processing_message">फिड प्रशोधन गर्दै …</string>
     <string name="feed_notification_loading">फिड लोड गर्दै …</string>
     <string name="feed_subscription_not_loaded_count">लोड गरिएको छैन:%d</string>
-    <string name="feed_oldest_subscription_update">फिड पछिल्लो अपडेट गरिएको:%s</string>
+    <string name="feed_oldest_subscription_update">फिड पछिल्लोपटक अपडेट गरिएको:%s</string>
     <string name="feed_groups_header_title">च्यानल समूहहरू</string>
     <string name="fragment_feed_title">नयाँ के छ</string>
     <plurals name="hours">
@@ -608,11 +608,10 @@
 \n…
 \nएदी तपैंलाई हेर्न परेमा, सेटिंगमा गई “उमेर प्रतिबन्धित समाग्री” सक्षम गर्नुहोस्।</string>
     <string name="youtube_restricted_mode_enabled_title">यूट्यूब प्रतिबन्धित मोड</string>
-    <string name="video_detail_by">%s द्वरा</string>
-    <string name="channel_created_by">%s द्वरा सिर्जना गरिएको</string>
-    <string name="content_not_supported">यो सामग्री अझै NewPipeमा समर्थित छैन।
-\n…
-\n…
+    <string name="video_detail_by">%s द्वारा</string>
+    <string name="channel_created_by">%s द्वारा सिर्जना गरिएको</string>
+    <string name="content_not_supported">यो सामग्री अझै NewPipeमा समर्थित छैन। 
+\n… 
 \nआशा छ कि भविष्यको संस्करणमा समर्थित हुनेछ।</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">हो र आंशिक रूपमा हेरिएको भिडियोहरू</string>
 </resources>
