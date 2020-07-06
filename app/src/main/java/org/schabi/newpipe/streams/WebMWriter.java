@@ -148,31 +148,27 @@ public class WebMWriter implements Closeable {
                 0x11, 0x4d, (byte) 0x9b, 0x74, (byte) 0xbe,
                 0x4d, (byte) 0xbb, (byte) 0x8b,
                 0x53, (byte) 0xab, (byte) 0x84, 0x15, 0x49, (byte) 0xa9, 0x66, 0x53,
-                (byte) 0xac, (byte) 0x81, /*info offset*/ 0x43,
+                (byte) 0xac, (byte) 0x81,
+                /*info offset*/ 0x43,
                 0x4d, (byte) 0xbb, (byte) 0x8b, 0x53, (byte) 0xab,
                 (byte) 0x84, 0x16, 0x54, (byte) 0xae, 0x6b, 0x53, (byte) 0xac, (byte) 0x81,
-                /*tracks offset*/ 0x6a,
+                /*tracks offset*/ 0x56,
                 0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1f,
-                0x43, (byte) 0xb6, 0x75, 0x53, (byte) 0xac, (byte) 0x84, /*cluster offset [2]*/ 0x00, 0x00, 0x00, 0x00,
+                0x43, (byte) 0xb6, 0x75, 0x53, (byte) 0xac, (byte) 0x84,
+                /*cluster offset [2]*/ 0x00, 0x00, 0x00, 0x00,
                 0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1c, 0x53,
-                (byte) 0xbb, 0x6b, 0x53, (byte) 0xac, (byte) 0x84, /*cues offset [7]*/ 0x00, 0x00, 0x00, 0x00
+                (byte) 0xbb, 0x6b, 0x53, (byte) 0xac, (byte) 0x84,
+                /*cues offset [7]*/ 0x00, 0x00, 0x00, 0x00
         });
 
         /* info */
         listBuffer.add(new byte[]{
-                0x15, 0x49, (byte) 0xa9, 0x66, (byte) 0xa2, 0x2a, (byte) 0xd7, (byte) 0xb1
+                0x15, 0x49, (byte) 0xa9, 0x66, (byte) 0x8e, 0x2a, (byte) 0xd7, (byte) 0xb1
         });
-        listBuffer.add(encode(DEFAULT_TIMECODE_SCALE, true)); // this value MUST NOT exceed 4 bytes
+        // the segment duration MUST NOT exceed 4 bytes
+        listBuffer.add(encode(DEFAULT_TIMECODE_SCALE, true));
         listBuffer.add(new byte[]{0x44, (byte) 0x89, (byte) 0x84,
                 0x00, 0x00, 0x00, 0x00, // info.duration
-
-                /* MuxingApp */
-                0x4d, (byte) 0x80, (byte) 0x87, 0x4E,
-                0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
-
-                /* WritingApp */
-                0x57, 0x41, (byte) 0x87, 0x4E,
-                0x65, 0x77, 0x50, 0x69, 0x70, 0x65// "NewPipe" binary string
         });
 
         /* tracks */
@@ -416,9 +412,10 @@ public class WebMWriter implements Closeable {
         }
     }
 
-    private long makeCluster(final SharpStream stream, final long timecode, long offset,
+    private long makeCluster(final SharpStream stream, final long timecode, final long offsetStart,
                              final boolean create) throws IOException {
         ClusterInfo cluster;
+        long offset = offsetStart;
 
         if (offset > 0) {
             // save the size of the previous cluster (maximum 256 MiB)
@@ -449,7 +446,7 @@ public class WebMWriter implements Closeable {
     }
 
     private void makeEBML(final SharpStream stream) throws IOException {
-        // deafult values
+        // default values
         dump(new byte[]{
                 0x1A, 0x45, (byte) 0xDF, (byte) 0xA3, 0x01, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x1F, 0x42, (byte) 0x86, (byte) 0x81, 0x01,
@@ -588,8 +585,10 @@ public class WebMWriter implements Closeable {
         return lengthFor(buffer);
     }
 
-    private void makeEbmlVoid(final SharpStream out, int size, final boolean wipe)
+    private void makeEbmlVoid(final SharpStream out, final int amount, final boolean wipe)
             throws IOException {
+        int size = amount;
+
         /* ebml void */
         outByteBuffer.putShort(0, (short) 0xec20);
         outByteBuffer.putShort(2, (short) (size - 4));

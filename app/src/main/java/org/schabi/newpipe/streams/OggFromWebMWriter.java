@@ -274,30 +274,15 @@ public class OggFromWebMWriter implements Closeable {
         if ("A_OPUS".equals(webmTrack.codecId)) {
             return new byte[]{
                     0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
-                    0x07, 0x00, 0x00, 0x00, // writing application string size
-                    0x4E, 0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
+                    0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
                     0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
             };
         } else if ("A_VORBIS".equals(webmTrack.codecId)) {
             return new byte[]{
-                    0x03, // ????????
+                    0x03, // ¿¿¿???
                     0x76, 0x6f, 0x72, 0x62, 0x69, 0x73, // "vorbis" binary string
-                    0x07, 0x00, 0x00, 0x00, // writting application string size
-                    0x4E, 0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
-                    0x01, 0x00, 0x00, 0x00, // additional tags count (zero means no tags)
-
-                    /*
-                        // whole file duration (not implemented)
-                        0x44,// tag string size
-                        0x55, 0x52, 0x41, 0x54, 0x49, 0x4F, 0x4E, 0x3D, 0x30,
-                        0x30, 0x3A, 0x30, 0x30, 0x3A, 0x30, 0x30, 0x2E, 0x30,
-                        0x30, 0x30, 0x30, 0x30, 0x30, 0x30
-                     */
-                    0x0F, // tag string size
-                    0x00, 0x00, 0x00, 0x45, 0x4E, 0x43, 0x4F,
-                    0x44, 0x45, 0x52, 0x3D, // "ENCODER=" binary string
-                    0x4E, 0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
-                    0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 // ????????
+                    0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
+                    0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
             };
         }
 
@@ -377,7 +362,7 @@ public class OggFromWebMWriter implements Closeable {
         return addPacketSegment(block.dataSize);
     }
 
-    private boolean addPacketSegment(int size) {
+    private boolean addPacketSegment(final int size) {
         if (size > 65025) {
             throw new UnsupportedOperationException("page size cannot be larger than 65025");
         }
@@ -396,8 +381,8 @@ public class OggFromWebMWriter implements Closeable {
             return false; // not enough space on the page
         }
 
-        for (; size > 0; size -= 255) {
-            segmentTable[segmentTableSize++] = (byte) Math.min(size, 255);
+        for (int seg = size; seg > 0; seg -= 255) {
+            segmentTable[segmentTableSize++] = (byte) Math.min(seg, 255);
         }
 
         if (extra) {
@@ -419,12 +404,13 @@ public class OggFromWebMWriter implements Closeable {
         }
     }
 
-    private int calcCrc32(int initialCrc, final byte[] buffer, final int size) {
+    private int calcCrc32(final int initialCrc, final byte[] buffer, final int size) {
+        int crc = initialCrc;
         for (int i = 0; i < size; i++) {
-            int reg = (initialCrc >>> 24) & 0xff;
-            initialCrc = (initialCrc << 8) ^ crc32Table[reg ^ (buffer[i] & 0xff)];
+            int reg = (crc >>> 24) & 0xff;
+            crc = (crc << 8) ^ crc32Table[reg ^ (buffer[i] & 0xff)];
         }
 
-        return initialCrc;
+        return crc;
     }
 }

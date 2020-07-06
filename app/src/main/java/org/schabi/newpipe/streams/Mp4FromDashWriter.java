@@ -464,16 +464,16 @@ public class Mp4FromDashWriter {
     }
 
     private void initChunkTables(final TablesInfo tables, final int firstCount,
-                                 final int succesiveCount) {
+                                 final int successiveCount) {
         // tables.stsz holds amount of samples of the track (total)
         int totalSamples = (tables.stsz - firstCount);
-        float chunkAmount = totalSamples / (float) succesiveCount;
+        float chunkAmount = totalSamples / (float) successiveCount;
         int remainChunkOffset = (int) Math.ceil(chunkAmount);
         boolean remain = remainChunkOffset != (int) chunkAmount;
         int index = 0;
 
         tables.stsc = 1;
-        if (firstCount != succesiveCount) {
+        if (firstCount != successiveCount) {
             tables.stsc++;
         }
         if (remain) {
@@ -488,15 +488,15 @@ public class Mp4FromDashWriter {
         tables.stscBEntries[index++] = firstCount;
         tables.stscBEntries[index++] = 1;
 
-        if (firstCount != succesiveCount) {
+        if (firstCount != successiveCount) {
             tables.stscBEntries[index++] = 2;
-            tables.stscBEntries[index++] = succesiveCount;
+            tables.stscBEntries[index++] = successiveCount;
             tables.stscBEntries[index++] = 1;
         }
 
         if (remain) {
             tables.stscBEntries[index++] = remainChunkOffset + 1;
-            tables.stscBEntries[index++] = totalSamples % succesiveCount;
+            tables.stscBEntries[index++] = totalSamples % successiveCount;
             tables.stscBEntries[index] = 1;
         }
     }
@@ -640,19 +640,20 @@ public class Mp4FromDashWriter {
         return size;
     }
 
-    private byte[] makeMdat(long refSize, final boolean is64) {
+    private byte[] makeMdat(final long refSize, final boolean is64) {
+        long size = refSize;
         if (is64) {
-            refSize += 16;
+            size += 16;
         } else {
-            refSize += 8;
+            size += 8;
         }
 
         ByteBuffer buffer = ByteBuffer.allocate(is64 ? 16 : 8)
-                .putInt(is64 ? 0x01 : (int) refSize)
+                .putInt(is64 ? 0x01 : (int) size)
                 .putInt(0x6D646174); // mdat
 
         if (is64) {
-            buffer.putLong(refSize);
+            buffer.putLong(size);
         }
 
         return buffer.array();
@@ -716,18 +717,6 @@ public class Mp4FromDashWriter {
             }
             makeTrak(i, durations[i], defaultMediaTime[i], tablesInfo[i], is64);
         }
-
-        // udta/meta/ilst/©too
-        auxWrite(new byte[]{
-                0x00, 0x00, 0x00, 0x5C, 0x75, 0x64, 0x74, 0x61, 0x00, 0x00, 0x00, 0x54, 0x6D, 0x65,
-                0x74, 0x61, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x21, 0x68, 0x64, 0x6C, 0x72,
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6D, 0x64, 0x69, 0x72, 0x61, 0x70,
-                0x70, 0x6C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                0x27, 0x69, 0x6C, 0x73, 0x74, 0x00, 0x00, 0x00,
-                0x1F, (byte) 0xA9, 0x74, 0x6F, 0x6F, 0x00, 0x00, 0x00, 0x17, 0x64, 0x61, 0x74, 0x61,
-                0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
-                0x4E, 0x65, 0x77, 0x50, 0x69, 0x70, 0x65 // "NewPipe" binary string
-        });
 
         return lengthFor(start);
     }
@@ -850,20 +839,10 @@ public class Mp4FromDashWriter {
 
     private byte[] makeHdlr(final Hdlr hdlr) {
         ByteBuffer buffer = ByteBuffer.wrap(new byte[]{
-                0x00, 0x00, 0x00, 0x77, 0x68, 0x64, 0x6C, 0x72, // hdlr
+                0x00, 0x00, 0x00, 0x21, 0x68, 0x64, 0x6C, 0x72, // hdlr
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                // binary string
-                // "ISO Media file created in NewPipe (
-                // A libre lightweight streaming frontend for Android)."
-                0x49, 0x53, 0x4F, 0x20, 0x4D, 0x65, 0x64, 0x69, 0x61, 0x20, 0x66, 0x69, 0x6C, 0x65,
-                0x20, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x20, 0x69, 0x6E, 0x20, 0x4E, 0x65,
-                0x77, 0x50, 0x69, 0x70, 0x65, 0x20, 0x28, 0x41, 0x20, 0x6C, 0x69, 0x62, 0x72, 0x65,
-                0x20, 0x6C, 0x69, 0x67, 0x68, 0x74, 0x77, 0x65, 0x69, 0x67, 0x68, 0x74, 0x20, 0x73,
-                0x74, 0x72, 0x65, 0x61, 0x6D, 0x69, 0x6E, 0x67,
-                0x20, 0x66, 0x72, 0x6F, 0x6E, 0x74, 0x65, 0x6E, 0x64, 0x20, 0x66, 0x6F, 0x72, 0x20,
-                0x41, 0x6E,
-                0x64, 0x72, 0x6F, 0x69, 0x64, 0x29, 0x2E
+                0x00// null string character
         });
 
         buffer.position(12);
@@ -899,7 +878,7 @@ public class Mp4FromDashWriter {
          * characteristics of sample groups. The descriptive information is any other
          * information needed to define or characterize the sample group.
          *
-         * ¿is replicabled this box?
+         * ¿is replicable this box?
          * NO due lacks of documentation about this box but...
          * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
          */
