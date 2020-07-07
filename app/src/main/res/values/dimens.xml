@@ -115,4 +115,5 @@
     <dimen name="feed_group_carousel_top_bottom_margin">2dp</dimen>
     <dimen name="feed_group_carousel_between_items_margin">4dp</dimen>
 
+    <dimen name="search_suggestion_text_size">16sp</dimen>
 </resources>

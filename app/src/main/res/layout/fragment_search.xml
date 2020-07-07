@@ -6,13 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/correct_suggestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/error_panel"
+        android:background="?attr/selectableItemBackground"
+        android:padding="10dp"
+        android:textColor="@color/background_title_color"
+        android:textSize="@dimen/search_suggestion_text_size"
+        tools:text="Showing results for lorem ipsum dolor sit amet consectetur adipisci elit" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/correct_suggestion"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/list_stream_item"/>
+        tools:listitem="@layout/list_stream_item" />
 
     <ProgressBar
         android:id="@+id/loading_progress_bar"
@@ -58,6 +70,7 @@
         android:background="?android:attr/windowBackground"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:orientation="vertical"
         android:visibility="gone"
         tools:background="@android:color/transparent"
         tools:visibility="visible">
@@ -68,7 +81,7 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             app:layoutManager="LinearLayoutManager"
-            tools:listitem="@layout/item_search_suggestion"/>
+            tools:listitem="@layout/item_search_suggestion" />
     </LinearLayout>
 
     <!--ERROR PANEL-->
