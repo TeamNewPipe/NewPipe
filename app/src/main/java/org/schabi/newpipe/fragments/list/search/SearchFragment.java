@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -71,6 +72,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
+import static android.text.Html.escapeHtml;
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static java.util.Arrays.asList;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -1003,7 +1005,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     ? R.string.search_showing_result_for
                     : R.string.did_you_mean);
 
-            correctSuggestion.setText(String.format(helperText, searchSuggestion));
+            final String highlightedSearchSuggestion =
+                    "<b><i>" + escapeHtml(searchSuggestion) + "</i></b>";
+            correctSuggestion.setText(
+                    Html.fromHtml(String.format(helperText, highlightedSearchSuggestion)));
+
 
             correctSuggestion.setOnClickListener(v -> {
                 correctSuggestion.setVisibility(View.GONE);
