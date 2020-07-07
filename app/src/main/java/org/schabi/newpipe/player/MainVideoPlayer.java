@@ -1273,7 +1273,6 @@ public final class MainVideoPlayer extends AppCompatActivity
         private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
 
         private boolean isMoving = false;
-        private boolean wereControlsShownBeforeMoving = false;
         private boolean onUpSetControlsCooldown = false;
 
         @Override
@@ -1345,7 +1344,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public boolean onScroll(final MotionEvent initialEvent, final MotionEvent movingEvent,
                                 final float distanceX, final float distanceY) {
-            onUpSetControlsCooldown = true;
+            if (!isMoving) {
+                onUpSetControlsCooldown = true;
+            }
             if (!isVolumeGestureEnabled && !isBrightnessGestureEnabled) {
                 return false;
             }
@@ -1373,7 +1374,17 @@ public final class MainVideoPlayer extends AppCompatActivity
                 return false;
             }
 
-            isMoving = true;
+            if (!isMoving) {
+                isMoving = true;
+                if (playerImpl.isControlsVisible()) {
+                    // hide controls during gesture but show them again afterward since
+                    // onUpSetControlsCooldown is true
+                    playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, 0);
+                } else {
+                    // prevent controls from being shown after gesture
+                    onUpSetControlsCooldown = false;
+                }
+            }
 
             boolean acceptAnyArea = isVolumeGestureEnabled != isBrightnessGestureEnabled;
             boolean acceptVolumeArea = acceptAnyArea
@@ -1405,7 +1416,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                 );
 
                 if (playerImpl.getVolumeRelativeLayout().getVisibility() != View.VISIBLE) {
-                    animateView(playerImpl.getVolumeRelativeLayout(), SCALE_AND_ALPHA, true, 200);
+                    animateView(playerImpl.getVolumeRelativeLayout(), SCALE_AND_ALPHA, true,
+                            DEFAULT_CONTROLS_DURATION);
                 }
                 if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
                     playerImpl.getBrightnessRelativeLayout().setVisibility(View.GONE);
@@ -1436,7 +1448,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
                 if (playerImpl.getBrightnessRelativeLayout().getVisibility() != View.VISIBLE) {
                     animateView(playerImpl.getBrightnessRelativeLayout(), SCALE_AND_ALPHA, true,
-                            200);
+                            DEFAULT_CONTROLS_DURATION);
                 }
                 if (playerImpl.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
                     playerImpl.getVolumeRelativeLayout().setVisibility(View.GONE);
@@ -1468,11 +1480,11 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             if (playerImpl.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
                 animateView(playerImpl.getVolumeRelativeLayout(), SCALE_AND_ALPHA, false,
-                        200, 200);
+                        DEFAULT_CONTROLS_DURATION, 0);
             }
             if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
                 animateView(playerImpl.getBrightnessRelativeLayout(), SCALE_AND_ALPHA, false,
-                        200, 200);
+                        DEFAULT_CONTROLS_DURATION, 0);
             }
         }
 
