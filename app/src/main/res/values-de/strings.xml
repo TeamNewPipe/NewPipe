@@ -4,8 +4,7 @@
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
     <string name="no_player_found">Keinen Stream-Player gefunden. VLC installieren\?</string>
     <string name="install">Installieren</string>
-    <string name="cancel">Abbrechen 
-\n</string>
+    <string name="cancel">Abbrechen</string>
     <string name="open_in_browser">Im Browser öffnen</string>
     <string name="share">Teilen</string>
     <string name="download">Herunterladen</string>
@@ -242,7 +241,7 @@
     <string name="show_hold_to_append_title">„Zum Anhängen gedrückt halten“ Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
     <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
-    <string name="enqueue_on_popup">In Warteschlange in neuem Pop-up</string>
+    <string name="enqueue_on_popup">In Warteschlange in einem Pop-up</string>
     <string name="start_here_on_main">Ab hier wiedergeben</string>
     <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
     <string name="start_here_on_popup">Wiedergabe in einem Pop-up starten</string>
@@ -429,7 +428,7 @@
     <string name="grid">Gitter</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Ansicht wechseln</string>
-    <string name="app_update_notification_content_title">NewPipe-Update verfügbar!</string>
+    <string name="app_update_notification_content_title">NewPipe-Update ist verfügbar!</string>
     <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
     <string name="missions_header_finished">Fertig</string>
     <string name="missions_header_pending">Ausstehend</string>
@@ -616,4 +615,5 @@
     <string name="detail_sub_channel_thumbnail_view_description">Avatarbild des Kanals</string>
     <string name="channel_created_by">Erstellt von %s</string>
     <string name="video_detail_by">Von %s</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Nur nicht gruppierte Abonnements anzeigen</string>
 </resources>

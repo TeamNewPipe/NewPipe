@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s vistas</string>
     <string name="upload_date_text">Publicado el %1$s</string>
-    <string name="no_player_found">No se encontró reproductor. ¿Instalar VLC\?</string>
+    <string name="no_player_found">No se encontró ningún reproductor de retransmisiones. ¿Instalar VLC\?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir en el navegador</string>
@@ -15,14 +15,14 @@
     <string name="choose_browser">Elegir navegador</string>
     <string name="screen_rotation">giro</string>
     <string name="download_path_title">Carpeta de descarga de vídeo</string>
-    <string name="download_path_summary">Aquí se almacenan los vídeos descargados</string>
-    <string name="download_path_dialog_title">Elegir carpeta de descarga para vídeos</string>
-    <string name="download_choose_new_path">Cambie las carpetas de descarga para que tenga efecto</string>
+    <string name="download_path_summary">Los archivos de vídeo descargados se almacenan aquí</string>
+    <string name="download_path_dialog_title">Elija la carpeta de descarga para los archivos de vídeo</string>
+    <string name="download_choose_new_path">Cambie las carpetas de descarga para que surtan efecto</string>
     <string name="default_resolution_title">Resolución predeterminada</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
-    <string name="kore_not_found">¿Instalar aplicación Kore faltante\?</string>
+    <string name="kore_not_found">¿Instalar la app Kore que falta\?</string>
     <string name="show_play_with_kodi_title">Mostrar opción «Reproducir con Kodi»</string>
-    <string name="show_play_with_kodi_summary">Mostrar una opción para reproducir vídeo en el centro multimedia Kodi</string>
+    <string name="show_play_with_kodi_summary">Mostrar opción para reproducir vídeo a través del centro de medios Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio predeterminado</string>
     <string name="download_dialog_title">Descargar</string>
@@ -41,8 +41,8 @@
     <string name="use_tor_summary">(Experimental) Forzar la descarga a través de Tor para una mayor privacidad (transmisión de vídeos aún no compatible).</string>
     <string name="err_dir_create">No se puede crear la carpeta de descargas «%1$s»</string>
     <string name="info_dir_created">Se creó la carpeta de descargas «%1$s»</string>
-    <string name="download_path_audio_summary">Aquí se almacenan los audios descargados</string>
-    <string name="download_path_audio_dialog_title">Elegir carpeta de descarga para archivos de audio</string>
+    <string name="download_path_audio_summary">Los archivos de audio descargados se almacenan aquí</string>
+    <string name="download_path_audio_dialog_title">Elija la carpeta de descarga para los archivos de audio</string>
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
     <string name="settings_category_video_audio_title">Vídeo y audio</string>
     <string name="play_btn_text">Reproducir</string>
@@ -62,7 +62,7 @@
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Contenido restringido por edad</string>
     <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Se pueden realizar más cambios desde los ajustes.</string>
-    <string name="main_bg_subtitle">Toque \"Buscar\" para comenzar</string>
+    <string name="main_bg_subtitle">Toque «Buscar» para empezar</string>
     <string name="autoplay_by_calling_app_title">Reproducción automática</string>
     <string name="autoplay_by_calling_app_summary">Reproducir un vídeo cuando NewPipe es llamado desde otra app</string>
     <string name="duration_live">En directo</string>
@@ -120,20 +120,20 @@
 \npara abrir en modo emergente</string>
     <string name="title_activity_recaptcha">Reto reCAPTCHA</string>
     <string name="recaptcha_request_toast">Reto reCAPTCHA requerido</string>
-    <string name="popup_mode_share_menu_title">Modo emergente de NewPipe</string>
+    <string name="popup_mode_share_menu_title">Modo emergente</string>
     <string name="popup_playing_toast">Reproduciendo en modo emergente</string>
     <string name="default_video_format_title">Formato de vídeo predeterminado</string>
     <string name="disabled">Desactivado</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
-    <string name="show_higher_resolutions_summary">Solo algunos dispositivos pueden reproducir vídeos en 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Sólo algunos dispositivos pueden reproducir vídeos en 2K / 4K</string>
     <string name="default_popup_resolution_title">Resolución predeterminada de emergente</string>
     <string name="controls_background_title">Segundo plano</string>
-    <string name="controls_popup_title">Popup</string>
+    <string name="controls_popup_title">Emergente</string>
     <string name="filter">Filtro</string>
     <string name="refresh">Actualizar</string>
     <string name="clear">Limpiar</string>
-    <string name="popup_remember_size_pos_title">Recordar tamaño y posición del repr. emerg.</string>
-    <string name="popup_remember_size_pos_summary">Recordar el último tamaño y posición del repr. emerg.</string>
+    <string name="popup_remember_size_pos_title">Recordar tamaño y posición del reproductor emergente</string>
+    <string name="popup_remember_size_pos_summary">Recordar el último tamaño y posición del reproductor emergente</string>
     <string name="settings_category_popup_title">Emergente</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Elimina el audio en algunas resoluciones</string>
@@ -165,7 +165,7 @@
     <string name="subscription_update_failed">No se pudo actualizar la suscripción</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Suscripciones</string>
-    <string name="fragment_feed_title">Qué hay de nuevo</string>
+    <string name="fragment_feed_title">Novedades</string>
     <string name="resume_on_audio_focus_gain_title">Reanudar reproducción</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproduciendo después de las interrupciones (ej. llamadas telefónicas)</string>
     <string name="settings_category_downloads_title">Descargar</string>
@@ -213,7 +213,7 @@
     <string name="delete_item_search_history">¿Quiere eliminar este elemento del historial de búsquedas\?</string>
     <string name="main_page_content">Contenido de la página principal</string>
     <string name="blank_page_summary">Página en blanco</string>
-    <string name="kiosk_page_summary">Página del kiosco</string>
+    <string name="kiosk_page_summary">Página del quiosco</string>
     <string name="subscription_page_summary">Página de suscripción</string>
     <string name="feed_page_summary">Página de novedades</string>
     <string name="channel_page_summary">Página del canal</string>
@@ -280,7 +280,7 @@
     <string name="override_current_data">Esto reemplazará su configuración actual.</string>
     <string name="controls_download_desc">Descargar archivo de retransmisión</string>
     <string name="show_info">Mostrar información</string>
-    <string name="tab_bookmarks">"Listas de reproducción en marcadores "</string>
+    <string name="tab_bookmarks">Playlists en marcadores</string>
     <string name="controls_add_to_playlist_title">Añadir a</string>
     <string name="detail_drag_description">Arrastrar para reordenar</string>
     <string name="create">Crear</string>
@@ -317,7 +317,7 @@
     <string name="enable_leak_canary_summary">La monitorización de fugas de memoria puede causar que la app no responda cuando hay Heap Dump</string>
     <string name="enable_disposed_exceptions_title">Reportar errores fuera del ciclo de duración</string>
     <string name="enable_disposed_exceptions_summary">Forzar reporte de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
-    <string name="use_inexact_seek_title">Usar búsqueda rápida inexacta</string>
+    <string name="use_inexact_seek_title">Usar búsqueda rápida e inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión. Buscar de a 5, 15 o 25 segundos no funciona.</string>
     <string name="auto_queue_title">Poner en cola vídeo relacionado siguiente</string>
     <string name="auto_queue_summary">Continuar reproducción sin repetir al añadir de forma automática un vídeo relacionado con el último visto</string>
@@ -354,10 +354,10 @@
 \n
 \n¿Quiere continuar\?</string>
     <string name="download_thumbnail_title">Cargar miniaturas</string>
-    <string name="download_thumbnail_summary">Desactívela para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco.</string>
+    <string name="download_thumbnail_summary">Desactivar para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Se vació la caché de imágenes</string>
-    <string name="metadata_cache_wipe_title">Eliminar metadatos en memoria caché</string>
-    <string name="metadata_cache_wipe_summary">Eliminar todos los datos de páginas web en memoria caché</string>
+    <string name="metadata_cache_wipe_title">Vaciar metadatos en memoria caché</string>
+    <string name="metadata_cache_wipe_summary">Eliminar todos los datos de páginas web en antememoria</string>
     <string name="metadata_cache_wipe_complete_notice">Se vació la caché de metadatos</string>
     <string name="playback_speed_control">Controles de velocidad de reproducción</string>
     <string name="playback_tempo">Tiempo</string>
@@ -501,7 +501,7 @@
     <string name="clear_playback_states_summary">Elimina todas las posiciones de reproducción</string>
     <string name="delete_playback_states_alert">¿Quiere eliminar todas las posiciones de reproducción\?</string>
     <string name="drawer_header_description">Activar/desactivar servicio, seleccionados actualmente:</string>
-    <string name="default_kiosk_page_summary">kiosco predeterminado</string>
+    <string name="default_kiosk_page_summary">Quiosco predeterminado</string>
     <string name="no_one_watching">Nadie está viendo</string>
     <plurals name="watching">
         <item quantity="one">%s viendo</item>
@@ -527,8 +527,8 @@
     <string name="most_liked">Más gustados</string>
     <string name="playlist_no_uploader">Generado automáticamente (no se encontró creador)</string>
     <string name="choose_instance_prompt">Elige una instancia</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Miniatura de vídeo en la pantalla de bloqueo</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Se mostrará una miniatura del video en la pantalla de bloqueo al usar el reproductor de fondo</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Miniatura de vídeo en pantalla de bloqueo</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Se mostrará una miniatura del vídeo en la pantalla de bloqueo al usar el reproductor en segundo plano</string>
     <string name="clear_download_history">Limpiar historial de descargas</string>
     <string name="delete_downloaded_files">Eliminar archivos descargados</string>
     <string name="deleted_downloads">Eliminadas %1$s descargas</string>

@@ -458,7 +458,7 @@
     <string name="error_unknown_host">לא ניתן למצוא את השרת</string>
     <string name="error_connect_host">לא ניתן להתחבר לשרת</string>
     <string name="error_http_no_content">השרת לא שולח נתונים</string>
-    <string name="error_http_unsupported_range">"השרת לא מקבל הורדות רב ערוציות, מוטב לנסות שוב עם ‎@string/msg_threads = 1 "</string>
+    <string name="error_http_unsupported_range">השרת לא מקבל הורדות רב ערוציות, מוטב לנסות שוב עם ‎@string/msg_threads = 1</string>
     <string name="error_http_not_found">לא נמצא</string>
     <string name="error_postprocessing_failed">העיבוד המאוחר נכשל</string>
     <string name="stop">עצירה</string>
@@ -633,4 +633,5 @@
     <string name="video_detail_by">מאת %s</string>
     <string name="channel_created_by">נוצר ע״י %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">תמונה ממוזערת של הערוץ</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">להציג רק מינויים שאינם בקבוצות</string>
 </resources>

@@ -541,7 +541,7 @@
     <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
     <!-- App update notification -->
-    <string name="app_update_notification_content_title">NewPipe Update Available!</string>
+    <string name="app_update_notification_content_title">NewPipe update is available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
     <string name="missions_header_finished">Finished</string>
     <string name="missions_header_pending">Pending</string>
