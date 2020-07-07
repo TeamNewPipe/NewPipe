@@ -701,6 +701,12 @@ public final class MainVideoPlayer extends AppCompatActivity
             updatePlaybackButtons();
         }
 
+        @Override
+        public void onPlay() {
+            super.onPlay();
+            showControlsThenHide();
+        }
+
         /*//////////////////////////////////////////////////////////////////////////
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
