@@ -229,7 +229,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     @Override
     protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPageUrl);
+        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPage);
     }
 
     @Override
@@ -349,7 +349,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         return new PlaylistPlayQueue(
                 currentInfo.getServiceId(),
                 currentInfo.getUrl(),
-                currentInfo.getNextPageUrl(),
+                currentInfo.getNextPage(),
                 infoItems,
                 index
         );

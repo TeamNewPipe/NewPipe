@@ -403,7 +403,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     @Override
     protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPageUrl);
+        return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPage);
     }
 
     @Override
@@ -555,7 +555,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             }
         }
         return new ChannelPlayQueue(currentInfo.getServiceId(), currentInfo.getUrl(),
-                currentInfo.getNextPageUrl(), streamItems, index);
+                currentInfo.getNextPage(), streamItems, index);
     }
 
     @Override

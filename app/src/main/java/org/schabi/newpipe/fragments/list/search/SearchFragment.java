@@ -38,6 +38,7 @@ import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
@@ -131,8 +132,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     private Map<Integer, String> menuItemToFilterName;
     private StreamingService service;
-    private String currentPageUrl;
-    private String nextPageUrl;
+    private Page nextPage;
     private String contentCountry;
     private boolean isSuggestionsEnabled = true;
 
@@ -368,15 +368,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void writeTo(final Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
-        objectsToSave.add(currentPageUrl);
-        objectsToSave.add(nextPageUrl);
+        objectsToSave.add(nextPage);
     }
 
     @Override
     public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
-        currentPageUrl = (String) savedObjects.poll();
-        nextPageUrl = (String) savedObjects.poll();
+        nextPage = (Page) savedObjects.poll();
     }
 
     @Override
@@ -859,7 +857,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     protected void loadMoreItems() {
-        if (nextPageUrl == null || nextPageUrl.isEmpty()) {
+        if (!Page.isValid(nextPage)) {
             return;
         }
         isLoading.set(true);
@@ -872,7 +870,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 searchString,
                 asList(contentFilter),
                 sortFilter,
-                nextPageUrl)
+                nextPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
@@ -981,8 +979,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         handleSearchSuggestion();
 
         lastSearchedString = searchString;
-        nextPageUrl = result.getNextPageUrl();
-        currentPageUrl = result.getUrl();
+        nextPage = result.getNextPage();
 
         if (infoListAdapter.getItemsList().size() == 0) {
             if (!result.getRelatedItems().isEmpty()) {
@@ -1031,14 +1028,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         showListFooter(false);
-        currentPageUrl = result.getNextPageUrl();
         infoListAdapter.addInfoItemList(result.getItems());
-        nextPageUrl = result.getNextPageUrl();
+        nextPage = result.getNextPage();
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.SEARCHED,
                     NewPipe.getNameOfService(serviceId),
-                    "\"" + searchString + "\" → page: " + nextPageUrl, 0);
+                    "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
+                            + "pageIds: " + nextPage.getIds() + ", "
+                            + "pageCookies: " + nextPage.getCookies(), 0);
         }
         super.handleNextItems(result);
     }
