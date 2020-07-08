@@ -966,11 +966,13 @@
         <item>@string/default_localization_key</item>
         <item>ace</item>
         <item>ar</item>
+        <item>ar-ly</item>
         <item>az</item>
         <item>ast</item>
         <item>be</item>
-        <item>bg-bd</item>
-        <item>bn</item>
+        <item>bg</item>
+        <item>bn-bd</item>
+        <item>bn-in</item>
         <item>ca</item>
         <item>ckb</item>
         <item>cs</item>
@@ -1034,11 +1036,13 @@
         <item>@string/systems_language</item>
         <item>Basa Acèh</item>
         <item>العربية</item>
+        <item>العربية (ليبيا)</item>
         <item>Azərbaycan dili</item>
         <item>Asturianu</item>
         <item>Беларуская</item>
         <item>български език</item>
-        <item>বাংলা</item>
+        <item>বাংলা (বাংলাদেশ)</item>
+        <item>বাংলা (भारत)</item>
         <item>Català</item>
         <item>کوردیی سۆرانی</item>
         <item>Čeština</item>

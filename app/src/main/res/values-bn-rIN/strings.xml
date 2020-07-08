@@ -310,7 +310,6 @@
     <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
     <string name="no_streams_available_download">ডাউন লোড এর জন্য কোন স্ট্রিম নেই</string>
     <string name="file_name_empty_error">ফাইল এর নাম খালি থাকতে পারে না</string>
-    <string name="external_player_unsupported_link_type"></string>
     <string name="video_streams_empty">কোন ভিডিও</string>
     <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
     <string name="clear_search_history_title">সার্চ ইতিহাস মুছুন</string>
