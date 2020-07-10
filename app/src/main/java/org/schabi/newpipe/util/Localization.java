@@ -202,14 +202,17 @@ public final class Localization {
             case "zh_CN":
                 /*
                  Special for Simplified Chinese
+                 Strings here are in settings_keys.xml
                  */
                 if (Locale.SIMPLIFIED_CHINESE.equals(getAppLocale(context))) {
                     if (count >= 100000000) {
                         return localizeNumber(context, round(value / 100000000, 1))
-                                + "亿";
+                                + context.getString(R.string.shortcount_zh_hans_YI);
+                        //YI(亿) means 10^8 in Chinese
                     } else if (count >= 10000) {
                         return localizeNumber(context, round(value / 10000, 1))
-                                + "万";
+                                + context.getString(R.string.shortcount_zh_hans_WANG);
+                        //WANG(万）means 10^4 in Chinese
                     } else {
                         return localizeNumber(context, value);
                     }
@@ -227,7 +230,6 @@ public final class Localization {
                 } else {
                     return localizeNumber(context, value);
                 }
-                //hard-coded,sorry
         }
     }
 
