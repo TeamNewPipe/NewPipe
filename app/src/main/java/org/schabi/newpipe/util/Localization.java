@@ -185,7 +185,17 @@ public final class Localization {
 
     public static String shortCount(final Context context, final long count) {
         double value = (double) count;
-        if (count >= 1000000000) {
+        if (Locale.SIMPLIFIED_CHINESE.equals(getAppLocale(context))) {
+          if (count >= 100000000) {
+                return localizeNumber(context, round(value / 100000000, 1))
+                        +"亿";
+            } else if (count >= 10000) {
+                return localizeNumber(context, round(value / 10000, 1))
+                        +"万";
+            } else {
+                return localizeNumber(context, value);
+            }
+        }else if (count >= 1000000000) {
             return localizeNumber(context, round(value / 1000000000, 1))
                     + context.getString(R.string.short_billion);
         } else if (count >= 1000000) {
