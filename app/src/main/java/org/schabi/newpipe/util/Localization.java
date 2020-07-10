@@ -22,6 +22,7 @@ import org.schabi.newpipe.extractor.localization.ContentCountry;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -134,7 +135,19 @@ public final class Localization {
 
     public static String localizeNumber(final Context context, final double number) {
         NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
-        return nf.format(number);
+        switch ((getAppLocale(context).toString())) {
+            case "zh_CN":
+                /*
+                  For Simplified Chinese
+                  Because of some unknown reasons , number pattern is always wrong
+                  in Simplified Chinese,and it should be #,####.
+                */
+                DecimalFormat df = (DecimalFormat) nf;
+                df.applyPattern("#,####");
+                return df.format(number);
+            default:
+                return nf.format(number);
+        }
     }
 
     public static String formatDate(final Date date, final Context context) {
@@ -185,27 +198,36 @@ public final class Localization {
 
     public static String shortCount(final Context context, final long count) {
         double value = (double) count;
-        if (Locale.SIMPLIFIED_CHINESE.equals(getAppLocale(context))) {
-          if (count >= 100000000) {
-                return localizeNumber(context, round(value / 100000000, 1))
-                        +"亿";
-            } else if (count >= 10000) {
-                return localizeNumber(context, round(value / 10000, 1))
-                        +"万";
-            } else {
-                return localizeNumber(context, value);
-            }
-        }else if (count >= 1000000000) {
-            return localizeNumber(context, round(value / 1000000000, 1))
-                    + context.getString(R.string.short_billion);
-        } else if (count >= 1000000) {
-            return localizeNumber(context, round(value / 1000000, 1))
-                    + context.getString(R.string.short_million);
-        } else if (count >= 1000) {
-            return localizeNumber(context, round(value / 1000, 1))
-                    + context.getString(R.string.short_thousand);
-        } else {
-            return localizeNumber(context, value);
+        switch (getAppLocale(context).toString()) {
+            case "zh_CN":
+                /*
+                 Special for Simplified Chinese
+                 */
+                if (Locale.SIMPLIFIED_CHINESE.equals(getAppLocale(context))) {
+                    if (count >= 100000000) {
+                        return localizeNumber(context, round(value / 100000000, 1))
+                                + "亿";
+                    } else if (count >= 10000) {
+                        return localizeNumber(context, round(value / 10000, 1))
+                                + "万";
+                    } else {
+                        return localizeNumber(context, value);
+                    }
+                }
+            default:
+                if (count >= 1000000000) {
+                    return localizeNumber(context, round(value / 1000000000, 1))
+                            + context.getString(R.string.short_billion);
+                } else if (count >= 1000000) {
+                    return localizeNumber(context, round(value / 1000000, 1))
+                            + context.getString(R.string.short_million);
+                } else if (count >= 1000) {
+                    return localizeNumber(context, round(value / 1000, 1))
+                            + context.getString(R.string.short_thousand);
+                } else {
+                    return localizeNumber(context, value);
+                }
+                //hard-coded,sorry
         }
     }
 
