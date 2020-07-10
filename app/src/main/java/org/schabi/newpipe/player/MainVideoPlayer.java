@@ -95,6 +95,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.UUID;
 
+import static org.schabi.newpipe.player.BasePlayer.STATE_BUFFERING;
 import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
@@ -1292,6 +1293,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 playerImpl.getPlayPauseButton().performClick();
             }
 
+            onUpSetControlsCooldown = playerImpl.isControlsVisible();
             return true;
         }
 
@@ -1502,13 +1504,16 @@ public final class MainVideoPlayer extends AppCompatActivity
 
                 if (onUpSetControlsCooldown) {
                     onUpSetControlsCooldown = false;
+                    final boolean playingOrBuffering = playerImpl.getCurrentState() == STATE_PLAYING
+                            || playerImpl.getCurrentState() == STATE_BUFFERING;
+
                     if (playerImpl.isControlsVisible()) {
-                        if (playerImpl.getCurrentState() == STATE_PLAYING) {
+                        if (playingOrBuffering) {
                             playerImpl.hideControls(DEFAULT_CONTROLS_DURATION,
                                     DEFAULT_CONTROLS_HIDE_TIME);
                         }
                     } else {
-                        if (playerImpl.getCurrentState() == STATE_PLAYING) {
+                        if (playingOrBuffering) {
                             playerImpl.showControlsThenHide();
                         } else {
                             playerImpl.showControls(DEFAULT_CONTROLS_DURATION);
