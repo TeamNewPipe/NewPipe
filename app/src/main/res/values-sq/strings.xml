@@ -90,7 +90,7 @@
     <string name="max_retry_desc">Numri maksimal i provave para se të anulohet shkarkimi</string>
     <string name="max_retry_msg">Provat maksimale</string>
     <string name="stop">Ndalo</string>
-    <string name="deleted_downloads">U fshinë %1$s shkarkime</string>
+    <string name="deleted_downloads">U fshinë %1$d shkarkime</string>
     <string name="delete_downloaded_files">Fshij skedarët e shkarkuar</string>
     <string name="confirm_prompt">A dëshironi të boshatisni historikun e shkarkimeve apo të fshini të gjithë skedarët e shkarkuar\?</string>
     <string name="clear_download_history">Boshatis historikun e shkarkimeve</string>

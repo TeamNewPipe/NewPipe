@@ -527,7 +527,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Een video afbeelding wordt weergegeven op het vergrendelscherm wanneer de achtergrond speler wordt gebruikt</string>
     <string name="clear_download_history">Download geschiedenis verwijderen</string>
     <string name="delete_downloaded_files">Verwijder gedownloade bestanden</string>
-    <string name="deleted_downloads">%1$s downloads verwijderd</string>
+    <string name="deleted_downloads">%1$d downloads verwijderd</string>
     <string name="permission_display_over_apps">Geef toestemming voor weergave over andere apps</string>
     <string name="app_language_title">Applicatie taal</string>
     <string name="systems_language">Systeem taal gebruiken</string>

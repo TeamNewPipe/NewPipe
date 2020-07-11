@@ -563,7 +563,7 @@
     <string name="enable_queue_limit">Rajoita latausjonon kokoa</string>
     <string name="max_retry_desc">Suurin määrä yrityksiä ennen kuin lataus perutaan</string>
     <string name="max_retry_msg">Uudelleenyritysten maksimimäärä</string>
-    <string name="deleted_downloads">Poistettiin %1$s latausta</string>
+    <string name="deleted_downloads">Poistettiin %1$d latausta</string>
     <string name="error_download_resource_gone">Tätä latausta ei voi palauttaa</string>
     <string name="error_timeout">Yhteys aikakatkaistiin</string>
     <string name="error_progress_lost">Eteneminen menetettiin, koska tiedosto poistettiin</string>

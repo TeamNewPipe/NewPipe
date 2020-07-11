@@ -574,7 +574,7 @@
     <string name="max_retry_desc">ഡൗൺലോഡ് റദ്ദാക്കുന്നതിനുമുമ്പ് പരമാവധി ശ്രമങ്ങൾ</string>
     <string name="max_retry_msg">പരമാവധി വീണ്ടും ശ്രമിക്കുന്നു</string>
     <string name="stop">നിർത്തുക</string>
-    <string name="deleted_downloads">%1$s ഡൗൺ‌ലോഡുകൾ ഇല്ലാതാക്കി</string>
+    <string name="deleted_downloads">%1$d ഡൗൺ‌ലോഡുകൾ ഇല്ലാതാക്കി</string>
     <string name="delete_downloaded_files">ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ ഇല്ലാതാക്കുക</string>
     <string name="confirm_prompt">നിങ്ങളുടെ ഡൗൺലോഡ് ചരിത്രം മായ്‌ക്കണോ ഡൗൺലോഡ് ചെയ്ത എല്ലാ ഫയലുകളും ഇല്ലാതാക്കണോ\?</string>
     <string name="clear_download_history">ഡൗൺലോഡ് ചരിത്രം മായ്‌ക്കുക</string>

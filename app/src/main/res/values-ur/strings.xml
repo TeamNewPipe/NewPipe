@@ -529,5 +529,5 @@
     <string name="enable_lock_screen_video_thumbnail_summary">بیک گراؤنڈ پلیئر استعمال کرتے وقت ایک ویڈیو تھمب نیل کو لاک اسکرین پر دکھایا جائے گا</string>
     <string name="clear_download_history">ڈاؤن لوڈ کی سرگزشت صاف کریں</string>
     <string name="delete_downloaded_files">ڈاؤن لوڈ شدہ فائلیں حذف کریں</string>
-    <string name="deleted_downloads">%1$s ڈاؤن لوڈز کو حذف کیا گیا</string>
+    <string name="deleted_downloads">%1$d ڈاؤن لوڈز کو حذف کیا گیا</string>
 </resources>

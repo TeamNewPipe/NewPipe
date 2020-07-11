@@ -529,7 +529,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Une miniature de la vidéo sera affichée sur l’écran de verrouillage lorsque le lecteur en arrière-plan est utilisé</string>
     <string name="clear_download_history">Effacer l’historique de téléchargement</string>
     <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
-    <string name="deleted_downloads">%1$s téléchargements supprimés</string>
+    <string name="deleted_downloads">%1$d téléchargements supprimés</string>
     <string name="permission_display_over_apps">Autoriser l’affichage au-dessus d’autres applications</string>
     <string name="app_language_title">Langue de l’application</string>
     <string name="systems_language">Prédéfini par le système</string>

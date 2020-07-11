@@ -530,7 +530,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Bildeta filmeto estas montrita ĉe ŝlosita ekrano uzante la fona ludilo</string>
     <string name="clear_download_history">Forviŝi la historion de elŝutoj</string>
     <string name="delete_downloaded_files">Forviŝi elŝutitajn dosierojn</string>
-    <string name="deleted_downloads">%1$s elŝutoj forviŝitaj</string>
+    <string name="deleted_downloads">%1$d elŝutoj forviŝitaj</string>
     <string name="videos_string">Filmetoj</string>
     <string name="permission_display_over_apps">Doni la permeson por afiŝiĝi supre aliaj apoj</string>
     <string name="app_language_title">Preferata aplingvo</string>

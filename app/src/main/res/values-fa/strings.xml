@@ -549,7 +549,7 @@
     <string name="systems_language">پیش‌فرض دستگاه</string>
     <string name="app_language_title">زبان برنامه</string>
     <string name="choose_instance_prompt">نمونه‌ای را انتخاب کنید</string>
-    <string name="deleted_downloads">تعداد %1$s بارگیری، پاک شد</string>
+    <string name="deleted_downloads">تعداد %1$d بارگیری، پاک شد</string>
     <string name="delete_downloaded_files">پاک کردن پرونده‌های بارگیری شده</string>
     <string name="clear_download_history">پاک کردن تاریخچه بارگیری</string>
     <string name="error_download_resource_gone">ناتوانی در بازیابی این بارگیری</string>

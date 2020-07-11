@@ -525,7 +525,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除已下载的文件</string>
-    <string name="deleted_downloads">已删除 %1$s 下载</string>
+    <string name="deleted_downloads">已删除 %1$d 下载</string>
     <string name="permission_display_over_apps">授予在其他应用上层显示的权限</string>
     <string name="app_language_title">Newpipe应用语言</string>
     <string name="systems_language">［系统默认］</string>

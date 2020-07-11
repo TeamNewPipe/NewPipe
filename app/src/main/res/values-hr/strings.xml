@@ -496,7 +496,7 @@
     <string name="playlist_no_uploader">Automatski generirano (nije pronađen nijedan autor)</string>
     <string name="clear_download_history">Očisti povijest preuzimanja</string>
     <string name="delete_downloaded_files">Izbriši preuzete datoteke</string>
-    <string name="deleted_downloads">Obrisano %1$s preuzimanja</string>
+    <string name="deleted_downloads">Obrisano %1$d preuzimanja</string>
     <string name="permission_display_over_apps">Dajte dopuštenje za prikazivanje na vrhu</string>
     <string name="app_language_title">Jezik aplikacije</string>
     <string name="systems_language">Zadani sustav</string>

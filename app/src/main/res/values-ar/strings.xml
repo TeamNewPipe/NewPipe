@@ -549,7 +549,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">عند استخدام مشغل الخلفية، سيتم عرض صورة العرض للفيديو على شاشة القفل</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
     <string name="delete_downloaded_files">حذف الملفات التي تم تنزيلها</string>
-    <string name="deleted_downloads">التنزيلات %1$s المحذوفة</string>
+    <string name="deleted_downloads">التنزيلات %1$d المحذوفة</string>
     <string name="permission_display_over_apps">إعطاء إذن لعرضه على التطبيقات الأخرى</string>
     <string name="app_language_title">لغة التطبيق</string>
     <string name="systems_language">النظام الافتراضي</string>

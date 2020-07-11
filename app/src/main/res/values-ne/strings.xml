@@ -528,7 +528,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">पृष्ठभूमिमा प्लेयर प्रयोग गर्दा एउटा भिडियो थम्बनेल लक स्क्रिनमा देखाइएको छ</string>
     <string name="clear_download_history">डाउनलोड इतिहास मेटाउ</string>
     <string name="delete_downloaded_files">डाउनलोड गरिएका फाइलहरु मेटाउ</string>
-    <string name="deleted_downloads">%1$s डाउनलोडहरु मेटियो</string>
+    <string name="deleted_downloads">%1$d डाउनलोडहरु मेटियो</string>
     <string name="permission_display_over_apps">अन्य अनुप्रयोगहरूमा प्रदर्शन गर्न अनुमति दिने</string>
     <string name="app_language_title">एप्सको भाषा</string>
     <string name="systems_language">सिस्टम पूर्वनिर्धारित</string>

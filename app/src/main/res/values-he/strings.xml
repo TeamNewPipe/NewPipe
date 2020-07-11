@@ -540,7 +540,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">תמונה מוקטנת של הסרטון תופיע על מסך הנעילה בעת שימוש בנגן הרקע</string>
     <string name="clear_download_history">מחיקת היסטוריית ההורדות</string>
     <string name="delete_downloaded_files">למחוק את הקבצים שהורדתי</string>
-    <string name="deleted_downloads">נמחקו %1$s הורדות</string>
+    <string name="deleted_downloads">נמחקו %1$d הורדות</string>
     <string name="permission_display_over_apps">יש להעניק הרשאה להציג על גבי יישומונים אחרים</string>
     <string name="app_language_title">שפת היישומון</string>
     <string name="systems_language">בררת המחדל של המערכת</string>

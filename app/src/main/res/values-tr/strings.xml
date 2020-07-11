@@ -530,7 +530,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Arka plan oynatıcıyı kullanırken kilit ekranında bir video küçük resmi gösterilir</string>
     <string name="clear_download_history">İndirme geçmişini temizle</string>
     <string name="delete_downloaded_files">İndirilen dosyaları sil</string>
-    <string name="deleted_downloads">%1$s indirme silindi</string>
+    <string name="deleted_downloads">%1$d indirme silindi</string>
     <string name="permission_display_over_apps">Diğer uygulamaların üzerinde görüntüleme izni ver</string>
     <string name="app_language_title">Uygulama dili</string>
     <string name="systems_language">Sistem öntanımlısı</string>

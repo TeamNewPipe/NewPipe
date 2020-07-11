@@ -526,5 +526,5 @@
     <string name="enable_lock_screen_video_thumbnail_summary">백그라운드 플레이어를 사용하는 경우 비디오 썸네일은 잠금화면 상에 표시됩니다.</string>
     <string name="clear_download_history">다운로드 기록 삭제</string>
     <string name="delete_downloaded_files">다운로드된 파일 삭제</string>
-    <string name="deleted_downloads">%1$s 다운로드 삭제</string>
+    <string name="deleted_downloads">%1$d 다운로드 삭제</string>
 </resources>

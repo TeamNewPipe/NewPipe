@@ -532,7 +532,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Ein Video-Miniaturbild wird auf dem Sperrbildschirm angezeigt, wenn der Hintergrundplayer verwendet wird</string>
     <string name="clear_download_history">Downloadverlauf löschen</string>
     <string name="delete_downloaded_files">Heruntergeladene Dateien löschen</string>
-    <string name="deleted_downloads">%1$s Downloads gelöscht</string>
+    <string name="deleted_downloads">%1$d Downloads gelöscht</string>
     <string name="permission_display_over_apps">Berechtigung zur Anzeige über andere Apps erteilen</string>
     <string name="app_language_title">Sprache der App</string>
     <string name="systems_language">Systemstandard</string>

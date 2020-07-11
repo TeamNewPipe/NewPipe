@@ -525,7 +525,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">使用背景播放器時，鎖定畫面上將會顯示影片縮圖</string>
     <string name="clear_download_history">清除下載歷史紀錄</string>
     <string name="delete_downloaded_files">刪除已下載的檔案</string>
-    <string name="deleted_downloads">已刪除 %1$s 個下載</string>
+    <string name="deleted_downloads">已刪除 %1$d 個下載</string>
     <string name="permission_display_over_apps">給予顯示在其他應用程式上層的權限</string>
     <string name="app_language_title">應用程式語言</string>
     <string name="systems_language">系統預設值</string>
