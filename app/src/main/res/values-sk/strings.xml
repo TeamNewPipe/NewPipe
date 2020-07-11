@@ -569,7 +569,7 @@
         <item quantity="other">%d dní</item>
     </plurals>
     <string name="feed_groups_header_title">Skupiny kanálov</string>
-    <string name="feed_oldest_subscription_update">Aktualizované: % s</string>
+    <string name="feed_oldest_subscription_update">Aktualizované: %s</string>
     <string name="feed_subscription_not_loaded_count">Nenačítané: %d</string>
     <string name="feed_notification_loading">Načítavanie zdroja…</string>
     <string name="feed_processing_message">Spracovávanie zdroja…</string>
