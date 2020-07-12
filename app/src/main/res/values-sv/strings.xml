@@ -239,10 +239,10 @@
     <string name="play_queue_audio_settings">Ljudinställningar</string>
     <string name="hold_to_append">Håll för att placera i kön</string>
     <string name="enqueue_on_background">Placera i bakgrunds-kön</string>
-    <string name="enqueue_on_popup">Placera i popup-kön</string>
+    <string name="enqueue_on_popup">Bifoga i en popup</string>
     <string name="start_here_on_main">Börja spela här</string>
     <string name="start_here_on_background">Börja spela i bakgrunden</string>
-    <string name="start_here_on_popup">Börja spela i en ny popup</string>
+    <string name="start_here_on_popup">Börja spela i en popup</string>
     <string name="donation_title">Donera</string>
     <string name="donation_encouragement">NewPipe utvecklas av frivilliga som spenderar sin fritid på att ge dig den bästa användarupplevelsen. Nu är det tid att ge tillbaka för att säkerställa att utvecklarna kan göra NewPipe ännu bättre medan de njuter av en kopp kaffe.</string>
     <string name="give_back">Ge tillbaka</string>
@@ -352,7 +352,7 @@
     <string name="caption_auto_generated">Autogenererade</string>
     <string name="caption_setting_title">Textning</string>
     <string name="caption_setting_description">Ändra spelarens textskala och bakgrundsstil. Kräver att appen startar om för att träder i kraft.</string>
-    <string name="enable_leak_canary_title">Aktivera LeakCanary</string>
+    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Minnesläcka övervakning kan orsaka att appen inte svarar under heap dumpning</string>
     <string name="enable_disposed_exceptions_title">Rapportera out-of-lifecycle fel</string>
     <string name="enable_disposed_exceptions_summary">Tvinga rapportering av otillåtna Rx-undantag utanför fragment eller aktivitetslivscykel efter uppstädning</string>
@@ -439,7 +439,7 @@
     <string name="download_already_running">Det finns en pågående nedladdning med det här namnet</string>
     <string name="show_error">Visa fel</string>
     <string name="label_code">Kod</string>
-    <string name="error_ssl_exception">Säker anslutning misslyckades</string>
+    <string name="error_ssl_exception">Kunde inte fastställa en säker anslutning</string>
     <string name="error_unknown_host">Kunde inte hitta servern</string>
     <string name="error_connect_host">Kunde inte ansluta till servern</string>
     <string name="error_http_no_content">Servern skickar ingen data</string>
@@ -522,4 +522,76 @@
     <string name="youtube_restricted_mode_enabled_title">YouTube begränsat läge</string>
     <string name="localization_changes_requires_app_restart">Språket ändras när appen har startats om.</string>
     <string name="error_unable_to_load_comments">Det gick inte att ladda kommentarer</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Inaktivera snabbläge</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Aktivera snabbläge</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Tillgängligt i vissa tjänster det är vanligtvis mycket snabbare men kan returnera en begränsad mängd artiklar och ofta ofullständig information (t.ex. ingen varaktighet, objekttyp, ingen live-status).</string>
+    <string name="feed_use_dedicated_fetch_method_title">Hämta från dedikerat flöde när det finns tillgängligt</string>
+    <string name="feed_update_threshold_option_always_update">Uppdatera alltid</string>
+    <string name="feed_update_threshold_summary">Tid efter senaste uppdatering innan en prenumeration anses vara föråldrad — %s</string>
+    <string name="feed_update_threshold_title">Tröskel för uppdatering av flöde</string>
+    <string name="settings_category_feed_title">Flöde</string>
+    <string name="feed_create_new_group_button_title">Ny</string>
+    <string name="feed_group_dialog_delete_message">Vill du ta bort den här gruppen\?</string>
+    <string name="feed_group_dialog_name_input">Namn</string>
+    <string name="feed_group_dialog_empty_name">Tomt gruppnamn</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d vald</item>
+        <item quantity="other">%d valda</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Ingen prenumeration vald</string>
+    <string name="feed_group_dialog_select_subscriptions">Välj prenumerationer</string>
+    <string name="feed_processing_message">Bearbetar flöde …</string>
+    <string name="feed_notification_loading">Läser in flöde …</string>
+    <string name="feed_subscription_not_loaded_count">Ej laddad: %d</string>
+    <string name="feed_oldest_subscription_update">Flödet senast uppdaterat: %s</string>
+    <string name="feed_groups_header_title">Kanalgrupper</string>
+    <plurals name="days">
+        <item quantity="one">%d dag</item>
+        <item quantity="other">%d dagar</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d timme</item>
+        <item quantity="other">&amp;d timmar</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minut</item>
+        <item quantity="other">%d minuter</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d sekund</item>
+        <item quantity="other">%d sekunder</item>
+    </plurals>
+    <string name="new_seek_duration_toast">På grund av ExoPlayer-begränsningar sattes söktiden till %d sekunder</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, och delvis tittade videor</string>
+    <string name="remove_watched_popup_warning">Videor som har tittats före och efter att de har lagts till i spellistan kommer att tas bort.
+\nÄr du säker\? Detta kan inte göras ogjort!</string>
+    <string name="remove_watched_popup_title">Ta bort tittade videor\?</string>
+    <string name="remove_watched">Ta bort tittade</string>
+    <string name="systems_language">Systems standard</string>
+    <string name="app_language_title">Appspråk</string>
+    <string name="choose_instance_prompt">Välj en instans</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" tillåter nedladdningar till ett externt SD-kort.
+\nVissa enheter är inkompatibla</string>
+    <string name="downloads_storage_use_saf_title">Använd SAF</string>
+    <string name="downloads_storage_ask_summary_kitkat">Du blir frågad var du vill spara varje nedladdning.
+\nVälj SAF om du vill ladda ner till ett externt SD-kort</string>
+    <string name="downloads_storage_ask_summary">Du blir frågad var du vill spara varje nedladdning</string>
+    <string name="downloads_storage_ask_title">Fråga var du ska ladda ner</string>
+    <string name="pause_downloads">Pausa nedladdningar</string>
+    <string name="start_downloads">Starta nedladdningar</string>
+    <string name="enable_queue_limit_desc">En nedladdning körs samtidigt</string>
+    <string name="enable_queue_limit">Begränsa nedladdningskön</string>
+    <string name="close">Stäng ner</string>
+    <string name="pause_downloads_on_mobile_desc">Användbart när du byter till mobildata, även om vissa nedladdningar inte kan avbrytas</string>
+    <string name="pause_downloads_on_mobile">Avbryt i en uppmätt nätverk</string>
+    <string name="deleted_downloads">Rensa %1$d nedladdningarna</string>
+    <string name="delete_downloaded_files">Radera nedladdade filer</string>
+    <string name="confirm_prompt">Vill du rensa din nedladdningshistorik eller radera alla nerladdade filer\?</string>
+    <string name="clear_download_history">Rensa nedladdningshistorik</string>
+    <string name="error_download_resource_gone">Kunde inte återfinna nedladdningen</string>
+    <string name="error_timeout">Anslutnings avbrott</string>
+    <string name="error_progress_lost">Framsteg förlorat, För att filen blev borttagen</string>
+    <string name="error_insufficient_storage">Inget utrymme kvar på enhet</string>
+    <string name="error_postprocessing_stopped">NewPipe stängdes under arbete med en fil</string>
+    <string name="error_permission_denied">Tillåtelse nekat av systemet</string>
 </resources>

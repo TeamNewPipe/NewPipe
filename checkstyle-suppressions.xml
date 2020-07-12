@@ -16,21 +16,6 @@
       lines="278,310"/>
 
   <!-- org.schabi.newpipe.streams -->
-  <suppress checks="FinalParameters"
-      files="DataReader.java"
-      lines="46,93"/>
-
-  <suppress checks="FinalParameters"
-      files="Mp4FromDashWriter.java"
-      lines="643"/>
-
-  <suppress checks="FinalParameters"
-      files="OggFromWebMWriter.java"
-      lines="380,422"/>
-
-  <suppress checks="FinalParameters"
-      files="WebMWriter.java"
-      lines="419,591"/>
   <suppress checks="LineLength"
       files="WebMWriter.java"
       lines="156,158"/>

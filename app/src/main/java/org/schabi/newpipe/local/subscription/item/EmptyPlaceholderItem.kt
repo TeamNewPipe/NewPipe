@@ -7,4 +7,5 @@ import org.schabi.newpipe.R
 class EmptyPlaceholderItem : Item() {
     override fun getLayout(): Int = R.layout.list_empty_view
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {}
+    override fun getSpanSize(spanCount: Int, position: Int): Int = spanCount
 }

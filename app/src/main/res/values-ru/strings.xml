@@ -344,11 +344,11 @@
     <string name="previous_export">Предыдущий экспорт</string>
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
-    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта:
-\n
-\n1. Перейдите по ссылке %1$s
-\n2. Выполните вход.
-\n3. Дождитесь завершения загрузки файла экспорта.</string>
+    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта: 
+\n 
+\n1. Перейдите по ссылке %1$s 
+\n2. Авторизуйтесь, если требуется
+\n3. Загрузка (файла экспорта) должна начаться автоматически</string>
     <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: 
 \n 
 \n1. Включите режим \"Полная версия сайта\" в браузере.
@@ -534,7 +534,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Показать миниатюру видео на экране блокировки при воспроизведении в фоне</string>
     <string name="clear_download_history">Очистить историю загрузок</string>
     <string name="delete_downloaded_files">Удаление загруженных файлов</string>
-    <string name="deleted_downloads">Удалено загрузок: %1$s</string>
+    <string name="deleted_downloads">Удалено загрузок: %1$d</string>
     <string name="permission_display_over_apps">Разрешите отображение поверх приложений</string>
     <string name="app_language_title">Язык интерфейса</string>
     <string name="systems_language">Как в системе</string>
@@ -624,4 +624,5 @@
     <string name="video_detail_by">От %s</string>
     <string name="channel_created_by">Создано %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Показывать только несгруппированные подписки</string>
 </resources>

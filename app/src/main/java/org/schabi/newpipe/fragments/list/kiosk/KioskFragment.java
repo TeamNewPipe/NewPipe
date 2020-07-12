@@ -150,7 +150,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     @Override
     public Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextPageUrl);
+        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextPage);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

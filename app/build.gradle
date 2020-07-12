@@ -13,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 950
-        versionName "0.19.5"
+        versionCode 951
+        versionName "0.19.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -84,11 +84,16 @@ ext {
     checkstyleVersion = '8.32'
     stethoVersion = '1.5.1'
     leakCanaryVersion = '2.2'
-    exoPlayerVersion = '2.11.4'
+    exoPlayerVersion = '2.11.6'
     androidxLifecycleVersion = '2.2.0'
     androidxRoomVersion = '2.2.5'
     groupieVersion = '2.8.0'
     markwonVersion = '4.3.1'
+}
+
+configurations {
+    checkstyle
+    ktlint
 }
 
 checkstyle {
@@ -106,8 +111,7 @@ task runCheckstyle(type: Checkstyle) {
     exclude '**/BuildConfig.java'
     exclude 'main/java/us/shandian/giga/**'
 
-    // empty classpath
-    classpath = files()
+    classpath = configurations.checkstyle
 
     showViolations true
 
@@ -115,10 +119,6 @@ task runCheckstyle(type: Checkstyle) {
         xml.enabled true
         html.enabled true
     }
-}
-
-configurations {
-    ktlint
 }
 
 task runKtlint(type: JavaExec) {
@@ -143,7 +143,7 @@ dependencies {
     implementation "frankiesardo:icepick:${icepickVersion}"
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
-    debugImplementation "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
+    checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
     ktlint "com.pinterest:ktlint:0.35.0"
 
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
@@ -163,7 +163,7 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:bda83fe6a5b9a8a0751669fbc444fa49d72d0d2f'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:a70cb0283ffc3bba2709815673a5a7940aab0a3a'
 
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
     implementation "org.jsoup:jsoup:1.13.1"

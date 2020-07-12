@@ -16,6 +16,7 @@
     <string name="search">Search</string>
     <string name="settings">Settings</string>
     <string name="did_you_mean">Did you mean: %1$s?</string>
+    <string name="search_showing_result_for">Showing results for: %s</string>
     <string name="share_dialog_title">Share with</string>
     <string name="choose_browser">Choose browser</string>
     <string name="screen_rotation">rotation</string>
@@ -234,11 +235,14 @@
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
+    <string name="copy_for_github">Copy formatted report</string>
+    <string name="error_report_open_issue_button_text">Report error on GitHub</string>
+    <string name="error_report_open_github_notice">Please check whether an issue discussing your crash already exists. When creating duplicate tickets, you take time from us which we could spend with fixing the actual bug.</string>
     <string name="error_snackbar_message">Sorry, some errors occurred.</string>
     <string name="error_snackbar_action">Report</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
     <!-- Content descriptions (for better accessibility) -->
@@ -348,7 +352,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
     <string name="title_licenses">Third-party Licenses</string>
-    <string name="copyright" formatted="true">© %1$s by %2$s under %3$s</string>
+    <string name="copyright">© %1$s by %2$s under %3$s</string>
     <string name="error_unable_to_load_license">Could not load license</string>
     <string name="action_open_website">Open website</string>
     <string name="tab_about">About</string>
@@ -399,6 +403,8 @@
     <string name="channel_page_summary">Channel Page</string>
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscriptions yet</string>
+    <string name="select_a_playlist">Select a playlist</string>
+    <string name="no_playlist_bookmarked_yet">No playlists bookmarks yet</string>
     <string name="select_a_kiosk">Select a kiosk</string>
     <string name="export_complete_toast">Exported</string>
     <string name="import_complete_toast">Imported</string>
@@ -536,7 +542,7 @@
     <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
     <!-- App update notification -->
-    <string name="app_update_notification_content_title">NewPipe Update Available!</string>
+    <string name="app_update_notification_content_title">NewPipe update is available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
     <string name="missions_header_finished">Finished</string>
     <string name="missions_header_pending">Pending</string>
@@ -579,7 +585,7 @@
     <string name="clear_download_history">Clear download history</string>
     <string name="confirm_prompt">Do you want to clear your download history or delete all downloaded files?</string>
     <string name="delete_downloaded_files">Delete downloaded files</string>
-    <string name="deleted_downloads">Deleted %1$s downloads</string>
+    <string name="deleted_downloads">Deleted %1$d downloads</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
@@ -637,6 +643,7 @@
     <string name="feed_group_dialog_name_input">Name</string>
     <string name="feed_group_dialog_delete_message">Do you want to delete this group?</string>
     <string name="feed_create_new_group_button_title">New</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Show only ungrouped subscriptions</string>
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_update_threshold_title">Feed update threshold</string>
     <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated — %s</string>
@@ -650,4 +657,5 @@
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
     <string name="video_detail_by">By %s</string>
+    <string name="playlist_page_summary">Playlist page</string>
 </resources>

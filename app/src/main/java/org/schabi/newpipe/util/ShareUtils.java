@@ -1,10 +1,13 @@
 package org.schabi.newpipe.util;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 
@@ -77,5 +80,28 @@ public final class ShareUtils {
         intent.putExtra(Intent.EXTRA_TEXT, url);
         context.startActivity(Intent.createChooser(
                 intent, context.getString(R.string.share_dialog_title)));
+    }
+
+    /**
+     * Copy the text to clipboard, and indicate to the user whether the operation was completed
+     * successfully using a Toast.
+     *
+     * @param context the context to use
+     * @param text    the text to copy
+     */
+    public static void copyToClipboard(final Context context, final String text) {
+        final ClipboardManager clipboardManager =
+                (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+
+        if (clipboardManager == null) {
+            Toast.makeText(context,
+                    R.string.permission_denied,
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        clipboardManager.setPrimaryClip(ClipData.newPlainText(null, text));
+        Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT)
+                .show();
     }
 }

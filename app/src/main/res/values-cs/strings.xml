@@ -433,7 +433,7 @@ otevření ve vyskakovacím okně</string>
     <string name="grid">Mřížka</string>
     <string name="auto">Automaticky</string>
     <string name="switch_view">Přepnout zobrazení</string>
-    <string name="app_update_notification_content_title">K dispozici je aktualizace aplikace NewPipe!</string>
+    <string name="app_update_notification_content_title">Aktualizace NewPipe je k dispozici!</string>
     <string name="app_update_notification_content_text">Klepněte pro stažení</string>
     <string name="missions_header_finished">Hotovo</string>
     <string name="missions_header_pending">Vyčkávání</string>
@@ -538,7 +538,7 @@ otevření ve vyskakovacím okně</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Při použití přehrávače na pozadí se náhled videa ukáže na zamknuté obrazovce</string>
     <string name="clear_download_history">Smazat historii stahování</string>
     <string name="delete_downloaded_files">Smazat stažené soubory</string>
-    <string name="deleted_downloads">Smazat %1$s stahování</string>
+    <string name="deleted_downloads">Smazat %1$d stahování</string>
     <string name="permission_display_over_apps">Souhlasit se zobrazením přes jiné aplikace</string>
     <string name="app_language_title">Jazyk aplikace</string>
     <string name="systems_language">Jazyk systému</string>

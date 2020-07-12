@@ -71,7 +71,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
 
     @Override
     protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreCommentItems(serviceId, currentInfo, currentNextPageUrl);
+        return ExtractorHelper.getMoreCommentItems(serviceId, currentInfo, currentNextPage);
     }
 
     @Override

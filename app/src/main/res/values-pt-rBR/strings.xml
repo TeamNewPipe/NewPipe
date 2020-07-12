@@ -310,7 +310,7 @@
     <string name="drawer_header_action_paceholder_text">Algo aparecerá aqui em breve ;D</string>
     <string name="caption_auto_generated">Gerado automaticamente</string>
     <string name="enable_leak_canary_title">LeakCanary</string>
-    <string name="enable_leak_canary_summary">A monitoração de vazamento de memória pode pode tornar o app instável</string>
+    <string name="enable_leak_canary_summary">A monitoração de vazamento de memória pode tornar o app instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Força relatório de exceções Rx não entregues fora do ciclo de vida do fragmento ou atividade após o descarte</string>
     <string name="use_inexact_seek_title">Usar avanço rápido</string>
@@ -428,7 +428,7 @@
     <string name="grid">Grade</string>
     <string name="auto">Automático</string>
     <string name="switch_view">Mudar exibição</string>
-    <string name="app_update_notification_content_title">Atualização do NewPipe disponível!</string>
+    <string name="app_update_notification_content_title">Atualização do NewPipe está disponível!</string>
     <string name="app_update_notification_content_text">Toque para baixar</string>
     <string name="missions_header_finished">Finalizado</string>
     <string name="paused">pausado</string>
@@ -440,7 +440,7 @@
     <string name="download_finished">Download finalizado</string>
     <string name="download_finished_more">%s downloads terminados</string>
     <string name="generate_unique_name">Gerar nome único</string>
-    <string name="overwrite">"Sobrescrever "</string>
+    <string name="overwrite">Sobrescrever</string>
     <string name="overwrite_finished_warning">Um arquivo baixado com esse nome já existe</string>
     <string name="download_already_running">Existe um download em progresso com este nome</string>
     <string name="show_error">Mostrar erro</string>
@@ -530,7 +530,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">A capa do vídeo é exibida na tela de bloqueio ao usar o player em segundo plano</string>
     <string name="clear_download_history">Limpar histórico de downloads</string>
     <string name="delete_downloaded_files">Excluir arquivos baixados</string>
-    <string name="deleted_downloads">%1$s arquivos excluídos</string>
+    <string name="deleted_downloads">%1$d arquivos excluídos</string>
     <string name="permission_display_over_apps">Permitir exibição sobre outros apps</string>
     <string name="app_language_title">Idioma do app</string>
     <string name="systems_language">Padrão do sistema</string>
@@ -613,4 +613,5 @@
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Capa do avatar do canal</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas inscrições não agrupadas</string>
 </resources>

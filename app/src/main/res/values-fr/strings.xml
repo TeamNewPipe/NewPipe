@@ -529,7 +529,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Une miniature de la vidéo sera affichée sur l’écran de verrouillage lorsque le lecteur en arrière-plan est utilisé</string>
     <string name="clear_download_history">Effacer l’historique de téléchargement</string>
     <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
-    <string name="deleted_downloads">%1$s téléchargements supprimés</string>
+    <string name="deleted_downloads">%1$d téléchargements supprimés</string>
     <string name="permission_display_over_apps">Autoriser l’affichage au-dessus d’autres applications</string>
     <string name="app_language_title">Langue de l’application</string>
     <string name="systems_language">Prédéfini par le système</string>
@@ -562,7 +562,7 @@
     <string name="feed_oldest_subscription_update">Dernière mise à jour du flux : %s</string>
     <string name="feed_subscription_not_loaded_count">Pas chargés : %d</string>
     <string name="feed_notification_loading">Chargement du flux…</string>
-    <string name="feed_processing_message">Préparation du flux…</string>
+    <string name="feed_processing_message">Traitement du flux…</string>
     <string name="feed_group_dialog_select_subscriptions">Choisir les abonnements</string>
     <string name="feed_group_dialog_empty_selection">Aucun abonnement sélectionné</string>
     <plurals name="feed_group_dialog_selection_count">
@@ -577,21 +577,21 @@
     <string name="feed_update_threshold_title">Seuil de mise à jour du flux</string>
     <string name="feed_update_threshold_summary">Temps depuis la dernière mise à jour pour que le flux ne soit plus considéré comme à jour — %s</string>
     <string name="feed_update_threshold_option_always_update">Toujours mettre à jour</string>
-    <string name="feed_use_dedicated_fetch_method_title">Charger depuis un service dédié quand c\'est possible</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponible pour quelques services, c\'est généralement bien plus rapide mais peut retourner un nombre d\'élements limité et des informations souvent incomplètes (ex : pas de durée, pas de statut « En direct ».</string>
+    <string name="feed_use_dedicated_fetch_method_title">Récupérer depuis un flux dédié lorsque disponible</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponible dans certains services, c’est généralement beaucoup plus rapide mais cela peut renvoyer un nombre limité d’éléments et souvent avec des informations incomplètes (p. ex. aucune durée, de type d’élément ou de statut en direct).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activer le mode rapide</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Désactiver le mode rapide</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Pensez-vous que la chargement du flux est trop lent \? Si c\'est le cas, essayez le mode rapide (vous pouvez changer le mode dans les paramètres ou en pressant le bouton en dessous).
+    <string name="feed_use_dedicated_fetch_method_help_text">Pensez-vous que le chargement du flux est trop lent \? Si c’est le cas, essayez le chargement rapide (vous pouvez le modifier dans les paramètres ou en pressant le bouton ci-dessous).
 \n
-\n NewPipe propose deux manières de charger le flux :
-\n • Charger toutes les chaines auquelles vous êtes abonnés, cette manière est lente mais complète.
-\n • Charger depuis un service dédié, cette manière est plus rapide mais souvent incomplète.
+\nNewPipe propose deux stratégies de chargement de flux :
+\n• Récupérer la totalité de la chaîne d’abonnement, ce qui est lent mais complet.
+\n• Utiliser un service dédié, ce qui est rapide mais souvent incomplet.
 \n
-\n La différence entre les deux est que la méthode rapide manque souvent de quelques informations, comme la durée d\'un élément ou le type (nous ne pouvons pas différencier les vidéos en direct des vidéos normales) et pourrait retourner moins d\'éléments.
+\nLa différence entre les deux est que la méthode rapide manque souvent de quelques informations, comme la durée d’un élément ou le type (pas de distinction possible entre les vidéos en direct et les autres), et elle pourrait retourner moins d’éléments.
 \n
-\n YouTube est un exemple qui offre cette méthode rapide avec le flux RSS.
+\nYouTube est un exemple de service qui offre une méthode rapide avec son flux RSS.
 \n
-\n Donc le choix vous revient : Préferez-vous la vitesse ou des informations précises \?</string>
+\nDonc le choix se résume à ce que vous préférez : la rapidité ou des informations précises.</string>
     <string name="help">Aide</string>
     <string name="content_not_supported">Ce contenu n\'est pas encore supporté par NewPipe.\n\nIl le sera peut-être dans une version future.</string>
     <string name="albums">Albums</string>
@@ -613,4 +613,5 @@
     <string name="show_original_time_ago_summary">Les textes originaux des services vont être visibles dans les items</string>
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
     <string name="youtube_restricted_mode_enabled_title">Mode restreint de YouTube</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Afficher les abonnements sans groupes uniquement</string>
 </resources>

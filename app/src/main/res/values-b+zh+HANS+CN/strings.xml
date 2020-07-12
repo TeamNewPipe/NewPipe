@@ -71,7 +71,7 @@
     <string name="subscribers_count_not_available">无法得知订阅人数</string>
     <string name="updates_setting_description">发布新版本时，通知我升级应用</string>
     <string name="grid">网格</string>
-    <string name="app_update_notification_content_title">新版 NewPipe 发布！</string>
+    <string name="app_update_notification_content_title">NewPipe有更新！</string>
     <string name="error_http_unsupported_range">服务器不接受 接收 multi-threaded 下载, 以 @string/msg_threads = 1 重试</string>
     <string name="autoplay_title">自动播放</string>
     <string name="settings_category_clear_data_title">清除数据</string>
@@ -108,7 +108,6 @@
     <string name="msg_running_detail">点击了解详情</string>
     <string name="msg_wait">请稍候…</string>
     <string name="msg_copied">复制至剪贴板</string>
-    <string name="recaptcha">reCAPTCHA验证码</string>
     <string name="controls_popup_title">悬浮窗播放</string>
     <string name="title_activity_about">关于NewPipe</string>
     <string name="action_settings">设置</string>
@@ -282,10 +281,10 @@
     <string name="hold_to_append">长按队列</string>
     <string name="unknown_content">[未知]</string>
     <string name="enqueue_on_background">添加到后台部分队列</string>
-    <string name="enqueue_on_popup">添加至新悬浮窗列表</string>
+    <string name="enqueue_on_popup">加入悬浮窗队列</string>
     <string name="start_here_on_main">开始在此处开始播放</string>
     <string name="start_here_on_background">开始后台播放</string>
-    <string name="start_here_on_popup">开始在新悬浮窗中播放</string>
+    <string name="start_here_on_popup">开始在悬浮窗中播放</string>
     <string name="donation_title">捐赠</string>
     <string name="donation_encouragement">NewPipe 是由志愿者花费时间为您带来最佳体验开发的。回馈帮助开发人员在享用一杯咖啡的同时，让 NewPipe 变得更好。</string>
     <string name="give_back">反馈</string>
@@ -525,7 +524,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除已下载的文件</string>
-    <string name="deleted_downloads">已删除 %1$s 下载</string>
+    <string name="deleted_downloads">已删除 %1$d 下载</string>
     <string name="permission_display_over_apps">授予在其他应用上层显示的权限</string>
     <string name="app_language_title">Newpipe应用语言</string>
     <string name="systems_language">［系统默认］</string>
@@ -535,7 +534,7 @@
     <plurals name="seconds">
         <item quantity="other">%d秒</item>
     </plurals>
-    <string name="new_seek_duration_toast">由于ExoPlayer的限制，搜寻间隔设置为％d秒</string>
+    <string name="new_seek_duration_toast">由于ExoPlayer的限制，搜寻间隔设置为%d秒</string>
     <string name="mute">静音</string>
     <string name="unmute">取消静音</string>
     <string name="help">帮助</string>
@@ -604,4 +603,5 @@
     <string name="show_original_time_ago_summary">来自服务的原始文本将在流项目中可见</string>
     <string name="show_original_time_ago_title">在项目上显示原始时间</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube受限模式</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">仅显示未分组订阅</string>
 </resources>

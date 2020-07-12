@@ -523,8 +523,8 @@
     <string name="error_download_resource_gone">이 다운로드를 복구할 수 없습니다</string>
     <string name="choose_instance_prompt">인스턴스를 선택하세요</string>
     <string name="enable_lock_screen_video_thumbnail_title">비디어 썸네일 화면 고정을 가능하게 한다</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">백그라운드 플레이어를 사용하는 경우 비디오 썸네일은 고정된 스크린 위에 표시됩니다.</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">백그라운드 플레이어를 사용하는 경우 비디오 썸네일은 잠금화면 상에 표시됩니다.</string>
     <string name="clear_download_history">다운로드 기록 삭제</string>
     <string name="delete_downloaded_files">다운로드된 파일 삭제</string>
-    <string name="deleted_downloads">%1$s 다운로드 삭제</string>
+    <string name="deleted_downloads">%1$d 다운로드 삭제</string>
 </resources>

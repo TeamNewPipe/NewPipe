@@ -58,7 +58,6 @@
     <string name="short_billion">Mil mill.</string>
     <string name="msg_popup_permission">Precísase esti permisu
 \np\'abrir nel mou ventanu</string>
-    <string name="recaptcha">reCAPTCHA</string>
     <string name="title_activity_recaptcha">Retu de reCAPTCHA</string>
     <string name="recaptcha_request_toast">Solicitóse\'l retu de reCAPTCHA</string>
     <string name="controls_background_title">En segundu planu</string>
@@ -130,7 +129,7 @@
     <string name="new_and_hot">Novedaes</string>
     <string name="unknown_content">[Desconozse]</string>
     <string name="start_here_on_background">Reproducir en segundu planu</string>
-    <string name="start_here_on_popup">Reproducir nun ventanu</string>
+    <string name="start_here_on_popup"></string>
     <string name="donation_title">Donación</string>
     <string name="donation_encouragement"/>
     <string name="give_back">Donar</string>
@@ -210,7 +209,7 @@
     <string name="no_comments">Nun hai comentarios</string>
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
     <string name="show_comments_title">Amosar comentarios</string>
-    <string name="show_comments_summary"/>
+    <string name="show_comments_summary">Desactiva esta opción p\'anubrir los comentarios</string>
     <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de NewPipe. Lléila con procuru. 
 \nHas aceutala unviándonos un informe de fallos.
     </string>
@@ -304,4 +303,8 @@
     <string name="metadata_cache_wipe_complete_notice">Llipióse la caché de metadatos</string>
     <string name="metadata_cache_wipe_summary">Desanicia los datos de les páxines web na caché</string>
     <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Llimpióse la caché d\'imáxenes</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Amuésase una miniatura de videu na pantalla de bloquéu al usar el reproductor en segundu planu</string>
+    <string name="kore_not_found">¿Instalar l\'aplicación Kore\?</string>
+    <string name="autoplay_by_calling_app_summary">Reproduz un videu cuando s\'invoca a NewPipe dende otra aplicación</string>
 </resources>

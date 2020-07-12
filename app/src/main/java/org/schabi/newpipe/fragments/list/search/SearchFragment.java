@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -37,6 +38,7 @@ import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
@@ -71,6 +73,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
+import static android.text.Html.escapeHtml;
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static java.util.Arrays.asList;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -119,12 +122,17 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     String lastSearchedString;
 
     @State
+    String searchSuggestion;
+
+    @State
+    boolean isCorrectedSearch;
+
+    @State
     boolean wasSearchFocused = false;
 
     private Map<Integer, String> menuItemToFilterName;
     private StreamingService service;
-    private String currentPageUrl;
-    private String nextPageUrl;
+    private Page nextPage;
     private String contentCountry;
     private boolean isSuggestionsEnabled = true;
 
@@ -142,6 +150,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private View searchToolbarContainer;
     private EditText searchEditText;
     private View searchClear;
+
+    private TextView correctSuggestion;
 
     private View suggestionsPanel;
     private RecyclerView suggestionsRecyclerView;
@@ -257,6 +267,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             }
         }
 
+        handleSearchSuggestion();
+
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
         }
@@ -345,6 +357,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchToolbarContainer = activity.findViewById(R.id.toolbar_search_container);
         searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
         searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
+
+        correctSuggestion = rootView.findViewById(R.id.correct_suggestion);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -354,15 +368,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void writeTo(final Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
-        objectsToSave.add(currentPageUrl);
-        objectsToSave.add(nextPageUrl);
+        objectsToSave.add(nextPage);
     }
 
     @Override
     public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
-        currentPageUrl = (String) savedObjects.poll();
-        nextPageUrl = (String) savedObjects.poll();
+        nextPage = (Page) savedObjects.poll();
     }
 
     @Override
@@ -497,6 +509,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 return;
             }
 
+            correctSuggestion.setVisibility(View.GONE);
+
             searchEditText.setText("");
             suggestionListAdapter.setItems(new ArrayList<>());
             showKeyboardSearch();
@@ -554,11 +568,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(final CharSequence s, final int start,
-                                          final int count, final int after) { }
+                                          final int count, final int after) {
+            }
 
             @Override
             public void onTextChanged(final CharSequence s, final int start,
-                                      final int before, final int count) { }
+                                      final int before, final int count) {
+            }
 
             @Override
             public void afterTextChanged(final Editable s) {
@@ -686,10 +702,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             return true;
         }
         return false;
-    }
-
-    public void giveSearchEditTextFocus() {
-        showKeyboardSearch();
     }
 
     private void initSuggestionObserver() {
@@ -845,7 +857,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     protected void loadMoreItems() {
-        if (nextPageUrl == null || nextPageUrl.isEmpty()) {
+        if (!Page.isValid(nextPage)) {
             return;
         }
         isLoading.set(true);
@@ -858,7 +870,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 searchString,
                 asList(contentFilter),
                 sortFilter,
-                nextPageUrl)
+                nextPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
@@ -961,9 +973,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     NewPipe.getNameOfService(serviceId), searchString, 0);
         }
 
+        searchSuggestion = result.getSearchSuggestion();
+        isCorrectedSearch = result.isCorrectedSearch();
+
+        handleSearchSuggestion();
+
         lastSearchedString = searchString;
-        nextPageUrl = result.getNextPageUrl();
-        currentPageUrl = result.getUrl();
+        nextPage = result.getNextPage();
 
         if (infoListAdapter.getItemsList().size() == 0) {
             if (!result.getRelatedItems().isEmpty()) {
@@ -978,17 +994,49 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         super.handleResult(result);
     }
 
+    private void handleSearchSuggestion() {
+        if (TextUtils.isEmpty(searchSuggestion)) {
+            correctSuggestion.setVisibility(View.GONE);
+        } else {
+            final String helperText = getString(isCorrectedSearch
+                    ? R.string.search_showing_result_for
+                    : R.string.did_you_mean);
+
+            final String highlightedSearchSuggestion =
+                    "<b><i>" + escapeHtml(searchSuggestion) + "</i></b>";
+            correctSuggestion.setText(
+                    Html.fromHtml(String.format(helperText, highlightedSearchSuggestion)));
+
+
+            correctSuggestion.setOnClickListener(v -> {
+                correctSuggestion.setVisibility(View.GONE);
+                search(searchSuggestion, contentFilter, sortFilter);
+                searchEditText.setText(searchSuggestion);
+            });
+
+            correctSuggestion.setOnLongClickListener(v -> {
+                searchEditText.setText(searchSuggestion);
+                searchEditText.setSelection(searchSuggestion.length());
+                showKeyboardSearch();
+                return true;
+            });
+
+            correctSuggestion.setVisibility(View.VISIBLE);
+        }
+    }
+
     @Override
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         showListFooter(false);
-        currentPageUrl = result.getNextPageUrl();
         infoListAdapter.addInfoItemList(result.getItems());
-        nextPageUrl = result.getNextPageUrl();
+        nextPage = result.getNextPage();
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.SEARCHED,
                     NewPipe.getNameOfService(serviceId),
-                    "\"" + searchString + "\" → page: " + nextPageUrl, 0);
+                    "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
+                            + "pageIds: " + nextPage.getIds() + ", "
+                            + "pageCookies: " + nextPage.getCookies(), 0);
         }
         super.handleNextItems(result);
     }
@@ -1020,6 +1068,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public int getSuggestionMovementFlags(@NonNull final RecyclerView recyclerView,
                                           @NonNull final RecyclerView.ViewHolder viewHolder) {
         final int position = viewHolder.getAdapterPosition();
+        if (position == RecyclerView.NO_POSITION) {
+            return 0;
+        }
+
         final SuggestionItem item = suggestionListAdapter.getItem(position);
         return item.fromHistory ? makeMovementFlags(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) : 0;

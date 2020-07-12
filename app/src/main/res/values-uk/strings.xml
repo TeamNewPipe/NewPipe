@@ -618,5 +618,8 @@
     <string name="restricted_video">Це відео з віковим обмеженням.
 \n 
 \nЩоб побачити його потрібно включите \"Контент 18+\" в налаштуваннях.</string>
-    <string name="deleted_downloads">Видалено %1$s завантажень</string>
+    <string name="deleted_downloads">Видалено %1$d завантажень</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Ескіз аватара каналу</string>
+    <string name="show_original_time_ago_summary">Оригінальні тексти сервісів будуть видимі в потокових елементах</string>
+    <string name="youtube_restricted_mode_enabled_title">Режим обмеженого доступу YouTube</string>
 </resources>

@@ -5,7 +5,7 @@
     <string name="upload_date_text">Yayınlanma: %1$s</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC yüklensin mi\?</string>
     <string name="install">Yükle</string>
-    <string name="cancel">Vazgeç</string>
+    <string name="cancel">İptal</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
     <string name="share">Paylaş</string>
     <string name="download">İndir</string>
@@ -422,7 +422,7 @@
     <string name="grid">Izgara</string>
     <string name="auto">Otomatik</string>
     <string name="switch_view">Görünümü Değiştir</string>
-    <string name="app_update_notification_content_title">NewPipe Güncellemesi Var!</string>
+    <string name="app_update_notification_content_title">NewPipe güncellemesi var!</string>
     <string name="app_update_notification_content_text">İndirmek için dokunun</string>
     <string name="missions_header_finished">Tamamlandı</string>
     <string name="paused">durduruldu</string>
@@ -530,7 +530,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Arka plan oynatıcıyı kullanırken kilit ekranında bir video küçük resmi gösterilir</string>
     <string name="clear_download_history">İndirme geçmişini temizle</string>
     <string name="delete_downloaded_files">İndirilen dosyaları sil</string>
-    <string name="deleted_downloads">%1$s indirme silindi</string>
+    <string name="deleted_downloads">%1$d indirme silindi</string>
     <string name="permission_display_over_apps">Diğer uygulamaların üzerinde görüntüleme izni ver</string>
     <string name="app_language_title">Uygulama dili</string>
     <string name="systems_language">Sistem öntanımlısı</string>
@@ -613,4 +613,5 @@
     <string name="video_detail_by">%s tarafından</string>
     <string name="channel_created_by">%s tarafından oluşturuldu</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar küçük resmi</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Yalnızca kümelenmemiş abonelikleri göster</string>
 </resources>

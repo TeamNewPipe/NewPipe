@@ -43,7 +43,8 @@ public class DataReader {
         return readBuffer[readOffset++] & 0xFF;
     }
 
-    public long skipBytes(long amount) throws IOException {
+    public long skipBytes(final long byteAmount) throws IOException {
+        long amount = byteAmount;
         if (readCount < 0) {
             return 0;
         } else if (readCount == 0) {
@@ -90,7 +91,10 @@ public class DataReader {
         return read(buffer, 0, buffer.length);
     }
 
-    public int read(final byte[] buffer, int offset, int count) throws IOException {
+    public int read(final byte[] buffer, final int off, final int c) throws IOException {
+        int offset = off;
+        int count = c;
+
         if (readCount < 0) {
             return -1;
         }

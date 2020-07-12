@@ -45,7 +45,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.Collections;
 import java.util.List;
 
-import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -84,13 +83,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private ImageButton repeatButton;
     private ImageButton backwardButton;
+    private ImageButton fastRewindButton;
     private ImageButton playPauseButton;
+    private ImageButton fastForwardButton;
     private ImageButton forwardButton;
     private ImageButton shuffleButton;
     private ProgressBar progressBar;
-
-    private TextView playbackSpeedButton;
-    private TextView playbackPitchButton;
 
     private Menu menu;
 
@@ -165,6 +163,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 return true;
             case R.id.action_append_playlist:
                 appendAllToPlaylist();
+                return true;
+            case R.id.action_playback_speed:
+                openPlaybackParameterDialog();
                 return true;
             case R.id.action_mute:
                 player.onMuteUnmuteButtonClicked();
@@ -310,20 +311,20 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void buildControls() {
         repeatButton = rootView.findViewById(R.id.control_repeat);
         backwardButton = rootView.findViewById(R.id.control_backward);
+        fastRewindButton = rootView.findViewById(R.id.control_fast_rewind);
         playPauseButton = rootView.findViewById(R.id.control_play_pause);
+        fastForwardButton = rootView.findViewById(R.id.control_fast_forward);
         forwardButton = rootView.findViewById(R.id.control_forward);
         shuffleButton = rootView.findViewById(R.id.control_shuffle);
-        playbackSpeedButton = rootView.findViewById(R.id.control_playback_speed);
-        playbackPitchButton = rootView.findViewById(R.id.control_playback_pitch);
         progressBar = rootView.findViewById(R.id.control_progress_bar);
 
         repeatButton.setOnClickListener(this);
         backwardButton.setOnClickListener(this);
+        fastRewindButton.setOnClickListener(this);
         playPauseButton.setOnClickListener(this);
+        fastForwardButton.setOnClickListener(this);
         forwardButton.setOnClickListener(this);
         shuffleButton.setOnClickListener(this);
-        playbackSpeedButton.setOnClickListener(this);
-        playbackPitchButton.setOnClickListener(this);
     }
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
@@ -473,16 +474,16 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.onRepeatClicked();
         } else if (view.getId() == backwardButton.getId()) {
             player.onPlayPrevious();
+        } else if (view.getId() == fastRewindButton.getId()) {
+            player.onFastRewind();
         } else if (view.getId() == playPauseButton.getId()) {
             player.onPlayPause();
+        } else if (view.getId() == fastForwardButton.getId()) {
+            player.onFastForward();
         } else if (view.getId() == forwardButton.getId()) {
             player.onPlayNext();
         } else if (view.getId() == shuffleButton.getId()) {
             player.onShuffleClicked();
-        } else if (view.getId() == playbackSpeedButton.getId()) {
-            openPlaybackParameterDialog();
-        } else if (view.getId() == playbackPitchButton.getId()) {
-            openPlaybackParameterDialog();
         } else if (view.getId() == metadata.getId()) {
             scrollToSelected();
         } else if (view.getId() == progressLiveSync.getId()) {
@@ -690,8 +691,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
         if (parameters != null) {
-            playbackSpeedButton.setText(formatSpeed(parameters.speed));
-            playbackPitchButton.setText(formatPitch(parameters.pitch));
+            if (menu != null && player != null) {
+                final MenuItem item = menu.findItem(R.id.action_playback_speed);
+                item.setTitle(formatSpeed(parameters.speed));
+            }
         }
     }
 

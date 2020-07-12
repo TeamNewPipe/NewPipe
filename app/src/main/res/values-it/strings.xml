@@ -530,7 +530,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">La copertina del video verrà mostrata nella schermata di blocco, durante la riproduzione in sottofondo</string>
     <string name="clear_download_history">Pulisci Cronologia Download</string>
     <string name="delete_downloaded_files">Elimina File Scaricati</string>
-    <string name="deleted_downloads">%1$s download eliminati</string>
+    <string name="deleted_downloads">%1$d download eliminati</string>
     <string name="permission_display_over_apps">Consentire la visualizzazione sopra altre applicazioni</string>
     <string name="app_language_title">Lingua Applicazione</string>
     <string name="systems_language">Predefinita di Sistema</string>
