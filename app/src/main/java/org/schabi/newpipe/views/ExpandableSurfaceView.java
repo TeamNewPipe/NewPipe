@@ -25,14 +25,14 @@ public class ExpandableSurfaceView extends SurfaceView {
         if (videoAspectRatio == 0.0f) return;
 
         int width = MeasureSpec.getSize(widthMeasureSpec);
-        boolean verticalVideo = videoAspectRatio < 1;
+        final boolean verticalVideo = videoAspectRatio < 1;
         // Use maxHeight only on non-fit resize mode and in vertical videos
         int height = maxHeight != 0 && resizeMode != AspectRatioFrameLayout.RESIZE_MODE_FIT && verticalVideo ? maxHeight : baseHeight;
 
         if (height == 0) return;
 
-        float viewAspectRatio = width / ((float) height);
-        float aspectDeformation = videoAspectRatio / viewAspectRatio - 1;
+        final float viewAspectRatio = width / ((float) height);
+        final float aspectDeformation = videoAspectRatio / viewAspectRatio - 1;
         scaleX = 1.0f;
         scaleY = 1.0f;
 
@@ -73,15 +73,14 @@ public class ExpandableSurfaceView extends SurfaceView {
      * @param base The height that will be used in every resize mode as a minimum height
      * @param max The max height for vertical videos in non-FIT resize modes
      */
-    public void setHeights(int base, int max) {
+    public void setHeights(final int base, final int max) {
         if (baseHeight == base && maxHeight == max) return;
         baseHeight = base;
         maxHeight = max;
         requestLayout();
     }
 
-    @AspectRatioFrameLayout.ResizeMode
-    public void setResizeMode(int newResizeMode) {
+    public void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int newResizeMode) {
         if (resizeMode == newResizeMode) return;
 
         resizeMode = newResizeMode;
@@ -93,7 +92,7 @@ public class ExpandableSurfaceView extends SurfaceView {
         return resizeMode;
     }
 
-    public void setAspectRatio(float aspectRatio) {
+    public void setAspectRatio(final float aspectRatio) {
         if (videoAspectRatio == aspectRatio) return;
 
         videoAspectRatio = aspectRatio;

@@ -114,13 +114,25 @@ public class NavigationHelper {
                 .putExtra(BasePlayer.PLAYBACK_SKIP_SILENCE, playbackSkipSilence);
     }
 
-    public static void playOnMainPlayer(final AppCompatActivity activity, final PlayQueue queue, final boolean autoPlay) {
+    public static void playOnMainPlayer(
+            final AppCompatActivity activity,
+            final PlayQueue queue,
+            final boolean autoPlay) {
         playOnMainPlayer(activity.getSupportFragmentManager(), queue, autoPlay);
     }
 
-    public static void playOnMainPlayer(final FragmentManager fragmentManager, final PlayQueue queue, boolean autoPlay) {
-        PlayQueueItem currentStream = queue.getItem();
-        openVideoDetailFragment(fragmentManager, currentStream.getServiceId(), currentStream.getUrl(), currentStream.getTitle(), autoPlay, queue);
+    public static void playOnMainPlayer(
+            final FragmentManager fragmentManager,
+            final PlayQueue queue,
+            final boolean autoPlay) {
+        final PlayQueueItem currentStream = queue.getItem();
+        openVideoDetailFragment(
+                fragmentManager,
+                currentStream.getServiceId(),
+                currentStream.getUrl(),
+                currentStream.getTitle(),
+                autoPlay,
+                queue);
     }
 
     public static void playOnMainPlayer(@NonNull final Context context,
@@ -131,7 +143,7 @@ public class NavigationHelper {
                                         final boolean autoPlay,
                                         final boolean resumePlayback) {
 
-        Intent intent = getPlayerIntent(context, MainActivity.class, queue, resumePlayback);
+        final Intent intent = getPlayerIntent(context, MainActivity.class, queue, resumePlayback);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(Constants.KEY_LINK_TYPE, linkType);
         intent.putExtra(Constants.KEY_URL, url);
@@ -147,14 +159,14 @@ public class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
+        final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
         startService(context, intent);
     }
 
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
-        Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
+        final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
         startService(context, intent);
     }
@@ -170,7 +182,7 @@ public class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
-        Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+        final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
         startService(context, intent);
     }
@@ -179,9 +191,9 @@ public class NavigationHelper {
         enqueueOnBackgroundPlayer(context, queue, false, resumePlayback);
     }
 
-    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend, final boolean resumePlayback) {
+    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean selectOnAppend, final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
-        Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+        final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
         startService(context, intent);
     }
@@ -307,25 +319,31 @@ public class NavigationHelper {
         openVideoDetailFragment(fragmentManager, serviceId, url, title, true, null);
     }
 
-    public static void openVideoDetailFragment(FragmentManager fragmentManager, int serviceId, String url, String title, boolean autoPlay, PlayQueue playQueue) {
-        Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_player_holder);
+    public static void openVideoDetailFragment(
+            FragmentManager fragmentManager,
+            int serviceId,
+            String url,
+            String title,
+            boolean autoPlay,
+            PlayQueue playQueue) {
+        final Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_player_holder);
         if (title == null) title = "";
 
         if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
-            expandMainPlayer(fragment.getActivity());
-            VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
+            expandMainPlayer(fragment.requireActivity());
+            final VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
             detailFragment.setAutoplay(autoPlay);
             detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);
             detailFragment.scrollToTop();
             return;
         }
 
-        VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title, playQueue);
+        final VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title, playQueue);
         instance.setAutoplay(autoPlay);
 
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_player_holder, instance)
-                .runOnCommit(() -> expandMainPlayer(instance.getActivity()))
+                .runOnCommit(() -> expandMainPlayer(instance.requireActivity()))
                 .commit();
     }
 
@@ -335,9 +353,9 @@ public class NavigationHelper {
     }
 
     public static void openChannelFragment(
-            FragmentManager fragmentManager,
-            int serviceId,
-            String url,
+            final FragmentManager fragmentManager,
+            final int serviceId,
+            final String url,
             String name) {
         if (name == null) name = "";
         defaultTransaction(fragmentManager)
@@ -525,7 +543,7 @@ public class NavigationHelper {
             case STREAM:
                 rIntent.putExtra(VideoDetailFragment.AUTO_PLAY,
                         PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
+                                .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
                 break;
         }
 
@@ -558,6 +576,7 @@ public class NavigationHelper {
 
     /**
      * Start an activity to install Kore
+     *
      * @param context the context
      */
     public static void installKore(Context context) {
@@ -566,13 +585,13 @@ public class NavigationHelper {
 
     /**
      * Start Kore app to show a video on Kodi
-     *
+     * <p>
      * For a list of supported urls see the
      * <a href="https://github.com/xbmc/Kore/blob/master/app/src/main/AndroidManifest.xml">
-     *     Kore source code
+     * Kore source code
      * </a>.
      *
-     * @param context the context to use
+     * @param context  the context to use
      * @param videoURL the url to the video
      */
     public static void playWithKore(Context context, Uri videoURL) {

@@ -45,7 +45,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
@@ -453,21 +452,21 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
 
-        FrameLayout bottomSheetLayout = findViewById(R.id.fragment_player_holder);
-        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
+        final FrameLayout bottomSheetLayout = findViewById(R.id.fragment_player_holder);
+        final BottomSheetBehavior<FrameLayout> bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
 
         final int sheetState = bottomSheetBehavior.getState();
         // In case bottomSheet is not visible on the screen or collapsed we can assume that the user interacts with a fragment
         // inside fragment_holder so all back presses should be handled by it
         if (sheetState == BottomSheetBehavior.STATE_HIDDEN || sheetState == BottomSheetBehavior.STATE_COLLAPSED) {
-            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+            final Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
             // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
             if (fragment instanceof BackPressable) {
                 if (((BackPressable) fragment).onBackPressed()) return;
             }
 
         } else {
-            Fragment fragmentPlayer = getSupportFragmentManager().findFragmentById(R.id.fragment_player_holder);
+            final Fragment fragmentPlayer = getSupportFragmentManager().findFragmentById(R.id.fragment_player_holder);
             // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
             if (fragmentPlayer instanceof BackPressable) {
                 if (!((BackPressable) fragmentPlayer).onBackPressed())

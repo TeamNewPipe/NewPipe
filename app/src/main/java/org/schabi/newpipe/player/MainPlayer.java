@@ -102,7 +102,7 @@ public final class MainPlayer extends Service {
     }
 
     private void createView() {
-        View layout = View.inflate(this, R.layout.activity_main_player, null);
+        final View layout = View.inflate(this, R.layout.activity_main_player, null);
 
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(layout);
@@ -124,7 +124,7 @@ public final class MainPlayer extends Service {
         return START_NOT_STICKY;
     }
 
-    public void stop(boolean autoplayEnabled) {
+    public void stop(final boolean autoplayEnabled) {
         if (DEBUG) Log.d(TAG, "stop() called");
 
         if (playerImpl.getPlayer() != null) {
@@ -212,7 +212,7 @@ public final class MainPlayer extends Service {
         if (getView().getParent() != null) {
             if (playerImpl.getParentActivity() != null) {
                 // This means view was added to fragment
-                ViewGroup parent = (ViewGroup) getView().getParent();
+                final ViewGroup parent = (ViewGroup) getView().getParent();
                 parent.removeView(getView());
             } else
                 // This means view was added by windowManager for popup player
@@ -244,7 +244,7 @@ public final class MainPlayer extends Service {
         setupNotification(notRemoteView);
         setupNotification(bigNotRemoteView);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -254,7 +254,7 @@ public final class MainPlayer extends Service {
         return builder;
     }
 
-    private void setupNotification(RemoteViews remoteViews) {
+    private void setupNotification(final RemoteViews remoteViews) {
         // Don't show anything until player is playing
         if (playerImpl == null) return;
 
@@ -298,7 +298,7 @@ public final class MainPlayer extends Service {
      *
      * @param drawableId if != -1, sets the drawable with that id on the play/pause button
      */
-    synchronized void updateNotification(int drawableId) {
+    synchronized void updateNotification(final int drawableId) {
         //if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
         if (notBuilder == null) return;
         if (drawableId != -1) {
@@ -329,7 +329,7 @@ public final class MainPlayer extends Service {
     }
 
     private Intent getIntentForNotification() {
-        Intent intent;
+        final Intent intent;
         if (playerImpl.audioPlayerSelected() || playerImpl.popupPlayerSelected()) {
             // Means we play in popup or audio only. Let's show BackgroundPlayerActivity
             intent = NavigationHelper.getBackgroundPlayerActivityIntent(getApplicationContext());

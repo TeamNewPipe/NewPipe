@@ -10,7 +10,7 @@ class StackItem implements Serializable {
     private String url;
     private PlayQueue playQueue;
 
-    StackItem(int serviceId, String url, String title, PlayQueue playQueue) {
+    StackItem(final int serviceId, final String url, final String title, final PlayQueue playQueue) {
         this.serviceId = serviceId;
         this.url = url;
         this.title = title;

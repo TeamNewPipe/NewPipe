@@ -23,13 +23,13 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     }
 
     private boolean allowScroll = true;
-    private Rect globalRect = new Rect();
+    private final Rect globalRect = new Rect();
 
     @Override
     public boolean onInterceptTouchEvent(CoordinatorLayout parent, AppBarLayout child, MotionEvent ev) {
-        ViewGroup playQueue = child.findViewById(R.id.playQueuePanel);
+        final ViewGroup playQueue = child.findViewById(R.id.playQueuePanel);
         if (playQueue != null) {
-            boolean visible = playQueue.getGlobalVisibleRect(globalRect);
+            final boolean visible = playQueue.getGlobalVisibleRect(globalRect);
             if (visible && globalRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
                 allowScroll = false;
                 return false;

@@ -186,7 +186,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     Intent getSwitchIntent(final Class clazz, final MainPlayer.PlayerType playerType) {
-        Intent intent = NavigationHelper.getPlayerIntent(
+        final Intent intent = NavigationHelper.getPlayerIntent(
                 getApplicationContext(),
                 clazz,
                 this.player.getPlayQueue(),

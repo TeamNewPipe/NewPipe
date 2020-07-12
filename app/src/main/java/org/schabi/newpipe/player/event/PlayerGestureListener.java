@@ -20,8 +20,8 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     private static final String TAG = ".PlayerGestureListener";
     private static final boolean DEBUG = BasePlayer.DEBUG;
 
-    private VideoPlayerImpl playerImpl;
-    private MainPlayer service;
+    private final VideoPlayerImpl playerImpl;
+    private final MainPlayer service;
 
     private int initialPopupX, initialPopupY;
 
@@ -29,7 +29,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
     private boolean isResizing;
 
-    private int tossFlingVelocity;
+    private final int tossFlingVelocity;
 
     private final boolean isVolumeGestureEnabled;
     private final boolean isBrightnessGestureEnabled;
@@ -114,9 +114,9 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     //////////////////////////////////////////////////////////////////////////*/
 
     private boolean onDoubleTapInMain(MotionEvent e) {
-        if (e.getX() > playerImpl.getRootView().getWidth() * 2 / 3) {
+        if (e.getX() > playerImpl.getRootView().getWidth() * 2.0 / 3.0) {
             playerImpl.onFastForward();
-        } else if (e.getX() < playerImpl.getRootView().getWidth() / 3) {
+        } else if (e.getX() < playerImpl.getRootView().getWidth() / 3.0) {
             playerImpl.onFastRewind();
         } else {
             playerImpl.getPlayPauseButton().performClick();
@@ -143,7 +143,8 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         return true;
     }
 
-    private boolean onScrollInMain(MotionEvent initialEvent, MotionEvent movingEvent, float distanceX, float distanceY) {
+    private boolean onScrollInMain(final MotionEvent initialEvent, final MotionEvent movingEvent,
+                                   final float distanceX, final float distanceY) {
         if (!isVolumeGestureEnabled && !isBrightnessGestureEnabled) return false;
 
         //noinspection PointlessBooleanExpression
@@ -162,9 +163,9 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
         if (isVolumeGestureEnabled && initialEvent.getX() > playerImpl.getRootView().getWidth() / 2.0) {
             playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);
-            float currentProgressPercent =
+            final float currentProgressPercent =
                     (float) playerImpl.getVolumeProgressBar().getProgress() / playerImpl.getMaxGestureLength();
-            int currentVolume = (int) (maxVolume * currentProgressPercent);
+            final int currentVolume = (int) (maxVolume * currentProgressPercent);
             playerImpl.getAudioReactor().setVolume(currentVolume);
 
             if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
@@ -183,15 +184,15 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
                 playerImpl.getBrightnessRelativeLayout().setVisibility(View.GONE);
             }
         } else if (isBrightnessGestureEnabled && initialEvent.getX() <= playerImpl.getRootView().getWidth() / 2.0) {
-            Activity parent = playerImpl.getParentActivity();
+            final Activity parent = playerImpl.getParentActivity();
             if (parent == null) return true;
 
-            Window window = parent.getWindow();
+            final Window window = parent.getWindow();
 
             playerImpl.getBrightnessProgressBar().incrementProgressBy((int) distanceY);
-            float currentProgressPercent =
+            final float currentProgressPercent =
                     (float) playerImpl.getBrightnessProgressBar().getProgress() / playerImpl.getMaxGestureLength();
-            WindowManager.LayoutParams layoutParams = window.getAttributes();
+            final WindowManager.LayoutParams layoutParams = window.getAttributes();
             layoutParams.screenBrightness = currentProgressPercent;
             window.setAttributes(layoutParams);
 
@@ -306,8 +307,10 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
         isMovingInPopup = true;
 
-        float diffX = (int) (movingEvent.getRawX() - initialEvent.getRawX()), posX = (int) (initialPopupX + diffX);
-        float diffY = (int) (movingEvent.getRawY() - initialEvent.getRawY()), posY = (int) (initialPopupY + diffY);
+        final float diffX = (int) (movingEvent.getRawX() - initialEvent.getRawX());
+        float posX = (int) (initialPopupX + diffX);
+        final float diffY = (int) (movingEvent.getRawY() - initialEvent.getRawY());
+        float posY = (int) (initialPopupY + diffY);
 
         if (posX > (playerImpl.getScreenWidth() - playerImpl.getPopupWidth())) posX = (int) (playerImpl.getScreenWidth() - playerImpl.getPopupWidth());
         else if (posX < 0) posX = 0;

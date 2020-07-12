@@ -274,7 +274,7 @@ public abstract class BasePlayer implements
             return;
         }
 
-        boolean samePlayQueue = playQueue != null && playQueue.equals(queue);
+        final boolean samePlayQueue = playQueue != null && playQueue.equals(queue);
 
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final float playbackSpeed = intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed());

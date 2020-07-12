@@ -16,14 +16,14 @@ import java.util.List;
 
 public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> {
 
-    public CustomBottomSheetBehavior(Context context, AttributeSet attrs) {
+    public CustomBottomSheetBehavior(final Context context, final AttributeSet attrs) {
         super(context, attrs);
     }
 
     boolean visible;
     Rect globalRect = new Rect();
     private boolean skippingInterception = false;
-    private List<Integer> skipInterceptionOfElements = Arrays.asList(
+    private final List<Integer> skipInterceptionOfElements = Arrays.asList(
             R.id.detail_content_root_layout, R.id.relatedStreamsLayout, R.id.playQueuePanel, R.id.viewpager);
 
     @Override
@@ -38,8 +38,8 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
         // Don't need to do anything if bottomSheet isn't expanded
         if (getState() == BottomSheetBehavior.STATE_EXPANDED) {
             // Without overriding scrolling will not work when user touches these elements
-            for (Integer element : skipInterceptionOfElements) {
-                ViewGroup viewGroup = child.findViewById(element);
+            for (final Integer element : skipInterceptionOfElements) {
+                final ViewGroup viewGroup = child.findViewById(element);
                 if (viewGroup != null) {
                     visible = viewGroup.getGlobalVisibleRect(globalRect);
                     if (visible && globalRect.contains((int) event.getRawX(), (int) event.getRawY())) {

@@ -46,7 +46,7 @@ public abstract class PlayQueue implements Serializable {
 
     private ArrayList<PlayQueueItem> backup;
     private ArrayList<PlayQueueItem> streams;
-    private ArrayList<PlayQueueItem> history;
+    private final ArrayList<PlayQueueItem> history;
     @NonNull private final AtomicInteger queueIndex;
 
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
@@ -132,7 +132,7 @@ public abstract class PlayQueue implements Serializable {
      * Returns the item at the given index.
      * May throw {@link IndexOutOfBoundsException}.
      * */
-    public PlayQueueItem getItem(int index) {
+    public PlayQueueItem getItem(final int index) {
         if (index < 0 || index >= streams.size() || streams.get(index) == null) return null;
         return streams.get(index);
     }
@@ -235,7 +235,7 @@ public abstract class PlayQueue implements Serializable {
      * Will emit a {@link AppendEvent} on any given context.
      * */
     public synchronized void append(@NonNull final List<PlayQueueItem> items) {
-        List<PlayQueueItem> itemList = new ArrayList<>(items);
+        final List<PlayQueueItem> itemList = new ArrayList<>(items);
 
         if (isShuffled()) {
             backup.addAll(itemList);
@@ -300,8 +300,7 @@ public abstract class PlayQueue implements Serializable {
         }
 
         if (backup != null) {
-            final int backupIndex = backup.indexOf(getItem(removeIndex));
-            backup.remove(backupIndex);
+            backup.remove(getItem(removeIndex));
         }
 
         history.remove(streams.remove(removeIndex));
@@ -332,7 +331,7 @@ public abstract class PlayQueue implements Serializable {
             queueIndex.incrementAndGet();
         }
 
-        PlayQueueItem playQueueItem = streams.remove(source);
+        final PlayQueueItem playQueueItem = streams.remove(source);
         playQueueItem.setAutoQueued(false);
         streams.add(target, playQueueItem);
         broadcast(new MoveEvent(source, target));
@@ -431,7 +430,7 @@ public abstract class PlayQueue implements Serializable {
 
         history.remove(history.size() - 1);
 
-        PlayQueueItem last = history.remove(history.size() - 1);
+        final PlayQueueItem last = history.remove(history.size() - 1);
         setIndex(indexOf(last));
 
         return true;
@@ -443,11 +442,11 @@ public abstract class PlayQueue implements Serializable {
      * VideoDetailFragment without duplicating items from two identical queues
      * */
     @Override
-    public boolean equals(@Nullable Object obj) {
+    public boolean equals(@Nullable final Object obj) {
         if (!(obj instanceof PlayQueue) || getStreams().size() != ((PlayQueue) obj).getStreams().size())
             return false;
 
-        PlayQueue other = (PlayQueue) obj;
+        final PlayQueue other = (PlayQueue) obj;
         for (int i = 0; i < getStreams().size(); i++) {
             if (!getItem(i).getUrl().equals(other.getItem(i).getUrl()))
                 return false;
