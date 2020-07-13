@@ -4,18 +4,25 @@
 
     <item
         android:id="@+id/action_play_with_kodi"
-        android:icon="?attr/cast"
+        android:icon="?attr/ic_cast"
         android:title="@string/play_with_kodi_title"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/menu_item_share"
-        android:icon="?attr/share"
+        android:icon="?attr/ic_share"
         android:title="@string/share"
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="1"
+        android:title="@string/settings"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/menu_item_openInBrowser"
+        android:orderInCategory="2"
         android:title="@string/open_in_browser"
         app:showAsAction="never"/>
 </menu>

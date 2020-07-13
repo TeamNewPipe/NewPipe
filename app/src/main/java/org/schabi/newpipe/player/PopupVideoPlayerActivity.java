@@ -47,11 +47,14 @@ public final class PopupVideoPlayerActivity extends ServicePlayerActivity {
     }
 
     @Override
-    public boolean onPlayerOptionSelected(MenuItem item) {
+    public boolean onPlayerOptionSelected(final MenuItem item) {
         if (item.getItemId() == R.id.action_switch_background) {
             this.player.setRecovery();
             getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
-            getApplicationContext().startService(getSwitchIntent(MainPlayer.class, MainPlayer.PlayerType.AUDIO));
+            getApplicationContext().startService(
+                    getSwitchIntent(MainPlayer.class, MainPlayer.PlayerType.AUDIO)
+                            .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying())
+            );
             return true;
         }
         return false;

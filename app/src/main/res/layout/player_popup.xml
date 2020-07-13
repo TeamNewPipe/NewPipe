@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -67,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="@drawable/player_top_controls_bg"
+            android:background="@drawable/player_controls_top_background"
             android:paddingBottom="20dp"
             android:paddingLeft="2dp"
             android:paddingRight="6dp"
@@ -137,7 +138,7 @@
                     tools:text="English" />
             </RelativeLayout>
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/fullScreenButton"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -146,7 +147,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_fullscreen_white"
+                app:srcCompat="@drawable/ic_fullscreen_white_24dp"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </RelativeLayout>
@@ -156,7 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/player_controls_bg"
+            android:background="@drawable/player_controls_background"
             android:orientation="horizontal"
             android:paddingTop="50dp"/>
 
@@ -208,10 +209,9 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:gravity="center_vertical"
-                android:text="@string/duration_live_button"
+                android:text="@string/duration_live"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
-                android:maxLength="4"
                 android:visibility="gone"
                 android:background="?attr/selectableItemBackground"
                 tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
@@ -231,7 +231,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/ic_action_av_fast_rewind"
+            app:srcCompat="@drawable/ic_fast_rewind_white_24dp"
             android:visibility="gone"
             tools:ignore="ContentDescription"
             tools:visibility="visible"/>

@@ -77,7 +77,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="10dp"
             android:paddingTop="12dp"
-            android:src="?attr/drag_handle"
+            app:srcCompat="?attr/ic_drag_handle"
             tools:ignore="ContentDescription,RtlHardcoded"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

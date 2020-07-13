@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         android:layout_alignParentRight="true"
         android:paddingLeft="@dimen/video_item_search_image_right_margin"
         android:scaleType="center"
-        android:src="?attr/drag_handle"
+        app:srcCompat="?attr/ic_drag_handle"
         android:contentDescription="@string/detail_drag_description"
         tools:ignore="RtlHardcoded,RtlSymmetry"/>
 
@@ -78,6 +78,7 @@
         android:layout_toStartOf="@id/itemHandle"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:layout_toEndOf="@+id/itemThumbnailView"
+        android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"

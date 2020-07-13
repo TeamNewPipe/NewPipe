@@ -2,9 +2,10 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary">
+    tools:background="?attr/colorPrimary">
 
     <EditText
         android:id="@+id/toolbar_search_edit_text"
@@ -14,11 +15,10 @@
         android:layout_marginBottom="4dp"
         android:layout_marginRight="48dp"
         android:layout_marginTop="4dp"
-        android:background="?attr/colorPrimary"
-        android:drawableLeft="?attr/search"
-        android:drawablePadding="8dp"
+        android:background="@null"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:nextFocusDown="@+id/suggestions_list"
         android:hint="@string/search"
         android:imeOptions="actionSearch|flagNoFullscreen"
         android:inputType="textFilter|textNoSuggestions"
@@ -30,6 +30,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="right|center_vertical"
+        android:contentDescription="@string/clear"
         android:focusable="true"
         tools:ignore="RtlHardcoded">
 
@@ -45,7 +46,7 @@
             android:layout_gravity="center"
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"
-            android:src="?attr/close"
+            app:srcCompat="?attr/ic_close"
             tools:ignore="RtlHardcoded"/>
     </FrameLayout>
 

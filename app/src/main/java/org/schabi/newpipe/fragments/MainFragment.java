@@ -1,7 +1,9 @@
 package org.schabi.newpipe.fragments;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,7 +18,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -30,6 +32,8 @@ import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,26 +41,29 @@ import java.util.List;
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private ViewPager viewPager;
     private SelectedTabsPagerAdapter pagerAdapter;
-    private TabLayout tabLayout;
+    private ScrollableTabLayout tabLayout;
 
     private List<Tab> tabsList = new ArrayList<>();
     private TabsManager tabsManager;
 
     private boolean hasTabsChanged = false;
 
+    private boolean previousYoutubeRestrictedModeEnabled;
+    private String youtubeRestrictedModeEnabledKey;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
         tabsManager = TabsManager.getManager(activity);
         tabsManager.setSavedTabsListener(() -> {
             if (DEBUG) {
-                Log.d(TAG, "TabsManager.SavedTabsChangeListener: onTabsChanged called, isResumed = " + isResumed());
+                Log.d(TAG, "TabsManager.SavedTabsChangeListener: "
+                        + "onTabsChanged called, isResumed = " + isResumed());
             }
             if (isResumed()) {
                 setupTabs();
@@ -64,20 +71,29 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 hasTabsChanged = true;
             }
         });
+
+        youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
+        previousYoutubeRestrictedModeEnabled =
+                PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater,
+                             @Nullable final ViewGroup container,
+                             @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
-    protected void initViews(View rootView, Bundle savedInstanceState) {
+    protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
         tabLayout = rootView.findViewById(R.id.main_tab_layout);
         viewPager = rootView.findViewById(R.id.pager);
 
+        tabLayout.setTabIconTint(ColorStateList.valueOf(
+                ThemeHelper.resolveColorFromAttr(requireContext(), R.attr.colorAccent)));
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addOnTabSelectedListener(this);
 
@@ -88,14 +104,24 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onResume() {
         super.onResume();
 
-        if (hasTabsChanged) setupTabs();
+        boolean youtubeRestrictedModeEnabled =
+                PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
+        if (previousYoutubeRestrictedModeEnabled != youtubeRestrictedModeEnabled) {
+            previousYoutubeRestrictedModeEnabled = youtubeRestrictedModeEnabled;
+            setupTabs();
+        } else if (hasTabsChanged) {
+            setupTabs();
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         tabsManager.unsetSavedTabsListener();
-        if (viewPager != null) viewPager.setAdapter(null);
+        if (viewPager != null) {
+            viewPager.setAdapter(null);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -103,9 +129,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
+        if (DEBUG) {
+            Log.d(TAG, "onCreateOptionsMenu() called with: "
+                    + "menu = [" + menu + "], inflater = [" + inflater + "]");
+        }
         inflater.inflate(R.menu.main_fragment_menu, menu);
 
         ActionBar supportActionBar = activity.getSupportActionBar();
@@ -115,7 +144,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
                 try {
@@ -135,16 +164,18 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     // Tabs
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void setupTabs() {
+    private void setupTabs() {
         tabsList.clear();
         tabsList.addAll(tabsManager.getTabs());
 
         if (pagerAdapter == null || !pagerAdapter.sameTabs(tabsList)) {
-            pagerAdapter = new SelectedTabsPagerAdapter(requireContext(), getChildFragmentManager(), tabsList);
+            pagerAdapter = new SelectedTabsPagerAdapter(requireContext(),
+                    getChildFragmentManager(), tabsList);
         }
-        // Clear previous tabs/fragments and set new adapter
-        viewPager.setAdapter(pagerAdapter);
+
+        viewPager.setAdapter(null);
         viewPager.setOffscreenPageLimit(tabsList.size());
+        viewPager.setAdapter(pagerAdapter);
 
         updateTabsIconAndDescription();
         updateTitleForTab(viewPager.getCurrentItem());
@@ -163,38 +194,45 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
     }
 
-    private void updateTitleForTab(int tabPosition) {
+    private void updateTitleForTab(final int tabPosition) {
         setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
     }
 
     @Override
-    public void onTabSelected(TabLayout.Tab selectedTab) {
-        if (DEBUG) Log.d(TAG, "onTabSelected() called with: selectedTab = [" + selectedTab + "]");
+    public void onTabSelected(final TabLayout.Tab selectedTab) {
+        if (DEBUG) {
+            Log.d(TAG, "onTabSelected() called with: selectedTab = [" + selectedTab + "]");
+        }
         updateTitleForTab(selectedTab.getPosition());
     }
 
     @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-    }
+    public void onTabUnselected(final TabLayout.Tab tab) { }
 
     @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-        if (DEBUG) Log.d(TAG, "onTabReselected() called with: tab = [" + tab + "]");
+    public void onTabReselected(final TabLayout.Tab tab) {
+        if (DEBUG) {
+            Log.d(TAG, "onTabReselected() called with: tab = [" + tab + "]");
+        }
         updateTitleForTab(tab.getPosition());
     }
 
-    private static class SelectedTabsPagerAdapter extends FragmentStatePagerAdapter {
+    private static final class SelectedTabsPagerAdapter
+            extends FragmentStatePagerAdapterMenuWorkaround {
         private final Context context;
         private final List<Tab> internalTabsList;
 
-        private SelectedTabsPagerAdapter(Context context, FragmentManager fragmentManager, List<Tab> tabsList) {
+        private SelectedTabsPagerAdapter(final Context context,
+                                         final FragmentManager fragmentManager,
+                                         final List<Tab> tabsList) {
             super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             this.context = context;
             this.internalTabsList = new ArrayList<>(tabsList);
         }
 
+        @NonNull
         @Override
-        public Fragment getItem(int position) {
+        public Fragment getItem(final int position) {
             final Tab tab = internalTabsList.get(position);
 
             Throwable throwable = null;
@@ -206,8 +244,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             }
 
             if (throwable != null) {
-                ErrorActivity.reportError(context, throwable, null, null,
-                        ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
+                ErrorActivity.reportError(context, throwable, null, null, ErrorActivity.ErrorInfo
+                        .make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
                 return new BlankFragment();
             }
 
@@ -219,7 +257,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
 
         @Override
-        public int getItemPosition(Object object) {
+        public int getItemPosition(final Object object) {
             // Causes adapter to reload all Fragments when
             // notifyDataSetChanged is called
             return POSITION_NONE;
@@ -230,7 +268,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             return internalTabsList.size();
         }
 
-        public boolean sameTabs(List<Tab> tabsToCompare) {
+        public boolean sameTabs(final List<Tab> tabsToCompare) {
             return internalTabsList.equals(tabsToCompare);
         }
     }

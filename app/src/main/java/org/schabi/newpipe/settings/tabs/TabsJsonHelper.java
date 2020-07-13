@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings.tabs;
 
+import androidx.annotation.Nullable;
+
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
@@ -12,33 +14,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.annotation.Nullable;
-
 /**
  * Class to get a JSON representation of a list of tabs, and the other way around.
  */
-public class TabsJsonHelper {
+public final class TabsJsonHelper {
     private static final String JSON_TABS_ARRAY_KEY = "tabs";
 
-    private static final List<Tab> FALLBACK_INITIAL_TABS_LIST = Collections.unmodifiableList(Arrays.asList(
-            Tab.Type.DEFAULT_KIOSK.getTab(),
-            Tab.Type.SUBSCRIPTIONS.getTab(),
-            Tab.Type.BOOKMARKS.getTab()
-    ));
+    private static final List<Tab> FALLBACK_INITIAL_TABS_LIST = Collections.unmodifiableList(
+            Arrays.asList(
+                    Tab.Type.DEFAULT_KIOSK.getTab(),
+                    Tab.Type.SUBSCRIPTIONS.getTab(),
+                    Tab.Type.BOOKMARKS.getTab()));
 
-    public static class InvalidJsonException extends Exception {
-        private InvalidJsonException() {
-            super();
-        }
-
-        private InvalidJsonException(String message) {
-            super(message);
-        }
-
-        private InvalidJsonException(Throwable cause) {
-            super(cause);
-        }
-    }
+    private TabsJsonHelper() { }
 
     /**
      * Try to reads the passed JSON and returns the list of tabs if no error were encountered.
@@ -52,7 +40,8 @@ public class TabsJsonHelper {
      * @return a list of {@link Tab tabs}.
      * @throws InvalidJsonException if the JSON string is not valid
      */
-    public static List<Tab> getTabsFromJson(@Nullable String tabsJson) throws InvalidJsonException {
+    public static List<Tab> getTabsFromJson(@Nullable final String tabsJson)
+            throws InvalidJsonException {
         if (tabsJson == null || tabsJson.isEmpty()) {
             return getDefaultTabs();
         }
@@ -62,14 +51,18 @@ public class TabsJsonHelper {
         final JsonObject outerJsonObject;
         try {
             outerJsonObject = JsonParser.object().from(tabsJson);
-            final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY);
 
-            if (tabsArray == null) {
-                throw new InvalidJsonException("JSON doesn't contain \"" + JSON_TABS_ARRAY_KEY + "\" array");
+            if (!outerJsonObject.has(JSON_TABS_ARRAY_KEY)) {
+                throw new InvalidJsonException("JSON doesn't contain \"" + JSON_TABS_ARRAY_KEY
+                        + "\" array");
             }
 
+            final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY);
+
             for (Object o : tabsArray) {
-                if (!(o instanceof JsonObject)) continue;
+                if (!(o instanceof JsonObject)) {
+                    continue;
+                }
 
                 final Tab tab = Tab.from((JsonObject) o);
 
@@ -94,13 +87,15 @@ public class TabsJsonHelper {
      * @param tabList a list of {@link Tab tabs}.
      * @return a JSON string representing the list of tabs
      */
-    public static String getJsonToSave(@Nullable List<Tab> tabList) {
+    public static String getJsonToSave(@Nullable final List<Tab> tabList) {
         final JsonStringWriter jsonWriter = JsonWriter.string();
         jsonWriter.object();
 
         jsonWriter.array(JSON_TABS_ARRAY_KEY);
-        if (tabList != null) for (Tab tab : tabList) {
-            tab.writeJsonOn(jsonWriter);
+        if (tabList != null) {
+            for (Tab tab : tabList) {
+                tab.writeJsonOn(jsonWriter);
+            }
         }
         jsonWriter.end();
 
@@ -108,7 +103,21 @@ public class TabsJsonHelper {
         return jsonWriter.done();
     }
 
-    public static List<Tab> getDefaultTabs(){
+    public static List<Tab> getDefaultTabs() {
         return FALLBACK_INITIAL_TABS_LIST;
+    }
+
+    public static final class InvalidJsonException extends Exception {
+        private InvalidJsonException() {
+            super();
+        }
+
+        private InvalidJsonException(final String message) {
+            super(message);
+        }
+
+        private InvalidJsonException(final Throwable cause) {
+            super(cause);
+        }
     }
 }

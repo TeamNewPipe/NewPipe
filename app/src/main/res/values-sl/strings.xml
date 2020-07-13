@@ -124,8 +124,7 @@
 
     <string name="could_not_load_image">Slike ni mogoče naložiti</string>
     <string name="app_ui_crash">Program se je sesul!</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Izziv reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Izziv reCAPTCHA</string>
     <string name="recaptcha_request_toast">Zahteva izziva reCAPTCHA</string>
 
     <string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nStoritev:\\nČas v GMT:\\nPaket:\\nRazličica:\\nRazličica OS:</string>
@@ -201,7 +200,7 @@ odpiranje v pojavnem načinu</string>
     <string name="tab_main">Glavno</string>
     <string name="tab_subscriptions">Naročnine</string>
 
-    <string name="fragment_whats_new">Kaj je novega</string>
+    <string name="fragment_feed_title">Kaj je novega</string>
 
     <string name="settings_category_downloads_title">Prejmi</string>
     <string name="settings_file_charset_title">Dovoljeni znaki v imenih datotek</string>

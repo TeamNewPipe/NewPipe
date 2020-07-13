@@ -6,11 +6,6 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +18,12 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
@@ -31,7 +32,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
@@ -44,27 +44,26 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.Collections;
 import java.util.List;
 
-import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public abstract class ServicePlayerActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
         View.OnClickListener, PlaybackParameterDialog.Callback {
+    private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
+    private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
+
+    protected BasePlayer player;
 
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
 
-    protected BasePlayer player;
-
     private boolean seeking;
     private boolean redraw;
+
     ////////////////////////////////////////////////////////////////////////////
     // Views
     ////////////////////////////////////////////////////////////////////////////
-
-    private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
-
-    private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
     private View rootView;
 
@@ -83,13 +82,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private ImageButton repeatButton;
     private ImageButton backwardButton;
+    private ImageButton fastRewindButton;
     private ImageButton playPauseButton;
+    private ImageButton fastForwardButton;
     private ImageButton forwardButton;
     private ImageButton shuffleButton;
     private ProgressBar progressBar;
 
-    private TextView playbackSpeedButton;
-    private TextView playbackPitchButton;
+    private Menu menu;
 
     ////////////////////////////////////////////////////////////////////////////
     // Abstracts
@@ -115,7 +115,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
         setContentView(R.layout.activity_player_queue_control);
@@ -142,9 +143,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_play_queue, menu);
-        getMenuInflater().inflate(getPlayerOptionMenuResource(), menu);
+    public boolean onCreateOptionsMenu(final Menu m) {
+        this.menu = m;
+        getMenuInflater().inflate(R.menu.menu_play_queue, m);
+        getMenuInflater().inflate(getPlayerOptionMenuResource(), m);
+        onMaybeMuteChanged();
         return true;
     }
 
@@ -156,24 +159,31 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.action_settings:
+                NavigationHelper.openSettings(this);
+                return true;
             case R.id.action_append_playlist:
                 appendAllToPlaylist();
                 return true;
-            case R.id.action_settings:
-                NavigationHelper.openSettings(this);
-                redraw = true;
+            case R.id.action_playback_speed:
+                openPlaybackParameterDialog();
+                return true;
+            case R.id.action_mute:
+                player.onMuteUnmuteButtonClicked();
                 return true;
             case R.id.action_system_audio:
                 startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
                 return true;
             case R.id.action_switch_main:
                 this.player.setRecovery();
-                getApplicationContext().startActivity(getSwitchIntent(MainActivity.class, MainPlayer.PlayerType.VIDEO));
+                getApplicationContext().startActivity(
+                        getSwitchIntent(MainActivity.class, MainPlayer.PlayerType.VIDEO)
+                                .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying()));
                 return true;
         }
         return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
@@ -185,25 +195,21 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         unbind();
     }
 
-    Intent getSwitchIntent(final Class clazz, final MainPlayer.PlayerType playerType) {
-        final Intent intent = NavigationHelper.getPlayerIntent(
-                getApplicationContext(),
-                clazz,
-                this.player.getPlayQueue(),
-                this.player.getRepeatMode(),
-                this.player.getPlaybackSpeed(),
-                this.player.getPlaybackPitch(),
+    protected Intent getSwitchIntent(final Class clazz, final MainPlayer.PlayerType playerType) {
+        return NavigationHelper.getPlayerIntent(getApplicationContext(), clazz,
+                this.player.getPlayQueue(), this.player.getRepeatMode(),
+                this.player.getPlaybackSpeed(), this.player.getPlaybackPitch(),
                 this.player.getPlaybackSkipSilence(),
                 null,
-                true);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
-        intent.putExtra(Constants.KEY_URL, this.player.getVideoUrl());
-        intent.putExtra(Constants.KEY_TITLE, this.player.getVideoTitle());
-        intent.putExtra(VideoDetailFragment.AUTO_PLAY, true);
-        intent.putExtra(Constants.KEY_SERVICE_ID, this.player.getCurrentMetadata().getMetadata().getServiceId());
-        intent.putExtra(VideoPlayer.PLAYER_TYPE, playerType);
-        return intent;
+                true,
+                !this.player.isPlaying(),
+                this.player.isMuted())
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM)
+                .putExtra(Constants.KEY_URL, this.player.getVideoUrl())
+                .putExtra(Constants.KEY_TITLE, this.player.getVideoTitle())
+                .putExtra(Constants.KEY_SERVICE_ID, this.player.getCurrentMetadata().getMetadata().getServiceId())
+                .putExtra(VideoPlayer.PLAYER_TYPE, playerType);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -219,7 +225,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void unbind() {
-        if(serviceBound) {
+        if (serviceBound) {
             unbindService(serviceConnection);
             serviceBound = false;
             stopPlayerListener();
@@ -227,8 +233,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             if (player != null && player.getPlayQueueAdapter() != null) {
                 player.getPlayQueueAdapter().unsetSelectedListener();
             }
-            if (itemsList != null) itemsList.setAdapter(null);
-            if (itemTouchHelper != null) itemTouchHelper.attachToRecyclerView(null);
+            if (itemsList != null) {
+                itemsList.setAdapter(null);
+            }
+            if (itemTouchHelper != null) {
+                itemTouchHelper.attachToRecyclerView(null);
+            }
 
             itemsList = null;
             itemTouchHelper = null;
@@ -239,12 +249,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private ServiceConnection getServiceConnection() {
         return new ServiceConnection() {
             @Override
-            public void onServiceDisconnected(ComponentName name) {
+            public void onServiceDisconnected(final ComponentName name) {
                 Log.d(getTag(), "Player service is disconnected");
             }
 
             @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
+            public void onServiceConnected(final ComponentName name, final IBinder service) {
                 Log.d(getTag(), "Player service is connected");
 
                 if (service instanceof PlayerServiceBinder) {
@@ -253,8 +263,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                     player = ((MainPlayer.LocalBinder) service).getPlayer();
                 }
 
-                if (player == null || player.getPlayQueue() == null ||
-                        player.getPlayQueueAdapter() == null || player.getPlayer() == null) {
+                if (player == null || player.getPlayQueue() == null
+                        || player.getPlayQueueAdapter() == null || player.getPlayer() == null) {
                     unbind();
                     finish();
                 } else {
@@ -315,56 +325,60 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void buildControls() {
         repeatButton = rootView.findViewById(R.id.control_repeat);
         backwardButton = rootView.findViewById(R.id.control_backward);
+        fastRewindButton = rootView.findViewById(R.id.control_fast_rewind);
         playPauseButton = rootView.findViewById(R.id.control_play_pause);
+        fastForwardButton = rootView.findViewById(R.id.control_fast_forward);
         forwardButton = rootView.findViewById(R.id.control_forward);
         shuffleButton = rootView.findViewById(R.id.control_shuffle);
-        playbackSpeedButton = rootView.findViewById(R.id.control_playback_speed);
-        playbackPitchButton = rootView.findViewById(R.id.control_playback_pitch);
         progressBar = rootView.findViewById(R.id.control_progress_bar);
 
         repeatButton.setOnClickListener(this);
         backwardButton.setOnClickListener(this);
+        fastRewindButton.setOnClickListener(this);
         playPauseButton.setOnClickListener(this);
+        fastForwardButton.setOnClickListener(this);
         forwardButton.setOnClickListener(this);
         shuffleButton.setOnClickListener(this);
-        playbackSpeedButton.setOnClickListener(this);
-        playbackPitchButton.setOnClickListener(this);
     }
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
-        final PopupMenu menu = new PopupMenu(this, view);
-        final MenuItem remove = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, /*pos=*/0,
+        final PopupMenu popupMenu = new PopupMenu(this, view);
+        final MenuItem remove = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 0,
                 Menu.NONE, R.string.play_queue_remove);
         remove.setOnMenuItemClickListener(menuItem -> {
-            if (player == null) return false;
+            if (player == null) {
+                return false;
+            }
 
             final int index = player.getPlayQueue().indexOf(item);
-            if (index != -1) player.getPlayQueue().remove(index);
+            if (index != -1) {
+                player.getPlayQueue().remove(index);
+            }
             return true;
         });
 
-        final MenuItem detail = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, /*pos=*/1,
+        final MenuItem detail = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1,
                 Menu.NONE, R.string.play_queue_stream_detail);
         detail.setOnMenuItemClickListener(menuItem -> {
             onOpenDetail(item.getServiceId(), item.getUrl(), item.getTitle());
             return true;
         });
 
-        final MenuItem append = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, /*pos=*/2,
+        final MenuItem append = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 2,
                 Menu.NONE, R.string.append_playlist);
         append.setOnMenuItemClickListener(menuItem -> {
             openPlaylistAppendDialog(Collections.singletonList(item));
             return true;
         });
 
-        final MenuItem share = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, /*pos=*/3,
+        final MenuItem share = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 3,
                 Menu.NONE, R.string.share);
         share.setOnMenuItemClickListener(menuItem -> {
             shareUrl(item.getTitle(), item.getUrl());
             return true;
         });
 
-        menu.show();
+        popupMenu.show();
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -374,8 +388,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private OnScrollBelowItemsListener getQueueScrollListener() {
         return new OnScrollBelowItemsListener() {
             @Override
-            public void onScrolledDown(RecyclerView recyclerView) {
-                if (player != null && player.getPlayQueue() != null && !player.getPlayQueue().isComplete()) {
+            public void onScrolledDown(final RecyclerView recyclerView) {
+                if (player != null && player.getPlayQueue() != null
+                        && !player.getPlayQueue().isComplete()) {
                     player.getPlayQueue().fetch();
                 } else if (itemsList != null) {
                     itemsList.clearOnScrollListeners();
@@ -387,13 +402,17 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         return new PlayQueueItemTouchCallback() {
             @Override
-            public void onMove(int sourceIndex, int targetIndex) {
-                if (player != null) player.getPlayQueue().move(sourceIndex, targetIndex);
+            public void onMove(final int sourceIndex, final int targetIndex) {
+                if (player != null) {
+                    player.getPlayQueue().move(sourceIndex, targetIndex);
+                }
             }
 
             @Override
-            public void onSwiped(int index) {
-                if (index != -1) player.getPlayQueue().remove(index);
+            public void onSwiped(final int index) {
+                if (index != -1) {
+                    player.getPlayQueue().remove(index);
+                }
             }
         };
     }
@@ -401,31 +420,42 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private PlayQueueItemBuilder.OnSelectedListener getOnSelectedListener() {
         return new PlayQueueItemBuilder.OnSelectedListener() {
             @Override
-            public void selected(PlayQueueItem item, View view) {
-                if (player != null) player.onSelected(item);
+            public void selected(final PlayQueueItem item, final View view) {
+                if (player != null) {
+                    player.onSelected(item);
+                }
             }
 
             @Override
-            public void held(PlayQueueItem item, View view) {
-                if (player == null) return;
+            public void held(final PlayQueueItem item, final View view) {
+                if (player == null) {
+                    return;
+                }
 
                 final int index = player.getPlayQueue().indexOf(item);
-                if (index != -1) buildItemPopupMenu(item, view);
+                if (index != -1) {
+                    buildItemPopupMenu(item, view);
+                }
             }
 
             @Override
-            public void onStartDrag(PlayQueueItemHolder viewHolder) {
-                if (itemTouchHelper != null) itemTouchHelper.startDrag(viewHolder);
+            public void onStartDrag(final PlayQueueItemHolder viewHolder) {
+                if (itemTouchHelper != null) {
+                    itemTouchHelper.startDrag(viewHolder);
+                }
             }
         };
     }
 
-    private void onOpenDetail(int serviceId, String videoUrl, String videoTitle) {
+    private void onOpenDetail(final int serviceId, final String videoUrl,
+                              final String videoTitle) {
         NavigationHelper.openVideoDetail(this, serviceId, videoUrl, videoTitle);
     }
 
     private void scrollToSelected() {
-        if (player == null) return;
+        if (player == null) {
+            return;
+        }
 
         final int currentPlayingIndex = player.getPlayQueue().getIndex();
         final int currentVisibleIndex;
@@ -449,36 +479,29 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onClick(View view) {
-        if (player == null) return;
+    public void onClick(final View view) {
+        if (player == null) {
+            return;
+        }
 
         if (view.getId() == repeatButton.getId()) {
             player.onRepeatClicked();
-
         } else if (view.getId() == backwardButton.getId()) {
             player.onPlayPrevious();
-
+        } else if (view.getId() == fastRewindButton.getId()) {
+            player.onFastRewind();
         } else if (view.getId() == playPauseButton.getId()) {
             player.onPlayPause();
-
+        } else if (view.getId() == fastForwardButton.getId()) {
+            player.onFastForward();
         } else if (view.getId() == forwardButton.getId()) {
             player.onPlayNext();
-
         } else if (view.getId() == shuffleButton.getId()) {
             player.onShuffleClicked();
-
-        } else if (view.getId() == playbackSpeedButton.getId()) {
-            openPlaybackParameterDialog();
-
-        } else if (view.getId() == playbackPitchButton.getId()) {
-            openPlaybackParameterDialog();
-
         } else if (view.getId() == metadata.getId()) {
             scrollToSelected();
-
         } else if (view.getId() == progressLiveSync.getId()) {
             player.seekToDefault();
-
         }
     }
 
@@ -487,14 +510,16 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private void openPlaybackParameterDialog() {
-        if (player == null) return;
+        if (player == null) {
+            return;
+        }
         PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch(),
                 player.getPlaybackSkipSilence(), this).show(getSupportFragmentManager(), getTag());
     }
 
     @Override
-    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch,
-                                           boolean playbackSkipSilence) {
+    public void onPlaybackParameterChanged(final float playbackTempo, final float playbackPitch,
+                                           final boolean playbackSkipSilence) {
         if (player != null) {
             player.setPlaybackParameters(playbackTempo, playbackPitch, playbackSkipSilence);
         }
@@ -505,7 +530,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+    public void onProgressChanged(final SeekBar seekBar, final int progress,
+                                  final boolean fromUser) {
         if (fromUser) {
             final String seekTime = Localization.getDurationString(progress / 1000);
             progressCurrentTime.setText(seekTime);
@@ -514,14 +540,16 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
+    public void onStartTrackingTouch(final SeekBar seekBar) {
         seeking = true;
         seekDisplay.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-        if (player != null) player.seekTo(seekBar.getProgress());
+    public void onStopTrackingTouch(final SeekBar seekBar) {
+        if (player != null) {
+            player.seekTo(seekBar.getProgress());
+        }
         seekDisplay.setVisibility(View.GONE);
         seeking = false;
     }
@@ -545,7 +573,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     // Share
     ////////////////////////////////////////////////////////////////////////////
 
-    private void shareUrl(String subject, String url) {
+    private void shareUrl(final String subject, final String url) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
@@ -562,17 +590,21 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters) {
+    public void onPlaybackUpdate(final int state, final int repeatMode, final boolean shuffled,
+                                 final PlaybackParameters parameters) {
         onStateChanged(state);
         onPlayModeChanged(repeatMode, shuffled);
         onPlaybackParameterChanged(parameters);
         onMaybePlaybackAdapterChanged();
+        onMaybeMuteChanged();
     }
 
     @Override
-    public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
+    public void onProgressUpdate(final int currentProgress, final int duration,
+                                 final int bufferPercent) {
         // Set buffer progress
-        progressSeekBar.setSecondaryProgress((int) (progressSeekBar.getMax() * ((float) bufferPercent / 100)));
+        progressSeekBar.setSecondaryProgress((int) (progressSeekBar.getMax()
+                * ((float) bufferPercent / 100)));
 
         // Set Duration
         progressSeekBar.setMax(duration);
@@ -596,7 +628,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMetadataUpdate(StreamInfo info, PlayQueue queue) {
+    public void onMetadataUpdate(final StreamInfo info, final PlayQueue queue) {
         if (info != null) {
             metadataTitle.setText(info.getName());
             metadataArtist.setText(info.getUploaderName());
@@ -630,13 +662,13 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void onStateChanged(final int state) {
         switch (state) {
             case BasePlayer.STATE_PAUSED:
-                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
+                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
                 break;
             case BasePlayer.STATE_PLAYING:
-                playPauseButton.setImageResource(R.drawable.ic_pause_white);
+                playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
                 break;
             case BasePlayer.STATE_COMPLETED:
-                playPauseButton.setImageResource(R.drawable.ic_replay_white);
+                playPauseButton.setImageResource(R.drawable.ic_replay_white_24dp);
                 break;
             default:
                 break;
@@ -677,16 +709,38 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
         if (parameters != null) {
-            playbackSpeedButton.setText(formatSpeed(parameters.speed));
-            playbackPitchButton.setText(formatPitch(parameters.pitch));
+            if (menu != null && player != null) {
+                final MenuItem item = menu.findItem(R.id.action_playback_speed);
+                item.setTitle(formatSpeed(parameters.speed));
+            }
         }
     }
 
     private void onMaybePlaybackAdapterChanged() {
-        if (itemsList == null || player == null) return;
+        if (itemsList == null || player == null) {
+            return;
+        }
         final PlayQueueAdapter maybeNewAdapter = player.getPlayQueueAdapter();
         if (maybeNewAdapter != null && itemsList.getAdapter() != maybeNewAdapter) {
             itemsList.setAdapter(maybeNewAdapter);
+        }
+    }
+
+    private void onMaybeMuteChanged() {
+        if (menu != null && player != null) {
+            MenuItem item = menu.findItem(R.id.action_mute);
+
+            //Change the mute-button item in ActionBar
+            //1) Text change:
+            item.setTitle(player.isMuted() ? R.string.unmute : R.string.mute);
+
+            //2) Icon change accordingly to current App Theme
+            // using rootView.getContext() because getApplicationContext() didn't work
+            item.setIcon(player.isMuted()
+                    ? ThemeHelper.resolveResourceIdFromAttr(rootView.getContext(),
+                            R.attr.ic_volume_off)
+                    : ThemeHelper.resolveResourceIdFromAttr(rootView.getContext(),
+                            R.attr.ic_volume_up));
         }
     }
 }

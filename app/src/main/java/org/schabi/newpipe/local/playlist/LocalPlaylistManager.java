@@ -22,7 +22,6 @@ import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 public class LocalPlaylistManager {
-
     private final AppDatabase database;
     private final StreamDAO streamTable;
     private final PlaylistDAO playlistTable;
@@ -37,7 +36,9 @@ public class LocalPlaylistManager {
 
     public Maybe<List<Long>> createPlaylist(final String name, final List<StreamEntity> streams) {
         // Disallow creation of empty playlists
-        if (streams.isEmpty()) return Maybe.empty();
+        if (streams.isEmpty()) {
+            return Maybe.empty();
+        }
         final StreamEntity defaultStream = streams.get(0);
         final PlaylistEntity newPlaylist =
                 new PlaylistEntity(name, defaultStream.getThumbnailUrl());
@@ -103,6 +104,10 @@ public class LocalPlaylistManager {
         return modifyPlaylist(playlistId, null, thumbnailUrl);
     }
 
+    public String getPlaylistThumbnail(final long playlistId) {
+        return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getThumbnailUrl();
+    }
+
     private Maybe<Integer> modifyPlaylist(final long playlistId,
                                           @Nullable final String name,
                                           @Nullable final String thumbnailUrl) {
@@ -111,8 +116,12 @@ public class LocalPlaylistManager {
                 .filter(playlistEntities -> !playlistEntities.isEmpty())
                 .map(playlistEntities -> {
                     PlaylistEntity playlist = playlistEntities.get(0);
-                    if (name != null) playlist.setName(name);
-                    if (thumbnailUrl != null) playlist.setThumbnailUrl(thumbnailUrl);
+                    if (name != null) {
+                        playlist.setName(name);
+                    }
+                    if (thumbnailUrl != null) {
+                        playlist.setThumbnailUrl(thumbnailUrl);
+                    }
                     return playlistTable.update(playlist);
                 }).subscribeOn(Schedulers.io());
     }

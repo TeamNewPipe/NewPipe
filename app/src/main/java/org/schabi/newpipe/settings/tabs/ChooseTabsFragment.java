@@ -4,18 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,12 +14,27 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SelectChannelFragment;
 import org.schabi.newpipe.settings.SelectKioskFragment;
+import org.schabi.newpipe.settings.SelectPlaylistFragment;
 import org.schabi.newpipe.settings.tabs.AddTabDialog.ChooseTabListItem;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -42,17 +45,19 @@ import java.util.List;
 import static org.schabi.newpipe.settings.tabs.Tab.typeFrom;
 
 public class ChooseTabsFragment extends Fragment {
+    private static final int MENU_ITEM_RESTORE_ID = 123456;
 
     private TabsManager tabsManager;
-    private List<Tab> tabList = new ArrayList<>();
-    public ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
+
+    private final List<Tab> tabList = new ArrayList<>();
+    private ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         tabsManager = TabsManager.getManager(requireContext());
@@ -62,20 +67,22 @@ public class ChooseTabsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_choose_tabs, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View rootView, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View rootView,
+                              @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
 
         initButton(rootView);
 
-        RecyclerView listSelectedTabs = rootView.findViewById(R.id.selectedTabs);
+        final RecyclerView listSelectedTabs = rootView.findViewById(R.id.selectedTabs);
         listSelectedTabs.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+        final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(listSelectedTabs);
 
         selectedTabsAdapter = new SelectedTabsAdapter(requireContext(), itemTouchHelper);
@@ -98,21 +105,21 @@ public class ChooseTabsFragment extends Fragment {
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
 
-    private final int MENU_ITEM_RESTORE_ID = 123456;
-
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        final MenuItem restoreItem = menu.add(Menu.NONE, MENU_ITEM_RESTORE_ID, Menu.NONE, R.string.restore_defaults);
+        final MenuItem restoreItem = menu.add(Menu.NONE, MENU_ITEM_RESTORE_ID, Menu.NONE,
+                R.string.restore_defaults);
         restoreItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-        final int restoreIcon = ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_restore_defaults);
+        final int restoreIcon = ThemeHelper.resolveResourceIdFromAttr(requireContext(),
+                R.attr.ic_restore_defaults);
         restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(), restoreIcon));
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == MENU_ITEM_RESTORE_ID) {
             restoreDefaults();
             return true;
@@ -132,8 +139,10 @@ public class ChooseTabsFragment extends Fragment {
 
     private void updateTitle() {
         if (getActivity() instanceof AppCompatActivity) {
-            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null) actionBar.setTitle(R.string.main_page_content);
+            final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle(R.string.main_page_content);
+            }
         }
     }
 
@@ -154,7 +163,7 @@ public class ChooseTabsFragment extends Fragment {
                 .show();
     }
 
-    private void initButton(View rootView) {
+    private void initButton(final View rootView) {
         final FloatingActionButton fab = rootView.findViewById(R.id.addTabsButton);
         fab.setOnClickListener(v -> {
             final ChooseTabListItem[] availableTabs = getAvailableTabs(requireContext());
@@ -179,37 +188,54 @@ public class ChooseTabsFragment extends Fragment {
         selectedTabsAdapter.notifyDataSetChanged();
     }
 
-    private void addTab(int tabId) {
+    private void addTab(final int tabId) {
         final Tab.Type type = typeFrom(tabId);
 
         if (type == null) {
-            ErrorActivity.reportError(requireContext(), new IllegalStateException("Tab id not found: " + tabId), null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none", "Choosing tabs on settings", 0));
+            ErrorActivity.reportError(requireContext(),
+                    new IllegalStateException("Tab id not found: " + tabId), null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "Choosing tabs on settings", 0));
             return;
         }
 
         switch (type) {
-            case KIOSK: {
-                SelectKioskFragment selectFragment = new SelectKioskFragment();
-                selectFragment.setOnSelectedLisener((serviceId, kioskId, kioskName) ->
+            case KIOSK:
+                SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
+                selectKioskFragment.setOnSelectedListener((serviceId, kioskId, kioskName) ->
                         addTab(new Tab.KioskTab(serviceId, kioskId)));
-                selectFragment.show(requireFragmentManager(), "select_kiosk");
+                selectKioskFragment.show(requireFragmentManager(), "select_kiosk");
                 return;
-            }
-            case CHANNEL: {
-                SelectChannelFragment selectFragment = new SelectChannelFragment();
-                selectFragment.setOnSelectedLisener((serviceId, url, name) ->
+            case CHANNEL:
+                SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
+                selectChannelFragment.setOnSelectedListener((serviceId, url, name) ->
                         addTab(new Tab.ChannelTab(serviceId, url, name)));
-                selectFragment.show(requireFragmentManager(), "select_channel");
+                selectChannelFragment.show(requireFragmentManager(), "select_channel");
                 return;
-            }
+            case PLAYLIST:
+                SelectPlaylistFragment selectPlaylistFragment = new SelectPlaylistFragment();
+                selectPlaylistFragment.setOnSelectedListener(
+                        new SelectPlaylistFragment.OnSelectedListener() {
+                            @Override
+                            public void onLocalPlaylistSelected(final long id, final String name) {
+                                addTab(new Tab.PlaylistTab(id, name));
+                            }
+
+                            @Override
+                            public void onRemotePlaylistSelected(
+                                    final int serviceId, final String url, final String name) {
+                                addTab(new Tab.PlaylistTab(serviceId, url, name));
+                            }
+                        });
+                selectPlaylistFragment.show(requireFragmentManager(), "select_playlist");
+                return;
             default:
                 addTab(type.getTab());
                 break;
         }
     }
 
-    public ChooseTabListItem[] getAvailableTabs(Context context) {
+    private ChooseTabListItem[] getAvailableTabs(final Context context) {
         final ArrayList<ChooseTabListItem> returnList = new ArrayList<>();
 
         for (Tab.Type type : Tab.Type.values()) {
@@ -217,23 +243,33 @@ public class ChooseTabsFragment extends Fragment {
             switch (type) {
                 case BLANK:
                     if (!tabList.contains(tab)) {
-                        returnList.add(new ChooseTabListItem(tab.getTabId(), getString(R.string.blank_page_summary),
+                        returnList.add(new ChooseTabListItem(tab.getTabId(),
+                                getString(R.string.blank_page_summary),
                                 tab.getTabIconRes(context)));
                     }
                     break;
                 case KIOSK:
-                    returnList.add(new ChooseTabListItem(tab.getTabId(), getString(R.string.kiosk_page_summary),
-                            ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
+                    returnList.add(new ChooseTabListItem(tab.getTabId(),
+                            getString(R.string.kiosk_page_summary),
+                            ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_kiosk_hot)));
                     break;
                 case CHANNEL:
-                    returnList.add(new ChooseTabListItem(tab.getTabId(), getString(R.string.channel_page_summary),
+                    returnList.add(new ChooseTabListItem(tab.getTabId(),
+                            getString(R.string.channel_page_summary),
                             tab.getTabIconRes(context)));
                     break;
                 case DEFAULT_KIOSK:
                     if (!tabList.contains(tab)) {
-                        returnList.add(new ChooseTabListItem(tab.getTabId(), getString(R.string.default_kiosk_page_summary),
-                                ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
+                        returnList.add(new ChooseTabListItem(tab.getTabId(),
+                                getString(R.string.default_kiosk_page_summary),
+                                ThemeHelper.resolveResourceIdFromAttr(context,
+                                        R.attr.ic_kiosk_hot)));
                     }
+                    break;
+                case PLAYLIST:
+                    returnList.add(new ChooseTabListItem(tab.getTabId(),
+                            getString(R.string.playlist_page_summary),
+                            tab.getTabIconRes(context)));
                     break;
                 default:
                     if (!tabList.contains(tab)) {
@@ -250,29 +286,88 @@ public class ChooseTabsFragment extends Fragment {
     // List Handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    private class SelectedTabsAdapter extends RecyclerView.Adapter<ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder> {
-        private ItemTouchHelper itemTouchHelper;
-        private final LayoutInflater inflater;
+    private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
+        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                ItemTouchHelper.START | ItemTouchHelper.END) {
+            @Override
+            public int interpolateOutOfBoundsScroll(final RecyclerView recyclerView,
+                                                    final int viewSize,
+                                                    final int viewSizeOutOfBounds,
+                                                    final int totalSize,
+                                                    final long msSinceStartScroll) {
+                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
+                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
+                final int minimumAbsVelocity = Math.max(12,
+                        Math.abs(standardSpeed));
+                return minimumAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
+            }
 
-        SelectedTabsAdapter(Context context, ItemTouchHelper itemTouchHelper) {
+            @Override
+            public boolean onMove(final RecyclerView recyclerView,
+                                  final RecyclerView.ViewHolder source,
+                                  final RecyclerView.ViewHolder target) {
+                if (source.getItemViewType() != target.getItemViewType()
+                        || selectedTabsAdapter == null) {
+                    return false;
+                }
+
+                final int sourceIndex = source.getAdapterPosition();
+                final int targetIndex = target.getAdapterPosition();
+                selectedTabsAdapter.swapItems(sourceIndex, targetIndex);
+                return true;
+            }
+
+            @Override
+            public boolean isLongPressDragEnabled() {
+                return false;
+            }
+
+            @Override
+            public boolean isItemViewSwipeEnabled() {
+                return true;
+            }
+
+            @Override
+            public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
+                int position = viewHolder.getAdapterPosition();
+                tabList.remove(position);
+                selectedTabsAdapter.notifyItemRemoved(position);
+
+                if (tabList.isEmpty()) {
+                    tabList.add(Tab.Type.BLANK.getTab());
+                    selectedTabsAdapter.notifyItemInserted(0);
+                }
+            }
+        };
+    }
+
+    private class SelectedTabsAdapter
+            extends RecyclerView.Adapter<ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder> {
+        private final LayoutInflater inflater;
+        private ItemTouchHelper itemTouchHelper;
+
+        SelectedTabsAdapter(final Context context, final ItemTouchHelper itemTouchHelper) {
             this.itemTouchHelper = itemTouchHelper;
             this.inflater = LayoutInflater.from(context);
         }
 
-        public void swapItems(int fromPosition, int toPosition) {
+        public void swapItems(final int fromPosition, final int toPosition) {
             Collections.swap(tabList, fromPosition, toPosition);
             notifyItemMoved(fromPosition, toPosition);
         }
 
         @NonNull
         @Override
-        public ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = inflater.inflate(R.layout.list_choose_tabs, parent, false);
+        public ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder onCreateViewHolder(
+                @NonNull final ViewGroup parent, final int viewType) {
+            final View view = inflater.inflate(R.layout.list_choose_tabs, parent, false);
             return new ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder holder, int position) {
+        public void onBindViewHolder(
+                @NonNull final ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder holder,
+                final int position) {
             holder.bind(position, holder);
         }
 
@@ -286,7 +381,7 @@ public class ChooseTabsFragment extends Fragment {
             private TextView tabNameView;
             private ImageView handle;
 
-            TabViewHolder(View itemView) {
+            TabViewHolder(final View itemView) {
                 super(itemView);
 
                 tabNameView = itemView.findViewById(R.id.tabName);
@@ -295,7 +390,7 @@ public class ChooseTabsFragment extends Fragment {
             }
 
             @SuppressLint("ClickableViewAccessibility")
-            void bind(int position, TabViewHolder holder) {
+            void bind(final int position, final TabViewHolder holder) {
                 handle.setOnTouchListener(getOnTouchListener(holder));
 
                 final Tab tab = tabList.get(position);
@@ -314,10 +409,19 @@ public class ChooseTabsFragment extends Fragment {
                         tabName = getString(R.string.default_kiosk_page_summary);
                         break;
                     case KIOSK:
-                        tabName = NewPipe.getNameOfService(((Tab.KioskTab) tab).getKioskServiceId()) + "/" + tab.getTabName(requireContext());
+                        tabName = NewPipe.getNameOfService(((Tab.KioskTab) tab)
+                                .getKioskServiceId()) + "/" + tab.getTabName(requireContext());
                         break;
                     case CHANNEL:
-                        tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab).getChannelServiceId()) + "/" + tab.getTabName(requireContext());
+                        tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab)
+                                .getChannelServiceId()) + "/" + tab.getTabName(requireContext());
+                        break;
+                    case PLAYLIST:
+                        final int serviceId = ((Tab.PlaylistTab) tab).getPlaylistServiceId();
+                        final String serviceName = serviceId == -1
+                                ? getString(R.string.local)
+                                : NewPipe.getNameOfService(serviceId);
+                        tabName = serviceName + "/" + tab.getTabName(requireContext());
                         break;
                     default:
                         tabName = tab.getTabName(requireContext());
@@ -341,57 +445,5 @@ public class ChooseTabsFragment extends Fragment {
                 };
             }
         }
-    }
-
-    private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
-        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                ItemTouchHelper.START | ItemTouchHelper.END) {
-            @Override
-            public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
-                                                    int viewSizeOutOfBounds, int totalSize,
-                                                    long msSinceStartScroll) {
-                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
-                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
-                final int minimumAbsVelocity = Math.max(12,
-                        Math.abs(standardSpeed));
-                return minimumAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
-            }
-
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
-                                  RecyclerView.ViewHolder target) {
-                if (source.getItemViewType() != target.getItemViewType() ||
-                        selectedTabsAdapter == null) {
-                    return false;
-                }
-
-                final int sourceIndex = source.getAdapterPosition();
-                final int targetIndex = target.getAdapterPosition();
-                selectedTabsAdapter.swapItems(sourceIndex, targetIndex);
-                return true;
-            }
-
-            @Override
-            public boolean isLongPressDragEnabled() {
-                return false;
-            }
-
-            @Override
-            public boolean isItemViewSwipeEnabled() {
-                return true;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                int position = viewHolder.getAdapterPosition();
-                tabList.remove(position);
-                selectedTabsAdapter.notifyItemRemoved(position);
-
-                if (tabList.isEmpty()) {
-                    tabList.add(Tab.Type.BLANK.getTab());
-                    selectedTabsAdapter.notifyItemInserted(0);
-                }
-            }
-        };
     }
 }

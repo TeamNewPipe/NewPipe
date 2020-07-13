@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="main_bg_subtitle">Tekan carian untuk bermula</string>
+<resources>
+    <string name="main_bg_subtitle">Tekan carian untuk bermula</string>
     <string name="view_count_text">%1$s tontonan</string>
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
     <string name="no_player_found">Tiada pemain strim ditemui. Adakah anda mahu memasang VLC\?</string>
@@ -27,23 +28,22 @@
     <string name="subscription_change_failed">Tidak dapat menukar langganan</string>
     <string name="subscription_update_failed">Tidak dapat mengemaskini langganan</string>
     <string name="show_info">Papar maklumat</string>
-
     <string name="tab_main">Utama</string>
     <string name="tab_subscriptions">Langganan</string>
     <string name="tab_bookmarks">Penanda halaman Senarai main</string>
     <string name="unsubscribe">Henti langganan</string>
     <string name="tab_new">Tab Baru</string>
     <string name="tab_choose">Pilih Tab</string>
-    <string name="fragment_whats_new">Apa yang Baru</string>
+    <string name="fragment_feed_title">Apa yang Baru</string>
     <string name="controls_background_title">Latar Belakang</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_add_to_playlist_title">Tambahkan Ke</string>
-    <string name="download_path_title">Lokasi muat turun video</string>
-    <string name="download_path_summary">Lokasi untuk menyimpan video yang dimuat turun</string>
-    <string name="download_path_dialog_title">Memasukkan lokasi muat turun video</string>
+    <string name="download_path_title">Folder muat turun video</string>
+    <string name="download_path_summary">Fail video yang dimuat turun disimpan di sini</string>
+    <string name="download_path_dialog_title">Pilih folder muat turun untuk fail video</string>
     <string name="download_path_audio_title">Lokasi muat turun audio</string>
-    <string name="download_path_audio_summary">Audio yang dimuat turun disimpan sini</string>
-    <string name="download_path_audio_dialog_title">Memasukkan lokasi muat turun fail audio</string>
+    <string name="download_path_audio_summary">Fail audio yang dimuat turun disimpan di sini</string>
+    <string name="download_path_audio_dialog_title">Pilih folder muat turun untuk fail audio</string>
     <string name="autoplay_by_calling_app_title">Main secara automatik</string>
     <string name="autoplay_by_calling_app_summary">Memain video apabila NewPipe dipanggil dari app lain</string>
     <string name="default_resolution_title">Resolusi utama</string>
@@ -224,13 +224,13 @@
     <string name="short_billion">B</string>
     <string name="no_subscribers">Tiada pelanggan</string>
     <plurals name="subscribers">
-    <item quantity="other">%s pelanggan</item>
-</plurals>
+        <item quantity="other">%s pelanggan</item>
+    </plurals>
     <string name="subscribers_count_not_available">Kira pelanggan tidak tersedia</string>
     <string name="no_views">Tiada tontonan</string>
     <plurals name="views">
-    <item quantity="other">%s tontonan</item>
-</plurals>
+        <item quantity="other">%s tontonan</item>
+    </plurals>
     <string name="no_videos">Tiada video</string>
     <string name="start">Mula</string>
     <string name="pause">Jeda</string>
@@ -258,8 +258,7 @@
     <string name="msg_popup_permission">Kebenaran ini diperlukan untuk
 \nbuka dalam mod popup</string>
     <string name="one_item_deleted">1 item dipadamkan.</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Cabaran reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Cabaran reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kod reCAPTCHA</string>
     <string name="settings_category_downloads_title">Muat turun</string>
     <string name="settings_file_charset_title">Karakter yang dibenarkan dalam nama fail</string>
@@ -452,11 +451,12 @@
     <string name="error_http_unsupported_range">Server tidak menerima muat turun berbilang thread, cuba lagi dengan @string/msg_threads = 1</string>
     <string name="error_http_not_found">Tidak ditemui</string>
     <string name="error_postprocessing_failed">Pemprosesan-pasca gagal</string>
-    <string name="clear_finished_download">Hapuskan senarai muat turun yang selesai</string>
     <string name="stop">Berhenti</string>
     <string name="max_retry_msg">Percubaan maksimum</string>
     <string name="max_retry_desc">Jumlah percubaan maksimum sebelum membatalkan muat turun</string>
     <string name="pause_downloads_on_mobile">Jeda semasa beralih ke data mudah alih</string>
     <string name="pause_downloads_on_mobile_desc">Muat turun yang tidak dapat dihentikan akan dimulakan semula</string>
     <string name="missions_header_pending">Menunggu</string>
+    <string name="download_choose_new_path">Ubah folder muat turun untuk melihat kesan</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Dayakan lakaran kecil video skrin kunci</string>
 </resources>

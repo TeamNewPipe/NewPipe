@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- YouTube -->
-    <style name="LightTheme.YouTube" parent="LightTheme.Switchable">
+    <style name="LightTheme.YouTube" parent="LightTheme">
     </style>
 
-    <style name="DarkTheme.YouTube" parent="DarkTheme.Switchable">
+    <style name="DarkTheme.YouTube" parent="DarkTheme">
     </style>
 
-    <style name="BlackTheme.YouTube" parent="BlackTheme.Switchable">
+    <style name="BlackTheme.YouTube" parent="BlackTheme">
     </style>
 
     <!-- SoundCloud -->
-    <style name="LightTheme.SoundCloud" parent="LightTheme.Switchable">
+    <style name="LightTheme.SoundCloud" parent="LightTheme">
         <item name="colorPrimary">@color/light_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/light_soundcloud_dark_color</item>
         <item name="colorAccent">@color/light_soundcloud_accent_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_soundcloud_horizontal_light</item>
     </style>
 
-    <style name="DarkTheme.SoundCloud" parent="DarkTheme.Switchable">
+    <style name="DarkTheme.SoundCloud" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_soundcloud_dark_color</item>
         <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_soundcloud_horizontal_dark</item>
     </style>
 
-    <style name="BlackTheme.SoundCloud" parent="BlackTheme.Switchable">
+    <style name="BlackTheme.SoundCloud" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_soundcloud_dark_color</item>
         <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
@@ -33,38 +33,38 @@
     </style>
 
     <!-- PeerTube -->
-    <style name="LightTheme.PeerTube" parent="LightTheme.Switchable">
+    <style name="LightTheme.PeerTube" parent="LightTheme">
         <item name="colorPrimary">@color/light_peertube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_peertube_dark_color</item>
         <item name="colorAccent">@color/light_peertube_accent_color</item>
     </style>
 
-    <style name="DarkTheme.PeerTube" parent="DarkTheme.Switchable">
+    <style name="DarkTheme.PeerTube" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_peertube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_peertube_dark_color</item>
         <item name="colorAccent">@color/dark_peertube_accent_color</item>
     </style>
 
-    <style name="BlackTheme.PeerTube" parent="BlackTheme.Switchable">
+    <style name="BlackTheme.PeerTube" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_peertube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_peertube_dark_color</item>
         <item name="colorAccent">@color/dark_peertube_accent_color</item>
     </style>
 
     <!-- Media.ccc -->
-    <style name="LightTheme.MediaCCC" parent="LightTheme.Switchable">
+    <style name="LightTheme.MediaCCC" parent="LightTheme">
         <item name="colorPrimary">@color/light_media_ccc_primary_color</item>
         <item name="colorPrimaryDark">@color/light_media_ccc_statusbar_color</item>
         <item name="colorAccent">@color/light_media_ccc_accent_color</item>
     </style>
 
-    <style name="DarkTheme.MediaCCC" parent="DarkTheme.Switchable">
+    <style name="DarkTheme.MediaCCC" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
         <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
     </style>
 
-    <style name="BlackTheme.MediaCCC" parent="BlackTheme.Switchable">
+    <style name="BlackTheme.MediaCCC" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
         <item name="colorAccent">@color/dark_media_ccc_accent_color</item>

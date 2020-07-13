@@ -7,23 +7,28 @@ import org.schabi.newpipe.R;
 /**
  * Created by Chrsitian Schabesberger on 28.09.17.
  * KioskTranslator.java is part of NewPipe.
- *
+ * <p>
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * </p>
+ * <p>
  * NewPipe is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * </p>
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
+ * </p>
  */
 
-public class KioskTranslator {
-    public static String getTranslatedKioskName(String kioskId, Context c) {
+public final class KioskTranslator {
+    private KioskTranslator() { }
+
+    public static String getTranslatedKioskName(final String kioskId, final Context c) {
         switch (kioskId) {
             case "Trending":
                 return c.getString(R.string.trending);
@@ -44,22 +49,19 @@ public class KioskTranslator {
         }
     }
 
-    public static int getKioskIcons(String kioskId, Context c) {
-        switch(kioskId) {
+    public static int getKioskIcon(final String kioskId, final Context c) {
+        switch (kioskId) {
             case "Trending":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
             case "Top 50":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
             case "New & hot":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+            case "conferences":
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_hot);
             case "Local":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_local);
             case "Recently added":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_recent);
             case "Most liked":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.thumbs_up);
-            case "conferences":
-                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_thumb_up);
             default:
                 return 0;
         }

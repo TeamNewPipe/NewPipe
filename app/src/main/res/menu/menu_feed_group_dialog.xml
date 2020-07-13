@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="?attr/ic_search"
+        android:title="@string/search"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/feed_group_toggle_show_only_ungrouped_subscriptions"
+        android:checkable="true"
+        android:checked="false"
+        android:title="@string/feed_group_show_only_ungrouped_subscriptions"
+        app:showAsAction="never" />
+</menu>

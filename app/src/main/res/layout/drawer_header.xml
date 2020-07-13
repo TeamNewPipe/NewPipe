@@ -1,81 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="wrap_content"
-android:layout_height="150dp"
-android:clickable="true"
-android:focusable="true">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        android:nextFocusDown="@+id/drawer_header_action_button">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/drawer_header_padding_top"
+        android:fitsSystemWindows="true"
+        android:gravity="bottom"
+        android:minHeight="@dimen/drawer_header_content_min_height"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/drawer_header_newpipe_icon"
+                android:layout_width="@dimen/drawer_header_newpipe_icon_size"
+                android:layout_height="@dimen/drawer_header_newpipe_icon_size"
+                android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
+                app:srcCompat="@drawable/splash_foreground"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/drawer_header_newpipe_title"
+                android:layout_width="@dimen/drawer_header_newpipe_title_default_width"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:hyphenationFrequency="full"
+                android:maxLines="1"
+                android:text="@string/app_name"
+                android:textColor="@color/drawer_header_font_color"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="@dimen/drawer_header_newpipe_title_max_text_size"
+                app:autoSizeMinTextSize="@dimen/drawer_header_newpipe_title_min_text_size"
+                app:autoSizeTextType="uniform"
+                tools:ignore="UnusedAttribute"
+                tools:text="NewPipe" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/drawer_header_bottom_background"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/drawer_header_service_icon"
+                    android:layout_width="@dimen/drawer_header_service_icon_size"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:scaleType="fitCenter"
+                    app:tint="@color/drawer_header_font_color"
+                    tools:ignore="ContentDescription"
+                    tools:srcCompat="@drawable/place_holder_youtube" />
+
+                <TextView
+                    android:id="@+id/drawer_header_service_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/drawer_header_font_color"
+                    android:textSize="@dimen/drawer_header_service_title_text_size"
+                    tools:text="YouTube" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/drawer_arrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="4dp"
+                app:srcCompat="@drawable/ic_arrow_drop_down_white_24dp"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/drawer_header_action_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?android:attr/selectableItemBackground"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/colorPrimary"
-        android:src="@drawable/background_header"
-        android:scaleType="centerCrop"
-        android:contentDescription="TODO" />
-
-    <ImageView
-        android:id="@+id/drawer_header_np_nude_view"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/np_logo_nude_shadow"
-        android:contentDescription="TODO" />
-
-    <TextView
-        android:id="@+id/drawer_header_np_text_view"
-        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="@string/app_name"
-        android:layout_toRightOf="@id/drawer_header_np_nude_view"
-        android:layout_toEndOf="@id/drawer_header_np_nude_view"
-        android:layout_alignTop="@id/drawer_header_np_nude_view"
-        android:layout_alignBottom="@id/drawer_header_np_nude_view"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:textColor="@color/drawer_header_font_color"
-        android:textStyle="bold|italic"/>
-
-    <TextView
-        android:id="@+id/drawer_header_service_view"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:text="YouTube"
-        android:layout_below="@id/drawer_header_np_text_view"
-        android:layout_alignLeft="@id/drawer_header_np_text_view"
-        android:layout_alignStart="@id/drawer_header_np_text_view"
-        android:layout_toLeftOf="@id/drawer_arrow"
-        android:layout_marginRight="5dp"
-        android:textSize="18sp"
-        android:textColor="@color/drawer_header_font_color"
-        android:textStyle="italic"
-        android:ellipsize="marquee"
-        android:fadingEdge="horizontal"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="true"
-        android:singleLine="true" />
-
-    <ImageView
-        android:id="@+id/drawer_arrow"
-        android:layout_width="30dp"
-        android:layout_height="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="0dp"
-        android:paddingBottom="20dp"
-        android:paddingRight="20dp"
-        android:src="@drawable/ic_arrow_down_white"
-        android:paddingEnd="20dp"
-        android:contentDescription="TODO" />
-
-</RelativeLayout>
+        android:background="?selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

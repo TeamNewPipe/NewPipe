@@ -2,36 +2,32 @@ package org.schabi.newpipe.fragments.list.search;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.annotation.AttrRes;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.AttrRes;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAdapter.SuggestionItemHolder> {
+public class SuggestionListAdapter
+        extends RecyclerView.Adapter<SuggestionListAdapter.SuggestionItemHolder> {
     private final ArrayList<SuggestionItem> items = new ArrayList<>();
     private final Context context;
     private OnSuggestionItemSelected listener;
     private boolean showSuggestionHistory = true;
 
-    public interface OnSuggestionItemSelected {
-        void onSuggestionItemSelected(SuggestionItem item);
-        void onSuggestionItemInserted(SuggestionItem item);
-        void onSuggestionItemLongClick(SuggestionItem item);
-    }
-
-    public SuggestionListAdapter(Context context) {
+    public SuggestionListAdapter(final Context context) {
         this.context = context;
     }
 
-    public void setItems(List<SuggestionItem> items) {
+    public void setItems(final List<SuggestionItem> items) {
         this.items.clear();
         if (showSuggestionHistory) {
             this.items.addAll(items);
@@ -46,36 +42,43 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
         notifyDataSetChanged();
     }
 
-    public void setListener(OnSuggestionItemSelected listener) {
+    public void setListener(final OnSuggestionItemSelected listener) {
         this.listener = listener;
     }
 
-    public void setShowSuggestionHistory(boolean v) {
+    public void setShowSuggestionHistory(final boolean v) {
         showSuggestionHistory = v;
     }
 
     @Override
-    public SuggestionItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new SuggestionItemHolder(LayoutInflater.from(context).inflate(R.layout.item_search_suggestion, parent, false));
+    public SuggestionItemHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        return new SuggestionItemHolder(LayoutInflater.from(context)
+                .inflate(R.layout.item_search_suggestion, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(SuggestionItemHolder holder, int position) {
+    public void onBindViewHolder(final SuggestionItemHolder holder, final int position) {
         final SuggestionItem currentItem = getItem(position);
         holder.updateFrom(currentItem);
         holder.queryView.setOnClickListener(v -> {
-            if (listener != null) listener.onSuggestionItemSelected(currentItem);
+            if (listener != null) {
+                listener.onSuggestionItemSelected(currentItem);
+            }
         });
         holder.queryView.setOnLongClickListener(v -> {
-                if (listener != null) listener.onSuggestionItemLongClick(currentItem);
-                return true;
+            if (listener != null) {
+                listener.onSuggestionItemLongClick(currentItem);
+            }
+            return true;
         });
         holder.insertView.setOnClickListener(v -> {
-            if (listener != null) listener.onSuggestionItemInserted(currentItem);
+            if (listener != null) {
+                listener.onSuggestionItemInserted(currentItem);
+            }
         });
     }
 
-    SuggestionItem getItem(int position) {
+    SuggestionItem getItem(final int position) {
         return items.get(position);
     }
 
@@ -88,7 +91,15 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
         return getItemCount() == 0;
     }
 
-    public static class SuggestionItemHolder extends RecyclerView.ViewHolder {
+    public interface OnSuggestionItemSelected {
+        void onSuggestionItemSelected(SuggestionItem item);
+
+        void onSuggestionItemInserted(SuggestionItem item);
+
+        void onSuggestionItemLongClick(SuggestionItem item);
+    }
+
+    public static final class SuggestionItemHolder extends RecyclerView.ViewHolder {
         private final TextView itemSuggestionQuery;
         private final ImageView suggestionIcon;
         private final View queryView;
@@ -98,7 +109,7 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
         private final int historyResId;
         private final int searchResId;
 
-        private SuggestionItemHolder(View rootView) {
+        private SuggestionItemHolder(final View rootView) {
             super(rootView);
             suggestionIcon = rootView.findViewById(R.id.item_suggestion_icon);
             itemSuggestionQuery = rootView.findViewById(R.id.item_suggestion_query);
@@ -106,20 +117,21 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
             queryView = rootView.findViewById(R.id.suggestion_search);
             insertView = rootView.findViewById(R.id.suggestion_insert);
 
-            historyResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.history);
-            searchResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.search);
+            historyResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.ic_history);
+            searchResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.ic_search);
         }
 
-        private void updateFrom(SuggestionItem item) {
-            suggestionIcon.setImageResource(item.fromHistory ? historyResId : searchResId);
-            itemSuggestionQuery.setText(item.query);
-        }
-
-        private static int resolveResourceIdFromAttr(Context context, @AttrRes int attr) {
+        private static int resolveResourceIdFromAttr(final Context context,
+                                                     @AttrRes final int attr) {
             TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
             int attributeResourceId = a.getResourceId(0, 0);
             a.recycle();
             return attributeResourceId;
+        }
+
+        private void updateFrom(final SuggestionItem item) {
+            suggestionIcon.setImageResource(item.fromHistory ? historyResId : searchResId);
+            itemSuggestionQuery.setText(item.query);
         }
     }
 }

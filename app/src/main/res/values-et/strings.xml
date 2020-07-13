@@ -30,7 +30,7 @@
     <string name="show_info">Kuva info</string>
     <string name="tab_subscriptions">Tellimused</string>
     <string name="tab_bookmarks">Esitusloendid järjehoidjates</string>
-    <string name="fragment_whats_new">Mis on uut</string>
+    <string name="fragment_feed_title">Mis on uut</string>
     <string name="controls_background_title">Taust</string>
     <string name="controls_popup_title">Hüpikaken</string>
     <string name="controls_add_to_playlist_title">"Lisa "</string>
@@ -238,7 +238,6 @@
     <string name="msg_popup_permission">Need õigused on vajalikud
 \nhüpikakna avamiseks</string>
     <string name="one_item_deleted">Kustutati 1 element.</string>
-    <string name="reCaptchaActivity">"reCAPTCHA "</string>
     <string name="settings_category_downloads_title">Laadi alla</string>
     <string name="settings_file_charset_title">Lubatud tähemärgid failinimedes</string>
     <string name="settings_file_replacement_character_summary">Vigased tähemärgid asendatakse selle väärtusega</string>
@@ -359,18 +358,17 @@
 \nKas jätkata?</string>
     <string name="playback_speed_control">Taasesituse kiiruse juhtimine</string>
     <string name="playback_tempo">"Tempo "</string>
-    <string name="playback_default">Vaikimisi</string>
     <string name="accept">Nõustu</string>
     <string name="decline">Keeldu</string>
     <string name="limit_data_usage_none_description">Piiranguta</string>
     <string name="limit_mobile_data_usage_title">Piira lahutust mobiilse andmeside kasutamisel</string>
-    <string name="tab_main">Peamenüü</string>
+    <string name="tab_main">Peamine</string>
     <string name="channels">Kanalid</string>
     <string name="playlists">Pleilistid</string>
     <string name="tracks">Lood</string>
     <string name="users">Kasutajad</string>
     <string name="switch_to_main">Lülitu peamisele</string>
-    <string name="reCaptcha_title">reCAPTCHA nõue</string>
+    <string name="title_activity_recaptcha">reCAPTCHA nõue</string>
     <string name="recaptcha_request_toast">reCAPTCHA nõude taotlus</string>
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
     <string name="app_description">Vaba kergekaaluline Androidi voogesitus.</string>
@@ -459,7 +457,6 @@
     <string name="error_http_unsupported_range">Server ei toeta mitmelõimelisi allalaadimisi. Proovi uuesti kasutades @string/msg_threads = 1</string>
     <string name="error_http_not_found">Ei leitud</string>
     <string name="error_postprocessing_failed">Järeltöötlemine nurjus</string>
-    <string name="clear_finished_download">Eemalda lõpetatud allalaadimised</string>
     <string name="stop">Stopp</string>
     <string name="max_retry_msg">Korduskatseid</string>
     <string name="max_retry_desc">Suurim katsete arv enne allalaadimise tühistamist</string>

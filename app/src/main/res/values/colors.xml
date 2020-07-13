@@ -14,6 +14,9 @@
     <color name="light_license_background_color">#ffffff</color>
     <color name="light_license_text_color">#212121</color>
     <color name="light_queue_background_color">#c8ffffff</color>
+    <color name="light_card_item_background_color">#F8F8F8</color>
+    <color name="light_card_item_contrast_color">#E9E9E9</color>
+    <color name="light_border_color">#33000000</color>
 
     <!-- Dark Theme -->
     <color name="dark_background_color">#222222</color>
@@ -27,15 +30,21 @@
     <color name="dark_license_background_color">#424242</color>
     <color name="dark_license_text_color">#ffffff</color>
     <color name="dark_queue_background_color">#af000000</color>
+    <color name="dark_card_item_background_color">#313131</color>
+    <color name="dark_card_item_contrast_color">#474747</color>
+    <color name="dark_border_color">#33FFFFFF</color>
 
     <!-- Black Theme -->
     <color name="black_background_color">#000000</color>
     <color name="black_settings_accent_color">@color/dark_settings_accent_color</color>
     <color name="black_separator_color">#1effffff</color>
     <color name="black_contrast_background_color">#23454545</color>
+    <color name="black_card_item_background_color">#0F0F0F</color>
+    <color name="black_card_item_contrast_color">#202020</color>
+    <color name="black_border_color">#25FFFFFF</color>
 
     <!-- Miscellaneous -->
-    <color name="drawer_header_font_color">#ddffffff</color>
+    <color name="drawer_header_font_color">#F2FFFFFF</color>
     <color name="duration_background_color">#aa000000</color>
     <color name="live_duration_background_color">#c8E53935</color>
     <color name="playlist_stream_count_background_color">#e6000000</color>
@@ -47,7 +56,6 @@
     <color name="background_title_color">#ffffff</color>
     <color name="background_subtext_color">#999999</color>
 
-    <color name="subscribe_background_color">#e53935</color>
     <color name="subscribe_text_color">#fff</color>
     <color name="subscribed_background_color">#d6d6d6</color>
     <color name="subscribed_text_color">#717171</color>

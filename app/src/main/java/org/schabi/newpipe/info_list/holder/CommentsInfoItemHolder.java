@@ -30,23 +30,24 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
  */
 
 public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
-
     public final TextView itemTitleView;
 
-    public CommentsInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
+    public CommentsInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         super(infoItemBuilder, R.layout.list_comments_item, parent);
 
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+    public void updateFromItem(final InfoItem infoItem,
+                               final HistoryRecordManager historyRecordManager) {
         super.updateFromItem(infoItem, historyRecordManager);
 
-        if (!(infoItem instanceof CommentsInfoItem)) return;
+        if (!(infoItem instanceof CommentsInfoItem)) {
+            return;
+        }
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
-        itemTitleView.setText(item.getAuthorName());
+        itemTitleView.setText(item.getUploaderName());
     }
-
 }

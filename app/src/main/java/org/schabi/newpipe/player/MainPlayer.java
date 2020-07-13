@@ -24,11 +24,18 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
@@ -39,9 +46,11 @@ import com.google.android.exoplayer2.Player;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.player.helper.LockManager;
+import org.schabi.newpipe.util.BitmapUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 
 /**
@@ -55,7 +64,7 @@ public final class MainPlayer extends Service {
 
     private VideoPlayerImpl playerImpl;
     private WindowManager windowManager;
-    private LockManager lockManager;
+    private SharedPreferences sharedPreferences;
 
     private final IBinder mBinder = new MainPlayer.LocalBinder();
 
@@ -93,9 +102,10 @@ public final class MainPlayer extends Service {
     @Override
     public void onCreate() {
         if (DEBUG) Log.d(TAG, "onCreate() called");
+        assureCorrectAppLanguage(this);
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
-        lockManager = new LockManager(this);
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         ThemeHelper.setTheme(this);
         createView();
@@ -171,9 +181,6 @@ public final class MainPlayer extends Service {
     private void onClose() {
         if (DEBUG) Log.d(TAG, "onClose() called");
 
-        if (lockManager != null) {
-            lockManager.releaseWifiAndCpu();
-        }
         if (playerImpl != null) {
             removeViewFromParent();
 
@@ -235,23 +242,54 @@ public final class MainPlayer extends Service {
 
     void resetNotification() {
         notBuilder = createNotification();
+        playerImpl.timesNotificationUpdated = 0;
     }
 
     private NotificationCompat.Builder createNotification() {
-        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
-        bigNotRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
+        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_background_notification);
+        bigNotRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_background_notification_expanded);
 
         setupNotification(notRemoteView);
         setupNotification(bigNotRemoteView);
 
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+        final NotificationCompat.Builder builder = new NotificationCompat
+                .Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
                 .setCustomBigContentView(bigNotRemoteView);
-        builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setLockScreenThumbnail(builder);
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        }
         return builder;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void setLockScreenThumbnail(final NotificationCompat.Builder builder) {
+        final boolean isLockScreenThumbnailEnabled = sharedPreferences.getBoolean(
+                getString(R.string.enable_lock_screen_video_thumbnail_key), true);
+
+        if (isLockScreenThumbnailEnabled) {
+            playerImpl.mediaSessionManager.setLockScreenArt(
+                    builder,
+                    getCenteredThumbnailBitmap()
+            );
+        } else {
+            playerImpl.mediaSessionManager.clearLockScreenArt(builder);
+        }
+    }
+
+    @Nullable
+    private Bitmap getCenteredThumbnailBitmap() {
+        final int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        final int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+        return BitmapUtils.centerCrop(playerImpl.getThumbnail(), screenWidth, screenHeight);
     }
 
     private void setupNotification(final RemoteViews remoteViews) {
@@ -299,13 +337,16 @@ public final class MainPlayer extends Service {
      * @param drawableId if != -1, sets the drawable with that id on the play/pause button
      */
     synchronized void updateNotification(final int drawableId) {
-        //if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
+        /*if (DEBUG) {
+            Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
+        }*/
         if (notBuilder == null) return;
         if (drawableId != -1) {
             if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
             if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
         }
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
+        playerImpl.timesNotificationUpdated++;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -346,10 +387,6 @@ public final class MainPlayer extends Service {
     /*//////////////////////////////////////////////////////////////////////////
     // Getters
     //////////////////////////////////////////////////////////////////////////*/
-
-    LockManager getLockManager() {
-        return lockManager;
-    }
 
     NotificationCompat.Builder getNotBuilder() {
         return notBuilder;

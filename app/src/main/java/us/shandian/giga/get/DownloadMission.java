@@ -6,8 +6,8 @@ import android.system.ErrnoException;
 import android.system.OsConstants;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.DownloaderImpl;
 
@@ -223,6 +223,7 @@ public class DownloadMission extends Mission {
         conn.setInstanceFollowRedirects(true);
         conn.setRequestProperty("User-Agent", DownloaderImpl.USER_AGENT);
         conn.setRequestProperty("Accept", "*/*");
+        conn.setRequestProperty("Accept-Encoding", "*");
 
         if (headRequest) conn.setRequestMethod("HEAD");
 

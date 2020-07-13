@@ -153,8 +153,7 @@
     <string name="no_available_dir">Prašome pasirinkti galimą atsisiuntimų aplankalą</string>
     <string name="msg_popup_permission">Šis leidimas nereikalingas, kad atidarytiviššokančio lango rėžime</string>
 
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA iššūkis</string>
+    <string name="title_activity_recaptcha">reCAPTCHA iššūkis</string>
     <string name="recaptcha_request_toast">reCAPTCHA prašomas iššūkis</string>
 
     <string name="subscribe_button_title">Prenumeruoti</string>
@@ -166,7 +165,7 @@
     <string name="tab_main">Pagrindinis</string>
     <string name="tab_subscriptions">Prenumeratos</string>
 
-    <string name="fragment_whats_new">Kas Naujo</string>
+    <string name="fragment_feed_title">Kas Naujo</string>
 
     <string name="enable_search_history_title">Ieškoti istorijoje</string>
     <string name="enable_search_history_summary">Saugoti paieškos užklausas vietinėje atmintyje</string>

@@ -20,16 +20,16 @@
 package org.schabi.newpipe.local.subscription.services;
 
 import android.content.Intent;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
-import org.schabi.newpipe.local.subscription.ImportExportJsonHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -47,26 +47,33 @@ public class SubscriptionsExportService extends BaseImportExportService {
     public static final String KEY_FILE_PATH = "key_file_path";
 
     /**
-     * A {@link LocalBroadcastManager local broadcast} will be made with this action when the export is successfully completed.
+     * A {@link LocalBroadcastManager local broadcast} will be made with this action
+     * when the export is successfully completed.
      */
-    public static final String EXPORT_COMPLETE_ACTION = "org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.EXPORT_COMPLETE";
+    public static final String EXPORT_COMPLETE_ACTION = "org.schabi.newpipe.local.subscription"
+            + ".services.SubscriptionsExportService.EXPORT_COMPLETE";
 
     private Subscription subscription;
     private File outFile;
     private FileOutputStream outputStream;
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent == null || subscription != null) return START_NOT_STICKY;
+    public int onStartCommand(final Intent intent, final int flags, final int startId) {
+        if (intent == null || subscription != null) {
+            return START_NOT_STICKY;
+        }
 
         final String path = intent.getStringExtra(KEY_FILE_PATH);
         if (TextUtils.isEmpty(path)) {
-            stopAndReportError(new IllegalStateException("Exporting to a file, but the path is empty or null"), "Exporting subscriptions");
+            stopAndReportError(new IllegalStateException(
+                    "Exporting to a file, but the path is empty or null"),
+                    "Exporting subscriptions");
             return START_NOT_STICKY;
         }
 
         try {
-            outputStream = new FileOutputStream(outFile = new File(path));
+            outFile = new File(path);
+            outputStream = new FileOutputStream(outFile);
         } catch (FileNotFoundException e) {
             handleError(e);
             return START_NOT_STICKY;
@@ -90,19 +97,21 @@ public class SubscriptionsExportService extends BaseImportExportService {
     @Override
     protected void disposeAll() {
         super.disposeAll();
-        if (subscription != null) subscription.cancel();
+        if (subscription != null) {
+            subscription.cancel();
+        }
     }
 
     private void startExport() {
         showToast(R.string.export_ongoing);
 
-        subscriptionService.subscriptionTable()
-                .getAll()
-                .take(1)
+        subscriptionManager.subscriptionTable().getAll().take(1)
                 .map(subscriptionEntities -> {
-                    final List<SubscriptionItem> result = new ArrayList<>(subscriptionEntities.size());
+                    final List<SubscriptionItem> result
+                            = new ArrayList<>(subscriptionEntities.size());
                     for (SubscriptionEntity entity : subscriptionEntities) {
-                        result.add(new SubscriptionItem(entity.getServiceId(), entity.getUrl(), entity.getName()));
+                        result.add(new SubscriptionItem(entity.getServiceId(), entity.getUrl(),
+                                entity.getName()));
                     }
                     return result;
                 })
@@ -115,25 +124,28 @@ public class SubscriptionsExportService extends BaseImportExportService {
     private Subscriber<File> getSubscriber() {
         return new Subscriber<File>() {
             @Override
-            public void onSubscribe(Subscription s) {
+            public void onSubscribe(final Subscription s) {
                 subscription = s;
                 s.request(1);
             }
 
             @Override
-            public void onNext(File file) {
-                if (DEBUG) Log.d(TAG, "startExport() success: file = " + file);
+            public void onNext(final File file) {
+                if (DEBUG) {
+                    Log.d(TAG, "startExport() success: file = " + file);
+                }
             }
 
             @Override
-            public void onError(Throwable error) {
+            public void onError(final Throwable error) {
                 Log.e(TAG, "onError() called with: error = [" + error + "]", error);
                 handleError(error);
             }
 
             @Override
             public void onComplete() {
-                LocalBroadcastManager.getInstance(SubscriptionsExportService.this).sendBroadcast(new Intent(EXPORT_COMPLETE_ACTION));
+                LocalBroadcastManager.getInstance(SubscriptionsExportService.this)
+                        .sendBroadcast(new Intent(EXPORT_COMPLETE_ACTION));
                 showToast(R.string.export_complete_toast);
                 stopService();
             }
@@ -147,7 +159,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
         };
     }
 
-    protected void handleError(Throwable error) {
+    protected void handleError(final Throwable error) {
         super.handleError(R.string.subscriptions_export_unsuccessful, error);
     }
 }

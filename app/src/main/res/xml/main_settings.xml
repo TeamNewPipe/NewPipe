@@ -8,31 +8,31 @@
     <PreferenceScreen
         app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.VideoAudioSettingsFragment"
-        android:icon="?attr/audio"
+        android:icon="?attr/ic_headset"
         android:title="@string/settings_category_video_audio_title"/>
 
     <PreferenceScreen
         app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.DownloadSettingsFragment"
-        android:icon="?attr/download"
+        android:icon="?attr/ic_file_download"
         android:title="@string/settings_category_downloads_title"/>
 
     <PreferenceScreen
         app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.AppearanceSettingsFragment"
-        android:icon="?attr/palette"
+        android:icon="?attr/ic_palette"
         android:title="@string/settings_category_appearance_title"/>
 
     <PreferenceScreen
         app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.HistorySettingsFragment"
-        android:icon="?attr/history"
+        android:icon="?attr/ic_history"
         android:title="@string/settings_category_history_title"/>
 
     <PreferenceScreen
         app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.ContentSettingsFragment"
-        android:icon="?attr/language"
+        android:icon="?attr/ic_language"
         android:title="@string/content"/>
 
     <PreferenceScreen
@@ -45,7 +45,7 @@
     <PreferenceScreen
         app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.DebugSettingsFragment"
-        android:icon="?attr/bug"
+        android:icon="?attr/ic_bug_report"
         android:title="@string/settings_category_debug_title"
         android:key="@string/debug_pref_screen_key"/>
 </PreferenceScreen>

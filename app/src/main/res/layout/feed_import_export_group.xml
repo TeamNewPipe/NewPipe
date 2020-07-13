@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:background="?attr/contrast_background_color">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="?attr/toolbar_shadow"/>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/separator_color"/>
+
+    <LinearLayout
+        android:id="@+id/import_export"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:text="@string/tab_subscriptions"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Header"/>
+
+        <ImageView
+            android:id="@+id/import_export_expand_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="16dp"
+            app:srcCompat="?attr/ic_expand_more"
+            tools:ignore="ContentDescription,RtlHardcoded"/>
+    </LinearLayout>
+
+
+    <org.schabi.newpipe.views.CollapsibleView
+        android:id="@+id/import_export_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="6dp"
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:id="@+id/import_from_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/subscription_import_export_title_height"
+            android:gravity="left|center"
+            android:maxLines="1"
+            android:paddingLeft="36dp"
+            android:text="@string/import_from"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="13sp"
+            tools:ignore="RtlHardcoded"/>
+
+        <LinearLayout
+            android:id="@+id/import_from_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginStart="36dp"
+            android:orientation="vertical"/>
+
+        <TextView
+            android:id="@+id/export_to_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/subscription_import_export_title_height"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="left|center"
+            android:maxLines="1"
+            android:paddingLeft="36dp"
+            android:text="@string/export_to"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="13sp"
+            tools:ignore="RtlHardcoded"/>
+
+        <LinearLayout
+            android:id="@+id/export_to_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:orientation="vertical"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            android:background="?attr/separator_color"/>
+    </org.schabi.newpipe.views.CollapsibleView>
+</LinearLayout>

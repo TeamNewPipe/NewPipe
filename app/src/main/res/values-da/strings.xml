@@ -34,7 +34,7 @@
     <string name="tab_bookmarks">Gemte spillelister</string>
     <string name="tab_new">Ny fane</string>
     <string name="tab_choose">Vælg fane</string>
-    <string name="fragment_whats_new">Nyheder</string>
+    <string name="fragment_feed_title">Nyheder</string>
     <string name="controls_background_title">Baggrund</string>
     <string name="controls_popup_title">Pop op</string>
     <string name="controls_add_to_playlist_title">Føj til</string>
@@ -249,8 +249,7 @@
     <string name="no_available_dir">Vælg venligst en tilgængelig downloadmappe</string>
     <string name="msg_popup_permission">Denne tilladelse er nødvendig for at kunne åbne i pop op-tilstand</string>
     <string name="one_item_deleted">1 element slettet.</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA-udfordring</string>
+    <string name="title_activity_recaptcha">reCAPTCHA-udfordring</string>
     <string name="recaptcha_request_toast">Der blev anmodet om en reCAPTCHA-udfordring</string>
     <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Tilladte tegn i filnavne</string>
@@ -446,7 +445,6 @@
     <string name="app_update_notification_content_title">NewPipe-opdatering tilgængelig!</string>
     <string name="paused">sat på pause</string>
     <string name="queued">sat i kø</string>
-    <string name="clear_finished_download">Ryd færdige downloads</string>
     <string name="max_retry_msg">Maksimalt antal genforsøg</string>
     <string name="max_retry_desc">Maksimalt antal forsøg før downloaden opgives</string>
     <string name="pause_downloads_on_mobile">Sæt på pause ved skift til mobildata</string>

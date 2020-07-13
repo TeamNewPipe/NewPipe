@@ -1,15 +1,17 @@
 package org.schabi.newpipe.util;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class QuadraticSliderStrategyTest {
-    private final static int STEP = 100;
-    private final static float DELTA = 1f / (float) STEP;
+    private static final int STEP = 100;
+    private static final float DELTA = 1f / (float) STEP;
 
     private final SliderStrategy.Quadratic standard =
             new SliderStrategy.Quadratic(0f, 100f, 50f, STEP);
+
     @Test
     public void testLeftBound() {
         assertEquals(standard.progressOf(0), 0);

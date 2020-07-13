@@ -14,10 +14,10 @@
     <string name="screen_rotation">biratzea</string>
     <string name="download_path_title">Bideoak deskargatzeko karpeta</string>
     <string name="download_path_summary">Deskargatutako bideoak hemen gordeko dira</string>
-    <string name="download_path_dialog_title">Hautatu bideoak deskargatzeko karpeta</string>
+    <string name="download_path_dialog_title">Aukeratu bideoak deskargatzeko karpeta</string>
     <string name="default_resolution_title">Lehenetsitako bereizmena</string>
     <string name="play_with_kodi_title">Jo Kodirekin</string>
-    <string name="kore_not_found">Ez da aurkitu Kore aplikazioa. Kore instalatu?</string>
+    <string name="kore_not_found">Kore aplikazioa instalatu\?</string>
     <string name="show_play_with_kodi_title">Erakutsi \"Jo Kodirekin\" aukera</string>
     <string name="show_play_with_kodi_summary">Erakutsi bideoa Kodi multimedia zentroarekin erreproduzitzeko aukera</string>
     <string name="play_audio">Audioa</string>
@@ -36,14 +36,14 @@
     <string name="detail_likes_img_view_description">Gustoko dute</string>
     <string name="use_tor_title">Tor erabili</string>
     <string name="use_tor_summary">(Esperimentala) Trafikoa Tor bidez deskargatzea behartzen du pribatutasuna hobetzeko (bideo-jarioak ez daude oraindik onartuta).</string>
-    <string name="no_player_found">Ez da jario erreproduzigailurik aurkitu. VLC instalatu nahi duzu?</string>
+    <string name="no_player_found">Ez da jario erreproduzigailurik aurkitu. VLC instalatu\?</string>
     <string name="did_you_mean">Hau esan nahi al zenuen: %1$s?</string>
     <string name="use_external_video_player_title">Erabili kanpo bideo-erreproduzigailua</string>
     <string name="use_external_audio_player_title">Erabili kanpo audio-erreproduzigailua</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
-    <string name="main_bg_subtitle">Ukitu bilaketa hasteko</string>
+    <string name="main_bg_subtitle">Sakatu \"Bilatu\" hasteko</string>
     <string name="download_path_audio_title">Audioa deskargatzeko karpeta</string>
-    <string name="download_path_audio_dialog_title">Hautatu audio fitxategiak deskargatzeko karpeta</string>
+    <string name="download_path_audio_dialog_title">Aukeratu audio fitxategiak deskargatzeko karpeta</string>
     <string name="download_path_audio_summary">Deskargatutako audio fitxategiak hemen gordetzen dira</string>
     <string name="autoplay_by_calling_app_title">Erreprodukzio automatikoa</string>
     <string name="autoplay_by_calling_app_summary">Bideoa abiatzen du NewPipe beste aplikazio batek deitu badu</string>
@@ -52,12 +52,12 @@
     <string name="settings_category_appearance_title">Itxura</string>
     <string name="open_in_popup_mode">Ireki laster-leiho moduan</string>
     <string name="use_external_video_player_summary">Audioa kentzen du bereizmen batzuetan</string>
-    <string name="popup_mode_share_menu_title">NewPipe laster-leiho modua</string>
+    <string name="popup_mode_share_menu_title">Popup modua</string>
     <string name="controls_background_title">Bigarren planoa</string>
     <string name="controls_popup_title">Laster-leihoa</string>
     <string name="default_popup_resolution_title">Laster-leihoaren lehenetsitako bereizmena</string>
     <string name="show_higher_resolutions_title">Erakutsi bereizmen altuagoak</string>
-    <string name="show_higher_resolutions_summary">Gailu batzuk besterik ez dute onartzen 2K/4K bideoak erreproduzitzea</string>
+    <string name="show_higher_resolutions_summary">Bakarrik gailu batzuk onartzen dituzte 2K/4K bideoak erreproduzitzea</string>
     <string name="default_video_format_title">Hobetsitako bideo-formatua</string>
     <string name="theme_title">Gaia</string>
     <string name="black_theme_title">Beltza</string>
@@ -72,8 +72,8 @@
     <string name="popup_playing_toast">Laster-leiho moduan erreproduzitzen</string>
     <string name="content">Edukia</string>
     <string name="show_age_restricted_content_title">Adinez mugatutako edukia</string>
-    <string name="video_is_age_restricted">Erakutsi adinez mugatutako bideoa. Ezarpenetan gaitu daiteke eduki mota hau.</string>
-    <string name="duration_live">ZUZENEAN</string>
+    <string name="video_is_age_restricted">Erakutsi adinez mugatutako bideoa. Ezarpenetan aldaketak egin daitezke gero.</string>
+    <string name="duration_live">Zuzenean</string>
     <string name="downloads">Deskargak</string>
     <string name="downloads_title">Deskargak</string>
     <string name="error_report_title">Errore-txostena</string>
@@ -100,22 +100,22 @@
     <string name="could_not_load_image">Ezin izan da irudia kargatu</string>
     <string name="app_ui_crash">Aplikazioa/interfazea kraskatu da</string>
     <string name="sorry_string">Hori ez litzateke gertatu behar.</string>
-    <string name="error_report_button_text">Eman errorearen berri e-posta bidez</string>
+    <string name="error_report_button_text">Eman errore honen berri e-posta bidez</string>
     <string name="error_snackbar_message">Erroreak gertatu dira.</string>
-    <string name="error_snackbar_action">TXOSTENA</string>
+    <string name="error_snackbar_action">Salatu</string>
     <string name="what_device_headline">Informazioa:</string>
     <string name="what_happened_headline">Zer gertatu da:</string>
     <string name="info_labels">Zer:\\nEskaria:\\nEdukiaren hizkuntza:\\nZerbitzua:\\nGMT Ordua:\\nPaketea:\\nBertsioa:\\nSE bertsioa:</string>
     <string name="your_comment">Zure iruzkina (Ingelesez):</string>
     <string name="error_details_headline">Xehetasunak:</string>
-    <string name="report_error">Eman errore baten berri</string>
+    <string name="report_error">Salatu errorea</string>
     <string name="user_report">Erabiltzaile-txostena</string>
     <string name="err_dir_create">Ezin izan da \'%1$s\' karpeta sortu deskargetarako</string>
     <string name="info_dir_created">\'%1$s\' karpeta sortu da deskargetarako</string>
     <string name="video">Bideoa</string>
     <string name="audio">Audioa</string>
     <string name="retry">Saiatu berriro</string>
-    <string name="storage_permission_denied">Biltegia atzitzeko baimena ukatu da</string>
+    <string name="storage_permission_denied">Eman biltegia atzitzeko baimena lehenengo</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
@@ -139,8 +139,7 @@
     <string name="no_available_dir">Ezarri deskargetarako karpeta bat ezarpenetan geroago</string>
     <string name="msg_popup_permission">Baimen hau beharrezkoa da
 \nlaster-leiho moduan irekitzeko</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA erronka</string>
+    <string name="title_activity_recaptcha">reCAPTCHA erronka</string>
     <string name="recaptcha_request_toast">reCAPTCHA erronka eskatu da</string>
     <string name="title_activity_about">NewPipe aplikazioari buruz</string>
     <string name="action_settings">Ezarpenak</string>
@@ -165,8 +164,8 @@
     <string name="subscription_update_failed">Ezin izan da harpidetza eguneratu</string>
     <string name="tab_main">Nagusia</string>
     <string name="tab_subscriptions">Harpidetzak</string>
-    <string name="fragment_whats_new">Zer dago berri</string>
-    <string name="resume_on_audio_focus_gain_title">Jarraitu fokua irabaztean</string>
+    <string name="fragment_feed_title">Zer dago berri</string>
+    <string name="resume_on_audio_focus_gain_title">Jarraitu erreprodukzioa</string>
     <string name="resume_on_audio_focus_gain_summary">Jarraitu etenaldiak eta gero (adib. telefono deiak)</string>
     <string name="settings_category_downloads_title">Deskargak</string>
     <string name="settings_file_charset_title">Fitxategi-izenetan baimendutako karaktereak</string>
@@ -199,8 +198,8 @@
     </plurals>
     <string name="no_videos">Bideorik ez</string>
     <plurals name="videos">
-        <item quantity="one">Bideoa</item>
-        <item quantity="other">Bideoak</item>
+        <item quantity="one">Bideo %s</item>
+        <item quantity="other">%s bideo</item>
     </plurals>
     <string name="title_activity_history">Historiala</string>
     <string name="title_history_search">Bilatuta</string>
@@ -211,7 +210,7 @@
     <string name="history_cleared">Historiala garbitu da</string>
     <string name="item_deleted">Elementua ezabatuta</string>
     <string name="show_hold_to_append_title">Erakutsi \"mantendu eransteko\" aholkua</string>
-    <string name="show_hold_to_append_summary">Erakutsi aholkua bigarren planoko eta laster-leihoko botoia sakatzean bideoaren xehetasunen orrian</string>
+    <string name="show_hold_to_append_summary">Erakutsi aholkua bigarren planoko eta popup botoia sakatzean bideoaren \"Xehetasunak:\" atalean</string>
     <string name="default_content_country_title">Lehenetsitako edukiaren herrialdea</string>
     <string name="service_title">Zerbitzua</string>
     <string name="background_player_append">Bigarren planoko erreproduzigailuaren ilaran</string>
@@ -226,7 +225,7 @@
     <string name="player_unrecoverable_failure">Erreproduzigailuaren errore berreskuraezina gertatu da</string>
     <string name="player_recoverable_failure">Erreproduzigailuaren erroretik berreskuratzen</string>
     <string name="donation_title">Dohaintza</string>
-    <string name="donation_encouragement">NewPipe zuri esperientziarik onena ekartzeko denbora ematen duten boluntarioek garatzen dute. Emaiezu zerbait garatzaileei NewPipe kafe bat hartzen duten bitartean hobetu ahal izan dezaten.</string>
+    <string name="donation_encouragement">NewPipe zuri erabiltzaile esperientziarik onena ekartzeko haien denbora librea ematen duten boluntarioek garatzen dute. Emaiezu zerbait garatzaileei NewPipe kafe bat hartzen duten bitartean hobetu ahal izan dezaten.</string>
     <string name="give_back">Egin dohaintza</string>
     <string name="website_title">Webgunea</string>
     <string name="website_encouragement">Bisitatu NewPipe webgunea informazio gehiagorako eta berriak irakurtzeko.</string>
@@ -280,7 +279,7 @@
     <string name="metadata_cache_wipe_summary">Kendu cachetik webguneen datu guztiak</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatuen cachea ezabatuta</string>
     <string name="auto_queue_title">Gehitu ilarara hurrengo jarioa</string>
-    <string name="auto_queue_summary">Gehitu erlazionatutako jario bat azken jarioa jo bitartean errepikapenik gabeko ilara batean</string>
+    <string name="auto_queue_summary">Jarraitu bukaerako (errepikapenik gabe) ilara erlazionatutako jario bat gehituz</string>
     <string name="settings_category_debug_title">Arazketa</string>
     <string name="file">Fitxategia</string>
     <string name="import_data_title">Inportatu datu-basea</string>
@@ -342,7 +341,7 @@
     <string name="caption_auto_generated">Automatikoki sortuak</string>
     <string name="caption_setting_title">Azpitituluak</string>
     <string name="caption_setting_description">Aldatu azpitituluen testuaren eskala eta atzealdeko estiloa. Aplikazioa berrabiarazi behar da aldaketak aplikatzeko.</string>
-    <string name="enable_leak_canary_title">Gaitu LeakCanary</string>
+    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Memoria galeren monitorizazioa. Aplikazioak agian ez du erantzungo memoriaren aitortza egin bitartean</string>
     <string name="enable_disposed_exceptions_title">Eman bizitza-ziklo kanpoko erroreen berri</string>
     <string name="import_export_title">Inportatu/esportatu</string>
@@ -373,10 +372,9 @@
     <string name="playback_speed_control">Erreprodukzio-abiaduraren kontrolak</string>
     <string name="playback_tempo">Tempoa</string>
     <string name="playback_pitch">Tonua</string>
-    <string name="unhook_checkbox">Deslotu (distortsioa sor lezake)</string>
-    <string name="playback_default">Lehenetsia</string>
+    <string name="unhook_checkbox">Desaktibatu (distortsioa sor lezake)</string>
     <string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
-    <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du</string>
+    <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du. 5, 15 edo 25 segundo bilatzea ez du honekin funtzionatzen.</string>
     <string name="download_thumbnail_summary">Desgaitu koadro txikiak ez kargatzeko, datuak eta memoria aurreztuz. Aldaketak memoria eta diskoko irudien cacheak garbituko ditu.</string>
     <string name="app_license">NewPipe Software Librea eta Copyleft da: Erabili, ikertu, partekatu eta hobetu dezakezu. Zehazki, elkarbanatzea eta aldatzea Free Software Foundation-ek argitaratutako GNU General Public License-ren 3. bertsioa edo berriagoren baten terminoen arabera egiteko baimena duzu.</string>
     <string name="enable_disposed_exceptions_summary">Behartu aktibitatearen bizitza ziklotik kanpo baztertu eta gero entregatu ezin diren Rx salbuespenen inguruko txostena</string>
@@ -416,10 +414,10 @@
     <string name="app_update_notification_channel_description">NewPipe aplikazioaren bertsio berrien jakinarazpena</string>
     <string name="download_to_sdcard_error_title">Kanpo biltegiratzea ez dago eskuragarri</string>
     <string name="download_to_sdcard_error_message">Ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri nahi duzu\?</string>
-    <string name="saved_tabs_invalid_json">Lehenetsitako fitxak erabiltzen, errorea gordetako fitxak irakurtzean</string>
+    <string name="saved_tabs_invalid_json">Ezin izan dira gordetako fitxak irakurri, lehenetsitako fitxak erabiltzen</string>
     <string name="restore_defaults">Berrezarri lehenetsitakoak</string>
-    <string name="restore_defaults_confirmation">Lehenetsitakoak berrezarri nahi dituzu\?</string>
-    <string name="subscribers_count_not_available">Harpidedunen kontua ez dago eskuragarri</string>
+    <string name="restore_defaults_confirmation">Lehenetsiak berrezarri nahi dituzu\?</string>
+    <string name="subscribers_count_not_available">Harpidedun kopurua ez dago eskuragarri</string>
     <string name="main_page_content_summary">Orri nagusian ikusiko diren fitxak</string>
     <string name="selection">Hautaketa</string>
     <string name="conferences">Konferentziak</string>
@@ -451,14 +449,13 @@
     <string name="error_file_creation">Ezin da fitxategia sortu</string>
     <string name="error_path_creation">Ezin da helburu karpeta sortu</string>
     <string name="error_permission_denied">Sistemak baimena ukatu du</string>
-    <string name="error_ssl_exception">Konexio seguruak huts egin du</string>
+    <string name="error_ssl_exception">Ezin izan da konexio seguru bat ezarri</string>
     <string name="error_unknown_host">Ezin izan da zerbitzaria aurkitu</string>
     <string name="error_connect_host">Ezin da zerbitzariarekin konektatu</string>
     <string name="error_http_no_content">Zerbitzariak ez du daturik bidaltzen</string>
     <string name="error_http_unsupported_range">Zerbitzariak ez ditu hainbat hariko deskargak onartzen, saiatu @string/msg_threads = 1 erabilita</string>
     <string name="error_http_not_found">Ez aurkitua</string>
     <string name="error_postprocessing_failed">Post-prozesuak huts egin du</string>
-    <string name="clear_finished_download">Garbitu amaitutako deskargak</string>
     <string name="stop">Gelditu</string>
     <string name="max_retry_msg">Gehienezko saiakerak</string>
     <string name="max_retry_desc">Deskarga ezeztatu aurretik saiatu beharreko aldi kopurua</string>
@@ -466,12 +463,8 @@
     <string name="pause_downloads_on_mobile_desc">Erabilgarria datu mugikorretara aldatzean, hala ere deskarga batzuk ezin dira pausatu</string>
     <string name="error_timeout">Konexioaren denbora muga</string>
     <string name="show_comments_title">Erakutsi iruzkinak</string>
-    <string name="show_comments_summary">Desgaitu iruzkinak erakusteari erakusteko</string>
+    <string name="show_comments_summary">Desgaitu iruzkinak ezkutatzeko</string>
     <string name="autoplay_title">Erreprodukzio automatikoa</string>
-    <plurals name="comments">
-        <item quantity="one">Iruzkinak</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">Iruzkinik ez</string>
     <string name="error_unable_to_load_comments">Ezin izan dira iruzkinak kargatu</string>
     <string name="close">Itxi</string>
@@ -483,12 +476,12 @@
     <string name="watch_history_states_deleted">Erreprodukzio-posizioak ezabatuta.</string>
     <string name="missing_file">Fitxategia lekuz aldatu edo ezabatu da</string>
     <string name="overwrite_unrelated_warning">Badago izen bereko fitxategi bat</string>
-    <string name="overwrite_failed">ezin da fitxategia gainidatzi</string>
+    <string name="overwrite_failed">Ezin da fitxategia gainidatzi</string>
     <string name="download_already_pending">Badago izen bereko deskarga bat burutzeke</string>
     <string name="error_postprocessing_stopped">NewPipe itxi egin da fitxategian lanean zegoela</string>
     <string name="error_insufficient_storage">Ez dago lekurik gailuan</string>
     <string name="error_progress_lost">Progresioa galdu da, fitxategia ezabatu delako</string>
-    <string name="confirm_prompt">Ziur al zaude\?</string>
+    <string name="confirm_prompt">Zure deskargen historiala garbitu nahi duzu ala deskargatutako fitxategi guztiak ezabatu\?</string>
     <string name="enable_queue_limit">Mugatu deskargen ilara</string>
     <string name="enable_queue_limit_desc">Deskarga bakarra aldi berean</string>
     <string name="start_downloads">Hasi deskargak</string>
@@ -500,16 +493,16 @@
     <string name="download_choose_new_path">Aldatu deskargen karpetak indarrean jartzeko</string>
     <string name="no_one_watching">Ez dago inor ikusten</string>
     <plurals name="watching">
-        <item quantity="one">%s ikusten</item>
-        <item quantity="other">%s ikusten</item>
+        <item quantity="one">ikusle %s</item>
+        <item quantity="other">%s ikusle</item>
     </plurals>
     <string name="no_one_listening">Ez dago inor entzuten</string>
     <plurals name="listening">
-        <item quantity="one">%s entzuten</item>
-        <item quantity="other">%s entzuten</item>
+        <item quantity="one">entzule %s</item>
+        <item quantity="other">%s entzule</item>
     </plurals>
     <string name="downloads_storage_use_saf_title">SAF erabili</string>
-    <string name="downloads_storage_use_saf_summary">Biltegian Sartzeko Armazoiak kanpoko SD txartel betera jaitsierak egitea ahalbidetzen du.
+    <string name="downloads_storage_use_saf_summary">\'Biltegiaren Sarrera Framework\'ak kanpoko SD txartel betera jaistea ahalbidetzen du.
 \nOharra: gailu batzuk ez dira bateragarriak</string>
     <string name="clear_playback_states_title">Ezabatu erreprodukziorako kokapenak</string>
     <string name="clear_playback_states_summary">Erreprodukziorako kokapen guztiak ezabatzen ditu</string>
@@ -517,4 +510,96 @@
     <string name="drawer_header_description">Aktibatu zerbitzua, orain hautatua:</string>
     <string name="localization_changes_requires_app_restart">Hizkuntza aldatuko da aplikazioa berrabiarazterakoan.</string>
     <string name="default_kiosk_page_summary">Kiosko Lehenetsia</string>
+    <string name="seek_duration_title">Aurreratze/atzeratze bilaketaren iraupena</string>
+    <string name="peertube_instance_url_title">PeerTube instantziak</string>
+    <string name="peertube_instance_url_summary">Hautatu zure gogoko PeerTube instantziak</string>
+    <string name="peertube_instance_url_help">Aurkitu gustuko instantziak hemen: %s</string>
+    <string name="peertube_instance_add_title">Gehitu instantzia</string>
+    <string name="peertube_instance_add_help">Sartu instantziaren URLa</string>
+    <string name="peertube_instance_add_fail">Ezin izan da instantzia balioztatu</string>
+    <string name="peertube_instance_add_https_only">HTTPS URLak onartzen dira soilik</string>
+    <string name="peertube_instance_add_exists">Instantzia badago aurretik</string>
+    <string name="local">Lokala</string>
+    <string name="recently_added">Berriki gehitua</string>
+    <string name="most_liked">Gogokoenak</string>
+    <string name="playlist_no_uploader">Automatikoki sortua (igotzailea ez da aurkitu)</string>
+    <string name="recovering">berreskuratzen</string>
+    <string name="error_download_resource_gone">Ezin da deskarga hau berreskuratu</string>
+    <string name="choose_instance_prompt">Aukeratu instantzia</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Bideoaren miniatura blokeo pantailan</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Atzeko planoko bideo erreproduzitzailea erabiltzen den bitartean, bideoaren karatula blokeo pantailan erakutsiko da</string>
+    <string name="clear_download_history">Garbitu deskargen historiala</string>
+    <string name="delete_downloaded_files">Ezabatu deskargatutako fitxategiak</string>
+    <string name="deleted_downloads">%1$s deskarga ezabatuta</string>
+    <string name="permission_display_over_apps">Baimena eman beste aplikazioen gainetik erakusteko</string>
+    <string name="app_language_title">Aplikazioaren hizkuntza</string>
+    <string name="systems_language">Sistemaren lehenetsia</string>
+    <string name="subtitle_activity_recaptcha">Sakatu \"Egina\" konponduta dagoenean</string>
+    <string name="recaptcha_done_button">Egina</string>
+    <string name="videos_string">Bideoak</string>
+    <plurals name="seconds">
+        <item quantity="one">%d segundu</item>
+        <item quantity="other">%d segundu</item>
+    </plurals>
+    <string name="new_seek_duration_toast">ExoPlayer-en mugak direla eta bilaketaren iraupena %d segundotan ezarri da</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Jarioaren karga motelegia dela uste duzu\? Hala bada, saiatu karga azkarra gaitzen (ezarpenetan edo beheko botoia sakatzen aldatu dezakezu).
+\n
+\nNewPipe jarioak kargatzeko bi estrategia eskaintzen ditu:
+\n• Harpidetza kanal osoa eskuratu, motela baina osoa.
+\n• Amaiera-puntu dedikatua erabiliz, arina baina ez osatua.
+\n
+\nBien arteko diferentzia arinak normalean informazioa falta dela da, elementuaren iraupena edo mota adibidez (ezin du bideo normalen eta zuzenekoen artean bereizi) eta elementu gutxiago buelta ditzake.
+\n
+\nYouTube da bere RSS jarioaren bidez metodo azkarra eskaintzen duen zerbitzu bat adibidez.
+\n
+\nBeraz aukerak zure nahietara murrizten dira: abiadura edo informazio zehatza.</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Desgaitu modu azkarra</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Gaitu modu azkarra</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Zenbait zerbitzuetan eskuragarri, normalean askoz azkarragoa da, baina elementu kopuru mugatua eta osatu gabeko informazioa itzuli dezake (adib. iraupenik ez, elementu mota, zuzeneko egoera).</string>
+    <string name="feed_use_dedicated_fetch_method_title">Eskuratu jario dedikatutik eskuragarri dagoenean</string>
+    <string name="feed_update_threshold_option_always_update">Eguneratu beti</string>
+    <string name="feed_update_threshold_summary">Pasatzen den denbora harpidetza bat zaharkituta dagoela kontuan hartzen den arte — %s</string>
+    <string name="feed_update_threshold_title">Jarioaren eguneratze atalasea</string>
+    <string name="settings_category_feed_title">Jarioa</string>
+    <string name="feed_create_new_group_button_title">Berria</string>
+    <string name="feed_group_dialog_delete_message">Talde hau ezabatu nahi duzu\?</string>
+    <string name="feed_group_dialog_name_input">Izena</string>
+    <string name="feed_group_dialog_empty_name">Talde izena hutsik</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d hautatuta</item>
+        <item quantity="other">%d hautatuta</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Ez da harpidetzarik aukeratu</string>
+    <string name="feed_group_dialog_select_subscriptions">Hautatu harpidetzak</string>
+    <string name="feed_processing_message">Jarioa prozesatzen…</string>
+    <string name="feed_notification_loading">Jarioa kargatzen…</string>
+    <string name="feed_subscription_not_loaded_count">Kargatu gabe: %d</string>
+    <string name="feed_oldest_subscription_update">Jarioa azkenik eguneratuta: %s</string>
+    <string name="feed_groups_header_title">Kanal taldeak</string>
+    <plurals name="days">
+        <item quantity="one">egun %d</item>
+        <item quantity="other">%d egun</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">ordu %d</item>
+        <item quantity="other">%d ordu</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">minutu %d</item>
+        <item quantity="other">%d minutu</item>
+    </plurals>
+    <string name="unmute">Aktibatu audioa</string>
+    <string name="mute">Isilarazi</string>
+    <string name="help">Laguntza</string>
+    <string name="content_not_supported">Eduki hau ez dago oraindik NewPipengatik onatuta.
+\n
+\nEtorkizuneko bertsio batean onartua izatea espero da.</string>
+    <string name="infinite_videos">∞ bideo</string>
+    <string name="more_than_100_videos">100 bideo baino gehiago</string>
+    <string name="artists">Artistak</string>
+    <string name="albums">Albumak</string>
+    <string name="songs">Abestiak</string>
+    <string name="restricted_video">Bideo hau adinez mugatua dago.
+\n
+\nIkusi nahi baduzu, gaitu ezazu \"Adinez mugatutako edukia\" ezarpenetan.</string>
 </resources>

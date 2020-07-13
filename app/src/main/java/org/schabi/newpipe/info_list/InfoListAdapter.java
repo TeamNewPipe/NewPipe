@@ -1,13 +1,14 @@
 package org.schabi.newpipe.info_list;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -83,92 +84,101 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View header = null;
     private View footer = null;
 
-    public class HFHolder extends RecyclerView.ViewHolder {
-        public View view;
-
-        public HFHolder(View v) {
-            super(v);
-            view = v;
-        }
-    }
-
-    public InfoListAdapter(Context context) {
+    public InfoListAdapter(final Context context) {
         this.recordManager = new HistoryRecordManager(context);
         infoItemBuilder = new InfoItemBuilder(context);
         infoItemList = new ArrayList<>();
     }
 
-    public void setOnStreamSelectedListener(OnClickGesture<StreamInfoItem> listener) {
+    public void setOnStreamSelectedListener(final OnClickGesture<StreamInfoItem> listener) {
         infoItemBuilder.setOnStreamSelectedListener(listener);
     }
 
-    public void setOnChannelSelectedListener(OnClickGesture<ChannelInfoItem> listener) {
+    public void setOnChannelSelectedListener(final OnClickGesture<ChannelInfoItem> listener) {
         infoItemBuilder.setOnChannelSelectedListener(listener);
     }
 
-    public void setOnPlaylistSelectedListener(OnClickGesture<PlaylistInfoItem> listener) {
+    public void setOnPlaylistSelectedListener(final OnClickGesture<PlaylistInfoItem> listener) {
         infoItemBuilder.setOnPlaylistSelectedListener(listener);
     }
 
-    public void setOnCommentsSelectedListener(OnClickGesture<CommentsInfoItem> listener) {
+    public void setOnCommentsSelectedListener(final OnClickGesture<CommentsInfoItem> listener) {
         infoItemBuilder.setOnCommentsSelectedListener(listener);
     }
 
-    public void useMiniItemVariants(boolean useMiniVariant) {
+    public void setUseMiniVariant(final boolean useMiniVariant) {
         this.useMiniVariant = useMiniVariant;
     }
 
-    public void setGridItemVariants(boolean useGridVariant) {
+    public void setUseGridVariant(final boolean useGridVariant) {
         this.useGridVariant = useGridVariant;
     }
 
-    public void addInfoItemList(@Nullable final List<InfoItem> data) {
+    public void addInfoItemList(@Nullable final List<? extends InfoItem> data) {
         if (data == null) {
             return;
         }
-        if (DEBUG) Log.d(TAG, "addInfoItemList() before > infoItemList.size() = " +
-                infoItemList.size() + ", data.size() = " + data.size());
+        if (DEBUG) {
+            Log.d(TAG, "addInfoItemList() before > infoItemList.size() = "
+                    + infoItemList.size() + ", data.size() = " + data.size());
+        }
 
         int offsetStart = sizeConsideringHeaderOffset();
         infoItemList.addAll(data);
 
-        if (DEBUG) Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart +
-                ", infoItemList.size() = " + infoItemList.size() +
-                ", header = " + header + ", footer = " + footer +
-                ", showFooter = " + showFooter);
+        if (DEBUG) {
+            Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart + ", "
+                    + "infoItemList.size() = " + infoItemList.size() + ", "
+                    + "header = " + header + ", footer = " + footer + ", "
+                    + "showFooter = " + showFooter);
+        }
         notifyItemRangeInserted(offsetStart, data.size());
 
         if (footer != null && showFooter) {
             int footerNow = sizeConsideringHeaderOffset();
             notifyItemMoved(offsetStart, footerNow);
 
-            if (DEBUG) Log.d(TAG, "addInfoItemList() footer from " + offsetStart +
-                    " to " + footerNow);
+            if (DEBUG) {
+                Log.d(TAG, "addInfoItemList() footer from " + offsetStart
+                        + " to " + footerNow);
+            }
         }
     }
 
-    public void addInfoItem(@Nullable InfoItem data) {
+    public void setInfoItemList(final List<? extends InfoItem> data) {
+        infoItemList.clear();
+        infoItemList.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    public void addInfoItem(@Nullable final InfoItem data) {
         if (data == null) {
             return;
         }
-        if (DEBUG) Log.d(TAG, "addInfoItem() before > infoItemList.size() = " +
-                infoItemList.size() + ", thread = " + Thread.currentThread());
+        if (DEBUG) {
+            Log.d(TAG, "addInfoItem() before > infoItemList.size() = "
+                    + infoItemList.size() + ", thread = " + Thread.currentThread());
+        }
 
         int positionInserted = sizeConsideringHeaderOffset();
         infoItemList.add(data);
 
-        if (DEBUG) Log.d(TAG, "addInfoItem() after > position = " + positionInserted +
-                ", infoItemList.size() = " + infoItemList.size() +
-                ", header = " + header + ", footer = " + footer +
-                ", showFooter = " + showFooter);
+        if (DEBUG) {
+            Log.d(TAG, "addInfoItem() after > position = " + positionInserted + ", "
+                    + "infoItemList.size() = " + infoItemList.size() + ", "
+                    + "header = " + header + ", footer = " + footer + ", "
+                    + "showFooter = " + showFooter);
+        }
         notifyItemInserted(positionInserted);
 
         if (footer != null && showFooter) {
             int footerNow = sizeConsideringHeaderOffset();
             notifyItemMoved(positionInserted, footerNow);
 
-            if (DEBUG) Log.d(TAG, "addInfoItem() footer from " + positionInserted +
-                    " to " + footerNow);
+            if (DEBUG) {
+                Log.d(TAG, "addInfoItem() footer from " + positionInserted
+                        + " to " + footerNow);
+            }
         }
     }
 
@@ -180,29 +190,39 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public void setHeader(View header) {
+    public void setHeader(final View header) {
         boolean changed = header != this.header;
         this.header = header;
-        if (changed) notifyDataSetChanged();
+        if (changed) {
+            notifyDataSetChanged();
+        }
     }
 
-    public void setFooter(View view) {
+    public void setFooter(final View view) {
         this.footer = view;
     }
 
-    public void showFooter(boolean show) {
-        if (DEBUG) Log.d(TAG, "showFooter() called with: show = [" + show + "]");
-        if (show == showFooter) return;
+    public void showFooter(final boolean show) {
+        if (DEBUG) {
+            Log.d(TAG, "showFooter() called with: show = [" + show + "]");
+        }
+        if (show == showFooter) {
+            return;
+        }
 
         showFooter = show;
-        if (show) notifyItemInserted(sizeConsideringHeaderOffset());
-        else notifyItemRemoved(sizeConsideringHeaderOffset());
+        if (show) {
+            notifyItemInserted(sizeConsideringHeaderOffset());
+        } else {
+            notifyItemRemoved(sizeConsideringHeaderOffset());
+        }
     }
-
 
     private int sizeConsideringHeaderOffset() {
         int i = infoItemList.size() + (header != null ? 1 : 0);
-        if (DEBUG) Log.d(TAG, "sizeConsideringHeaderOffset() called → " + i);
+        if (DEBUG) {
+            Log.d(TAG, "sizeConsideringHeaderOffset() called → " + i);
+        }
         return i;
     }
 
@@ -213,18 +233,27 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemCount() {
         int count = infoItemList.size();
-        if (header != null) count++;
-        if (footer != null && showFooter) count++;
+        if (header != null) {
+            count++;
+        }
+        if (footer != null && showFooter) {
+            count++;
+        }
 
         if (DEBUG) {
-            Log.d(TAG, "getItemCount() called, count = " + count + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
+            Log.d(TAG, "getItemCount() called with: "
+                    + "count = " + count + ", infoItemList.size() = " + infoItemList.size() + ", "
+                    + "header = " + header + ", footer = " + footer + ", "
+                    + "showFooter = " + showFooter);
         }
         return count;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (DEBUG) Log.d(TAG, "getItemViewType() called with: position = [" + position + "]");
+        if (DEBUG) {
+            Log.d(TAG, "getItemViewType() called with: position = [" + position + "]");
+        }
 
         if (header != null && position == 0) {
             return HEADER_TYPE;
@@ -237,11 +266,14 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final InfoItem item = infoItemList.get(position);
         switch (item.getInfoType()) {
             case STREAM:
-                return useGridVariant ? GRID_STREAM_HOLDER_TYPE : useMiniVariant ? MINI_STREAM_HOLDER_TYPE : STREAM_HOLDER_TYPE;
+                return useGridVariant ? GRID_STREAM_HOLDER_TYPE : useMiniVariant
+                        ? MINI_STREAM_HOLDER_TYPE : STREAM_HOLDER_TYPE;
             case CHANNEL:
-                return useGridVariant ? GRID_CHANNEL_HOLDER_TYPE : useMiniVariant ? MINI_CHANNEL_HOLDER_TYPE : CHANNEL_HOLDER_TYPE;
+                return useGridVariant ? GRID_CHANNEL_HOLDER_TYPE : useMiniVariant
+                        ? MINI_CHANNEL_HOLDER_TYPE : CHANNEL_HOLDER_TYPE;
             case PLAYLIST:
-                return useGridVariant ? GRID_PLAYLIST_HOLDER_TYPE : useMiniVariant ? MINI_PLAYLIST_HOLDER_TYPE : PLAYLIST_HOLDER_TYPE;
+                return useGridVariant ? GRID_PLAYLIST_HOLDER_TYPE : useMiniVariant
+                        ? MINI_PLAYLIST_HOLDER_TYPE : PLAYLIST_HOLDER_TYPE;
             case COMMENT:
                 return useMiniVariant ? MINI_COMMENT_HOLDER_TYPE : COMMENT_HOLDER_TYPE;
             default:
@@ -251,9 +283,12 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int type) {
-        if (DEBUG)
-            Log.d(TAG, "onCreateViewHolder() called with: parent = [" + parent + "], type = [" + type + "]");
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+                                                      final int type) {
+        if (DEBUG) {
+            Log.d(TAG, "onCreateViewHolder() called with: "
+                    + "parent = [" + parent + "], type = [" + type + "]");
+        }
         switch (type) {
             case HEADER_TYPE:
                 return new HFHolder(header);
@@ -287,28 +322,38 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (DEBUG) Log.d(TAG, "onBindViewHolder() called with: holder = [" + holder.getClass().getSimpleName() + "], position = [" + position + "]");
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+        if (DEBUG) {
+            Log.d(TAG, "onBindViewHolder() called with: "
+                    + "holder = [" + holder.getClass().getSimpleName() + "], "
+                    + "position = [" + position + "]");
+        }
         if (holder instanceof InfoItemHolder) {
             // If header isn't null, offset the items by -1
-            if (header != null) position--;
+            if (header != null) {
+                position--;
+            }
 
             ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), recordManager);
         } else if (holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
-        } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset() && footer != null && showFooter) {
+        } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset()
+                && footer != null && showFooter) {
             ((HFHolder) holder).view = footer;
         }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
+                                 @NonNull final List<Object> payloads) {
         if (!payloads.isEmpty() && holder instanceof InfoItemHolder) {
             for (Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
-                    ((InfoItemHolder) holder).updateState(infoItemList.get(header == null ? position : position - 1), recordManager);
+                    ((InfoItemHolder) holder).updateState(infoItemList
+                            .get(header == null ? position : position - 1), recordManager);
                 } else if (payload instanceof Boolean) {
-                    ((InfoItemHolder) holder).updateState(infoItemList.get(header == null ? position : position - 1), recordManager);
+                    ((InfoItemHolder) holder).updateState(infoItemList
+                            .get(header == null ? position : position - 1), recordManager);
                 }
             }
         } else {
@@ -319,10 +364,19 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {
         return new GridLayoutManager.SpanSizeLookup() {
             @Override
-            public int getSpanSize(int position) {
+            public int getSpanSize(final int position) {
                 final int type = getItemViewType(position);
                 return type == HEADER_TYPE || type == FOOTER_TYPE ? spanCount : 1;
             }
         };
+    }
+
+    public class HFHolder extends RecyclerView.ViewHolder {
+        public View view;
+
+        HFHolder(final View v) {
+            super(v);
+            view = v;
+        }
     }
 }

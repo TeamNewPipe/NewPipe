@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.views.NewPipeRecyclerView;
 
 import java.util.Queue;
 
@@ -21,7 +23,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public abstract class BaseListInfoFragment<I extends ListInfo>
         extends BaseListFragment<I, ListExtractor.InfoItemsPage> {
-
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
     @State
@@ -30,11 +31,11 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     protected String url;
 
     protected I currentInfo;
-    protected String currentNextPageUrl;
+    protected Page currentNextPage;
     protected Disposable currentWorker;
 
     @Override
-    protected void initViews(View rootView, Bundle savedInstanceState) {
+    protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
         setTitle(name);
         showListFooter(hasMoreItems());
@@ -43,7 +44,9 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     @Override
     public void onPause() {
         super.onPause();
-        if (currentWorker != null) currentWorker.dispose();
+        if (currentWorker != null) {
+            currentWorker.dispose();
+        }
     }
 
     @Override
@@ -73,18 +76,18 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void writeTo(Queue<Object> objectsToSave) {
+    public void writeTo(final Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
         objectsToSave.add(currentInfo);
-        objectsToSave.add(currentNextPageUrl);
+        objectsToSave.add(currentNextPage);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
+    public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
         currentInfo = (I) savedObjects.poll();
-        currentNextPageUrl = (String) savedObjects.poll();
+        currentNextPage = (Page) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -92,10 +95,14 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     protected void doInitialLoadLogic() {
-        if (DEBUG) Log.d(TAG, "doInitialLoadLogic() called");
+        if (DEBUG) {
+            Log.d(TAG, "doInitialLoadLogic() called");
+        }
         if (currentInfo == null) {
             startLoading(false);
-        } else handleResult(currentInfo);
+        } else {
+            handleResult(currentInfo);
+        }
     }
 
     /**
@@ -103,43 +110,56 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
      * You can use the default implementations from {@link org.schabi.newpipe.util.ExtractorHelper}.
      *
      * @param forceLoad allow or disallow the result to come from the cache
+     * @return Rx {@link Single} containing the {@link ListInfo}
      */
     protected abstract Single<I> loadResult(boolean forceLoad);
 
     @Override
-    public void startLoading(boolean forceLoad) {
+    public void startLoading(final boolean forceLoad) {
         super.startLoading(forceLoad);
 
         showListFooter(false);
         infoListAdapter.clearStreamItemList();
 
         currentInfo = null;
-        if (currentWorker != null) currentWorker.dispose();
+        if (currentWorker != null) {
+            currentWorker.dispose();
+        }
         currentWorker = loadResult(forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((@NonNull I result) -> {
                     isLoading.set(false);
                     currentInfo = result;
-                    currentNextPageUrl = result.getNextPageUrl();
+                    currentNextPage = result.getNextPage();
                     handleResult(result);
                 }, (@NonNull Throwable throwable) -> onError(throwable));
     }
 
     /**
-     * Implement the logic to load more items<br/>
-     * You can use the default implementations from {@link org.schabi.newpipe.util.ExtractorHelper}
+     * Implement the logic to load more items.
+     * <p>You can use the default implementations
+     * from {@link org.schabi.newpipe.util.ExtractorHelper}.</p>
+     *
+     * @return Rx {@link Single} containing the {@link ListExtractor.InfoItemsPage}
      */
     protected abstract Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic();
 
     protected void loadMoreItems() {
         isLoading.set(true);
 
-        if (currentWorker != null) currentWorker.dispose();
+        if (currentWorker != null) {
+            currentWorker.dispose();
+        }
+
+        forbidDownwardFocusScroll();
+
         currentWorker = loadMoreItemsLogic()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@io.reactivex.annotations.NonNull ListExtractor.InfoItemsPage InfoItemsPage) -> {
+                .doFinally(this::allowDownwardFocusScroll)
+                .subscribe((@io.reactivex.annotations.NonNull
+                                    ListExtractor.InfoItemsPage InfoItemsPage) -> {
                     isLoading.set(false);
                     handleNextItems(InfoItemsPage);
                 }, (@io.reactivex.annotations.NonNull Throwable throwable) -> {
@@ -148,10 +168,22 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                 });
     }
 
+    private void forbidDownwardFocusScroll() {
+        if (itemsList instanceof NewPipeRecyclerView) {
+            ((NewPipeRecyclerView) itemsList).setFocusScrollAllowed(false);
+        }
+    }
+
+    private void allowDownwardFocusScroll() {
+        if (itemsList instanceof NewPipeRecyclerView) {
+            ((NewPipeRecyclerView) itemsList).setFocusScrollAllowed(true);
+        }
+    }
+
     @Override
-    public void handleNextItems(ListExtractor.InfoItemsPage result) {
+    public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
-        currentNextPageUrl = result.getNextPageUrl();
+        currentNextPage = result.getNextPage();
         infoListAdapter.addInfoItemList(result.getItems());
 
         showListFooter(hasMoreItems());
@@ -159,7 +191,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
 
     @Override
     protected boolean hasMoreItems() {
-        return !TextUtils.isEmpty(currentNextPageUrl);
+        return Page.isValid(currentNextPage);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -167,7 +199,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void handleResult(@NonNull I result) {
+    public void handleResult(@NonNull final I result) {
         super.handleResult(result);
 
         name = result.getName();
@@ -188,9 +220,9 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void setInitialData(int serviceId, String url, String name) {
-        this.serviceId = serviceId;
-        this.url = url;
-        this.name = !TextUtils.isEmpty(name) ? name : "";
+    protected void setInitialData(final int sid, final String u, final String title) {
+        this.serviceId = sid;
+        this.url = u;
+        this.name = !TextUtils.isEmpty(title) ? title : "";
     }
 }

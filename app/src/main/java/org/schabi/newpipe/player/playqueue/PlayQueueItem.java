@@ -14,27 +14,34 @@ import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 public class PlayQueueItem implements Serializable {
-    public final static long RECOVERY_UNSET = Long.MIN_VALUE;
-    private final static String EMPTY_STRING = "";
+    public static final long RECOVERY_UNSET = Long.MIN_VALUE;
+    private static final String EMPTY_STRING = "";
 
-    @NonNull final private String title;
-    @NonNull final private String url;
-    final private int serviceId;
-    final private long duration;
-    @NonNull final private String thumbnailUrl;
-    @NonNull final private String uploader;
-    @NonNull final private StreamType streamType;
+    @NonNull
+    private final String title;
+    @NonNull
+    private final String url;
+    private final int serviceId;
+    private final long duration;
+    @NonNull
+    private final String thumbnailUrl;
+    @NonNull
+    private final String uploader;
+    @NonNull
+    private final StreamType streamType;
 
     private boolean isAutoQueued;
 
     private long recoveryPosition;
     private Throwable error;
+
     PlayQueueItem(@NonNull final StreamInfo info) {
         this(info.getName(), info.getUrl(), info.getServiceId(), info.getDuration(),
                 info.getThumbnailUrl(), info.getUploaderName(), info.getStreamType());
 
-        if (info.getStartPosition() > 0)
+        if (info.getStartPosition() > 0) {
             setRecoveryPosition(info.getStartPosition() * 1000);
+        }
     }
 
     PlayQueueItem(@NonNull final StreamInfoItem item) {
@@ -94,6 +101,10 @@ public class PlayQueueItem implements Serializable {
         return recoveryPosition;
     }
 
+    /*package-private*/ void setRecoveryPosition(final long recoveryPosition) {
+        this.recoveryPosition = recoveryPosition;
+    }
+
     @Nullable
     public Throwable getError() {
         return error;
@@ -110,15 +121,11 @@ public class PlayQueueItem implements Serializable {
         return isAutoQueued;
     }
 
-    public void setAutoQueued(boolean autoQueued) {
-        isAutoQueued = autoQueued;
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // Item States, keep external access out
     ////////////////////////////////////////////////////////////////////////////
 
-    /*package-private*/ void setRecoveryPosition(final long recoveryPosition) {
-        this.recoveryPosition = recoveryPosition;
+    public void setAutoQueued(final boolean autoQueued) {
+        isAutoQueued = autoQueued;
     }
 }

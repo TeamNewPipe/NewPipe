@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s приказа</string>
     <string name="upload_date_text">Објављен %1$s</string>
-    <string name="no_player_found">Нема плејера токова. Желите ли да инсталирате ВЛЦ?</string>
+    <string name="no_player_found">Нема плејера токова. Инсталирати ВЛЦ\?</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Одустани</string>
     <string name="open_in_browser">Отвори у прегледачу</string>
@@ -14,12 +14,12 @@
     <string name="share_dialog_title">Подели помоћу</string>
     <string name="choose_browser">Отвори помоћу</string>
     <string name="screen_rotation">ротација</string>
-    <string name="download_path_title">Одредиште преузимања за видео</string>
-    <string name="download_path_summary">Путања за упис преузетих видеа</string>
-    <string name="download_path_dialog_title">Унесите путању за преузимање видеа</string>
+    <string name="download_path_title">Одредиште преузимања снимака</string>
+    <string name="download_path_summary">Преузети снимци се чувају овде</string>
+    <string name="download_path_dialog_title">Изаберите фасциклу за преузимање видео снимака</string>
     <string name="default_resolution_title">Подразумевана резолуција</string>
     <string name="play_with_kodi_title">Пусти помоћу Кодија</string>
-    <string name="kore_not_found">Апликација Кор (Kore) није нађена. Инсталирати је?</string>
+    <string name="kore_not_found">Да инсталирам недостајућу апликација Кор (Kore)\?</string>
     <string name="show_play_with_kodi_title">Прикажи „Пусти помоћу Кодија“</string>
     <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру</string>
     <string name="play_audio">Аудио</string>
@@ -48,7 +48,7 @@
     <string name="settings_category_appearance_title">Изглед</string>
     <string name="network_error">Грешка мреже</string>
     <string name="download_path_audio_title">Фолдер преузимања за аудио</string>
-    <string name="download_path_audio_dialog_title">Унесите путању за преузимање аудио фајлова</string>
+    <string name="download_path_audio_dialog_title">Изаберите фасциклу за преузимање аудио фајлова</string>
     <string name="download_path_audio_summary">Овде се чувају преузети аудио-снимци</string>
     <string name="info_dir_created">Направљен директоријум за преузимање „%1$s“</string>
     <string name="err_dir_create">Не могу да направим директоријум за преузимање„ %1$s“</string>
@@ -57,7 +57,6 @@
     <string name="youtube_signature_decryption_error">Не могу да дешифрујем потпис видео урл-а</string>
     <string name="parsing_error">Не могу да рашчланим веб-сајт</string>
     <string name="content_not_available">Садржај није доступан</string>
-
     <string name="content">Садржај</string>
     <string name="show_age_restricted_content_title">Прикажи старосно-ограничени садржај</string>
     <string name="video_is_age_restricted">Старосно-ограничени видео. Премошћавање је доступно у поставкама.</string>
@@ -82,7 +81,7 @@
     <string name="duration_live">уживо</string>
     <string name="main_bg_subtitle">Тапните на претрагу за почетак</string>
     <string name="autoplay_by_calling_app_title">Аутопуштање</string>
-    <string name="autoplay_by_calling_app_summary">Аутоматско пуштање видеа по позиву друге апликације</string>
+    <string name="autoplay_by_calling_app_summary">Пушта видео по позиву друге апликације</string>
     <string name="start">Почни</string>
     <string name="pause">Паузирај</string>
     <string name="view">Пусти</string>
@@ -107,8 +106,7 @@
     <string name="could_not_load_image">Не могох да учитам слику</string>
     <string name="app_ui_crash">Апликација/УИ је краховала</string>
     <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nУслуга:\\nГМТ време:\\nПакет:\\nИздање:\\nИздање ОС-а:\\nГлоб. ИП распон:</string>
-    <string name="reCaptchaActivity">Стопка</string>
-    <string name="reCaptcha_title">reCAPTCHA стопка</string>
+    <string name="title_activity_recaptcha">reCAPTCHA стопка</string>
     <string name="recaptcha_request_toast">Решите reCAPTCHA стопку</string>
     <string name="black_theme_title">Црна</string>
     <string name="all">Сви</string>
@@ -127,7 +125,7 @@
     <string name="default_video_format_title">Пожељни формат видеа</string>
     <string name="default_popup_resolution_title">Резолуција искачућег прозора</string>
     <string name="show_higher_resolutions_title">Прикажи више резолуције</string>
-    <string name="show_higher_resolutions_summary">Само неки уређаји подржавају пуштање 2K/4K видеа</string>
+    <string name="show_higher_resolutions_summary">Само неки уређаји могу да пуштају 2K/4K видео</string>
     <string name="filter">Филтер</string>
     <string name="refresh">Освежи</string>
     <string name="clear">Очисти</string>
@@ -146,7 +144,7 @@
     <string name="subscribe_button_title">Претплати</string>
     <string name="tab_main">Главно</string>
     <string name="tab_subscriptions">Претплате</string>
-    <string name="fragment_whats_new">Шта је ново</string>
+    <string name="fragment_feed_title">Шта је ново</string>
     <string name="enable_search_history_title">Историјат претраге</string>
     <string name="enable_search_history_summary">Уписуј појмове претраге локално</string>
     <string name="enable_watch_history_title">Историјат</string>
@@ -179,7 +177,7 @@
     <string name="error_unable_to_load_license">Не могу да учитам лиценцу</string>
     <string name="channel_unsubscribed">Одјављен са канала</string>
     <string name="subscription_change_failed">Не могу да изменим претплату</string>
-    <string name="subscription_update_failed">Не могу да ажурирам претплату</string>
+    <string name="subscription_update_failed">Није могуће ажурирати претплату</string>
     <string name="settings_category_player_title">Плејер</string>
     <string name="settings_category_player_behavior_title">Понашање</string>
     <string name="settings_category_history_title">Историјат</string>

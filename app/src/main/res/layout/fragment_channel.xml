@@ -32,6 +32,7 @@
         tools:visibility="visible">
 
         <TextView
+            android:id="@+id/channel_kaomoji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -42,11 +43,21 @@
             tools:ignore="HardcodedText,UnusedAttribute"/>
 
         <TextView
+            android:id="@+id/channel_no_videos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/empty_view_no_videos"
             android:textSize="24sp"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/error_content_not_supported"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/content_not_supported"
+            android:textSize="15sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -64,7 +75,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:background="?attr/toolbar_shadow_drawable"
+        android:background="?attr/toolbar_shadow"
         android:layout_alignParentTop="true"/>
 
 </RelativeLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+  "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+  <suppress checks="FinalParameters"
+    files="LocalItemListAdapter.java"
+    lines="220,292"/>
+
+  <suppress checks="FinalParameters"
+    files="InfoListAdapter.java"
+    lines="253,325"/>
+
+  <suppress checks="FinalParameters"
+      files="ListHelper.java"
+      lines="278,310"/>
+
+  <!-- org.schabi.newpipe.streams -->
+  <suppress checks="LineLength"
+      files="WebMWriter.java"
+      lines="156,158"/>
+</suppressions>

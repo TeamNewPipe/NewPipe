@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * Unit tests for {@link ErrorActivity}
+ * Unit tests for {@link ErrorActivity}.
  */
 public class ErrorActivityTest {
     @Test
@@ -32,7 +32,4 @@ public class ErrorActivityTest {
         returnActivity = ErrorActivity.getReturnActivity(VideoDetailFragment.class);
         assertEquals(MainActivity.class, returnActivity);
     }
-
-
-
 }

@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.event;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.view.*;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -35,6 +36,13 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     private final boolean isBrightnessGestureEnabled;
     private final int maxVolume;
     private static final int MOVEMENT_THRESHOLD = 40;
+
+    // [popup] initial coordinates and distance between fingers
+    private double initPointerDistance = -1;
+    private float initFirstPointerX = -1;
+    private float initFirstPointerY = -1;
+    private float initSecPointerX = -1;
+    private float initSecPointerY = -1;
 
 
     public PlayerGestureListener(final VideoPlayerImpl playerImpl, final MainPlayer service) {
@@ -147,11 +155,17 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
                                    final float distanceX, final float distanceY) {
         if (!isVolumeGestureEnabled && !isBrightnessGestureEnabled) return false;
 
-        //noinspection PointlessBooleanExpression
-        if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
+        final boolean isTouchingStatusBar = initialEvent.getY() < getStatusBarHeight(service);
+        final boolean isTouchingNavigationBar = initialEvent.getY()
+                > playerImpl.getRootView().getHeight() - getNavigationBarHeight(service);
+        if (isTouchingStatusBar || isTouchingNavigationBar) {
+            return false;
+        }
+
+        /*if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
                 ", e1.getRaw = [" + initialEvent.getRawX() + ", " + initialEvent.getRawY() + "]" +
                 ", e2.getRaw = [" + movingEvent.getRawX() + ", " + movingEvent.getRawY() + "]" +
-                ", distanceXy = [" + distanceX + ", " + distanceY + "]");
+                ", distanceXy = [" + distanceX + ", " + distanceY + "]");*/
 
         final boolean insideThreshold = Math.abs(movingEvent.getY() - initialEvent.getY()) <= MOVEMENT_THRESHOLD;
         if (!isMovingInMain && (insideThreshold || Math.abs(distanceX) > Math.abs(distanceY))
@@ -171,10 +185,10 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
 
             playerImpl.getVolumeImageView().setImageDrawable(
-                    AppCompatResources.getDrawable(service, currentProgressPercent <= 0 ? R.drawable.ic_volume_off_white_72dp
-                            : currentProgressPercent < 0.25 ? R.drawable.ic_volume_mute_white_72dp
-                            : currentProgressPercent < 0.75 ? R.drawable.ic_volume_down_white_72dp
-                            : R.drawable.ic_volume_up_white_72dp)
+                    AppCompatResources.getDrawable(service, currentProgressPercent <= 0 ? R.drawable.ic_volume_off_white_24dp
+                            : currentProgressPercent < 0.25 ? R.drawable.ic_volume_mute_white_24dp
+                            : currentProgressPercent < 0.75 ? R.drawable.ic_volume_down_white_24dp
+                            : R.drawable.ic_volume_up_white_24dp)
             );
 
             if (playerImpl.getVolumeRelativeLayout().getVisibility() != View.VISIBLE) {
@@ -200,9 +214,9 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
             playerImpl.getBrightnessImageView().setImageDrawable(
                     AppCompatResources.getDrawable(service,
-                            currentProgressPercent < 0.25 ? R.drawable.ic_brightness_low_white_72dp
-                            : currentProgressPercent < 0.75 ? R.drawable.ic_brightness_medium_white_72dp
-                                    : R.drawable.ic_brightness_high_white_72dp)
+                            currentProgressPercent < 0.25 ? R.drawable.ic_brightness_low_white_24dp
+                            : currentProgressPercent < 0.75 ? R.drawable.ic_brightness_medium_white_24dp
+                                    : R.drawable.ic_brightness_high_white_24dp)
             );
 
             if (playerImpl.getBrightnessRelativeLayout().getVisibility() != View.VISIBLE) {
@@ -273,8 +287,8 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         if (playerImpl.isControlsVisible()) {
             playerImpl.hideControls(100, 100);
         } else {
+            playerImpl.getPlayPauseButton().requestFocus();
             playerImpl.showControlsThenHide();
-
         }
         return true;
     }
@@ -312,11 +326,17 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         final float diffY = (int) (movingEvent.getRawY() - initialEvent.getRawY());
         float posY = (int) (initialPopupY + diffY);
 
-        if (posX > (playerImpl.getScreenWidth() - playerImpl.getPopupWidth())) posX = (int) (playerImpl.getScreenWidth() - playerImpl.getPopupWidth());
-        else if (posX < 0) posX = 0;
+        if (posX > (playerImpl.getScreenWidth() - playerImpl.getPopupWidth())) {
+            posX = (int) (playerImpl.getScreenWidth() - playerImpl.getPopupWidth());
+        } else if (posX < 0) {
+            posX = 0;
+        }
 
-        if (posY > (playerImpl.getScreenHeight() - playerImpl.getPopupHeight())) posY = (int) (playerImpl.getScreenHeight() - playerImpl.getPopupHeight());
-        else if (posY < 0) posY = 0;
+        if (posY > (playerImpl.getScreenHeight() - playerImpl.getPopupHeight())) {
+            posY = (int) (playerImpl.getScreenHeight() - playerImpl.getPopupHeight());
+        } else if (posY < 0) {
+            posY = 0;
+        }
 
         playerImpl.getPopupLayoutParams().x = (int) posX;
         playerImpl.getPopupLayoutParams().y = (int) posY;
@@ -332,15 +352,19 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             }
         }
 
-        //noinspection PointlessBooleanExpression
-        if (DEBUG && false) {
-            Log.d(TAG, "PopupVideoPlayer.onScroll = " +
-                    ", e1.getRaw = [" + initialEvent.getRawX() + ", " + initialEvent.getRawY() + "]" + ", e1.getX,Y = [" + initialEvent.getX() + ", " + initialEvent.getY() + "]" +
-                    ", e2.getRaw = [" + movingEvent.getRawX() + ", " + movingEvent.getRawY() + "]" + ", e2.getX,Y = [" + movingEvent.getX() + ", " + movingEvent.getY() + "]" +
-                    ", distanceX,Y = [" + distanceX + ", " + distanceY + "]" +
-                    ", posX,Y = [" + posX + ", " + posY + "]" +
-                    ", popupW,H = [" + playerImpl.getPopupWidth() + " x " + playerImpl.getPopupHeight() + "]");
-        }
+//            if (DEBUG) {
+//                Log.d(TAG, "PopupVideoPlayer.onScroll = "
+//                        + "e1.getRaw = [" + initialEvent.getRawX() + ", "
+//                        + initialEvent.getRawY() + "], "
+//                        + "e1.getX,Y = [" + initialEvent.getX() + ", "
+//                        + initialEvent.getY() + "], "
+//                        + "e2.getRaw = [" + movingEvent.getRawX() + ", "
+//                        + movingEvent.getRawY() + "], "
+//                        + "e2.getX,Y = [" + movingEvent.getX() + ", " + movingEvent.getY() + "], "
+//                        + "distanceX,Y = [" + distanceX + ", " + distanceY + "], "
+//                        + "posX,Y = [" + posX + ", " + posY + "], "
+//                        + "popupW,H = [" + popupWidth + " x " + popupHeight + "]");
+//            }
         playerImpl.windowManager.updateViewLayout(playerImpl.getRootView(), playerImpl.getPopupLayoutParams());
         return true;
     }
@@ -378,8 +402,11 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     }
 
     private boolean onTouchInPopup(View v, MotionEvent event) {
+        if (playerImpl == null) {
+            return false;
+        }
         playerImpl.getGestureDetector().onTouchEvent(event);
-        if (playerImpl == null) return false;
+
         if (event.getPointerCount() == 2 && !isMovingInPopup && !isResizing) {
             if (DEBUG) Log.d(TAG, "onTouch() 2 finger pointer detected, enabling resizing.");
             playerImpl.showAndAnimateControl(-1, true);
@@ -388,6 +415,15 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             playerImpl.hideControls(0, 0);
             animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
             animateView(playerImpl.getResizingIndicator(), true, 200, 0);
+            //record coordinates of fingers
+            initFirstPointerX = event.getX(0);
+            initFirstPointerY = event.getY(0);
+            initSecPointerX = event.getX(1);
+            initSecPointerY = event.getY(1);
+            //record distance between fingers
+            initPointerDistance = Math.hypot(initFirstPointerX - initSecPointerX,
+                    initFirstPointerY - initSecPointerY);
+
             isResizing = true;
         }
 
@@ -406,6 +442,13 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
             if (isResizing) {
                 isResizing = false;
+
+                initPointerDistance = -1;
+                initFirstPointerX = -1;
+                initFirstPointerY = -1;
+                initSecPointerX = -1;
+                initSecPointerY = -1;
+
                 animateView(playerImpl.getResizingIndicator(), false, 100, 0);
                 playerImpl.changeState(playerImpl.getCurrentState());
             }
@@ -420,29 +463,58 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     }
 
     private boolean handleMultiDrag(final MotionEvent event) {
-        if (event.getPointerCount() != 2) return false;
+        if (initPointerDistance != -1 && event.getPointerCount() == 2) {
+            // get the movements of the fingers
+            double firstPointerMove = Math.hypot(event.getX(0) - initFirstPointerX,
+                    event.getY(0) - initFirstPointerY);
+            double secPointerMove = Math.hypot(event.getX(1) - initSecPointerX,
+                    event.getY(1) - initSecPointerY);
 
-        final float firstPointerX = event.getX(0);
-        final float secondPointerX = event.getX(1);
+            // minimum threshold beyond which pinch gesture will work
+            int minimumMove = ViewConfiguration.get(service).getScaledTouchSlop();
 
-        final float diff = Math.abs(firstPointerX - secondPointerX);
-        if (firstPointerX > secondPointerX) {
-            // second pointer is the anchor (the leftmost pointer)
-            playerImpl.getPopupLayoutParams().x = (int) (event.getRawX() - diff);
-        } else {
-            // first pointer is the anchor
-            playerImpl.getPopupLayoutParams().x = (int) event.getRawX();
+            if (Math.max(firstPointerMove, secPointerMove) > minimumMove) {
+                // calculate current distance between the pointers
+                final double currentPointerDistance =
+                        Math.hypot(event.getX(0) - event.getX(1),
+                                event.getY(0) - event.getY(1));
+
+                double popupWidth = playerImpl.getPopupWidth();
+                // change co-ordinates of popup so the center stays at the same position
+                double newWidth = (popupWidth * currentPointerDistance / initPointerDistance);
+                initPointerDistance = currentPointerDistance;
+                playerImpl.getPopupLayoutParams().x += (popupWidth - newWidth) / 2;
+
+                playerImpl.checkPopupPositionBounds();
+                playerImpl.updateScreenSize();
+
+                playerImpl.updatePopupSize((int) Math.min(playerImpl.getScreenWidth(), newWidth), -1);
+                return true;
+            }
         }
-
-        playerImpl.checkPopupPositionBounds();
-        playerImpl.updateScreenSize();
-
-        final int width = (int) Math.min(playerImpl.getScreenWidth(), diff);
-        playerImpl.updatePopupSize(width, -1);
-
-        return true;
+        return false;
     }
 
+
+    /*
+     * Utils
+     * */
+
+    private int getNavigationBarHeight(Context context) {
+        int resId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resId > 0) {
+            return context.getResources().getDimensionPixelSize(resId);
+        }
+        return 0;
+    }
+
+    private int getStatusBarHeight(Context context) {
+        int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resId > 0) {
+            return context.getResources().getDimensionPixelSize(resId);
+        }
+        return 0;
+    }
 }
 
 

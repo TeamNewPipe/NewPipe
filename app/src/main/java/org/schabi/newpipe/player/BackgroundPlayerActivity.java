@@ -49,7 +49,7 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
     }
 
     @Override
-    public boolean onPlayerOptionSelected(MenuItem item) {
+    public boolean onPlayerOptionSelected(final MenuItem item) {
         if (item.getItemId() == R.id.action_switch_popup) {
 
             if (!PermissionHelper.isPopupEnabled(this)) {
@@ -58,13 +58,13 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
             }
 
             this.player.setRecovery();
-            NavigationHelper.playOnPopupPlayer(getApplicationContext(), player.playQueue, true);
+            NavigationHelper.playOnPopupPlayer(getApplicationContext(), player.playQueue, this.player.isPlaying());
             return true;
         }
 
         if (item.getItemId() == R.id.action_switch_background) {
             this.player.setRecovery();
-            NavigationHelper.playOnBackgroundPlayer(getApplicationContext(), player.playQueue, true);
+            NavigationHelper.playOnBackgroundPlayer(getApplicationContext(), player.playQueue, this.player.isPlaying());
             return true;
         }
 
@@ -77,10 +77,5 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
         menu.findItem(R.id.action_switch_popup).setVisible(!((VideoPlayerImpl)player).popupPlayerSelected());
         menu.findItem(R.id.action_switch_background).setVisible(!((VideoPlayerImpl)player).audioPlayerSelected());
-    }
-
-    //@Override
-    public Intent getPlayerShutdownIntent() {
-        return new Intent(ACTION_CLOSE);
     }
 }

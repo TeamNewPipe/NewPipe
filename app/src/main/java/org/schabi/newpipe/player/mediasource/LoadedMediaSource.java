@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.mediasource;
 
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -15,13 +16,11 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import java.io.IOException;
 
 public class LoadedMediaSource implements ManagedMediaSource {
-
     private final MediaSource source;
     private final PlayQueueItem stream;
     private final long expireTimestamp;
 
-    public LoadedMediaSource(@NonNull final MediaSource source,
-                             @NonNull final PlayQueueItem stream,
+    public LoadedMediaSource(@NonNull final MediaSource source, @NonNull final PlayQueueItem stream,
                              final long expireTimestamp) {
         this.source = source;
         this.stream = stream;
@@ -37,8 +36,9 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public void prepareSource(SourceInfoRefreshListener listener, @Nullable TransferListener mediaTransferListener) {
-        source.prepareSource(listener, mediaTransferListener);
+    public void prepareSource(final MediaSourceCaller mediaSourceCaller,
+                              @Nullable final TransferListener mediaTransferListener) {
+        source.prepareSource(mediaSourceCaller, mediaTransferListener);
     }
 
     @Override
@@ -47,38 +47,50 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public MediaPeriod createPeriod(MediaPeriodId id, Allocator allocator, long startPositionUs) {
+    public void enable(final MediaSourceCaller caller) {
+        source.enable(caller);
+    }
+
+    @Override
+    public MediaPeriod createPeriod(final MediaPeriodId id, final Allocator allocator,
+                                    final long startPositionUs) {
         return source.createPeriod(id, allocator, startPositionUs);
     }
 
     @Override
-    public void releasePeriod(MediaPeriod mediaPeriod) {
+    public void releasePeriod(final MediaPeriod mediaPeriod) {
         source.releasePeriod(mediaPeriod);
     }
 
     @Override
-    public void releaseSource(SourceInfoRefreshListener listener) {
-        source.releaseSource(listener);
+    public void disable(final MediaSourceCaller caller) {
+        source.disable(caller);
     }
 
     @Override
-    public void addEventListener(Handler handler, MediaSourceEventListener eventListener) {
+    public void releaseSource(final MediaSourceCaller mediaSourceCaller) {
+        source.releaseSource(mediaSourceCaller);
+    }
+
+    @Override
+    public void addEventListener(final Handler handler,
+                                 final MediaSourceEventListener eventListener) {
         source.addEventListener(handler, eventListener);
     }
 
     @Override
-    public void removeEventListener(MediaSourceEventListener eventListener) {
+    public void removeEventListener(final MediaSourceEventListener eventListener) {
         source.removeEventListener(eventListener);
     }
 
     @Override
-    public boolean shouldBeReplacedWith(@NonNull PlayQueueItem newIdentity,
+    public boolean shouldBeReplacedWith(@NonNull final PlayQueueItem newIdentity,
                                         final boolean isInterruptable) {
         return newIdentity != stream || (isInterruptable && isExpired());
     }
 
     @Override
-    public boolean isStreamEqual(@NonNull PlayQueueItem stream) {
-        return this.stream == stream;
+    public boolean isStreamEqual(@NonNull final PlayQueueItem otherStream) {
+        return this.stream == otherStream;
     }
 }

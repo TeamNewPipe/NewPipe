@@ -13,11 +13,11 @@
     <string name="use_external_video_player_title">使用外置影片播放器</string>
     <string name="use_external_audio_player_title">使用外置聲音播放器</string>
     <string name="download_path_title">影片下載路徑</string>
-    <string name="download_path_summary">已下載的影片之存放路徑</string>
-    <string name="download_path_dialog_title">輸入影片的下載路徑</string>
+    <string name="download_path_summary">已下載的影片將保存在此處</string>
+    <string name="download_path_dialog_title">選擇視頻的下載文件夾</string>
     <string name="default_resolution_title">預設解像度</string>
     <string name="play_with_kodi_title">使用 Kodi 播放</string>
-    <string name="kore_not_found">找不到 Kore 應用程式，您要安裝 Kore 嗎？</string>
+    <string name="kore_not_found">您要安裝遺失的 Kore 程式嗎？</string>
     <string name="show_play_with_kodi_title">顯示「使用 Kodi 播放」的選項</string>
     <string name="show_play_with_kodi_summary">顯示以 Kodi 媒體中心播放影片的選項</string>
     <string name="play_audio">聲音</string>
@@ -48,13 +48,13 @@
     <string name="open_in_browser">使用瀏覽器開啟</string>
     <string name="share_dialog_title">分享影片</string>
     <string name="download_path_audio_title">聲音下載路徑</string>
-    <string name="download_path_audio_summary">已下載的聲音之存放路徑</string>
-    <string name="download_path_audio_dialog_title">請輸入聲音檔案的下載路徑</string>
+    <string name="download_path_audio_summary">已下載的聲音將保存在此處</string>
+    <string name="download_path_audio_dialog_title">選擇聲音檔案的下載路徑</string>
     <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
-    <string name="main_bg_subtitle">按一下搜尋按鈕以開始操作</string>
+    <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用</string>
     <string name="autoplay_by_calling_app_title">自動撥放</string>
-    <string name="autoplay_by_calling_app_summary">當其他應用程式要求播放影片時，NewPipe 將會自動播放</string>
+    <string name="autoplay_by_calling_app_summary">"當 NewPipe  被其他程式調用時播放視頻"</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示已設年齡限制的影片</string>
     <string name="video_is_age_restricted">此影片設有年齡限制。若要觀看，請先在設定中解除年齡限制。</string>
@@ -104,7 +104,7 @@
     <string name="msg_copied">已複製至剪貼板</string>
     <string name="no_available_dir">請選擇下載資料夾。</string>
     <string name="open_in_popup_mode">在畫中畫模式開啟</string>
-    <string name="popup_mode_share_menu_title">NewPipe 畫中畫模式</string>
+    <string name="popup_mode_share_menu_title">畫中畫模式</string>
     <string name="default_popup_resolution_title">預設畫中畫解像度</string>
     <string name="show_higher_resolutions_title">顯示更高解像度</string>
     <string name="show_higher_resolutions_summary">只有某些裝置能夠播放 2K 或 4K 影片</string>
@@ -120,11 +120,10 @@
     <string name="info_labels">事件：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\nPackage：\\n版本：\\n作業系統版本：</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA 挑戰</string>
+    <string name="title_activity_recaptcha">reCAPTCHA 挑戰</string>
     <string name="msg_popup_permission">畫中畫模式需要此權限</string>
     <string name="recaptcha_request_toast">需完成 reCAPTCHA 挑戰</string>
-    <string name="use_external_video_player_summary">啟用此選項將導致某些解像度的影片失去聲音</string>
+    <string name="use_external_video_player_summary">移除某些解像度的影片的聲音</string>
     <string name="controls_background_title">背景播放</string>
     <string name="controls_popup_title">畫中畫播放</string>
     <string name="popup_remember_size_pos_title">記住畫中畫大小及位置</string>
@@ -170,4 +169,11 @@
     <string name="tab_main">首頁</string>
     <string name="tab_subscriptions">訂閱項目</string>
     <string name="tab_bookmarks">已收藏播放清單</string>
+    <string name="use_inexact_seek_title">使用粗略快查</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">使用背景播放器時，鎖定畫面上將會顯示影片縮圖</string>
+    <string name="enable_lock_screen_video_thumbnail_title">鎖定畫面影片縮圖</string>
+    <string name="download_choose_new_path">變更下載文件夾以生效</string>
+    <string name="controls_add_to_playlist_title">添加到</string>
+    <string name="tab_choose">選擇標籤</string>
+    <string name="tab_new">新標籤</string>
 </resources>

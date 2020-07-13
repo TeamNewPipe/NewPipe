@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/playlist_control"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:visibility="invisible"
     tools:visibility="visible">
 
@@ -26,8 +26,8 @@
             android:textSize="@dimen/channel_rss_title_size"
             android:textColor="?attr/colorAccent"
             android:drawablePadding="4dp"
-            android:drawableLeft="?attr/audio"
-            android:drawableStart="?attr/audio"/>
+            app:drawableLeftCompat="?attr/ic_headset"
+            app:drawableStartCompat="?attr/ic_headset"/>
     </LinearLayout>
 
     <View android:id="@+id/anchorLeft"
@@ -81,7 +81,7 @@
             android:textSize="@dimen/channel_rss_title_size"
             android:textColor="?attr/colorAccent"
             android:drawablePadding="4dp"
-            android:drawableLeft="?attr/popup"
-            android:drawableStart="?attr/popup"/>
+            app:drawableLeftCompat="?attr/ic_popup"
+            app:drawableStartCompat="?attr/ic_popup"/>
     </LinearLayout>
 </LinearLayout>

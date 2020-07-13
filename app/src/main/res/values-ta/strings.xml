@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">தொடங்க தேடலை அழுத்தவும்</string>
+    <string name="main_bg_subtitle">தொடங்க \"தேடல்\" ஐ தட்டவும்</string>
     <string name="view_count_text">%1$s பார்வைகள்</string>
     <string name="upload_date_text">%1$s அன்று வெளியிடப்பட்டது</string>
     <string name="no_player_found">நிகழ்பட ஓட்டி கண்டறியப்படவில்லை. VLC நிறுவ வேண்டுமா\?</string>
@@ -30,16 +30,16 @@
     <string name="tab_main">முதன்மை</string>
     <string name="tab_subscriptions">குழுசேர்ப்புகள்</string>
     <string name="tab_bookmarks">குறிக்கப்பட்ட காணொலி பட்டியல்கள்</string>
-    <string name="fragment_whats_new">புதிதாக</string>
+    <string name="fragment_feed_title">புதிதாக</string>
     <string name="controls_background_title">பின்னால்</string>
     <string name="controls_popup_title">திரைமேல்</string>
     <string name="controls_add_to_playlist_title">சேர்</string>
     <string name="download_path_title">காணிலி தரவிறக்கப் பாதை</string>
     <string name="download_path_summary">தரவிறக்கப்பட்ட காணொலிகளின் சேமிப்புப் பாதை</string>
-    <string name="download_path_dialog_title">காணொலியின் தரவிறக்கப் பாதையை உள்ளிடு</string>
+    <string name="download_path_dialog_title">காணொலியின் தரவிறக்கப் பாதையை தேர்வு செய்க</string>
     <string name="download_path_audio_title">ஒலி பதிவிறக்க அடைவு</string>
     <string name="download_path_audio_summary">தரவிறக்கப்பட்ட ஒலி இங்கே சேமிக்கப்பட்டுள்ளது</string>
-    <string name="download_path_audio_dialog_title">ஒலி கோப்புகளுக்கான தரவிறக்கப் பாதையை உள்ளிடு</string>
+    <string name="download_path_audio_dialog_title">ஒலி கோப்புகளுக்கான தரவிறக்கப் பாதையை தேர்வு செய்க</string>
     <string name="autoplay_by_calling_app_title">தானே இயக்கு</string>
     <string name="autoplay_by_calling_app_summary">NewPipe மற்றொரு செயலியில் இருந்து அழைக்கப்படும் போது காணொலியை இயக்கும்</string>
     <string name="default_resolution_title">முதல் பிரிதிறன்</string>
@@ -109,12 +109,12 @@
     <string name="video">காணொலி</string>
     <string name="audio">ஒலி</string>
     <string name="retry">மீண்டும் முயற்சி</string>
-    <string name="use_external_video_player_summary">சில பிரிதிறன்கலில் ஒலி நீக்கப்படும்</string>
+    <string name="use_external_video_player_summary">சில பிரிதிறன்களில் ஒலி நீக்கப்படும்</string>
     <string name="show_higher_resolutions_summary">சில சாதனங்கள் மட்டுமெ 2k/4k காணொளிகலை இயக்கும்</string>
     <string name="show_play_with_kodi_summary">காணொளிகலை Kodi media center கொண்டு இயக்கும் இடப்பை காண்பி</string>
     <string name="use_inexact_seek_title">வேகமான பொருத்தமற்ற தேடலை பயன்படுத்து</string>
     <string name="player_gesture_controls_title">இயக்கியின் சைகை கட்டுப்பாடுகள்</string>
-    <string name="player_gesture_controls_summary">"இயைக்கியின்  பிரகாசம் மற்றும் ஒலியினை சைகைமூலம் கட்டுப்படுத்து"</string>
+    <string name="player_gesture_controls_summary">இயைக்கியின் பிரகாசம் மற்றும் ஒலியினை சைகைமூலம் கட்டுப்படுத்து</string>
     <string name="show_search_suggestions_summary">தேடும்போது பரிந்துரைகளை கான்பி</string>
     <string name="resume_on_audio_focus_gain_summary">"தொலைபேசி அழைப்பு போன்ற குறுக்கீடுகளுக்கு பிறகு தொடரவும் "</string>
     <string name="show_next_and_similar_title">\'அடுத்து\' மற்றும் \'ஒப்பான\' காணொளிகலை காண்பி</string>
@@ -180,7 +180,7 @@
     </plurals>
     <plurals name="videos">
         <item quantity="one">காணொளிகள்</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="switch_to_main">முதற்பக்கத்துக்கு மாற்று</string>
     <string name="invalid_url_toast">சரியில்லாத URL</string>
@@ -206,10 +206,6 @@
     <string name="show_comments_title">கருத்துக்களை காண்பி</string>
     <string name="show_comments_summary">கருத்துக்களை காண்பிப்பதை நிறுத்துதலை செயலிழக்கசெய்</string>
     <string name="autoplay_title">தானாக ஓட்டு</string>
-    <plurals name="comments">
-        <item quantity="one">கருத்துக்கள்</item>
-        <item quantity="other"></item>
-    </plurals>
     <string name="enable_playback_resume_title">திரையிடலை தொடங்கு</string>
     <string name="enable_playback_state_lists_title">பட்டியலில் இடங்கள்</string>
     <string name="settings_category_clear_data_title">தரவை நீக்கு</string>
@@ -220,4 +216,7 @@
         <item quantity="one">%s பார்க்கிறார்</item>
         <item quantity="other">%s பார்க்கிறார்கள்</item>
     </plurals>
+    <string name="seek_duration_title">வேகமாக முன்னோக்கி / திரும்பத் தேடும் காலம்</string>
+    <string name="enable_lock_screen_video_thumbnail_title">பூட்டு திரை வீடியோ சிறுபடத்தை இயக்கவும்</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">பின்னணி பிளேயரைப் பயன்படுத்தும் போது பூட்டுத் திரையில் வீடியோ சிறுபடம் காண்பிக்கப்படும்</string>
 </resources>

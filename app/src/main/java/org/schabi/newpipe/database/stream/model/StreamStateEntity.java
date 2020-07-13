@@ -1,10 +1,9 @@
 package org.schabi.newpipe.database.stream.model;
 
-
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.annotation.Nullable;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,14 +20,17 @@ import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_
                         onDelete = CASCADE, onUpdate = CASCADE)
         })
 public class StreamStateEntity {
-    final public static String STREAM_STATE_TABLE   = "stream_state";
-    final public static String JOIN_STREAM_ID       = "stream_id";
-    final public static String STREAM_PROGRESS_TIME = "progress_time";
+    public static final String STREAM_STATE_TABLE = "stream_state";
+    public static final String JOIN_STREAM_ID = "stream_id";
+    public static final String STREAM_PROGRESS_TIME = "progress_time";
 
-
-    /** Playback state will not be saved, if playback time less than this threshold */
+    /**
+     * Playback state will not be saved, if playback time is less than this threshold.
+     */
     private static final int PLAYBACK_SAVE_THRESHOLD_START_SECONDS = 5;
-    /** Playback state will not be saved, if time left less than this threshold */
+    /**
+     * Playback state will not be saved, if time left is less than this threshold.
+     */
     private static final int PLAYBACK_SAVE_THRESHOLD_END_SECONDS = 10;
 
     @ColumnInfo(name = JOIN_STREAM_ID)
@@ -37,7 +39,7 @@ public class StreamStateEntity {
     @ColumnInfo(name = STREAM_PROGRESS_TIME)
     private long progressTime;
 
-    public StreamStateEntity(long streamUid, long progressTime) {
+    public StreamStateEntity(final long streamUid, final long progressTime) {
         this.streamUid = streamUid;
         this.progressTime = progressTime;
     }
@@ -46,7 +48,7 @@ public class StreamStateEntity {
         return streamUid;
     }
 
-    public void setStreamUid(long streamUid) {
+    public void setStreamUid(final long streamUid) {
         this.streamUid = streamUid;
     }
 
@@ -54,21 +56,23 @@ public class StreamStateEntity {
         return progressTime;
     }
 
-    public void setProgressTime(long progressTime) {
+    public void setProgressTime(final long progressTime) {
         this.progressTime = progressTime;
     }
 
-    public boolean isValid(int durationInSeconds) {
+    public boolean isValid(final int durationInSeconds) {
         final int seconds = (int) TimeUnit.MILLISECONDS.toSeconds(progressTime);
         return seconds > PLAYBACK_SAVE_THRESHOLD_START_SECONDS
                 && seconds < durationInSeconds - PLAYBACK_SAVE_THRESHOLD_END_SECONDS;
     }
 
     @Override
-    public boolean equals(@Nullable Object obj) {
+    public boolean equals(@Nullable final Object obj) {
         if (obj instanceof StreamStateEntity) {
             return ((StreamStateEntity) obj).streamUid == streamUid
                     && ((StreamStateEntity) obj).progressTime == progressTime;
-        } else return false;
+        } else {
+            return false;
+        }
     }
 }

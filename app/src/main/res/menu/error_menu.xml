@@ -5,5 +5,5 @@
     <item android:id="@+id/menu_item_share_error"
         android:title="@string/share"
         app:showAsAction="ifRoom"
-        android:icon="?attr/share"/>
+        android:icon="?attr/ic_share"/>
 </menu>

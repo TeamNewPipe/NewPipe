@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/icon_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:focusable="true"
+    android:minHeight="24dp"
+    android:minWidth="24dp"
+    android:padding="8dp"
+    android:scaleType="centerInside"
+    tools:ignore="ContentDescription"
+    tools:src="?attr/ic_rss"/>

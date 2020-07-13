@@ -119,10 +119,30 @@
                 android:inputType="" />
 
             <Button
-                android:id="@+id/errorReportButton"
+                android:id="@+id/errorReportEmailButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/error_report_button_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:text="@string/error_report_open_github_notice" />
+
+            <Button
+                android:id="@+id/errorReportCopyButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/copy_for_github" />
+
+            <Button
+                android:id="@+id/errorReportGitHubButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/error_report_open_issue_button_text" />
 
         </LinearLayout>
     </ScrollView>

@@ -25,15 +25,20 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.IBinder;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -44,56 +49,60 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
-import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.util.BitmapUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
-
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 /**
- * Base players joining the common properties
+ * Service Background Player implementing {@link VideoPlayer}.
  *
  * @author mauriciocolli
  */
 public final class BackgroundPlayer extends Service {
-    private static final String TAG = "BackgroundPlayer";
-    private static final boolean DEBUG = BasePlayer.DEBUG;
-
-    public static final String ACTION_CLOSE = "org.schabi.newpipe.player.BackgroundPlayer.CLOSE";
-    public static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.BackgroundPlayer.PLAY_PAUSE";
-    public static final String ACTION_REPEAT = "org.schabi.newpipe.player.BackgroundPlayer.REPEAT";
-    public static final String ACTION_PLAY_NEXT = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_PLAY_NEXT";
-    public static final String ACTION_PLAY_PREVIOUS = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_PLAY_PREVIOUS";
-    public static final String ACTION_FAST_REWIND = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_FAST_REWIND";
-    public static final String ACTION_FAST_FORWARD = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_FAST_FORWARD";
+    public static final String ACTION_CLOSE
+            = "org.schabi.newpipe.player.BackgroundPlayer.CLOSE";
+    public static final String ACTION_PLAY_PAUSE
+            = "org.schabi.newpipe.player.BackgroundPlayer.PLAY_PAUSE";
+    public static final String ACTION_REPEAT
+            = "org.schabi.newpipe.player.BackgroundPlayer.REPEAT";
+    public static final String ACTION_PLAY_NEXT
+            = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_PLAY_NEXT";
+    public static final String ACTION_PLAY_PREVIOUS
+            = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_PLAY_PREVIOUS";
+    public static final String ACTION_FAST_REWIND
+            = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_FAST_REWIND";
+    public static final String ACTION_FAST_FORWARD
+            = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_FAST_FORWARD";
 
     public static final String SET_IMAGE_RESOURCE_METHOD = "setImageResource";
-
+    private static final String TAG = "BackgroundPlayer";
+    private static final boolean DEBUG = BasePlayer.DEBUG;
+    private static final int NOTIFICATION_ID = 123789;
+    private static final int NOTIFICATION_UPDATES_BEFORE_RESET = 60;
     private BasePlayerImpl basePlayerImpl;
-    private LockManager lockManager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
-
-    private PlayerEventListener activityListener;
-    private IBinder mBinder;
+    private SharedPreferences sharedPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Notification
     //////////////////////////////////////////////////////////////////////////*/
-
-    private static final int NOTIFICATION_ID = 123789;
+    private PlayerEventListener activityListener;
+    private IBinder mBinder;
     private NotificationManager notificationManager;
     private NotificationCompat.Builder notBuilder;
     private RemoteViews notRemoteView;
     private RemoteViews bigNotRemoteView;
-
     private boolean shouldUpdateOnProgress;
+    private int timesNotificationUpdated;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
@@ -101,10 +110,12 @@ public final class BackgroundPlayer extends Service {
 
     @Override
     public void onCreate() {
-        if (DEBUG) Log.d(TAG, "onCreate() called");
+        if (DEBUG) {
+            Log.d(TAG, "onCreate() called");
+        }
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
-        lockManager = new LockManager(this);
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
         basePlayerImpl = new BasePlayerImpl(this);
         basePlayerImpl.setup();
@@ -114,9 +125,11 @@ public final class BackgroundPlayer extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (DEBUG) Log.d(TAG, "onStartCommand() called with: intent = [" + intent +
-                "], flags = [" + flags + "], startId = [" + startId + "]");
+    public int onStartCommand(final Intent intent, final int flags, final int startId) {
+        if (DEBUG) {
+            Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], "
+                    + "flags = [" + flags + "], startId = [" + startId + "]");
+        }
         basePlayerImpl.handleIntent(intent);
         if (basePlayerImpl.mediaSessionManager != null) {
             basePlayerImpl.mediaSessionManager.handleMediaButtonIntent(intent);
@@ -126,17 +139,19 @@ public final class BackgroundPlayer extends Service {
 
     @Override
     public void onDestroy() {
-        if (DEBUG) Log.d(TAG, "destroy() called");
+        if (DEBUG) {
+            Log.d(TAG, "destroy() called");
+        }
         onClose();
     }
 
     @Override
-    protected void attachBaseContext(Context base) {
+    protected void attachBaseContext(final Context base) {
         super.attachBaseContext(AudioServiceLeakFix.preventLeakOf(base));
     }
 
     @Override
-    public IBinder onBind(Intent intent) {
+    public IBinder onBind(final Intent intent) {
         return mBinder;
     }
 
@@ -144,27 +159,29 @@ public final class BackgroundPlayer extends Service {
     // Actions
     //////////////////////////////////////////////////////////////////////////*/
     private void onClose() {
-        if (DEBUG) Log.d(TAG, "onClose() called");
-
-        if (lockManager != null) {
-            lockManager.releaseWifiAndCpu();
+        if (DEBUG) {
+            Log.d(TAG, "onClose() called");
         }
+
         if (basePlayerImpl != null) {
             basePlayerImpl.savePlaybackState();
             basePlayerImpl.stopActivityBinding();
             basePlayerImpl.destroy();
         }
-        if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
+        if (notificationManager != null) {
+            notificationManager.cancel(NOTIFICATION_ID);
+        }
         mBinder = null;
         basePlayerImpl = null;
-        lockManager = null;
 
         stopForeground(true);
         stopSelf();
     }
 
-    private void onScreenOnOff(boolean on) {
-        if (DEBUG) Log.d(TAG, "onScreenOnOff() called with: on = [" + on + "]");
+    private void onScreenOnOff(final boolean on) {
+        if (DEBUG) {
+            Log.d(TAG, "onScreenOnOff() called with: on = [" + on + "]");
+        }
         shouldUpdateOnProgress = on;
         basePlayerImpl.triggerProgressUpdate();
         if (on) {
@@ -180,59 +197,105 @@ public final class BackgroundPlayer extends Service {
 
     private void resetNotification() {
         notBuilder = createNotification();
+        timesNotificationUpdated = 0;
     }
 
     private NotificationCompat.Builder createNotification() {
-        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
-        bigNotRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
+        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID,
+                R.layout.player_background_notification);
+        bigNotRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID,
+                R.layout.player_background_notification_expanded);
 
         setupNotification(notRemoteView);
         setupNotification(bigNotRemoteView);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+        NotificationCompat.Builder builder = new NotificationCompat
+                .Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
                 .setCustomBigContentView(bigNotRemoteView);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setLockScreenThumbnail(builder);
+        }
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             builder.setPriority(NotificationCompat.PRIORITY_MAX);
         }
         return builder;
     }
 
-    private void setupNotification(RemoteViews remoteViews) {
-        if (basePlayerImpl == null) return;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void setLockScreenThumbnail(final NotificationCompat.Builder builder) {
+        boolean isLockScreenThumbnailEnabled = sharedPreferences.getBoolean(
+                getString(R.string.enable_lock_screen_video_thumbnail_key), true);
+
+        if (isLockScreenThumbnailEnabled) {
+            basePlayerImpl.mediaSessionManager.setLockScreenArt(
+                    builder,
+                    getCenteredThumbnailBitmap()
+            );
+        } else {
+            basePlayerImpl.mediaSessionManager.clearLockScreenArt(builder);
+        }
+    }
+
+    @Nullable
+    private Bitmap getCenteredThumbnailBitmap() {
+        final int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        final int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+        return BitmapUtils.centerCrop(basePlayerImpl.getThumbnail(), screenWidth, screenHeight);
+    }
+
+    private void setupNotification(final RemoteViews remoteViews) {
+        if (basePlayerImpl == null) {
+            return;
+        }
 
         remoteViews.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
         remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
 
         remoteViews.setOnClickPendingIntent(R.id.notificationPlayPause,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                        new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
         remoteViews.setOnClickPendingIntent(R.id.notificationStop,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                        new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
         remoteViews.setOnClickPendingIntent(R.id.notificationRepeat,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                        new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
         // Starts background player activity -- attempts to unlock lockscreen
         final Intent intent = NavigationHelper.getBackgroundPlayerActivityIntent(this);
         remoteViews.setOnClickPendingIntent(R.id.notificationContent,
-                PendingIntent.getActivity(this, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getActivity(this, NOTIFICATION_ID, intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT));
 
         if (basePlayerImpl.playQueue != null && basePlayerImpl.playQueue.size() > 1) {
-            remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_previous);
-            remoteViews.setInt(R.id.notificationFForward, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_next);
+            remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD,
+                    R.drawable.exo_controls_previous);
+            remoteViews.setInt(R.id.notificationFForward, SET_IMAGE_RESOURCE_METHOD,
+                    R.drawable.exo_controls_next);
             remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
-                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT));
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                            new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT));
             remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
-                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                            new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
         } else {
-            remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_rewind);
-            remoteViews.setInt(R.id.notificationFForward, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_fastforward);
+            remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD,
+                    R.drawable.exo_controls_rewind);
+            remoteViews.setInt(R.id.notificationFForward, SET_IMAGE_RESOURCE_METHOD,
+                    R.drawable.exo_controls_fastforward);
             remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
-                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT));
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                            new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT));
             remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
-                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT));
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                            new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT));
         }
 
         setRepeatModeIcon(remoteViews, basePlayerImpl.getRepeatMode());
@@ -244,14 +307,23 @@ public final class BackgroundPlayer extends Service {
      *
      * @param drawableId if != -1, sets the drawable with that id on the play/pause button
      */
-    private synchronized void updateNotification(int drawableId) {
-        //if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
-        if (notBuilder == null) return;
+    private synchronized void updateNotification(final int drawableId) {
+//        if (DEBUG) {
+//            Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
+//        }
+        if (notBuilder == null) {
+            return;
+        }
         if (drawableId != -1) {
-            if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
-            if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+            if (notRemoteView != null) {
+                notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+            }
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+            }
         }
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
+        timesNotificationUpdated++;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -261,31 +333,34 @@ public final class BackgroundPlayer extends Service {
     private void setRepeatModeIcon(final RemoteViews remoteViews, final int repeatMode) {
         switch (repeatMode) {
             case Player.REPEAT_MODE_OFF:
-                remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_repeat_off);
+                remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD,
+                        R.drawable.exo_controls_repeat_off);
                 break;
             case Player.REPEAT_MODE_ONE:
-                remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_repeat_one);
+                remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD,
+                        R.drawable.exo_controls_repeat_one);
                 break;
             case Player.REPEAT_MODE_ALL:
-                remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_repeat_all);
+                remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD,
+                        R.drawable.exo_controls_repeat_all);
                 break;
         }
     }
     //////////////////////////////////////////////////////////////////////////
 
     protected class BasePlayerImpl extends BasePlayer {
-
-        @NonNull final private AudioPlaybackResolver resolver;
+        @NonNull
+        private final AudioPlaybackResolver resolver;
         private int cachedDuration;
         private String cachedDurationString;
 
-        BasePlayerImpl(Context context) {
+        BasePlayerImpl(final Context context) {
             super(context);
             this.resolver = new AudioPlaybackResolver(context, dataSource);
         }
 
         @Override
-        public void initPlayer(boolean playOnReady) {
+        public void initPlayer(final boolean playOnReady) {
             super.initPlayer(playOnReady);
         }
 
@@ -294,8 +369,12 @@ public final class BackgroundPlayer extends Service {
             super.handleIntent(intent);
 
             resetNotification();
-            if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
-            if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+            }
+            if (notRemoteView != null) {
+                notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+            }
             startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
@@ -304,7 +383,9 @@ public final class BackgroundPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         private void updateNotificationThumbnail() {
-            if (basePlayerImpl == null) return;
+            if (basePlayerImpl == null) {
+                return;
+            }
             if (notRemoteView != null) {
                 notRemoteView.setImageViewBitmap(R.id.notificationCover,
                         basePlayerImpl.getThumbnail());
@@ -316,7 +397,8 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+        public void onLoadingComplete(final String imageUri, final View view,
+                                      final Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
             resetNotification();
             updateNotificationThumbnail();
@@ -324,20 +406,21 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+        public void onLoadingFailed(final String imageUri, final View view,
+                                    final FailReason failReason) {
             super.onLoadingFailed(imageUri, view, failReason);
             resetNotification();
             updateNotificationThumbnail();
             updateNotification(-1);
         }
+
         /*//////////////////////////////////////////////////////////////////////////
         // States Implementation
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void onPrepared(boolean playWhenReady) {
+        public void onPrepared(final boolean playWhenReady) {
             super.onPrepared(playWhenReady);
-            simpleExoPlayer.setVolume(1.0f);
         }
 
         @Override
@@ -347,22 +430,39 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
+        public void onMuteUnmuteButtonClicked() {
+            super.onMuteUnmuteButtonClicked();
+            updatePlayback();
+        }
+
+        @Override
+        public void onUpdateProgress(final int currentProgress, final int duration,
+                                     final int bufferPercent) {
             updateProgress(currentProgress, duration, bufferPercent);
 
-            if (!shouldUpdateOnProgress) return;
-            resetNotification();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O /*Oreo*/) updateNotificationThumbnail();
+            if (!shouldUpdateOnProgress) {
+                return;
+            }
+            if (timesNotificationUpdated > NOTIFICATION_UPDATES_BEFORE_RESET) {
+                resetNotification();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O /*Oreo*/) {
+                    updateNotificationThumbnail();
+                }
+            }
             if (bigNotRemoteView != null) {
-                if(cachedDuration != duration) {
+                if (cachedDuration != duration) {
                     cachedDuration = duration;
                     cachedDurationString = getTimeString(duration);
                 }
-                bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
-                bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + cachedDurationString);
+                bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration,
+                        currentProgress, false);
+                bigNotRemoteView.setTextViewText(R.id.notificationTime,
+                        getTimeString(currentProgress) + " / " + cachedDurationString);
             }
             if (notRemoteView != null) {
-                notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
+                notRemoteView.setProgressBar(R.id.notificationProgressBar, duration,
+                        currentProgress, false);
             }
             updateNotification(-1);
         }
@@ -382,8 +482,12 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void destroy() {
             super.destroy();
-            if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
-            if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, null);
+            if (notRemoteView != null) {
+                notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
+            }
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, null);
+            }
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -391,18 +495,18 @@ public final class BackgroundPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+        public void onPlaybackParametersChanged(final PlaybackParameters playbackParameters) {
             super.onPlaybackParametersChanged(playbackParameters);
             updatePlayback();
         }
 
         @Override
-        public void onLoadingChanged(boolean isLoading) {
+        public void onLoadingChanged(final boolean isLoading) {
             // Disable default behavior
         }
 
         @Override
-        public void onRepeatModeChanged(int i) {
+        public void onRepeatModeChanged(final int i) {
             resetNotification();
             updateNotification(-1);
             updatePlayback();
@@ -436,14 +540,14 @@ public final class BackgroundPlayer extends Service {
         // Activity Event Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        /*package-private*/ void setActivityListener(PlayerEventListener listener) {
+        /*package-private*/ void setActivityListener(final PlayerEventListener listener) {
             activityListener = listener;
             updateMetadata();
             updatePlayback();
             triggerProgressUpdate();
         }
 
-        /*package-private*/ void removeActivityListener(PlayerEventListener listener) {
+        /*package-private*/ void removeActivityListener(final PlayerEventListener listener) {
             if (activityListener == listener) {
                 activityListener = null;
             }
@@ -462,7 +566,8 @@ public final class BackgroundPlayer extends Service {
             }
         }
 
-        private void updateProgress(int currentProgress, int duration, int bufferPercent) {
+        private void updateProgress(final int currentProgress, final int duration,
+                                    final int bufferPercent) {
             if (activityListener != null) {
                 activityListener.onProgressUpdate(currentProgress, duration, bufferPercent);
             }
@@ -480,27 +585,31 @@ public final class BackgroundPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        protected void setupBroadcastReceiver(IntentFilter intentFilter) {
-            super.setupBroadcastReceiver(intentFilter);
-            intentFilter.addAction(ACTION_CLOSE);
-            intentFilter.addAction(ACTION_PLAY_PAUSE);
-            intentFilter.addAction(ACTION_REPEAT);
-            intentFilter.addAction(ACTION_PLAY_PREVIOUS);
-            intentFilter.addAction(ACTION_PLAY_NEXT);
-            intentFilter.addAction(ACTION_FAST_REWIND);
-            intentFilter.addAction(ACTION_FAST_FORWARD);
+        protected void setupBroadcastReceiver(final IntentFilter intentFltr) {
+            super.setupBroadcastReceiver(intentFltr);
+            intentFltr.addAction(ACTION_CLOSE);
+            intentFltr.addAction(ACTION_PLAY_PAUSE);
+            intentFltr.addAction(ACTION_REPEAT);
+            intentFltr.addAction(ACTION_PLAY_PREVIOUS);
+            intentFltr.addAction(ACTION_PLAY_NEXT);
+            intentFltr.addAction(ACTION_FAST_REWIND);
+            intentFltr.addAction(ACTION_FAST_FORWARD);
 
-            intentFilter.addAction(Intent.ACTION_SCREEN_ON);
-            intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+            intentFltr.addAction(Intent.ACTION_SCREEN_ON);
+            intentFltr.addAction(Intent.ACTION_SCREEN_OFF);
 
-            intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
+            intentFltr.addAction(Intent.ACTION_HEADSET_PLUG);
         }
 
         @Override
-        public void onBroadcastReceived(Intent intent) {
+        public void onBroadcastReceived(final Intent intent) {
             super.onBroadcastReceived(intent);
-            if (intent == null || intent.getAction() == null) return;
-            if (DEBUG) Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
+            if (intent == null || intent.getAction() == null) {
+                return;
+            }
+            if (DEBUG) {
+                Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
+            }
             switch (intent.getAction()) {
                 case ACTION_CLOSE:
                     onClose();
@@ -537,7 +646,7 @@ public final class BackgroundPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void changeState(int state) {
+        public void changeState(final int state) {
             super.changeState(state);
             updatePlayback();
         }
@@ -547,8 +656,7 @@ public final class BackgroundPlayer extends Service {
             super.onPlaying();
             resetNotification();
             updateNotificationThumbnail();
-            updateNotification(R.drawable.ic_pause_white);
-            lockManager.acquireWifiAndCpu();
+            updateNotification(R.drawable.exo_controls_pause);
         }
 
         @Override
@@ -556,8 +664,7 @@ public final class BackgroundPlayer extends Service {
             super.onPaused();
             resetNotification();
             updateNotificationThumbnail();
-            updateNotification(R.drawable.ic_play_arrow_white);
-            lockManager.releaseWifiAndCpu();
+            updateNotification(R.drawable.exo_controls_play);
         }
 
         @Override
@@ -571,8 +678,7 @@ public final class BackgroundPlayer extends Service {
                 notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
             }
             updateNotificationThumbnail();
-            updateNotification(R.drawable.ic_replay_white);
-            lockManager.releaseWifiAndCpu();
+            updateNotification(R.drawable.ic_replay_white_24dp);
         }
     }
 }

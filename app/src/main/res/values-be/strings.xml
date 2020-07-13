@@ -31,7 +31,7 @@
     <string name="tab_main">Галоўная</string>
     <string name="tab_subscriptions">Падпіскі</string>
     <string name="tab_bookmarks">Адзначаныя плэйлісты</string>
-    <string name="fragment_whats_new">Што новага</string>
+    <string name="fragment_feed_title">Што новага</string>
     <string name="controls_background_title">У фоне</string>
     <string name="controls_popup_title">У акне</string>
     <string name="controls_add_to_playlist_title">Дадаць да</string>
@@ -247,8 +247,7 @@
     <string name="msg_popup_permission">Гэтае разрозненне трэба для 
 \nпрайгравання ў акне</string>
     <string name="one_item_deleted">1 элемент выдалены.</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Запыт reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Запыт reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запытаны ўвод reCAPTCHA</string>
     <string name="settings_category_downloads_title">Загрузкі</string>
     <string name="settings_file_charset_title">Дапушчальныя сімвалы назвы файлаў</string>
@@ -457,7 +456,6 @@
     <string name="error_http_unsupported_range">Сервер не падтрымлівае шматструменную загрузку, паспрабуйце з @string/msg_threads = 1</string>
     <string name="error_http_not_found">Не знойдзена</string>
     <string name="error_postprocessing_failed">Пасляапрацоўка не ўдалася</string>
-    <string name="clear_finished_download">Ачысціць завершаныя</string>
     <string name="stop">Спыніць</string>
     <string name="max_retry_msg">Максімум спробаў</string>
     <string name="max_retry_desc">Колькасць спробаў перад адменай загрузкі</string>
@@ -468,11 +466,6 @@
     <string name="show_comments_title">Паказаць каментарыі</string>
     <string name="show_comments_summary">Адключыце, каб схаваць каментарыі</string>
     <string name="autoplay_title">Аўтазапуск</string>
-    <plurals name="comments">
-        <item quantity="one">Каментарый</item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
-    </plurals>
     <string name="no_comments">Каментарыі адсутнічаюць</string>
     <string name="error_unable_to_load_comments">Каментарыі не атрымалася загрузіць</string>
     <string name="close">Зачыніць</string>

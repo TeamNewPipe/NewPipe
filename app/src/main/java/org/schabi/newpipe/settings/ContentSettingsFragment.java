@@ -2,20 +2,24 @@ package org.schabi.newpipe.settings;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.DownloaderImpl;
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
@@ -40,34 +44,42 @@ import java.util.Map;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-public class ContentSettingsFragment extends BasePreferenceFragment {
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
+public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_IMPORT_PATH = 8945;
     private static final int REQUEST_EXPORT_PATH = 30945;
 
     private File databasesDir;
-    private File newpipe_db;
-    private File newpipe_db_journal;
-    private File newpipe_db_shm;
-    private File newpipe_db_wal;
-    private File newpipe_settings;
+    private File newpipeDb;
+    private File newpipeDbJournal;
+    private File newpipeDbShm;
+    private File newpipeDbWal;
+    private File newpipeSettings;
 
     private String thumbnailLoadToggleKey;
+    private String youtubeRestrictedModeEnabledKey;
 
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
+    private String initialLanguage;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
+        youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
-        initialSelectedLocalization = org.schabi.newpipe.util.Localization.getPreferredLocalization(requireContext());
-        initialSelectedContentCountry = org.schabi.newpipe.util.Localization.getPreferredContentCountry(requireContext());
+        initialSelectedLocalization = org.schabi.newpipe.util.Localization
+                .getPreferredLocalization(requireContext());
+        initialSelectedContentCountry = org.schabi.newpipe.util.Localization
+                .getPreferredContentCountry(requireContext());
+        initialLanguage = PreferenceManager
+                .getDefaultSharedPreferences(getContext()).getString("app_language_key", "en");
     }
 
     @Override
-    public boolean onPreferenceTreeClick(Preference preference) {
+    public boolean onPreferenceTreeClick(final Preference preference) {
         if (preference.getKey().equals(thumbnailLoadToggleKey)) {
             final ImageLoader imageLoader = ImageLoader.getInstance();
             imageLoader.stop();
@@ -78,21 +90,30 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     Toast.LENGTH_SHORT).show();
         }
 
+        if (preference.getKey().equals(youtubeRestrictedModeEnabledKey)) {
+            Context context = getContext();
+            if (context != null) {
+                DownloaderImpl.getInstance().updateYoutubeRestrictedModeCookies(context);
+            } else {
+                Log.w(TAG, "onPreferenceTreeClick: null context");
+            }
+        }
+
         return super.onPreferenceTreeClick(preference);
     }
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
 
         String homeDir = getActivity().getApplicationInfo().dataDir;
         databasesDir = new File(homeDir + "/databases");
-        newpipe_db = new File(homeDir + "/databases/newpipe.db");
-        newpipe_db_journal = new File(homeDir + "/databases/newpipe.db-journal");
-        newpipe_db_shm = new File(homeDir + "/databases/newpipe.db-shm");
-        newpipe_db_wal = new File(homeDir + "/databases/newpipe.db-wal");
+        newpipeDb = new File(homeDir + "/databases/newpipe.db");
+        newpipeDbJournal = new File(homeDir + "/databases/newpipe.db-journal");
+        newpipeDbShm = new File(homeDir + "/databases/newpipe.db-shm");
+        newpipeDbWal = new File(homeDir + "/databases/newpipe.db-wal");
 
-        newpipe_settings = new File(homeDir + "/databases/newpipe.settings");
-        newpipe_settings.delete();
+        newpipeSettings = new File(homeDir + "/databases/newpipe.settings");
+        newpipeSettings.delete();
 
         addPreferencesFromResource(R.xml.content_settings);
 
@@ -101,7 +122,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_FILE);
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_FILE);
             startActivityForResult(i, REQUEST_IMPORT_PATH);
             return true;
         });
@@ -111,7 +133,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_DIR);
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_DIR);
             startActivityForResult(i, REQUEST_EXPORT_PATH);
             return true;
         });
@@ -125,20 +148,29 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredLocalization(requireContext());
         final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
+        final String selectedLanguage = PreferenceManager
+                .getDefaultSharedPreferences(getContext()).getString("app_language_key", "en");
 
         if (!selectedLocalization.equals(initialSelectedLocalization)
-                || !selectedContentCountry.equals(initialSelectedContentCountry)) {
-            Toast.makeText(requireContext(), R.string.localization_changes_requires_app_restart, Toast.LENGTH_LONG).show();
+                || !selectedContentCountry.equals(initialSelectedContentCountry)
+                || !selectedLanguage.equals(initialLanguage)) {
+            Toast.makeText(requireContext(), R.string.localization_changes_requires_app_restart,
+                    Toast.LENGTH_LONG).show();
 
             NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
         }
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
+    public void onActivityResult(final int requestCode, final int resultCode,
+                                 @NonNull final Intent data) {
+        assureCorrectAppLanguage(getContext());
         super.onActivityResult(requestCode, resultCode, data);
         if (DEBUG) {
-            Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
+            Log.d(TAG, "onActivityResult() called with: "
+                    + "requestCode = [" + requestCode + "], "
+                    + "resultCode = [" + resultCode + "], "
+                    + "data = [" + data + "]");
         }
 
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
@@ -150,7 +182,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage(R.string.override_current_data)
-                        .setPositiveButton(android.R.string.ok,
+                        .setPositiveButton(getString(R.string.finish),
                                 (DialogInterface d, int id) -> importDatabase(path))
                         .setNegativeButton(android.R.string.cancel,
                                 (DialogInterface d, int id) -> d.cancel());
@@ -159,15 +191,18 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void exportDatabase(String path) {
+    private void exportDatabase(final String path) {
         try {
+            //checkpoint before export
+            NewPipeDatabase.checkpoint();
+
             ZipOutputStream outZip = new ZipOutputStream(
                     new BufferedOutputStream(
                             new FileOutputStream(path)));
-            ZipHelper.addFileToZip(outZip, newpipe_db.getPath(), "newpipe.db");
+            ZipHelper.addFileToZip(outZip, newpipeDb.getPath(), "newpipe.db");
 
-            saveSharedPreferencesToFile(newpipe_settings);
-            ZipHelper.addFileToZip(outZip, newpipe_settings.getPath(), "newpipe.settings");
+            saveSharedPreferencesToFile(newpipeSettings);
+            ZipHelper.addFileToZip(outZip, newpipeSettings.getPath(), "newpipe.settings");
 
             outZip.close();
 
@@ -178,7 +213,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void saveSharedPreferencesToFile(File dst) {
+    private void saveSharedPreferencesToFile(final File dst) {
         ObjectOutputStream output = null;
         try {
             output = new ObjectOutputStream(new FileOutputStream(dst));
@@ -189,7 +224,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (output != null) {
                     output.flush();
@@ -201,7 +236,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void importDatabase(String filePath) {
+    private void importDatabase(final String filePath) {
         // check if file is supported
         ZipFile zipFile = null;
         try {
@@ -213,7 +248,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         } finally {
             try {
                 zipFile.close();
-            } catch (Exception ignored){}
+            } catch (Exception ignored) {
+            }
         }
 
         try {
@@ -222,21 +258,20 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             }
 
             final boolean isDbFileExtracted = ZipHelper.extractFileFromZip(filePath,
-                    newpipe_db.getPath(), "newpipe.db");
+                    newpipeDb.getPath(), "newpipe.db");
 
             if (isDbFileExtracted) {
-                newpipe_db_journal.delete();
-                newpipe_db_wal.delete();
-                newpipe_db_shm.delete();
-
+                newpipeDbJournal.delete();
+                newpipeDbWal.delete();
+                newpipeDbShm.delete();
             } else {
-
                 Toast.makeText(getContext(), R.string.could_not_import_all_files, Toast.LENGTH_LONG)
                         .show();
             }
 
             //If settings file exist, ask if it should be imported.
-            if(ZipHelper.extractFileFromZip(filePath, newpipe_settings.getPath(), "newpipe.settings")) {
+            if (ZipHelper.extractFileFromZip(filePath, newpipeSettings.getPath(),
+                    "newpipe.settings")) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle(R.string.import_settings);
 
@@ -245,9 +280,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     // restart app to properly load db
                     System.exit(0);
                 });
-                alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                alert.setPositiveButton(getString(R.string.finish), (dialog, which) -> {
                     dialog.dismiss();
-                    loadSharedPreferences(newpipe_settings);
+                    loadSharedPreferences(newpipeSettings);
                     // restart app to properly load db
                     System.exit(0);
                 });
@@ -256,33 +291,34 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 // restart app to properly load db
                 System.exit(0);
             }
-
         } catch (Exception e) {
             onError(e);
         }
     }
 
-    private void loadSharedPreferences(File src) {
+    private void loadSharedPreferences(final File src) {
         ObjectInputStream input = null;
         try {
             input = new ObjectInputStream(new FileInputStream(src));
-            SharedPreferences.Editor prefEdit = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+            SharedPreferences.Editor prefEdit = PreferenceManager
+                    .getDefaultSharedPreferences(getContext()).edit();
             prefEdit.clear();
             Map<String, ?> entries = (Map<String, ?>) input.readObject();
             for (Map.Entry<String, ?> entry : entries.entrySet()) {
                 Object v = entry.getValue();
                 String key = entry.getKey();
 
-                if (v instanceof Boolean)
+                if (v instanceof Boolean) {
                     prefEdit.putBoolean(key, (Boolean) v);
-                else if (v instanceof Float)
+                } else if (v instanceof Float) {
                     prefEdit.putFloat(key, (Float) v);
-                else if (v instanceof Integer)
+                } else if (v instanceof Integer) {
                     prefEdit.putInt(key, (Integer) v);
-                else if (v instanceof Long)
+                } else if (v instanceof Long) {
                     prefEdit.putLong(key, (Long) v);
-                else if (v instanceof String)
-                    prefEdit.putString(key, ((String) v));
+                } else if (v instanceof String) {
+                    prefEdit.putString(key, (String) v);
+                }
             }
             prefEdit.commit();
         } catch (FileNotFoundException e) {
@@ -291,7 +327,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (input != null) {
                     input.close();
@@ -306,7 +342,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     // Error
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void onError(Throwable e) {
+    protected void onError(final Throwable e) {
         final Activity activity = getActivity();
         ErrorActivity.reportError(activity, e,
                 activity.getClass(),

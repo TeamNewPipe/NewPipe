@@ -12,6 +12,7 @@
     android:layout_marginTop="3dp"
     android:minHeight="?listPreferredItemHeightSmall"
     android:orientation="horizontal"
+    android:focusable="true"
     app:cardCornerRadius="5dp"
     app:cardElevation="4dp">
 
@@ -28,7 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             tools:ignore="ContentDescription,RtlHardcoded"
-            tools:src="?attr/ic_hot"/>
+            tools:src="?attr/ic_kiosk_hot"/>
 
         <TextView
             android:id="@+id/tabName"
@@ -56,7 +57,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="12dp"
-            android:src="?attr/drag_handle"
+            app:srcCompat="?attr/ic_drag_handle"
             tools:ignore="ContentDescription,RtlHardcoded"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

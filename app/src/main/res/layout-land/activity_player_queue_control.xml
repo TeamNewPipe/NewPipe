@@ -111,7 +111,7 @@
             tools:ignore="RtlHardcoded">
 
             <ImageButton
-                android:id="@+id/control_backward"
+                android:id="@+id/control_fast_rewind"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
@@ -121,7 +121,7 @@
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/exo_controls_previous"
+                android:src="@drawable/exo_controls_rewind"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 tools:ignore="ContentDescription"/>
 
@@ -139,7 +139,7 @@
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/ic_pause_white"
+                app:srcCompat="@drawable/ic_pause_white_24dp"
                 tools:ignore="ContentDescription"/>
 
             <ProgressBar
@@ -161,7 +161,7 @@
                 android:visibility="invisible"/>
 
             <ImageButton
-                android:id="@+id/control_forward"
+                android:id="@+id/control_fast_forward"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
@@ -172,7 +172,7 @@
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/exo_controls_next"
+                android:src="@drawable/exo_controls_fastforward"
                 tools:ignore="ContentDescription"/>
         </RelativeLayout>
 
@@ -185,8 +185,8 @@
             android:orientation="horizontal"
             tools:ignore="RtlHardcoded">
 
-            <TextView
-                android:id="@+id/control_playback_speed"
+            <ImageButton
+                android:id="@+id/control_backward"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginLeft="5dp"
@@ -195,11 +195,13 @@
                 android:layout_toLeftOf="@+id/control_repeat"
                 android:gravity="center"
                 android:minWidth="50dp"
-                android:text="1x"
-                android:textColor="?attr/colorAccent"
-                android:textStyle="bold"
-                android:background="?attr/selectableItemBackground"
-                tools:ignore="HardcodedText,RtlHardcoded"/>
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/exo_controls_previous"
+                android:tint="?attr/colorAccent"
+                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/control_repeat"
@@ -213,7 +215,7 @@
                 android:focusable="true"
                 android:scaleType="fitXY"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/ic_repeat_white"
+                app:srcCompat="@drawable/ic_repeat_white_24dp"
                 tools:ignore="ContentDescription"/>
 
             <View android:layout_width="10dp"
@@ -233,11 +235,11 @@
                 android:focusable="true"
                 android:scaleType="fitXY"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/ic_shuffle_white_24dp"
+                app:srcCompat="@drawable/ic_shuffle_white_24dp"
                 tools:ignore="ContentDescription"/>
 
-            <TextView
-                android:id="@+id/control_playback_pitch"
+            <ImageButton
+                android:id="@+id/control_forward"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginLeft="5dp"
@@ -246,11 +248,13 @@
                 android:layout_toRightOf="@+id/control_shuffle"
                 android:gravity="center"
                 android:minWidth="50dp"
-                android:text="100%"
-                android:textColor="?attr/colorAccent"
-                android:textStyle="bold"
-                android:background="?attr/selectableItemBackground"
-                tools:ignore="HardcodedText,RtlHardcoded"/>
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/exo_controls_next"
+                android:tint="?attr/colorAccent"
+                tools:ignore="ContentDescription" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -262,7 +266,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
-        android:background="@drawable/player_controls_bg"
+        android:background="@drawable/player_controls_background"
         android:paddingRight="16dp">
 
         <TextView
@@ -304,10 +308,9 @@
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:gravity="center"
-            android:text="@string/duration_live_button"
+            android:text="@string/duration_live"
             android:textAllCaps="true"
             android:textColor="?attr/colorAccent"
-            android:maxLength="4"
             android:background="?attr/selectableItemBackground"
             android:visibility="gone"/>
     </LinearLayout>

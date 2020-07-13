@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="64dp"
+    android:layout_height="48dp"
+    android:layout_gravity="center_vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="?attr/card_item_background_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="2dp">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="18dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:scaleType="fitCenter"
+            tools:ignore="ContentDescription"
+            tools:src="?attr/ic_fastfood"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/card_item_contrast_color"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="2dp"
+            android:textAllCaps="false"
+            android:textColor="?attr/colorAccent"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            tools:ignore="SmallSp"
+            tools:text="ALL"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

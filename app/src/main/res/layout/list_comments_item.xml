@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,6 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
         android:contentDescription="@string/list_thumbnail_view_description"
+        android:focusable="false"
         android:src="@drawable/buddy"
         tools:ignore="RtlHardcoded" />
 
@@ -55,7 +57,7 @@
         android:layout_below="@id/itemCommentContentView"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:contentDescription="@string/detail_likes_img_view_description"
-        android:src="?attr/thumbs_up" />
+        app:srcCompat="?attr/ic_thumb_up" />
 
     <TextView
         android:id="@+id/detail_thumbs_up_count_view"
@@ -81,7 +83,7 @@
         android:layout_marginLeft="12dp"
         android:layout_toRightOf="@id/detail_thumbs_up_count_view"
         android:contentDescription="@string/detail_dislikes_img_view_description"
-        android:src="?attr/thumbs_down"
+        app:srcCompat="?attr/thumbs_down"
         tools:ignore="RtlHardcoded" />
 
     <TextView

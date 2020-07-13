@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਸਰਚ ਦਬਾਓ</string>
     <string name="view_count_text">%1$s VIEWS</string>
     <string name="upload_date_text">%1$s ਨੂੰ ਪਬਲਿਸ਼ ਕੀਤੀ ਗਈ</string>
-    <string name="no_player_found">"ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ।  ਤੁਸੀਂ VLC ਭਰਨਾ ਚਾਹੋਗੇ \?"</string>
+    <string name="no_player_found">ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ। ਤੁਸੀਂ VLC ਭਰਨਾ ਚਾਹੋਗੇ \?</string>
     <string name="no_player_found_toast">ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ ਤੁਸੀਂ VLC ਇੰਸਟਾਲ ਕਰ ਸਕਦੇ ਹੋ.</string>
     <string name="install">ਇੰਸਟਾਲ</string>
     <string name="cancel">ਰੱਦ ਕਰੋ</string>
@@ -31,7 +31,7 @@
     <string name="subscription_update_failed">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਅੱਪਡੇਟ ਕਰਨ ਵਿਚ ਅਸਮਰੱਥ</string>
     <string name="tab_subscriptions">ਸਬਸਕ੍ਰਿਪਸ਼ਨ</string>
     <string name="tab_bookmarks">ਬੁੱਕਮਾਰਕ ਪਲੇਲਿਸਟਾਂ</string>
-    <string name="fragment_whats_new">ਨਵਾਂ ਕੀ ਹੈ</string>
+    <string name="fragment_feed_title">ਨਵਾਂ ਕੀ ਹੈ</string>
     <string name="controls_background_title">ਬੈਕਗਰਾਊਂਡ</string>
     <string name="controls_popup_title">ਪੋਪ-ਅਪ</string>
     <string name="controls_add_to_playlist_title">ਸ਼ਾਮਿਲ ਕਰੋ</string>
@@ -69,7 +69,7 @@
     <string name="metadata_cache_wipe_summary">ਸਾਰੇ cached ਵੈੱਬ-ਪੇਜਾਂ ਦਾ ਡਾਟਾ ਮਿਟਾਓ</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
     <string name="auto_queue_title">ਅਗਲੀ ਸਟ੍ਰੀਮ ਨੂੰ ਆਟੋ-ਕਤਾਰਬੱਧ ਕਰੋ</string>
-    <string name="auto_queue_summary">"ਇੱਕ ਨਾ-ਦੁਹਰਾਉਣ ਵਾਲੀ ਕਤਾਰ ਵਿੱਚ ਆਖਰੀ ਸਟ੍ਰੀਮ  ਨੂੰ ਚਲਾਉਣ ਵੇਲੇ ਆਪਣੇ-ਆਪ ਸ਼ਾਮਿਲ ਕਰੋ"</string>
+    <string name="auto_queue_summary">ਇੱਕ ਨਾ-ਦੁਹਰਾਉਣ ਵਾਲੀ ਕਤਾਰ ਵਿੱਚ ਆਖਰੀ ਸਟ੍ਰੀਮ ਨੂੰ ਚਲਾਉਣ ਵੇਲੇ ਆਪਣੇ-ਆਪ ਸ਼ਾਮਿਲ ਕਰੋ</string>
     <string name="player_gesture_controls_title">ਵੀਡੀਓ ਪਲੇਯਰ gesture ਕੰਟਰੋਲ</string>
     <string name="player_gesture_controls_summary">ਸਕ੍ਰੀਨ ਲਾਈਟ ਅਤੇ ਆਵਾਜ਼ ਨੂੰ ਕੰਟਰੋਲ ਕਰਨ ਲਈ gestures ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="show_search_suggestions_title">ਖੋਜ ਸੁਝਾਅ</string>
@@ -199,8 +199,8 @@
     <string name="short_billion">ਬਿਲੀਅਨ</string>
     <string name="no_subscribers">ਕੋਈ ਸਬਸਕ੍ਰਾਇਬਰ ਨਹੀਂ</string>
     <plurals name="subscribers">
-        <item quantity="one">ਸਬਸਕ੍ਰਾਇਬਰ</item>
-        <item quantity="other">ਸਬਸਕ੍ਰਾਇਬਰਸ</item>
+        <item quantity="one">%s ਸਬਸਕ੍ਰਾਇਬਰ</item>
+        <item quantity="other">%s ਸਬਸਕ੍ਰਾਇਬਰਸ</item>
     </plurals>
     <string name="no_views">ਕੋਈ views ਨਹੀਂ</string>
     <plurals name="views">
@@ -237,8 +237,7 @@
     <string name="no_available_dir">ਬਾਅਦ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਵਿਚੋਂ ਇੱਕ ਡਾਉਨਲੋਡ ਫੋਲਡਰ ਨੂੰ ਚੁਣੋ</string>
     <string name="msg_popup_permission">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਖੋਲ੍ਹਣ ਵਾਸਤੇ ਇਸ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ</string>
     <string name="one_item_deleted">1 ਆਈਟਮ ਮਿਟਾਈ ਗਈ.</string>
-    <string name="reCaptchaActivity">ReCaptcha</string>
-    <string name="reCaptcha_title">ReCaptcha ਚੁਣੌਤੀ</string>
+    <string name="title_activity_recaptcha">ReCaptcha ਚੁਣੌਤੀ</string>
     <string name="recaptcha_request_toast">ReCaptcha ਚੁਣੌਤੀ ਲਈ ਬੇਨਤੀ</string>
     <string name="settings_category_downloads_title">ਡਾਊਨਲੋਡ</string>
     <string name="settings_file_charset_title">ਫਾਈਲ ਨਾਮ ਵਿੱਚ ਪ੍ਰਵਾਨਿਤ ਅੱਖਰ</string>
@@ -452,7 +451,6 @@
     <string name="error_http_unsupported_range">ਸਰਵਰ ਮਲਟੀ-Threaded ਡਾਊਨਲੋਡਸ ਨੂੰ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ, ਇਸ ਨਾਲ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ @string/msg_threads = 1</string>
     <string name="error_http_not_found">ਨਹੀਂ ਲਭਿਆ</string>
     <string name="error_postprocessing_failed">Post-processing ਫੇਲ੍ਹ</string>
-    <string name="clear_finished_download">ਮੁਕੰਮਲ ਹੋਈਆਂ ਡਾਊਨਲੋਡ ਸਾਫ਼ ਕਰੋ</string>
     <string name="stop">ਰੁੱਕੋ</string>
     <string name="max_retry_msg">ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
     <string name="max_retry_desc">ਡਾਉਨਲੋਡ ਰੱਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
@@ -463,10 +461,6 @@
     <string name="show_comments_title">ਟਿੱਪਣੀਆਂ ਦਿਖਾਓ</string>
     <string name="show_comments_summary">ਟਿੱਪਣੀਆਂ ਵਿਖਾਉਣਾ ਬੰਦ ਕਰਨ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰੋ</string>
     <string name="autoplay_title">ਆਟੋ-ਪਲੇ</string>
-    <plurals name="comments">
-        <item quantity="one">ਟਿਪਣੀਆਂ</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">ਕੋਈ ਟਿੱਪਣੀ ਨਹੀਂ ਕੀਤੀ ਗਈ</string>
     <string name="error_unable_to_load_comments">ਟਿੱਪਣੀਆਂ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ</string>
     <string name="close">ਬੰਦ ਕਰੋ</string>

@@ -16,6 +16,7 @@ public enum UserAction {
     REQUESTED_PLAYLIST("requested playlist"),
     REQUESTED_KIOSK("requested kiosk"),
     REQUESTED_COMMENTS("requested comments"),
+    REQUESTED_FEED("requested feed"),
     DELETE_FROM_HISTORY("delete from history"),
     PLAY_STREAM("Play stream"),
     DOWNLOAD_POSTPROCESSING("download post-processing"),
@@ -24,7 +25,7 @@ public enum UserAction {
 
     private final String message;
 
-    UserAction(String message) {
+    UserAction(final String message) {
         this.message = message;
     }
 

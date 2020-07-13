@@ -1,14 +1,15 @@
 package org.schabi.newpipe.report;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
-import org.acra.config.ACRAConfiguration;
+import org.acra.config.CoreConfiguration;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderFactory;
 
 /*
- * Created by Christian Schabesberger  on 13.09.16.
+ * Created by Christian Schabesberger on 13.09.16.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * AcraReportSenderFactory.java is part of NewPipe.
@@ -29,7 +30,8 @@ import org.acra.sender.ReportSenderFactory;
 
 public class AcraReportSenderFactory implements ReportSenderFactory {
     @NonNull
-    public ReportSender create(@NonNull Context context, @NonNull ACRAConfiguration config) {
+    public ReportSender create(@NonNull final Context context,
+                               @NonNull final CoreConfiguration config) {
         return new AcraReportSender();
     }
 }

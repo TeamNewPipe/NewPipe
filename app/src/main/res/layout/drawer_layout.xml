@@ -1,36 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.navigation.NavigationView android:id="@+id/navigation_layout"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="wrap_content"
-    android:layout_gravity="start"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:clickable="true"
-    android:focusable="true"
-    >
-
-    <com.google.android.material.navigation.NavigationView
+<com.google.android.material.navigation.NavigationView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/navigation"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:elevation="0dp"
-        android:background="?attr/android:windowBackground"
-        app:headerLayout="@layout/drawer_header"
-        android:theme="@style/NavViewTextStyle"/>
-        <!-- app:menu="@menu/drawer_items" -->
-
-    <LinearLayout
-        android:id="@+id/navigation_drawer_footer"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:layout_alignLeft="@id/navigation"
-        android:layout_alignRight="@id/navigation"
-        android:layout_alignStart="@id/navigation"
-        android:layout_alignEnd="@id/navigation"
-
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
-
-</com.google.android.material.navigation.NavigationView>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="?android:attr/windowBackground"
+        android:orientation="vertical"
+        app:headerLayout="@layout/drawer_header" />

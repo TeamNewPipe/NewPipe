@@ -12,7 +12,7 @@
     <string name="settings">सेटिंग्स</string>
     <string name="choose_browser">ब्राउज़र चुनें</string>
     <string name="screen_rotation">स्क्रीन रोटेशन</string>
-    <string name="popup_mode_share_menu_title">नयूपाइप पॉपअप मोड</string>
+    <string name="popup_mode_share_menu_title">नयूपाइप पॉपअप प्रकार</string>
     <string name="subscribe_button_title">सदस्य बनें</string>
     <string name="subscribed_button_title">सदस्यता ली</string>
     <string name="channel_unsubscribed">चैनल सदस्यता रद्द करी गयी</string>
@@ -52,17 +52,17 @@
     <string name="item_deleted">Item हटा दिया गया है</string>
     <string name="trending">फ़िलहाल चर्चा में है</string>
     <string name="play_queue_audio_settings">ऑडियो सेटिंग</string>
-    <string name="main_bg_subtitle">आरंम्भ करने के लिए खोज चिह्न दबाएं</string>
+    <string name="main_bg_subtitle">शुरू करने के लिए खोज चिह्न दबाएं</string>
     <string name="cancel">रद्द करें</string>
     <string name="did_you_mean">क्या आप का मतलब %1$s है?</string>
     <string name="share_dialog_title">शेयर करें</string>
     <string name="use_external_video_player_title">अन्य वीडियो प्लेयर उपयोग करें</string>
-    <string name="use_external_video_player_summary">कुछ प्रस्तावों पर ऑडियो निकालता है</string>
+    <string name="use_external_video_player_summary">कुछ प्रस्तावों पर ऑडियो निकाल है</string>
     <string name="use_external_audio_player_title">अन्य ऑडियो प्लेयर उपयोग करें</string>
     <string name="tab_main">मुख्य</string>
     <string name="subscription_change_failed">सदस्यता नहीं बदला जा सका</string>
     <string name="subscription_update_failed">सदस्यता का अद्यतन नहीं हो सका</string>
-    <string name="fragment_whats_new">देखे की क्या नया है</string>
+    <string name="fragment_feed_title">देखे की क्या नया है</string>
     <string name="download_path_title">वीडियो डाउनलोड फ़ोल्डर</string>
     <string name="download_path_summary">डाउनलोड की गई वीडियो फ़ाइलें यहां संग्रहीत हैं</string>
     <string name="download_path_dialog_title">वीडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>
@@ -73,9 +73,9 @@
     <string name="default_resolution_title">वीडियो का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="default_popup_resolution_title">विडियो पॉपअप का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="show_higher_resolutions_title">उच्च रिज़ॉल्यूशन दिखाएं</string>
-    <string name="show_higher_resolutions_summary">केवल कुछ ही फ़ोन है जो 2K/4K विडियो प्ले कर सकते हैं</string>
+    <string name="show_higher_resolutions_summary">केवल कुछ ही यंत्र है जो 2K/4K विडियो चला सकते हैं</string>
     <string name="play_with_kodi_title">Kodi से चलाये</string>
-    <string name="kore_not_found">Kore एप्प नहीं मिला, इसे इनस्टॉल करें?</string>
+    <string name="kore_not_found">Kore एप्प नहीं मिली, इसे इनस्टॉल करें\?</string>
     <string name="show_play_with_kodi_title">\"Kodi से चलाये\" वाला विकल्प दिखाए</string>
     <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर के माध्यम से वीडियो चलाने के लिए एक विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो का फॉर्मेट</string>
@@ -184,8 +184,8 @@
         <item quantity="other">%s दर्शके</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">वीडियो</item>
-        <item quantity="other">वीडियो</item>
+        <item quantity="one">%s वीडियो</item>
+        <item quantity="other">%s वीडियो</item>
     </plurals>
     <string name="start">शुरू</string>
     <string name="pause">रोके</string>
@@ -206,8 +206,7 @@
     <string name="msg_copied">क्लिपबोर्ड पर कॉपी हो गया है</string>
     <string name="no_available_dir">कृपया बाद में सेटिंग्स में डाउनलोड स्थान चुने</string>
     <string name="msg_popup_permission">पॉपअप के तरीके में खोलने के लिए अनुमति की जरुरत है</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA चुनौती</string>
+    <string name="title_activity_recaptcha">reCAPTCHA चुनौती</string>
     <string name="recaptcha_request_toast">reCAPTCHA चुनौती का अनुरोध किया</string>
     <string name="settings_category_downloads_title">डाउनलोड</string>
     <string name="settings_file_charset_title">फाइल के नाम के लिए आवश्यक characters(जैसे - १२३, abc) की अनुमति है</string>
@@ -437,7 +436,6 @@
     <string name="error_http_no_content">सर्वर डेटा नहीं भेजता है</string>
     <string name="error_http_not_found">नहीं मिला</string>
     <string name="error_postprocessing_failed">प्रक्रिया के बाद का कार्य विफल रहा</string>
-    <string name="clear_finished_download">समाप्त डाउनलोड साफ़ करें</string>
     <string name="stop">रुको</string>
     <string name="max_retry_msg">अधिकतम पुनर्प्रयास</string>
     <string name="max_retry_desc">डाउनलोड रद्द करने से पहले प्रयासों की अधिकतम संख्या</string>
@@ -448,10 +446,6 @@
     <string name="show_comments_title">टिप्पणियाँ दिखाए</string>
     <string name="show_comments_summary">टिप्पणियाँ न देखने के लिए बंद करे</string>
     <string name="autoplay_title">ऑटोप्ले</string>
-    <plurals name="comments">
-        <item quantity="one">टिप्पणियाँ</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="no_comments">कोई टिपण्णी नहीं</string>
     <string name="error_unable_to_load_comments">टिप्पणियाँ लोड नहीं कर सका</string>
     <string name="close">बंद करे</string>
@@ -485,7 +479,7 @@
     <string name="enable_disposed_exceptions_summary">फ्रेगमेंट या एक्टिविटी लाइफसाइकिल के बाद Rx सन्देश ना पहुँचाया जा सके तोह ज़रूर कोशिश करे</string>
     <string name="import_soundcloud_instructions">SoundCloud प्रोफाइल निर्यात करने के लिए आईडी या युआरएल दीजिये:
 \n१ अपने वेब ब्राउज़र मैं \"डेस्कटॉप मोड\" चालू करे (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है)
-\n२ इस युआरएल को खोले:% 1 $ s 
+\n२ इस युआरएल को खोले: %1$s
 \n३ लोग इन करे
 \n४ आप जिस प्रोफाइल युआरएल पे भेजे जाते है उसे कॉपी करे|</string>
     <string name="start_accept_privacy_policy">यूरोप के जनरल डाटा प्रोटेक्शन रेगुलेशन (जी डी पी आर) का पालन करने के लिए, हम आपका ध्यान न्यूपाइप की नयी प्राइवेसी पालिसी पी डालना चाहते है।इसे बारीकी से पढ़िए।
@@ -505,13 +499,14 @@
     <string name="default_kiosk_page_summary">सामान्य कीओस्क</string>
     <string name="no_one_watching">कोई नहीं देख रहा है</string>
     <plurals name="watching">
-        <item quantity="one">% s आदमी देख रहा है</item>
-        <item quantity="other">% s आदमी देख रहे है</item>
+        <item quantity="one">%s आदमी देख रहा है</item>
+        <item quantity="other">%s आदमी देख रहे है</item>
     </plurals>
     <string name="no_one_listening">कोई नहीं सुन रहा है</string>
     <plurals name="listening">
-        <item quantity="one">% s श्रोता</item>
-        <item quantity="other">% s श्रोता</item>
+        <item quantity="one">%s श्रोता</item>
+        <item quantity="other">%s श्रोता</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी।</string>
+    <string name="enable_lock_screen_video_thumbnail_title">लॉक स्क्रीन पर वीडियो की छोटी तस्वीर दिखाए</string>
 </resources>

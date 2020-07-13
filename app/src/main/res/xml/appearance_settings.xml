@@ -16,12 +16,6 @@
     <SwitchPreference
         app:iconSpaceReserved="false"
         android:defaultValue="true"
-        android:key="@string/show_next_video_key"
-        android:title="@string/show_next_and_similar_title"/>
-
-    <SwitchPreference
-        app:iconSpaceReserved="false"
-        android:defaultValue="true"
         android:key="@string/show_hold_to_append_key"
         android:title="@string/show_hold_to_append_title"
         android:summary="@string/show_hold_to_append_summary"/>
@@ -40,12 +34,5 @@
         android:key="@string/caption_settings_key"
         android:title="@string/caption_setting_title"
         android:summary="@string/caption_setting_description"/>
-
-    <PreferenceScreen
-        app:iconSpaceReserved="false"
-        android:fragment="org.schabi.newpipe.settings.tabs.ChooseTabsFragment"
-        android:summary="@string/main_page_content_summary"
-        android:key="@string/main_page_content_key"
-        android:title="@string/main_page_content"/>
 
 </PreferenceScreen>

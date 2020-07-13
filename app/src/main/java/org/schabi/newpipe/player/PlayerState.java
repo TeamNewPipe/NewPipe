@@ -9,11 +9,13 @@ import java.io.Serializable;
 
 public class PlayerState implements Serializable {
 
-    @NonNull private final PlayQueue playQueue;
+    @NonNull
+    private final PlayQueue playQueue;
     private final int repeatMode;
     private final float playbackSpeed;
     private final float playbackPitch;
-    @Nullable private final String playbackQuality;
+    @Nullable
+    private final String playbackQuality;
     private final boolean playbackSkipSilence;
     private final boolean wasPlaying;
 

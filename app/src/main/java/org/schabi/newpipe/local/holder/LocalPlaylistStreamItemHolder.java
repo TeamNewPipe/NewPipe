@@ -1,11 +1,12 @@
 package org.schabi.newpipe.local.holder;
 
-import androidx.core.content.ContextCompat;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
@@ -24,15 +25,15 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
-
     public final ImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
-    public final TextView itemAdditionalDetailsView;
+    private final TextView itemAdditionalDetailsView;
     public final TextView itemDurationView;
-    public final View itemHandleView;
-    public final AnimatedProgressBar itemProgressView;
+    private final View itemHandleView;
+    private final AnimatedProgressBar itemProgressView;
 
-    LocalPlaylistStreamItemHolder(LocalItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
+    LocalPlaylistStreamItemHolder(final LocalItemBuilder infoItemBuilder, final int layoutId,
+                                  final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
@@ -43,30 +44,41 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
-    public LocalPlaylistStreamItemHolder(LocalItemBuilder infoItemBuilder, ViewGroup parent) {
+    public LocalPlaylistStreamItemHolder(final LocalItemBuilder infoItemBuilder,
+                                         final ViewGroup parent) {
         this(infoItemBuilder, R.layout.list_stream_playlist_item, parent);
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem, HistoryRecordManager historyRecordManager, final DateFormat dateFormat) {
-        if (!(localItem instanceof PlaylistStreamEntry)) return;
+    public void updateFromItem(final LocalItem localItem,
+                               final HistoryRecordManager historyRecordManager,
+                               final DateFormat dateFormat) {
+        if (!(localItem instanceof PlaylistStreamEntry)) {
+            return;
+        }
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
-        itemVideoTitleView.setText(item.title);
-        itemAdditionalDetailsView.setText(Localization.concatenateStrings(item.uploader,
-                NewPipe.getNameOfService(item.serviceId)));
+        itemVideoTitleView.setText(item.getStreamEntity().getTitle());
+        itemAdditionalDetailsView.setText(Localization
+                .concatenateStrings(item.getStreamEntity().getUploader(),
+                        NewPipe.getNameOfService(item.getStreamEntity().getServiceId())));
 
-        if (item.duration > 0) {
-            itemDurationView.setText(Localization.getDurationString(item.duration));
+        if (item.getStreamEntity().getDuration() > 0) {
+            itemDurationView.setText(Localization
+                    .getDurationString(item.getStreamEntity().getDuration()));
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
+            StreamStateEntity state = historyRecordManager
+                    .loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{
+                add(localItem);
+            }}).blockingGet().get(0);
             if (state != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
-                itemProgressView.setMax((int) item.duration);
-                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+                itemProgressView.setMax((int) item.getStreamEntity().getDuration());
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
+                        .toSeconds(state.getProgressTime()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
             }
@@ -75,7 +87,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
+        itemBuilder.displayImage(item.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
@@ -97,17 +109,25 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     }
 
     @Override
-    public void updateState(LocalItem localItem, HistoryRecordManager historyRecordManager) {
-        if (!(localItem instanceof PlaylistStreamEntry)) return;
+    public void updateState(final LocalItem localItem,
+                            final HistoryRecordManager historyRecordManager) {
+        if (!(localItem instanceof PlaylistStreamEntry)) {
+            return;
+        }
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
-        StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
-        if (state != null && item.duration > 0) {
-            itemProgressView.setMax((int) item.duration);
+        StreamStateEntity state = historyRecordManager
+                .loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{
+            add(localItem);
+        }}).blockingGet().get(0);
+        if (state != null && item.getStreamEntity().getDuration() > 0) {
+            itemProgressView.setMax((int) item.getStreamEntity().getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
-                itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+                itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS
+                        .toSeconds(state.getProgressTime()));
             } else {
-                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
+                        .toSeconds(state.getProgressTime()));
                 AnimationUtils.animateView(itemProgressView, true, 500);
             }
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {
@@ -118,8 +138,8 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     private View.OnTouchListener getOnTouchListener(final PlaylistStreamEntry item) {
         return (view, motionEvent) -> {
             view.performClick();
-            if (itemBuilder != null && itemBuilder.getOnItemSelectedListener() != null &&
-                    motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
+            if (itemBuilder != null && itemBuilder.getOnItemSelectedListener() != null
+                    && motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
                 itemBuilder.getOnItemSelectedListener().drag(item,
                         LocalPlaylistStreamItemHolder.this);
             }

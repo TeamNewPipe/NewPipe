@@ -12,41 +12,41 @@
 
     <style name="LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
+        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="windowBackground">@color/light_background_color</item>
 
-        <item name="thumbs_up">@drawable/ic_thumb_up_black_24dp</item>
-        <item name="thumbs_down">@drawable/ic_thumb_down_black_24dp</item>
-        <item name="info">@drawable/ic_info_outline_black_24dp</item>
-        <item name="bug">@drawable/ic_bug_report_black_24dp</item>
-        <item name="audio">@drawable/ic_headset_black_24dp</item>
-        <item name="download">@drawable/ic_file_download_black_24dp</item>
-        <item name="share">@drawable/ic_share_black_24dp</item>
-        <item name="cast">@drawable/ic_cast_black_24dp</item>
-        <item name="rss">@drawable/ic_rss_feed_black_24dp</item>
-        <item name="search">@drawable/ic_search_black_24dp</item>
-        <item name="close">@drawable/ic_close_black_24dp</item>
-        <item name="filter">@drawable/ic_filter_list_black_24dp</item>
-        <item name="popup">@drawable/ic_picture_in_picture_black_24dp</item>
-        <item name="expand">@drawable/ic_expand_more_black_24dp</item>
-        <item name="collapse">@drawable/ic_expand_less_black_24dp</item>
-        <item name="volume_off">@drawable/ic_volume_off_black_24dp</item>
-        <item name="palette">@drawable/ic_palette_black_24dp</item>
-        <item name="language">@drawable/ic_language_black_24dp</item>
-        <item name="history">@drawable/ic_history_black_24dp</item>
-        <item name="drag_handle">@drawable/ic_drag_handle_black_24dp</item>
-        <item name="selected">@drawable/ic_fiber_manual_record_black_24dp</item>
-        <item name="search_add">@drawable/ic_arrow_top_left_black_24dp</item>
-        <item name="options">@drawable/ic_more_vert_black_24dp</item>
-        <item name="play">@drawable/ic_play_arrow_black_24dp</item>
-        <item name="pause">@drawable/ic_pause_black_24dp</item>
-        <item name="settings">@drawable/ic_settings_black_24dp</item>
-        <item name="ic_hot">@drawable/ic_whatshot_black_24dp</item>
-        <item name="ic_kiosk_local">@drawable/ic_kiosk_local_black_24dp</item>
-        <item name="ic_kiosk_recent">@drawable/ic_kiosk_recent_black_24dp</item>
-        <item name="ic_channel">@drawable/ic_channel_black_24dp</item>
+        <item name="ic_thumb_up">@drawable/ic_thumb_up_black_24dp</item>
+        <item name="ic_thumb_down">@drawable/ic_thumb_down_black_24dp</item>
+        <item name="ic_info_outline">@drawable/ic_info_outline_black_24dp</item>
+        <item name="ic_bug_report">@drawable/ic_bug_report_black_24dp</item>
+        <item name="ic_headset">@drawable/ic_headset_black_24dp</item>
+        <item name="ic_file_download">@drawable/ic_file_download_black_24dp</item>
+        <item name="ic_share">@drawable/ic_share_black_24dp</item>
+        <item name="ic_cast">@drawable/ic_cast_black_24dp</item>
+        <item name="ic_rss">@drawable/ic_rss_feed_black_24dp</item>
+        <item name="ic_search">@drawable/ic_search_black_24dp</item>
+        <item name="ic_close">@drawable/ic_close_black_24dp</item>
+        <item name="ic_filter_list">@drawable/ic_filter_list_black_24dp</item>
+        <item name="ic_popup">@drawable/ic_picture_in_picture_black_24dp</item>
+        <item name="ic_expand_more">@drawable/ic_expand_more_black_24dp</item>
+        <item name="ic_expand_less">@drawable/ic_expand_less_black_24dp</item>
+        <item name="ic_volume_off">@drawable/ic_volume_off_black_24dp</item>
+        <item name="ic_volume_up">@drawable/ic_volume_up_black_24dp</item>
+        <item name="ic_palette">@drawable/ic_palette_black_24dp</item>
+        <item name="ic_language">@drawable/ic_language_black_24dp</item>
+        <item name="ic_history">@drawable/ic_history_black_24dp</item>
+        <item name="ic_drag_handle">@drawable/ic_drag_handle_black_24dp</item>
+        <item name="ic_search_add">@drawable/ic_search_add_black_24dp</item>
+        <item name="ic_options">@drawable/ic_more_vert_black_24dp</item>
+        <item name="ic_play_arrow">@drawable/ic_play_arrow_black_24dp</item>
+        <item name="ic_pause">@drawable/ic_pause_black_24dp</item>
+        <item name="ic_settings">@drawable/ic_settings_black_24dp</item>
+        <item name="ic_kiosk_hot">@drawable/ic_whatshot_black_24dp</item>
+        <item name="ic_kiosk_local">@drawable/ic_home_black_24dp</item>
+        <item name="ic_kiosk_recent">@drawable/ic_add_circle_outline_black_24dp</item>
+        <item name="ic_channel">@drawable/ic_tv_black_24dp</item>
         <item name="ic_bookmark">@drawable/ic_bookmark_black_24dp</item>
         <item name="ic_playlist_add">@drawable/ic_playlist_add_black_24dp</item>
         <item name="ic_playlist_check">@drawable/ic_playlist_add_check_black_24dp</item>
@@ -55,66 +55,104 @@
         <item name="ic_backup">@drawable/ic_backup_black_24dp</item>
         <item name="ic_add">@drawable/ic_add_black_24dp</item>
         <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_black_24dp</item>
-        <item name="ic_blank_page">@drawable/ic_blank_page_black_24dp</item>
+        <item name="ic_blank_page">@drawable/ic_crop_portrait_black_24dp</item>
         <item name="ic_list">@drawable/ic_list_black_24dp</item>
-        <item name="ic_grid">@drawable/ic_grid_black_24dp</item>
+        <item name="ic_grid">@drawable/ic_apps_black_24dp</item>
         <item name="ic_delete">@drawable/ic_delete_black_24dp</item>
-        <item name="ic_settings_update">@drawable/ic_settings_update_black</item>
+        <item name="ic_settings_update">@drawable/ic_cloud_download_black_24dp</item>
+        <item name="ic_done">@drawable/ic_done_black_24dp</item>
+        <item name="ic_refresh">@drawable/ic_refresh_black_24dp</item>
+        <item name="ic_computer">@drawable/ic_computer_black_24dp</item>
+        <item name="ic_videogame_asset">@drawable/ic_videogame_asset_black_24dp</item>
+        <item name="ic_music_note">@drawable/ic_music_note_black_24dp</item>
+        <item name="ic_stars">@drawable/ic_stars_black_24dp</item>
+        <item name="ic_sports">@drawable/ic_directions_bike_black_24dp</item>
+        <item name="ic_money">@drawable/ic_attach_money_black_24dp</item>
+        <item name="ic_person">@drawable/ic_person_black_24dp</item>
+        <item name="ic_people">@drawable/ic_people_black_24dp</item>
+        <item name="ic_heart">@drawable/ic_favorite_black_24dp</item>
+        <item name="ic_child_care">@drawable/ic_child_care_black_24dp</item>
+        <item name="ic_fastfood">@drawable/ic_fastfood_black_24dp</item>
+        <item name="ic_car">@drawable/ic_directions_car_black_24dp</item>
+        <item name="ic_motorcycle">@drawable/ic_motorcycle_black_24dp</item>
+        <item name="ic_trending_up">@drawable/ic_trending_up_black_24dp</item>
+        <item name="ic_school">@drawable/ic_school_black_24dp</item>
+        <item name="ic_asterisk">@drawable/ic_asterisk_black_24dp</item>
+        <item name="ic_smile">@drawable/ic_insert_emoticon_black_24dp</item>
+        <item name="ic_edit">@drawable/ic_edit_black_24dp</item>
+        <item name="ic_explore">@drawable/ic_explore_black_24dp</item>
+        <item name="ic_fitness_center">@drawable/ic_fitness_center_black_24dp</item>
+        <item name="ic_restaurant">@drawable/ic_restaurant_black_24dp</item>
+        <item name="ic_mic">@drawable/ic_mic_black_24dp</item>
+        <item name="ic_radio">@drawable/ic_radio_black_24dp</item>
+        <item name="ic_shopping_cart">@drawable/ic_shopping_cart_black_24dp</item>
+        <item name="ic_watch_later">@drawable/ic_watch_later_black_24dp</item>
+        <item name="ic_work">@drawable/ic_work_black_24dp</item>
+        <item name="ic_movie">@drawable/ic_movie_black_24dp</item>
+        <item name="ic_pets">@drawable/ic_pets_black_24dp</item>
+        <item name="ic_world">@drawable/ic_public_black_24dp</item>
+        <item name="ic_sunny">@drawable/ic_wb_sunny_black_24dp</item>
+        <item name="ic_telescope">@drawable/ic_telescope_black_24dp</item>
+        <item name="ic_megaphone">@drawable/ic_megaphone_black_24dp</item>
+        <item name="ic_sort">@drawable/ic_sort_black_24dp</item>
+        <item name="ic_help">@drawable/ic_help_black_24dp</item>
+        <item name="ic_arrow_back">@drawable/ic_arrow_back_black_24dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
-        <item name="checked_selector_drawable">@drawable/light_checked_selector</item>
+        <item name="checked_selector">@drawable/selector_checked_light</item>
+        <item name="focused_selector">@drawable/selector_focused_light</item>
         <item name="queue_background_color">@color/light_queue_background_color</item>
-        <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_light</item>
-        <item name="selector_drawable">@drawable/light_selector</item>
+        <item name="toolbar_shadow">@drawable/toolbar_shadow_light</item>
+        <item name="selector">@drawable/selector_light</item>
         <item name="colorControlHighlight">@color/light_ripple_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_light</item>
+        <item name="card_item_background_color">@color/light_card_item_background_color</item>
+        <item name="card_item_contrast_color">@color/light_card_item_contrast_color</item>
+        <item name="border_color">@color/light_border_color</item>
+        <item name="dashed_border">@drawable/dashed_border_light</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-    </style>
-
-    <style name="LightTheme.Switchable">
-        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
     </style>
 
     <style name="Base.V7.DarkTheme" parent="Theme.AppCompat.NoActionBar" />
     <style name="Base.DarkTheme" parent="Base.V7.DarkTheme" />
     <style name="DarkTheme" parent="Base.DarkTheme">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
+        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
         <item name="colorAccent">@color/dark_youtube_accent_color</item>
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="windowBackground">@color/dark_background_color</item>
 
-        <item name="thumbs_up">@drawable/ic_thumb_up_white_24dp</item>
-        <item name="thumbs_down">@drawable/ic_thumb_down_white_24dp</item>
-        <item name="audio">@drawable/ic_headset_white_24dp</item>
-        <item name="info">@drawable/ic_info_outline_white_24dp</item>
-        <item name="bug">@drawable/ic_bug_report_white_24dp</item>
-        <item name="download">@drawable/ic_file_download_white_24dp</item>
-        <item name="share">@drawable/ic_share_white_24dp</item>
-        <item name="cast">@drawable/ic_cast_white_24dp</item>
-        <item name="rss">@drawable/ic_rss_feed_white_24dp</item>
-        <item name="search">@drawable/ic_search_white_24dp</item>
-        <item name="close">@drawable/ic_close_white_24dp</item>
-        <item name="filter">@drawable/ic_filter_list_white_24dp</item>
-        <item name="popup">@drawable/ic_picture_in_picture_white_24dp</item>
-        <item name="expand">@drawable/ic_expand_more_white_24dp</item>
-        <item name="collapse">@drawable/ic_expand_less_white_24dp</item>
-        <item name="volume_off">@drawable/ic_volume_off_white_24dp</item>
-        <item name="palette">@drawable/ic_palette_white_24dp</item>
-        <item name="language">@drawable/ic_language_white_24dp</item>
-        <item name="history">@drawable/ic_history_white_24dp</item>
-        <item name="drag_handle">@drawable/ic_drag_handle_white_24dp</item>
-        <item name="selected">@drawable/ic_fiber_manual_record_white_24dp</item>
-        <item name="search_add">@drawable/ic_arrow_top_left_white_24dp</item>
-        <item name="options">@drawable/ic_more_vert_white_24dp</item>
-        <item name="play">@drawable/ic_play_arrow_white_24dp</item>
-        <item name="settings">@drawable/ic_settings_white_24dp</item>
-        <item name="ic_hot">@drawable/ic_whatshot_white_24dp</item>
-        <item name="ic_kiosk_local">@drawable/ic_kiosk_local_white_24dp</item>
-        <item name="ic_kiosk_recent">@drawable/ic_kiosk_recent_white_24dp</item>
-        <item name="ic_channel">@drawable/ic_channel_white_24dp</item>
+        <item name="ic_thumb_up">@drawable/ic_thumb_up_white_24dp</item>
+        <item name="ic_thumb_down">@drawable/ic_thumb_down_white_24dp</item>
+        <item name="ic_headset">@drawable/ic_headset_white_24dp</item>
+        <item name="ic_info_outline">@drawable/ic_info_outline_white_24dp</item>
+        <item name="ic_bug_report">@drawable/ic_bug_report_white_24dp</item>
+        <item name="ic_file_download">@drawable/ic_file_download_white_24dp</item>
+        <item name="ic_share">@drawable/ic_share_white_24dp</item>
+        <item name="ic_cast">@drawable/ic_cast_white_24dp</item>
+        <item name="ic_rss">@drawable/ic_rss_feed_white_24dp</item>
+        <item name="ic_search">@drawable/ic_search_white_24dp</item>
+        <item name="ic_close">@drawable/ic_close_white_24dp</item>
+        <item name="ic_filter_list">@drawable/ic_filter_list_white_24dp</item>
+        <item name="ic_popup">@drawable/ic_picture_in_picture_white_24dp</item>
+        <item name="ic_expand_more">@drawable/ic_expand_more_white_24dp</item>
+        <item name="ic_expand_less">@drawable/ic_expand_less_white_24dp</item>
+        <item name="ic_volume_off">@drawable/ic_volume_off_white_24dp</item>
+        <item name="ic_volume_up">@drawable/ic_volume_up_white_24dp</item>
+        <item name="ic_palette">@drawable/ic_palette_white_24dp</item>
+        <item name="ic_language">@drawable/ic_language_white_24dp</item>
+        <item name="ic_history">@drawable/ic_history_white_24dp</item>
+        <item name="ic_drag_handle">@drawable/ic_drag_handle_white_24dp</item>
+        <item name="ic_search_add">@drawable/ic_search_add_white_24dp</item>
+        <item name="ic_options">@drawable/ic_more_vert_white_24dp</item>
+        <item name="ic_play_arrow">@drawable/ic_play_arrow_white_24dp</item>
+        <item name="ic_settings">@drawable/ic_settings_white_24dp</item>
+        <item name="ic_kiosk_hot">@drawable/ic_whatshot_white_24dp</item>
+        <item name="ic_kiosk_local">@drawable/ic_home_white_24dp</item>
+        <item name="ic_kiosk_recent">@drawable/ic_add_circle_outline_white_24dp</item>
+        <item name="ic_channel">@drawable/ic_tv_white_24dp</item>
         <item name="ic_bookmark">@drawable/ic_bookmark_white_24dp</item>
         <item name="ic_playlist_add">@drawable/ic_playlist_add_white_24dp</item>
         <item name="ic_playlist_check">@drawable/ic_playlist_add_check_white_24dp</item>
@@ -123,27 +161,65 @@
         <item name="ic_backup">@drawable/ic_backup_white_24dp</item>
         <item name="ic_add">@drawable/ic_add_white_24dp</item>
         <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_white_24dp</item>
-        <item name="ic_blank_page">@drawable/ic_blank_page_white_24dp</item>
+        <item name="ic_blank_page">@drawable/ic_crop_portrait_white_24dp</item>
         <item name="ic_list">@drawable/ic_list_white_24dp</item>
-        <item name="ic_grid">@drawable/ic_grid_white_24dp</item>
+        <item name="ic_grid">@drawable/ic_apps_white_24dp</item>
         <item name="ic_delete">@drawable/ic_delete_white_24dp</item>
-        <item name="pause">@drawable/ic_pause_white_24dp</item>
-        <item name="ic_settings_update">@drawable/ic_settings_update_white</item>
+        <item name="ic_pause">@drawable/ic_pause_white_24dp</item>
+        <item name="ic_settings_update">@drawable/ic_cloud_download_white_24dp</item>
+        <item name="ic_done">@drawable/ic_done_white_24dp</item>
+        <item name="ic_refresh">@drawable/ic_refresh_white_24dp</item>
+        <item name="ic_computer">@drawable/ic_computer_white_24dp</item>
+        <item name="ic_videogame_asset">@drawable/ic_videogame_asset_white_24dp</item>
+        <item name="ic_music_note">@drawable/ic_music_note_white_24dp</item>
+        <item name="ic_stars">@drawable/ic_stars_white_24dp</item>
+        <item name="ic_sports">@drawable/ic_directions_bike_white_24dp</item>
+        <item name="ic_money">@drawable/ic_attach_money_white_24dp</item>
+        <item name="ic_person">@drawable/ic_person_white_24dp</item>
+        <item name="ic_people">@drawable/ic_people_white_24dp</item>
+        <item name="ic_heart">@drawable/ic_favorite_white_24dp</item>
+        <item name="ic_child_care">@drawable/ic_child_care_white_24dp</item>
+        <item name="ic_fastfood">@drawable/ic_fastfood_white_24dp</item>
+        <item name="ic_car">@drawable/ic_directions_car_white_24dp</item>
+        <item name="ic_motorcycle">@drawable/ic_motorcycle_white_24dp</item>
+        <item name="ic_trending_up">@drawable/ic_trending_up_white_24dp</item>
+        <item name="ic_school">@drawable/ic_school_white_24dp</item>
+        <item name="ic_asterisk">@drawable/ic_asterisk_white_24dp</item>
+        <item name="ic_smile">@drawable/ic_insert_emoticon_white_24dp</item>
+        <item name="ic_edit">@drawable/ic_edit_white_24dp</item>
+        <item name="ic_explore">@drawable/ic_explore_white_24dp</item>
+        <item name="ic_fitness_center">@drawable/ic_fitness_center_white_24dp</item>
+        <item name="ic_restaurant">@drawable/ic_restaurant_white_24dp</item>
+        <item name="ic_mic">@drawable/ic_mic_white_24dp</item>
+        <item name="ic_radio">@drawable/ic_radio_white_24dp</item>
+        <item name="ic_shopping_cart">@drawable/ic_shopping_cart_white_24dp</item>
+        <item name="ic_watch_later">@drawable/ic_watch_later_white_24dp</item>
+        <item name="ic_work">@drawable/ic_work_white_24dp</item>
+        <item name="ic_movie">@drawable/ic_movie_white_24dp</item>
+        <item name="ic_pets">@drawable/ic_pets_white_24dp</item>
+        <item name="ic_world">@drawable/ic_public_white_24dp</item>
+        <item name="ic_sunny">@drawable/ic_wb_sunny_white_24dp</item>
+        <item name="ic_telescope">@drawable/ic_telescope_white_24dp</item>
+        <item name="ic_megaphone">@drawable/ic_megaphone_white_24dp</item>
+        <item name="ic_sort">@drawable/ic_sort_white_24dp</item>
+        <item name="ic_help">@drawable/ic_help_white_24dp</item>
+        <item name="ic_arrow_back">@drawable/ic_arrow_back_white_24dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
-        <item name="checked_selector_drawable">@drawable/dark_checked_selector</item>
+        <item name="checked_selector">@drawable/selector_checked_dark</item>
+        <item name="focused_selector">@drawable/selector_focused_dark</item>
         <item name="queue_background_color">@color/dark_queue_background_color</item>
-        <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_dark</item>
-        <item name="selector_drawable">@drawable/dark_selector</item>
+        <item name="toolbar_shadow">@drawable/toolbar_shadow_dark</item>
+        <item name="selector">@drawable/selector_dark</item>
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_dark</item>
+        <item name="card_item_background_color">@color/dark_card_item_background_color</item>
+        <item name="card_item_contrast_color">@color/dark_card_item_contrast_color</item>
+        <item name="border_color">@color/dark_border_color</item>
+        <item name="dashed_border">@drawable/dashed_border_dark</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-    </style>
-
-    <style name="DarkTheme.Switchable">
-        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
     </style>
 
     <style name="Base.V7.BlackTheme" parent="DarkTheme"/>
@@ -154,16 +230,17 @@
 
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
-    </style>
 
-    <style name="BlackTheme.Switchable">
-        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
+        <item name="card_item_background_color">@color/black_card_item_background_color</item>
+        <item name="card_item_contrast_color">@color/black_card_item_contrast_color</item>
+        <item name="border_color">@color/black_border_color</item>
+        <item name="dashed_border">@drawable/dashed_border_black</item>
     </style>
 
     <!-- Dialogs -->
     <style name="LightDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
+        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowBackground">@color/light_dialog_background_color</item>
         <item name="windowBackground">@color/light_dialog_background_color</item>
@@ -171,7 +248,23 @@
 
     <style name="DarkDialogTheme" parent="Theme.AppCompat.Dialog">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
+        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
+        <item name="colorAccent">@color/dark_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/dark_dialog_background_color</item>
+        <item name="windowBackground">@color/dark_dialog_background_color</item>
+    </style>
+
+    <style name="LightDialogMinWidthTheme" parent="Theme.AppCompat.Light.Dialog.MinWidth">
+        <item name="colorPrimary">@color/light_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
+        <item name="colorAccent">@color/light_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/light_dialog_background_color</item>
+        <item name="windowBackground">@color/light_dialog_background_color</item>
+    </style>
+
+    <style name="DarkDialogMinWidthTheme" parent="Theme.AppCompat.Dialog.MinWidth">
+        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
         <item name="colorAccent">@color/dark_youtube_accent_color</item>
         <item name="android:windowBackground">@color/dark_dialog_background_color</item>
         <item name="windowBackground">@color/dark_dialog_background_color</item>
@@ -190,18 +283,13 @@
         <item name="colorAccent">@color/black_settings_accent_color</item>
     </style>
 
-    <style name="SwitchAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:windowEnterAnimation">@anim/switch_service_in</item>
-        <item name="android:windowExitAnimation">@anim/switch_service_out</item>
-    </style>
-
     <style name="Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">18sp</item>
     </style>
 
     <style name="OldVideoPlayerTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
+        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowActionBarOverlay">true</item>
@@ -242,7 +330,5 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
-    <style name="NavViewTextStyle">
-        <item name="android:ellipsize">end</item>
-    </style>
+    <style name="VideoPlayerTheme" />
 </resources>

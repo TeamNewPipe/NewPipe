@@ -55,7 +55,6 @@
 
             <TextView
                 android:id="@+id/song_name"
-                style="@android:style/TextAppearance.StatusBar.EventContent.Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
@@ -63,14 +62,13 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="14sp"
-                android:textColor="?attr/colorAccent"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."
                 />
 
             <TextView
                 android:id="@+id/artist_name"
-                style="@android:style/TextAppearance.StatusBar.EventContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
@@ -78,6 +76,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="12sp"
                 tools:text="Duis posuere arcu condimentum lobortis mattis."/>
         </LinearLayout>
@@ -110,7 +109,7 @@
         android:orientation="horizontal"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:background="@drawable/player_controls_bg">
+        android:background="@drawable/player_controls_background">
 
         <TextView
             android:id="@+id/current_time"
@@ -154,10 +153,9 @@
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:gravity="center"
-            android:text="@string/duration_live_button"
+            android:text="@string/duration_live"
             android:textAllCaps="true"
             android:textColor="?attr/colorAccent"
-            android:maxLength="4"
             android:background="?attr/selectableItemBackground"
             android:visibility="gone"/>
     </LinearLayout>
@@ -169,22 +167,6 @@
         android:layout_above="@+id/progress_bar"
         android:orientation="horizontal"
         tools:ignore="RtlHardcoded">
-
-        <TextView
-            android:id="@+id/control_playback_speed"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/control_repeat"
-            android:gravity="center"
-            android:minWidth="50dp"
-            android:text="1x"
-            android:textColor="?attr/colorAccent"
-            android:textStyle="bold"
-            android:background="?attr/selectableItemBackground"
-            tools:ignore="HardcodedText,RtlHardcoded"/>
 
         <ImageButton
             android:id="@+id/control_repeat"
@@ -199,7 +181,7 @@
             android:focusable="true"
             android:scaleType="fitXY"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/ic_repeat_white"
+            app:srcCompat="@drawable/ic_repeat_white_24dp"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -208,7 +190,7 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:layout_toLeftOf="@+id/control_play_pause"
+            android:layout_toLeftOf="@+id/control_fast_rewind"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
@@ -216,6 +198,20 @@
             android:tint="?attr/colorAccent"
             android:src="@drawable/exo_controls_previous"
             tools:ignore="ContentDescription"/>
+
+        <ImageButton
+            android:id="@+id/control_fast_rewind"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@id/control_play_pause"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+            android:tint="?attr/colorAccent"
+            android:src="@drawable/exo_controls_rewind"/>
 
         <ImageButton
             android:id="@+id/control_play_pause"
@@ -230,7 +226,7 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/ic_pause_white"
+            app:srcCompat="@drawable/ic_pause_white_24dp"
             tools:ignore="ContentDescription"/>
 
         <ProgressBar
@@ -252,13 +248,28 @@
             android:visibility="invisible"
             tools:visibility="visible"/>
 
+
+        <ImageButton
+            android:id="@+id/control_fast_forward"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/control_play_pause"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+            android:tint="?attr/colorAccent"
+            android:src="@drawable/exo_controls_fastforward"/>
+
         <ImageButton
             android:id="@+id/control_forward"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@+id/control_play_pause"
+            android:layout_toRightOf="@+id/control_fast_forward"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
@@ -280,24 +291,9 @@
             android:focusable="true"
             android:scaleType="fitXY"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/ic_shuffle_white_24dp"
+            app:srcCompat="@drawable/ic_shuffle_white_24dp"
             tools:ignore="ContentDescription"/>
 
-        <TextView
-            android:id="@+id/control_playback_pitch"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/control_shuffle"
-            android:gravity="center"
-            android:minWidth="50dp"
-            android:text="100%"
-            android:textColor="?attr/colorAccent"
-            android:textStyle="bold"
-            android:background="?attr/selectableItemBackground"
-            tools:ignore="HardcodedText,RtlHardcoded"/>
     </RelativeLayout>
 
 </RelativeLayout>

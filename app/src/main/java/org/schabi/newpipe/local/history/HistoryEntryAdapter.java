@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.history;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,19 +15,19 @@ import java.util.Date;
 
 
 /**
- * Adapter for history entries
- * @param <E> the type of the entries
+ * This is an adapter for history entries.
+ *
+ * @param <E>  the type of the entries
  * @param <VH> the type of the view holder
  */
-public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
-
+public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
+        extends RecyclerView.Adapter<VH> {
     private final ArrayList<E> mEntries;
     private final DateFormat mDateFormat;
     private final Context mContext;
     private OnHistoryItemClickListener<E> onHistoryItemClickListener = null;
 
-
-    public HistoryEntryAdapter(Context context) {
+    public HistoryEntryAdapter(final Context context) {
         super();
         mContext = context;
         mEntries = new ArrayList<>();
@@ -34,7 +35,7 @@ public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
                 Localization.getPreferredLocale(context));
     }
 
-    public void setEntries(@NonNull Collection<E> historyEntries) {
+    public void setEntries(@NonNull final Collection<E> historyEntries) {
         mEntries.clear();
         mEntries.addAll(historyEntries);
         notifyDataSetChanged();
@@ -49,7 +50,7 @@ public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
         notifyDataSetChanged();
     }
 
-    protected String getFormattedDate(Date date) {
+    protected String getFormattedDate(final Date date) {
         return mDateFormat.format(date);
     }
 
@@ -63,10 +64,10 @@ public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(VH holder, int position) {
+    public void onBindViewHolder(final VH holder, final int position) {
         final E entry = mEntries.get(position);
         holder.itemView.setOnClickListener(v -> {
-            if(onHistoryItemClickListener != null) {
+            if (onHistoryItemClickListener != null) {
                 onHistoryItemClickListener.onHistoryItemClick(entry);
             }
         });
@@ -83,14 +84,15 @@ public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
     }
 
     @Override
-    public void onViewRecycled(VH holder) {
+    public void onViewRecycled(final VH holder) {
         super.onViewRecycled(holder);
         holder.itemView.setOnClickListener(null);
     }
 
     abstract void onBindViewHolder(VH holder, E entry, int position);
 
-    public void setOnHistoryItemClickListener(@Nullable OnHistoryItemClickListener<E> onHistoryItemClickListener) {
+    public void setOnHistoryItemClickListener(
+            @Nullable final OnHistoryItemClickListener<E> onHistoryItemClickListener) {
         this.onHistoryItemClickListener = onHistoryItemClickListener;
     }
 
@@ -100,6 +102,7 @@ public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
 
     public interface OnHistoryItemClickListener<E> {
         void onHistoryItemClick(E item);
+
         void onHistoryItemLongClick(E item);
     }
 }

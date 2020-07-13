@@ -139,6 +139,9 @@ public class DownloadManager {
             Log.d(TAG, "Loading pending downloads from directory: " + mPendingMissionsDir.getAbsolutePath());
         }
 
+        File tempDir = pickAvailableTemporalDir(ctx);
+        Log.i(TAG, "using '" + tempDir + "' as temporal directory");
+
         for (File sub : subs) {
             if (!sub.isFile()) continue;
             if (sub.getName().equals(".tmp")) continue;
@@ -184,7 +187,7 @@ public class DownloadManager {
 
             if (mis.psAlgorithm != null) {
                 mis.psAlgorithm.cleanupTemporalDir();
-                mis.psAlgorithm.setTemporalDir(pickAvailableTemporalDir(ctx));
+                mis.psAlgorithm.setTemporalDir(tempDir);
             }
 
             mis.metadata = sub;
@@ -513,13 +516,21 @@ public class DownloadManager {
     }
 
     static File pickAvailableTemporalDir(@NonNull Context ctx) {
-        if (isDirectoryAvailable(ctx.getExternalFilesDir(null)))
-            return ctx.getExternalFilesDir(null);
-        else if (isDirectoryAvailable(ctx.getFilesDir()))
-            return ctx.getFilesDir();
+        File dir = ctx.getExternalFilesDir(null);
+        if (isDirectoryAvailable(dir)) return dir;
+
+        dir = ctx.getFilesDir();
+        if (isDirectoryAvailable(dir)) return dir;
 
         // this never should happen
-        return ctx.getDir("tmp", Context.MODE_PRIVATE);
+        dir = ctx.getDir("muxing_tmp", Context.MODE_PRIVATE);
+        if (isDirectoryAvailable(dir)) return dir;
+
+        // fallback to cache dir
+        dir = ctx.getCacheDir();
+        if (isDirectoryAvailable(dir)) return dir;
+
+        throw new RuntimeException("Not temporal directories are available");
     }
 
     @Nullable
