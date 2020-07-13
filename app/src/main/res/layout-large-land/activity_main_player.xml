@@ -42,7 +42,6 @@
         android:id="@+id/playQueuePanel"
         android:layout_width="380dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_height="match_parent"
         android:visibility="gone"
         android:background="?attr/queue_background_color"
@@ -58,9 +57,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="40dp"
                 android:layout_marginEnd="40dp"
                 android:padding="10dp"
                 android:clickable="true"
@@ -88,7 +85,6 @@
                 android:src="@drawable/exo_controls_repeat_off"
                 android:background="?android:selectableItemBackground"
                 tools:ignore="ContentDescription,RtlHardcoded"/>
-
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/shuffleButton"
                 android:layout_width="50dp"
@@ -150,7 +146,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:orientation="vertical"
-                android:minHeight="80dp"
                 android:gravity="top"
                 android:paddingTop="@dimen/player_main_top_padding"
                 android:paddingStart="@dimen/player_main_controls_padding"
@@ -161,7 +156,7 @@
                 android:id="@+id/primaryControls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="50dp"
+                android:minHeight="45dp"
                 android:baselineAligned="false"
                 android:gravity="top"
                 tools:ignore="RtlHardcoded">
@@ -223,9 +218,10 @@
                 <Button
                     android:id="@+id/qualityTextView"
                     style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="35dp"
-                    android:padding="@dimen/player_main_buttons_padding"
+                    android:paddingTop="@dimen/player_main_buttons_padding"
+                    android:paddingBottom="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
                     android:text="720p"
@@ -237,8 +233,8 @@
                 <Button
                     android:id="@+id/playbackSpeed"
                     style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="45dp"
+                    android:layout_height="35dp"
                     android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
@@ -251,7 +247,7 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/queueButton"
-                    android:layout_width="30dp"
+                    android:layout_width="45dp"
                     android:layout_height="35dp"
                     android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"

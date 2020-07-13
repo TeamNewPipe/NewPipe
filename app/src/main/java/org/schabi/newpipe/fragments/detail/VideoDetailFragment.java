@@ -470,11 +470,6 @@ public class VideoDetailFragment
     @Override
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        // Check if the next video label and video is visible,
-        // if it is, include the two elements in the next check
-        int nextCount = currentInfo != null && currentInfo.getNextVideo() != null ? 2 : 0;
-
         if (!isLoading.get() && currentInfo != null && isVisible()) {
             outState.putSerializable(INFO_KEY, currentInfo);
         }
@@ -947,12 +942,12 @@ public class VideoDetailFragment
                             getString(R.string.show_age_restricted_content), false)) {
                         hideAgeRestrictedContent();
                     } else {
-                        currentInfo = result;
                         handleResult(result);
                         showContent();
                         if (addToBackStack) {
                             if (playQueue == null) playQueue = new SinglePlayQueue(result);
-                            stack.push(new StackItem(serviceId, url, name, playQueue));
+                            if (stack.isEmpty() || !stack.peek().getPlayQueue().equals(playQueue))
+                                stack.push(new StackItem(serviceId, url, name, playQueue));
                         }
                         if (isAutoplayEnabled()) openVideoPlayer();
                     }

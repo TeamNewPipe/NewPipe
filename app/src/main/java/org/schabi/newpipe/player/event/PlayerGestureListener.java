@@ -175,7 +175,11 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
         isMovingInMain = true;
 
-        if (isVolumeGestureEnabled && initialEvent.getX() > playerImpl.getRootView().getWidth() / 2.0) {
+        boolean acceptAnyArea = isVolumeGestureEnabled != isBrightnessGestureEnabled;
+        boolean acceptVolumeArea = acceptAnyArea
+                || initialEvent.getX() > playerImpl.getRootView().getWidth() / 2.0;
+
+        if (isVolumeGestureEnabled && acceptVolumeArea) {
             playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);
             final float currentProgressPercent =
                     (float) playerImpl.getVolumeProgressBar().getProgress() / playerImpl.getMaxGestureLength();
@@ -197,7 +201,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
                 playerImpl.getBrightnessRelativeLayout().setVisibility(View.GONE);
             }
-        } else if (isBrightnessGestureEnabled && initialEvent.getX() <= playerImpl.getRootView().getWidth() / 2.0) {
+        } else {
             final Activity parent = playerImpl.getParentActivity();
             if (parent == null) return true;
 

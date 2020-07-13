@@ -351,6 +351,7 @@ public class VideoPlayerImpl extends VideoPlayer
             titleTextView.setVisibility(View.VISIBLE);
             channelTextView.setVisibility(View.VISIBLE);
         }
+        setMuteButton(muteButton, isMuted());
 
         animateRotation(moreOptionsButton, DEFAULT_CONTROLS_DURATION, 0);
     }
@@ -960,12 +961,12 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onBlocked() {
         super.onBlocked();
-        playPauseButton.setImageResource(R.drawable.exo_controls_play);
+        playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
         animatePlayButtons(false, 100);
         getRootView().setKeepScreenOn(false);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.exo_controls_play);
+        service.updateNotification(R.drawable.ic_play_arrow_white_24dp);
     }
 
     @Override
@@ -974,14 +975,14 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(true);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.exo_controls_play);
+        service.updateNotification(R.drawable.ic_play_arrow_white_24dp);
     }
 
     @Override
     public void onPlaying() {
         super.onPlaying();
         animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
-            playPauseButton.setImageResource(R.drawable.exo_controls_pause);
+            playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
             animatePlayButtons(true, 200);
             playPauseButton.requestFocus();
         });
@@ -991,7 +992,7 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(true);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.exo_controls_pause);
+        service.updateNotification(R.drawable.ic_pause_white_24dp);
 
         service.startForeground(NOTIFICATION_ID, service.getNotBuilder().build());
     }
@@ -1000,7 +1001,7 @@ public class VideoPlayerImpl extends VideoPlayer
     public void onPaused() {
         super.onPaused();
         animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
-            playPauseButton.setImageResource(R.drawable.exo_controls_play);
+            playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
             animatePlayButtons(true, 200);
             playPauseButton.requestFocus();
         });
@@ -1008,7 +1009,7 @@ public class VideoPlayerImpl extends VideoPlayer
         updateWindowFlags(IDLE_WINDOW_FLAGS);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.exo_controls_play);
+        service.updateNotification(R.drawable.ic_play_arrow_white_24dp);
 
         // Remove running notification when user don't want music (or video in popup) to be played in background
         if (!minimizeOnPopupEnabled() && !backgroundPlaybackEnabled() && videoPlayerSelected())
@@ -1024,7 +1025,7 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(true);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.exo_controls_play);
+        service.updateNotification(R.drawable.ic_play_arrow_white_24dp);
     }
 
 
