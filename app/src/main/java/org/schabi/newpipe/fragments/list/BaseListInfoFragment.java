@@ -158,11 +158,10 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally(this::allowDownwardFocusScroll)
-                .subscribe((@io.reactivex.annotations.NonNull
-                                    ListExtractor.InfoItemsPage InfoItemsPage) -> {
+                .subscribe((@NonNull ListExtractor.InfoItemsPage InfoItemsPage) -> {
                     isLoading.set(false);
                     handleNextItems(InfoItemsPage);
-                }, (@io.reactivex.annotations.NonNull Throwable throwable) -> {
+                }, (@NonNull Throwable throwable) -> {
                     isLoading.set(false);
                     onError(throwable);
                 });
