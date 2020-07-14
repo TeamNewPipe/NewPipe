@@ -11,7 +11,6 @@ import android.widget.OverScroller;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import org.jetbrains.annotations.NotNull;
 import org.schabi.newpipe.R;
 
 import java.lang.reflect.Field;
@@ -85,9 +84,9 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     }
 
     @Override
-    public boolean onStartNestedScroll(@NotNull final CoordinatorLayout parent,
-                                       @NotNull final AppBarLayout child,
-                                       @NotNull final View directTargetChild,
+    public boolean onStartNestedScroll(@NonNull final CoordinatorLayout parent,
+                                       @NonNull final AppBarLayout child,
+                                       @NonNull final View directTargetChild,
                                        final View target,
                                        final int nestedScrollAxes,
                                        final int type) {
@@ -96,9 +95,9 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     }
 
     @Override
-    public boolean onNestedFling(@NotNull final CoordinatorLayout coordinatorLayout,
-                                 @NotNull final AppBarLayout child,
-                                 @NotNull final View target, final float velocityX,
+    public boolean onNestedFling(@NonNull final CoordinatorLayout coordinatorLayout,
+                                 @NonNull final AppBarLayout child,
+                                 @NonNull final View target, final float velocityX,
                                  final float velocityY, final boolean consumed) {
         return allowScroll && super.onNestedFling(
                 coordinatorLayout, child, target, velocityX, velocityY, consumed);
