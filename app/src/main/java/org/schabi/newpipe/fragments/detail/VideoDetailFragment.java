@@ -2245,14 +2245,16 @@ public class VideoDetailFragment
     private void setOverlayLook(final AppBarLayout appBar,
                                 final AppBarLayout.Behavior behavior,
                                 final float slideOffset) {
-        if (behavior != null) {
-            overlay.setAlpha(Math.min(MAX_OVERLAY_ALPHA, 1 - slideOffset));
-
-            // These numbers are not special. They just do a cool transition
-            behavior.setTopAndBottomOffset(
-                    (int) (-thumbnailImageView.getHeight() * 2 * (1 - slideOffset) / 3));
-            appBar.requestLayout();
+        // SlideOffset < 0 when mini player is about to close via swipe.
+        // Stop animation in this case
+        if (behavior == null || slideOffset < 0) {
+            return;
         }
+        overlay.setAlpha(Math.min(MAX_OVERLAY_ALPHA, 1 - slideOffset));
+        // These numbers are not special. They just do a cool transition
+        behavior.setTopAndBottomOffset(
+                (int) (-thumbnailImageView.getHeight() * 2 * (1 - slideOffset) / 3));
+        appBar.requestLayout();
     }
 
     private void setOverlayElementsClickable(final boolean enable) {

@@ -106,7 +106,7 @@ import java.util.List;
 
 import static android.content.Context.WINDOW_SERVICE;
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
-import static org.schabi.newpipe.player.BackgroundPlayer.ACTION_CLOSE;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_OPEN_CONTROLS;
@@ -376,12 +376,7 @@ public class VideoPlayerImpl extends VideoPlayer
             moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
                     R.drawable.ic_expand_more_white_24dp));
             shareButton.setVisibility(View.VISIBLE);
-            final boolean supportedByKore = playQueue != null
-                    && playQueue.getItem() != null
-                    && KoreUtil.isServiceSupportedByKore(playQueue.getItem().getServiceId());
-            final boolean kodiEnabled = defaultPreferences.getBoolean(
-                    service.getString(R.string.show_play_with_kodi_key), false);
-            playWithKodi.setVisibility(kodiEnabled && supportedByKore ? View.VISIBLE : View.GONE);
+            showHideKodiButton();
             openInBrowser.setVisibility(View.VISIBLE);
             muteButton.setVisibility(View.VISIBLE);
             playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
@@ -418,11 +413,8 @@ public class VideoPlayerImpl extends VideoPlayer
                     buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
             getPlaybackSpeedTextView().setPadding(
                     buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getQualityTextView().setPadding(
-                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
             getCaptionTextView().setPadding(
                     buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getQualityTextView().setMinimumWidth(0);
             getPlaybackSpeedTextView().setMinimumWidth(0);
         } else if (videoPlayerSelected()) {
             final int buttonsMinWidth = service.getResources()
@@ -440,7 +432,6 @@ public class VideoPlayerImpl extends VideoPlayer
                     buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
             getPlaybackSpeedTextView().setPadding(
                     buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getQualityTextView().setMinimumWidth(buttonsMinWidth);
             getPlaybackSpeedTextView().setMinimumWidth(buttonsMinWidth);
             getCaptionTextView().setPadding(
                     buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
@@ -615,12 +606,7 @@ public class VideoPlayerImpl extends VideoPlayer
     protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
         super.onMetadataChanged(tag);
 
-        // show kodi button if it supports the current service and it is enabled in settings
-        final boolean showKodiButton =
-                KoreUtil.isServiceSupportedByKore(tag.getMetadata().getServiceId())
-                        && PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
-        playWithKodi.setVisibility(showKodiButton ? View.VISIBLE : View.GONE);
+        showHideKodiButton();
 
         titleTextView.setText(tag.getMetadata().getName());
         channelTextView.setText(tag.getMetadata().getUploaderName());
@@ -918,6 +904,18 @@ public class VideoPlayerImpl extends VideoPlayer
 
         ShareUtils.openUrlInBrowser(getParentActivity(),
                 getCurrentMetadata().getMetadata().getOriginalUrl());
+    }
+
+    private void showHideKodiButton() {
+        final boolean kodiEnabled = defaultPreferences.getBoolean(
+                service.getString(R.string.show_play_with_kodi_key), false);
+        // show kodi button if it supports the current service and it is enabled in settings
+        final boolean showKodiButton = playQueue != null && playQueue.getItem() != null
+                && KoreUtil.isServiceSupportedByKore(playQueue.getItem().getServiceId())
+                        && PreferenceManager.getDefaultSharedPreferences(context)
+                        .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+        playWithKodi.setVisibility(videoPlayerSelected() && kodiEnabled && showKodiButton
+                ? View.VISIBLE : View.GONE);
     }
 
     private static void showInstallKoreDialog(final Context context) {

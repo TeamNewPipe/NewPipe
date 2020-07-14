@@ -223,6 +223,7 @@
                     android:id="@+id/qualityTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
+                    android:minWidth="0dp"
                     android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
