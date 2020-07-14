@@ -8,8 +8,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 
-import static org.schabi.newpipe.player.BackgroundPlayer.ACTION_CLOSE;
-
 public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
     private static final String TAG = "BackgroundPlayerActivity";
@@ -58,13 +56,15 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
             }
 
             this.player.setRecovery();
-            NavigationHelper.playOnPopupPlayer(getApplicationContext(), player.playQueue, this.player.isPlaying());
+            NavigationHelper.playOnPopupPlayer(
+                    getApplicationContext(), player.playQueue, this.player.isPlaying());
             return true;
         }
 
         if (item.getItemId() == R.id.action_switch_background) {
             this.player.setRecovery();
-            NavigationHelper.playOnBackgroundPlayer(getApplicationContext(), player.playQueue, this.player.isPlaying());
+            NavigationHelper.playOnBackgroundPlayer(
+                    getApplicationContext(), player.playQueue, this.player.isPlaying());
             return true;
         }
 
@@ -72,10 +72,14 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
     }
 
     @Override
-    public void setupMenu(Menu menu) {
-        if(player == null) return;
+    public void setupMenu(final Menu menu) {
+        if (player == null) {
+            return;
+        }
 
-        menu.findItem(R.id.action_switch_popup).setVisible(!((VideoPlayerImpl)player).popupPlayerSelected());
-        menu.findItem(R.id.action_switch_background).setVisible(!((VideoPlayerImpl)player).audioPlayerSelected());
+        menu.findItem(R.id.action_switch_popup)
+                .setVisible(!((VideoPlayerImpl) player).popupPlayerSelected());
+        menu.findItem(R.id.action_switch_background)
+                .setVisible(!((VideoPlayerImpl) player).audioPlayerSelected());
     }
 }

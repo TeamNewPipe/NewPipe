@@ -162,9 +162,9 @@ public abstract class BasePlayer implements
     protected static final int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
     protected static final int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
 
-    public final static int PLAYER_TYPE_VIDEO = 0;
-    public final static int PLAYER_TYPE_AUDIO = 1;
-    public final static int PLAYER_TYPE_POPUP = 2;
+    public static final int PLAYER_TYPE_VIDEO = 0;
+    public static final int PLAYER_TYPE_AUDIO = 1;
+    public static final int PLAYER_TYPE_POPUP = 2;
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected AudioReactor audioReactor;
@@ -257,7 +257,8 @@ public abstract class BasePlayer implements
         registerBroadcastReceiver();
     }
 
-    public void initListeners() { }
+    public void initListeners() {
+    }
 
     public void handleIntent(final Intent intent) {
         if (DEBUG) {
@@ -302,13 +303,13 @@ public abstract class BasePlayer implements
                 .getBooleanExtra(IS_MUTED, simpleExoPlayer != null && isMuted());
 
         /*
-        * There are 3 situations when playback shouldn't be started from scratch (zero timestamp):
-        * 1. User pressed on a timestamp link and the same video should be rewound to that timestamp
-        * 2. User changed a player from, for example. main to popup, or from audio to main, etc
-        * 3. User chose to resume a video based on a saved timestamp from history of played videos
-        * In those cases time will be saved because re-init of the play queue is a not an instant task
-        * and requires network calls
-        * */
+         * There are 3 situations when playback shouldn't be started from scratch (zero timestamp):
+         * 1. User pressed on a timestamp link and the same video should be rewound to the timestamp
+         * 2. User changed a player from, for example. main to popup, or from audio to main, etc
+         * 3. User chose to resume a video based on a saved timestamp from history of played videos
+         * In those cases time will be saved because re-init of the play queue is a not an instant
+         *  task and requires network calls
+         * */
         // seek to timestamp if stream is already playing
         if (simpleExoPlayer != null
                 && queue.size() == 1
@@ -317,15 +318,21 @@ public abstract class BasePlayer implements
                 && playQueue.getItem() != null
                 && queue.getItem().getUrl().equals(playQueue.getItem().getUrl())
                 && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
-            // Player can have state = IDLE when playback is stopped or failed and we should retry() in this case
-            if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) simpleExoPlayer.retry();
+            // Player can have state = IDLE when playback is stopped or failed
+            // and we should retry() in this case
+            if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) {
+                simpleExoPlayer.retry();
+            }
             simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
             return;
 
         } else if (samePlayQueue && !playQueue.isDisposed() && simpleExoPlayer != null) {
             // Do not re-init the same PlayQueue. Save time
-            // Player can have state = IDLE when playback is stopped or failed and we should retry() in this case
-            if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) simpleExoPlayer.retry();
+            // Player can have state = IDLE when playback is stopped or failed
+            // and we should retry() in this case
+            if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) {
+                simpleExoPlayer.retry();
+            }
             return;
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
                 && isPlaybackResumeEnabled()
@@ -334,21 +341,27 @@ public abstract class BasePlayer implements
             if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
                 stateLoader = recordManager.loadStreamState(item)
                         .observeOn(AndroidSchedulers.mainThread())
-                        // Do not place initPlayback() in doFinally() because it restarts playback after destroy()
+                        // Do not place initPlayback() in doFinally() because
+                        // it restarts playback after destroy()
                         //.doFinally()
                         .subscribe(
                                 state -> {
                                     queue.setRecovery(queue.getIndex(), state.getProgressTime());
-                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, true, isMuted);
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
+                                            playbackSkipSilence, true, isMuted);
                                 },
                                 error -> {
-                                    if (DEBUG) error.printStackTrace();
+                                    if (DEBUG) {
+                                        error.printStackTrace();
+                                    }
                                     // In case any error we can start playback without history
-                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, true, isMuted);
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
+                                            playbackSkipSilence, true, isMuted);
                                 },
                                 () -> {
                                     // Completed but not found in history
-                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, true, isMuted);
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
+                                            playbackSkipSilence, true, isMuted);
                                 }
                         );
                 databaseUpdateReactor.add(stateLoader);
@@ -357,8 +370,10 @@ public abstract class BasePlayer implements
         }
         // Good to go...
         // In a case of equal PlayQueues we can re-init old one but only when it is disposed
-        initPlayback(samePlayQueue ? playQueue : queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
-                !intent.getBooleanExtra(START_PAUSED, false), isMuted);
+        initPlayback(samePlayQueue ? playQueue : queue, repeatMode,
+                playbackSpeed, playbackPitch, playbackSkipSilence,
+                !intent.getBooleanExtra(START_PAUSED, false),
+                isMuted);
     }
 
     private PlaybackParameters retrievePlaybackParametersFromPreferences() {
@@ -596,7 +611,8 @@ public abstract class BasePlayer implements
         }
     }
 
-    public void onPausedSeek() { }
+    public void onPausedSeek() {
+    }
 
     public void onCompleted() {
         if (DEBUG) {
@@ -1514,8 +1530,9 @@ public abstract class BasePlayer implements
     /**
      * Sets the playback parameters of the player, and also saves them to shared preferences.
      * Speed and pitch are rounded up to 2 decimal places before being used or saved.
-     * @param speed the playback speed, will be rounded to up to 2 decimal places
-     * @param pitch the playback pitch, will be rounded to up to 2 decimal places
+     *
+     * @param speed       the playback speed, will be rounded to up to 2 decimal places
+     * @param pitch       the playback pitch, will be rounded to up to 2 decimal places
      * @param skipSilence skip silence during playback
      */
     public void setPlaybackParameters(final float speed, final float pitch,
@@ -1531,11 +1548,11 @@ public abstract class BasePlayer implements
     private void savePlaybackParametersToPreferences(final float speed, final float pitch,
                                                      final boolean skipSilence) {
         PreferenceManager.getDefaultSharedPreferences(context)
-            .edit()
-            .putFloat(context.getString(R.string.playback_speed_key), speed)
-            .putFloat(context.getString(R.string.playback_pitch_key), pitch)
-            .putBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence)
-            .apply();
+                .edit()
+                .putFloat(context.getString(R.string.playback_speed_key), speed)
+                .putFloat(context.getString(R.string.playback_pitch_key), pitch)
+                .putBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence)
+                .apply();
     }
 
     public PlayQueue getPlayQueue() {

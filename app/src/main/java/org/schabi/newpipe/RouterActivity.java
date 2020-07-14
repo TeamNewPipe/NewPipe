@@ -39,7 +39,6 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
@@ -727,7 +726,7 @@ public class RouterActivity extends AppCompatActivity {
             };
         }
 
-        private void openMainPlayer(PlayQueue playQueue, Choice choice) {
+        private void openMainPlayer(final PlayQueue playQueue, final Choice choice) {
             NavigationHelper.playOnMainPlayer(this, playQueue, choice.linkType,
                     choice.url, "", true, true);
         }

@@ -584,7 +584,7 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void initViews(View rootView) {
+        public void initViews(final View rootView) {
             super.initViews(rootView);
             resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
             fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
@@ -612,6 +612,7 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
+        @SuppressWarnings("checkstyle:ParameterNumber")
         public void onLayoutChange(final View view, final int left, final int top, final int right,
                                    final int bottom, final int oldLeft, final int oldTop,
                                    final int oldRight, final int oldBottom) {

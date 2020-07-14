@@ -47,7 +47,10 @@ import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
-import org.schabi.newpipe.player.*;
+import org.schabi.newpipe.player.BackgroundPlayerActivity;
+import org.schabi.newpipe.player.BasePlayer;
+import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
@@ -174,8 +177,11 @@ public final class NavigationHelper {
         startService(context, intent);
     }
 
-    public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
-        Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
+    public static void playOnBackgroundPlayer(final Context context,
+                                              final PlayQueue queue,
+                                              final boolean resumePlayback) {
+        Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
+                .show();
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
         startService(context, intent);
@@ -195,7 +201,8 @@ public final class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+        final Intent intent = getPlayerEnqueueIntent(
+                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
         startService(context, intent);
     }
@@ -205,10 +212,13 @@ public final class NavigationHelper {
         enqueueOnBackgroundPlayer(context, queue, false, resumePlayback);
     }
 
-    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean selectOnAppend,
+    public static void enqueueOnBackgroundPlayer(final Context context,
+                                                 final PlayQueue queue,
+                                                 final boolean selectOnAppend,
                                                  final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+        final Intent intent = getPlayerEnqueueIntent(
+                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
         startService(context, intent);
     }
@@ -357,12 +367,14 @@ public final class NavigationHelper {
             expandMainPlayer(fragment.requireActivity());
             final VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
             detailFragment.setAutoplay(autoPlay);
-            detailFragment.selectAndLoadVideo(serviceId, url, title == null ? "" : title, playQueue);
+            detailFragment
+                    .selectAndLoadVideo(serviceId, url, title == null ? "" : title, playQueue);
             detailFragment.scrollToTop();
             return;
         }
 
-        final VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title == null ? "" : title, playQueue);
+        final VideoDetailFragment instance = VideoDetailFragment
+                .getInstance(serviceId, url, title == null ? "" : title, playQueue);
         instance.setAutoplay(autoPlay);
 
         defaultTransaction(fragmentManager)

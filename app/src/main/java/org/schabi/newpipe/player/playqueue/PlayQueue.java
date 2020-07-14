@@ -63,7 +63,9 @@ public abstract class PlayQueue implements Serializable {
         streams = new ArrayList<>();
         streams.addAll(startWith);
         history = new ArrayList<>();
-        if (streams.size() > index) history.add(streams.get(index));
+        if (streams.size() > index) {
+            history.add(streams.get(index));
+        }
 
         queueIndex = new AtomicInteger(index);
         disposed = false;
@@ -156,7 +158,9 @@ public abstract class PlayQueue implements Serializable {
         if (index >= streams.size()) {
             newIndex = isComplete() ? index % streams.size() : streams.size() - 1;
         }
-        if (oldIndex != newIndex) history.add(streams.get(newIndex));
+        if (oldIndex != newIndex) {
+            history.add(streams.get(newIndex));
+        }
 
         queueIndex.set(newIndex);
         broadcast(new SelectEvent(oldIndex, newIndex));
@@ -484,15 +488,17 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * Selects previous played item
+     * Selects previous played item.
      *
      * This method removes currently playing item from history and
      * starts playing the last item from history if it exists
      *
-     * Returns true if history is not empty and the item can be played
+     * @return true if history is not empty and the item can be played
      * */
     public synchronized boolean previous() {
-        if (history.size() <= 1) return false;
+        if (history.size() <= 1) {
+            return false;
+        }
 
         history.remove(history.size() - 1);
 
@@ -504,18 +510,22 @@ public abstract class PlayQueue implements Serializable {
 
     /*
      * Compares two PlayQueues. Useful when a user switches players but queue is the same so
-     * we don't have to do anything with new queue. This method also gives a chance to track history of items in a queue in
+     * we don't have to do anything with new queue.
+     * This method also gives a chance to track history of items in a queue in
      * VideoDetailFragment without duplicating items from two identical queues
      * */
     @Override
     public boolean equals(@Nullable final Object obj) {
-        if (!(obj instanceof PlayQueue) || getStreams().size() != ((PlayQueue) obj).getStreams().size())
+        if (!(obj instanceof PlayQueue)
+                || getStreams().size() != ((PlayQueue) obj).getStreams().size()) {
             return false;
+        }
 
         final PlayQueue other = (PlayQueue) obj;
         for (int i = 0; i < getStreams().size(); i++) {
-            if (!getItem(i).getUrl().equals(other.getItem(i).getUrl()))
+            if (!getItem(i).getUrl().equals(other.getItem(i).getUrl())) {
                 return false;
+            }
         }
 
         return true;

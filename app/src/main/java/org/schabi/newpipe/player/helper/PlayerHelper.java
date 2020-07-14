@@ -217,7 +217,8 @@ public final class PlayerHelper {
     }
 
     public static boolean isClearingQueueConfirmationRequired(@NonNull final Context context) {
-        return getPreferences(context).getBoolean(context.getString(R.string.clear_queue_confirmation_key), false);
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.clear_queue_confirmation_key), false);
     }
 
     @MinimizeMode
@@ -353,7 +354,7 @@ public final class PlayerHelper {
         setScreenBrightness(context, setScreenBrightness, System.currentTimeMillis());
     }
 
-    public static boolean globalScreenOrientationLocked(Context context) {
+    public static boolean globalScreenOrientationLocked(final Context context) {
         // 1: Screen orientation changes using accelerometer
         // 0: Screen orientation is locked
         return android.provider.Settings.System.getInt(
@@ -361,7 +362,9 @@ public final class PlayerHelper {
     }
 
     public static boolean isTablet(@NonNull final Context context) {
-        return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
+        return (context
+                .getResources()
+                .getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
                 >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 

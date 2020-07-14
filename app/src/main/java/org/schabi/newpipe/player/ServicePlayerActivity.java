@@ -35,7 +35,12 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
-import org.schabi.newpipe.player.playqueue.*;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -109,7 +114,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     public abstract boolean onPlayerOptionSelected(MenuItem item);
 
-    public abstract void setupMenu(Menu menu);
+    public abstract void setupMenu(Menu m);
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
     ////////////////////////////////////////////////////////////////////////////
@@ -153,9 +158,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     // Allow to setup visibility of menuItems
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        setupMenu(menu);
-        return super.onPrepareOptionsMenu(menu);
+    public boolean onPrepareOptionsMenu(final Menu m) {
+        setupMenu(m);
+        return super.onPrepareOptionsMenu(m);
     }
 
     @Override
@@ -208,7 +213,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 .putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM)
                 .putExtra(Constants.KEY_URL, this.player.getVideoUrl())
                 .putExtra(Constants.KEY_TITLE, this.player.getVideoTitle())
-                .putExtra(Constants.KEY_SERVICE_ID, this.player.getCurrentMetadata().getMetadata().getServiceId())
+                .putExtra(Constants.KEY_SERVICE_ID,
+                        this.player.getCurrentMetadata().getMetadata().getServiceId())
                 .putExtra(VideoPlayer.PLAYER_TYPE, playerType);
     }
 
@@ -586,7 +592,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onQueueUpdate(PlayQueue queue) {
+    public void onQueueUpdate(final PlayQueue queue) {
     }
 
     @Override

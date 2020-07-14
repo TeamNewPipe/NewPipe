@@ -24,16 +24,23 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
     Rect globalRect = new Rect();
     private boolean skippingInterception = false;
     private final List<Integer> skipInterceptionOfElements = Arrays.asList(
-            R.id.detail_content_root_layout, R.id.relatedStreamsLayout, R.id.playQueuePanel, R.id.viewpager);
+            R.id.detail_content_root_layout, R.id.relatedStreamsLayout,
+            R.id.playQueuePanel, R.id.viewpager);
 
     @Override
-    public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout parent, @NonNull FrameLayout child, MotionEvent event) {
+    public boolean onInterceptTouchEvent(@NonNull final CoordinatorLayout parent,
+                                         @NonNull final FrameLayout child,
+                                         final MotionEvent event) {
         // Drop following when action ends
-        if (event.getAction() == MotionEvent.ACTION_CANCEL || event.getAction() == MotionEvent.ACTION_UP)
+        if (event.getAction() == MotionEvent.ACTION_CANCEL
+                || event.getAction() == MotionEvent.ACTION_UP) {
             skippingInterception = false;
+        }
 
         // Found that user still swiping, continue following
-        if (skippingInterception) return false;
+        if (skippingInterception) {
+            return false;
+        }
 
         // Don't need to do anything if bottomSheet isn't expanded
         if (getState() == BottomSheetBehavior.STATE_EXPANDED) {
@@ -42,7 +49,8 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
                 final ViewGroup viewGroup = child.findViewById(element);
                 if (viewGroup != null) {
                     visible = viewGroup.getGlobalVisibleRect(globalRect);
-                    if (visible && globalRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    if (visible
+                            && globalRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                         skippingInterception = true;
                         return false;
                     }

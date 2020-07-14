@@ -914,7 +914,10 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void onPlaybackSpeedClicked() {
             PlaybackParameterDialog
-                    .newInstance(getPlaybackSpeed(), getPlaybackPitch(), getPlaybackSkipSilence(), MainVideoPlayer.this)
+                    .newInstance(getPlaybackSpeed(),
+                            getPlaybackPitch(),
+                            getPlaybackSkipSilence(),
+                            MainVideoPlayer.this)
                     .show(getSupportFragmentManager(), TAG);
         }
 

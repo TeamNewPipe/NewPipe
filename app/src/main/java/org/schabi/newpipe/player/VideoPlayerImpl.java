@@ -22,7 +22,11 @@ package org.schabi.newpipe.player;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
-import android.content.*;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
@@ -35,9 +39,25 @@ import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.*;
+import android.view.Display;
+import android.view.GestureDetector;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.Surface;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.AnticipateInterpolator;
-import android.widget.*;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -66,17 +86,35 @@ import org.schabi.newpipe.player.event.PlayerGestureListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.playqueue.*;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.util.*;
+import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.KoreUtil;
+import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ShareUtils;
 
 import java.util.List;
 
 import static android.content.Context.WINDOW_SERVICE;
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
-import static org.schabi.newpipe.player.MainPlayer.*;
+import static org.schabi.newpipe.player.BackgroundPlayer.ACTION_CLOSE;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_OPEN_CONTROLS;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_NEXT;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PAUSE;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PREVIOUS;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_REPEAT;
+import static org.schabi.newpipe.player.MainPlayer.NOTIFICATION_ID;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isTablet;
@@ -88,7 +126,7 @@ import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 /**
- * Unified UI for all players
+ * Unified UI for all players.
  *
  * @author mauriciocolli
  */
@@ -103,10 +141,10 @@ public class VideoPlayerImpl extends VideoPlayer
     static final String POPUP_SAVED_X = "popup_saved_x";
     static final String POPUP_SAVED_Y = "popup_saved_y";
     private static final int MINIMUM_SHOW_EXTRA_WIDTH_DP = 300;
-    private static final int IDLE_WINDOW_FLAGS = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
-            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
-    private static final int ONGOING_PLAYBACK_WINDOW_FLAGS = IDLE_WINDOW_FLAGS |
-            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+    private static final int IDLE_WINDOW_FLAGS = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+            | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
+    private static final int ONGOING_PLAYBACK_WINDOW_FLAGS = IDLE_WINDOW_FLAGS
+            | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 
     private static final float MAX_GESTURE_LENGTH = 0.75f;
     private static final int NOTIFICATION_UPDATES_BEFORE_RESET = 60;
@@ -163,7 +201,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private final SharedPreferences defaultPreferences;
     private ContentObserver settingsContentObserver;
     @NonNull
-    final private AudioPlaybackResolver resolver;
+    private final AudioPlaybackResolver resolver;
 
     private int cachedDuration;
     private String cachedDurationString;
@@ -178,16 +216,22 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public boolean isPopupClosing = false;
 
-    private float screenWidth, screenHeight;
-    private float popupWidth, popupHeight;
-    private float minimumWidth, minimumHeight;
-    private float maximumWidth, maximumHeight;
+    private float screenWidth;
+    private float screenHeight;
+    private float popupWidth;
+    private float popupHeight;
+    private float minimumWidth;
+    private float minimumHeight;
+    private float maximumWidth;
+    private float maximumHeight;
     // Popup end
 
 
     @Override
-    public void handleIntent(Intent intent) {
-        if (intent.getStringExtra(VideoPlayer.PLAY_QUEUE_KEY) == null) return;
+    public void handleIntent(final Intent intent) {
+        if (intent.getStringExtra(VideoPlayer.PLAY_QUEUE_KEY) == null) {
+            return;
+        }
 
         final MainPlayer.PlayerType oldPlayerType = playerType;
         choosePlayerTypeFromIntent(intent);
@@ -231,7 +275,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    public void initViews(View view) {
+    public void initViews(final View view) {
         super.initViews(view);
         this.titleTextView = view.findViewById(R.id.titleTextView);
         this.channelTextView = view.findViewById(R.id.channelTextView);
@@ -272,7 +316,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
-    protected void setupSubtitleView(@NonNull SubtitleView view,
+    protected void setupSubtitleView(final @NonNull SubtitleView view,
                                      final float captionScale,
                                      @NonNull final CaptionStyleCompat captionStyle) {
         if (popupPlayerSelected()) {
@@ -292,8 +336,9 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     /**
-     * This method ensures that popup and main players have different look. We use one layout for both players and
-     * need to decide what to show and what to hide. Additional measuring should be done inside {@link #setupElementsSize}.
+     * This method ensures that popup and main players have different look.
+     * We use one layout for both players and need to decide what to show and what to hide.
+     * Additional measuring should be done inside {@link #setupElementsSize}.
      * {@link #setControlsSize} is used to adapt the UI to fullscreen mode, multiWindow, navBar, etc
      */
     private void setupElementsVisibility() {
@@ -334,13 +379,14 @@ public class VideoPlayerImpl extends VideoPlayer
             final boolean supportedByKore = playQueue != null
                     && playQueue.getItem() != null
                     && KoreUtil.isServiceSupportedByKore(playQueue.getItem().getServiceId());
-            final boolean kodiEnabled = defaultPreferences.getBoolean(service.getString(R.string.show_play_with_kodi_key), false);
+            final boolean kodiEnabled = defaultPreferences.getBoolean(
+                    service.getString(R.string.show_play_with_kodi_key), false);
             playWithKodi.setVisibility(kodiEnabled && supportedByKore ? View.VISIBLE : View.GONE);
             openInBrowser.setVisibility(View.VISIBLE);
             muteButton.setVisibility(View.VISIBLE);
             playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
-            // Top controls have a large minHeight which is allows to drag the player down in fullscreen mode (just larger area
-            // to make easy to locate by finger)
+            // Top controls have a large minHeight which is allows to drag the player
+            // down in fullscreen mode (just larger area to make easy to locate by finger)
             getTopControlsRoot().setClickable(true);
             getTopControlsRoot().setFocusable(true);
         }
@@ -357,33 +403,47 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     /**
-     * Changes padding, size of elements based on player selected right now. Popup player has small padding in comparison with the
-     * main player
+     * Changes padding, size of elements based on player selected right now.
+     * Popup player has small padding in comparison with the main player
      */
     private void setupElementsSize() {
         if (popupPlayerSelected()) {
-            final int controlsPadding = service.getResources().getDimensionPixelSize(R.dimen.player_popup_controls_padding);
-            final int buttonsPadding = service.getResources().getDimensionPixelSize(R.dimen.player_popup_buttons_padding);
+            final int controlsPadding = service.getResources()
+                    .getDimensionPixelSize(R.dimen.player_popup_controls_padding);
+            final int buttonsPadding = service.getResources()
+                    .getDimensionPixelSize(R.dimen.player_popup_buttons_padding);
             getTopControlsRoot().setPaddingRelative(controlsPadding, 0, controlsPadding, 0);
             getBottomControlsRoot().setPaddingRelative(controlsPadding, 0, controlsPadding, 0);
-            getQualityTextView().setPadding(buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getPlaybackSpeedTextView().setPadding(buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getQualityTextView().setPadding(buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getCaptionTextView().setPadding(buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
+            getQualityTextView().setPadding(
+                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
+            getPlaybackSpeedTextView().setPadding(
+                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
+            getQualityTextView().setPadding(
+                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
+            getCaptionTextView().setPadding(
+                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
             getQualityTextView().setMinimumWidth(0);
             getPlaybackSpeedTextView().setMinimumWidth(0);
         } else if (videoPlayerSelected()) {
-            final int buttonsMinWidth = service.getResources().getDimensionPixelSize(R.dimen.player_main_buttons_min_width);
-            final int playerTopPadding = service.getResources().getDimensionPixelSize(R.dimen.player_main_top_padding);
-            final int controlsPadding = service.getResources().getDimensionPixelSize(R.dimen.player_main_controls_padding);
-            final int buttonsPadding = service.getResources().getDimensionPixelSize(R.dimen.player_main_buttons_padding);
-            getTopControlsRoot().setPaddingRelative(controlsPadding, playerTopPadding, controlsPadding, 0);
+            final int buttonsMinWidth = service.getResources()
+                    .getDimensionPixelSize(R.dimen.player_main_buttons_min_width);
+            final int playerTopPadding = service.getResources()
+                    .getDimensionPixelSize(R.dimen.player_main_top_padding);
+            final int controlsPadding = service.getResources()
+                    .getDimensionPixelSize(R.dimen.player_main_controls_padding);
+            final int buttonsPadding = service.getResources()
+                    .getDimensionPixelSize(R.dimen.player_main_buttons_padding);
+            getTopControlsRoot().setPaddingRelative(
+                    controlsPadding, playerTopPadding, controlsPadding, 0);
             getBottomControlsRoot().setPaddingRelative(controlsPadding, 0, controlsPadding, 0);
-            getQualityTextView().setPadding(buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getPlaybackSpeedTextView().setPadding(buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
+            getQualityTextView().setPadding(
+                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
+            getPlaybackSpeedTextView().setPadding(
+                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
             getQualityTextView().setMinimumWidth(buttonsMinWidth);
             getPlaybackSpeedTextView().setMinimumWidth(buttonsMinWidth);
-            getCaptionTextView().setPadding(buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
+            getCaptionTextView().setPadding(
+                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
         }
     }
 
@@ -415,7 +475,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
-            public void onChange(boolean selfChange) { setupScreenRotationButton(); }
+            public void onChange(final boolean selfChange) {
+                setupScreenRotationButton();
+            }
         };
         service.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), false,
@@ -464,8 +526,11 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public AppCompatActivity getParentActivity() {
         // ! instanceof ViewGroup means that view was added via windowManager for Popup
-        if (getRootView() == null || getRootView().getParent() == null || !(getRootView().getParent() instanceof ViewGroup))
+        if (getRootView() == null
+                || getRootView().getParent() == null
+                || !(getRootView().getParent() instanceof ViewGroup)) {
             return null;
+        }
 
         final ViewGroup parent = (ViewGroup) getRootView().getParent();
         return (AppCompatActivity) parent.getContext();
@@ -489,9 +554,9 @@ public class VideoPlayerImpl extends VideoPlayer
         }
     }
 
-    private void setShuffleButton(final ImageButton shuffleButton, final boolean shuffled) {
+    private void setShuffleButton(final ImageButton button, final boolean shuffled) {
         final int shuffleAlpha = shuffled ? 255 : 77;
-        shuffleButton.setImageAlpha(shuffleAlpha);
+        button.setImageAlpha(shuffleAlpha);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -499,12 +564,15 @@ public class VideoPlayerImpl extends VideoPlayer
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch, boolean playbackSkipSilence) {
+    public void onPlaybackParameterChanged(final float playbackTempo, final float playbackPitch,
+                                           final boolean playbackSkipSilence) {
         setPlaybackParameters(playbackTempo, playbackPitch, playbackSkipSilence);
     }
 
     @Override
-    public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
+    public void onVideoSizeChanged(final int width, final int height,
+                                   final int unappliedRotationDegrees,
+                                   final float pixelWidthHeightRatio) {
         super.onVideoSizeChanged(width, height, unappliedRotationDegrees, pixelWidthHeightRatio);
         isVerticalVideo = width < height;
         prepareOrientation();
@@ -516,7 +584,7 @@ public class VideoPlayerImpl extends VideoPlayer
         //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onRepeatModeChanged(int i) {
+    public void onRepeatModeChanged(final int i) {
         super.onRepeatModeChanged(i);
         updatePlaybackButtons();
         updatePlayback();
@@ -536,11 +604,12 @@ public class VideoPlayerImpl extends VideoPlayer
         //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onPlayerError(ExoPlaybackException error) {
+    public void onPlayerError(final ExoPlaybackException error) {
         super.onPlayerError(error);
 
-        if (fragmentListener != null)
+        if (fragmentListener != null) {
             fragmentListener.onPlayerError(error);
+        }
     }
 
     protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
@@ -563,7 +632,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public void onPlaybackShutdown() {
-        if (DEBUG) Log.d(TAG, "onPlaybackShutdown() called");
+        if (DEBUG) {
+            Log.d(TAG, "onPlaybackShutdown() called");
+        }
         // Override it because we don't want playerImpl destroyed
     }
 
@@ -575,14 +646,16 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
-    public void onUpdateProgress(final int currentProgress, final int duration, final int bufferPercent) {
+    public void onUpdateProgress(final int currentProgress,
+                                 final int duration, final int bufferPercent) {
         super.onUpdateProgress(currentProgress, duration, bufferPercent);
 
         updateProgress(currentProgress, duration, bufferPercent);
 
         if (!shouldUpdateOnProgress || getCurrentState() == BasePlayer.STATE_COMPLETED
-                || getCurrentState() == BasePlayer.STATE_PAUSED || getPlayQueue() == null)
+                || getCurrentState() == BasePlayer.STATE_PAUSED || getPlayQueue() == null) {
             return;
+        }
 
         if (timesNotificationUpdated > NOTIFICATION_UPDATES_BEFORE_RESET) {
             service.resetNotification();
@@ -594,9 +667,11 @@ public class VideoPlayerImpl extends VideoPlayer
                 cachedDurationString = getTimeString(duration);
             }
             service.getBigNotRemoteView()
-                    .setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
+                    .setProgressBar(R.id.notificationProgressBar,
+                            duration, currentProgress, false);
             service.getBigNotRemoteView()
-                    .setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + cachedDurationString);
+                    .setTextViewText(R.id.notificationTime,
+                            getTimeString(currentProgress) + " / " + cachedDurationString);
         }
         if (service.getNotRemoteView() != null) {
             service.getNotRemoteView()
@@ -610,9 +685,9 @@ public class VideoPlayerImpl extends VideoPlayer
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
         // For LiveStream or video/popup players we can use super() method
         // but not for audio player
-        if (!audioOnly)
+        if (!audioOnly) {
             return super.sourceOf(item, info);
-        else {
+        } else {
             return resolver.resolve(info);
         }
     }
@@ -630,10 +705,12 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
-    protected void initPlayback(@NonNull final PlayQueue queue, final int repeatMode, final float playbackSpeed,
-                                final float playbackPitch, final boolean playbackSkipSilence,
+    protected void initPlayback(@NonNull final PlayQueue queue, final int repeatMode,
+                                final float playbackSpeed, final float playbackPitch,
+                                final boolean playbackSkipSilence,
                                 final boolean playOnReady, final boolean isMuted) {
-        super.initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, playOnReady, isMuted);
+        super.initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
+                playbackSkipSilence, playOnReady, isMuted);
         updateQueue();
     }
 
@@ -643,8 +720,12 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public void toggleFullscreen() {
-        if (DEBUG) Log.d(TAG, "toggleFullscreen() called");
-        if (simpleExoPlayer == null || getCurrentMetadata() == null) return;
+        if (DEBUG) {
+            Log.d(TAG, "toggleFullscreen() called");
+        }
+        if (simpleExoPlayer == null || getCurrentMetadata() == null) {
+            return;
+        }
 
         if (popupPlayerSelected()) {
             setRecovery();
@@ -663,7 +744,8 @@ public class VideoPlayerImpl extends VideoPlayer
                     isMuted()
             );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(Constants.KEY_SERVICE_ID, getCurrentMetadata().getMetadata().getServiceId());
+            intent.putExtra(Constants.KEY_SERVICE_ID,
+                    getCurrentMetadata().getMetadata().getServiceId());
             intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
             intent.putExtra(Constants.KEY_URL, getVideoUrl());
             intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
@@ -672,7 +754,9 @@ public class VideoPlayerImpl extends VideoPlayer
             context.startActivity(intent);
             return;
         } else {
-            if (fragmentListener == null) return;
+            if (fragmentListener == null) {
+                return;
+            }
 
             isFullscreen = !isFullscreen;
             setControlsSize();
@@ -692,7 +776,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
         super.onClick(v);
         if (v.getId() == playPauseButton.getId()) {
             onPlayPause();
@@ -720,8 +804,11 @@ public class VideoPlayerImpl extends VideoPlayer
         } else if (v.getId() == fullscreenButton.getId()) {
             toggleFullscreen();
         } else if (v.getId() == screenRotationButton.getId()) {
-            if (!isVerticalVideo) fragmentListener.onScreenRotationButtonClicked();
-            else toggleFullscreen();
+            if (!isVerticalVideo) {
+                fragmentListener.onScreenRotationButtonClicked();
+            } else {
+                toggleFullscreen();
+            }
         } else if (v.getId() == muteButton.getId()) {
             onMuteUnmuteButtonClicked();
         } else if (v.getId() == playerCloseButton.getId()) {
@@ -732,15 +819,18 @@ public class VideoPlayerImpl extends VideoPlayer
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
             animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
                 if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                    if (v.getId() == playPauseButton.getId()) hideControls(0, 0);
-                    else safeHideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                    if (v.getId() == playPauseButton.getId()) {
+                        hideControls(0, 0);
+                    } else {
+                        safeHideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                    }
                 }
             });
         }
     }
 
     @Override
-    public boolean onLongClick(View v) {
+    public boolean onLongClick(final View v) {
         if (v.getId() == moreOptionsButton.getId() && isFullscreen()) {
             fragmentListener.onMoreOptionsLongClicked();
             hideControls(0, 0);
@@ -757,25 +847,30 @@ public class VideoPlayerImpl extends VideoPlayer
         updatePlaybackButtons();
 
         getControlsRoot().setVisibility(View.INVISIBLE);
-        animateView(queueLayout, SLIDE_AND_ALPHA,true,
+        animateView(queueLayout, SLIDE_AND_ALPHA, true,
                 DEFAULT_CONTROLS_DURATION);
 
         itemsList.scrollToPosition(playQueue.getIndex());
     }
 
     public void onQueueClosed() {
-        if (!queueVisible) return;
+        if (!queueVisible) {
+            return;
+        }
 
-        animateView(queueLayout, SLIDE_AND_ALPHA,false,
+        animateView(queueLayout, SLIDE_AND_ALPHA, false,
                 DEFAULT_CONTROLS_DURATION, 0, () -> {
-                    // Even when queueLayout is GONE it receives touch events and ruins normal behavior of the app. This line fixes it
+                    // Even when queueLayout is GONE it receives touch events
+                    // and ruins normal behavior of the app. This line fixes it
                     queueLayout.setTranslationY(-queueLayout.getHeight() * 5);
                 });
         queueVisible = false;
     }
 
     private void onMoreOptionsClicked() {
-        if (DEBUG) Log.d(TAG, "onMoreOptionsClicked() called");
+        if (DEBUG) {
+            Log.d(TAG, "onMoreOptionsClicked() called");
+        }
 
         final boolean isMoreControlsVisible = secondaryControls.getVisibility() == View.VISIBLE;
 
@@ -784,9 +879,12 @@ public class VideoPlayerImpl extends VideoPlayer
         animateView(secondaryControls, SLIDE_AND_ALPHA, !isMoreControlsVisible,
                 DEFAULT_CONTROLS_DURATION, 0,
                 () -> {
-                    // Fix for a ripple effect on background drawable. When view returns from GONE state it takes more
-                    // milliseconds than returning from INVISIBLE state. And the delay makes ripple background end to fast
-                    if (isMoreControlsVisible) secondaryControls.setVisibility(View.INVISIBLE);
+                    // Fix for a ripple effect on background drawable.
+                    // When view returns from GONE state it takes more milliseconds than returning
+                    // from INVISIBLE state. And the delay makes ripple background end to fast
+                    if (isMoreControlsVisible) {
+                        secondaryControls.setVisibility(View.INVISIBLE);
+                    }
                 });
         showControls(DEFAULT_CONTROLS_DURATION);
     }
@@ -799,20 +897,27 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void onPlayWithKodiClicked() {
-        if (getCurrentMetadata() == null) return;
+        if (getCurrentMetadata() == null) {
+            return;
+        }
         onPause();
         try {
             NavigationHelper.playWithKore(getParentActivity(), Uri.parse(getVideoUrl()));
         } catch (Exception e) {
-            if (DEBUG) Log.i(TAG, "Failed to start kore", e);
+            if (DEBUG) {
+                Log.i(TAG, "Failed to start kore", e);
+            }
             showInstallKoreDialog(getParentActivity());
         }
     }
 
     private void onOpenInBrowserClicked() {
-        if (getCurrentMetadata() == null) return;
+        if (getCurrentMetadata() == null) {
+            return;
+        }
 
-        ShareUtils.openUrlInBrowser(getParentActivity(), getCurrentMetadata().getMetadata().getOriginalUrl());
+        ShareUtils.openUrlInBrowser(getParentActivity(),
+                getCurrentMetadata().getMetadata().getOriginalUrl());
     }
 
     private static void showInstallKoreDialog(final Context context) {
@@ -828,23 +933,30 @@ public class VideoPlayerImpl extends VideoPlayer
     private void setupScreenRotationButton() {
         final boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(service);
         final boolean tabletInLandscape = isTablet(service) && service.isLandscape();
-        final boolean showButton = videoPlayerSelected() && (orientationLocked || isVerticalVideo || tabletInLandscape);
+        final boolean showButton = videoPlayerSelected()
+                && (orientationLocked || isVerticalVideo || tabletInLandscape);
         screenRotationButton.setVisibility(showButton ? View.VISIBLE : View.GONE);
-        screenRotationButton.setImageDrawable(service.getResources().getDrawable(
-                isFullscreen() ? R.drawable.ic_fullscreen_exit_white_24dp : R.drawable.ic_fullscreen_white_24dp));
+        screenRotationButton.setImageDrawable(service.getResources().getDrawable(isFullscreen()
+                        ? R.drawable.ic_fullscreen_exit_white_24dp
+                        : R.drawable.ic_fullscreen_white_24dp));
     }
 
     private void prepareOrientation() {
         final boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(service);
-        if (orientationLocked && isFullscreen() && service.isLandscape() == isVerticalVideo && fragmentListener != null)
+        if (orientationLocked
+                && isFullscreen()
+                && service.isLandscape() == isVerticalVideo
+                && fragmentListener != null) {
             fragmentListener.onScreenRotationButtonClicked();
+        }
     }
 
     @Override
     public void onPlaybackSpeedClicked() {
         if (videoPlayerSelected()) {
             PlaybackParameterDialog
-                    .newInstance(getPlaybackSpeed(), getPlaybackPitch(), getPlaybackSkipSilence(), this)
+                    .newInstance(
+                            getPlaybackSpeed(), getPlaybackPitch(), getPlaybackSkipSilence(), this)
                     .show(getParentActivity().getSupportFragmentManager(), null);
         } else {
             super.onPlaybackSpeedClicked();
@@ -852,13 +964,15 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
+    public void onStopTrackingTouch(final SeekBar seekBar) {
         super.onStopTrackingTouch(seekBar);
-        if (wasPlaying()) showControlsThenHide();
+        if (wasPlaying()) {
+            showControlsThenHide();
+        }
     }
 
     @Override
-    public void onDismiss(PopupMenu menu) {
+    public void onDismiss(final PopupMenu menu) {
         super.onDismiss(menu);
         if (isPlaying()) {
             hideControls(DEFAULT_CONTROLS_DURATION, 0);
@@ -866,16 +980,20 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
-    public void onLayoutChange(final View view, int l, int t, int r, int b,
-                               int ol, int ot, int or, int ob) {
+    @SuppressWarnings("checkstyle:ParameterNumber")
+    public void onLayoutChange(final View view, final int l, final int t, final int r, final int b,
+                               final int ol, final int ot, final int or, final int ob) {
         if (l != ol || t != ot || r != or || b != ob) {
             // Use smaller value to be consistent between screen orientations
             // (and to make usage easier)
-            int width = r - l, height = b - t;
+            int width = r - l;
+            int height = b - t;
             int min = Math.min(width, height);
             maxGestureLength = (int) (min * MAX_GESTURE_LENGTH);
 
-            if (DEBUG) Log.d(TAG, "maxGestureLength = " + maxGestureLength);
+            if (DEBUG) {
+                Log.d(TAG, "maxGestureLength = " + maxGestureLength);
+            }
 
             volumeProgressBar.setMax(maxGestureLength);
             brightnessProgressBar.setMax(maxGestureLength);
@@ -884,15 +1002,18 @@ public class VideoPlayerImpl extends VideoPlayer
             queueLayout.getLayoutParams().height = height - queueLayout.getTop();
 
             if (popupPlayerSelected()) {
-                float widthDp = Math.abs(r - l) / service.getResources().getDisplayMetrics().density;
-                final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP ? View.VISIBLE : View.GONE;
+                float widthDp = Math.abs(r - l) / service.getResources()
+                        .getDisplayMetrics().density;
+                final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP
+                        ? View.VISIBLE
+                        : View.GONE;
                 secondaryControls.setVisibility(visibility);
             }
         }
     }
 
     @Override
-    protected int nextResizeMode(int currentResizeMode) {
+    protected int nextResizeMode(final int currentResizeMode) {
         final int newResizeMode;
         switch (currentResizeMode) {
             case AspectRatioFrameLayout.RESIZE_MODE_FIT:
@@ -910,7 +1031,7 @@ public class VideoPlayerImpl extends VideoPlayer
         return newResizeMode;
     }
 
-    private void storeResizeMode(@AspectRatioFrameLayout.ResizeMode int resizeMode) {
+    private void storeResizeMode(final @AspectRatioFrameLayout.ResizeMode int resizeMode) {
         defaultPreferences.edit()
                 .putInt(service.getString(R.string.last_resize_mode), resizeMode)
                 .apply();
@@ -918,22 +1039,25 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void restoreResizeMode() {
         setResizeMode(defaultPreferences.getInt(
-                service.getString(R.string.last_resize_mode), AspectRatioFrameLayout.RESIZE_MODE_FIT));
+                service.getString(R.string.last_resize_mode),
+                AspectRatioFrameLayout.RESIZE_MODE_FIT));
     }
 
     @Override
     protected VideoPlaybackResolver.QualityResolver getQualityResolver() {
         return new VideoPlaybackResolver.QualityResolver() {
             @Override
-            public int getDefaultResolutionIndex(List<VideoStream> sortedVideos) {
-                return videoPlayerSelected() ? ListHelper.getDefaultResolutionIndex(context, sortedVideos)
+            public int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
+                return videoPlayerSelected()
+                        ? ListHelper.getDefaultResolutionIndex(context, sortedVideos)
                         : ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
             }
 
             @Override
-            public int getOverrideResolutionIndex(List<VideoStream> sortedVideos,
-                                                  String playbackQuality) {
-                return videoPlayerSelected() ? getResolutionIndex(context, sortedVideos, playbackQuality)
+            public int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
+                                                  final String playbackQuality) {
+                return videoPlayerSelected()
+                        ? getResolutionIndex(context, sortedVideos, playbackQuality)
                         : getPopupResolutionIndex(context, sortedVideos, playbackQuality);
             }
         };
@@ -945,15 +1069,17 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void animatePlayButtons(final boolean show, final int duration) {
         animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
-        if (playQueue.getIndex() > 0)
+        if (playQueue.getIndex() > 0) {
             animateView(playPreviousButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
-        if (playQueue.getIndex() + 1 < playQueue.getStreams().size())
+        }
+        if (playQueue.getIndex() + 1 < playQueue.getStreams().size()) {
             animateView(playNextButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+        }
 
     }
 
     @Override
-    public void changeState(int state) {
+    public void changeState(final int state) {
         super.changeState(state);
         updatePlayback();
     }
@@ -1011,9 +1137,11 @@ public class VideoPlayerImpl extends VideoPlayer
         service.resetNotification();
         service.updateNotification(R.drawable.ic_play_arrow_white_24dp);
 
-        // Remove running notification when user don't want music (or video in popup) to be played in background
-        if (!minimizeOnPopupEnabled() && !backgroundPlaybackEnabled() && videoPlayerSelected())
+        // Remove running notification when user don't want music (or video in popup)
+        // to be played in background
+        if (!minimizeOnPopupEnabled() && !backgroundPlaybackEnabled() && videoPlayerSelected()) {
             service.stopForeground(true);
+        }
 
         getRootView().setKeepScreenOn(false);
     }
@@ -1057,9 +1185,12 @@ public class VideoPlayerImpl extends VideoPlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected void setupBroadcastReceiver(IntentFilter intentFilter) {
+    protected void setupBroadcastReceiver(final IntentFilter intentFilter) {
         super.setupBroadcastReceiver(intentFilter);
-        if (DEBUG) Log.d(TAG, "setupBroadcastReceiver() called with: intentFilter = [" + intentFilter + "]");
+        if (DEBUG) {
+            Log.d(TAG, "setupBroadcastReceiver() called with: "
+                    + "intentFilter = [" + intentFilter + "]");
+        }
 
         intentFilter.addAction(ACTION_CLOSE);
         intentFilter.addAction(ACTION_PLAY_PAUSE);
@@ -1081,12 +1212,15 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
-    public void onBroadcastReceived(Intent intent) {
+    public void onBroadcastReceived(final Intent intent) {
         super.onBroadcastReceived(intent);
-        if (intent == null || intent.getAction() == null)
+        if (intent == null || intent.getAction() == null) {
             return;
+        }
 
-        if (DEBUG) Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
+        if (DEBUG) {
+            Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
+        }
 
         switch (intent.getAction()) {
             case ACTION_CLOSE:
@@ -1115,7 +1249,8 @@ public class VideoPlayerImpl extends VideoPlayer
                 break;
             case VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED:
                 // This will be called when user goes to another app/activity, turns off a screen.
-                // We don't want to interrupt playback and don't want to see notification if player is stopped.
+                // We don't want to interrupt playback and don't want to see notification
+                // if player is stopped.
                 // Next lines of code will enable background playback if needed
                 if (videoPlayerSelected() && (isPlaying() || isLoading())) {
                     if (backgroundPlaybackEnabled()) {
@@ -1139,29 +1274,42 @@ public class VideoPlayerImpl extends VideoPlayer
                     checkPopupPositionBounds();
                 }
 
-                // The only situation I need to re-calculate elements sizes is when a user rotates a device from landscape to landscape
-                // because in that case the controls should be aligned to another side of a screen. The problem is when user leaves
-                // the app and returns back (while the app in landscape) Android reports via DisplayMetrics that orientation is
-                // portrait and it gives wrong sizes calculations. Let's skip re-calculation in every case but landscape
+                // The only situation I need to re-calculate elements sizes is
+                // when a user rotates a device from landscape to landscape
+                // because in that case the controls should be aligned to another side of a screen.
+                // The problem is when user leaves the app and returns back
+                // (while the app in landscape) Android reports via DisplayMetrics that orientation
+                // is portrait and it gives wrong sizes calculations.
+                // Let's skip re-calculation in every case but landscape
                 final boolean reportedOrientationIsLandscape = service.isLandscape();
-                final boolean actualOrientationIsLandscape = context.getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE;
-                if (reportedOrientationIsLandscape && actualOrientationIsLandscape) setControlsSize();
-                // Close it because when changing orientation from portrait (in fullscreen mode) the size of queue layout can be
-                // larger than the screen size
+                final boolean actualOrientationIsLandscape = context.getResources()
+                        .getConfiguration().orientation == ORIENTATION_LANDSCAPE;
+                if (reportedOrientationIsLandscape && actualOrientationIsLandscape) {
+                    setControlsSize();
+                }
+                // Close it because when changing orientation from portrait
+                // (in fullscreen mode) the size of queue layout can be larger than the screen size
                 onQueueClosed();
                 break;
             case Intent.ACTION_SCREEN_ON:
                 shouldUpdateOnProgress = true;
-                // Interrupt playback only when screen turns on and user is watching video in popup player
-                // Same action for video player will be handled in ACTION_VIDEO_FRAGMENT_RESUMED event
-                if (backgroundPlaybackEnabled() && popupPlayerSelected() && (isPlaying() || isLoading()))
+                // Interrupt playback only when screen turns on
+                // and user is watching video in popup player.
+                // Same actions for video player will be handled in ACTION_VIDEO_FRAGMENT_RESUMED
+                if (backgroundPlaybackEnabled()
+                        && popupPlayerSelected()
+                        && (isPlaying() || isLoading())) {
                     useVideoSource(true);
+                }
                 break;
             case Intent.ACTION_SCREEN_OFF:
                 shouldUpdateOnProgress = false;
                 // Interrupt playback only when screen turns off with popup player working
-                if (backgroundPlaybackEnabled() && popupPlayerSelected() && (isPlaying() || isLoading()))
+                if (backgroundPlaybackEnabled()
+                        && popupPlayerSelected()
+                        && (isPlaying() || isLoading())) {
                     useVideoSource(false);
+                }
                 break;
         }
         service.resetNotification();
@@ -1172,8 +1320,9 @@ public class VideoPlayerImpl extends VideoPlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onLoadingComplete(String imageUri, View view,
-                                  Bitmap loadedImage) {
+    public void onLoadingComplete(final String imageUri,
+                                  final View view,
+                                  final Bitmap loadedImage) {
         super.onLoadingComplete(imageUri, view, loadedImage);
         // rebuild notification here since remote view does not release bitmaps,
         // causing memory leaks
@@ -1182,14 +1331,16 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
-    public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+    public void onLoadingFailed(final String imageUri,
+                                final View view,
+                                final FailReason failReason) {
         super.onLoadingFailed(imageUri, view, failReason);
         service.resetNotification();
         service.updateNotification(-1);
     }
 
     @Override
-    public void onLoadingCancelled(String imageUri, View view) {
+    public void onLoadingCancelled(final String imageUri, final View view) {
         super.onLoadingCancelled(imageUri, view);
         service.resetNotification();
         service.updateNotification(-1);
@@ -1201,8 +1352,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void setInitialGestureValues() {
         if (getAudioReactor() != null) {
-            final float currentVolumeNormalized = (float) getAudioReactor().getVolume() / getAudioReactor().getMaxVolume();
-            volumeProgressBar.setProgress((int) (volumeProgressBar.getMax() * currentVolumeNormalized));
+            final float currentVolumeNormalized = (float) getAudioReactor()
+                    .getVolume() / getAudioReactor().getMaxVolume();
+            volumeProgressBar.setProgress(
+                    (int) (volumeProgressBar.getMax() * currentVolumeNormalized));
         }
     }
 
@@ -1222,7 +1375,8 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     public boolean minimizeOnPopupEnabled() {
-        return PlayerHelper.getMinimizeOnExitAction(service) == PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
+        return PlayerHelper.getMinimizeOnExitAction(service)
+                == PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
     }
 
     public boolean audioPlayerSelected() {
@@ -1270,7 +1424,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public void showControlsThenHide() {
-        if (queueVisible) return;
+        if (queueVisible) {
+            return;
+        }
 
         showOrHideButtons();
         showSystemUIPartially();
@@ -1279,7 +1435,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public void showControls(final long duration) {
-        if (queueVisible) return;
+        if (queueVisible) {
+            return;
+        }
 
         showOrHideButtons();
         showSystemUIPartially();
@@ -1288,31 +1446,40 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public void hideControls(final long duration, final long delay) {
-        if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
+        if (DEBUG) {
+            Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
+        }
 
         showOrHideButtons();
 
         getControlsVisibilityHandler().removeCallbacksAndMessages(null);
         getControlsVisibilityHandler().postDelayed(() ->
-                        animateView(getControlsRoot(), false, duration, 0,
-                                this::hideSystemUIIfNeeded), delay
+                animateView(getControlsRoot(), false, duration, 0,
+                        this::hideSystemUIIfNeeded), delay
         );
     }
 
     @Override
-    public void safeHideControls(long duration, long delay) {
+    public void safeHideControls(final long duration, final long delay) {
         if (getControlsRoot().isInTouchMode()) {
             hideControls(duration, delay);
         }
     }
 
     private void showOrHideButtons() {
-        if (playQueue == null)
+        if (playQueue == null) {
             return;
+        }
 
-        playPreviousButton.setVisibility(playQueue.getIndex() == 0 ? View.INVISIBLE : View.VISIBLE);
-        playNextButton.setVisibility(playQueue.getIndex() + 1 == playQueue.getStreams().size() ? View.INVISIBLE : View.VISIBLE);
-        queueButton.setVisibility(playQueue.getStreams().size() <= 1 || popupPlayerSelected() ? View.GONE : View.VISIBLE);
+        playPreviousButton.setVisibility(playQueue.getIndex() == 0
+                ? View.INVISIBLE
+                : View.VISIBLE);
+        playNextButton.setVisibility(playQueue.getIndex() + 1 == playQueue.getStreams().size()
+                ? View.INVISIBLE
+                : View.VISIBLE);
+        queueButton.setVisibility(playQueue.getStreams().size() <= 1 || popupPlayerSelected()
+                ? View.GONE
+                : View.VISIBLE);
     }
 
     private void showSystemUIPartially() {
@@ -1324,46 +1491,62 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public void hideSystemUIIfNeeded() {
-        if (fragmentListener != null)
+        if (fragmentListener != null) {
             fragmentListener.hideSystemUiIfNeeded();
+        }
     }
 
     /**
-     * Measures width and height of controls visible on screen. It ensures that controls will be side-by-side with
-     * NavigationBar and notches but not under them. Tablets have only bottom NavigationBar
+     * Measures width and height of controls visible on screen.
+     * It ensures that controls will be side-by-side with NavigationBar and notches
+     * but not under them. Tablets have only bottom NavigationBar
      */
     public void setControlsSize() {
         final Point size = new Point();
         final Display display = getRootView().getDisplay();
-        if (display == null || !videoPlayerSelected()) return;
+        if (display == null || !videoPlayerSelected()) {
+            return;
+        }
         // This method will give a correct size of a usable area of a window.
         // It doesn't include NavigationBar, notches, etc.
         display.getSize(size);
 
-        final int width = isFullscreen ? (service.isLandscape() ? size.x : size.y) : ViewGroup.LayoutParams.MATCH_PARENT;
-        final int gravity = isFullscreen ? (display.getRotation() == Surface.ROTATION_90 ? Gravity.START : Gravity.END) : Gravity.TOP;
+        final int width = isFullscreen
+                ? (service.isLandscape()
+                ? size.x : size.y) : ViewGroup.LayoutParams.MATCH_PARENT;
+        final int gravity = isFullscreen
+                ? (display.getRotation() == Surface.ROTATION_90
+                ? Gravity.START : Gravity.END)
+                : Gravity.TOP;
 
         getTopControlsRoot().getLayoutParams().width = width;
-        final RelativeLayout.LayoutParams topParams = ((RelativeLayout.LayoutParams) getTopControlsRoot().getLayoutParams());
+        final RelativeLayout.LayoutParams topParams =
+                ((RelativeLayout.LayoutParams) getTopControlsRoot().getLayoutParams());
         topParams.removeRule(RelativeLayout.ALIGN_PARENT_START);
         topParams.removeRule(RelativeLayout.ALIGN_PARENT_END);
-        topParams.addRule(gravity == Gravity.END ? RelativeLayout.ALIGN_PARENT_END : RelativeLayout.ALIGN_PARENT_START);
+        topParams.addRule(gravity == Gravity.END
+                ? RelativeLayout.ALIGN_PARENT_END
+                : RelativeLayout.ALIGN_PARENT_START);
         getTopControlsRoot().requestLayout();
 
         getBottomControlsRoot().getLayoutParams().width = width;
-        final RelativeLayout.LayoutParams bottomParams = ((RelativeLayout.LayoutParams) getBottomControlsRoot().getLayoutParams());
+        final RelativeLayout.LayoutParams bottomParams =
+                ((RelativeLayout.LayoutParams) getBottomControlsRoot().getLayoutParams());
         bottomParams.removeRule(RelativeLayout.ALIGN_PARENT_START);
         bottomParams.removeRule(RelativeLayout.ALIGN_PARENT_END);
-        bottomParams.addRule(gravity == Gravity.END ? RelativeLayout.ALIGN_PARENT_END : RelativeLayout.ALIGN_PARENT_START);
+        bottomParams.addRule(gravity == Gravity.END
+                ? RelativeLayout.ALIGN_PARENT_END
+                : RelativeLayout.ALIGN_PARENT_START);
         getBottomControlsRoot().requestLayout();
 
         final ViewGroup controlsRoot = getRootView().findViewById(R.id.playbackWindowRoot);
-        // In tablet navigationBar located at the bottom of the screen. And the situations when we need to set custom height is
-        // in fullscreen mode in tablet in non-multiWindow mode or with vertical video. Other than that MATCH_PARENT is good
+        // In tablet navigationBar located at the bottom of the screen.
+        // And the situations when we need to set custom height is
+        // in fullscreen mode in tablet in non-multiWindow mode or with vertical video.
+        // Other than that MATCH_PARENT is good
         final boolean navBarAtTheBottom = PlayerHelper.isTablet(service) || !service.isLandscape();
-        controlsRoot.getLayoutParams().height = isFullscreen && !isInMultiWindow() && navBarAtTheBottom
-                ? size.y
-                : ViewGroup.LayoutParams.MATCH_PARENT;
+        controlsRoot.getLayoutParams().height = isFullscreen && !isInMultiWindow()
+                && navBarAtTheBottom ? size.y : ViewGroup.LayoutParams.MATCH_PARENT;
         controlsRoot.requestLayout();
 
         final int topPadding = isFullscreen && !isInMultiWindow() ? getStatusBarHeight() : 0;
@@ -1372,22 +1555,28 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     /**
-     * @return statusBar height that was found inside system resources or default value if no value was provided inside resources
+     * @return statusBar height that was found inside system resources
+     * or default value if no value was provided inside resources
      */
     private int getStatusBarHeight() {
         int statusBarHeight = 0;
-        final int resourceId = service.getResources().getIdentifier("status_bar_height_landscape", "dimen", "android");
-        if (resourceId > 0) statusBarHeight = service.getResources().getDimensionPixelSize(resourceId);
+        final int resourceId = service.getResources().getIdentifier(
+                "status_bar_height_landscape", "dimen", "android");
+        if (resourceId > 0) {
+            statusBarHeight = service.getResources().getDimensionPixelSize(resourceId);
+        }
         if (statusBarHeight == 0) {
-            // Some devices provide wrong value for status bar height in landscape mode, this is workaround
+            // Some devices provide wrong value for status bar height in landscape mode,
+            // this is workaround
             final DisplayMetrics metrics = getRootView().getResources().getDisplayMetrics();
-            statusBarHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, metrics);
+            statusBarHeight = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 24, metrics);
         }
         return statusBarHeight;
     }
 
-    protected void setMuteButton(final ImageButton muteButton, final boolean isMuted) {
-        muteButton.setImageDrawable(AppCompatResources.getDrawable(service, isMuted
+    protected void setMuteButton(final ImageButton button, final boolean isMuted) {
+        button.setImageDrawable(AppCompatResources.getDrawable(service, isMuted
                 ? R.drawable.ic_volume_off_white_24dp : R.drawable.ic_volume_up_white_24dp));
     }
 
@@ -1396,12 +1585,18 @@ public class VideoPlayerImpl extends VideoPlayer
      */
     private boolean isInMultiWindow() {
         final AppCompatActivity parent = getParentActivity();
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && parent != null && parent.isInMultiWindowMode();
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+                && parent != null
+                && parent.isInMultiWindowMode();
     }
 
     private void updatePlaybackButtons() {
-        if (repeatButton == null || shuffleButton == null ||
-                simpleExoPlayer == null || playQueue == null) return;
+        if (repeatButton == null
+                || shuffleButton == null
+                || simpleExoPlayer == null
+                || playQueue == null) {
+            return;
+        }
 
         setRepeatModeButton(repeatButton, getRepeatMode());
         setShuffleButton(shuffleButton, playQueue.isShuffled());
@@ -1409,10 +1604,19 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public void checkLandscape() {
         final AppCompatActivity parent = getParentActivity();
-        final boolean videoInLandscapeButNotInFullscreen = service.isLandscape() && !isFullscreen() && videoPlayerSelected() && !audioOnly;
-        final boolean playingState = getCurrentState() != STATE_COMPLETED && getCurrentState() != STATE_PAUSED;
-        if (parent != null && videoInLandscapeButNotInFullscreen && playingState && !PlayerHelper.isTablet(service))
+        final boolean videoInLandscapeButNotInFullscreen = service.isLandscape()
+                && !isFullscreen()
+                && videoPlayerSelected()
+                && !audioOnly;
+
+        final boolean playingState = getCurrentState() != STATE_COMPLETED
+                && getCurrentState() != STATE_PAUSED;
+        if (parent != null
+                && videoInLandscapeButNotInFullscreen
+                && playingState
+                && !PlayerHelper.isTablet(service)) {
             toggleFullscreen();
+        }
 
         setControlsSize();
     }
@@ -1434,12 +1638,16 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     public void useVideoSource(final boolean video) {
-        if (playQueue == null || audioOnly == !video || audioPlayerSelected())
+        if (playQueue == null || audioOnly == !video || audioPlayerSelected()) {
             return;
+        }
 
         audioOnly = !video;
-        // When a user returns from background controls could be hidden but systemUI will be shown 100%. Hide it
-        if (!audioOnly && !isControlsVisible()) hideSystemUIIfNeeded();
+        // When a user returns from background controls could be hidden
+        // but systemUI will be shown 100%. Hide it
+        if (!audioOnly && !isControlsVisible()) {
+            hideSystemUIIfNeeded();
+        }
         setRecovery();
         reload();
     }
@@ -1447,7 +1655,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private OnScrollBelowItemsListener getQueueScrollListener() {
         return new OnScrollBelowItemsListener() {
             @Override
-            public void onScrolledDown(RecyclerView recyclerView) {
+            public void onScrolledDown(final RecyclerView recyclerView) {
                 if (playQueue != null && !playQueue.isComplete()) {
                     playQueue.fetch();
                 } else if (itemsList != null) {
@@ -1460,13 +1668,17 @@ public class VideoPlayerImpl extends VideoPlayer
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         return new PlayQueueItemTouchCallback() {
             @Override
-            public void onMove(int sourceIndex, int targetIndex) {
-                if (playQueue != null) playQueue.move(sourceIndex, targetIndex);
+            public void onMove(final int sourceIndex, final int targetIndex) {
+                if (playQueue != null) {
+                    playQueue.move(sourceIndex, targetIndex);
+                }
             }
 
             @Override
-            public void onSwiped(int index) {
-                if (index != -1) playQueue.remove(index);
+            public void onSwiped(final int index) {
+                if (index != -1) {
+                    playQueue.remove(index);
+                }
             }
         };
     }
@@ -1474,19 +1686,23 @@ public class VideoPlayerImpl extends VideoPlayer
     private PlayQueueItemBuilder.OnSelectedListener getOnSelectedListener() {
         return new PlayQueueItemBuilder.OnSelectedListener() {
             @Override
-            public void selected(PlayQueueItem item, View view) {
+            public void selected(final PlayQueueItem item, final View view) {
                 onSelected(item);
             }
 
             @Override
-            public void held(PlayQueueItem item, View view) {
+            public void held(final PlayQueueItem item, final View view) {
                 final int index = playQueue.indexOf(item);
-                if (index != -1) playQueue.remove(index);
+                if (index != -1) {
+                    playQueue.remove(index);
+                }
             }
 
             @Override
-            public void onStartDrag(PlayQueueItemHolder viewHolder) {
-                if (itemTouchHelper != null) itemTouchHelper.startDrag(viewHolder);
+            public void onStartDrag(final PlayQueueItemHolder viewHolder) {
+                if (itemTouchHelper != null) {
+                    itemTouchHelper.startDrag(viewHolder);
+                }
             }
         };
     }
@@ -1497,17 +1713,24 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @SuppressLint("RtlHardcoded")
     private void initPopup() {
-        if (DEBUG) Log.d(TAG, "initPopup() called");
+        if (DEBUG) {
+            Log.d(TAG, "initPopup() called");
+        }
 
         // Popup is already added to windowManager
-        if (popupHasParent()) return;
+        if (popupHasParent()) {
+            return;
+        }
 
         updateScreenSize();
 
         final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(service);
         final float defaultSize = service.getResources().getDimension(R.dimen.popup_default_width);
-        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(service);
-        popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(service);
+        popupWidth = popupRememberSizeAndPos
+                ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize)
+                : defaultSize;
         popupHeight = getMinimumVideoHeight(popupWidth);
 
         popupLayoutParams = new WindowManager.LayoutParams(
@@ -1521,8 +1744,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
         final int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
         final int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
-        popupLayoutParams.x = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
-        popupLayoutParams.y = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
+        popupLayoutParams.x = popupRememberSizeAndPos
+                ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
+        popupLayoutParams.y = popupRememberSizeAndPos
+                ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
 
         checkPopupPositionBounds();
 
@@ -1538,15 +1763,20 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @SuppressLint("RtlHardcoded")
     private void initPopupCloseOverlay() {
-        if (DEBUG) Log.d(TAG, "initPopupCloseOverlay() called");
+        if (DEBUG) {
+            Log.d(TAG, "initPopupCloseOverlay() called");
+        }
 
         // closeOverlayView is already added to windowManager
-        if (closeOverlayView != null) return;
+        if (closeOverlayView != null) {
+            return;
+        }
 
         closeOverlayView = View.inflate(service, R.layout.player_popup_close_overlay, null);
         closeOverlayButton = closeOverlayView.findViewById(R.id.closeButton);
 
-        final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
 
         final WindowManager.LayoutParams closeOverlayLayoutParams = new WindowManager.LayoutParams(
@@ -1555,7 +1785,8 @@ public class VideoPlayerImpl extends VideoPlayer
                 flags,
                 PixelFormat.TRANSLUCENT);
         closeOverlayLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-        closeOverlayLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
+        closeOverlayLayoutParams.softInputMode =
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
 
         closeOverlayButton.setVisibility(View.GONE);
         windowManager.addView(closeOverlayView, closeOverlayLayoutParams);
@@ -1572,8 +1803,8 @@ public class VideoPlayerImpl extends VideoPlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     /**
-     * @see #checkPopupPositionBounds(float, float)
      * @return if the popup was out of bounds and have been moved back to it
+     * @see #checkPopupPositionBounds(float, float)
      */
     @SuppressWarnings("UnusedReturnValue")
     public boolean checkPopupPositionBounds() {
@@ -1629,7 +1860,8 @@ public class VideoPlayerImpl extends VideoPlayer
     private float getMinimumVideoHeight(final float width) {
         final float height = width / (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
         /*if (DEBUG) {
-            Log.d(TAG, "getMinimumVideoHeight() called with: width = [" + width + "], returned: " + height);
+            Log.d(TAG, "getMinimumVideoHeight() called with: width = ["
+            + width + "], returned: " + height);
         }*/
         return height;
     }
@@ -1640,8 +1872,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
-        if (DEBUG)
-            Log.d(TAG, "updateScreenSize() called > screenWidth = " + screenWidth + ", screenHeight = " + screenHeight);
+        if (DEBUG) {
+            Log.d(TAG, "updateScreenSize() called > screenWidth = "
+                    + screenWidth + ", screenHeight = " + screenHeight);
+        }
 
         popupWidth = service.getResources().getDimension(R.dimen.popup_default_width);
         popupHeight = getMinimumVideoHeight(popupWidth);
@@ -1654,15 +1888,28 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     public void updatePopupSize(final int width, final int height) {
-        if (DEBUG) Log.d(TAG, "updatePopupSize() called with: width = [" + width + "], height = [" + height + "]");
+        if (DEBUG) {
+            Log.d(TAG, "updatePopupSize() called with: width = ["
+                    + width + "], height = [" + height + "]");
+        }
 
-        if (popupLayoutParams == null || windowManager == null || getParentActivity() != null || getRootView().getParent() == null)
+        if (popupLayoutParams == null
+                || windowManager == null
+                || getParentActivity() != null
+                || getRootView().getParent() == null) {
             return;
+        }
 
-        final int actualWidth = (int) (width > maximumWidth ? maximumWidth : width < minimumWidth ? minimumWidth : width);
+        final int actualWidth = (int) (width > maximumWidth
+                ? maximumWidth : width < minimumWidth ? minimumWidth : width);
         final int actualHeight;
-        if (height == -1) actualHeight = (int) getMinimumVideoHeight(width);
-        else actualHeight = (int) (height > maximumHeight ? maximumHeight : height < minimumHeight ? minimumHeight : height);
+        if (height == -1) {
+            actualHeight = (int) getMinimumVideoHeight(width);
+        } else {
+            actualHeight = (int) (height > maximumHeight
+                    ? maximumHeight : height < minimumHeight
+                    ? minimumHeight : height);
+        }
 
         popupLayoutParams.width = actualWidth;
         popupLayoutParams.height = actualHeight;
@@ -1670,23 +1917,29 @@ public class VideoPlayerImpl extends VideoPlayer
         popupHeight = actualHeight;
         getSurfaceView().setHeights((int) popupHeight, (int) popupHeight);
 
-        if (DEBUG) Log.d(TAG, "updatePopupSize() updated values:" +
-                "  width = [" + actualWidth + "], height = [" + actualHeight + "]");
+        if (DEBUG) {
+            Log.d(TAG, "updatePopupSize() updated values:"
+                    + "  width = [" + actualWidth + "], height = [" + actualHeight + "]");
+        }
         windowManager.updateViewLayout(getRootView(), popupLayoutParams);
     }
 
     private void updateWindowFlags(final int flags) {
-        if (popupLayoutParams == null || windowManager == null || getParentActivity() != null || getRootView().getParent() == null)
+        if (popupLayoutParams == null
+                || windowManager == null
+                || getParentActivity() != null
+                || getRootView().getParent() == null) {
             return;
+        }
 
         popupLayoutParams.flags = flags;
         windowManager.updateViewLayout(getRootView(), popupLayoutParams);
     }
 
     private int popupLayoutParamType() {
-        return Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ?
-                WindowManager.LayoutParams.TYPE_PHONE :
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        return Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O
+                ? WindowManager.LayoutParams.TYPE_PHONE
+                : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1694,8 +1947,12 @@ public class VideoPlayerImpl extends VideoPlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     public void closePopup() {
-        if (DEBUG) Log.d(TAG, "closePopup() called, isPopupClosing = " + isPopupClosing);
-        if (isPopupClosing) return;
+        if (DEBUG) {
+            Log.d(TAG, "closePopup() called, isPopupClosing = " + isPopupClosing);
+        }
+        if (isPopupClosing) {
+            return;
+        }
         isPopupClosing = true;
 
         savePlaybackState();
@@ -1705,11 +1962,14 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     public void removePopupFromView() {
-        final boolean isCloseOverlayHasParent = closeOverlayView != null && closeOverlayView.getParent() != null;
-        if (popupHasParent())
+        final boolean isCloseOverlayHasParent = closeOverlayView != null
+                && closeOverlayView.getParent() != null;
+        if (popupHasParent()) {
             windowManager.removeView(getRootView());
-        if (isCloseOverlayHasParent)
+        }
+        if (isCloseOverlayHasParent) {
             windowManager.removeView(closeOverlayView);
+        }
     }
 
     private void animateOverlayAndFinishService() {
@@ -1743,7 +2003,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private boolean popupHasParent() {
         final View root = getRootView();
-        return root != null && root.getLayoutParams() instanceof WindowManager.LayoutParams && root.getParent() != null;
+        return root != null
+                && root.getLayoutParams() instanceof WindowManager.LayoutParams
+                && root.getParent() != null;
     }
 
     ///////////////////////////////////////////////////////////////////////////

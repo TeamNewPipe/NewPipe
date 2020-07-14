@@ -19,4 +19,10 @@
   <suppress checks="LineLength"
       files="WebMWriter.java"
       lines="156,158"/>
+
+  <suppress checks="FileLength"
+            files="VideoPlayerImpl.java"/>
+
+  <suppress checks="FileLength"
+            files="VideoDetailFragment.java"/>
 </suppressions>

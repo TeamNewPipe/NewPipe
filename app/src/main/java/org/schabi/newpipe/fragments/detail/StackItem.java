@@ -10,18 +10,19 @@ class StackItem implements Serializable {
     private String title;
     private PlayQueue playQueue;
 
-    StackItem(final int serviceId, final String url, final String title, final PlayQueue playQueue) {
+    StackItem(final int serviceId, final String url,
+              final String title, final PlayQueue playQueue) {
         this.serviceId = serviceId;
         this.url = url;
         this.title = title;
         this.playQueue = playQueue;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(final String url) {
         this.url = url;
     }
 
-    public void setPlayQueue(PlayQueue queue) {
+    public void setPlayQueue(final PlayQueue queue) {
         this.playQueue = queue;
     }
 
@@ -41,7 +42,9 @@ class StackItem implements Serializable {
         return url;
     }
 
-    public PlayQueue getPlayQueue() { return playQueue; }
+    public PlayQueue getPlayQueue() {
+        return playQueue;
+    }
 
     @Override
     public String toString() {

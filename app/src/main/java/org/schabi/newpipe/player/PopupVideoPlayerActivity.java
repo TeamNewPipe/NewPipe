@@ -61,7 +61,7 @@ public final class PopupVideoPlayerActivity extends ServicePlayerActivity {
     }
 
     @Override
-    public void setupMenu(Menu menu) {
+    public void setupMenu(final Menu menu) {
 
     }
 

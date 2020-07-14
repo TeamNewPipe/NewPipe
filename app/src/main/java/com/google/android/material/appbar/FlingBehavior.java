@@ -85,15 +85,23 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     }
 
     @Override
-    public boolean onStartNestedScroll(@NotNull final CoordinatorLayout parent, @NotNull final AppBarLayout child,
-                                       @NotNull final View directTargetChild, final View target, final int nestedScrollAxes, final int type) {
-        return allowScroll && super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes, type);
+    public boolean onStartNestedScroll(@NotNull final CoordinatorLayout parent,
+                                       @NotNull final AppBarLayout child,
+                                       @NotNull final View directTargetChild,
+                                       final View target,
+                                       final int nestedScrollAxes,
+                                       final int type) {
+        return allowScroll && super.onStartNestedScroll(
+                parent, child, directTargetChild, target, nestedScrollAxes, type);
     }
 
     @Override
-    public boolean onNestedFling(@NotNull final CoordinatorLayout coordinatorLayout, @NotNull final AppBarLayout child,
-                                 @NotNull final View target, final float velocityX, final float velocityY, final boolean consumed) {
-        return allowScroll && super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed);
+    public boolean onNestedFling(@NotNull final CoordinatorLayout coordinatorLayout,
+                                 @NotNull final AppBarLayout child,
+                                 @NotNull final View target, final float velocityX,
+                                 final float velocityY, final boolean consumed) {
+        return allowScroll && super.onNestedFling(
+                coordinatorLayout, child, target, velocityX, velocityY, consumed);
     }
 
     @Nullable

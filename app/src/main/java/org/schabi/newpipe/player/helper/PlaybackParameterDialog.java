@@ -93,7 +93,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     public static PlaybackParameterDialog newInstance(final double playbackTempo,
                                                       final double playbackPitch,
                                                       final boolean playbackSkipSilence,
-                                                      Callback callback) {
+                                                      final Callback callback) {
         PlaybackParameterDialog dialog = new PlaybackParameterDialog();
         dialog.callback = callback;
         dialog.initialTempo = playbackTempo;
