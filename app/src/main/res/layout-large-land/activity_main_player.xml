@@ -217,7 +217,6 @@
 
                 <Button
                     android:id="@+id/qualityTextView"
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:minWidth="0dp"
@@ -228,36 +227,38 @@
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     android:textAllCaps="false"
+                    android:background="?attr/selectableItemBackground"
                     tools:ignore="HardcodedText,RtlHardcoded"/>
 
                 <Button
                     android:id="@+id/playbackSpeed"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="45dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:minHeight="35dp"
+                    android:minWidth="0dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     android:textAllCaps="false"
+                    android:background="?attr/selectableItemBackground"
                     tools:ignore="RtlHardcoded,RtlSymmetry"
                     tools:text="1x"/>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/queueButton"
-                    android:layout_width="45dp"
+                    android:layout_width="40dp"
                     android:layout_height="35dp"
-                    android:padding="@dimen/player_main_buttons_padding"
+                    android:padding="10dp"
                     android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:scaleType="fitXY"
+                    android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_list_white_24dp"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="ContentDescription,RtlHardcoded"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/moreOptionsButton"
@@ -284,7 +285,6 @@
 
                 <Button
                     android:id="@+id/resizeTextView"
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:padding="@dimen/player_main_buttons_padding"
@@ -299,7 +299,6 @@
                     tools:text="FIT"/>
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/captionTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -480,7 +479,7 @@
             android:weightSum="5.5">
             <!--tools:visibility="gone">-->
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/playPreviousButton"
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -490,7 +489,7 @@
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
-            android:src="@drawable/exo_controls_previous"
+            app:srcCompat="@drawable/ic_previous_white_24dp"
             tools:ignore="ContentDescription"/>
 
 
@@ -504,7 +503,7 @@
             app:srcCompat="@drawable/ic_pause_white_24dp"
             tools:ignore="ContentDescription"/>
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/playNextButton"
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -514,7 +513,7 @@
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
-            android:src="@drawable/exo_controls_next"
+            app:srcCompat="@drawable/ic_next_white_24dp"
             tools:ignore="ContentDescription"/>
 
         </LinearLayout>
@@ -660,7 +659,6 @@
 
     <Button
         android:id="@+id/closeButton"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

@@ -1511,7 +1511,7 @@ public class VideoDetailFragment
                 getChildFragmentManager().beginTransaction()
                         .replace(R.id.relatedStreamsLayout,
                                 RelatedVideosFragment.getInstance(info))
-                        .commitNow();
+                        .commitAllowingStateLoss();
                 relatedStreamsLayout.setVisibility(
                         player != null && player.isFullscreen() ? View.GONE : View.VISIBLE);
             }

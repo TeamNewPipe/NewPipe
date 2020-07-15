@@ -184,7 +184,7 @@
             app:srcCompat="@drawable/ic_repeat_white_24dp"
             tools:ignore="ContentDescription"/>
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_backward"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -196,7 +196,7 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/exo_controls_previous"
+            app:srcCompat="@drawable/ic_previous_white_24dp"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -263,7 +263,7 @@
             android:tint="?attr/colorAccent"
             android:src="@drawable/exo_controls_fastforward"/>
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_forward"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -275,7 +275,7 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/exo_controls_next"
+            app:srcCompat="@drawable/ic_next_white_24dp"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
