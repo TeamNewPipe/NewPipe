@@ -83,7 +83,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
             autoplaySwitch.setChecked(autoplay);
             autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
                     PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
-                    .putBoolean(getString(R.string.auto_queue_key), b).apply());
+                            .putBoolean(getString(R.string.auto_queue_key), b).apply());
             return headerRootLayout;
         } else {
             return null;

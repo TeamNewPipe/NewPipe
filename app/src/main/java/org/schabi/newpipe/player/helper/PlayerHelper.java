@@ -168,7 +168,7 @@ public final class PlayerHelper {
         }
 
         final List<StreamInfoItem> autoQueueItems = new ArrayList<>();
-        for (final InfoItem item : info.getRelatedStreams()) {
+        for (final InfoItem item : relatedItems) {
             if (item instanceof StreamInfoItem && !urls.contains(item.getUrl())) {
                 autoQueueItems.add((StreamInfoItem) item);
             }
