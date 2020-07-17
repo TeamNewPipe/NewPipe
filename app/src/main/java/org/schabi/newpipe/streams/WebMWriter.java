@@ -15,6 +15,8 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
+
 /**
  * @author kapodamy
  */
@@ -518,14 +520,14 @@ public class WebMWriter implements Closeable {
         }
 
         /* audio/video */
-        if ((track.trackType == 1 || track.trackType == 2) && valid(track.bMetadata)) {
+        if ((track.trackType == 1 || track.trackType == 2) && isNotEmpty(track.bMetadata)) {
             buffer.add(new byte[]{(byte) (track.trackType == 1 ? 0xe0 : 0xe1)});
             buffer.add(encode(track.bMetadata.length, false));
             buffer.add(track.bMetadata);
         }
 
         /* codec private*/
-        if (valid(track.codecPrivate)) {
+        if (isNotEmpty(track.codecPrivate)) {
             buffer.add(new byte[]{0x63, (byte) 0xa2});
             buffer.add(encode(track.codecPrivate.length, false));
             buffer.add(track.codecPrivate);
@@ -678,10 +680,6 @@ public class WebMWriter implements Closeable {
         buffer.add(str);
 
         return buffer;
-    }
-
-    private boolean valid(final byte[] buffer) {
-        return buffer != null && buffer.length > 0;
     }
 
     private int selectTrackForCue() {

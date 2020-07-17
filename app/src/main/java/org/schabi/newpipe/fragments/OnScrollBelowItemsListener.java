@@ -4,6 +4,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 /**
  * Recycler view scroll listener which calls the method {@link #onScrolledDown(RecyclerView)}
  * if the view is scrolled below the last item.
@@ -28,7 +30,7 @@ public abstract class OnScrollBelowItemsListener extends RecyclerView.OnScrollLi
             } else if (layoutManager instanceof StaggeredGridLayoutManager) {
                 int[] positions = ((StaggeredGridLayoutManager) layoutManager)
                         .findFirstVisibleItemPositions(null);
-                if (positions != null && positions.length > 0) {
+                if (ArrayUtils.isNotEmpty(positions)) {
                     pastVisibleItems = positions[0];
                 }
             }
