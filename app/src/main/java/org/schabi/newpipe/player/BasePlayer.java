@@ -28,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -420,7 +421,7 @@ public abstract class BasePlayer implements
         if (DEBUG) {
             Log.d(TAG, "Thumbnail - initThumbnail() called");
         }
-        if (url == null || url.isEmpty()) {
+        if (TextUtils.isEmpty(url)) {
             return;
         }
         ImageLoader.getInstance().resume();

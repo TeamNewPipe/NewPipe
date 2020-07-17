@@ -777,7 +777,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     }
 
     private void setTitleToUrl(final int sid, final String videoUrl, final String title) {
-        if (title != null && !title.isEmpty()) {
+        if (!TextUtils.isEmpty(title)) {
             for (StackItem stackItem : stack) {
                 if (stack.peek().getServiceId() == sid
                         && stackItem.getUrl().equals(videoUrl)) {

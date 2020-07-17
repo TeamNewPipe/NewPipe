@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -104,7 +105,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     private void showPathInSummary(final String prefKey, @StringRes final int defaultString,
                                    final Preference target) {
         String rawUri = defaultPreferences.getString(prefKey, null);
-        if (rawUri == null || rawUri.isEmpty()) {
+        if (TextUtils.isEmpty(rawUri)) {
             target.setSummary(getString(defaultString));
             return;
         }
@@ -132,8 +133,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private boolean hasInvalidPath(final String prefKey) {
-        String value = defaultPreferences.getString(prefKey, null);
-        return value == null || value.isEmpty();
+        return TextUtils.isEmpty(defaultPreferences.getString(prefKey, null));
     }
 
     private void updatePathPickers(final boolean enabled) {
@@ -147,7 +147,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return;
         }
 
-        if (oldPath == null || oldPath.isEmpty() || isFileUri(oldPath)) {
+        if (TextUtils.isEmpty(oldPath) || isFileUri(oldPath)) {
             return;
         }
 

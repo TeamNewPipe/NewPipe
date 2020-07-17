@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings.tabs;
 
+import android.text.TextUtils;
+
 import androidx.annotation.Nullable;
 
 import com.grack.nanojson.JsonArray;
@@ -42,7 +44,7 @@ public final class TabsJsonHelper {
      */
     public static List<Tab> getTabsFromJson(@Nullable final String tabsJson)
             throws InvalidJsonException {
-        if (tabsJson == null || tabsJson.isEmpty()) {
+        if (TextUtils.isEmpty(tabsJson)) {
             return getDefaultTabs();
         }
 

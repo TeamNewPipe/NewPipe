@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.HapticFeedbackConstants;
@@ -930,7 +931,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 checksum.setVisible(true);
             }
 
-            if (item.mission.source != null && !item.mission.source.isEmpty()) {
+            if (!TextUtils.isEmpty(item.mission.source)) {
                 source.setVisible(true);
             }
 

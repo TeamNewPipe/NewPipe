@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -446,7 +447,7 @@ public final class NavigationHelper {
                                    final String url, final String name) {
         Intent openIntent = getOpenIntent(context, url, serviceId,
                 StreamingService.LinkType.CHANNEL);
-        if (name != null && !name.isEmpty()) {
+        if (!TextUtils.isEmpty(name)) {
             openIntent.putExtra(Constants.KEY_TITLE, name);
         }
         context.startActivity(openIntent);
@@ -461,7 +462,7 @@ public final class NavigationHelper {
                                        final String url, final String title) {
         Intent openIntent = getOpenIntent(context, url, serviceId,
                 StreamingService.LinkType.STREAM);
-        if (title != null && !title.isEmpty()) {
+        if (!TextUtils.isEmpty(title)) {
             openIntent.putExtra(Constants.KEY_TITLE, title);
         }
         context.startActivity(openIntent);

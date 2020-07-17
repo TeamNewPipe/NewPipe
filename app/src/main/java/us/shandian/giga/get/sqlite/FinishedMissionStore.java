@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -143,7 +144,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         if (cursor == null) throw new NullPointerException("cursor is null");
 
         String kind = cursor.getString(cursor.getColumnIndex(KEY_KIND));
-        if (kind == null || kind.isEmpty()) kind = "?";
+        if (TextUtils.isEmpty(kind)) kind = "?";
 
         String path = cursor.getString(cursor.getColumnIndexOrThrow(KEY_PATH));
 

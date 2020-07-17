@@ -535,7 +535,7 @@ public class RouterActivity extends AppCompatActivity {
     //////////////////////////////////////////////////////////////////////////*/
 
     private String trim(final String input) {
-        if (input == null || input.length() < 1) {
+        if (TextUtils.isEmpty(input)) {
             return input;
         } else {
             String output = input;

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -221,7 +222,7 @@ public class StoredDirectoryHelper {
     ///////////////////
 
     private static void addIfStartWith(ArrayList<String> list, @NonNull String base, String str) {
-        if (str == null || str.isEmpty()) return;
+        if (TextUtils.isEmpty(str)) return;
         str = str.toLowerCase();
         if (str.startsWith(base)) list.add(str);
     }

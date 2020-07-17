@@ -3,6 +3,7 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 
 import org.schabi.newpipe.R;
 
@@ -36,7 +37,7 @@ public final class FilenameUtils {
 
         final String charset;
 
-        if (selectedCharset == null || selectedCharset.isEmpty()) {
+        if (TextUtils.isEmpty(selectedCharset)) {
             selectedCharset = defaultCharset;
         }
 

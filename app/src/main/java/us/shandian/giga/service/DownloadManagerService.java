@@ -25,6 +25,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.widget.Toast;
@@ -546,7 +547,7 @@ public class DownloadManagerService extends Service {
     private StoredDirectoryHelper loadMainStorage(@StringRes int prefKey, String tag) {
         String path = mPrefs.getString(getString(prefKey), null);
 
-        if (path == null || path.isEmpty()) return null;
+        if (TextUtils.isEmpty(path)) return null;
 
         if (path.charAt(0) == File.separatorChar) {
             Log.i(TAG, "Old save path style present: " + path);

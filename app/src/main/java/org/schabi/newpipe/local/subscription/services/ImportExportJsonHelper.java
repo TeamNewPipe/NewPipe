@@ -19,6 +19,8 @@
 
 package org.schabi.newpipe.local.subscription.services;
 
+import android.text.TextUtils;
+
 import androidx.annotation.Nullable;
 
 import com.grack.nanojson.JsonAppendableWriter;
@@ -93,7 +95,7 @@ public final class ImportExportJsonHelper {
                     String url = itemObject.getString(JSON_URL_KEY);
                     String name = itemObject.getString(JSON_NAME_KEY);
 
-                    if (url != null && name != null && !url.isEmpty() && !name.isEmpty()) {
+                    if (!TextUtils.isEmpty(url) && !TextUtils.isEmpty(name)) {
                         channels.add(new SubscriptionItem(serviceId, url, name));
                         if (eventListener != null) {
                             eventListener.onItemCompleted(name);
