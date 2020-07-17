@@ -29,6 +29,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -504,11 +505,9 @@ public class RouterActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(final int requestCode,
                                            @NonNull final String[] permissions,
                                            @NonNull final int[] grantResults) {
-        for (int i : grantResults) {
-            if (i == PackageManager.PERMISSION_DENIED) {
-                finish();
-                return;
-            }
+        if (ArrayUtils.contains(grantResults, PackageManager.PERMISSION_DENIED)) {
+            finish();
+            return;
         }
         if (requestCode == PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE) {
             openDownloadDialog();

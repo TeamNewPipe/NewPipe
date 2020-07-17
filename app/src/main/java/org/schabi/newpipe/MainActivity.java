@@ -53,6 +53,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -552,10 +553,8 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(final int requestCode,
                                            @NonNull final String[] permissions,
                                            @NonNull final int[] grantResults) {
-        for (int i : grantResults) {
-            if (i == PackageManager.PERMISSION_DENIED) {
-                return;
-            }
+        if (ArrayUtils.contains(grantResults, PackageManager.PERMISSION_DENIED)) {
+            return;
         }
         switch (requestCode) {
             case PermissionHelper.DOWNLOADS_REQUEST_CODE:
