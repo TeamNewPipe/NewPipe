@@ -24,7 +24,8 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 public class PlaybackParameterDialog extends DialogFragment {
     // Minimum allowable range in ExoPlayer
     private static final double MINIMUM_PLAYBACK_VALUE = 0.10f;
-    private static final double MAXIMUM_PLAYBACK_VALUE = 3.00f;
+    // Maximum allowable range in ExoPlayer
+    private static final double MAXIMUM_PLAYBACK_VALUE = 8.00f;
 
     private static final char STEP_UP_SIGN = '+';
     private static final char STEP_DOWN_SIGN = '-';
