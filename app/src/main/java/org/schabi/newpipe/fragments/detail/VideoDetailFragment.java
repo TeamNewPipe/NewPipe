@@ -1025,7 +1025,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
 
         if (description.getType() == Description.HTML) {
             disposables.add(Single.just(description.getContent())
-                    .map((@io.reactivex.annotations.NonNull String descriptionText) -> {
+                    .map((@NonNull String descriptionText) -> {
                         Spanned parsedDescription;
                         if (Build.VERSION.SDK_INT >= 24) {
                             parsedDescription = Html.fromHtml(descriptionText, 0);
@@ -1037,7 +1037,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                     })
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe((@io.reactivex.annotations.NonNull Spanned spanned) -> {
+                    .subscribe((@NonNull Spanned spanned) -> {
                         videoDescriptionView.setText(spanned);
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));
