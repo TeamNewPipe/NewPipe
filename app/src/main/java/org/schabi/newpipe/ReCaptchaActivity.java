@@ -22,6 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 import androidx.preference.PreferenceManager;
 
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.UnsupportedEncodingException;
@@ -223,9 +224,8 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     private void addYoutubeCookies(@NonNull final String cookies) {
-        if (cookies.contains("s_gl=") || cookies.contains("goojf=")
-                || cookies.contains("VISITOR_INFO1_LIVE=")
-                || cookies.contains("GOOGLE_ABUSE_EXEMPTION=")) {
+        if (StringUtils.containsAny(cookies, "s_gl=", "goojf=",
+                "VISITOR_INFO1_LIVE=", "GOOGLE_ABUSE_EXEMPTION=")) {
             // youtube seems to also need the other cookies:
             addCookie(cookies);
         }

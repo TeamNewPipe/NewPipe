@@ -15,6 +15,7 @@ import java.nio.channels.ClosedByInterruptException;
 
 import us.shandian.giga.util.Utility;
 
+import static org.apache.commons.lang3.StringUtils.contains;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
@@ -183,7 +184,7 @@ public class DownloadInitializer extends Thread {
                     return;
                 }
 
-                if (e instanceof IOException && e.getMessage().contains("Permission denied")) {
+                if (e instanceof IOException && contains(e.getMessage(), "Permission denied")) {
                     mMission.notifyError(DownloadMission.ERROR_PERMISSION_DENIED, e);
                     return;
                 }

@@ -31,6 +31,7 @@ import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.util.Utility;
 
+import static org.apache.commons.lang3.StringUtils.contains;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadMission extends Mission {
@@ -330,10 +331,10 @@ public class DownloadMission extends Mission {
         }
 
         if (err instanceof IOException) {
-            if (err.getMessage().contains("Permission denied")) {
+            if (contains(err.getMessage(), "Permission denied")) {
                 code = ERROR_PERMISSION_DENIED;
                 err = null;
-            } else if (err.getMessage().contains("ENOSPC")) {
+            } else if (contains(err.getMessage(), "ENOSPC")) {
                 code = ERROR_INSUFFICIENT_STORAGE;
                 err = null;
             } else if (!storage.canWrite()) {
