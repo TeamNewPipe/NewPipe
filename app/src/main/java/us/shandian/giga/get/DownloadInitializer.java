@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
@@ -101,7 +102,7 @@ public class DownloadInitializer extends Thread {
 
                 // check for dynamic generated content
                 if (mMission.length == -1 && mConn.getResponseCode() == 200) {
-                    mMission.blocks = new int[0];
+                    mMission.blocks = ArrayUtils.EMPTY_INT_ARRAY;
                     mMission.length = 0;
                     mMission.unknownLength = true;
 
@@ -126,7 +127,7 @@ public class DownloadInitializer extends Thread {
                                 mMission.blocks = new int[count];
                             } else {
                                 // if one thread is required don't calculate blocks, is useless
-                                mMission.blocks = new int[0];
+                                mMission.blocks = ArrayUtils.EMPTY_INT_ARRAY;
                                 mMission.unknownLength = false;
                             }
 
@@ -135,7 +136,7 @@ public class DownloadInitializer extends Thread {
                             }
                         } else {
                             // Fallback to single thread
-                            mMission.blocks = new int[0];
+                            mMission.blocks = ArrayUtils.EMPTY_INT_ARRAY;
                             mMission.unknownLength = false;
 
                             if (DEBUG) {

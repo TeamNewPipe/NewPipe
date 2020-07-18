@@ -9,6 +9,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.schabi.newpipe.DownloaderImpl;
 
 import java.io.File;
@@ -734,7 +735,7 @@ public class DownloadMission extends Mission {
 
         if (recoveryInfo == null) {
             notifyError(errorCode, null);
-            urls = new String[0];// mark this mission as dead
+            urls = ArrayUtils.EMPTY_STRING_ARRAY;// mark this mission as dead
             return;
         }
 

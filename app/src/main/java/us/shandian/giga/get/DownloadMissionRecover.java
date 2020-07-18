@@ -2,6 +2,7 @@ package us.shandian.giga.get;
 
 import android.util.Log;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -216,7 +217,7 @@ public class DownloadMissionRecover extends Thread {
         mMission.urls[mMission.current] = url;
 
         if (url == null) {
-            mMission.urls = new String[0];
+            mMission.urls = ArrayUtils.EMPTY_STRING_ARRAY;
             mMission.notifyError(ERROR_RESOURCE_GONE, null);
             return;
         }

@@ -32,6 +32,7 @@ import androidx.appcompat.widget.TooltipCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
@@ -113,7 +114,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
      * be aware of this when implementing an extractor.
      */
     @State
-    String[] contentFilter = new String[0];
+    String[] contentFilter = ArrayUtils.EMPTY_STRING_ARRAY;
 
     @State
     String sortFilter;
@@ -163,7 +164,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     public static SearchFragment getInstance(final int serviceId, final String searchString) {
         SearchFragment searchFragment = new SearchFragment();
-        searchFragment.setQuery(serviceId, searchString, new String[0], "");
+        searchFragment.setQuery(serviceId, searchString, ArrayUtils.EMPTY_STRING_ARRAY, "");
 
         if (!TextUtils.isEmpty(searchString)) {
             searchFragment.setSearchOnResume();
@@ -545,7 +546,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         suggestionListAdapter.setListener(new SuggestionListAdapter.OnSuggestionItemSelected() {
             @Override
             public void onSuggestionItemSelected(final SuggestionItem item) {
-                search(item.query, new String[0], "");
+                search(item.query, ArrayUtils.EMPTY_STRING_ARRAY, "");
                 searchEditText.setText(item.query);
             }
 
@@ -595,7 +596,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     } else if (event != null
                             && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                             || event.getAction() == EditorInfo.IME_ACTION_SEARCH)) {
-                        search(searchEditText.getText().toString(), new String[0], "");
+                        search(searchEditText.getText().toString(), ArrayUtils.EMPTY_STRING_ARRAY,
+                                "");
                         return true;
                     }
                     return false;

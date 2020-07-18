@@ -571,7 +571,7 @@ public class RouterActivity extends AppCompatActivity {
                 }
             }
         }
-        return result.toArray(new String[result.size()]);
+        return result.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
     }
 
     private static class AdapterChoiceItem {

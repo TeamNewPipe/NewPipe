@@ -33,6 +33,7 @@ import androidx.annotation.FloatRange;
 import androidx.core.view.ViewCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.schabi.newpipe.MainActivity;
 
 public final class AnimationUtils {
@@ -157,7 +158,7 @@ public final class AnimationUtils {
                     + "colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]");
         }
 
-        final int[][] empty = new int[][]{new int[0]};
+        final int[][] empty = new int[][]{ArrayUtils.EMPTY_INT_ARRAY};
         ValueAnimator viewPropertyAnimator = ValueAnimator
                 .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());
