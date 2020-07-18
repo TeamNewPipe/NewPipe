@@ -35,6 +35,7 @@ import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
 
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.player.helper.LockManager;
@@ -546,7 +547,7 @@ public class DownloadManagerService extends Service {
     private StoredDirectoryHelper loadMainStorage(@StringRes int prefKey, String tag) {
         String path = mPrefs.getString(getString(prefKey), null);
 
-        if (path == null || path.isEmpty()) return null;
+        if (StringUtils.isEmpty(path)) return null;
 
         if (path.charAt(0) == File.separatorChar) {
             Log.i(TAG, "Old save path style present: " + path);

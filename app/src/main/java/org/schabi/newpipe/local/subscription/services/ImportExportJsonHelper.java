@@ -28,6 +28,7 @@ import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonSink;
 import com.grack.nanojson.JsonWriter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.InvalidSourceException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
@@ -93,7 +94,7 @@ public final class ImportExportJsonHelper {
                     String url = itemObject.getString(JSON_URL_KEY);
                     String name = itemObject.getString(JSON_NAME_KEY);
 
-                    if (url != null && name != null && !url.isEmpty() && !name.isEmpty()) {
+                    if (StringUtils.isNoneEmpty(url, name)) {
                         channels.add(new SubscriptionItem(serviceId, url, name));
                         if (eventListener != null) {
                             eventListener.onItemCompleted(name);

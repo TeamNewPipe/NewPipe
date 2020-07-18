@@ -9,6 +9,8 @@ import com.grack.nanojson.JsonParserException;
 import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,7 +44,7 @@ public final class TabsJsonHelper {
      */
     public static List<Tab> getTabsFromJson(@Nullable final String tabsJson)
             throws InvalidJsonException {
-        if (tabsJson == null || tabsJson.isEmpty()) {
+        if (StringUtils.isEmpty(tabsJson)) {
             return getDefaultTabs();
         }
 

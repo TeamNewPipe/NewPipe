@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +29,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -105,10 +105,10 @@ public class RouterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        if (TextUtils.isEmpty(currentUrl)) {
+        if (StringUtils.isEmpty(currentUrl)) {
             currentUrl = getUrl(getIntent());
 
-            if (TextUtils.isEmpty(currentUrl)) {
+            if (StringUtils.isEmpty(currentUrl)) {
                 handleText();
                 finish();
             }
@@ -329,7 +329,7 @@ public class RouterActivity extends AppCompatActivity {
         if (selectedRadioPosition == -1) {
             final String lastSelectedPlayer = preferences.getString(
                     getString(R.string.preferred_open_action_last_selected_key), null);
-            if (!TextUtils.isEmpty(lastSelectedPlayer)) {
+            if (StringUtils.isNotEmpty(lastSelectedPlayer)) {
                 for (int i = 0; i < choices.size(); i++) {
                     AdapterChoiceItem c = choices.get(i);
                     if (lastSelectedPlayer.equals(c.key)) {
@@ -534,7 +534,7 @@ public class RouterActivity extends AppCompatActivity {
     //////////////////////////////////////////////////////////////////////////*/
 
     private String trim(final String input) {
-        if (input == null || input.length() < 1) {
+        if (StringUtils.isEmpty(input)) {
             return input;
         } else {
             String output = input;

@@ -32,6 +32,7 @@ import androidx.appcompat.widget.TooltipCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
@@ -480,7 +481,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
         searchEditText.setText(searchString);
 
-        if (TextUtils.isEmpty(searchString) || TextUtils.isEmpty(searchEditText.getText())) {
+        if (StringUtils.isAnyEmpty(searchString, searchEditText.getText())) {
             searchToolbarContainer.setTranslationX(100);
             searchToolbarContainer.setAlpha(0f);
             searchToolbarContainer.setVisibility(View.VISIBLE);

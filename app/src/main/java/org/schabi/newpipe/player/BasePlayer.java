@@ -54,6 +54,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
@@ -420,7 +421,7 @@ public abstract class BasePlayer implements
         if (DEBUG) {
             Log.d(TAG, "Thumbnail - initThumbnail() called");
         }
-        if (url == null || url.isEmpty()) {
+        if (StringUtils.isEmpty(url)) {
             return;
         }
         ImageLoader.getInstance().resume();

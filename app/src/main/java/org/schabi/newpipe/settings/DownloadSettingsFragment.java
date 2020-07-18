@@ -17,6 +17,7 @@ import androidx.preference.Preference;
 
 import com.nononsenseapps.filepicker.Utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
@@ -104,7 +105,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     private void showPathInSummary(final String prefKey, @StringRes final int defaultString,
                                    final Preference target) {
         String rawUri = defaultPreferences.getString(prefKey, null);
-        if (rawUri == null || rawUri.isEmpty()) {
+        if (StringUtils.isEmpty(rawUri)) {
             target.setSummary(getString(defaultString));
             return;
         }
@@ -132,8 +133,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private boolean hasInvalidPath(final String prefKey) {
-        String value = defaultPreferences.getString(prefKey, null);
-        return value == null || value.isEmpty();
+        return StringUtils.isEmpty(defaultPreferences.getString(prefKey, null));
     }
 
     private void updatePathPickers(final boolean enabled) {
@@ -147,7 +147,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return;
         }
 
-        if (oldPath == null || oldPath.isEmpty() || isFileUri(oldPath)) {
+        if (StringUtils.isEmpty(oldPath) || isFileUri(oldPath)) {
             return;
         }
 
