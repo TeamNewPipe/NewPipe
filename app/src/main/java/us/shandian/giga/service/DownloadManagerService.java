@@ -36,6 +36,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.player.helper.LockManager;
@@ -336,12 +337,8 @@ public class DownloadManagerService extends Service {
 
     private void handlePreferenceChange(SharedPreferences prefs, @NonNull String key) {
         if (key.equals(getString(R.string.downloads_maximum_retry))) {
-            try {
-                String value = prefs.getString(key, getString(R.string.downloads_maximum_retry_default));
-                mManager.mPrefMaxRetry = value == null ? 0 : Integer.parseInt(value);
-            } catch (Exception e) {
-                mManager.mPrefMaxRetry = 0;
-            }
+            String value = prefs.getString(key, getString(R.string.downloads_maximum_retry_default));
+            mManager.mPrefMaxRetry = NumberUtils.toInt(value);
             mManager.updateMaximumAttempts();
         } else if (key.equals(getString(R.string.downloads_cross_network))) {
             mManager.mPrefMeteredDownloads = prefs.getBoolean(key, false);
