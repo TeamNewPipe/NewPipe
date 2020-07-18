@@ -515,7 +515,22 @@ public class DownloadDialog extends DialogFragment
         videoButton.setVisibility(isVideoStreamsAvailable ? View.VISIBLE : View.GONE);
         subtitleButton.setVisibility(isSubtitleStreamsAvailable ? View.VISIBLE : View.GONE);
 
-        if (isVideoStreamsAvailable) {
+        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String defaultMedia = prefs.getString(getString(R.string.default_download_type),
+                getString(R.string.default_download_type_default));
+
+        assert defaultMedia != null;
+        if (isVideoStreamsAvailable && (defaultMedia.equals(getString(R.string.video)))) {
+            videoButton.setChecked(true);
+            setupVideoSpinner();
+        } else if (isAudioStreamsAvailable && (defaultMedia.equals(getString(R.string.audio)))) {
+            audioButton.setChecked(true);
+            setupAudioSpinner();
+        } else if (isSubtitleStreamsAvailable
+                && (defaultMedia.equals(getString(R.string.caption_setting_title)))) {
+            subtitleButton.setChecked(true);
+            setupSubtitleSpinner();
+        } else if (isVideoStreamsAvailable) {
             videoButton.setChecked(true);
             setupVideoSpinner();
         } else if (isAudioStreamsAvailable) {

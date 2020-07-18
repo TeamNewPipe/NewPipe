@@ -614,4 +614,6 @@
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
     <string name="youtube_restricted_mode_enabled_title">Mode restreint de YouTube</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Afficher les abonnements sans groupes uniquement</string>
+    <string name="default_download_type_msg">Média par défaut</string>
+    <string name="default_download_type_desc">Type de média à télécharger par défaut</string>
 </resources>

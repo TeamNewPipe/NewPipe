@@ -587,6 +587,8 @@
     <string name="delete_downloaded_files">Delete downloaded files</string>
     <string name="deleted_downloads">Deleted %1$d downloads</string>
     <string name="stop">Stop</string>
+    <string name="default_download_type_msg">Default download</string>
+    <string name="default_download_type_desc">Media type to download by default</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
     <string name="pause_downloads_on_mobile">Interrupt on metered networks</string>

@@ -220,6 +220,14 @@
     <string name="clear_playback_states_key" translatable="false">clear_playback_states</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
 
+    <string name="default_download_type" translatable="false">default_download</string>
+    <string name="default_download_type_default" translatable="false">@string/video</string>
+    <string-array name="default_download_type_list" translatable="false">
+        <item>@string/video</item>
+        <item>@string/audio</item>
+        <item>@string/caption_setting_title</item>
+    </string-array>
+
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
     <string name="storage_use_saf" translatable="false">storage_use_saf</string>
 
