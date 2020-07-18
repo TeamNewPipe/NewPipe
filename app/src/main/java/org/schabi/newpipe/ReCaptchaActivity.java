@@ -27,6 +27,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
+
 /*
  * Created by beneth <bmauduit@beneth.fr> on 06.12.16.
  *
@@ -64,10 +66,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String url = getIntent().getStringExtra(RECAPTCHA_URL_EXTRA);
-        if (url == null || url.isEmpty()) {
-            url = YT_URL;
-        }
+        final String url = defaultIfEmpty(getIntent().getStringExtra(RECAPTCHA_URL_EXTRA), YT_URL);
 
         // set return to Cancel by default
         setResult(RESULT_CANCELED);

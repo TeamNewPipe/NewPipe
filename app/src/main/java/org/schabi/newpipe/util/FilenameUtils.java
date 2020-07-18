@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.R;
 
 import java.util.regex.Pattern;
@@ -27,18 +28,14 @@ public final class FilenameUtils {
 
         final String charsetLd = context.getString(R.string.charset_letters_and_digits_value);
         final String charsetMs = context.getString(R.string.charset_most_special_value);
-        final String defaultCharset = context.getString(R.string.default_file_charset_value);
 
         final String replacementChar = sharedPreferences.getString(
                 context.getString(R.string.settings_file_replacement_character_key), "_");
-        String selectedCharset = sharedPreferences.getString(
-                context.getString(R.string.settings_file_charset_key), null);
+        final String selectedCharset = StringUtils.defaultIfEmpty(sharedPreferences.getString(
+                context.getString(R.string.settings_file_charset_key), null),
+                context.getString(R.string.default_file_charset_value));
 
         final String charset;
-
-        if (selectedCharset == null || selectedCharset.isEmpty()) {
-            selectedCharset = defaultCharset;
-        }
 
         if (selectedCharset.equals(charsetLd)) {
             charset = CHARSET_ONLY_LETTERS_AND_DIGITS;
