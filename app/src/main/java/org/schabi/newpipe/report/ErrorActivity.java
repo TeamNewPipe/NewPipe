@@ -50,6 +50,8 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.Vector;
 
+import static org.apache.commons.lang3.StringUtils.chomp;
+import static org.apache.commons.lang3.StringUtils.join;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 /*
@@ -73,6 +75,7 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
  */
 
 public class ErrorActivity extends AppCompatActivity {
+    private static final String SEPARATOR = "-------------------------------------\n";
     // LOG TAGS
     public static final String TAG = ErrorActivity.class.toString();
     // BUNDLE TAGS
@@ -304,14 +307,10 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String formErrorText(final String[] el) {
-        StringBuilder text = new StringBuilder();
         if (el != null) {
-            for (String e : el) {
-                text.append("-------------------------------------\n").append(e);
-            }
+            return SEPARATOR + chomp(join(el, SEPARATOR));
         }
-        text.append("-------------------------------------");
-        return text.toString();
+        return "";
     }
 
     /**
