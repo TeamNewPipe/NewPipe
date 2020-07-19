@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.documentfile.provider.DocumentFile;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -221,9 +223,7 @@ public class StoredDirectoryHelper {
     ///////////////////
 
     private static void addIfStartWith(ArrayList<String> list, @NonNull String base, String str) {
-        if (str == null || str.isEmpty()) return;
-        str = str.toLowerCase();
-        if (str.startsWith(base)) list.add(str);
+        if (StringUtils.startsWithIgnoreCase(str, base)) list.add(str);
     }
 
     private static String[] splitFilename(@NonNull String filename) {
