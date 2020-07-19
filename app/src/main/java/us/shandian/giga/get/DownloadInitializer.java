@@ -1,11 +1,11 @@
 package us.shandian.giga.get;
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
@@ -161,13 +161,8 @@ public class DownloadInitializer extends Thread {
                     String lastModified = mConn.getHeaderField("Last-Modified");
                     MissionRecoveryInfo recovery = mMission.recoveryInfo[mMission.current];
 
-                    if (!TextUtils.isEmpty(entityTag)) {
-                        recovery.validateCondition = entityTag;
-                    } else if (!TextUtils.isEmpty(lastModified)) {
-                        recovery.validateCondition = lastModified;// Note: this is less precise
-                    } else {
-                        recovery.validateCondition = null;
-                    }
+                    // Note: lastModified is less precise
+                    recovery.validateCondition = StringUtils.firstNonEmpty(entityTag, lastModified);
                 }
 
                 mMission.running = false;
