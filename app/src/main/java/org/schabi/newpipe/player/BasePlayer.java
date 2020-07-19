@@ -34,8 +34,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -678,18 +676,8 @@ public abstract class BasePlayer implements
             seekTo(skipTo);
 
             if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_notifications), false)) {
-                NotificationCompat.Builder notificationBuilder = new NotificationCompat
-                    .Builder(context, context.getString(R.string.notification_channel_id))
-                    .setOngoing(false)
-                    .setSmallIcon(R.drawable.ic_sponsor_block_white_96dp)
-                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .setContentTitle(context.getString(R.string.settings_category_sponsorblock))
-                    .setContentText(context.getString(R.string.sponsorblock_skipped_sponsor)
-                            + " \uD83D\uDC4D");
-
-                NotificationManagerCompat notificationManager = NotificationManagerCompat
-                        .from(App.getApp());
-                notificationManager.notify(0, notificationBuilder.build());
+                String toastText = context.getString(R.string.sponsorblock_skipped_sponsor);
+                Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
             }
 
             if (DEBUG) {
