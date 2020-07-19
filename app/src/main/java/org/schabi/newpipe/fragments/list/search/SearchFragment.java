@@ -395,9 +395,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void reloadContent() {
         if (!TextUtils.isEmpty(searchString)
                 || (searchEditText != null && !TextUtils.isEmpty(searchEditText.getText()))) {
-            search(!TextUtils.isEmpty(searchString)
-                    ? searchString
-                    : searchEditText.getText().toString(), this.contentFilter, "");
+            final String searchText = searchEditText.getText().toString();
+            search(StringUtils.defaultString(searchString, searchText), this.contentFilter, "");
         } else {
             if (searchEditText != null) {
                 searchEditText.setText("");

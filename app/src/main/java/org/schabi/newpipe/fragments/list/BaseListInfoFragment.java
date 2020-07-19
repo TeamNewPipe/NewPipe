@@ -1,12 +1,12 @@
 package org.schabi.newpipe.fragments.list;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.Page;
@@ -223,6 +223,6 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     protected void setInitialData(final int sid, final String u, final String title) {
         this.serviceId = sid;
         this.url = u;
-        this.name = !TextUtils.isEmpty(title) ? title : "";
+        this.name = StringUtils.defaultString(title);
     }
 }

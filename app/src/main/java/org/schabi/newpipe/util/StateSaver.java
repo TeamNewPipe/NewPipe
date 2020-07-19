@@ -44,6 +44,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 /**
  * A way to save state to disk or in a in-memory map
  * if it's just changing configurations (i.e. rotating the phone).
@@ -247,8 +249,8 @@ public final class StateSaver {
                 }
             }
 
-            File file = new File(cacheDir, prefixFileName
-                    + (TextUtils.isEmpty(suffixFileName) ? ".cache" : suffixFileName));
+            File file = new File(cacheDir, prefixFileName + defaultString(suffixFileName,
+                    ".cache"));
             if (file.exists() && file.length() > 0) {
                 // If the file already exists, just return it
                 return new SavedState(prefixFileName, file.getAbsolutePath());

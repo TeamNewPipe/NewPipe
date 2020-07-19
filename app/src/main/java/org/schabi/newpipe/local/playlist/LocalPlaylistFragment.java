@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +22,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
@@ -796,7 +796,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private void setInitialData(final long pid, final String title) {
         this.playlistId = pid;
-        this.name = !TextUtils.isEmpty(title) ? title : "";
+        this.name = StringUtils.defaultString(title);
     }
 
     private void setVideoCount(final long count) {

@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import org.apache.commons.lang3.StringUtils;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
@@ -240,7 +241,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
         return notification -> {
             if (notification.isOnNext()) {
                 String name = notification.getValue().getName();
-                eventListener.onItemCompleted(!TextUtils.isEmpty(name) ? name : "");
+                eventListener.onItemCompleted(StringUtils.defaultString(name));
             } else if (notification.isOnError()) {
                 final Throwable error = notification.getError();
                 final Throwable cause = error.getCause();

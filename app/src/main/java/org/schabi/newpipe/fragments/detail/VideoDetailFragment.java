@@ -106,6 +106,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -802,8 +803,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
         // Get stack item from the new top
         StackItem peek = stack.peek();
 
-        selectAndLoadVideo(peek.getServiceId(), peek.getUrl(),
-                !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "");
+        selectAndLoadVideo(peek.getServiceId(), peek.getUrl(), defaultString(peek.getTitle()));
         return true;
     }
 
@@ -1073,7 +1073,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     protected void setInitialData(final int sid, final String u, final String title) {
         this.serviceId = sid;
         this.url = u;
-        this.name = !TextUtils.isEmpty(title) ? title : "";
+        this.name = defaultString(title);
     }
 
     private void setErrorImage(final int imageResource) {
