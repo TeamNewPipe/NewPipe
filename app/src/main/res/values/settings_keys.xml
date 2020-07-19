@@ -226,7 +226,9 @@
         <item>@string/video</item>
         <item>@string/audio</item>
         <item>@string/caption_setting_title</item>
+        <item>@string/select_last_used_download_type</item>
     </string-array>
+    <string name="last_used_download_type" translatable="false">@string/video</string>
 
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
     <string name="storage_use_saf" translatable="false">storage_use_saf</string>

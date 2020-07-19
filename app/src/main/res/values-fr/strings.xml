@@ -616,4 +616,5 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">Afficher les abonnements sans groupes uniquement</string>
     <string name="default_download_type_msg">Média par défaut</string>
     <string name="default_download_type_desc">Type de média à télécharger par défaut</string>
+    <string name="select_last_used_download_type">Se souvenir du choix précédent</string>
 </resources>
