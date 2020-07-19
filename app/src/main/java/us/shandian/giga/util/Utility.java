@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.streams.io.SharpStream;
 
@@ -134,12 +135,11 @@ public class Utility {
             //default '?':
         }
 
-        if (file.endsWith(".srt") || file.endsWith(".vtt") || file.endsWith(".ssa")) {
+        if (StringUtils.endsWithAny(file, ".srt", ".vtt", ".ssa")) {
             return FileType.SUBTITLE;
-        } else if (file.endsWith(".mp3") || file.endsWith(".wav") || file.endsWith(".flac") || file.endsWith(".m4a") || file.endsWith(".opus")) {
+        } else if (StringUtils.endsWithAny(file, ".mp3", ".wav", ".flac", ".m4a", ".opus")) {
             return FileType.MUSIC;
-        } else if (file.endsWith(".mp4") || file.endsWith(".mpeg") || file.endsWith(".rm") || file.endsWith(".rmvb")
-                || file.endsWith(".flv") || file.endsWith(".webp") || file.endsWith(".webm")) {
+        } else if (StringUtils.endsWithAny(file, ".mp4", ".mpeg", ".rm", ".rmvb", ".flv", ".webp", ".webm")) {
             return FileType.VIDEO;
         }
 
