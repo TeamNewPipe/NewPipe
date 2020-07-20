@@ -531,7 +531,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Se mostrará una miniatura del vídeo en la pantalla de bloqueo al usar el reproductor en segundo plano</string>
     <string name="clear_download_history">Limpiar historial de descargas</string>
     <string name="delete_downloaded_files">Eliminar archivos descargados</string>
-    <string name="deleted_downloads">Eliminadas %1$s descargas</string>
+    <string name="deleted_downloads">Eliminadas %1$d descargas</string>
     <string name="permission_display_over_apps">Dar permisos para que se muestre por sobre otras apps</string>
     <string name="app_language_title">Idioma de aplicación</string>
     <string name="systems_language">Predeterminado del sistema</string>

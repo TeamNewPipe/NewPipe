@@ -513,7 +513,7 @@
     <string name="share">هاوبه‌شپێكردن</string>
     <string name="download_choose_new_path">بوخچەی داگرتن بگۆڕە بۆ ئەنجامدانی کاریگەری</string>
     <string name="show_hold_to_append_summary">پیشاندانی ڕێنمایی کاتێ لە پاشبنەما یاخوود پەنجەرەی بچووکدا گرتە دەکرێ لەسەر” وردەکاری:” ڤیدیۆیەک</string>
-    <string name="deleted_downloads">%1$ لە داگرتنەکان سڕانەوە</string>
+    <string name="deleted_downloads">%1$d لە داگرتنەکان سڕانەوە</string>
     <string name="audio_streams_empty">پەخشی هیچ دەنگێک نەدۆزرایەوە</string>
     <string name="artists">هونەرمەندەکان</string>
     <string name="no_one_watching">هیچ کەسێک تەماشای ناکات</string>

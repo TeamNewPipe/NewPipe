@@ -537,7 +537,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Pri prehrávaní videa na pozadí sa na zamknutej obrazovke zobrazí náhľad</string>
     <string name="clear_download_history">Vymazať históriu sťahovania</string>
     <string name="delete_downloaded_files">Vymazať stiahnuté súbory</string>
-    <string name="deleted_downloads">%1$s odstránených</string>
+    <string name="deleted_downloads">%1$d odstránených</string>
     <string name="permission_display_over_apps">Súhlas pre zobrazenie cez ďalšie aplikácie</string>
     <string name="app_language_title">Jazyk aplikácie</string>
     <string name="systems_language">Predvolený</string>
@@ -569,7 +569,7 @@
         <item quantity="other">%d dní</item>
     </plurals>
     <string name="feed_groups_header_title">Skupiny kanálov</string>
-    <string name="feed_oldest_subscription_update">Aktualizované: % s</string>
+    <string name="feed_oldest_subscription_update">Aktualizované: %s</string>
     <string name="feed_subscription_not_loaded_count">Nenačítané: %d</string>
     <string name="feed_notification_loading">Načítavanie zdroja…</string>
     <string name="feed_processing_message">Spracovávanie zdroja…</string>

@@ -534,6 +534,7 @@ public class VideoDetailFragment
     @Override
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
+
         if (!isLoading.get() && currentInfo != null && isVisible()) {
             outState.putSerializable(INFO_KEY, currentInfo);
         }
@@ -1312,14 +1313,14 @@ public class VideoDetailFragment
     }
 
     private void prepareDescription(final Description description) {
-        if (TextUtils.isEmpty(description.getContent())
+        if (description == null || TextUtils.isEmpty(description.getContent())
                 || description == Description.emptyDescription) {
             return;
         }
 
         if (description.getType() == Description.HTML) {
             disposables.add(Single.just(description.getContent())
-                    .map((@io.reactivex.annotations.NonNull String descriptionText) -> {
+                    .map((@NonNull String descriptionText) -> {
                         Spanned parsedDescription;
                         if (Build.VERSION.SDK_INT >= 24) {
                             parsedDescription = Html.fromHtml(descriptionText, 0);
@@ -1331,7 +1332,7 @@ public class VideoDetailFragment
                     })
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe((@io.reactivex.annotations.NonNull Spanned spanned) -> {
+                    .subscribe((@NonNull Spanned spanned) -> {
                         videoDescriptionView.setText(spanned);
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));

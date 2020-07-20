@@ -412,7 +412,6 @@
     <string name="localization_changes_requires_app_restart">Kieli vaihtuu, kun sovellus uudelleenkäynnistetään.</string>
     <string name="error_unable_to_load_comments">Kommentteja ei voitu ladata</string>
     <string name="selection">Valinta</string>
-    <string name="preferred_open_action_share_menu_title" translatable="false">\@string/app_name</string>
     <string name="main_page_content_summary">Mitkä välilehdet näytetään pääsivulla</string>
     <string name="recaptcha_done_button">Valmis</string>
     <string name="subtitle_activity_recaptcha">Paina \"Valmis\", kun ratkaistu</string>
@@ -563,7 +562,7 @@
     <string name="enable_queue_limit">Rajoita latausjonon kokoa</string>
     <string name="max_retry_desc">Suurin määrä yrityksiä ennen kuin lataus perutaan</string>
     <string name="max_retry_msg">Uudelleenyritysten maksimimäärä</string>
-    <string name="deleted_downloads">Poistettiin %1$s latausta</string>
+    <string name="deleted_downloads">Poistettiin %1$d latausta</string>
     <string name="error_download_resource_gone">Tätä latausta ei voi palauttaa</string>
     <string name="error_timeout">Yhteys aikakatkaistiin</string>
     <string name="error_progress_lost">Eteneminen menetettiin, koska tiedosto poistettiin</string>

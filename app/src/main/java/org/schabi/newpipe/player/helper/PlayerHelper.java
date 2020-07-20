@@ -146,17 +146,17 @@ public final class PlayerHelper {
     }
 
     /**
-     * Given a {@link StreamInfo} and the existing queue items, provide the
-     * {@link SinglePlayQueue} consisting of the next video for auto queuing.
+     * Given a {@link StreamInfo} and the existing queue items,
+     * provide the {@link SinglePlayQueue} consisting of the next video for auto queueing.
      * <p>
-     * This method detects and prevents cycle by naively checking if a
-     * candidate next video's url already exists in the existing items.
+     * This method detects and prevents cycles by naively checking
+     * if a candidate next video's url already exists in the existing items.
      * </p>
      * <p>
-     * To select the next video, {@link StreamInfo#getNextVideo()} is first
-     * checked. If it is nonnull and is not part of the existing items, then
-     * it will be used as the next video. Otherwise, an random item with
-     * non-repeating url will be selected from the {@link StreamInfo#getRelatedStreams()}.
+     * The first item in {@link StreamInfo#getRelatedStreams()} is checked first.
+     * If it is non-null and is not part of the existing items, it will be used as the next stream.
+     * Otherwise, a random item with non-repeating url will be selected
+     * from the {@link StreamInfo#getRelatedStreams()}.
      * </p>
      *
      * @param info          currently playing stream
@@ -166,14 +166,9 @@ public final class PlayerHelper {
     @Nullable
     public static PlayQueue autoQueueOf(@NonNull final StreamInfo info,
                                         @NonNull final List<PlayQueueItem> existingItems) {
-        Set<String> urls = new HashSet<>(existingItems.size());
+        final Set<String> urls = new HashSet<>(existingItems.size());
         for (final PlayQueueItem item : existingItems) {
             urls.add(item.getUrl());
-        }
-
-        final StreamInfoItem nextVideo = info.getNextVideo();
-        if (nextVideo != null && !urls.contains(nextVideo.getUrl())) {
-            return getAutoQueuedSinglePlayQueue(nextVideo);
         }
 
         final List<InfoItem> relatedItems = info.getRelatedStreams();
@@ -181,12 +176,18 @@ public final class PlayerHelper {
             return null;
         }
 
-        List<StreamInfoItem> autoQueueItems = new ArrayList<>();
-        for (final InfoItem item : info.getRelatedStreams()) {
+        if (relatedItems.get(0) != null && relatedItems.get(0) instanceof StreamInfoItem
+                && !urls.contains(relatedItems.get(0).getUrl())) {
+            return getAutoQueuedSinglePlayQueue((StreamInfoItem) relatedItems.get(0));
+        }
+
+        final List<StreamInfoItem> autoQueueItems = new ArrayList<>();
+        for (final InfoItem item : relatedItems) {
             if (item instanceof StreamInfoItem && !urls.contains(item.getUrl())) {
                 autoQueueItems.add((StreamInfoItem) item);
             }
         }
+
         Collections.shuffle(autoQueueItems);
         return autoQueueItems.isEmpty()
                 ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));

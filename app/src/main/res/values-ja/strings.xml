@@ -524,7 +524,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">バックグラウンドプレイヤーを使用中、ロック画面に動画のサムネイルが表示されるようになります</string>
     <string name="clear_download_history">ダウンロード履歴を消去</string>
     <string name="delete_downloaded_files">ダウンロードしたファイルを消去</string>
-    <string name="deleted_downloads">%1$s 個削除しました</string>
+    <string name="deleted_downloads">%1$d 個削除しました</string>
     <string name="playlist_no_uploader">自動生成 (アップローダーが見つかりません)</string>
     <string name="permission_display_over_apps">他のアプリの上に表示する権限を与えてください</string>
     <string name="app_language_title">アプリの言語</string>

@@ -530,7 +530,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Atzeko planoko bideo erreproduzitzailea erabiltzen den bitartean, bideoaren karatula blokeo pantailan erakutsiko da</string>
     <string name="clear_download_history">Garbitu deskargen historiala</string>
     <string name="delete_downloaded_files">Ezabatu deskargatutako fitxategiak</string>
-    <string name="deleted_downloads">%1$s deskarga ezabatuta</string>
+    <string name="deleted_downloads">%1$d deskarga ezabatuta</string>
     <string name="permission_display_over_apps">Baimena eman beste aplikazioen gainetik erakusteko</string>
     <string name="app_language_title">Aplikazioaren hizkuntza</string>
     <string name="systems_language">Sistemaren lehenetsia</string>

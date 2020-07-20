@@ -190,7 +190,7 @@
     <string name="invalid_source">यस्तो कुनै फाइल / सामग्री स्रोत भेटिएन</string>
     <string name="invalid_file">फाइल अवस्थित छैन वा पढ्न वा यो लेख्न अनुमति अभाव छ</string>
     <string name="file_name_empty_error">फाइलको नाम खाली हुन सक्दैन</string>
-    <string name="error_occurred_detail">एउटा त्रुटि देखापर्यो:%1$</string>
+    <string name="error_occurred_detail">एउटा त्रुटि देखापर्यो:%s</string>
     <string name="no_streams_available_download">कुनै धाराहरु डाउनलोड गर्न उपलब्ध छैनन्</string>
     <string name="saved_tabs_invalid_json">बचत गरिएका ट्याबहरू पढ्न सकिएन, पूर्वनिर्धारित प्रयोग गरिदै</string>
     <string name="restore_defaults">फेरी पहिलाकै अवस्थामा लैजाऊ</string>
@@ -276,7 +276,7 @@
     <string name="action_settings">सेटिङहरू</string>
     <string name="action_about">बारेमा</string>
     <string name="title_licenses">तेस्रो-पक्ष इजाजत पत्र</string>
-    <string name="copyright" formatted="true">©%1$ को %2$s द्वारा %3$ अन्तर्गत</string>
+    <string name="copyright" formatted="true">©%1$s को %2$s द्वारा %3$s अन्तर्गत</string>
     <string name="error_unable_to_load_license">लाइसेन्स लोड गर्न सकेन</string>
     <string name="action_open_website">वेबसाइट खुला</string>
     <string name="tab_about">बारेमा</string>
@@ -528,7 +528,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">पृष्ठभूमिमा प्लेयर प्रयोग गर्दा एउटा भिडियो थम्बनेल लक स्क्रिनमा देखाइएको छ</string>
     <string name="clear_download_history">डाउनलोड इतिहास मेटाउ</string>
     <string name="delete_downloaded_files">डाउनलोड गरिएका फाइलहरु मेटाउ</string>
-    <string name="deleted_downloads">%1$ डाउनलोडहरु मेटियो</string>
+    <string name="deleted_downloads">%1$d डाउनलोडहरु मेटियो</string>
     <string name="permission_display_over_apps">अन्य अनुप्रयोगहरूमा प्रदर्शन गर्न अनुमति दिने</string>
     <string name="app_language_title">एप्सको भाषा</string>
     <string name="systems_language">सिस्टम पूर्वनिर्धारित</string>

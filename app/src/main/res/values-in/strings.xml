@@ -524,7 +524,7 @@
     <string name="default_kiosk_page_summary">Kiosk Default</string>
     <string name="clear_download_history">Hapus riwayat unduhan</string>
     <string name="delete_downloaded_files">Hapus berkas yang diunduh</string>
-    <string name="deleted_downloads">%1$s unduhan dihapus</string>
+    <string name="deleted_downloads">%1$d unduhan dihapus</string>
     <string name="permission_display_over_apps">Izinkan untuk ditampilkan di atas aplikasi lain</string>
     <string name="app_language_title">Bahasa apl</string>
     <string name="systems_language">Default sistem</string>

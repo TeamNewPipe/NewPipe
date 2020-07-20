@@ -520,7 +520,7 @@
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD. 
 \nMột số thiết bị có thể không tương thích</string>
     <string name="downloads_storage_use_saf_title">Dùng SAF</string>
-    <string name="deleted_downloads">Đã xóa %1$s file tải về</string>
+    <string name="deleted_downloads">Đã xóa %1$d file tải về</string>
     <string name="delete_downloaded_files">Xóa file đã tải về</string>
     <string name="clear_download_history">Xóa lịch sử tải về</string>
     <string name="error_download_resource_gone">Không thể khôi phục bản download này</string>

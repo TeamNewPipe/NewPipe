@@ -530,7 +530,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Uma miniatura de vídeo é mostrada no ecrã de bloqueio quando utilizando o leitor de fundo</string>
     <string name="clear_download_history">Limpar histórico de transferências</string>
     <string name="delete_downloaded_files">Apagar ficheiros transferidos</string>
-    <string name="deleted_downloads">%1$s transferências apagadas</string>
+    <string name="deleted_downloads">%1$d transferências apagadas</string>
     <string name="permission_display_over_apps">Permitir sobreposição da janela sobre outras aplicações</string>
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="systems_language">Predefinição do sistema</string>

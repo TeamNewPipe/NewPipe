@@ -530,7 +530,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">A capa do vídeo é exibida na tela de bloqueio ao usar o player em segundo plano</string>
     <string name="clear_download_history">Limpar histórico de downloads</string>
     <string name="delete_downloaded_files">Excluir arquivos baixados</string>
-    <string name="deleted_downloads">%1$s arquivos excluídos</string>
+    <string name="deleted_downloads">%1$d arquivos excluídos</string>
     <string name="permission_display_over_apps">Permitir exibição sobre outros apps</string>
     <string name="app_language_title">Idioma do app</string>
     <string name="systems_language">Padrão do sistema</string>
