@@ -140,9 +140,17 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
-        Preference sponsorblockPrivacyPreference =
+        Preference sponsorBlockWebsitePreference =
+                findPreference(getString(R.string.sponsorblock_home_page));
+        sponsorBlockWebsitePreference.setOnPreferenceClickListener((Preference p) -> {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sponsor.ajay.app/"));
+            startActivity(i);
+            return true;
+        });
+
+        Preference sponsorBlockPrivacyPreference =
                 findPreference(getString(R.string.sponsorblock_privacy));
-        sponsorblockPrivacyPreference.setOnPreferenceClickListener((Preference p) -> {
+        sponsorBlockPrivacyPreference.setOnPreferenceClickListener((Preference p) -> {
             Intent i = new Intent(Intent.ACTION_VIEW,
                     Uri.parse(
                             "https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796"

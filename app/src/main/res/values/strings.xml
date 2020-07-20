@@ -129,7 +129,7 @@
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
-    <string name="settings_category_sponsorblock">SponsorBlock Beta (Third party service)</string>
+    <string name="settings_category_sponsorblock">SponsorBlock (beta, third party service)</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -661,12 +661,14 @@
     <string name="video_detail_by">By %s</string>
     <string name="playlist_page_summary">Playlist page</string>
     <!-- SponsorBlock -->
+    <string name="sponsorblock_home_page_title">View Website</string>
+    <string name="sponsorblock_home_page_summary">View the official SponsorBlock website.</string>
     <string name="sponsorblock_enable_title">Skip Sponsors</string>
-    <string name="sponsorblock_enable_summary">Use the SponsorBlock API to automatically skip sponsors in videos.</string>
-    <string name="sponsorblock_custom_api_url_title">Custom API Url</string>
-    <string name="sponsorblock_custom_api_url_summary">The url to use when querying the SponsorBlock API. Leave empty to use the default.</string>
+    <string name="sponsorblock_enable_summary">Use the SponsorBlock API to automatically skip sponsors in videos. This currently only works for YouTube videos.</string>
+    <string name="sponsorblock_api_url_title">API Url</string>
+    <string name="sponsorblock_api_url_summary">The url to use when querying the SponsorBlock API. This must be set for SponsorBlock to work.</string>
     <string name="sponsorblock_notifications_title">Notify when sponsors are skipped</string>
     <string name="sponsorblock_notifications_summary">Show a toast notification when a sponsor is automatically skipped.</string>
     <string name="sponsorblock_privacy_title">View Privacy Policy</string>
-    <string name="sponsorblock_privacy_summary">View the privacy policy of the SponsorBlock service.</string>
+    <string name="sponsorblock_privacy_summary">View SponsorBlock\'s privacy policy.</string>
 </resources>

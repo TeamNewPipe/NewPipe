@@ -1048,15 +1048,19 @@ public abstract class BasePlayer implements
         initThumbnail(info.getThumbnailUrl());
         registerView();
 
-        if (info.getUrl().startsWith("https://www.youtube.com")
-                && mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable), false)) {
-            try {
-                sponsorTimeInfo = new SponsorBlockApiTask(
-                        mPrefs.getString(context.getString(R.string.sponsorblock_custom_api_url),
-                                "https://sponsor.ajay.app/api/"))
-                        .getYouTubeVideoSponsorTimes(info.getId());
-            } catch (Exception e) {
-                Log.e("SPONSOR_BLOCK", "Error getting YouTube video sponsor times.", e);
+        if (info.getUrl().startsWith("https://www.youtube.com")) {
+            String apiUrl = mPrefs
+                    .getString(context.getString(R.string.sponsorblock_api_url), null);
+            boolean isSponsorBlockEnabled = mPrefs
+                    .getBoolean(context.getString(R.string.sponsorblock_enable), false);
+
+            if (apiUrl != null && !apiUrl.isEmpty() && isSponsorBlockEnabled) {
+                try {
+                    sponsorTimeInfo = new SponsorBlockApiTask(apiUrl)
+                            .getYouTubeVideoSponsorTimes(info.getId());
+                } catch (Exception e) {
+                    Log.e("SPONSOR_BLOCK", "Error getting YouTube video sponsor times.", e);
+                }
             }
         }
     }

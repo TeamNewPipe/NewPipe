@@ -122,7 +122,26 @@
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_sponsorblock">
 
+        <Preference
+            android:key="@string/sponsorblock_home_page"
+            android:summary="@string/sponsorblock_home_page_summary"
+            android:title="@string/sponsorblock_home_page_title"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="@string/sponsorblock_privacy"
+            android:summary="@string/sponsorblock_privacy_summary"
+            android:title="@string/sponsorblock_privacy_title"
+            app:iconSpaceReserved="false" />
+
+        <EditTextPreference
+            android:key="@string/sponsorblock_api_url"
+            android:summary="@string/sponsorblock_api_url_summary"
+            android:title="@string/sponsorblock_api_url_title"
+            app:iconSpaceReserved="false" />
+
         <SwitchPreference
+            android:dependency="@string/sponsorblock_api_url"
             android:defaultValue="false"
             android:key="@string/sponsorblock_enable"
             android:summary="@string/sponsorblock_enable_summary"
@@ -131,23 +150,10 @@
 
         <SwitchPreference
             android:defaultValue="true"
-            android:dependency="@string/sponsorblock_enable"
+            android:dependency="@string/sponsorblock_api_url"
             android:key="@string/sponsorblock_notifications"
             android:summary="@string/sponsorblock_notifications_summary"
             android:title="@string/sponsorblock_notifications_title"
-            app:iconSpaceReserved="false" />
-
-        <EditTextPreference
-            android:dependency="@string/sponsorblock_enable"
-            android:key="@string/sponsorblock_custom_api_url"
-            android:summary="@string/sponsorblock_custom_api_url_summary"
-            android:title="@string/sponsorblock_custom_api_url_title"
-            app:iconSpaceReserved="false" />
-
-        <Preference
-            android:key="@string/sponsorblock_privacy"
-            android:summary="@string/sponsorblock_privacy_summary"
-            android:title="@string/sponsorblock_privacy_title"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
