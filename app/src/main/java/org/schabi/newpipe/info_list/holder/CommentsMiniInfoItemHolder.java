@@ -15,7 +15,7 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
@@ -126,7 +126,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
 
         itemView.setOnLongClickListener(view -> {
-            if (AndroidTvUtils.isTv(itemBuilder.getContext())) {
+            if (DeviceUtils.isTv(itemBuilder.getContext())) {
                 openCommentAuthor(item);
             } else {
                 ShareUtils.copyToClipboard(itemBuilder.getContext(), commentText);

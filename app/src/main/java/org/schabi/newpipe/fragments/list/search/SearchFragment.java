@@ -48,7 +48,7 @@ import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -525,7 +525,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (isSuggestionsEnabled && errorPanelRoot.getVisibility() != View.VISIBLE) {
                 showSuggestionsPanel();
             }
-            if (AndroidTvUtils.isTv(getContext())) {
+            if (DeviceUtils.isTv(getContext())) {
                 showKeyboardSearch();
             }
         });

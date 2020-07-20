@@ -68,7 +68,7 @@ import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             ErrorActivity.reportUiError(this, e);
         }
 
-        if (AndroidTvUtils.isTv(this)) {
+        if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
     }
@@ -545,7 +545,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onBackPressed() called");
         }
 
-        if (AndroidTvUtils.isTv(this)) {
+        if (DeviceUtils.isTv(this)) {
             View drawerPanel = findViewById(R.id.navigation);
             if (drawer.isDrawerOpen(drawerPanel)) {
                 drawer.closeDrawers();

@@ -80,7 +80,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
@@ -179,7 +179,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                     final String orientKey = getString(R.string.last_orientation_landscape_key);
 
                     final boolean lastOrientationWasLandscape = defaultPreferences
-                            .getBoolean(orientKey, AndroidTvUtils.isTv(getApplicationContext()));
+                            .getBoolean(orientKey, DeviceUtils.isTv(getApplicationContext()));
                     setLandscape(lastOrientationWasLandscape);
                 } else {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
@@ -191,7 +191,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
                 false, rotationObserver);
 
-        if (AndroidTvUtils.isTv(this)) {
+        if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
     }
@@ -223,7 +223,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             default:
                 break;
             case KeyEvent.KEYCODE_BACK:
-                if (AndroidTvUtils.isTv(getApplicationContext())
+                if (DeviceUtils.isTv(getApplicationContext())
                         && playerImpl.isControlsVisible()) {
                     playerImpl.hideControls(0, 0);
                     hideSystemUi();
@@ -272,7 +272,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             final String orientKey = getString(R.string.last_orientation_landscape_key);
 
             boolean lastOrientationWasLandscape = defaultPreferences
-                    .getBoolean(orientKey, AndroidTvUtils.isTv(getApplicationContext()));
+                    .getBoolean(orientKey, DeviceUtils.isTv(getApplicationContext()));
             setLandscape(lastOrientationWasLandscape);
         }
 

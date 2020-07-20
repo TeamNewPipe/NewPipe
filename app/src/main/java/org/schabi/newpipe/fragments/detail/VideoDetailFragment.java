@@ -92,7 +92,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -767,7 +767,7 @@ public class VideoDetailFragment
 
         thumbnailBackgroundButton.requestFocus();
 
-        if (AndroidTvUtils.isTv(getContext())) {
+        if (DeviceUtils.isTv(getContext())) {
             // remove ripple effects from detail controls
             final int transparent = getResources().getColor(R.color.transparent_background_color);
             detailControlsAddToPlaylist.setBackgroundColor(transparent);
@@ -880,7 +880,7 @@ public class VideoDetailFragment
 
         // If we are in fullscreen mode just exit from it via first back press
         if (player != null && player.isFullscreen()) {
-            if (!PlayerHelper.isTablet(activity)) {
+            if (!DeviceUtils.isTablet(activity)) {
                 player.onPause();
             }
             restoreDefaultOrientation();
@@ -1449,7 +1449,7 @@ public class VideoDetailFragment
         // User can tap on Play button and video will be in fullscreen mode again
         // Note for tablet: trying to avoid orientation changes since it's not easy
         // to physically rotate the tablet every time
-        if (!PlayerHelper.isTablet(activity)) {
+        if (!DeviceUtils.isTablet(activity)) {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         }
     }
@@ -1945,7 +1945,7 @@ public class VideoDetailFragment
         // In tablet user experience will be better if screen will not be rotated
         // from landscape to portrait every time.
         // Just turn on fullscreen mode in landscape orientation
-        if (isLandscape() && PlayerHelper.isTablet(activity)) {
+        if (isLandscape() && DeviceUtils.isTablet(activity)) {
             player.toggleFullscreen();
             return;
         }
@@ -2185,7 +2185,7 @@ public class VideoDetailFragment
                                 && player != null
                                 && player.isPlaying()
                                 && !player.isFullscreen()
-                                && !PlayerHelper.isTablet(activity)
+                                && !DeviceUtils.isTablet(activity)
                                 && player.videoPlayerSelected()) {
                             player.toggleFullscreen();
                         }

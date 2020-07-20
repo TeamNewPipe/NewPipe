@@ -94,7 +94,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KoreUtil;
@@ -117,7 +117,6 @@ import static org.schabi.newpipe.player.MainPlayer.ACTION_REPEAT;
 import static org.schabi.newpipe.player.MainPlayer.NOTIFICATION_ID;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
-import static org.schabi.newpipe.player.helper.PlayerHelper.isTablet;
 import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -481,7 +480,7 @@ public class VideoPlayerImpl extends VideoPlayer
             default:
                 break;
             case KeyEvent.KEYCODE_BACK:
-                if (AndroidTvUtils.isTv(service) && isControlsVisible()) {
+                if (DeviceUtils.isTv(service) && isControlsVisible()) {
                     hideControls(0, 0);
                     hideSystemUIIfNeeded();
                     return true;
@@ -930,7 +929,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void setupScreenRotationButton() {
         final boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(service);
-        final boolean tabletInLandscape = isTablet(service) && service.isLandscape();
+        final boolean tabletInLandscape = DeviceUtils.isTablet(service) && service.isLandscape();
         final boolean showButton = videoPlayerSelected()
                 && (orientationLocked || isVerticalVideo || tabletInLandscape);
         screenRotationButton.setVisibility(showButton ? View.VISIBLE : View.GONE);
@@ -1542,7 +1541,7 @@ public class VideoPlayerImpl extends VideoPlayer
         // And the situations when we need to set custom height is
         // in fullscreen mode in tablet in non-multiWindow mode or with vertical video.
         // Other than that MATCH_PARENT is good
-        final boolean navBarAtTheBottom = PlayerHelper.isTablet(service) || !service.isLandscape();
+        final boolean navBarAtTheBottom = DeviceUtils.isTablet(service) || !service.isLandscape();
         controlsRoot.getLayoutParams().height = isFullscreen && !isInMultiWindow()
                 && navBarAtTheBottom ? size.y : ViewGroup.LayoutParams.MATCH_PARENT;
         controlsRoot.requestLayout();
@@ -1612,7 +1611,7 @@ public class VideoPlayerImpl extends VideoPlayer
         if (parent != null
                 && videoInLandscapeButNotInFullscreen
                 && playingState
-                && !PlayerHelper.isTablet(service)) {
+                && !DeviceUtils.isTablet(service)) {
             toggleFullscreen();
         }
 

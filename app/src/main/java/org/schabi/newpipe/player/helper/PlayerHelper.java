@@ -362,13 +362,6 @@ public final class PlayerHelper {
                 context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0;
     }
 
-    public static boolean isTablet(@NonNull final Context context) {
-        return (context
-                .getResources()
-                .getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // Private helpers
     ////////////////////////////////////////////////////////////////////////////
