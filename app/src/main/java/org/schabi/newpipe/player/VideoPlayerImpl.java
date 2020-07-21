@@ -187,6 +187,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private boolean audioOnly = false;
     private boolean isFullscreen = false;
     private boolean isVerticalVideo = false;
+    private boolean fragmentIsVisible = false;
     boolean shouldUpdateOnProgress;
     int timesNotificationUpdated;
 
@@ -1224,28 +1225,22 @@ public class VideoPlayerImpl extends VideoPlayer
                 break;
             case ACTION_PLAY_PAUSE:
                 onPlayPause();
+                if (!fragmentIsVisible) {
+                    // Ensure that we have audio-only stream playing when a user
+                    // started to play from notification's play button from outside of the app
+                    onFragmentStopped();
+                }
                 break;
             case ACTION_REPEAT:
                 onRepeatClicked();
                 break;
             case VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED:
+                fragmentIsVisible = true;
                 useVideoSource(true);
                 break;
             case VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED:
-                // This will be called when user goes to another app/activity, turns off a screen.
-                // We don't want to interrupt playback and don't want to see notification
-                // if player is stopped.
-                // Next lines of code will enable background playback if needed
-                if (videoPlayerSelected() && (isPlaying() || isLoading())) {
-                    if (backgroundPlaybackEnabled()) {
-                        useVideoSource(false);
-                    } else if (minimizeOnPopupEnabled()) {
-                        setRecovery();
-                        NavigationHelper.playOnPopupPlayer(getParentActivity(), playQueue, true);
-                    } else {
-                        onPause();
-                    }
-                }
+                fragmentIsVisible = false;
+                onFragmentStopped();
                 break;
             case Intent.ACTION_CONFIGURATION_CHANGED:
                 assureCorrectAppLanguage(service);
@@ -1998,6 +1993,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public void setFragmentListener(final PlayerServiceEventListener listener) {
         fragmentListener = listener;
+        fragmentIsVisible = true;
         updateMetadata();
         updatePlayback();
         triggerProgressUpdate();
@@ -2069,6 +2065,24 @@ public class VideoPlayerImpl extends VideoPlayer
         if (activityListener != null) {
             activityListener.onServiceStopped();
             activityListener = null;
+        }
+    }
+
+    /**
+     * This will be called when a user goes to another app/activity, turns off a screen.
+     * We don't want to interrupt playback and don't want to see notification so
+     * next lines of code will enable audio-only playback only if needed
+     * */
+    private void onFragmentStopped() {
+        if (videoPlayerSelected() && (isPlaying() || isLoading())) {
+            if (backgroundPlaybackEnabled()) {
+                useVideoSource(false);
+            } else if (minimizeOnPopupEnabled()) {
+                setRecovery();
+                NavigationHelper.playOnPopupPlayer(getParentActivity(), playQueue, true);
+            } else {
+                onPause();
+            }
         }
     }
 

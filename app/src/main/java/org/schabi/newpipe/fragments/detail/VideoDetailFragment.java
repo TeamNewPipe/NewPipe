@@ -2164,10 +2164,10 @@ public class VideoDetailFragment
             @Override
             public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
                 bottomSheetState = newState;
-                ViewGroup mainFragment = requireActivity().findViewById(R.id.fragment_holder);
-
+                final ViewGroup mainFragment = requireActivity().findViewById(R.id.fragment_holder);
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
+                        mainFragment.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
                         bottomSheetBehavior.setPeekHeight(0);
                         cleanUp();
                         break;
