@@ -74,44 +74,26 @@ public final class FocusOverlayView extends Drawable implements
 
     @Override
     public void onGlobalFocusChanged(final View oldFocus, final View newFocus) {
-        int l = focusRect.left;
-        int r = focusRect.right;
-        int t = focusRect.top;
-        int b = focusRect.bottom;
-
-        if (newFocus != null && newFocus.getWidth() > 0 && newFocus.getHeight() > 0) {
-            newFocus.getGlobalVisibleRect(focusRect);
-
+        if (newFocus != null) {
             focused = new WeakReference<>(newFocus);
         } else {
-            focusRect.setEmpty();
-
             focused = null;
         }
 
-        if (l != focusRect.left || r != focusRect.right
-                || t != focusRect.top || b != focusRect.bottom) {
-            invalidateSelf();
-        }
-
-        focused = new WeakReference<>(newFocus);
+        updateRect();
 
         animator.sendEmptyMessageDelayed(0, 1000);
     }
 
     private void updateRect() {
-        if (focused == null) {
-            return;
-        }
-
-        View focusedView = this.focused.get();
+        View focusedView = focused == null ? null : this.focused.get();
 
         int l = focusRect.left;
         int r = focusRect.right;
         int t = focusRect.top;
         int b = focusRect.bottom;
 
-        if (focusedView != null) {
+        if (focusedView != null && isShown(focusedView)) {
             focusedView.getGlobalVisibleRect(focusRect);
         } else {
             focusRect.setEmpty();
@@ -121,6 +103,10 @@ public final class FocusOverlayView extends Drawable implements
                 || t != focusRect.top || b != focusRect.bottom) {
             invalidateSelf();
         }
+    }
+
+    private boolean isShown(final View view) {
+        return view.getWidth() != 0 && view.getHeight() != 0 && view.isShown();
     }
 
     @Override
@@ -223,6 +209,7 @@ public final class FocusOverlayView extends Drawable implements
         observer.addOnGlobalFocusChangeListener(overlay);
         observer.addOnGlobalLayoutListener(overlay);
         observer.addOnTouchModeChangeListener(overlay);
+        observer.addOnDrawListener(overlay);
 
         overlay.setCurrentFocus(decor.getFocusedChild());
 
