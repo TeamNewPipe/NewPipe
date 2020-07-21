@@ -247,9 +247,12 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/queueButton"
-                    android:layout_width="40dp"
+                    android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:padding="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingStart="3dp"
+                    android:paddingEnd="3dp"
+                    android:paddingBottom="3dp"
                     android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:focusable="true"
@@ -477,14 +480,13 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="5.5">
-            <!--tools:visibility="gone">-->
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/playPreviousButton"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="10dp"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -496,7 +498,7 @@
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/playPauseButton"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
@@ -506,9 +508,9 @@
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/playNextButton"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="10dp"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"

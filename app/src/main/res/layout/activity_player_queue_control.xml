@@ -186,8 +186,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_backward"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_toLeftOf="@+id/control_fast_rewind"
@@ -265,8 +265,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_forward"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/control_fast_forward"

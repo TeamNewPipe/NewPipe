@@ -204,7 +204,7 @@ public abstract class VideoPlayer extends BasePlayer
         final CaptionStyleCompat captionStyle = PlayerHelper.getCaptionStyle(context);
         setupSubtitleView(subtitleView, captionScale, captionStyle);
 
-        this.resizeView =  view.findViewById(R.id.resizeTextView);
+        this.resizeView = view.findViewById(R.id.resizeTextView);
         resizeView.setText(PlayerHelper
                 .resizeTypeOf(context, getSurfaceView().getResizeMode()));
 

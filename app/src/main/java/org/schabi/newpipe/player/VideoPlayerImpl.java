@@ -22,8 +22,6 @@ package org.schabi.newpipe.player;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -60,7 +58,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -892,7 +889,7 @@ public class VideoPlayerImpl extends VideoPlayer
             if (DEBUG) {
                 Log.i(TAG, "Failed to start kore", e);
             }
-            showInstallKoreDialog(getParentActivity());
+            KoreUtil.showInstallKoreDialog(getParentActivity());
         }
     }
 
@@ -915,16 +912,6 @@ public class VideoPlayerImpl extends VideoPlayer
                         .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
         playWithKodi.setVisibility(videoPlayerSelected() && kodiEnabled && showKodiButton
                 ? View.VISIBLE : View.GONE);
-    }
-
-    private static void showInstallKoreDialog(final Context context) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(R.string.kore_not_found)
-                .setPositiveButton(R.string.install, (DialogInterface dialog, int which) ->
-                        NavigationHelper.installKore(context))
-                .setNegativeButton(R.string.cancel, (DialogInterface dialog, int which) -> {
-                });
-        builder.create().show();
     }
 
     private void setupScreenRotationButton() {

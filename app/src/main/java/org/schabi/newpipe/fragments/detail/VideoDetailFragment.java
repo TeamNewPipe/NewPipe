@@ -570,10 +570,6 @@ public class VideoDetailFragment
 
     @Override
     public void onClick(final View v) {
-        if (isLoading.get() || currentInfo == null) {
-            return;
-        }
-
         switch (v.getId()) {
             case R.id.detail_controls_background:
                 openBackgroundPlayer(false);
@@ -2168,6 +2164,7 @@ public class VideoDetailFragment
             @Override
             public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
                 bottomSheetState = newState;
+                ViewGroup mainFragment = requireActivity().findViewById(R.id.fragment_holder);
 
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
@@ -2175,6 +2172,7 @@ public class VideoDetailFragment
                         cleanUp();
                         break;
                     case BottomSheetBehavior.STATE_EXPANDED:
+                        mainFragment.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
                         bottomSheetBehavior.setPeekHeight(peekHeight);
                         // Disable click because overlay buttons located on top of buttons
                         // from the player
@@ -2191,6 +2189,8 @@ public class VideoDetailFragment
                         }
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
+                        mainFragment.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                        mainFragment.requestFocus();
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
                         if (player != null) {
@@ -2236,7 +2236,7 @@ public class VideoDetailFragment
     }
 
     private void setOverlayPlayPauseImage() {
-        final int attr = player != null && player.getPlayer().getPlayWhenReady()
+        final int attr = player != null && player.isPlaying()
                 ? R.attr.ic_pause
                 : R.attr.ic_play_arrow;
         overlayPlayPauseButton.setImageResource(

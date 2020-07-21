@@ -72,7 +72,7 @@
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this.</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
-    <string name="clear_queue_confirmation_title">Ask confirmation before clearing a queue</string>
+    <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">After switching from one player to another your queue may be replaced</string>
     <string name="clear_queue_confirmation_description">Queue from the active player will be replaced</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
