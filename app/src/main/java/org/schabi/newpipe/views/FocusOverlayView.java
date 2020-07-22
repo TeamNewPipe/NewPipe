@@ -105,7 +105,7 @@ public final class FocusOverlayView extends Drawable implements
         }
     }
 
-    private boolean isShown(final View view) {
+    private boolean isShown(@NonNull final View view) {
         return view.getWidth() != 0 && view.getHeight() != 0 && view.isShown();
     }
 
