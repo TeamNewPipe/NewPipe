@@ -675,7 +675,7 @@
 					android:layout_marginRight="2dp"
 					android:padding="10dp"
 					android:scaleType="center"
-					android:src="?attr/ic_play_arrow"
+					app:srcCompat="?attr/ic_play_arrow"
 					android:background="?attr/selectableItemBackground"
 					tools:ignore="ContentDescription,RtlHardcoded"/>
 

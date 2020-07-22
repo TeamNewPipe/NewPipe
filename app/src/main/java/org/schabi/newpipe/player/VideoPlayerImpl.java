@@ -370,7 +370,7 @@ public class VideoPlayerImpl extends VideoPlayer
             getTopControlsRoot().setOrientation(LinearLayout.VERTICAL);
             primaryControls.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
             secondaryControls.setVisibility(View.INVISIBLE);
-            moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
+            moreOptionsButton.setImageDrawable(AppCompatResources.getDrawable(service,
                     R.drawable.ic_expand_more_white_24dp));
             shareButton.setVisibility(View.VISIBLE);
             showHideKodiButton();
@@ -921,9 +921,9 @@ public class VideoPlayerImpl extends VideoPlayer
         final boolean showButton = videoPlayerSelected()
                 && (orientationLocked || isVerticalVideo || tabletInLandscape);
         screenRotationButton.setVisibility(showButton ? View.VISIBLE : View.GONE);
-        screenRotationButton.setImageDrawable(service.getResources().getDrawable(isFullscreen()
-                        ? R.drawable.ic_fullscreen_exit_white_24dp
-                        : R.drawable.ic_fullscreen_white_24dp));
+        screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(service, isFullscreen()
+                ? R.drawable.ic_fullscreen_exit_white_24dp
+                : R.drawable.ic_fullscreen_white_24dp));
     }
 
     private void prepareOrientation() {
@@ -1077,7 +1077,7 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(false);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.ic_play_arrow_white_24dp);
+        service.updateNotification(R.drawable.exo_controls_play);
     }
 
     @Override
@@ -1086,7 +1086,7 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(true);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.ic_play_arrow_white_24dp);
+        service.updateNotification(R.drawable.exo_controls_play);
     }
 
     @Override
@@ -1103,7 +1103,7 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(true);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.ic_pause_white_24dp);
+        service.updateNotification(R.drawable.exo_controls_pause);
 
         service.startForeground(NOTIFICATION_ID, service.getNotBuilder().build());
     }
@@ -1120,7 +1120,7 @@ public class VideoPlayerImpl extends VideoPlayer
         updateWindowFlags(IDLE_WINDOW_FLAGS);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.ic_play_arrow_white_24dp);
+        service.updateNotification(R.drawable.exo_controls_play);
 
         // Remove running notification when user don't want music (or video in popup)
         // to be played in background
@@ -1138,7 +1138,7 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(true);
 
         service.resetNotification();
-        service.updateNotification(R.drawable.ic_play_arrow_white_24dp);
+        service.updateNotification(R.drawable.exo_controls_play);
     }
 
 
