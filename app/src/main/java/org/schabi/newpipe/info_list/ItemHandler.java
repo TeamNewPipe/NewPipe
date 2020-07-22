@@ -43,6 +43,7 @@ public class ItemHandler {
     private final DateFormat dateFormat;
 
     @Nullable private OnClickGesture<Object> onItemSelectedListener;
+    @Nullable private ItemHolderWithToolbar<?> itemHolderWithToolbarOpen = null;
 
     public ItemHandler(final FragmentActivity activity, final DateFormat dateFormat) {
         this.activity = activity;
@@ -76,5 +77,13 @@ public class ItemHandler {
     @Nullable
     public OnClickGesture<Object> getOnItemSelectedListener() {
         return onItemSelectedListener;
+    }
+
+    public void replaceItemHolderWithToolbarOpen(
+            @Nullable ItemHolderWithToolbar<?> newItemHolderWithToolbar) {
+        if (itemHolderWithToolbarOpen != null) {
+            itemHolderWithToolbarOpen.hideItemToolbar();
+        }
+        itemHolderWithToolbarOpen = newItemHolderWithToolbar;
     }
 }

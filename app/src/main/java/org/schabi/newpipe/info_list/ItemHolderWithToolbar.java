@@ -162,7 +162,7 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
         }
     }
 
-    private void showItemToolbar(final Object itemObject) {
+    private void animateToggleItemToolbar() {
         final Animation animation;
         switch (itemToolbarView.getId()) {
             case R.id.toolbarOverlayItem:
@@ -178,6 +178,11 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
                         "Invalid itemToolbarView passed to toggleItemToolbar()");
         }
         itemToolbarView.startAnimation(animation);
+    }
+
+    private void showItemToolbar(final Object itemObject) {
+        animateToggleItemToolbar();
+        itemHandler.replaceItemHolderWithToolbarOpen(this);
 
         share.setOnClickListener(v -> onShare(itemObject));
         playMain.setOnClickListener(v -> onPlayMain(itemObject));
@@ -191,6 +196,14 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
             onEnqueueBackground(itemObject);
             return true;
         });
+    }
+
+    public void hideItemToolbar() {
+        // this function is public and called by itemHandler when another item's toolbar is opened
+        // so prevent the toolbar from opening in case it is called in an unwanted case
+        if (itemToolbarView.getVisibility() == View.VISIBLE) {
+            animateToggleItemToolbar();
+        }
     }
 
 
