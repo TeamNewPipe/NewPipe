@@ -43,13 +43,5 @@ public class PlaylistMiniInfoItemHolder extends ItemHolderWithToolbar<PlaylistIn
 
         itemHandler.displayImage(item.getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
-
-        itemView.setLongClickable(true);
-        itemView.setOnLongClickListener(view -> {
-            if (itemHandler.getOnPlaylistSelectedListener() != null) {
-                itemHandler.getOnPlaylistSelectedListener().held(item);
-            }
-            return true;
-        });
     }
 }

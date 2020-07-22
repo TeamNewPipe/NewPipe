@@ -3,7 +3,6 @@ package org.schabi.newpipe.local.holder;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 
-import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.info_list.ItemHandler;
@@ -39,7 +38,5 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder<PlaylistRemoteE
 
         itemHandler.displayImage(item.getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_PLAYLIST_OPTIONS);
-
-        super.updateFromItem(item, historyRecordManager);
     }
 }

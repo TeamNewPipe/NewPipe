@@ -79,21 +79,6 @@ public class StreamMiniInfoItemHolder extends ItemHolderWithToolbar<StreamInfoIt
         // Default thumbnail is shown on error, while loading and if the url is empty
         itemHandler.displayImage(item.getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
-
-
-        switch (item.getStreamType()) {
-            case AUDIO_STREAM:
-            case VIDEO_STREAM:
-            case LIVE_STREAM:
-            case AUDIO_LIVE_STREAM:
-                enableLongClick(item);
-                break;
-            case FILE:
-            case NONE:
-            default:
-                disableLongClick();
-                break;
-        }
     }
 
     @Override
@@ -114,20 +99,5 @@ public class StreamMiniInfoItemHolder extends ItemHolderWithToolbar<StreamInfoIt
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {
             AnimationUtils.animateView(itemProgressView, false, 500);
         }
-    }
-
-    private void enableLongClick(final StreamInfoItem item) {
-        itemView.setLongClickable(true);
-        itemView.setOnLongClickListener(view -> {
-            if (itemHandler.getOnStreamSelectedListener() != null) {
-                itemHandler.getOnStreamSelectedListener().held(item);
-            }
-            return true;
-        });
-    }
-
-    private void disableLongClick() {
-        itemView.setLongClickable(false);
-        itemView.setOnLongClickListener(null);
     }
 }

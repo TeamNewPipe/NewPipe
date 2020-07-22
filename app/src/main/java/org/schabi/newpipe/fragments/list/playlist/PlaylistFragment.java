@@ -1,7 +1,5 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -28,9 +26,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
@@ -41,7 +37,6 @@ import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
-import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -140,42 +135,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private PlayQueue getPlayQueueStartingAt(final StreamInfoItem infoItem) {
         return getPlayQueue(Math.max(itemListAdapter.getItemList().indexOf(infoItem), 0));
-    }
-
-    @Override
-    protected void showStreamDialog(final StreamInfoItem item) {
-        final Context context = getContext();
-        final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || activity == null) {
-            return;
-        }
-
-        if (item.getStreamType() == StreamType.AUDIO_STREAM) {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-        } else {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
-                    StreamDialogEntry.enqueue_on_popup,
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.start_here_on_popup,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-
-            StreamDialogEntry.start_here_on_popup.setCustomAction((fragment, infoItem) ->
-                    NavigationHelper.playOnPopupPlayer(context,
-                            getPlayQueueStartingAt(infoItem), true));
-        }
-
-        StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItem) ->
-                NavigationHelper.playOnBackgroundPlayer(context,
-                        getPlayQueueStartingAt(infoItem), true));
-
-        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, item)).show();
     }
 
     @Override

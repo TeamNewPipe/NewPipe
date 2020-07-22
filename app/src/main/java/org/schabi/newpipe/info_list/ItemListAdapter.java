@@ -1,13 +1,11 @@
 package org.schabi.newpipe.info_list;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,10 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
-import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.holder.ChannelGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
@@ -112,29 +106,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         itemList = new ArrayList<>();
     }
 
-    public void setOnStreamSelectedListener(
-            @Nullable final OnClickGesture<StreamInfoItem> listener) {
-        itemHandler.setOnStreamSelectedListener(listener);
-    }
-
-    public void setOnChannelSelectedListener(
-            @Nullable final OnClickGesture<ChannelInfoItem> listener) {
-        itemHandler.setOnChannelSelectedListener(listener);
-    }
-
-    public void setOnPlaylistSelectedListener(
-            @Nullable final OnClickGesture<PlaylistInfoItem> listener) {
-        itemHandler.setOnPlaylistSelectedListener(listener);
-    }
-
-    public void setOnCommentsSelectedListener(
-            @Nullable final OnClickGesture<CommentsInfoItem> listener) {
-        itemHandler.setOnCommentsSelectedListener(listener);
-    }
-
-    public void setOnLocalItemSelectedListener(
-            @Nullable final OnClickGesture<LocalItem> listener) {
-        itemHandler.setOnLocalItemSelectedListener(listener);
+    public void setOnItemSelectedListener(
+            @Nullable final OnClickGesture<Object> listener) {
+        itemHandler.setOnItemSelectedListener(listener);
     }
 
     public void setUseMiniVariant(final boolean useMiniVariant) {

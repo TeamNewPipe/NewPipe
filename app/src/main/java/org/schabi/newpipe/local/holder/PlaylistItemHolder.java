@@ -8,7 +8,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.info_list.ItemHandler;
 import org.schabi.newpipe.info_list.ItemHolderWithToolbar;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 public abstract class PlaylistItemHolder<ItemType extends PlaylistLocalItem>
         extends ItemHolderWithToolbar<ItemType> {
@@ -33,17 +32,5 @@ public abstract class PlaylistItemHolder<ItemType extends PlaylistLocalItem>
                               final ItemHandler itemHandler,
                               final ViewGroup parent) {
         this(itemClass, itemHandler, R.layout.list_playlist_mini_item, parent);
-    }
-
-    @Override
-    public void updateFromItem(final ItemType item,
-                               final HistoryRecordManager historyRecordManager) {
-        itemView.setLongClickable(true);
-        itemView.setOnLongClickListener(view -> {
-            if (itemHandler.getOnLocalItemSelectedListener() != null) {
-                itemHandler.getOnLocalItemSelectedListener().held(item);
-            }
-            return true;
-        });
     }
 }

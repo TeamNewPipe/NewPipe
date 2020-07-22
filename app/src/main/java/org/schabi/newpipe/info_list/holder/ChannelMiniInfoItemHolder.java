@@ -39,13 +39,6 @@ public class ChannelMiniInfoItemHolder extends ItemHolderWithToolbar<ChannelInfo
 
         itemHandler.displayImage(item.getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
-
-        itemView.setOnLongClickListener(view -> {
-            if (itemHandler.getOnChannelSelectedListener() != null) {
-                itemHandler.getOnChannelSelectedListener().held(item);
-            }
-            return true;
-        });
     }
 
     protected String getDetailLine(final ChannelInfoItem item) {

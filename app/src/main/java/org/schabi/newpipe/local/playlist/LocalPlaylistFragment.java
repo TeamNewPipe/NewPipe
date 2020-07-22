@@ -27,7 +27,6 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
@@ -172,26 +171,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
 
-        itemListAdapter.setOnLocalItemSelectedListener(new OnClickGesture<LocalItem>() {
-            @Override
-            public void selected(final LocalItem selectedItem) {
-                if (selectedItem instanceof PlaylistStreamEntry) {
-                    final PlaylistStreamEntry item = (PlaylistStreamEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(getFragmentManager(),
-                            item.getStreamEntity().getServiceId(), item.getStreamEntity().getUrl(),
-                            item.getStreamEntity().getTitle());
-                }
-            }
+        itemListAdapter.setOnItemSelectedListener(new OnClickGesture<Object>() {
 
             @Override
-            public void held(final LocalItem selectedItem) {
-                if (selectedItem instanceof PlaylistStreamEntry) {
-                    showStreamItemDialog((PlaylistStreamEntry) selectedItem);
-                }
-            }
-
-            @Override
-            public void drag(final LocalItem selectedItem,
+            public void drag(final Object selectedItem,
                              final RecyclerView.ViewHolder viewHolder) {
                 if (itemTouchHelper != null) {
                     itemTouchHelper.startDrag(viewHolder);
@@ -274,7 +257,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         super.onDestroyView();
 
         if (itemListAdapter != null) {
-            itemListAdapter.setOnLocalItemSelectedListener(null);
+            itemListAdapter.setOnItemSelectedListener(null);
         }
         if (headerBackgroundButton != null) {
             headerBackgroundButton.setOnClickListener(null);

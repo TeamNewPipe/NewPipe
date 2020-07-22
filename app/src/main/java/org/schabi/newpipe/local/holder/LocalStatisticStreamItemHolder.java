@@ -118,14 +118,6 @@ public class LocalStatisticStreamItemHolder extends ItemHolderWithToolbar<Stream
         // Default thumbnail is shown on error, while loading and if the url is empty
         itemHandler.displayImage(item.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
-
-        itemView.setLongClickable(true);
-        itemView.setOnLongClickListener(view -> {
-            if (itemHandler.getOnLocalItemSelectedListener() != null) {
-                itemHandler.getOnLocalItemSelectedListener().held(item);
-            }
-            return true;
-        });
     }
 
     @Override

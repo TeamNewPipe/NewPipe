@@ -29,7 +29,5 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder<PlaylistMetadata
 
         itemHandler.displayImage(item.thumbnailUrl, itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_PLAYLIST_OPTIONS);
-
-        super.updateFromItem(item, historyRecordManager);
     }
 }

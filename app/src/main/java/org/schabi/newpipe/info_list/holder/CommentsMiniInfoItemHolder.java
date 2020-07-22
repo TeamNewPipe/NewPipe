@@ -117,8 +117,8 @@ public class CommentsMiniInfoItemHolder extends ItemHolder {
 
         itemView.setOnClickListener(view -> {
             toggleEllipsize();
-            if (itemHandler.getOnCommentsSelectedListener() != null) {
-                itemHandler.getOnCommentsSelectedListener().selected(item);
+            if (itemHandler.getOnItemSelectedListener() != null) {
+                itemHandler.getOnItemSelectedListener().selected(item);
             }
         });
 

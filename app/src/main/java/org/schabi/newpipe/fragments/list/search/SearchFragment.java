@@ -35,7 +35,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
@@ -53,6 +52,7 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.ArrayList;
@@ -884,9 +884,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     @Override
-    protected void onItemSelected(final InfoItem selectedItem) {
-        super.onItemSelected(selectedItem);
-        hideKeyboardSearch();
+    protected void initListeners() {
+        super.initListeners();
+        itemListAdapter.setOnItemSelectedListener(new OnClickGesture<Object>() {
+            @Override
+            public void selected(final Object selectedItem) {
+                hideKeyboardSearch();
+            }
+        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////

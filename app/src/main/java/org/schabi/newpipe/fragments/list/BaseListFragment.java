@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.list;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -14,26 +13,15 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
-import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.ItemListAdapter;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.views.SuperScrollLayoutManager;
 
 import java.util.List;
@@ -249,63 +237,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         itemsList.setAdapter(itemListAdapter);
     }
 
-    protected void onItemSelected(final InfoItem selectedItem) {
-        if (DEBUG) {
-            Log.d(TAG, "onItemSelected() called with: selectedItem = [" + selectedItem + "]");
-        }
-    }
-
     @Override
     protected void initListeners() {
         super.initListeners();
-        itemListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
-            @Override
-            public void selected(final StreamInfoItem selectedItem) {
-                onStreamSelected(selectedItem);
-            }
-
-            @Override
-            public void held(final StreamInfoItem selectedItem) {
-                showStreamDialog(selectedItem);
-            }
-        });
-
-        itemListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
-            @Override
-            public void selected(final ChannelInfoItem selectedItem) {
-                try {
-                    onItemSelected(selectedItem);
-                    NavigationHelper.openChannelFragment(getFM(),
-                            selectedItem.getServiceId(),
-                            selectedItem.getUrl(),
-                            selectedItem.getName());
-                } catch (Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
-                }
-            }
-        });
-
-        itemListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<PlaylistInfoItem>() {
-            @Override
-            public void selected(final PlaylistInfoItem selectedItem) {
-                try {
-                    onItemSelected(selectedItem);
-                    NavigationHelper.openPlaylistFragment(getFM(),
-                            selectedItem.getServiceId(),
-                            selectedItem.getUrl(),
-                            selectedItem.getName());
-                } catch (Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
-                }
-            }
-        });
-
-        itemListAdapter.setOnCommentsSelectedListener(new OnClickGesture<CommentsInfoItem>() {
-            @Override
-            public void selected(final CommentsInfoItem selectedItem) {
-                onItemSelected(selectedItem);
-            }
-        });
 
         itemsList.clearOnScrollListeners();
         itemsList.addOnScrollListener(new OnScrollBelowItemsListener() {
@@ -316,45 +250,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         });
     }
 
-    private void onStreamSelected(final StreamInfoItem selectedItem) {
-        onItemSelected(selectedItem);
-        NavigationHelper.openVideoDetailFragment(getFM(),
-                selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
-    }
-
     protected void onScrollToBottom() {
         if (hasMoreItems() && !isLoading.get()) {
             loadMoreItems();
         }
     }
 
-
-    protected void showStreamDialog(final StreamInfoItem item) {
-        final Context context = getContext();
-        final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || activity == null) {
-            return;
-        }
-
-        if (item.getStreamType() == StreamType.AUDIO_STREAM) {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-        } else {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
-                    StreamDialogEntry.enqueue_on_popup,
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.start_here_on_popup,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-        }
-
-        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, item)).show();
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Menu

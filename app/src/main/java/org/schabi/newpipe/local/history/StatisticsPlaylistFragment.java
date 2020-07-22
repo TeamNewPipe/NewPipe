@@ -23,7 +23,6 @@ import com.google.android.material.snackbar.Snackbar;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -35,7 +34,6 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -138,31 +136,6 @@ public class StatisticsPlaylistFragment
     }
 
     @Override
-    protected void initListeners() {
-        super.initListeners();
-
-        itemListAdapter.setOnLocalItemSelectedListener(new OnClickGesture<LocalItem>() {
-            @Override
-            public void selected(final LocalItem selectedItem) {
-                if (selectedItem instanceof StreamStatisticsEntry) {
-                    final StreamStatisticsEntry item = (StreamStatisticsEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(getFM(),
-                            item.getStreamEntity().getServiceId(),
-                            item.getStreamEntity().getUrl(),
-                            item.getStreamEntity().getTitle());
-                }
-            }
-
-            @Override
-            public void held(final LocalItem selectedItem) {
-                if (selectedItem instanceof StreamStatisticsEntry) {
-                    showStreamDialog((StreamStatisticsEntry) selectedItem);
-                }
-            }
-        });
-    }
-
-    @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_history_clear:
@@ -237,7 +210,7 @@ public class StatisticsPlaylistFragment
         super.onDestroyView();
 
         if (itemListAdapter != null) {
-            itemListAdapter.setOnLocalItemSelectedListener(null);
+            itemListAdapter.setOnItemSelectedListener(null);
         }
         if (headerBackgroundButton != null) {
             headerBackgroundButton.setOnClickListener(null);

@@ -8,8 +8,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
@@ -28,9 +26,6 @@ import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
     private static final String TAG = ItemHolderWithToolbar.class.getSimpleName();
@@ -119,12 +114,24 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
     public void updateFromObject(final Object itemObject,
                                  final HistoryRecordManager historyRecordManager) {
         resetItemToolbar();
+
         itemView.setOnClickListener(view -> {
+            if (itemHandler.getOnItemSelectedListener() != null) {
+                itemHandler.getOnItemSelectedListener().selected(itemObject);
+            }
+
             if (itemToolbarView.getVisibility() == View.VISIBLE) {
                 onShowInfo(itemObject);
             } else {
                 showItemToolbar(itemObject);
             }
+        });
+
+        itemView.setOnLongClickListener(view -> {
+            if (itemHandler.getOnItemSelectedListener() != null) {
+                itemHandler.getOnItemSelectedListener().held(itemObject);
+            }
+            return true;
         });
 
         if (itemClass.isAssignableFrom(itemObject.getClass())) {

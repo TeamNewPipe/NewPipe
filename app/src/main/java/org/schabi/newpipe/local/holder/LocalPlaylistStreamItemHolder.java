@@ -83,14 +83,6 @@ public class LocalPlaylistStreamItemHolder extends ItemHolderWithToolbar<Playlis
         itemHandler.displayImage(item.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemView.setLongClickable(true);
-        itemView.setOnLongClickListener(view -> {
-            if (itemHandler.getOnLocalItemSelectedListener() != null) {
-                itemHandler.getOnLocalItemSelectedListener().held(item);
-            }
-            return true;
-        });
-
         itemThumbnailView.setOnTouchListener(getOnTouchListener(item));
         itemHandleView.setOnTouchListener(getOnTouchListener(item));
     }
@@ -120,9 +112,9 @@ public class LocalPlaylistStreamItemHolder extends ItemHolderWithToolbar<Playlis
     private View.OnTouchListener getOnTouchListener(final PlaylistStreamEntry item) {
         return (view, motionEvent) -> {
             view.performClick();
-            if (itemHandler != null && itemHandler.getOnLocalItemSelectedListener() != null
+            if (itemHandler != null && itemHandler.getOnItemSelectedListener() != null
                     && motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                itemHandler.getOnLocalItemSelectedListener().drag(item,
+                itemHandler.getOnItemSelectedListener().drag(item,
                         LocalPlaylistStreamItemHolder.this);
             }
             return false;

@@ -1,21 +1,14 @@
 package org.schabi.newpipe.info_list;
 
-import android.content.Context;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
-import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.OnClickGesture;
 
 import java.text.DateFormat;
@@ -49,11 +42,7 @@ public class ItemHandler {
     private final ImageLoader imageLoader = ImageLoader.getInstance();
     private final DateFormat dateFormat;
 
-    @Nullable private OnClickGesture<StreamInfoItem> onStreamSelectedListener;
-    @Nullable private OnClickGesture<ChannelInfoItem> onChannelSelectedListener;
-    @Nullable private OnClickGesture<PlaylistInfoItem> onPlaylistSelectedListener;
-    @Nullable private OnClickGesture<CommentsInfoItem> onCommentsSelectedListener;
-    @Nullable private OnClickGesture<LocalItem> onLocalItemSelectedListener;
+    @Nullable private OnClickGesture<Object> onItemSelectedListener;
 
     public ItemHandler(final FragmentActivity activity, final DateFormat dateFormat) {
         this.activity = activity;
@@ -79,53 +68,13 @@ public class ItemHandler {
     }
 
 
-    @Nullable
-    public OnClickGesture<StreamInfoItem> getOnStreamSelectedListener() {
-        return onStreamSelectedListener;
-    }
-
-    public void setOnStreamSelectedListener(
-            @Nullable final OnClickGesture<StreamInfoItem> listener) {
-        this.onStreamSelectedListener = listener;
+    public void setOnItemSelectedListener(
+            @Nullable final OnClickGesture<Object> onItemSelectedListener) {
+        this.onItemSelectedListener = onItemSelectedListener;
     }
 
     @Nullable
-    public OnClickGesture<ChannelInfoItem> getOnChannelSelectedListener() {
-        return onChannelSelectedListener;
-    }
-
-    public void setOnChannelSelectedListener(
-            @Nullable final OnClickGesture<ChannelInfoItem> listener) {
-        this.onChannelSelectedListener = listener;
-    }
-
-    @Nullable
-    public OnClickGesture<PlaylistInfoItem> getOnPlaylistSelectedListener() {
-        return onPlaylistSelectedListener;
-    }
-
-    public void setOnPlaylistSelectedListener(
-            @Nullable final OnClickGesture<PlaylistInfoItem> listener) {
-        this.onPlaylistSelectedListener = listener;
-    }
-
-    @Nullable
-    public OnClickGesture<CommentsInfoItem> getOnCommentsSelectedListener() {
-        return onCommentsSelectedListener;
-    }
-
-    public void setOnCommentsSelectedListener(
-            @Nullable final OnClickGesture<CommentsInfoItem> onCommentsSelectedListener) {
-        this.onCommentsSelectedListener = onCommentsSelectedListener;
-    }
-
-    @Nullable
-    public OnClickGesture<LocalItem> getOnLocalItemSelectedListener() {
-        return onLocalItemSelectedListener;
-    }
-
-    public void setOnLocalItemSelectedListener(
-            @Nullable final OnClickGesture<LocalItem> onLocalItemSelectedListener) {
-        this.onLocalItemSelectedListener = onLocalItemSelectedListener;
+    public OnClickGesture<Object> getOnItemSelectedListener() {
+        return onItemSelectedListener;
     }
 }
