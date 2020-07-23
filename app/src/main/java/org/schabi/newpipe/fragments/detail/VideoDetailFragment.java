@@ -370,7 +370,7 @@ public class VideoDetailFragment
     /*////////////////////////////////////////////////////////////////////////*/
 
     public static VideoDetailFragment getInstance(final int serviceId, final String videoUrl,
-                                                   final String name, final PlayQueue playQueue) {
+                                                  final String name, final PlayQueue playQueue) {
         VideoDetailFragment instance = new VideoDetailFragment();
         instance.setInitialData(serviceId, videoUrl, name, playQueue);
         return instance;
@@ -1142,11 +1142,7 @@ public class VideoDetailFragment
     private void openVideoPlayer() {
         if (PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
-            final VideoStream selectedVideoStream = getSelectedVideoStream();
-            if (selectedVideoStream == null) {
-                return;
-            }
-            startOnExternalPlayer(activity, currentInfo, selectedVideoStream);
+            showExternalPlaybackDialog();
         } else {
             replaceQueueIfUserConfirms(this::openMainPlayer);
         }
@@ -1300,12 +1296,6 @@ public class VideoDetailFragment
         final FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
         viewHolder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
         viewHolder.requestLayout();
-    }
-
-
-    @Nullable
-    private VideoStream getSelectedVideoStream() {
-        return sortedVideoStreams != null ? sortedVideoStreams.get(selectedVideoStreamIndex) : null;
     }
 
     private void prepareDescription(final Description description) {
@@ -2113,13 +2103,36 @@ public class VideoDetailFragment
 
     private void showClearingQueueConfirmation(final Runnable onAllow) {
         new AlertDialog.Builder(activity)
-                .setTitle(R.string.confirm_prompt)
-                .setMessage(R.string.clear_queue_confirmation_description)
+                .setTitle(R.string.clear_queue_confirmation_description)
                 .setNegativeButton(android.R.string.cancel, null)
                 .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                     onAllow.run();
                     dialog.dismiss();
                 }).show();
+    }
+
+    private void showExternalPlaybackDialog() {
+        if (sortedVideoStreams == null) {
+            return;
+        }
+        CharSequence[] resolutions = new CharSequence[sortedVideoStreams.size()];
+        for (int i = 0; i < sortedVideoStreams.size(); i++) {
+            resolutions[i] = sortedVideoStreams.get(i).getResolution();
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setNeutralButton(R.string.open_in_browser, (dialog, i) ->
+                        ShareUtils.openUrlInBrowser(requireActivity(), url)
+                );
+        // Maybe there are no video streams available, show just `open in browser` button
+        if (resolutions.length > 0) {
+            builder.setSingleChoiceItems(resolutions, selectedVideoStreamIndex, (dialog, i) -> {
+                        dialog.dismiss();
+                        startOnExternalPlayer(activity, currentInfo, sortedVideoStreams.get(i));
+                    }
+            );
+        }
+        builder.show();
     }
 
     /*

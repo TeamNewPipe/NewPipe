@@ -1463,7 +1463,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void showSystemUIPartially() {
         if (isFullscreen() && getParentActivity() != null) {
-            final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
             getParentActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
         }
     }
