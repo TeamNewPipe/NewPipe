@@ -5,12 +5,9 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
+import javax.net.ssl.*;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
@@ -29,14 +26,24 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
     public TLSSocketFactoryCompat() throws KeyManagementException, NoSuchAlgorithmException {
         SSLContext context = SSLContext.getInstance("TLS");
         context.init(null, null, null);
+        SSLSessionContext sslSessionContext = context.getServerSessionContext();
+        int sessionCacheSize = sslSessionContext.getSessionCacheSize();
+        if (sessionCacheSize > 0) {
+            sslSessionContext.setSessionCacheSize(0);
+        }
         internalSSLSocketFactory = context.getSocketFactory();
     }
-
+    
 
     public TLSSocketFactoryCompat(final TrustManager[] tm)
             throws KeyManagementException, NoSuchAlgorithmException {
         SSLContext context = SSLContext.getInstance("TLS");
-        context.init(null, tm, new java.security.SecureRandom());
+        context.init(null, tm, new SecureRandom());
+        SSLSessionContext sslSessionContext = context.getServerSessionContext();
+        int sessionCacheSize = sslSessionContext.getSessionCacheSize();
+        if (sessionCacheSize > 0) {
+            sslSessionContext.setSessionCacheSize(0);
+        }
         internalSSLSocketFactory = context.getSocketFactory();
     }
 
