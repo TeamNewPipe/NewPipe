@@ -209,6 +209,7 @@ dependencies {
     implementation "org.ocpsoft.prettytime:prettytime:4.0.5.Final"
 
     implementation 'commons-io:commons-io:2.7'
+    implementation 'org.apache.commons:commons-lang3:3.10'
 }
 
 static String getGitWorkingBranch() {

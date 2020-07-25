@@ -10,14 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -37,19 +39,14 @@ public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
      */
     private static String getFormattedLicense(@NonNull final Context context,
                                               @NonNull final License license) {
-        final StringBuilder licenseContent = new StringBuilder();
         final String webViewData;
-        try {
-            final BufferedReader in = new BufferedReader(new InputStreamReader(
-                    context.getAssets().open(license.getFilename()), StandardCharsets.UTF_8));
-            String str;
-            while ((str = in.readLine()) != null) {
-                licenseContent.append(str);
-            }
-            in.close();
+        try (InputStream inputStream = context.getAssets().open(license.getFilename())) {
+            // readLines() buffers the input stream internally, so separate buffering is not needed.
+            final List<String> lines = IOUtils.readLines(inputStream, StandardCharsets.UTF_8);
+            final String licenseContent = StringUtils.join(lines, null);
 
             // split the HTML file and insert the stylesheet into the HEAD of the file
-            webViewData = licenseContent.toString().replace("</head>",
+            webViewData = licenseContent.replace("</head>",
                     "<style>" + getLicenseStylesheet(context) + "</style></head>");
         } catch (IOException e) {
             throw new IllegalArgumentException(
