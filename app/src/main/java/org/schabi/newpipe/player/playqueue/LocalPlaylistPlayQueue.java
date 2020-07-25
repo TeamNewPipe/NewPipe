@@ -3,6 +3,8 @@ package org.schabi.newpipe.player.playqueue;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -16,7 +18,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 public class LocalPlaylistPlayQueue extends PlayQueue {
@@ -41,8 +45,8 @@ public class LocalPlaylistPlayQueue extends PlayQueue {
     }
 
     @Override
-    public void fetch() {
-        LocalPlaylistManager playlistManager =
+    public void fetch(@Nullable final Runnable runnable) {
+        final LocalPlaylistManager playlistManager =
                 new LocalPlaylistManager(NewPipeDatabase.getInstance(context));
 
         disposable = playlistManager.getPlaylistStreams(playlistId)
@@ -57,6 +61,7 @@ public class LocalPlaylistPlayQueue extends PlayQueue {
 
                             isComplete = true;
                             append(playQueueItems);
+                            // TODO calling runnable here creates strange loops
                         },
                         t -> ErrorActivity.reportError(context, t, MainActivity.class, null,
                                 ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE,

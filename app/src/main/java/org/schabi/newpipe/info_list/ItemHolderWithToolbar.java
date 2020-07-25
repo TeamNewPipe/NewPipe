@@ -18,6 +18,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.fragments.list.playlist.AppendPlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.LocalPlaylistPlayQueue;
@@ -31,33 +32,14 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
     private static final String TAG = ItemHolderWithToolbar.class.getSimpleName();
     private static final int TOGGLE_ITEM_TOOLBAR_ANIMATION_DURATION = 70; // ms
 
+    private static class ToolbarButtonsVisibility {
+        private final boolean delete;
+        private final boolean setAsPlaylistThumbnail;
 
-    private static StreamInfoItem toStreamInfoItem(final Object itemObject) {
-        if (itemObject instanceof StreamInfoItem) {
-            return (StreamInfoItem) itemObject;
-        } else if (itemObject instanceof StreamStatisticsEntry) {
-            return ((StreamStatisticsEntry) itemObject).toStreamInfoItem();
-        } else if (itemObject instanceof PlaylistStreamEntry) {
-            return ((PlaylistStreamEntry) itemObject).toStreamInfoItem();
-        }
-
-        throw new IllegalArgumentException("toStreamInfoItem: invalid item object: " + itemObject);
-    }
-
-    private PlayQueue queueFromObject(final Object itemObject) {
-        if (itemObject instanceof PlaylistInfoItem) {
-            return new PlaylistPlayQueue((PlaylistInfoItem) itemObject);
-        } else if (itemObject instanceof PlaylistRemoteEntity) {
-            final PlaylistRemoteEntity item = (PlaylistRemoteEntity) itemObject;
-            return new PlaylistPlayQueue(
-                    new PlaylistInfoItem(item.getServiceId(), item.getUrl(), item.getName()));
-        } else if (itemObject instanceof PlaylistMetadataEntry) {
-            return new LocalPlaylistPlayQueue(
-                    itemHandler.getActivity(), (PlaylistMetadataEntry) itemObject);
-        } else if (itemObject instanceof ChannelInfoItem) {
-            return new ChannelPlayQueue((ChannelInfoItem) itemObject);
-        } else {
-            return new SinglePlayQueue(toStreamInfoItem(itemObject));
+        ToolbarButtonsVisibility(final boolean delete,
+                                 final boolean setAsPlaylistThumbnail) {
+            this.delete = delete;
+            this.setAsPlaylistThumbnail = setAsPlaylistThumbnail;
         }
     }
 
@@ -93,7 +75,7 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
 
         share = itemToolbarView.findViewById(R.id.shareToolbarButton);
         addToPlaylist = itemToolbarView.findViewById(R.id.addToPlaylistToolbarButton);
-        delete = itemToolbarView.findViewById(R.id.delete);
+        delete = itemToolbarView.findViewById(R.id.deleteToolbarButton);
         setAsPlaylistThumbnail =
                 itemToolbarView.findViewById(R.id.setAsPlaylistThumbnailToolbarButton);
         download = itemToolbarView.findViewById(R.id.downloadToolbarButton);
@@ -114,6 +96,7 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
     public void updateFromObject(final Object itemObject,
                                  final HistoryRecordManager historyRecordManager) {
         resetItemToolbar();
+        hideInvalidToolbarButtons(itemObject);
 
         itemView.setOnClickListener(view -> {
             if (itemHandler.getOnItemSelectedListener() != null) {
@@ -145,6 +128,27 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
         if (itemClass.isAssignableFrom(itemObject.getClass())) {
             updateStateFromItem(itemClass.cast(itemObject), historyRecordManager);
         }
+    }
+
+    void hideInvalidToolbarButtons(final Object itemObject) {
+        final ToolbarButtonsVisibility v;
+        if (itemObject instanceof PlaylistInfoItem) {
+            v = new ToolbarButtonsVisibility(false, false);
+        } else if (itemObject instanceof ChannelInfoItem) {
+            v = new ToolbarButtonsVisibility(false, false);
+        } else if (itemObject instanceof PlaylistRemoteEntity) {
+            v = new ToolbarButtonsVisibility(false, false);
+        } else if (itemObject instanceof PlaylistMetadataEntry) {
+            v = new ToolbarButtonsVisibility(false, false);
+        } else {
+            // convertible to stream info item
+            v = new ToolbarButtonsVisibility( false, false);
+        }
+
+        delete.setVisibility(v.delete ? View.VISIBLE : View.GONE);
+        setAsPlaylistThumbnail.setVisibility(v.setAsPlaylistThumbnail ? View.VISIBLE : View.GONE);
+
+        download.setVisibility(View.GONE); // TODO
     }
 
 
@@ -185,6 +189,7 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
         itemHandler.replaceItemHolderWithToolbarOpen(this);
 
         share.setOnClickListener(v -> onShare(itemObject));
+        addToPlaylist.setOnClickListener(v -> onAddToPlaylist(itemObject));
         playMain.setOnClickListener(v -> onPlayMain(itemObject));
         playPopup.setOnClickListener(v -> onPlayPopup(itemObject));
         playPopup.setOnLongClickListener(v -> {
@@ -206,6 +211,10 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
         }
     }
 
+
+    //////////////////////////////////////
+    // ACTIONS
+    //////////////////////////////////////
 
     private void onShowInfo(final Object itemObject) {
         if (itemObject instanceof PlaylistInfoItem) {
@@ -255,6 +264,16 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
         }
     }
 
+    private void onAddToPlaylist(final Object itemObject) {
+        // TODO this breaks strangely with LocalPlaylistPlayQueue (see the class)
+        // so currently adding local playlists to other playlists is disabled
+        // TODO adding remote playlists to other playlists does not show "Playlisted" toast
+        final PlayQueue playQueue = queueFromObject(itemObject);
+        playQueue.fetch(() -> AppendPlaylistDialog.fromPlayQueueItems(playQueue.getStreams())
+            .show(itemHandler.getActivity().getSupportFragmentManager(),
+                "StreamDialogEntry@append_playlist"));
+    }
+
     private void onPlayMain(final Object itemObject) {
         NavigationHelper.playOnMainPlayer(
                 itemHandler.getActivity(), queueFromObject(itemObject), true);
@@ -278,5 +297,39 @@ public abstract class ItemHolderWithToolbar<ItemType> extends ItemHolder {
     private void onEnqueueBackground(final Object itemObject) {
         NavigationHelper.enqueueOnBackgroundPlayer(
                 itemHandler.getActivity(), queueFromObject(itemObject), false);
+    }
+
+
+    //////////////////////////////////////
+    // UTIL
+    //////////////////////////////////////
+
+    private static StreamInfoItem toStreamInfoItem(final Object itemObject) {
+        if (itemObject instanceof StreamInfoItem) {
+            return (StreamInfoItem) itemObject;
+        } else if (itemObject instanceof StreamStatisticsEntry) {
+            return ((StreamStatisticsEntry) itemObject).toStreamInfoItem();
+        } else if (itemObject instanceof PlaylistStreamEntry) {
+            return ((PlaylistStreamEntry) itemObject).toStreamInfoItem();
+        }
+
+        throw new IllegalArgumentException("toStreamInfoItem: invalid item object: " + itemObject);
+    }
+
+    private PlayQueue queueFromObject(final Object itemObject) {
+        if (itemObject instanceof PlaylistInfoItem) {
+            return new PlaylistPlayQueue((PlaylistInfoItem) itemObject);
+        } else if (itemObject instanceof PlaylistRemoteEntity) {
+            final PlaylistRemoteEntity item = (PlaylistRemoteEntity) itemObject;
+            return new PlaylistPlayQueue(
+                    new PlaylistInfoItem(item.getServiceId(), item.getUrl(), item.getName()));
+        } else if (itemObject instanceof PlaylistMetadataEntry) {
+            return new LocalPlaylistPlayQueue(
+                    itemHandler.getActivity(), (PlaylistMetadataEntry) itemObject);
+        } else if (itemObject instanceof ChannelInfoItem) {
+            return new ChannelPlayQueue((ChannelInfoItem) itemObject);
+        } else {
+            return new SinglePlayQueue(toStreamInfoItem(itemObject));
+        }
     }
 }
