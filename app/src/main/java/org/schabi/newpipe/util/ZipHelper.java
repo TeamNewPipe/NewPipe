@@ -1,9 +1,10 @@
 package org.schabi.newpipe.util;
 
-import java.io.BufferedInputStream;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -44,16 +45,12 @@ public final class ZipHelper {
      */
     public static void addFileToZip(final ZipOutputStream outZip, final String file,
                                     final String name) throws Exception {
-        byte[] data = new byte[BUFFER_SIZE];
-        FileInputStream fi = new FileInputStream(file);
-        BufferedInputStream inputStream = new BufferedInputStream(fi, BUFFER_SIZE);
         ZipEntry entry = new ZipEntry(name);
         outZip.putNextEntry(entry);
-        int count;
-        while ((count = inputStream.read(data, 0, BUFFER_SIZE)) != -1) {
-            outZip.write(data, 0, count);
+        try (FileInputStream fileInputStream = new FileInputStream(file)) {
+            // copy() buffers the input stream internally, so separate buffering is not needed.
+            IOUtils.copy(fileInputStream, outZip, BUFFER_SIZE);
         }
-        inputStream.close();
     }
 
     /**
@@ -68,12 +65,7 @@ public final class ZipHelper {
      */
     public static boolean extractFileFromZip(final String filePath, final String file,
                                              final String name) throws Exception {
-
-        ZipInputStream inZip = new ZipInputStream(
-                new BufferedInputStream(
-                        new FileInputStream(filePath)));
-
-        byte[] data = new byte[BUFFER_SIZE];
+        ZipInputStream inZip = new ZipInputStream(new FileInputStream(filePath));
 
         boolean found = false;
 
@@ -81,21 +73,10 @@ public final class ZipHelper {
         while ((ze = inZip.getNextEntry()) != null) {
             if (ze.getName().equals(name)) {
                 found = true;
-                // delete old file first
                 File oldFile = new File(file);
-                if (oldFile.exists()) {
-                    if (!oldFile.delete()) {
-                        throw new Exception("Could not delete " + file);
-                    }
-                }
-
-                FileOutputStream outFile = new FileOutputStream(file);
-                int count = 0;
-                while ((count = inZip.read(data)) != -1) {
-                    outFile.write(data, 0, count);
-                }
-
-                outFile.close();
+                // copyToFile() will overwrite the old file if it already exists.
+                // It also calls IOUtils.copy(), so separate buffering is not needed.
+                FileUtils.copyToFile(inZip, oldFile);
                 inZip.closeEntry();
             }
         }
