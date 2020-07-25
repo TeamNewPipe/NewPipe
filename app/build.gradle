@@ -207,6 +207,8 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
     implementation "org.ocpsoft.prettytime:prettytime:4.0.5.Final"
+
+    implementation 'commons-io:commons-io:2.7'
 }
 
 static String getGitWorkingBranch() {
