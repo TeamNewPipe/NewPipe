@@ -38,6 +38,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.view.WindowCallbackWrapper;
 
@@ -113,7 +114,9 @@ public final class FocusOverlayView extends Drawable implements
 
         if (focusedView != null) {
             focusedView.getGlobalVisibleRect(focusRect);
-        } else {
+        }
+
+        if (shouldClearFocusRect(focusedView, focusRect)) {
             focusRect.setEmpty();
         }
 
@@ -182,6 +185,16 @@ public final class FocusOverlayView extends Drawable implements
 
     @Override
     public void setColorFilter(final ColorFilter colorFilter) {
+    }
+
+    /*
+     * When any view in the player looses it's focus (after setVisibility(GONE)) the focus gets
+     * added to the whole fragment which has a width and height equal to the window frame.
+     * The easiest way to avoid the unneeded frame is to skip highlighting of rect that is
+     * equal to the overlayView bounds
+     * */
+    private boolean shouldClearFocusRect(@Nullable final View focusedView, final Rect focusedRect) {
+        return focusedView == null || focusedRect.equals(getBounds());
     }
 
     public static void setupFocusObserver(final Dialog dialog) {

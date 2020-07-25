@@ -34,6 +34,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -2154,6 +2155,30 @@ public class VideoDetailFragment
     // Bottom mini player
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * That's for Android TV support. Move focus from main fragment to the player or back
+     * based on what is currently selected
+     * @param toMain if true than the main fragment will be focused or the player otherwise
+     * */
+    private void moveFocusToMainFragment(final boolean toMain) {
+        final ViewGroup mainFragment = requireActivity().findViewById(R.id.fragment_holder);
+        // Hamburger button steels a focus even under bottomSheet
+        final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+        final int afterDescendants = ViewGroup.FOCUS_AFTER_DESCENDANTS;
+        final int blockDescendants = ViewGroup.FOCUS_BLOCK_DESCENDANTS;
+        if (toMain) {
+            mainFragment.setDescendantFocusability(afterDescendants);
+            toolbar.setDescendantFocusability(afterDescendants);
+            ((ViewGroup) requireView()).setDescendantFocusability(blockDescendants);
+            mainFragment.requestFocus();
+        } else {
+            mainFragment.setDescendantFocusability(blockDescendants);
+            toolbar.setDescendantFocusability(blockDescendants);
+            ((ViewGroup) requireView()).setDescendantFocusability(afterDescendants);
+            thumbnailBackgroundButton.requestFocus();
+        }
+    }
+
     private void setupBottomPlayer() {
         final CoordinatorLayout.LayoutParams params =
                 (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
@@ -2177,15 +2202,17 @@ public class VideoDetailFragment
             @Override
             public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
                 bottomSheetState = newState;
-                final ViewGroup mainFragment = requireActivity().findViewById(R.id.fragment_holder);
+
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
-                        mainFragment.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                        moveFocusToMainFragment(true);
+
                         bottomSheetBehavior.setPeekHeight(0);
                         cleanUp();
                         break;
                     case BottomSheetBehavior.STATE_EXPANDED:
-                        mainFragment.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+                        moveFocusToMainFragment(false);
+
                         bottomSheetBehavior.setPeekHeight(peekHeight);
                         // Disable click because overlay buttons located on top of buttons
                         // from the player
@@ -2202,8 +2229,8 @@ public class VideoDetailFragment
                         }
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
-                        mainFragment.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-                        mainFragment.requestFocus();
+                        moveFocusToMainFragment(true);
+
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
                         if (player != null) {

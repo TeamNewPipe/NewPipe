@@ -47,6 +47,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:descendantFocusability="afterDescendants"
                     app:layout_collapseMode="parallax">
 
                     <ImageView
@@ -156,6 +157,7 @@
 							android:id="@+id/player_placeholder"
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
+                            android:descendantFocusability="afterDescendants"
 					/>
 
                 </FrameLayout>
@@ -602,6 +604,7 @@
 			android:alpha="0.9"
 			android:paddingLeft="@dimen/video_item_search_padding"
 			android:paddingRight="@dimen/video_item_search_padding"
+            android:descendantFocusability="blocksDescendants"
 			android:background="?attr/windowBackground" >
 
 		<ImageButton

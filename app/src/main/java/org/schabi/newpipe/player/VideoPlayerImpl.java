@@ -480,7 +480,6 @@ public class VideoPlayerImpl extends VideoPlayer
             case KeyEvent.KEYCODE_BACK:
                 if (DeviceUtils.isTv(service) && isControlsVisible()) {
                     hideControls(0, 0);
-                    hideSystemUIIfNeeded();
                     return true;
                 }
                 break;
@@ -499,7 +498,9 @@ public class VideoPlayerImpl extends VideoPlayer
                 }
 
                 if (!isControlsVisible()) {
-                    playPauseButton.requestFocus();
+                    if (!queueVisible) {
+                        playPauseButton.requestFocus();
+                    }
                     showControlsThenHide();
                     showSystemUIPartially();
                     return true;
@@ -805,7 +806,7 @@ public class VideoPlayerImpl extends VideoPlayer
                     if (v.getId() == playPauseButton.getId()) {
                         hideControls(0, 0);
                     } else {
-                        safeHideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                        hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
                     }
                 }
             });
@@ -830,6 +831,7 @@ public class VideoPlayerImpl extends VideoPlayer
         updatePlaybackButtons();
 
         getControlsRoot().setVisibility(View.INVISIBLE);
+        queueLayout.requestFocus();
         animateView(queueLayout, SLIDE_AND_ALPHA, true,
                 DEFAULT_CONTROLS_DURATION);
 
@@ -848,6 +850,7 @@ public class VideoPlayerImpl extends VideoPlayer
                     queueLayout.setTranslationY(-queueLayout.getHeight() * 5);
                 });
         queueVisible = false;
+        playPauseButton.requestFocus();
     }
 
     private void onMoreOptionsClicked() {
@@ -1095,7 +1098,9 @@ public class VideoPlayerImpl extends VideoPlayer
         animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
             playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
             animatePlayButtons(true, 200);
-            playPauseButton.requestFocus();
+            if (!queueVisible) {
+                playPauseButton.requestFocus();
+            }
         });
 
         updateWindowFlags(ONGOING_PLAYBACK_WINDOW_FLAGS);
@@ -1114,7 +1119,9 @@ public class VideoPlayerImpl extends VideoPlayer
         animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
             playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
             animatePlayButtons(true, 200);
-            playPauseButton.requestFocus();
+            if (!queueVisible) {
+                playPauseButton.requestFocus();
+            }
         });
 
         updateWindowFlags(IDLE_WINDOW_FLAGS);
@@ -1401,12 +1408,10 @@ public class VideoPlayerImpl extends VideoPlayer
         return isFullscreen;
     }
 
-    @Override
     public void showControlsThenHide() {
-        if (queueVisible) {
-            return;
+        if (DEBUG) {
+            Log.d(TAG, "showControlsThenHide() called");
         }
-
         showOrHideButtons();
         showSystemUIPartially();
         super.showControlsThenHide();
@@ -1414,10 +1419,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public void showControls(final long duration) {
-        if (queueVisible) {
-            return;
+        if (DEBUG) {
+            Log.d(TAG, "showControls() called with: duration = [" + duration + "]");
         }
-
         showOrHideButtons();
         showSystemUIPartially();
         super.showControls(duration);
