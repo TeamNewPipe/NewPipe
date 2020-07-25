@@ -280,8 +280,6 @@ odpiranje v pojavnem načinu</string>
     <string name="select_a_channel">Izbor kanala</string>
     <string name="top_50">Najboljših 50</string>
     <string name="new_and_hot">Novo in vroče</string>
-    <string name="title_activity_background_player">Ozadnji predvajalnik</string>
-    <string name="title_activity_popup_player">Pojavni predvajalnik</string>
     <string name="play_queue_remove">Odstrani</string>
     <string name="play_queue_stream_detail">Podrobnosti</string>
     <string name="play_queue_audio_settings">Nastavitve zvoka</string>

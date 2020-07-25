@@ -341,8 +341,6 @@
     <string name="trending">Tendencias</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novo e popular</string>
-    <string name="title_activity_background_player">Reprodutor en segundo plano</string>
-    <string name="title_activity_popup_player">Reprodutor «popup»</string>
     <string name="play_queue_remove">Eliminar</string>
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="play_queue_audio_settings">Opcións de audio</string>

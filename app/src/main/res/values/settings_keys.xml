@@ -144,8 +144,6 @@
         <item>@string/audio_webm_key</item>
     </string-array>
 
-    <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
-
     <string name="last_resize_mode" translatable="false">last_resize_mode</string>
 
     <!-- DEBUG ONLY -->

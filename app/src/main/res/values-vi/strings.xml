@@ -307,8 +307,6 @@
     <string name="kiosk">Trang chủ</string>
     <string name="trending">Xu hướng</string>
     <string name="new_and_hot">Mới &amp; hot</string>
-    <string name="title_activity_background_player">Trình phát nền</string>
-    <string name="title_activity_popup_player">Trình phát popup</string>
     <string name="play_queue_remove">Tẩy xoá</string>
     <string name="play_queue_stream_detail">Chi tiết</string>
     <string name="play_queue_audio_settings">Cài đặt âm thanh</string>

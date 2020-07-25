@@ -429,8 +429,6 @@
     <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
     <!-- Play Queue -->
     <string name="title_activity_play_queue">Play queue</string>
-    <string name="title_activity_background_player">Background player</string>
-    <string name="title_activity_popup_player">Popup player</string>
     <string name="play_queue_remove">Remove</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>

@@ -213,7 +213,7 @@ public class PlayerGestureListener
             return false;
         }
 
-        /*if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
+        /*if (DEBUG && false) Log.d(TAG, "onScrollInMain = " +
                 ", e1.getRaw = [" + initialEvent.getRawX() + ", " + initialEvent.getRawY() + "]" +
                 ", e2.getRaw = [" + movingEvent.getRawX() + ", " + movingEvent.getRawY() + "]" +
                 ", distanceXy = [" + distanceX + ", " + distanceY + "]");*/
@@ -431,7 +431,7 @@ public class PlayerGestureListener
         }
 
 //            if (DEBUG) {
-//                Log.d(TAG, "PopupVideoPlayer.onScroll = "
+//                Log.d(TAG, "onScrollInPopup = "
 //                        + "e1.getRaw = [" + initialEvent.getRawX() + ", "
 //                        + initialEvent.getRawY() + "], "
 //                        + "e1.getX,Y = [" + initialEvent.getX() + ", "

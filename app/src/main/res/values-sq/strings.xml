@@ -226,8 +226,6 @@
     <string name="play_queue_audio_settings">Aranzhimet Audio</string>
     <string name="play_queue_stream_detail">Detaje</string>
     <string name="play_queue_remove">Hiq</string>
-    <string name="title_activity_popup_player">Luajtësi popup</string>
-    <string name="title_activity_background_player">Luajtësi në sfond</string>
     <string name="conferences">Konferencat</string>
     <string name="most_liked">Më të pëlqyerat</string>
     <string name="recently_added">Të shtuara së fundmi</string>

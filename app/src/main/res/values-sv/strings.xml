@@ -232,8 +232,6 @@
     <string name="trending">Trend</string>
     <string name="top_50">Topp 50</string>
     <string name="new_and_hot">Aktuellt</string>
-    <string name="title_activity_background_player">Bakgrundsspelare</string>
-    <string name="title_activity_popup_player">Popup-spelare</string>
     <string name="play_queue_remove">Ta bort</string>
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Ljudinställningar</string>

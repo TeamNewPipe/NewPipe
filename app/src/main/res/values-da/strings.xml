@@ -315,8 +315,6 @@
     <string name="trending">Populært lige nu</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nyt og populært</string>
-    <string name="title_activity_background_player">Baggrundsafspiller</string>
-    <string name="title_activity_popup_player">Pop op-afspiller</string>
     <string name="play_queue_remove">Fjern</string>
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Lydindstillinger</string>

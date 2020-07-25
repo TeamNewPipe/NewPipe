@@ -231,8 +231,6 @@
     <string name="player_stream_failure">Impossibile riprodurre questo flusso</string>
     <string name="player_unrecoverable_failure">Si è verificato un errore irreversibile</string>
     <string name="player_recoverable_failure">Ripristino dell\'errore del lettore multimediale</string>
-    <string name="title_activity_background_player">Riproduzione in Sottofondo</string>
-    <string name="title_activity_popup_player">Lettore Popup</string>
     <string name="play_queue_remove">Rimuovi</string>
     <string name="play_queue_stream_detail">Dettagli</string>
     <string name="play_queue_audio_settings">Impostazioni Audio</string>
