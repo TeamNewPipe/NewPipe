@@ -153,12 +153,12 @@
                         tools:visibility="visible" />
 
 					<!-- Player will be inserted here in realtime -->
-					<FrameLayout
-							android:id="@+id/player_placeholder"
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-                            android:descendantFocusability="afterDescendants"
-					/>
+                    <FrameLayout
+                        android:id="@+id/player_placeholder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:descendantFocusability="afterDescendants"
+                    />
 
                 </FrameLayout>
 

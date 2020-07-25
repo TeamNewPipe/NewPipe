@@ -163,6 +163,9 @@ public final class MainPlayer extends Service {
             // from one stream to a new stream not smooth
             playerImpl.getPlayer().stop(false);
             playerImpl.setRecovery();
+            // Android TV will handle back button in case controls will be visible
+            // (one more additional unneeded click while the player is hidden)
+            playerImpl.hideControls(0, 0);
             // Notification shows information about old stream but if a user selects
             // a stream from backStack it's not actual anymore
             // So we should hide the notification at all.

@@ -2158,8 +2158,9 @@ public class VideoDetailFragment
     /**
      * That's for Android TV support. Move focus from main fragment to the player or back
      * based on what is currently selected
+     *
      * @param toMain if true than the main fragment will be focused or the player otherwise
-     * */
+     */
     private void moveFocusToMainFragment(final boolean toMain) {
         final ViewGroup mainFragment = requireActivity().findViewById(R.id.fragment_holder);
         // Hamburger button steels a focus even under bottomSheet

@@ -253,9 +253,12 @@ public class VideoPlayerImpl extends VideoPlayer
             getRootView().setVisibility(View.VISIBLE);
             initPopup();
             initPopupCloseOverlay();
+            playPauseButton.requestFocus();
         } else {
             getRootView().setVisibility(View.VISIBLE);
             initVideoPlayer();
+            // Android TV: without it focus will frame the whole player
+            playPauseButton.requestFocus();
         }
 
         onPlay();
@@ -1057,10 +1060,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void animatePlayButtons(final boolean show, final int duration) {
         animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
-        if (playQueue.getIndex() > 0) {
+        if (playQueue.getIndex() > 0 || !show) {
             animateView(playPreviousButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
         }
-        if (playQueue.getIndex() + 1 < playQueue.getStreams().size()) {
+        if (playQueue.getIndex() + 1 < playQueue.getStreams().size() || !show) {
             animateView(playNextButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
         }
 
