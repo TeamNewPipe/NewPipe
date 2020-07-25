@@ -122,7 +122,7 @@ public final class MainPlayer extends Service {
     }
 
     private void createView() {
-        final View layout = View.inflate(this, R.layout.activity_main_player, null);
+        final View layout = View.inflate(this, R.layout.player, null);
 
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(layout);
@@ -284,9 +284,9 @@ public final class MainPlayer extends Service {
 
     private NotificationCompat.Builder createNotification() {
         notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID,
-                R.layout.player_background_notification);
+                R.layout.player_notification);
         bigNotRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID,
-                R.layout.player_background_notification_expanded);
+                R.layout.player_notification_expanded);
 
         setupNotification(notRemoteView);
         setupNotification(bigNotRemoteView);
