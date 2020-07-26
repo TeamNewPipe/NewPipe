@@ -7,7 +7,12 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-import javax.net.ssl.*;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.SSLSessionContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSocket;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
@@ -33,7 +38,6 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
         }
         internalSSLSocketFactory = context.getSocketFactory();
     }
-    
 
     public TLSSocketFactoryCompat(final TrustManager[] tm)
             throws KeyManagementException, NoSuchAlgorithmException {

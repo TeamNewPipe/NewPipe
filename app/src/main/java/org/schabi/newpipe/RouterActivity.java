@@ -4,8 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.PendingIntent;
-import android.content.*;
 import android.content.pm.PackageManager;
+import android.content.BroadcastReceiver;
+import android.content.SharedPreferences;
+import android.content.Intent;
+import android.content.DialogInterface;
+import android.content.Context;
+import android.content.ComponentName;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.os.Bundle;
@@ -638,8 +643,7 @@ public class RouterActivity extends AppCompatActivity {
                 }
                 Choice playerChoice = (Choice) serializable;
                 handleChoice(playerChoice);
-            }
-            else {
+            } else {
                 NetworkStateReceiver.enable(getApplicationContext());
             }
         }
@@ -754,7 +758,8 @@ public class RouterActivity extends AppCompatActivity {
 
         //The method hasActiveNetwork() checks whether the network connection is active
         protected boolean hasActiveNetwork() {
-            final ConnectivityManager connManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            final ConnectivityManager connManager = (ConnectivityManager)
+                    getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             Network activeNetwork = connManager.getActiveNetwork();
             return (activeNetwork != null);
         }
@@ -764,29 +769,36 @@ public class RouterActivity extends AppCompatActivity {
 
             private static FetcherService service;
 
-            public static void setService(FetcherService newService) {
+            public static void setService(final FetcherService newService) {
                 service = newService;
             }
 
             @Override
-            public void onReceive(Context context, Intent intent) {
+            public void onReceive(final Context context, final Intent intent) {
 
-                // If there is an active network connection, this method will "turn off" this class and arrange to process the request
+                // If there is an active network connection,
+                // this method will "turn off" this class and arrange to process the request
                 if (service.hasActiveNetwork()) {
                     NetworkStateReceiver.disable(context);
-                    final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                    final Intent innerIntent = new Intent(context, FetcherService.class);
-                    final PendingIntent pendingIntent = PendingIntent.getService(context, 0, innerIntent, 0);
+                    final AlarmManager alarmManager =
+                            (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                    final Intent innerIntent =
+                            new Intent(context, FetcherService.class);
+                    final PendingIntent pendingIntent =
+                            PendingIntent.getService(context, 0, innerIntent, 0);
 
-                    SharedPreferences preferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+                    SharedPreferences preferences = context.getSharedPreferences(
+                            context.getPackageName(), Context.MODE_PRIVATE);
                     preferences.edit();
-                    boolean autoRefreshEnabled = preferences.getBoolean("pref_auto_refresh_enabled", false);
+                    boolean autoRefreshEnabled =
+                            preferences.getBoolean("pref_auto_refresh_enabled", false);
 
                     final String hours = preferences.getString("pref_auto_refresh_enabled", "0");
                     long hoursLong = Long.parseLong(hours) * 60 * 60 * 1000;
 
                     if (autoRefreshEnabled && hoursLong != 0) {
-                        final long alarmTime = preferences.getLong("last_auto_refresh_time", 0) + hoursLong;
+                        final long alarmTime = preferences.getLong(
+                                "last_auto_refresh_time", 0) + hoursLong;
                         alarmManager.set(AlarmManager.RTC, alarmTime, pendingIntent);
                     } else {
                         alarmManager.cancel(pendingIntent);
@@ -795,18 +807,26 @@ public class RouterActivity extends AppCompatActivity {
             }
 
             // Method to  "turn on" this class
-            public static void enable(Context context) {
-                final PackageManager packageManager = context.getPackageManager();
-                final ComponentName receiver = new ComponentName(context, NetworkStateReceiver.class);
-                packageManager.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            public static void enable(final Context context) {
+                final PackageManager packageManager =
+                        context.getPackageManager();
+                final ComponentName receiver = new ComponentName(
+                        context, NetworkStateReceiver.class);
+                packageManager.setComponentEnabledSetting(
+                        receiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                        PackageManager.DONT_KILL_APP);
             }
 
 
             // Method to  "turn off" this class
-            public static void disable(Context context) {
-                final PackageManager packageManager = context.getPackageManager();
-                final ComponentName receiver = new ComponentName(context, NetworkStateReceiver.class);
-                packageManager.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            public static void disable(final Context context) {
+                final PackageManager packageManager =
+                        context.getPackageManager();
+                final ComponentName receiver = new ComponentName(
+                        context, NetworkStateReceiver.class);
+                packageManager.setComponentEnabledSetting(
+                        receiver, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        PackageManager.DONT_KILL_APP);
             }
         }
     }
