@@ -365,10 +365,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        // Check if the next video label and video is visible,
-        // if it is, include the two elements in the next check
-        int nextCount = currentInfo != null && currentInfo.getNextVideo() != null ? 2 : 0;
-
         if (!isLoading.get() && currentInfo != null && isVisible()) {
             outState.putSerializable(INFO_KEY, currentInfo);
         }
@@ -1018,14 +1014,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
     }
 
     private void prepareDescription(final Description description) {
-        if (TextUtils.isEmpty(description.getContent())
+        if (description == null || TextUtils.isEmpty(description.getContent())
                 || description == Description.emptyDescription) {
             return;
         }
 
         if (description.getType() == Description.HTML) {
             disposables.add(Single.just(description.getContent())
-                    .map((@io.reactivex.annotations.NonNull String descriptionText) -> {
+                    .map((@NonNull String descriptionText) -> {
                         Spanned parsedDescription;
                         if (Build.VERSION.SDK_INT >= 24) {
                             parsedDescription = Html.fromHtml(descriptionText, 0);
@@ -1037,7 +1033,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
                     })
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe((@io.reactivex.annotations.NonNull Spanned spanned) -> {
+                    .subscribe((@NonNull Spanned spanned) -> {
                         videoDescriptionView.setText(spanned);
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));
