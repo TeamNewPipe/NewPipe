@@ -283,7 +283,7 @@
     <string name="view_on_github">Shikoje në GitHub</string>
     <string name="contribution_encouragement">Nëse keni ide rreth; përkthimeve, ndryshimeve në dizajn, pastrimit të kodit, apo ndryshime rrënjësore të kodit—ndihma është gjithnjë e mirëpritur. Sa më shumë të bëhet aq më mirë do jetë!</string>
     <string name="contribution_title">Kontribuo</string>
-    <string name="app_description">Streaming i lirë dhe i lehtë në Android.</string>
+    <string name="app_description">Luajtës i lehtë dhe libre në Android.</string>
     <string name="tab_licenses">Licensat</string>
     <string name="tab_contributors">Kontribuesit</string>
     <string name="tab_about">Rreth</string>
@@ -372,7 +372,7 @@
     <string name="list_thumbnail_view_description">Pamjet statike të parapamjes së videove</string>
     <string name="error_details_headline">Detajet:</string>
     <string name="your_comment">Komenti juaj (në Anglisht):</string>
-    <string name="info_labels">Çfarë:\\nKërkesa:\\nGjuha e përmbajtjes:\\nShërbimi:\\nKoha në GMT:\\nPaketa:\\nVersioni:\\nVersioni i sistemit operativ:</string>
+    <string name="info_labels">Çfarë:\\nKërkesa:\\nGjuha e përmbajtjes:\\nShteti i pëmbajtjes:\\nGjuha e aplikacionit:\\nShërbimi:\\nKoha në GMT:\\nPaketa:\\nVersioni:\\nVersioni i sistemit operativ:</string>
     <string name="what_happened_headline">Çfarë ndodhi:</string>
     <string name="what_device_headline">Informacion:</string>
     <string name="error_snackbar_action">Raporto</string>
@@ -405,7 +405,7 @@
     <string name="subscribed_button_title">I abonuar</string>
     <string name="popup_mode_share_menu_title">Modaliteti popup</string>
     <string name="use_external_audio_player_title">Përdor lexues të jashtëm audio</string>
-    <string name="use_external_video_player_summary">Heq audio në disa rezolucione</string>
+    <string name="use_external_video_player_summary">Heq audio për disa rezolucione</string>
     <string name="use_external_video_player_title">Përdorni lexues video të jashtëm</string>
     <string name="screen_rotation">rrotullimi</string>
     <string name="choose_browser">Zgjidhni shfletuesin</string>
@@ -587,7 +587,7 @@
     <string name="default_video_format_title">Formati i parazgjedhur video</string>
     <string name="default_audio_format_title">Formati i parazgjedhur audio</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Një pamje statike video shfaqet në ekranin e kyçur kur përdoret luajtësi në sfond</string>
-    <string name="show_play_with_kodi_summary">Shfaq një opsion për të luajtur një video përmes qendrës mediatike Kodi</string>
+    <string name="show_play_with_kodi_summary">Shfaq një opsion për të luajtur videot përmes Kodi</string>
     <string name="enable_lock_screen_video_thumbnail_title">Pamja video në ekranin e kyçur</string>
     <string name="show_play_with_kodi_title">Shfaq opsionin \"Luaj me Kodi\"</string>
     <string name="kore_not_found">Instaloni aplikacionin Kore që mungon\?</string>
@@ -603,14 +603,22 @@
     <string name="download_path_summary">Skedarët video të shkarkuara ruhen këtu</string>
     <string name="no_player_found_toast">Nuk u gjend lexues për stream (ju mund të instaloni VLC për ta lexuar).</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Po, dhe videot e shikuara pjesërisht</string>
-    <string name="remove_watched_popup_warning">Videot që janë shikuar më parë dhe dhe pasi janë shtuar në listën e luajtjes do të hiqen.
+    <string name="remove_watched_popup_warning">Videot që janë shikuar më parë dhe pasi janë shtuar në listën e luajtjes do të hiqen.
 \nA jeni të sigurt\? Kjo nuk mund të zhbëhet!</string>
     <string name="remove_watched_popup_title">Dëshironi t\'i hiqni videot e para\?</string>
     <string name="remove_watched">Hiq të parat</string>
-    <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do të jenë të dukshme në objektet e stream</string>
+    <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do shihen në produktet e luajtshme</string>
     <string name="show_original_time_ago_title">Shfaq titullin origjinal \"kohë më parë\" në objekte</string>
-    <string name="youtube_restricted_mode_enabled_title">Modaliteti i kufizuar i NewPipe</string>
+    <string name="youtube_restricted_mode_enabled_title">Modaliteti i censuruar i NewPipe</string>
     <string name="detail_sub_channel_thumbnail_view_description">Pamja statike e avatarit të kanalit</string>
     <string name="video_detail_by">Nga %s</string>
     <string name="channel_created_by">Krijuar nga %s</string>
+    <string name="playlist_page_summary">Faqja e listës së luajtjes</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Shfaq vetëm abonimet e pagrupuara</string>
+    <string name="no_playlist_bookmarked_yet">Nuk ka ende shënjues të listave të luajtjes</string>
+    <string name="select_a_playlist">Zgjidhni një listë luajtjeje</string>
+    <string name="error_report_open_github_notice">Ju lutemi kontrolloni nëse një raport ku diskutohet problemi ekziston tashmë. Kur krijoni raporte të duplikuara, ju merrni më tepër kohë nga ne, kohë të cilën mund ta shpenzonim mbi rregullimin e problemit aktual.</string>
+    <string name="error_report_open_issue_button_text">Raporto problemin në GitHub</string>
+    <string name="copy_for_github">Kopjo raportin e formatuar</string>
+    <string name="search_showing_result_for">Duke shfaqur rezultatet për: %s</string>
 </resources>
