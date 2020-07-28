@@ -105,7 +105,7 @@
     <string name="msg_running">Transferência do NewPipe</string>
     <string name="could_not_load_image">Não foi possível carregar a imagem</string>
     <string name="app_ui_crash">Aplicação/IU terminou em erro</string>
-    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:</string>
+    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo\\nIdioma da app\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:</string>
     <string name="open_in_popup_mode">Abrir em modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
@@ -614,4 +614,11 @@
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar do canal</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas assinaturas não agrupadas</string>
+    <string name="playlist_page_summary">Página da lista de reprodução</string>
+    <string name="no_playlist_bookmarked_yet">Ainda não há marcadores de listas de reprodução</string>
+    <string name="select_a_playlist">Selecione uma lista de reprodução</string>
+    <string name="error_report_open_github_notice">Por favor, verifique se já existe um assunto a discutir o seu acidente. Criar bilhetes duplicados tirará-nos tempo que poderíamos gastar com a reparação do bug real.</string>
+    <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
+    <string name="copy_for_github">Copiar relatório formatado</string>
+    <string name="search_showing_result_for">Mostrando resultados para: %s</string>
 </resources>
