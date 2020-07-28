@@ -135,6 +135,11 @@ public final class MainPlayer extends Service {
             Log.d(TAG, "onStartCommand() called with: intent = [" + intent
                     + "], flags = [" + flags + "], startId = [" + startId + "]");
         }
+        if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
+                && playerImpl.playQueue == null) {
+            // Player is not working, no need to process media button's action
+            return START_NOT_STICKY;
+        }
 
         if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
                 || intent.getStringExtra(VideoPlayer.PLAY_QUEUE_KEY) != null) {
