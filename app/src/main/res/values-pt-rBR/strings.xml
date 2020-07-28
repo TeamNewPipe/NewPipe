@@ -614,4 +614,5 @@
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Capa do avatar do canal</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas inscrições não agrupadas</string>
+    <string name="search_showing_result_for">Mostrando resultados para\? %s</string>
 </resources>
