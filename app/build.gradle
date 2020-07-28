@@ -89,6 +89,7 @@ ext {
     androidxRoomVersion = '2.2.5'
     groupieVersion = '2.8.0'
     markwonVersion = '4.3.1'
+    googleAutoServiceVersion = '1.0-rc7'
 }
 
 configurations {
@@ -174,6 +175,9 @@ dependencies {
     implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
 
     implementation "com.google.android.material:material:1.1.0"
+
+    compileOnly "com.google.auto.service:auto-service-annotations:${googleAutoServiceVersion}"
+    kapt "com.google.auto.service:auto-service:${googleAutoServiceVersion}"
 
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.preference:preference:1.1.1"
