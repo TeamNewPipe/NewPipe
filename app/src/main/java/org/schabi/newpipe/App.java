@@ -204,6 +204,10 @@ public class App extends Application {
      * Should be overridden if MultiDex is enabled, since it has to be initialized before ACRA.
      */
     protected void initACRA() {
+        if (ACRA.isACRASenderServiceProcess()) {
+            return;
+        }
+
         try {
             final CoreConfiguration acraConfig = new CoreConfigurationBuilder(this)
                     .setReportSenderFactoryClasses(REPORT_SENDER_FACTORY_CLASSES)
