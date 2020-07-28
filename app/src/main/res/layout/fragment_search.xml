@@ -13,7 +13,6 @@
         android:layout_alignTop="@id/error_panel"
         android:background="?attr/selectableItemBackground"
         android:padding="10dp"
-        android:textColor="@color/background_title_color"
         android:textSize="@dimen/search_suggestion_text_size"
         tools:text="Showing results for lorem ipsum dolor sit amet consectetur adipisci elit" />
 
