@@ -77,7 +77,6 @@ public class App extends Application {
     @Override
     protected void attachBaseContext(final Context base) {
         super.attachBaseContext(base);
-
         initACRA();
     }
 
@@ -200,7 +199,11 @@ public class App extends Application {
                 .build();
     }
 
-    private void initACRA() {
+    /**
+     * Called in {@link #attachBaseContext(Context)} after calling the {@code super} method.
+     * Should be overridden if MultiDex is enabled, since it has to be initialized before ACRA.
+     */
+    protected void initACRA() {
         try {
             final CoreConfiguration acraConfig = new CoreConfigurationBuilder(this)
                     .setReportSenderFactoryClasses(REPORT_SENDER_FACTORY_CLASSES)
