@@ -329,4 +329,13 @@
     <string name="enable_search_history_summary">সার্চ গুলি স্থানীয় ভাবে জমা করুন</string>
     <string name="show_search_suggestions_summary">সার্চ এর সময় সাজেশন দেখান</string>
     <string name="show_search_suggestions_title">সার্চ সাজেশন</string>
+    <string name="feed_notification_loading">ফিড লোড হচ্ছে…</string>
+    <string name="show_error">এরর দেখান</string>
+    <string name="select_a_playlist">একটি প্লে লিস্ট পছন্দ করুন</string>
+    <string name="tab_about">সম্পর্কিত</string>
+    <string name="title_licenses">থার্ড-পার্টি লাইসেন্স সমূহ</string>
+    <string name="action_about">সম্পর্কিত</string>
+    <string name="error_report_open_issue_button_text">গিটহাব এ এরর রিপোর্ট করুন</string>
+    <string name="restore_defaults">ডিফল্ট এ ফিরে যান</string>
+    <string name="search_showing_result_for">রেজাল্ট দেখান হচ্ছেঃ %s</string>
 </resources>
