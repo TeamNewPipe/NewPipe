@@ -625,4 +625,5 @@
     <string name="channel_created_by">Создано %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Показывать только несгруппированные подписки</string>
+    <string name="no_playlist_bookmarked_yet">Вы ещё не добавили ни одного плейлиста в закладки</string>
 </resources>
