@@ -121,7 +121,7 @@
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
     <string name="add">Новая цель</string>
-    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
+    <string name="info_labels">Что:\\nЗапрос:\\nЯзык содержимого:\\nСтрана содержимого:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
@@ -626,4 +626,10 @@
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Показывать только несгруппированные подписки</string>
     <string name="no_playlist_bookmarked_yet">Вы ещё не добавили ни одного плейлиста в закладки</string>
+    <string name="error_report_open_github_notice">Пожалуйста, проверьте, существует ли вопрос по вашей ошибке. Создавая дубликаты, вы отнимаете у нас время, которое мы могли бы использовать на решение проблемы.</string>
+    <string name="search_showing_result_for">Результаты для: %s</string>
+    <string name="playlist_page_summary">Страница плейлиста</string>
+    <string name="select_a_playlist">Выберите плейлист</string>
+    <string name="error_report_open_issue_button_text">Сообщить об ошибке на Github</string>
+    <string name="copy_for_github">Копировать отформатированный отчет</string>
 </resources>
