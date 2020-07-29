@@ -4,9 +4,12 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.google.auto.service.AutoService;
+
 import org.acra.config.CoreConfiguration;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderFactory;
+import org.schabi.newpipe.App;
 
 /*
  * Created by Christian Schabesberger on 13.09.16.
@@ -28,6 +31,10 @@ import org.acra.sender.ReportSenderFactory;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Used by ACRA in {@link App}.initAcra() as the factory for report senders.
+ */
+@AutoService(ReportSenderFactory.class)
 public class AcraReportSenderFactory implements ReportSenderFactory {
     @NonNull
     public ReportSender create(@NonNull final Context context,

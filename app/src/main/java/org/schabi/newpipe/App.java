@@ -20,10 +20,8 @@ import org.acra.ACRA;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.CoreConfiguration;
 import org.acra.config.CoreConfigurationBuilder;
-import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
-import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
@@ -65,9 +63,6 @@ import io.reactivex.plugins.RxJavaPlugins;
 
 public class App extends Application {
     protected static final String TAG = App.class.toString();
-    @SuppressWarnings("unchecked")
-    private static final Class<? extends ReportSenderFactory>[]
-            REPORT_SENDER_FACTORY_CLASSES = new Class[]{AcraReportSenderFactory.class};
     private static App app;
 
     public static App getApp() {
@@ -77,7 +72,6 @@ public class App extends Application {
     @Override
     protected void attachBaseContext(final Context base) {
         super.attachBaseContext(base);
-
         initACRA();
     }
 
@@ -200,10 +194,17 @@ public class App extends Application {
                 .build();
     }
 
-    private void initACRA() {
+    /**
+     * Called in {@link #attachBaseContext(Context)} after calling the {@code super} method.
+     * Should be overridden if MultiDex is enabled, since it has to be initialized before ACRA.
+     */
+    protected void initACRA() {
+        if (ACRA.isACRASenderServiceProcess()) {
+            return;
+        }
+
         try {
             final CoreConfiguration acraConfig = new CoreConfigurationBuilder(this)
-                    .setReportSenderFactoryClasses(REPORT_SENDER_FACTORY_CLASSES)
                     .setBuildConfigClass(BuildConfig.class)
                     .build();
             ACRA.init(this, acraConfig);
