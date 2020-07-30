@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,7 +15,6 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
-import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.DownloaderImpl;
@@ -27,16 +25,13 @@ import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -147,7 +142,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     @Override
-    public void onActivityResult(final int requestCode, final int resultCode,
+    public void onActivityResult(final int requestCode,
+                                 final int resultCode,
                                  @Nullable final Intent data) {
         assureCorrectAppLanguage(getContext());
         super.onActivityResult(requestCode, resultCode, data);
@@ -160,11 +156,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
                 && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-            Uri uri = data.getData();
-            if (FilePickerActivityHelper.isOwnFileUri(requireActivity(), uri)) {
-                uri = Uri.fromFile(Utils.getFileForUri(uri));
-            }
-            final StoredFileHelper file = new StoredFileHelper(getContext(), uri,
+            final StoredFileHelper file = new StoredFileHelper(getContext(), data.getData(),
                     "application/zip");
             if (requestCode == REQUEST_EXPORT_PATH) {
                 exportDatabase(file);
