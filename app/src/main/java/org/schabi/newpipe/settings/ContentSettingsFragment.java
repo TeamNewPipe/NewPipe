@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -16,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 
-import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.DownloaderImpl;
@@ -29,7 +27,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.streams.io.SharpInputStream;
 import org.schabi.newpipe.streams.io.SharpOutputStream;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.BufferedInputStream;
@@ -47,8 +45,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -172,11 +168,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
-            Uri uri = data.getData();
-            if (FilePickerActivityHelper.isOwnFileUri(getContext(), uri)) {
-                uri = Uri.fromFile(Utils.getFileForUri(uri));
-            }
-            final StoredFileHelper file = new StoredFileHelper(getContext(), uri,
+            final StoredFileHelper file = new StoredFileHelper(getContext(), data.getData(),
                     "application/zip");
             if (requestCode == REQUEST_EXPORT_PATH) {
                 exportDatabase(file);
