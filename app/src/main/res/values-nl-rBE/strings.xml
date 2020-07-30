@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">Tik op zoeken voor te beginnen</string>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Gepubliceerd op %1$s</string>
-    <string name="no_player_found">Geen speler met streamondersteuning gevonden. Wil je VLC installeren\?</string>
+    <string name="no_player_found">Er is geen videospeler met streamondersteuning gevonden. Wilt u VLC installeren\?</string>
     <string name="no_player_found_toast">Geen speler met streamondersteuning gevonden (je kan VLC installeren om af te spelen).</string>
     <string name="install">Installeren</string>
     <string name="cancel">Annuleren</string>
@@ -19,9 +19,9 @@
     <string name="choose_browser">Kies browser</string>
     <string name="screen_rotation">rotatie</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
-    <string name="use_external_video_player_summary">Verwijdert het geluid bij SOMMIGE resoluties</string>
+    <string name="use_external_video_player_summary">Verwijdert het geluid bij sommige resoluties</string>
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
-    <string name="popup_mode_share_menu_title">NewPipe-pop-upmodus</string>
+    <string name="popup_mode_share_menu_title">Pop-up-modus</string>
     <string name="subscribe_button_title">Abonneer</string>
     <string name="subscribed_button_title">Geabonneerd</string>
     <string name="channel_unsubscribed">Abonnement opgezegd</string>
@@ -37,18 +37,18 @@
     <string name="controls_add_to_playlist_title">Toevoegen aan</string>
     <string name="download_path_title">Downloadlocatie voor video’s</string>
     <string name="download_path_summary">Gedownloade videobestanden worden hier opgeslaan</string>
-    <string name="download_path_dialog_title">Voer downloadlocatie in voor video’s</string>
+    <string name="download_path_dialog_title">Kies de downloadlocatie voor videobestanden</string>
     <string name="download_path_audio_title">Downloadmap voor audio</string>
     <string name="download_path_audio_summary">Gedownloade audiobestanden worden hier opgeslaan</string>
-    <string name="download_path_audio_dialog_title">Voer downloadlocatie voor audiobestanden in</string>
+    <string name="download_path_audio_dialog_title">Kies de downloadlocatie voor audiobestanden</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
     <string name="autoplay_by_calling_app_summary">Speelt video’s af wanneer dat NewPipe vanuit een anderen app word geopend</string>
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="default_popup_resolution_title">Standaardresolutie voor pop-up</string>
     <string name="show_higher_resolutions_title">Hogere resoluties weergeven</string>
-    <string name="show_higher_resolutions_summary">Video’s afspelen in 2K/4K wordt maar op sommige apparaten ondersteund</string>
+    <string name="show_higher_resolutions_summary">Slechts enkele toestellen kunnen 2K- en 4K-video\'s afspelen</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
-    <string name="kore_not_found">Kore-app niet gevonden. Installeren?</string>
+    <string name="kore_not_found">Wilt u de missende Kore-app installeren\?</string>
     <string name="show_play_with_kodi_title">Toon “Afspelen met Kodi”-optie</string>
     <string name="show_play_with_kodi_summary">Toont een optie voor ne video op een Kodi media center af te spelen</string>
     <string name="play_audio">Audio</string>
@@ -466,4 +466,5 @@
     <string name="error_unable_to_load_comments">Kan commentaren niet laden</string>
     <string name="close">Sluiten</string>
     <string name="error_progress_lost">Vooruitgang verloren, omdat het bestand gedeletet werd</string>
+    <string name="search_showing_result_for">Resultaten aan het tonen voor: %s</string>
 </resources>
