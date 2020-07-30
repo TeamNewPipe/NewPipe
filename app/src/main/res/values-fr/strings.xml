@@ -116,7 +116,7 @@
     <string name="yes">Oui</string>
     <string name="later">Plus tard</string>
     <string name="disabled">Désactivés</string>
-    <string name="info_labels">Quoi :\\nRequête :\\nLangue du contenu :\\nService :\\nHeure UTC :\\nPaquet :\\nVersion :\\nVersion du système d’exploitation :</string>
+    <string name="info_labels">Quoi :\\nRequête :\\nLangue du contenu :\\nPays du contenu :\\nLangue de l’application :\\nService :\\nDate UTC :\\nPaquet :\\nVersion :\\nVersion du système d’exploitation :</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
@@ -614,4 +614,11 @@
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
     <string name="youtube_restricted_mode_enabled_title">Mode restreint de YouTube</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Afficher les abonnements sans groupes uniquement</string>
+    <string name="playlist_page_summary">Page des listes de lecture</string>
+    <string name="no_playlist_bookmarked_yet">Aucune liste de lecture encore enregistrée</string>
+    <string name="select_a_playlist">Sélectionner une liste de lecture</string>
+    <string name="error_report_open_github_notice">Veuillez vérifier si un ticket concernant votre problème existe déjà. Lorsque vous créez des tickets dupliqués, cela nous prend du temps que nous pourrions passer à résoudre effectivement le problème.</string>
+    <string name="error_report_open_issue_button_text">Rapporter l’erreur sur GitHub</string>
+    <string name="copy_for_github">Copier le rapport formaté</string>
+    <string name="search_showing_result_for">Affichage des résultats pour : %s</string>
 </resources>
