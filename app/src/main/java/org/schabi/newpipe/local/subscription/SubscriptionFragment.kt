@@ -8,7 +8,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -21,7 +20,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.nononsenseapps.filepicker.Utils
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
@@ -62,7 +60,6 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.report.UserAction
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.AnimationUtils.animateView
-import org.schabi.newpipe.util.FilePickerActivityHelper
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ShareUtils
@@ -202,12 +199,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null && data.data != null && resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_EXPORT_CODE) {
-                var uri = data.data!!
-                if (FilePickerActivityHelper.isOwnFileUri(activity, uri)) {
-                    uri = Uri.fromFile(Utils.getFileForUri(uri))
-                }
                 activity.startService(Intent(activity, SubscriptionsExportService::class.java)
-                        .putExtra(SubscriptionsExportService.KEY_FILE_PATH, uri))
+                        .putExtra(SubscriptionsExportService.KEY_FILE_PATH, data.data))
             } else if (requestCode == REQUEST_IMPORT_CODE) {
                 ImportConfirmationDialog.show(this, Intent(activity, SubscriptionsImportService::class.java)
                         .putExtra(KEY_MODE, PREVIOUS_EXPORT_MODE)
