@@ -594,4 +594,8 @@
     <string name="error_insufficient_storage">Inget utrymme kvar på enhet</string>
     <string name="error_postprocessing_stopped">NewPipe stängdes under arbete med en fil</string>
     <string name="error_permission_denied">Tillåtelse nekat av systemet</string>
+    <string name="error_report_open_github_notice">Vänligen kontrollera om en felrapport som tar upp din krasch redan finns. Att skapa ärenden när en felrapport redan finns, tar av den tid som vi annars kunde ha ägnat åt att fixa den faktiska buggen.</string>
+    <string name="error_report_open_issue_button_text">Rapportera fel på GitHub</string>
+    <string name="copy_for_github">Kopiera formaterad felrapport</string>
+    <string name="search_showing_result_for">Visar resultat för: %s</string>
 </resources>
