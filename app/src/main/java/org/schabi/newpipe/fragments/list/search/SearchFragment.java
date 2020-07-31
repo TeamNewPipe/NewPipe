@@ -52,6 +52,7 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -154,6 +155,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private TextView correctSuggestion;
 
     private View suggestionsPanel;
+    private boolean suggestionsPanelVisible = false;
     private RecyclerView suggestionsRecyclerView;
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -627,6 +629,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "showSuggestionsPanel() called");
         }
+        suggestionsPanelVisible = true;
         animateView(suggestionsPanel, AnimationUtils.Type.LIGHT_SLIDE_AND_ALPHA, true, 200);
     }
 
@@ -634,6 +637,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "hideSuggestionsPanel() called");
         }
+        suggestionsPanelVisible = false;
         animateView(suggestionsPanel, AnimationUtils.Type.LIGHT_SLIDE_AND_ALPHA, false, 200);
     }
 
@@ -695,7 +699,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public boolean onBackPressed() {
-        if (suggestionsPanel.getVisibility() == View.VISIBLE
+        if (suggestionsPanelVisible
                 && infoListAdapter.getItemsList().size() > 0
                 && !isLoading.get()) {
             hideSuggestionsPanel();
@@ -742,6 +746,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
                     final Observable<List<SuggestionItem>> network = ExtractorHelper
                             .suggestionsFor(serviceId, query)
+                            .onErrorReturn(throwable -> {
+                                if (!ExceptionUtils.isNetworkRelated(throwable)) {
+                                    showSnackBarError(throwable, UserAction.GET_SUGGESTIONS,
+                                            NewPipe.getNameOfService(serviceId), searchString, 0);
+                                }
+                                return new ArrayList<>();
+                            })
                             .toObservable()
                             .map(strings -> {
                                 final List<SuggestionItem> result = new ArrayList<>();
@@ -924,7 +935,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         suggestionsRecyclerView.smoothScrollToPosition(0);
         suggestionsRecyclerView.post(() -> suggestionListAdapter.setItems(suggestions));
 
-        if (errorPanelRoot.getVisibility() == View.VISIBLE) {
+        if (suggestionsPanelVisible && errorPanelRoot.getVisibility() == View.VISIBLE) {
             hideLoading();
         }
     }
