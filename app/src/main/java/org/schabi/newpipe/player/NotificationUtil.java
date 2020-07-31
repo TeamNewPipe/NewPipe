@@ -351,7 +351,7 @@ public final class NotificationUtil {
                 }
                 break;
             case "shuffle":
-                if (basePlayerImpl.playQueue.isShuffled()) {
+                if (basePlayerImpl.playQueue != null && basePlayerImpl.playQueue.isShuffled()) {
                     builder.addAction(R.drawable.exo_controls_shuffle_on, "ShuffleOn",
                             PendingIntent.getBroadcast(context, NOTIFICATION_ID_BACKGROUND,
                                     new Intent(BackgroundPlayer.ACTION_SHUFFLE),
@@ -601,7 +601,7 @@ public final class NotificationUtil {
                 }
                 break;
             case "shuffle":
-                if (basePlayerImpl.playQueue.isShuffled()) {
+                if (basePlayerImpl.playQueue != null && basePlayerImpl.playQueue.isShuffled()) {
                     notificationBuilder.mActions.set(slotNumber,
                             new NotificationCompat.Action(R.drawable.exo_controls_shuffle_on,
                                     "ShuffleOn", PendingIntent.getBroadcast(context,
@@ -835,7 +835,7 @@ public final class NotificationUtil {
                 }
                 break;
             case "shuffle":
-                if (playerImpl.playQueue.isShuffled()) {
+                if (playerImpl.playQueue != null && playerImpl.playQueue.isShuffled()) {
                     builder.addAction(R.drawable.exo_controls_shuffle_on, "ShuffleOn",
                             PendingIntent.getBroadcast(context, NOTIFICATION_ID_POPUP,
                                     new Intent(PopupVideoPlayer.ACTION_SHUFFLE),
@@ -1080,7 +1080,7 @@ public final class NotificationUtil {
                 }
                 break;
             case "shuffle":
-                if (playerImpl.playQueue.isShuffled()) {
+                if (playerImpl.playQueue != null && playerImpl.playQueue.isShuffled()) {
                     notificationBuilder.mActions.set(slotNumber,
                             new NotificationCompat.Action(R.drawable.exo_controls_shuffle_on,
                                     "ShuffleOn", PendingIntent.getBroadcast(context,
