@@ -625,7 +625,7 @@
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura awatara kanału</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Pokaż tylko niezgrupowane subskrypcje</string>
     <string name="playlist_page_summary">Strona playlisty</string>
-    <string name="no_playlist_bookmarked_yet">Nie ma jeszcze zakładek list odtwarzania</string>
+    <string name="no_playlist_bookmarked_yet">Nie ma jeszcze zakładek do playlist</string>
     <string name="select_a_playlist">Wybierz playlistę</string>
     <string name="error_report_open_github_notice">Sprawdź, czy problem dotyczący Twojej awarii już istnieje. Tworząc zduplikowane wpisy, zajmujesz nam czas, który możemy poświęcić na naprawienie rzeczywistego błędu.</string>
     <string name="error_report_open_issue_button_text">Zgłoś błąd na GitHub</string>
