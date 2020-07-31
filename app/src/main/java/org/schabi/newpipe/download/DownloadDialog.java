@@ -516,7 +516,23 @@ public class DownloadDialog extends DialogFragment
         videoButton.setVisibility(isVideoStreamsAvailable ? View.VISIBLE : View.GONE);
         subtitleButton.setVisibility(isSubtitleStreamsAvailable ? View.VISIBLE : View.GONE);
 
-        if (isVideoStreamsAvailable) {
+        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final String defaultMedia = prefs.getString(getString(R.string.last_used_download_type),
+                    getString(R.string.last_download_type_video_key));
+
+        if (isVideoStreamsAvailable
+                && (defaultMedia.equals(getString(R.string.last_download_type_video_key)))) {
+            videoButton.setChecked(true);
+            setupVideoSpinner();
+        } else if (isAudioStreamsAvailable
+                && (defaultMedia.equals(getString(R.string.last_download_type_audio_key)))) {
+            audioButton.setChecked(true);
+            setupAudioSpinner();
+        } else if (isSubtitleStreamsAvailable
+                && (defaultMedia.equals(getString(R.string.last_download_type_subtitle_key)))) {
+            subtitleButton.setChecked(true);
+            setupSubtitleSpinner();
+        } else if (isVideoStreamsAvailable) {
             videoButton.setChecked(true);
             setupVideoSpinner();
         } else if (isAudioStreamsAvailable) {
@@ -595,6 +611,7 @@ public class DownloadDialog extends DialogFragment
         final StoredDirectoryHelper mainStorage;
         final MediaFormat format;
         final String mime;
+        final String selectedMediaType;
 
         // first, build the filename and get the output folder (if possible)
         // later, run a very very very large file checking logic
@@ -603,6 +620,7 @@ public class DownloadDialog extends DialogFragment
 
         switch (radioStreamsGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
+                selectedMediaType = getString(R.string.last_download_type_audio_key);
                 mainStorage = mainStorageAudio;
                 format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
                 switch (format) {
@@ -617,12 +635,14 @@ public class DownloadDialog extends DialogFragment
                 }
                 break;
             case R.id.video_button:
+                selectedMediaType = getString(R.string.last_download_type_video_key);
                 mainStorage = mainStorageVideo;
                 format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
                 mime = format.mimeType;
                 filename += format.suffix;
                 break;
             case R.id.subtitle_button:
+                selectedMediaType = getString(R.string.last_download_type_subtitle_key);
                 mainStorage = mainStorageVideo; // subtitle & video files go together
                 format = subtitleStreamsAdapter.getItem(selectedSubtitleIndex).getFormat();
                 mime = format.mimeType;
@@ -664,6 +684,11 @@ public class DownloadDialog extends DialogFragment
 
         // check for existing file with the same name
         checkSelectedDownload(mainStorage, mainStorage.findFile(filename), filename, mime);
+
+        // remember the last media type downloaded by the user
+        prefs.edit()
+                .putString(getString(R.string.last_used_download_type), selectedMediaType)
+                .apply();
     }
 
     private void checkSelectedDownload(final StoredDirectoryHelper mainStorage,
