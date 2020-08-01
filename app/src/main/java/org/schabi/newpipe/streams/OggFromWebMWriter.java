@@ -343,7 +343,7 @@ public class OggFromWebMWriter implements Closeable {
             }
         }
 
-        return 0f;
+        return 0.0f;
     }
 
     private void clearSegmentTable() {

@@ -227,8 +227,6 @@
     <string name="trending">الشائعة</string>
     <string name="top_50">أفضل 50</string>
     <string name="new_and_hot">جديد وساخن</string>
-    <string name="title_activity_background_player">مشغل الخلفية</string>
-    <string name="title_activity_popup_player">المشغل المنبثق</string>
     <string name="play_queue_remove">حذف</string>
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>

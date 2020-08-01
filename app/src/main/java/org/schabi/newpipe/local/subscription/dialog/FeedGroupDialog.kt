@@ -40,7 +40,7 @@ import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialogViewModel.Dia
 import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
 import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
-import org.schabi.newpipe.util.AndroidTvUtils
+import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.ThemeHelper
 
 class FeedGroupDialog : DialogFragment(), BackPressable {
@@ -237,7 +237,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         }
 
         toolbar_search_edit_text.setOnClickListener {
-            if (AndroidTvUtils.isTv(context)) {
+            if (DeviceUtils.isTv(context)) {
                 showKeyboardSearch()
             }
         }

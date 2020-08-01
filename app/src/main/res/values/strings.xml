@@ -72,6 +72,9 @@
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this.</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
+    <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
+    <string name="clear_queue_confirmation_summary">After switching from one player to another your queue may be replaced</string>
+    <string name="clear_queue_confirmation_description">Queue from the active player will be replaced</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
     <string name="show_comments_title">Show comments</string>
     <string name="show_comments_summary">Turn off to hide comments</string>
@@ -426,8 +429,7 @@
     <string name="conferences">Conferences</string>
     <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
     <!-- Play Queue -->
-    <string name="title_activity_background_player">Background player</string>
-    <string name="title_activity_popup_player">Popup player</string>
+    <string name="title_activity_play_queue">Play queue</string>
     <string name="play_queue_remove">Remove</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
@@ -537,6 +539,11 @@
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
+    <!-- Autoplay behavior -->
+    <string name="autoplay_summary">Start playback automatically — %s</string>
+    <string name="autoplay_always_description">Always</string>
+    <string name="autoplay_wifi_description">Only on WiFi</string>
+    <string name="autoplay_never_description">Never</string>
     <string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>

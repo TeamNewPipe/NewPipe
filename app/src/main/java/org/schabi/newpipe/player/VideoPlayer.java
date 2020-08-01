@@ -34,16 +34,16 @@ import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -69,6 +69,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.views.ExpandableSurfaceView;
 import org.schabi.newpipe.util.SponsorTimeInfo;
 import org.schabi.newpipe.util.TimeFrame;
 import org.schabi.newpipe.views.MarkableSeekBar;
@@ -121,8 +122,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     private View rootView;
 
-    private AspectRatioFrameLayout aspectRatioFrameLayout;
-    private SurfaceView surfaceView;
+    private ExpandableSurfaceView surfaceView;
     private View surfaceForeground;
 
     private View loadingPanel;
@@ -139,7 +139,7 @@ public abstract class VideoPlayer extends BasePlayer
     private TextView playbackLiveSync;
     private TextView playbackSpeedTextView;
 
-    private View topControlsRoot;
+    private LinearLayout topControlsRoot;
     private TextView qualityTextView;
 
     private SubtitleView subtitleView;
@@ -186,7 +186,6 @@ public abstract class VideoPlayer extends BasePlayer
 
     public void initViews(final View view) {
         this.rootView = view;
-        this.aspectRatioFrameLayout = view.findViewById(R.id.aspectRatioLayout);
         this.surfaceView = view.findViewById(R.id.surfaceView);
         this.surfaceForeground = view.findViewById(R.id.surfaceForeground);
         this.loadingPanel = view.findViewById(R.id.loading_panel);
@@ -211,11 +210,9 @@ public abstract class VideoPlayer extends BasePlayer
 
         this.resizeView = view.findViewById(R.id.resizeTextView);
         resizeView.setText(PlayerHelper
-                .resizeTypeOf(context, aspectRatioFrameLayout.getResizeMode()));
+                .resizeTypeOf(context, getSurfaceView().getResizeMode()));
 
         this.captionTextView = view.findViewById(R.id.captionTextView);
-
-        //this.aspectRatioFrameLayout.setAspectRatio(16.0f / 9.0f);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
@@ -524,7 +521,6 @@ public abstract class VideoPlayer extends BasePlayer
         super.onCompleted();
 
         showControls(500);
-        animateView(endScreen, true, 800);
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
         loadingPanel.setVisibility(View.GONE);
 
@@ -559,7 +555,7 @@ public abstract class VideoPlayer extends BasePlayer
                     + "unappliedRotationDegrees = [" + unappliedRotationDegrees + "], "
                     + "pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
         }
-        aspectRatioFrameLayout.setAspectRatio(((float) width) / height);
+        getSurfaceView().setAspectRatio(((float) width) / height);
     }
 
     @Override
@@ -626,12 +622,6 @@ public abstract class VideoPlayer extends BasePlayer
         super.onPrepared(playWhenReady);
 
         markSponsorTimes();
-
-        if (simpleExoPlayer.getCurrentPosition() != 0 && !isControlsVisible()) {
-            controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            controlsVisibilityHandler
-                    .postDelayed(this::showControlsThenHide, DEFAULT_CONTROLS_DURATION);
-        }
     }
 
     private void markSponsorTimes() {
@@ -706,7 +696,7 @@ public abstract class VideoPlayer extends BasePlayer
         }
     }
 
-    protected void onFullScreenButtonClicked() {
+    protected void toggleFullscreen() {
         changeState(STATE_BLOCKED);
     }
 
@@ -830,16 +820,16 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(DEFAULT_CONTROLS_DURATION);
     }
 
-    private void onResizeClicked() {
-        if (getAspectRatioFrameLayout() != null) {
-            final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
+    void onResizeClicked() {
+        if (getSurfaceView() != null) {
+            final int currentResizeMode = getSurfaceView().getResizeMode();
             final int newResizeMode = nextResizeMode(currentResizeMode);
             setResizeMode(newResizeMode);
         }
     }
 
     protected void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {
-        getAspectRatioFrameLayout().setResizeMode(resizeMode);
+        getSurfaceView().setResizeMode(resizeMode);
         getResizeView().setText(PlayerHelper.resizeTypeOf(context, resizeMode));
     }
 
@@ -947,9 +937,9 @@ public abstract class VideoPlayer extends BasePlayer
         if (drawableId == -1) {
             if (controlAnimationView.getVisibility() == View.VISIBLE) {
                 controlViewAnimator = ObjectAnimator.ofPropertyValuesHolder(controlAnimationView,
-                        PropertyValuesHolder.ofFloat(View.ALPHA, 1f, 0f),
-                        PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1f),
-                        PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1f)
+                        PropertyValuesHolder.ofFloat(View.ALPHA, 1.0f, 0.0f),
+                        PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1.0f),
+                        PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1.0f)
                 ).setDuration(DEFAULT_CONTROLS_DURATION);
                 controlViewAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -1051,6 +1041,9 @@ public abstract class VideoPlayer extends BasePlayer
             animateView(controlsRoot, false, duration);
         };
     }
+
+    public abstract void hideSystemUIIfNeeded();
+
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/
@@ -1064,11 +1057,7 @@ public abstract class VideoPlayer extends BasePlayer
         this.resolver.setPlaybackQuality(quality);
     }
 
-    public AspectRatioFrameLayout getAspectRatioFrameLayout() {
-        return aspectRatioFrameLayout;
-    }
-
-    public SurfaceView getSurfaceView() {
+    public ExpandableSurfaceView getSurfaceView() {
         return surfaceView;
     }
 
@@ -1127,7 +1116,7 @@ public abstract class VideoPlayer extends BasePlayer
         return playbackEndTime;
     }
 
-    public View getTopControlsRoot() {
+    public LinearLayout getTopControlsRoot() {
         return topControlsRoot;
     }
 
@@ -1137,6 +1126,10 @@ public abstract class VideoPlayer extends BasePlayer
 
     public PopupMenu getQualityPopupMenu() {
         return qualityPopupMenu;
+    }
+
+    public TextView getPlaybackSpeedTextView() {
+        return playbackSpeedTextView;
     }
 
     public PopupMenu getPlaybackSpeedPopupMenu() {

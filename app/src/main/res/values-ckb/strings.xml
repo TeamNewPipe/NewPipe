@@ -188,7 +188,6 @@
     <string name="theme_title">ڕووكار</string>
     <string name="switch_to_main">گۆڕین بۆ سەرەکی</string>
     <string name="show_original_time_ago_summary">دەقە بنچینەییەکان لە خزمەتگوزارییەکانەوە لە بابەتی پەخشەکاندا دیار دەبن</string>
-    <string name="title_activity_popup_player">کارپێکەری پەنجەرەی بچووک</string>
     <string name="download_dialog_title">داگرتن</string>
     <string name="caption_setting_title">ژێرنووسەکان</string>
     <string name="invalid_url_toast">بەستەر هەڵەیە</string>
@@ -601,7 +600,6 @@
     <string name="title_last_played">دواین کارپێکراو</string>
     <string name="could_not_setup_download_menu">ناتوانرێ لیستی داگرتن دابنرێ</string>
     <string name="import_export_title">هێنانەوە/هاوردەکردن</string>
-    <string name="title_activity_background_player">کارپێکەری پاشبنەما</string>
     <string name="app_update_notification_content_title">وەشانی نوێی داوانامە بەردەستە!</string>
     <string name="playlist_thumbnail_change_success">وێنۆچکەی خشتەی کارپێکردن گۆڕدرا.</string>
     <string name="import_soundcloud_instructions">هێنانەوەی پەڕەی کەسی SoundCloud بەدانانی بەستەر یاخوود ئایدی: 

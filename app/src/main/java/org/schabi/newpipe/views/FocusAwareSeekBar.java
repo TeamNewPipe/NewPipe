@@ -24,7 +24,7 @@ import android.view.KeyEvent;
 import android.view.ViewTreeObserver;
 import android.widget.SeekBar;
 
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 
 /**
  * SeekBar, adapted for directional navigation. It emulates touch-related callbacks
@@ -58,7 +58,7 @@ public final class FocusAwareSeekBar extends MarkableSeekBar {
 
     @Override
     public boolean onKeyDown(final int keyCode, final KeyEvent event) {
-        if (!isInTouchMode() && AndroidTvUtils.isConfirmKey(keyCode)) {
+        if (!isInTouchMode() && DeviceUtils.isConfirmKey(keyCode)) {
             releaseTrack();
         }
 

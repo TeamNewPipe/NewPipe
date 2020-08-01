@@ -243,8 +243,6 @@
     <string name="trending">החמים</string>
     <string name="top_50">50 המובילים</string>
     <string name="new_and_hot">חדש וחם</string>
-    <string name="title_activity_background_player">נגן רקע</string>
-    <string name="title_activity_popup_player">נגן צף</string>
     <string name="play_queue_remove">הסרה</string>
     <string name="play_queue_stream_detail">פרטים</string>
     <string name="play_queue_audio_settings">אפשרויות שמע</string>

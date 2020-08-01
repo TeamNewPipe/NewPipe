@@ -242,8 +242,6 @@
     <string name="show_hold_to_append_summary">Показать подсказку при нажатии \"В окне\" или \"В фоне\" на странице сведений о видео</string>
     <string name="unknown_content">[Неизвестно]</string>
     <string name="player_recoverable_failure">Восстановление после ошибки плеера</string>
-    <string name="title_activity_background_player">В фоне</string>
-    <string name="title_activity_popup_player">В окне</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
     <string name="enqueue_on_background">В очередь в фоне</string>
     <string name="enqueue_on_popup">В очередь в окне</string>
