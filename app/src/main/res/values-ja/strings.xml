@@ -216,7 +216,6 @@
     <string name="kiosk">Kiosk</string>
     <string name="trending">人気</string>
     <string name="top_50">トップ50</string>
-    <string name="title_activity_popup_player">ポップアップ再生</string>
     <string name="play_queue_remove">削除</string>
     <string name="play_queue_stream_detail">詳細</string>
     <string name="play_queue_audio_settings">音声の設定</string>
@@ -241,7 +240,6 @@
     <string name="no_valid_zip_file">有効な ZIP ファイルではありません</string>
     <string name="could_not_import_all_files">警告: すべてのファイルをインポートできませんでした。</string>
     <string name="override_current_data">これにより、現在の設定が上書きされます。</string>
-    <string name="title_activity_background_player">バックグラウンド再生</string>
     <string name="start_here_on_main">ここから再生を開始</string>
     <string name="start_here_on_background">バックグラウンドで連続再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>

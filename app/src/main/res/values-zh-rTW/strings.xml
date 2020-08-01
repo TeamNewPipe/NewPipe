@@ -252,8 +252,6 @@
     <string name="trending">動向</string>
     <string name="top_50">前 50</string>
     <string name="new_and_hot">最新和熱門</string>
-    <string name="title_activity_background_player">背景播放</string>
-    <string name="title_activity_popup_player">懸浮視窗播放</string>
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">詳細資訊</string>
     <string name="play_queue_audio_settings">音訊設定</string>

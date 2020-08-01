@@ -43,8 +43,8 @@
         </receiver>
 
         <service
-            android:name=".player.BackgroundPlayer"
-            android:exported="false">
+                android:name=".player.MainPlayer"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -52,24 +52,8 @@
 
         <activity
             android:name=".player.BackgroundPlayerActivity"
-            android:label="@string/title_activity_background_player"
+            android:label="@string/title_activity_play_queue"
             android:launchMode="singleTask" />
-
-        <activity
-            android:name=".player.PopupVideoPlayerActivity"
-            android:label="@string/title_activity_popup_player"
-            android:launchMode="singleTask" />
-
-        <service
-            android:name=".player.PopupVideoPlayer"
-            android:exported="false" />
-
-        <activity
-            android:name=".player.MainVideoPlayer"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:theme="@style/VideoPlayerTheme" />
 
         <activity
             android:name=".settings.SettingsActivity"

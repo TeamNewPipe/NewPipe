@@ -29,6 +29,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,10 +39,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -51,6 +53,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 
 import org.schabi.newpipe.extractor.NewPipe;
@@ -61,14 +64,18 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.player.event.OnKeyDownListener;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.TLSSocketFactoryCompat;
@@ -137,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             ErrorActivity.reportUiError(this, e);
         }
 
-        if (AndroidTvUtils.isTv(this)) {
+        if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
     }
@@ -519,12 +526,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onKeyDown(final int keyCode, final KeyEvent event) {
+        final Fragment fragment = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_player_holder);
+        if (fragment instanceof OnKeyDownListener
+                && !bottomSheetHiddenOrCollapsed()) {
+            // Provide keyDown event to fragment which then sends this event
+            // to the main player service
+            return ((OnKeyDownListener) fragment).onKeyDown(keyCode)
+                    || super.onKeyDown(keyCode, event);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
     public void onBackPressed() {
         if (DEBUG) {
             Log.d(TAG, "onBackPressed() called");
         }
 
-        if (AndroidTvUtils.isTv(this)) {
+        if (DeviceUtils.isTv(this)) {
             View drawerPanel = findViewById(R.id.navigation);
             if (drawer.isDrawerOpen(drawerPanel)) {
                 drawer.closeDrawers();
@@ -532,11 +553,32 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        // If current fragment implements BackPressable (i.e. can/wanna handle back press)
-        // delegate the back press to it
-        if (fragment instanceof BackPressable) {
-            if (((BackPressable) fragment).onBackPressed()) {
+        // In case bottomSheet is not visible on the screen or collapsed we can assume that the user
+        // interacts with a fragment inside fragment_holder so all back presses should be
+        // handled by it
+        if (bottomSheetHiddenOrCollapsed()) {
+            final Fragment fragment = getSupportFragmentManager()
+                    .findFragmentById(R.id.fragment_holder);
+            // If current fragment implements BackPressable (i.e. can/wanna handle back press)
+            // delegate the back press to it
+            if (fragment instanceof BackPressable) {
+                if (((BackPressable) fragment).onBackPressed()) {
+                    return;
+                }
+            }
+
+        } else {
+            final Fragment fragmentPlayer = getSupportFragmentManager()
+                    .findFragmentById(R.id.fragment_player_holder);
+            // If current fragment implements BackPressable (i.e. can/wanna handle back press)
+            // delegate the back press to it
+            if (fragmentPlayer instanceof BackPressable) {
+                if (!((BackPressable) fragmentPlayer).onBackPressed()) {
+                    final FrameLayout bottomSheetLayout =
+                            findViewById(R.id.fragment_player_holder);
+                    BottomSheetBehavior.from(bottomSheetLayout)
+                            .setState(BottomSheetBehavior.STATE_COLLAPSED);
+                }
                 return;
             }
         }
@@ -563,7 +605,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE:
                 Fragment fragment = getSupportFragmentManager()
-                        .findFragmentById(R.id.fragment_holder);
+                        .findFragmentById(R.id.fragment_player_holder);
                 if (fragment instanceof VideoDetailFragment) {
                     ((VideoDetailFragment) fragment).openDownloadDialog();
                 }
@@ -615,10 +657,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        if (!(fragment instanceof VideoDetailFragment)) {
-            findViewById(R.id.toolbar).findViewById(R.id.toolbar_spinner).setVisibility(View.GONE);
-        }
-
         if (!(fragment instanceof SearchFragment)) {
             findViewById(R.id.toolbar).findViewById(R.id.toolbar_search_container)
                     .setVisibility(View.GONE);
@@ -660,6 +698,13 @@ public class MainActivity extends AppCompatActivity {
         }
         StateSaver.clearStateFiles();
         if (getIntent() != null && getIntent().hasExtra(Constants.KEY_LINK_TYPE)) {
+            // When user watch a video inside popup and then tries to open the video in main player
+            // while the app is closed he will see a blank fragment on place of kiosk.
+            // Let's open it first
+            if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                NavigationHelper.openMainFragment(getSupportFragmentManager());
+            }
+
             handleIntent(getIntent());
         } else {
             NavigationHelper.gotoMainFragment(getSupportFragmentManager());
@@ -708,8 +753,14 @@ public class MainActivity extends AppCompatActivity {
                     case STREAM:
                         boolean autoPlay = intent
                                 .getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
+                        final String intentCacheKey = intent
+                                .getStringExtra(VideoPlayer.PLAY_QUEUE_KEY);
+                        final PlayQueue playQueue = intentCacheKey != null
+                                ? SerializedCache.getInstance()
+                                .take(intentCacheKey, PlayQueue.class)
+                                : null;
                         NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(),
-                                serviceId, url, title, autoPlay);
+                                serviceId, url, title, autoPlay, playQueue);
                         break;
                     case CHANNEL:
                         NavigationHelper.openChannelFragment(getSupportFragmentManager(),
@@ -741,5 +792,18 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
+    }
+    /*
+     * Utils
+     * */
+
+    private boolean bottomSheetHiddenOrCollapsed() {
+        final FrameLayout bottomSheetLayout = findViewById(R.id.fragment_player_holder);
+        final BottomSheetBehavior<FrameLayout> bottomSheetBehavior =
+                BottomSheetBehavior.from(bottomSheetLayout);
+
+        final int sheetState = bottomSheetBehavior.getState();
+        return sheetState == BottomSheetBehavior.STATE_HIDDEN
+                || sheetState == BottomSheetBehavior.STATE_COLLAPSED;
     }
 }

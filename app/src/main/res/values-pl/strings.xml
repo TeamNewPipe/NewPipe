@@ -240,8 +240,6 @@
     <string name="trending">Najpopularniejsze</string>
     <string name="top_50">50 najlepszych</string>
     <string name="new_and_hot">Nowe i gorące</string>
-    <string name="title_activity_background_player">Odtwarzanie w tle</string>
-    <string name="title_activity_popup_player">Odtwarzacz w trybie okienkowym</string>
     <string name="play_queue_remove">Usuń</string>
     <string name="play_queue_stream_detail">Szczegóły</string>
     <string name="play_queue_audio_settings">Ustawienia dźwięku</string>

@@ -48,7 +48,7 @@ import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -482,16 +482,16 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         if (TextUtils.isEmpty(searchString) || TextUtils.isEmpty(searchEditText.getText())) {
             searchToolbarContainer.setTranslationX(100);
-            searchToolbarContainer.setAlpha(0f);
+            searchToolbarContainer.setAlpha(0.0f);
             searchToolbarContainer.setVisibility(View.VISIBLE);
             searchToolbarContainer.animate()
                     .translationX(0)
-                    .alpha(1f)
+                    .alpha(1.0f)
                     .setDuration(200)
                     .setInterpolator(new DecelerateInterpolator()).start();
         } else {
             searchToolbarContainer.setTranslationX(0);
-            searchToolbarContainer.setAlpha(1f);
+            searchToolbarContainer.setAlpha(1.0f);
             searchToolbarContainer.setVisibility(View.VISIBLE);
         }
     }
@@ -525,7 +525,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (isSuggestionsEnabled && errorPanelRoot.getVisibility() != View.VISIBLE) {
                 showSuggestionsPanel();
             }
-            if (AndroidTvUtils.isTv(getContext())) {
+            if (DeviceUtils.isTv(getContext())) {
                 showKeyboardSearch();
             }
         });

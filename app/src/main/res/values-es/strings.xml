@@ -230,8 +230,6 @@
     <string name="player_stream_failure">No se pudo reproducir este stream</string>
     <string name="player_unrecoverable_failure">Se produjo un error irrecuperable del reproductor</string>
     <string name="player_recoverable_failure">Recuperándose del error del reproductor</string>
-    <string name="title_activity_background_player">Reproductor en segundo plano</string>
-    <string name="title_activity_popup_player">Reproductor emergente</string>
     <string name="play_queue_remove">Quitar</string>
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="play_queue_audio_settings">Configuración de audio</string>

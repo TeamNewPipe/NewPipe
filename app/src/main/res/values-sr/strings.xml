@@ -233,8 +233,6 @@
     <string name="trending">У тренду</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Ново и вруће</string>
-    <string name="title_activity_background_player">Позадински плејер</string>
-    <string name="title_activity_popup_player">Искачући плејер</string>
     <string name="play_queue_remove">Уклони</string>
     <string name="play_queue_stream_detail">Детаљи</string>
     <string name="play_queue_audio_settings">Поставке звука</string>

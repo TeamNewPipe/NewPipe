@@ -243,8 +243,6 @@
     <string name="trending">Joerak</string>
     <string name="top_50">Lehen 50ak</string>
     <string name="new_and_hot">Berria eta arrakastatsua</string>
-    <string name="title_activity_background_player">Bigarren planoko erreproduzigailua</string>
-    <string name="title_activity_popup_player">Laster-leiho erreproduzigailua</string>
     <string name="play_queue_remove">Kendu</string>
     <string name="play_queue_stream_detail">Xehetasunak</string>
     <string name="play_queue_audio_settings">Audio ezarpenak</string>

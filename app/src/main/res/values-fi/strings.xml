@@ -230,8 +230,6 @@
     <string name="player_stream_failure">Tätä suoratoistosisältöä ei voitu toistaa</string>
     <string name="player_unrecoverable_failure">Palautuskelvoton soittimen virhe</string>
     <string name="player_recoverable_failure">Palaudutaan soittimen virheestä</string>
-    <string name="title_activity_background_player">Taustasoitin</string>
-    <string name="title_activity_popup_player">Ponnahdusikkunasoitin</string>
     <string name="play_queue_remove">Poista</string>
     <string name="play_queue_stream_detail">Yksityiskohdat</string>
     <string name="play_queue_audio_settings">Ääniasetukset</string>

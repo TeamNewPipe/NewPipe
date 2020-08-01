@@ -231,8 +231,6 @@
     <string name="player_stream_failure">Este vídeo não pôde ser reproduzido</string>
     <string name="player_unrecoverable_failure">Ocorreu um erro irrecuperável no player</string>
     <string name="player_recoverable_failure">Recuperando do erro do player</string>
-    <string name="title_activity_background_player">Player em segundo plano</string>
-    <string name="title_activity_popup_player">Player Popup</string>
     <string name="play_queue_remove">Remover</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="play_queue_audio_settings">Configurações de áudio</string>

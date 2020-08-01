@@ -228,8 +228,6 @@
     <string name="trending">Popüler</string>
     <string name="top_50">En iyi 50</string>
     <string name="new_and_hot">En yeniler ve popülerler</string>
-    <string name="title_activity_background_player">Arkaplan oynatıcı</string>
-    <string name="title_activity_popup_player">Açılır pencere oynatıcı</string>
     <string name="play_queue_remove">Kaldır</string>
     <string name="play_queue_stream_detail">Ayrıntılar</string>
     <string name="play_queue_audio_settings">Ses Ayarları</string>

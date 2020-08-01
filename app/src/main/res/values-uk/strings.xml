@@ -289,8 +289,6 @@
     <string name="override_current_data">Це перезапише ваші поточні налаштування.</string>
     <string name="kiosk">Кіоски</string>
     <string name="trending">Набуває популярності</string>
-    <string name="title_activity_background_player">Програвач у тлі</string>
-    <string name="title_activity_popup_player">Програвач у вікні</string>
     <string name="play_queue_remove">Видалити</string>
     <string name="hold_to_append">Утримуйте, щоб додати в чергу</string>
     <string name="enqueue_on_background">Додати до фону</string>

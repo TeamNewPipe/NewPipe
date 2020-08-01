@@ -224,8 +224,6 @@
     <string name="player_stream_failure">Impossible de lire ce flux</string>
     <string name="player_unrecoverable_failure">Une erreur irrécupérable du lecteur est survenue</string>
     <string name="no_channel_subscribed_yet">Pas encore d’abonnements de chaîne</string>
-    <string name="title_activity_background_player">Lecteur en arrière-plan</string>
-    <string name="title_activity_popup_player">Lecteur flottant</string>
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audios</string>

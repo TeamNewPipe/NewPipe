@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -46,14 +47,12 @@ import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
-import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
 import org.schabi.newpipe.player.BasePlayer;
-import org.schabi.newpipe.player.MainVideoPlayer;
-import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.player.PopupVideoPlayerActivity;
+import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
@@ -85,6 +84,7 @@ public final class NavigationHelper {
             intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
         }
         intent.putExtra(VideoPlayer.RESUME_PLAYBACK, resumePlayback);
+        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_VIDEO);
 
         return intent;
     }
@@ -112,11 +112,13 @@ public final class NavigationHelper {
     public static Intent getPlayerIntent(@NonNull final Context context,
                                          @NonNull final Class targetClazz,
                                          @NonNull final PlayQueue playQueue,
-                                         final int repeatMode, final float playbackSpeed,
+                                         final int repeatMode,
+                                         final float playbackSpeed,
                                          final float playbackPitch,
                                          final boolean playbackSkipSilence,
                                          @Nullable final String playbackQuality,
-                                         final boolean resumePlayback, final boolean startPaused,
+                                         final boolean resumePlayback,
+                                         final boolean startPaused,
                                          final boolean isMuted) {
         return getPlayerIntent(context, targetClazz, playQueue, playbackQuality, resumePlayback)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
@@ -124,12 +126,42 @@ public final class NavigationHelper {
                 .putExtra(BasePlayer.IS_MUTED, isMuted);
     }
 
-    public static void playOnMainPlayer(final Context context, final PlayQueue queue,
+    public static void playOnMainPlayer(
+            final AppCompatActivity activity,
+            final PlayQueue queue,
+            final boolean autoPlay) {
+        playOnMainPlayer(activity.getSupportFragmentManager(), queue, autoPlay);
+    }
+
+    public static void playOnMainPlayer(
+            final FragmentManager fragmentManager,
+            final PlayQueue queue,
+            final boolean autoPlay) {
+        final PlayQueueItem currentStream = queue.getItem();
+        openVideoDetailFragment(
+                fragmentManager,
+                currentStream.getServiceId(),
+                currentStream.getUrl(),
+                currentStream.getTitle(),
+                autoPlay,
+                queue);
+    }
+
+    public static void playOnMainPlayer(@NonNull final Context context,
+                                        @NonNull final PlayQueue queue,
+                                        @NonNull final StreamingService.LinkType linkType,
+                                        @NonNull final String url,
+                                        @NonNull final String title,
+                                        final boolean autoPlay,
                                         final boolean resumePlayback) {
-        final Intent playerIntent
-                = getPlayerIntent(context, MainVideoPlayer.class, queue, resumePlayback);
-        playerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(playerIntent);
+
+        final Intent intent = getPlayerIntent(context, MainActivity.class, queue, resumePlayback);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(Constants.KEY_LINK_TYPE, linkType);
+        intent.putExtra(Constants.KEY_URL, url);
+        intent.putExtra(Constants.KEY_TITLE, title);
+        intent.putExtra(VideoDetailFragment.AUTO_PLAY, autoPlay);
+        context.startActivity(intent);
     }
 
     public static void playOnPopupPlayer(final Context context, final PlayQueue queue,
@@ -140,16 +172,19 @@ public final class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        startService(context,
-                getPlayerIntent(context, PopupVideoPlayer.class, queue, resumePlayback));
+        final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
+        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
+        startService(context, intent);
     }
 
-    public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue,
+    public static void playOnBackgroundPlayer(final Context context,
+                                              final PlayQueue queue,
                                               final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
                 .show();
-        startService(context,
-                getPlayerIntent(context, BackgroundPlayer.class, queue, resumePlayback));
+        final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
+        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
+        startService(context, intent);
     }
 
     public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue,
@@ -166,8 +201,10 @@ public final class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
-        startService(context, getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue,
-                selectOnAppend, resumePlayback));
+        final Intent intent = getPlayerEnqueueIntent(
+                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
+        startService(context, intent);
     }
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue,
@@ -175,12 +212,15 @@ public final class NavigationHelper {
         enqueueOnBackgroundPlayer(context, queue, false, resumePlayback);
     }
 
-    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue,
+    public static void enqueueOnBackgroundPlayer(final Context context,
+                                                 final PlayQueue queue,
                                                  final boolean selectOnAppend,
                                                  final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
-        startService(context, getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue,
-                selectOnAppend, resumePlayback));
+        final Intent intent = getPlayerEnqueueIntent(
+                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
+        startService(context, intent);
     }
 
     public static void startService(@NonNull final Context context, @NonNull final Intent intent) {
@@ -311,29 +351,41 @@ public final class NavigationHelper {
     public static void openVideoDetailFragment(final FragmentManager fragmentManager,
                                                final int serviceId, final String url,
                                                final String title) {
-        openVideoDetailFragment(fragmentManager, serviceId, url, title, false);
+        openVideoDetailFragment(fragmentManager, serviceId, url, title, true, null);
     }
 
-    public static void openVideoDetailFragment(final FragmentManager fragmentManager,
-                                               final int serviceId, final String url,
-                                               final String name, final boolean autoPlay) {
-        Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_holder);
+    public static void openVideoDetailFragment(
+            final FragmentManager fragmentManager,
+            final int serviceId,
+            final String url,
+            final String title,
+            final boolean autoPlay,
+            final PlayQueue playQueue) {
+        final Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_player_holder);
 
         if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
-            VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
+            expandMainPlayer(fragment.requireActivity());
+            final VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
             detailFragment.setAutoplay(autoPlay);
-            detailFragment.selectAndLoadVideo(serviceId, url, name == null ? "" : name);
+            detailFragment
+                    .selectAndLoadVideo(serviceId, url, title == null ? "" : title, playQueue);
+            detailFragment.scrollToTop();
             return;
         }
 
-        VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url,
-                name == null ? "" : name);
+        final VideoDetailFragment instance = VideoDetailFragment
+                .getInstance(serviceId, url, title == null ? "" : title, playQueue);
         instance.setAutoplay(autoPlay);
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, instance)
-                .addToBackStack(null)
+                .replace(R.id.fragment_player_holder, instance)
+                .runOnCommit(() -> expandMainPlayer(instance.requireActivity()))
                 .commit();
+    }
+
+    public static void expandMainPlayer(final Context context) {
+        final Intent intent = new Intent(VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER);
+        context.sendBroadcast(intent);
     }
 
     public static void openChannelFragment(final FragmentManager fragmentManager,
@@ -503,10 +555,6 @@ public final class NavigationHelper {
 
     public static Intent getBackgroundPlayerActivityIntent(final Context context) {
         return getServicePlayerActivityIntent(context, BackgroundPlayerActivity.class);
-    }
-
-    public static Intent getPopupPlayerActivityIntent(final Context context) {
-        return getServicePlayerActivityIntent(context, PopupVideoPlayerActivity.class);
     }
 
     private static Intent getServicePlayerActivityIntent(final Context context,

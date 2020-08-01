@@ -273,8 +273,6 @@
     <string name="player_stream_failure">无法播放此串流</string>
     <string name="player_unrecoverable_failure">发生无法恢复播放器错误</string>
     <string name="player_recoverable_failure">恢复播放器错误</string>
-    <string name="title_activity_background_player">后台播放</string>
-    <string name="title_activity_popup_player">悬浮窗播放器</string>
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">详情</string>
     <string name="play_queue_audio_settings">音频设置</string>

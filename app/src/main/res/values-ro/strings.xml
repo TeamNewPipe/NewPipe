@@ -286,8 +286,6 @@ pentru a deschide în mod pop-up</string>
     <string name="no_valid_zip_file">Nici-un fişier ZIP valid</string>
     <string name="could_not_import_all_files">Avertisment: Nu se pot importa fişierele.</string>
     <string name="override_current_data">Acest lucru o să vă reseteze setup-ul curent.</string>
-    <string name="title_activity_background_player">Player în fundal</string>
-    <string name="title_activity_popup_player">Player popup</string>
     <string name="play_queue_remove">Şterge</string>
     <string name="play_queue_stream_detail">Detalii</string>
     <string name="play_queue_audio_settings">Setări Audio</string>

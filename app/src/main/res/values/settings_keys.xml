@@ -28,6 +28,7 @@
     <string name="auto_queue_key" translatable="false">auto_queue_key</string>
     <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
     <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
+    <string name="clear_queue_confirmation_key" translatable="false">clear_queue_confirmation_key</string>
 
     <string name="seek_duration_key" translatable="false">seek_duration</string>
     <string name="seek_duration_default_value" translatable="false">10000</string>
@@ -64,6 +65,23 @@
         <item>@string/minimize_on_exit_none_description</item>
         <item>@string/minimize_on_exit_background_description</item>
         <item>@string/minimize_on_exit_popup_description</item>
+    </string-array>
+
+
+    <string name="autoplay_key" translatable="false">autoplay_key</string>
+    <string name="autoplay_value" translatable="false">@string/autoplay_wifi_key</string>
+    <string name="autoplay_always_key" translatable="false">autoplay_always_key</string>
+    <string name="autoplay_wifi_key" translatable="false">autoplay_wifi_key</string>
+    <string name="autoplay_never_key" translatable="false">autoplay_never_key</string>
+    <string-array name="autoplay_type_key" translatable="false">
+        <item>@string/autoplay_always_key</item>
+        <item>@string/autoplay_wifi_key</item>
+        <item>@string/autoplay_never_key</item>
+    </string-array>
+    <string-array name="autoplay_type_description" translatable="false">
+        <item>@string/autoplay_always_description</item>
+        <item>@string/autoplay_wifi_description</item>
+        <item>@string/autoplay_never_description</item>
     </string-array>
 
     <string name="default_resolution_key" translatable="false">default_resolution</string>
@@ -125,8 +143,6 @@
         <item>@string/audio_m4a_key</item>
         <item>@string/audio_webm_key</item>
     </string-array>
-
-    <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
 
     <string name="last_resize_mode" translatable="false">last_resize_mode</string>
 
