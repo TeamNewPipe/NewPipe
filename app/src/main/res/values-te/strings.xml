@@ -184,4 +184,5 @@
     <string name="default_popup_resolution_title">డిఫాల్ట్ పాపప్ స్పష్టత</string>
     <string name="controls_download_desc">ప్రసార ఫైల్ను డౌన్లోడ్ చేయండి</string>
     <string name="use_external_video_player_title">బాహ్య వీడియో ప్లేయర్ని ఉపయోగించండి</string>
+    <string name="use_external_video_player_summary">కొన్ని రెసొల్యూషన్స్ లో ఆడియో తీసేస్తుంది</string>
 </resources>
