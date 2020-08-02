@@ -54,4 +54,5 @@
     <string name="no_player_found">Նվագարկիչ չի գտնվել, ցանկանո՞ւմ եք բեռնել VLC։</string>
     <string name="use_external_audio_player_title">Օգտագործել արտաքին աուդիո նվագարկիչ</string>
     <string name="use_external_video_player_title">Օգտագործել արտաքին դերակատար</string>
+    <string name="popup_mode_share_menu_title">Լողացող ռեժիմ NewPipe</string>
 </resources>
