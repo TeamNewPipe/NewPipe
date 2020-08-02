@@ -42,4 +42,9 @@
     <string name="download_path_dialog_title">Pumili ng folder kung saan ido-download ang mga bidyo</string>
     <string name="download_path_audio_summary">Nakaimbak sa folder na ito ang mga nai-download na mga audio files</string>
     <string name="download_path_audio_dialog_title">Pumili ng folder kung saan ido-download ang mga audio files</string>
+    <string name="light_theme_title">Maliwanag</string>
+    <string name="play_with_kodi_title">Buksan gamit Kodi</string>
+    <string name="dark_theme_title">Madilim</string>
+    <string name="download_choose_new_path">Palitan ang folder na paglalagyan ng download para umipekto</string>
+    <string name="download_path_summary">Dito makikita ang mga nadownload na video</string>
 </resources>
