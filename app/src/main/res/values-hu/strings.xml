@@ -457,4 +457,11 @@
     <string name="grid">Rács</string>
     <string name="list">Lista</string>
     <string name="list_view_mode">Lista nézet</string>
+    <string name="missing_file">File áthelyezve vagy törölve</string>
+    <string name="download_to_sdcard_error_message">Külső SD-kártyára mentés nem lehetséges. Visszaállítsuk a letöltési mappa helyét\?</string>
+    <string name="download_to_sdcard_error_title">Külső tárhely nem elérhető</string>
+    <string name="watch_history_states_deleted">Lejátszási pozíciók törölve.</string>
+    <string name="delete_playback_states_alert">Összes lejátszási pozíció törlése\?</string>
+    <string name="clear_playback_states_summary">Összes lejátszási pozíció törlése</string>
+    <string name="clear_playback_states_title">Lejátszási pozíciók törlése</string>
 </resources>
