@@ -1,15 +1,15 @@
 name: Android Pull Request & Master CI
 
 on:
-#  pull_request:
-#    branches:
-#      - 'master'
-#      - 'dev'
+  pull_request:
+    branches:
+      - 'master'
+      - 'dev'
 #  push:
 #    branches:
 #      - 'master'
 #      - 'dev'
-  status
+#  status
 
 jobs:
   apk:
@@ -29,7 +29,7 @@ jobs:
         run: node ./.github/actions/status.js
 
       - name: set up JDK 1.8
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: 1.8
       - name: Build debug APK
@@ -38,19 +38,25 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: app
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug/*.apk
       
-      - name: comment on pull request
-        if: github.event_name == 'pull_request'
-        # run: node ./.github/actions/artifact-comment.js
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{  }}
-          body: |
-            This is a multi-line test comment
-            - With GitHub **Markdown**
-            - Created by [create-or-update-comment][1]
+      #- name: comment on pull request
+      #  if: github.event_name == 'pull_request'
+      #  # run: node ./.github/actions/artifact-comment.js
+      #  uses: peter-evans/create-or-update-comment@v1
+      #  with:
+      #    token: ${{ secrets.GUTHUB_ACTIONS_PR_BOT_TOKEN }} # GITHUB_TOKEN
+      #    issue-number: ${{  }}
+      #    body: |
+      #      This is a multi-line test comment
+      #      - With GitHub **Markdown**
+      #      - Created by [create-or-update-comment][1]
+#
+#            [1]: https://github.com/peter-evans/create-or-update-comment
+#          reaction-type: '+1'
 
-            [1]: https://github.com/peter-evans/create-or-update-comment
-          reaction-type: '+1'
+      - name: Create comment linking to the artifact
+        uses: thollander/actions-comment-pull-request@master
+        with:
+          message: 'The APK was build successfuly. You can find it here:'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     
