@@ -627,4 +627,8 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">Показати лише незгруповані підписки</string>
     <string name="copy_for_github">Скопіювати відформатований звіт</string>
     <string name="error_report_open_issue_button_text">Повідомити про помилку на GitBub</string>
+    <string name="error_report_open_github_notice">Перевірте, будь ласка, чи проблема що спричинила збій вже відома спільноті та розробникам. Дублюючи запити на вирішення помилок Ви забираєте час розробників який можна було б так на вирішення існуючих проблем.</string>
+    <string name="select_a_playlist">Вибрати плейліст</string>
+    <string name="no_playlist_bookmarked_yet">Жоден плейліст ще не додано</string>
+    <string name="playlist_page_summary">Сторінка плейлісту</string>
 </resources>
