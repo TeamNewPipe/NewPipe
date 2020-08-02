@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.view.accessibility.CaptioningManager;
 
 import androidx.annotation.IntDef;
@@ -45,6 +46,9 @@ import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MOD
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
@@ -55,6 +59,15 @@ public final class PlayerHelper {
             = new Formatter(STRING_BUILDER, Locale.getDefault());
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
+
+    @Retention(SOURCE)
+    @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
+            AUTOPLAY_TYPE_NEVER})
+    public @interface AutoplayType {
+        int AUTOPLAY_TYPE_ALWAYS = 0;
+        int AUTOPLAY_TYPE_WIFI = 1;
+        int AUTOPLAY_TYPE_NEVER = 2;
+    }
 
     private PlayerHelper() { }
 
@@ -203,6 +216,11 @@ public final class PlayerHelper {
         return isAutoQueueEnabled(context, false);
     }
 
+    public static boolean isClearingQueueConfirmationRequired(@NonNull final Context context) {
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.clear_queue_confirmation_key), false);
+    }
+
     @MinimizeMode
     public static int getMinimizeOnExitAction(@NonNull final Context context) {
         final String defaultAction = context.getString(R.string.minimize_on_exit_none_key);
@@ -216,6 +234,18 @@ public final class PlayerHelper {
             return MINIMIZE_ON_EXIT_MODE_BACKGROUND;
         } else {
             return MINIMIZE_ON_EXIT_MODE_NONE;
+        }
+    }
+
+    @AutoplayType
+    public static int getAutoplayType(@NonNull final Context context) {
+        final String type = getAutoplayType(context, context.getString(R.string.autoplay_wifi_key));
+        if (type.equals(context.getString(R.string.autoplay_always_key))) {
+            return AUTOPLAY_TYPE_ALWAYS;
+        } else if (type.equals(context.getString(R.string.autoplay_never_key))) {
+            return AUTOPLAY_TYPE_NEVER;
+        } else {
+            return AUTOPLAY_TYPE_WIFI;
         }
     }
 
@@ -308,7 +338,7 @@ public final class PlayerHelper {
         final CaptioningManager captioningManager
                 = (CaptioningManager) context.getSystemService(Context.CAPTIONING_SERVICE);
         if (captioningManager == null || !captioningManager.isEnabled()) {
-            return 1f;
+            return 1.0f;
         }
 
         return captioningManager.getFontScale();
@@ -322,6 +352,13 @@ public final class PlayerHelper {
     public static void setScreenBrightness(@NonNull final Context context,
                                            final float setScreenBrightness) {
         setScreenBrightness(context, setScreenBrightness, System.currentTimeMillis());
+    }
+
+    public static boolean globalScreenOrientationLocked(final Context context) {
+        // 1: Screen orientation changes using accelerometer
+        // 0: Screen orientation is locked
+        return android.provider.Settings.System.getInt(
+                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -394,6 +431,12 @@ public final class PlayerHelper {
                                                   final String key) {
         return getPreferences(context)
                 .getString(context.getString(R.string.minimize_on_exit_key), key);
+    }
+
+    private static String getAutoplayType(@NonNull final Context context,
+                                                  final String key) {
+        return getPreferences(context).getString(context.getString(R.string.autoplay_key),
+                key);
     }
 
     private static SinglePlayQueue getAutoQueuedSinglePlayQueue(

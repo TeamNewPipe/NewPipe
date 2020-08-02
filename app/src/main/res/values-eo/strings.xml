@@ -162,8 +162,6 @@
     <string name="player_stream_failure">Ne povis ludi tion torenton</string>
     <string name="player_unrecoverable_failure">Neatendebla eraro de ludilo okazis</string>
     <string name="player_recoverable_failure">Reakiri el eraro de la ludilo</string>
-    <string name="title_activity_background_player">Fona ludilo</string>
-    <string name="title_activity_popup_player">Ŝprucfenestra ludilo</string>
     <string name="play_queue_remove">Retiri</string>
     <string name="play_queue_stream_detail">Detalado</string>
     <string name="play_queue_audio_settings">Sonaj parametroj</string>

@@ -67,6 +67,8 @@
     <!--   <property name="fileExtensions" value="java"/> -->
     <!-- </module> -->
 
+    <module name="SuppressWarningsFilter" />
+
     <module name="TreeWalker">
         <!-- Checks for Javadoc comments.                     -->
         <!-- See https://checkstyle.org/config_javadoc.html -->
@@ -173,6 +175,8 @@
             <property name="severity" value="warning"/>
         </module>-->
         <module name="UpperEll"/>
+
+        <module name="SuppressWarningsHolder" />
 
         <!-- https://checkstyle.org/config_filters.html#SuppressionXpathFilter -->
         <module name="SuppressionXpathFilter">

@@ -60,12 +60,8 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
 
     private Preference.OnPreferenceChangeListener oldNotificationsOnPreferenceChangeListener
             = (preference, newValue) -> {
-//        NotificationUtil.getInstance().toast(getContext(),
-//                "Killed background / popup player notification(s) !");
-        NotificationUtil.getInstance()
-                .cancelNotification(NotificationUtil.NOTIFICATION_ID_BACKGROUND);
-        NotificationUtil.getInstance().cancelNotification(NotificationUtil.NOTIFICATION_ID_POPUP);
-
+        // kill player notification
+        NotificationUtil.getInstance().cancelNotification();
         return true;
     };
 

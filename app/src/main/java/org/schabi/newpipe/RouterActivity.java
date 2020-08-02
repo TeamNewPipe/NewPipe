@@ -44,7 +44,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
@@ -347,7 +347,7 @@ public class RouterActivity extends AppCompatActivity {
 
         alertDialog.show();
 
-        if (AndroidTvUtils.isTv(this)) {
+        if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(alertDialog);
         }
     }
@@ -701,7 +701,7 @@ public class RouterActivity extends AppCompatActivity {
                         playQueue = new SinglePlayQueue((StreamInfo) info);
 
                         if (playerChoice.equals(videoPlayerKey)) {
-                            NavigationHelper.playOnMainPlayer(this, playQueue, true);
+                            openMainPlayer(playQueue, choice);
                         } else if (playerChoice.equals(backgroundPlayerKey)) {
                             NavigationHelper.enqueueOnBackgroundPlayer(this, playQueue, true);
                         } else if (playerChoice.equals(popupPlayerKey)) {
@@ -716,7 +716,7 @@ public class RouterActivity extends AppCompatActivity {
                             : new PlaylistPlayQueue((PlaylistInfo) info);
 
                     if (playerChoice.equals(videoPlayerKey)) {
-                        NavigationHelper.playOnMainPlayer(this, playQueue, true);
+                        openMainPlayer(playQueue, choice);
                     } else if (playerChoice.equals(backgroundPlayerKey)) {
                         NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
                     } else if (playerChoice.equals(popupPlayerKey)) {
@@ -724,6 +724,11 @@ public class RouterActivity extends AppCompatActivity {
                     }
                 }
             };
+        }
+
+        private void openMainPlayer(final PlayQueue playQueue, final Choice choice) {
+            NavigationHelper.playOnMainPlayer(this, playQueue, choice.linkType,
+                    choice.url, "", true, true);
         }
 
         @Override

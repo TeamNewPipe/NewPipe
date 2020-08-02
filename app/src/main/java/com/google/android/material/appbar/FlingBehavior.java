@@ -4,11 +4,14 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.OverScroller;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import org.schabi.newpipe.R;
 
 import java.lang.reflect.Field;
 
@@ -19,6 +22,9 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     public FlingBehavior(final Context context, final AttributeSet attrs) {
         super(context, attrs);
     }
+
+    private boolean allowScroll = true;
+    private final Rect globalRect = new Rect();
 
     @Override
     public boolean onRequestChildRectangleOnScreen(
@@ -55,6 +61,15 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
 
     public boolean onInterceptTouchEvent(final CoordinatorLayout parent, final AppBarLayout child,
                                          final MotionEvent ev) {
+        final ViewGroup playQueue = child.findViewById(R.id.playQueuePanel);
+        if (playQueue != null) {
+            final boolean visible = playQueue.getGlobalVisibleRect(globalRect);
+            if (visible && globalRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
+                allowScroll = false;
+                return false;
+            }
+        }
+        allowScroll = true;
         switch (ev.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 // remove reference to old nested scrolling child
@@ -66,6 +81,26 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
                 break;
         }
         return super.onInterceptTouchEvent(parent, child, ev);
+    }
+
+    @Override
+    public boolean onStartNestedScroll(@NonNull final CoordinatorLayout parent,
+                                       @NonNull final AppBarLayout child,
+                                       @NonNull final View directTargetChild,
+                                       final View target,
+                                       final int nestedScrollAxes,
+                                       final int type) {
+        return allowScroll && super.onStartNestedScroll(
+                parent, child, directTargetChild, target, nestedScrollAxes, type);
+    }
+
+    @Override
+    public boolean onNestedFling(@NonNull final CoordinatorLayout coordinatorLayout,
+                                 @NonNull final AppBarLayout child,
+                                 @NonNull final View target, final float velocityX,
+                                 final float velocityY, final boolean consumed) {
+        return allowScroll && super.onNestedFling(
+                coordinatorLayout, child, target, velocityX, velocityY, consumed);
     }
 
     @Nullable

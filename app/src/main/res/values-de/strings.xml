@@ -225,8 +225,6 @@
     <string name="subscription_page_summary">Abonnement-Seite</string>
     <string name="feed_page_summary">Feed-Seite</string>
     <string name="channel_page_summary">Kanal-Seite</string>
-    <string name="title_activity_background_player">Wiedergabe im Hintergrund</string>
-    <string name="title_activity_popup_player">Pop-up Player</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="top_50">Top 50</string>
     <string name="player_unrecoverable_failure">Nicht behebbarer Wiedergabefehler aufgetreten</string>

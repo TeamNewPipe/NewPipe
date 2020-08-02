@@ -8,22 +8,23 @@ import android.os.BatteryManager;
 import android.os.Build;
 import android.view.KeyEvent;
 
+import androidx.annotation.NonNull;
 import org.schabi.newpipe.App;
 
 import static android.content.Context.BATTERY_SERVICE;
 import static android.content.Context.UI_MODE_SERVICE;
 
-public final class AndroidTvUtils {
+public final class DeviceUtils {
 
     private static final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
     private static Boolean isTV = null;
 
-    private AndroidTvUtils() {
+    private DeviceUtils() {
     }
 
     public static boolean isTv(final Context context) {
-        if (AndroidTvUtils.isTV != null) {
-            return AndroidTvUtils.isTV;
+        if (isTV != null) {
+            return isTV;
         }
 
         PackageManager pm = App.getApp().getPackageManager();
@@ -48,8 +49,15 @@ public final class AndroidTvUtils {
             isTv = isTv || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
         }
 
-        AndroidTvUtils.isTV = isTv;
-        return AndroidTvUtils.isTV;
+        DeviceUtils.isTV = isTv;
+        return DeviceUtils.isTV;
+    }
+
+    public static boolean isTablet(@NonNull final Context context) {
+        return (context
+                .getResources()
+                .getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     public static boolean isConfirmKey(final int keyCode) {

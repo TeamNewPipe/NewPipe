@@ -299,8 +299,6 @@
     <string name="trending">ਰੁਝਾਨ ਵਿੱਚ</string>
     <string name="top_50">ਟੌਪ 50</string>
     <string name="new_and_hot">ਨਵਾਂ ਅਤੇ ਗਰਮਾ-ਗਰਮ</string>
-    <string name="title_activity_background_player">ਬੈਕਗ੍ਰਾਉਂਡ ਪਲੇਅਰ</string>
-    <string name="title_activity_popup_player">ਪੌਪ-ਅਪ ਪਲੇਅਰ</string>
     <string name="play_queue_remove">ਹਟਾਓ</string>
     <string name="play_queue_stream_detail">ਵੇਰਵੇ</string>
     <string name="play_queue_audio_settings">ਆਡੀਓ ਸੈਟਿੰਗਾਂ</string>

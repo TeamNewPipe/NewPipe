@@ -51,16 +51,24 @@ public abstract class PlayQueue implements Serializable {
 
     @NonNull
     private final AtomicInteger queueIndex;
+    private final ArrayList<PlayQueueItem> history;
 
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
     private transient Flowable<PlayQueueEvent> broadcastReceiver;
     private transient Subscription reportingReactor;
 
+    private transient boolean disposed;
+
     PlayQueue(final int index, final List<PlayQueueItem> startWith) {
         streams = new ArrayList<>();
         streams.addAll(startWith);
+        history = new ArrayList<>();
+        if (streams.size() > index) {
+            history.add(streams.get(index));
+        }
 
         queueIndex = new AtomicInteger(index);
+        disposed = false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -99,6 +107,7 @@ public abstract class PlayQueue implements Serializable {
         eventBroadcast = null;
         broadcastReceiver = null;
         reportingReactor = null;
+        disposed = true;
     }
 
     /**
@@ -148,6 +157,9 @@ public abstract class PlayQueue implements Serializable {
         }
         if (index >= streams.size()) {
             newIndex = isComplete() ? index % streams.size() : streams.size() - 1;
+        }
+        if (oldIndex != newIndex) {
+            history.add(streams.get(newIndex));
         }
 
         queueIndex.set(newIndex);
@@ -269,7 +281,7 @@ public abstract class PlayQueue implements Serializable {
      * @param items {@link PlayQueueItem}s to append
      */
     public synchronized void append(@NonNull final List<PlayQueueItem> items) {
-        List<PlayQueueItem> itemList = new ArrayList<>(items);
+        final List<PlayQueueItem> itemList = new ArrayList<>(items);
 
         if (isShuffled()) {
             backup.addAll(itemList);
@@ -314,6 +326,9 @@ public abstract class PlayQueue implements Serializable {
     public synchronized void error() {
         final int oldIndex = getIndex();
         queueIndex.incrementAndGet();
+        if (streams.size() > queueIndex.get()) {
+            history.add(streams.get(queueIndex.get()));
+        }
         broadcast(new ErrorEvent(oldIndex, getIndex()));
     }
 
@@ -334,7 +349,11 @@ public abstract class PlayQueue implements Serializable {
         if (backup != null) {
             backup.remove(getItem(removeIndex));
         }
-        streams.remove(removeIndex);
+
+        history.remove(streams.remove(removeIndex));
+        if (streams.size() > queueIndex.get()) {
+            history.add(streams.get(queueIndex.get()));
+        }
     }
 
     /**
@@ -367,7 +386,7 @@ public abstract class PlayQueue implements Serializable {
             queueIndex.incrementAndGet();
         }
 
-        PlayQueueItem playQueueItem = streams.remove(source);
+        final PlayQueueItem playQueueItem = streams.remove(source);
         playQueueItem.setAutoQueued(false);
         streams.add(target, playQueueItem);
         broadcast(new MoveEvent(source, target));
@@ -427,6 +446,9 @@ public abstract class PlayQueue implements Serializable {
             streams.add(0, streams.remove(newIndex));
         }
         queueIndex.set(0);
+        if (streams.size() > 0) {
+            history.add(streams.get(0));
+        }
 
         broadcast(new ReorderEvent(originIndex, queueIndex.get()));
     }
@@ -458,10 +480,60 @@ public abstract class PlayQueue implements Serializable {
         } else {
             queueIndex.set(0);
         }
+        if (streams.size() > queueIndex.get()) {
+            history.add(streams.get(queueIndex.get()));
+        }
 
         broadcast(new ReorderEvent(originIndex, queueIndex.get()));
     }
 
+    /**
+     * Selects previous played item.
+     *
+     * This method removes currently playing item from history and
+     * starts playing the last item from history if it exists
+     *
+     * @return true if history is not empty and the item can be played
+     * */
+    public synchronized boolean previous() {
+        if (history.size() <= 1) {
+            return false;
+        }
+
+        history.remove(history.size() - 1);
+
+        final PlayQueueItem last = history.remove(history.size() - 1);
+        setIndex(indexOf(last));
+
+        return true;
+    }
+
+    /*
+     * Compares two PlayQueues. Useful when a user switches players but queue is the same so
+     * we don't have to do anything with new queue.
+     * This method also gives a chance to track history of items in a queue in
+     * VideoDetailFragment without duplicating items from two identical queues
+     * */
+    @Override
+    public boolean equals(@Nullable final Object obj) {
+        if (!(obj instanceof PlayQueue)
+                || getStreams().size() != ((PlayQueue) obj).getStreams().size()) {
+            return false;
+        }
+
+        final PlayQueue other = (PlayQueue) obj;
+        for (int i = 0; i < getStreams().size(); i++) {
+            if (!getItem(i).getUrl().equals(other.getItem(i).getUrl())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean isDisposed() {
+        return disposed;
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Rx Broadcast
     //////////////////////////////////////////////////////////////////////////*/

@@ -79,8 +79,6 @@
     <string name="play_queue_audio_settings">ഓഡിയോ ക്രമീകരണങ്ങൾ</string>
     <string name="play_queue_stream_detail">വിശദാംശങ്ങൾ</string>
     <string name="play_queue_remove">നീക്കം ചെയ്യുക</string>
-    <string name="title_activity_popup_player">പോപ്-അപ് പ്ലെയർ</string>
-    <string name="title_activity_background_player">ബാക്ക്ഗ്രൗണ്ട് പ്ലേയർ</string>
     <string name="conferences">സമ്മേളനങ്ങൾ</string>
     <string name="most_liked">ഏറ്റവും ഇഷ്ടപ്പെട്ടത്</string>
     <string name="recently_added">സമീപകാലത്ത് ചേർത്തത്</string>

@@ -314,8 +314,6 @@
     <string name="trending">Трэнды</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Новае і гарачае</string>
-    <string name="title_activity_background_player">У фоне</string>
-    <string name="title_activity_popup_player">У акне</string>
     <string name="play_queue_remove">Выдаліць</string>
     <string name="play_queue_stream_detail">Падрабязнасці</string>
     <string name="play_queue_audio_settings">Налады аўдыё</string>

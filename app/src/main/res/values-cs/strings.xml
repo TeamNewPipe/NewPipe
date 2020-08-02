@@ -234,8 +234,6 @@ otevření ve vyskakovacím okně</string>
     <string name="trending">Trendy</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nové &amp; hot</string>
-    <string name="title_activity_background_player">Přehrávač na pozadí</string>
-    <string name="title_activity_popup_player">Přehrávač v okně</string>
     <string name="play_queue_remove">Odebrat</string>
     <string name="play_queue_stream_detail">Podrobnosti</string>
     <string name="play_queue_audio_settings">Nastavení zvuku</string>

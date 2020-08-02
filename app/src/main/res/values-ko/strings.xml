@@ -230,8 +230,6 @@
     <string name="trending">인기 급상승</string>
     <string name="top_50">탑 50</string>
     <string name="new_and_hot">신작 &amp; 뜨는 동영상</string>
-    <string name="title_activity_background_player">백그라운드 플레이어</string>
-    <string name="title_activity_popup_player">팝업 플레이어</string>
     <string name="play_queue_remove">제거</string>
     <string name="play_queue_stream_detail">상세 정보</string>
     <string name="play_queue_audio_settings">오디오 설정</string>
