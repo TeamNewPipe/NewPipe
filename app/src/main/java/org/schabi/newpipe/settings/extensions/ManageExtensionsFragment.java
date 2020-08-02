@@ -38,11 +38,26 @@ import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.security.CodeSigner;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -161,6 +176,42 @@ public class ManageExtensionsFragment extends Fragment {
         }
 
         try {
+            final File tmpFile = new File(path + "tmp.jar");
+            tmpFile.createNewFile();
+
+            final InputStream inFile = new SharpInputStream(file.getStream());
+            final FileOutputStream outFile = new FileOutputStream(tmpFile);
+            final byte[] data = new byte[2048];
+            int count;
+            while ((count = inFile.read(data)) != -1) {
+                outFile.write(data, 0, count);
+            }
+            outFile.close();
+
+            final JarFile jarFile = new JarFile(tmpFile);
+            final JarEntry jarEntry = jarFile.getJarEntry("classes.dex");
+            final InputStream entryStream = jarFile.getInputStream(jarEntry);
+            while (entryStream.read(data) != -1) {
+                // Stream needs to be fully read or else the signing certificate will be null
+                continue;
+            }
+            final X509Certificate certificate = getSigningCertFromJar(jarEntry);
+
+            final File fingerprintFile = new File(path + "fingerprint.txt");
+            if (fingerprintFile.exists()) {
+                final BufferedReader reader = new BufferedReader(new FileReader(fingerprintFile));
+                final String prevFingerprint = reader.readLine();
+                reader.close();
+                verifySigningCertificate(certificate, prevFingerprint);
+            } else {
+                fingerprintFile.createNewFile();
+                final BufferedWriter writer = new BufferedWriter(new FileWriter(fingerprintFile));
+                writer.write(calcFingerprint(certificate.getEncoded()));
+                writer.close();
+            }
+
+            tmpFile.delete();
+
             ZipHelper.extractFileFromZip(file, path + "about.json", "about.json");
             ZipHelper.extractFileFromZip(file, path + "classes.dex", "classes.dex");
             ZipHelper.extractFileFromZip(file, path + "icon.png", "icon.png");
@@ -173,8 +224,67 @@ public class ManageExtensionsFragment extends Fragment {
         updateExtensionList();
     }
 
+    private static X509Certificate getSigningCertFromJar(final JarEntry jarEntry) throws Exception {
+        final CodeSigner[] codeSigners = jarEntry.getCodeSigners();
+        if (codeSigners == null || codeSigners.length == 0) {
+            throw new Exception("No signature found in extension");
+        }
+        // We could in theory support more than 1, but as of now we do not
+        if (codeSigners.length > 1) {
+            throw new Exception("Extension must be signed by a single code signer");
+        }
+        final List<? extends Certificate> certs
+                = codeSigners[0].getSignerCertPath().getCertificates();
+        if (certs.size() != 1) {
+            throw new Exception("Extension code signers must only have a single certificate");
+        }
+        return (X509Certificate) certs.get(0);
+    }
+
+    private void verifySigningCertificate(final X509Certificate rawCertFromJar,
+                                          final String previousFingerprint) throws Exception {
+        final byte[] encodedCert;
+        try {
+            encodedCert = rawCertFromJar.getEncoded();
+        } catch (CertificateEncodingException e) {
+            throw new Exception("Certificate encoding is invalid", e);
+        }
+        if (encodedCert == null || encodedCert.length == 0) {
+            throw new Exception("Could not find a signing certificate");
+        }
+
+        final String fingerprintFromJar = calcFingerprint(encodedCert);
+        if (!previousFingerprint.equalsIgnoreCase(fingerprintFromJar)) {
+            throw new Exception("Supplied certificate fingerprint does not match");
+        }
+    }
+
+    private static String calcFingerprint(final byte[] key) throws Exception {
+        if (key == null) {
+            throw new Exception("Key is null");
+        }
+        if (key.length < 256) {
+            throw new Exception("Key was shorter than 256 bytes (" + key.length + "), "
+                    + "cannot be valid!");
+        }
+        try {
+            // keytool -list -v gives you the SHA-256 fingerprint
+            final MessageDigest digest = MessageDigest.getInstance("sha256");
+            digest.update(key);
+            final byte[] fingerprint = digest.digest();
+            final Formatter formatter = new Formatter(new StringBuilder());
+            for (final byte aFingerprint : fingerprint) {
+                formatter.format("%02X", aFingerprint);
+            }
+            final String ret = formatter.toString();
+            formatter.close();
+            return ret;
+        } catch (NoSuchAlgorithmException e) {
+            throw new Exception("Unable to get certificate fingerprint", e);
+        }
+    }
+
     private void updateExtensionList() {
-        System.err.println("updateExtensionList");
         extensionList.clear();
 
         final String path = getActivity().getApplicationInfo().dataDir + "/extensions/";
@@ -302,9 +412,8 @@ public class ManageExtensionsFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(
-                @NonNull final ExtensionViewHolder holder,
-                final int position) {
+        public void onBindViewHolder(@NonNull final ExtensionViewHolder holder,
+                                     final int position) {
             holder.bind(position, holder);
         }
 
