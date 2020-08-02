@@ -143,7 +143,11 @@ public class App extends Application {
                 final Class<StreamingService> serviceClass
                         = (Class<StreamingService>) pathClassLoader.loadClass(className);
 
-                ServiceList.addService(serviceClass);
+                if (about.has("replaces")) {
+                    ServiceList.replaceService(serviceClass, about.getInt("replaces"));
+                } else {
+                    ServiceList.addService(serviceClass);
+                }
             } catch (Exception ignored) { }
         }
     }

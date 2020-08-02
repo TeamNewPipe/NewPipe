@@ -25,6 +25,7 @@ import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -211,6 +212,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                                         .equals(BuildConfig.VERSION_NAME)) {
                                     throw new IOException(
                                             "Extension is for different NewPipe version");
+                                }
+                                if (jsonObject.has("replaces")
+                                        && jsonObject.getInt("replaces")
+                                        >= ServiceList.builtinServices) {
+                                    throw new IOException(
+                                            "Extension replaces not existing service");
                                 }
                                 name = jsonObject.getString("name");
                                 author = jsonObject.getString("author");
