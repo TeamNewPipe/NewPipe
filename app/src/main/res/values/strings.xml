@@ -188,7 +188,7 @@
     <string name="export_data_title">Export database</string>
     <string name="import_data_summary">Overrides your current history and subscriptions</string>
     <string name="export_data_summary">Export history, subscriptions and playlists</string>
-    <string name="add_extension_title">Add extension</string>
+    <string name="manage_extensions_title">Manage extensions</string>
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
@@ -420,6 +420,7 @@
     <string name="add_extension_dialog">Do you want to install extension \"%1$s\" from \"%2$s\"? Only install extensions that you trust.</string>
     <string name="add_extension_fail">Installation of the extension failed.</string>
     <string name="add_extension_success">Installation of the extension was successful. Please restart NewPipe.</string>
+    <string name="remove_extension_success">Removal of the extension was successful. Please restart NewPipe.</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
     <string name="localization_changes_requires_app_restart">The language will change once the app is restarted.</string>
     <!-- Kiosk Names -->

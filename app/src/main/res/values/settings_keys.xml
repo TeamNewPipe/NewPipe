@@ -229,7 +229,7 @@
     <string name="import_data" translatable="false">import_data</string>
     <string name="export_data" translatable="false">export_data</string>
 
-    <string name="add_extension" translatable="false">add_extension</string>
+    <string name="manage_extensions" translatable="false">manage_extensions</string>
 
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 

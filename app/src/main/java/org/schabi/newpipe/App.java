@@ -29,6 +29,7 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.settings.extensions.ManageExtensionsFragment;
 import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -121,19 +122,33 @@ public class App extends Application {
         }
         for (final String extension : dir.list()) {
             try {
+                // Delete incomplete extensions
+                final File extensionDir = new File(path + extension);
+                boolean hasAbout = false;
+                boolean hasClasses = false;
+                boolean hasIcon = false;
+                for (final String file : extensionDir.list()) {
+                    if (file.equals("about.json")) {
+                        hasAbout = true;
+                    } else if (file.equals("classes.dex")) {
+                        hasClasses = true;
+                    } else if (file.equals("icon.png")) {
+                        hasIcon = true;
+                    }
+                }
+                if (!hasAbout || !hasClasses || !hasIcon) {
+                    ManageExtensionsFragment.removeExtension(path + extension);
+                }
+
                 final FileInputStream aboutStream = new FileInputStream(new File(
                         path + extension + "/about.json"));
                 final JsonObject about = JsonParser.object().from(aboutStream);
                 final String className = about.getString("class");
                 final String version = about.getString("version");
 
+                // Delete extensions for different NewPipe versions
                 if (!version.equals(BuildConfig.VERSION_NAME)) {
-                    // Delete extensions for different NewPipe versions
-                    final File extensionDir = new File(path + extension);
-                    for (final File file : extensionDir.listFiles()) {
-                        file.delete();
-                    }
-                    extensionDir.delete();
+                    ManageExtensionsFragment.removeExtension(path + extension);
                     continue;
                 }
 

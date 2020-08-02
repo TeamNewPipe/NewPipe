@@ -98,8 +98,9 @@
 
     <Preference
         app:iconSpaceReserved="false"
-        android:key="@string/add_extension"
-        android:title="@string/add_extension_title"/>
+        android:fragment="org.schabi.newpipe.settings.extensions.ManageExtensionsFragment"
+        android:key="@string/manage_extensions"
+        android:title="@string/manage_extensions_title"/>
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"

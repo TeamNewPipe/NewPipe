@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="3dp"
+    android:focusable="true"
+    android:minHeight="?listPreferredItemHeightSmall"
+    android:orientation="horizontal"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/extension_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            tools:ignore="ContentDescription,RtlHardcoded"
+            tools:src="?attr/ic_kiosk_hot" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toLeftOf="@+id/handle"
+            android:layout_toRightOf="@+id/extension_icon"
+            android:layout_centerVertical="true"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:id="@+id/extension_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="3dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textAppearance="?textAppearanceListItem"
+                tools:text="Lorem ipsum dolor sit amet" />
+
+            <TextView
+                android:id="@+id/extension_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="6dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textAppearance="?textAppearanceListItemSecondary"
+                tools:text="Lorem ipsum dolor sit amet" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="12dp"
+            app:srcCompat="?attr/ic_drag_handle"
+            tools:ignore="RtlHardcoded" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
