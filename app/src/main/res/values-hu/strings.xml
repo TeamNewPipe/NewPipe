@@ -388,4 +388,18 @@
     <string name="enable_playback_resume_title">Lejátszás folytatása</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Megjeleníti a videó bélyegképét a képernyőzáron, amikor a háttér lejátszó van használva</string>
     <string name="download_choose_new_path">Változtasd meg a letöltési helyet, hogy érvénybe lépjen</string>
+    <string name="app_update_notification_channel_description">"Jelentés új NewPipe verzióról "</string>
+    <string name="app_update_notification_channel_name">Alkalmazás-frissítés jelzése</string>
+    <string name="file_deleted">File törölve</string>
+    <string name="settings_category_updates_title">Frissítések</string>
+    <string name="show_hold_to_append_summary">Tipp mutatása háttér vagy felbukkanó gomb megnyomásakor a videó részletei oldalon</string>
+    <string name="autoplay_title">Automatikus lejátszás</string>
+    <string name="settings_category_clear_data_title">Adatok törlése</string>
+    <string name="enable_playback_state_lists_summary">Lejátszási pozíciók mutatása a listákban</string>
+    <string name="enable_playback_state_lists_title">Pozíciók a listákban</string>
+    <string name="player_gesture_controls_summary">Gesztusvezérlés használata hangerő és fényerő szabályzásra</string>
+    <string name="brightness_gesture_control_summary">Gesztusvezérlés használata fényerő szabályzásra</string>
+    <string name="brightness_gesture_control_title">Fényerő gesztus</string>
+    <string name="volume_gesture_control_summary">Gesztusvezérlés használata hangerő szabályzásra</string>
+    <string name="volume_gesture_control_title">Hangerő gesztus</string>
 </resources>
