@@ -6,8 +6,6 @@ assignees: ''
 
 ---
 
-# We have fixed the decrpytion exception and a new release is on its wait. Please do not report the bug, that no videos can be played.
-If you are about to report something else, please remove this and the above line. Thank you :)
 <!--
 Oh no, a bug! It happens. Thanks for reporting an issue with NewPipe. If this is your first bug report, read the following information before proceeding:
 
