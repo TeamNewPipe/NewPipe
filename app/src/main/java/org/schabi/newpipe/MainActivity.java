@@ -348,9 +348,9 @@ public class MainActivity extends AppCompatActivity {
             final String title = s.getServiceInfo().getName()
                     + (ServiceHelper.isBeta(s) ? " (beta)" : "");
 
-            MenuItem menuItem = drawerItems.getMenu()
+            final MenuItem menuItem = drawerItems.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
-                    .setIcon(ServiceHelper.getIcon(s.getServiceId()));
+                    .setIcon(ServiceHelper.getIconDrawable(s.getServiceId(), this));
 
             // peertube specifics
             if (s.getServiceId() == 3) {
@@ -471,7 +471,8 @@ public class MainActivity extends AppCompatActivity {
             final String selectedServiceName = NewPipe.getService(selectedServiceId)
                     .getServiceInfo().getName();
             headerServiceView.setText(selectedServiceName);
-            headerServiceIcon.setImageResource(ServiceHelper.getIcon(selectedServiceId));
+            headerServiceIcon.setImageDrawable(ServiceHelper.getIconDrawable(selectedServiceId,
+                    this));
 
             headerServiceView.post(() -> headerServiceView.setSelected(true));
             toggleServiceButton.setContentDescription(

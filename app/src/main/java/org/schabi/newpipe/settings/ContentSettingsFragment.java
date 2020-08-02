@@ -238,10 +238,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
                             .show();
                 }
+                final String nname = name; // lambda args need to be final
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage(getString(R.string.add_extension_dialog, name, author))
                         .setPositiveButton(R.string.finish,
-                                (DialogInterface d, int id) -> addExtension(file))
+                                (DialogInterface d, int id) -> addExtension(file, nname))
                         .setNegativeButton(R.string.cancel,
                                 (DialogInterface d, int id) -> d.cancel());
                 builder.create().show();
@@ -351,9 +352,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void addExtension(final StoredFileHelper file) {
-        final String path = getActivity().getApplicationInfo().dataDir + "/extensions/"
-                + file.getName() + "/";
+    private void addExtension(final StoredFileHelper file, final String name) {
+        final String path = getActivity().getApplicationInfo().dataDir + "/extensions/" + name
+                + "/";
 
         final File dir = new File(path);
         if (!dir.exists()) {

@@ -2,6 +2,8 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 
 import androidx.annotation.DrawableRes;
@@ -41,6 +43,18 @@ public final class ServiceHelper {
             default:
                 return R.drawable.place_holder_circle;
         }
+    }
+
+    public static Drawable getIconDrawable(final int serviceId, final Context context) {
+        if (serviceId >= ServiceList.builtinServices) {
+            try {
+                final String name = NewPipe.getService(serviceId).getServiceInfo().getName();
+                final String path = context.getApplicationInfo().dataDir + "/extensions/" + name
+                        + "/icon.png";
+                return new BitmapDrawable(context.getResources(), path);
+            } catch (ExtractionException ignored) { }
+        }
+        return context.getResources().getDrawable(getIcon(serviceId));
     }
 
     public static String getTranslatedFilterString(final String filter, final Context c) {
