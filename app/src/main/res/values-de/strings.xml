@@ -617,7 +617,7 @@
     <string name="video_detail_by">Von %s</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Nur nicht gruppierte Abonnements anzeigen</string>
     <string name="playlist_page_summary">Playlist-Seite</string>
-    <string name="no_playlist_bookmarked_yet">Keine Playlist Bookmarks bis jetzt</string>
+    <string name="no_playlist_bookmarked_yet">Bisher keine Lesezeichen für Wiedergabelisten</string>
     <string name="select_a_playlist">Playlist auswählen</string>
     <string name="error_report_open_github_notice">Bitte überprüfen Sie, ob es schon Fragen zu diesem Thema gibt. Doppelt erstellte Tickets kosten uns Zeit, die wir nutzen könnten, um diesen Fehler zu beheben.</string>
     <string name="search_showing_result_for">Zeige Ergebnisse für: %s</string>
