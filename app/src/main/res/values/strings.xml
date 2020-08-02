@@ -678,4 +678,9 @@
     <string name="sponsorblock_notifications_summary">Show a toast notification when a sponsor is automatically skipped.</string>
     <string name="sponsorblock_privacy_title">View Privacy Policy</string>
     <string name="sponsorblock_privacy_summary">View SponsorBlock\'s privacy policy.</string>
+    <string name="sponsorblock_api_url_help_text">This is the URL that will be queried when the application needs to know which parts of a video to skip.\n\nYou can set the official URL by clicking the \'Use Official\' option below, though it is highly recommended you view SponsorBlock\'s privacy policy before you do.</string>
+    <string name="sponsorblock_privacy_policy_text">SponsorBlock Privacy Policy</string>
+    <string name="sponsorblock_homepage_url">https://sponsor.ajay.app/</string>
+    <string name="sponsorblock_default_api_url">https://sponsor.ajay.app/api/</string>
+    <string name="sponsorblock_privacy_policy_url">https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796</string>
 </resources>

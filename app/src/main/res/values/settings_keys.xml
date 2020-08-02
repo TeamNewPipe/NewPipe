@@ -241,7 +241,7 @@
 
     <string name="sponsorblock_home_page" translatable="false">sponsorblock_home_page</string>
     <string name="sponsorblock_enable" translatable="false">sponsorblock_enable</string>
-    <string name="sponsorblock_api_url" translatable="false">sponsorblock_custom_api_url</string>
+    <string name="sponsorblock_api_url" translatable="false">sponsorblock_api_url</string>
     <string name="sponsorblock_notifications" translatable="false">sponsorblock_notifications</string>
     <string name="sponsorblock_privacy" translatable="false">sponsorblock_privacy</string>
 

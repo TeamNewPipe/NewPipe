@@ -134,7 +134,7 @@
             android:title="@string/sponsorblock_privacy_title"
             app:iconSpaceReserved="false" />
 
-        <EditTextPreference
+        <org.schabi.newpipe.settings.custom.SponsorBlockApiUrlPreference
             android:key="@string/sponsorblock_api_url"
             android:summary="@string/sponsorblock_api_url_summary"
             android:title="@string/sponsorblock_api_url_title"

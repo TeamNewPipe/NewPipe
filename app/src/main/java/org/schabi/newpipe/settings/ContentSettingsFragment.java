@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -143,7 +144,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         Preference sponsorBlockWebsitePreference =
                 findPreference(getString(R.string.sponsorblock_home_page));
         sponsorBlockWebsitePreference.setOnPreferenceClickListener((Preference p) -> {
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sponsor.ajay.app/"));
+            Intent i = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(getString(R.string.sponsorblock_homepage_url)));
             startActivity(i);
             return true;
         });
@@ -152,12 +154,46 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 findPreference(getString(R.string.sponsorblock_privacy));
         sponsorBlockPrivacyPreference.setOnPreferenceClickListener((Preference p) -> {
             Intent i = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(
-                            "https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796"
-                                    + "#requests-sent-to-the-server-while-using-the-extension"));
+                    Uri.parse(getString(R.string.sponsorblock_privacy_policy_url)));
             startActivity(i);
             return true;
         });
+
+        Preference sponsorBlockApiUrlPreference =
+                findPreference(getString(R.string.sponsorblock_api_url));
+
+        // workaround to force dependency updates due to using a custom preference
+        sponsorBlockApiUrlPreference
+                .setOnPreferenceChangeListener((preference, newValue) -> {
+                    findPreference(getString(R.string.sponsorblock_enable))
+                            .onDependencyChanged(preference,
+                                    newValue == null || newValue.equals(""));
+                    findPreference(getString(R.string.sponsorblock_notifications))
+                            .onDependencyChanged(preference,
+                                    newValue == null || newValue.equals(""));
+                    return true;
+                });
+    }
+
+    @Override
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // workaround to force dependency updates due to using a custom preference
+        Preference sponsorBlockApiUrlPreference =
+                findPreference(getString(R.string.sponsorblock_api_url));
+        String sponsorBlockApiUrlPreferenceValue =
+                getPreferenceManager()
+                        .getSharedPreferences()
+                        .getString(getString(R.string.sponsorblock_api_url), null);
+        findPreference(getString(R.string.sponsorblock_enable))
+                .onDependencyChanged(sponsorBlockApiUrlPreference,
+                        sponsorBlockApiUrlPreferenceValue == null
+                                || sponsorBlockApiUrlPreferenceValue.equals(""));
+        findPreference(getString(R.string.sponsorblock_notifications))
+                .onDependencyChanged(sponsorBlockApiUrlPreference,
+                        sponsorBlockApiUrlPreferenceValue == null
+                                || sponsorBlockApiUrlPreferenceValue.equals(""));
     }
 
     @Override
