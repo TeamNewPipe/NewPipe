@@ -105,7 +105,7 @@
     <string name="add">Új küldetés</string>
     <string name="channel_unsubscribed">Csatornáról leiratkozva</string>
     <string name="subscription_change_failed">Nem sikerült megváltoztatni a feliratkozást</string>
-    <string name="subscription_update_failed">"Nem sikerült frissíteni a feliratkozást "</string>
+    <string name="subscription_update_failed">Nem sikerült frissíteni a feliratkozást</string>
     <string name="tab_main">Főoldal</string>
     <string name="tab_subscriptions">Feliratkozások</string>
     <string name="tab_bookmarks">Könyvjelzőzött lejátszási listák</string>
@@ -131,7 +131,7 @@
     <string name="enable_search_history_title">Keresési előzmények</string>
     <string name="enable_watch_history_title">Előzmények</string>
     <string name="enable_watch_history_summary">Megnézett videók nyomon követése</string>
-    <string name="resume_on_audio_focus_gain_summary">"Lejátszás folytatása félbeszakítás után (pl.: telefonhívás) "</string>
+    <string name="resume_on_audio_focus_gain_summary">Lejátszás folytatása félbeszakítás után (pl.: telefonhívás)</string>
     <string name="settings_category_player_title">Lejátszó</string>
     <string name="settings_category_player_behavior_title">Működés</string>
     <string name="settings_category_history_title">Előzmények és gyorsítótár</string>
