@@ -125,6 +125,17 @@ public class App extends Application {
                         path + extension + "/about.json"));
                 final JsonObject about = JsonParser.object().from(aboutStream);
                 final String className = about.getString("class");
+                final String version = about.getString("version");
+
+                if (!version.equals(BuildConfig.VERSION_NAME)) {
+                    // Delete extensions for different NewPipe versions
+                    final File extensionDir = new File(path + extension);
+                    for (final File file : extensionDir.listFiles()) {
+                        file.delete();
+                    }
+                    extensionDir.delete();
+                    continue;
+                }
 
                 final String dexPath = path + extension + "/classes.dex";
                 final PathClassLoader pathClassLoader = new PathClassLoader(dexPath,

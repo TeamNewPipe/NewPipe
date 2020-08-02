@@ -20,6 +20,7 @@ import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -206,6 +207,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                             case "about.json":
                                 final JsonObject jsonObject
                                         = JsonParser.object().from(zipInputStream);
+                                if (!jsonObject.getString("version")
+                                        .equals(BuildConfig.VERSION_NAME)) {
+                                    throw new IOException(
+                                            "Extension is for different NewPipe version");
+                                }
                                 name = jsonObject.getString("name");
                                 author = jsonObject.getString("author");
                                 break;
