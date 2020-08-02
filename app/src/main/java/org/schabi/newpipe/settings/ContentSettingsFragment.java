@@ -15,6 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 
+import com.grack.nanojson.JsonObject;
+import com.grack.nanojson.JsonParser;
+import com.grack.nanojson.JsonParserException;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.DownloaderImpl;
@@ -43,6 +46,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
@@ -51,6 +55,7 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_IMPORT_PATH = 8945;
     private static final int REQUEST_EXPORT_PATH = 30945;
+    private static final int REQUEST_ADD_EXTENSION = 32945;
 
     private File databasesDir;
     private File newpipeDb;
@@ -131,6 +136,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     "NewPipeData-" + sdf.format(new Date()) + ".zip"), REQUEST_EXPORT_PATH);
             return true;
         });
+
+        final Preference addExtensionPreference = findPreference(getString(R.string.add_extension));
+        addExtensionPreference.setOnPreferenceClickListener((Preference p) -> {
+            startActivityForResult(StoredFileHelper.getPicker(getContext()), REQUEST_ADD_EXTENSION);
+            return true;
+        });
     }
 
     @Override
@@ -166,17 +177,58 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     + "data = [" + data + "]");
         }
 
-        if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
+        if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH
+                || requestCode == REQUEST_ADD_EXTENSION)
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
             final StoredFileHelper file = new StoredFileHelper(getContext(), data.getData(),
                     "application/zip");
             if (requestCode == REQUEST_EXPORT_PATH) {
                 exportDatabase(file);
-            } else {
+            } else if (requestCode == REQUEST_IMPORT_PATH) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage(R.string.override_current_data)
                         .setPositiveButton(R.string.finish,
                                 (DialogInterface d, int id) -> importDatabase(file))
+                        .setNegativeButton(R.string.cancel,
+                                (DialogInterface d, int id) -> d.cancel());
+                builder.create().show();
+            } else if (requestCode == REQUEST_ADD_EXTENSION) {
+                String name = null;
+                String author = null;
+                // check if file is supported
+                try (ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(
+                        new SharpInputStream(file.getStream())))) {
+                    boolean hasDex = false;
+                    boolean hasIcon = false;
+                    ZipEntry zipEntry;
+                    while ((zipEntry = zipInputStream.getNextEntry()) != null) {
+                        switch (zipEntry.getName()) {
+                            case "about.json":
+                                final JsonObject jsonObject
+                                        = JsonParser.object().from(zipInputStream);
+                                name = jsonObject.getString("name");
+                                author = jsonObject.getString("author");
+                                break;
+                            case "classes.dex":
+                                hasDex = true;
+                                break;
+                            case "icon.png":
+                                hasIcon = true;
+                                break;
+                        }
+                        zipInputStream.closeEntry();
+                    }
+                    if (!hasDex || !hasIcon || name == null || author == null) {
+                        throw new IOException("Invalid zip");
+                    }
+                } catch (IOException | JsonParserException e) {
+                    Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
+                            .show();
+                }
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage(getString(R.string.add_extension_dialog, name, author))
+                        .setPositiveButton(R.string.finish,
+                                (DialogInterface d, int id) -> addExtension(file))
                         .setNegativeButton(R.string.cancel,
                                 (DialogInterface d, int id) -> d.cancel());
                 builder.create().show();
@@ -283,6 +335,26 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             }
         } catch (Exception e) {
             onError(e);
+        }
+    }
+
+    private void addExtension(final StoredFileHelper file) {
+        final String path = getActivity().getApplicationInfo().dataDir + "/extensions/"
+                + file.getName() + "/";
+
+        final File dir = new File(path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        try {
+            ZipHelper.extractFileFromZip(file, path + "about.json", "about.json");
+            ZipHelper.extractFileFromZip(file, path + "classes.dex", "classes.dex");
+            ZipHelper.extractFileFromZip(file, path + "icon.png", "icon.png");
+
+            Toast.makeText(getContext(), R.string.add_extension_success, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getContext(), R.string.add_extension_fail, Toast.LENGTH_SHORT).show();
         }
     }
 

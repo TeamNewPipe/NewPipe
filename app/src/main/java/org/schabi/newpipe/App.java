@@ -12,6 +12,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
+import com.grack.nanojson.JsonObject;
+import com.grack.nanojson.JsonParser;
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -21,6 +23,8 @@ import org.acra.config.ACRAConfigurationException;
 import org.acra.config.CoreConfiguration;
 import org.acra.config.CoreConfigurationBuilder;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -30,12 +34,15 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
 import java.util.Collections;
 import java.util.List;
 
+import dalvik.system.PathClassLoader;
 import io.reactivex.exceptions.CompositeException;
 import io.reactivex.exceptions.MissingBackpressureException;
 import io.reactivex.exceptions.OnErrorNotImplementedException;
@@ -87,6 +94,9 @@ public class App extends Application {
         NewPipe.init(getDownloader(),
                 Localization.getPreferredLocalization(this),
                 Localization.getPreferredContentCountry(this));
+
+        initExtensions();
+
         Localization.init(getApplicationContext());
 
         StateSaver.init(this);
@@ -101,6 +111,30 @@ public class App extends Application {
 
         // Check for new version
         new CheckForNewAppVersionTask().execute();
+    }
+
+    private void initExtensions() {
+        final String path = getApplicationInfo().dataDir + "/extensions/";
+        final File dir = new File(path);
+        if (!dir.exists()) {
+            return;
+        }
+        for (final String extension : dir.list()) {
+            try {
+                final FileInputStream aboutStream = new FileInputStream(new File(
+                        path + extension + "/about.json"));
+                final JsonObject about = JsonParser.object().from(aboutStream);
+                final String className = about.getString("class");
+
+                final String dexPath = path + extension + "/classes.dex";
+                final PathClassLoader pathClassLoader = new PathClassLoader(dexPath,
+                        getClassLoader());
+                final Class<StreamingService> serviceClass
+                        = (Class<StreamingService>) pathClassLoader.loadClass(className);
+
+                ServiceList.addService(serviceClass);
+            } catch (Exception ignored) { }
+        }
     }
 
     protected Downloader getDownloader() {

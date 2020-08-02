@@ -55,6 +55,7 @@ public final class KioskTranslator {
             case "Top 50":
             case "New & hot":
             case "conferences":
+            default:
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_hot);
             case "Local":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_local);
@@ -62,8 +63,6 @@ public final class KioskTranslator {
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_recent);
             case "Most liked":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_thumb_up);
-            default:
-                return 0;
         }
     }
 }
