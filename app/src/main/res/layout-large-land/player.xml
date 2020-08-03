@@ -465,7 +465,7 @@
             android:layout_height="60dp"
             android:id="@+id/playQueueControl">
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/playQueueClose"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

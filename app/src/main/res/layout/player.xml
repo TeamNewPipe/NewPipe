@@ -86,7 +86,7 @@
                     android:gravity="top"
                     tools:ignore="RtlHardcoded">
 
-                    <ImageButton
+                    <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/playerCloseButton"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
@@ -95,7 +95,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:scaleType="fitXY"
-                        android:src="?attr/ic_close"
+                        app:srcCompat="?attr/ic_close"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         tools:ignore="ContentDescription,RtlHardcoded"
                         android:visibility="gone" />
