@@ -31,7 +31,9 @@ import com.grack.nanojson.JsonParser;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.streams.io.SharpInputStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.ZipHelper;
@@ -60,6 +62,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import dalvik.system.PathClassLoader;
 
 public class ManageExtensionsFragment extends Fragment {
     private static final int REQUEST_ADD_EXTENSION = 32945;
@@ -111,6 +115,7 @@ public class ManageExtensionsFragment extends Fragment {
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
             final StoredFileHelper file = new StoredFileHelper(getContext(), data.getData(),
                     "application/zip");
+            JsonObject about = null;
             String name = null;
             String author = null;
             final String fingerprint;
@@ -125,21 +130,18 @@ public class ManageExtensionsFragment extends Fragment {
                 while ((zipEntry = zipInputStream.getNextEntry()) != null) {
                     switch (zipEntry.getName()) {
                         case "about.json":
-                            final JsonObject jsonObject
-                                    = JsonParser.object().from(zipInputStream);
-                            if (!jsonObject.getString("version")
+                            about = JsonParser.object().from(zipInputStream);
+                            if (!about.getString("version")
                                     .equals(BuildConfig.VERSION_NAME)) {
-                                throw new IOException(
-                                        "Extension is for different NewPipe version");
+                                throw new Exception("Extension is for different NewPipe version");
                             }
-                            if (jsonObject.has("replaces")
-                                    && jsonObject.getInt("replaces")
+                            if (about.has("replaces")
+                                    && about.getInt("replaces")
                                     >= ServiceList.builtinServices) {
-                                throw new IOException(
-                                        "Extension replaces not existing service");
+                                throw new Exception("Extension replaces not existing service");
                             }
-                            name = jsonObject.getString("name");
-                            author = jsonObject.getString("author");
+                            name = about.getString("name");
+                            author = about.getString("author");
                             break;
                         case "classes.dex":
                             hasDex = true;
@@ -188,11 +190,12 @@ public class ManageExtensionsFragment extends Fragment {
                 return;
             }
 
+            final JsonObject aabout = about;
             final android.app.AlertDialog.Builder builder
                     = new android.app.AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.add_extension_dialog, name, author, fingerprint))
                     .setPositiveButton(R.string.finish, (DialogInterface d, int id) -> {
-                        addExtension(path, tmpFile);
+                        addExtension(path, tmpFile, aabout);
                     })
                     .setNegativeButton(R.string.cancel, (DialogInterface d, int id) -> {
                         removeExtension(path);
@@ -202,7 +205,7 @@ public class ManageExtensionsFragment extends Fragment {
         }
     }
 
-    private void addExtension(final String path, final File tmpFile) {
+    private void addExtension(final String path, final File tmpFile, final JsonObject about) {
         try {
             final JarFile jarFile = new JarFile(tmpFile);
 
@@ -233,14 +236,30 @@ public class ManageExtensionsFragment extends Fragment {
             }
 
             final InputStream tmpFileStream = new FileInputStream(tmpFile);
-
             if (!ZipHelper.extractFilesFromZip(tmpFileStream, Arrays.asList(path + "about.json",
                     path + "classes.dex", path + "icon.png"), Arrays.asList("about.json",
                     "classes.dex", "icon.png"))) {
                 throw new Exception("Not all files have been extracted successfully");
             }
-
             tmpFile.delete();
+
+            final String dexPath = path + "classes.dex";
+            final PathClassLoader pathClassLoader = new PathClassLoader(dexPath,
+                    getClass().getClassLoader());
+            final Class<?> serviceClass = pathClassLoader.loadClass(about.getString("class"));
+            if (!StreamingService.class.isAssignableFrom(serviceClass)) {
+                throw new Exception("Class does not extend StreamingService");
+            }
+            final StreamingService service = ((Class<StreamingService>) serviceClass)
+                    .getConstructor(new Class[]{int.class}).newInstance(-1);
+            if (!service.getServiceInfo().getName().equals(about.getString("name"))) {
+                throw new Exception("Service name does not equal extension name");
+            }
+
+            if (about.has("replaces") && !NewPipe.getNameOfService(about.getInt("replaces"))
+                    .equals(about.getString("name"))) {
+                throw new Exception("Replaced service name does not equal extension name");
+            }
 
             Toast.makeText(getContext(), R.string.add_extension_success, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
