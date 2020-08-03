@@ -40,6 +40,7 @@
     <attr name="ic_backup" format="reference"/>
     <attr name="ic_add" format="reference"/>
     <attr name="ic_restore_defaults" format="reference"/>
+    <attr name="ic_fingerprint" format="reference"/>
     <attr name="ic_blank_page" format="reference"/>
     <attr name="ic_refresh" format="reference"/>
     <attr name="ic_list" format="reference"/>

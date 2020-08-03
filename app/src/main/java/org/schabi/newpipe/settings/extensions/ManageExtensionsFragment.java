@@ -8,7 +8,11 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,6 +39,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.streams.io.SharpInputStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -43,6 +49,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -50,6 +57,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class ManageExtensionsFragment extends Fragment {
+    private static final int MENU_ITEM_FINGERPRINTS = 32944;
     private static final int REQUEST_ADD_EXTENSION = 32945;
 
     private final List<Extension> extensionList = new ArrayList<>();
@@ -60,6 +68,8 @@ public class ManageExtensionsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         updateExtensionList();
+
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -91,6 +101,32 @@ public class ManageExtensionsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         updateTitle();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        final MenuItem fingerprintItem = menu.add(Menu.NONE, MENU_ITEM_FINGERPRINTS, Menu.NONE,
+                R.string.manage_fingerprints_title);
+        fingerprintItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        final int restoreIcon = ThemeHelper.resolveResourceIdFromAttr(requireContext(),
+                R.attr.ic_fingerprint);
+        fingerprintItem.setIcon(AppCompatResources.getDrawable(requireContext(), restoreIcon));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        if (item.getItemId() == MENU_ITEM_FINGERPRINTS) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_holder, new ManageFingerprintsFragment())
+                    .addToBackStack(null)
+                    .commit();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -170,6 +206,12 @@ public class ManageExtensionsFragment extends Fragment {
                 final X509Certificate certificate
                         = ExtensionManager.getSigningCertFromJar(jarEntry);
                 fingerprint = ExtensionManager.calcFingerprint(certificate.getEncoded());
+
+                if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getStringSet(
+                        getString(R.string.fingerprints_key), new HashSet<>())
+                        .contains(fingerprint)) {
+                    throw new ExtensionManager.UnknownSignatureException();
+                }
             } catch (Exception e) {
                 Toast.makeText(getContext(), R.string.invalid_extension, Toast.LENGTH_SHORT).show();
                 return;

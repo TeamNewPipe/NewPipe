@@ -55,6 +55,7 @@
         <item name="ic_backup">@drawable/ic_backup_black_24dp</item>
         <item name="ic_add">@drawable/ic_add_black_24dp</item>
         <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_black_24dp</item>
+        <item name="ic_fingerprint">@drawable/ic_fingerprint_black_24dp</item>
         <item name="ic_blank_page">@drawable/ic_crop_portrait_black_24dp</item>
         <item name="ic_list">@drawable/ic_list_black_24dp</item>
         <item name="ic_grid">@drawable/ic_apps_black_24dp</item>
@@ -161,6 +162,7 @@
         <item name="ic_backup">@drawable/ic_backup_white_24dp</item>
         <item name="ic_add">@drawable/ic_add_white_24dp</item>
         <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_white_24dp</item>
+        <item name="ic_fingerprint">@drawable/ic_fingerprint_white_24dp</item>
         <item name="ic_blank_page">@drawable/ic_crop_portrait_white_24dp</item>
         <item name="ic_list">@drawable/ic_list_white_24dp</item>
         <item name="ic_grid">@drawable/ic_apps_white_24dp</item>

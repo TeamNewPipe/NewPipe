@@ -196,4 +196,10 @@ public final class ExtensionManager {
             super();
         }
     }
+
+    public static class UnknownSignatureException extends Exception {
+        UnknownSignatureException() {
+            super();
+        }
+    }
 }

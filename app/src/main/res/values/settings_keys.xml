@@ -230,6 +230,7 @@
     <string name="export_data" translatable="false">export_data</string>
 
     <string name="manage_extensions" translatable="false">manage_extensions</string>
+    <string name="fingerprints_key" translatable="false">fingerprints_key</string>
 
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 
