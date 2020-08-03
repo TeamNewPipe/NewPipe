@@ -1,16 +1,18 @@
 package org.schabi.newpipe.util;
 
 import org.schabi.newpipe.streams.io.SharpInputStream;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 /**
  * Created by Christian Schabesberger on 28.01.18.
@@ -72,27 +74,38 @@ public final class ZipHelper {
      */
     public static boolean extractFileFromZip(final StoredFileHelper zipFile, final String file,
                                              final String name) throws Exception {
-        final ZipInputStream inZip = new ZipInputStream(new BufferedInputStream(
-                new SharpInputStream(zipFile.getStream())));
+        return extractFilesFromZip(new SharpInputStream(zipFile.getStream()),
+                Collections.singletonList(file), Collections.singletonList(name));
+    }
+
+    public static boolean extractFilesFromZip(final InputStream inputStream,
+                                              final List<String> files, final List<String> names)
+            throws Exception {
+        if (files.size() != names.size()) {
+            throw new Exception("files and names are not the same length");
+        }
+
+        final ZipInputStream inZip = new ZipInputStream(new BufferedInputStream(inputStream));
 
         final byte[] data = new byte[BUFFER_SIZE];
 
-        boolean found = false;
+        int found = 0;
 
         ZipEntry ze;
         while ((ze = inZip.getNextEntry()) != null) {
-            if (ze.getName().equals(name)) {
-                found = true;
+            if (names.contains(ze.getName())) {
+                found++;
+                final String filename = files.get(names.indexOf(ze.getName()));
                 // delete old file first
-                final File oldFile = new File(file);
+                final File oldFile = new File(filename);
                 if (oldFile.exists()) {
                     if (!oldFile.delete()) {
-                        throw new Exception("Could not delete " + file);
+                        throw new Exception("Could not delete " + filename);
                     }
                 }
 
-                final FileOutputStream outFile = new FileOutputStream(file);
-                int count = 0;
+                final FileOutputStream outFile = new FileOutputStream(filename);
+                int count;
                 while ((count = inZip.read(data)) != -1) {
                     outFile.write(data, 0, count);
                 }
@@ -101,6 +114,6 @@ public final class ZipHelper {
                 inZip.closeEntry();
             }
         }
-        return found;
+        return found == files.size();
     }
 }

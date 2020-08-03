@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
-import com.grack.nanojson.JsonParserException;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
@@ -54,6 +53,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Formatter;
 import java.util.List;
 import java.util.jar.JarEntry;
@@ -113,6 +113,9 @@ public class ManageExtensionsFragment extends Fragment {
                     "application/zip");
             String name = null;
             String author = null;
+            final String fingerprint;
+            final String path;
+            final File tmpFile;
             // check if file is supported
             try (ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(
                     new SharpInputStream(file.getStream())))) {
@@ -150,74 +153,99 @@ public class ManageExtensionsFragment extends Fragment {
                 if (!hasDex || !hasIcon || name == null || author == null) {
                     throw new IOException("Invalid zip");
                 }
-            } catch (IOException | JsonParserException e) {
-                Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
-                        .show();
+
+                path = getActivity().getApplicationInfo().dataDir + "/extensions/" + name + "/";
+
+                final File dir = new File(path);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                tmpFile = new File(path + "tmp.jar");
+                tmpFile.createNewFile();
+
+                final InputStream inFile = new SharpInputStream(file.getStream());
+                final FileOutputStream outFile = new FileOutputStream(tmpFile);
+                final byte[] buf = new byte[2048];
+                int count;
+                while ((count = inFile.read(buf)) != -1) {
+                    outFile.write(buf, 0, count);
+                }
+                outFile.close();
+
+                final JarFile jarFile = new JarFile(tmpFile);
+
+                final JarEntry jarEntry = jarFile.getJarEntry("about.json");
+                final InputStream entryStream = jarFile.getInputStream(jarEntry);
+                while (entryStream.read(buf) != -1) {
+                    // Stream needs to be fully read or else the signing certificate will be null
+                    continue;
+                }
+                final X509Certificate certificate = getSigningCertFromJar(jarEntry);
+                fingerprint = calcFingerprint(certificate.getEncoded());
+            } catch (Exception e) {
+                Toast.makeText(getContext(), R.string.invalid_extension, Toast.LENGTH_SHORT).show();
+                return;
             }
-            final String nname = name; // lambda args need to be final
+
             final android.app.AlertDialog.Builder builder
                     = new android.app.AlertDialog.Builder(getActivity());
-            builder.setMessage(getString(R.string.add_extension_dialog, name, author))
-                    .setPositiveButton(R.string.finish,
-                            (DialogInterface d, int id) -> addExtension(file, nname))
-                    .setNegativeButton(R.string.cancel,
-                            (DialogInterface d, int id) -> d.cancel());
+            builder.setMessage(getString(R.string.add_extension_dialog, name, author, fingerprint))
+                    .setPositiveButton(R.string.finish, (DialogInterface d, int id) -> {
+                        addExtension(path, tmpFile);
+                    })
+                    .setNegativeButton(R.string.cancel, (DialogInterface d, int id) -> {
+                        removeExtension(path);
+                        d.cancel();
+                    });
             builder.create().show();
         }
     }
 
-    private void addExtension(final StoredFileHelper file, final String name) {
-        final String path = getActivity().getApplicationInfo().dataDir + "/extensions/" + name
-                + "/";
-
-        final File dir = new File(path);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-
+    private void addExtension(final String path, final File tmpFile) {
         try {
-            final File tmpFile = new File(path + "tmp.jar");
-            tmpFile.createNewFile();
-
-            final InputStream inFile = new SharpInputStream(file.getStream());
-            final FileOutputStream outFile = new FileOutputStream(tmpFile);
-            final byte[] data = new byte[2048];
-            int count;
-            while ((count = inFile.read(data)) != -1) {
-                outFile.write(data, 0, count);
-            }
-            outFile.close();
-
             final JarFile jarFile = new JarFile(tmpFile);
-            final JarEntry jarEntry = jarFile.getJarEntry("classes.dex");
-            final InputStream entryStream = jarFile.getInputStream(jarEntry);
-            while (entryStream.read(data) != -1) {
-                // Stream needs to be fully read or else the signing certificate will be null
-                continue;
-            }
-            final X509Certificate certificate = getSigningCertFromJar(jarEntry);
 
-            final File fingerprintFile = new File(path + "fingerprint.txt");
-            if (fingerprintFile.exists()) {
-                final BufferedReader reader = new BufferedReader(new FileReader(fingerprintFile));
-                final String prevFingerprint = reader.readLine();
-                reader.close();
-                verifySigningCertificate(certificate, prevFingerprint);
-            } else {
-                fingerprintFile.createNewFile();
-                final BufferedWriter writer = new BufferedWriter(new FileWriter(fingerprintFile));
-                writer.write(calcFingerprint(certificate.getEncoded()));
-                writer.close();
+            final byte[] buf = new byte[2048];
+            for (final String filename : new String[]{"about.json", "classes.dex", "icon.png"}) {
+                final JarEntry jarEntry = jarFile.getJarEntry(filename);
+                final InputStream entryStream = jarFile.getInputStream(jarEntry);
+                while (entryStream.read(buf) != -1) {
+                    // Stream needs to be fully read or else the signing certificate will be null
+                    continue;
+                }
+                final X509Certificate certificate = getSigningCertFromJar(jarEntry);
+
+                final File fingerprintFile = new File(path + "fingerprint.txt");
+                if (fingerprintFile.exists()) {
+                    final BufferedReader reader
+                            = new BufferedReader(new FileReader(fingerprintFile));
+                    final String prevFingerprint = reader.readLine();
+                    reader.close();
+                    verifySigningCertificate(certificate, prevFingerprint);
+                } else {
+                    fingerprintFile.createNewFile();
+                    final BufferedWriter writer
+                            = new BufferedWriter(new FileWriter(fingerprintFile));
+                    writer.write(calcFingerprint(certificate.getEncoded()));
+                    writer.close();
+                }
+            }
+
+            final InputStream tmpFileStream = new FileInputStream(tmpFile);
+
+            if (!ZipHelper.extractFilesFromZip(tmpFileStream, Arrays.asList(path + "about.json",
+                    path + "classes.dex", path + "icon.png"), Arrays.asList("about.json",
+                    "classes.dex", "icon.png"))) {
+                throw new Exception("Not all files have been extracted successfully");
             }
 
             tmpFile.delete();
 
-            ZipHelper.extractFileFromZip(file, path + "about.json", "about.json");
-            ZipHelper.extractFileFromZip(file, path + "classes.dex", "classes.dex");
-            ZipHelper.extractFileFromZip(file, path + "icon.png", "icon.png");
-
             Toast.makeText(getContext(), R.string.add_extension_success, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
+            removeExtension(path);
+
             Toast.makeText(getContext(), R.string.add_extension_fail, Toast.LENGTH_SHORT).show();
         }
 
