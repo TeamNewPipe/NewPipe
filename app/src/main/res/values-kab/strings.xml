@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="tab_new">Iccer amaynut</string>
+    <string name="settings_category_video_audio_title">Tavidyutt akked d imesli</string>
+    <string name="tab_about">Γef</string>
+    <string name="action_about">Γef</string>
+    <string name="feed_create_new_group_button_title">Amaynut</string>
+    <string name="all">Akk</string>
+    <string name="kore_not_found">Sbedd asnas n Kore yexxuṣen\?</string>
+    <string name="install">Sbedd</string>
+    <string name="download_finished_more">%s n isidar id yeffuken</string>
+    <string name="settings_category_downloads_title">Asider</string>
+    <string name="downloads_title">Isidar</string>
+    <string name="downloads">Isidar</string>
+    <string name="settings">Iɣewwaṛen</string>
 </resources>
