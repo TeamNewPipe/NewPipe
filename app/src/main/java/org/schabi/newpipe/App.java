@@ -29,7 +29,7 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.NewPipeSettings;
-import org.schabi.newpipe.settings.extensions.ManageExtensionsFragment;
+import org.schabi.newpipe.settings.extensions.ExtensionManager;
 import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -137,7 +137,7 @@ public class App extends Application {
                     }
                 }
                 if (!hasAbout || !hasClasses || !hasIcon) {
-                    ManageExtensionsFragment.removeExtension(path + extension);
+                    ExtensionManager.removeExtension(path + extension);
                 }
 
                 final FileInputStream aboutStream = new FileInputStream(new File(
@@ -148,7 +148,7 @@ public class App extends Application {
 
                 // Delete extensions for different NewPipe versions
                 if (!version.equals(BuildConfig.VERSION_NAME)) {
-                    ManageExtensionsFragment.removeExtension(path + extension);
+                    ExtensionManager.removeExtension(path + extension);
                     continue;
                 }
 

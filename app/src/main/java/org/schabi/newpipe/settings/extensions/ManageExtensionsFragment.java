@@ -31,39 +31,23 @@ import com.grack.nanojson.JsonParser;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.streams.io.SharpInputStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
-import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.CodeSigner;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateEncodingException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Formatter;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-
-import dalvik.system.PathClassLoader;
 
 public class ManageExtensionsFragment extends Fragment {
     private static final int REQUEST_ADD_EXTENSION = 32945;
@@ -183,8 +167,9 @@ public class ManageExtensionsFragment extends Fragment {
                     // Stream needs to be fully read or else the signing certificate will be null
                     continue;
                 }
-                final X509Certificate certificate = getSigningCertFromJar(jarEntry);
-                fingerprint = calcFingerprint(certificate.getEncoded());
+                final X509Certificate certificate
+                        = ExtensionManager.getSigningCertFromJar(jarEntry);
+                fingerprint = ExtensionManager.calcFingerprint(certificate.getEncoded());
             } catch (Exception e) {
                 Toast.makeText(getContext(), R.string.invalid_extension, Toast.LENGTH_SHORT).show();
                 return;
@@ -206,142 +191,40 @@ public class ManageExtensionsFragment extends Fragment {
             }
 
             builder.setPositiveButton(R.string.finish, (DialogInterface d, int id) -> {
-                addExtension(path, tmpFile, aabout);
+                try {
+                    ExtensionManager.addExtension(getClass().getClassLoader(), path, tmpFile,
+                            aabout);
+                    Toast.makeText(getContext(), R.string.add_extension_success, Toast.LENGTH_SHORT)
+                            .show();
+                } catch (IOException | ExtensionManager.NoStreamingServiceClassException
+                        | ExtensionManager.NameMismatchException
+                        | ExtensionManager.InvalidSignatureException
+                        | ExtensionManager.SignatureMismatchException e) {
+                    ExtensionManager.removeExtension(path);
+                    int string = 0;
+                    if (e instanceof IOException) {
+                        string = R.string.add_extension_fail_io;
+                    } else if (e instanceof ExtensionManager.NameMismatchException) {
+                        string = R.string.add_extension_fail_name_mismatch;
+                    } else if (e instanceof ExtensionManager.NoStreamingServiceClassException) {
+                        string = R.string.add_extension_fail_no_streaming_service_class;
+                    } else if (e instanceof ExtensionManager.InvalidSignatureException) {
+                        string = R.string.add_extension_fail_invalid_signature;
+                    } else if (e instanceof ExtensionManager.SignatureMismatchException) {
+                        string = R.string.add_extension_fail_signature_mismatch;
+                    }
+                    Toast.makeText(getContext(), string, Toast.LENGTH_SHORT).show();
+                }
+                updateExtensionList();
             }).setNegativeButton(R.string.cancel, (DialogInterface d, int id) -> {
                 if (upgrade) {
                     tmpFile.delete();
                 } else {
-                    removeExtension(path);
+                    ExtensionManager.removeExtension(path);
                 }
                 d.cancel();
             });
             builder.create().show();
-        }
-    }
-
-    private void addExtension(final String path, final File tmpFile, final JsonObject about) {
-        try {
-            final JarFile jarFile = new JarFile(tmpFile);
-
-            final byte[] buf = new byte[2048];
-            for (final String filename : new String[]{"about.json", "classes.dex", "icon.png"}) {
-                final JarEntry jarEntry = jarFile.getJarEntry(filename);
-                final InputStream entryStream = jarFile.getInputStream(jarEntry);
-                while (entryStream.read(buf) != -1) {
-                    // Stream needs to be fully read or else the signing certificate will be null
-                    continue;
-                }
-                final X509Certificate certificate = getSigningCertFromJar(jarEntry);
-
-                final File fingerprintFile = new File(path + "fingerprint.txt");
-                if (fingerprintFile.exists()) {
-                    final BufferedReader reader
-                            = new BufferedReader(new FileReader(fingerprintFile));
-                    final String prevFingerprint = reader.readLine();
-                    reader.close();
-                    verifySigningCertificate(certificate, prevFingerprint);
-                } else {
-                    fingerprintFile.createNewFile();
-                    final BufferedWriter writer
-                            = new BufferedWriter(new FileWriter(fingerprintFile));
-                    writer.write(calcFingerprint(certificate.getEncoded()));
-                    writer.close();
-                }
-            }
-
-            final InputStream tmpFileStream = new FileInputStream(tmpFile);
-            if (!ZipHelper.extractFilesFromZip(tmpFileStream, Arrays.asList(path + "about.json",
-                    path + "classes.dex", path + "icon.png"), Arrays.asList("about.json",
-                    "classes.dex", "icon.png"))) {
-                throw new Exception("Not all files have been extracted successfully");
-            }
-            tmpFile.delete();
-
-            final String dexPath = path + "classes.dex";
-            final PathClassLoader pathClassLoader = new PathClassLoader(dexPath,
-                    getClass().getClassLoader());
-            final Class<?> serviceClass = pathClassLoader.loadClass(about.getString("class"));
-            if (!StreamingService.class.isAssignableFrom(serviceClass)) {
-                throw new Exception("Class does not extend StreamingService");
-            }
-            final StreamingService service = ((Class<StreamingService>) serviceClass)
-                    .getConstructor(new Class[]{int.class}).newInstance(-1);
-            if (!service.getServiceInfo().getName().equals(about.getString("name"))) {
-                throw new Exception("Service name does not equal extension name");
-            }
-
-            if (about.has("replaces") && !NewPipe.getNameOfService(about.getInt("replaces"))
-                    .equals(about.getString("name"))) {
-                throw new Exception("Replaced service name does not equal extension name");
-            }
-
-            Toast.makeText(getContext(), R.string.add_extension_success, Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            removeExtension(path);
-
-            Toast.makeText(getContext(), R.string.add_extension_fail, Toast.LENGTH_SHORT).show();
-        }
-
-        updateExtensionList();
-    }
-
-    private static X509Certificate getSigningCertFromJar(final JarEntry jarEntry) throws Exception {
-        final CodeSigner[] codeSigners = jarEntry.getCodeSigners();
-        if (codeSigners == null || codeSigners.length == 0) {
-            throw new Exception("No signature found in extension");
-        }
-        // We could in theory support more than 1, but as of now we do not
-        if (codeSigners.length > 1) {
-            throw new Exception("Extension must be signed by a single code signer");
-        }
-        final List<? extends Certificate> certs
-                = codeSigners[0].getSignerCertPath().getCertificates();
-        if (certs.size() != 1) {
-            throw new Exception("Extension code signers must only have a single certificate");
-        }
-        return (X509Certificate) certs.get(0);
-    }
-
-    private void verifySigningCertificate(final X509Certificate rawCertFromJar,
-                                          final String previousFingerprint) throws Exception {
-        final byte[] encodedCert;
-        try {
-            encodedCert = rawCertFromJar.getEncoded();
-        } catch (CertificateEncodingException e) {
-            throw new Exception("Certificate encoding is invalid", e);
-        }
-        if (encodedCert == null || encodedCert.length == 0) {
-            throw new Exception("Could not find a signing certificate");
-        }
-
-        final String fingerprintFromJar = calcFingerprint(encodedCert);
-        if (!previousFingerprint.equalsIgnoreCase(fingerprintFromJar)) {
-            throw new Exception("Supplied certificate fingerprint does not match");
-        }
-    }
-
-    private static String calcFingerprint(final byte[] key) throws Exception {
-        if (key == null) {
-            throw new Exception("Key is null");
-        }
-        if (key.length < 256) {
-            throw new Exception("Key was shorter than 256 bytes (" + key.length + "), "
-                    + "cannot be valid!");
-        }
-        try {
-            // keytool -list -v gives you the SHA-256 fingerprint
-            final MessageDigest digest = MessageDigest.getInstance("sha256");
-            digest.update(key);
-            final byte[] fingerprint = digest.digest();
-            final Formatter formatter = new Formatter(new StringBuilder());
-            for (final byte aFingerprint : fingerprint) {
-                formatter.format("%02X", aFingerprint);
-            }
-            final String ret = formatter.toString();
-            formatter.close();
-            return ret;
-        } catch (NoSuchAlgorithmException e) {
-            throw new Exception("Unable to get certificate fingerprint", e);
         }
     }
 
@@ -369,15 +252,6 @@ public class ManageExtensionsFragment extends Fragment {
         if (installedExtensionsAdapter != null) {
             installedExtensionsAdapter.notifyDataSetChanged();
         }
-    }
-
-    public static void removeExtension(final String path) {
-        final File extensionDir = new File(path);
-        for (final File file : extensionDir.listFiles()) {
-            file.delete();
-        }
-
-        extensionDir.delete();
     }
 
     private void updateTitle() {
@@ -431,7 +305,7 @@ public class ManageExtensionsFragment extends Fragment {
             @Override
             public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
                 final int position = viewHolder.getAdapterPosition();
-                removeExtension(extensionList.get(position).path);
+                ExtensionManager.removeExtension(extensionList.get(position).path);
                 Toast.makeText(getContext(), R.string.remove_extension_success, Toast.LENGTH_SHORT)
                         .show();
                 extensionList.remove(position);

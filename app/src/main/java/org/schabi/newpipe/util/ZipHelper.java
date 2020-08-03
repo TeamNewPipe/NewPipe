@@ -7,6 +7,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
@@ -73,16 +74,16 @@ public final class ZipHelper {
      * @throws Exception
      */
     public static boolean extractFileFromZip(final StoredFileHelper zipFile, final String file,
-                                             final String name) throws Exception {
+                                             final String name) throws IOException {
         return extractFilesFromZip(new SharpInputStream(zipFile.getStream()),
                 Collections.singletonList(file), Collections.singletonList(name));
     }
 
     public static boolean extractFilesFromZip(final InputStream inputStream,
                                               final List<String> files, final List<String> names)
-            throws Exception {
+            throws IOException {
         if (files.size() != names.size()) {
-            throw new Exception("files and names are not the same length");
+            throw new IllegalArgumentException("files and names are not the same length");
         }
 
         final ZipInputStream inZip = new ZipInputStream(new BufferedInputStream(inputStream));
@@ -100,7 +101,7 @@ public final class ZipHelper {
                 final File oldFile = new File(filename);
                 if (oldFile.exists()) {
                     if (!oldFile.delete()) {
-                        throw new Exception("Could not delete " + filename);
+                        throw new IOException("Could not delete " + filename);
                     }
                 }
 

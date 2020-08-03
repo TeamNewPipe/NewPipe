@@ -419,7 +419,11 @@
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="add_extension_dialog">Do you want to install extension \"%1$s\" from \"%2$s\"? The fingerprint is \"%3$s\". Only install extensions that you trust.</string>
     <string name="upgrade_extension_dialog">Do you want to upgrade extension \"%1$s\" from \"%2$s\"?</string>
-    <string name="add_extension_fail">Installation of the extension failed.</string>
+    <string name="add_extension_fail_io">Installation of the extension failed due to an I/O error.</string>
+    <string name="add_extension_fail_name_mismatch">Installation of the extension failed due to a mismatch between its name and the service\'s name.</string>
+    <string name="add_extension_fail_no_streaming_service_class">Installation of the extension failed due to it not containing a valid streaming service.</string>
+    <string name="add_extension_fail_invalid_signature">Installation of the extension failed due to it not containing a valid signature.</string>
+    <string name="add_extension_fail_signature_mismatch">Installation of the extension failed due to it not matching the previous signature.</string>
     <string name="add_extension_success">Installation of the extension was successful. Please restart NewPipe.</string>
     <string name="remove_extension_success">Removal of the extension was successful. Please restart NewPipe.</string>
     <string name="invalid_extension">This extension is not a valid extension.</string>
