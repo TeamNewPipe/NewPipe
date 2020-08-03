@@ -286,10 +286,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             if (!TextUtils.isEmpty(result.getUploaderUrl())) {
                 headerUploaderLayout.setOnClickListener(v -> {
                     try {
-                        NavigationHelper.openChannelFragment(getFragmentManager(),
-                                result.getServiceId(),
-                                result.getUploaderUrl(),
-                                result.getUploaderName());
+                        NavigationHelper.openChannelFragment(getFM(), result.getServiceId(),
+                                result.getUploaderUrl(), result.getUploaderName());
                     } catch (Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                     }
