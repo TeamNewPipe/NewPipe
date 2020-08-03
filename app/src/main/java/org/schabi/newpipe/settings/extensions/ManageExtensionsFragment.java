@@ -198,7 +198,13 @@ public class ManageExtensionsFragment extends Fragment {
                         addExtension(path, tmpFile, aabout);
                     })
                     .setNegativeButton(R.string.cancel, (DialogInterface d, int id) -> {
-                        removeExtension(path);
+                        if (new File(path + "about.json").exists()
+                                && new File(path + "classes.dex").exists()
+                                && new File(path + "icon.png").exists()) {
+                            tmpFile.delete();
+                        } else {
+                            removeExtension(path);
+                        }
                         d.cancel();
                     });
             builder.create().show();
