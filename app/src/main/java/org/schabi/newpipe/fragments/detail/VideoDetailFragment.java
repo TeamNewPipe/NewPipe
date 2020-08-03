@@ -112,7 +112,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
@@ -1177,7 +1176,7 @@ public class VideoDetailFragment
 
         // Video view can have elements visible from popup,
         // We hide it here but once it ready the view will be shown in handleIntent()
-        Objects.requireNonNull(playerService.getView()).setVisibility(View.GONE);
+        playerService.getView().setVisibility(View.GONE);
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper
@@ -1351,7 +1350,7 @@ public class VideoDetailFragment
         final int height;
         if (player != null && player.isFullscreen()) {
             height = isInMultiWindow()
-                    ? Objects.requireNonNull(getView()).getHeight()
+                    ? requireView().getHeight()
                     : activity.getWindow().getDecorView().getHeight();
         } else {
             height = isPortrait
