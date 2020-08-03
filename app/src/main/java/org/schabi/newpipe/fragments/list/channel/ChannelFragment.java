@@ -426,8 +426,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             case R.id.sub_channel_title_view:
                 if (!TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
                     try {
-                        NavigationHelper.openChannelFragment(getFragmentManager(),
-                                currentInfo.getServiceId(), currentInfo.getParentChannelUrl(),
+                        NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
+                                currentInfo.getParentChannelUrl(),
                                 currentInfo.getParentChannelName());
                     } catch (Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);

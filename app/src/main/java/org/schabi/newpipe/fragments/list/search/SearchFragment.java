@@ -505,7 +505,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 Log.d(TAG, "onClick() called with: v = [" + v + "]");
             }
             if (TextUtils.isEmpty(searchEditText.getText())) {
-                NavigationHelper.gotoMainFragment(getFragmentManager());
+                NavigationHelper.gotoMainFragment(getFM());
                 return;
             }
 
@@ -807,7 +807,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(intent -> {
-                            getFragmentManager().popBackStackImmediate();
+                            getFM().popBackStackImmediate();
                             activity.startActivity(intent);
                         }, throwable ->
                                 showError(getString(R.string.url_not_supported_toast), false)));
