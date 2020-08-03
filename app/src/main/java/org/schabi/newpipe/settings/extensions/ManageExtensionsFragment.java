@@ -190,23 +190,31 @@ public class ManageExtensionsFragment extends Fragment {
                 return;
             }
 
+            final boolean upgrade = new File(path + "about.json").exists()
+                    && new File(path + "classes.dex").exists()
+                    && new File(path + "icon.png").exists();
+
             final JsonObject aabout = about;
             final android.app.AlertDialog.Builder builder
                     = new android.app.AlertDialog.Builder(getActivity());
-            builder.setMessage(getString(R.string.add_extension_dialog, name, author, fingerprint))
-                    .setPositiveButton(R.string.finish, (DialogInterface d, int id) -> {
-                        addExtension(path, tmpFile, aabout);
-                    })
-                    .setNegativeButton(R.string.cancel, (DialogInterface d, int id) -> {
-                        if (new File(path + "about.json").exists()
-                                && new File(path + "classes.dex").exists()
-                                && new File(path + "icon.png").exists()) {
-                            tmpFile.delete();
-                        } else {
-                            removeExtension(path);
-                        }
-                        d.cancel();
-                    });
+
+            if (upgrade) {
+                builder.setMessage(getString(R.string.upgrade_extension_dialog, name, author));
+            } else {
+                builder.setMessage(getString(R.string.add_extension_dialog, name, author,
+                        fingerprint));
+            }
+
+            builder.setPositiveButton(R.string.finish, (DialogInterface d, int id) -> {
+                addExtension(path, tmpFile, aabout);
+            }).setNegativeButton(R.string.cancel, (DialogInterface d, int id) -> {
+                if (upgrade) {
+                    tmpFile.delete();
+                } else {
+                    removeExtension(path);
+                }
+                d.cancel();
+            });
             builder.create().show();
         }
     }

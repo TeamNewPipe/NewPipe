@@ -418,6 +418,7 @@
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="add_extension_dialog">Do you want to install extension \"%1$s\" from \"%2$s\"? The fingerprint is \"%3$s\". Only install extensions that you trust.</string>
+    <string name="upgrade_extension_dialog">Do you want to upgrade extension \"%1$s\" from \"%2$s\"?</string>
     <string name="add_extension_fail">Installation of the extension failed.</string>
     <string name="add_extension_success">Installation of the extension was successful. Please restart NewPipe.</string>
     <string name="remove_extension_success">Removal of the extension was successful. Please restart NewPipe.</string>
