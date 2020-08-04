@@ -619,4 +619,6 @@
     <string name="error_report_open_issue_button_text">Hatayı GitHub\'da bildir</string>
     <string name="copy_for_github">Biçimlendirilmiş raporu kopyala</string>
     <string name="search_showing_result_for">Sonuçlar gösteriliyor: %s</string>
+    <string name="error_report_open_github_notice">Lütfen yaşadığınız hatayı tartışan bildirimin daha önce oluşturulup oluşturulmadığını gözden geçirin. Yineleyen hata bildirimi oluşturarak, gerçek hatayı gidermekte harcadığımız zamanı uzatırsınız.</string>
+    <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
 </resources>
