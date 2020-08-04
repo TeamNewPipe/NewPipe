@@ -148,10 +148,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         switch (item.getItemId()) {
             case R.id.action_search:
                 try {
-                    NavigationHelper.openSearchFragment(
-                            getFragmentManager(),
-                            ServiceHelper.getSelectedServiceId(activity),
-                            "");
+                    NavigationHelper.openSearchFragment(getFM(),
+                            ServiceHelper.getSelectedServiceId(activity), "");
                 } catch (Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                 }

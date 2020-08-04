@@ -112,7 +112,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
@@ -505,7 +504,7 @@ public class VideoDetailFragment
             case ReCaptchaActivity.RECAPTCHA_REQUEST:
                 if (resultCode == Activity.RESULT_OK) {
                     NavigationHelper
-                            .openVideoDetailFragment(getFragmentManager(), serviceId, url, name);
+                            .openVideoDetailFragment(getFM(), serviceId, url, name);
                 } else {
                     Log.e(TAG, "ReCaptcha failed");
                 }
@@ -579,9 +578,9 @@ public class VideoDetailFragment
                 openPopupPlayer(false);
                 break;
             case R.id.detail_controls_playlist_append:
-                if (getFragmentManager() != null && currentInfo != null) {
+                if (getFM() != null && currentInfo != null) {
                     PlaylistAppendDialog.fromStreamInfo(currentInfo)
-                            .show(getFragmentManager(), TAG);
+                            .show(getFM(), TAG);
                 }
                 break;
             case R.id.detail_controls_download:
@@ -634,11 +633,8 @@ public class VideoDetailFragment
 
     private void openChannel(final String subChannelUrl, final String subChannelName) {
         try {
-            NavigationHelper.openChannelFragment(
-                    getFragmentManager(),
-                    currentInfo.getServiceId(),
-                    subChannelUrl,
-                    subChannelName);
+            NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
+                    subChannelUrl, subChannelName);
         } catch (Exception e) {
             ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
         }
@@ -1177,7 +1173,7 @@ public class VideoDetailFragment
 
         // Video view can have elements visible from popup,
         // We hide it here but once it ready the view will be shown in handleIntent()
-        Objects.requireNonNull(playerService.getView()).setVisibility(View.GONE);
+        playerService.getView().setVisibility(View.GONE);
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper
@@ -1351,7 +1347,7 @@ public class VideoDetailFragment
         final int height;
         if (player != null && player.isFullscreen()) {
             height = isInMultiWindow()
-                    ? Objects.requireNonNull(getView()).getHeight()
+                    ? requireView().getHeight()
                     : activity.getWindow().getDecorView().getHeight();
         } else {
             height = isPortrait
