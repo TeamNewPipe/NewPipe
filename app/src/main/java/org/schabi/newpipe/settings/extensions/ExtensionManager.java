@@ -38,8 +38,7 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
+import java.util.jar.JarInputStream;
 
 import dalvik.system.PathClassLoader;
 import kotlin.collections.SetsKt;
@@ -86,19 +85,20 @@ public final class ExtensionManager {
         String author = null;
         String cclass = null;
         int replaces = -1;
-        final String fingerprint;
-        final boolean upgrade;
-        try (ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(
+        String fingerprint = null;
+        String path = null;
+        boolean upgrade = false;
+        try (JarInputStream jarInputStream = new JarInputStream(new BufferedInputStream(
                 new SharpInputStream(file.getStream())))) {
             boolean hasDex = false;
             boolean hasIcon = false;
-            ZipEntry zipEntry;
-            while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-                switch (zipEntry.getName()) {
+            JarEntry jarEntry;
+            while ((jarEntry = jarInputStream.getNextJarEntry()) != null) {
+                switch (jarEntry.getName()) {
                     case "about.json":
                         final JsonObject about;
                         try {
-                            about = JsonParser.object().from(zipInputStream);
+                            about = JsonParser.object().from(jarInputStream);
                         } catch (JsonParserException e) {
                             throw new IOException(e);
                         }
@@ -113,6 +113,33 @@ public final class ExtensionManager {
                         author = about.getString("author");
                         cclass = about.getString("class");
                         replaces = about.getInt("replaces", -1);
+
+                        final X509Certificate certificate = getSigningCertFromJar(jarEntry);
+                        try {
+                            fingerprint = calcFingerprint(certificate.getEncoded());
+                        } catch (CertificateEncodingException e) {
+                            throw new InvalidSignatureException();
+                        }
+
+                        if (!PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
+                                context.getString(R.string.fingerprints_key), SetsKt.hashSetOf(
+                                        "CB84069BD68116BAFAE5EE4EE5B08A567AA6D898404E7CB12F9E756DF5"
+                                                + "CF5CAB")).contains(fingerprint)) {
+                            throw new UnknownSignatureException();
+                        }
+
+                        path = getPathForExtensionName(context, name);
+                        upgrade = new File(path + "about.json").exists()
+                                && new File(path + "classes.dex").exists()
+                                && new File(path + "icon.png").exists();
+
+                        if (upgrade) {
+                            final BufferedReader reader = new BufferedReader(new FileReader(
+                                    getFingerprintFileForExtensionName(context, name)));
+                            final String prevFingerprint = reader.readLine();
+                            reader.close();
+                            verifySigningCertificate(certificate, prevFingerprint);
+                        }
                         break;
                     case "classes.dex":
                         hasDex = true;
@@ -121,16 +148,11 @@ public final class ExtensionManager {
                         hasIcon = true;
                         break;
                 }
-                zipInputStream.closeEntry();
+                jarInputStream.closeEntry();
             }
             if (!hasDex || !hasIcon || name == null || author == null || cclass == null) {
                 throw new InvalidExtensionException();
             }
-
-            final String path = getPathForExtensionName(context, name);
-            upgrade = new File(path + "about.json").exists()
-                    && new File(path + "classes.dex").exists()
-                    && new File(path + "icon.png").exists();
 
             final File dir = new File(path);
             if (!dir.exists()) {
@@ -148,36 +170,6 @@ public final class ExtensionManager {
                 outFile.write(buf, 0, count);
             }
             outFile.close();
-
-            final JarFile jarFile = new JarFile(tmpFile);
-
-            final JarEntry jarEntry = jarFile.getJarEntry("about.json");
-            final InputStream entryStream = jarFile.getInputStream(jarEntry);
-            while (entryStream.read(buf) != -1) {
-                // Stream needs to be fully read or else the signing certificate will be null
-                continue;
-            }
-            final X509Certificate certificate = getSigningCertFromJar(jarEntry);
-            try {
-                fingerprint = calcFingerprint(certificate.getEncoded());
-            } catch (CertificateEncodingException e) {
-                throw new InvalidSignatureException();
-            }
-
-            if (!PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
-                    context.getString(R.string.fingerprints_key), SetsKt.hashSetOf(
-                            "CB84069BD68116BAFAE5EE4EE5B08A567AA6D898404E7CB12F9E756DF5CF5CAB"))
-                    .contains(fingerprint)) {
-                throw new UnknownSignatureException();
-            }
-
-            if (upgrade) {
-                final BufferedReader reader = new BufferedReader(new FileReader(
-                        getFingerprintFileForExtensionName(context, name)));
-                final String prevFingerprint = reader.readLine();
-                reader.close();
-                verifySigningCertificate(certificate, prevFingerprint);
-            }
         }
 
         return new ExtensionInfo(name, author, fingerprint, cclass, replaces, upgrade);
