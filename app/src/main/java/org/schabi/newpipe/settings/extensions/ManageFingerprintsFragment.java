@@ -33,6 +33,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import kotlin.collections.SetsKt;
+
 public class ManageFingerprintsFragment extends Fragment {
     private List<String> fingerprintsList = new ArrayList<>();
     private FingerprintsAdapter fingerprintsAdapter = null;
@@ -85,7 +87,8 @@ public class ManageFingerprintsFragment extends Fragment {
         fingerprintsList.clear();
 
         fingerprintsList = new ArrayList<>(prefs.getStringSet(getString(R.string.fingerprints_key),
-                new HashSet<>()));
+                SetsKt.hashSetOf(
+                        "CB84069BD68116BAFAE5EE4EE5B08A567AA6D898404E7CB12F9E756DF5CF5CAB")));
 
         if (fingerprintsAdapter != null) {
             fingerprintsAdapter.notifyDataSetChanged();

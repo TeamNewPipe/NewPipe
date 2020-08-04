@@ -49,12 +49,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import kotlin.collections.SetsKt;
 
 public class ManageExtensionsFragment extends Fragment {
     private static final int MENU_ITEM_FINGERPRINTS = 32944;
@@ -208,7 +209,8 @@ public class ManageExtensionsFragment extends Fragment {
                 fingerprint = ExtensionManager.calcFingerprint(certificate.getEncoded());
 
                 if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getStringSet(
-                        getString(R.string.fingerprints_key), new HashSet<>())
+                        getString(R.string.fingerprints_key), SetsKt.hashSetOf(
+                                "CB84069BD68116BAFAE5EE4EE5B08A567AA6D898404E7CB12F9E756DF5CF5CAB"))
                         .contains(fingerprint)) {
                     throw new ExtensionManager.UnknownSignatureException();
                 }
