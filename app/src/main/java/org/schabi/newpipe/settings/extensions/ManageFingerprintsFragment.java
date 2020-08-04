@@ -114,7 +114,7 @@ public class ManageFingerprintsFragment extends Fragment {
                     .setTitle(R.string.add_fingerprint_dialog)
                     .setPositiveButton(R.string.finish, (DialogInterface d, int id) -> {
                         final String fingerprint = input.getText().toString().replace(":", "")
-                                .toUpperCase();
+                                .replaceAll("\\p{Z}", "").toUpperCase();
                         if (fingerprint.matches("[0-9A-F]{64}")) {
                             fingerprintsList.add(fingerprint);
                             prefs.edit().putStringSet(getString(R.string.fingerprints_key),
