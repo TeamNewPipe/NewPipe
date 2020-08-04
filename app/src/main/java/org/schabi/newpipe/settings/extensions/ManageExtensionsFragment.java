@@ -91,7 +91,8 @@ public class ManageExtensionsFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         final MenuItem fingerprintItem = menu.add(Menu.NONE, MENU_ITEM_FINGERPRINTS, Menu.NONE,
@@ -106,7 +107,7 @@ public class ManageExtensionsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == MENU_ITEM_FINGERPRINTS) {
-            getFragmentManager().beginTransaction()
+            getParentFragmentManager().beginTransaction()
                     .replace(R.id.fragment_holder, new ManageFingerprintsFragment())
                     .addToBackStack(null)
                     .commit();
@@ -176,7 +177,7 @@ public class ManageExtensionsFragment extends Fragment {
                         | ExtensionManager.SignatureMismatchException
                         | ExtensionManager.InvalidExtensionException e) {
                     ExtensionManager.removeExtension(ExtensionManager.getPathForExtensionName(
-                            getContext(), extension.name));
+                            requireContext(), extension.name));
                     final int string;
                     if (e instanceof IOException) {
                         string = R.string.add_extension_fail_io;
@@ -198,7 +199,7 @@ public class ManageExtensionsFragment extends Fragment {
                             .delete();
                 } else {
                     ExtensionManager.removeExtension(ExtensionManager.getPathForExtensionName(
-                            getContext(), extension.name));
+                            requireContext(), extension.name));
                 }
                 d.cancel();
             });
@@ -209,7 +210,7 @@ public class ManageExtensionsFragment extends Fragment {
     private void updateExtensionList() {
         extensionList.clear();
 
-        final String path = getActivity().getApplicationInfo().dataDir + "/extensions/";
+        final String path = requireContext().getApplicationInfo().dataDir + "/extensions/";
         final File dir = new File(path);
         if (!dir.exists()) {
             return;
@@ -251,7 +252,7 @@ public class ManageExtensionsFragment extends Fragment {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                 ItemTouchHelper.START | ItemTouchHelper.END) {
             @Override
-            public int interpolateOutOfBoundsScroll(final RecyclerView recyclerView,
+            public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
                                                     final int viewSize,
                                                     final int viewSizeOutOfBounds,
                                                     final int totalSize,
@@ -264,9 +265,9 @@ public class ManageExtensionsFragment extends Fragment {
             }
 
             @Override
-            public boolean onMove(final RecyclerView recyclerView,
-                                  final RecyclerView.ViewHolder source,
-                                  final RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull final RecyclerView recyclerView,
+                                  @NonNull final RecyclerView.ViewHolder source,
+                                  @NonNull final RecyclerView.ViewHolder target) {
                 return false;
             }
 
@@ -281,7 +282,8 @@ public class ManageExtensionsFragment extends Fragment {
             }
 
             @Override
-            public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
+                                 final int swipeDir) {
                 final int position = viewHolder.getAdapterPosition();
                 ExtensionManager.removeExtension(extensionList.get(position).path);
                 Toast.makeText(getContext(), R.string.remove_extension_success, Toast.LENGTH_SHORT)
