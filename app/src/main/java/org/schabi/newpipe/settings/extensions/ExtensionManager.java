@@ -80,16 +80,14 @@ public final class ExtensionManager {
 
     public static ExtensionInfo checkExtension(final Context context, final StoredFileHelper file)
             throws IOException, UnknownSignatureException, InvalidSignatureException,
-            VersionMismatchException, InvalidReplacementException, InvalidExtensionException {
-        JsonObject about = null;
+            VersionMismatchException, InvalidReplacementException, InvalidExtensionException,
+            SignatureMismatchException {
         String name = null;
         String author = null;
         String cclass = null;
         int replaces = -1;
         final String fingerprint;
-        final String path;
-        final File tmpFile;
-        // check if file is supported
+        final boolean upgrade;
         try (ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(
                 new SharpInputStream(file.getStream())))) {
             boolean hasDex = false;
@@ -98,6 +96,7 @@ public final class ExtensionManager {
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {
                 switch (zipEntry.getName()) {
                     case "about.json":
+                        final JsonObject about;
                         try {
                             about = JsonParser.object().from(zipInputStream);
                         } catch (JsonParserException e) {
@@ -128,14 +127,17 @@ public final class ExtensionManager {
                 throw new InvalidExtensionException();
             }
 
-            path = getPathForExtensionName(context, name);
+            final String path = getPathForExtensionName(context, name);
+            upgrade = new File(path + "about.json").exists()
+                    && new File(path + "classes.dex").exists()
+                    && new File(path + "icon.png").exists();
 
             final File dir = new File(path);
             if (!dir.exists()) {
                 dir.mkdirs();
             }
 
-            tmpFile = getTmpFileForExtensionName(context, name);
+            final File tmpFile = getTmpFileForExtensionName(context, name);
             tmpFile.createNewFile();
 
             final InputStream inFile = new SharpInputStream(file.getStream());
@@ -155,9 +157,9 @@ public final class ExtensionManager {
                 // Stream needs to be fully read or else the signing certificate will be null
                 continue;
             }
-            final X509Certificate certificate = ExtensionManager.getSigningCertFromJar(jarEntry);
+            final X509Certificate certificate = getSigningCertFromJar(jarEntry);
             try {
-                fingerprint = ExtensionManager.calcFingerprint(certificate.getEncoded());
+                fingerprint = calcFingerprint(certificate.getEncoded());
             } catch (CertificateEncodingException e) {
                 throw new InvalidSignatureException();
             }
@@ -166,13 +168,17 @@ public final class ExtensionManager {
                     context.getString(R.string.fingerprints_key), SetsKt.hashSetOf(
                             "CB84069BD68116BAFAE5EE4EE5B08A567AA6D898404E7CB12F9E756DF5CF5CAB"))
                     .contains(fingerprint)) {
-                throw new ExtensionManager.UnknownSignatureException();
+                throw new UnknownSignatureException();
+            }
+
+            if (upgrade) {
+                final BufferedReader reader = new BufferedReader(new FileReader(
+                        getFingerprintFileForExtensionName(context, name)));
+                final String prevFingerprint = reader.readLine();
+                reader.close();
+                verifySigningCertificate(certificate, prevFingerprint);
             }
         }
-
-        final boolean upgrade = new File(path + "about.json").exists()
-                && new File(path + "classes.dex").exists()
-                && new File(path + "icon.png").exists();
 
         return new ExtensionInfo(name, author, fingerprint, cclass, replaces, upgrade);
     }
@@ -192,8 +198,7 @@ public final class ExtensionManager {
                 // Stream needs to be fully read or else the signing certificate will be null
                 continue;
             }
-            final X509Certificate certificate
-                    = ExtensionManager.getSigningCertFromJar(jarEntry);
+            final X509Certificate certificate = getSigningCertFromJar(jarEntry);
 
             final File fingerprintFile
                     = getFingerprintFileForExtensionName(context, extension.name);
@@ -202,12 +207,12 @@ public final class ExtensionManager {
                         = new BufferedReader(new FileReader(fingerprintFile));
                 final String prevFingerprint = reader.readLine();
                 reader.close();
-                ExtensionManager.verifySigningCertificate(certificate, prevFingerprint);
+                verifySigningCertificate(certificate, prevFingerprint);
             } else {
                 fingerprintFile.createNewFile();
                 try (BufferedWriter writer
                              = new BufferedWriter(new FileWriter(fingerprintFile))) {
-                    writer.write(ExtensionManager.calcFingerprint(certificate.getEncoded()));
+                    writer.write(calcFingerprint(certificate.getEncoded()));
                 } catch (CertificateEncodingException e) {
                     throw new InvalidSignatureException();
                 }

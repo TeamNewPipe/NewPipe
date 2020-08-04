@@ -129,12 +129,15 @@ public class ManageExtensionsFragment extends Fragment {
                     | ExtensionManager.InvalidSignatureException
                     | ExtensionManager.VersionMismatchException
                     | ExtensionManager.InvalidReplacementException
-                    | ExtensionManager.InvalidExtensionException e) {
+                    | ExtensionManager.InvalidExtensionException
+                    | ExtensionManager.SignatureMismatchException e) {
                 final int string;
                 if (e instanceof IOException) {
                     string = R.string.add_extension_fail_io;
                 } else if (e instanceof ExtensionManager.InvalidSignatureException) {
                     string = R.string.add_extension_fail_invalid_signature;
+                } else if (e instanceof  ExtensionManager.SignatureMismatchException) {
+                    string = R.string.add_extension_fail_signature_mismatch;
                 } else if (e instanceof ExtensionManager.UnknownSignatureException) {
                     string = R.string.add_extension_fail_unknown_signature;
                 } else if (e instanceof ExtensionManager.VersionMismatchException) {
