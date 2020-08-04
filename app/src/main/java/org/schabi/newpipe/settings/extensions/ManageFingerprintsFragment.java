@@ -107,7 +107,7 @@ public class ManageFingerprintsFragment extends Fragment {
     private void initButton(final View rootView) {
         final FloatingActionButton fab = rootView.findViewById(R.id.add_fingerprint_button);
         fab.setOnClickListener(v -> {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            final AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
             final EditText input = new EditText(getContext());
             input.setHint(R.string.fingerprint_placeholder);
             builder.setView(input)
@@ -118,15 +118,14 @@ public class ManageFingerprintsFragment extends Fragment {
                         if (fingerprint.matches("[0-9A-F]{64}")) {
                             fingerprintsList.add(fingerprint);
                             prefs.edit().putStringSet(getString(R.string.fingerprints_key),
-                                    new HashSet<>(fingerprintsList)).commit();
+                                    new HashSet<>(fingerprintsList)).apply();
                             updateFingerprintsList();
                         } else {
                             Toast.makeText(getContext(), R.string.invalid_fingerprint,
                                     Toast.LENGTH_SHORT).show();
                         }
-                    }).setNegativeButton(R.string.cancel, (DialogInterface d, int id) -> {
-                        d.cancel();
-                    }).show();
+                    }).setNegativeButton(R.string.cancel, (DialogInterface d, int id) -> d.cancel())
+                    .show();
         });
     }
 
@@ -134,7 +133,7 @@ public class ManageFingerprintsFragment extends Fragment {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                 ItemTouchHelper.START | ItemTouchHelper.END) {
             @Override
-            public int interpolateOutOfBoundsScroll(final RecyclerView recyclerView,
+            public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
                                                     final int viewSize,
                                                     final int viewSizeOutOfBounds,
                                                     final int totalSize,
@@ -147,9 +146,9 @@ public class ManageFingerprintsFragment extends Fragment {
             }
 
             @Override
-            public boolean onMove(final RecyclerView recyclerView,
-                                  final RecyclerView.ViewHolder source,
-                                  final RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull final RecyclerView recyclerView,
+                                  @NonNull final RecyclerView.ViewHolder source,
+                                  @NonNull final RecyclerView.ViewHolder target) {
                 return false;
             }
 
@@ -164,11 +163,12 @@ public class ManageFingerprintsFragment extends Fragment {
             }
 
             @Override
-            public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
+                                 final int swipeDir) {
                 final int position = viewHolder.getAdapterPosition();
                 fingerprintsList.remove(position);
                 prefs.edit().putStringSet(getString(R.string.fingerprints_key),
-                        new HashSet<>(fingerprintsList)).commit();
+                        new HashSet<>(fingerprintsList)).apply();
                 updateFingerprintsList();
             }
         };
