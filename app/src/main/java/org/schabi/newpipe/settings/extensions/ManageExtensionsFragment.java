@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,28 +33,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 
-import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.streams.io.SharpInputStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
-
-import kotlin.collections.SetsKt;
 
 public class ManageExtensionsFragment extends Fragment {
     private static final int MENU_ITEM_FINGERPRINTS = 32944;
@@ -136,135 +122,80 @@ public class ManageExtensionsFragment extends Fragment {
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
             final StoredFileHelper file = new StoredFileHelper(getContext(), data.getData(),
                     "application/zip");
-            JsonObject about = null;
-            String name = null;
-            String author = null;
-            final String fingerprint;
-            final String path;
-            final File tmpFile;
-            // check if file is supported
-            try (ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(
-                    new SharpInputStream(file.getStream())))) {
-                boolean hasDex = false;
-                boolean hasIcon = false;
-                ZipEntry zipEntry;
-                while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-                    switch (zipEntry.getName()) {
-                        case "about.json":
-                            about = JsonParser.object().from(zipInputStream);
-                            if (!about.getString("version")
-                                    .equals(BuildConfig.VERSION_NAME)) {
-                                throw new Exception("Extension is for different NewPipe version");
-                            }
-                            if (about.has("replaces")
-                                    && about.getInt("replaces")
-                                    >= ServiceList.builtinServices) {
-                                throw new Exception("Extension replaces not existing service");
-                            }
-                            name = about.getString("name");
-                            author = about.getString("author");
-                            break;
-                        case "classes.dex":
-                            hasDex = true;
-                            break;
-                        case "icon.png":
-                            hasIcon = true;
-                            break;
-                    }
-                    zipInputStream.closeEntry();
+            final ExtensionManager.ExtensionInfo extension;
+            try {
+                extension = ExtensionManager.checkExtension(getContext(), file);
+            } catch (IOException | ExtensionManager.UnknownSignatureException
+                    | ExtensionManager.InvalidSignatureException
+                    | ExtensionManager.VersionMismatchException
+                    | ExtensionManager.InvalidReplacementException
+                    | ExtensionManager.InvalidExtensionException e) {
+                final int string;
+                if (e instanceof IOException) {
+                    string = R.string.add_extension_fail_io;
+                } else if (e instanceof ExtensionManager.InvalidSignatureException) {
+                    string = R.string.add_extension_fail_invalid_signature;
+                } else if (e instanceof ExtensionManager.UnknownSignatureException) {
+                    string = R.string.add_extension_fail_unknown_signature;
+                } else if (e instanceof ExtensionManager.VersionMismatchException) {
+                    string = R.string.add_extension_fail_version_mismatch;
+                } else if (e instanceof ExtensionManager.InvalidReplacementException) {
+                    string = R.string.add_extension_fail_invalid_replacement;
+                } else {
+                    string = R.string.add_extension_fail_invalid_extension;
                 }
-                if (!hasDex || !hasIcon || name == null || author == null) {
-                    throw new IOException("Invalid zip");
-                }
-
-                path = getActivity().getApplicationInfo().dataDir + "/extensions/" + name + "/";
-
-                final File dir = new File(path);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-
-                tmpFile = new File(path + "tmp.jar");
-                tmpFile.createNewFile();
-
-                final InputStream inFile = new SharpInputStream(file.getStream());
-                final FileOutputStream outFile = new FileOutputStream(tmpFile);
-                final byte[] buf = new byte[2048];
-                int count;
-                while ((count = inFile.read(buf)) != -1) {
-                    outFile.write(buf, 0, count);
-                }
-                outFile.close();
-
-                final JarFile jarFile = new JarFile(tmpFile);
-
-                final JarEntry jarEntry = jarFile.getJarEntry("about.json");
-                final InputStream entryStream = jarFile.getInputStream(jarEntry);
-                while (entryStream.read(buf) != -1) {
-                    // Stream needs to be fully read or else the signing certificate will be null
-                    continue;
-                }
-                final X509Certificate certificate
-                        = ExtensionManager.getSigningCertFromJar(jarEntry);
-                fingerprint = ExtensionManager.calcFingerprint(certificate.getEncoded());
-
-                if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getStringSet(
-                        getString(R.string.fingerprints_key), SetsKt.hashSetOf(
-                                "CB84069BD68116BAFAE5EE4EE5B08A567AA6D898404E7CB12F9E756DF5CF5CAB"))
-                        .contains(fingerprint)) {
-                    throw new ExtensionManager.UnknownSignatureException();
-                }
-            } catch (Exception e) {
-                Toast.makeText(getContext(), R.string.invalid_extension, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), string, Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            final boolean upgrade = new File(path + "about.json").exists()
-                    && new File(path + "classes.dex").exists()
-                    && new File(path + "icon.png").exists();
-
-            final JsonObject aabout = about;
             final android.app.AlertDialog.Builder builder
                     = new android.app.AlertDialog.Builder(getActivity());
 
-            if (upgrade) {
-                builder.setMessage(getString(R.string.upgrade_extension_dialog, name, author));
+            if (extension.upgrade) {
+                builder.setMessage(getString(R.string.upgrade_extension_dialog, extension.name,
+                        extension.author));
+            } else if (extension.replaces != -1) {
+                builder.setMessage(getString(R.string.replace_extension_dialog, extension.name,
+                        extension.author, extension.fingerprint));
             } else {
-                builder.setMessage(getString(R.string.add_extension_dialog, name, author,
-                        fingerprint));
+                builder.setMessage(getString(R.string.add_extension_dialog, extension.name,
+                        extension.author, extension.fingerprint));
             }
 
             builder.setPositiveButton(R.string.finish, (DialogInterface d, int id) -> {
                 try {
-                    ExtensionManager.addExtension(getClass().getClassLoader(), path, tmpFile,
-                            aabout);
+                    ExtensionManager.addExtension(getClass().getClassLoader(), getContext(),
+                            extension);
                     Toast.makeText(getContext(), R.string.add_extension_success, Toast.LENGTH_SHORT)
                             .show();
-                } catch (IOException | ExtensionManager.NoStreamingServiceClassException
-                        | ExtensionManager.NameMismatchException
+                } catch (IOException | ExtensionManager.NameMismatchException
                         | ExtensionManager.InvalidSignatureException
-                        | ExtensionManager.SignatureMismatchException e) {
-                    ExtensionManager.removeExtension(path);
-                    int string = 0;
+                        | ExtensionManager.SignatureMismatchException
+                        | ExtensionManager.InvalidExtensionException e) {
+                    ExtensionManager.removeExtension(ExtensionManager.getPathForExtensionName(
+                            getContext(), extension.name));
+                    final int string;
                     if (e instanceof IOException) {
                         string = R.string.add_extension_fail_io;
                     } else if (e instanceof ExtensionManager.NameMismatchException) {
                         string = R.string.add_extension_fail_name_mismatch;
-                    } else if (e instanceof ExtensionManager.NoStreamingServiceClassException) {
-                        string = R.string.add_extension_fail_no_streaming_service_class;
                     } else if (e instanceof ExtensionManager.InvalidSignatureException) {
                         string = R.string.add_extension_fail_invalid_signature;
                     } else if (e instanceof ExtensionManager.SignatureMismatchException) {
                         string = R.string.add_extension_fail_signature_mismatch;
+                    } else {
+                        string = R.string.add_extension_fail_invalid_extension;
                     }
                     Toast.makeText(getContext(), string, Toast.LENGTH_SHORT).show();
                 }
                 updateExtensionList();
             }).setNegativeButton(R.string.cancel, (DialogInterface d, int id) -> {
-                if (upgrade) {
-                    tmpFile.delete();
+                if (extension.upgrade) {
+                    ExtensionManager.getTmpFileForExtensionName(getContext(), extension.name)
+                            .delete();
                 } else {
-                    ExtensionManager.removeExtension(path);
+                    ExtensionManager.removeExtension(ExtensionManager.getPathForExtensionName(
+                            getContext(), extension.name));
                 }
                 d.cancel();
             });
