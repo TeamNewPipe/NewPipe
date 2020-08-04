@@ -131,7 +131,8 @@ public class ManageExtensionsFragment extends Fragment {
                     | ExtensionManager.VersionMismatchException
                     | ExtensionManager.InvalidReplacementException
                     | ExtensionManager.InvalidExtensionException
-                    | ExtensionManager.SignatureMismatchException e) {
+                    | ExtensionManager.SignatureMismatchException
+                    | ExtensionManager.CaseMismatchException e) {
                 final int string;
                 if (e instanceof IOException) {
                     string = R.string.add_extension_fail_io;
@@ -145,6 +146,8 @@ public class ManageExtensionsFragment extends Fragment {
                     string = R.string.add_extension_fail_version_mismatch;
                 } else if (e instanceof ExtensionManager.InvalidReplacementException) {
                     string = R.string.add_extension_fail_invalid_replacement;
+                } else if (e instanceof ExtensionManager.CaseMismatchException) {
+                    string = R.string.add_extension_fail_case_mismatch;
                 } else {
                     string = R.string.add_extension_fail_invalid_extension;
                 }

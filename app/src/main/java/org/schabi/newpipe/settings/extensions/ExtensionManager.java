@@ -46,41 +46,10 @@ import kotlin.collections.SetsKt;
 public final class ExtensionManager {
     private ExtensionManager() { }
 
-    public static class ExtensionInfo {
-        public final String name;
-        public final String author;
-        public final String fingerprint;
-        public final String cclass;
-        public final int replaces;
-        public final boolean upgrade;
-
-        ExtensionInfo(final String name, final String author, final String fingerprint,
-                      final String cclass, final int replaces, final boolean upgrade) {
-            this.name = name;
-            this.author = author;
-            this.fingerprint = fingerprint;
-            this.cclass = cclass;
-            this.replaces = replaces;
-            this.upgrade = upgrade;
-        }
-    }
-
-    static String getPathForExtensionName(final Context context, final String name) {
-        return context.getApplicationInfo().dataDir + "/extensions/" + name + "/";
-    }
-
-    static File getTmpFileForExtensionName(final Context context, final String name) {
-        return new File(getPathForExtensionName(context, name) + "tmp.jar");
-    }
-
-    static File getFingerprintFileForExtensionName(final Context context, final String name) {
-        return new File(getPathForExtensionName(context, name) + "fingerprint.txt");
-    }
-
-    public static ExtensionInfo checkExtension(final Context context, final StoredFileHelper file)
+    static ExtensionInfo checkExtension(final Context context, final StoredFileHelper file)
             throws IOException, UnknownSignatureException, InvalidSignatureException,
             VersionMismatchException, InvalidReplacementException, InvalidExtensionException,
-            SignatureMismatchException {
+            SignatureMismatchException, CaseMismatchException {
         String name = null;
         String author = null;
         String cclass = null;
@@ -113,6 +82,17 @@ public final class ExtensionManager {
                         author = about.getString("author");
                         cclass = about.getString("class");
                         replaces = about.getInt("replaces", -1);
+
+                        final String[] installedExtensions = new File(
+                                context.getApplicationInfo().dataDir + "/extensions/").list();
+                        if (installedExtensions != null) {
+                            for (final String installedExtension : installedExtensions) {
+                                if (name.equalsIgnoreCase(installedExtension)
+                                        && !name.equals(installedExtension)) {
+                                    throw new CaseMismatchException();
+                                }
+                            }
+                        }
 
                         final X509Certificate certificate = getSigningCertFromJar(jarEntry);
                         try {
@@ -175,8 +155,8 @@ public final class ExtensionManager {
         return new ExtensionInfo(name, author, fingerprint, cclass, replaces, upgrade);
     }
 
-    public static void addExtension(final ClassLoader classLoader, final Context context,
-                                    final ExtensionInfo extension)
+    static void addExtension(final ClassLoader classLoader, final Context context,
+                             final ExtensionInfo extension)
             throws IOException, NameMismatchException, InvalidSignatureException,
             SignatureMismatchException, InvalidExtensionException {
         final File tmpFile = getTmpFileForExtensionName(context, extension.name);
@@ -247,6 +227,9 @@ public final class ExtensionManager {
 
     public static void removeExtension(final String path) {
         final File extensionDir = new File(path);
+        if (!extensionDir.exists()) {
+            return;
+        }
         for (final File file : extensionDir.listFiles()) {
             file.delete();
         }
@@ -254,7 +237,7 @@ public final class ExtensionManager {
         extensionDir.delete();
     }
 
-    static X509Certificate getSigningCertFromJar(final JarEntry jarEntry)
+    private static X509Certificate getSigningCertFromJar(final JarEntry jarEntry)
             throws InvalidSignatureException {
         final CodeSigner[] codeSigners = jarEntry.getCodeSigners();
         if (codeSigners == null || codeSigners.length == 0) {
@@ -291,7 +274,7 @@ public final class ExtensionManager {
         }
     }
 
-    static String calcFingerprint(final byte[] key) throws InvalidSignatureException {
+    private static String calcFingerprint(final byte[] key) throws InvalidSignatureException {
         if (key == null) {
             throw new InvalidSignatureException();
         }
@@ -315,43 +298,81 @@ public final class ExtensionManager {
         }
     }
 
-    public static class NameMismatchException extends Exception {
+    static String getPathForExtensionName(final Context context, final String name) {
+        return context.getApplicationInfo().dataDir + "/extensions/" + name + "/";
+    }
+
+    static File getTmpFileForExtensionName(final Context context, final String name) {
+        return new File(getPathForExtensionName(context, name) + "tmp.jar");
+    }
+
+    private static File getFingerprintFileForExtensionName(final Context context,
+                                                           final String name) {
+        return new File(getPathForExtensionName(context, name) + "fingerprint.txt");
+    }
+
+    static class ExtensionInfo {
+        final String name;
+        final String author;
+        final String fingerprint;
+        final String cclass;
+        final int replaces;
+        final boolean upgrade;
+
+        ExtensionInfo(final String name, final String author, final String fingerprint,
+                      final String cclass, final int replaces, final boolean upgrade) {
+            this.name = name;
+            this.author = author;
+            this.fingerprint = fingerprint;
+            this.cclass = cclass;
+            this.replaces = replaces;
+            this.upgrade = upgrade;
+        }
+    }
+
+    static class NameMismatchException extends Exception {
         NameMismatchException() {
             super();
         }
     }
 
-    public static class InvalidSignatureException extends Exception {
+    static class InvalidSignatureException extends Exception {
         InvalidSignatureException() {
             super();
         }
     }
 
-    public static class SignatureMismatchException extends Exception {
+    static class SignatureMismatchException extends Exception {
         SignatureMismatchException() {
             super();
         }
     }
 
-    public static class UnknownSignatureException extends Exception {
+    static class UnknownSignatureException extends Exception {
         UnknownSignatureException() {
             super();
         }
     }
 
-    public static class VersionMismatchException extends Exception {
+    static class VersionMismatchException extends Exception {
         VersionMismatchException() {
             super();
         }
     }
 
-    public static class InvalidReplacementException extends Exception {
+    static class InvalidReplacementException extends Exception {
         InvalidReplacementException() {
             super();
         }
     }
 
-    public static class InvalidExtensionException extends Exception {
+    static class CaseMismatchException extends Exception {
+        CaseMismatchException() {
+            super();
+        }
+    }
+
+    static class InvalidExtensionException extends Exception {
         InvalidExtensionException() {
             super();
         }
