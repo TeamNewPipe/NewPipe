@@ -4,18 +4,21 @@ import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 
-import org.schabi.newpipe.util.SponsorTimeInfo;
-import org.schabi.newpipe.util.TimeFrame;
+import org.schabi.newpipe.util.VideoSegment;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonObject> {
+public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
     private static final Application APP = App.getApp();
     private String apiUrl;
     private static final String TAG = SponsorBlockApiTask.class.getSimpleName();
@@ -25,30 +28,67 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonObject> {
         this.apiUrl = apiUrl;
     }
 
-    public SponsorTimeInfo getYouTubeVideoSponsorTimes(final String videoId)
-            throws ExecutionException, InterruptedException {
+    public VideoSegment[] getYouTubeVideoSegments(final String videoId,
+                                                  final boolean includeSponsorCategory,
+                                                  final boolean includeIntroCategory,
+                                                  final boolean includeOutroCategory,
+                                                  final boolean includeInteractionCategory,
+                                                  final boolean includeSelfPromoCategory,
+                                                  final boolean includeMusicCategory)
+            throws ExecutionException, InterruptedException, UnsupportedEncodingException {
 
-        JsonObject obj = execute("getVideoSponsorTimes?videoID=" + videoId).get();
-        JsonArray arrayObj = obj.getArray("sponsorTimes");
+        ArrayList<String> categoryParamList = new ArrayList<>();
 
-        SponsorTimeInfo result = new SponsorTimeInfo();
-
-        for (int i = 0; i < arrayObj.size(); i++) {
-            JsonArray subArrayObj = arrayObj.getArray(i);
-
-            double startTime = subArrayObj.getDouble(0) * 1000;
-            double endTime = subArrayObj.getDouble(1) * 1000;
-
-            TimeFrame timeFrame = new TimeFrame(startTime, endTime);
-
-            result.timeFrames.add(timeFrame);
+        if (includeSponsorCategory) {
+            categoryParamList.add("sponsor");
+        }
+        if (includeIntroCategory) {
+            categoryParamList.add("intro");
+        }
+        if (includeOutroCategory) {
+            categoryParamList.add("outro");
+        }
+        if (includeInteractionCategory) {
+            categoryParamList.add("interaction");
+        }
+        if (includeSelfPromoCategory) {
+            categoryParamList.add("selfpromo");
+        }
+        if (includeMusicCategory) {
+            categoryParamList.add("music_offtopic");
         }
 
-        return result;
+        if (categoryParamList.size() == 0) {
+            return null;
+        }
+
+        String categoryParams = "[\"" + TextUtils.join("\",\"", categoryParamList) + "\"]";
+        categoryParams = URLEncoder.encode(categoryParams, "utf-8");
+
+        String params = "skipSegments?videoID=" + videoId + "&categories=" + categoryParams;
+
+        JsonArray arrayObj = execute(params).get();
+
+        ArrayList<VideoSegment> result = new ArrayList<>();
+
+        for (int i = 0; i < arrayObj.size(); i++) {
+            JsonObject obj = (JsonObject) arrayObj.get(i);
+            JsonArray segments = (JsonArray) obj.get("segment");
+
+            double startTime = segments.getDouble(0) * 1000;
+            double endTime = segments.getDouble(1) * 1000;
+            String category = obj.getString("category");
+
+            VideoSegment segment = new VideoSegment(startTime, endTime, category);
+
+            result.add(segment);
+        }
+
+        return result.toArray(new VideoSegment[0]);
     }
 
     @Override
-    protected JsonObject doInBackground(final String... strings) {
+    protected JsonArray doInBackground(final String... strings) {
         if (isCancelled() || !isConnected()) {
             return null;
         }
@@ -60,7 +100,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonObject> {
                             .get(apiUrl + strings[0])
                             .responseBody();
 
-            return JsonParser.object().from(responseBody);
+            return JsonParser.array().from(responseBody);
 
         } catch (Exception ex) {
             if (DEBUG) {

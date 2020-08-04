@@ -77,7 +77,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.SerializedCache;
-import org.schabi.newpipe.util.SponsorTimeInfo;
+import org.schabi.newpipe.util.VideoSegment;
 
 import java.io.IOException;
 
@@ -114,9 +114,9 @@ public abstract class BasePlayer implements
     public static final int STATE_COMPLETED = 128;
 
     @NonNull
-    private final SharedPreferences mPrefs;
+    protected final SharedPreferences mPrefs;
 
-    private SponsorTimeInfo sponsorTimeInfo;
+    private VideoSegment[] videoSegments;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Intent
@@ -716,9 +716,8 @@ public abstract class BasePlayer implements
                 simpleExoPlayer.getBufferedPercentage()
         );
 
-        if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable), false)
-                && sponsorTimeInfo != null) {
-            int skipTo = sponsorTimeInfo.getSponsorEndTimeFromProgress(currentProgress);
+        if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable_key), false)) {
+            int skipTo = getSponsorEndTimeFromProgress(currentProgress);
 
             if (skipTo == 0) {
                 return;
@@ -726,8 +725,9 @@ public abstract class BasePlayer implements
 
             seekTo(skipTo);
 
-            if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_notifications), false)) {
-                String toastText = context.getString(R.string.sponsorblock_skipped_sponsor);
+            if (mPrefs.getBoolean(
+                    context.getString(R.string.sponsorblock_notifications_key), false)) {
+                String toastText = context.getString(R.string.sponsorblock_skipped_segment);
                 Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
             }
 
@@ -736,6 +736,26 @@ public abstract class BasePlayer implements
                         + currentProgress + "], skipped to = [" + skipTo + "]");
             }
         }
+    }
+
+    private int getSponsorEndTimeFromProgress(final int progress) {
+        if (videoSegments == null) {
+            return 0;
+        }
+
+        for (VideoSegment segment : videoSegments) {
+            if (progress < segment.startTime) {
+                continue;
+            }
+
+            if (progress > segment.endTime) {
+                continue;
+            }
+
+            return (int) Math.ceil((segment.endTime));
+        }
+
+        return 0;
     }
 
     private Disposable getProgressReactor() {
@@ -1101,14 +1121,56 @@ public abstract class BasePlayer implements
 
         if (info.getUrl().startsWith("https://www.youtube.com")) {
             String apiUrl = mPrefs
-                    .getString(context.getString(R.string.sponsorblock_api_url), null);
+                    .getString(context.getString(R.string.sponsorblock_api_url_key), null);
             boolean isSponsorBlockEnabled = mPrefs
-                    .getBoolean(context.getString(R.string.sponsorblock_enable), false);
+                    .getBoolean(context.getString(R.string.sponsorblock_enable_key), false);
 
             if (apiUrl != null && !apiUrl.isEmpty() && isSponsorBlockEnabled) {
                 try {
-                    sponsorTimeInfo = new SponsorBlockApiTask(apiUrl)
-                            .getYouTubeVideoSponsorTimes(info.getId());
+                    boolean includeSponsorCategory =
+                            mPrefs.getBoolean(
+                                    context.getString(
+                                            R.string.sponsorblock_category_sponsor_key),
+                                    false);
+
+                    boolean includeIntroCategory =
+                            mPrefs.getBoolean(
+                                    context.getString(
+                                            R.string.sponsorblock_category_intro_key),
+                                    false);
+
+                    boolean includeOutroCategory =
+                            mPrefs.getBoolean(
+                                    context.getString(
+                                            R.string.sponsorblock_category_outro_key),
+                                    false);
+
+                    boolean includeInteractionCategory =
+                            mPrefs.getBoolean(
+                                    context.getString(
+                                            R.string.sponsorblock_category_interaction_key),
+                                    false);
+
+                    boolean includeSelfPromoCategory =
+                            mPrefs.getBoolean(
+                                    context.getString(
+                                            R.string.sponsorblock_category_self_promo_key),
+                                    false);
+
+                    boolean includeMusicCategory =
+                            mPrefs.getBoolean(
+                                    context.getString(
+                                            R.string.sponsorblock_category_music_key),
+                                    false);
+
+                    videoSegments = new SponsorBlockApiTask(apiUrl)
+                            .getYouTubeVideoSegments(info.getId(),
+                                    includeSponsorCategory,
+                                    includeIntroCategory,
+                                    includeOutroCategory,
+                                    includeInteractionCategory,
+                                    includeSelfPromoCategory,
+                                    includeMusicCategory);
                 } catch (Exception e) {
                     Log.e("SPONSOR_BLOCK", "Error getting YouTube video sponsor times.", e);
                 }
@@ -1653,11 +1715,7 @@ public abstract class BasePlayer implements
                 && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true);
     }
 
-    public SponsorTimeInfo getSponsorTimeInfo() {
-        return sponsorTimeInfo;
-    }
-
-    public void setSponsorTimeInfo(final SponsorTimeInfo sponsorTimeInfo) {
-        this.sponsorTimeInfo = sponsorTimeInfo;
+    public VideoSegment[] getVideoSegments() {
+        return videoSegments;
     }
 }

@@ -82,22 +82,26 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     @Override
     public boolean onPreferenceTreeClick(final Preference preference) {
-        if (preference.getKey().equals(thumbnailLoadToggleKey)) {
-            final ImageLoader imageLoader = ImageLoader.getInstance();
-            imageLoader.stop();
-            imageLoader.clearDiskCache();
-            imageLoader.clearMemoryCache();
-            imageLoader.resume();
-            Toast.makeText(preference.getContext(), R.string.thumbnail_cache_wipe_complete_notice,
-                    Toast.LENGTH_SHORT).show();
-        }
+        String key = preference.getKey();
+        if (key != null) {
+            if (key.equals(thumbnailLoadToggleKey)) {
+                final ImageLoader imageLoader = ImageLoader.getInstance();
+                imageLoader.stop();
+                imageLoader.clearDiskCache();
+                imageLoader.clearMemoryCache();
+                imageLoader.resume();
+                Toast.makeText(preference.getContext(),
+                        R.string.thumbnail_cache_wipe_complete_notice,
+                        Toast.LENGTH_SHORT).show();
+            }
 
-        if (preference.getKey().equals(youtubeRestrictedModeEnabledKey)) {
-            Context context = getContext();
-            if (context != null) {
-                DownloaderImpl.getInstance().updateYoutubeRestrictedModeCookies(context);
-            } else {
-                Log.w(TAG, "onPreferenceTreeClick: null context");
+            if (key.equals(youtubeRestrictedModeEnabledKey)) {
+                Context context = getContext();
+                if (context != null) {
+                    DownloaderImpl.getInstance().updateYoutubeRestrictedModeCookies(context);
+                } else {
+                    Log.w(TAG, "onPreferenceTreeClick: null context");
+                }
             }
         }
 
@@ -142,7 +146,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         });
 
         Preference sponsorBlockWebsitePreference =
-                findPreference(getString(R.string.sponsorblock_home_page));
+                findPreference(getString(R.string.sponsorblock_home_page_key));
         sponsorBlockWebsitePreference.setOnPreferenceClickListener((Preference p) -> {
             Intent i = new Intent(Intent.ACTION_VIEW,
                     Uri.parse(getString(R.string.sponsorblock_homepage_url)));
@@ -151,7 +155,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         });
 
         Preference sponsorBlockPrivacyPreference =
-                findPreference(getString(R.string.sponsorblock_privacy));
+                findPreference(getString(R.string.sponsorblock_privacy_key));
         sponsorBlockPrivacyPreference.setOnPreferenceClickListener((Preference p) -> {
             Intent i = new Intent(Intent.ACTION_VIEW,
                     Uri.parse(getString(R.string.sponsorblock_privacy_policy_url)));
@@ -160,17 +164,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         });
 
         Preference sponsorBlockApiUrlPreference =
-                findPreference(getString(R.string.sponsorblock_api_url));
-
-        // workaround to force dependency updates due to using a custom preference
+                findPreference(getString(R.string.sponsorblock_api_url_key));
         sponsorBlockApiUrlPreference
                 .setOnPreferenceChangeListener((preference, newValue) -> {
-                    findPreference(getString(R.string.sponsorblock_enable))
-                            .onDependencyChanged(preference,
-                                    newValue == null || newValue.equals(""));
-                    findPreference(getString(R.string.sponsorblock_notifications))
-                            .onDependencyChanged(preference,
-                                    newValue == null || newValue.equals(""));
+                    updateDependencies(preference, newValue);
                     return true;
                 });
     }
@@ -179,21 +176,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // workaround to force dependency updates due to using a custom preference
         Preference sponsorBlockApiUrlPreference =
-                findPreference(getString(R.string.sponsorblock_api_url));
+                findPreference(getString(R.string.sponsorblock_api_url_key));
         String sponsorBlockApiUrlPreferenceValue =
                 getPreferenceManager()
                         .getSharedPreferences()
-                        .getString(getString(R.string.sponsorblock_api_url), null);
-        findPreference(getString(R.string.sponsorblock_enable))
-                .onDependencyChanged(sponsorBlockApiUrlPreference,
-                        sponsorBlockApiUrlPreferenceValue == null
-                                || sponsorBlockApiUrlPreferenceValue.equals(""));
-        findPreference(getString(R.string.sponsorblock_notifications))
-                .onDependencyChanged(sponsorBlockApiUrlPreference,
-                        sponsorBlockApiUrlPreferenceValue == null
-                                || sponsorBlockApiUrlPreferenceValue.equals(""));
+                        .getString(getString(R.string.sponsorblock_api_url_key), null);
+        updateDependencies(sponsorBlockApiUrlPreference, sponsorBlockApiUrlPreferenceValue);
     }
 
     @Override
@@ -391,6 +380,23 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+        }
+    }
+
+    private void updateDependencies(final Preference preference, final Object newValue) {
+        // This is a workaround to force dependency updates for custom preferences.
+
+        // sponsorblock_api_url_key
+        if (preference.getKey().equals(getString(R.string.sponsorblock_api_url_key))) {
+            findPreference(getString(R.string.sponsorblock_enable_key))
+                    .onDependencyChanged(preference,
+                            newValue == null || newValue.equals(""));
+            findPreference(getString(R.string.sponsorblock_notifications_key))
+                    .onDependencyChanged(preference,
+                            newValue == null || newValue.equals(""));
+            findPreference(getString(R.string.sponsorblock_categories_key))
+                    .onDependencyChanged(preference,
+                            newValue == null || newValue.equals(""));
         }
     }
 

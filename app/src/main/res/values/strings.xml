@@ -132,7 +132,23 @@
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
-    <string name="settings_category_sponsorblock">SponsorBlock (beta, third party service)</string>
+    <string name="settings_category_sponsorblock_title">SponsorBlock (beta, third party service)</string>
+    <string name="settings_category_sponsorblock_categories_title">SponsorBlock Categories</string>
+    <string name="settings_category_sponsorblock_categories_summary">Customize which video segments to skip, along with their color markings on the seek bar.</string>
+    <string name="settings_category_sponsorblock_category_enable">Enable</string>
+    <string name="settings_category_sponsorblock_category_color">Seek Bar Color</string>
+    <string name="settings_category_sponsorblock_category_sponsor_title">Sponsor</string>
+    <string name="settings_category_sponsorblock_category_sponsor_summary">Paid promotion, paid referrals and direct advertisements. Not for self-promotion or free shoutouts to causes/creators/websites/products they like.</string>
+    <string name="settings_category_sponsorblock_category_intro_title">Intermission/Intro Animation</string>
+    <string name="settings_category_sponsorblock_category_intro_summary">An interval without actual content. Could be a pause, static frame, repeating animation. This should not be used for transitions containing information or be used on music videos.</string>
+    <string name="settings_category_sponsorblock_category_outro_title">Endcards/Credits</string>
+    <string name="settings_category_sponsorblock_category_outro_summary">Credits or when the YouTube endcards appear. Not for spoken conclusions. This should not include useful content. This should not be used on music videos.</string>
+    <string name="settings_category_sponsorblock_category_interaction_title">Interaction Reminds (Subscribe)</string>
+    <string name="settings_category_sponsorblock_category_interaction_summary">When there is a short reminder to like, subscribe or follow them in the middle of content. If it is long or about something specific, it should be under self promotion instead.</string>
+    <string name="settings_category_sponsorblock_category_self_promo_title">Unpaid/Self Promotion</string>
+    <string name="settings_category_sponsorblock_category_self_promo_summary">Similar to "sponsor" except for unpaid or self promotion. This includes sections about merchandise, donations, or information about who they collaborated with.</string>
+    <string name="settings_category_sponsorblock_category_music_title">Music: Non-Music Section</string>
+    <string name="settings_category_sponsorblock_category_music_summary">Only for use in music videos. This includes introductions or outros in music videos.</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -617,7 +633,7 @@
     <string name="remove_watched_popup_warning">Videos that have been watched before and after being added to the playlist will be removed.\nAre you sure? This cannot be undone!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
-    <string name="sponsorblock_skipped_sponsor">Sponsor skipped</string>
+    <string name="sponsorblock_skipped_segment">Segment skipped</string>
     <!-- Time duration plurals -->
     <plurals name="seconds">
         <item quantity="one">%d second</item>

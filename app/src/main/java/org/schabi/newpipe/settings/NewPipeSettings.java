@@ -45,6 +45,7 @@ public final class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.main_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.video_audio_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.debug_settings, true);
+        PreferenceManager.setDefaultValues(context, R.xml.sponsor_block_category_settings, true);
 
         getVideoDownloadFolder(context);
         getAudioDownloadFolder(context);

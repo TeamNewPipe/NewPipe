@@ -239,11 +239,24 @@
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
     <string name="storage_use_saf" translatable="false">storage_use_saf</string>
 
-    <string name="sponsorblock_home_page" translatable="false">sponsorblock_home_page</string>
-    <string name="sponsorblock_enable" translatable="false">sponsorblock_enable</string>
-    <string name="sponsorblock_api_url" translatable="false">sponsorblock_api_url</string>
-    <string name="sponsorblock_notifications" translatable="false">sponsorblock_notifications</string>
-    <string name="sponsorblock_privacy" translatable="false">sponsorblock_privacy</string>
+    <string name="sponsorblock_home_page_key" translatable="false">sponsorblock_home_page</string>
+    <string name="sponsorblock_enable_key" translatable="false">sponsorblock_enable</string>
+    <string name="sponsorblock_api_url_key" translatable="false">sponsorblock_api_url</string>
+    <string name="sponsorblock_notifications_key" translatable="false">sponsorblock_notifications</string>
+    <string name="sponsorblock_privacy_key" translatable="false">sponsorblock_privacy</string>
+    <string name="sponsorblock_categories_key" translatable="false">sponsorblock_categories</string>
+    <string name="sponsorblock_category_sponsor_key" translatable="false">sponsorblock_category_sponsor</string>
+    <string name="sponsorblock_category_sponsor_color_key" translatable="false">sponsorblock_category_sponsor_color</string>
+    <string name="sponsorblock_category_intro_key" translatable="false">sponsorblock_category_intro</string>
+    <string name="sponsorblock_category_intro_color_key" translatable="false">sponsorblock_category_intro_color</string>
+    <string name="sponsorblock_category_outro_key" translatable="false">sponsorblock_category_outro</string>
+    <string name="sponsorblock_category_outro_color_key" translatable="false">sponsorblock_category_outro_color</string>
+    <string name="sponsorblock_category_interaction_key" translatable="false">sponsorblock_category_interaction</string>
+    <string name="sponsorblock_category_interaction_color_key" translatable="false">sponsorblock_category_interaction_color</string>
+    <string name="sponsorblock_category_self_promo_key" translatable="false">sponsorblock_category_self_promo</string>
+    <string name="sponsorblock_category_self_promo_color_key" translatable="false">sponsorblock_category_self_promo_color</string>
+    <string name="sponsorblock_category_music_key" translatable="false">sponsorblock_category_music</string>
+    <string name="sponsorblock_category_music_color_key" translatable="false">sponsorblock_category_music_color</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>
