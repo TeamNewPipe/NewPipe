@@ -202,6 +202,7 @@ public class VideoDetailFragment
     private ImageView thumbnailImageView;
     private ImageView thumbnailPlayButton;
     private AnimatedProgressBar positionView;
+    private ViewGroup playerPlaceholder;
 
     private View videoTitleRoot;
     private TextView videoTitleTextView;
@@ -705,6 +706,7 @@ public class VideoDetailFragment
         thumbnailBackgroundButton = rootView.findViewById(R.id.detail_thumbnail_root_layout);
         thumbnailImageView = rootView.findViewById(R.id.detail_thumbnail_image_view);
         thumbnailPlayButton = rootView.findViewById(R.id.detail_thumbnail_play_button);
+        playerPlaceholder = rootView.findViewById(R.id.player_placeholder);
 
         contentRootLayoutHiding = rootView.findViewById(R.id.detail_content_root_hiding);
 
@@ -1265,17 +1267,15 @@ public class VideoDetailFragment
             return;
         }
 
-        final FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
-
         // Check if viewHolder already contains a child
-        if (player.getRootView().getParent() != viewHolder) {
+        if (player.getRootView().getParent() != playerPlaceholder) {
             removeVideoPlayerView();
         }
         setHeightThumbnail();
 
         // Prevent from re-adding a view multiple times
         if (player.getRootView().getParent() == null) {
-            viewHolder.addView(player.getRootView());
+            playerPlaceholder.addView(player.getRootView());
         }
     }
 
@@ -1290,9 +1290,8 @@ public class VideoDetailFragment
             return;
         }
 
-        final FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
-        viewHolder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
-        viewHolder.requestLayout();
+        playerPlaceholder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
+        playerPlaceholder.requestLayout();
     }
 
     private void prepareDescription(final Description description) {
@@ -1771,8 +1770,17 @@ public class VideoDetailFragment
         final int progressSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(progress);
         final int durationSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(duration);
         positionView.setMax(durationSeconds);
-        positionView.setProgressAnimated(progressSeconds);
-        detailPositionView.setText(Localization.getDurationString(progressSeconds));
+        // If there is no player inside fragment use animation, otherwise don't because
+        // it affects CPU
+        if (playerPlaceholder.getChildCount() == 0) {
+            positionView.setProgressAnimated(progressSeconds);
+        } else {
+            positionView.setProgress(progressSeconds);
+        }
+        final String position = Localization.getDurationString(progressSeconds);
+        if (position != detailPositionView.getText()) {
+            detailPositionView.setText(position);
+        }
         if (positionView.getVisibility() != View.VISIBLE) {
             animateView(positionView, true, 100);
             animateView(detailPositionView, true, 100);
@@ -1949,7 +1957,7 @@ public class VideoDetailFragment
                 (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
         final AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
         final ValueAnimator valueAnimator = ValueAnimator
-                .ofInt(0, -getView().findViewById(R.id.player_placeholder).getHeight());
+                .ofInt(0, -playerPlaceholder.getHeight());
         valueAnimator.setInterpolator(new DecelerateInterpolator());
         valueAnimator.addUpdateListener(animation -> {
             behavior.setTopAndBottomOffset((int) animation.getAnimatedValue());
