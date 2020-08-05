@@ -135,7 +135,8 @@
     <string name="settings_category_sponsorblock_title">SponsorBlock (beta, third party service)</string>
     <string name="settings_category_sponsorblock_categories_title">SponsorBlock Categories</string>
     <string name="settings_category_sponsorblock_categories_summary">Customize which video segments to skip, along with their color markings on the seek bar.</string>
-    <string name="settings_category_sponsorblock_category_enable">Enable</string>
+    <string name="settings_category_sponsorblock_categories_reset_colors_title">Reset Colors</string>
+    <string name="settings_category_sponsorblock_category_enable_title">Enable</string>
     <string name="settings_category_sponsorblock_category_color">Seek Bar Color</string>
     <string name="settings_category_sponsorblock_category_sponsor_title">Sponsor</string>
     <string name="settings_category_sponsorblock_category_sponsor_summary">Paid promotion, paid referrals and direct advertisements. Not for self-promotion or free shoutouts to causes/creators/websites/products they like.</string>
@@ -147,8 +148,8 @@
     <string name="settings_category_sponsorblock_category_interaction_summary">When there is a short reminder to like, subscribe or follow them in the middle of content. If it is long or about something specific, it should be under self promotion instead.</string>
     <string name="settings_category_sponsorblock_category_self_promo_title">Unpaid/Self Promotion</string>
     <string name="settings_category_sponsorblock_category_self_promo_summary">Similar to "sponsor" except for unpaid or self promotion. This includes sections about merchandise, donations, or information about who they collaborated with.</string>
-    <string name="settings_category_sponsorblock_category_music_title">Music: Non-Music Section</string>
-    <string name="settings_category_sponsorblock_category_music_summary">Only for use in music videos. This includes introductions or outros in music videos.</string>
+    <string name="settings_category_sponsorblock_category_non_music_title">Music: Non-Music Section</string>
+    <string name="settings_category_sponsorblock_category_non_music_summary">Only for use in music videos. This includes introductions or outros in music videos.</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -633,7 +634,6 @@
     <string name="remove_watched_popup_warning">Videos that have been watched before and after being added to the playlist will be removed.\nAre you sure? This cannot be undone!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
-    <string name="sponsorblock_skipped_segment">Segment skipped</string>
     <!-- Time duration plurals -->
     <plurals name="seconds">
         <item quantity="one">%d second</item>
@@ -699,4 +699,10 @@
     <string name="sponsorblock_homepage_url">https://sponsor.ajay.app/</string>
     <string name="sponsorblock_default_api_url">https://sponsor.ajay.app/api/</string>
     <string name="sponsorblock_privacy_policy_url">https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796</string>
+    <string name="sponsorblock_skip_sponsor_message">Skipped sponsor</string>
+    <string name="sponsorblock_skip_intro_message">Skipped intermission/intro segment</string>
+    <string name="sponsorblock_skip_outro_message">Skipped endcards/credits segment</string>
+    <string name="sponsorblock_skip_interaction_message">Skipped interaction reminder segment</string>
+    <string name="sponsorblock_skip_self_promo_message">Skipped unpaid/self promo segment</string>
+    <string name="sponsorblock_skip_non_music_message">Skipped non-music segment</string>
 </resources>

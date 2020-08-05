@@ -4,6 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_sponsorblock_categories_title">
 
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="@string/sponsorblock_category_reset_key"
+        android:title="@string/settings_category_sponsorblock_categories_reset_colors_title"/>
+
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_sponsorblock_category_sponsor_title">
@@ -17,9 +22,9 @@
             app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:key="@string/sponsorblock_category_sponsor_key"
-            android:title="@string/settings_category_sponsorblock_category_enable"/>
+            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
 
-        <EditTextPreference
+        <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
             android:dependency="@string/sponsorblock_category_sponsor_key"
             android:defaultValue="@color/sponsor_segment"
@@ -41,9 +46,9 @@
             app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/sponsorblock_category_intro_key"
-            android:title="@string/settings_category_sponsorblock_category_enable"/>
+            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
 
-        <EditTextPreference
+        <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
             android:dependency="@string/sponsorblock_category_intro_key"
             android:defaultValue="@color/intro_segment"
@@ -65,9 +70,9 @@
             app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/sponsorblock_category_outro_key"
-            android:title="@string/settings_category_sponsorblock_category_enable"/>
+            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
 
-        <EditTextPreference
+        <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
             android:dependency="@string/sponsorblock_category_outro_key"
             android:defaultValue="@color/outro_segment"
@@ -89,9 +94,9 @@
             app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/sponsorblock_category_interaction_key"
-            android:title="@string/settings_category_sponsorblock_category_enable"/>
+            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
 
-        <EditTextPreference
+        <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
             android:dependency="@string/sponsorblock_category_interaction_key"
             android:defaultValue="@color/interaction_segment"
@@ -113,9 +118,9 @@
             app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/sponsorblock_category_self_promo_key"
-            android:title="@string/settings_category_sponsorblock_category_enable"/>
+            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
 
-        <EditTextPreference
+        <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
             android:dependency="@string/sponsorblock_category_self_promo_key"
             android:defaultValue="@color/self_promo_segment"
@@ -126,24 +131,24 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsorblock_category_music_title">
+        android:title="@string/settings_category_sponsorblock_category_non_music_title">
 
         <Preference
             app:iconSpaceReserved="false"
-            android:summary="@string/settings_category_sponsorblock_category_music_summary"
+            android:summary="@string/settings_category_sponsorblock_category_non_music_summary"
             android:selectable="false"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
-            android:key="@string/sponsorblock_category_music_key"
-            android:title="@string/settings_category_sponsorblock_category_enable"/>
+            android:key="@string/sponsorblock_category_non_music_key"
+            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
 
-        <EditTextPreference
+        <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
-            android:dependency="@string/sponsorblock_category_music_key"
-            android:defaultValue="@color/music_offtopic_segment"
-            android:key="@string/sponsorblock_category_music_color_key"
+            android:dependency="@string/sponsorblock_category_non_music_key"
+            android:defaultValue="@color/non_music_segment"
+            android:key="@string/sponsorblock_category_non_music_color_key"
             android:title="@string/settings_category_sponsorblock_category_color"/>
 
     </PreferenceCategory>

@@ -89,5 +89,5 @@
     <color name="outro_segment">#0202ed</color>
     <color name="interaction_segment">#cc00ff</color>
     <color name="self_promo_segment">#ffff00</color>
-    <color name="music_offtopic_segment">#ff9900</color>
+    <color name="non_music_segment">#ff9900</color>
 </resources>

@@ -620,10 +620,10 @@ public abstract class VideoPlayer extends BasePlayer
 
         super.onPrepared(playWhenReady);
 
-        markSponsorTimes();
+        markSegments();
     }
 
-    private void markSponsorTimes() {
+    private void markSegments() {
         VideoSegment[] segments = getVideoSegments();
 
         if (segments == null || segments.length == 0) {
@@ -710,12 +710,12 @@ public abstract class VideoPlayer extends BasePlayer
                 }
                 break;
             case "music_offtopic":
-                key = context.getString(R.string.sponsorblock_category_music_key);
+                key = context.getString(R.string.sponsorblock_category_non_music_key);
                 if (mPrefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsorblock_category_music_color_key);
+                    key = context.getString(R.string.sponsorblock_category_non_music_color_key);
                     colorStr = mPrefs.getString(key, null);
                     return colorStr == null
-                            ? context.getResources().getColor(R.color.music_offtopic_segment)
+                            ? context.getResources().getColor(R.color.non_music_segment)
                             : Color.parseColor(colorStr);
                 }
                 break;

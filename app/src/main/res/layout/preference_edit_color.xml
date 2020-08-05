@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/segment_color_view"
+    android:layout_width="98dp"
+    android:layout_height="6dp"
+    android:background="@color/black"/>

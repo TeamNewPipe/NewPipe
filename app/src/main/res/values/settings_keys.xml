@@ -245,6 +245,7 @@
     <string name="sponsorblock_notifications_key" translatable="false">sponsorblock_notifications</string>
     <string name="sponsorblock_privacy_key" translatable="false">sponsorblock_privacy</string>
     <string name="sponsorblock_categories_key" translatable="false">sponsorblock_categories</string>
+    <string name="sponsorblock_category_reset_key" translatable="false">sponsorblock_category_reset</string>
     <string name="sponsorblock_category_sponsor_key" translatable="false">sponsorblock_category_sponsor</string>
     <string name="sponsorblock_category_sponsor_color_key" translatable="false">sponsorblock_category_sponsor_color</string>
     <string name="sponsorblock_category_intro_key" translatable="false">sponsorblock_category_intro</string>
@@ -255,8 +256,8 @@
     <string name="sponsorblock_category_interaction_color_key" translatable="false">sponsorblock_category_interaction_color</string>
     <string name="sponsorblock_category_self_promo_key" translatable="false">sponsorblock_category_self_promo</string>
     <string name="sponsorblock_category_self_promo_color_key" translatable="false">sponsorblock_category_self_promo_color</string>
-    <string name="sponsorblock_category_music_key" translatable="false">sponsorblock_category_music</string>
-    <string name="sponsorblock_category_music_color_key" translatable="false">sponsorblock_category_music_color</string>
+    <string name="sponsorblock_category_non_music_key" translatable="false">sponsorblock_category_music</string>
+    <string name="sponsorblock_category_non_music_color_key" translatable="false">sponsorblock_category_music_color</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>

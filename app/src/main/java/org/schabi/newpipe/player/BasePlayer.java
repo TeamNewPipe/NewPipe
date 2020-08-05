@@ -717,18 +717,47 @@ public abstract class BasePlayer implements
         );
 
         if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable_key), false)) {
-            int skipTo = getSponsorEndTimeFromProgress(currentProgress);
-
-            if (skipTo == 0) {
+            VideoSegment segment = getSkippableSegment(currentProgress);
+            if (segment == null) {
                 return;
             }
+
+            int skipTo = (int) Math.ceil((segment.endTime));
 
             seekTo(skipTo);
 
             if (mPrefs.getBoolean(
                     context.getString(R.string.sponsorblock_notifications_key), false)) {
-                String toastText = context.getString(R.string.sponsorblock_skipped_segment);
-                Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
+                String toastText = "";
+
+                switch (segment.category) {
+                    case "sponsor":
+                        toastText = context
+                                .getString(R.string.sponsorblock_skip_sponsor_message);
+                        break;
+                    case "intro":
+                        toastText = context
+                                .getString(R.string.sponsorblock_skip_intro_message);
+                        break;
+                    case "outro":
+                        toastText = context
+                                .getString(R.string.sponsorblock_skip_outro_message);
+                        break;
+                    case "interaction":
+                        toastText = context
+                                .getString(R.string.sponsorblock_skip_interaction_message);
+                        break;
+                    case "selfpromo":
+                        toastText = context
+                                .getString(R.string.sponsorblock_skip_self_promo_message);
+                        break;
+                    case "music_offtopic":
+                        toastText = context
+                                .getString(R.string.sponsorblock_skip_non_music_message);
+                        break;
+                }
+
+                Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
             }
 
             if (DEBUG) {
@@ -738,9 +767,9 @@ public abstract class BasePlayer implements
         }
     }
 
-    private int getSponsorEndTimeFromProgress(final int progress) {
+    public VideoSegment getSkippableSegment(final int progress) {
         if (videoSegments == null) {
-            return 0;
+            return null;
         }
 
         for (VideoSegment segment : videoSegments) {
@@ -752,10 +781,10 @@ public abstract class BasePlayer implements
                 continue;
             }
 
-            return (int) Math.ceil((segment.endTime));
+            return segment;
         }
 
-        return 0;
+        return null;
     }
 
     private Disposable getProgressReactor() {
@@ -1160,7 +1189,7 @@ public abstract class BasePlayer implements
                     boolean includeMusicCategory =
                             mPrefs.getBoolean(
                                     context.getString(
-                                            R.string.sponsorblock_category_music_key),
+                                            R.string.sponsorblock_category_non_music_key),
                                     false);
 
                     videoSegments = new SponsorBlockApiTask(apiUrl)
