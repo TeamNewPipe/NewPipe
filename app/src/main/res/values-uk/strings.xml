@@ -622,4 +622,9 @@
     <string name="detail_sub_channel_thumbnail_view_description">Ескіз аватара каналу</string>
     <string name="show_original_time_ago_summary">Оригінальні тексти сервісів будуть видимі в потокових елементах</string>
     <string name="youtube_restricted_mode_enabled_title">Режим обмеженого доступу YouTube</string>
+    <string name="search_showing_result_for">Результати для: %s</string>
+    <string name="channel_created_by">Створено %s</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Показати лише незгруповані підписки</string>
+    <string name="copy_for_github">Скопіювати відформатований звіт</string>
+    <string name="error_report_open_issue_button_text">Повідомити про помилку на GitBub</string>
 </resources>
