@@ -400,7 +400,7 @@ public abstract class BasePlayer implements
         initPlayer(playOnReady);
         SharedPrefrences sharedPrefrences =
                 context.getSharedPrefrences("play_mode_state", MODE_PRIVATE);
-        boolean shuffleMode = SharedPrefrences.getBoolean("shuffle_mode",false);
+        boolean shuffleMode = SharedPrefrences.getBoolean("shuffle_mode", false);
         simpleExoPlayer.setShuffleModeEnabled(shuffleMode);
 
         setRepeatMode(repeatMode);
@@ -672,7 +672,7 @@ public abstract class BasePlayer implements
         SharedPrefrences sharedPrefrences =
                 context.getSharedPrefrences("play_mode_state", MODE_PRIVATE);
         SharedPrefrences.Editor editor = sharedPrefrences.edit();
-        editor.putBoolean("shuffle_mode",!simpleExoPlayer.getShuffleModeEnabled());
+        editor.putBoolean("shuffle_mode", !simpleExoPlayer.getShuffleModeEnabled());
         editor.apply();
         simpleExoPlayer.setShuffleModeEnabled(!simpleExoPlayer.getShuffleModeEnabled());
     }
