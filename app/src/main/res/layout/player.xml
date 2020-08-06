@@ -298,12 +298,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
                     android:padding="@dimen/player_main_buttons_padding"
+                    android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_volume_off_white_24dp"
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="@string/mute"
+                    tools:ignore="RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/switchSponsorBlocking"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:padding="@dimen/player_main_buttons_padding"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/ic_sponsorblock_disable_white_24dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/sponsorblock_toggle_skipping"
                     tools:ignore="RtlHardcoded" />
 
                 </LinearLayout>

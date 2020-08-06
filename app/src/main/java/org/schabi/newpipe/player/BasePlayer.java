@@ -205,6 +205,7 @@ public abstract class BasePlayer implements
     private Disposable stateLoader;
 
     protected int currentState = STATE_PREFLIGHT;
+    private boolean isBlockingSponsors;
 
     public BasePlayer(@NonNull final Context context) {
         this.context = context;
@@ -236,6 +237,9 @@ public abstract class BasePlayer implements
         this.renderFactory = new DefaultRenderersFactory(context);
 
         this.mPrefs = PreferenceManager.getDefaultSharedPreferences(App.getApp());
+
+        isBlockingSponsors = mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable_key),
+                false);
     }
 
     public void setup() {
@@ -691,6 +695,17 @@ public abstract class BasePlayer implements
         return simpleExoPlayer.getVolume() == 0;
     }
 
+    public void onBlockingSponsorsButtonClicked() {
+        if (DEBUG) {
+            Log.d(TAG, "onBlockingSponsorsButtonClicked() called");
+        }
+        isBlockingSponsors = !isBlockingSponsors;
+    }
+
+    public boolean isBlockingSponsors() {
+        return isBlockingSponsors;
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Progress Updates
     //////////////////////////////////////////////////////////////////////////*/
@@ -716,7 +731,9 @@ public abstract class BasePlayer implements
                 simpleExoPlayer.getBufferedPercentage()
         );
 
-        if (mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable_key), false)) {
+        if (isBlockingSponsors
+                && mPrefs.getBoolean(
+                        context.getString(R.string.sponsorblock_enable_key), false)) {
             VideoSegment segment = getSkippableSegment(currentProgress);
             if (segment == null) {
                 return;

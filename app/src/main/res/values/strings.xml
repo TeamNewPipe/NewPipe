@@ -705,4 +705,5 @@
     <string name="sponsorblock_skip_interaction_message">Skipped interaction reminder segment</string>
     <string name="sponsorblock_skip_self_promo_message">Skipped unpaid/self promo segment</string>
     <string name="sponsorblock_skip_non_music_message">Skipped non-music segment</string>
+    <string name="sponsorblock_toggle_skipping">Toggle skipping sponsors</string>
 </resources>

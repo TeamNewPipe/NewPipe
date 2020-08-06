@@ -163,6 +163,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private ImageButton playerCloseButton;
     private ImageButton screenRotationButton;
     private ImageButton muteButton;
+    private ImageButton blockSponsorsButton;
 
     private ImageButton playPauseButton;
     private ImageButton playPreviousButton;
@@ -295,6 +296,7 @@ public class VideoPlayerImpl extends VideoPlayer
         this.screenRotationButton = view.findViewById(R.id.screenRotationButton);
         this.playerCloseButton = view.findViewById(R.id.playerCloseButton);
         this.muteButton = view.findViewById(R.id.switchMute);
+        this.blockSponsorsButton = view.findViewById(R.id.switchSponsorBlocking);
 
         this.playPauseButton = view.findViewById(R.id.playPauseButton);
         this.playPreviousButton = view.findViewById(R.id.playPreviousButton);
@@ -358,6 +360,7 @@ public class VideoPlayerImpl extends VideoPlayer
             playWithKodi.setVisibility(View.GONE);
             openInBrowser.setVisibility(View.GONE);
             muteButton.setVisibility(View.GONE);
+            blockSponsorsButton.setVisibility(View.GONE);
             playerCloseButton.setVisibility(View.GONE);
             getTopControlsRoot().bringToFront();
             getTopControlsRoot().setClickable(false);
@@ -379,6 +382,11 @@ public class VideoPlayerImpl extends VideoPlayer
             showHideKodiButton();
             openInBrowser.setVisibility(View.VISIBLE);
             muteButton.setVisibility(View.VISIBLE);
+
+            boolean isSponsorBlockEnabled = mPrefs.getBoolean(
+                    context.getString(R.string.sponsorblock_enable_key), false);
+            blockSponsorsButton.setVisibility(isSponsorBlockEnabled ? View.VISIBLE : View.GONE);
+
             playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
             // Top controls have a large minHeight which is allows to drag the player
             // down in fullscreen mode (just larger area to make easy to locate by finger)
@@ -393,6 +401,7 @@ public class VideoPlayerImpl extends VideoPlayer
             channelTextView.setVisibility(View.VISIBLE);
         }
         setMuteButton(muteButton, isMuted());
+        setBlockSponsorsButton(blockSponsorsButton, isBlockingSponsors());
 
         animateRotation(moreOptionsButton, DEFAULT_CONTROLS_DURATION, 0);
     }
@@ -463,6 +472,7 @@ public class VideoPlayerImpl extends VideoPlayer
         openInBrowser.setOnClickListener(this);
         playerCloseButton.setOnClickListener(this);
         muteButton.setOnClickListener(this);
+        blockSponsorsButton.setOnClickListener(this);
 
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
@@ -633,6 +643,12 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
+    public void onBlockingSponsorsButtonClicked() {
+        super.onBlockingSponsorsButtonClicked();
+        setBlockSponsorsButton(blockSponsorsButton, isBlockingSponsors());
+    }
+
+    @Override
     public void onUpdateProgress(final int currentProgress,
                                  final int duration, final int bufferPercent) {
         super.onUpdateProgress(currentProgress, duration, bufferPercent);
@@ -798,6 +814,8 @@ public class VideoPlayerImpl extends VideoPlayer
             }
         } else if (v.getId() == muteButton.getId()) {
             onMuteUnmuteButtonClicked();
+        } else if (v.getId() == blockSponsorsButton.getId()) {
+            onBlockingSponsorsButtonClicked();
         } else if (v.getId() == playerCloseButton.getId()) {
             service.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
         }
@@ -1566,6 +1584,13 @@ public class VideoPlayerImpl extends VideoPlayer
     protected void setMuteButton(final ImageButton button, final boolean isMuted) {
         button.setImageDrawable(AppCompatResources.getDrawable(service, isMuted
                 ? R.drawable.ic_volume_off_white_24dp : R.drawable.ic_volume_up_white_24dp));
+    }
+
+    protected void setBlockSponsorsButton(final ImageButton button,
+                                          final boolean isBlockingSponsors) {
+        button.setImageDrawable(AppCompatResources.getDrawable(service, isBlockingSponsors
+                ? R.drawable.ic_sponsorblock_disable_white_24dp
+                : R.drawable.ic_sponsorblock_enable_white_24dp));
     }
 
     /**
