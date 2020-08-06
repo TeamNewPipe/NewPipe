@@ -99,6 +99,15 @@ public final class ExtensionManager {
                         cclass = about.getString("class");
                         replaces = about.getInt("replaces", -1);
 
+                        if (replaces == -1) {
+                            for (int i = 0; i < ServiceList.builtinServices; i++) {
+                                if (ServiceList.all().get(i).getServiceInfo().getName()
+                                        .equals(name)) {
+                                    throw new InvalidExtensionException();
+                                }
+                            }
+                        }
+
                         if (!cclass
                                 .startsWith("org.schabi.newpipe.extractor.extensions.services.")) {
                             throw new InvalidExtensionException();
