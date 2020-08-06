@@ -164,7 +164,7 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.wb9688:NewPipeExtractor:095476aebdc9b79820da2a715da1a8cea47d7501'
+    implementation 'com.github.wb9688:NewPipeExtractor:a166ce0cb4fa9e816c69e9685ee91536da8f4b6b'
 
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
     implementation "org.jsoup:jsoup:1.13.1"

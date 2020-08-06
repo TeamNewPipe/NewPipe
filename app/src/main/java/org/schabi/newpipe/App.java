@@ -128,12 +128,16 @@ public class App extends Application {
                 boolean hasClasses = false;
                 boolean hasIcon = false;
                 for (final String file : extensionDir.list()) {
-                    if (file.equals("about.json")) {
-                        hasAbout = true;
-                    } else if (file.equals("classes.dex")) {
-                        hasClasses = true;
-                    } else if (file.equals("icon.png")) {
-                        hasIcon = true;
+                    switch (file) {
+                        case "about.json":
+                            hasAbout = true;
+                            break;
+                        case "classes.dex":
+                            hasClasses = true;
+                            break;
+                        case "icon.png":
+                            hasIcon = true;
+                            break;
                     }
                 }
                 if (!hasAbout || !hasClasses || !hasIcon) {
@@ -144,10 +148,10 @@ public class App extends Application {
                         path + extension + "/about.json"));
                 final JsonObject about = JsonParser.object().from(aboutStream);
                 final String className = about.getString("class");
-                final String version = about.getString("version");
 
                 // Delete extensions for different NewPipe versions
-                if (!version.equals(BuildConfig.VERSION_NAME)) {
+                if (about.getInt("major_version") != NewPipe.MAJOR_VERSION
+                        || about.getInt("minor_version") > NewPipe.MINOR_VERSION) {
                     ExtensionManager.removeExtension(path + extension);
                     continue;
                 }

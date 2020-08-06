@@ -7,7 +7,6 @@ import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
 
-import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -87,7 +86,8 @@ public final class ExtensionManager {
                         } catch (JsonParserException e) {
                             throw new IOException(e);
                         }
-                        if (!about.getString("version").equals(BuildConfig.VERSION_NAME)) {
+                        if (about.getInt("major_version") != NewPipe.MAJOR_VERSION
+                                || about.getInt("minor_version") > NewPipe.MINOR_VERSION) {
                             throw new VersionMismatchException();
                         }
                         if (about.has("replaces")
