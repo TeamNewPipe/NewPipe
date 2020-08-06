@@ -163,4 +163,6 @@
     <string name="paused">Asteεfu</string>
     <string name="rename_playlist">Snifel isem</string>
     <string name="videos_string">Tividyutin</string>
+    <string name="open_in_browser">Ldi deg uminig</string>
+    <string name="view_count_text">%1$s n tmeẓriyin</string>
 </resources>
