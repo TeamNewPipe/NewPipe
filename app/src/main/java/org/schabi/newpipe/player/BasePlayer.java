@@ -398,9 +398,9 @@ public abstract class BasePlayer implements
                                 final boolean isMuted) {
         destroyPlayer();
         initPlayer(playOnReady);
-        SharedPrefrences sharedPrefrences =
-                context.getSharedPrefrences("play_mode_state", MODE_PRIVATE);
-        boolean shuffleMode = SharedPrefrences.getBoolean("shuffle_mode", false);
+        SharedPreferences sharedPreferences =
+                context.getSharedPreferences("play_mode_state", MODE_PRIVATE);
+        boolean shuffleMode = SharedPreferences.getBoolean("shuffle_mode", false);
         simpleExoPlayer.setShuffleModeEnabled(shuffleMode);
 
         setRepeatMode(repeatMode);
@@ -669,9 +669,9 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null) {
             return;
         }
-        SharedPrefrences sharedPrefrences =
-                context.getSharedPrefrences("play_mode_state", MODE_PRIVATE);
-        SharedPrefrences.Editor editor = sharedPrefrences.edit();
+        SharedPreferences sharedPreferences =
+                context.getSharedPreferences("play_mode_state", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("shuffle_mode", !simpleExoPlayer.getShuffleModeEnabled());
         editor.apply();
         simpleExoPlayer.setShuffleModeEnabled(!simpleExoPlayer.getShuffleModeEnabled());
