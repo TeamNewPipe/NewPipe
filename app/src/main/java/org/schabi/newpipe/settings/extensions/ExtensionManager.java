@@ -42,14 +42,30 @@ import java.util.jar.JarInputStream;
 
 import dalvik.system.PathClassLoader;
 import kotlin.collections.SetsKt;
+import wb9688.simple_dex_parser.SimpleDexParser;
 
 public final class ExtensionManager {
+    private static final List<String> ALLOWED_PACKAGES = Arrays.asList("Ldalvik/annotation/",
+            "Ljavax/annotation/", "Ljava/lang/", "Ljava/util/", "Ljava/text/",
+            "Lcom/grack/nanojson/", "Lorg/schabi/newpipe/extractor/");
+    private static final List<String> ALLOWED_CLASSES = Arrays.asList("Ljava/io/IOException;",
+            "Ljava/io/UnsupportedEncodingException;", "Ljava/io/InputStream;", "Ljava/net/URL;",
+            "Ljava/net/MalformedURLException;", "Ljava/net/URLEncoder;", "Ljava/net/URLDecoder;",
+            "Ljava/net/URI;", "Ljava/net/URISyntaxException;", "Lorg/jsoup/Jsoup;",
+            "Lorg/jsoup/nodes/Document;", "Lorg/jsoup/nodes/Element;", "Lorg/jsoup/parser/Parser;",
+            "Lorg/jsoup/select/Elements;");
+    private static final List<String> DISALLOWED_PACKAGES = Arrays.asList("Ljava/lang/reflect/",
+            "Lorg/schabi/newpipe/extractor/services/");
+    private static final List<String> DISALLOWED_CLASSES = Arrays.asList("Ljava/lang/Class;",
+            "Ljava/lang/ClassLoader;", "Lorg/schabi/newpipe/extractor/ServiceList;");
+
     private ExtensionManager() { }
 
     static ExtensionInfo checkExtension(final Context context, final StoredFileHelper file)
             throws IOException, UnknownSignatureException, InvalidSignatureException,
             VersionMismatchException, InvalidReplacementException, InvalidExtensionException,
-            SignatureMismatchException, CaseMismatchException {
+            SignatureMismatchException, CaseMismatchException, DexParsingException,
+            InsecureDexException {
         String name = null;
         String author = null;
         String cclass = null;
@@ -82,6 +98,11 @@ public final class ExtensionManager {
                         author = about.getString("author");
                         cclass = about.getString("class");
                         replaces = about.getInt("replaces", -1);
+
+                        if (!cclass
+                                .startsWith("org.schabi.newpipe.extractor.extensions.services.")) {
+                            throw new InvalidExtensionException();
+                        }
 
                         final String[] installedExtensions = new File(
                                 context.getApplicationInfo().dataDir + "/extensions/").list();
@@ -122,6 +143,9 @@ public final class ExtensionManager {
                         }
                         break;
                     case "classes.dex":
+                        if (!checkDex(new BufferedInputStream(jarInputStream))) {
+                            throw new InsecureDexException();
+                        }
                         hasDex = true;
                         break;
                     case "icon.png":
@@ -235,6 +259,49 @@ public final class ExtensionManager {
         }
 
         extensionDir.delete();
+    }
+
+    private static boolean checkDex(final InputStream inputStream) throws DexParsingException {
+        final SimpleDexParser simpleDexParser;
+        try {
+            simpleDexParser = new SimpleDexParser(inputStream);
+        } catch (IOException e) {
+            throw new DexParsingException();
+        }
+        types:
+        for (String type : simpleDexParser.getTypes()) {
+            while (type.startsWith("[")) {
+                type = type.substring(1);
+            }
+
+            if (!type.startsWith("L")) {
+                continue;
+            }
+
+            if (DISALLOWED_CLASSES.contains(type)) {
+                return false;
+            }
+
+            for (final String disallowedPackage : DISALLOWED_PACKAGES) {
+                if (type.startsWith(disallowedPackage)) {
+                    return false;
+                }
+            }
+
+            if (ALLOWED_CLASSES.contains(type)) {
+                continue;
+            }
+
+            for (final String allowedPackage : ALLOWED_PACKAGES) {
+                if (type.startsWith(allowedPackage)) {
+                    continue types;
+                }
+            }
+
+            return false;
+        }
+
+        return true;
     }
 
     private static X509Certificate getSigningCertFromJar(final JarEntry jarEntry)
@@ -368,6 +435,18 @@ public final class ExtensionManager {
 
     static class CaseMismatchException extends Exception {
         CaseMismatchException() {
+            super();
+        }
+    }
+
+    static class DexParsingException extends Exception {
+        DexParsingException() {
+            super();
+        }
+    }
+
+    static class InsecureDexException extends Exception {
+        InsecureDexException() {
             super();
         }
     }

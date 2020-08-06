@@ -429,6 +429,8 @@
     <string name="add_extension_fail_version_mismatch">Installation of the extension failed due to it being for a different version of NewPipe.</string>
     <string name="add_extension_fail_invalid_replacement">Installation of the extension failed due to it trying to replace an unknown service.</string>
     <string name="add_extension_fail_case_mismatch">Installation of the extension failed due to its name\'s casing not matching the casing of the name of an installed with the same name.</string>
+    <string name="add_extension_fail_dex_parsing">Installation of the extension failed due to not being able to parse its Dalvik Executable.</string>
+    <string name="add_extension_fail_insecure_dex">Installation of the extension failed due to its Dalvik Executable using classes that are not allowed.</string>
     <string name="add_extension_fail_invalid_extension">Installation of the extension failed due to it not being a valid NewPipe extension.</string>
     <string name="add_extension_success">Installation of the extension was successful. Please restart NewPipe.</string>
     <string name="remove_extension_success">Removal of the extension was successful. Please restart NewPipe.</string>

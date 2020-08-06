@@ -132,7 +132,9 @@ public class ManageExtensionsFragment extends Fragment {
                     | ExtensionManager.InvalidReplacementException
                     | ExtensionManager.InvalidExtensionException
                     | ExtensionManager.SignatureMismatchException
-                    | ExtensionManager.CaseMismatchException e) {
+                    | ExtensionManager.CaseMismatchException
+                    | ExtensionManager.DexParsingException
+                    | ExtensionManager.InsecureDexException e) {
                 final int string;
                 if (e instanceof IOException) {
                     string = R.string.add_extension_fail_io;
@@ -148,6 +150,10 @@ public class ManageExtensionsFragment extends Fragment {
                     string = R.string.add_extension_fail_invalid_replacement;
                 } else if (e instanceof ExtensionManager.CaseMismatchException) {
                     string = R.string.add_extension_fail_case_mismatch;
+                } else if (e instanceof ExtensionManager.DexParsingException) {
+                    string = R.string.add_extension_fail_dex_parsing;
+                } else if (e instanceof ExtensionManager.InsecureDexException) {
+                    string = R.string.add_extension_fail_insecure_dex;
                 } else {
                     string = R.string.add_extension_fail_invalid_extension;
                 }

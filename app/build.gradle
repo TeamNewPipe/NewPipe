@@ -211,6 +211,8 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
     implementation "org.ocpsoft.prettytime:prettytime:4.0.5.Final"
+
+    implementation "com.github.wb9688:simple-dex-parser:1f9d45d5e9be5c5d42c9cf4f000367da0aaae82c"
 }
 
 static String getGitWorkingBranch() {
