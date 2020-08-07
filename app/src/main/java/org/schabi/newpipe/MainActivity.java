@@ -456,7 +456,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         SharedPreferences sharedPreferences =
-                context.getSharedPreferences("play_mode_state", MODE_PRIVATE);
+                this.getSharedPreferences("play_mode_state", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("shuffle_mode", false);
         editor.apply();
