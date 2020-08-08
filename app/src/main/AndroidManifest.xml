@@ -23,6 +23,7 @@
         android:logo="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/OpeningTheme"
+        android:resizeableActivity="true"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
@@ -318,5 +319,11 @@
         <service
             android:name=".RouterActivity$FetcherService"
             android:exported="false" />
+
+        <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
+        <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
+        <meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>
+        <!-- Version >= 3.0. DeX Dual Mode support -->
+        <meta-data android:name="com.samsung.android.multidisplay.keep_process_alive" android:value="true"/>
     </application>
 </manifest>
