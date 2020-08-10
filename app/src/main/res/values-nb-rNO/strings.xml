@@ -101,7 +101,7 @@
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle</string>
-    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOperativsystemsversjon:</string>
+    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nInnholdsland:\\nProgramspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOS-versjon:</string>
     <string name="start">Start</string>
     <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
