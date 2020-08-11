@@ -880,9 +880,11 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void onShareClicked() {
         // share video at the current time (youtube.com/watch?v=ID&t=SECONDS)
+        // Timestamp doesn't make sense in a live stream so drop it
+        final String ts = isLive() ? "" : ("&t=" + (getPlaybackSeekBar().getProgress() / 1000));
         ShareUtils.shareUrl(service,
                 getVideoTitle(),
-                getVideoUrl() + "&t=" + getPlaybackSeekBar().getProgress() / 1000);
+                getVideoUrl() + ts);
     }
 
     private void onPlayWithKodiClicked() {
