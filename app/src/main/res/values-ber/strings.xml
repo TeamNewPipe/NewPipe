@@ -1,2 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="feed_create_new_group_button_title">ⴰⵎⴰⵢⵏⵓ</string>
+    <string name="feed_group_dialog_name_input">ⵉⵙⵎ</string>
+    <plurals name="days">
+        <item quantity="one">%d ⴰⵙⵙ</item>
+        <item quantity="other">%d ⵓⵙⵙⴰⵏ</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d ⵜⵙⵔⵉⴳⵜ</item>
+        <item quantity="other">%d ⵜⵙⵔⵉⴳⵉⵏ</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d ⵜⵙⴷⵉⴷⵉⵜ</item>
+        <item quantity="other">%d ⵜⵙⴷⵉⴷⵉⵏ</item>
+    </plurals>
+    <string name="app_language_title">ⵜⵓⵜⵍⴰⵢⵜ ⵏ ⵓⵙⵏⵙⵉ</string>
+    <string name="close">ⵇⵇⵏ</string>
+    <string name="minimize_on_exit_none_description">ⵡⴰⵍⵓ</string>
+    <string name="playback_step">ⴰⵙⵓⵔⵉⴼ</string>
+    <string name="resize_zoom">ⵙⵎⵖⵕ</string>
+    <string name="mute">ⵙⵓⵙⵎ</string>
+    <string name="playlist_name_input">ⵉⵙⵎ</string>
+    <string name="rename_playlist">ⵙⵏⴼⵍ ⵉⵙⵎ</string>
+    <string name="delete_playlist">ⴽⴽⵙ</string>
+    <string name="play_queue_audio_settings">ⵜⵉⵙⵖⴰⵍ ⵓⵎⵙⵍⴰⵢ</string>
+    <string name="play_queue_remove">ⴽⴽⵙ</string>
+    <string name="action_history">ⴰⵎⵣⵔⵓⵢ</string>
+    <string name="title_history_search">ⵜⴻⵜⵜⵡⴰⵔⵣⵓⵏ</string>
+    <string name="title_history_view">ⵜⴻⵜⵜⵓⵥⵕ</string>
+    <string name="title_activity_history">ⴰⵎⵣⵔⵓⵢ</string>
+    <string name="website_title">ⴰⵙⵉⵜ</string>
+    <string name="view_on_github">ⵥⵕ ⴳ GitHub</string>
+    <string name="tab_licenses">ⵜⵓⵔⴰⴳⵜ</string>
+    <string name="tab_about">ⵅⴼ</string>
+    <string name="action_open_website">ⵕⵥⵎ ⴰⵙⵉⵜ</string>
+    <string name="copyright">© %1$s ⵙⴳ %2$s ⴷⴷⴰⵡ %3$s</string>
+    <string name="action_about">ⵅⴼ</string>
+    <string name="action_settings">ⵜⵉⵙⵖⴰⵍ</string>
+    <string name="title_activity_about">ⵅⴼ NewPipe</string>
+    <string name="msg_wait">ⵕⴰⵊⴰ…</string>
+    <string name="msg_error">ⵜⴰⵣⴳⵍⵜ</string>
+    <string name="msg_name">ⵉⵙⵎ ⵓⴼⴰⵢⵍⵓ</string>
+    <string name="finish">ⵡⴰⵅⵅⴰ</string>
+    <string name="rename">ⵙⵙⵏⴼⵍ ⵉⵙⵎ</string>
+    <string name="dismiss">ⵙⵙⵔ</string>
+    <string name="delete_all">ⴽⴽⵙ ⵎⴰⵕⵕⴰ</string>
+    <string name="delete_one">ⴽⵙⵙ ⵢⴰⵏ</string>
+    <string name="delete">ⴽⴽⵙ</string>
+    <string name="view">ⵖⵔ</string>
+    <string name="no_comments">ⵓⵔ ⵍⵍⵉⵏ ⵉⵡⴼⴰⵡⴰⵍⵏ</string>
+    <plurals name="videos">
+        <item quantity="one">%s ⵓⴼⵉⴷⵢⵓ</item>
+        <item quantity="other">%s ⵉⴼⵉⴷⵢⵓⵜⵏ</item>
+    </plurals>
+    <string name="infinite_videos">∞ ⵉⴼⵉⴷⵢⵓⵜⵏ</string>
+    <string name="more_than_100_videos">100+ ⵉⴼⵉⴷⵢⵓⵜⵏ</string>
+    <string name="short_billion">ⴱ</string>
+    <string name="short_million">ⵎ</string>
+    <string name="short_thousand">ⴽ</string>
+    <string name="audio">ⴰⵎⵙⵍⴰⵢ</string>
+    <string name="video">ⴰⴼⵉⴷⵢⵓ</string>
+    <string name="detail_likes_img_view_description">ⵉⵔⵉⵜⵏ</string>
+    <string name="general_error">ⵜⴰⵣⴳⵍⵜ</string>
+    <string name="help">ⵜⵉⵡⵉⵙⵉ</string>
+    <string name="file">ⴰⴼⴰⵢⵍⵓ</string>
+    <string name="play_all">ⵖⵔ ⵎⴰⵕⵕⴰ</string>
+    <string name="file_deleted">ⵉⵜⵜⵡⴰⴽⴽⵙ ⵓⴼⴰⵢⵍⵓ</string>
+    <string name="filter">ⴰⵙⵜⵜⴰⵢ</string>
+    <string name="yes">ⵢⴰⵀ</string>
+    <string name="videos_string">ⵉⴼⵉⴷⵢⵓⵜⵏ</string>
+    <string name="all">ⵎⴰⵕⵕⴰ</string>
+    <string name="downloads_title">ⵓⴳⴳⴰⵎⵏ</string>
+    <string name="downloads">ⵓⴳⴳⴰⵎⵏ</string>
+    <string name="duration_live">ⵓⵙⵔⵉⴷ</string>
+    <string name="play_btn_text">ⵖⵔ</string>
+    <string name="settings_category_other_title">ⵢⴰⴹⵏ</string>
+    <string name="settings_category_video_audio_title">ⴰⴼⵉⴷⵢⵓ ⴷ ⵓⵎⵙⵍⴰⵢ</string>
+    <string name="download_dialog_title">ⴰⴳⵎ</string>
+    <string name="enable_watch_history_title">ⵥⵕ ⴰⵎⵣⵔⵓⵢ</string>
+    <string name="enable_search_history_title">ⴰⵎⵣⵔⵓⵢ ⵏ ⵓⵔⵣⵣⵓ</string>
+    <string name="black_theme_title">ⴰⴱⵔⴽⴰⵏ</string>
+    <string name="play_audio">ⴰⵎⵙⵍⴰⵢ</string>
+    <string name="play_with_kodi_title">ⵖⵔ ⵙ ⴽⵓⴷⵉ</string>
+    <string name="controls_add_to_playlist_title">ⵔⵏⵓ ⵖⵔ</string>
+    <string name="tab_choose">ⵙⵜⵉ ⴰⵙⴽⵙⵍ</string>
+    <string name="tab_new">ⴰⵙⴽⵙⵍ ⴰⵎⴰⵢⵏⵓ</string>
+    <string name="share_dialog_title">ⵔⵣⵓ ⵙ</string>
+    <string name="settings">ⵜⵉⵙⵖⴰⵍ</string>
+    <string name="search">ⵔⵣⵓ</string>
+    <string name="download">ⴰⴳⵎ</string>
+    <string name="share">ⴱⴹⵓ</string>
+    <string name="install">ⵙⵔⵙ</string>
+    <string name="cancel">ⵙⵔ</string>
+</resources>
