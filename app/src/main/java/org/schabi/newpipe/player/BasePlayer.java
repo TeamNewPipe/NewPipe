@@ -1068,14 +1068,6 @@ public abstract class BasePlayer implements
         registerView();
     }
 
-    @Override
-    public void onPlaybackShutdown() {
-        if (DEBUG) {
-            Log.d(TAG, "Shutting down...");
-        }
-        destroy();
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // General Player
     //////////////////////////////////////////////////////////////////////////*/

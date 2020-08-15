@@ -622,7 +622,7 @@ public class VideoPlayerImpl extends VideoPlayer
         if (DEBUG) {
             Log.d(TAG, "onPlaybackShutdown() called");
         }
-        // Override it because we don't want playerImpl destroyed
+        service.onDestroy();
     }
 
     @Override
