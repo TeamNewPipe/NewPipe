@@ -94,12 +94,7 @@ public final class NotificationUtil {
         } else {
             notificationBuilder.setLargeIcon(player.getThumbnail());
         }
-
-        setAction(player, notificationSlot0, 0);
-        setAction(player, notificationSlot1, 1);
-        setAction(player, notificationSlot2, 2);
-        setAction(player, notificationSlot3, 3);
-        setAction(player, notificationSlot4, 4);
+        updateActions(notificationBuilder, player);
 
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
@@ -122,7 +117,7 @@ public final class NotificationUtil {
     private NotificationCompat.Builder createNotification(final VideoPlayerImpl player) {
         notificationManager =
                 (NotificationManager) player.context.getSystemService(NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
+        final NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
                 player.context.getString(R.string.notification_channel_id));
 
         final String compactView = player.sharedPreferences.getString(player.context.getString(
@@ -165,6 +160,7 @@ public final class NotificationUtil {
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT))
                 .setColor(ContextCompat.getColor(player.context, R.color.gray))
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
+
         final boolean scaleImageToSquareAspectRatio = player.sharedPreferences.getBoolean(
                 player.context.getString(R.string.scale_to_square_image_in_notifications_key),
                 false);
@@ -174,22 +170,8 @@ public final class NotificationUtil {
             builder.setLargeIcon(player.getThumbnail());
         }
 
-        notificationSlot0 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_0_key), notificationSlot0);
-        notificationSlot1 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_1_key), notificationSlot1);
-        notificationSlot2 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_2_key), notificationSlot2);
-        notificationSlot3 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_3_key), notificationSlot3);
-        notificationSlot4 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_4_key), notificationSlot4);
-
-        addAction(builder, player, notificationSlot0);
-        addAction(builder, player, notificationSlot1);
-        addAction(builder, player, notificationSlot2);
-        addAction(builder, player, notificationSlot3);
-        addAction(builder, player, notificationSlot4);
+        initializeNotificationSlots(player);
+        updateActions(builder, player);
 
         return builder;
     }
@@ -224,32 +206,50 @@ public final class NotificationUtil {
     // ACTIONS
     /////////////////////////////////////////////////////
 
-    private void addAction(final NotificationCompat.Builder builder,
-                           final VideoPlayerImpl player,
-                           final String slot) {
-        builder.addAction(getAction(builder, player, slot));
+    private void initializeNotificationSlots(final VideoPlayerImpl player) {
+        notificationSlot0 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_0_key), notificationSlot0);
+        notificationSlot1 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_1_key), notificationSlot1);
+        notificationSlot2 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_2_key), notificationSlot2);
+        notificationSlot3 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_3_key), notificationSlot3);
+        notificationSlot4 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_4_key), notificationSlot4);
     }
 
     @SuppressLint("RestrictedApi")
-    private void setAction(final VideoPlayerImpl player,
-                           final String slot,
-                           final int slotNumber) {
-        notificationBuilder.mActions.set(slotNumber, getAction(notificationBuilder, player, slot));
+    private void updateActions(final NotificationCompat.Builder builder,
+                               final VideoPlayerImpl player) {
+        builder.mActions.clear();
+        addAction(builder, player, notificationSlot0);
+        addAction(builder, player, notificationSlot1);
+        addAction(builder, player, notificationSlot2);
+        addAction(builder, player, notificationSlot3);
+        addAction(builder, player, notificationSlot4);
     }
 
-    private NotificationCompat.Action getAction(final NotificationCompat.Builder builder,
-                                                final VideoPlayerImpl player,
+    private void addAction(final NotificationCompat.Builder builder,
+                           final VideoPlayerImpl player,
+                           final String slot) {
+        final NotificationCompat.Action action = getAction(player, slot);
+        if (action != null) {
+            builder.addAction(action);
+        }
+    }
+
+    @Nullable
+    private NotificationCompat.Action getAction(final VideoPlayerImpl player,
                                                 final String slot) {
         switch (slot) {
             case "play_pause_buffering":
                 if (player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
                         || player.getCurrentState() == BasePlayer.STATE_BLOCKED
                         || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
-                    builder.setSmallIcon(android.R.drawable.stat_sys_download);
-                    return getAction(player, R.drawable.ic_file_download_white_24dp,
+                    return getAction(player, R.drawable.ic_hourglass_top_white_24dp,
                             "Buffering", ACTION_BUFFERING);
                 } else {
-                    builder.setSmallIcon(R.drawable.ic_newpipe_triangle_white);
                     return getAction(player,
                             player.isPlaying() ? R.drawable.exo_notification_pause
                                     : R.drawable.exo_notification_play,
