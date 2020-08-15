@@ -33,6 +33,7 @@ with your GitHub account.
 
 ## Code contribution
 
+* If you want to add a feature or change one, please open an issue describing your change. This gives the team and community a chance to give feedback before you spend any time on something that could be done differently or not done at all. It also prevents two contributors from working on the same thing and one being disappointed when only one user's code can be added.
 * Stick to NewPipe's style conventions: follow [checkStyle](https://github.com/checkstyle/checkstyle). It will run each time you build the project.
 * Do not bring non-free software (e.g. binary blobs) into the project. Also, make sure you do not introduce Google
   libraries.
