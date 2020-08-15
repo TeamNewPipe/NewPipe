@@ -118,107 +118,107 @@
     <string name="settings_notifications_compact_view_default_value" translatable="false">0,1,2</string>
     <string name="scale_to_square_image_in_notifications_key" translatable="false">scale_to_square_image_in_notifications</string>
 
-    <string name="notification_slot_prev_key" translatable="false">prev</string>
-    <string name="notification_slot_next_key" translatable="false">next</string>
-    <string name="notification_slot_rewind_key" translatable="false">rewind</string>
-    <string name="notification_slot_forward_key" translatable="false">forward</string>
-    <string name="notification_slot_smart_rewind_prev_key" translatable="false">smart_rewind_prev</string>
-    <string name="notification_slot_smart_forward_next_key" translatable="false">smart_forward_next</string>
-    <string name="notification_slot_play_pause_buffering_key" translatable="false">play_pause_buffering</string>
-    <string name="notification_slot_play_pause_key" translatable="false">play_pause</string>
-    <string name="notification_slot_repeat_key" translatable="false">repeat</string>
-    <string name="notification_slot_shuffle_key" translatable="false">shuffle</string>
-    <string name="notification_slot_close_key" translatable="false">close</string>
-    <string name="notification_slot_n_a_key" translatable="false">n/a</string>
+    <string name="notification_action_prev_key" translatable="false">prev</string>
+    <string name="notification_action_next_key" translatable="false">next</string>
+    <string name="notification_action_rewind_key" translatable="false">rewind</string>
+    <string name="notification_action_forward_key" translatable="false">forward</string>
+    <string name="notification_action_smart_rewind_prev_key" translatable="false">smart_rewind_prev</string>
+    <string name="notification_action_smart_forward_next_key" translatable="false">smart_forward_next</string>
+    <string name="notification_action_play_pause_buffering_key" translatable="false">play_pause_buffering</string>
+    <string name="notification_action_play_pause_key" translatable="false">play_pause</string>
+    <string name="notification_action_repeat_key" translatable="false">repeat</string>
+    <string name="notification_action_shuffle_key" translatable="false">shuffle</string>
+    <string name="notification_action_close_key" translatable="false">close</string>
+    <string name="notification_action_n_a_key" translatable="false">n/a</string>
 
-    <string name="notification_slot_0_key" translatable="false">notification_slot_0_key</string>
-    <string name="notification_slot_0_value" translatable="false">@string/notification_slot_smart_rewind_prev_key</string>
-    <string-array name="notification_slot_0_description_list" translatable="false">
-        <item>Rewind / Previous</item>
-        <item>Previous</item>
-        <item>Rewind</item>
+    <string name="notification_action_0_key" translatable="false">notification_action_0_key</string>
+    <string name="notification_action_0_value" translatable="false">@string/notification_action_smart_rewind_prev_key</string>
+    <string-array name="notification_action_0_description_list" translatable="false">
+        <item>@string/notification_action_smart_rewind_prev_value</item>
+        <item>@string/notification_action_prev_value</item>
+        <item>@string/notification_action_rewind_value</item>
     </string-array>
-    <string-array name="notification_slot_0_values_list" translatable="false">
-        <item>@string/notification_slot_smart_rewind_prev_key</item>
-        <item>@string/notification_slot_prev_key</item>
-        <item>@string/notification_slot_rewind_key</item>
-    </string-array>
-
-    <string name="notification_slot_1_key" translatable="false">notification_slot_1_key</string>
-    <string name="notification_slot_1_value" translatable="false">@string/notification_slot_play_pause_buffering_key</string>
-    <string-array name="notification_slot_1_description_list" translatable="false">
-        <item>Play / Pause / Buffering</item>
-        <item>Play / Pause</item>
-        <item>Rewind</item>
-    </string-array>
-    <string-array name="notification_slot_1_values_list" translatable="false">
-        <item>@string/notification_slot_play_pause_buffering_key</item>
-        <item>@string/notification_slot_play_pause_key</item>
-        <item>@string/notification_slot_rewind_key</item>
+    <string-array name="notification_action_0_values_list" translatable="false">
+        <item>@string/notification_action_smart_rewind_prev_key</item>
+        <item>@string/notification_action_prev_key</item>
+        <item>@string/notification_action_rewind_key</item>
     </string-array>
 
-
-    <string name="notification_slot_2_key" translatable="false">notification_slot_2_key</string>
-    <string name="notification_slot_2_value" translatable="false">@string/notification_slot_smart_forward_next_key</string>
-    <string-array name="notification_slot_2_description_list" translatable="false">
-        <item>Forward / Next</item>
-        <item>Forward</item>
-        <item>Next</item>
-        <item>Play / Pause / Buffering</item>
-        <item>Play / Pause</item>
+    <string name="notification_action_1_key" translatable="false">notification_action_1_key</string>
+    <string name="notification_action_1_value" translatable="false">@string/notification_action_play_pause_buffering_key</string>
+    <string-array name="notification_action_1_description_list" translatable="false">
+        <item>@string/notification_action_play_pause_buffering_value</item>
+        <item>@string/notification_action_play_pause_value</item>
+        <item>@string/notification_action_rewind_value</item>
     </string-array>
-    <string-array name="notification_slot_2_values_list" translatable="false">
-        <item>@string/notification_slot_smart_forward_next_key</item>
-        <item>@string/notification_slot_forward_key</item>
-        <item>@string/notification_slot_next_key</item>
-        <item>@string/notification_slot_play_pause_buffering_key</item>
-        <item>@string/notification_slot_play_pause_key</item>
+    <string-array name="notification_action_1_values_list" translatable="false">
+        <item>@string/notification_action_play_pause_buffering_key</item>
+        <item>@string/notification_action_play_pause_key</item>
+        <item>@string/notification_action_rewind_key</item>
     </string-array>
 
-    <string name="notification_slot_3_key" translatable="false">notification_slot_3_key</string>
-    <string name="notification_slot_3_value" translatable="false">@string/notification_slot_repeat_key</string>
-    <string-array name="notification_slot_3_description_list" translatable="false">
-        <item>Repeat</item>
-        <item>Shuffle</item>
-        <item>Previous</item>
-        <item>Forward</item>
-        <item>Forward / Next</item>
-        <item>Rewind</item>
-        <item>Rewind / Previous</item>
-        <item>Close</item>
-        <item>N/A</item>
+
+    <string name="notification_action_2_key" translatable="false">notification_action_2_key</string>
+    <string name="notification_action_2_value" translatable="false">@string/notification_action_smart_forward_next_key</string>
+    <string-array name="notification_action_2_description_list" translatable="false">
+        <item>@string/notification_action_smart_forward_next_value</item>
+        <item>@string/notification_action_forward_value</item>
+        <item>@string/notification_action_next_value</item>
+        <item>@string/notification_action_play_pause_buffering_value</item>
+        <item>@string/notification_action_play_pause_value</item>
     </string-array>
-    <string-array name="notification_slot_3_values_list" translatable="false">
-        <item>@string/notification_slot_repeat_key</item>
-        <item>@string/notification_slot_shuffle_key</item>
-        <item>@string/notification_slot_prev_key</item>
-        <item>@string/notification_slot_forward_key</item>
-        <item>@string/notification_slot_smart_forward_next_key</item>
-        <item>@string/notification_slot_rewind_key</item>
-        <item>@string/notification_slot_smart_rewind_prev_key</item>
-        <item>@string/notification_slot_close_key</item>
-        <item>@string/notification_slot_n_a_key</item>
+    <string-array name="notification_action_2_values_list" translatable="false">
+        <item>@string/notification_action_smart_forward_next_key</item>
+        <item>@string/notification_action_forward_key</item>
+        <item>@string/notification_action_next_key</item>
+        <item>@string/notification_action_play_pause_buffering_key</item>
+        <item>@string/notification_action_play_pause_key</item>
     </string-array>
 
-    <string name="notification_slot_4_key" translatable="false">notification_slot_4_key</string>
-    <string name="notification_slot_4_value" translatable="false">@string/notification_slot_close_key</string>
-    <string-array name="notification_slot_4_description_list" translatable="false">
-        <item>Close</item>
-        <item>Repeat</item>
-        <item>Shuffle</item>
-        <item>Next</item>
-        <item>Forward</item>
-        <item>Forward / Next</item>
-        <item>N/A</item>
+    <string name="notification_action_3_key" translatable="false">notification_action_3_key</string>
+    <string name="notification_action_3_value" translatable="false">@string/notification_action_repeat_key</string>
+    <string-array name="notification_action_3_description_list" translatable="false">
+        <item>@string/notification_action_repeat_value</item>
+        <item>@string/notification_action_shuffle_value</item>
+        <item>@string/notification_action_prev_value</item>
+        <item>@string/notification_action_forward_value</item>
+        <item>@string/notification_action_smart_forward_next_value</item>
+        <item>@string/notification_action_rewind_value</item>
+        <item>@string/notification_action_smart_rewind_prev_value</item>
+        <item>@string/notification_action_close_value</item>
+        <item>@string/notification_action_n_a_value</item>
     </string-array>
-    <string-array name="notification_slot_4_values_list" translatable="false">
-        <item>@string/notification_slot_close_key</item>
-        <item>@string/notification_slot_repeat_key</item>
-        <item>@string/notification_slot_shuffle_key</item>
-        <item>@string/notification_slot_next_key</item>
-        <item>@string/notification_slot_forward_key</item>
-        <item>@string/notification_slot_smart_forward_next_key</item>
-        <item>@string/notification_slot_n_a_key</item>
+    <string-array name="notification_action_3_values_list" translatable="false">
+        <item>@string/notification_action_repeat_key</item>
+        <item>@string/notification_action_shuffle_key</item>
+        <item>@string/notification_action_prev_key</item>
+        <item>@string/notification_action_forward_key</item>
+        <item>@string/notification_action_smart_forward_next_key</item>
+        <item>@string/notification_action_rewind_key</item>
+        <item>@string/notification_action_smart_rewind_prev_key</item>
+        <item>@string/notification_action_close_key</item>
+        <item>@string/notification_action_n_a_key</item>
+    </string-array>
+
+    <string name="notification_action_4_key" translatable="false">notification_action_4_key</string>
+    <string name="notification_action_4_value" translatable="false">@string/notification_action_close_key</string>
+    <string-array name="notification_action_4_description_list" translatable="false">
+        <item>@string/notification_action_close_value</item>
+        <item>@string/notification_action_repeat_value</item>
+        <item>@string/notification_action_shuffle_value</item>
+        <item>@string/notification_action_next_value</item>
+        <item>@string/notification_action_forward_value</item>
+        <item>@string/notification_action_smart_forward_next_value</item>
+        <item>@string/notification_action_n_a_value</item>
+    </string-array>
+    <string-array name="notification_action_4_values_list" translatable="false">
+        <item>@string/notification_action_close_key</item>
+        <item>@string/notification_action_repeat_key</item>
+        <item>@string/notification_action_shuffle_key</item>
+        <item>@string/notification_action_next_key</item>
+        <item>@string/notification_action_forward_key</item>
+        <item>@string/notification_action_smart_forward_next_key</item>
+        <item>@string/notification_action_n_a_key</item>
     </string-array>
 
     <string name="video_mp4_key" translatable="false">video_mp4</string>

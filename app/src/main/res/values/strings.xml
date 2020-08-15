@@ -58,15 +58,30 @@
     <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
-    <string name="scale_to_square_image_in_notifications_title">Scale image to 1:1 aspect ratio</string>
-    <string name="scale_to_square_image_in_notifications_summary">This will scale the notification image from 16:9 to 1:1 aspect ratio</string>
-    <string name="default_notification_slot_0_title">Notification slot 0</string>
-    <string name="default_notification_slot_1_title">Notification slot 1</string>
-    <string name="default_notification_slot_2_title">Notification slot 2</string>
-    <string name="default_notification_slot_3_title">Notification slot 3</string>
-    <string name="default_notification_slot_4_title">Notification slot 4</string>
-    <string name="settings_notifications_compact_view_title">Notification compact view</string>
-    <string name="settings_notifications_compact_view_summary">Notification slots to show in compact view</string>
+
+    <string name="notification_scale_to_square_image_title">Scale image to 1:1 aspect ratio</string>
+    <string name="notification_scale_to_square_image_summary">This will scale the notification image from 16:9 to 1:1 aspect ratio</string>
+    <string name="notification_action_0_title">First action button</string>
+    <string name="notification_action_1_title">Second action button</string>
+    <string name="notification_action_2_title">Third action button</string>
+    <string name="notification_action_3_title">Fourth action button</string>
+    <string name="notification_action_4_title">Fifth action button</string>
+    <string name="notification_compact_view_title">Notification compact view</string>
+    <string name="notification_compact_view_summary">Notification slots to show in compact view</string>
+    
+    <string name="notification_action_prev_value">Previous</string>
+    <string name="notification_action_next_value">Next</string>
+    <string name="notification_action_rewind_value">Rewind</string>
+    <string name="notification_action_forward_value">Forward</string>
+    <string name="notification_action_smart_rewind_prev_value">Rewind / Previous</string>
+    <string name="notification_action_smart_forward_next_value">Forward / Next</string>
+    <string name="notification_action_play_pause_buffering_value">Play / Pause / Buffering</string>
+    <string name="notification_action_play_pause_value">Play / Pause</string>
+    <string name="notification_action_repeat_value">Repeat</string>
+    <string name="notification_action_shuffle_value">Shuffle</string>
+    <string name="notification_action_close_value">Close</string>
+    <string name="notification_action_n_a_value">Nothing</string>
+
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>

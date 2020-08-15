@@ -208,15 +208,15 @@ public final class NotificationUtil {
 
     private void initializeNotificationSlots(final VideoPlayerImpl player) {
         notificationSlot0 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_0_key), notificationSlot0);
+                player.context.getString(R.string.notification_action_0_key), notificationSlot0);
         notificationSlot1 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_1_key), notificationSlot1);
+                player.context.getString(R.string.notification_action_1_key), notificationSlot1);
         notificationSlot2 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_2_key), notificationSlot2);
+                player.context.getString(R.string.notification_action_2_key), notificationSlot2);
         notificationSlot3 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_3_key), notificationSlot3);
+                player.context.getString(R.string.notification_action_3_key), notificationSlot3);
         notificationSlot4 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_slot_4_key), notificationSlot4);
+                player.context.getString(R.string.notification_action_4_key), notificationSlot4);
     }
 
     @SuppressLint("RestrictedApi")
