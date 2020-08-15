@@ -7,16 +7,13 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.os.Build;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -34,8 +31,6 @@ import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PAUSE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PREVIOUS;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_REPEAT;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE;
-import static org.schabi.newpipe.player.MainPlayer.SET_IMAGE_RESOURCE_METHOD;
-import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 
 /**
  * This is a utility class for player notifications.
@@ -46,8 +41,6 @@ public final class NotificationUtil {
     private static final String TAG = "NotificationUtil";
     private static final boolean DEBUG = BasePlayer.DEBUG;
     private static final int NOTIFICATION_ID = 123789;
-    // only used for old notifications
-    private static final int NOTIFICATION_UPDATES_BEFORE_RESET = 60;
 
     @Nullable private static NotificationUtil instance = null;
 
@@ -58,13 +51,7 @@ public final class NotificationUtil {
     private String notificationSlot4 = "close";
 
     private NotificationManager notificationManager;
-    private RemoteViews notificationRemoteView; // always null when new notifications are used
-    private RemoteViews bigNotificationRemoteView; // always null when new notifications are used
     private NotificationCompat.Builder notificationBuilder;
-
-    private int cachedDuration; // only used for old notifications
-    private String cachedDurationString; // only used for old notifications
-    private int timesNotificationUpdated; // only used for old notifications
 
     private NotificationUtil() {
     }
@@ -81,110 +68,13 @@ public final class NotificationUtil {
     // NOTIFICATION
     /////////////////////////////////////////////////////
 
-    NotificationCompat.Builder createNotification(final VideoPlayerImpl player) {
-        notificationManager =
-                (NotificationManager) player.context.getSystemService(NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
-                player.context.getString(R.string.notification_channel_id));
-
-        final boolean areOldNotificationsEnabled = player.sharedPreferences.getBoolean(
-                player.context.getString(R.string.enable_old_notifications_key), false);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || areOldNotificationsEnabled) {
-            notificationRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID,
-                    R.layout.player_notification);
-            bigNotificationRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID,
-                    R.layout.player_notification_expanded);
-
-            setupOldNotification(notificationRemoteView, player);
-            setupOldNotification(bigNotificationRemoteView, player);
-
-            builder
-                    .setOngoing(true)
-                    .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .setCustomContentView(notificationRemoteView)
-                    .setCustomBigContentView(bigNotificationRemoteView)
-                    .setPriority(NotificationCompat.PRIORITY_MAX);
-        } else {
-            final String compactView = player.sharedPreferences.getString(player.context.getString(
-                    R.string.settings_notifications_compact_view_key), "0,1,2");
-            int compactSlot0 = 0;
-            int compactSlot1 = 1;
-            int compactSlot2 = 2;
-            try {
-                if (compactView != null) {
-                    final String[] parts = compactView.split(",");
-                    compactSlot0 = Integer.parseInt(parts[0]);
-                    compactSlot1 = Integer.parseInt(parts[1]);
-                    compactSlot2 = Integer.parseInt(parts[2]);
-                    if (compactSlot0 > 4) {
-                        compactSlot0 = 0;
-                    }
-                    if (compactSlot1 > 4) {
-                        compactSlot1 = 1;
-                    }
-                    if (compactSlot2 > 4) {
-                        compactSlot2 = 2;
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                    .setMediaSession(player.mediaSessionManager.getSessionToken())
-                    .setShowCancelButton(false)
-                    .setShowActionsInCompactView(compactSlot0, compactSlot1, compactSlot2))
-                    .setOngoing(false)
-                    .setContentIntent(PendingIntent.getActivity(player.context, NOTIFICATION_ID,
-                            getIntentForNotification(player), FLAG_UPDATE_CURRENT))
-                    .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .setContentTitle(player.getVideoTitle())
-                    .setContentText(player.getUploaderName())
-                    .setDeleteIntent(PendingIntent.getActivity(player.context, NOTIFICATION_ID,
-                            new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT))
-                    .setColor(ContextCompat.getColor(player.context, R.color.gray))
-                    .setPriority(NotificationCompat.PRIORITY_HIGH);
-            final boolean scaleImageToSquareAspectRatio = player.sharedPreferences.getBoolean(
-                    player.context.getString(R.string.scale_to_square_image_in_notifications_key),
-                    false);
-            if (scaleImageToSquareAspectRatio) {
-                builder.setLargeIcon(getBitmapWithSquareAspectRatio(player.getThumbnail()));
-            } else {
-                builder.setLargeIcon(player.getThumbnail());
-            }
-
-            notificationSlot0 = player.sharedPreferences.getString(
-                    player.context.getString(R.string.notification_slot_0_key), notificationSlot0);
-            notificationSlot1 = player.sharedPreferences.getString(
-                    player.context.getString(R.string.notification_slot_1_key), notificationSlot1);
-            notificationSlot2 = player.sharedPreferences.getString(
-                    player.context.getString(R.string.notification_slot_2_key), notificationSlot2);
-            notificationSlot3 = player.sharedPreferences.getString(
-                    player.context.getString(R.string.notification_slot_3_key), notificationSlot3);
-            notificationSlot4 = player.sharedPreferences.getString(
-                    player.context.getString(R.string.notification_slot_4_key), notificationSlot4);
-
-            addAction(builder, player, notificationSlot0);
-            addAction(builder, player, notificationSlot1);
-            addAction(builder, player, notificationSlot2);
-            addAction(builder, player, notificationSlot3);
-            addAction(builder, player, notificationSlot4);
-        }
-
-        return builder;
-    }
-
     /**
      * Updates the notification, and the button icons depending on the playback state.
      * On old notifications used for changes on the remoteView
      *
      * @param player the player currently open, to take data from
-     * @param playPauseDrawable if != -1, sets the drawable with that id on the play/pause button
      */
-    synchronized void updateNotification(final VideoPlayerImpl player,
-                                         @DrawableRes final int playPauseDrawable) {
+    synchronized void updateNotification(final VideoPlayerImpl player) {
         if (DEBUG) {
             Log.d(TAG, "N_ updateNotification()");
         }
@@ -192,56 +82,116 @@ public final class NotificationUtil {
         if (notificationBuilder == null) {
             return;
         }
-        if (playPauseDrawable != -1) {
-            if (notificationRemoteView != null) {
-                notificationRemoteView
-                        .setImageViewResource(R.id.notificationPlayPause, playPauseDrawable);
-            }
-            if (bigNotificationRemoteView != null) {
-                bigNotificationRemoteView
-                        .setImageViewResource(R.id.notificationPlayPause, playPauseDrawable);
-            }
+
+        notificationBuilder.setContentTitle(player.getVideoTitle());
+        notificationBuilder.setContentText(player.getUploaderName());
+        final boolean scaleImageToSquareAspectRatio = player.sharedPreferences.getBoolean(
+                player.context.getString(R.string.scale_to_square_image_in_notifications_key),
+                false);
+        if (scaleImageToSquareAspectRatio) {
+            notificationBuilder.setLargeIcon(
+                    getBitmapWithSquareAspectRatio(player.getThumbnail()));
+        } else {
+            notificationBuilder.setLargeIcon(player.getThumbnail());
         }
 
-        final boolean areOldNotificationsEnabled = player.sharedPreferences.getBoolean(
-                player.context.getString(R.string.enable_old_notifications_key), false);
-        if (!areOldNotificationsEnabled) {
-            notificationBuilder.setContentTitle(player.getVideoTitle());
-            notificationBuilder.setContentText(player.getUploaderName());
-            final boolean scaleImageToSquareAspectRatio = player.sharedPreferences.getBoolean(
-                    player.context.getString(R.string.scale_to_square_image_in_notifications_key),
-                    false);
-            if (scaleImageToSquareAspectRatio) {
-                notificationBuilder.setLargeIcon(
-                        getBitmapWithSquareAspectRatio(player.getThumbnail()));
-            } else {
-                notificationBuilder.setLargeIcon(player.getThumbnail());
-            }
-
-            setAction(player, notificationSlot0, 0);
-            setAction(player, notificationSlot1, 1);
-            setAction(player, notificationSlot2, 2);
-            setAction(player, notificationSlot3, 3);
-            setAction(player, notificationSlot4, 4);
-        }
+        setAction(player, notificationSlot0, 0);
+        setAction(player, notificationSlot1, 1);
+        setAction(player, notificationSlot2, 2);
+        setAction(player, notificationSlot3, 3);
+        setAction(player, notificationSlot4, 4);
 
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
-
-        if (areOldNotificationsEnabled) {
-            timesNotificationUpdated++;
-        }
     }
 
-    void recreateNotification(final VideoPlayerImpl player, final boolean recreate) {
-        final boolean areOldNotificationsEnabled = player.sharedPreferences.getBoolean(
-                player.context.getString(R.string.enable_old_notifications_key), false);
-        if (notificationBuilder == null || recreate || areOldNotificationsEnabled) {
+    /**
+     * Creates the notification, if it does not exist already or unless forceRecreate is true.
+     * @param player the player currently open, to take data from
+     * @param forceRecreate whether to force the recreation of the notification even if it already
+     *                      exists
+     */
+    void createNotificationIfNeeded(final VideoPlayerImpl player, final boolean forceRecreate) {
+        if (notificationBuilder == null || forceRecreate) {
             if (DEBUG) {
-                Log.d(TAG, "N_ recreateNotification(true)");
+                Log.d(TAG, "N_ createNotificationIfNeeded(true)");
             }
             notificationBuilder = createNotification(player);
         }
-        timesNotificationUpdated = 0;
+    }
+
+    private NotificationCompat.Builder createNotification(final VideoPlayerImpl player) {
+        notificationManager =
+                (NotificationManager) player.context.getSystemService(NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
+                player.context.getString(R.string.notification_channel_id));
+
+        final String compactView = player.sharedPreferences.getString(player.context.getString(
+                R.string.settings_notifications_compact_view_key), "0,1,2");
+        int compactSlot0 = 0;
+        int compactSlot1 = 1;
+        int compactSlot2 = 2;
+        try {
+            if (compactView != null) {
+                final String[] parts = compactView.split(",");
+                compactSlot0 = Integer.parseInt(parts[0]);
+                compactSlot1 = Integer.parseInt(parts[1]);
+                compactSlot2 = Integer.parseInt(parts[2]);
+                if (compactSlot0 > 4) {
+                    compactSlot0 = 0;
+                }
+                if (compactSlot1 > 4) {
+                    compactSlot1 = 1;
+                }
+                if (compactSlot2 > 4) {
+                    compactSlot2 = 2;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                .setMediaSession(player.mediaSessionManager.getSessionToken())
+                .setShowCancelButton(false)
+                .setShowActionsInCompactView(compactSlot0, compactSlot1, compactSlot2))
+                .setOngoing(false)
+                .setContentIntent(PendingIntent.getActivity(player.context, NOTIFICATION_ID,
+                        getIntentForNotification(player), FLAG_UPDATE_CURRENT))
+                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setContentTitle(player.getVideoTitle())
+                .setContentText(player.getUploaderName())
+                .setDeleteIntent(PendingIntent.getActivity(player.context, NOTIFICATION_ID,
+                        new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT))
+                .setColor(ContextCompat.getColor(player.context, R.color.gray))
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+        final boolean scaleImageToSquareAspectRatio = player.sharedPreferences.getBoolean(
+                player.context.getString(R.string.scale_to_square_image_in_notifications_key),
+                false);
+        if (scaleImageToSquareAspectRatio) {
+            builder.setLargeIcon(getBitmapWithSquareAspectRatio(player.getThumbnail()));
+        } else {
+            builder.setLargeIcon(player.getThumbnail());
+        }
+
+        notificationSlot0 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_0_key), notificationSlot0);
+        notificationSlot1 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_1_key), notificationSlot1);
+        notificationSlot2 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_2_key), notificationSlot2);
+        notificationSlot3 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_3_key), notificationSlot3);
+        notificationSlot4 = player.sharedPreferences.getString(
+                player.context.getString(R.string.notification_slot_4_key), notificationSlot4);
+
+        addAction(builder, player, notificationSlot0);
+        addAction(builder, player, notificationSlot1);
+        addAction(builder, player, notificationSlot2);
+        addAction(builder, player, notificationSlot3);
+        addAction(builder, player, notificationSlot4);
+
+        return builder;
     }
 
 
@@ -251,127 +201,22 @@ public final class NotificationUtil {
 
 
     boolean hasSlotWithBuffering() {
-        return notificationSlot0.contains("buffering")
-                || notificationSlot1.contains("buffering")
-                || notificationSlot2.contains("buffering")
-                || notificationSlot3.contains("buffering")
-                || notificationSlot4.contains("buffering");
-    }
-
-
-    /////////////////////////////////////////////////////
-    // OLD NOTIFICATION
-    /////////////////////////////////////////////////////
-
-    @Deprecated
-    boolean shouldRecreateOldNotification() {
-        return timesNotificationUpdated > NOTIFICATION_UPDATES_BEFORE_RESET;
-    }
-
-    /**
-     * @param bitmap if null, the thumbnail will be removed
-     */
-    @Deprecated // only used for old notifications
-    void updateOldNotificationsThumbnail(@Nullable final Bitmap bitmap) {
-        if (notificationRemoteView != null) {
-            notificationRemoteView.setImageViewBitmap(R.id.notificationCover, bitmap);
-        }
-        if (bigNotificationRemoteView != null) {
-            bigNotificationRemoteView.setImageViewBitmap(R.id.notificationCover, bitmap);
-        }
-    }
-
-    @Deprecated // only used for old notifications
-    void setProgressbarOnOldNotifications(final int max, final int progress,
-                                          final boolean indeterminate) {
-        if (bigNotificationRemoteView != null) { //FIXME put in Util and turn into a method
-            bigNotificationRemoteView.setProgressBar(R.id.notificationProgressBar, max, progress,
-                    indeterminate);
-        }
-        if (notificationRemoteView != null) {
-            notificationRemoteView.setProgressBar(R.id.notificationProgressBar, max, progress,
-                    indeterminate);
-        }
-    }
-
-    @Deprecated // only used for old notifications
-    void setCachedDuration(final int currentProgress, final int duration) {
-        if (bigNotificationRemoteView != null) {
-            if (cachedDuration != duration) {
-                cachedDuration = duration;
-                cachedDurationString = getTimeString(duration);
-            }
-            bigNotificationRemoteView.setTextViewText(R.id.notificationTime,
-                    getTimeString(currentProgress) + " / " + cachedDurationString);
-        }
+        return notificationSlot0.equals("play_pause_buffering")
+                || notificationSlot1.equals("play_pause_buffering")
+                || notificationSlot2.equals("play_pause_buffering")
+                || notificationSlot3.equals("play_pause_buffering")
+                || notificationSlot4.equals("play_pause_buffering");
     }
 
     public void cancelNotification() {
         try {
             if (notificationManager != null) {
                 notificationManager.cancel(NOTIFICATION_ID);
+                notificationManager = null;
             }
         } catch (Exception e) {
             Log.e("NotificationUtil", "Exception", e);
         }
-    }
-
-
-    /////////////////////////////////////////////////////
-    // OLD NOTIFICATION UTILS
-    /////////////////////////////////////////////////////
-
-    @Deprecated // only used for old notifications
-    private void setupOldNotification(final RemoteViews remoteViews,
-                                      final VideoPlayerImpl player) {
-        remoteViews.setTextViewText(R.id.notificationSongName, player.getVideoTitle());
-        remoteViews.setTextViewText(R.id.notificationArtist, player.getUploaderName());
-        remoteViews.setImageViewBitmap(R.id.notificationCover, player.getThumbnail());
-
-        remoteViews.setOnClickPendingIntent(R.id.notificationPlayPause,
-                PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
-                        new Intent(ACTION_PLAY_PAUSE), FLAG_UPDATE_CURRENT));
-        remoteViews.setOnClickPendingIntent(R.id.notificationStop,
-                PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
-                        new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
-        remoteViews.setOnClickPendingIntent(R.id.notificationRepeat,
-                PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
-                        new Intent(ACTION_REPEAT), FLAG_UPDATE_CURRENT));
-        remoteViews.setOnClickPendingIntent(R.id.notificationContent,
-                PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
-                        getIntentForNotification(player), FLAG_UPDATE_CURRENT));
-
-        if (player.playQueue != null && player.playQueue.size() > 1) {
-            remoteViews.setInt(R.id.notificationFRewind,
-                    SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_previous);
-            remoteViews.setInt(R.id.notificationFForward,
-                    SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_next);
-            remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
-                    PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
-                            new Intent(ACTION_PLAY_PREVIOUS), FLAG_UPDATE_CURRENT));
-            remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
-                    PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
-                            new Intent(ACTION_PLAY_NEXT), FLAG_UPDATE_CURRENT));
-        } else {
-            remoteViews.setInt(R.id.notificationFRewind,
-                    SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_rewind);
-            remoteViews.setInt(R.id.notificationFForward,
-                    SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_fastforward);
-            remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
-                    PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
-                            new Intent(ACTION_FAST_REWIND), FLAG_UPDATE_CURRENT));
-            remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
-                    PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
-                            new Intent(ACTION_FAST_FORWARD), FLAG_UPDATE_CURRENT));
-        }
-
-        setRepeatModeIcon(remoteViews, player.getRepeatMode());
-    }
-
-    @Deprecated // only used for old notifications
-    private void setRepeatModeIcon(final RemoteViews remoteViews, final int repeatMode) {
-        remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD,
-                getRepeatModeDrawable(repeatMode));
     }
 
 
@@ -401,11 +246,11 @@ public final class NotificationUtil {
                         || player.getCurrentState() == BasePlayer.STATE_BLOCKED
                         || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
                     builder.setSmallIcon(android.R.drawable.stat_sys_download);
-                    return getAction(builder, player, R.drawable.ic_file_download_white_24dp,
+                    return getAction(player, R.drawable.ic_file_download_white_24dp,
                             "Buffering", ACTION_BUFFERING);
                 } else {
                     builder.setSmallIcon(R.drawable.ic_newpipe_triangle_white);
-                    return getAction(builder, player,
+                    return getAction(player,
                             player.isPlaying() ? R.drawable.exo_notification_pause
                                     : R.drawable.exo_notification_play,
                             player.isPlaying() ? "Pause" : "Play",
@@ -416,51 +261,51 @@ public final class NotificationUtil {
                         || player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
                         || player.getCurrentState() == BasePlayer.STATE_BLOCKED
                         || player.getCurrentState() == BasePlayer.STATE_BUFFERING;
-                return getAction(builder, player,
+                return getAction(player,
                         pauseOrPlay ? R.drawable.exo_notification_pause
                                 : R.drawable.exo_notification_play,
                         pauseOrPlay ? "Pause" : "Play",
                         ACTION_PLAY_PAUSE);
             case "rewind":
-                return getAction(builder, player, R.drawable.exo_controls_rewind,
+                return getAction(player, R.drawable.exo_controls_rewind,
                         "Rewind", ACTION_FAST_REWIND);
             case "smart_rewind_prev":
                 if (player.playQueue != null && player.playQueue.size() > 1) {
-                    return getAction(builder, player, R.drawable.exo_notification_previous,
+                    return getAction(player, R.drawable.exo_notification_previous,
                             "Prev", ACTION_PLAY_PREVIOUS);
                 } else {
-                    return getAction(builder, player, R.drawable.exo_controls_rewind,
+                    return getAction(player, R.drawable.exo_controls_rewind,
                             "Rewind", ACTION_FAST_REWIND);
                 }
             case "forward":
-                return getAction(builder, player, R.drawable.exo_controls_fastforward,
+                return getAction(player, R.drawable.exo_controls_fastforward,
                         "Forward", ACTION_FAST_FORWARD);
             case "smart_forward_next":
                 if (player.playQueue != null && player.playQueue.size() > 1) {
-                    return getAction(builder, player, R.drawable.exo_notification_next,
+                    return getAction(player, R.drawable.exo_notification_next,
                             "Next", ACTION_PLAY_NEXT);
                 } else {
-                    return getAction(builder, player, R.drawable.exo_controls_fastforward,
+                    return getAction(player, R.drawable.exo_controls_fastforward,
                             "Forward", ACTION_FAST_FORWARD);
                 }
             case "next":
-                return getAction(builder, player, R.drawable.exo_notification_next,
+                return getAction(player, R.drawable.exo_notification_next,
                         "Next", ACTION_PLAY_NEXT);
             case "prev":
-                return getAction(builder, player, R.drawable.exo_notification_previous,
+                return getAction(player, R.drawable.exo_notification_previous,
                         "Prev", ACTION_PLAY_PREVIOUS);
             case "repeat":
-                return getAction(builder, player, getRepeatModeDrawable(player.getRepeatMode()),
+                return getAction(player, getRepeatModeDrawable(player.getRepeatMode()),
                         getRepeatModeTitle(player.getRepeatMode()), ACTION_REPEAT);
             case "shuffle":
                 final boolean shuffled = player.playQueue != null && player.playQueue.isShuffled();
-                return getAction(builder, player,
+                return getAction(player,
                         shuffled ? R.drawable.exo_controls_shuffle_on
                                 : R.drawable.exo_controls_shuffle_off,
                         shuffled ? "ShuffleOn" : "ShuffleOff",
                         ACTION_SHUFFLE);
             case "close":
-                return getAction(builder, player, R.drawable.ic_close_white_24dp,
+                return getAction(player, R.drawable.ic_close_white_24dp,
                         "Close", ACTION_CLOSE);
             case "n/a":
             default:
@@ -469,8 +314,7 @@ public final class NotificationUtil {
         }
     }
 
-    private NotificationCompat.Action getAction(final NotificationCompat.Builder builder,
-                                                final VideoPlayerImpl player,
+    private NotificationCompat.Action getAction(final VideoPlayerImpl player,
                                                 @DrawableRes final int drawable,
                                                 final String title,
                                                 final String intentAction) {

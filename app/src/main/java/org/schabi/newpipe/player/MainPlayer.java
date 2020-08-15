@@ -244,8 +244,7 @@ public final class MainPlayer extends Service {
     }
 
     private void showNotificationAndStartForeground() {
-        NotificationUtil.getInstance().recreateNotification(playerImpl, true);
-        NotificationUtil.getInstance().setProgressbarOnOldNotifications(100, 0, false);
+        NotificationUtil.getInstance().createNotificationIfNeeded(playerImpl, true);
         NotificationUtil.getInstance().startForegroundServiceWithNotification(this);
     }
 

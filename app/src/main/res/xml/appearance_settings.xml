@@ -41,13 +41,6 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="@string/enable_old_notifications_key"
-            android:summary="@string/enable_old_notifications_summary"
-            android:title="@string/enable_old_notifications_title"
-            app:iconSpaceReserved="false" />
-
-        <SwitchPreference
-            android:defaultValue="false"
             android:key="@string/scale_to_square_image_in_notifications_key"
             android:summary="@string/scale_to_square_image_in_notifications_summary"
             android:title="@string/scale_to_square_image_in_notifications_title"

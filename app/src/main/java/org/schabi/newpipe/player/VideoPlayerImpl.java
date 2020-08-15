@@ -57,7 +57,6 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -577,7 +576,7 @@ public class VideoPlayerImpl extends VideoPlayer
     void onShuffleOrRepeatModeChanged() {
         updatePlaybackButtons();
         updatePlayback();
-        resetNotification(false, -1);
+        resetNotification(false);
     }
 
     @Override
@@ -614,7 +613,7 @@ public class VideoPlayerImpl extends VideoPlayer
         titleTextView.setText(tag.getMetadata().getName());
         channelTextView.setText(tag.getMetadata().getUploaderName());
 
-        resetNotification(false, -1);
+        resetNotification(false);
         updateMetadata();
     }
 
@@ -642,30 +641,6 @@ public class VideoPlayerImpl extends VideoPlayer
         // setMetadata only updates the metadata when any of the metadata keys are null
         mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(), getThumbnail(),
                 duration);
-
-        final boolean areOldNotificationsEnabled = sharedPreferences.getBoolean(
-                context.getString(R.string.enable_old_notifications_key), false);
-        if (areOldNotificationsEnabled) {
-            if (!shouldUpdateOnProgress || getCurrentState() == BasePlayer.STATE_COMPLETED
-                    || getCurrentState() == BasePlayer.STATE_PAUSED || getPlayQueue() == null) {
-                return;
-            }
-
-            if (NotificationUtil.getInstance().shouldRecreateOldNotification()) {
-                NotificationUtil.getInstance().recreateNotification(this, false);
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    NotificationUtil.getInstance().updateOldNotificationsThumbnail(getThumbnail());
-                }
-            }
-
-
-            NotificationUtil.getInstance().setCachedDuration(currentProgress, duration);
-            NotificationUtil.getInstance().setProgressbarOnOldNotifications(duration,
-                    currentProgress, false);
-
-            NotificationUtil.getInstance().updateNotification(this, -1);
-        }
     }
 
     @Override
@@ -1083,9 +1058,9 @@ public class VideoPlayerImpl extends VideoPlayer
         animatePlayButtons(false, 100);
         getRootView().setKeepScreenOn(false);
 
-        NotificationUtil.getInstance().recreateNotification(this, false);
+        NotificationUtil.getInstance().createNotificationIfNeeded(this, false);
         NotificationUtil.getInstance().updateNotification(
-                this, R.drawable.ic_play_arrow_white_24dp);
+                this);
     }
 
     @Override
@@ -1101,7 +1076,7 @@ public class VideoPlayerImpl extends VideoPlayer
                 isForwardPressed = false;
                 isRewindPressed = false;
             } else {
-                NotificationUtil.getInstance().updateNotification(this, -1);
+                NotificationUtil.getInstance().updateNotification(this);
             }
         }
     }
@@ -1121,7 +1096,7 @@ public class VideoPlayerImpl extends VideoPlayer
         checkLandscape();
         getRootView().setKeepScreenOn(true);
 
-        resetNotification(false, R.drawable.ic_pause_white_24dp);
+        resetNotification(false);
     }
 
     @Override
@@ -1137,7 +1112,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
         updateWindowFlags(IDLE_WINDOW_FLAGS);
 
-        resetNotification(false, R.drawable.ic_play_arrow_white_24dp);
+        resetNotification(false);
 
         // Remove running notification when user don't want music (or video in popup)
         // to be played in background
@@ -1154,9 +1129,9 @@ public class VideoPlayerImpl extends VideoPlayer
         animatePlayButtons(false, 100);
         getRootView().setKeepScreenOn(true);
 
-        NotificationUtil.getInstance().recreateNotification(this, false);
+        NotificationUtil.getInstance().createNotificationIfNeeded(this, false);
         NotificationUtil.getInstance().updateNotification(
-                this, R.drawable.ic_play_arrow_white_24dp);
+                this);
     }
 
 
@@ -1170,11 +1145,8 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(false);
         updateWindowFlags(IDLE_WINDOW_FLAGS);
 
-        NotificationUtil.getInstance().recreateNotification(this, false);
-        NotificationUtil.getInstance().setProgressbarOnOldNotifications(100, 100, false);
-        NotificationUtil.getInstance().updateOldNotificationsThumbnail(getThumbnail());
-        NotificationUtil.getInstance().updateNotification(
-                this, R.drawable.ic_replay_white_24dp);
+        NotificationUtil.getInstance().createNotificationIfNeeded(this, false);
+        NotificationUtil.getInstance().updateNotification(this);
 
         super.onCompleted();
     }
@@ -1182,8 +1154,6 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void destroy() {
         super.destroy();
-
-        NotificationUtil.getInstance().updateOldNotificationsThumbnail(null);
         service.getContentResolver().unregisterContentObserver(settingsContentObserver);
     }
 
@@ -1334,10 +1304,9 @@ public class VideoPlayerImpl extends VideoPlayer
     // Thumbnail Loading
     //////////////////////////////////////////////////////////////////////////*/
 
-    void resetNotification(final boolean recreate, @DrawableRes final int drawableId) {
-        NotificationUtil.getInstance().recreateNotification(this, recreate);
-        NotificationUtil.getInstance().updateOldNotificationsThumbnail(getThumbnail());
-        NotificationUtil.getInstance().updateNotification(this, drawableId);
+    void resetNotification(final boolean recreate) {
+        NotificationUtil.getInstance().createNotificationIfNeeded(this, recreate);
+        NotificationUtil.getInstance().updateNotification(this);
     }
 
     @Override
@@ -1347,7 +1316,7 @@ public class VideoPlayerImpl extends VideoPlayer
         // rebuild OLD notification here since remote view does not release bitmaps,
         // causing memory leaks
         super.onLoadingComplete(imageUri, view, loadedImage);
-        resetNotification(true, -1);
+        resetNotification(true);
     }
 
     @Override
@@ -1355,13 +1324,13 @@ public class VideoPlayerImpl extends VideoPlayer
                                 final View view,
                                 final FailReason failReason) {
         super.onLoadingFailed(imageUri, view, failReason);
-        resetNotification(true, -1);
+        resetNotification(true);
     }
 
     @Override
     public void onLoadingCancelled(final String imageUri, final View view) {
         super.onLoadingCancelled(imageUri, view);
-        resetNotification(true, -1);
+        resetNotification(true);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

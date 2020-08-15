@@ -58,8 +58,6 @@
     <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
-    <string name="enable_old_notifications_title">Enable old notifications</string>
-    <string name="enable_old_notifications_summary">This enables the old \"Custom RemoteViews\" notifications. If disabled modern MediaStyle notifications will be used.</string>
     <string name="scale_to_square_image_in_notifications_title">Scale image to 1:1 aspect ratio</string>
     <string name="scale_to_square_image_in_notifications_summary">This will scale the notification image from 16:9 to 1:1 aspect ratio</string>
     <string name="default_notification_slot_0_title">Notification slot 0</string>

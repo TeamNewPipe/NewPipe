@@ -114,7 +114,6 @@
         <item>144p</item>
     </string-array>
 
-    <string name="enable_old_notifications_key" translatable="false">enable_old_notifications</string>
     <string name="settings_notifications_compact_view_key" translatable="false">notifications_compact_view</string>
     <string name="settings_notifications_compact_view_default_value" translatable="false">0,1,2</string>
     <string name="scale_to_square_image_in_notifications_key" translatable="false">scale_to_square_image_in_notifications</string>
