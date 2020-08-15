@@ -81,7 +81,7 @@ public final class NotificationUtil {
     // NOTIFICATION
     /////////////////////////////////////////////////////
 
-    NotificationCompat.Builder createBackgroundPlayerNotification(final VideoPlayerImpl player) {
+    NotificationCompat.Builder createNotification(final VideoPlayerImpl player) {
         notificationManager =
                 (NotificationManager) player.context.getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
@@ -183,10 +183,10 @@ public final class NotificationUtil {
      * @param player the player currently open, to take data from
      * @param playPauseDrawable if != -1, sets the drawable with that id on the play/pause button
      */
-    synchronized void updateBackgroundPlayerNotification(final VideoPlayerImpl player,
-                                                         @DrawableRes final int playPauseDrawable) {
+    synchronized void updateNotification(final VideoPlayerImpl player,
+                                         @DrawableRes final int playPauseDrawable) {
         if (DEBUG) {
-            Log.d(TAG, "N_ updateBackgroundPlayerNotification()");
+            Log.d(TAG, "N_ updateNotification()");
         }
 
         if (notificationBuilder == null) {
@@ -232,15 +232,14 @@ public final class NotificationUtil {
         }
     }
 
-    void recreateBackgroundPlayerNotification(final VideoPlayerImpl player,
-                                              final boolean recreate) {
+    void recreateNotification(final VideoPlayerImpl player, final boolean recreate) {
         final boolean areOldNotificationsEnabled = player.sharedPreferences.getBoolean(
                 player.context.getString(R.string.enable_old_notifications_key), false);
         if (notificationBuilder == null || recreate || areOldNotificationsEnabled) {
             if (DEBUG) {
-                Log.d(TAG, "N_ recreateBackgroundPlayerNotification(true)");
+                Log.d(TAG, "N_ recreateNotification(true)");
             }
-            notificationBuilder = createBackgroundPlayerNotification(player);
+            notificationBuilder = createNotification(player);
         }
         timesNotificationUpdated = 0;
     }

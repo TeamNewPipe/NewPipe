@@ -652,7 +652,7 @@ public class VideoPlayerImpl extends VideoPlayer
             }
 
             if (NotificationUtil.getInstance().shouldRecreateOldNotification()) {
-                NotificationUtil.getInstance().recreateBackgroundPlayerNotification(this, false);
+                NotificationUtil.getInstance().recreateNotification(this, false);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     NotificationUtil.getInstance().updateOldNotificationsThumbnail(getThumbnail());
@@ -664,7 +664,7 @@ public class VideoPlayerImpl extends VideoPlayer
             NotificationUtil.getInstance().setProgressbarOnOldNotifications(duration,
                     currentProgress, false);
 
-            NotificationUtil.getInstance().updateBackgroundPlayerNotification(this, -1);
+            NotificationUtil.getInstance().updateNotification(this, -1);
         }
     }
 
@@ -1083,8 +1083,8 @@ public class VideoPlayerImpl extends VideoPlayer
         animatePlayButtons(false, 100);
         getRootView().setKeepScreenOn(false);
 
-        NotificationUtil.getInstance().recreateBackgroundPlayerNotification(this, false);
-        NotificationUtil.getInstance().updateBackgroundPlayerNotification(
+        NotificationUtil.getInstance().recreateNotification(this, false);
+        NotificationUtil.getInstance().updateNotification(
                 this, R.drawable.ic_play_arrow_white_24dp);
     }
 
@@ -1101,7 +1101,7 @@ public class VideoPlayerImpl extends VideoPlayer
                 isForwardPressed = false;
                 isRewindPressed = false;
             } else {
-                NotificationUtil.getInstance().updateBackgroundPlayerNotification(this, -1);
+                NotificationUtil.getInstance().updateNotification(this, -1);
             }
         }
     }
@@ -1154,8 +1154,8 @@ public class VideoPlayerImpl extends VideoPlayer
         animatePlayButtons(false, 100);
         getRootView().setKeepScreenOn(true);
 
-        NotificationUtil.getInstance().recreateBackgroundPlayerNotification(this, false);
-        NotificationUtil.getInstance().updateBackgroundPlayerNotification(
+        NotificationUtil.getInstance().recreateNotification(this, false);
+        NotificationUtil.getInstance().updateNotification(
                 this, R.drawable.ic_play_arrow_white_24dp);
     }
 
@@ -1170,10 +1170,10 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(false);
         updateWindowFlags(IDLE_WINDOW_FLAGS);
 
-        NotificationUtil.getInstance().recreateBackgroundPlayerNotification(this, false);
+        NotificationUtil.getInstance().recreateNotification(this, false);
         NotificationUtil.getInstance().setProgressbarOnOldNotifications(100, 100, false);
         NotificationUtil.getInstance().updateOldNotificationsThumbnail(getThumbnail());
-        NotificationUtil.getInstance().updateBackgroundPlayerNotification(
+        NotificationUtil.getInstance().updateNotification(
                 this, R.drawable.ic_replay_white_24dp);
 
         super.onCompleted();
@@ -1335,9 +1335,9 @@ public class VideoPlayerImpl extends VideoPlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     void resetNotification(final boolean recreate, @DrawableRes final int drawableId) {
-        NotificationUtil.getInstance().recreateBackgroundPlayerNotification(this, recreate);
+        NotificationUtil.getInstance().recreateNotification(this, recreate);
         NotificationUtil.getInstance().updateOldNotificationsThumbnail(getThumbnail());
-        NotificationUtil.getInstance().updateBackgroundPlayerNotification(this, drawableId);
+        NotificationUtil.getInstance().updateNotification(this, drawableId);
     }
 
     @Override
