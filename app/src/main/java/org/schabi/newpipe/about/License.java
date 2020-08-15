@@ -4,10 +4,12 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 /**
  * Class for storing information about a software license.
  */
-public class License implements Parcelable {
+public class License implements Parcelable, Serializable {
     public static final Creator<License> CREATOR = new Creator<License>() {
         @Override
         public License createFromParcel(final Parcel source) {
