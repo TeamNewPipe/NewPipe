@@ -54,7 +54,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
@@ -79,6 +78,7 @@ import org.schabi.newpipe.util.SerializedCache;
 import java.io.IOException;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
@@ -280,7 +280,7 @@ public abstract class BasePlayer implements
 
         // Resolve append intents
         if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {
-            int sizeBeforeAppend = playQueue.size();
+            final int sizeBeforeAppend = playQueue.size();
             playQueue.append(queue.getStreams());
 
             if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
@@ -1452,7 +1452,7 @@ public abstract class BasePlayer implements
             return false;
         }
 
-        Timeline.Window timelineWindow = new Timeline.Window();
+        final Timeline.Window timelineWindow = new Timeline.Window();
         currentTimeline.getWindow(currentWindowIndex, timelineWindow);
         return timelineWindow.getDefaultPositionMs() <= simpleExoPlayer.getCurrentPosition();
     }
@@ -1463,7 +1463,7 @@ public abstract class BasePlayer implements
         }
         try {
             return simpleExoPlayer.isCurrentWindowDynamic();
-        } catch (@NonNull IndexOutOfBoundsException e) {
+        } catch (@NonNull final IndexOutOfBoundsException e) {
             // Why would this even happen =(
             // But lets log it anyway. Save is save
             if (DEBUG) {

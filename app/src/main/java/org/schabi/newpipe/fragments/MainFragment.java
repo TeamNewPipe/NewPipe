@@ -104,7 +104,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onResume() {
         super.onResume();
 
-        boolean youtubeRestrictedModeEnabled =
+        final boolean youtubeRestrictedModeEnabled =
                 PreferenceManager.getDefaultSharedPreferences(getContext())
                         .getBoolean(youtubeRestrictedModeEnabledKey, false);
         if (previousYoutubeRestrictedModeEnabled != youtubeRestrictedModeEnabled) {
@@ -137,7 +137,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
         inflater.inflate(R.menu.main_fragment_menu, menu);
 
-        ActionBar supportActionBar = activity.getSupportActionBar();
+        final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         }
@@ -150,7 +150,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 try {
                     NavigationHelper.openSearchFragment(getFM(),
                             ServiceHelper.getSelectedServiceId(activity), "");
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                 }
                 return true;
@@ -237,7 +237,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             Fragment fragment = null;
             try {
                 fragment = tab.getFragment(context);
-            } catch (ExtractionException e) {
+            } catch (final ExtractionException e) {
                 throwable = e;
             }
 

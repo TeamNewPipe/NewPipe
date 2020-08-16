@@ -12,8 +12,8 @@ public final class CookieUtils {
     }
 
     public static String concatCookies(final Collection<String> cookieStrings) {
-        Set<String> cookieSet = new HashSet<>();
-        for (String cookies : cookieStrings) {
+        final Set<String> cookieSet = new HashSet<>();
+        for (final String cookies : cookieStrings) {
             cookieSet.addAll(splitCookies(cookies));
         }
         return TextUtils.join("; ", cookieSet).trim();

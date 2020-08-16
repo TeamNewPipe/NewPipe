@@ -61,7 +61,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recaptcha);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         String url = getIntent().getStringExtra(RECAPTCHA_URL_EXTRA);
@@ -76,7 +76,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         webView = findViewById(R.id.reCaptchaWebView);
 
         // enable Javascript
-        WebSettings webSettings = webView.getSettings();
+        final WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
         webView.setWebViewClient(new WebViewClient() {
@@ -84,7 +84,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(final WebView view,
                                                     final WebResourceRequest request) {
-                String url = request.getUrl().toString();
+                final String url = request.getUrl().toString();
                 if (MainActivity.DEBUG) {
                     Log.d(TAG, "shouldOverrideUrlLoading: request.url=" + url);
                 }
@@ -113,7 +113,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         // cleaning cache, history and cookies from webView
         webView.clearCache(true);
         webView.clearHistory();
-        android.webkit.CookieManager cookieManager = CookieManager.getInstance();
+        final android.webkit.CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             cookieManager.removeAllCookies(aBoolean -> {
             });
@@ -128,7 +128,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.menu_recaptcha, menu);
 
-        ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setTitle(R.string.title_activity_recaptcha);
@@ -145,7 +145,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        int id = item.getItemId();
+        final int id = item.getItemId();
         switch (id) {
             case R.id.menu_item_done:
                 saveCookiesAndFinish();
@@ -173,7 +173,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             setResult(RESULT_OK);
         }
 
-        Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
+        final Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         NavUtils.navigateUpTo(this, intent);
     }
@@ -188,13 +188,13 @@ public class ReCaptchaActivity extends AppCompatActivity {
             return;
         }
 
-        String cookies = CookieManager.getInstance().getCookie(url);
+        final String cookies = CookieManager.getInstance().getCookie(url);
         handleCookies(cookies);
 
         // sometimes cookies are inside the url
-        int abuseStart = url.indexOf("google_abuse=");
+        final int abuseStart = url.indexOf("google_abuse=");
         if (abuseStart != -1) {
-            int abuseEnd = url.indexOf("+path");
+            final int abuseEnd = url.indexOf("+path");
 
             try {
                 String abuseCookie = url.substring(abuseStart + 13, abuseEnd);

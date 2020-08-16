@@ -124,7 +124,7 @@ public class DownloadDialog extends DialogFragment
     private SharedPreferences prefs;
 
     public static DownloadDialog newInstance(final StreamInfo info) {
-        DownloadDialog dialog = new DownloadDialog();
+        final DownloadDialog dialog = new DownloadDialog();
         dialog.setInfo(info);
         return dialog;
     }
@@ -208,14 +208,15 @@ public class DownloadDialog extends DialogFragment
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        SparseArray<SecondaryStreamHelper<AudioStream>> secondaryStreams = new SparseArray<>(4);
-        List<VideoStream> videoStreams = wrappedVideoStreams.getStreamsList();
+        final SparseArray<SecondaryStreamHelper<AudioStream>> secondaryStreams
+                = new SparseArray<>(4);
+        final List<VideoStream> videoStreams = wrappedVideoStreams.getStreamsList();
 
         for (int i = 0; i < videoStreams.size(); i++) {
             if (!videoStreams.get(i).isVideoOnly()) {
                 continue;
             }
-            AudioStream audioStream = SecondaryStreamHelper
+            final AudioStream audioStream = SecondaryStreamHelper
                     .getAudioStreamFor(wrappedAudioStreams.getStreamsList(), videoStreams.get(i));
 
             if (audioStream != null) {
@@ -232,13 +233,13 @@ public class DownloadDialog extends DialogFragment
         this.audioStreamsAdapter = new StreamItemAdapter<>(context, wrappedAudioStreams);
         this.subtitleStreamsAdapter = new StreamItemAdapter<>(context, wrappedSubtitleStreams);
 
-        Intent intent = new Intent(context, DownloadManagerService.class);
+        final Intent intent = new Intent(context, DownloadManagerService.class);
         context.startService(intent);
 
         context.bindService(intent, new ServiceConnection() {
             @Override
             public void onServiceConnected(final ComponentName cname, final IBinder service) {
-                DownloadManagerBinder mgr = (DownloadManagerBinder) service;
+                final DownloadManagerBinder mgr = (DownloadManagerBinder) service;
 
                 mainStorageAudio = mgr.getMainStorageAudio();
                 mainStorageVideo = mgr.getMainStorageVideo();
@@ -296,7 +297,7 @@ public class DownloadDialog extends DialogFragment
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        int threads = prefs.getInt(getString(R.string.default_download_threads), 3);
+        final int threads = prefs.getInt(getString(R.string.default_download_threads), 3);
         threadsCountTextView.setText(String.valueOf(threads));
         threadsSeekBar.setProgress(threads - 1);
         threadsSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -373,13 +374,13 @@ public class DownloadDialog extends DialogFragment
             }
 
             if (FilePickerActivityHelper.isOwnFileUri(context, data.getData())) {
-                File file = Utils.getFileForUri(data.getData());
+                final File file = Utils.getFileForUri(data.getData());
                 checkSelectedDownload(null, Uri.fromFile(file), file.getName(),
                         StoredFileHelper.DEFAULT_MIME);
                 return;
             }
 
-            DocumentFile docFile = DocumentFile.fromSingleUri(context, data.getData());
+            final DocumentFile docFile = DocumentFile.fromSingleUri(context, data.getData());
             if (docFile == null) {
                 showFailedDialog(R.string.general_error);
                 return;
@@ -564,7 +565,7 @@ public class DownloadDialog extends DialogFragment
     }
 
     private String getNameEditText() {
-        String str = nameEditText.getText().toString().trim();
+        final String str = nameEditText.getText().toString().trim();
 
         return FilenameUtils.createFilename(context, str.isEmpty() ? currentInfo.getName() : str);
     }
@@ -591,9 +592,9 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void prepareSelectedDownload() {
-        StoredDirectoryHelper mainStorage;
-        MediaFormat format;
-        String mime;
+        final StoredDirectoryHelper mainStorage;
+        final MediaFormat format;
+        final String mime;
 
         // first, build the filename and get the output folder (if possible)
         // later, run a very very very large file checking logic
@@ -683,15 +684,17 @@ public class DownloadDialog extends DialogFragment
                 storage = new StoredFileHelper(context, mainStorage.getUri(), targetFile,
                         mainStorage.getTag());
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             showErrorActivity(e);
             return;
         }
 
         // check if is our file
-        MissionState state = downloadManager.checkForExistingMission(storage);
-        @StringRes int msgBtn;
-        @StringRes int msgBody;
+        final MissionState state = downloadManager.checkForExistingMission(storage);
+        @StringRes
+        final int msgBtn;
+        @StringRes
+        final int msgBody;
 
         switch (state) {
             case Finished:
@@ -744,8 +747,7 @@ public class DownloadDialog extends DialogFragment
                 return;
         }
 
-
-        AlertDialog.Builder askDialog = new AlertDialog.Builder(context)
+        final AlertDialog.Builder askDialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.download_dialog_title)
                 .setMessage(msgBody)
                 .setNegativeButton(android.R.string.cancel, null);
@@ -787,7 +789,7 @@ public class DownloadDialog extends DialogFragment
                             // try take (or steal) the file
                             storageNew = new StoredFileHelper(context, mainStorage.getUri(),
                                     targetFile, mainStorage.getTag());
-                        } catch (IOException e) {
+                        } catch (final IOException e) {
                             Log.e(TAG, "Failed to take (or steal) the file in "
                                     + targetFile.toString());
                             storageNew = null;
@@ -825,18 +827,18 @@ public class DownloadDialog extends DialogFragment
             if (storage.length() > 0) {
                 storage.truncate();
             }
-        } catch (IOException e) {
+        } catch (final IOException e) {
             Log.e(TAG, "failed to truncate the file: " + storage.getUri().toString(), e);
             showFailedDialog(R.string.overwrite_failed);
             return;
         }
 
-        Stream selectedStream;
+        final Stream selectedStream;
         Stream secondaryStream = null;
-        char kind;
+        final char kind;
         int threads = threadsSeekBar.getProgress() + 1;
-        String[] urls;
-        MissionRecoveryInfo[] recoveryInfo;
+        final String[] urls;
+        final MissionRecoveryInfo[] recoveryInfo;
         String psName = null;
         String[] psArgs = null;
         long nearLength = 0;
@@ -857,7 +859,7 @@ public class DownloadDialog extends DialogFragment
                 kind = 'v';
                 selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
 
-                SecondaryStreamHelper<AudioStream> secondary = videoStreamsAdapter
+                final SecondaryStreamHelper<AudioStream> secondary = videoStreamsAdapter
                         .getAllSecondary()
                         .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
 
@@ -871,7 +873,7 @@ public class DownloadDialog extends DialogFragment
                     }
 
                     psArgs = null;
-                    long videoSize = wrappedVideoStreams
+                    final long videoSize = wrappedVideoStreams
                             .getSizeInBytes((VideoStream) selectedStream);
 
                     // set nearLength, only, if both sizes are fetched or known. This probably

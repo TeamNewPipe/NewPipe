@@ -42,7 +42,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     private Switch autoplaySwitch;
 
     public static RelatedVideosFragment getInstance(final StreamInfo info) {
-        RelatedVideosFragment instance = new RelatedVideosFragment();
+        final RelatedVideosFragment instance = new RelatedVideosFragment();
         instance.setInitialData(info);
         return instance;
     }
@@ -191,7 +191,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     protected void onRestoreInstanceState(@NonNull final Bundle savedState) {
         super.onRestoreInstanceState(savedState);
         if (savedState != null) {
-            Serializable serializable = savedState.getSerializable(INFO_KEY);
+            final Serializable serializable = savedState.getSerializable(INFO_KEY);
             if (serializable instanceof RelatedStreamInfo) {
                 this.relatedStreamInfo = (RelatedStreamInfo) serializable;
             }
@@ -201,8 +201,8 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String s) {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
-        boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
+        final SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
         if (autoplaySwitch != null) {
             autoplaySwitch.setChecked(autoplay);
         }

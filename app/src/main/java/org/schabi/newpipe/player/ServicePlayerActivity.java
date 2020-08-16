@@ -580,7 +580,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private void shareUrl(final String subject, final String url) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
+        final Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, url);
@@ -734,7 +734,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void onMaybeMuteChanged() {
         if (menu != null && player != null) {
-            MenuItem item = menu.findItem(R.id.action_mute);
+            final MenuItem item = menu.findItem(R.id.action_mute);
 
             //Change the mute-button item in ActionBar
             //1) Text change:

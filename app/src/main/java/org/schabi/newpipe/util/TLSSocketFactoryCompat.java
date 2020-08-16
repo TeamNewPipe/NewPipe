@@ -27,7 +27,7 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
     private SSLSocketFactory internalSSLSocketFactory;
 
     public TLSSocketFactoryCompat() throws KeyManagementException, NoSuchAlgorithmException {
-        SSLContext context = SSLContext.getInstance("TLS");
+        final SSLContext context = SSLContext.getInstance("TLS");
         context.init(null, null, null);
         internalSSLSocketFactory = context.getSocketFactory();
     }
@@ -35,7 +35,7 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
 
     public TLSSocketFactoryCompat(final TrustManager[] tm)
             throws KeyManagementException, NoSuchAlgorithmException {
-        SSLContext context = SSLContext.getInstance("TLS");
+        final SSLContext context = SSLContext.getInstance("TLS");
         context.init(null, tm, new java.security.SecureRandom());
         internalSSLSocketFactory = context.getSocketFactory();
     }

@@ -16,11 +16,11 @@ public class RelatedStreamInfo extends ListInfo<InfoItem> {
     }
 
     public static RelatedStreamInfo getInfo(final StreamInfo info) {
-        ListLinkHandler handler = new ListLinkHandler(
+        final ListLinkHandler handler = new ListLinkHandler(
                 info.getOriginalUrl(), info.getUrl(), info.getId(), Collections.emptyList(), null);
-        RelatedStreamInfo relatedStreamInfo = new RelatedStreamInfo(
+        final RelatedStreamInfo relatedStreamInfo = new RelatedStreamInfo(
                 info.getServiceId(), handler, info.getName());
-        List<InfoItem> streams = new ArrayList<>();
+        final List<InfoItem> streams = new ArrayList<>();
         streams.addAll(info.getRelatedStreams());
         relatedStreamInfo.setRelatedItems(streams);
         return relatedStreamInfo;

@@ -31,7 +31,7 @@ public class PanicResponderActivity extends Activity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         if (intent != null && PANIC_TRIGGER_ACTION.equals(intent.getAction())) {
             // TODO: Explicitly clear the search results
             //  once they are restored when the app restarts

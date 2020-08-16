@@ -53,13 +53,14 @@ public class TabsJsonHelperTest {
                 "{}"
         );
 
-        for (String invalidContent : invalidList) {
+        for (final String invalidContent : invalidList) {
             try {
                 TabsJsonHelper.getTabsFromJson(invalidContent);
 
                 fail("didn't throw exception");
-            } catch (Exception e) {
-                boolean isExpectedException = e instanceof TabsJsonHelper.InvalidJsonException;
+            } catch (final Exception e) {
+                final boolean isExpectedException
+                        = e instanceof TabsJsonHelper.InvalidJsonException;
                 assertTrue("\"" + e.getClass().getSimpleName()
                         + "\" is not the expected exception", isExpectedException);
             }
@@ -78,7 +79,7 @@ public class TabsJsonHelperTest {
     }
 
     private boolean isTabsArrayEmpty(final String returnedJson) throws JsonParserException {
-        JsonObject jsonObject = JsonParser.object().from(returnedJson);
+        final JsonObject jsonObject = JsonParser.object().from(returnedJson);
         assertTrue(jsonObject.containsKey(JSON_TABS_ARRAY_KEY));
         return jsonObject.getArray(JSON_TABS_ARRAY_KEY).size() == 0;
     }

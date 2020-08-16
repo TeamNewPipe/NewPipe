@@ -27,7 +27,7 @@ public final class DeviceUtils {
             return isTV;
         }
 
-        PackageManager pm = App.getApp().getPackageManager();
+        final PackageManager pm = App.getApp().getPackageManager();
 
         // from doc: https://developer.android.com/training/tv/start/hardware.html#runtime-check
         boolean isTv = ((UiModeManager) context.getSystemService(UI_MODE_SERVICE))
@@ -37,7 +37,8 @@ public final class DeviceUtils {
 
         // from https://stackoverflow.com/a/58932366
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            boolean isBatteryAbsent = ((BatteryManager) context.getSystemService(BATTERY_SERVICE))
+            final boolean isBatteryAbsent
+                    = ((BatteryManager) context.getSystemService(BATTERY_SERVICE))
                     .getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY) == 0;
             isTv = isTv || (isBatteryAbsent
                     && !pm.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN)

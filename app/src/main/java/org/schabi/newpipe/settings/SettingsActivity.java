@@ -53,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity
         super.onCreate(savedInstanceBundle);
         setContentView(R.layout.settings_layout);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         if (savedInstanceBundle == null) {
@@ -69,7 +69,7 @@ public class SettingsActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(true);
@@ -80,7 +80,7 @@ public class SettingsActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        int id = item.getItemId();
+        final int id = item.getItemId();
         if (id == android.R.id.home) {
             if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                 finish();
@@ -95,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity
     @Override
     public boolean onPreferenceStartFragment(final PreferenceFragmentCompat caller,
                                              final Preference preference) {
-        Fragment fragment = Fragment
+        final Fragment fragment = Fragment
                 .instantiate(this, preference.getFragment(), preference.getExtras());
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out,

@@ -50,7 +50,7 @@ public class TabAdaptor extends FragmentPagerAdapter {
     }
 
     public void updateItem(final String title, final Fragment fragment) {
-        int index = mFragmentTitleList.indexOf(title);
+        final int index = mFragmentTitleList.indexOf(title);
         if (index != -1) {
             updateItem(index, fragment);
         }

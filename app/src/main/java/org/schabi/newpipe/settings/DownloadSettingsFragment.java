@@ -120,7 +120,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         try {
             rawUri = URLDecoder.decode(rawUri, StandardCharsets.UTF_8.name());
-        } catch (UnsupportedEncodingException e) {
+        } catch (final UnsupportedEncodingException e) {
             // nothing to do
         }
 
@@ -132,7 +132,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private boolean hasInvalidPath(final String prefKey) {
-        String value = defaultPreferences.getString(prefKey, null);
+        final String value = defaultPreferences.getString(prefKey, null);
         return value == null || value.isEmpty();
     }
 
@@ -152,20 +152,20 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         }
 
         try {
-            Uri uri = Uri.parse(oldPath);
+            final Uri uri = Uri.parse(oldPath);
 
             context.getContentResolver()
                     .releasePersistableUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
             context.revokeUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
 
             Log.i(TAG, "Revoke old path permissions success on " + oldPath);
-        } catch (Exception err) {
+        } catch (final Exception err) {
             Log.e(TAG, "Error revoking old path permissions on " + oldPath, err);
         }
     }
 
     private void showMessageDialog(@StringRes final int title, @StringRes final int message) {
-        AlertDialog.Builder msg = new AlertDialog.Builder(ctx);
+        final AlertDialog.Builder msg = new AlertDialog.Builder(ctx);
         msg.setTitle(title);
         msg.setMessage(message);
         msg.setPositiveButton(getString(R.string.finish), null);
@@ -179,8 +179,8 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
                     + "preference = [" + preference + "]");
         }
 
-        String key = preference.getKey();
-        int request;
+        final String key = preference.getKey();
+        final int request;
 
         if (key.equals(storageUseSafPreference)) {
             Toast.makeText(getContext(), R.string.download_choose_new_path,
@@ -194,7 +194,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return super.onPreferenceTreeClick(preference);
         }
 
-        Intent i;
+        final Intent i;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
                 && NewPipeSettings.useStorageAccessFramework(ctx)) {
             i = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
@@ -229,7 +229,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return;
         }
 
-        String key;
+        final String key;
         if (requestCode == REQUEST_DOWNLOAD_VIDEO_PATH) {
             key = downloadPathVideoPreference;
         } else if (requestCode == REQUEST_DOWNLOAD_AUDIO_PATH) {
@@ -262,19 +262,20 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
                 context.grantUriPermission(context.getPackageName(), uri,
                         StoredDirectoryHelper.PERMISSION_FLAGS);
 
-                StoredDirectoryHelper mainStorage = new StoredDirectoryHelper(context, uri, null);
+                final StoredDirectoryHelper mainStorage
+                        = new StoredDirectoryHelper(context, uri, null);
                 Log.i(TAG, "Acquiring tree success from " + uri.toString());
 
                 if (!mainStorage.canWrite()) {
                     throw new IOException("No write permissions on " + uri.toString());
                 }
-            } catch (IOException err) {
+            } catch (final IOException err) {
                 Log.e(TAG, "Error acquiring tree from " + uri.toString(), err);
                 showMessageDialog(R.string.general_error, R.string.no_available_dir);
                 return;
             }
         } else {
-            File target = Utils.getFileForUri(uri);
+            final File target = Utils.getFileForUri(uri);
             if (!target.canWrite()) {
                 showMessageDialog(R.string.download_to_sdcard_error_title,
                         R.string.download_to_sdcard_error_message);

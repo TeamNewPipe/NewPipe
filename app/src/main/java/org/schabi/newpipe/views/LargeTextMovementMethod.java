@@ -64,7 +64,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
                                      final int keyCode,
                                      final int movementMetaState,
                                      final KeyEvent event) {
-        int newDir = keyToDir(keyCode);
+        final int newDir = keyToDir(keyCode);
 
         if (direction != 0 && newDir != direction) {
             return false;
@@ -72,7 +72,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
 
         this.direction = 0;
 
-        ViewGroup root = findScrollableParent(widget);
+        final ViewGroup root = findScrollableParent(widget);
 
         widget.getHitRect(visibleRect);
 
@@ -118,46 +118,46 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
     }
 
     private boolean gotoPrev(final TextView view, final Spannable buffer) {
-        Layout layout = view.getLayout();
+        final Layout layout = view.getLayout();
         if (layout == null) {
             return false;
         }
 
-        View root = findScrollableParent(view);
+        final View root = findScrollableParent(view);
 
-        int rootHeight = root.getHeight();
+        final int rootHeight = root.getHeight();
 
         if (visibleRect.top >= 0) {
             // we fit entirely into the viewport, no need for fancy footwork
             return false;
         }
 
-        int topExtra = -visibleRect.top;
+        final int topExtra = -visibleRect.top;
 
-        int firstVisibleLineNumber = layout.getLineForVertical(topExtra);
+        final int firstVisibleLineNumber = layout.getLineForVertical(topExtra);
 
         // when deciding whether to pass "focus" to span, account for one more line
         // this ensures, that focus is never passed to spans partially outside scroll window
-        int visibleStart = firstVisibleLineNumber == 0
+        final int visibleStart = firstVisibleLineNumber == 0
                 ? 0
                 : layout.getLineStart(firstVisibleLineNumber - 1);
 
-        ClickableSpan[] candidates = buffer.getSpans(
+        final ClickableSpan[] candidates = buffer.getSpans(
                 visibleStart, buffer.length(), ClickableSpan.class);
 
         if (candidates.length != 0) {
-            int a = Selection.getSelectionStart(buffer);
-            int b = Selection.getSelectionEnd(buffer);
+            final int a = Selection.getSelectionStart(buffer);
+            final int b = Selection.getSelectionEnd(buffer);
 
-            int selStart = Math.min(a, b);
-            int selEnd = Math.max(a, b);
+            final int selStart = Math.min(a, b);
+            final int selEnd = Math.max(a, b);
 
             int bestStart = -1;
             int bestEnd = -1;
 
             for (int i = 0; i < candidates.length; i++) {
-                int start = buffer.getSpanStart(candidates[i]);
-                int end = buffer.getSpanEnd(candidates[i]);
+                final int start = buffer.getSpanStart(candidates[i]);
+                final int end = buffer.getSpanEnd(candidates[i]);
 
                 if ((end < selEnd || selStart == selEnd) && start >= visibleStart) {
                     if (end > bestEnd) {
@@ -173,7 +173,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
             }
         }
 
-        float fourLines = view.getTextSize() * 4;
+        final float fourLines = view.getTextSize() * 4;
 
         visibleRect.left = 0;
         visibleRect.right = view.getWidth();
@@ -184,49 +184,49 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
     }
 
     private boolean gotoNext(final TextView view, final Spannable buffer) {
-        Layout layout = view.getLayout();
+        final Layout layout = view.getLayout();
         if (layout == null) {
             return false;
         }
 
-        View root = findScrollableParent(view);
+        final View root = findScrollableParent(view);
 
-        int rootHeight = root.getHeight();
+        final int rootHeight = root.getHeight();
 
         if (visibleRect.bottom <= rootHeight) {
             // we fit entirely into the viewport, no need for fancy footwork
             return false;
         }
 
-        int bottomExtra = visibleRect.bottom - rootHeight;
+        final int bottomExtra = visibleRect.bottom - rootHeight;
 
-        int visibleBottomBorder = view.getHeight() - bottomExtra;
+        final int visibleBottomBorder = view.getHeight() - bottomExtra;
 
-        int lineCount = layout.getLineCount();
+        final int lineCount = layout.getLineCount();
 
-        int lastVisibleLineNumber = layout.getLineForVertical(visibleBottomBorder);
+        final int lastVisibleLineNumber = layout.getLineForVertical(visibleBottomBorder);
 
         // when deciding whether to pass "focus" to span, account for one more line
         // this ensures, that focus is never passed to spans partially outside scroll window
-        int visibleEnd = lastVisibleLineNumber == lineCount - 1
+        final int visibleEnd = lastVisibleLineNumber == lineCount - 1
                 ? buffer.length()
                 : layout.getLineEnd(lastVisibleLineNumber - 1);
 
-        ClickableSpan[] candidates = buffer.getSpans(0, visibleEnd, ClickableSpan.class);
+        final ClickableSpan[] candidates = buffer.getSpans(0, visibleEnd, ClickableSpan.class);
 
         if (candidates.length != 0) {
-            int a = Selection.getSelectionStart(buffer);
-            int b = Selection.getSelectionEnd(buffer);
+            final int a = Selection.getSelectionStart(buffer);
+            final int b = Selection.getSelectionEnd(buffer);
 
-            int selStart = Math.min(a, b);
-            int selEnd = Math.max(a, b);
+            final int selStart = Math.min(a, b);
+            final int selEnd = Math.max(a, b);
 
             int bestStart = Integer.MAX_VALUE;
             int bestEnd = Integer.MAX_VALUE;
 
             for (int i = 0; i < candidates.length; i++) {
-                int start = buffer.getSpanStart(candidates[i]);
-                int end = buffer.getSpanEnd(candidates[i]);
+                final int start = buffer.getSpanStart(candidates[i]);
+                final int end = buffer.getSpanEnd(candidates[i]);
 
                 if ((start > selStart || selStart == selEnd) && end <= visibleEnd) {
                     if (start < bestStart) {
@@ -245,7 +245,7 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
 
         // there are no links within visible area, but still some text past visible area
         // scroll visible area further in required direction
-        float fourLines = view.getTextSize() * 4;
+        final float fourLines = view.getTextSize() * 4;
 
         visibleRect.left = 0;
         visibleRect.right = view.getWidth();

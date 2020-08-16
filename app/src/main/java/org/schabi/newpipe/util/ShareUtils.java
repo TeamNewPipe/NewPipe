@@ -77,7 +77,7 @@ public final class ShareUtils {
      * @param url     the url to share
      */
     public static void shareUrl(final Context context, final String subject, final String url) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
+        final Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, url);

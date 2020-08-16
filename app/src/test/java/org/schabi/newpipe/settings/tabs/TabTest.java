@@ -12,7 +12,7 @@ public class TabTest {
     public void checkIdDuplication() {
         final Set<Integer> usedIds = new HashSet<>();
 
-        for (Tab.Type type : Tab.Type.values()) {
+        for (final Tab.Type type : Tab.Type.values()) {
             final boolean added = usedIds.add(type.getTabId());
             assertTrue("Id was already used: " + type.getTabId(), added);
         }

@@ -80,13 +80,13 @@ import java.io.File;
         }
 
         try {
-            for (File file : cacheDir.listFiles()) {
+            for (final File file : cacheDir.listFiles()) {
                 final String filePath = file.getAbsolutePath();
                 final boolean deleteSuccessful = file.delete();
 
                 Log.d(TAG, "tryDeleteCacheFiles: " + filePath + " deleted = " + deleteSuccessful);
             }
-        } catch (Exception ignored) {
+        } catch (final Exception ignored) {
             Log.e(TAG, "Failed to delete file.", ignored);
         }
     }

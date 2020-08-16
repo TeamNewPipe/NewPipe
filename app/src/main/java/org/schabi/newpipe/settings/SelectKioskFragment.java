@@ -76,12 +76,12 @@ public class SelectKioskFragment extends DialogFragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.select_kiosk_fragment, container, false);
+        final View v = inflater.inflate(R.layout.select_kiosk_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         try {
             selectKioskAdapter = new SelectKioskAdapter();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             onError(e);
         }
         recyclerView.setAdapter(selectKioskAdapter);
@@ -135,9 +135,9 @@ public class SelectKioskFragment extends DialogFragment {
         private final List<Entry> kioskList = new Vector<>();
 
         SelectKioskAdapter() throws Exception {
-            for (StreamingService service : NewPipe.getServices()) {
-                for (String kioskId : service.getKioskList().getAvailableKiosks()) {
-                    String name = String.format(getString(R.string.service_kiosk_string),
+            for (final StreamingService service : NewPipe.getServices()) {
+                for (final String kioskId : service.getKioskList().getAvailableKiosks()) {
+                    final String name = String.format(getString(R.string.service_kiosk_string),
                             service.getServiceInfo().getName(),
                             KioskTranslator.getTranslatedKioskName(kioskId, getContext()));
                     kioskList.add(new Entry(ServiceHelper.getIcon(service.getServiceId()),
@@ -151,7 +151,7 @@ public class SelectKioskFragment extends DialogFragment {
         }
 
         public SelectKioskItemHolder onCreateViewHolder(final ViewGroup parent, final int type) {
-            View item = LayoutInflater.from(parent.getContext())
+            final View item = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.select_kiosk_item, parent, false);
             return new SelectKioskItemHolder(item);
         }
