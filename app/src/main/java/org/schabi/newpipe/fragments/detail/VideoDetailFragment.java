@@ -2176,6 +2176,30 @@ public class VideoDetailFragment
         }
     }
 
+    /**
+     * When the mini player exists the view underneath it is not touchable.
+     * Bottom padding should be equal to the mini player's height in this case
+     *
+     * @param showMore whether main fragment should be expanded or not
+     * */
+    private void manageSpaceAtTheBottom(final boolean showMore) {
+        final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
+        final ViewGroup holder = requireActivity().findViewById(R.id.fragment_holder);
+        final int newBottomPadding;
+        if (showMore) {
+            newBottomPadding = 0;
+        } else {
+            newBottomPadding = peekHeight;
+        }
+        if (holder.getPaddingBottom() == newBottomPadding) {
+            return;
+        }
+        holder.setPadding(holder.getPaddingLeft(),
+                holder.getPaddingTop(),
+                holder.getPaddingRight(),
+                newBottomPadding);
+    }
+
     private void setupBottomPlayer() {
         final CoordinatorLayout.LayoutParams params =
                 (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
@@ -2186,6 +2210,7 @@ public class VideoDetailFragment
         bottomSheetBehavior.setState(bottomSheetState);
         final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
+            manageSpaceAtTheBottom(false);
             bottomSheetBehavior.setPeekHeight(peekHeight);
             if (bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED) {
                 overlay.setAlpha(MAX_OVERLAY_ALPHA);
@@ -2203,12 +2228,14 @@ public class VideoDetailFragment
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
                         moveFocusToMainFragment(true);
+                        manageSpaceAtTheBottom(true);
 
                         bottomSheetBehavior.setPeekHeight(0);
                         cleanUp();
                         break;
                     case BottomSheetBehavior.STATE_EXPANDED:
                         moveFocusToMainFragment(false);
+                        manageSpaceAtTheBottom(false);
 
                         bottomSheetBehavior.setPeekHeight(peekHeight);
                         // Disable click because overlay buttons located on top of buttons
