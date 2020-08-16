@@ -1769,10 +1769,11 @@ public class VideoDetailFragment
     private void showPlaybackProgress(final long progress, final long duration) {
         final int progressSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(progress);
         final int durationSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(duration);
+        // If the old and the new progress values have a big difference then use
+        // animation. Otherwise don't because it affects CPU
+        final boolean shouldAnimate = Math.abs(positionView.getProgress() - progressSeconds) > 2;
         positionView.setMax(durationSeconds);
-        // If there is no player inside fragment use animation, otherwise don't because
-        // it affects CPU
-        if (playerPlaceholder.getChildCount() == 0) {
+        if (shouldAnimate) {
             positionView.setProgressAnimated(progressSeconds);
         } else {
             positionView.setProgress(progressSeconds);
