@@ -31,10 +31,10 @@ public class InfoItemDialog {
         final View bannerView = View.inflate(activity, R.layout.dialog_title, null);
         bannerView.setSelected(true);
 
-        TextView titleView = bannerView.findViewById(R.id.itemTitleView);
+        final TextView titleView = bannerView.findViewById(R.id.itemTitleView);
         titleView.setText(title);
 
-        TextView detailsView = bannerView.findViewById(R.id.itemAdditionalDetails);
+        final TextView detailsView = bannerView.findViewById(R.id.itemAdditionalDetails);
         if (additionalDetail != null) {
             detailsView.setText(additionalDetail);
             detailsView.setVisibility(View.VISIBLE);

@@ -101,12 +101,12 @@ public final class PermissionHelper {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean checkSystemAlertWindowPermission(final Context context) {
         if (!Settings.canDrawOverlays(context)) {
-            Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+            final Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + context.getPackageName()));
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             try {
                 context.startActivity(i);
-            } catch (ActivityNotFoundException ignored) {
+            } catch (final ActivityNotFoundException ignored) {
             }
             return false;
         } else {
@@ -120,8 +120,9 @@ public final class PermissionHelper {
     }
 
     public static void showPopupEnablementToast(final Context context) {
-        Toast toast = Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG);
-        TextView messageView = toast.getView().findViewById(android.R.id.message);
+        final Toast toast
+                = Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG);
+        final TextView messageView = toast.getView().findViewById(android.R.id.message);
         if (messageView != null) {
             messageView.setGravity(Gravity.CENTER);
         }

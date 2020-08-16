@@ -23,27 +23,27 @@ public final class PeertubeHelper {
     private PeertubeHelper() { }
 
     public static List<PeertubeInstance> getInstanceList(final Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager
+        final SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String savedInstanceListKey = context.getString(R.string.peertube_instance_list_key);
+        final String savedInstanceListKey = context.getString(R.string.peertube_instance_list_key);
         final String savedJson = sharedPreferences.getString(savedInstanceListKey, null);
         if (null == savedJson) {
             return Collections.singletonList(getCurrentInstance());
         }
 
         try {
-            JsonArray array = JsonParser.object().from(savedJson).getArray("instances");
-            List<PeertubeInstance> result = new ArrayList<>();
-            for (Object o : array) {
+            final JsonArray array = JsonParser.object().from(savedJson).getArray("instances");
+            final List<PeertubeInstance> result = new ArrayList<>();
+            for (final Object o : array) {
                 if (o instanceof JsonObject) {
-                    JsonObject instance = (JsonObject) o;
-                    String name = instance.getString("name");
-                    String url = instance.getString("url");
+                    final JsonObject instance = (JsonObject) o;
+                    final String name = instance.getString("name");
+                    final String url = instance.getString("url");
                     result.add(new PeertubeInstance(url, name));
                 }
             }
             return result;
-        } catch (JsonParserException e) {
+        } catch (final JsonParserException e) {
             return Collections.singletonList(getCurrentInstance());
         }
 
@@ -51,13 +51,14 @@ public final class PeertubeHelper {
 
     public static PeertubeInstance selectInstance(final PeertubeInstance instance,
                                                   final Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager
+        final SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String selectedInstanceKey = context.getString(R.string.peertube_selected_instance_key);
-        JsonStringWriter jsonWriter = JsonWriter.string().object();
+        final String selectedInstanceKey
+                = context.getString(R.string.peertube_selected_instance_key);
+        final JsonStringWriter jsonWriter = JsonWriter.string().object();
         jsonWriter.value("name", instance.getName());
         jsonWriter.value("url", instance.getUrl());
-        String jsonToSave = jsonWriter.end().done();
+        final String jsonToSave = jsonWriter.end().done();
         sharedPreferences.edit().putString(selectedInstanceKey, jsonToSave).apply();
         ServiceList.PeerTube.setInstance(instance);
         return instance;

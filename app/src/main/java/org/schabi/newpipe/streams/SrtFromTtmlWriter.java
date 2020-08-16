@@ -65,23 +65,23 @@ public class SrtFromTtmlWriter {
          */
 
         // parse XML
-        byte[] buffer = new byte[(int) ttml.available()];
+        final byte[] buffer = new byte[(int) ttml.available()];
         ttml.read(buffer);
-        Document doc = Jsoup.parse(new ByteArrayInputStream(buffer), "UTF-8", "",
+        final Document doc = Jsoup.parse(new ByteArrayInputStream(buffer), "UTF-8", "",
                 Parser.xmlParser());
 
-        StringBuilder text = new StringBuilder(128);
-        Elements paragraphList = doc.select("body > div > p");
+        final StringBuilder text = new StringBuilder(128);
+        final Elements paragraphList = doc.select("body > div > p");
 
         // check if has frames
         if (paragraphList.size() < 1) {
             return;
         }
 
-        for (Element paragraph : paragraphList) {
+        for (final Element paragraph : paragraphList) {
             text.setLength(0);
 
-            for (Node children : paragraph.childNodes()) {
+            for (final Node children : paragraph.childNodes()) {
                 if (children instanceof TextNode) {
                     text.append(((TextNode) children).text());
                 } else if (children instanceof Element
@@ -94,8 +94,8 @@ public class SrtFromTtmlWriter {
                 continue;
             }
 
-            String begin = getTimestamp(paragraph, "begin");
-            String end = getTimestamp(paragraph, "end");
+            final String begin = getTimestamp(paragraph, "begin");
+            final String end = getTimestamp(paragraph, "end");
 
             writeFrame(begin, end, text);
         }

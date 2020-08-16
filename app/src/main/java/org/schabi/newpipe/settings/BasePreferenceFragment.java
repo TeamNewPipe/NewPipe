@@ -39,7 +39,7 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
 
     private void updateTitle() {
         if (getActivity() instanceof AppCompatActivity) {
-            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setTitle(getPreferenceScreen().getTitle());
             }

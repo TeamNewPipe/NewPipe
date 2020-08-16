@@ -455,7 +455,7 @@ public class StatisticsPlaylistFragment
         }
 
         final List<LocalItem> infoItems = itemListAdapter.getItemsList();
-        List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
+        final List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
         for (final LocalItem item : infoItems) {
             if (item instanceof StreamStatisticsEntry) {
                 streamInfoItems.add(((StreamStatisticsEntry) item).toStreamInfoItem());

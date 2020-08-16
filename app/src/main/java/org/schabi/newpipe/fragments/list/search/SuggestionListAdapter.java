@@ -33,7 +33,7 @@ public class SuggestionListAdapter
             this.items.addAll(items);
         } else {
             // remove history items if history is disabled
-            for (SuggestionItem item : items) {
+            for (final SuggestionItem item : items) {
                 if (!item.fromHistory) {
                     this.items.add(item);
                 }
@@ -123,8 +123,8 @@ public class SuggestionListAdapter
 
         private static int resolveResourceIdFromAttr(final Context context,
                                                      @AttrRes final int attr) {
-            TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
-            int attributeResourceId = a.getResourceId(0, 0);
+            final TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
+            final int attributeResourceId = a.getResourceId(0, 0);
             a.recycle();
             return attributeResourceId;
         }

@@ -50,7 +50,7 @@ public class SubscriptionEntity {
 
     @Ignore
     public static SubscriptionEntity from(@NonNull final ChannelInfo info) {
-        SubscriptionEntity result = new SubscriptionEntity();
+        final SubscriptionEntity result = new SubscriptionEntity();
         result.setServiceId(info.getServiceId());
         result.setUrl(info.getUrl());
         result.setData(info.getName(), info.getAvatarUrl(), info.getDescription(),
@@ -124,7 +124,7 @@ public class SubscriptionEntity {
 
     @Ignore
     public ChannelInfoItem toChannelInfoItem() {
-        ChannelInfoItem item = new ChannelInfoItem(getServiceId(), getUrl(), getName());
+        final ChannelInfoItem item = new ChannelInfoItem(getServiceId(), getUrl(), getName());
         item.setThumbnailUrl(getAvatarUrl());
         item.setSubscriberCount(getSubscriberCount());
         item.setDescription(getDescription());

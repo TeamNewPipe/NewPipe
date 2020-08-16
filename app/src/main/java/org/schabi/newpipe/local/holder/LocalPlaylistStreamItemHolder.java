@@ -70,7 +70,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            StreamStateEntity state = historyRecordManager
+            final StreamStateEntity state = historyRecordManager
                     .loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{
                 add(localItem);
             }}).blockingGet().get(0);
@@ -116,7 +116,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         }
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
-        StreamStateEntity state = historyRecordManager
+        final StreamStateEntity state = historyRecordManager
                 .loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{
             add(localItem);
         }}).blockingGet().get(0);

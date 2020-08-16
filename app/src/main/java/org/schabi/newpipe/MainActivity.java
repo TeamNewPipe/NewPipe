@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.toolbar));
         try {
             setupDrawer();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
 
@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
         drawerItems = findViewById(R.id.navigation);
 
         //Tabs
-        int currentServiceId = ServiceHelper.getSelectedServiceId(this);
-        StreamingService service = NewPipe.getService(currentServiceId);
+        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+        final StreamingService service = NewPipe.getService(currentServiceId);
 
         int kioskId = 0;
 
@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_tabs_group:
                 try {
                     tabSelected(item);
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     ErrorActivity.reportUiError(this, e);
                 }
                 break;
@@ -269,8 +269,8 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
                 break;
             default:
-                int currentServiceId = ServiceHelper.getSelectedServiceId(this);
-                StreamingService service = NewPipe.getService(currentServiceId);
+                final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+                final StreamingService service = NewPipe.getService(currentServiceId);
                 String serviceName = "";
 
                 int kioskId = 0;
@@ -299,8 +299,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerHeader() {
-        NavigationView navigationView = findViewById(R.id.navigation);
-        View hView = navigationView.getHeaderView(0);
+        final NavigationView navigationView = findViewById(R.id.navigation);
+        final View hView = navigationView.getHeaderView(0);
 
         serviceArrow = hView.findViewById(R.id.drawer_arrow);
         headerServiceIcon = hView.findViewById(R.id.drawer_header_service_icon);
@@ -335,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             try {
                 showTabs();
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 ErrorActivity.reportUiError(this, e);
             }
         }
@@ -344,11 +344,11 @@ public class MainActivity extends AppCompatActivity {
     private void showServices() {
         serviceArrow.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
 
-        for (StreamingService s : NewPipe.getServices()) {
+        for (final StreamingService s : NewPipe.getServices()) {
             final String title = s.getServiceInfo().getName()
                     + (ServiceHelper.isBeta(s) ? " (beta)" : "");
 
-            MenuItem menuItem = drawerItems.getMenu()
+            final MenuItem menuItem = drawerItems.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
 
@@ -362,20 +362,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void enhancePeertubeMenu(final StreamingService s, final MenuItem menuItem) {
-        PeertubeInstance currentInstace = PeertubeHelper.getCurrentInstance();
+        final PeertubeInstance currentInstace = PeertubeHelper.getCurrentInstance();
         menuItem.setTitle(currentInstace.getName() + (ServiceHelper.isBeta(s) ? " (beta)" : ""));
-        Spinner spinner = (Spinner) LayoutInflater.from(this)
+        final Spinner spinner = (Spinner) LayoutInflater.from(this)
                 .inflate(R.layout.instance_spinner_layout, null);
-        List<PeertubeInstance> instances = PeertubeHelper.getInstanceList(this);
-        List<String> items = new ArrayList<>();
+        final List<PeertubeInstance> instances = PeertubeHelper.getInstanceList(this);
+        final List<String> items = new ArrayList<>();
         int defaultSelect = 0;
-        for (PeertubeInstance instance : instances) {
+        for (final PeertubeInstance instance : instances) {
             items.add(instance.getName());
             if (instance.getUrl().equals(currentInstace.getUrl())) {
                 defaultSelect = items.size() - 1;
             }
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 R.layout.instance_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -384,7 +384,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(final AdapterView<?> parent, final View view,
                                        final int position, final long id) {
-                PeertubeInstance newInstance = instances.get(position);
+                final PeertubeInstance newInstance = instances.get(position);
                 if (newInstance.getUrl().equals(PeertubeHelper.getCurrentInstance().getUrl())) {
                     return;
                 }
@@ -410,8 +410,8 @@ public class MainActivity extends AppCompatActivity {
         serviceArrow.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
 
         //Tabs
-        int currentServiceId = ServiceHelper.getSelectedServiceId(this);
-        StreamingService service = NewPipe.getService(currentServiceId);
+        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+        final StreamingService service = NewPipe.getService(currentServiceId);
 
         int kioskId = 0;
 
@@ -476,11 +476,12 @@ public class MainActivity extends AppCompatActivity {
             headerServiceView.post(() -> headerServiceView.setSelected(true));
             toggleServiceButton.setContentDescription(
                     getString(R.string.drawer_header_description) + selectedServiceName);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences sharedPreferences
+                = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) {
                 Log.d(TAG, "Theme has changed, recreating activity...");
@@ -513,7 +514,7 @@ public class MainActivity extends AppCompatActivity {
         if (intent != null) {
             // Return if launched from a launcher (e.g. Nova Launcher, Pixel Launcher ...)
             // to not destroy the already created backstack
-            String action = intent.getAction();
+            final String action = intent.getAction();
             if ((action != null && action.equals(Intent.ACTION_MAIN))
                     && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) {
                 return;
@@ -546,7 +547,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (DeviceUtils.isTv(this)) {
-            View drawerPanel = findViewById(R.id.navigation);
+            final View drawerPanel = findViewById(R.id.navigation);
             if (drawer.isDrawerOpen(drawerPanel)) {
                 drawer.closeDrawers();
                 return;
@@ -594,7 +595,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(final int requestCode,
                                            @NonNull final String[] permissions,
                                            @NonNull final int[] grantResults) {
-        for (int i : grantResults) {
+        for (final int i : grantResults) {
             if (i == PackageManager.PERMISSION_DENIED) {
                 return;
             }
@@ -604,7 +605,7 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openDownloads(this);
                 break;
             case PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE:
-                Fragment fragment = getSupportFragmentManager()
+                final Fragment fragment = getSupportFragmentManager()
                         .findFragmentById(R.id.fragment_player_holder);
                 if (fragment instanceof VideoDetailFragment) {
                     ((VideoDetailFragment) fragment).openDownloadDialog();
@@ -656,13 +657,14 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onCreateOptionsMenu(menu);
 
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        final Fragment fragment
+                = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (!(fragment instanceof SearchFragment)) {
             findViewById(R.id.toolbar).findViewById(R.id.toolbar_search_container)
                     .setVisibility(View.GONE);
         }
 
-        ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
@@ -677,7 +679,7 @@ public class MainActivity extends AppCompatActivity {
         if (DEBUG) {
             Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
         }
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         switch (id) {
             case android.R.id.home:
@@ -745,13 +747,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
-                String url = intent.getStringExtra(Constants.KEY_URL);
-                int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
-                String title = intent.getStringExtra(Constants.KEY_TITLE);
+                final String url = intent.getStringExtra(Constants.KEY_URL);
+                final int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
+                final String title = intent.getStringExtra(Constants.KEY_TITLE);
                 switch (((StreamingService.LinkType) intent
                         .getSerializableExtra(Constants.KEY_LINK_TYPE))) {
                     case STREAM:
-                        boolean autoPlay = intent
+                        final boolean autoPlay = intent
                                 .getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
                         final String intentCacheKey = intent
                                 .getStringExtra(VideoPlayer.PLAY_QUEUE_KEY);
@@ -780,7 +782,7 @@ public class MainActivity extends AppCompatActivity {
                 if (searchString == null) {
                     searchString = "";
                 }
-                int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
+                final int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
                 NavigationHelper.openSearchFragment(
                         getSupportFragmentManager(),
                         serviceId,
@@ -789,7 +791,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 NavigationHelper.gotoMainFragment(getSupportFragmentManager());
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
     }

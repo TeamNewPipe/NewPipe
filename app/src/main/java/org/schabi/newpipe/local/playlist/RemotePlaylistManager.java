@@ -42,7 +42,7 @@ public class RemotePlaylistManager {
 
     public Single<Integer> onUpdate(final long playlistId, final PlaylistInfo playlistInfo) {
         return Single.fromCallable(() -> {
-            PlaylistRemoteEntity playlist = new PlaylistRemoteEntity(playlistInfo);
+            final PlaylistRemoteEntity playlist = new PlaylistRemoteEntity(playlistInfo);
             playlist.setUid(playlistId);
             return playlistRemoteTable.update(playlist);
         }).subscribeOn(Schedulers.io());

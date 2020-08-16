@@ -76,7 +76,7 @@ public enum StreamDialogEntry {
      */
     public static void setEnabledEntries(final StreamDialogEntry... entries) {
         // cleanup from last time StreamDialogEntry was used
-        for (StreamDialogEntry streamDialogEntry : values()) {
+        for (final StreamDialogEntry streamDialogEntry : values()) {
             streamDialogEntry.customAction = null;
         }
 
@@ -84,7 +84,7 @@ public enum StreamDialogEntry {
     }
 
     public static String[] getCommands(final Context context) {
-        String[] commands = new String[enabledEntries.length];
+        final String[] commands = new String[enabledEntries.length];
         for (int i = 0; i != enabledEntries.length; ++i) {
             commands[i] = context.getResources().getString(enabledEntries[i].resource);
         }

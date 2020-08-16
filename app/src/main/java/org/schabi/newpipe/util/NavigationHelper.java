@@ -74,7 +74,7 @@ public final class NavigationHelper {
                                          @NonNull final PlayQueue playQueue,
                                          @Nullable final String quality,
                                          final boolean resumePlayback) {
-        Intent intent = new Intent(context, targetClazz);
+        final Intent intent = new Intent(context, targetClazz);
 
         final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
         if (cacheKey != null) {
@@ -243,27 +243,27 @@ public final class NavigationHelper {
             return;
         }
 
-        AudioStream audioStream = info.getAudioStreams().get(index);
+        final AudioStream audioStream = info.getAudioStreams().get(index);
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), audioStream);
     }
 
     public static void playOnExternalVideoPlayer(final Context context, final StreamInfo info) {
-        ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
+        final ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
                 ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false));
-        int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
+        final int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
 
         if (index == -1) {
             Toast.makeText(context, R.string.video_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        VideoStream videoStream = videoStreamsList.get(index);
+        final VideoStream videoStream = videoStreamsList.get(index);
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), videoStream);
     }
 
     public static void playOnExternalPlayer(final Context context, final String name,
                                             final String artist, final Stream stream) {
-        Intent intent = new Intent();
+        final Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.parse(stream.getUrl()), stream.getFormat().getMimeType());
         intent.putExtra(Intent.EXTRA_TITLE, name);
@@ -282,7 +282,7 @@ public final class NavigationHelper {
                 new AlertDialog.Builder(context)
                         .setMessage(R.string.no_player_found)
                         .setPositiveButton(R.string.install, (dialog, which) -> {
-                            Intent i = new Intent();
+                            final Intent i = new Intent();
                             i.setAction(Intent.ACTION_VIEW);
                             i.setData(Uri.parse(context.getString(R.string.fdroid_vlc_url)));
                             context.startActivity(i);
@@ -313,7 +313,7 @@ public final class NavigationHelper {
     public static void gotoMainFragment(final FragmentManager fragmentManager) {
         ImageLoader.getInstance().clearMemoryCache();
 
-        boolean popped = fragmentManager.popBackStackImmediate(MAIN_FRAGMENT_TAG, 0);
+        final boolean popped = fragmentManager.popBackStackImmediate(MAIN_FRAGMENT_TAG, 0);
         if (!popped) {
             openMainFragment(fragmentManager);
         }
@@ -483,7 +483,7 @@ public final class NavigationHelper {
 
     public static void openSearch(final Context context, final int serviceId,
                                   final String searchString) {
-        Intent mIntent = new Intent(context, MainActivity.class);
+        final Intent mIntent = new Intent(context, MainActivity.class);
         mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
         mIntent.putExtra(Constants.KEY_SEARCH_STRING, searchString);
         mIntent.putExtra(Constants.KEY_OPEN_SEARCH, true);
@@ -496,7 +496,7 @@ public final class NavigationHelper {
 
     public static void openChannel(final Context context, final int serviceId,
                                    final String url, final String name) {
-        Intent openIntent = getOpenIntent(context, url, serviceId,
+        final Intent openIntent = getOpenIntent(context, url, serviceId,
                 StreamingService.LinkType.CHANNEL);
         if (name != null && !name.isEmpty()) {
             openIntent.putExtra(Constants.KEY_TITLE, name);
@@ -511,7 +511,7 @@ public final class NavigationHelper {
 
     public static void openVideoDetail(final Context context, final int serviceId,
                                        final String url, final String title) {
-        Intent openIntent = getOpenIntent(context, url, serviceId,
+        final Intent openIntent = getOpenIntent(context, url, serviceId,
                 StreamingService.LinkType.STREAM);
         if (title != null && !title.isEmpty()) {
             openIntent.putExtra(Constants.KEY_TITLE, title);
@@ -520,26 +520,26 @@ public final class NavigationHelper {
     }
 
     public static void openMainActivity(final Context context) {
-        Intent mIntent = new Intent(context, MainActivity.class);
+        final Intent mIntent = new Intent(context, MainActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(mIntent);
     }
 
     public static void openRouterActivity(final Context context, final String url) {
-        Intent mIntent = new Intent(context, RouterActivity.class);
+        final Intent mIntent = new Intent(context, RouterActivity.class);
         mIntent.setData(Uri.parse(url));
         mIntent.putExtra(RouterActivity.INTERNAL_ROUTE_KEY, true);
         context.startActivity(mIntent);
     }
 
     public static void openAbout(final Context context) {
-        Intent intent = new Intent(context, AboutActivity.class);
+        final Intent intent = new Intent(context, AboutActivity.class);
         context.startActivity(intent);
     }
 
     public static void openSettings(final Context context) {
-        Intent intent = new Intent(context, SettingsActivity.class);
+        final Intent intent = new Intent(context, SettingsActivity.class);
         context.startActivity(intent);
     }
 
@@ -548,7 +548,7 @@ public final class NavigationHelper {
                 activity, PermissionHelper.DOWNLOADS_REQUEST_CODE)) {
             return false;
         }
-        Intent intent = new Intent(activity, DownloadActivity.class);
+        final Intent intent = new Intent(activity, DownloadActivity.class);
         activity.startActivity(intent);
         return true;
     }
@@ -559,7 +559,7 @@ public final class NavigationHelper {
 
     private static Intent getServicePlayerActivityIntent(final Context context,
                                                          final Class activityClass) {
-        Intent intent = new Intent(context, activityClass);
+        final Intent intent = new Intent(context, activityClass);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
@@ -571,7 +571,7 @@ public final class NavigationHelper {
 
     private static Intent getOpenIntent(final Context context, final String url,
                                         final int serviceId, final StreamingService.LinkType type) {
-        Intent mIntent = new Intent(context, MainActivity.class);
+        final Intent mIntent = new Intent(context, MainActivity.class);
         mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
         mIntent.putExtra(Constants.KEY_URL, url);
         mIntent.putExtra(Constants.KEY_LINK_TYPE, type);
@@ -585,14 +585,14 @@ public final class NavigationHelper {
 
     public static Intent getIntentByLink(final Context context, final StreamingService service,
                                          final String url) throws ExtractionException {
-        StreamingService.LinkType linkType = service.getLinkTypeByUrl(url);
+        final StreamingService.LinkType linkType = service.getLinkTypeByUrl(url);
 
         if (linkType == StreamingService.LinkType.NONE) {
             throw new ExtractionException("Url not known to service. service=" + service
                     + " url=" + url);
         }
 
-        Intent rIntent = getOpenIntent(context, url, service.getServiceId(), linkType);
+        final Intent rIntent = getOpenIntent(context, url, service.getServiceId(), linkType);
 
         if (linkType == StreamingService.LinkType.STREAM) {
             rIntent.putExtra(VideoDetailFragment.AUTO_PLAY,
@@ -621,7 +621,7 @@ public final class NavigationHelper {
         try {
             // Try market:// scheme
             context.startActivity(new Intent(Intent.ACTION_VIEW, openMarketUrl(packageName)));
-        } catch (ActivityNotFoundException e) {
+        } catch (final ActivityNotFoundException e) {
             // Fall back to google play URL (don't worry F-Droid can handle it :)
             context.startActivity(new Intent(Intent.ACTION_VIEW, getGooglePlayUrl(packageName)));
         }
@@ -648,7 +648,7 @@ public final class NavigationHelper {
      * @param videoURL the url to the video
      */
     public static void playWithKore(final Context context, final Uri videoURL) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setPackage(context.getString(R.string.kore_package));
         intent.setData(videoURL);
         context.startActivity(intent);
