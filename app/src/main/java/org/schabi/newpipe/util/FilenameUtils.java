@@ -22,7 +22,7 @@ public final class FilenameUtils {
      * @return the filename
      */
     public static String createFilename(final Context context, final String title) {
-        SharedPreferences sharedPreferences = PreferenceManager
+        final SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
 
         final String charsetLd = context.getString(R.string.charset_letters_and_digits_value);
@@ -48,7 +48,7 @@ public final class FilenameUtils {
             charset = selectedCharset; // Is the user using a custom charset?
         }
 
-        Pattern pattern = Pattern.compile(charset);
+        final Pattern pattern = Pattern.compile(charset);
 
         return createFilename(title, pattern, replacementChar);
     }

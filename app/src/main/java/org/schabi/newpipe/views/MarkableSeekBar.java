@@ -32,14 +32,14 @@ public class MarkableSeekBar extends AppCompatSeekBar {
     protected synchronized void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
 
-        Drawable progressDrawable = getProgressDrawable();
-        Rect progressDrawableBounds = progressDrawable.getBounds();
+        final Drawable progressDrawable = getProgressDrawable();
+        final Rect progressDrawableBounds = progressDrawable.getBounds();
 
-        int width = getMeasuredWidth() - (getPaddingStart() + getPaddingEnd());
-        int height = progressDrawable.getIntrinsicHeight();
+        final int width = getMeasuredWidth() - (getPaddingStart() + getPaddingEnd());
+        final int height = progressDrawable.getIntrinsicHeight();
 
         for (int i = 0; i < seekBarMarkers.size(); i++) {
-            SeekBarMarker marker = seekBarMarkers.get(i);
+            final SeekBarMarker marker = seekBarMarkers.get(i);
 
             markerRect.left = width - (float) Math.floor(width * (1.0 - marker.percentStart))
                     + getPaddingStart();

@@ -19,7 +19,7 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String updateToggleKey = getString(R.string.update_app_key);
+        final String updateToggleKey = getString(R.string.update_app_key);
         findPreference(updateToggleKey).setOnPreferenceChangeListener(updatePreferenceChange);
     }
 

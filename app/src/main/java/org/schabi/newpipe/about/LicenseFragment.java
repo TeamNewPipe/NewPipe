@@ -31,8 +31,8 @@ public class LicenseFragment extends Fragment {
         if (softwareComponents == null) {
             throw new NullPointerException("softwareComponents is null");
         }
-        LicenseFragment fragment = new LicenseFragment();
-        Bundle bundle = new Bundle();
+        final LicenseFragment fragment = new LicenseFragment();
+        final Bundle bundle = new Bundle();
         bundle.putParcelableArray(ARG_COMPONENTS, softwareComponents);
         fragment.setArguments(bundle);
         return fragment;

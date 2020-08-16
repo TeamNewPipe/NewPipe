@@ -133,7 +133,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
     }
 
     private void animateAudio(final float from, final float to) {
-        ValueAnimator valueAnimator = new ValueAnimator();
+        final ValueAnimator valueAnimator = new ValueAnimator();
         valueAnimator.setFloatValues(from, to);
         valueAnimator.setDuration(AudioReactor.DUCK_DURATION);
         valueAnimator.addListener(new AnimatorListenerAdapter() {

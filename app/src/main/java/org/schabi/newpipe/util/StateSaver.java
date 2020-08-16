@@ -66,7 +66,7 @@ public final class StateSaver {
      * @param context used to get the available cache dir
      */
     public static void init(final Context context) {
-        File externalCacheDir = context.getExternalCacheDir();
+        final File externalCacheDir = context.getExternalCacheDir();
         if (externalCacheDir != null) {
             cacheDirPath = externalCacheDir.getAbsolutePath();
         }
@@ -86,7 +86,7 @@ public final class StateSaver {
             return null;
         }
 
-        SavedState savedState = outState.getParcelable(KEY_SAVED_STATE);
+        final SavedState savedState = outState.getParcelable(KEY_SAVED_STATE);
         if (savedState == null) {
             return null;
         }
@@ -122,7 +122,7 @@ public final class StateSaver {
                 return savedState;
             }
 
-            File file = new File(savedState.getPathFileSaved());
+            final File file = new File(savedState.getPathFileSaved());
             if (!file.exists()) {
                 if (MainActivity.DEBUG) {
                     Log.d(TAG, "Cache file doesn't exist: " + file.getAbsolutePath());
@@ -131,7 +131,7 @@ public final class StateSaver {
             }
 
             fileInputStream = new FileInputStream(file);
-            ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
+            final ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
             //noinspection unchecked
             savedObjects = (Queue<Object>) inputStream.readObject();
             if (savedObjects != null) {
@@ -139,13 +139,13 @@ public final class StateSaver {
             }
 
             return savedState;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             Log.e(TAG, "Failed to restore state", e);
         } finally {
             if (fileInputStream != null) {
                 try {
                     fileInputStream.close();
-                } catch (IOException ignored) {
+                } catch (final IOException ignored) {
                 }
             }
         }
@@ -165,7 +165,7 @@ public final class StateSaver {
                                        @Nullable final SavedState savedState, final Bundle outState,
                                        final WriteRead writeRead) {
         @NonNull
-        String currentSavedPrefix;
+        final String currentSavedPrefix;
         if (savedState == null || TextUtils.isEmpty(savedState.getPrefixFileSaved())) {
             // Generate unique prefix
             currentSavedPrefix = System.nanoTime() - writeRead.hashCode() + "";
@@ -215,7 +215,7 @@ public final class StateSaver {
                     + "writeRead = [" + writeRead + "]");
         }
 
-        LinkedList<Object> savedObjects = new LinkedList<>();
+        final LinkedList<Object> savedObjects = new LinkedList<>();
         writeRead.writeTo(savedObjects);
 
         if (isChangingConfig) {
@@ -247,36 +247,36 @@ public final class StateSaver {
                 }
             }
 
-            File file = new File(cacheDir, prefixFileName
+            final File file = new File(cacheDir, prefixFileName
                     + (TextUtils.isEmpty(suffixFileName) ? ".cache" : suffixFileName));
             if (file.exists() && file.length() > 0) {
                 // If the file already exists, just return it
                 return new SavedState(prefixFileName, file.getAbsolutePath());
             } else {
                 // Delete any file that contains the prefix
-                File[] files = cacheDir.listFiles(new FilenameFilter() {
+                final File[] files = cacheDir.listFiles(new FilenameFilter() {
                     @Override
                     public boolean accept(final File dir, final String name) {
                         return name.contains(prefixFileName);
                     }
                 });
-                for (File fileToDelete : files) {
+                for (final File fileToDelete : files) {
                     fileToDelete.delete();
                 }
             }
 
             fileOutputStream = new FileOutputStream(file);
-            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+            final ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(savedObjects);
 
             return new SavedState(prefixFileName, file.getAbsolutePath());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             Log.e(TAG, "Failed to save state", e);
         } finally {
             if (fileOutputStream != null) {
                 try {
                     fileOutputStream.close();
-                } catch (IOException ignored) { }
+                } catch (final IOException ignored) { }
             }
         }
         return null;
@@ -298,7 +298,7 @@ public final class StateSaver {
             try {
                 //noinspection ResultOfMethodCallIgnored
                 new File(savedState.getPathFileSaved()).delete();
-            } catch (Exception ignored) {
+            } catch (final Exception ignored) {
             }
         }
     }
@@ -319,7 +319,7 @@ public final class StateSaver {
 
         cacheDir = new File(cacheDir, CACHE_DIR_NAME);
         if (cacheDir.exists()) {
-            for (File file : cacheDir.listFiles()) {
+            for (final File file : cacheDir.listFiles()) {
                 file.delete();
             }
         }

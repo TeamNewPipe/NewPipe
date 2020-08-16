@@ -104,7 +104,7 @@ public class App extends Application {
     }
 
     protected Downloader getDownloader() {
-        DownloaderImpl downloader = DownloaderImpl.init(null);
+        final DownloaderImpl downloader = DownloaderImpl.init(null);
         setCookiesToDownloader(downloader);
         return downloader;
     }
@@ -208,7 +208,7 @@ public class App extends Application {
                     .setBuildConfigClass(BuildConfig.class)
                     .build();
             ACRA.init(this, acraConfig);
-        } catch (ACRAConfigurationException ace) {
+        } catch (final ACRAConfigurationException ace) {
             ace.printStackTrace();
             ErrorActivity.reportError(this,
                     ace,
@@ -231,10 +231,10 @@ public class App extends Application {
         // Keep this below DEFAULT to avoid making noise on every notification update
         final int importance = NotificationManager.IMPORTANCE_LOW;
 
-        NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+        final NotificationChannel mChannel = new NotificationChannel(id, name, importance);
         mChannel.setDescription(description);
 
-        NotificationManager mNotificationManager =
+        final NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
 
@@ -255,11 +255,11 @@ public class App extends Application {
         final String appUpdateDescription
                 = getString(R.string.app_update_notification_channel_description);
 
-        NotificationChannel appUpdateChannel
+        final NotificationChannel appUpdateChannel
                 = new NotificationChannel(appUpdateId, appUpdateName, importance);
         appUpdateChannel.setDescription(appUpdateDescription);
 
-        NotificationManager appUpdateNotificationManager
+        final NotificationManager appUpdateNotificationManager
                 = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         appUpdateNotificationManager.createNotificationChannel(appUpdateChannel);
     }

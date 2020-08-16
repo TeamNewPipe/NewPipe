@@ -22,14 +22,14 @@ public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragme
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResource(R.xml.sponsor_block_category_settings);
 
-        Preference resetPreferenceView =
+        final Preference resetPreferenceView =
                 findPreference(getString(R.string.sponsorblock_category_reset_key));
         if (resetPreferenceView != null) {
             resetPreferenceView.setOnPreferenceClickListener(preference -> {
-                Context context = getContext();
+                final Context context = getContext();
 
                 if (context != null) {
-                    SharedPreferences.Editor editor =
+                    final SharedPreferences.Editor editor =
                             getPreferenceManager()
                                     .getSharedPreferences()
                                     .edit();
@@ -69,9 +69,9 @@ public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragme
     private void setColorPreference(final SharedPreferences.Editor editor,
                                     @StringRes final int resId,
                                     @ColorRes final int colorId) {
-        String colorStr = "#" + Integer.toHexString(getResources().getColor(colorId));
+        final String colorStr = "#" + Integer.toHexString(getResources().getColor(colorId));
         editor.putString(getString(resId), colorStr);
-        EditColorPreference colorPreference = findPreference(getString(resId));
+        final EditColorPreference colorPreference = findPreference(getString(resId));
         colorPreference.setText(colorStr);
     }
 }

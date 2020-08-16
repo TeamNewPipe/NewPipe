@@ -74,7 +74,7 @@ public class SelectPlaylistFragment extends DialogFragment {
                 inflater.inflate(R.layout.select_playlist_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        SelectPlaylistAdapter playlistAdapter = new SelectPlaylistAdapter();
+        final SelectPlaylistAdapter playlistAdapter = new SelectPlaylistAdapter();
         recyclerView.setAdapter(playlistAdapter);
 
         progressBar = v.findViewById(R.id.progressBar);

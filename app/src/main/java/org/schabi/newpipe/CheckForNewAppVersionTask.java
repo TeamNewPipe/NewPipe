@@ -62,7 +62,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
         try {
             packageInfo = pm.getPackageInfo(packageName, flags);
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (final PackageManager.NameNotFoundException e) {
             ErrorActivity.reportError(APP, e, null, null,
                     ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Could not find package info", R.string.app_ui_crash));
@@ -77,7 +77,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
         try {
             final CertificateFactory cf = CertificateFactory.getInstance("X509");
             c = (X509Certificate) cf.generateCertificate(input);
-        } catch (CertificateException e) {
+        } catch (final CertificateException e) {
             ErrorActivity.reportError(APP, e, null, null,
                     ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Certificate error", R.string.app_ui_crash));
@@ -86,7 +86,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
         String hexString = null;
 
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA1");
+            final MessageDigest md = MessageDigest.getInstance("SHA1");
             final byte[] publicKey = md.digest(c.getEncoded());
             hexString = byte2HexFormatted(publicKey);
         } catch (NoSuchAlgorithmException | CertificateEncodingException e) {
@@ -167,7 +167,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
                 compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode);
 
-            } catch (JsonParserException e) {
+            } catch (final JsonParserException e) {
                 // connectivity problems, do not alarm user and fail silently
                 if (DEBUG) {
                     Log.w(TAG, Log.getStackTraceString(e));
@@ -187,7 +187,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     private void compareAppVersionAndShowNotification(final String versionName,
                                                       final String apkLocationUrl,
                                                       final int versionCode) {
-        int notificationId = 2000;
+        final int notificationId = 2000;
 
         if (BuildConfig.VERSION_CODE < versionCode) {
 

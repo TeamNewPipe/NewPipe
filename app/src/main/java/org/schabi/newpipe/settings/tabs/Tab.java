@@ -65,7 +65,7 @@ public abstract class Tab {
 
     @Nullable
     public static Type typeFrom(final int tabId) {
-        for (Type available : Type.values()) {
+        for (final Type available : Type.values()) {
             if (available.getTabId() == tabId) {
                 return available;
             }
@@ -481,7 +481,7 @@ public abstract class Tab {
             try {
                 final StreamingService service = NewPipe.getService(kioskServiceId);
                 kioskId = service.getKioskList().getDefaultKioskId();
-            } catch (ExtractionException e) {
+            } catch (final ExtractionException e) {
                 ErrorActivity.reportError(context, e, null, null,
                         ErrorActivity.ErrorInfo.make(UserAction.REQUESTED_KIOSK, "none",
                                 "Loading default kiosk from selected service", 0));

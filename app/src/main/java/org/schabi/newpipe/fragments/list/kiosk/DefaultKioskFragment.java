@@ -45,7 +45,7 @@ public class DefaultKioskFragment extends KioskFragment {
 
             currentInfo = null;
             currentNextPage = null;
-        } catch (ExtractionException e) {
+        } catch (final ExtractionException e) {
             onUnrecoverableError(e, UserAction.REQUESTED_KIOSK, "none",
                     "Loading default kiosk from selected service", 0);
         }

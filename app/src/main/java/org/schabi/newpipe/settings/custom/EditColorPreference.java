@@ -49,7 +49,7 @@ public class EditColorPreference extends EditTextPreference
 
         viewHolder = holder;
 
-        String colorStr =
+        final String colorStr =
                 getPreferenceManager()
                         .getSharedPreferences()
                         .getString(getKey(), null);
@@ -58,22 +58,22 @@ public class EditColorPreference extends EditTextPreference
             return;
         }
 
-        int color = Color.parseColor(colorStr);
+        final int color = Color.parseColor(colorStr);
 
-        View view = viewHolder.findViewById(R.id.segment_color_view);
+        final View view = viewHolder.findViewById(R.id.segment_color_view);
         view.setBackgroundColor(color);
     }
 
     @Override
     public boolean onPreferenceChange(final Preference preference, final Object newValue) {
         try {
-            int color = Color.parseColor((String) newValue);
+            final int color = Color.parseColor((String) newValue);
 
-            View view = viewHolder.findViewById(R.id.segment_color_view);
+            final View view = viewHolder.findViewById(R.id.segment_color_view);
             view.setBackgroundColor(color);
 
             return true;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             Toast.makeText(getContext(), "Invalid color", Toast.LENGTH_SHORT).show();
             return false;
         }

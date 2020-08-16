@@ -51,7 +51,7 @@ public class Mp4FromDashWriter {
     private final ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
 
     public Mp4FromDashWriter(final SharpStream... sources) throws IOException {
-        for (SharpStream src : sources) {
+        for (final SharpStream src : sources) {
             if (!src.canRewind() && !src.canRead()) {
                 throw new IOException("All sources must be readable and allow rewind");
             }
@@ -128,7 +128,7 @@ public class Mp4FromDashWriter {
         done = true;
         parsed = true;
 
-        for (SharpStream src : sourceTracks) {
+        for (final SharpStream src : sourceTracks) {
             src.close();
         }
 
@@ -157,17 +157,17 @@ public class Mp4FromDashWriter {
         outStream = output;
         long read = 8; // mdat box header size
         long totalSampleSize = 0;
-        int[] sampleExtra = new int[readers.length];
-        int[] defaultMediaTime = new int[readers.length];
-        int[] defaultSampleDuration = new int[readers.length];
-        int[] sampleCount = new int[readers.length];
+        final int[] sampleExtra = new int[readers.length];
+        final int[] defaultMediaTime = new int[readers.length];
+        final int[] defaultSampleDuration = new int[readers.length];
+        final int[] sampleCount = new int[readers.length];
 
-        TablesInfo[] tablesInfo = new TablesInfo[tracks.length];
+        final TablesInfo[] tablesInfo = new TablesInfo[tracks.length];
         for (int i = 0; i < tablesInfo.length; i++) {
             tablesInfo[i] = new TablesInfo();
         }
 
-        int singleSampleBuffer;
+        final int singleSampleBuffer;
         if (tracks.length == 1 && tracks[0].kind == TrackKind.Audio) {
             // near 1 second of audio data per chunk, avoid split the audio stream in large chunks
             singleSampleBuffer = tracks[0].trak.mdia.mdhdTimeScale / 1000;
@@ -250,10 +250,10 @@ public class Mp4FromDashWriter {
         }
 
 
-        boolean is64 = read > THRESHOLD_FOR_CO64;
+        final boolean is64 = read > THRESHOLD_FOR_CO64;
 
         // calculate the moov size
-        int auxSize = makeMoov(defaultMediaTime, tablesInfo, is64);
+        final int auxSize = makeMoov(defaultMediaTime, tablesInfo, is64);
 
         if (auxSize < THRESHOLD_MOOV_LENGTH) {
             auxBuffer = ByteBuffer.allocate(auxSize); // cache moov in the memory
@@ -267,9 +267,9 @@ public class Mp4FromDashWriter {
         // reserve moov space in the output stream
         if (auxSize > 0) {
             int length = auxSize;
-            byte[] buffer = new byte[64 * 1024]; // 64 KiB
+            final byte[] buffer = new byte[64 * 1024]; // 64 KiB
             while (length > 0) {
-                int count = Math.min(length, buffer.length);
+                final int count = Math.min(length, buffer.length);
                 outWrite(buffer, count);
                 length -= count;
             }
@@ -305,9 +305,10 @@ public class Mp4FromDashWriter {
 
         outWrite(makeMdat(totalSampleSize, is64));
 
-        int[] sampleIndex = new int[readers.length];
-        int[] sizes = new int[singleSampleBuffer > 0 ? singleSampleBuffer : SAMPLES_PER_CHUNK];
-        int[] sync = new int[singleSampleBuffer > 0 ? singleSampleBuffer : SAMPLES_PER_CHUNK];
+        final int[] sampleIndex = new int[readers.length];
+        final int[] sizes
+                = new int[singleSampleBuffer > 0 ? singleSampleBuffer : SAMPLES_PER_CHUNK];
+        final int[] sync = new int[singleSampleBuffer > 0 ? singleSampleBuffer : SAMPLES_PER_CHUNK];
 
         int written = readers.length;
         while (written > 0) {
@@ -318,9 +319,9 @@ public class Mp4FromDashWriter {
                     continue; // track is done
                 }
 
-                long chunkOffset = writeOffset;
+                final long chunkOffset = writeOffset;
                 int syncCount = 0;
-                int limit;
+                final int limit;
                 if (singleSampleBuffer > 0) {
                     limit = singleSampleBuffer;
                 } else {
@@ -329,7 +330,7 @@ public class Mp4FromDashWriter {
 
                 int j = 0;
                 for (; j < limit; j++) {
-                    Mp4DashSample sample = getNextSample(i);
+                    final Mp4DashSample sample = getNextSample(i);
 
                     if (sample == null) {
                         if (tablesInfo[i].ctts > 0 && sampleExtra[i] >= 0) {
@@ -409,7 +410,7 @@ public class Mp4FromDashWriter {
             }
         }
 
-        Mp4DashSample sample = readersChunks[track].getNextSample();
+        final Mp4DashSample sample = readersChunks[track].getNextSample();
         if (sample == null) {
             readersChunks[track] = null;
             return getNextSample(track);
@@ -434,8 +435,8 @@ public class Mp4FromDashWriter {
 
         auxSeek(offset);
 
-        int size = count * 4;
-        ByteBuffer buffer = ByteBuffer.allocate(size);
+        final int size = count * 4;
+        final ByteBuffer buffer = ByteBuffer.allocate(size);
 
         for (int i = 0; i < count; i++) {
             buffer.putInt(values[i]);
@@ -466,10 +467,10 @@ public class Mp4FromDashWriter {
     private void initChunkTables(final TablesInfo tables, final int firstCount,
                                  final int successiveCount) {
         // tables.stsz holds amount of samples of the track (total)
-        int totalSamples = (tables.stsz - firstCount);
-        float chunkAmount = totalSamples / (float) successiveCount;
-        int remainChunkOffset = (int) Math.ceil(chunkAmount);
-        boolean remain = remainChunkOffset != (int) chunkAmount;
+        final int totalSamples = (tables.stsz - firstCount);
+        final float chunkAmount = totalSamples / (float) successiveCount;
+        final int remainChunkOffset = (int) Math.ceil(chunkAmount);
+        final boolean remain = remainChunkOffset != (int) chunkAmount;
         int index = 0;
 
         tables.stsc = 1;
@@ -529,7 +530,7 @@ public class Mp4FromDashWriter {
     }
 
     private int lengthFor(final int offset) throws IOException {
-        int size = auxOffset() - offset;
+        final int size = auxOffset() - offset;
 
         if (moovSimulation) {
             return size;
@@ -545,7 +546,7 @@ public class Mp4FromDashWriter {
     private int make(final int type, final int extra, final int columns, final int rows)
             throws IOException {
         final byte base = 16;
-        int size = columns * rows * 4;
+        final int size = columns * rows * 4;
         int total = size + base;
         int offset = auxOffset();
 
@@ -618,7 +619,7 @@ public class Mp4FromDashWriter {
             size += 4;
         }
 
-        ByteBuffer buffer = ByteBuffer.allocate(size);
+        final ByteBuffer buffer = ByteBuffer.allocate(size);
         buffer.putInt(size);
         buffer.putInt(0x66747970); // "ftyp"
 
@@ -631,7 +632,7 @@ public class Mp4FromDashWriter {
             buffer.putInt(0x6D703432); // "mp42" compatible brand
         }
 
-        for (Integer brand : compatibleBrands) {
+        for (final Integer brand : compatibleBrands) {
             buffer.putInt(brand); // compatible brand
         }
 
@@ -648,7 +649,7 @@ public class Mp4FromDashWriter {
             size += 8;
         }
 
-        ByteBuffer buffer = ByteBuffer.allocate(is64 ? 16 : 8)
+        final ByteBuffer buffer = ByteBuffer.allocate(is64 ? 16 : 8)
                 .putInt(is64 ? 0x01 : (int) size)
                 .putInt(0x6D646174); // mdat
 
@@ -689,14 +690,14 @@ public class Mp4FromDashWriter {
 
     private int makeMoov(final int[] defaultMediaTime, final TablesInfo[] tablesInfo,
                          final boolean is64) throws RuntimeException, IOException {
-        int start = auxOffset();
+        final int start = auxOffset();
 
         auxWrite(new byte[]{
                 0x00, 0x00, 0x00, 0x00, 0x6D, 0x6F, 0x6F, 0x76
         });
 
         long longestTrack = 0;
-        long[] durations = new long[tracks.length];
+        final long[] durations = new long[tracks.length];
 
         for (int i = 0; i < durations.length; i++) {
             durations[i] = (long) Math.ceil(
@@ -723,7 +724,7 @@ public class Mp4FromDashWriter {
 
     private void makeTrak(final int index, final long duration, final int defaultMediaTime,
                           final TablesInfo tables, final boolean is64) throws IOException {
-        int start = auxOffset();
+        final int start = auxOffset();
 
         auxWrite(new byte[]{
                 // trak header
@@ -732,7 +733,7 @@ public class Mp4FromDashWriter {
                 0x00, 0x00, 0x00, 0x68, 0x74, 0x6B, 0x68, 0x64, 0x01, 0x00, 0x00, 0x03
         });
 
-        ByteBuffer buffer = ByteBuffer.allocate(48);
+        final ByteBuffer buffer = ByteBuffer.allocate(48);
         buffer.putLong(time);
         buffer.putLong(time);
         buffer.putInt(index + 1);
@@ -757,8 +758,8 @@ public class Mp4FromDashWriter {
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 // elst header
         });
 
-        int bMediaRate;
-        int mediaTime;
+        final int bMediaRate;
+        final int mediaTime;
 
         if (tracks[index].trak.edstElst == null) {
             // is a audio track ¿is edst/elst optional for audio tracks?
@@ -784,17 +785,17 @@ public class Mp4FromDashWriter {
 
     private void makeMdia(final Mdia mdia, final TablesInfo tablesInfo, final boolean is64,
                           final boolean isAudio) throws IOException {
-        int startMdia = auxOffset();
+        final int startMdia = auxOffset();
         auxWrite(new byte[]{0x00, 0x00, 0x00, 0x00, 0x6D, 0x64, 0x69, 0x61}); // mdia
         auxWrite(mdia.mdhd);
         auxWrite(makeHdlr(mdia.hdlr));
 
-        int startMinf = auxOffset();
+        final int startMinf = auxOffset();
         auxWrite(new byte[]{0x00, 0x00, 0x00, 0x00, 0x6D, 0x69, 0x6E, 0x66}); // minf
         auxWrite(mdia.minf.mhd);
         auxWrite(mdia.minf.dinf);
 
-        int startStbl = auxOffset();
+        final int startStbl = auxOffset();
         auxWrite(new byte[]{0x00, 0x00, 0x00, 0x00, 0x73, 0x74, 0x62, 0x6C}); // stbl
         auxWrite(mdia.minf.stblStsd);
 
@@ -838,7 +839,7 @@ public class Mp4FromDashWriter {
     }
 
     private byte[] makeHdlr(final Hdlr hdlr) {
-        ByteBuffer buffer = ByteBuffer.wrap(new byte[]{
+        final ByteBuffer buffer = ByteBuffer.wrap(new byte[]{
                 0x00, 0x00, 0x00, 0x21, 0x68, 0x64, 0x6C, 0x72, // hdlr
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -854,7 +855,7 @@ public class Mp4FromDashWriter {
     }
 
     private int makeSbgp() throws IOException {
-        int offset = auxOffset();
+        final int offset = auxOffset();
 
         auxWrite(new byte[] {
                 0x00, 0x00, 0x00, 0x1C, // box size
@@ -883,7 +884,7 @@ public class Mp4FromDashWriter {
          * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
          */
 
-        ByteBuffer buffer = ByteBuffer.wrap(new byte[] {
+        final ByteBuffer buffer = ByteBuffer.wrap(new byte[] {
                 0x00, 0x00, 0x00, 0x1A, // box size
                 0x73, 0x67, 0x70, 0x64, // "sgpd"
                 0x01, 0x00, 0x00, 0x00, // box flags (unknown flag sets)

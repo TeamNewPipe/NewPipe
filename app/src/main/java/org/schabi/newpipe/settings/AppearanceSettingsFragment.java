@@ -42,7 +42,7 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String themeKey = getString(R.string.theme_key);
+        final String themeKey = getString(R.string.theme_key);
         startThemeKey = defaultPreferences
                 .getString(themeKey, getString(R.string.default_theme_value));
         findPreference(themeKey).setOnPreferenceChangeListener(themePreferenceChange);
@@ -64,7 +64,7 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         if (preference.getKey().equals(captionSettingsKey) && CAPTIONING_SETTINGS_ACCESSIBLE) {
             try {
                 startActivity(new Intent(Settings.ACTION_CAPTIONING_SETTINGS));
-            } catch (ActivityNotFoundException e) {
+            } catch (final ActivityNotFoundException e) {
                 Toast.makeText(getActivity(), R.string.general_error, Toast.LENGTH_SHORT).show();
             }
         }

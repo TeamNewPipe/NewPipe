@@ -173,7 +173,7 @@ public class ChooseTabsFragment extends Fragment {
                 return;
             }
 
-            Dialog.OnClickListener actionListener = (dialog, which) -> {
+            final Dialog.OnClickListener actionListener = (dialog, which) -> {
                 final ChooseTabListItem selected = availableTabs[which];
                 addTab(selected.tabId);
             };
@@ -201,19 +201,19 @@ public class ChooseTabsFragment extends Fragment {
 
         switch (type) {
             case KIOSK:
-                SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
+                final SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
                 selectKioskFragment.setOnSelectedListener((serviceId, kioskId, kioskName) ->
                         addTab(new Tab.KioskTab(serviceId, kioskId)));
                 selectKioskFragment.show(requireFragmentManager(), "select_kiosk");
                 return;
             case CHANNEL:
-                SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
+                final SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
                 selectChannelFragment.setOnSelectedListener((serviceId, url, name) ->
                         addTab(new Tab.ChannelTab(serviceId, url, name)));
                 selectChannelFragment.show(requireFragmentManager(), "select_channel");
                 return;
             case PLAYLIST:
-                SelectPlaylistFragment selectPlaylistFragment = new SelectPlaylistFragment();
+                final SelectPlaylistFragment selectPlaylistFragment = new SelectPlaylistFragment();
                 selectPlaylistFragment.setOnSelectedListener(
                         new SelectPlaylistFragment.OnSelectedListener() {
                             @Override
@@ -238,7 +238,7 @@ public class ChooseTabsFragment extends Fragment {
     private ChooseTabListItem[] getAvailableTabs(final Context context) {
         final ArrayList<ChooseTabListItem> returnList = new ArrayList<>();
 
-        for (Tab.Type type : Tab.Type.values()) {
+        for (final Tab.Type type : Tab.Type.values()) {
             final Tab tab = type.getTab();
             switch (type) {
                 case BLANK:
@@ -329,7 +329,7 @@ public class ChooseTabsFragment extends Fragment {
 
             @Override
             public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
-                int position = viewHolder.getAdapterPosition();
+                final int position = viewHolder.getAdapterPosition();
                 tabList.remove(position);
                 selectedTabsAdapter.notifyItemRemoved(position);
 

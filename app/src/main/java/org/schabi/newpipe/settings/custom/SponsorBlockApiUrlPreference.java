@@ -38,13 +38,13 @@ public class SponsorBlockApiUrlPreference extends Preference {
     protected void onClick() {
         super.onClick();
 
-        View alertDialogView = LayoutInflater.from(getContext())
+        final View alertDialogView = LayoutInflater.from(getContext())
                 .inflate(R.layout.dialog_sponsorblock_api_url, null);
 
-        EditText editText = alertDialogView.findViewById(R.id.api_url_edit);
+        final EditText editText = alertDialogView.findViewById(R.id.api_url_edit);
         editText.setText(getSharedPreferences().getString(getKey(), null));
         editText.setOnFocusChangeListener((v, hasFocus) -> editText.post(() -> {
-            InputMethodManager inputMethodManager = (InputMethodManager) getContext()
+            final InputMethodManager inputMethodManager = (InputMethodManager) getContext()
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager
                     .showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
@@ -53,14 +53,14 @@ public class SponsorBlockApiUrlPreference extends Preference {
 
         alertDialogView.findViewById(R.id.icon_api_url_help)
                 .setOnClickListener(v -> {
-                    Uri privacyPolicyUri = Uri.parse(getContext()
+                    final Uri privacyPolicyUri = Uri.parse(getContext()
                             .getString(R.string.sponsorblock_privacy_policy_url));
-                    View helpDialogView = LayoutInflater.from(getContext())
+                    final View helpDialogView = LayoutInflater.from(getContext())
                             .inflate(R.layout.dialog_sponsorblock_api_url_help, null);
-                    View privacyPolicyButton = helpDialogView
+                    final View privacyPolicyButton = helpDialogView
                             .findViewById(R.id.sponsorblock_privacy_policy_button);
                     privacyPolicyButton.setOnClickListener(v1 -> {
-                        Intent i = new Intent(Intent.ACTION_VIEW, privacyPolicyUri);
+                        final Intent i = new Intent(Intent.ACTION_VIEW, privacyPolicyUri);
                         getContext().startActivity(i);
                     });
 
@@ -76,13 +76,13 @@ public class SponsorBlockApiUrlPreference extends Preference {
                             .show();
                 });
 
-        AlertDialog alertDialog =
+        final AlertDialog alertDialog =
                 new AlertDialog.Builder(getContext())
                         .setView(alertDialogView)
                         .setTitle(getContext().getString(R.string.sponsorblock_api_url_title))
                         .setPositiveButton("OK", (dialog, which) -> {
-                            String newValue = editText.getText().toString();
-                            SharedPreferences.Editor editor =
+                            final String newValue = editText.getText().toString();
+                            final SharedPreferences.Editor editor =
                                     getPreferenceManager().getSharedPreferences().edit();
                             editor.putString(getKey(), newValue);
                             editor.apply();

@@ -94,7 +94,7 @@ public class PlaybackParameterDialog extends DialogFragment {
                                                       final double playbackPitch,
                                                       final boolean playbackSkipSilence,
                                                       final Callback callback) {
-        PlaybackParameterDialog dialog = new PlaybackParameterDialog();
+        final PlaybackParameterDialog dialog = new PlaybackParameterDialog();
         dialog.callback = callback;
         dialog.initialTempo = playbackTempo;
         dialog.initialPitch = playbackPitch;
@@ -187,8 +187,8 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void setupTempoControl(@NonNull final View rootView) {
         tempoSlider = rootView.findViewById(R.id.tempoSeekbar);
-        TextView tempoMinimumText = rootView.findViewById(R.id.tempoMinimumText);
-        TextView tempoMaximumText = rootView.findViewById(R.id.tempoMaximumText);
+        final TextView tempoMinimumText = rootView.findViewById(R.id.tempoMinimumText);
+        final TextView tempoMaximumText = rootView.findViewById(R.id.tempoMaximumText);
         tempoCurrentText = rootView.findViewById(R.id.tempoCurrentText);
         tempoStepUpText = rootView.findViewById(R.id.tempoStepUp);
         tempoStepDownText = rootView.findViewById(R.id.tempoStepDown);
@@ -212,8 +212,8 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void setupPitchControl(@NonNull final View rootView) {
         pitchSlider = rootView.findViewById(R.id.pitchSeekbar);
-        TextView pitchMinimumText = rootView.findViewById(R.id.pitchMinimumText);
-        TextView pitchMaximumText = rootView.findViewById(R.id.pitchMaximumText);
+        final TextView pitchMinimumText = rootView.findViewById(R.id.pitchMinimumText);
+        final TextView pitchMaximumText = rootView.findViewById(R.id.pitchMaximumText);
         pitchCurrentText = rootView.findViewById(R.id.pitchCurrentText);
         pitchStepDownText = rootView.findViewById(R.id.pitchStepDown);
         pitchStepUpText = rootView.findViewById(R.id.pitchStepUp);
@@ -269,12 +269,12 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void setupStepSizeSelector(@NonNull final View rootView) {
-        TextView stepSizeOnePercentText = rootView.findViewById(R.id.stepSizeOnePercent);
-        TextView stepSizeFivePercentText = rootView.findViewById(R.id.stepSizeFivePercent);
-        TextView stepSizeTenPercentText = rootView.findViewById(R.id.stepSizeTenPercent);
-        TextView stepSizeTwentyFivePercentText = rootView
+        final TextView stepSizeOnePercentText = rootView.findViewById(R.id.stepSizeOnePercent);
+        final TextView stepSizeFivePercentText = rootView.findViewById(R.id.stepSizeFivePercent);
+        final TextView stepSizeTenPercentText = rootView.findViewById(R.id.stepSizeTenPercent);
+        final TextView stepSizeTwentyFivePercentText = rootView
                 .findViewById(R.id.stepSizeTwentyFivePercent);
-        TextView stepSizeOneHundredPercentText = rootView
+        final TextView stepSizeOneHundredPercentText = rootView
                 .findViewById(R.id.stepSizeOneHundredPercent);
 
         if (stepSizeOnePercentText != null) {

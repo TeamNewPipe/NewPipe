@@ -310,7 +310,7 @@ public class RouterActivity extends AppCompatActivity {
         };
 
         int id = 12345;
-        for (AdapterChoiceItem item : choices) {
+        for (final AdapterChoiceItem item : choices) {
             final RadioButton radioButton
                     = (RadioButton) inflater.inflate(R.layout.list_radio_icon_item, null);
             radioButton.setText(item.description);
@@ -330,7 +330,7 @@ public class RouterActivity extends AppCompatActivity {
                     getString(R.string.preferred_open_action_last_selected_key), null);
             if (!TextUtils.isEmpty(lastSelectedPlayer)) {
                 for (int i = 0; i < choices.size(); i++) {
-                    AdapterChoiceItem c = choices.get(i);
+                    final AdapterChoiceItem c = choices.get(i);
                     if (lastSelectedPlayer.equals(c.key)) {
                         selectedRadioPosition = i;
                         break;
@@ -362,9 +362,9 @@ public class RouterActivity extends AppCompatActivity {
 
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        boolean isExtVideoEnabled = preferences.getBoolean(
+        final boolean isExtVideoEnabled = preferences.getBoolean(
                 getString(R.string.use_external_video_player_key), false);
-        boolean isExtAudioEnabled = preferences.getBoolean(
+        final boolean isExtAudioEnabled = preferences.getBoolean(
                 getString(R.string.use_external_audio_player_key), false);
 
         returnList.add(new AdapterChoiceItem(getString(R.string.show_info_key),
@@ -410,9 +410,9 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void handleText() {
-        String searchString = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-        int serviceId = getIntent().getIntExtra(Constants.KEY_SERVICE_ID, 0);
-        Intent intent = new Intent(getThemeWrapperContext(), MainActivity.class);
+        final String searchString = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        final int serviceId = getIntent().getIntExtra(Constants.KEY_SERVICE_ID, 0);
+        final Intent intent = new Intent(getThemeWrapperContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         NavigationHelper.openSearch(getThemeWrapperContext(), serviceId, searchString);
@@ -479,14 +479,14 @@ public class RouterActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((@NonNull StreamInfo result) -> {
-                    List<VideoStream> sortedVideoStreams = ListHelper
+                    final List<VideoStream> sortedVideoStreams = ListHelper
                             .getSortedStreamVideosList(this, result.getVideoStreams(),
                                     result.getVideoOnlyStreams(), false);
-                    int selectedVideoStreamIndex = ListHelper
+                    final int selectedVideoStreamIndex = ListHelper
                             .getDefaultResolutionIndex(this, sortedVideoStreams);
 
-                    FragmentManager fm = getSupportFragmentManager();
-                    DownloadDialog downloadDialog = DownloadDialog.newInstance(result);
+                    final FragmentManager fm = getSupportFragmentManager();
+                    final DownloadDialog downloadDialog = DownloadDialog.newInstance(result);
                     downloadDialog.setVideoStreams(sortedVideoStreams);
                     downloadDialog.setAudioStreams(result.getAudioStreams());
                     downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
@@ -504,7 +504,7 @@ public class RouterActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(final int requestCode,
                                            @NonNull final String[] permissions,
                                            @NonNull final int[] grantResults) {
-        for (int i : grantResults) {
+        for (final int i : grantResults) {
             if (i == PackageManager.PERMISSION_DENIED) {
                 finish();
                 return;
@@ -634,7 +634,7 @@ public class RouterActivity extends AppCompatActivity {
             if (!(serializable instanceof Choice)) {
                 return;
             }
-            Choice playerChoice = (Choice) serializable;
+            final Choice playerChoice = (Choice) serializable;
             handleChoice(playerChoice);
         }
 
@@ -682,13 +682,13 @@ public class RouterActivity extends AppCompatActivity {
 
                 final SharedPreferences preferences = PreferenceManager
                         .getDefaultSharedPreferences(this);
-                boolean isExtVideoEnabled = preferences.getBoolean(
+                final boolean isExtVideoEnabled = preferences.getBoolean(
                         getString(R.string.use_external_video_player_key), false);
-                boolean isExtAudioEnabled = preferences.getBoolean(
+                final boolean isExtAudioEnabled = preferences.getBoolean(
                         getString(R.string.use_external_audio_player_key), false);
 
                 PlayQueue playQueue;
-                String playerChoice = choice.playerChoice;
+                final String playerChoice = choice.playerChoice;
 
                 if (info instanceof StreamInfo) {
                     if (playerChoice.equals(backgroundPlayerKey) && isExtAudioEnabled) {

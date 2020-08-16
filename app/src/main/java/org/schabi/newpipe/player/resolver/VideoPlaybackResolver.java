@@ -52,7 +52,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             return liveSource;
         }
 
-        List<MediaSource> mediaSources = new ArrayList<>();
+        final List<MediaSource> mediaSources = new ArrayList<>();
 
         // Create video stream source
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,

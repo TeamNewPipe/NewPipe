@@ -64,7 +64,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
     private Button inputButton;
 
     public static SubscriptionsImportFragment getInstance(final int serviceId) {
-        SubscriptionsImportFragment instance = new SubscriptionsImportFragment();
+        final SubscriptionsImportFragment instance = new SubscriptionsImportFragment();
         instance.setInitialData(serviceId);
         return instance;
     }
@@ -140,7 +140,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
             setInfoText("");
         }
 
-        ActionBar supportActionBar = activity.getSupportActionBar();
+        final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayShowTitleEnabled(true);
             setTitle(getString(R.string.import_title));
@@ -206,7 +206,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
                 relatedUrl = extractor.getRelatedUrl();
                 instructionsString = ServiceHelper.getImportInstructions(currentServiceId);
                 return;
-            } catch (ExtractionException ignored) {
+            } catch (final ExtractionException ignored) {
             }
         }
 

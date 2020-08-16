@@ -37,7 +37,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
                                                   final boolean includeMusicCategory)
             throws ExecutionException, InterruptedException, UnsupportedEncodingException {
 
-        ArrayList<String> categoryParamList = new ArrayList<>();
+        final ArrayList<String> categoryParamList = new ArrayList<>();
 
         if (includeSponsorCategory) {
             categoryParamList.add("sponsor");
@@ -65,21 +65,21 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
         String categoryParams = "[\"" + TextUtils.join("\",\"", categoryParamList) + "\"]";
         categoryParams = URLEncoder.encode(categoryParams, "utf-8");
 
-        String params = "skipSegments?videoID=" + videoId + "&categories=" + categoryParams;
+        final String params = "skipSegments?videoID=" + videoId + "&categories=" + categoryParams;
 
-        JsonArray arrayObj = execute(params).get();
+        final JsonArray arrayObj = execute(params).get();
 
-        ArrayList<VideoSegment> result = new ArrayList<>();
+        final ArrayList<VideoSegment> result = new ArrayList<>();
 
         for (int i = 0; i < arrayObj.size(); i++) {
-            JsonObject obj = (JsonObject) arrayObj.get(i);
-            JsonArray segments = (JsonArray) obj.get("segment");
+            final JsonObject obj = (JsonObject) arrayObj.get(i);
+            final JsonArray segments = (JsonArray) obj.get("segment");
 
-            double startTime = segments.getDouble(0) * 1000;
-            double endTime = segments.getDouble(1) * 1000;
-            String category = obj.getString("category");
+            final double startTime = segments.getDouble(0) * 1000;
+            final double endTime = segments.getDouble(1) * 1000;
+            final String category = obj.getString("category");
 
-            VideoSegment segment = new VideoSegment(startTime, endTime, category);
+            final VideoSegment segment = new VideoSegment(startTime, endTime, category);
 
             result.add(segment);
         }
@@ -94,7 +94,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
         }
 
         try {
-            String responseBody =
+            final String responseBody =
                     DownloaderImpl
                             .getInstance()
                             .get(apiUrl + strings[0])
@@ -102,7 +102,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
 
             return JsonParser.array().from(responseBody);
 
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             if (DEBUG) {
                 Log.w(TAG, Log.getStackTraceString(ex));
             }
@@ -112,7 +112,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
     }
 
     private boolean isConnected() {
-        ConnectivityManager cm =
+        final ConnectivityManager cm =
                 (ConnectivityManager) APP.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null
                 && cm.getActiveNetworkInfo().isConnected();

@@ -57,13 +57,14 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
         }
 
         final PlayQueueItem item = player.getPlayQueue().getItem(index);
-        MediaDescriptionCompat.Builder descriptionBuilder = new MediaDescriptionCompat.Builder()
+        final MediaDescriptionCompat.Builder descriptionBuilder
+                = new MediaDescriptionCompat.Builder()
                 .setMediaId(String.valueOf(index))
                 .setTitle(item.getTitle())
                 .setSubtitle(item.getUploader());
 
         // set additional metadata for A2DP/AVRCP
-        Bundle additionalMetadata = new Bundle();
+        final Bundle additionalMetadata = new Bundle();
         additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, item.getTitle());
         additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, item.getUploader());
         additionalMetadata

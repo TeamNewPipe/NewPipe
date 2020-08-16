@@ -87,13 +87,13 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
         }
 
         // Yes this is almost a copypasta, got a problem with that? =\
-        int windowCount = callback.getQueueSize();
-        int currentWindowIndex = callback.getCurrentPlayingIndex();
-        int queueSize = Math.min(maxQueueSize, windowCount);
-        int startIndex = Util.constrainValue(currentWindowIndex - ((queueSize - 1) / 2), 0,
+        final int windowCount = callback.getQueueSize();
+        final int currentWindowIndex = callback.getCurrentPlayingIndex();
+        final int queueSize = Math.min(maxQueueSize, windowCount);
+        final int startIndex = Util.constrainValue(currentWindowIndex - ((queueSize - 1) / 2), 0,
                 windowCount - queueSize);
 
-        List<MediaSessionCompat.QueueItem> queue = new ArrayList<>();
+        final List<MediaSessionCompat.QueueItem> queue = new ArrayList<>();
         for (int i = startIndex; i < startIndex + queueSize; i++) {
             queue.add(new MediaSessionCompat.QueueItem(callback.getQueueMetadata(i), i));
         }

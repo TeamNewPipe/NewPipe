@@ -54,7 +54,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
@@ -82,6 +81,7 @@ import org.schabi.newpipe.util.VideoSegment;
 import java.io.IOException;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
@@ -294,7 +294,7 @@ public abstract class BasePlayer implements
 
         // Resolve append intents
         if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {
-            int sizeBeforeAppend = playQueue.size();
+            final int sizeBeforeAppend = playQueue.size();
             playQueue.append(queue.getStreams());
 
             if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
@@ -724,7 +724,7 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null) {
             return;
         }
-        int currentProgress = Math.max((int) simpleExoPlayer.getCurrentPosition(), 0);
+        final int currentProgress = Math.max((int) simpleExoPlayer.getCurrentPosition(), 0);
         onUpdateProgress(
                 currentProgress,
                 (int) simpleExoPlayer.getDuration(),
@@ -734,12 +734,12 @@ public abstract class BasePlayer implements
         if (isBlockingSponsors
                 && mPrefs.getBoolean(
                         context.getString(R.string.sponsorblock_enable_key), false)) {
-            VideoSegment segment = getSkippableSegment(currentProgress);
+            final VideoSegment segment = getSkippableSegment(currentProgress);
             if (segment == null) {
                 return;
             }
 
-            int skipTo = (int) Math.ceil((segment.endTime));
+            final int skipTo = (int) Math.ceil((segment.endTime));
 
             seekTo(skipTo);
 
@@ -789,7 +789,7 @@ public abstract class BasePlayer implements
             return null;
         }
 
-        for (VideoSegment segment : videoSegments) {
+        for (final VideoSegment segment : videoSegments) {
             if (progress < segment.startTime) {
                 continue;
             }
@@ -1166,44 +1166,42 @@ public abstract class BasePlayer implements
         registerView();
 
         if (info.getUrl().startsWith("https://www.youtube.com")) {
-            String apiUrl = mPrefs
+            final String apiUrl = mPrefs
                     .getString(context.getString(R.string.sponsorblock_api_url_key), null);
-            boolean isSponsorBlockEnabled = mPrefs
+            final boolean isSponsorBlockEnabled = mPrefs
                     .getBoolean(context.getString(R.string.sponsorblock_enable_key), false);
 
             if (apiUrl != null && !apiUrl.isEmpty() && isSponsorBlockEnabled) {
                 try {
-                    boolean includeSponsorCategory =
+                   final boolean includeSponsorCategory =
                             mPrefs.getBoolean(
                                     context.getString(
                                             R.string.sponsorblock_category_sponsor_key),
                                     false);
 
-                    boolean includeIntroCategory =
+                   final boolean includeIntroCategory =
                             mPrefs.getBoolean(
                                     context.getString(
                                             R.string.sponsorblock_category_intro_key),
                                     false);
 
-                    boolean includeOutroCategory =
+                   final boolean includeOutroCategory =
                             mPrefs.getBoolean(
                                     context.getString(
                                             R.string.sponsorblock_category_outro_key),
                                     false);
 
-                    boolean includeInteractionCategory =
+                    final boolean includeInteractionCategory =
                             mPrefs.getBoolean(
                                     context.getString(
                                             R.string.sponsorblock_category_interaction_key),
                                     false);
-
-                    boolean includeSelfPromoCategory =
+                    final boolean includeSelfPromoCategory =
                             mPrefs.getBoolean(
                                     context.getString(
                                             R.string.sponsorblock_category_self_promo_key),
                                     false);
-
-                    boolean includeMusicCategory =
+                    final boolean includeMusicCategory =
                             mPrefs.getBoolean(
                                     context.getString(
                                             R.string.sponsorblock_category_non_music_key),
@@ -1217,19 +1215,11 @@ public abstract class BasePlayer implements
                                     includeInteractionCategory,
                                     includeSelfPromoCategory,
                                     includeMusicCategory);
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     Log.e("SPONSOR_BLOCK", "Error getting YouTube video sponsor times.", e);
                 }
             }
         }
-    }
-
-    @Override
-    public void onPlaybackShutdown() {
-        if (DEBUG) {
-            Log.d(TAG, "Shutting down...");
-        }
-        destroy();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1616,7 +1606,7 @@ public abstract class BasePlayer implements
             return false;
         }
 
-        Timeline.Window timelineWindow = new Timeline.Window();
+        final Timeline.Window timelineWindow = new Timeline.Window();
         currentTimeline.getWindow(currentWindowIndex, timelineWindow);
         return timelineWindow.getDefaultPositionMs() <= simpleExoPlayer.getCurrentPosition();
     }
@@ -1627,7 +1617,7 @@ public abstract class BasePlayer implements
         }
         try {
             return simpleExoPlayer.isCurrentWindowDynamic();
-        } catch (@NonNull IndexOutOfBoundsException e) {
+        } catch (@NonNull final IndexOutOfBoundsException e) {
             // Why would this even happen =(
             // But lets log it anyway. Save is save
             if (DEBUG) {
