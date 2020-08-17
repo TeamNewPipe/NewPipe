@@ -700,10 +700,10 @@
     <string name="sponsorblock_default_api_url">https://sponsor.ajay.app/api/</string>
     <string name="sponsorblock_privacy_policy_url">https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796</string>
     <string name="sponsorblock_skip_sponsor_message">Skipped sponsor</string>
-    <string name="sponsorblock_skip_intro_message">Skipped intermission/intro segment</string>
-    <string name="sponsorblock_skip_outro_message">Skipped endcards/credits segment</string>
-    <string name="sponsorblock_skip_interaction_message">Skipped interaction reminder segment</string>
-    <string name="sponsorblock_skip_self_promo_message">Skipped unpaid/self promo segment</string>
-    <string name="sponsorblock_skip_non_music_message">Skipped non-music segment</string>
+    <string name="sponsorblock_skip_intro_message">Skipped intermission/intro</string>
+    <string name="sponsorblock_skip_outro_message">Skipped endcards/credits</string>
+    <string name="sponsorblock_skip_interaction_message">Skipped interaction reminder</string>
+    <string name="sponsorblock_skip_self_promo_message">Skipped unpaid/self promo</string>
+    <string name="sponsorblock_skip_non_music_message">Skipped non-music</string>
     <string name="sponsorblock_toggle_skipping">Toggle skipping sponsors</string>
 </resources>

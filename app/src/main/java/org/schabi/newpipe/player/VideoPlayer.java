@@ -648,11 +648,11 @@ public abstract class VideoPlayer extends BasePlayer
                     new SeekBarMarker(segment.startTime, segment.endTime,
                             (int) simpleExoPlayer.getDuration(), color);
             markableSeekBar.seekBarMarkers.add(seekBarMarker);
-            markableSeekBar.invalidate();
 
             Log.d("SPONSOR_BLOCK", "Progress bar marker: "
                     + seekBarMarker.percentStart + ", " + seekBarMarker.percentEnd);
         }
+        markableSeekBar.drawMarkers();
     }
 
     private Integer parseSegmentCategory(final String category) {
