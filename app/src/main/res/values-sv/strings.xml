@@ -599,4 +599,7 @@
     <string name="copy_for_github">Kopiera formaterad felrapport</string>
     <string name="search_showing_result_for">Visar resultat för: %s</string>
     <string name="select_a_playlist">Välj en spellista</string>
+    <string name="video_detail_by">Av %s</string>
+    <string name="channel_created_by">Skapad av %s</string>
+    <string name="no_playlist_bookmarked_yet">Ingen spellista bokmärkt än</string>
 </resources>
