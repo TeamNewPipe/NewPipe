@@ -56,6 +56,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -646,6 +648,12 @@ public class VideoPlayerImpl extends VideoPlayer
     public void onBlockingSponsorsButtonClicked() {
         super.onBlockingSponsorsButtonClicked();
         setBlockSponsorsButton(blockSponsorsButton, isBlockingSponsors());
+
+        Toast.makeText(context,
+                isBlockingSponsors()
+                        ? "SponsorBlock enabled"
+                        : "SponsorBlock disabled",
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -1591,8 +1599,8 @@ public class VideoPlayerImpl extends VideoPlayer
     protected void setBlockSponsorsButton(final ImageButton button,
                                           final boolean isBlockingSponsors) {
         button.setImageDrawable(AppCompatResources.getDrawable(service, isBlockingSponsors
-                ? R.drawable.ic_sponsorblock_disable_white_24dp
-                : R.drawable.ic_sponsorblock_enable_white_24dp));
+                ? R.drawable.ic_sponsor_block_enable_white_24dp
+                : R.drawable.ic_sponsor_block_disable_white_24dp));
     }
 
     /**
