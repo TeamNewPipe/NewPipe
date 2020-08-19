@@ -25,6 +25,7 @@
         android:layout_alignParentTop="true"
         android:paddingRight="5dp"
         android:switchPadding="5dp"
+        android:theme="@style/LightTheme.switch"
         android:textSize="12sp"
         android:textColor="@android:color/tab_indicator_text"
         android:text="@string/autoplay_title" />
