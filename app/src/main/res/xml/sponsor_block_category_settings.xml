@@ -2,154 +2,154 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:title="@string/settings_category_sponsorblock_categories_title">
+    android:title="@string/settings_category_sponsor_block_categories_title">
 
     <Preference
         app:iconSpaceReserved="false"
-        android:key="@string/sponsorblock_category_reset_key"
-        android:title="@string/settings_category_sponsorblock_categories_reset_colors_title"/>
+        android:key="@string/sponsor_block_category_reset_key"
+        android:title="@string/settings_category_sponsor_block_categories_reset_colors_title"/>
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsorblock_category_sponsor_title">
+        android:title="@string/settings_category_sponsor_block_category_sponsor_title">
 
         <Preference
             app:iconSpaceReserved="false"
-            android:summary="@string/settings_category_sponsorblock_category_sponsor_summary"
+            android:summary="@string/settings_category_sponsor_block_category_sponsor_summary"
             android:selectable="false"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"
-            android:key="@string/sponsorblock_category_sponsor_key"
-            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
+            android:key="@string/sponsor_block_category_sponsor_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
 
         <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
-            android:dependency="@string/sponsorblock_category_sponsor_key"
+            android:dependency="@string/sponsor_block_category_sponsor_key"
             android:defaultValue="@color/sponsor_segment"
-            android:key="@string/sponsorblock_category_sponsor_color_key"
-            android:title="@string/settings_category_sponsorblock_category_color"/>
+            android:key="@string/sponsor_block_category_sponsor_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsorblock_category_intro_title">
+        android:title="@string/settings_category_sponsor_block_category_intro_title">
 
         <Preference
             app:iconSpaceReserved="false"
-            android:summary="@string/settings_category_sponsorblock_category_intro_summary"
+            android:summary="@string/settings_category_sponsor_block_category_intro_summary"
             android:selectable="false"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
-            android:key="@string/sponsorblock_category_intro_key"
-            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
+            android:key="@string/sponsor_block_category_intro_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
 
         <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
-            android:dependency="@string/sponsorblock_category_intro_key"
+            android:dependency="@string/sponsor_block_category_intro_key"
             android:defaultValue="@color/intro_segment"
-            android:key="@string/sponsorblock_category_intro_color_key"
-            android:title="@string/settings_category_sponsorblock_category_color"/>
+            android:key="@string/sponsor_block_category_intro_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsorblock_category_outro_title">
+        android:title="@string/settings_category_sponsor_block_category_outro_title">
 
         <Preference
             app:iconSpaceReserved="false"
-            android:summary="@string/settings_category_sponsorblock_category_outro_summary"
+            android:summary="@string/settings_category_sponsor_block_category_outro_summary"
             android:selectable="false"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
-            android:key="@string/sponsorblock_category_outro_key"
-            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
+            android:key="@string/sponsor_block_category_outro_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
 
         <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
-            android:dependency="@string/sponsorblock_category_outro_key"
+            android:dependency="@string/sponsor_block_category_outro_key"
             android:defaultValue="@color/outro_segment"
-            android:key="@string/sponsorblock_category_outro_color_key"
-            android:title="@string/settings_category_sponsorblock_category_color"/>
+            android:key="@string/sponsor_block_category_outro_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsorblock_category_interaction_title">
+        android:title="@string/settings_category_sponsor_block_category_interaction_title">
 
         <Preference
             app:iconSpaceReserved="false"
-            android:summary="@string/settings_category_sponsorblock_category_interaction_summary"
+            android:summary="@string/settings_category_sponsor_block_category_interaction_summary"
             android:selectable="false"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
-            android:key="@string/sponsorblock_category_interaction_key"
-            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
+            android:key="@string/sponsor_block_category_interaction_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
 
         <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
-            android:dependency="@string/sponsorblock_category_interaction_key"
+            android:dependency="@string/sponsor_block_category_interaction_key"
             android:defaultValue="@color/interaction_segment"
-            android:key="@string/sponsorblock_category_interaction_color_key"
-            android:title="@string/settings_category_sponsorblock_category_color"/>
+            android:key="@string/sponsor_block_category_interaction_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsorblock_category_self_promo_title">
+        android:title="@string/settings_category_sponsor_block_category_self_promo_title">
 
         <Preference
             app:iconSpaceReserved="false"
-            android:summary="@string/settings_category_sponsorblock_category_self_promo_summary"
+            android:summary="@string/settings_category_sponsor_block_category_self_promo_summary"
             android:selectable="false"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
-            android:key="@string/sponsorblock_category_self_promo_key"
-            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
+            android:key="@string/sponsor_block_category_self_promo_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
 
         <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
-            android:dependency="@string/sponsorblock_category_self_promo_key"
+            android:dependency="@string/sponsor_block_category_self_promo_key"
             android:defaultValue="@color/self_promo_segment"
-            android:key="@string/sponsorblock_category_self_promo_color_key"
-            android:title="@string/settings_category_sponsorblock_category_color"/>
+            android:key="@string/sponsor_block_category_self_promo_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsorblock_category_non_music_title">
+        android:title="@string/settings_category_sponsor_block_category_non_music_title">
 
         <Preference
             app:iconSpaceReserved="false"
-            android:summary="@string/settings_category_sponsorblock_category_non_music_summary"
+            android:summary="@string/settings_category_sponsor_block_category_non_music_summary"
             android:selectable="false"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
-            android:key="@string/sponsorblock_category_non_music_key"
-            android:title="@string/settings_category_sponsorblock_category_enable_title"/>
+            android:key="@string/sponsor_block_category_non_music_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
 
         <org.schabi.newpipe.settings.custom.EditColorPreference
             app:iconSpaceReserved="false"
-            android:dependency="@string/sponsorblock_category_non_music_key"
+            android:dependency="@string/sponsor_block_category_non_music_key"
             android:defaultValue="@color/non_music_segment"
-            android:key="@string/sponsorblock_category_non_music_color_key"
-            android:title="@string/settings_category_sponsorblock_category_color"/>
+            android:key="@string/sponsor_block_category_non_music_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
 
     </PreferenceCategory>
 

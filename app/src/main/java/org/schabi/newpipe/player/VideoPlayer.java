@@ -648,9 +648,6 @@ public abstract class VideoPlayer extends BasePlayer
                     new SeekBarMarker(segment.startTime, segment.endTime,
                             (int) simpleExoPlayer.getDuration(), color);
             markableSeekBar.seekBarMarkers.add(seekBarMarker);
-
-            Log.d("SPONSOR_BLOCK", "Progress bar marker: "
-                    + seekBarMarker.percentStart + ", " + seekBarMarker.percentEnd);
         }
         markableSeekBar.drawMarkers();
     }
@@ -660,9 +657,9 @@ public abstract class VideoPlayer extends BasePlayer
         final String colorStr;
         switch (category) {
             case "sponsor":
-                key = context.getString(R.string.sponsorblock_category_sponsor_key);
+                key = context.getString(R.string.sponsor_block_category_sponsor_key);
                 if (mPrefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsorblock_category_sponsor_color_key);
+                    key = context.getString(R.string.sponsor_block_category_sponsor_color_key);
                     colorStr = mPrefs.getString(key, null);
                     return colorStr == null
                             ? context.getResources().getColor(R.color.sponsor_segment)
@@ -670,9 +667,9 @@ public abstract class VideoPlayer extends BasePlayer
                 }
                 break;
             case "intro":
-                key = context.getString(R.string.sponsorblock_category_intro_key);
+                key = context.getString(R.string.sponsor_block_category_intro_key);
                 if (mPrefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsorblock_category_intro_color_key);
+                    key = context.getString(R.string.sponsor_block_category_intro_color_key);
                     colorStr = mPrefs.getString(key, null);
                     return colorStr == null
                             ? context.getResources().getColor(R.color.intro_segment)
@@ -680,9 +677,9 @@ public abstract class VideoPlayer extends BasePlayer
                 }
                 break;
             case "outro":
-                key = context.getString(R.string.sponsorblock_category_outro_key);
+                key = context.getString(R.string.sponsor_block_category_outro_key);
                 if (mPrefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsorblock_category_outro_color_key);
+                    key = context.getString(R.string.sponsor_block_category_outro_color_key);
                     colorStr = mPrefs.getString(key, null);
                     return colorStr == null
                             ? context.getResources().getColor(R.color.outro_segment)
@@ -690,9 +687,9 @@ public abstract class VideoPlayer extends BasePlayer
                 }
                 break;
             case "interaction":
-                key = context.getString(R.string.sponsorblock_category_interaction_key);
+                key = context.getString(R.string.sponsor_block_category_interaction_key);
                 if (mPrefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsorblock_category_interaction_color_key);
+                    key = context.getString(R.string.sponsor_block_category_interaction_color_key);
                     colorStr = mPrefs.getString(key, null);
                     return colorStr == null
                             ? context.getResources().getColor(R.color.interaction_segment)
@@ -700,9 +697,9 @@ public abstract class VideoPlayer extends BasePlayer
                 }
                 break;
             case "selfpromo":
-                key = context.getString(R.string.sponsorblock_category_self_promo_key);
+                key = context.getString(R.string.sponsor_block_category_self_promo_key);
                 if (mPrefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsorblock_category_self_promo_color_key);
+                    key = context.getString(R.string.sponsor_block_category_self_promo_color_key);
                     colorStr = mPrefs.getString(key, null);
                     return colorStr == null
                             ? context.getResources().getColor(R.color.self_promo_segment)
@@ -710,9 +707,9 @@ public abstract class VideoPlayer extends BasePlayer
                 }
                 break;
             case "music_offtopic":
-                key = context.getString(R.string.sponsorblock_category_non_music_key);
+                key = context.getString(R.string.sponsor_block_category_non_music_key);
                 if (mPrefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsorblock_category_non_music_color_key);
+                    key = context.getString(R.string.sponsor_block_category_non_music_color_key);
                     colorStr = mPrefs.getString(key, null);
                     return colorStr == null
                             ? context.getResources().getColor(R.color.non_music_segment)

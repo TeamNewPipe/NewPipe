@@ -386,7 +386,7 @@ public class VideoPlayerImpl extends VideoPlayer
             muteButton.setVisibility(View.VISIBLE);
 
             final boolean isSponsorBlockEnabled = mPrefs.getBoolean(
-                    context.getString(R.string.sponsorblock_enable_key), false);
+                    context.getString(R.string.sponsor_block_enable_key), false);
             blockSponsorsButton.setVisibility(isSponsorBlockEnabled ? View.VISIBLE : View.GONE);
 
             playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);

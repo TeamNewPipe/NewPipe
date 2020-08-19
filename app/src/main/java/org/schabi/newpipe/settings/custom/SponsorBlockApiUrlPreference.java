@@ -39,7 +39,7 @@ public class SponsorBlockApiUrlPreference extends Preference {
         super.onClick();
 
         final View alertDialogView = LayoutInflater.from(getContext())
-                .inflate(R.layout.dialog_sponsorblock_api_url, null);
+                .inflate(R.layout.dialog_sponsor_block_api_url, null);
 
         final EditText editText = alertDialogView.findViewById(R.id.api_url_edit);
         editText.setText(getSharedPreferences().getString(getKey(), null));
@@ -54,11 +54,11 @@ public class SponsorBlockApiUrlPreference extends Preference {
         alertDialogView.findViewById(R.id.icon_api_url_help)
                 .setOnClickListener(v -> {
                     final Uri privacyPolicyUri = Uri.parse(getContext()
-                            .getString(R.string.sponsorblock_privacy_policy_url));
+                            .getString(R.string.sponsor_block_privacy_policy_url));
                     final View helpDialogView = LayoutInflater.from(getContext())
-                            .inflate(R.layout.dialog_sponsorblock_api_url_help, null);
+                            .inflate(R.layout.dialog_sponsor_block_api_url_help, null);
                     final View privacyPolicyButton = helpDialogView
-                            .findViewById(R.id.sponsorblock_privacy_policy_button);
+                            .findViewById(R.id.sponsor_block_privacy_policy_button);
                     privacyPolicyButton.setOnClickListener(v1 -> {
                         final Intent i = new Intent(Intent.ACTION_VIEW, privacyPolicyUri);
                         getContext().startActivity(i);
@@ -68,7 +68,7 @@ public class SponsorBlockApiUrlPreference extends Preference {
                             .setView(helpDialogView)
                             .setPositiveButton("Use Official", (dialog, which) -> {
                                 editText.setText(getContext()
-                                        .getString(R.string.sponsorblock_default_api_url));
+                                        .getString(R.string.sponsor_block_default_api_url));
                                 dialog.dismiss();
                             })
                             .setNeutralButton("Close", (dialog, which) -> dialog.dismiss())
@@ -79,7 +79,7 @@ public class SponsorBlockApiUrlPreference extends Preference {
         final AlertDialog alertDialog =
                 new AlertDialog.Builder(getContext())
                         .setView(alertDialogView)
-                        .setTitle(getContext().getString(R.string.sponsorblock_api_url_title))
+                        .setTitle(getContext().getString(R.string.sponsor_block_api_url_title))
                         .setPositiveButton("OK", (dialog, which) -> {
                             final String newValue = editText.getText().toString();
                             final SharedPreferences.Editor editor =

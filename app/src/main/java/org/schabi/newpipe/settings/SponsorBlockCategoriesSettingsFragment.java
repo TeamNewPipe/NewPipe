@@ -23,7 +23,7 @@ public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragme
         addPreferencesFromResource(R.xml.sponsor_block_category_settings);
 
         final Preference resetPreferenceView =
-                findPreference(getString(R.string.sponsorblock_category_reset_key));
+                findPreference(getString(R.string.sponsor_block_category_reset_key));
         if (resetPreferenceView != null) {
             resetPreferenceView.setOnPreferenceClickListener(preference -> {
                 final Context context = getContext();
@@ -35,27 +35,27 @@ public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragme
                                     .edit();
 
                     setColorPreference(editor,
-                            R.string.sponsorblock_category_sponsor_color_key,
+                            R.string.sponsor_block_category_sponsor_color_key,
                             R.color.sponsor_segment);
 
                     setColorPreference(editor,
-                            R.string.sponsorblock_category_intro_color_key,
+                            R.string.sponsor_block_category_intro_color_key,
                             R.color.intro_segment);
 
                     setColorPreference(editor,
-                            R.string.sponsorblock_category_outro_color_key,
+                            R.string.sponsor_block_category_outro_color_key,
                             R.color.outro_segment);
 
                     setColorPreference(editor,
-                            R.string.sponsorblock_category_interaction_color_key,
+                            R.string.sponsor_block_category_interaction_color_key,
                             R.color.interaction_segment);
 
                     setColorPreference(editor,
-                            R.string.sponsorblock_category_self_promo_color_key,
+                            R.string.sponsor_block_category_self_promo_color_key,
                             R.color.self_promo_segment);
 
                     setColorPreference(editor,
-                            R.string.sponsorblock_category_non_music_color_key,
+                            R.string.sponsor_block_category_non_music_color_key,
                             R.color.non_music_segment);
 
                     editor.apply();

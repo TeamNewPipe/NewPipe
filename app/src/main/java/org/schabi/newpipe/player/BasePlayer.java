@@ -238,7 +238,7 @@ public abstract class BasePlayer implements
 
         this.mPrefs = PreferenceManager.getDefaultSharedPreferences(App.getApp());
 
-        isBlockingSponsors = mPrefs.getBoolean(context.getString(R.string.sponsorblock_enable_key),
+        isBlockingSponsors = mPrefs.getBoolean(context.getString(R.string.sponsor_block_enable_key),
                 false);
     }
 
@@ -733,7 +733,7 @@ public abstract class BasePlayer implements
 
         if (isBlockingSponsors
                 && mPrefs.getBoolean(
-                        context.getString(R.string.sponsorblock_enable_key), false)) {
+                        context.getString(R.string.sponsor_block_enable_key), false)) {
             final VideoSegment segment = getSkippableSegment(currentProgress);
             if (segment == null) {
                 return;
@@ -744,33 +744,33 @@ public abstract class BasePlayer implements
             seekTo(skipTo);
 
             if (mPrefs.getBoolean(
-                    context.getString(R.string.sponsorblock_notifications_key), false)) {
+                    context.getString(R.string.sponsor_block_notifications_key), false)) {
                 String toastText = "";
 
                 switch (segment.category) {
                     case "sponsor":
                         toastText = context
-                                .getString(R.string.sponsorblock_skip_sponsor_message);
+                                .getString(R.string.sponsor_block_skip_sponsor_message);
                         break;
                     case "intro":
                         toastText = context
-                                .getString(R.string.sponsorblock_skip_intro_message);
+                                .getString(R.string.sponsor_block_skip_intro_message);
                         break;
                     case "outro":
                         toastText = context
-                                .getString(R.string.sponsorblock_skip_outro_message);
+                                .getString(R.string.sponsor_block_skip_outro_message);
                         break;
                     case "interaction":
                         toastText = context
-                                .getString(R.string.sponsorblock_skip_interaction_message);
+                                .getString(R.string.sponsor_block_skip_interaction_message);
                         break;
                     case "selfpromo":
                         toastText = context
-                                .getString(R.string.sponsorblock_skip_self_promo_message);
+                                .getString(R.string.sponsor_block_skip_self_promo_message);
                         break;
                     case "music_offtopic":
                         toastText = context
-                                .getString(R.string.sponsorblock_skip_non_music_message);
+                                .getString(R.string.sponsor_block_skip_non_music_message);
                         break;
                 }
 
@@ -778,7 +778,7 @@ public abstract class BasePlayer implements
             }
 
             if (DEBUG) {
-                Log.d("SPONSOR_BLOCK", "Skipped sponsor: currentProgress = ["
+                Log.d("SPONSOR_BLOCK", "Skipped segment: currentProgress = ["
                         + currentProgress + "], skipped to = [" + skipTo + "]");
             }
         }
@@ -1167,44 +1167,44 @@ public abstract class BasePlayer implements
 
         if (info.getUrl().startsWith("https://www.youtube.com")) {
             final String apiUrl = mPrefs
-                    .getString(context.getString(R.string.sponsorblock_api_url_key), null);
+                    .getString(context.getString(R.string.sponsor_block_api_url_key), null);
             final boolean isSponsorBlockEnabled = mPrefs
-                    .getBoolean(context.getString(R.string.sponsorblock_enable_key), false);
+                    .getBoolean(context.getString(R.string.sponsor_block_enable_key), false);
 
             if (apiUrl != null && !apiUrl.isEmpty() && isSponsorBlockEnabled) {
                 try {
                    final boolean includeSponsorCategory =
                             mPrefs.getBoolean(
                                     context.getString(
-                                            R.string.sponsorblock_category_sponsor_key),
+                                            R.string.sponsor_block_category_sponsor_key),
                                     false);
 
                    final boolean includeIntroCategory =
                             mPrefs.getBoolean(
                                     context.getString(
-                                            R.string.sponsorblock_category_intro_key),
+                                            R.string.sponsor_block_category_intro_key),
                                     false);
 
                    final boolean includeOutroCategory =
                             mPrefs.getBoolean(
                                     context.getString(
-                                            R.string.sponsorblock_category_outro_key),
+                                            R.string.sponsor_block_category_outro_key),
                                     false);
 
                     final boolean includeInteractionCategory =
                             mPrefs.getBoolean(
                                     context.getString(
-                                            R.string.sponsorblock_category_interaction_key),
+                                            R.string.sponsor_block_category_interaction_key),
                                     false);
                     final boolean includeSelfPromoCategory =
                             mPrefs.getBoolean(
                                     context.getString(
-                                            R.string.sponsorblock_category_self_promo_key),
+                                            R.string.sponsor_block_category_self_promo_key),
                                     false);
                     final boolean includeMusicCategory =
                             mPrefs.getBoolean(
                                     context.getString(
-                                            R.string.sponsorblock_category_non_music_key),
+                                            R.string.sponsor_block_category_non_music_key),
                                     false);
 
                     videoSegments = new SponsorBlockApiTask(apiUrl)
@@ -1216,7 +1216,7 @@ public abstract class BasePlayer implements
                                     includeSelfPromoCategory,
                                     includeMusicCategory);
                 } catch (final Exception e) {
-                    Log.e("SPONSOR_BLOCK", "Error getting YouTube video sponsor times.", e);
+                    Log.e("SPONSOR_BLOCK", "Error getting YouTube video segments.", e);
                 }
             }
         }

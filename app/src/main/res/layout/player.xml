@@ -317,7 +317,7 @@
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_sponsor_block_disable_white_24dp"
                     android:background="?attr/selectableItemBackground"
-                    android:contentDescription="@string/sponsorblock_toggle_skipping"
+                    android:contentDescription="@string/sponsor_block_toggle_skipping"
                     tools:ignore="RtlHardcoded" />
 
                 </LinearLayout>

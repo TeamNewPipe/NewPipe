@@ -15,11 +15,11 @@
         android:layout_marginBottom="6dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="@string/sponsorblock_api_url_help_text"/>
+        android:text="@string/sponsor_block_api_url_help_text"/>
     <Button
-        android:id="@+id/sponsorblock_privacy_policy_button"
+        android:id="@+id/sponsor_block_privacy_policy_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/sponsorblock_privacy_policy_text"/>
+        android:text="@string/sponsor_block_privacy_policy_text"/>
 </LinearLayout>

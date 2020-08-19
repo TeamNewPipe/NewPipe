@@ -145,25 +145,25 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         });
 
         final Preference sponsorBlockWebsitePreference =
-                findPreference(getString(R.string.sponsorblock_home_page_key));
+                findPreference(getString(R.string.sponsor_block_home_page_key));
         sponsorBlockWebsitePreference.setOnPreferenceClickListener((Preference p) -> {
             final Intent i = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(getString(R.string.sponsorblock_homepage_url)));
+                    Uri.parse(getString(R.string.sponsor_block_homepage_url)));
             startActivity(i);
             return true;
         });
 
         final Preference sponsorBlockPrivacyPreference =
-                findPreference(getString(R.string.sponsorblock_privacy_key));
+                findPreference(getString(R.string.sponsor_block_privacy_key));
         sponsorBlockPrivacyPreference.setOnPreferenceClickListener((Preference p) -> {
             final Intent i = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(getString(R.string.sponsorblock_privacy_policy_url)));
+                    Uri.parse(getString(R.string.sponsor_block_privacy_policy_url)));
             startActivity(i);
             return true;
         });
 
         final Preference sponsorBlockApiUrlPreference =
-                findPreference(getString(R.string.sponsorblock_api_url_key));
+                findPreference(getString(R.string.sponsor_block_api_url_key));
         sponsorBlockApiUrlPreference
                 .setOnPreferenceChangeListener((preference, newValue) -> {
                     updateDependencies(preference, newValue);
@@ -176,11 +176,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         super.onViewCreated(view, savedInstanceState);
 
         final Preference sponsorBlockApiUrlPreference =
-                findPreference(getString(R.string.sponsorblock_api_url_key));
+                findPreference(getString(R.string.sponsor_block_api_url_key));
         final String sponsorBlockApiUrlPreferenceValue =
                 getPreferenceManager()
                         .getSharedPreferences()
-                        .getString(getString(R.string.sponsorblock_api_url_key), null);
+                        .getString(getString(R.string.sponsor_block_api_url_key), null);
         updateDependencies(sponsorBlockApiUrlPreference, sponsorBlockApiUrlPreferenceValue);
     }
 
@@ -380,15 +380,15 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private void updateDependencies(final Preference preference, final Object newValue) {
         // This is a workaround to force dependency updates for custom preferences.
 
-        // sponsorblock_api_url_key
-        if (preference.getKey().equals(getString(R.string.sponsorblock_api_url_key))) {
-            findPreference(getString(R.string.sponsorblock_enable_key))
+        // sponsor_block_api_url_key
+        if (preference.getKey().equals(getString(R.string.sponsor_block_api_url_key))) {
+            findPreference(getString(R.string.sponsor_block_enable_key))
                     .onDependencyChanged(preference,
                             newValue == null || newValue.equals(""));
-            findPreference(getString(R.string.sponsorblock_notifications_key))
+            findPreference(getString(R.string.sponsor_block_notifications_key))
                     .onDependencyChanged(preference,
                             newValue == null || newValue.equals(""));
-            findPreference(getString(R.string.sponsorblock_categories_key))
+            findPreference(getString(R.string.sponsor_block_categories_key))
                     .onDependencyChanged(preference,
                             newValue == null || newValue.equals(""));
         }
