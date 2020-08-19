@@ -75,7 +75,7 @@
     <string name="feed_create_new_group_button_title">Novo</string>
     <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. 
 \n 
-\nEsperamos que seja suportado em uma versão futura.</string>
+\nEsperamos que seja suportado numa versão futura.</string>
     <string name="minimize_on_exit_none_description">Nenhuma</string>
     <string name="download_path_dialog_title">Escolha a pasta de transferencias para ficheiros de vídeo</string>
     <string name="feed_group_dialog_delete_message">Quer apagar este grupo\?</string>
@@ -253,7 +253,7 @@
     <string name="feed_oldest_subscription_update">Última atualização do feed: %s</string>
     <string name="import_data_title">Importar base de dados</string>
     <string name="error_report_title">Relatório de erro</string>
-    <string name="error_insufficient_storage">Não há espaço disponível no dispositivo</string>
+    <string name="error_insufficient_storage">Não há espaço disponível no aparelho</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar a transferência</string>
     <string name="player_recoverable_failure">A recuperar de um erro do reprodutor</string>
     <string name="settings_category_other_title">Outros</string>
@@ -534,7 +534,7 @@
     <string name="playlist_add_stream_success">Colocado na lista de reprodução</string>
     <string name="delete_one">Eliminar um</string>
     <string name="default_video_format_title">Formato de vídeo predefinido</string>
-    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
+    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para pôr na fila\"</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="play_btn_text">Reproduzir</string>
     <string name="metadata_cache_wipe_summary">Remover todos os dados da página da Web em cache</string>
