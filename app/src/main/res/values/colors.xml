@@ -82,5 +82,6 @@
 
     <color name="black">#000</color>
     <color name="gray_transparent">#be757575</color>
+    <color name="neon_green">#39ff14</color>
 
 </resources>
