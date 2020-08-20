@@ -132,7 +132,7 @@
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
-    <string name="settings_category_sponsor_block_title">SponsorBlock (beta, third party service)</string>
+    <string name="settings_category_sponsor_block_title">SponsorBlock (Beta, Third-Party Service)</string>
     <string name="settings_category_sponsor_block_categories_title">SponsorBlock Categories</string>
     <string name="settings_category_sponsor_block_categories_summary">Customize which video segments to skip, along with their color markings on the seek bar.</string>
     <string name="settings_category_sponsor_block_categories_reset_colors_title">Reset Colors</string>
