@@ -70,15 +70,15 @@
     </style>
 
     <style name="DarkTheme.switch" parent="DarkTheme">
-        <item name="android:colorControlActivated">@color/white</item>
+        <item name="android:colorControlActivated">@color/light_youtube_statusbar_color</item>
     </style>
 
     <style name="LightTheme.switch" parent="LightTheme">
-          <item name="android:colorControlActivated">@color/white</item>
+          <item name="android:colorControlActivated">@color/light_youtube_statusbar_color</item>
     </style>
 
     <style name="BlackTheme.switch" parent="BlackTheme">
-        <item name="android:colorControlActivated">@color/white</item>
+        <item name="android:colorControlActivated">@color/light_youtube_statusbar_color</item>
     </style>
 
 </resources>
