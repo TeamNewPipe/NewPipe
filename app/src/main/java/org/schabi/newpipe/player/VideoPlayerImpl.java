@@ -1607,6 +1607,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
     protected void setBlockSponsorsButton(final ImageButton button,
                                           final boolean isBlockingSponsors) {
+        if (button == null) {
+            return;
+        }
+
         button.setImageDrawable(AppCompatResources.getDrawable(service, isBlockingSponsors
                 ? R.drawable.ic_sponsor_block_enable_white_24dp
                 : R.drawable.ic_sponsor_block_disable_white_24dp));
