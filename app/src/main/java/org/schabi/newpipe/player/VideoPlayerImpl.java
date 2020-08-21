@@ -362,7 +362,11 @@ public class VideoPlayerImpl extends VideoPlayer
             playWithKodi.setVisibility(View.GONE);
             openInBrowser.setVisibility(View.GONE);
             muteButton.setVisibility(View.GONE);
-            blockSponsorsButton.setVisibility(View.GONE);
+
+            if (blockSponsorsButton != null) {
+                blockSponsorsButton.setVisibility(View.GONE);
+            }
+
             playerCloseButton.setVisibility(View.GONE);
             getTopControlsRoot().bringToFront();
             getTopControlsRoot().setClickable(false);
@@ -385,9 +389,11 @@ public class VideoPlayerImpl extends VideoPlayer
             openInBrowser.setVisibility(View.VISIBLE);
             muteButton.setVisibility(View.VISIBLE);
 
-            final boolean isSponsorBlockEnabled = mPrefs.getBoolean(
-                    context.getString(R.string.sponsor_block_enable_key), false);
-            blockSponsorsButton.setVisibility(isSponsorBlockEnabled ? View.VISIBLE : View.GONE);
+            if (blockSponsorsButton != null) {
+                final boolean isSponsorBlockEnabled = mPrefs.getBoolean(
+                        context.getString(R.string.sponsor_block_enable_key), false);
+                blockSponsorsButton.setVisibility(isSponsorBlockEnabled ? View.VISIBLE : View.GONE);
+            }
 
             playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
             // Top controls have a large minHeight which is allows to drag the player
@@ -474,7 +480,10 @@ public class VideoPlayerImpl extends VideoPlayer
         openInBrowser.setOnClickListener(this);
         playerCloseButton.setOnClickListener(this);
         muteButton.setOnClickListener(this);
-        blockSponsorsButton.setOnClickListener(this);
+
+        if (blockSponsorsButton != null) {
+            blockSponsorsButton.setOnClickListener(this);
+        }
 
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
@@ -822,7 +831,7 @@ public class VideoPlayerImpl extends VideoPlayer
             }
         } else if (v.getId() == muteButton.getId()) {
             onMuteUnmuteButtonClicked();
-        } else if (v.getId() == blockSponsorsButton.getId()) {
+        } else if (blockSponsorsButton != null && v.getId() == blockSponsorsButton.getId()) {
             onBlockingSponsorsButtonClicked();
         } else if (v.getId() == playerCloseButton.getId()) {
             service.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
