@@ -322,17 +322,15 @@ public class VideoPlayerImpl extends VideoPlayer
         if (popupPlayerSelected()) {
             final float captionRatio = (captionScale - 1.0f) / 5.0f + 1.0f;
             view.setFractionalTextSize(SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionRatio);
-            view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
-            view.setStyle(captionStyle);
         } else {
             final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
             final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
             final float captionRatioInverse = 20f + 4f * (1.0f - captionScale);
             view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
                     (float) minimumLength / captionRatioInverse);
-            view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
-            view.setStyle(captionStyle);
         }
+        view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
+        view.setStyle(captionStyle);
     }
 
     /**
