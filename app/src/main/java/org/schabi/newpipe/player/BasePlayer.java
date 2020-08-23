@@ -76,9 +76,11 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.SerializedCache;
+import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.VideoSegment;
 
 import java.io.IOException;
+import java.util.Set;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -205,7 +207,7 @@ public abstract class BasePlayer implements
     private Disposable stateLoader;
 
     protected int currentState = STATE_PREFLIGHT;
-    private boolean isBlockingSponsors;
+    private SponsorBlockMode sponsorBlockMode = SponsorBlockMode.DISABLED;
 
     public BasePlayer(@NonNull final Context context) {
         this.context = context;
@@ -237,9 +239,6 @@ public abstract class BasePlayer implements
         this.renderFactory = new DefaultRenderersFactory(context);
 
         this.mPrefs = PreferenceManager.getDefaultSharedPreferences(App.getApp());
-
-        isBlockingSponsors = mPrefs.getBoolean(context.getString(R.string.sponsor_block_enable_key),
-                false);
     }
 
     public void setup() {
@@ -699,11 +698,25 @@ public abstract class BasePlayer implements
         if (DEBUG) {
             Log.d(TAG, "onBlockingSponsorsButtonClicked() called");
         }
-        isBlockingSponsors = !isBlockingSponsors;
+
+        switch (sponsorBlockMode) {
+            case DISABLED:
+                sponsorBlockMode = SponsorBlockMode.ENABLED;
+                break;
+            case ENABLED:
+                sponsorBlockMode = SponsorBlockMode.DISABLED;
+                break;
+            case EXCLUDE:
+                // ignored
+        }
     }
 
-    public boolean isBlockingSponsors() {
-        return isBlockingSponsors;
+    public SponsorBlockMode getSponsorBlockMode() {
+        return sponsorBlockMode;
+    }
+
+    public void setSponsorBlockMode(final SponsorBlockMode mode) {
+        sponsorBlockMode = mode;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -731,9 +744,7 @@ public abstract class BasePlayer implements
                 simpleExoPlayer.getBufferedPercentage()
         );
 
-        if (isBlockingSponsors
-                && mPrefs.getBoolean(
-                        context.getString(R.string.sponsor_block_enable_key), false)) {
+        if (sponsorBlockMode == SponsorBlockMode.ENABLED) {
             final VideoSegment segment = getSkippableSegment(currentProgress);
             if (segment == null) {
                 return;
@@ -1165,11 +1176,22 @@ public abstract class BasePlayer implements
         initThumbnail(info.getThumbnailUrl());
         registerView();
 
+        final boolean isSponsorBlockEnabled = mPrefs.getBoolean(
+                context.getString(R.string.sponsor_block_enable_key), false);
+        final Set<String> channelExclusions = mPrefs.getStringSet(
+                context.getString(R.string.sponsor_block_exclusion_list_key), null);
+
+        if (channelExclusions != null && channelExclusions.contains(info.getUploaderName())) {
+            sponsorBlockMode = SponsorBlockMode.EXCLUDE;
+        } else {
+            sponsorBlockMode = isSponsorBlockEnabled
+                    ? SponsorBlockMode.ENABLED
+                    : SponsorBlockMode.DISABLED;
+        }
+
         if (info.getUrl().startsWith("https://www.youtube.com")) {
             final String apiUrl = mPrefs
                     .getString(context.getString(R.string.sponsor_block_api_url_key), null);
-            final boolean isSponsorBlockEnabled = mPrefs
-                    .getBoolean(context.getString(R.string.sponsor_block_enable_key), false);
 
             if (apiUrl != null && !apiUrl.isEmpty() && isSponsorBlockEnabled) {
                 try {

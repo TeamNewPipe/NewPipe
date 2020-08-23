@@ -100,8 +100,11 @@ import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.SponsorBlockMode;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static android.content.Context.WINDOW_SERVICE;
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
@@ -409,7 +412,7 @@ public class VideoPlayerImpl extends VideoPlayer
             channelTextView.setVisibility(View.VISIBLE);
         }
         setMuteButton(muteButton, isMuted());
-        setBlockSponsorsButton(blockSponsorsButton, isBlockingSponsors());
+        setBlockSponsorsButton(blockSponsorsButton);
 
         animateRotation(moreOptionsButton, DEFAULT_CONTROLS_DURATION, 0);
     }
@@ -483,6 +486,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
         if (blockSponsorsButton != null) {
             blockSponsorsButton.setOnClickListener(this);
+            blockSponsorsButton.setOnLongClickListener(this);
         }
 
         settingsContentObserver = new ContentObserver(new Handler()) {
@@ -630,6 +634,8 @@ public class VideoPlayerImpl extends VideoPlayer
 
         showHideKodiButton();
 
+        setBlockSponsorsButton(blockSponsorsButton);
+
         titleTextView.setText(tag.getMetadata().getName());
         channelTextView.setText(tag.getMetadata().getUploaderName());
 
@@ -656,13 +662,18 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onBlockingSponsorsButtonClicked() {
         super.onBlockingSponsorsButtonClicked();
-        setBlockSponsorsButton(blockSponsorsButton, isBlockingSponsors());
+        setBlockSponsorsButton(blockSponsorsButton);
 
-        Toast.makeText(context,
-                isBlockingSponsors()
-                        ? "SponsorBlock enabled"
-                        : "SponsorBlock disabled",
-                Toast.LENGTH_SHORT).show();
+        switch (getSponsorBlockMode()) {
+            case DISABLED:
+                Toast.makeText(context, "SponsorBlock disabled", Toast.LENGTH_SHORT).show();
+                break;
+            case ENABLED:
+                Toast.makeText(context, "SponsorBlock enabled", Toast.LENGTH_SHORT).show();
+                break;
+            case EXCLUDE:
+                // ignored
+        }
     }
 
     @Override
@@ -857,6 +868,43 @@ public class VideoPlayerImpl extends VideoPlayer
             fragmentListener.onMoreOptionsLongClicked();
             hideControls(0, 0);
             hideSystemUIIfNeeded();
+        } else if (v.getId() == blockSponsorsButton.getId()) {
+            final MediaSourceTag currentMetadata = getCurrentMetadata();
+            if (currentMetadata == null) {
+                return true;
+            }
+
+            final Set<String> channelExclusions =
+                    mPrefs.getStringSet(
+                            context.getString(R.string.sponsor_block_exclusion_list_key),
+                            new HashSet<>());
+
+            final String toastText;
+
+            if (getSponsorBlockMode() == SponsorBlockMode.EXCLUDE) {
+                if (channelExclusions != null) {
+                    channelExclusions.remove(currentMetadata.getMetadata().getUploaderName());
+                }
+
+                setSponsorBlockMode(SponsorBlockMode.ENABLED);
+                toastText = "Uploader removed from SponsorBlock exclusion list";
+            } else {
+                if (channelExclusions != null) {
+                    channelExclusions.add(currentMetadata.getMetadata().getUploaderName());
+                }
+
+                setSponsorBlockMode(SponsorBlockMode.EXCLUDE);
+                toastText = "Uploader excluded from SponsorBlock";
+            }
+
+            mPrefs.edit()
+                    .putStringSet(
+                            context.getString(R.string.sponsor_block_exclusion_list_key),
+                            channelExclusions)
+                    .apply();
+
+            setBlockSponsorsButton(blockSponsorsButton);
+            Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
         }
         return true;
     }
@@ -1605,15 +1653,29 @@ public class VideoPlayerImpl extends VideoPlayer
                 ? R.drawable.ic_volume_off_white_24dp : R.drawable.ic_volume_up_white_24dp));
     }
 
-    protected void setBlockSponsorsButton(final ImageButton button,
-                                          final boolean isBlockingSponsors) {
+    protected void setBlockSponsorsButton(final ImageButton button) {
         if (button == null) {
             return;
         }
 
-        button.setImageDrawable(AppCompatResources.getDrawable(service, isBlockingSponsors
-                ? R.drawable.ic_sponsor_block_enable_white_24dp
-                : R.drawable.ic_sponsor_block_disable_white_24dp));
+        final SponsorBlockMode sponsorBlockMode = getSponsorBlockMode();
+        final int resId;
+
+        switch (sponsorBlockMode) {
+            case DISABLED:
+                resId = R.drawable.ic_sponsor_block_disable_white_24dp;
+                break;
+            case ENABLED:
+                resId = R.drawable.ic_sponsor_block_enable_white_24dp;
+                break;
+            case EXCLUDE:
+                resId = R.drawable.ic_sponsor_block_exclude_white_24dp;
+                break;
+            default:
+                return;
+        }
+
+        button.setImageDrawable(AppCompatResources.getDrawable(service, resId));
     }
 
     /**

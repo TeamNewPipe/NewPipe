@@ -40,6 +40,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipFile;
@@ -169,6 +170,19 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     updateDependencies(preference, newValue);
                     return true;
                 });
+
+        final Preference sponsorBlockClearExclusionListPreference =
+                findPreference(getString(R.string.sponsor_block_clear_exclusion_list_key));
+        sponsorBlockClearExclusionListPreference.setOnPreferenceClickListener((Preference p) -> {
+            getPreferenceManager()
+                    .getSharedPreferences()
+                    .edit()
+                    .putStringSet(
+                            getString(R.string.sponsor_block_exclusion_list_key), new HashSet<>())
+                    .apply();
+            Toast.makeText(getContext(), "Exclusion list cleared", Toast.LENGTH_SHORT).show();
+            return true;
+        });
     }
 
     @Override

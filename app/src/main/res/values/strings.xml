@@ -706,4 +706,6 @@
     <string name="sponsor_block_skip_self_promo_message">Skipped unpaid/self promo</string>
     <string name="sponsor_block_skip_non_music_message">Skipped non-music</string>
     <string name="sponsor_block_toggle_skipping">Toggle skipping sponsors</string>
+    <string name="sponsor_block_clear_exclusion_list_title">Clear Exclusion List</string>
+    <string name="sponsor_block_clear_exclusion_list_summary">Clear the list of uploaders excluded from SponsorBlock.</string>
 </resources>

@@ -164,5 +164,11 @@
             android:title="@string/settings_category_sponsor_block_categories_title"
             android:summary="@string/settings_category_sponsor_block_categories_summary"/>
 
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="@string/sponsor_block_clear_exclusion_list_key"
+            android:summary="@string/sponsor_block_clear_exclusion_list_summary"
+            android:title="@string/sponsor_block_clear_exclusion_list_title"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

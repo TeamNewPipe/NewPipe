@@ -258,6 +258,8 @@
     <string name="sponsor_block_category_self_promo_color_key" translatable="false">sponsor_block_category_self_promo_color</string>
     <string name="sponsor_block_category_non_music_key" translatable="false">sponsor_block_category_music</string>
     <string name="sponsor_block_category_non_music_color_key" translatable="false">sponsor_block_category_music_color</string>
+    <string name="sponsor_block_exclusion_list_key" translatable="false">sponsor_block_exclusion_list</string>
+    <string name="sponsor_block_clear_exclusion_list_key" translatable="false">sponsor_block_clear_exclusion_list</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>
