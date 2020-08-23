@@ -74,7 +74,7 @@ public class EditColorPreference extends EditTextPreference
 
             return true;
         } catch (final Exception e) {
-            Toast.makeText(getContext(), "Invalid color", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.invalid_color_toast, Toast.LENGTH_SHORT).show();
             return false;
         }
     }

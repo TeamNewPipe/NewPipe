@@ -180,7 +180,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .putStringSet(
                             getString(R.string.sponsor_block_exclusion_list_key), new HashSet<>())
                     .apply();
-            Toast.makeText(getContext(), "Exclusion list cleared", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.sponsor_block_exclusion_list_cleared_toast,
+                    Toast.LENGTH_SHORT).show();
             return true;
         });
     }

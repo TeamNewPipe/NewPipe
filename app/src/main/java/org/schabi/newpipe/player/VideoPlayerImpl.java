@@ -666,10 +666,12 @@ public class VideoPlayerImpl extends VideoPlayer
 
         switch (getSponsorBlockMode()) {
             case DISABLED:
-                Toast.makeText(context, "SponsorBlock disabled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.sponsor_block_disabled_toast, Toast.LENGTH_SHORT)
+                        .show();
                 break;
             case ENABLED:
-                Toast.makeText(context, "SponsorBlock enabled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.sponsor_block_enabled_toast, Toast.LENGTH_SHORT)
+                        .show();
                 break;
             case EXCLUDE:
                 // ignored

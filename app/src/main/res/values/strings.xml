@@ -252,6 +252,7 @@
     <string name="restore_defaults">Restore defaults</string>
     <string name="restore_defaults_confirmation">Do you want to restore defaults?</string>
     <string name="permission_display_over_apps">Give permission to display over other apps</string>
+    <string name="invalid_color_toast">Invalid color</string>
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
@@ -708,4 +709,7 @@
     <string name="sponsor_block_toggle_skipping">Toggle skipping sponsors</string>
     <string name="sponsor_block_clear_exclusion_list_title">Clear Exclusion List</string>
     <string name="sponsor_block_clear_exclusion_list_summary">Clear the list of uploaders excluded from SponsorBlock.</string>
+    <string name="sponsor_block_enabled_toast">SponsorBlock enabled</string>
+    <string name="sponsor_block_disabled_toast">SponsorBlock disabled</string>
+    <string name="sponsor_block_exclusion_list_cleared_toast">Exclusion list cleared</string>
 </resources>
