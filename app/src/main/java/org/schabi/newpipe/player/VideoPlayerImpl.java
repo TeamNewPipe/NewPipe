@@ -870,7 +870,7 @@ public class VideoPlayerImpl extends VideoPlayer
             fragmentListener.onMoreOptionsLongClicked();
             hideControls(0, 0);
             hideSystemUIIfNeeded();
-        } else if (v.getId() == blockSponsorsButton.getId()) {
+        } else if (blockSponsorsButton != null && v.getId() == blockSponsorsButton.getId()) {
             final MediaSourceTag currentMetadata = getCurrentMetadata();
             if (currentMetadata == null) {
                 return true;
