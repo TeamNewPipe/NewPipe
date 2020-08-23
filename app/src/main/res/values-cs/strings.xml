@@ -108,7 +108,7 @@
     <string name="checksum">Kontrolní součet</string>
     <string name="no_available_dir">Určete prosím složku pro stahování později v nastavení</string>
     <string name="user_report">Hlášení uživatele</string>
-    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
+    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu\\nZemě obsahu:\\nJazyk aplikace:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
     <string name="all">Vše</string>
     <string name="channel">Kanál</string>
     <string name="yes">Ano</string>
@@ -626,4 +626,12 @@ otevření ve vyskakovacím okně</string>
     <string name="video_detail_by">%s</string>
     <string name="channel_created_by">Založil %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura avatara kanálu</string>
+    <string name="playlist_page_summary">Strana playlistů</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Ukázat jen neseskupené objednávky</string>
+    <string name="no_playlist_bookmarked_yet">Zatím žádné záložky playlistů</string>
+    <string name="select_a_playlist">Vybrat playlist</string>
+    <string name="error_report_open_github_notice">Prosím, ověřte, zda chyba již existuje. Pokud založíte duplikovaný tiket, obíráte nás o čas, který bychom mohli věnovat řešení skutečných chyb.</string>
+    <string name="error_report_open_issue_button_text">Podat hlášení na GitHubu</string>
+    <string name="copy_for_github">Zkopírovat formátované hlášení</string>
+    <string name="search_showing_result_for">Ukazuji výsledky pro: %s</string>
 </resources>
