@@ -707,9 +707,11 @@
     <string name="sponsor_block_skip_self_promo_message">Skipped unpaid/self promo</string>
     <string name="sponsor_block_skip_non_music_message">Skipped non-music</string>
     <string name="sponsor_block_toggle_skipping">Toggle skipping sponsors</string>
-    <string name="sponsor_block_clear_exclusion_list_title">Clear Exclusion List</string>
-    <string name="sponsor_block_clear_exclusion_list_summary">Clear the list of uploaders excluded from SponsorBlock.</string>
+    <string name="sponsor_block_clear_whitelist_title">Clear Whitelist</string>
+    <string name="sponsor_block_clear_whitelist_summary">Clear the list of uploaders SponsorBlock will ignore.</string>
     <string name="sponsor_block_enabled_toast">SponsorBlock enabled</string>
     <string name="sponsor_block_disabled_toast">SponsorBlock disabled</string>
-    <string name="sponsor_block_exclusion_list_cleared_toast">Exclusion list cleared</string>
+    <string name="sponsor_block_whitelist_cleared_toast">Whitelist cleared</string>
+    <string name="sponsor_block_uploader_added_to_whitelist_toast">Uploader added to whitelist</string>
+    <string name="sponsor_block_uploader_removed_from_whitelist_toast">Uploader removed from whitelist</string>
 </resources>

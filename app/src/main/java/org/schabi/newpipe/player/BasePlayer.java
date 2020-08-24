@@ -706,7 +706,7 @@ public abstract class BasePlayer implements
             case ENABLED:
                 sponsorBlockMode = SponsorBlockMode.DISABLED;
                 break;
-            case EXCLUDE:
+            case IGNORE:
                 // ignored
         }
     }
@@ -1178,11 +1178,11 @@ public abstract class BasePlayer implements
 
         final boolean isSponsorBlockEnabled = mPrefs.getBoolean(
                 context.getString(R.string.sponsor_block_enable_key), false);
-        final Set<String> channelExclusions = mPrefs.getStringSet(
-                context.getString(R.string.sponsor_block_exclusion_list_key), null);
+        final Set<String> uploaderWhitelist = mPrefs.getStringSet(
+                context.getString(R.string.sponsor_block_whitelist_key), null);
 
-        if (channelExclusions != null && channelExclusions.contains(info.getUploaderName())) {
-            sponsorBlockMode = SponsorBlockMode.EXCLUDE;
+        if (uploaderWhitelist != null && uploaderWhitelist.contains(info.getUploaderName())) {
+            sponsorBlockMode = SponsorBlockMode.IGNORE;
         } else {
             sponsorBlockMode = isSponsorBlockEnabled
                     ? SponsorBlockMode.ENABLED

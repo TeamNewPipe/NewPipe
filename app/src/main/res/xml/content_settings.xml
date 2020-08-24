@@ -166,9 +166,9 @@
 
         <Preference
             app:iconSpaceReserved="false"
-            android:key="@string/sponsor_block_clear_exclusion_list_key"
-            android:summary="@string/sponsor_block_clear_exclusion_list_summary"
-            android:title="@string/sponsor_block_clear_exclusion_list_title"/>
+            android:key="@string/sponsor_block_clear_whitelist_key"
+            android:summary="@string/sponsor_block_clear_whitelist_summary"
+            android:title="@string/sponsor_block_clear_whitelist_title"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

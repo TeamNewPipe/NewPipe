@@ -171,16 +171,16 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     return true;
                 });
 
-        final Preference sponsorBlockClearExclusionListPreference =
-                findPreference(getString(R.string.sponsor_block_clear_exclusion_list_key));
-        sponsorBlockClearExclusionListPreference.setOnPreferenceClickListener((Preference p) -> {
+        final Preference sponsorBlockClearWhitelistPreference =
+                findPreference(getString(R.string.sponsor_block_clear_whitelist_key));
+        sponsorBlockClearWhitelistPreference.setOnPreferenceClickListener((Preference p) -> {
             getPreferenceManager()
                     .getSharedPreferences()
                     .edit()
                     .putStringSet(
-                            getString(R.string.sponsor_block_exclusion_list_key), new HashSet<>())
+                            getString(R.string.sponsor_block_whitelist_key), new HashSet<>())
                     .apply();
-            Toast.makeText(getContext(), R.string.sponsor_block_exclusion_list_cleared_toast,
+            Toast.makeText(getContext(), R.string.sponsor_block_whitelist_cleared_toast,
                     Toast.LENGTH_SHORT).show();
             return true;
         });
@@ -404,6 +404,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .onDependencyChanged(preference,
                             newValue == null || newValue.equals(""));
             findPreference(getString(R.string.sponsor_block_categories_key))
+                    .onDependencyChanged(preference,
+                            newValue == null || newValue.equals(""));
+            findPreference(getString(R.string.sponsor_block_clear_whitelist_key))
                     .onDependencyChanged(preference,
                             newValue == null || newValue.equals(""));
         }

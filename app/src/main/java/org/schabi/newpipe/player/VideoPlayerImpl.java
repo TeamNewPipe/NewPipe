@@ -673,7 +673,7 @@ public class VideoPlayerImpl extends VideoPlayer
                 Toast.makeText(context, R.string.sponsor_block_enabled_toast, Toast.LENGTH_SHORT)
                         .show();
                 break;
-            case EXCLUDE:
+            case IGNORE:
                 // ignored
         }
     }
@@ -876,33 +876,35 @@ public class VideoPlayerImpl extends VideoPlayer
                 return true;
             }
 
-            final Set<String> channelExclusions =
+            final Set<String> uploaderWhitelist =
                     mPrefs.getStringSet(
-                            context.getString(R.string.sponsor_block_exclusion_list_key),
+                            context.getString(R.string.sponsor_block_whitelist_key),
                             new HashSet<>());
 
             final String toastText;
 
-            if (getSponsorBlockMode() == SponsorBlockMode.EXCLUDE) {
-                if (channelExclusions != null) {
-                    channelExclusions.remove(currentMetadata.getMetadata().getUploaderName());
+            if (getSponsorBlockMode() == SponsorBlockMode.IGNORE) {
+                if (uploaderWhitelist != null) {
+                    uploaderWhitelist.remove(currentMetadata.getMetadata().getUploaderName());
                 }
 
                 setSponsorBlockMode(SponsorBlockMode.ENABLED);
-                toastText = "Uploader removed from SponsorBlock exclusion list";
+                toastText = context
+                        .getString(R.string.sponsor_block_uploader_removed_from_whitelist_toast);
             } else {
-                if (channelExclusions != null) {
-                    channelExclusions.add(currentMetadata.getMetadata().getUploaderName());
+                if (uploaderWhitelist != null) {
+                    uploaderWhitelist.add(currentMetadata.getMetadata().getUploaderName());
                 }
 
-                setSponsorBlockMode(SponsorBlockMode.EXCLUDE);
-                toastText = "Uploader excluded from SponsorBlock";
+                setSponsorBlockMode(SponsorBlockMode.IGNORE);
+                toastText = context
+                        .getString(R.string.sponsor_block_uploader_added_to_whitelist_toast);
             }
 
             mPrefs.edit()
                     .putStringSet(
-                            context.getString(R.string.sponsor_block_exclusion_list_key),
-                            channelExclusions)
+                            context.getString(R.string.sponsor_block_whitelist_key),
+                            uploaderWhitelist)
                     .apply();
 
             setBlockSponsorsButton(blockSponsorsButton);
@@ -1670,7 +1672,7 @@ public class VideoPlayerImpl extends VideoPlayer
             case ENABLED:
                 resId = R.drawable.ic_sponsor_block_enable_white_24dp;
                 break;
-            case EXCLUDE:
+            case IGNORE:
                 resId = R.drawable.ic_sponsor_block_exclude_white_24dp;
                 break;
             default:
