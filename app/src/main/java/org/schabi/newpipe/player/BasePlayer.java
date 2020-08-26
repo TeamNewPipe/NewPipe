@@ -761,31 +761,31 @@ public abstract class BasePlayer implements
                 switch (segment.category) {
                     case "sponsor":
                         toastText = context
-                                .getString(R.string.sponsor_block_skip_sponsor_message);
+                                .getString(R.string.sponsor_block_skip_sponsor_toast);
                         break;
                     case "intro":
                         toastText = context
-                                .getString(R.string.sponsor_block_skip_intro_message);
+                                .getString(R.string.sponsor_block_skip_intro_toast);
                         break;
                     case "outro":
                         toastText = context
-                                .getString(R.string.sponsor_block_skip_outro_message);
+                                .getString(R.string.sponsor_block_skip_outro_toast);
                         break;
                     case "interaction":
                         toastText = context
-                                .getString(R.string.sponsor_block_skip_interaction_message);
+                                .getString(R.string.sponsor_block_skip_interaction_toast);
                         break;
                     case "selfpromo":
                         toastText = context
-                                .getString(R.string.sponsor_block_skip_self_promo_message);
+                                .getString(R.string.sponsor_block_skip_self_promo_toast);
                         break;
                     case "music_offtopic":
                         toastText = context
-                                .getString(R.string.sponsor_block_skip_non_music_message);
+                                .getString(R.string.sponsor_block_skip_non_music_toast);
                         break;
                 }
 
-                Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
             }
 
             if (DEBUG) {
