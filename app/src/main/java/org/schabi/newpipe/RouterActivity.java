@@ -492,12 +492,8 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
-                    downloadDialog.getDialog().setOnDismissListener(dialog -> {
-                        finish();
-                    });
-                }, (@NonNull Throwable throwable) -> {
-                    onError();
-                });
+                    downloadDialog.getDialog().setOnDismissListener(dialog -> finish());
+                }, (@NonNull Throwable throwable) -> onError());
     }
 
     @Override

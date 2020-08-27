@@ -162,13 +162,9 @@ public final class AnimationUtils {
                 .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());
         viewPropertyAnimator.setDuration(duration);
-        viewPropertyAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(final ValueAnimator animation) {
+        viewPropertyAnimator.addUpdateListener(animation ->
                 ViewCompat.setBackgroundTintList(view,
-                        new ColorStateList(empty, new int[]{(int) animation.getAnimatedValue()}));
-            }
-        });
+                        new ColorStateList(empty, new int[]{(int) animation.getAnimatedValue()})));
         viewPropertyAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(final Animator animation) {
@@ -205,12 +201,8 @@ public final class AnimationUtils {
                 .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());
         viewPropertyAnimator.setDuration(duration);
-        viewPropertyAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(final ValueAnimator animation) {
-                view.setTextColor((int) animation.getAnimatedValue());
-            }
-        });
+        viewPropertyAnimator.addUpdateListener(animation ->
+                view.setTextColor((int) animation.getAnimatedValue()));
         viewPropertyAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(final Animator animation) {

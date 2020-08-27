@@ -213,9 +213,8 @@ public class PeertubeInstanceListFragment extends Fragment {
 
     private void initButton(final View rootView) {
         final FloatingActionButton fab = rootView.findViewById(R.id.addInstanceButton);
-        fab.setOnClickListener(v -> {
-            showAddItemDialog(requireContext());
-        });
+        fab.setOnClickListener(v ->
+                showAddItemDialog(requireContext()));
     }
 
     private void showAddItemDialog(final Context c) {

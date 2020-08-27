@@ -216,18 +216,16 @@ public class ErrorActivity extends AppCompatActivity {
         addGuruMeditation();
         currentTimeStamp = getCurrentTimeStamp();
 
-        reportEmailButton.setOnClickListener((View v) -> {
-            openPrivacyPolicyDialog(this, "EMAIL");
-        });
+        reportEmailButton.setOnClickListener((View v) ->
+                openPrivacyPolicyDialog(this, "EMAIL"));
 
         copyButton.setOnClickListener((View v) -> {
             ShareUtils.copyToClipboard(this, buildMarkdown());
             Toast.makeText(this, R.string.msg_copied, Toast.LENGTH_SHORT).show();
         });
 
-        reportGithubButton.setOnClickListener((View v) -> {
-            openPrivacyPolicyDialog(this, "GITHUB");
-        });
+        reportGithubButton.setOnClickListener((View v) ->
+                openPrivacyPolicyDialog(this, "GITHUB"));
 
 
         // normal bugreport
@@ -278,10 +276,9 @@ public class ErrorActivity extends AppCompatActivity {
                 .setTitle(R.string.privacy_policy_title)
                 .setMessage(R.string.start_accept_privacy_policy)
                 .setCancelable(false)
-                .setNeutralButton(R.string.read_privacy_policy, (dialog, which) -> {
-                    ShareUtils.openUrlInBrowser(context,
-                            context.getString(R.string.privacy_policy_url));
-                })
+                .setNeutralButton(R.string.read_privacy_policy, (dialog, which) ->
+                        ShareUtils.openUrlInBrowser(context,
+                                context.getString(R.string.privacy_policy_url)))
                 .setPositiveButton(R.string.accept, (dialog, which) -> {
                     if (action.equals("EMAIL")) { // send on email
                         final Intent i = new Intent(Intent.ACTION_SENDTO)
