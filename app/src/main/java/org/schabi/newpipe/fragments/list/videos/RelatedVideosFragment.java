@@ -166,12 +166,10 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
 
     @Override
     public void setTitle(final String title) {
-        return;
     }
 
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
-        return;
     }
 
     private void setInitialData(final StreamInfo info) {

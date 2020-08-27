@@ -87,7 +87,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             }
         }
 
-        final ListPreference durations = (ListPreference) findPreference(
+        final ListPreference durations = findPreference(
                 getString(R.string.seek_duration_key));
         durations.setEntryValues(displayedDurationValues.toArray(new CharSequence[0]));
         durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));

@@ -49,6 +49,7 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import us.shandian.giga.get.DownloadMission;
@@ -302,9 +303,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             float averageSpeed = speed;
 
             if (h.lastSpeedIdx < 0) {
-                for (int i = 0; i < h.lastSpeed.length; i++) {
-                    h.lastSpeed[i] = speed;
-                }
+                Arrays.fill(h.lastSpeed, speed);
                 h.lastSpeedIdx = 0;
             } else {
                 for (int i = 0; i < h.lastSpeed.length; i++) {

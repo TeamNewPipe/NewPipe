@@ -672,7 +672,8 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_title_root_layout:
-                ShareUtils.copyToClipboard(requireContext(), videoTitleTextView.getText().toString());
+                ShareUtils.copyToClipboard(requireContext(),
+                        videoTitleTextView.getText().toString());
                 break;
         }
 

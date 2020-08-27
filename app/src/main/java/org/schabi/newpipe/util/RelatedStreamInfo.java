@@ -20,8 +20,7 @@ public class RelatedStreamInfo extends ListInfo<InfoItem> {
                 info.getOriginalUrl(), info.getUrl(), info.getId(), Collections.emptyList(), null);
         final RelatedStreamInfo relatedStreamInfo = new RelatedStreamInfo(
                 info.getServiceId(), handler, info.getName());
-        final List<InfoItem> streams = new ArrayList<>();
-        streams.addAll(info.getRelatedStreams());
+        final List<InfoItem> streams = new ArrayList<>(info.getRelatedStreams());
         relatedStreamInfo.setRelatedItems(streams);
         return relatedStreamInfo;
     }

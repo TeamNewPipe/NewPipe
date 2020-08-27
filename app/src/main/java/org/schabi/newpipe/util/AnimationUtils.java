@@ -422,7 +422,7 @@ public final class AnimationUtils {
                                                   final long duration, final long delay,
                                                   final Runnable execOnEnd) {
         if (enterOrExit) {
-            view.setTranslationY(-view.getHeight() / 2);
+            view.setTranslationY(-view.getHeight() / 2.0f);
             view.setAlpha(0f);
             view.animate()
                     .setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).translationY(0)
@@ -437,7 +437,7 @@ public final class AnimationUtils {
             }).start();
         } else {
             view.animate().setInterpolator(new FastOutSlowInInterpolator())
-                    .alpha(0f).translationY(-view.getHeight() / 2)
+                    .alpha(0f).translationY(-view.getHeight() / 2.0f)
                     .setDuration(duration).setStartDelay(delay)
                     .setListener(new AnimatorListenerAdapter() {
                 @Override
