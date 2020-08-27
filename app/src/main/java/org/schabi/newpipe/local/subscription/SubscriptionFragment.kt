@@ -11,7 +11,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Environment
 import android.os.Parcelable
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -20,6 +19,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nononsenseapps.filepicker.Utils
 import com.xwray.groupie.Group

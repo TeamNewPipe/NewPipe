@@ -21,7 +21,7 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 

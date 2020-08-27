@@ -2,7 +2,7 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.os.Build;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

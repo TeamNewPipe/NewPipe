@@ -16,7 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.Html;
 import android.text.Spanned;
@@ -427,7 +427,7 @@ public class VideoDetailFragment
             currentWorker.dispose();
         }
         saveCurrentAndRestoreDefaultBrightness();
-        PreferenceManager.getDefaultSharedPreferences(getContext())
+        PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .edit()
                 .putString(getString(R.string.stream_info_selected_tab_key),
                         pageAdapter.getItemTitle(viewPager.getCurrentItem()))
@@ -553,7 +553,6 @@ public class VideoDetailFragment
 
         Serializable serializable = savedState.getSerializable(INFO_KEY);
         if (serializable instanceof StreamInfo) {
-            //noinspection unchecked
             currentInfo = (StreamInfo) serializable;
             InfoCache.getInstance().putInfo(serviceId, url, currentInfo, InfoItem.InfoType.STREAM);
         }
@@ -673,7 +672,7 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_title_root_layout:
-                ShareUtils.copyToClipboard(getContext(), videoTitleTextView.getText().toString());
+                ShareUtils.copyToClipboard(requireContext(), videoTitleTextView.getText().toString());
                 break;
         }
 
@@ -1106,7 +1105,7 @@ public class VideoDetailFragment
             player.toggleFullscreen();
         }
 
-        if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
+        if (!useExternalAudioPlayer) {
             openNormalBackgroundPlayer(append);
         } else {
             startOnExternalPlayer(activity, currentInfo, audioStream);
@@ -1308,7 +1307,6 @@ public class VideoDetailFragment
                         if (Build.VERSION.SDK_INT >= 24) {
                             parsedDescription = Html.fromHtml(descriptionText, 0);
                         } else {
-                            //noinspection deprecation
                             parsedDescription = Html.fromHtml(descriptionText);
                         }
                         return parsedDescription;
@@ -1320,7 +1318,7 @@ public class VideoDetailFragment
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));
         } else if (description.getType() == Description.MARKDOWN) {
-            final Markwon markwon = Markwon.builder(getContext())
+            final Markwon markwon = Markwon.builder(requireContext())
                     .usePlugin(LinkifyPlugin.create())
                     .build();
             markwon.setMarkdown(videoDescriptionView, description.getContent());

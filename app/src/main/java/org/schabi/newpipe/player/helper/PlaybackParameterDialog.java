@@ -3,7 +3,7 @@ package org.schabi.newpipe.player.helper;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -239,12 +239,13 @@ public class PlaybackParameterDialog extends DialogFragment {
         unhookingCheckbox = rootView.findViewById(R.id.unhookCheckbox);
         if (unhookingCheckbox != null) {
             // restore whether pitch and tempo are unhooked or not
-            unhookingCheckbox.setChecked(PreferenceManager.getDefaultSharedPreferences(getContext())
+            unhookingCheckbox.setChecked(PreferenceManager
+                    .getDefaultSharedPreferences(requireContext())
                     .getBoolean(getString(R.string.playback_unhook_key), true));
 
             unhookingCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
                 // save whether pitch and tempo are unhooked or not
-                PreferenceManager.getDefaultSharedPreferences(getContext())
+                PreferenceManager.getDefaultSharedPreferences(requireContext())
                         .edit()
                         .putBoolean(getString(R.string.playback_unhook_key), isChecked)
                         .apply();

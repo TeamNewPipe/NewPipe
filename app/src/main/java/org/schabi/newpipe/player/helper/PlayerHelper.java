@@ -3,7 +3,7 @@ package org.schabi.newpipe.player.helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.accessibility.CaptioningManager;
 
