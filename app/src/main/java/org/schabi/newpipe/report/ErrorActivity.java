@@ -466,7 +466,8 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String getOsString() {
-        final String osBase = Build.VERSION.SDK_INT >= 23 ? Build.VERSION.BASE_OS : "Android";
+        final String osBase = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                ? Build.VERSION.BASE_OS : "Android";
         return System.getProperty("os.name")
                 + " " + (osBase.isEmpty() ? "Android" : osBase)
                 + " " + Build.VERSION.RELEASE

@@ -1925,7 +1925,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private int popupLayoutParamType() {
-        return Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.O
                 ? WindowManager.LayoutParams.TYPE_PHONE
                 : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
     }

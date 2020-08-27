@@ -160,7 +160,7 @@ public class DownloadManagerService extends Service {
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mNetworkStateListenerL = new ConnectivityManager.NetworkCallback() {
                 @Override
                 public void onAvailable(Network network) {
@@ -240,7 +240,7 @@ public class DownloadManagerService extends Service {
 
         manageLock(false);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             mConnectivityManager.unregisterNetworkCallback(mNetworkStateListenerL);
         else
             unregisterReceiver(mNetworkStateListener);
@@ -466,7 +466,7 @@ public class DownloadManagerService extends Service {
         if (downloadDoneCount < 1) {
             downloadDoneList.append(name);
 
-            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 downloadDoneNotification.setContentTitle(getString(R.string.app_name));
             } else {
                 downloadDoneNotification.setContentTitle(null);
@@ -505,7 +505,7 @@ public class DownloadManagerService extends Service {
                     .setContentIntent(mOpenDownloadList);
         }
 
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             downloadFailedNotification.setContentTitle(getString(R.string.app_name));
             downloadFailedNotification.setStyle(new NotificationCompat.BigTextStyle()
                     .bigText(getString(R.string.download_failed).concat(": ").concat(mission.storage.getName())));

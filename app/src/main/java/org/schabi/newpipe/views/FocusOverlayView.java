@@ -259,7 +259,7 @@ public final class FocusOverlayView extends Drawable implements
         // keyboard META key for moving between clusters). We have to fix this unfortunate accident
         // While we are at it, let's deal with touchscreenBlocksFocus too.
 
-        if (Build.VERSION.SDK_INT < 26) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
         }
 

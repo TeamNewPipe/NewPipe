@@ -250,7 +250,7 @@ public abstract class VideoPlayer extends BasePlayer
         simpleExoPlayer.addTextOutput(cues -> subtitleView.onCues(cues));
 
         // Setup audio session with onboard equalizer
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
         }

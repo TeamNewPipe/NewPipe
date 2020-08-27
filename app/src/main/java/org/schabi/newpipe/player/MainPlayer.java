@@ -310,9 +310,7 @@ public final class MainPlayer extends Service {
             setLockScreenThumbnail(builder);
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
+        builder.setPriority(NotificationCompat.PRIORITY_MAX);
         return builder;
     }
 
