@@ -84,7 +84,7 @@ ext {
     checkstyleVersion = '8.32'
     stethoVersion = '1.5.1'
     leakCanaryVersion = '2.2'
-    exoPlayerVersion = '2.11.6'
+    exoPlayerVersion = '2.11.8'
     androidxLifecycleVersion = '2.2.0'
     androidxRoomVersion = '2.2.5'
     groupieVersion = '2.8.0'
@@ -139,7 +139,7 @@ afterEvaluate {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     implementation "frankiesardo:icepick:${icepickVersion}"
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
@@ -169,7 +169,7 @@ dependencies {
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
     implementation "org.jsoup:jsoup:1.13.1"
 
-    implementation "com.squareup.okhttp3:okhttp:3.12.11"
+    implementation "com.squareup.okhttp3:okhttp:3.12.12"
 
     implementation "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"
     implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
