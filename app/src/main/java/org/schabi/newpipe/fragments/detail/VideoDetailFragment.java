@@ -16,9 +16,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import androidx.core.text.HtmlCompat;
 import androidx.preference.PreferenceManager;
 import android.provider.Settings;
-import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.util.Linkify;
@@ -1303,18 +1303,12 @@ public class VideoDetailFragment
 
         if (description.getType() == Description.HTML) {
             disposables.add(Single.just(description.getContent())
-                    .map((@NonNull String descriptionText) -> {
-                        final Spanned parsedDescription;
-                        if (Build.VERSION.SDK_INT >= 24) {
-                            parsedDescription = Html.fromHtml(descriptionText, 0);
-                        } else {
-                            parsedDescription = Html.fromHtml(descriptionText);
-                        }
-                        return parsedDescription;
-                    })
+                    .map((@NonNull final String descriptionText) ->
+                            HtmlCompat.fromHtml(descriptionText,
+                                    HtmlCompat.FROM_HTML_MODE_LEGACY))
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe((@NonNull Spanned spanned) -> {
+                    .subscribe((@NonNull final Spanned spanned) -> {
                         videoDescriptionView.setText(spanned);
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));
