@@ -30,6 +30,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Build;
 import android.os.Handler;
 import androidx.preference.PreferenceManager;
@@ -210,18 +211,18 @@ public abstract class VideoPlayer extends BasePlayer
 
         this.captionTextView = view.findViewById(R.id.captionTextView);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        }
-        this.playbackSeekBar.getProgressDrawable().
-                setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+        playbackSeekBar.getThumb()
+                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
+        this.playbackSeekBar.getProgressDrawable()
+                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY));
 
         this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
         this.playbackSpeedPopupMenu = new PopupMenu(context, playbackSpeedTextView);
         this.captionPopupMenu = new PopupMenu(context, captionTextView);
 
         ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel))
-                .getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+                .getIndeterminateDrawable()
+                .setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
     }
 
     protected abstract void setupSubtitleView(@NonNull SubtitleView view, float captionScale,
@@ -456,11 +457,8 @@ public abstract class VideoPlayer extends BasePlayer
         animateView(controlsRoot, false, DEFAULT_CONTROLS_DURATION);
 
         playbackSeekBar.setEnabled(false);
-        // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-,
-        // so sets the color again
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        }
+        playbackSeekBar.getThumb()
+                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
 
         loadingPanel.setBackgroundColor(Color.BLACK);
         animateView(loadingPanel, true, 0);
@@ -476,11 +474,8 @@ public abstract class VideoPlayer extends BasePlayer
         showAndAnimateControl(-1, true);
 
         playbackSeekBar.setEnabled(true);
-        // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-,
-        // so sets the color again
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        }
+        playbackSeekBar.getThumb()
+                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
 
         loadingPanel.setVisibility(View.GONE);
 

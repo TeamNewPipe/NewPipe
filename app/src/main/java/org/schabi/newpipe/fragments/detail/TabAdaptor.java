@@ -16,7 +16,7 @@ public class TabAdaptor extends FragmentPagerAdapter {
     private final FragmentManager fragmentManager;
 
     public TabAdaptor(final FragmentManager fm) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.fragmentManager = fm;
     }
 
