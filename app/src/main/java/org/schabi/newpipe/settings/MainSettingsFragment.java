@@ -4,12 +4,12 @@ import android.os.Bundle;
 
 import androidx.preference.Preference;
 
-import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.CheckForNewAppVersionTask;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 
 public class MainSettingsFragment extends BasePreferenceFragment {
-    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+    public static final boolean DEBUG = MainActivity.DEBUG;
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {

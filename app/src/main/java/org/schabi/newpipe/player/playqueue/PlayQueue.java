@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.player.playqueue.events.AppendEvent;
 import org.schabi.newpipe.player.playqueue.events.ErrorEvent;
 import org.schabi.newpipe.player.playqueue.events.InitEvent;
@@ -44,7 +44,7 @@ import io.reactivex.subjects.BehaviorSubject;
  */
 public abstract class PlayQueue implements Serializable {
     private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
-    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+    public static final boolean DEBUG = MainActivity.DEBUG;
 
     private ArrayList<PlayQueueItem> backup;
     private ArrayList<PlayQueueItem> streams;

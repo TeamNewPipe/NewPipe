@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.MainActivity;
 
 public final class Migrations {
     public static final int DB_VER_1 = 1;
@@ -14,7 +14,7 @@ public final class Migrations {
     public static final int DB_VER_3 = 3;
 
     private static final String TAG = Migrations.class.getName();
-    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+    public static final boolean DEBUG = MainActivity.DEBUG;
 
     public static final Migration MIGRATION_1_2 = new Migration(DB_VER_1, DB_VER_2) {
         @Override
