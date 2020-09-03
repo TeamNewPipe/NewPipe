@@ -29,10 +29,8 @@ public class MediaSessionManager {
     private final MediaSessionCompat mediaSession;
     @NonNull
     private final MediaSessionConnector sessionConnector;
-    @NonNull
-    private final PlaybackStateCompat.Builder playbackStateCompatBuilder;
 
-    private int tmpThumbHash;
+    private int lastAlbumArtHashCode;
 
     public MediaSessionManager(@NonNull final Context context,
                                @NonNull final Player player,
@@ -42,15 +40,16 @@ public class MediaSessionManager {
                 | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         this.mediaSession.setActive(true);
 
-        this.playbackStateCompatBuilder = new PlaybackStateCompat.Builder();
-        this.playbackStateCompatBuilder.setState(PlaybackStateCompat.STATE_NONE, -1, 1);
-        this.playbackStateCompatBuilder.setActions(PlaybackStateCompat.ACTION_SEEK_TO
-                | PlaybackStateCompat.ACTION_PLAY
-                | PlaybackStateCompat.ACTION_PAUSE // was play and pause now play/pause
-                | PlaybackStateCompat.ACTION_SKIP_TO_NEXT
-                | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
-                | PlaybackStateCompat.ACTION_SET_REPEAT_MODE | PlaybackStateCompat.ACTION_STOP);
-        this.mediaSession.setPlaybackState(playbackStateCompatBuilder.build());
+        this.mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
+                .setState(PlaybackStateCompat.STATE_NONE, -1, 1)
+                .setActions(PlaybackStateCompat.ACTION_SEEK_TO
+                        | PlaybackStateCompat.ACTION_PLAY
+                        | PlaybackStateCompat.ACTION_PAUSE // was play and pause now play/pause
+                        | PlaybackStateCompat.ACTION_SKIP_TO_NEXT
+                        | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
+                        | PlaybackStateCompat.ACTION_SET_REPEAT_MODE
+                        | PlaybackStateCompat.ACTION_STOP)
+                .build());
 
         this.sessionConnector = new MediaSessionConnector(mediaSession);
         this.sessionConnector.setControlDispatcher(new PlayQueuePlaybackController(callback));
@@ -91,7 +90,7 @@ public class MediaSessionManager {
 
         if (getMetadataAlbumArt() == null || getMetadataTitle() == null
                 || getMetadataArtist() == null || getMetadataDuration() <= 1
-                || albumArt.hashCode() != tmpThumbHash) {
+                || albumArt.hashCode() != lastAlbumArtHashCode) {
             if (DEBUG) {
                 Log.d(TAG, "setMetadata: N_Metadata update: t: " + title + " a: " + artist
                         + " thumb: " + albumArt.hashCode() + " d: " + duration);
@@ -103,7 +102,7 @@ public class MediaSessionManager {
                     .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt)
                     .putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, albumArt)
                     .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration).build());
-            tmpThumbHash = albumArt.hashCode();
+            lastAlbumArtHashCode = albumArt.hashCode();
         }
     }
 

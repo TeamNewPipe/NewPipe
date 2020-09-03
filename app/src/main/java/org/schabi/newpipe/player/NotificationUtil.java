@@ -112,7 +112,7 @@ public final class NotificationUtil {
                     compactSlot2 = 2;
                 }
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
 
@@ -184,8 +184,8 @@ public final class NotificationUtil {
                 notificationManager.cancel(NOTIFICATION_ID);
                 notificationManager = null;
             }
-        } catch (Exception e) {
-            Log.e("NotificationUtil", "Exception", e);
+        } catch (final Exception e) {
+            Log.e(TAG, "Could not cancel notification", e);
         }
     }
 
