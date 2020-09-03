@@ -1538,8 +1538,9 @@ public class VideoPlayerImpl extends VideoPlayer
                 && navBarAtTheBottom ? size.y : ViewGroup.LayoutParams.MATCH_PARENT;
         controlsRoot.requestLayout();
 
+        final DisplayMetrics metrics = getRootView().getResources().getDisplayMetrics();
         int topPadding = isFullscreen && !isInMultiWindow() ? getStatusBarHeight() : 0;
-        topPadding = !isLandscape && hasCutout(topPadding) ? 0 : topPadding;
+        topPadding = !isLandscape && DeviceUtils.hasCutout(topPadding, metrics) ? 0 : topPadding;
         getRootView().findViewById(R.id.playbackWindowRoot).setTranslationY(topPadding);
         getBottomControlsRoot().setTranslationY(-topPadding);
     }
@@ -1567,20 +1568,6 @@ public class VideoPlayerImpl extends VideoPlayer
                     TypedValue.COMPLEX_UNIT_DIP, 24, metrics);
         }
         return statusBarHeight;
-    }
-
-    /*
-    * Compares current status bar height with default status bar height in Android and decides,
-    * does the device has cutout or not
-    * */
-    private boolean hasCutout(final float statusBarHeight) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            final DisplayMetrics metrics = getRootView().getResources().getDisplayMetrics();
-            final float defaultStatusBarHeight = TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 25, metrics);
-            return statusBarHeight > defaultStatusBarHeight;
-        }
-        return false;
     }
 
     protected void setMuteButton(final ImageButton button, final boolean isMuted) {
