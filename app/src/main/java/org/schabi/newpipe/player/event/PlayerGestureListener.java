@@ -227,8 +227,8 @@ public class PlayerGestureListener
 
         isMovingInMain = true;
 
-        boolean acceptAnyArea = isVolumeGestureEnabled != isBrightnessGestureEnabled;
-        boolean acceptVolumeArea = acceptAnyArea
+        final boolean acceptAnyArea = isVolumeGestureEnabled != isBrightnessGestureEnabled;
+        final boolean acceptVolumeArea = acceptAnyArea
                 || initialEvent.getX() > playerImpl.getRootView().getWidth() / 2.0;
 
         if (isVolumeGestureEnabled && acceptVolumeArea) {
@@ -563,13 +563,13 @@ public class PlayerGestureListener
     private boolean handleMultiDrag(final MotionEvent event) {
         if (initPointerDistance != -1 && event.getPointerCount() == 2) {
             // get the movements of the fingers
-            double firstPointerMove = Math.hypot(event.getX(0) - initFirstPointerX,
+            final double firstPointerMove = Math.hypot(event.getX(0) - initFirstPointerX,
                     event.getY(0) - initFirstPointerY);
-            double secPointerMove = Math.hypot(event.getX(1) - initSecPointerX,
+            final double secPointerMove = Math.hypot(event.getX(1) - initSecPointerX,
                     event.getY(1) - initSecPointerY);
 
             // minimum threshold beyond which pinch gesture will work
-            int minimumMove = ViewConfiguration.get(service).getScaledTouchSlop();
+            final int minimumMove = ViewConfiguration.get(service).getScaledTouchSlop();
 
             if (Math.max(firstPointerMove, secPointerMove) > minimumMove) {
                 // calculate current distance between the pointers
@@ -577,9 +577,9 @@ public class PlayerGestureListener
                         Math.hypot(event.getX(0) - event.getX(1),
                                 event.getY(0) - event.getY(1));
 
-                double popupWidth = playerImpl.getPopupWidth();
+                final double popupWidth = playerImpl.getPopupWidth();
                 // change co-ordinates of popup so the center stays at the same position
-                double newWidth = (popupWidth * currentPointerDistance / initPointerDistance);
+                final double newWidth = (popupWidth * currentPointerDistance / initPointerDistance);
                 initPointerDistance = currentPointerDistance;
                 playerImpl.getPopupLayoutParams().x += (popupWidth - newWidth) / 2;
 
@@ -601,7 +601,7 @@ public class PlayerGestureListener
      * */
 
     private int getNavigationBarHeight(final Context context) {
-        int resId = context.getResources()
+        final int resId = context.getResources()
                 .getIdentifier("navigation_bar_height", "dimen", "android");
         if (resId > 0) {
             return context.getResources().getDimensionPixelSize(resId);
@@ -610,7 +610,7 @@ public class PlayerGestureListener
     }
 
     private int getStatusBarHeight(final Context context) {
-        int resId = context.getResources()
+        final int resId = context.getResources()
                 .getIdentifier("status_bar_height", "dimen", "android");
         if (resId > 0) {
             return context.getResources().getDimensionPixelSize(resId);

@@ -318,19 +318,17 @@ public class VideoPlayerImpl extends VideoPlayer
                                      final float captionScale,
                                      @NonNull final CaptionStyleCompat captionStyle) {
         if (popupPlayerSelected()) {
-            float captionRatio = (captionScale - 1.0f) / 5.0f + 1.0f;
+            final float captionRatio = (captionScale - 1.0f) / 5.0f + 1.0f;
             view.setFractionalTextSize(SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionRatio);
-            view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
-            view.setStyle(captionStyle);
         } else {
             final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
             final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
             final float captionRatioInverse = 20f + 4f * (1.0f - captionScale);
             view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
                     (float) minimumLength / captionRatioInverse);
-            view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
-            view.setStyle(captionStyle);
         }
+        view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
+        view.setStyle(captionStyle);
     }
 
     /**
@@ -622,7 +620,7 @@ public class VideoPlayerImpl extends VideoPlayer
         if (DEBUG) {
             Log.d(TAG, "onPlaybackShutdown() called");
         }
-        // Override it because we don't want playerImpl destroyed
+        service.onDestroy();
     }
 
     @Override
@@ -693,7 +691,7 @@ public class VideoPlayerImpl extends VideoPlayer
         if (popupPlayerSelected()) {
             setRecovery();
             service.removeViewFromParent();
-            Intent intent = NavigationHelper.getPlayerIntent(
+            final Intent intent = NavigationHelper.getPlayerIntent(
                     service,
                     MainActivity.class,
                     this.getPlayQueue(),
@@ -856,9 +854,11 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void onShareClicked() {
         // share video at the current time (youtube.com/watch?v=ID&t=SECONDS)
+        // Timestamp doesn't make sense in a live stream so drop it
+        final String ts = isLive() ? "" : ("&t=" + (getPlaybackSeekBar().getProgress() / 1000));
         ShareUtils.shareUrl(service,
                 getVideoTitle(),
-                getVideoUrl() + "&t=" + getPlaybackSeekBar().getProgress() / 1000);
+                getVideoUrl() + ts);
     }
 
     private void onPlayWithKodiClicked() {
@@ -868,7 +868,7 @@ public class VideoPlayerImpl extends VideoPlayer
         onPause();
         try {
             NavigationHelper.playWithKore(getParentActivity(), Uri.parse(getVideoUrl()));
-        } catch (Exception e) {
+        } catch (final Exception e) {
             if (DEBUG) {
                 Log.i(TAG, "Failed to start kore", e);
             }
@@ -953,9 +953,9 @@ public class VideoPlayerImpl extends VideoPlayer
         if (l != ol || t != ot || r != or || b != ob) {
             // Use smaller value to be consistent between screen orientations
             // (and to make usage easier)
-            int width = r - l;
-            int height = b - t;
-            int min = Math.min(width, height);
+            final int width = r - l;
+            final int height = b - t;
+            final int min = Math.min(width, height);
             maxGestureLength = (int) (min * MAX_GESTURE_LENGTH);
 
             if (DEBUG) {
@@ -969,7 +969,7 @@ public class VideoPlayerImpl extends VideoPlayer
             queueLayout.getLayoutParams().height = height - queueLayout.getTop();
 
             if (popupPlayerSelected()) {
-                float widthDp = Math.abs(r - l) / service.getResources()
+                final float widthDp = Math.abs(r - l) / service.getResources()
                         .getDisplayMetrics().density;
                 final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP
                         ? View.VISIBLE

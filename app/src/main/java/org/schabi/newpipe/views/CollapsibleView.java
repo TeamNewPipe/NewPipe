@@ -178,7 +178,7 @@ public class CollapsibleView extends LinearLayout {
     }
 
     public void broadcastState() {
-        for (StateListener listener : listeners) {
+        for (final StateListener listener : listeners) {
             listener.onStateChanged(currentState);
         }
     }

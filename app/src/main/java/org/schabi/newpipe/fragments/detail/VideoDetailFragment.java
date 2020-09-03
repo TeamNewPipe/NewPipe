@@ -18,6 +18,12 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.util.Linkify;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,31 +36,25 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
-import android.text.Html;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.text.util.Linkify;
-import android.util.DisplayMetrics;
-import android.util.Log;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -93,8 +93,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.InfoCache;
@@ -112,7 +112,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
@@ -125,9 +124,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
+import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
-import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class VideoDetailFragment
@@ -203,6 +202,7 @@ public class VideoDetailFragment
     private ImageView thumbnailImageView;
     private ImageView thumbnailPlayButton;
     private AnimatedProgressBar positionView;
+    private ViewGroup playerPlaceholder;
 
     private View videoTitleRoot;
     private TextView videoTitleTextView;
@@ -372,7 +372,7 @@ public class VideoDetailFragment
 
     public static VideoDetailFragment getInstance(final int serviceId, final String videoUrl,
                                                   final String name, final PlayQueue playQueue) {
-        VideoDetailFragment instance = new VideoDetailFragment();
+        final VideoDetailFragment instance = new VideoDetailFragment();
         instance.setInitialData(serviceId, videoUrl, name, playQueue);
         return instance;
     }
@@ -505,7 +505,7 @@ public class VideoDetailFragment
             case ReCaptchaActivity.RECAPTCHA_REQUEST:
                 if (resultCode == Activity.RESULT_OK) {
                     NavigationHelper
-                            .openVideoDetailFragment(getFragmentManager(), serviceId, url, name);
+                            .openVideoDetailFragment(getFM(), serviceId, url, name);
                 } else {
                     Log.e(TAG, "ReCaptcha failed");
                 }
@@ -579,9 +579,9 @@ public class VideoDetailFragment
                 openPopupPlayer(false);
                 break;
             case R.id.detail_controls_playlist_append:
-                if (getFragmentManager() != null && currentInfo != null) {
+                if (getFM() != null && currentInfo != null) {
                     PlaylistAppendDialog.fromStreamInfo(currentInfo)
-                            .show(getFragmentManager(), TAG);
+                            .show(getFM(), TAG);
                 }
                 break;
             case R.id.detail_controls_download:
@@ -634,12 +634,9 @@ public class VideoDetailFragment
 
     private void openChannel(final String subChannelUrl, final String subChannelName) {
         try {
-            NavigationHelper.openChannelFragment(
-                    getFragmentManager(),
-                    currentInfo.getServiceId(),
-                    subChannelUrl,
-                    subChannelName);
-        } catch (Exception e) {
+            NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
+                    subChannelUrl, subChannelName);
+        } catch (final Exception e) {
             ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
         }
     }
@@ -709,6 +706,7 @@ public class VideoDetailFragment
         thumbnailBackgroundButton = rootView.findViewById(R.id.detail_thumbnail_root_layout);
         thumbnailImageView = rootView.findViewById(R.id.detail_thumbnail_image_view);
         thumbnailPlayButton = rootView.findViewById(R.id.detail_thumbnail_play_button);
+        playerPlaceholder = rootView.findViewById(R.id.player_placeholder);
 
         contentRootLayoutHiding = rootView.findViewById(R.id.detail_content_root_hiding);
 
@@ -1066,7 +1064,7 @@ public class VideoDetailFragment
         if (pageAdapter.getCount() < 2) {
             tabLayout.setVisibility(View.GONE);
         } else {
-            int position = pageAdapter.getItemPositionByTitle(selectedTabTag);
+            final int position = pageAdapter.getItemPositionByTitle(selectedTabTag);
             if (position != -1) {
                 viewPager.setCurrentItem(position);
             }
@@ -1080,7 +1078,7 @@ public class VideoDetailFragment
                     .getServiceInfo()
                     .getMediaCapabilities()
                     .contains(COMMENTS);
-        } catch (ExtractionException e) {
+        } catch (final ExtractionException e) {
             return false;
         }
     }
@@ -1177,7 +1175,7 @@ public class VideoDetailFragment
 
         // Video view can have elements visible from popup,
         // We hide it here but once it ready the view will be shown in handleIntent()
-        Objects.requireNonNull(playerService.getView()).setVisibility(View.GONE);
+        playerService.getView().setVisibility(View.GONE);
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper
@@ -1269,17 +1267,15 @@ public class VideoDetailFragment
             return;
         }
 
-        final FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
-
         // Check if viewHolder already contains a child
-        if (player.getRootView().getParent() != viewHolder) {
+        if (player.getRootView().getParent() != playerPlaceholder) {
             removeVideoPlayerView();
         }
         setHeightThumbnail();
 
         // Prevent from re-adding a view multiple times
         if (player.getRootView().getParent() == null) {
-            viewHolder.addView(player.getRootView());
+            playerPlaceholder.addView(player.getRootView());
         }
     }
 
@@ -1294,9 +1290,8 @@ public class VideoDetailFragment
             return;
         }
 
-        final FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
-        viewHolder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
-        viewHolder.requestLayout();
+        playerPlaceholder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
+        playerPlaceholder.requestLayout();
     }
 
     private void prepareDescription(final Description description) {
@@ -1308,7 +1303,7 @@ public class VideoDetailFragment
         if (description.getType() == Description.HTML) {
             disposables.add(Single.just(description.getContent())
                     .map((@NonNull String descriptionText) -> {
-                        Spanned parsedDescription;
+                        final Spanned parsedDescription;
                         if (Build.VERSION.SDK_INT >= 24) {
                             parsedDescription = Html.fromHtml(descriptionText, 0);
                         } else {
@@ -1351,7 +1346,7 @@ public class VideoDetailFragment
         final int height;
         if (player != null && player.isFullscreen()) {
             height = isInMultiWindow()
-                    ? Objects.requireNonNull(getView()).getHeight()
+                    ? requireView().getHeight()
                     : activity.getWindow().getDecorView().getHeight();
         } else {
             height = isPortrait
@@ -1413,7 +1408,7 @@ public class VideoDetailFragment
                 }
             }
         };
-        IntentFilter intentFilter = new IntentFilter();
+        final IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_SHOW_MAIN_PLAYER);
         intentFilter.addAction(ACTION_HIDE_MAIN_PLAYER);
         activity.registerReceiver(broadcastReceiver, intentFilter);
@@ -1516,7 +1511,7 @@ public class VideoDetailFragment
             uploaderThumb.setVisibility(View.GONE);
         }
 
-        Drawable buddyDrawable = AppCompatResources.getDrawable(activity, R.drawable.buddy);
+        final Drawable buddyDrawable = AppCompatResources.getDrawable(activity, R.drawable.buddy);
         subChannelThumb.setImageDrawable(buddyDrawable);
         uploaderThumb.setImageDrawable(buddyDrawable);
 
@@ -1680,7 +1675,7 @@ public class VideoDetailFragment
             downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
 
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
-        } catch (Exception e) {
+        } catch (final Exception e) {
             final ErrorActivity.ErrorInfo info = ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                     ServiceList.all()
                             .get(currentInfo
@@ -1706,7 +1701,7 @@ public class VideoDetailFragment
             return true;
         }
 
-        int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
+        final int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
                 ? R.string.youtube_signature_decryption_error
                 : exception instanceof ExtractionException
                 ? R.string.parsing_error
@@ -1774,9 +1769,19 @@ public class VideoDetailFragment
     private void showPlaybackProgress(final long progress, final long duration) {
         final int progressSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(progress);
         final int durationSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(duration);
+        // If the old and the new progress values have a big difference then use
+        // animation. Otherwise don't because it affects CPU
+        final boolean shouldAnimate = Math.abs(positionView.getProgress() - progressSeconds) > 2;
         positionView.setMax(durationSeconds);
-        positionView.setProgressAnimated(progressSeconds);
-        detailPositionView.setText(Localization.getDurationString(progressSeconds));
+        if (shouldAnimate) {
+            positionView.setProgressAnimated(progressSeconds);
+        } else {
+            positionView.setProgress(progressSeconds);
+        }
+        final String position = Localization.getDurationString(progressSeconds);
+        if (position != detailPositionView.getText()) {
+            detailPositionView.setText(position);
+        }
         if (positionView.getVisibility() != View.VISIBLE) {
             animateView(positionView, true, 100);
             animateView(detailPositionView, true, 100);
@@ -1953,7 +1958,7 @@ public class VideoDetailFragment
                 (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
         final AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
         final ValueAnimator valueAnimator = ValueAnimator
-                .ofInt(0, -getView().findViewById(R.id.player_placeholder).getHeight());
+                .ofInt(0, -playerPlaceholder.getHeight());
         valueAnimator.setInterpolator(new DecelerateInterpolator());
         valueAnimator.addUpdateListener(animation -> {
             behavior.setTopAndBottomOffset((int) animation.getAnimatedValue());
@@ -2116,11 +2121,11 @@ public class VideoDetailFragment
         if (sortedVideoStreams == null) {
             return;
         }
-        CharSequence[] resolutions = new CharSequence[sortedVideoStreams.size()];
+        final CharSequence[] resolutions = new CharSequence[sortedVideoStreams.size()];
         for (int i = 0; i < sortedVideoStreams.size(); i++) {
             resolutions[i] = sortedVideoStreams.get(i).getResolution();
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity)
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity)
                 .setNegativeButton(android.R.string.cancel, null)
                 .setNeutralButton(R.string.open_in_browser, (dialog, i) ->
                         ShareUtils.openUrlInBrowser(requireActivity(), url)
@@ -2180,6 +2185,30 @@ public class VideoDetailFragment
         }
     }
 
+    /**
+     * When the mini player exists the view underneath it is not touchable.
+     * Bottom padding should be equal to the mini player's height in this case
+     *
+     * @param showMore whether main fragment should be expanded or not
+     * */
+    private void manageSpaceAtTheBottom(final boolean showMore) {
+        final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
+        final ViewGroup holder = requireActivity().findViewById(R.id.fragment_holder);
+        final int newBottomPadding;
+        if (showMore) {
+            newBottomPadding = 0;
+        } else {
+            newBottomPadding = peekHeight;
+        }
+        if (holder.getPaddingBottom() == newBottomPadding) {
+            return;
+        }
+        holder.setPadding(holder.getPaddingLeft(),
+                holder.getPaddingTop(),
+                holder.getPaddingRight(),
+                newBottomPadding);
+    }
+
     private void setupBottomPlayer() {
         final CoordinatorLayout.LayoutParams params =
                 (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
@@ -2190,6 +2219,7 @@ public class VideoDetailFragment
         bottomSheetBehavior.setState(bottomSheetState);
         final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
+            manageSpaceAtTheBottom(false);
             bottomSheetBehavior.setPeekHeight(peekHeight);
             if (bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED) {
                 overlay.setAlpha(MAX_OVERLAY_ALPHA);
@@ -2207,12 +2237,14 @@ public class VideoDetailFragment
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
                         moveFocusToMainFragment(true);
+                        manageSpaceAtTheBottom(true);
 
                         bottomSheetBehavior.setPeekHeight(0);
                         cleanUp();
                         break;
                     case BottomSheetBehavior.STATE_EXPANDED:
                         moveFocusToMainFragment(false);
+                        manageSpaceAtTheBottom(false);
 
                         bottomSheetBehavior.setPeekHeight(peekHeight);
                         // Disable click because overlay buttons located on top of buttons

@@ -76,10 +76,10 @@ public final class PlayerHelper {
     ////////////////////////////////////////////////////////////////////////////
 
     public static String getTimeString(final int milliSeconds) {
-        int seconds = (milliSeconds % 60000) / 1000;
-        int minutes = (milliSeconds % 3600000) / 60000;
-        int hours = (milliSeconds % 86400000) / 3600000;
-        int days = (milliSeconds % (86400000 * 7)) / 86400000;
+        final int seconds = (milliSeconds % 60000) / 1000;
+        final int minutes = (milliSeconds % 3600000) / 60000;
+        final int hours = (milliSeconds % 86400000) / 3600000;
+        final int days = (milliSeconds % (86400000 * 7)) / 86400000;
 
         STRING_BUILDER.setLength(0);
         return days > 0
@@ -405,7 +405,7 @@ public final class PlayerHelper {
 
     private static void setScreenBrightness(@NonNull final Context context,
                                             final float screenBrightness, final long timestamp) {
-        SharedPreferences.Editor editor = getPreferences(context).edit();
+        final SharedPreferences.Editor editor = getPreferences(context).edit();
         editor.putFloat(context.getString(R.string.screen_brightness_key), screenBrightness);
         editor.putLong(context.getString(R.string.screen_brightness_timestamp_key), timestamp);
         editor.apply();
@@ -413,8 +413,8 @@ public final class PlayerHelper {
 
     private static float getScreenBrightness(@NonNull final Context context,
                                              final float screenBrightness) {
-        SharedPreferences sp = getPreferences(context);
-        long timestamp = sp
+        final SharedPreferences sp = getPreferences(context);
+        final long timestamp = sp
                 .getLong(context.getString(R.string.screen_brightness_timestamp_key), 0);
         // Hypothesis: 4h covers a viewing block, e.g. evening.
         // External lightning conditions will change in the next
@@ -441,7 +441,7 @@ public final class PlayerHelper {
 
     private static SinglePlayQueue getAutoQueuedSinglePlayQueue(
             final StreamInfoItem streamInfoItem) {
-        SinglePlayQueue singlePlayQueue = new SinglePlayQueue(streamInfoItem);
+        final SinglePlayQueue singlePlayQueue = new SinglePlayQueue(streamInfoItem);
         singlePlayQueue.getItem().setAutoQueued(true);
         return singlePlayQueue;
     }

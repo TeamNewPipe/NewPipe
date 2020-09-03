@@ -99,7 +99,7 @@ public class WebMReader {
 
         ensure(segment.ref);
         // WARNING: track cannot be the same or have different index in new segments
-        Element elem = untilElement(null, ID_SEGMENT);
+        final Element elem = untilElement(null, ID_SEGMENT);
         if (elem == null) {
             done = true;
             return null;
@@ -113,7 +113,7 @@ public class WebMReader {
         int length = (int) parent.contentSize;
         long value = 0;
         while (length-- > 0) {
-            int read = stream.read();
+            final int read = stream.read();
             if (read == -1) {
                 throw new EOFException();
             }
@@ -127,9 +127,9 @@ public class WebMReader {
     }
 
     private byte[] readBlob(final Element parent) throws IOException {
-        long length = parent.contentSize;
-        byte[] buffer = new byte[(int) length];
-        int read = stream.read(buffer);
+        final long length = parent.contentSize;
+        final byte[] buffer = new byte[(int) length];
+        final int read = stream.read(buffer);
         if (read < length) {
             throw new EOFException();
         }
@@ -168,7 +168,7 @@ public class WebMReader {
     }
 
     private Element readElement() throws IOException {
-        Element elem = new Element();
+        final Element elem = new Element();
         elem.offset = stream.position();
         elem.type = (int) readEncodedNumber();
         elem.contentSize = readEncodedNumber();
@@ -178,7 +178,7 @@ public class WebMReader {
     }
 
     private Element readElement(final int expected) throws IOException {
-        Element elem = readElement();
+        final Element elem = readElement();
         if (expected != 0 && elem.type != expected) {
             throw new NoSuchElementException("expected " + elementID(expected)
                     + " found " + elementID(elem.type));
@@ -194,7 +194,7 @@ public class WebMReader {
             if (expected.length < 1) {
                 return elem;
             }
-            for (int type : expected) {
+            for (final int type : expected) {
                 if (elem.type == type) {
                     return elem;
                 }
@@ -211,7 +211,7 @@ public class WebMReader {
     }
 
     private void ensure(final Element ref) throws IOException {
-        long skip = (ref.offset + ref.size) - stream.position();
+        final long skip = (ref.offset + ref.size) - stream.position();
 
         if (skip == 0) {
             return;
@@ -249,7 +249,7 @@ public class WebMReader {
 
     private Info readInfo(final Element ref) throws IOException {
         Element elem;
-        Info info = new Info();
+        final Info info = new Info();
 
         while ((elem = untilElement(ref, ID_TIMECODE_SCALE, ID_DURATION)) != null) {
             switch (elem.type) {
@@ -272,7 +272,7 @@ public class WebMReader {
 
     private Segment readSegment(final Element ref, final int trackLacingExpected,
                                 final boolean metadataExpected) throws IOException {
-        Segment obj = new Segment(ref);
+        final Segment obj = new Segment(ref);
         Element elem;
         while ((elem = untilElement(ref, ID_INFO, ID_TRACKS, ID_CLUSTER)) != null) {
             if (elem.type == ID_CLUSTER) {
@@ -300,11 +300,11 @@ public class WebMReader {
     }
 
     private WebMTrack[] readTracks(final Element ref, final int lacingExpected) throws IOException {
-        ArrayList<WebMTrack> trackEntries = new ArrayList<>(2);
+        final ArrayList<WebMTrack> trackEntries = new ArrayList<>(2);
         Element elemTrackEntry;
 
         while ((elemTrackEntry = untilElement(ref, ID_TRACK_ENTRY)) != null) {
-            WebMTrack entry = new WebMTrack();
+            final WebMTrack entry = new WebMTrack();
             boolean drop = false;
             Element elem;
             while ((elem = untilElement(elemTrackEntry)) != null) {
@@ -348,10 +348,10 @@ public class WebMReader {
             ensure(elemTrackEntry);
         }
 
-        WebMTrack[] entries = new WebMTrack[trackEntries.size()];
+        final WebMTrack[] entries = new WebMTrack[trackEntries.size()];
         trackEntries.toArray(entries);
 
-        for (WebMTrack entry : entries) {
+        for (final WebMTrack entry : entries) {
             switch (entry.trackType) {
                 case 1:
                     entry.kind = TrackKind.Video;
@@ -369,7 +369,7 @@ public class WebMReader {
     }
 
     private SimpleBlock readSimpleBlock(final Element ref) throws IOException {
-        SimpleBlock obj = new SimpleBlock(ref);
+        final SimpleBlock obj = new SimpleBlock(ref);
         obj.trackNumber = readEncodedNumber();
         obj.relativeTimeCode = stream.readShort();
         obj.flags = (byte) stream.read();
@@ -385,9 +385,9 @@ public class WebMReader {
     }
 
     private Cluster readCluster(final Element ref) throws IOException {
-        Cluster obj = new Cluster(ref);
+        final Cluster obj = new Cluster(ref);
 
-        Element elem = untilElement(ref, ID_TIMECODE);
+        final Element elem = untilElement(ref, ID_TIMECODE);
         if (elem == null) {
             throw new NoSuchElementException("Cluster at " + String.valueOf(ref.offset)
                     + " without Timecode element");
@@ -443,7 +443,7 @@ public class WebMReader {
             }
             ensure(segment.currentCluster);
 
-            Element elem = untilElement(segment.ref, ID_CLUSTER);
+            final Element elem = untilElement(segment.ref, ID_CLUSTER);
             if (elem == null) {
                 return null;
             }

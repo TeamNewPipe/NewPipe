@@ -98,7 +98,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
-        ChannelFragment instance = new ChannelFragment();
+        final ChannelFragment instance = new ChannelFragment();
         instance.setInitialData(serviceId, url, name);
         return instance;
     }
@@ -189,7 +189,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        ActionBar supportActionBar = activity.getSupportActionBar();
+        final ActionBar supportActionBar = activity.getSupportActionBar();
         if (useAsFrontPage && supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         } else {
@@ -206,7 +206,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     private void openRssFeed() {
         final ChannelInfo info = currentInfo;
         if (info != null) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(info.getFeedUrl()));
+            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(info.getFeedUrl()));
             startActivity(intent);
         }
     }
@@ -345,7 +345,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 if (DEBUG) {
                     Log.d(TAG, "No subscription to this channel!");
                 }
-                SubscriptionEntity channel = new SubscriptionEntity();
+                final SubscriptionEntity channel = new SubscriptionEntity();
                 channel.setServiceId(info.getServiceId());
                 channel.setUrl(info.getUrl());
                 channel.setData(info.getName(),
@@ -371,16 +371,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                     + "isSubscribed = [" + isSubscribed + "]");
         }
 
-        boolean isButtonVisible = headerSubscribeButton.getVisibility() == View.VISIBLE;
-        int backgroundDuration = isButtonVisible ? 300 : 0;
-        int textDuration = isButtonVisible ? 200 : 0;
+        final boolean isButtonVisible = headerSubscribeButton.getVisibility() == View.VISIBLE;
+        final int backgroundDuration = isButtonVisible ? 300 : 0;
+        final int textDuration = isButtonVisible ? 200 : 0;
 
-        int subscribeBackground = ThemeHelper
+        final int subscribeBackground = ThemeHelper
                 .resolveColorFromAttr(activity, R.attr.colorPrimary);
-        int subscribeText = ContextCompat.getColor(activity, R.color.subscribe_text_color);
-        int subscribedBackground = ContextCompat
+        final int subscribeText = ContextCompat.getColor(activity, R.color.subscribe_text_color);
+        final int subscribedBackground = ContextCompat
                 .getColor(activity, R.color.subscribed_background_color);
-        int subscribedText = ContextCompat.getColor(activity, R.color.subscribed_text_color);
+        final int subscribedText = ContextCompat.getColor(activity, R.color.subscribed_text_color);
 
         if (!isSubscribed) {
             headerSubscribeButton.setText(R.string.subscribe_button_title);
@@ -426,10 +426,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             case R.id.sub_channel_title_view:
                 if (!TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
                     try {
-                        NavigationHelper.openChannelFragment(getFragmentManager(),
-                                currentInfo.getServiceId(), currentInfo.getParentChannelUrl(),
+                        NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
+                                currentInfo.getParentChannelUrl(),
                                 currentInfo.getParentChannelName());
-                    } catch (Exception e) {
+                    } catch (final Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                     }
                 } else if (DEBUG) {
@@ -490,13 +490,13 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
         playlistCtrl.setVisibility(View.VISIBLE);
 
-        List<Throwable> errors = new ArrayList<>(result.getErrors());
+        final List<Throwable> errors = new ArrayList<>(result.getErrors());
         if (!errors.isEmpty()) {
 
             // handling ContentNotSupportedException not to show the error but an appropriate string
             // so that crashes won't be sent uselessly and the user will understand what happened
             for (Iterator<Throwable> it = errors.iterator(); it.hasNext();) {
-                Throwable throwable = it.next();
+                final Throwable throwable = it.next();
                 if (throwable instanceof ContentNotSupportedException) {
                     showContentNotSupported();
                     it.remove();
@@ -549,7 +549,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> streamItems = new ArrayList<>();
-        for (InfoItem i : infoListAdapter.getItemsList()) {
+        for (final InfoItem i : infoListAdapter.getItemsList()) {
             if (i instanceof StreamInfoItem) {
                 streamItems.add((StreamInfoItem) i);
             }
@@ -581,7 +581,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             return true;
         }
 
-        int errorId = exception instanceof ExtractionException
+        final int errorId = exception instanceof ExtractionException
                 ? R.string.parsing_error : R.string.general_error;
 
         onUnrecoverableError(exception, UserAction.REQUESTED_CHANNEL,

@@ -82,9 +82,9 @@ public class ListHelperTest {
         // Don't show Higher resolutions //
         //////////////////////////////////
 
-        List<VideoStream> result = ListHelper.getSortedStreamVideosList(MediaFormat.MPEG_4,
+        final List<VideoStream> result = ListHelper.getSortedStreamVideosList(MediaFormat.MPEG_4,
                 false, VIDEO_STREAMS_TEST_LIST, VIDEO_ONLY_STREAMS_TEST_LIST, false);
-        List<String> expected = Arrays.asList(
+        final List<String> expected = Arrays.asList(
                 "1080p60", "1080p", "720p60", "720p", "480p", "360p", "240p", "144p");
         assertEquals(result.size(), expected.size());
         for (int i = 0; i < result.size(); i++) {
@@ -94,7 +94,7 @@ public class ListHelperTest {
 
     @Test
     public void getDefaultResolutionTest() {
-        List<VideoStream> testList = Arrays.asList(
+        final List<VideoStream> testList = Arrays.asList(
                 new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p"),
                 new VideoStream("", MediaFormat.v3GPP,    /**/ "240p"),
                 new VideoStream("", MediaFormat.WEBM,     /**/ "480p"),
@@ -290,7 +290,7 @@ public class ListHelperTest {
 
     @Test
     public void getVideoDefaultStreamIndexCombinations() {
-        List<VideoStream> testList = Arrays.asList(
+        final List<VideoStream> testList = Arrays.asList(
                 new VideoStream("", MediaFormat.MPEG_4,   /**/ "1080p"),
                 new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p60"),
                 new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p"),

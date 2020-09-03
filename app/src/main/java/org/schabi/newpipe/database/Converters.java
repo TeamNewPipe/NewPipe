@@ -49,7 +49,7 @@ public final class Converters {
 
     @TypeConverter
     public static FeedGroupIcon feedGroupIconOf(final Integer id) {
-        for (FeedGroupIcon icon : FeedGroupIcon.values()) {
+        for (final FeedGroupIcon icon : FeedGroupIcon.values()) {
             if (icon.getId() == id) {
                 return icon;
             }

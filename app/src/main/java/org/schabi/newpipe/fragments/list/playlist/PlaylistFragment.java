@@ -85,7 +85,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     public static PlaylistFragment getInstance(final int serviceId, final String url,
                                                final String name) {
-        PlaylistFragment instance = new PlaylistFragment();
+        final PlaylistFragment instance = new PlaylistFragment();
         instance.setInitialData(serviceId, url, name);
         return instance;
     }
@@ -286,11 +286,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             if (!TextUtils.isEmpty(result.getUploaderUrl())) {
                 headerUploaderLayout.setOnClickListener(v -> {
                     try {
-                        NavigationHelper.openChannelFragment(getFragmentManager(),
-                                result.getServiceId(),
-                                result.getUploaderUrl(),
-                                result.getUploaderName());
-                    } catch (Exception e) {
+                        NavigationHelper.openChannelFragment(getFM(), result.getServiceId(),
+                                result.getUploaderUrl(), result.getUploaderName());
+                    } catch (final Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                     }
                 });
@@ -341,7 +339,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> infoItems = new ArrayList<>();
-        for (InfoItem i : infoListAdapter.getItemsList()) {
+        for (final InfoItem i : infoListAdapter.getItemsList()) {
             if (i instanceof StreamInfoItem) {
                 infoItems.add((StreamInfoItem) i);
             }
@@ -375,7 +373,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             return true;
         }
 
-        int errorId = exception instanceof ExtractionException
+        final int errorId = exception instanceof ExtractionException
                 ? R.string.parsing_error : R.string.general_error;
         onUnrecoverableError(exception, UserAction.REQUESTED_PLAYLIST,
                 NewPipe.getNameOfService(serviceId), url, errorId);

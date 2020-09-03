@@ -54,9 +54,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -79,6 +78,7 @@ import org.schabi.newpipe.util.SerializedCache;
 import java.io.IOException;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
@@ -98,7 +98,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 @SuppressWarnings({"WeakerAccess"})
 public abstract class BasePlayer implements
         Player.EventListener, PlaybackListener, ImageLoadingListener {
-    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+    public static final boolean DEBUG = MainActivity.DEBUG;
     @NonNull
     public static final String TAG = "BasePlayer";
 
@@ -283,7 +283,7 @@ public abstract class BasePlayer implements
 
         // Resolve append intents
         if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {
-            int sizeBeforeAppend = playQueue.size();
+            final int sizeBeforeAppend = playQueue.size();
             playQueue.append(queue.getStreams());
 
             if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
@@ -883,7 +883,6 @@ public abstract class BasePlayer implements
         }
         setRecovery();
 
-        final Throwable cause = error.getCause();
         if (error instanceof BehindLiveWindowException) {
             reload();
         } else {
@@ -1069,14 +1068,6 @@ public abstract class BasePlayer implements
 
         initThumbnail(info.getThumbnailUrl());
         registerView();
-    }
-
-    @Override
-    public void onPlaybackShutdown() {
-        if (DEBUG) {
-            Log.d(TAG, "Shutting down...");
-        }
-        destroy();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1463,7 +1454,7 @@ public abstract class BasePlayer implements
             return false;
         }
 
-        Timeline.Window timelineWindow = new Timeline.Window();
+        final Timeline.Window timelineWindow = new Timeline.Window();
         currentTimeline.getWindow(currentWindowIndex, timelineWindow);
         return timelineWindow.getDefaultPositionMs() <= simpleExoPlayer.getCurrentPosition();
     }
@@ -1474,7 +1465,7 @@ public abstract class BasePlayer implements
         }
         try {
             return simpleExoPlayer.isCurrentWindowDynamic();
-        } catch (@NonNull IndexOutOfBoundsException e) {
+        } catch (@NonNull final IndexOutOfBoundsException e) {
             // Why would this even happen =(
             // But lets log it anyway. Save is save
             if (DEBUG) {

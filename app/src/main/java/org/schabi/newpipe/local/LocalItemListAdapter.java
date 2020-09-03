@@ -101,7 +101,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                     + localItems.size() + ", data.size() = " + data.size());
         }
 
-        int offsetStart = sizeConsideringHeader();
+        final int offsetStart = sizeConsideringHeader();
         localItems.addAll(data);
 
         if (DEBUG) {
@@ -113,7 +113,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         notifyItemRangeInserted(offsetStart, data.size());
 
         if (footer != null && showFooter) {
-            int footerNow = sizeConsideringHeader();
+            final int footerNow = sizeConsideringHeader();
             notifyItemMoved(offsetStart, footerNow);
 
             if (DEBUG) {
@@ -158,7 +158,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void setHeader(final View header) {
-        boolean changed = header != this.header;
+        final boolean changed = header != this.header;
         this.header = header;
         if (changed) {
             notifyDataSetChanged();
@@ -316,7 +316,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
                                  @NonNull final List<Object> payloads) {
         if (!payloads.isEmpty() && holder instanceof LocalItemHolder) {
-            for (Object payload : payloads) {
+            for (final Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
                     ((LocalItemHolder) holder).updateState(localItems
                             .get(header == null ? position : position - 1), recordManager);

@@ -87,12 +87,12 @@ public final class FocusOverlayView extends Drawable implements
     }
 
     private void updateRect() {
-        View focusedView = focused == null ? null : this.focused.get();
+        final View focusedView = focused == null ? null : this.focused.get();
 
-        int l = focusRect.left;
-        int r = focusRect.right;
-        int t = focusRect.top;
-        int b = focusRect.bottom;
+        final int l = focusRect.left;
+        final int r = focusRect.right;
+        final int t = focusRect.top;
+        final int b = focusRect.bottom;
 
         if (focusedView != null && isShown(focusedView)) {
             focusedView.getGlobalVisibleRect(focusRect);
@@ -184,40 +184,40 @@ public final class FocusOverlayView extends Drawable implements
     }
 
     public static void setupFocusObserver(final Dialog dialog) {
-        Rect displayRect = new Rect();
+        final Rect displayRect = new Rect();
 
-        Window window = dialog.getWindow();
+        final Window window = dialog.getWindow();
         assert window != null;
 
-        View decor = window.getDecorView();
+        final View decor = window.getDecorView();
         decor.getWindowVisibleDisplayFrame(displayRect);
 
-        FocusOverlayView overlay = new FocusOverlayView(dialog.getContext());
+        final FocusOverlayView overlay = new FocusOverlayView(dialog.getContext());
         overlay.setBounds(0, 0, displayRect.width(), displayRect.height());
 
         setupOverlay(window, overlay);
     }
 
     public static void setupFocusObserver(final Activity activity) {
-        Rect displayRect = new Rect();
+        final Rect displayRect = new Rect();
 
-        Window window = activity.getWindow();
-        View decor = window.getDecorView();
+        final Window window = activity.getWindow();
+        final View decor = window.getDecorView();
         decor.getWindowVisibleDisplayFrame(displayRect);
 
-        FocusOverlayView overlay = new FocusOverlayView(activity);
+        final FocusOverlayView overlay = new FocusOverlayView(activity);
         overlay.setBounds(0, 0, displayRect.width(), displayRect.height());
 
         setupOverlay(window, overlay);
     }
 
     private static void setupOverlay(final Window window, final FocusOverlayView overlay) {
-        ViewGroup decor = (ViewGroup) window.getDecorView();
+        final ViewGroup decor = (ViewGroup) window.getDecorView();
         decor.getOverlay().add(overlay);
 
         fixFocusHierarchy(decor);
 
-        ViewTreeObserver observer = decor.getViewTreeObserver();
+        final ViewTreeObserver observer = decor.getViewTreeObserver();
         observer.addOnScrollChangedListener(overlay);
         observer.addOnGlobalFocusChangeListener(overlay);
         observer.addOnGlobalLayoutListener(overlay);
@@ -235,7 +235,7 @@ public final class FocusOverlayView extends Drawable implements
         window.setCallback(new WindowCallbackWrapper(window.getCallback()) {
             @Override
             public boolean dispatchKeyEvent(final KeyEvent event) {
-                boolean res = super.dispatchKeyEvent(event);
+                final boolean res = super.dispatchKeyEvent(event);
                 overlay.onKey(event);
                 return res;
             }
@@ -280,10 +280,10 @@ public final class FocusOverlayView extends Drawable implements
             return; // clusters aren't supposed to nest
         }
 
-        int childCount = viewGroup.getChildCount();
+        final int childCount = viewGroup.getChildCount();
 
         for (int i = 0; i < childCount; ++i) {
-            View view = viewGroup.getChildAt(i);
+            final View view = viewGroup.getChildAt(i);
 
             if (view instanceof ViewGroup) {
                 clearFocusObstacles((ViewGroup) view);

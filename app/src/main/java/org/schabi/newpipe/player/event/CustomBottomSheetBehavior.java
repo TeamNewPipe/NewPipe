@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
@@ -25,7 +26,7 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
     private boolean skippingInterception = false;
     private final List<Integer> skipInterceptionOfElements = Arrays.asList(
             R.id.detail_content_root_layout, R.id.relatedStreamsLayout,
-            R.id.playQueuePanel, R.id.viewpager);
+            R.id.playQueuePanel, R.id.viewpager, R.id.bottomControls);
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull final CoordinatorLayout parent,
@@ -51,6 +52,13 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
                     visible = viewGroup.getGlobalVisibleRect(globalRect);
                     if (visible
                             && globalRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                        // Makes bottom part of the player draggable in portrait when
+                        // playbackControlRoot is hidden
+                        if (element == R.id.bottomControls
+                                && child.findViewById(R.id.playbackControlRoot)
+                                .getVisibility() != View.VISIBLE) {
+                            return super.onInterceptTouchEvent(parent, child, event);
+                        }
                         skippingInterception = true;
                         return false;
                     }

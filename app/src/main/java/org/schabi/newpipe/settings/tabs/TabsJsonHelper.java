@@ -59,7 +59,7 @@ public final class TabsJsonHelper {
 
             final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY);
 
-            for (Object o : tabsArray) {
+            for (final Object o : tabsArray) {
                 if (!(o instanceof JsonObject)) {
                     continue;
                 }
@@ -70,7 +70,7 @@ public final class TabsJsonHelper {
                     returnTabs.add(tab);
                 }
             }
-        } catch (JsonParserException e) {
+        } catch (final JsonParserException e) {
             throw new InvalidJsonException(e);
         }
 
@@ -93,7 +93,7 @@ public final class TabsJsonHelper {
 
         jsonWriter.array(JSON_TABS_ARRAY_KEY);
         if (tabList != null) {
-            for (Tab tab : tabList) {
+            for (final Tab tab : tabList) {
                 tab.writeJsonOn(jsonWriter);
             }
         }

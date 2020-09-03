@@ -52,7 +52,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             return liveSource;
         }
 
-        List<MediaSource> mediaSources = new ArrayList<>();
+        final List<MediaSource> mediaSources = new ArrayList<>();
 
         // Create video stream source
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
@@ -106,7 +106,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                         SELECTION_FLAG_AUTOSELECT,
                         PlayerHelper.captionLanguageOf(context, subtitle));
                 final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                        .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
+                        .createMediaSource(Uri.parse(subtitle.getUrl()), textFormat, TIME_UNSET);
                 mediaSources.add(textSource);
             }
         }

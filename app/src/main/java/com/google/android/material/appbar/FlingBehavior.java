@@ -30,19 +30,18 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     public boolean onRequestChildRectangleOnScreen(
             @NonNull final CoordinatorLayout coordinatorLayout, @NonNull final AppBarLayout child,
             @NonNull final Rect rectangle, final boolean immediate) {
-
         focusScrollRect.set(rectangle);
 
         coordinatorLayout.offsetDescendantRectToMyCoords(child, focusScrollRect);
 
-        int height = coordinatorLayout.getHeight();
+        final int height = coordinatorLayout.getHeight();
 
         if (focusScrollRect.top <= 0 && focusScrollRect.bottom >= height) {
             // the child is too big to fit inside ourselves completely, ignore request
             return false;
         }
 
-        int dy;
+        final int dy;
 
         if (focusScrollRect.bottom > height) {
             dy =  focusScrollRect.top;
@@ -54,7 +53,7 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
             return false;
         }
 
-        int consumed = scroll(coordinatorLayout, child, dy, getMaxDragOffset(child), 0);
+        final int consumed = scroll(coordinatorLayout, child, dy, getMaxDragOffset(child), 0);
 
         return consumed == dy;
     }
@@ -64,6 +63,14 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
         final ViewGroup playQueue = child.findViewById(R.id.playQueuePanel);
         if (playQueue != null) {
             final boolean visible = playQueue.getGlobalVisibleRect(globalRect);
+            if (visible && globalRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
+                allowScroll = false;
+                return false;
+            }
+        }
+        final View seekBar = child.findViewById(R.id.playbackSeekBar);
+        if (seekBar != null) {
+            final boolean visible = seekBar.getGlobalVisibleRect(globalRect);
             if (visible && globalRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
                 allowScroll = false;
                 return false;
@@ -106,14 +113,14 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     @Nullable
     private OverScroller getScrollerField() {
         try {
-            Class<?> headerBehaviorType = this.getClass()
+            final Class<?> headerBehaviorType = this.getClass()
                     .getSuperclass().getSuperclass().getSuperclass();
             if (headerBehaviorType != null) {
-                Field field = headerBehaviorType.getDeclaredField("scroller");
+                final Field field = headerBehaviorType.getDeclaredField("scroller");
                 field.setAccessible(true);
                 return ((OverScroller) field.get(this));
             }
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (final NoSuchFieldException | IllegalAccessException e) {
             // ?
         }
         return null;
@@ -122,34 +129,35 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     @Nullable
     private Field getLastNestedScrollingChildRefField() {
         try {
-            Class<?> headerBehaviorType = this.getClass().getSuperclass().getSuperclass();
+            final Class<?> headerBehaviorType = this.getClass().getSuperclass().getSuperclass();
             if (headerBehaviorType != null) {
-                Field field = headerBehaviorType.getDeclaredField("lastNestedScrollingChildRef");
+                final Field field
+                        = headerBehaviorType.getDeclaredField("lastNestedScrollingChildRef");
                 field.setAccessible(true);
                 return field;
             }
-        } catch (NoSuchFieldException e) {
+        } catch (final NoSuchFieldException e) {
             // ?
         }
         return null;
     }
 
     private void resetNestedScrollingChild() {
-        Field field = getLastNestedScrollingChildRefField();
+        final Field field = getLastNestedScrollingChildRefField();
         if (field != null) {
             try {
-                Object value = field.get(this);
+                final Object value = field.get(this);
                 if (value != null) {
                     field.set(this, null);
                 }
-            } catch (IllegalAccessException e) {
+            } catch (final IllegalAccessException e) {
                 // ?
             }
         }
     }
 
     private void stopAppBarLayoutFling() {
-        OverScroller scroller = getScrollerField();
+        final OverScroller scroller = getScrollerField();
         if (scroller != null) {
             scroller.forceFinished(true);
         }

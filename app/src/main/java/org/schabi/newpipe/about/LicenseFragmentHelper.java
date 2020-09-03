@@ -51,7 +51,7 @@ public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
             // split the HTML file and insert the stylesheet into the HEAD of the file
             webViewData = licenseContent.toString().replace("</head>",
                     "<style>" + getLicenseStylesheet(context) + "</style></head>");
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new IllegalArgumentException(
                     "Could not get license file: " + license.getFilename(), e);
         }
