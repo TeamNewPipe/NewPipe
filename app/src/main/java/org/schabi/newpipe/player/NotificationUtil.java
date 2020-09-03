@@ -5,8 +5,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.DrawableRes;
@@ -69,38 +71,7 @@ public final class NotificationUtil {
     /////////////////////////////////////////////////////
 
     /**
-     * Updates the notification, and the button icons depending on the playback state.
-     * On old notifications used for changes on the remoteView
-     *
-     * @param player the player currently open, to take data from
-     */
-    synchronized void updateNotification(final VideoPlayerImpl player) {
-        if (DEBUG) {
-            Log.d(TAG, "N_ updateNotification()");
-        }
-
-        if (notificationBuilder == null) {
-            return;
-        }
-
-        notificationBuilder.setContentTitle(player.getVideoTitle());
-        notificationBuilder.setContentText(player.getUploaderName());
-        final boolean scaleImageToSquareAspectRatio = player.sharedPreferences.getBoolean(
-                player.context.getString(R.string.scale_to_square_image_in_notifications_key),
-                false);
-        if (scaleImageToSquareAspectRatio) {
-            notificationBuilder.setLargeIcon(
-                    getBitmapWithSquareAspectRatio(player.getThumbnail()));
-        } else {
-            notificationBuilder.setLargeIcon(player.getThumbnail());
-        }
-        updateActions(notificationBuilder, player);
-
-        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
-    }
-
-    /**
-     * Creates the notification, if it does not exist already or unless forceRecreate is true.
+     * Creates the notification if it does not exist already or unless forceRecreate is true.
      * @param player the player currently open, to take data from
      * @param forceRecreate whether to force the recreation of the notification even if it already
      *                      exists
@@ -145,40 +116,57 @@ public final class NotificationUtil {
             e.printStackTrace();
         }
 
+
         builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                .setMediaSession(player.mediaSessionManager.getSessionToken())
-                .setShowCancelButton(false)
-                .setShowActionsInCompactView(compactSlot0, compactSlot1, compactSlot2))
-                .setOngoing(false)
-                .setContentIntent(PendingIntent.getActivity(player.context, NOTIFICATION_ID,
-                        getIntentForNotification(player), FLAG_UPDATE_CURRENT))
+                    .setMediaSession(player.mediaSessionManager.getSessionToken())
+                    .setShowActionsInCompactView(compactSlot0, compactSlot1, compactSlot2))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setContentTitle(player.getVideoTitle())
                 .setContentText(player.getUploaderName())
-                .setDeleteIntent(PendingIntent.getActivity(player.context, NOTIFICATION_ID,
-                        new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT))
                 .setColor(ContextCompat.getColor(player.context, R.color.gray))
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
-
-        final boolean scaleImageToSquareAspectRatio = player.sharedPreferences.getBoolean(
-                player.context.getString(R.string.scale_to_square_image_in_notifications_key),
-                false);
-        if (scaleImageToSquareAspectRatio) {
-            builder.setLargeIcon(getBitmapWithSquareAspectRatio(player.getThumbnail()));
-        } else {
-            builder.setLargeIcon(player.getThumbnail());
-        }
+                .setContentIntent(PendingIntent.getActivity(player.context, NOTIFICATION_ID,
+                        getIntentForNotification(player), FLAG_UPDATE_CURRENT))
+                .setDeleteIntent(PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
+                        new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
 
         initializeNotificationSlots(player);
         updateActions(builder, player);
+        setLargeIcon(builder, player);
 
         return builder;
     }
 
+    /**
+     * Updates the notification and the button icons depending on the playback state.
+     * @param player the player currently open, to take data from
+     */
+    synchronized void updateNotification(final VideoPlayerImpl player) {
+        if (DEBUG) {
+            Log.d(TAG, "N_ updateNotification()");
+        }
+
+        if (notificationBuilder == null) {
+            return;
+        }
+
+        notificationBuilder.setContentTitle(player.getVideoTitle());
+        notificationBuilder.setContentText(player.getUploaderName());
+        updateActions(notificationBuilder, player);
+        setLargeIcon(notificationBuilder, player);
+
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+    }
+
 
     void startForegroundServiceWithNotification(final Service service) {
-        service.startForeground(NOTIFICATION_ID, notificationBuilder.build());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            service.startForeground(NOTIFICATION_ID, notificationBuilder.build(),
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
+        } else {
+            service.startForeground(NOTIFICATION_ID, notificationBuilder.build());
+        }
     }
 
 
@@ -363,6 +351,18 @@ public final class NotificationUtil {
     /////////////////////////////////////////////////////
     // BITMAP
     /////////////////////////////////////////////////////
+
+    private void setLargeIcon(final NotificationCompat.Builder builder,
+                              final VideoPlayerImpl player) {
+        final boolean scaleImageToSquareAspectRatio = player.sharedPreferences.getBoolean(
+                player.context.getString(R.string.scale_to_square_image_in_notifications_key),
+                false);
+        if (scaleImageToSquareAspectRatio) {
+            builder.setLargeIcon(getBitmapWithSquareAspectRatio(player.getThumbnail()));
+        } else {
+            builder.setLargeIcon(player.getThumbnail());
+        }
+    }
 
     private Bitmap getBitmapWithSquareAspectRatio(final Bitmap bitmap) {
         return getResizedBitmap(bitmap, bitmap.getWidth(), bitmap.getWidth());
