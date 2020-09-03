@@ -404,7 +404,7 @@ public class StatisticsPlaylistFragment
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share);
 
-            StreamDialogEntry.start_here_on_popup.setCustomAction((fragment, infoItemDuplicate) ->
+            StreamDialogEntry.start_here_on_popup.setCustomAction((ctx, infoItemDuplicate) ->
                     NavigationHelper
                             .playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
         }
@@ -415,8 +415,10 @@ public class StatisticsPlaylistFragment
         StreamDialogEntry.delete.setCustomAction((fragment, infoItemDuplicate) ->
                 deleteEntry(Math.max(itemListAdapter.getItemsList().indexOf(item), 0)));
 
-        new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, infoItem)).show();
+        new InfoItemDialog(infoItem.getName(), infoItem.getUploaderName(),
+                StreamDialogEntry.getCommands(context),
+                (dialog, which) -> StreamDialogEntry.clickOn(which, this.getContext(), infoItem))
+                .show(getFragmentManager());
     }
 
     private void deleteEntry(final int index) {

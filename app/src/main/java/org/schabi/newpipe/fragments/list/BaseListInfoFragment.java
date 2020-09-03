@@ -42,6 +42,11 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     }
 
     @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
         if (currentWorker != null) {

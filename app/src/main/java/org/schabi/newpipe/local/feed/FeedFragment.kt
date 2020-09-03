@@ -28,10 +28,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.preference.PreferenceManager
 import icepick.State
 import java.util.Calendar
 import kotlinx.android.synthetic.main.error_retry.error_button_retry
@@ -129,24 +127,11 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_item_feed_help) {
-            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-
-            val usingDedicatedMethod = sharedPreferences.getBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
-            val enableDisableButtonText = when {
-                usingDedicatedMethod -> R.string.feed_use_dedicated_fetch_method_disable_button
-                else -> R.string.feed_use_dedicated_fetch_method_enable_button
+            val fm = getFragmentManager()
+            if (fm != null) {
+                val f = FeedHelpFragment()
+                f.show(fm, "Item Feed Help")
             }
-
-            AlertDialog.Builder(requireContext())
-                    .setMessage(R.string.feed_use_dedicated_fetch_method_help_text)
-                    .setNeutralButton(enableDisableButtonText) { _, _ ->
-                        sharedPreferences.edit()
-                                .putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), !usingDedicatedMethod)
-                                .apply()
-                    }
-                    .setPositiveButton(resources.getString(R.string.finish), null)
-                    .create()
-                    .show()
             return true
         }
 

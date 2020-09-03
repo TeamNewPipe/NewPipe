@@ -166,17 +166,19 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share);
 
-            StreamDialogEntry.start_here_on_popup.setCustomAction((fragment, infoItem) ->
+            StreamDialogEntry.start_here_on_popup.setCustomAction((ctx, infoItem) ->
                     NavigationHelper.playOnPopupPlayer(context,
                             getPlayQueueStartingAt(infoItem), true));
         }
 
-        StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItem) ->
+        StreamDialogEntry.start_here_on_background.setCustomAction((ctx, infoItem) ->
                 NavigationHelper.playOnBackgroundPlayer(context,
                         getPlayQueueStartingAt(infoItem), true));
 
-        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, item)).show();
+        new InfoItemDialog(item.getName(), item.getUploaderName(),
+                StreamDialogEntry.getCommands(context),
+                (dialog, which) -> StreamDialogEntry.clickOn(which, this.getContext(), item))
+                .show(getFragmentManager());
     }
 
     @Override

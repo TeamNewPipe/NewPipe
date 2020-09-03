@@ -1,54 +1,85 @@
 package org.schabi.newpipe.info_list;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
+import android.content.DialogInterface.OnClickListener;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
-public class InfoItemDialog {
-    private final AlertDialog dialog;
+import java.io.Serializable;
 
-    public InfoItemDialog(@NonNull final Activity activity,
-                          @NonNull final StreamInfoItem info,
+public class InfoItemDialog  {
+
+    private final ItemDialogFragment idf;
+
+    public InfoItemDialog(@NonNull final String title,
+                          final String additionalInfo,
                           @NonNull final String[] commands,
-                          @NonNull final DialogInterface.OnClickListener actions) {
-        this(activity, commands, actions, info.getName(), info.getUploaderName());
+                          @NonNull final OnClickListener actions) {
+
+        idf = new ItemDialogFragment();
+        final Bundle bundle = new Bundle();
+        bundle.putString("InfoItemDialogTitle", title);
+        bundle.putString("InfoItemDialogAdditionalInfo", additionalInfo);
+        bundle.putCharSequenceArray("InfoItemDialogCommands", commands);
+
+        final InfoItemDialogListener listener = (InfoItemDialogListener) actions::onClick;
+        bundle.putSerializable("InfoItemDialogActions", listener);
+        idf.setArguments(bundle);
     }
 
-    public InfoItemDialog(@NonNull final Activity activity,
-                          @NonNull final String[] commands,
-                          @NonNull final DialogInterface.OnClickListener actions,
-                          @NonNull final String title,
-                          @Nullable final String additionalDetail) {
+    public void show(@Nullable final FragmentManager fm) {
+        if (fm != null) {
+            idf.show(fm, "InfoItemDialog");
+        }
+    }
 
-        final View bannerView = View.inflate(activity, R.layout.dialog_title, null);
-        bannerView.setSelected(true);
+    public interface InfoItemDialogListener extends Serializable, OnClickListener { }
 
-        final TextView titleView = bannerView.findViewById(R.id.itemTitleView);
-        titleView.setText(title);
+    private static class ItemDialogFragment extends DialogFragment {
 
-        final TextView detailsView = bannerView.findViewById(R.id.itemAdditionalDetails);
-        if (additionalDetail != null) {
-            detailsView.setText(additionalDetail);
-            detailsView.setVisibility(View.VISIBLE);
-        } else {
-            detailsView.setVisibility(View.GONE);
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
+            final Bundle args = requireArguments();
+            final String title = args.getString("InfoItemDialogTitle");
+            final String additionalInfo = args.getString("InfoItemDialogAdditionalInfo");
+            final CharSequence[] commands = args.getCharSequenceArray("args");
+            final OnClickListener listener = (OnClickListener) args
+                    .getSerializable("InfoItemDialogActions");
+            final View bannerView = getBannerView(title, additionalInfo);
+            return new AlertDialog.Builder(requireContext())
+                    .setCustomTitle(bannerView)
+                    .setItems(commands, listener)
+                    .create();
         }
 
-        dialog = new AlertDialog.Builder(activity)
-                .setCustomTitle(bannerView)
-                .setItems(commands, actions)
-                .create();
+        public View getBannerView(@NonNull final String title,
+                                  @Nullable final String additionalDetail) {
+
+            final View bannerView = View.inflate(requireContext(), R.layout.dialog_title, null);
+            bannerView.setSelected(true);
+
+            final TextView titleView = bannerView.findViewById(R.id.itemTitleView);
+            titleView.setText(title);
+
+            final TextView detailsView = bannerView.findViewById(R.id.itemAdditionalDetails);
+            if (additionalDetail != null) {
+                detailsView.setText(additionalDetail);
+                detailsView.setVisibility(View.VISIBLE);
+            } else {
+                detailsView.setVisibility(View.GONE);
+            }
+            return bannerView;
+        }
     }
 
-    public void show() {
-        dialog.show();
-    }
 }

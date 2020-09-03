@@ -171,4 +171,15 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
         getDialog().dismiss();
     }
+
+    public void show(final String tag) {
+        if (getFragmentManager() == null) {
+            return;
+        }
+        if (tag == null) {
+            show(getFragmentManager(), TAG);
+        } else {
+            show(getFragmentManager(), tag);
+        }
+    }
 }

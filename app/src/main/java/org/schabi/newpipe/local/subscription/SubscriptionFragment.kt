@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.subscription
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.DialogInterface
@@ -35,13 +34,12 @@ import java.util.Date
 import java.util.Locale
 import kotlin.math.floor
 import kotlin.math.max
-import kotlinx.android.synthetic.main.dialog_title.view.itemAdditionalDetails
-import kotlinx.android.synthetic.main.dialog_title.view.itemTitleView
 import kotlinx.android.synthetic.main.fragment_subscription.items_list
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.fragments.BaseStateFragment
+import org.schabi.newpipe.info_list.InfoItemDialog
 import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionState
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialog
@@ -295,16 +293,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             }
         }
 
-        val bannerView = View.inflate(requireContext(), R.layout.dialog_title, null)
-        bannerView.isSelected = true
-        bannerView.itemTitleView.text = selectedItem.name
-        bannerView.itemAdditionalDetails.visibility = View.GONE
-
-        AlertDialog.Builder(requireContext())
-                .setCustomTitle(bannerView)
-                .setItems(commands, actions)
-                .create()
-                .show()
+        InfoItemDialog(selectedItem.name, null, commands, actions)
+                .show(requireFragmentManager())
     }
 
     private fun deleteChannel(selectedItem: ChannelInfoItem) {

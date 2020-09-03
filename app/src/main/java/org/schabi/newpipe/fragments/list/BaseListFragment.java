@@ -352,8 +352,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                     StreamDialogEntry.share);
         }
 
-        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, item)).show();
+        new InfoItemDialog(item.getName(), item.getUploaderName(),
+                StreamDialogEntry.getCommands(context),
+                (dialog, which) -> StreamDialogEntry.clickOn(which, this.getContext(), item))
+                .show(getFragmentManager());
     }
 
     /*//////////////////////////////////////////////////////////////////////////

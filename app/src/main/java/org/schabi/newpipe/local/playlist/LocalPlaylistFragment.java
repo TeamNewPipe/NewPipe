@@ -97,6 +97,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     /* Is the playlist currently being processed to remove watched videos */
     private boolean isRemovingWatched = false;
 
+    private Context mContext;
+
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
         final LocalPlaylistFragment instance = new LocalPlaylistFragment();
         instance.setInitialData(playlistId, name);
@@ -124,6 +126,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_playlist, container, false);
+    }
+
+    @Override
+    public void onAttach(@Nullable final Context context) {
+        super.onAttach(context);
+        mContext = context;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -242,6 +250,17 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistObserver());
+    }
+
+    @Nullable
+    @Override
+    public Context getContext() {
+        final Context r = super.getContext();
+        if (r == null) {
+            return mContext;
+        } else {
+            return r;
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -777,7 +796,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.share);
 
             StreamDialogEntry.start_here_on_popup.setCustomAction(
-                    (fragment, infoItemDuplicate) -> NavigationHelper.
+                    (ctx, infoItemDuplicate) -> NavigationHelper.
                             playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
         }
 
@@ -790,8 +809,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         StreamDialogEntry.delete.setCustomAction((fragment, infoItemDuplicate) ->
                 deleteItem(item));
 
-        new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, infoItem)).show();
+        new InfoItemDialog(infoItem.getName(), infoItem.getUploaderName(),
+                StreamDialogEntry.getCommands(context),
+                (dialog, which) -> StreamDialogEntry.clickOn(which, this.getContext(), infoItem))
+                .show(getFragmentManager());
     }
 
     private void setInitialData(final long pid, final String title) {
