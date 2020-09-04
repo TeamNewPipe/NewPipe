@@ -337,6 +337,7 @@ public class VideoDetailFragment
             stopPlayerListener();
             playerService = null;
             player = null;
+            saveCurrentAndRestoreDefaultBrightness();
         }
     }
 
@@ -425,7 +426,7 @@ public class VideoDetailFragment
         if (currentWorker != null) {
             currentWorker.dispose();
         }
-        setupBrightness(true);
+        saveCurrentAndRestoreDefaultBrightness();
         PreferenceManager.getDefaultSharedPreferences(getContext())
                 .edit()
                 .putString(getString(R.string.stream_info_selected_tab_key),
@@ -439,7 +440,7 @@ public class VideoDetailFragment
 
         activity.sendBroadcast(new Intent(ACTION_VIDEO_FRAGMENT_RESUMED));
 
-        setupBrightness(false);
+        setupBrightness();
 
         if (updateFlags != 0) {
             if (!isLoading.get() && currentInfo != null) {
@@ -1908,6 +1909,7 @@ public class VideoDetailFragment
 
     @Override
     public void onFullscreenStateChanged(final boolean fullscreen) {
+        setupBrightness();
         if (playerService.getView() == null || player.getParentActivity() == null) {
             return;
         }
@@ -2022,29 +2024,41 @@ public class VideoDetailFragment
                 && player.getPlayer().getPlaybackState() != Player.STATE_IDLE;
     }
 
-    private void setupBrightness(final boolean save) {
+    private void saveCurrentAndRestoreDefaultBrightness() {
+        final WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
+        if (lp.screenBrightness == -1) {
+            return;
+        }
+        // Save current brightness level
+        PlayerHelper.setScreenBrightness(activity, lp.screenBrightness);
+
+        // Restore the old  brightness when fragment.onPause() called or
+        // when a player is in portrait
+        lp.screenBrightness = -1;
+        activity.getWindow().setAttributes(lp);
+    }
+
+    private void setupBrightness() {
         if (activity == null) {
             return;
         }
 
         final WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-        if (save) {
-            // Save current brightness level
-            PlayerHelper.setScreenBrightness(activity, lp.screenBrightness);
-
-            // Restore the old  brightness when fragment.onPause() called.
-            // It means when user leaves this fragment brightness will be set to system brightness
-            lp.screenBrightness = -1;
+        if (player == null
+                || !player.videoPlayerSelected()
+                || !player.isFullscreen()
+                || bottomSheetState != BottomSheetBehavior.STATE_EXPANDED) {
+            // Apply system brightness when the player is not in fullscreen
+            saveCurrentAndRestoreDefaultBrightness();
         } else {
             // Restore already saved brightness level
             final float brightnessLevel = PlayerHelper.getScreenBrightness(activity);
-            if (brightnessLevel <= 0.0f && brightnessLevel > 1.0f) {
+            if (brightnessLevel == lp.screenBrightness) {
                 return;
             }
-
             lp.screenBrightness = brightnessLevel;
+            activity.getWindow().setAttributes(lp);
         }
-        activity.getWindow().setAttributes(lp);
     }
 
     private void checkLandscape() {
@@ -2167,6 +2181,7 @@ public class VideoDetailFragment
      * @param toMain if true than the main fragment will be focused or the player otherwise
      */
     private void moveFocusToMainFragment(final boolean toMain) {
+        setupBrightness();
         final ViewGroup mainFragment = requireActivity().findViewById(R.id.fragment_holder);
         // Hamburger button steels a focus even under bottomSheet
         final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
@@ -2190,7 +2205,7 @@ public class VideoDetailFragment
      * Bottom padding should be equal to the mini player's height in this case
      *
      * @param showMore whether main fragment should be expanded or not
-     * */
+     */
     private void manageSpaceAtTheBottom(final boolean showMore) {
         final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         final ViewGroup holder = requireActivity().findViewById(R.id.fragment_holder);
