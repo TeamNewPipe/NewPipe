@@ -551,4 +551,8 @@
     <string name="restricted_video">이 비디오는 연령제한이 있습니다.
 \n
 \n만약, 시청을 원한다면 설정에 \"연령 제한 컨텐츠\"를 활성화 하세요.</string>
+    <string name="recaptcha_done_button">완료</string>
+    <string name="artists">아티스트</string>
+    <string name="albums">앨범</string>
+    <string name="videos_string">비디오</string>
 </resources>
