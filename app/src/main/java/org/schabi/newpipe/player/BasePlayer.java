@@ -1339,6 +1339,11 @@ public abstract class BasePlayer implements
             return;
         }
         final StreamInfo currentInfo = currentMetadata.getMetadata();
+        if (playQueue != null) {
+            // Save current position. It will help to restore this position once a user
+            // wants to play prev or next stream from the queue
+            playQueue.setRecovery(playQueue.getIndex(), simpleExoPlayer.getContentPosition());
+        }
         savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
     }
 
