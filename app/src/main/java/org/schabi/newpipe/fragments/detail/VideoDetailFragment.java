@@ -244,7 +244,7 @@ public class VideoDetailFragment
 
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
-    private TabAdaptor pageAdapter;
+    private TabAdapter pageAdapter;
     private TabLayout tabLayout;
     private FrameLayout relatedStreamsLayout;
 
@@ -752,7 +752,7 @@ public class VideoDetailFragment
 
         appBarLayout = rootView.findViewById(R.id.appbarlayout);
         viewPager = rootView.findViewById(R.id.viewpager);
-        pageAdapter = new TabAdaptor(getChildFragmentManager());
+        pageAdapter = new TabAdapter(getChildFragmentManager());
         viewPager.setAdapter(pageAdapter);
         tabLayout = rootView.findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
