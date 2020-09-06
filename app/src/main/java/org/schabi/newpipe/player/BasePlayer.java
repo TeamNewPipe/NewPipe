@@ -42,6 +42,7 @@ import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
+import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
@@ -752,7 +753,13 @@ public abstract class BasePlayer implements
 
             final int skipTo = (int) Math.ceil((segment.endTime));
 
+            // temporarily force EXACT seek parameters to prevent infinite skip looping
+            final SeekParameters seekParams = simpleExoPlayer.getSeekParameters();
+            simpleExoPlayer.setSeekParameters(SeekParameters.EXACT);
+
             seekTo(skipTo);
+
+            simpleExoPlayer.setSeekParameters(seekParams);
 
             if (mPrefs.getBoolean(
                     context.getString(R.string.sponsor_block_notifications_key), false)) {
