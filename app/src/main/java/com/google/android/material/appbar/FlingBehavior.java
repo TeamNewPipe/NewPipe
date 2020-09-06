@@ -68,6 +68,14 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
                 return false;
             }
         }
+        final View seekBar = child.findViewById(R.id.playbackSeekBar);
+        if (seekBar != null) {
+            final boolean visible = seekBar.getGlobalVisibleRect(globalRect);
+            if (visible && globalRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
+                allowScroll = false;
+                return false;
+            }
+        }
         allowScroll = true;
         switch (ev.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:

@@ -55,8 +55,8 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.schabi.newpipe.App;
-import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.SponsorBlockApiTask;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -103,7 +103,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 @SuppressWarnings({"WeakerAccess"})
 public abstract class BasePlayer implements
         Player.EventListener, PlaybackListener, ImageLoadingListener {
-    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+    public static final boolean DEBUG = MainActivity.DEBUG;
     @NonNull
     public static final String TAG = "BasePlayer";
 
@@ -989,7 +989,6 @@ public abstract class BasePlayer implements
         }
         setRecovery();
 
-        final Throwable cause = error.getCause();
         if (error instanceof BehindLiveWindowException) {
             reload();
         } else {
@@ -1516,6 +1515,11 @@ public abstract class BasePlayer implements
             return;
         }
         final StreamInfo currentInfo = currentMetadata.getMetadata();
+        if (playQueue != null) {
+            // Save current position. It will help to restore this position once a user
+            // wants to play prev or next stream from the queue
+            playQueue.setRecovery(playQueue.getIndex(), simpleExoPlayer.getContentPosition());
+        }
         savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
     }
 

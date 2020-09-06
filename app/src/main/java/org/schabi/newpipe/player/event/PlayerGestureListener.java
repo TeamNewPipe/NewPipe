@@ -202,7 +202,8 @@ public class PlayerGestureListener
 
     private boolean onScrollInMain(final MotionEvent initialEvent, final MotionEvent movingEvent,
                                    final float distanceX, final float distanceY) {
-        if (!isVolumeGestureEnabled && !isBrightnessGestureEnabled) {
+        if ((!isVolumeGestureEnabled && !isBrightnessGestureEnabled)
+                || !playerImpl.isFullscreen()) {
             return false;
         }
 

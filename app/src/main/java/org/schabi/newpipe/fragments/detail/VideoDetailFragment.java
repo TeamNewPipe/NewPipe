@@ -202,6 +202,7 @@ public class VideoDetailFragment
     private ImageView thumbnailImageView;
     private ImageView thumbnailPlayButton;
     private AnimatedProgressBar positionView;
+    private ViewGroup playerPlaceholder;
 
     private View videoTitleRoot;
     private TextView videoTitleTextView;
@@ -336,6 +337,7 @@ public class VideoDetailFragment
             stopPlayerListener();
             playerService = null;
             player = null;
+            saveCurrentAndRestoreDefaultBrightness();
         }
     }
 
@@ -424,7 +426,7 @@ public class VideoDetailFragment
         if (currentWorker != null) {
             currentWorker.dispose();
         }
-        setupBrightness(true);
+        saveCurrentAndRestoreDefaultBrightness();
         PreferenceManager.getDefaultSharedPreferences(getContext())
                 .edit()
                 .putString(getString(R.string.stream_info_selected_tab_key),
@@ -438,7 +440,7 @@ public class VideoDetailFragment
 
         activity.sendBroadcast(new Intent(ACTION_VIDEO_FRAGMENT_RESUMED));
 
-        setupBrightness(false);
+        setupBrightness();
 
         if (updateFlags != 0) {
             if (!isLoading.get() && currentInfo != null) {
@@ -705,6 +707,7 @@ public class VideoDetailFragment
         thumbnailBackgroundButton = rootView.findViewById(R.id.detail_thumbnail_root_layout);
         thumbnailImageView = rootView.findViewById(R.id.detail_thumbnail_image_view);
         thumbnailPlayButton = rootView.findViewById(R.id.detail_thumbnail_play_button);
+        playerPlaceholder = rootView.findViewById(R.id.player_placeholder);
 
         contentRootLayoutHiding = rootView.findViewById(R.id.detail_content_root_hiding);
 
@@ -1265,17 +1268,15 @@ public class VideoDetailFragment
             return;
         }
 
-        final FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
-
         // Check if viewHolder already contains a child
-        if (player.getRootView().getParent() != viewHolder) {
+        if (player.getRootView().getParent() != playerPlaceholder) {
             removeVideoPlayerView();
         }
         setHeightThumbnail();
 
         // Prevent from re-adding a view multiple times
         if (player.getRootView().getParent() == null) {
-            viewHolder.addView(player.getRootView());
+            playerPlaceholder.addView(player.getRootView());
         }
     }
 
@@ -1290,9 +1291,8 @@ public class VideoDetailFragment
             return;
         }
 
-        final FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
-        viewHolder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
-        viewHolder.requestLayout();
+        playerPlaceholder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
+        playerPlaceholder.requestLayout();
     }
 
     private void prepareDescription(final Description description) {
@@ -1770,9 +1770,19 @@ public class VideoDetailFragment
     private void showPlaybackProgress(final long progress, final long duration) {
         final int progressSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(progress);
         final int durationSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(duration);
+        // If the old and the new progress values have a big difference then use
+        // animation. Otherwise don't because it affects CPU
+        final boolean shouldAnimate = Math.abs(positionView.getProgress() - progressSeconds) > 2;
         positionView.setMax(durationSeconds);
-        positionView.setProgressAnimated(progressSeconds);
-        detailPositionView.setText(Localization.getDurationString(progressSeconds));
+        if (shouldAnimate) {
+            positionView.setProgressAnimated(progressSeconds);
+        } else {
+            positionView.setProgress(progressSeconds);
+        }
+        final String position = Localization.getDurationString(progressSeconds);
+        if (position != detailPositionView.getText()) {
+            detailPositionView.setText(position);
+        }
         if (positionView.getVisibility() != View.VISIBLE) {
             animateView(positionView, true, 100);
             animateView(detailPositionView, true, 100);
@@ -1899,6 +1909,7 @@ public class VideoDetailFragment
 
     @Override
     public void onFullscreenStateChanged(final boolean fullscreen) {
+        setupBrightness();
         if (playerService.getView() == null || player.getParentActivity() == null) {
             return;
         }
@@ -1949,7 +1960,7 @@ public class VideoDetailFragment
                 (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
         final AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
         final ValueAnimator valueAnimator = ValueAnimator
-                .ofInt(0, -getView().findViewById(R.id.player_placeholder).getHeight());
+                .ofInt(0, -playerPlaceholder.getHeight());
         valueAnimator.setInterpolator(new DecelerateInterpolator());
         valueAnimator.addUpdateListener(animation -> {
             behavior.setTopAndBottomOffset((int) animation.getAnimatedValue());
@@ -2013,29 +2024,41 @@ public class VideoDetailFragment
                 && player.getPlayer().getPlaybackState() != Player.STATE_IDLE;
     }
 
-    private void setupBrightness(final boolean save) {
+    private void saveCurrentAndRestoreDefaultBrightness() {
+        final WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
+        if (lp.screenBrightness == -1) {
+            return;
+        }
+        // Save current brightness level
+        PlayerHelper.setScreenBrightness(activity, lp.screenBrightness);
+
+        // Restore the old  brightness when fragment.onPause() called or
+        // when a player is in portrait
+        lp.screenBrightness = -1;
+        activity.getWindow().setAttributes(lp);
+    }
+
+    private void setupBrightness() {
         if (activity == null) {
             return;
         }
 
         final WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-        if (save) {
-            // Save current brightness level
-            PlayerHelper.setScreenBrightness(activity, lp.screenBrightness);
-
-            // Restore the old  brightness when fragment.onPause() called.
-            // It means when user leaves this fragment brightness will be set to system brightness
-            lp.screenBrightness = -1;
+        if (player == null
+                || !player.videoPlayerSelected()
+                || !player.isFullscreen()
+                || bottomSheetState != BottomSheetBehavior.STATE_EXPANDED) {
+            // Apply system brightness when the player is not in fullscreen
+            saveCurrentAndRestoreDefaultBrightness();
         } else {
             // Restore already saved brightness level
             final float brightnessLevel = PlayerHelper.getScreenBrightness(activity);
-            if (brightnessLevel <= 0.0f && brightnessLevel > 1.0f) {
+            if (brightnessLevel == lp.screenBrightness) {
                 return;
             }
-
             lp.screenBrightness = brightnessLevel;
+            activity.getWindow().setAttributes(lp);
         }
-        activity.getWindow().setAttributes(lp);
     }
 
     private void checkLandscape() {
@@ -2158,6 +2181,7 @@ public class VideoDetailFragment
      * @param toMain if true than the main fragment will be focused or the player otherwise
      */
     private void moveFocusToMainFragment(final boolean toMain) {
+        setupBrightness();
         final ViewGroup mainFragment = requireActivity().findViewById(R.id.fragment_holder);
         // Hamburger button steels a focus even under bottomSheet
         final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
@@ -2181,7 +2205,7 @@ public class VideoDetailFragment
      * Bottom padding should be equal to the mini player's height in this case
      *
      * @param showMore whether main fragment should be expanded or not
-     * */
+     */
     private void manageSpaceAtTheBottom(final boolean showMore) {
         final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         final ViewGroup holder = requireActivity().findViewById(R.id.fragment_holder);
