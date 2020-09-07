@@ -633,7 +633,7 @@ public class DownloadMission extends Mission {
         calculated = offsets[current < offsets.length ? current : (offsets.length - 1)] + length;
         calculated -= offsets[0];// don't count reserved space
 
-        return calculated > nearLength ? calculated : nearLength;
+        return Math.max(calculated, nearLength);
     }
 
     /**

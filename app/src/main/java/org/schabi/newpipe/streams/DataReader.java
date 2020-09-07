@@ -236,7 +236,7 @@ public class DataReader {
 
         if (read != amount) {
             throw new EOFException("Truncated stream, missing "
-                    + String.valueOf(amount - read) + " bytes");
+                    + (amount - read) + " bytes");
         }
 
         for (int i = 0; i < amount; i++) {

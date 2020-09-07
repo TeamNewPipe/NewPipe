@@ -155,13 +155,13 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
             int bestStart = -1;
             int bestEnd = -1;
 
-            for (int i = 0; i < candidates.length; i++) {
-                final int start = buffer.getSpanStart(candidates[i]);
-                final int end = buffer.getSpanEnd(candidates[i]);
+            for (final ClickableSpan candidate : candidates) {
+                final int start = buffer.getSpanStart(candidate);
+                final int end = buffer.getSpanEnd(candidate);
 
                 if ((end < selEnd || selStart == selEnd) && start >= visibleStart) {
                     if (end > bestEnd) {
-                        bestStart = buffer.getSpanStart(candidates[i]);
+                        bestStart = buffer.getSpanStart(candidate);
                         bestEnd = end;
                     }
                 }
@@ -224,14 +224,14 @@ public class LargeTextMovementMethod extends LinkMovementMethod {
             int bestStart = Integer.MAX_VALUE;
             int bestEnd = Integer.MAX_VALUE;
 
-            for (int i = 0; i < candidates.length; i++) {
-                final int start = buffer.getSpanStart(candidates[i]);
-                final int end = buffer.getSpanEnd(candidates[i]);
+            for (final ClickableSpan candidate : candidates) {
+                final int start = buffer.getSpanStart(candidate);
+                final int end = buffer.getSpanEnd(candidate);
 
                 if ((start > selStart || selStart == selEnd) && end <= visibleEnd) {
                     if (start < bestStart) {
                         bestStart = start;
-                        bestEnd = buffer.getSpanEnd(candidates[i]);
+                        bestEnd = buffer.getSpanEnd(candidate);
                     }
                 }
             }

@@ -162,13 +162,9 @@ public final class AnimationUtils {
                 .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());
         viewPropertyAnimator.setDuration(duration);
-        viewPropertyAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(final ValueAnimator animation) {
+        viewPropertyAnimator.addUpdateListener(animation ->
                 ViewCompat.setBackgroundTintList(view,
-                        new ColorStateList(empty, new int[]{(int) animation.getAnimatedValue()}));
-            }
-        });
+                        new ColorStateList(empty, new int[]{(int) animation.getAnimatedValue()})));
         viewPropertyAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(final Animator animation) {
@@ -205,12 +201,8 @@ public final class AnimationUtils {
                 .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());
         viewPropertyAnimator.setDuration(duration);
-        viewPropertyAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(final ValueAnimator animation) {
-                view.setTextColor((int) animation.getAnimatedValue());
-            }
-        });
+        viewPropertyAnimator.addUpdateListener(animation ->
+                view.setTextColor((int) animation.getAnimatedValue()));
         viewPropertyAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(final Animator animation) {
@@ -430,7 +422,7 @@ public final class AnimationUtils {
                                                   final long duration, final long delay,
                                                   final Runnable execOnEnd) {
         if (enterOrExit) {
-            view.setTranslationY(-view.getHeight() / 2);
+            view.setTranslationY(-view.getHeight() / 2.0f);
             view.setAlpha(0f);
             view.animate()
                     .setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).translationY(0)
@@ -445,7 +437,7 @@ public final class AnimationUtils {
             }).start();
         } else {
             view.animate().setInterpolator(new FastOutSlowInInterpolator())
-                    .alpha(0f).translationY(-view.getHeight() / 2)
+                    .alpha(0f).translationY(-view.getHeight() / 2.0f)
                     .setDuration(duration).setStartDelay(delay)
                     .setListener(new AnimatorListenerAdapter() {
                 @Override

@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -295,7 +295,7 @@ public class DownloadDialog extends DialogFragment
         initToolbar(view.findViewById(R.id.toolbar));
         setupDownloadOptions();
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
         final int threads = prefs.getInt(getString(R.string.default_download_threads), 3);
         threadsCountTextView.setText(String.valueOf(threads));

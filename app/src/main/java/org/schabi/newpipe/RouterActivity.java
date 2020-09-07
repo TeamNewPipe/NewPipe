@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -492,12 +492,8 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
-                    downloadDialog.getDialog().setOnDismissListener(dialog -> {
-                        finish();
-                    });
-                }, (@NonNull Throwable throwable) -> {
-                    onError();
-                });
+                    downloadDialog.getDialog().setOnDismissListener(dialog -> finish());
+                }, (@NonNull Throwable throwable) -> onError());
     }
 
     @Override
@@ -572,7 +568,7 @@ public class RouterActivity extends AppCompatActivity {
                 }
             }
         }
-        return result.toArray(new String[result.size()]);
+        return result.toArray(new String[0]);
     }
 
     private static class AdapterChoiceItem {

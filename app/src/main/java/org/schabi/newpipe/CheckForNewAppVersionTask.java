@@ -11,7 +11,7 @@ import android.content.pm.Signature;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;

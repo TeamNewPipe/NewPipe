@@ -30,7 +30,7 @@ import android.graphics.Bitmap;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -310,9 +310,7 @@ public final class MainPlayer extends Service {
             setLockScreenThumbnail(builder);
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
+        builder.setPriority(NotificationCompat.PRIORITY_MAX);
         return builder;
     }
 

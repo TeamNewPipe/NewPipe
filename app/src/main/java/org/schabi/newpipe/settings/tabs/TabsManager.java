@@ -2,7 +2,7 @@ package org.schabi.newpipe.settings.tabs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
