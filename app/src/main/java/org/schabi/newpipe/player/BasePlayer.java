@@ -1411,6 +1411,11 @@ public abstract class BasePlayer implements
     }
 
     @NonNull
+    public LoadController getLoadController() {
+        return (LoadController) loadControl;
+    }
+
+    @NonNull
     public String getVideoUrl() {
         return currentMetadata == null
                 ? context.getString(R.string.unknown_content)
