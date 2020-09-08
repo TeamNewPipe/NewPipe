@@ -57,7 +57,7 @@ import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
     public static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
@@ -69,16 +69,18 @@ public final class NavigationHelper {
     //////////////////////////////////////////////////////////////////////////*/
 
     @NonNull
-    public static Intent getPlayerIntent(@NonNull final Context context,
-                                         @NonNull final Class targetClazz,
-                                         @NonNull final PlayQueue playQueue,
-                                         @Nullable final String quality,
-                                         final boolean resumePlayback) {
+    public static <T> Intent getPlayerIntent(@NonNull final Context context,
+                                             @NonNull final Class<T> targetClazz,
+                                             @Nullable final PlayQueue playQueue,
+                                             @Nullable final String quality,
+                                             final boolean resumePlayback) {
         final Intent intent = new Intent(context, targetClazz);
 
-        final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
-        if (cacheKey != null) {
-            intent.putExtra(VideoPlayer.PLAY_QUEUE_KEY, cacheKey);
+        if (playQueue != null) {
+            final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
+            if (cacheKey != null) {
+                intent.putExtra(VideoPlayer.PLAY_QUEUE_KEY, cacheKey);
+            }
         }
         if (quality != null) {
             intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
@@ -90,53 +92,51 @@ public final class NavigationHelper {
     }
 
     @NonNull
-    public static Intent getPlayerIntent(@NonNull final Context context,
-                                         @NonNull final Class targetClazz,
-                                         @NonNull final PlayQueue playQueue,
-                                         final boolean resumePlayback) {
+    public static <T> Intent getPlayerIntent(@NonNull final Context context,
+                                             @NonNull final Class<T> targetClazz,
+                                             @Nullable final PlayQueue playQueue,
+                                             final boolean resumePlayback) {
         return getPlayerIntent(context, targetClazz, playQueue, null, resumePlayback);
     }
 
     @NonNull
-    public static Intent getPlayerEnqueueIntent(@NonNull final Context context,
-                                                @NonNull final Class targetClazz,
-                                                @NonNull final PlayQueue playQueue,
-                                                final boolean selectOnAppend,
-                                                final boolean resumePlayback) {
+    public static <T> Intent getPlayerEnqueueIntent(@NonNull final Context context,
+                                                    @NonNull final Class<T> targetClazz,
+                                                    @Nullable final PlayQueue playQueue,
+                                                    final boolean selectOnAppend,
+                                                    final boolean resumePlayback) {
         return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
                 .putExtra(BasePlayer.APPEND_ONLY, true)
                 .putExtra(BasePlayer.SELECT_ON_APPEND, selectOnAppend);
     }
 
     @NonNull
-    public static Intent getPlayerIntent(@NonNull final Context context,
-                                         @NonNull final Class targetClazz,
-                                         @NonNull final PlayQueue playQueue,
-                                         final int repeatMode,
-                                         final float playbackSpeed,
-                                         final float playbackPitch,
-                                         final boolean playbackSkipSilence,
-                                         @Nullable final String playbackQuality,
-                                         final boolean resumePlayback,
-                                         final boolean startPaused,
-                                         final boolean isMuted) {
+    public static <T> Intent getPlayerIntent(@NonNull final Context context,
+                                             @NonNull final Class<T> targetClazz,
+                                             @Nullable final PlayQueue playQueue,
+                                             final int repeatMode,
+                                             final float playbackSpeed,
+                                             final float playbackPitch,
+                                             final boolean playbackSkipSilence,
+                                             @Nullable final String playbackQuality,
+                                             final boolean resumePlayback,
+                                             final boolean startPaused,
+                                             final boolean isMuted) {
         return getPlayerIntent(context, targetClazz, playQueue, playbackQuality, resumePlayback)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
                 .putExtra(BasePlayer.START_PAUSED, startPaused)
                 .putExtra(BasePlayer.IS_MUTED, isMuted);
     }
 
-    public static void playOnMainPlayer(
-            final AppCompatActivity activity,
-            final PlayQueue queue,
-            final boolean autoPlay) {
+    public static void playOnMainPlayer(final AppCompatActivity activity,
+                                        final PlayQueue queue,
+                                        final boolean autoPlay) {
         playOnMainPlayer(activity.getSupportFragmentManager(), queue, autoPlay);
     }
 
-    public static void playOnMainPlayer(
-            final FragmentManager fragmentManager,
-            final PlayQueue queue,
-            final boolean autoPlay) {
+    public static void playOnMainPlayer(final FragmentManager fragmentManager,
+                                        final PlayQueue queue,
+                                        final boolean autoPlay) {
         final PlayQueueItem currentStream = queue.getItem();
         openVideoDetailFragment(
                 fragmentManager,
@@ -148,7 +148,7 @@ public final class NavigationHelper {
     }
 
     public static void playOnMainPlayer(@NonNull final Context context,
-                                        @NonNull final PlayQueue queue,
+                                        @Nullable final PlayQueue queue,
                                         @NonNull final StreamingService.LinkType linkType,
                                         @NonNull final String url,
                                         @NonNull final String title,
@@ -553,18 +553,14 @@ public final class NavigationHelper {
         return true;
     }
 
-    public static Intent getBackgroundPlayerActivityIntent(final Context context) {
-        return getServicePlayerActivityIntent(context, BackgroundPlayerActivity.class);
-    }
-
-    private static Intent getServicePlayerActivityIntent(final Context context,
-                                                         final Class activityClass) {
-        final Intent intent = new Intent(context, activityClass);
+    public static Intent getPlayQueueActivityIntent(final Context context) {
+        final Intent intent = new Intent(context, BackgroundPlayerActivity.class);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         return intent;
     }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Link handling
     //////////////////////////////////////////////////////////////////////////*/

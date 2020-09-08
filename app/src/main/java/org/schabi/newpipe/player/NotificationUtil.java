@@ -120,8 +120,6 @@ public final class NotificationUtil {
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setColor(ContextCompat.getColor(player.context, R.color.gray))
-                .setContentIntent(PendingIntent.getActivity(player.context, NOTIFICATION_ID,
-                        getIntentForNotification(player), FLAG_UPDATE_CURRENT))
                 .setDeleteIntent(PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
 
@@ -141,6 +139,9 @@ public final class NotificationUtil {
             return;
         }
 
+        // also update content intent, in case the user switched players
+        notificationBuilder.setContentIntent(PendingIntent.getActivity(player.context,
+                NOTIFICATION_ID, getIntentForNotification(player), FLAG_UPDATE_CURRENT));
         notificationBuilder.setContentTitle(player.getVideoTitle());
         notificationBuilder.setContentText(player.getUploaderName());
         updateActions(notificationBuilder, player);
@@ -326,19 +327,18 @@ public final class NotificationUtil {
     }
 
     private Intent getIntentForNotification(final VideoPlayerImpl player) {
-        final Intent intent;
         if (player.audioPlayerSelected() || player.popupPlayerSelected()) {
-            // Means we play in popup or audio only. Let's show BackgroundPlayerActivity
-            intent = NavigationHelper.getBackgroundPlayerActivityIntent(player.context);
+            // Means we play in popup or audio only. Let's show the play queue
+            return NavigationHelper.getPlayQueueActivityIntent(player.context);
         } else {
             // We are playing in fragment. Don't open another activity just show fragment. That's it
-            intent = NavigationHelper.getPlayerIntent(
+            final Intent intent = NavigationHelper.getPlayerIntent(
                     player.context, MainActivity.class, null, true);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setAction(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            return intent;
         }
-        return intent;
     }
 
 
