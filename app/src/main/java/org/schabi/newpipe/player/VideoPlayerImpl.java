@@ -575,7 +575,7 @@ public class VideoPlayerImpl extends VideoPlayer
     void onShuffleOrRepeatModeChanged() {
         updatePlaybackButtons();
         updatePlayback();
-        resetNotification(false);
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     @Override
@@ -612,7 +612,7 @@ public class VideoPlayerImpl extends VideoPlayer
         titleTextView.setText(tag.getMetadata().getName());
         channelTextView.setText(tag.getMetadata().getUploaderName());
 
-        resetNotification(false);
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
         updateMetadata();
     }
 
@@ -1059,9 +1059,7 @@ public class VideoPlayerImpl extends VideoPlayer
         animatePlayButtons(false, 100);
         getRootView().setKeepScreenOn(false);
 
-        NotificationUtil.getInstance().createNotificationIfNeeded(this, false);
-        NotificationUtil.getInstance().updateNotification(
-                this);
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     @Override
@@ -1077,7 +1075,7 @@ public class VideoPlayerImpl extends VideoPlayer
                 isForwardPressed = false;
                 isRewindPressed = false;
             } else {
-                NotificationUtil.getInstance().updateNotification(this);
+                NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
             }
         }
     }
@@ -1097,7 +1095,7 @@ public class VideoPlayerImpl extends VideoPlayer
         checkLandscape();
         getRootView().setKeepScreenOn(true);
 
-        resetNotification(false);
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     @Override
@@ -1113,12 +1111,12 @@ public class VideoPlayerImpl extends VideoPlayer
 
         updateWindowFlags(IDLE_WINDOW_FLAGS);
 
-        resetNotification(false);
-
         // Remove running notification when user don't want music (or video in popup)
         // to be played in background
         if (!minimizeOnPopupEnabled() && !backgroundPlaybackEnabled() && videoPlayerSelected()) {
-            service.stopForeground(true);
+            NotificationUtil.getInstance().cancelNotificationAndStopForeground(service);
+        } else {
+            NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
         }
 
         getRootView().setKeepScreenOn(false);
@@ -1130,9 +1128,7 @@ public class VideoPlayerImpl extends VideoPlayer
         animatePlayButtons(false, 100);
         getRootView().setKeepScreenOn(true);
 
-        NotificationUtil.getInstance().createNotificationIfNeeded(this, false);
-        NotificationUtil.getInstance().updateNotification(
-                this);
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
 
@@ -1146,9 +1142,7 @@ public class VideoPlayerImpl extends VideoPlayer
         getRootView().setKeepScreenOn(false);
         updateWindowFlags(IDLE_WINDOW_FLAGS);
 
-        NotificationUtil.getInstance().createNotificationIfNeeded(this, false);
-        NotificationUtil.getInstance().updateNotification(this);
-
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
         super.onCompleted();
     }
 
@@ -1239,7 +1233,7 @@ public class VideoPlayerImpl extends VideoPlayer
                 onShuffleClicked();
                 break;
             case ACTION_RECREATE_NOTIFICATION:
-                resetNotification(true);
+                NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
                 break;
             case Intent.ACTION_HEADSET_PLUG: //FIXME
                 /*notificationManager.cancel(NOTIFICATION_ID);
@@ -1309,19 +1303,12 @@ public class VideoPlayerImpl extends VideoPlayer
     // Thumbnail Loading
     //////////////////////////////////////////////////////////////////////////*/
 
-    void resetNotification(final boolean recreate) {
-        NotificationUtil.getInstance().createNotificationIfNeeded(this, recreate);
-        NotificationUtil.getInstance().updateNotification(this);
-    }
-
     @Override
     public void onLoadingComplete(final String imageUri,
                                   final View view,
                                   final Bitmap loadedImage) {
-        // rebuild OLD notification here since remote view does not release bitmaps,
-        // causing memory leaks
         super.onLoadingComplete(imageUri, view, loadedImage);
-        resetNotification(true);
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     @Override
@@ -1329,13 +1316,13 @@ public class VideoPlayerImpl extends VideoPlayer
                                 final View view,
                                 final FailReason failReason) {
         super.onLoadingFailed(imageUri, view, failReason);
-        resetNotification(true);
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     @Override
     public void onLoadingCancelled(final String imageUri, final View view) {
         super.onLoadingCancelled(imageUri, view);
-        resetNotification(true);
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

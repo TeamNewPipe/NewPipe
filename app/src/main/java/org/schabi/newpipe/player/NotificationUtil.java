@@ -42,7 +42,7 @@ import static org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE;
  * @author cool-student
  */
 public final class NotificationUtil {
-    private static final String TAG = "NotificationUtil";
+    private static final String TAG = NotificationUtil.class.getSimpleName();
     private static final boolean DEBUG = BasePlayer.DEBUG;
     private static final int NOTIFICATION_ID = 123789;
 
@@ -70,21 +70,25 @@ public final class NotificationUtil {
     /////////////////////////////////////////////////////
 
     /**
-     * Creates the notification if it does not exist already or unless forceRecreate is true.
+     * Creates the notification if it does not exist already and recreates it if forceRecreate is
+     * true. Updates the notification with the data in the player.
      * @param player the player currently open, to take data from
      * @param forceRecreate whether to force the recreation of the notification even if it already
      *                      exists
      */
-    void createNotificationIfNeeded(final VideoPlayerImpl player, final boolean forceRecreate) {
+    synchronized void createNotificationIfNeededAndUpdate(final VideoPlayerImpl player,
+                                                          final boolean forceRecreate) {
         if (notificationBuilder == null || forceRecreate) {
             if (DEBUG) {
-                Log.d(TAG, "N_ createNotificationIfNeeded(true)");
+                Log.d(TAG, "N_ createNotificationIfNeededAndUpdate(true)");
             }
             notificationBuilder = createNotification(player);
         }
+        updateNotification(player);
     }
 
-    private NotificationCompat.Builder createNotification(final VideoPlayerImpl player) {
+    private synchronized NotificationCompat.Builder createNotification(
+            final VideoPlayerImpl player) {
         notificationManager =
                 (NotificationManager) player.context.getSystemService(NOTIFICATION_SERVICE);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
@@ -115,16 +119,11 @@ public final class NotificationUtil {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setContentTitle(player.getVideoTitle())
-                .setContentText(player.getUploaderName())
                 .setColor(ContextCompat.getColor(player.context, R.color.gray))
                 .setContentIntent(PendingIntent.getActivity(player.context, NOTIFICATION_ID,
                         getIntentForNotification(player), FLAG_UPDATE_CURRENT))
                 .setDeleteIntent(PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
-
-        updateActions(builder, player);
-        setLargeIcon(builder, player);
 
         return builder;
     }
@@ -133,7 +132,7 @@ public final class NotificationUtil {
      * Updates the notification and the button icons depending on the playback state.
      * @param player the player currently open, to take data from
      */
-    synchronized void updateNotification(final VideoPlayerImpl player) {
+    private synchronized void updateNotification(final VideoPlayerImpl player) {
         if (DEBUG) {
             Log.d(TAG, "N_ updateNotification()");
         }
@@ -151,7 +150,15 @@ public final class NotificationUtil {
     }
 
 
-    void startForegroundServiceWithNotification(final Service service) {
+    boolean hasSlotWithBuffering() {
+        return notificationSlots[1] == NotificationConstants.PLAY_PAUSE_BUFFERING
+                || notificationSlots[2] == NotificationConstants.PLAY_PAUSE_BUFFERING;
+    }
+
+
+    void createNotificationAndStartForeground(final VideoPlayerImpl player, final Service service) {
+        createNotificationIfNeededAndUpdate(player, true);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             service.startForeground(NOTIFICATION_ID, notificationBuilder.build(),
                     ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
@@ -160,13 +167,7 @@ public final class NotificationUtil {
         }
     }
 
-
-    boolean hasSlotWithBuffering() {
-        return notificationSlots[1] == NotificationConstants.PLAY_PAUSE_BUFFERING
-                || notificationSlots[2] == NotificationConstants.PLAY_PAUSE_BUFFERING;
-    }
-
-    void cancelNotification() {
+    void cancelNotificationAndStopForeground(final Service service) {
         try {
             if (notificationManager != null) {
                 notificationManager.cancel(NOTIFICATION_ID);
@@ -176,6 +177,8 @@ public final class NotificationUtil {
         }
         notificationManager = null;
         notificationBuilder = null;
+
+        service.stopForeground(true);
     }
 
 

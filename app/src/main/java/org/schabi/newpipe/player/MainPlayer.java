@@ -121,7 +121,7 @@ public final class MainPlayer extends Service {
 
         if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
                 || intent.getStringExtra(VideoPlayer.PLAY_QUEUE_KEY) != null) {
-            showNotificationAndStartForeground();
+            NotificationUtil.getInstance().createNotificationAndStartForeground(playerImpl, this);
         }
 
         playerImpl.handleIntent(intent);
@@ -154,7 +154,7 @@ public final class MainPlayer extends Service {
             // So we should hide the notification at all.
             // When autoplay enabled such notification flashing is annoying so skip this case
             if (!autoplayEnabled) {
-                stopForeground(true);
+                NotificationUtil.getInstance().cancelNotificationAndStopForeground(this);
             }
         }
     }
@@ -202,9 +202,8 @@ public final class MainPlayer extends Service {
             playerImpl.removePopupFromView();
             playerImpl.destroy();
         }
-        NotificationUtil.getInstance().cancelNotification();
 
-        stopForeground(true);
+        NotificationUtil.getInstance().cancelNotificationAndStopForeground(this);
         stopSelf();
     }
 
@@ -241,11 +240,6 @@ public final class MainPlayer extends Service {
                 windowManager.removeViewImmediate(getView());
             }
         }
-    }
-
-    private void showNotificationAndStartForeground() {
-        NotificationUtil.getInstance().createNotificationIfNeeded(playerImpl, true);
-        NotificationUtil.getInstance().startForegroundServiceWithNotification(this);
     }
 
 
