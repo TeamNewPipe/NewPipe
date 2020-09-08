@@ -142,7 +142,7 @@ public class NewPipeRecyclerView extends RecyclerView {
     }
 
     private boolean tryFocusFinder(final int direction) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             // Android 9 implemented bunch of handy changes to focus, that render code below less
             // useful, and also broke findNextFocusFromRect in way, that render this hack useless
             return false;

@@ -5,21 +5,21 @@
     android:key="general_preferences"
     android:title="@string/settings_category_debug_title">
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/allow_heap_dumping_key"
         android:title="@string/enable_leak_canary_title"
         android:summary="@string/enable_leak_canary_summary"/>
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/allow_disposed_exceptions_key"
         android:title="@string/enable_disposed_exceptions_title"
         android:summary="@string/enable_disposed_exceptions_summary"/>
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/show_original_time_ago_key"

@@ -293,7 +293,7 @@ public class WebMReader {
         if (metadataExpected && (obj.info == null || obj.tracks == null)) {
             throw new RuntimeException(
                     "Cluster element found without Info and/or Tracks element at position "
-                            + String.valueOf(ref.offset));
+                            + ref.offset);
         }
 
         return obj;
@@ -389,7 +389,7 @@ public class WebMReader {
 
         final Element elem = untilElement(ref, ID_TIMECODE);
         if (elem == null) {
-            throw new NoSuchElementException("Cluster at " + String.valueOf(ref.offset)
+            throw new NoSuchElementException("Cluster at " + ref.offset
                     + " without Timecode element");
         }
         obj.timecode = readNumber(elem);
@@ -520,7 +520,7 @@ public class WebMReader {
 
                 currentSimpleBlock = readSimpleBlock(elem);
                 if (currentSimpleBlock.trackNumber == tracks[selectedTrack].trackNumber) {
-                    currentSimpleBlock.data = stream.getView((int) currentSimpleBlock.dataSize);
+                    currentSimpleBlock.data = stream.getView(currentSimpleBlock.dataSize);
 
                     // calculate the timestamp in nanoseconds
                     currentSimpleBlock.absoluteTimeCodeNs = currentSimpleBlock.relativeTimeCode

@@ -2,6 +2,7 @@ package org.schabi.newpipe.fragments.detail;
 
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,16 +11,20 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TabAdaptor extends FragmentPagerAdapter {
+public class TabAdapter extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
     private final FragmentManager fragmentManager;
 
-    public TabAdaptor(final FragmentManager fm) {
-        super(fm);
+    public TabAdapter(final FragmentManager fm) {
+        // if changed to BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT => crash if enqueueing stream in
+        // the background and then clicking on it to open VideoDetailFragment:
+        // "Cannot setMaxLifecycle for Fragment not attached to FragmentManager"
+        super(fm, BEHAVIOR_SET_USER_VISIBLE_HINT);
         this.fragmentManager = fm;
     }
 
+    @NonNull
     @Override
     public Fragment getItem(final int position) {
         return mFragmentList.get(position);
@@ -57,7 +62,7 @@ public class TabAdaptor extends FragmentPagerAdapter {
     }
 
     @Override
-    public int getItemPosition(final Object object) {
+    public int getItemPosition(@NonNull final Object object) {
         if (mFragmentList.contains(object)) {
             return mFragmentList.indexOf(object);
         } else {
@@ -82,7 +87,9 @@ public class TabAdaptor extends FragmentPagerAdapter {
     }
 
     @Override
-    public void destroyItem(final ViewGroup container, final int position, final Object object) {
+    public void destroyItem(@NonNull final ViewGroup container,
+                            final int position,
+                            @NonNull final Object object) {
         fragmentManager.beginTransaction().remove((Fragment) object).commitNowAllowingStateLoss();
     }
 

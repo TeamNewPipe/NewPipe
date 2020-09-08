@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -74,7 +74,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         initialSelectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
         initialLanguage = PreferenceManager
-                .getDefaultSharedPreferences(getContext()).getString("app_language_key", "en");
+                .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
     }
 
     @Override
@@ -148,7 +148,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
         final String selectedLanguage = PreferenceManager
-                .getDefaultSharedPreferences(getContext()).getString("app_language_key", "en");
+                .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
 
         if (!selectedLocalization.equals(initialSelectedLocalization)
                 || !selectedContentCountry.equals(initialSelectedContentCountry)
@@ -217,7 +217,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         try {
             output = new ObjectOutputStream(new FileOutputStream(dst));
             final SharedPreferences pref
-                    = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    = PreferenceManager.getDefaultSharedPreferences(requireContext());
             output.writeObject(pref.getAll());
 
         } catch (final IOException e) {
@@ -299,7 +299,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         try {
             input = new ObjectInputStream(new FileInputStream(src));
             final SharedPreferences.Editor prefEdit = PreferenceManager
-                    .getDefaultSharedPreferences(getContext()).edit();
+                    .getDefaultSharedPreferences(requireContext()).edit();
             prefEdit.clear();
             final Map<String, ?> entries = (Map<String, ?>) input.readObject();
             for (final Map.Entry<String, ?> entry : entries.entrySet()) {

@@ -212,7 +212,6 @@
     <string name="playback_skip_silence_key" translatable="false">playback_skip_silence_key</string>
 
     <string name="app_language_key" translatable="false">app_language_key</string>
-    <string name="enable_lock_screen_video_thumbnail_key" translatable="false">enable_lock_screen_video_thumbnail</string>
 
     <string name="feed_update_threshold_key" translatable="false">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value" translatable="false">300</string>
@@ -248,6 +247,11 @@
     <string name="clear_views_history_key" translatable="false">clear_play_history</string>
     <string name="clear_playback_states_key" translatable="false">clear_playback_states</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
+
+    <string name="last_used_download_type" translatable="false">@string/last_download_type_video_key</string>
+    <string name="last_download_type_video_key" translatable="false">last_dl_type_video</string>
+    <string name="last_download_type_audio_key" translatable="false">last_dl_type_audio</string>
+    <string name="last_download_type_subtitle_key" translatable="false">last_dl_type_subtitle</string>
 
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
     <string name="storage_use_saf" translatable="false">storage_use_saf</string>

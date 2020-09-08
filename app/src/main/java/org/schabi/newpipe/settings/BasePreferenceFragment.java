@@ -2,7 +2,7 @@ package org.schabi.newpipe.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -20,7 +20,7 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(requireActivity());
         super.onCreate(savedInstanceState);
     }
 

@@ -271,9 +271,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         final Builder builder = new AlertDialog.Builder(activity);
         builder.setView(dialogView)
-                .setPositiveButton(R.string.rename_playlist, (dialog, which) -> {
-                    changeLocalPlaylistName(selectedItem.uid, editText.getText().toString());
-                })
+                .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
+                        changeLocalPlaylistName(selectedItem.uid, editText.getText().toString()))
                 .setNegativeButton(R.string.cancel, null)
                 .setNeutralButton(R.string.delete, (dialog, which) -> {
                     showDeleteDialog(selectedItem.name,

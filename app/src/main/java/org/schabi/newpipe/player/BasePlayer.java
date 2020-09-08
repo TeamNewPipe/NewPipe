@@ -27,7 +27,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -1342,6 +1342,11 @@ public abstract class BasePlayer implements
             return;
         }
         final StreamInfo currentInfo = currentMetadata.getMetadata();
+        if (playQueue != null) {
+            // Save current position. It will help to restore this position once a user
+            // wants to play prev or next stream from the queue
+            playQueue.setRecovery(playQueue.getIndex(), simpleExoPlayer.getContentPosition());
+        }
         savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
     }
 

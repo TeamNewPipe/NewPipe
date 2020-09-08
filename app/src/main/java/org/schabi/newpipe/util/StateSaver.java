@@ -36,7 +36,6 @@ import org.schabi.newpipe.MainActivity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -254,12 +253,8 @@ public final class StateSaver {
                 return new SavedState(prefixFileName, file.getAbsolutePath());
             } else {
                 // Delete any file that contains the prefix
-                final File[] files = cacheDir.listFiles(new FilenameFilter() {
-                    @Override
-                    public boolean accept(final File dir, final String name) {
-                        return name.contains(prefixFileName);
-                    }
-                });
+                final File[] files = cacheDir.listFiles((dir, name) ->
+                        name.contains(prefixFileName));
                 for (final File fileToDelete : files) {
                     fileToDelete.delete();
                 }

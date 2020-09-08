@@ -220,7 +220,7 @@ public class App extends Application {
     }
 
     public void initNotificationChannel() {
-        if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
         }
 

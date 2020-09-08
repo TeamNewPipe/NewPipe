@@ -115,7 +115,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             return mediaSources.get(0);
         } else {
             return new MergingMediaSource(mediaSources.toArray(
-                    new MediaSource[mediaSources.size()]));
+                    new MediaSource[0]));
         }
     }
 

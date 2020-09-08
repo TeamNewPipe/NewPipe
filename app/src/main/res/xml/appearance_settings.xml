@@ -12,7 +12,7 @@
         android:title="@string/theme_title"
         app:iconSpaceReserved="false" />
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="@string/show_hold_to_append_key"
         android:summary="@string/show_hold_to_append_summary"

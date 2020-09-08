@@ -162,6 +162,9 @@ public final class MainPlayer extends Service {
     @Override
     public void onTaskRemoved(final Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
+        if (!playerImpl.videoPlayerSelected()) {
+            return;
+        }
         onDestroy();
         // Unload from memory completely
         Runtime.getRuntime().halt(0);
