@@ -77,11 +77,11 @@ public final class MainPlayer extends Service {
     static final String ACTION_FAST_FORWARD
             = "org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD";
     static final String ACTION_BUFFERING
-            = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_BUFFERING";
+            = "org.schabi.newpipe.player.MainPlayer.ACTION_BUFFERING";
     static final String ACTION_SHUFFLE
-            = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_SHUFFLE";
-
-    static final String SET_IMAGE_RESOURCE_METHOD = "setImageResource";
+            = "org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE";
+    public static final String ACTION_RECREATE_NOTIFICATION
+            = "org.schabi.newpipe.player.MainPlayer.ACTION_RECREATE_NOTIFICATION";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle

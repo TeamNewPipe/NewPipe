@@ -112,6 +112,7 @@ import static org.schabi.newpipe.player.MainPlayer.ACTION_OPEN_CONTROLS;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_NEXT;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PAUSE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PREVIOUS;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_RECREATE_NOTIFICATION;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_REPEAT;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
@@ -1179,6 +1180,7 @@ public class VideoPlayerImpl extends VideoPlayer
         intentFilter.addAction(ACTION_FAST_FORWARD);
         intentFilter.addAction(ACTION_BUFFERING);
         intentFilter.addAction(ACTION_SHUFFLE);
+        intentFilter.addAction(ACTION_RECREATE_NOTIFICATION);
 
         intentFilter.addAction(VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED);
         intentFilter.addAction(VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED);
@@ -1235,6 +1237,9 @@ public class VideoPlayerImpl extends VideoPlayer
                 break;
             case ACTION_SHUFFLE:
                 onShuffleClicked();
+                break;
+            case ACTION_RECREATE_NOTIFICATION:
+                resetNotification(true);
                 break;
             case Intent.ACTION_HEADSET_PLUG: //FIXME
                 /*notificationManager.cancel(NOTIFICATION_ID);

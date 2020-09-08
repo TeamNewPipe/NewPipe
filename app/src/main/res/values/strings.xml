@@ -66,21 +66,20 @@
     <string name="notification_action_2_title">Third action button</string>
     <string name="notification_action_3_title">Fourth action button</string>
     <string name="notification_action_4_title">Fifth action button</string>
-    <string name="notification_compact_view_title">Notification compact view</string>
-    <string name="notification_compact_view_summary">Notification slots to show in compact view</string>
-    
-    <string name="notification_action_prev_value">Previous</string>
-    <string name="notification_action_next_value">Next</string>
-    <string name="notification_action_rewind_value">Rewind</string>
-    <string name="notification_action_forward_value">Forward</string>
-    <string name="notification_action_smart_rewind_prev_value">Rewind / Previous</string>
-    <string name="notification_action_smart_forward_next_value">Forward / Next</string>
-    <string name="notification_action_play_pause_buffering_value">Play / Pause / Buffering</string>
-    <string name="notification_action_play_pause_value">Play / Pause</string>
-    <string name="notification_action_repeat_value">Repeat</string>
-    <string name="notification_action_shuffle_value">Shuffle</string>
-    <string name="notification_action_close_value">Close</string>
-    <string name="notification_action_n_a_value">Nothing</string>
+    <string name="notification_actions_summary">Edit each notification action below by tapping on it.\nSelect up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
+    <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
+
+    <string name="notification_action_previous">Previous</string>
+    <string name="notification_action_next">Next</string>
+    <string name="notification_action_rewind">Rewind</string>
+    <string name="notification_action_forward">Forward</string>
+    <string name="notification_action_smart_rewind_previous">Rewind / Previous</string>
+    <string name="notification_action_smart_forward_next">Forward / Next</string>
+    <string name="notification_action_play_pause_buffering">Play / Pause / Buffering</string>
+    <string name="notification_action_play_pause">Play / Pause</string>
+    <string name="notification_action_repeat">Repeat</string>
+    <string name="notification_action_shuffle">Shuffle</string>
+    <string name="notification_action_nothing">Nothing</string>
 
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
@@ -154,7 +153,7 @@
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
-    <string name="settings_category_notifications_title">Notifications</string>
+    <string name="settings_category_notification_title">Notification</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>

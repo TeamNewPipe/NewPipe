@@ -20,6 +20,8 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import java.util.List;
+
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static android.content.Context.NOTIFICATION_SERVICE;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
@@ -46,11 +48,8 @@ public final class NotificationUtil {
 
     @Nullable private static NotificationUtil instance = null;
 
-    private String notificationSlot0 = "smart_rewind_prev";
-    private String notificationSlot1 = "play_pause_buffering";
-    private String notificationSlot2 = "smart_forward_next";
-    private String notificationSlot3 = "repeat";
-    private String notificationSlot4 = "close";
+    @NotificationConstants.Action
+    private int[] notificationSlots = NotificationConstants.SLOT_DEFAULTS.clone();
 
     private NotificationManager notificationManager;
     private NotificationCompat.Builder notificationBuilder;
@@ -91,35 +90,28 @@ public final class NotificationUtil {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
                 player.context.getString(R.string.notification_channel_id));
 
-        final String compactView = player.sharedPreferences.getString(player.context.getString(
-                R.string.settings_notifications_compact_view_key), "0,1,2");
-        int compactSlot0 = 0;
-        int compactSlot1 = 1;
-        int compactSlot2 = 2;
-        try {
-            if (compactView != null) {
-                final String[] parts = compactView.split(",");
-                compactSlot0 = Integer.parseInt(parts[0]);
-                compactSlot1 = Integer.parseInt(parts[1]);
-                compactSlot2 = Integer.parseInt(parts[2]);
-                if (compactSlot0 > 4) {
-                    compactSlot0 = 0;
-                }
-                if (compactSlot1 > 4) {
-                    compactSlot1 = 1;
-                }
-                if (compactSlot2 > 4) {
-                    compactSlot2 = 2;
-                }
-            }
-        } catch (final Exception e) {
-            e.printStackTrace();
+        initializeNotificationSlots(player);
+
+        // count the number of real slots, to make sure compact slots indices are not out of bound
+        int nonNothingSlotCount = 5;
+        if (notificationSlots[3] == NotificationConstants.NOTHING) {
+            --nonNothingSlotCount;
+        }
+        if (notificationSlots[4] == NotificationConstants.NOTHING) {
+            --nonNothingSlotCount;
         }
 
+        // build the compact slot indices array (need code to convert from Integer... because Java)
+        final List<Integer> compactSlotList = NotificationConstants.getCompactSlotsFromPreferences(
+                player.context, player.sharedPreferences, nonNothingSlotCount);
+        final int[] compactSlots = new int[compactSlotList.size()];
+        for (int i = 0; i < compactSlotList.size(); i++) {
+            compactSlots[i] = compactSlotList.get(i);
+        }
 
         builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                     .setMediaSession(player.mediaSessionManager.getSessionToken())
-                    .setShowActionsInCompactView(compactSlot0, compactSlot1, compactSlot2))
+                    .setShowActionsInCompactView(compactSlots))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -131,7 +123,6 @@ public final class NotificationUtil {
                 .setDeleteIntent(PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
 
-        initializeNotificationSlots(player);
         updateActions(builder, player);
         setLargeIcon(builder, player);
 
@@ -171,22 +162,20 @@ public final class NotificationUtil {
 
 
     boolean hasSlotWithBuffering() {
-        return notificationSlot0.equals("play_pause_buffering")
-                || notificationSlot1.equals("play_pause_buffering")
-                || notificationSlot2.equals("play_pause_buffering")
-                || notificationSlot3.equals("play_pause_buffering")
-                || notificationSlot4.equals("play_pause_buffering");
+        return notificationSlots[1] == NotificationConstants.PLAY_PAUSE_BUFFERING
+                || notificationSlots[2] == NotificationConstants.PLAY_PAUSE_BUFFERING;
     }
 
-    public void cancelNotification() {
+    void cancelNotification() {
         try {
             if (notificationManager != null) {
                 notificationManager.cancel(NOTIFICATION_ID);
-                notificationManager = null;
             }
         } catch (final Exception e) {
             Log.e(TAG, "Could not cancel notification", e);
         }
+        notificationManager = null;
+        notificationBuilder = null;
     }
 
 
@@ -195,32 +184,25 @@ public final class NotificationUtil {
     /////////////////////////////////////////////////////
 
     private void initializeNotificationSlots(final VideoPlayerImpl player) {
-        notificationSlot0 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_action_0_key), notificationSlot0);
-        notificationSlot1 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_action_1_key), notificationSlot1);
-        notificationSlot2 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_action_2_key), notificationSlot2);
-        notificationSlot3 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_action_3_key), notificationSlot3);
-        notificationSlot4 = player.sharedPreferences.getString(
-                player.context.getString(R.string.notification_action_4_key), notificationSlot4);
+        for (int i = 0; i < 5; ++i) {
+            notificationSlots[i] = player.sharedPreferences.getInt(
+                    player.context.getString(NotificationConstants.SLOT_PREF_KEYS[i]),
+                    NotificationConstants.SLOT_DEFAULTS[i]);
+        }
     }
 
     @SuppressLint("RestrictedApi")
     private void updateActions(final NotificationCompat.Builder builder,
                                final VideoPlayerImpl player) {
         builder.mActions.clear();
-        addAction(builder, player, notificationSlot0);
-        addAction(builder, player, notificationSlot1);
-        addAction(builder, player, notificationSlot2);
-        addAction(builder, player, notificationSlot3);
-        addAction(builder, player, notificationSlot4);
+        for (int i = 0; i < 5; ++i) {
+            addAction(builder, player, notificationSlots[i]);
+        }
     }
 
     private void addAction(final NotificationCompat.Builder builder,
                            final VideoPlayerImpl player,
-                           final String slot) {
+                           @NotificationConstants.Action final int slot) {
         final NotificationCompat.Action action = getAction(player, slot);
         if (action != null) {
             builder.addAction(action);
@@ -228,23 +210,42 @@ public final class NotificationUtil {
     }
 
     @Nullable
-    private NotificationCompat.Action getAction(final VideoPlayerImpl player,
-                                                final String slot) {
-        switch (slot) {
-            case "play_pause_buffering":
-                if (player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
-                        || player.getCurrentState() == BasePlayer.STATE_BLOCKED
-                        || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
-                    return getAction(player, R.drawable.ic_hourglass_top_white_24dp,
-                            "Buffering", ACTION_BUFFERING);
+    private NotificationCompat.Action getAction(
+            final VideoPlayerImpl player,
+            @NotificationConstants.Action final int selectedAction) {
+        final int baseActionIcon = NotificationConstants.ACTION_ICONS[selectedAction];
+        switch (selectedAction) {
+            case NotificationConstants.PREVIOUS:
+                return getAction(player, baseActionIcon, "Previous", ACTION_PLAY_PREVIOUS);
+
+            case NotificationConstants.NEXT:
+                return getAction(player, baseActionIcon, "Next", ACTION_PLAY_NEXT);
+
+            case NotificationConstants.REWIND:
+                return getAction(player, baseActionIcon, "Rewind", ACTION_FAST_REWIND);
+
+            case NotificationConstants.FORWARD:
+                return getAction(player, baseActionIcon, "Forward", ACTION_FAST_FORWARD);
+
+            case NotificationConstants.SMART_REWIND_PREVIOUS:
+                if (player.playQueue != null && player.playQueue.size() > 1) {
+                    return getAction(player, R.drawable.exo_notification_previous,
+                            "Previous", ACTION_PLAY_PREVIOUS);
                 } else {
-                    return getAction(player,
-                            player.isPlaying() ? R.drawable.exo_notification_pause
-                                    : R.drawable.exo_notification_play,
-                            player.isPlaying() ? "Pause" : "Play",
-                            ACTION_PLAY_PAUSE);
+                    return getAction(player, R.drawable.exo_controls_rewind,
+                            "Rewind", ACTION_FAST_REWIND);
                 }
-            case "play_pause":
+
+            case NotificationConstants.SMART_FORWARD_NEXT:
+                if (player.playQueue != null && player.playQueue.size() > 1) {
+                    return getAction(player, R.drawable.exo_notification_next,
+                            "Next", ACTION_PLAY_NEXT);
+                } else {
+                    return getAction(player, R.drawable.exo_controls_fastforward,
+                            "Forward", ACTION_FAST_FORWARD);
+                }
+
+            case NotificationConstants.PLAY_PAUSE:
                 final boolean pauseOrPlay = player.isPlaying()
                         || player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
                         || player.getCurrentState() == BasePlayer.STATE_BLOCKED
@@ -254,48 +255,38 @@ public final class NotificationUtil {
                                 : R.drawable.exo_notification_play,
                         pauseOrPlay ? "Pause" : "Play",
                         ACTION_PLAY_PAUSE);
-            case "rewind":
-                return getAction(player, R.drawable.exo_controls_rewind,
-                        "Rewind", ACTION_FAST_REWIND);
-            case "smart_rewind_prev":
-                if (player.playQueue != null && player.playQueue.size() > 1) {
-                    return getAction(player, R.drawable.exo_notification_previous,
-                            "Prev", ACTION_PLAY_PREVIOUS);
+
+            case NotificationConstants.PLAY_PAUSE_BUFFERING:
+                if (player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
+                        || player.getCurrentState() == BasePlayer.STATE_BLOCKED
+                        || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
+                    return getAction(player, R.drawable.ic_hourglass_top_white_24dp_png,
+                            "Buffering", ACTION_BUFFERING);
                 } else {
-                    return getAction(player, R.drawable.exo_controls_rewind,
-                            "Rewind", ACTION_FAST_REWIND);
+                    return getAction(player,
+                            player.isPlaying() ? R.drawable.exo_notification_pause
+                                    : R.drawable.exo_notification_play,
+                            player.isPlaying() ? "Pause" : "Play",
+                            ACTION_PLAY_PAUSE);
                 }
-            case "forward":
-                return getAction(player, R.drawable.exo_controls_fastforward,
-                        "Forward", ACTION_FAST_FORWARD);
-            case "smart_forward_next":
-                if (player.playQueue != null && player.playQueue.size() > 1) {
-                    return getAction(player, R.drawable.exo_notification_next,
-                            "Next", ACTION_PLAY_NEXT);
-                } else {
-                    return getAction(player, R.drawable.exo_controls_fastforward,
-                            "Forward", ACTION_FAST_FORWARD);
-                }
-            case "next":
-                return getAction(player, R.drawable.exo_notification_next,
-                        "Next", ACTION_PLAY_NEXT);
-            case "prev":
-                return getAction(player, R.drawable.exo_notification_previous,
-                        "Prev", ACTION_PLAY_PREVIOUS);
-            case "repeat":
+
+            case NotificationConstants.REPEAT:
                 return getAction(player, getRepeatModeDrawable(player.getRepeatMode()),
                         getRepeatModeTitle(player.getRepeatMode()), ACTION_REPEAT);
-            case "shuffle":
+
+            case NotificationConstants.SHUFFLE:
                 final boolean shuffled = player.playQueue != null && player.playQueue.isShuffled();
                 return getAction(player,
                         shuffled ? R.drawable.exo_controls_shuffle_on
                                 : R.drawable.exo_controls_shuffle_off,
                         shuffled ? "ShuffleOn" : "ShuffleOff",
                         ACTION_SHUFFLE);
-            case "close":
-                return getAction(player, R.drawable.ic_close_white_24dp,
+
+            case NotificationConstants.CLOSE:
+                return getAction(player, R.drawable.ic_close_white_24dp_png,
                         "Close", ACTION_CLOSE);
-            case "n/a":
+
+            case NotificationConstants.NOTHING:
             default:
                 // do nothing
                 return null;
