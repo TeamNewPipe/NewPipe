@@ -27,18 +27,17 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
@@ -60,7 +59,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
-import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -184,9 +182,6 @@ public abstract class BasePlayer implements
     @NonNull
     protected final PlayerDataSource dataSource;
     @NonNull
-    private final LoadControl loadControl;
-
-    @NonNull
     private final RenderersFactory renderFactory;
     @NonNull
     private final SerialDisposable progressUpdateReactor;
@@ -224,7 +219,6 @@ public abstract class BasePlayer implements
                 .getQualitySelector(context);
         this.trackSelector = new CustomTrackSelector(context, trackSelectionFactory);
 
-        this.loadControl = new LoadController();
         this.renderFactory = new DefaultRenderersFactory(context);
     }
 
@@ -242,7 +236,6 @@ public abstract class BasePlayer implements
 
         simpleExoPlayer = new SimpleExoPlayer.Builder(context, renderFactory)
                 .setTrackSelector(trackSelector)
-                .setLoadControl(loadControl)
                 .build();
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(playOnReady);

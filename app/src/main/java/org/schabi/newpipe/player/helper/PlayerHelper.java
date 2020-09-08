@@ -2,13 +2,13 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.accessibility.CaptioningManager;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
@@ -46,8 +46,8 @@ import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MOD
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
-import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
@@ -259,29 +259,6 @@ public final class PlayerHelper {
 
     public static long getPreferredFileSize() {
         return 512 * 1024L;
-    }
-
-    /**
-     * @return the number of milliseconds the player buffers for before starting playback
-     */
-    public static int getPlaybackStartBufferMs() {
-        return 500;
-    }
-
-    /**
-     * @return the minimum number of milliseconds the player always buffers to
-     * after starting playback.
-     */
-    public static int getPlaybackMinimumBufferMs() {
-        return 25000;
-    }
-
-    /**
-     * @return the maximum/optimal number of milliseconds the player will buffer to once the buffer
-     * hits the point of {@link #getPlaybackMinimumBufferMs()}.
-     */
-    public static int getPlaybackOptimalBufferMs() {
-        return 60000;
     }
 
     public static TrackSelection.Factory getQualitySelector(@NonNull final Context context) {
