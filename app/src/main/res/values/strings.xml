@@ -59,8 +59,8 @@
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
 
-    <string name="notification_scale_to_square_image_title">Scale image to 1:1 aspect ratio</string>
-    <string name="notification_scale_to_square_image_summary">This will scale the notification image from 16:9 to 1:1 aspect ratio</string>
+    <string name="notification_scale_to_square_image_title">Scale thumbnail to 1:1 aspect ratio</string>
+    <string name="notification_scale_to_square_image_summary">Scale the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio (may introduce distortions)</string>
     <string name="notification_action_0_title">First action button</string>
     <string name="notification_action_1_title">Second action button</string>
     <string name="notification_action_2_title">Third action button</string>
