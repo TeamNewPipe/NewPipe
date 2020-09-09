@@ -643,6 +643,12 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     @Override
+    public void onPlayQueueEdited() {
+        updatePlayback();
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
+    }
+
+    @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
         // For LiveStream or video/popup players we can use super() method
