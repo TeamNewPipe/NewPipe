@@ -1242,7 +1242,15 @@ public abstract class BasePlayer implements
             Log.d(TAG, "seekBy() called with: position = [" + positionMillis + "]");
         }
         if (simpleExoPlayer != null) {
-            simpleExoPlayer.seekTo(positionMillis);
+            // prevent invalid positions when fast-forwarding/-rewinding
+            long normalizedPositionMillis = positionMillis;
+            if (normalizedPositionMillis < 0) {
+                normalizedPositionMillis = 0;
+            } else if (normalizedPositionMillis > simpleExoPlayer.getDuration()) {
+                normalizedPositionMillis = simpleExoPlayer.getDuration();
+            }
+
+            simpleExoPlayer.seekTo(normalizedPositionMillis);
         }
     }
 
