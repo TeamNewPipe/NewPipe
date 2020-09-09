@@ -56,7 +56,7 @@
     </string-array>
 
     <string name="minimize_on_exit_key" translatable="false">minimize_on_exit_key</string>
-    <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_none_key</string>
+    <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_background_key</string>
     <string name="minimize_on_exit_none_key" translatable="false">minimize_on_exit_none_key</string>
     <string name="minimize_on_exit_background_key" translatable="false">minimize_on_exit_background_key</string>
     <string name="minimize_on_exit_popup_key" translatable="false">minimize_on_exit_popup_key</string>

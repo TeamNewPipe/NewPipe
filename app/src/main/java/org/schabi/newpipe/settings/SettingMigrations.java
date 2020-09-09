@@ -18,7 +18,7 @@ public final class SettingMigrations {
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
     private static SharedPreferences sp;
 
     public static final Migration MIGRATION_0_1 = new Migration(0, 1) {
@@ -35,6 +35,25 @@ public final class SettingMigrations {
         }
     };
 
+    public static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        protected void migrate(final Context context) {
+            // The new application workflow introduced in #2907 allows minimizing videos
+            // while playing to do other stuff within the app.
+            // For an even better workflow, we minimize a stream when switching the app to play in
+            // background.
+            // Therefore, set default value to background, if it has not been changed yet.
+            final String minimizeOnExitKey = context.getString(R.string.minimize_on_exit_key);
+            if (sp.getString(minimizeOnExitKey, "")
+                    .equals(context.getString(R.string.minimize_on_exit_none_key))) {
+                final SharedPreferences.Editor editor = sp.edit();
+                editor.putString(minimizeOnExitKey,
+                        context.getString(R.string.minimize_on_exit_background_key));
+                editor.apply();
+            }
+        }
+    };
+
     /**
      * List of all implemented migrations.
      * <p>
@@ -42,7 +61,8 @@ public final class SettingMigrations {
      * If not sorted correctly, migrations which depend on each other, may fail.
      */
     private static final Migration[] SETTING_MIGRATIONS = {
-        MIGRATION_0_1
+            MIGRATION_0_1,
+            MIGRATION_1_2
     };
 
 
