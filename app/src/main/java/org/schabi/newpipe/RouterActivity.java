@@ -39,6 +39,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
@@ -278,6 +279,7 @@ public class RouterActivity extends AppCompatActivity {
 
             handleChoice(choice.key);
 
+            // open future streams always like this one, because "always" button was used by user
             if (which == DialogInterface.BUTTON_POSITIVE) {
                 preferences.edit()
                         .putString(getString(R.string.preferred_open_action_key), choice.key)
@@ -377,23 +379,50 @@ public class RouterActivity extends AppCompatActivity {
         final boolean isExtAudioEnabled = preferences.getBoolean(
                 getString(R.string.use_external_audio_player_key), false);
 
-        returnList.add(new AdapterChoiceItem(getString(R.string.show_info_key),
-                getString(R.string.show_info),
-                resolveResourceIdFromAttr(context, R.attr.ic_info_outline)));
+        final AdapterChoiceItem videoPlayer = new AdapterChoiceItem(
+                getString(R.string.video_player_key), getString(R.string.video_player),
+                resolveResourceIdFromAttr(context, R.attr.ic_play_arrow));
+        final AdapterChoiceItem showInfo = new AdapterChoiceItem(
+                getString(R.string.show_info_key), getString(R.string.show_info),
+                resolveResourceIdFromAttr(context, R.attr.ic_info_outline));
+        final AdapterChoiceItem popupPlayer = new AdapterChoiceItem(
+                getString(R.string.popup_player_key), getString(R.string.popup_player),
+                resolveResourceIdFromAttr(context, R.attr.ic_popup));
+        final AdapterChoiceItem backgroundPlayer = new AdapterChoiceItem(
+                getString(R.string.background_player_key), getString(R.string.background_player),
+                resolveResourceIdFromAttr(context, R.attr.ic_headset));
 
-        if (capabilities.contains(VIDEO) && !(isExtVideoEnabled && linkType != LinkType.STREAM)) {
-            returnList.add(new AdapterChoiceItem(getString(R.string.video_player_key),
-                    getString(R.string.video_player),
-                    resolveResourceIdFromAttr(context, R.attr.ic_play_arrow)));
-            returnList.add(new AdapterChoiceItem(getString(R.string.popup_player_key),
-                    getString(R.string.popup_player),
-                    resolveResourceIdFromAttr(context, R.attr.ic_popup)));
-        }
+        if (linkType == LinkType.STREAM) {
+            if (isExtVideoEnabled) {
+                // show both "show info" and "video player", they are two different activities
+                returnList.add(showInfo);
+                returnList.add(videoPlayer);
+            } else if (capabilities.contains(VIDEO)
+                    && PlayerHelper.isAutoplayAllowedByUser(context)) {
+                // show only "video player" since the details activity will be opened and the video
+                // will be autoplayed there and "show info" would do the exact same thing
+                returnList.add(videoPlayer);
+            } else {
+                // show only "show info" if video player is not applicable or autoplay is disabled
+                returnList.add(showInfo);
+            }
 
-        if (capabilities.contains(AUDIO) && !(isExtAudioEnabled && linkType != LinkType.STREAM)) {
-            returnList.add(new AdapterChoiceItem(getString(R.string.background_player_key),
-                    getString(R.string.background_player),
-                    resolveResourceIdFromAttr(context, R.attr.ic_headset)));
+            if (capabilities.contains(VIDEO)) {
+                returnList.add(popupPlayer);
+            }
+            if (capabilities.contains(AUDIO)) {
+                returnList.add(backgroundPlayer);
+            }
+
+        } else {
+            returnList.add(showInfo);
+            if (capabilities.contains(VIDEO) && !isExtVideoEnabled) {
+                returnList.add(videoPlayer);
+                returnList.add(popupPlayer);
+            }
+            if (capabilities.contains(AUDIO) && !isExtAudioEnabled) {
+                returnList.add(backgroundPlayer);
+            }
         }
 
         returnList.add(new AdapterChoiceItem(getString(R.string.download_key),

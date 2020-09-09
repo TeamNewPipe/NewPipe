@@ -18,8 +18,22 @@ public final class SettingMigrations {
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    public static final int VERSION = 0;
+    public static final int VERSION = 1;
     private static SharedPreferences sp;
+
+    public static final Migration MIGRATION_0_1 = new Migration(0, 1) {
+        @Override
+        public void migrate(final Context context) {
+            // We changed the content of the dialog which opens when sharing a link to NewPipe
+            // by removing the "open detail page" option.
+            // Therefore, show the dialog once again to ensure users need to choose again and are
+            // aware of the changed dialog.
+            final SharedPreferences.Editor editor = sp.edit();
+            editor.putString(context.getString(R.string.preferred_open_action_key),
+                    context.getString(R.string.always_ask_open_action_key));
+            editor.apply();
+        }
+    };
 
     /**
      * List of all implemented migrations.
@@ -28,7 +42,7 @@ public final class SettingMigrations {
      * If not sorted correctly, migrations which depend on each other, may fail.
      */
     private static final Migration[] SETTING_MIGRATIONS = {
-
+        MIGRATION_0_1
     };
 
 

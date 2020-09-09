@@ -1236,7 +1236,7 @@ public class VideoDetailFragment
     }
 
     private boolean isExternalPlayerEnabled() {
-        return PreferenceManager.getDefaultSharedPreferences(getContext())
+        return PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .getBoolean(getString(R.string.use_external_video_player_key), false);
     }
 
@@ -1247,23 +1247,7 @@ public class VideoDetailFragment
                 && !isExternalPlayerEnabled()
                 && (player == null || player.videoPlayerSelected())
                 && bottomSheetState != BottomSheetBehavior.STATE_HIDDEN
-                && isAutoplayAllowedByUser();
-    }
-
-    private boolean isAutoplayAllowedByUser() {
-        if (activity == null) {
-            return false;
-        }
-
-        switch (PlayerHelper.getAutoplayType(activity)) {
-            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER:
-                return false;
-            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI:
-                return !ListHelper.isMeteredNetwork(activity);
-            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS:
-            default:
-                return true;
-        }
+                && PlayerHelper.isAutoplayAllowedByUser(requireContext());
     }
 
     private void addVideoPlayerView() {
