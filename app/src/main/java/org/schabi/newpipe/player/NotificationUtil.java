@@ -78,10 +78,7 @@ public final class NotificationUtil {
      */
     synchronized void createNotificationIfNeededAndUpdate(final VideoPlayerImpl player,
                                                           final boolean forceRecreate) {
-        if (notificationBuilder == null || forceRecreate) {
-            if (DEBUG) {
-                Log.d(TAG, "N_ createNotificationIfNeededAndUpdate(true)");
-            }
+        if (forceRecreate || notificationBuilder == null) {
             notificationBuilder = createNotification(player);
         }
         updateNotification(player);
@@ -89,6 +86,9 @@ public final class NotificationUtil {
 
     private synchronized NotificationCompat.Builder createNotification(
             final VideoPlayerImpl player) {
+        if (DEBUG) {
+            Log.d(TAG, "createNotification()");
+        }
         notificationManager =
                 (NotificationManager) player.context.getSystemService(NOTIFICATION_SERVICE);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
@@ -132,7 +132,7 @@ public final class NotificationUtil {
      */
     private synchronized void updateNotification(final VideoPlayerImpl player) {
         if (DEBUG) {
-            Log.d(TAG, "N_ updateNotification()");
+            Log.d(TAG, "updateNotification()");
         }
 
         if (notificationBuilder == null) {
@@ -158,7 +158,7 @@ public final class NotificationUtil {
 
 
     void createNotificationAndStartForeground(final VideoPlayerImpl player, final Service service) {
-        createNotificationIfNeededAndUpdate(player, true);
+        createNotificationIfNeededAndUpdate(player, false);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             service.startForeground(NOTIFICATION_ID, notificationBuilder.build(),

@@ -66,6 +66,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -602,6 +603,13 @@ public class VideoPlayerImpl extends VideoPlayer
         if (fragmentListener != null) {
             fragmentListener.onPlayerError(error);
         }
+    }
+
+    @Override
+    public void onTimelineChanged(final Timeline timeline, final int reason) {
+        super.onTimelineChanged(timeline, reason);
+        // force recreate notification to ensure seek bar is shown when preparation finishes
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
     }
 
     protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
