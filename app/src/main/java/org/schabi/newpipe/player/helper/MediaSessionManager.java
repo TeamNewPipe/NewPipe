@@ -16,14 +16,14 @@ import androidx.media.session.MediaButtonReceiver;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
-import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.mediasession.PlayQueueNavigator;
 import org.schabi.newpipe.player.mediasession.PlayQueuePlaybackController;
 
 public class MediaSessionManager {
-    private static final String TAG = "MediaSessionManager";
-    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+    private static final String TAG = MediaSessionManager.class.getSimpleName();
+    public static final boolean DEBUG = MainActivity.DEBUG;
 
     @NonNull
     private final MediaSessionCompat mediaSession;
@@ -35,12 +35,12 @@ public class MediaSessionManager {
     public MediaSessionManager(@NonNull final Context context,
                                @NonNull final Player player,
                                @NonNull final MediaSessionCallback callback) {
-        this.mediaSession = new MediaSessionCompat(context, TAG);
-        this.mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS
+        mediaSession = new MediaSessionCompat(context, TAG);
+        mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS
                 | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
-        this.mediaSession.setActive(true);
+        mediaSession.setActive(true);
 
-        this.mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
+        mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
                 .setState(PlaybackStateCompat.STATE_NONE, -1, 1)
                 .setActions(PlaybackStateCompat.ACTION_SEEK_TO
                         | PlaybackStateCompat.ACTION_PLAY
@@ -51,10 +51,10 @@ public class MediaSessionManager {
                         | PlaybackStateCompat.ACTION_STOP)
                 .build());
 
-        this.sessionConnector = new MediaSessionConnector(mediaSession);
-        this.sessionConnector.setControlDispatcher(new PlayQueuePlaybackController(callback));
-        this.sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, callback));
-        this.sessionConnector.setPlayer(player);
+        sessionConnector = new MediaSessionConnector(mediaSession);
+        sessionConnector.setControlDispatcher(new PlayQueuePlaybackController(callback));
+        sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, callback));
+        sessionConnector.setPlayer(player);
     }
 
     @Nullable
@@ -64,10 +64,12 @@ public class MediaSessionManager {
     }
 
     public MediaSessionCompat.Token getSessionToken() {
-        return this.mediaSession.getSessionToken();
+        return mediaSession.getSessionToken();
     }
 
-    public void setMetadata(final String title, final String artist, final Bitmap albumArt,
+    public void setMetadata(final String title,
+                            final String artist,
+                            final Bitmap albumArt,
                             final long duration) {
         if (albumArt == null || !mediaSession.isActive()) {
             return;
@@ -130,9 +132,9 @@ public class MediaSessionManager {
      * Should be called on player destruction to prevent leakage.
      */
     public void dispose() {
-        this.sessionConnector.setPlayer(null);
-        this.sessionConnector.setQueueNavigator(null);
-        this.mediaSession.setActive(false);
-        this.mediaSession.release();
+        sessionConnector.setPlayer(null);
+        sessionConnector.setQueueNavigator(null);
+        mediaSession.setActive(false);
+        mediaSession.release();
     }
 }
