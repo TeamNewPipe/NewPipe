@@ -257,6 +257,7 @@ public class VideoPlayerImpl extends VideoPlayer
         } else {
             getRootView().setVisibility(View.VISIBLE);
             initVideoPlayer();
+            onQueueClosed();
             // Android TV: without it focus will frame the whole player
             playPauseButton.requestFocus();
         }

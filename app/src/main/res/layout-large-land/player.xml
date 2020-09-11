@@ -353,10 +353,10 @@
                     android:id="@+id/playbackSeekBar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:paddingBottom="4dp"
-                    android:paddingTop="8dp"
+                    android:layout_marginTop="2dp"
                     tools:progress="25"
                     android:nextFocusDown="@id/screenRotationButton"
                     tools:secondaryProgress="50"/>

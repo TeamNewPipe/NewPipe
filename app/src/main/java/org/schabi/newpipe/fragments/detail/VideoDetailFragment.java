@@ -102,13 +102,12 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 import org.schabi.newpipe.views.LargeTextMovementMethod;
 
-import java.io.Serializable;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -337,7 +336,7 @@ public class VideoDetailFragment
             stopPlayerListener();
             playerService = null;
             player = null;
-            saveCurrentAndRestoreDefaultBrightness();
+            restoreDefaultBrightness();
         }
     }
 
@@ -426,7 +425,7 @@ public class VideoDetailFragment
         if (currentWorker != null) {
             currentWorker.dispose();
         }
-        saveCurrentAndRestoreDefaultBrightness();
+        restoreDefaultBrightness();
         PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .edit()
                 .putString(getString(R.string.stream_info_selected_tab_key),
@@ -538,31 +537,51 @@ public class VideoDetailFragment
         super.onSaveInstanceState(outState);
 
         if (!isLoading.get() && currentInfo != null && isVisible()) {
-            outState.putSerializable(INFO_KEY, currentInfo);
+            final String infoCacheKey = SerializedCache.getInstance()
+                    .put(currentInfo, StreamInfo.class);
+            if (infoCacheKey != null) {
+                outState.putString(INFO_KEY, infoCacheKey);
+            }
         }
 
         if (playQueue != null) {
-            outState.putSerializable(VideoPlayer.PLAY_QUEUE_KEY, playQueue);
+            final String queueCacheKey = SerializedCache.getInstance()
+                    .put(playQueue, PlayQueue.class);
+            if (queueCacheKey != null) {
+                outState.putString(VideoPlayer.PLAY_QUEUE_KEY, queueCacheKey);
+            }
         }
-        outState.putSerializable(STACK_KEY, stack);
+        final String stackCacheKey = SerializedCache.getInstance().put(stack, LinkedList.class);
+        if (stackCacheKey != null) {
+            outState.putString(STACK_KEY, stackCacheKey);
+        }
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull final Bundle savedState) {
         super.onRestoreInstanceState(savedState);
 
-        Serializable serializable = savedState.getSerializable(INFO_KEY);
-        if (serializable instanceof StreamInfo) {
-            currentInfo = (StreamInfo) serializable;
-            InfoCache.getInstance().putInfo(serviceId, url, currentInfo, InfoItem.InfoType.STREAM);
+        final String infoCacheKey = savedState.getString(INFO_KEY);
+        if (infoCacheKey != null) {
+            currentInfo = SerializedCache.getInstance().take(infoCacheKey, StreamInfo.class);
+            if (currentInfo != null) {
+                InfoCache.getInstance()
+                        .putInfo(serviceId, url, currentInfo, InfoItem.InfoType.STREAM);
+            }
         }
 
-        serializable = savedState.getSerializable(STACK_KEY);
-        if (serializable instanceof Collection) {
-            //noinspection unchecked
-            stack.addAll((Collection<? extends StackItem>) serializable);
+        final String stackCacheKey = savedState.getString(STACK_KEY);
+        if (stackCacheKey != null) {
+            final LinkedList<StackItem> cachedStack =
+                    SerializedCache.getInstance().take(stackCacheKey, LinkedList.class);
+            if (cachedStack != null) {
+                stack.addAll(cachedStack);
+            }
         }
-        playQueue = (PlayQueue) savedState.getSerializable(VideoPlayer.PLAY_QUEUE_KEY);
+        final String queueCacheKey = savedState.getString(VideoPlayer.PLAY_QUEUE_KEY);
+        if (queueCacheKey != null) {
+            playQueue = SerializedCache.getInstance().take(queueCacheKey, PlayQueue.class);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -2027,13 +2046,11 @@ public class VideoDetailFragment
                 && player.getPlayer().getPlaybackState() != Player.STATE_IDLE;
     }
 
-    private void saveCurrentAndRestoreDefaultBrightness() {
+    private void restoreDefaultBrightness() {
         final WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
         if (lp.screenBrightness == -1) {
             return;
         }
-        // Save current brightness level
-        PlayerHelper.setScreenBrightness(activity, lp.screenBrightness);
 
         // Restore the old  brightness when fragment.onPause() called or
         // when a player is in portrait
@@ -2052,7 +2069,7 @@ public class VideoDetailFragment
                 || !player.isFullscreen()
                 || bottomSheetState != BottomSheetBehavior.STATE_EXPANDED) {
             // Apply system brightness when the player is not in fullscreen
-            saveCurrentAndRestoreDefaultBrightness();
+            restoreDefaultBrightness();
         } else {
             // Restore already saved brightness level
             final float brightnessLevel = PlayerHelper.getScreenBrightness(activity);
