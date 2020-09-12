@@ -15,7 +15,7 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.AndroidTvUtils;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
@@ -45,9 +45,9 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         @Override
         public String transformUrl(final Matcher match, final String url) {
             int timestamp = 0;
-            String hours = match.group(1);
-            String minutes = match.group(2);
-            String seconds = match.group(3);
+            final String hours = match.group(1);
+            final String minutes = match.group(2);
+            final String seconds = match.group(3);
             if (hours != null) {
                 timestamp += (Integer.parseInt(hours.replace(":", "")) * 3600);
             }
@@ -126,7 +126,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
 
         itemView.setOnLongClickListener(view -> {
-            if (AndroidTvUtils.isTv(itemBuilder.getContext())) {
+            if (DeviceUtils.isTv(itemBuilder.getContext())) {
                 openCommentAuthor(item);
             } else {
                 ShareUtils.copyToClipboard(itemBuilder.getContext(), commentText);
@@ -146,7 +146,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                     item.getServiceId(),
                     item.getUploaderUrl(),
                     item.getUploaderName());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
         }
     }
@@ -164,7 +164,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             return false;
         }
 
-        URLSpan[] urls = itemContentView.getUrls();
+        final URLSpan[] urls = itemContentView.getUrls();
 
         return urls != null && urls.length != 0;
     }
@@ -181,12 +181,13 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         boolean hasEllipsis = false;
 
         if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
-            int endOfLastLine = itemContentView.getLayout().getLineEnd(COMMENT_DEFAULT_LINES - 1);
+            final int endOfLastLine
+                    = itemContentView.getLayout().getLineEnd(COMMENT_DEFAULT_LINES - 1);
             int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine - 2);
             if (end == -1) {
                 end = Math.max(endOfLastLine - 2, 0);
             }
-            String newVal = itemContentView.getText().subSequence(0, end) + " …";
+            final String newVal = itemContentView.getText().subSequence(0, end) + " …";
             itemContentView.setText(newVal);
             hasEllipsis = true;
         }

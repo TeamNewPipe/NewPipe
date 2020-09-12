@@ -135,7 +135,8 @@
     <string name="msg_wait">請稍候…</string>
     <string name="msg_copied">已複製至剪貼簿</string>
     <string name="no_available_dir">稍後請在設定中選擇下載資料夾</string>
-    <string name="msg_popup_permission">使用懸浮視窗模式需要此權限</string>
+    <string name="msg_popup_permission">使用懸浮視窗模式
+\n需要此權限</string>
     <string name="title_activity_recaptcha">reCAPTCHA 驗證</string>
     <string name="recaptcha_request_toast">已請求 reCAPTCHA 驗證</string>
     <string name="controls_popup_title">懸浮視窗</string>
@@ -251,8 +252,6 @@
     <string name="trending">動向</string>
     <string name="top_50">前 50</string>
     <string name="new_and_hot">最新和熱門</string>
-    <string name="title_activity_background_player">背景播放</string>
-    <string name="title_activity_popup_player">懸浮視窗播放</string>
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">詳細資訊</string>
     <string name="play_queue_audio_settings">音訊設定</string>
@@ -524,7 +523,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">使用背景播放器時，鎖定畫面上將會顯示影片縮圖</string>
     <string name="clear_download_history">清除下載歷史紀錄</string>
     <string name="delete_downloaded_files">刪除已下載的檔案</string>
-    <string name="deleted_downloads">已刪除 %1$s 個下載</string>
+    <string name="deleted_downloads">已刪除 %1$d 個下載</string>
     <string name="permission_display_over_apps">給予顯示在其他應用程式上層的權限</string>
     <string name="app_language_title">應用程式語言</string>
     <string name="systems_language">系統預設值</string>
@@ -602,4 +601,5 @@
     <string name="video_detail_by">由 %s</string>
     <string name="channel_created_by">由 %s 建立</string>
     <string name="detail_sub_channel_thumbnail_view_description">頻道大頭貼縮圖</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">僅顯示未分組的訂閱</string>
 </resources>

@@ -225,14 +225,12 @@
     <string name="trending">Tendências</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Tendências</string>
-    <string name="title_activity_background_player">Reprodutor em segundo plano</string>
-    <string name="title_activity_popup_player">Reprodutor \'popup\'</string>
     <string name="play_queue_remove">Remover</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="play_queue_audio_settings">Definições de áudio</string>
     <string name="start_here_on_main">Iniciar reprodução aqui</string>
     <string name="start_here_on_background">Iniciar reprodução em segundo plano</string>
-    <string name="start_here_on_popup">Iniciar reprodução numa nova janela</string>
+    <string name="start_here_on_popup">Iniciar reprodução num popup</string>
     <string name="show_info">Mostrar informação</string>
     <string name="tab_bookmarks">Listas de reprodução favoritas</string>
     <string name="service_title">Serviço</string>
@@ -369,7 +367,7 @@
     <string name="import_settings">Também deseja importar as definições\?</string>
     <string name="hold_to_append">Toque longo para enfileirar</string>
     <string name="enqueue_on_background">Colocar em fila em segundo plano</string>
-    <string name="enqueue_on_popup">Colocar em fila num nova janela</string>
+    <string name="enqueue_on_popup">Pôr na fila num popup</string>
     <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Ação predefinida ao abrir o conteúdo — %s</string>
     <string name="set_as_playlist_thumbnail">Definir como Miniatura da Lista de Reprodução</string>
@@ -530,7 +528,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">Uma miniatura de vídeo é mostrada no ecrã de bloqueio quando utilizando o leitor de fundo</string>
     <string name="clear_download_history">Limpar histórico de transferências</string>
     <string name="delete_downloaded_files">Apagar ficheiros transferidos</string>
-    <string name="deleted_downloads">%1$s transferências apagadas</string>
+    <string name="deleted_downloads">%1$d transferências apagadas</string>
     <string name="permission_display_over_apps">Permitir sobreposição da janela sobre outras aplicações</string>
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="systems_language">Predefinição do sistema</string>
@@ -613,4 +611,5 @@
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar do canal</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas assinaturas não agrupadas</string>
 </resources>

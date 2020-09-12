@@ -44,8 +44,8 @@ public class DefaultKioskFragment extends KioskFragment {
             name = kioskTranslatedName;
 
             currentInfo = null;
-            currentNextPageUrl = null;
-        } catch (ExtractionException e) {
+            currentNextPage = null;
+        } catch (final ExtractionException e) {
             onUnrecoverableError(e, UserAction.REQUESTED_KIOSK, "none",
                     "Loading default kiosk from selected service", 0);
         }

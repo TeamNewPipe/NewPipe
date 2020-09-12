@@ -227,13 +227,11 @@
     <string name="trending">الشائعة</string>
     <string name="top_50">أفضل 50</string>
     <string name="new_and_hot">جديد وساخن</string>
-    <string name="title_activity_background_player">مشغل الخلفية</string>
-    <string name="title_activity_popup_player">المشغل المنبثق</string>
     <string name="play_queue_remove">حذف</string>
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
     <string name="start_here_on_main">تشغيل هنا</string>
-    <string name="start_here_on_popup">بدأ التشغيل في نافذة منبثقة جديدة</string>
+    <string name="start_here_on_popup">بدأ التشغيل في نافذة منبثقة</string>
     <string name="title_activity_recaptcha">تحدي الكابتشا</string>
     <string name="hold_to_append">ضغط مطول للإدراج الى قائمة الانتظار</string>
     <plurals name="views">
@@ -440,7 +438,7 @@
     <string name="grid">الشبكة</string>
     <string name="auto">تلقائي</string>
     <string name="switch_view">تبديل طريقة العرض</string>
-    <string name="app_update_notification_content_title">يتوفر تحديث ل newpipe!</string>
+    <string name="app_update_notification_content_title">تحديث NewPipe متاح!</string>
     <string name="app_update_notification_content_text">اضغط لتنزيل</string>
     <string name="missions_header_finished">انتهى</string>
     <string name="missions_header_pending">ريثما</string>
@@ -549,7 +547,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">عند استخدام مشغل الخلفية، سيتم عرض صورة العرض للفيديو على شاشة القفل</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
     <string name="delete_downloaded_files">حذف الملفات التي تم تنزيلها</string>
-    <string name="deleted_downloads">التنزيلات %1$s المحذوفة</string>
+    <string name="deleted_downloads">التنزيلات %1$d المحذوفة</string>
     <string name="permission_display_over_apps">إعطاء إذن لعرضه على التطبيقات الأخرى</string>
     <string name="app_language_title">لغة التطبيق</string>
     <string name="systems_language">النظام الافتراضي</string>

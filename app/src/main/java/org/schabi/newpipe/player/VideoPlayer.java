@@ -30,20 +30,21 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Build;
 import android.os.Handler;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -69,6 +70,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.views.ExpandableSurfaceView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,8 +119,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     private View rootView;
 
-    private AspectRatioFrameLayout aspectRatioFrameLayout;
-    private SurfaceView surfaceView;
+    private ExpandableSurfaceView surfaceView;
     private View surfaceForeground;
 
     private View loadingPanel;
@@ -135,7 +136,7 @@ public abstract class VideoPlayer extends BasePlayer
     private TextView playbackLiveSync;
     private TextView playbackSpeedTextView;
 
-    private View topControlsRoot;
+    private LinearLayout topControlsRoot;
     private TextView qualityTextView;
 
     private SubtitleView subtitleView;
@@ -167,7 +168,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     // workaround to match normalized captions like english to English or deutsch to Deutsch
     private static boolean containsCaseInsensitive(final List<String> list, final String toFind) {
-        for (String i : list) {
+        for (final String i : list) {
             if (i.equalsIgnoreCase(toFind)) {
                 return true;
             }
@@ -182,7 +183,6 @@ public abstract class VideoPlayer extends BasePlayer
 
     public void initViews(final View view) {
         this.rootView = view;
-        this.aspectRatioFrameLayout = view.findViewById(R.id.aspectRatioLayout);
         this.surfaceView = view.findViewById(R.id.surfaceView);
         this.surfaceForeground = view.findViewById(R.id.surfaceForeground);
         this.loadingPanel = view.findViewById(R.id.loading_panel);
@@ -207,24 +207,22 @@ public abstract class VideoPlayer extends BasePlayer
 
         this.resizeView = view.findViewById(R.id.resizeTextView);
         resizeView.setText(PlayerHelper
-                .resizeTypeOf(context, aspectRatioFrameLayout.getResizeMode()));
+                .resizeTypeOf(context, getSurfaceView().getResizeMode()));
 
         this.captionTextView = view.findViewById(R.id.captionTextView);
 
-        //this.aspectRatioFrameLayout.setAspectRatio(16.0f / 9.0f);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        }
-        this.playbackSeekBar.getProgressDrawable().
-                setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+        playbackSeekBar.getThumb()
+                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
+        this.playbackSeekBar.getProgressDrawable()
+                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY));
 
         this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
         this.playbackSpeedPopupMenu = new PopupMenu(context, playbackSpeedTextView);
         this.captionPopupMenu = new PopupMenu(context, captionTextView);
 
         ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel))
-                .getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+                .getIndeterminateDrawable()
+                .setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
     }
 
     protected abstract void setupSubtitleView(@NonNull SubtitleView view, float captionScale,
@@ -252,7 +250,7 @@ public abstract class VideoPlayer extends BasePlayer
         simpleExoPlayer.addTextOutput(cues -> subtitleView.onCues(cues));
 
         // Setup audio session with onboard equalizer
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
         }
@@ -282,7 +280,7 @@ public abstract class VideoPlayer extends BasePlayer
 
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
         for (int i = 0; i < availableStreams.size(); i++) {
-            VideoStream videoStream = availableStreams.get(i);
+            final VideoStream videoStream = availableStreams.get(i);
             qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE, MediaFormat
                     .getNameById(videoStream.getFormatId()) + " " + videoStream.resolution);
         }
@@ -314,7 +312,7 @@ public abstract class VideoPlayer extends BasePlayer
         }
         captionPopupMenu.getMenu().removeGroup(captionPopupMenuGroupId);
 
-        String userPreferredLanguage = PreferenceManager.getDefaultSharedPreferences(context)
+        final String userPreferredLanguage = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.caption_user_set_key), null);
         /*
          * only search for autogenerated cc as fallback
@@ -326,7 +324,7 @@ public abstract class VideoPlayer extends BasePlayer
                 && !userPreferredLanguage.contains("(");
 
         // Add option for turning off caption
-        MenuItem captionOffItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
+        final MenuItem captionOffItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
                 0, Menu.NONE, R.string.caption_none);
         captionOffItem.setOnMenuItemClickListener(menuItem -> {
             final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
@@ -342,7 +340,7 @@ public abstract class VideoPlayer extends BasePlayer
         // Add all available captions
         for (int i = 0; i < availableLanguages.size(); i++) {
             final String captionLanguage = availableLanguages.get(i);
-            MenuItem captionItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
+            final MenuItem captionItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
                     i + 1, Menu.NONE, captionLanguage);
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
@@ -459,11 +457,8 @@ public abstract class VideoPlayer extends BasePlayer
         animateView(controlsRoot, false, DEFAULT_CONTROLS_DURATION);
 
         playbackSeekBar.setEnabled(false);
-        // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-,
-        // so sets the color again
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        }
+        playbackSeekBar.getThumb()
+                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
 
         loadingPanel.setBackgroundColor(Color.BLACK);
         animateView(loadingPanel, true, 0);
@@ -479,11 +474,8 @@ public abstract class VideoPlayer extends BasePlayer
         showAndAnimateControl(-1, true);
 
         playbackSeekBar.setEnabled(true);
-        // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-,
-        // so sets the color again
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        }
+        playbackSeekBar.getThumb()
+                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
 
         loadingPanel.setVisibility(View.GONE);
 
@@ -520,7 +512,6 @@ public abstract class VideoPlayer extends BasePlayer
         super.onCompleted();
 
         showControls(500);
-        animateView(endScreen, true, 800);
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
         loadingPanel.setVisibility(View.GONE);
 
@@ -555,7 +546,7 @@ public abstract class VideoPlayer extends BasePlayer
                     + "unappliedRotationDegrees = [" + unappliedRotationDegrees + "], "
                     + "pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
         }
-        aspectRatioFrameLayout.setAspectRatio(((float) width) / height);
+        getSurfaceView().setAspectRatio(((float) width) / height);
     }
 
     @Override
@@ -583,7 +574,7 @@ public abstract class VideoPlayer extends BasePlayer
                 .getTrackGroups(textRenderer);
 
         // Extract all loaded languages
-        List<String> availableLanguages = new ArrayList<>(textTracks.length);
+        final List<String> availableLanguages = new ArrayList<>(textTracks.length);
         for (int i = 0; i < textTracks.length; i++) {
             final TrackGroup textTrack = textTracks.get(i);
             if (textTrack.length > 0 && textTrack.getFormat(0) != null) {
@@ -620,12 +611,6 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedTextView.setText(formatSpeed(getPlaybackSpeed()));
 
         super.onPrepared(playWhenReady);
-
-        if (simpleExoPlayer.getCurrentPosition() != 0 && !isControlsVisible()) {
-            controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            controlsVisibilityHandler
-                    .postDelayed(this::showControlsThenHide, DEFAULT_CONTROLS_DURATION);
-        }
     }
 
     @Override
@@ -675,7 +660,7 @@ public abstract class VideoPlayer extends BasePlayer
         }
     }
 
-    protected void onFullScreenButtonClicked() {
+    protected void toggleFullscreen() {
         changeState(STATE_BLOCKED);
     }
 
@@ -739,8 +724,8 @@ public abstract class VideoPlayer extends BasePlayer
             qualityTextView.setText(menuItem.getTitle());
             return true;
         } else if (playbackSpeedPopupMenuGroupId == menuItem.getGroupId()) {
-            int speedIndex = menuItem.getItemId();
-            float speed = PLAYBACK_SPEEDS[speedIndex];
+            final int speedIndex = menuItem.getItemId();
+            final float speed = PLAYBACK_SPEEDS[speedIndex];
 
             setPlaybackSpeed(speed);
             playbackSpeedTextView.setText(formatSpeed(speed));
@@ -799,16 +784,16 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(DEFAULT_CONTROLS_DURATION);
     }
 
-    private void onResizeClicked() {
-        if (getAspectRatioFrameLayout() != null) {
-            final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
+    void onResizeClicked() {
+        if (getSurfaceView() != null) {
+            final int currentResizeMode = getSurfaceView().getResizeMode();
             final int newResizeMode = nextResizeMode(currentResizeMode);
             setResizeMode(newResizeMode);
         }
     }
 
     protected void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {
-        getAspectRatioFrameLayout().setResizeMode(resizeMode);
+        getSurfaceView().setResizeMode(resizeMode);
         getResizeView().setText(PlayerHelper.resizeTypeOf(context, resizeMode));
     }
 
@@ -916,9 +901,9 @@ public abstract class VideoPlayer extends BasePlayer
         if (drawableId == -1) {
             if (controlAnimationView.getVisibility() == View.VISIBLE) {
                 controlViewAnimator = ObjectAnimator.ofPropertyValuesHolder(controlAnimationView,
-                        PropertyValuesHolder.ofFloat(View.ALPHA, 1f, 0f),
-                        PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1f),
-                        PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1f)
+                        PropertyValuesHolder.ofFloat(View.ALPHA, 1.0f, 0.0f),
+                        PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1.0f),
+                        PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1.0f)
                 ).setDuration(DEFAULT_CONTROLS_DURATION);
                 controlViewAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -931,10 +916,10 @@ public abstract class VideoPlayer extends BasePlayer
             return;
         }
 
-        float scaleFrom = goneOnEnd ? 1f : 1f;
-        float scaleTo = goneOnEnd ? 1.8f : 1.4f;
-        float alphaFrom = goneOnEnd ? 1f : 0f;
-        float alphaTo = goneOnEnd ? 0f : 1f;
+        final float scaleFrom = goneOnEnd ? 1f : 1f;
+        final float scaleTo = goneOnEnd ? 1.8f : 1.4f;
+        final float alphaFrom = goneOnEnd ? 1f : 0f;
+        final float alphaTo = goneOnEnd ? 0f : 1f;
 
 
         controlViewAnimator = ObjectAnimator.ofPropertyValuesHolder(controlAnimationView,
@@ -1020,6 +1005,9 @@ public abstract class VideoPlayer extends BasePlayer
             animateView(controlsRoot, false, duration);
         };
     }
+
+    public abstract void hideSystemUIIfNeeded();
+
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/
@@ -1033,11 +1021,7 @@ public abstract class VideoPlayer extends BasePlayer
         this.resolver.setPlaybackQuality(quality);
     }
 
-    public AspectRatioFrameLayout getAspectRatioFrameLayout() {
-        return aspectRatioFrameLayout;
-    }
-
-    public SurfaceView getSurfaceView() {
+    public ExpandableSurfaceView getSurfaceView() {
         return surfaceView;
     }
 
@@ -1096,7 +1080,7 @@ public abstract class VideoPlayer extends BasePlayer
         return playbackEndTime;
     }
 
-    public View getTopControlsRoot() {
+    public LinearLayout getTopControlsRoot() {
         return topControlsRoot;
     }
 
@@ -1106,6 +1090,10 @@ public abstract class VideoPlayer extends BasePlayer
 
     public PopupMenu getQualityPopupMenu() {
         return qualityPopupMenu;
+    }
+
+    public TextView getPlaybackSpeedTextView() {
+        return playbackSpeedTextView;
     }
 
     public PopupMenu getPlaybackSpeedPopupMenu() {

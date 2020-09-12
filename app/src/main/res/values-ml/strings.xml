@@ -79,8 +79,6 @@
     <string name="play_queue_audio_settings">ഓഡിയോ ക്രമീകരണങ്ങൾ</string>
     <string name="play_queue_stream_detail">വിശദാംശങ്ങൾ</string>
     <string name="play_queue_remove">നീക്കം ചെയ്യുക</string>
-    <string name="title_activity_popup_player">പോപ്-അപ് പ്ലെയർ</string>
-    <string name="title_activity_background_player">ബാക്ക്ഗ്രൗണ്ട് പ്ലേയർ</string>
     <string name="conferences">സമ്മേളനങ്ങൾ</string>
     <string name="most_liked">ഏറ്റവും ഇഷ്ടപ്പെട്ടത്</string>
     <string name="recently_added">സമീപകാലത്ത് ചേർത്തത്</string>
@@ -224,7 +222,7 @@
     <string name="video">വീഡിയോ</string>
     <string name="info_dir_created">\'%1$s\' ഡൗൺലോഡ് പട്ടിക നിലവിൽ വന്നു</string>
     <string name="err_dir_create">ഡൗൺലോഡ് പട്ടിക ഉണ്ടാക്കാൻ സാധിച്ചില്ല</string>
-    <string name="detail_drag_description">വലിച്ചിഴയ്ക്കൂ!</string>
+    <string name="detail_drag_description">പുനക്രമീകരിക്കാൻ വലിച്ചിടുക</string>
     <string name="empty_subscription_feed_subtitle">¡ഇബടെ ഒരു കുന്തോമില്ല!</string>
     <string name="search_no_results">ഫലങ്ങൾ ലഭ്യമല്ല</string>
     <string name="user_report">ഉപയോക്താവിന്റെ റിപോർട്ട്</string>
@@ -574,7 +572,7 @@
     <string name="max_retry_desc">ഡൗൺലോഡ് റദ്ദാക്കുന്നതിനുമുമ്പ് പരമാവധി ശ്രമങ്ങൾ</string>
     <string name="max_retry_msg">പരമാവധി വീണ്ടും ശ്രമിക്കുന്നു</string>
     <string name="stop">നിർത്തുക</string>
-    <string name="deleted_downloads">1$s ഡൗൺ‌ലോഡുകൾ ഇല്ലാതാക്കി</string>
+    <string name="deleted_downloads">%1$d ഡൗൺ‌ലോഡുകൾ ഇല്ലാതാക്കി</string>
     <string name="delete_downloaded_files">ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ ഇല്ലാതാക്കുക</string>
     <string name="confirm_prompt">നിങ്ങളുടെ ഡൗൺലോഡ് ചരിത്രം മായ്‌ക്കണോ ഡൗൺലോഡ് ചെയ്ത എല്ലാ ഫയലുകളും ഇല്ലാതാക്കണോ\?</string>
     <string name="clear_download_history">ഡൗൺലോഡ് ചരിത്രം മായ്‌ക്കുക</string>
@@ -606,4 +604,10 @@
     <string name="download_finished">ഡൗൺലോഡ് പൂർത്തിയായി</string>
     <string name="download_failed">ഡൗൺലോഡ് പരാജയപ്പെട്ടു</string>
     <string name="permission_denied">സിസ്റ്റം പ്രവർത്തനം തടഞ്ഞു</string>
+    <string name="video_detail_by">%s മുഖാന്തരം</string>
+    <string name="channel_created_by">%s സൃഷ്ടിച്ചത്</string>
+    <string name="detail_sub_channel_thumbnail_view_description">ചാനൽ ലഘുചിത്രം</string>
+    <string name="show_original_time_ago_summary">സേവനങ്ങളിൽ നിന്നുള്ള യഥാർത്ഥ വാചകങ്ങൾ സ്ട്രീം ഇനങ്ങളിൽ ദൃശ്യമാകും</string>
+    <string name="show_original_time_ago_title">ഇനങ്ങളിൽ യഥാർത്ഥ സമയം മുമ്പ് കാണിക്കുക</string>
+    <string name="youtube_restricted_mode_enabled_title">യുട്യൂബ് നിയന്ത്രിത മോഡ്</string>
 </resources>

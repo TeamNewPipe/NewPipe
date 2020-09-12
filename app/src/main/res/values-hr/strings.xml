@@ -234,8 +234,6 @@
     <string name="trending">U trendu</string>
     <string name="top_50">Vrh 50</string>
     <string name="new_and_hot">Novo i popularno</string>
-    <string name="title_activity_background_player">Pozadinski player</string>
-    <string name="title_activity_popup_player">Skočni reproduktor</string>
     <string name="play_queue_remove">Ukloni</string>
     <string name="play_queue_stream_detail">Detalji</string>
     <string name="play_queue_audio_settings">Postavke zvuka</string>
@@ -467,8 +465,8 @@
     <string name="error_unable_to_load_comments">Komentare nije moguće učitati</string>
     <string name="close">Zatvori</string>
     <string name="app_license">NewPipe je copyleft libre software: možete ga koristiti, proučavati i poboljšavati po volji. Konkretno, možete ga redistribuirati i / ili modificirati pod uvjetima GNU opće javne licence koju je objavila Free Software Foundation, bilo verzije 3 Licence, ili (po vašem izboru) bilo koje kasnije verzije.</string>
-    <string name="privacy_policy_encouragement">"Projekt NewPipe ozbiljno shvaća vašu privatnost. Stoga aplikacija ne prikuplja nikakve podatke bez vašeg pristanka.
-\nNewPipe  pravila o privatnosti detaljno objašnjavaju koji se podaci šalju i pohranjuju kada šaljete izvješće o padu aplikacije."</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe ozbiljno shvaća vašu privatnost. Stoga aplikacija ne prikuplja nikakve podatke bez vašeg pristanka. 
+\nNewPipe pravila o privatnosti detaljno objašnjavaju koji se podaci šalju i pohranjuju kada šaljete izvješće o padu aplikacije.</string>
     <string name="start_accept_privacy_policy">Kako bismo se uskladili s Europskom općom uredbom o zaštiti podataka (GDPR), upozoravamo vas na politiku privatnosti tvrtke NewPipe. Pažljivo ga pročitajte. Morate ga prihvatiti da nam pošaljete izvješća o pogreškama.</string>
     <string name="enable_playback_resume_title">Nastavi reprodukciju</string>
     <string name="enable_playback_resume_summary">Vrati zadnji položaj reprodukcije</string>
@@ -496,7 +494,7 @@
     <string name="playlist_no_uploader">Automatski generirano (nije pronađen nijedan autor)</string>
     <string name="clear_download_history">Očisti povijest preuzimanja</string>
     <string name="delete_downloaded_files">Izbriši preuzete datoteke</string>
-    <string name="deleted_downloads">Obrisano %1$s preuzimanja</string>
+    <string name="deleted_downloads">Obrisano %1$d preuzimanja</string>
     <string name="permission_display_over_apps">Dajte dopuštenje za prikazivanje na vrhu</string>
     <string name="app_language_title">Jezik aplikacije</string>
     <string name="systems_language">Zadani sustav</string>

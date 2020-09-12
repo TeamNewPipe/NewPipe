@@ -60,14 +60,14 @@ public final class NewPipeSettings {
 
     private static void getDir(final Context context, final int keyID,
                                final String defaultDirectoryName) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String key = context.getString(keyID);
-        String downloadPath = prefs.getString(key, null);
+        final String downloadPath = prefs.getString(key, null);
         if ((downloadPath != null) && (!downloadPath.isEmpty())) {
             return;
         }
 
-        SharedPreferences.Editor spEditor = prefs.edit();
+        final SharedPreferences.Editor spEditor = prefs.edit();
         spEditor.putString(key, getNewPipeChildFolderPathForDir(getDir(defaultDirectoryName)));
         spEditor.apply();
     }

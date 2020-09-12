@@ -35,7 +35,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             // show a snackbar to let the user give permission
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                     && s.equals(getString(R.string.minimize_on_exit_key))) {
-                String newSetting = sharedPreferences.getString(s, null);
+                final String newSetting = sharedPreferences.getString(s, null);
                 if (newSetting != null
                         && newSetting.equals(getString(R.string.minimize_on_exit_popup_key))
                         && !Settings.canDrawOverlays(getContext())) {
@@ -68,7 +68,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         final boolean inexactSeek = getPreferenceManager().getSharedPreferences()
                 .getBoolean(res.getString(R.string.use_inexact_seek_key), false);
 
-        for (String durationsValue : durationsValues) {
+        for (final String durationsValue : durationsValues) {
             currentDurationValue =
                     Integer.parseInt(durationsValue) / (int) DateUtils.SECOND_IN_MILLIS;
             if (inexactSeek && currentDurationValue % 10 == 5) {
@@ -81,13 +81,13 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                         res.getQuantityString(R.plurals.seconds,
                                 currentDurationValue),
                         currentDurationValue));
-            } catch (Resources.NotFoundException ignored) {
+            } catch (final Resources.NotFoundException ignored) {
                 // if this happens, the translation is missing,
                 // and the english string will be displayed instead
             }
         }
 
-        final ListPreference durations = (ListPreference) findPreference(
+        final ListPreference durations = findPreference(
                 getString(R.string.seek_duration_key));
         durations.setEntryValues(displayedDurationValues.toArray(new CharSequence[0]));
         durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));
@@ -96,7 +96,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             final int newDuration = selectedDuration / (int) DateUtils.SECOND_IN_MILLIS + 5;
             durations.setValue(Integer.toString(newDuration * (int) DateUtils.SECOND_IN_MILLIS));
 
-            Toast toast = Toast
+            final Toast toast = Toast
                     .makeText(getContext(),
                             getString(R.string.new_seek_duration_toast, newDuration),
                             Toast.LENGTH_LONG);

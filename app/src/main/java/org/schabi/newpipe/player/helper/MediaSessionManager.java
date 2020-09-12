@@ -62,7 +62,7 @@ public class MediaSessionManager {
                         .build()
         );
 
-        MediaStyle mediaStyle = new MediaStyle()
+        final MediaStyle mediaStyle = new MediaStyle()
                 .setMediaSession(mediaSession.getSessionToken());
 
         builder.setStyle(mediaStyle);
@@ -76,7 +76,7 @@ public class MediaSessionManager {
                         .build()
         );
 
-        MediaStyle mediaStyle = new MediaStyle()
+        final MediaStyle mediaStyle = new MediaStyle()
                 .setMediaSession(mediaSession.getSessionToken());
 
         builder.setStyle(mediaStyle);

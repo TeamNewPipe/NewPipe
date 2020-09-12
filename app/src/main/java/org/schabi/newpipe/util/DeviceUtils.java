@@ -6,27 +6,30 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.BatteryManager;
 import android.os.Build;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 
+import androidx.annotation.NonNull;
 import org.schabi.newpipe.App;
 
 import static android.content.Context.BATTERY_SERVICE;
 import static android.content.Context.UI_MODE_SERVICE;
 
-public final class AndroidTvUtils {
+public final class DeviceUtils {
 
     private static final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
     private static Boolean isTV = null;
 
-    private AndroidTvUtils() {
+    private DeviceUtils() {
     }
 
     public static boolean isTv(final Context context) {
-        if (AndroidTvUtils.isTV != null) {
-            return AndroidTvUtils.isTV;
+        if (isTV != null) {
+            return isTV;
         }
 
-        PackageManager pm = App.getApp().getPackageManager();
+        final PackageManager pm = App.getApp().getPackageManager();
 
         // from doc: https://developer.android.com/training/tv/start/hardware.html#runtime-check
         boolean isTv = ((UiModeManager) context.getSystemService(UI_MODE_SERVICE))
@@ -36,7 +39,8 @@ public final class AndroidTvUtils {
 
         // from https://stackoverflow.com/a/58932366
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            boolean isBatteryAbsent = ((BatteryManager) context.getSystemService(BATTERY_SERVICE))
+            final boolean isBatteryAbsent
+                    = ((BatteryManager) context.getSystemService(BATTERY_SERVICE))
                     .getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY) == 0;
             isTv = isTv || (isBatteryAbsent
                     && !pm.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN)
@@ -48,8 +52,15 @@ public final class AndroidTvUtils {
             isTv = isTv || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
         }
 
-        AndroidTvUtils.isTV = isTv;
-        return AndroidTvUtils.isTV;
+        DeviceUtils.isTV = isTv;
+        return DeviceUtils.isTV;
+    }
+
+    public static boolean isTablet(@NonNull final Context context) {
+        return (context
+                .getResources()
+                .getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     public static boolean isConfirmKey(final int keyCode) {
@@ -62,5 +73,18 @@ public final class AndroidTvUtils {
             default:
                 return false;
         }
+    }
+
+    /*
+     * Compares current status bar height with default status bar height in Android and decides,
+     * does the device has cutout or not
+     * */
+    public static boolean hasCutout(final float statusBarHeight, final DisplayMetrics metrics) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            final float defaultStatusBarHeight = TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 25, metrics);
+            return statusBarHeight > defaultStatusBarHeight;
+        }
+        return false;
     }
 }

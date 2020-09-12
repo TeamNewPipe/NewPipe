@@ -19,15 +19,6 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:titleTextAppearance="@style/Toolbar.Title">
 
-        <Spinner
-            android:id="@+id/toolbar_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|left"
-            android:visibility="gone"
-            tools:ignore="RtlHardcoded"
-            tools:visibility="visible"/>
-
         <include
             android:id="@+id/toolbar_search_container"
             layout="@layout/toolbar_search_layout"

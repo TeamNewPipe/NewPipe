@@ -290,8 +290,6 @@
     <string name="trending">Популарни</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Нови и жешки</string>
-    <string name="title_activity_background_player">Позадински плеер</string>
-    <string name="title_activity_popup_player">Подпрозорче</string>
     <string name="play_queue_remove">Одстрани</string>
     <string name="play_queue_stream_detail">Детали</string>
     <string name="play_queue_audio_settings">Звучни поставки</string>

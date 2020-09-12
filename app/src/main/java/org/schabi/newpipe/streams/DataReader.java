@@ -43,7 +43,8 @@ public class DataReader {
         return readBuffer[readOffset++] & 0xFF;
     }
 
-    public long skipBytes(long amount) throws IOException {
+    public long skipBytes(final long byteAmount) throws IOException {
+        long amount = byteAmount;
         if (readCount < 0) {
             return 0;
         } else if (readCount == 0) {
@@ -69,7 +70,7 @@ public class DataReader {
     }
 
     public long readUnsignedInt()  throws IOException {
-        long value = readInt();
+        final long value = readInt();
         return value & 0xffffffffL;
     }
 
@@ -81,8 +82,9 @@ public class DataReader {
 
     public long readLong() throws IOException {
         primitiveRead(LONG_SIZE);
-        long high = primitive[0] << 24 | primitive[1] << 16 | primitive[2] << 8 | primitive[3];
-        long low = primitive[4] << 24 | primitive[5] << 16 | primitive[6] << 8 | primitive[7];
+        final long high
+                = primitive[0] << 24 | primitive[1] << 16 | primitive[2] << 8 | primitive[3];
+        final long low = primitive[4] << 24 | primitive[5] << 16 | primitive[6] << 8 | primitive[7];
         return high << 32 | low;
     }
 
@@ -90,7 +92,10 @@ public class DataReader {
         return read(buffer, 0, buffer.length);
     }
 
-    public int read(final byte[] buffer, int offset, int count) throws IOException {
+    public int read(final byte[] buffer, final int off, final int c) throws IOException {
+        int offset = off;
+        int count = c;
+
         if (readCount < 0) {
             return -1;
         }
@@ -110,7 +115,7 @@ public class DataReader {
             total += Math.max(stream.read(buffer, offset, count), 0);
         } else {
             while (count > 0 && !fillBuffer()) {
-                int read = Math.min(readCount, count);
+                final int read = Math.min(readCount, count);
                 System.arraycopy(readBuffer, readOffset, buffer, offset, read);
 
                 readOffset += read;
@@ -165,7 +170,7 @@ public class DataReader {
                     if (viewSize < 1) {
                         return -1;
                     }
-                    int res = DataReader.this.read();
+                    final int res = DataReader.this.read();
                     if (res > 0) {
                         viewSize--;
                     }
@@ -184,7 +189,7 @@ public class DataReader {
                         return -1;
                     }
 
-                    int res = DataReader.this.read(buffer, offset, Math.min(viewSize, count));
+                    final int res = DataReader.this.read(buffer, offset, Math.min(viewSize, count));
                     viewSize -= res;
 
                     return res;
@@ -195,7 +200,7 @@ public class DataReader {
                     if (viewSize < 1) {
                         return 0;
                     }
-                    int res = (int) DataReader.this.skipBytes(Math.min(amount, viewSize));
+                    final int res = (int) DataReader.this.skipBytes(Math.min(amount, viewSize));
                     viewSize -= res;
 
                     return res;
@@ -226,12 +231,12 @@ public class DataReader {
     private final short[] primitive = new short[LONG_SIZE];
 
     private void primitiveRead(final int amount) throws IOException {
-        byte[] buffer = new byte[amount];
-        int read = read(buffer, 0, amount);
+        final byte[] buffer = new byte[amount];
+        final int read = read(buffer, 0, amount);
 
         if (read != amount) {
             throw new EOFException("Truncated stream, missing "
-                    + String.valueOf(amount - read) + " bytes");
+                    + (amount - read) + " bytes");
         }
 
         for (int i = 0; i < amount; i++) {

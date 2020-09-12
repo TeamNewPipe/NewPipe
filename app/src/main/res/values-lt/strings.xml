@@ -267,8 +267,6 @@
     <string name="trending">Tendencijos</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nauja ir karšta</string>
-    <string name="title_activity_background_player">Foninis grotuvas</string>
-    <string name="title_activity_popup_player">Langelio rėžimo grotuvas</string>
     <string name="play_queue_remove">Pašalinti</string>
     <string name="play_queue_stream_detail">Detalės</string>
     <string name="play_queue_audio_settings">Garso nustatymai</string>

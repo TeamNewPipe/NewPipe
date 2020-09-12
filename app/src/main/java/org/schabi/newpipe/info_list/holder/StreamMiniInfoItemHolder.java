@@ -60,7 +60,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            StreamStateEntity state2 = historyRecordManager.loadStreamState(infoItem)
+            final StreamStateEntity state2 = historyRecordManager.loadStreamState(infoItem)
                     .blockingGet()[0];
             if (state2 != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
@@ -113,7 +113,8 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                             final HistoryRecordManager historyRecordManager) {
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
-        StreamStateEntity state = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
+        final StreamStateEntity state
+                = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
         if (state != null && item.getDuration() > 0
                 && item.getStreamType() != StreamType.LIVE_STREAM) {
             itemProgressView.setMax((int) item.getDuration());

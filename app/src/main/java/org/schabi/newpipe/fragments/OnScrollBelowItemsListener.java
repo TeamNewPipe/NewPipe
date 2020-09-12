@@ -14,9 +14,9 @@ public abstract class OnScrollBelowItemsListener extends RecyclerView.OnScrollLi
         super.onScrolled(recyclerView, dx, dy);
         if (dy > 0) {
             int pastVisibleItems = 0;
-            int visibleItemCount;
-            int totalItemCount;
-            RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+            final int visibleItemCount;
+            final int totalItemCount;
+            final RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
 
             visibleItemCount = layoutManager.getChildCount();
             totalItemCount = layoutManager.getItemCount();
@@ -26,7 +26,7 @@ public abstract class OnScrollBelowItemsListener extends RecyclerView.OnScrollLi
                 pastVisibleItems = ((LinearLayoutManager) layoutManager)
                         .findFirstVisibleItemPosition();
             } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-                int[] positions = ((StaggeredGridLayoutManager) layoutManager)
+                final int[] positions = ((StaggeredGridLayoutManager) layoutManager)
                         .findFirstVisibleItemPositions(null);
                 if (positions != null && positions.length > 0) {
                     pastVisibleItems = positions[0];

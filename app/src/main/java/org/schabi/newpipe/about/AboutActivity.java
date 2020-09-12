@@ -88,7 +88,7 @@ public class AboutActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_about);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
@@ -99,13 +99,13 @@ public class AboutActivity extends AppCompatActivity {
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = findViewById(R.id.tabs);
+        final TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         switch (id) {
             case android.R.id.home:
@@ -134,25 +134,25 @@ public class AboutActivity extends AppCompatActivity {
         @Override
         public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                                  final Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_about, container, false);
-            Context context = this.getContext();
+            final View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+            final Context context = this.getContext();
 
-            TextView version = rootView.findViewById(R.id.app_version);
+            final TextView version = rootView.findViewById(R.id.app_version);
             version.setText(BuildConfig.VERSION_NAME);
 
-            View githubLink = rootView.findViewById(R.id.github_link);
+            final View githubLink = rootView.findViewById(R.id.github_link);
             githubLink.setOnClickListener(nv ->
                     openUrlInBrowser(context, context.getString(R.string.github_url)));
 
-            View donationLink = rootView.findViewById(R.id.donation_link);
+            final View donationLink = rootView.findViewById(R.id.donation_link);
             donationLink.setOnClickListener(v ->
                     openUrlInBrowser(context, context.getString(R.string.donation_url)));
 
-            View websiteLink = rootView.findViewById(R.id.website_link);
+            final View websiteLink = rootView.findViewById(R.id.website_link);
             websiteLink.setOnClickListener(nv ->
                     openUrlInBrowser(context, context.getString(R.string.website_url)));
 
-            View privacyPolicyLink = rootView.findViewById(R.id.privacy_policy_link);
+            final View privacyPolicyLink = rootView.findViewById(R.id.privacy_policy_link);
             privacyPolicyLink.setOnClickListener(v ->
                     openUrlInBrowser(context, context.getString(R.string.privacy_policy_url)));
 
@@ -167,7 +167,7 @@ public class AboutActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public SectionsPagerAdapter(final FragmentManager fm) {
-            super(fm);
+            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         }
 
         @Override

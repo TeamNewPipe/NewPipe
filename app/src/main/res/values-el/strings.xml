@@ -307,8 +307,6 @@
     <string name="override_current_data">Αυτό θα παρακάμψει τις τρέχουσες ρυθμίσεις σας.</string>
     <string name="import_settings">Θέλετε επίσης να εισάγετε ρυθμίσεις;</string>
     <string name="kiosk">Περίπτερο</string>
-    <string name="title_activity_background_player">Συσκευή αναπαραγωγής Παρασκηνίου</string>
-    <string name="title_activity_popup_player">Συσκευή αναπαραγωγής Αναδυόμενου παραθύρου</string>
     <string name="play_queue_remove">Αφαίρεση</string>
     <string name="play_queue_stream_detail">Λεπτομέρειες</string>
     <string name="play_queue_audio_settings">Ρυθμίσεις ήχου</string>

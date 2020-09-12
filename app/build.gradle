@@ -13,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 950
-        versionName "0.19.5"
+        versionCode 953
+        versionName "0.19.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -50,7 +50,7 @@ android {
         // TODO: update Gradle version
         release {
             minifyEnabled true
-            shrinkResources true
+            shrinkResources false // disabled to fix F-Droid's reproducible build
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             archivesBaseName = 'app'
         }
@@ -84,11 +84,17 @@ ext {
     checkstyleVersion = '8.32'
     stethoVersion = '1.5.1'
     leakCanaryVersion = '2.2'
-    exoPlayerVersion = '2.11.6'
+    exoPlayerVersion = '2.11.8'
     androidxLifecycleVersion = '2.2.0'
     androidxRoomVersion = '2.2.5'
     groupieVersion = '2.8.0'
     markwonVersion = '4.3.1'
+    googleAutoServiceVersion = '1.0-rc7'
+}
+
+configurations {
+    checkstyle
+    ktlint
 }
 
 checkstyle {
@@ -106,8 +112,7 @@ task runCheckstyle(type: Checkstyle) {
     exclude '**/BuildConfig.java'
     exclude 'main/java/us/shandian/giga/**'
 
-    // empty classpath
-    classpath = files()
+    classpath = configurations.checkstyle
 
     showViolations true
 
@@ -115,10 +120,6 @@ task runCheckstyle(type: Checkstyle) {
         xml.enabled true
         html.enabled true
     }
-}
-
-configurations {
-    ktlint
 }
 
 task runKtlint(type: JavaExec) {
@@ -138,12 +139,12 @@ afterEvaluate {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     implementation "frankiesardo:icepick:${icepickVersion}"
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
-    debugImplementation "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
+    checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
     ktlint "com.pinterest:ktlint:0.35.0"
 
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
@@ -163,17 +164,20 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:bda83fe6a5b9a8a0751669fbc444fa49d72d0d2f'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:6633f26ec5a73a8e932de575b7a0643b6ad6c890'
 
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
     implementation "org.jsoup:jsoup:1.13.1"
 
-    implementation "com.squareup.okhttp3:okhttp:3.12.11"
+    implementation "com.squareup.okhttp3:okhttp:3.12.12"
 
     implementation "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"
     implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
 
     implementation "com.google.android.material:material:1.1.0"
+
+    compileOnly "com.google.auto.service:auto-service-annotations:${googleAutoServiceVersion}"
+    kapt "com.google.auto.service:auto-service:${googleAutoServiceVersion}"
 
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.preference:preference:1.1.1"
@@ -183,7 +187,6 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-livedata:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel:${androidxLifecycleVersion}"
-    implementation "androidx.lifecycle:lifecycle-extensions:${androidxLifecycleVersion}"
 
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
     implementation "androidx.room:room-rxjava2:${androidxRoomVersion}"

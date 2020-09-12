@@ -252,7 +252,6 @@
     <string name="title_last_played">دواین کارپێکراو</string>
     <string name="title_most_played">زۆرترین کارپێکردن</string>
     <string name="main_page_content">ناوەڕۆکی پەڕەی سەرەکی</string>
-    <string name="title_activity_popup_player">کارپێکەری پەنجەرەی بچووک</string>
     <string name="play_queue_remove">لادان</string>
     <string name="play_queue_stream_detail">وردەکارییەکان</string>
     <string name="play_queue_audio_settings">ڕێکخستنەکانی دەنگ</string>
@@ -434,7 +433,6 @@
     <string name="trending">پڕبینەرەکان</string>
     <string name="top_50">باشترین 50</string>
     <string name="new_and_hot">نوێ &amp; چالاک</string>
-    <string name="title_activity_background_player">کارپێکەری پاشبنەما</string>
     <string name="hold_to_append">پەنجەت داگرە بۆ ڕیزنەبوون</string>
     <string name="enqueue_on_background">ڕیزنەبوون لە پاشبنەما</string>
     <string name="enqueue_on_popup">ڕیزنەبوون لە پەنجەرەی بچووک</string>
@@ -534,7 +532,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">کاتێ کارپێکەری پاشبنەما کاردەکات ئەوا وێنۆچکەی ڤیدیۆکە لە ڕوونما داخراوەکەدا نیشاندەدرێت</string>
     <string name="clear_download_history">سڕینەوەی مێژووی داگرتن</string>
     <string name="delete_downloaded_files">سڕینەوەی فایلە داگیراوەکان</string>
-    <string name="deleted_downloads">%1$ لە داگرتنەکان سڕانەوە</string>
+    <string name="deleted_downloads">%1$d لە داگرتنەکان سڕانەوە</string>
     <string name="permission_display_over_apps">دەسەڵاتی پێبدە بۆ پیشاندان لەسەرووی ئەپەکانیترەوە</string>
     <string name="app_language_title">زمانی ئەپ</string>
     <string name="systems_language">بنەڕەتی سیستەم</string>

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
@@ -110,19 +110,19 @@ public final class Localization {
     }
 
     public static Locale getPreferredLocale(final Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-        String languageCode = sp.getString(context.getString(R.string.content_language_key),
+        final String languageCode = sp.getString(context.getString(R.string.content_language_key),
                 context.getString(R.string.default_localization_key));
 
         try {
             if (languageCode.length() == 2) {
                 return new Locale(languageCode);
             } else if (languageCode.contains("_")) {
-                String country = languageCode.substring(languageCode.indexOf("_"));
+                final String country = languageCode.substring(languageCode.indexOf("_"));
                 return new Locale(languageCode.substring(0, 2), country);
             }
-        } catch (Exception ignored) {
+        } catch (final Exception ignored) {
         }
 
         return Locale.getDefault();
@@ -133,7 +133,7 @@ public final class Localization {
     }
 
     public static String localizeNumber(final Context context, final double number) {
-        NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
+        final NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
         return nf.format(number);
     }
 
@@ -184,7 +184,7 @@ public final class Localization {
     }
 
     public static String shortCount(final Context context, final long count) {
-        double value = (double) count;
+        final double value = (double) count;
         if (count >= 1000000000) {
             return localizeNumber(context, round(value / 1000000000, 1))
                     + context.getString(R.string.short_billion);
@@ -230,8 +230,8 @@ public final class Localization {
         // is not the responsibility of this method handle long numbers
         // (it probably will fall in the "other" category,
         // or some language have some specific rule... then we have to change it)
-        int safeCount = count > Integer.MAX_VALUE ? Integer.MAX_VALUE : count < Integer.MIN_VALUE
-                ? Integer.MIN_VALUE : (int) count;
+        final int safeCount = count > Integer.MAX_VALUE ? Integer.MAX_VALUE
+                : count < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) count;
         return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
     }
 
@@ -305,30 +305,30 @@ public final class Localization {
     }
 
     public static String relativeTime(final Calendar calendarTime) {
-        String time = getPrettyTime().formatUnrounded(calendarTime);
+        final String time = getPrettyTime().formatUnrounded(calendarTime);
         return time.startsWith("-") ? time.substring(1) : time;
         //workaround fix for russian showing -1 day ago, -19hrs ago…
     }
 
     private static void changeAppLanguage(final Locale loc, final Resources res) {
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
+        final DisplayMetrics dm = res.getDisplayMetrics();
+        final Configuration conf = res.getConfiguration();
         conf.setLocale(loc);
         res.updateConfiguration(conf, dm);
     }
 
     public static Locale getAppLocale(final Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String lang = prefs.getString(context.getString(R.string.app_language_key), "en");
-        Locale loc;
+        final Locale loc;
         if (lang.equals(context.getString(R.string.default_localization_key))) {
             loc = Locale.getDefault();
         } else if (lang.matches(".*-.*")) {
             //to differentiate different versions of the language
             //for example, pt (portuguese in Portugal) and pt-br (portuguese in Brazil)
-            String[] localisation = lang.split("-");
+            final String[] localisation = lang.split("-");
             lang = localisation[0];
-            String country = localisation[1];
+            final String country = localisation[1];
             loc = new Locale(lang, country);
         } else {
             loc = new Locale(lang);

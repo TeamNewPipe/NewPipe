@@ -230,8 +230,6 @@
     <string name="trending">인기 급상승</string>
     <string name="top_50">탑 50</string>
     <string name="new_and_hot">신작 &amp; 뜨는 동영상</string>
-    <string name="title_activity_background_player">백그라운드 플레이어</string>
-    <string name="title_activity_popup_player">팝업 플레이어</string>
     <string name="play_queue_remove">제거</string>
     <string name="play_queue_stream_detail">상세 정보</string>
     <string name="play_queue_audio_settings">오디오 설정</string>
@@ -523,8 +521,8 @@
     <string name="error_download_resource_gone">이 다운로드를 복구할 수 없습니다</string>
     <string name="choose_instance_prompt">인스턴스를 선택하세요</string>
     <string name="enable_lock_screen_video_thumbnail_title">비디어 썸네일 화면 고정을 가능하게 한다</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">백그라운드 플레이어를 사용하는 경우 비디오 썸네일은 고정된 스크린 위에 표시됩니다.</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">백그라운드 플레이어를 사용하는 경우 비디오 썸네일은 잠금화면 상에 표시됩니다.</string>
     <string name="clear_download_history">다운로드 기록 삭제</string>
     <string name="delete_downloaded_files">다운로드된 파일 삭제</string>
-    <string name="deleted_downloads">%1$s 다운로드 삭제</string>
+    <string name="deleted_downloads">%1$d 다운로드 삭제</string>
 </resources>

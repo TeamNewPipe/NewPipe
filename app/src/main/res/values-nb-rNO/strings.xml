@@ -222,8 +222,6 @@
     <string name="kiosk">Kiosk</string>
     <string name="top_50">Topp 50</string>
     <string name="new_and_hot">Nytt og hett</string>
-    <string name="title_activity_background_player">Bakgrunnsavspiller</string>
-    <string name="title_activity_popup_player">Oppsprettsavspiller</string>
     <string name="play_queue_remove">Fjern</string>
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Lydinnstillinger</string>
@@ -516,7 +514,7 @@
     <string name="choose_instance_prompt">Velg en instans</string>
     <string name="clear_download_history">Tøm nedlastingshistorikk</string>
     <string name="delete_downloaded_files">Slett nedlastede filer</string>
-    <string name="deleted_downloads">Slettet %1$s nedlastninger</string>
+    <string name="deleted_downloads">Slettet %1$d nedlastninger</string>
     <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde på låseskjerm</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises ent videominiatyrbilde på låseskjermen</string>
     <string name="peertube_instance_url_summary">Velg dine favoritter blandt PeerTube-instansene</string>
@@ -582,4 +580,10 @@
     <string name="artists">Artister</string>
     <string name="albums">Album</string>
     <string name="songs">Sanger</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, og delvist sette videoer</string>
+    <string name="remove_watched_popup_title">Fjern sette videoer\?</string>
+    <string name="remove_watched">Fjern sette</string>
+    <string name="channel_created_by">Opprettet av %s</string>
+    <string name="video_detail_by">Av %s</string>
+    <string name="youtube_restricted_mode_enabled_title">Begrenset YouTube-modus</string>
 </resources>

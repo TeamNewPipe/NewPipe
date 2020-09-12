@@ -27,7 +27,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -54,8 +54,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.DownloaderImpl;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -78,6 +78,7 @@ import org.schabi.newpipe.util.SerializedCache;
 import java.io.IOException;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
@@ -97,7 +98,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 @SuppressWarnings({"WeakerAccess"})
 public abstract class BasePlayer implements
         Player.EventListener, PlaybackListener, ImageLoadingListener {
-    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+    public static final boolean DEBUG = MainActivity.DEBUG;
     @NonNull
     public static final String TAG = "BasePlayer";
 
@@ -128,13 +129,15 @@ public abstract class BasePlayer implements
     @NonNull
     public static final String SELECT_ON_APPEND = "select_on_append";
     @NonNull
+    public static final String PLAYER_TYPE = "player_type";
+    @NonNull
     public static final String IS_MUTED = "is_muted";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
+    protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f};
 
     protected PlayQueue playQueue;
     protected PlayQueueAdapter playQueueAdapter;
@@ -158,6 +161,10 @@ public abstract class BasePlayer implements
 
     protected static final int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
     protected static final int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
+
+    public static final int PLAYER_TYPE_VIDEO = 0;
+    public static final int PLAYER_TYPE_AUDIO = 1;
+    public static final int PLAYER_TYPE_POPUP = 2;
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected AudioReactor audioReactor;
@@ -223,7 +230,7 @@ public abstract class BasePlayer implements
 
     public void setup() {
         if (simpleExoPlayer == null) {
-            initPlayer(/*playOnInit=*/true);
+            initPlayer(true);
         }
         initListeners();
     }
@@ -250,7 +257,8 @@ public abstract class BasePlayer implements
         registerBroadcastReceiver();
     }
 
-    public void initListeners() { }
+    public void initListeners() {
+    }
 
     public void handleIntent(final Intent intent) {
         if (DEBUG) {
@@ -272,7 +280,7 @@ public abstract class BasePlayer implements
 
         // Resolve append intents
         if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {
-            int sizeBeforeAppend = playQueue.size();
+            final int sizeBeforeAppend = playQueue.size();
             playQueue.append(queue.getStreams());
 
             if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
@@ -288,34 +296,72 @@ public abstract class BasePlayer implements
         final float playbackPitch = savedParameters.pitch;
         final boolean playbackSkipSilence = savedParameters.skipSilence;
 
+        final boolean samePlayQueue = playQueue != null && playQueue.equals(queue);
+
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final boolean isMuted = intent
                 .getBooleanExtra(IS_MUTED, simpleExoPlayer != null && isMuted());
 
+        /*
+         * There are 3 situations when playback shouldn't be started from scratch (zero timestamp):
+         * 1. User pressed on a timestamp link and the same video should be rewound to the timestamp
+         * 2. User changed a player from, for example. main to popup, or from audio to main, etc
+         * 3. User chose to resume a video based on a saved timestamp from history of played videos
+         * In those cases time will be saved because re-init of the play queue is a not an instant
+         *  task and requires network calls
+         * */
         // seek to timestamp if stream is already playing
         if (simpleExoPlayer != null
                 && queue.size() == 1
                 && playQueue != null
+                && playQueue.size() == 1
                 && playQueue.getItem() != null
                 && queue.getItem().getUrl().equals(playQueue.getItem().getUrl())
-                && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET
-        ) {
+                && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+            // Player can have state = IDLE when playback is stopped or failed
+            // and we should retry() in this case
+            if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) {
+                simpleExoPlayer.retry();
+            }
             simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
             return;
-        } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false) && isPlaybackResumeEnabled()) {
+
+        } else if (samePlayQueue && !playQueue.isDisposed() && simpleExoPlayer != null) {
+            // Do not re-init the same PlayQueue. Save time
+            // Player can have state = IDLE when playback is stopped or failed
+            // and we should retry() in this case
+            if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) {
+                simpleExoPlayer.retry();
+            }
+            return;
+        } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
+                && isPlaybackResumeEnabled()
+                && !samePlayQueue) {
             final PlayQueueItem item = queue.getItem();
             if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
                 stateLoader = recordManager.loadStreamState(item)
-                        .observeOn(mainThread())
-                        .doFinally(() -> initPlayback(queue, repeatMode, playbackSpeed,
-                                playbackPitch, playbackSkipSilence, true, isMuted))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        // Do not place initPlayback() in doFinally() because
+                        // it restarts playback after destroy()
+                        //.doFinally()
                         .subscribe(
-                                state -> queue
-                                        .setRecovery(queue.getIndex(), state.getProgressTime()),
+                                state -> {
+                                    queue.setRecovery(queue.getIndex(), state.getProgressTime());
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
+                                            playbackSkipSilence, true, isMuted);
+                                },
                                 error -> {
                                     if (DEBUG) {
                                         error.printStackTrace();
                                     }
+                                    // In case any error we can start playback without history
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
+                                            playbackSkipSilence, true, isMuted);
+                                },
+                                () -> {
+                                    // Completed but not found in history
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
+                                            playbackSkipSilence, true, isMuted);
                                 }
                         );
                 databaseUpdateReactor.add(stateLoader);
@@ -323,21 +369,23 @@ public abstract class BasePlayer implements
             }
         }
         // Good to go...
-        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
-                /*playOnInit=*/!intent.getBooleanExtra(START_PAUSED, false), isMuted);
+        // In a case of equal PlayQueues we can re-init old one but only when it is disposed
+        initPlayback(samePlayQueue ? playQueue : queue, repeatMode,
+                playbackSpeed, playbackPitch, playbackSkipSilence,
+                !intent.getBooleanExtra(START_PAUSED, false),
+                isMuted);
     }
 
     private PlaybackParameters retrievePlaybackParametersFromPreferences() {
         final SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(context);
 
-        final float speed = preferences
-            .getFloat(context.getString(R.string.playback_speed_key), getPlaybackSpeed());
-        final float pitch = preferences.getFloat(context.getString(R.string.playback_pitch_key),
-            getPlaybackPitch());
-        final boolean skipSilence = preferences
-            .getBoolean(context.getString(R.string.playback_skip_silence_key),
-                getPlaybackSkipSilence());
+        final float speed = preferences.getFloat(
+                context.getString(R.string.playback_speed_key), getPlaybackSpeed());
+        final float pitch = preferences.getFloat(
+                context.getString(R.string.playback_pitch_key), getPlaybackPitch());
+        final boolean skipSilence = preferences.getBoolean(
+                context.getString(R.string.playback_skip_silence_key), getPlaybackSkipSilence());
         return new PlaybackParameters(speed, pitch, skipSilence);
     }
 
@@ -411,6 +459,7 @@ public abstract class BasePlayer implements
 
         databaseUpdateReactor.clear();
         progressUpdateReactor.set(null);
+        ImageLoader.getInstance().stop();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -562,7 +611,8 @@ public abstract class BasePlayer implements
         }
     }
 
-    public void onPausedSeek() { }
+    public void onPausedSeek() {
+    }
 
     public void onCompleted() {
         if (DEBUG) {
@@ -830,7 +880,6 @@ public abstract class BasePlayer implements
         }
         setRecovery();
 
-        final Throwable cause = error.getCause();
         if (error instanceof BehindLiveWindowException) {
             reload();
         } else {
@@ -1018,14 +1067,6 @@ public abstract class BasePlayer implements
         registerView();
     }
 
-    @Override
-    public void onPlaybackShutdown() {
-        if (DEBUG) {
-            Log.d(TAG, "Shutting down...");
-        }
-        destroy();
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // General Player
     //////////////////////////////////////////////////////////////////////////*/
@@ -1090,6 +1131,7 @@ public abstract class BasePlayer implements
         }
 
         simpleExoPlayer.setPlayWhenReady(true);
+        savePlaybackState();
     }
 
     public void onPause() {
@@ -1102,6 +1144,7 @@ public abstract class BasePlayer implements
 
         audioReactor.abandonAudioFocus();
         simpleExoPlayer.setPlayWhenReady(false);
+        savePlaybackState();
     }
 
     public void onPlayPause() {
@@ -1296,6 +1339,11 @@ public abstract class BasePlayer implements
             return;
         }
         final StreamInfo currentInfo = currentMetadata.getMetadata();
+        if (playQueue != null) {
+            // Save current position. It will help to restore this position once a user
+            // wants to play prev or next stream from the queue
+            playQueue.setRecovery(playQueue.getIndex(), simpleExoPlayer.getContentPosition());
+        }
         savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
     }
 
@@ -1408,7 +1456,7 @@ public abstract class BasePlayer implements
             return false;
         }
 
-        Timeline.Window timelineWindow = new Timeline.Window();
+        final Timeline.Window timelineWindow = new Timeline.Window();
         currentTimeline.getWindow(currentWindowIndex, timelineWindow);
         return timelineWindow.getDefaultPositionMs() <= simpleExoPlayer.getCurrentPosition();
     }
@@ -1419,7 +1467,7 @@ public abstract class BasePlayer implements
         }
         try {
             return simpleExoPlayer.isCurrentWindowDynamic();
-        } catch (@NonNull IndexOutOfBoundsException e) {
+        } catch (@NonNull final IndexOutOfBoundsException e) {
             // Why would this even happen =(
             // But lets log it anyway. Save is save
             if (DEBUG) {
@@ -1432,6 +1480,10 @@ public abstract class BasePlayer implements
 
     public boolean isPlaying() {
         return simpleExoPlayer != null && simpleExoPlayer.isPlaying();
+    }
+
+    public boolean isLoading() {
+        return simpleExoPlayer != null && simpleExoPlayer.isLoading();
     }
 
     @Player.RepeatMode
@@ -1471,20 +1523,32 @@ public abstract class BasePlayer implements
         return parameters == null ? PlaybackParameters.DEFAULT : parameters;
     }
 
+    /**
+     * Sets the playback parameters of the player, and also saves them to shared preferences.
+     * Speed and pitch are rounded up to 2 decimal places before being used or saved.
+     *
+     * @param speed       the playback speed, will be rounded to up to 2 decimal places
+     * @param pitch       the playback pitch, will be rounded to up to 2 decimal places
+     * @param skipSilence skip silence during playback
+     */
     public void setPlaybackParameters(final float speed, final float pitch,
                                       final boolean skipSilence) {
-        savePlaybackParametersToPreferences(speed, pitch, skipSilence);
-        simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, pitch, skipSilence));
+        final float roundedSpeed = Math.round(speed * 100.0f) / 100.0f;
+        final float roundedPitch = Math.round(pitch * 100.0f) / 100.0f;
+
+        savePlaybackParametersToPreferences(roundedSpeed, roundedPitch, skipSilence);
+        simpleExoPlayer.setPlaybackParameters(
+                new PlaybackParameters(roundedSpeed, roundedPitch, skipSilence));
     }
 
     private void savePlaybackParametersToPreferences(final float speed, final float pitch,
                                                      final boolean skipSilence) {
         PreferenceManager.getDefaultSharedPreferences(context)
-            .edit()
-            .putFloat(context.getString(R.string.playback_speed_key), speed)
-            .putFloat(context.getString(R.string.playback_pitch_key), pitch)
-            .putBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence)
-            .apply();
+                .edit()
+                .putFloat(context.getString(R.string.playback_speed_key), speed)
+                .putFloat(context.getString(R.string.playback_pitch_key), pitch)
+                .putBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence)
+                .apply();
     }
 
     public PlayQueue getPlayQueue() {

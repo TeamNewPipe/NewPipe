@@ -51,4 +51,6 @@
 
     <!-- File picker dimensions -->
     <dimen name="file_picker_items_text_size">16sp</dimen>
+
+    <dimen name="search_suggestion_text_size">14sp</dimen>
 </resources>

@@ -30,8 +30,6 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import icepick.State;
@@ -53,31 +51,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
     ///////////////////////////////////////////////////////////////////////////
-
-    private static List<PlaylistLocalItem> merge(
-            final List<PlaylistMetadataEntry> localPlaylists,
-            final List<PlaylistRemoteEntity> remotePlaylists) {
-        List<PlaylistLocalItem> items = new ArrayList<>(
-                localPlaylists.size() + remotePlaylists.size());
-        items.addAll(localPlaylists);
-        items.addAll(remotePlaylists);
-
-        Collections.sort(items, (left, right) -> {
-            String on1 = left.getOrderingName();
-            String on2 = right.getOrderingName();
-            if (on1 == null && on2 == null) {
-                return 0;
-            } else if (on1 != null && on2 == null) {
-                return -1;
-            } else if (on1 == null && on2 != null) {
-                return 1;
-            } else {
-                return on1.compareToIgnoreCase(on2);
-            }
-        });
-
-        return items;
-    }
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -164,7 +137,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         super.startLoading(forceLoad);
 
         Flowable.combineLatest(localPlaylistManager.getPlaylists(),
-                remotePlaylistManager.getPlaylists(), BookmarkFragment::merge)
+                remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistsSubscriber());
@@ -292,15 +265,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
-        View dialogView = View.inflate(getContext(), R.layout.dialog_bookmark, null);
-        EditText editText = dialogView.findViewById(R.id.playlist_name_edit_text);
+        final View dialogView = View.inflate(getContext(), R.layout.dialog_bookmark, null);
+        final EditText editText = dialogView.findViewById(R.id.playlist_name_edit_text);
         editText.setText(selectedItem.name);
 
-        Builder builder = new AlertDialog.Builder(activity);
+        final Builder builder = new AlertDialog.Builder(activity);
         builder.setView(dialogView)
-                .setPositiveButton(R.string.rename_playlist, (dialog, which) -> {
-                    changeLocalPlaylistName(selectedItem.uid, editText.getText().toString());
-                })
+                .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
+                        changeLocalPlaylistName(selectedItem.uid, editText.getText().toString()))
                 .setNegativeButton(R.string.cancel, null)
                 .setNeutralButton(R.string.delete, (dialog, which) -> {
                     showDeleteDialog(selectedItem.name,

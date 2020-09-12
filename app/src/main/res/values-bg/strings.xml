@@ -307,8 +307,6 @@
     <string name="trending">Набиращи популярност</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Ново и горещо</string>
-    <string name="title_activity_background_player">Във фонов режим</string>
-    <string name="title_activity_popup_player">В прозорец</string>
     <string name="play_queue_remove">Премахни</string>
     <string name="play_queue_stream_detail">Детайли</string>
     <string name="play_queue_audio_settings">Аудио настройки</string>

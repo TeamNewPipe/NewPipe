@@ -23,6 +23,7 @@
         android:logo="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/OpeningTheme"
+        android:resizeableActivity="true"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
@@ -43,8 +44,8 @@
         </receiver>
 
         <service
-            android:name=".player.BackgroundPlayer"
-            android:exported="false">
+                android:name=".player.MainPlayer"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -52,24 +53,8 @@
 
         <activity
             android:name=".player.BackgroundPlayerActivity"
-            android:label="@string/title_activity_background_player"
+            android:label="@string/title_activity_play_queue"
             android:launchMode="singleTask" />
-
-        <activity
-            android:name=".player.PopupVideoPlayerActivity"
-            android:label="@string/title_activity_popup_player"
-            android:launchMode="singleTask" />
-
-        <service
-            android:name=".player.PopupVideoPlayer"
-            android:exported="false" />
-
-        <activity
-            android:name=".player.MainVideoPlayer"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:theme="@style/VideoPlayerTheme" />
 
         <activity
             android:name=".settings.SettingsActivity"
@@ -242,17 +227,19 @@
                 <data android:host="dev.invidio.us" />
                 <data android:host="www.invidio.us" />
                 <data android:host="invidious.snopyta.org" />
-                <data android:host="de.invidious.snopyta.org" />
                 <data android:host="fi.invidious.snopyta.org" />
-                <data android:host="vid.wxzm.sx" />
-                <data android:host="invidious.kabi.tk" />
-                <data android:host="invidiou.sh" />
-                <data android:host="www.invidiou.sh" />
-                <data android:host="no.invidiou.sh" />
-                <data android:host="invidious.enkirton.net" />
-                <data android:host="tube.poal.co" />
+                <data android:host="yewtu.be" />
+                <data android:host="invidious.ggc-project.de" />
+                <data android:host="yt.maisputain.ovh" />
                 <data android:host="invidious.13ad.de" />
-                <data android:host="yt.elukerio.org" />
+                <data android:host="invidious.toot.koeln" />
+                <data android:host="invidious.fdn.fr" />
+                <data android:host="watch.nettohikari.com" />
+                <data android:host="invidious.snwmds.net" />
+                <data android:host="invidious.snwmds.org" />
+                <data android:host="invidious.snwmds.com" />
+                <data android:host="invidious.sunsetravens.com" />
+                <data android:host="invidious.gachirangers.com" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
@@ -319,6 +306,7 @@
                 <data android:host="peertube.fr" />
                 <data android:host="peertube.live" />
                 <data android:host="peertube.video" />
+                <data android:host="tube.privacytools.io" />
                 <data android:host="video.ploud.fr" />
                 <data android:host="video.lqdn.fr" />
                 <data android:host="skeptikon.fr" />
@@ -331,5 +319,11 @@
         <service
             android:name=".RouterActivity$FetcherService"
             android:exported="false" />
+
+        <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
+        <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
+        <meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>
+        <!-- Version >= 3.0. DeX Dual Mode support -->
+        <meta-data android:name="com.samsung.android.multidisplay.keep_process_alive" android:value="true"/>
     </application>
 </manifest>

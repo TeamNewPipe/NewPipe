@@ -28,6 +28,7 @@
     <string name="auto_queue_key" translatable="false">auto_queue_key</string>
     <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
     <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
+    <string name="clear_queue_confirmation_key" translatable="false">clear_queue_confirmation_key</string>
 
     <string name="seek_duration_key" translatable="false">seek_duration</string>
     <string name="seek_duration_default_value" translatable="false">10000</string>
@@ -64,6 +65,23 @@
         <item>@string/minimize_on_exit_none_description</item>
         <item>@string/minimize_on_exit_background_description</item>
         <item>@string/minimize_on_exit_popup_description</item>
+    </string-array>
+
+
+    <string name="autoplay_key" translatable="false">autoplay_key</string>
+    <string name="autoplay_value" translatable="false">@string/autoplay_wifi_key</string>
+    <string name="autoplay_always_key" translatable="false">autoplay_always_key</string>
+    <string name="autoplay_wifi_key" translatable="false">autoplay_wifi_key</string>
+    <string name="autoplay_never_key" translatable="false">autoplay_never_key</string>
+    <string-array name="autoplay_type_key" translatable="false">
+        <item>@string/autoplay_always_key</item>
+        <item>@string/autoplay_wifi_key</item>
+        <item>@string/autoplay_never_key</item>
+    </string-array>
+    <string-array name="autoplay_type_description" translatable="false">
+        <item>@string/autoplay_always_description</item>
+        <item>@string/autoplay_wifi_description</item>
+        <item>@string/autoplay_never_description</item>
     </string-array>
 
     <string name="default_resolution_key" translatable="false">default_resolution</string>
@@ -125,8 +143,6 @@
         <item>@string/audio_m4a_key</item>
         <item>@string/audio_webm_key</item>
     </string-array>
-
-    <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
 
     <string name="last_resize_mode" translatable="false">last_resize_mode</string>
 
@@ -219,6 +235,11 @@
     <string name="clear_views_history_key" translatable="false">clear_play_history</string>
     <string name="clear_playback_states_key" translatable="false">clear_playback_states</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
+
+    <string name="last_used_download_type" translatable="false">@string/last_download_type_video_key</string>
+    <string name="last_download_type_video_key" translatable="false">last_dl_type_video</string>
+    <string name="last_download_type_audio_key" translatable="false">last_dl_type_audio</string>
+    <string name="last_download_type_subtitle_key" translatable="false">last_dl_type_subtitle</string>
 
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
     <string name="storage_use_saf" translatable="false">storage_use_saf</string>
@@ -966,12 +987,15 @@
         <item>@string/default_localization_key</item>
         <item>ace</item>
         <item>ar</item>
+        <item>ar-ly</item>
         <item>az</item>
         <item>ast</item>
         <item>be</item>
-        <item>bg-bd</item>
-        <item>bn</item>
+        <item>bg</item>
+        <item>bn-bd</item>
+        <item>bn-in</item>
         <item>ca</item>
+        <item>ckb</item>
         <item>cs</item>
         <item>da</item>
         <item>de</item>
@@ -995,6 +1019,8 @@
         <item>in</item>
         <item>it</item>
         <item>ja</item>
+        <item>jv</item>
+        <item>kab</item>
         <item>ko</item>
         <item>ku</item>
         <item>lt</item>
@@ -1031,12 +1057,15 @@
         <item>@string/systems_language</item>
         <item>Basa Acèh</item>
         <item>العربية</item>
+        <item>العربية (ليبيا)</item>
         <item>Azərbaycan dili</item>
         <item>Asturianu</item>
         <item>Беларуская</item>
         <item>български език</item>
-        <item>বাংলা</item>
+        <item>বাংলা (বাংলাদেশ)</item>
+        <item>বাংলা (भारत)</item>
         <item>Català</item>
+        <item>کوردیی سۆرانی</item>
         <item>Čeština</item>
         <item>Dansk</item>
         <item>Deutsch</item>
@@ -1060,6 +1089,8 @@
         <item>Bahasa Indonesia</item>
         <item>Italiano</item>
         <item>日本語</item>
+        <item>ꦧꦱꦗꦮ</item>
+        <item>Taqbaylit</item>
         <item>한국어</item>
         <item>کوردی</item>
         <item>Lietuvių kalba</item>

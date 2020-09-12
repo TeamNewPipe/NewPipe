@@ -288,8 +288,6 @@
     <string name="trending">رجحان میں</string>
     <string name="top_50">اوّل 50</string>
     <string name="new_and_hot">نیا اور تازہ</string>
-    <string name="title_activity_background_player">پس منظر پلیئر</string>
-    <string name="title_activity_popup_player">پوپ اپ پلیئر</string>
     <string name="play_queue_remove">ہٹائیں</string>
     <string name="play_queue_stream_detail">تفصیلات</string>
     <string name="play_queue_audio_settings">آڈیو کی ترتیبات</string>
@@ -529,5 +527,5 @@
     <string name="enable_lock_screen_video_thumbnail_summary">بیک گراؤنڈ پلیئر استعمال کرتے وقت ایک ویڈیو تھمب نیل کو لاک اسکرین پر دکھایا جائے گا</string>
     <string name="clear_download_history">ڈاؤن لوڈ کی سرگزشت صاف کریں</string>
     <string name="delete_downloaded_files">ڈاؤن لوڈ شدہ فائلیں حذف کریں</string>
-    <string name="deleted_downloads">%1$s ڈاؤن لوڈز کو حذف کیا گیا</string>
+    <string name="deleted_downloads">%1$d ڈاؤن لوڈز کو حذف کیا گیا</string>
 </resources>

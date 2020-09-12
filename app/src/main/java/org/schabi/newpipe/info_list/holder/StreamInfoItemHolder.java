@@ -1,6 +1,6 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.TextView;

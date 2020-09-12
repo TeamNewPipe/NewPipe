@@ -3,7 +3,7 @@ package org.schabi.newpipe.fragments;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -74,7 +74,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
         previousYoutubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(getContext())
+                PreferenceManager.getDefaultSharedPreferences(requireContext())
                         .getBoolean(youtubeRestrictedModeEnabledKey, false);
     }
 
@@ -104,8 +104,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onResume() {
         super.onResume();
 
-        boolean youtubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(getContext())
+        final boolean youtubeRestrictedModeEnabled =
+                PreferenceManager.getDefaultSharedPreferences(requireContext())
                         .getBoolean(youtubeRestrictedModeEnabledKey, false);
         if (previousYoutubeRestrictedModeEnabled != youtubeRestrictedModeEnabled) {
             previousYoutubeRestrictedModeEnabled = youtubeRestrictedModeEnabled;
@@ -137,7 +137,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
         inflater.inflate(R.menu.main_fragment_menu, menu);
 
-        ActionBar supportActionBar = activity.getSupportActionBar();
+        final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         }
@@ -148,11 +148,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         switch (item.getItemId()) {
             case R.id.action_search:
                 try {
-                    NavigationHelper.openSearchFragment(
-                            getFragmentManager(),
-                            ServiceHelper.getSelectedServiceId(activity),
-                            "");
-                } catch (Exception e) {
+                    NavigationHelper.openSearchFragment(getFM(),
+                            ServiceHelper.getSelectedServiceId(activity), "");
+                } catch (final Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                 }
                 return true;
@@ -239,7 +237,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             Fragment fragment = null;
             try {
                 fragment = tab.getFragment(context);
-            } catch (ExtractionException e) {
+            } catch (final ExtractionException e) {
                 throwable = e;
             }
 

@@ -1,0 +1,1 @@
+Fix extraction of YouTube's decryption function.

@@ -190,7 +190,7 @@
     <string name="invalid_source">यस्तो कुनै फाइल / सामग्री स्रोत भेटिएन</string>
     <string name="invalid_file">फाइल अवस्थित छैन वा पढ्न वा यो लेख्न अनुमति अभाव छ</string>
     <string name="file_name_empty_error">फाइलको नाम खाली हुन सक्दैन</string>
-    <string name="error_occurred_detail">एउटा त्रुटि देखापर्यो:%1$</string>
+    <string name="error_occurred_detail">एउटा त्रुटि देखापर्यो:%s</string>
     <string name="no_streams_available_download">कुनै धाराहरु डाउनलोड गर्न उपलब्ध छैनन्</string>
     <string name="saved_tabs_invalid_json">बचत गरिएका ट्याबहरू पढ्न सकिएन, पूर्वनिर्धारित प्रयोग गरिदै</string>
     <string name="restore_defaults">फेरी पहिलाकै अवस्थामा लैजाऊ</string>
@@ -276,7 +276,7 @@
     <string name="action_settings">सेटिङहरू</string>
     <string name="action_about">बारेमा</string>
     <string name="title_licenses">तेस्रो-पक्ष इजाजत पत्र</string>
-    <string name="copyright" formatted="true">©%1$ को %2$s द्वारा %3$ अन्तर्गत</string>
+    <string name="copyright" formatted="true">©%1$s को %2$s द्वारा %3$s अन्तर्गत</string>
     <string name="error_unable_to_load_license">लाइसेन्स लोड गर्न सकेन</string>
     <string name="action_open_website">वेबसाइट खुला</string>
     <string name="tab_about">बारेमा</string>
@@ -334,8 +334,6 @@
     <string name="top_50">शीर्ष 50</string>
     <string name="new_and_hot">नयाँ र तात्तातो</string>
     <string name="conferences">सम्मेलनहरु</string>
-    <string name="title_activity_background_player">प्ले लाममा</string>
-    <string name="title_activity_popup_player">पपअप प्लयेर</string>
     <string name="play_queue_remove">हटाउ</string>
     <string name="play_queue_stream_detail">विवरण</string>
     <string name="play_queue_audio_settings">अडियो सेटिङहरू</string>
@@ -344,7 +342,7 @@
     <string name="enqueue_on_popup">नयाँ पपअपमा लामबद्ध</string>
     <string name="start_here_on_main">यहाँ प्ले सुरु</string>
     <string name="start_here_on_background">पृष्ठभूमिमा बजाउन सुरु गर्नुहोस</string>
-    <string name="start_here_on_popup">नयाँ पपअपमा बजाउन सुरु गर्नुहोस</string>
+    <string name="start_here_on_popup">पपअपमा बजाउन सुरु गर्नुहोस</string>
     <string name="drawer_open">ड्रअर खोल्नुहोस</string>
     <string name="drawer_close">ड्रअर बन्द</string>
     <string name="drawer_header_action_paceholder_text">यहाँ केही चाँडै प्रकट हुनेछ ;D</string>
@@ -430,7 +428,7 @@
     <string name="grid">ग्रिड</string>
     <string name="auto">स्वतः</string>
     <string name="switch_view">स्विच दृश्य</string>
-    <string name="app_update_notification_content_title">नयाँ पाइप अपडेट उपलब्ध छ!</string>
+    <string name="app_update_notification_content_title">NewPipe अपडेट उपलब्ध छ!</string>
     <string name="app_update_notification_content_text">डाउनलोड गर्न ट्याप गर्नुहोस्</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">रोकिएको</string>
@@ -528,7 +526,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">पृष्ठभूमिमा प्लेयर प्रयोग गर्दा एउटा भिडियो थम्बनेल लक स्क्रिनमा देखाइएको छ</string>
     <string name="clear_download_history">डाउनलोड इतिहास मेटाउ</string>
     <string name="delete_downloaded_files">डाउनलोड गरिएका फाइलहरु मेटाउ</string>
-    <string name="deleted_downloads">%1$ डाउनलोडहरु मेटियो</string>
+    <string name="deleted_downloads">%1$d डाउनलोडहरु मेटियो</string>
     <string name="permission_display_over_apps">अन्य अनुप्रयोगहरूमा प्रदर्शन गर्न अनुमति दिने</string>
     <string name="app_language_title">एप्सको भाषा</string>
     <string name="systems_language">सिस्टम पूर्वनिर्धारित</string>
@@ -576,7 +574,7 @@
     <string name="feed_processing_message">फिड प्रशोधन गर्दै …</string>
     <string name="feed_notification_loading">फिड लोड गर्दै …</string>
     <string name="feed_subscription_not_loaded_count">लोड गरिएको छैन:%d</string>
-    <string name="feed_oldest_subscription_update">फिड पछिल्लो अपडेट गरिएको:%s</string>
+    <string name="feed_oldest_subscription_update">फिड पछिल्लोपटक अपडेट गरिएको:%s</string>
     <string name="feed_groups_header_title">च्यानल समूहहरू</string>
     <string name="fragment_feed_title">नयाँ के छ</string>
     <plurals name="hours">
@@ -591,4 +589,27 @@
         <item quantity="one">%d मिनेट</item>
         <item quantity="other">%d मिनेट</item>
     </plurals>
+    <string name="detail_sub_channel_thumbnail_view_description">च्यानल अवतार थम्बनेल</string>
+    <string name="remove_watched_popup_warning">भिडियोहरू जुन प्लेलिस्टमा थपिनु अघि र पछि हेरिएको थियो हटाइनेछ।
+\n…
+\n के तपाईँ निश्चित हुनुहुन्छ\? यो उल्ट्याउन सकिदैन!</string>
+    <string name="remove_watched_popup_title">हेरिएका भिडियोहरू हटाउने हो\?</string>
+    <string name="remove_watched">हेरिसकेको हटाउनुहोस</string>
+    <string name="show_original_time_ago_summary">सेवाहरूबाट मूल पाठहरू स्ट्रिम वस्तुहरूमा देखिने छन्</string>
+    <string name="show_original_time_ago_title">आईटमहरूमा मूल समय पहिले देखाउनुहोस्</string>
+    <string name="infinite_videos">आनंत भिडियोहरू</string>
+    <string name="more_than_100_videos">१००+ भिडियोहरू</string>
+    <string name="artists">कलाकारहरू</string>
+    <string name="albums">एल्बमहरू</string>
+    <string name="songs">गित</string>
+    <string name="restricted_video">यो भिडियो उमेर प्रतिबन्धित छ।…
+\n…
+\nएदी तपैंलाई हेर्न परेमा, सेटिंगमा गई “उमेर प्रतिबन्धित समाग्री” सक्षम गर्नुहोस्।</string>
+    <string name="youtube_restricted_mode_enabled_title">यूट्यूब प्रतिबन्धित मोड</string>
+    <string name="video_detail_by">%s द्वारा</string>
+    <string name="channel_created_by">%s द्वारा सिर्जना गरिएको</string>
+    <string name="content_not_supported">यो सामग्री अझै NewPipeमा समर्थित छैन। 
+\n… 
+\nआशा छ कि भविष्यको संस्करणमा समर्थित हुनेछ।</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">हो र आंशिक रूपमा हेरिएको भिडियोहरू</string>
 </resources>

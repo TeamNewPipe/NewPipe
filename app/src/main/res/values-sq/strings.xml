@@ -90,7 +90,7 @@
     <string name="max_retry_desc">Numri maksimal i provave para se të anulohet shkarkimi</string>
     <string name="max_retry_msg">Provat maksimale</string>
     <string name="stop">Ndalo</string>
-    <string name="deleted_downloads">U fshinë %1$s shkarkime</string>
+    <string name="deleted_downloads">U fshinë %1$d shkarkime</string>
     <string name="delete_downloaded_files">Fshij skedarët e shkarkuar</string>
     <string name="confirm_prompt">A dëshironi të boshatisni historikun e shkarkimeve apo të fshini të gjithë skedarët e shkarkuar\?</string>
     <string name="clear_download_history">Boshatis historikun e shkarkimeve</string>
@@ -226,8 +226,6 @@
     <string name="play_queue_audio_settings">Aranzhimet Audio</string>
     <string name="play_queue_stream_detail">Detaje</string>
     <string name="play_queue_remove">Hiq</string>
-    <string name="title_activity_popup_player">Luajtësi popup</string>
-    <string name="title_activity_background_player">Luajtësi në sfond</string>
     <string name="conferences">Konferencat</string>
     <string name="most_liked">Më të pëlqyerat</string>
     <string name="recently_added">Të shtuara së fundmi</string>
@@ -610,4 +608,7 @@
     <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do të jenë të dukshme në objektet e stream</string>
     <string name="show_original_time_ago_title">Shfaq titullin origjinal \"kohë më parë\" në objekte</string>
     <string name="youtube_restricted_mode_enabled_title">Modaliteti i kufizuar i NewPipe</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Pamja statike e avatarit të kanalit</string>
+    <string name="video_detail_by">Nga %s</string>
+    <string name="channel_created_by">Krijuar nga %s</string>
 </resources>

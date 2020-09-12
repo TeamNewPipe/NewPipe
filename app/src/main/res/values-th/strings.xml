@@ -311,8 +311,6 @@
     <string name="top_50">50 อันดับแรก</string>
     <string name="new_and_hot">ใหม่และมาแรง</string>
     <string name="conferences">การประชุม</string>
-    <string name="title_activity_background_player">เครื่องเล่นพื้นหลัง</string>
-    <string name="title_activity_popup_player">เครื่องเล่นป๊อปอัพ</string>
     <string name="play_queue_remove">เอาออก</string>
     <string name="play_queue_stream_detail">รายละเอียด</string>
     <string name="play_queue_audio_settings">การตั้งค่าเสียง</string>

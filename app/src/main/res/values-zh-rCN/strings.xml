@@ -273,8 +273,6 @@
     <string name="player_stream_failure">无法播放此串流</string>
     <string name="player_unrecoverable_failure">发生无法恢复播放器错误</string>
     <string name="player_recoverable_failure">恢复播放器错误</string>
-    <string name="title_activity_background_player">后台播放</string>
-    <string name="title_activity_popup_player">悬浮窗播放器</string>
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">详情</string>
     <string name="play_queue_audio_settings">音频设置</string>
@@ -524,5 +522,5 @@
     <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除下载了的文件</string>
-    <string name="deleted_downloads">已删除 %1$s 下载</string>
+    <string name="deleted_downloads">已删除 %1$d 下载</string>
 </resources>

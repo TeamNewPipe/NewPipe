@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -37,6 +37,8 @@ import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.PrintWriter;
@@ -45,7 +47,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 import java.util.Vector;
 
@@ -81,6 +82,10 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT
             = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
+
+    public static final String ERROR_GITHUB_ISSUE_URL
+            = "https://github.com/TeamNewPipe/NewPipe/issues";
+
     private String[] errorList;
     private ErrorInfo errorInfo;
     private Class returnActivity;
@@ -107,9 +112,9 @@ public class ErrorActivity extends AppCompatActivity {
 
     private static void startErrorActivity(final Class returnActivity, final Context context,
                                            final ErrorInfo errorInfo, final List<Throwable> el) {
-        ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
+        final ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
         ac.setReturnActivity(returnActivity);
-        Intent intent = new Intent(context, ErrorActivity.class);
+        final Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);
         intent.putExtra(ERROR_LIST, elToSl(el));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -149,9 +154,9 @@ public class ErrorActivity extends AppCompatActivity {
 
     public static void reportError(final Context context, final CrashReportData report,
                                    final ErrorInfo errorInfo) {
-        String[] el = new String[]{report.getString(ReportField.STACK_TRACE)};
+        final String[] el = new String[]{report.getString(ReportField.STACK_TRACE)};
 
-        Intent intent = new Intent(context, ErrorActivity.class);
+        final Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);
         intent.putExtra(ERROR_LIST, el);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -167,7 +172,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     // errorList to StringList
     private static String[] elToSl(final List<Throwable> stackTraces) {
-        String[] out = new String[stackTraces.size()];
+        final String[] out = new String[stackTraces.size()];
         for (int i = 0; i < stackTraces.size(); i++) {
             out[i] = getStackTrace(stackTraces.get(i));
         }
@@ -181,63 +186,47 @@ public class ErrorActivity extends AppCompatActivity {
         ThemeHelper.setTheme(this);
         setContentView(R.layout.activity_error);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(R.string.error_report_title);
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        Button reportButton = findViewById(R.id.errorReportButton);
-        userCommentBox = findViewById(R.id.errorCommentBox);
-        TextView errorView = findViewById(R.id.errorView);
-        TextView infoView = findViewById(R.id.errorInfosView);
-        TextView errorMessageView = findViewById(R.id.errorMessageView);
+        final Button reportEmailButton = findViewById(R.id.errorReportEmailButton);
+        final Button copyButton = findViewById(R.id.errorReportCopyButton);
+        final Button reportGithubButton = findViewById(R.id.errorReportGitHubButton);
 
-        ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
+        userCommentBox = findViewById(R.id.errorCommentBox);
+        final TextView errorView = findViewById(R.id.errorView);
+        final TextView infoView = findViewById(R.id.errorInfosView);
+        final TextView errorMessageView = findViewById(R.id.errorMessageView);
+
+        final ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
         returnActivity = ac.getReturnActivity();
         errorInfo = intent.getParcelableExtra(ERROR_INFO);
         errorList = intent.getStringArrayExtra(ERROR_LIST);
 
         // important add guru meditation
-        addGuruMeditaion();
+        addGuruMeditation();
         currentTimeStamp = getCurrentTimeStamp();
 
-        reportButton.setOnClickListener((View v) -> {
-            Context context = this;
-            new AlertDialog.Builder(context)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(R.string.privacy_policy_title)
-                    .setMessage(R.string.start_accept_privacy_policy)
-                    .setCancelable(false)
-                    .setNeutralButton(R.string.read_privacy_policy, (dialog, which) -> {
-                        Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                                Uri.parse(context.getString(R.string.privacy_policy_url))
-                        );
-                        context.startActivity(webIntent);
-                    })
-                    .setPositiveButton(R.string.accept, (dialog, which) -> {
-                        final Intent i = new Intent(Intent.ACTION_SENDTO)
-                                .setData(Uri.parse("mailto:")) // only email apps should handle this
-                                .putExtra(Intent.EXTRA_EMAIL, new String[]{ERROR_EMAIL_ADDRESS})
-                                .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
-                                .putExtra(Intent.EXTRA_TEXT, buildJson());
-                        if (i.resolveActivity(getPackageManager()) != null) {
-                            startActivity(i);
-                        }
+        reportEmailButton.setOnClickListener((View v) ->
+                openPrivacyPolicyDialog(this, "EMAIL"));
 
-                    })
-                    .setNegativeButton(R.string.decline, (dialog, which) -> {
-                        // do nothing
-                    })
-                    .show();
-
+        copyButton.setOnClickListener((View v) -> {
+            ShareUtils.copyToClipboard(this, buildMarkdown());
+            Toast.makeText(this, R.string.msg_copied, Toast.LENGTH_SHORT).show();
         });
+
+        reportGithubButton.setOnClickListener((View v) ->
+                openPrivacyPolicyDialog(this, "GITHUB"));
+
 
         // normal bugreport
         buildInfo(errorInfo);
@@ -250,28 +239,28 @@ public class ErrorActivity extends AppCompatActivity {
 
         errorView.setText(formErrorText(errorList));
 
-        //print stack trace once again for debugging:
-        for (String e : errorList) {
+        // print stack trace once again for debugging:
+        for (final String e : errorList) {
             Log.e(TAG, e);
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+        final MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.error_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        int id = item.getItemId();
+        final int id = item.getItemId();
         switch (id) {
             case android.R.id.home:
                 goToReturnActivity();
                 break;
             case R.id.menu_item_share_error:
-                Intent intent = new Intent();
+                final Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, buildJson());
                 intent.setType("text/plain");
@@ -281,10 +270,40 @@ public class ErrorActivity extends AppCompatActivity {
         return false;
     }
 
+    private void openPrivacyPolicyDialog(final Context context, final String action) {
+        new AlertDialog.Builder(context)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.privacy_policy_title)
+                .setMessage(R.string.start_accept_privacy_policy)
+                .setCancelable(false)
+                .setNeutralButton(R.string.read_privacy_policy, (dialog, which) ->
+                        ShareUtils.openUrlInBrowser(context,
+                                context.getString(R.string.privacy_policy_url)))
+                .setPositiveButton(R.string.accept, (dialog, which) -> {
+                    if (action.equals("EMAIL")) { // send on email
+                        final Intent i = new Intent(Intent.ACTION_SENDTO)
+                                .setData(Uri.parse("mailto:")) // only email apps should handle this
+                                .putExtra(Intent.EXTRA_EMAIL, new String[]{ERROR_EMAIL_ADDRESS})
+                                .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
+                                .putExtra(Intent.EXTRA_TEXT, buildJson());
+                        if (i.resolveActivity(getPackageManager()) != null) {
+                            startActivity(i);
+                        }
+                    } else if (action.equals("GITHUB")) { // open the NewPipe issue page on GitHub
+                        ShareUtils.openUrlInBrowser(this, ERROR_GITHUB_ISSUE_URL);
+                    }
+
+                })
+                .setNegativeButton(R.string.decline, (dialog, which) -> {
+                    // do nothing
+                })
+                .show();
+    }
+
     private String formErrorText(final String[] el) {
-        StringBuilder text = new StringBuilder();
+        final StringBuilder text = new StringBuilder();
         if (el != null) {
-            for (String e : el) {
+            for (final String e : el) {
                 text.append("-------------------------------------\n").append(e);
             }
         }
@@ -312,26 +331,28 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private void goToReturnActivity() {
-        Class<? extends Activity> checkedReturnActivity = getReturnActivity(returnActivity);
+        final Class<? extends Activity> checkedReturnActivity = getReturnActivity(returnActivity);
         if (checkedReturnActivity == null) {
             super.onBackPressed();
         } else {
-            Intent intent = new Intent(this, checkedReturnActivity);
+            final Intent intent = new Intent(this, checkedReturnActivity);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             NavUtils.navigateUpTo(this, intent);
         }
     }
 
     private void buildInfo(final ErrorInfo info) {
-        TextView infoLabelView = findViewById(R.id.errorInfoLabelsView);
-        TextView infoView = findViewById(R.id.errorInfosView);
+        final TextView infoLabelView = findViewById(R.id.errorInfoLabelsView);
+        final TextView infoView = findViewById(R.id.errorInfosView);
         String text = "";
 
         infoLabelView.setText(getString(R.string.info_labels).replace("\\n", "\n"));
 
         text += getUserActionString(info.userAction) + "\n"
                 + info.request + "\n"
-                + getContentLangString() + "\n"
+                + getContentLanguageString() + "\n"
+                + getContentCountryString() + "\n"
+                + getAppLanguage() + "\n"
                 + info.serviceName + "\n"
                 + currentTimeStamp + "\n"
                 + getPackageName() + "\n"
@@ -347,7 +368,9 @@ public class ErrorActivity extends AppCompatActivity {
                     .object()
                     .value("user_action", getUserActionString(errorInfo.userAction))
                     .value("request", errorInfo.request)
-                    .value("content_language", getContentLangString())
+                    .value("content_language", getContentLanguageString())
+                    .value("content_country", getContentCountryString())
+                    .value("app_language", getAppLanguage())
                     .value("service", errorInfo.serviceName)
                     .value("package", getPackageName())
                     .value("version", BuildConfig.VERSION_NAME)
@@ -357,12 +380,69 @@ public class ErrorActivity extends AppCompatActivity {
                     .value("user_comment", userCommentBox.getText().toString())
                     .end()
                     .done();
-        } catch (Throwable e) {
+        } catch (final Throwable e) {
             Log.e(TAG, "Error while erroring: Could not build json");
             e.printStackTrace();
         }
 
         return "";
+    }
+
+    private String buildMarkdown() {
+        try {
+            final StringBuilder htmlErrorReport = new StringBuilder();
+
+            final String userComment = userCommentBox.getText().toString();
+            if (!userComment.isEmpty()) {
+                htmlErrorReport.append(userComment).append("\n");
+            }
+
+            // basic error info
+            htmlErrorReport
+                    .append("## Exception")
+                    .append("\n* __User Action:__ ")
+                        .append(getUserActionString(errorInfo.userAction))
+                    .append("\n* __Request:__ ").append(errorInfo.request)
+                    .append("\n* __Content Country:__ ").append(getContentCountryString())
+                    .append("\n* __Content Language:__ ").append(getContentLanguageString())
+                    .append("\n* __App Language:__ ").append(getAppLanguage())
+                    .append("\n* __Service:__ ").append(errorInfo.serviceName)
+                    .append("\n* __Version:__ ").append(BuildConfig.VERSION_NAME)
+                    .append("\n* __OS:__ ").append(getOsString()).append("\n");
+
+
+            // Collapse all logs to a single paragraph when there are more than one
+            // to keep the GitHub issue clean.
+            if (errorList.length > 1) {
+                htmlErrorReport
+                        .append("<details><summary><b>Exceptions (")
+                        .append(errorList.length)
+                        .append(")</b></summary><p>\n");
+            }
+
+            // add the logs
+            for (int i = 0; i < errorList.length; i++) {
+                htmlErrorReport.append("<details><summary><b>Crash log ");
+                if (errorList.length > 1) {
+                    htmlErrorReport.append(i + 1);
+                }
+                htmlErrorReport.append("</b>")
+                        .append("</summary><p>\n")
+                        .append("\n```\n").append(errorList[i]).append("\n```\n")
+                        .append("</details>\n");
+            }
+
+            // make sure to close everything
+            if (errorList.length > 1) {
+                htmlErrorReport.append("</p></details>\n");
+            }
+            htmlErrorReport.append("<hr>\n");
+            return htmlErrorReport.toString();
+        } catch (final Throwable e) {
+            Log.e(TAG, "Error while erroring: Could not build markdown");
+            e.printStackTrace();
+            return "";
+        }
     }
 
     private String getUserActionString(final UserAction userAction) {
@@ -373,26 +453,30 @@ public class ErrorActivity extends AppCompatActivity {
         }
     }
 
-    private String getContentLangString() {
-        String contentLanguage = PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(this.getString(R.string.content_country_key), "none");
-        if (contentLanguage.equals(getString(R.string.default_localization_key))) {
-            contentLanguage = Locale.getDefault().toString();
-        }
-        return contentLanguage;
+    private String getContentCountryString() {
+        return Localization.getPreferredContentCountry(this).getCountryCode();
+    }
+
+    private String getContentLanguageString() {
+        return Localization.getPreferredLocalization(this).getLocalizationCode();
+    }
+
+    private String getAppLanguage() {
+        return Localization.getAppLocale(getApplicationContext()).toString();
     }
 
     private String getOsString() {
-        String osBase = Build.VERSION.SDK_INT >= 23 ? Build.VERSION.BASE_OS : "Android";
+        final String osBase = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                ? Build.VERSION.BASE_OS : "Android";
         return System.getProperty("os.name")
                 + " " + (osBase.isEmpty() ? "Android" : osBase)
                 + " " + Build.VERSION.RELEASE
                 + " - " + Build.VERSION.SDK_INT;
     }
 
-    private void addGuruMeditaion() {
+    private void addGuruMeditation() {
         //just an easter egg
-        TextView sorryView = findViewById(R.id.errorSorryView);
+        final TextView sorryView = findViewById(R.id.errorSorryView);
         String text = sorryView.getText().toString();
         text += "\n" + getString(R.string.guru_meditation);
         sorryView.setText(text);
@@ -405,7 +489,7 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     public String getCurrentTimeStamp() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
         return df.format(new Date());
     }

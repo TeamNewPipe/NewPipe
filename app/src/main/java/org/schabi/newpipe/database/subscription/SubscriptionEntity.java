@@ -50,7 +50,7 @@ public class SubscriptionEntity {
 
     @Ignore
     public static SubscriptionEntity from(@NonNull final ChannelInfo info) {
-        SubscriptionEntity result = new SubscriptionEntity();
+        final SubscriptionEntity result = new SubscriptionEntity();
         result.setServiceId(info.getServiceId());
         result.setUrl(info.getUrl());
         result.setData(info.getName(), info.getAvatarUrl(), info.getDescription(),
@@ -124,10 +124,61 @@ public class SubscriptionEntity {
 
     @Ignore
     public ChannelInfoItem toChannelInfoItem() {
-        ChannelInfoItem item = new ChannelInfoItem(getServiceId(), getUrl(), getName());
+        final ChannelInfoItem item = new ChannelInfoItem(getServiceId(), getUrl(), getName());
         item.setThumbnailUrl(getAvatarUrl());
         item.setSubscriberCount(getSubscriberCount());
         item.setDescription(getDescription());
         return item;
+    }
+
+
+    // TODO: Remove these generated methods by migrating this class to a data class from Kotlin.
+    @Override
+    @SuppressWarnings("EqualsReplaceableByObjectsCall")
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        final SubscriptionEntity that = (SubscriptionEntity) o;
+
+        if (uid != that.uid) {
+            return false;
+        }
+        if (serviceId != that.serviceId) {
+            return false;
+        }
+        if (!url.equals(that.url)) {
+            return false;
+        }
+        if (name != null ? !name.equals(that.name) : that.name != null) {
+            return false;
+        }
+        if (avatarUrl != null ? !avatarUrl.equals(that.avatarUrl) : that.avatarUrl != null) {
+            return false;
+        }
+        if (subscriberCount != null
+                ? !subscriberCount.equals(that.subscriberCount)
+                : that.subscriberCount != null) {
+            return false;
+        }
+        return description != null
+                ? description.equals(that.description)
+                : that.description == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (uid ^ (uid >>> 32));
+        result = 31 * result + serviceId;
+        result = 31 * result + url.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
+        result = 31 * result + (subscriberCount != null ? subscriberCount.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        return result;
     }
 }

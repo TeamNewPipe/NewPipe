@@ -243,8 +243,6 @@
     <string name="trending">החמים</string>
     <string name="top_50">50 המובילים</string>
     <string name="new_and_hot">חדש וחם</string>
-    <string name="title_activity_background_player">נגן רקע</string>
-    <string name="title_activity_popup_player">נגן צף</string>
     <string name="play_queue_remove">הסרה</string>
     <string name="play_queue_stream_detail">פרטים</string>
     <string name="play_queue_audio_settings">אפשרויות שמע</string>
@@ -458,7 +456,7 @@
     <string name="error_unknown_host">לא ניתן למצוא את השרת</string>
     <string name="error_connect_host">לא ניתן להתחבר לשרת</string>
     <string name="error_http_no_content">השרת לא שולח נתונים</string>
-    <string name="error_http_unsupported_range">"השרת לא מקבל הורדות רב ערוציות, מוטב לנסות שוב עם ‎@string/msg_threads = 1 "</string>
+    <string name="error_http_unsupported_range">השרת לא מקבל הורדות רב ערוציות, מוטב לנסות שוב עם ‎@string/msg_threads = 1</string>
     <string name="error_http_not_found">לא נמצא</string>
     <string name="error_postprocessing_failed">העיבוד המאוחר נכשל</string>
     <string name="stop">עצירה</string>
@@ -540,7 +538,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">תמונה מוקטנת של הסרטון תופיע על מסך הנעילה בעת שימוש בנגן הרקע</string>
     <string name="clear_download_history">מחיקת היסטוריית ההורדות</string>
     <string name="delete_downloaded_files">למחוק את הקבצים שהורדתי</string>
-    <string name="deleted_downloads">נמחקו %1$s הורדות</string>
+    <string name="deleted_downloads">נמחקו %1$d הורדות</string>
     <string name="permission_display_over_apps">יש להעניק הרשאה להציג על גבי יישומונים אחרים</string>
     <string name="app_language_title">שפת היישומון</string>
     <string name="systems_language">בררת המחדל של המערכת</string>
@@ -633,4 +631,5 @@
     <string name="video_detail_by">מאת %s</string>
     <string name="channel_created_by">נוצר ע״י %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">תמונה ממוזערת של הערוץ</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">להציג רק מינויים שאינם בקבוצות</string>
 </resources>

@@ -64,7 +64,7 @@ public class SelectChannelFragment extends DialogFragment {
 
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
-    private OnSelectedLisener onSelectedLisener = null;
+    private OnSelectedListener onSelectedListener = null;
     private OnCancelListener onCancelListener = null;
 
     private ProgressBar progressBar;
@@ -73,8 +73,8 @@ public class SelectChannelFragment extends DialogFragment {
 
     private List<SubscriptionEntity> subscriptions = new Vector<>();
 
-    public void setOnSelectedLisener(final OnSelectedLisener listener) {
-        onSelectedLisener = listener;
+    public void setOnSelectedListener(final OnSelectedListener listener) {
+        onSelectedListener = listener;
     }
 
     public void setOnCancelListener(final OnCancelListener listener) {
@@ -94,10 +94,10 @@ public class SelectChannelFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.select_channel_fragment, container, false);
+        final View v = inflater.inflate(R.layout.select_channel_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        SelectChannelAdapter channelAdapter = new SelectChannelAdapter();
+        final SelectChannelAdapter channelAdapter = new SelectChannelAdapter();
         recyclerView.setAdapter(channelAdapter);
 
         progressBar = v.findViewById(R.id.progressBar);
@@ -107,7 +107,7 @@ public class SelectChannelFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
 
-        SubscriptionManager subscriptionManager = new SubscriptionManager(getContext());
+        final SubscriptionManager subscriptionManager = new SubscriptionManager(getContext());
         subscriptionManager.subscriptions().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -129,9 +129,9 @@ public class SelectChannelFragment extends DialogFragment {
     }
 
     private void clickedItem(final int position) {
-        if (onSelectedLisener != null) {
-            SubscriptionEntity entry = subscriptions.get(position);
-            onSelectedLisener
+        if (onSelectedListener != null) {
+            final SubscriptionEntity entry = subscriptions.get(position);
+            onSelectedListener
                     .onChannelSelected(entry.getServiceId(), entry.getUrl(), entry.getName());
         }
         dismiss();
@@ -186,7 +186,7 @@ public class SelectChannelFragment extends DialogFragment {
     // Interfaces
     //////////////////////////////////////////////////////////////////////////*/
 
-    public interface OnSelectedLisener {
+    public interface OnSelectedListener {
         void onChannelSelected(int serviceId, String url, String name);
     }
 
@@ -199,21 +199,16 @@ public class SelectChannelFragment extends DialogFragment {
         @Override
         public SelectChannelItemHolder onCreateViewHolder(final ViewGroup parent,
                                                           final int viewType) {
-            View item = LayoutInflater.from(parent.getContext())
+            final View item = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.select_channel_item, parent, false);
             return new SelectChannelItemHolder(item);
         }
 
         @Override
         public void onBindViewHolder(final SelectChannelItemHolder holder, final int position) {
-            SubscriptionEntity entry = subscriptions.get(position);
+            final SubscriptionEntity entry = subscriptions.get(position);
             holder.titleView.setText(entry.getName());
-            holder.view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    clickedItem(position);
-                }
-            });
+            holder.view.setOnClickListener(view -> clickedItem(position));
             imageLoader.displayImage(entry.getAvatarUrl(), holder.thumbnailView,
                     DISPLAY_IMAGE_OPTIONS);
         }

@@ -216,7 +216,6 @@
     <string name="kiosk">Kiosk</string>
     <string name="trending">人気</string>
     <string name="top_50">トップ50</string>
-    <string name="title_activity_popup_player">ポップアップ再生</string>
     <string name="play_queue_remove">削除</string>
     <string name="play_queue_stream_detail">詳細</string>
     <string name="play_queue_audio_settings">音声の設定</string>
@@ -241,7 +240,6 @@
     <string name="no_valid_zip_file">有効な ZIP ファイルではありません</string>
     <string name="could_not_import_all_files">警告: すべてのファイルをインポートできませんでした。</string>
     <string name="override_current_data">これにより、現在の設定が上書きされます。</string>
-    <string name="title_activity_background_player">バックグラウンド再生</string>
     <string name="start_here_on_main">ここから再生を開始</string>
     <string name="start_here_on_background">バックグラウンドで連続再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>
@@ -336,7 +334,8 @@
     </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
-    <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。NewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
+    <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。
+\nNewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
     <string name="app_license">NewPipe はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
     <string name="title_last_played">最終再生日時</string>
     <string name="title_most_played">最も再生した動画</string>
@@ -411,7 +410,7 @@
     <string name="grid">グリッド</string>
     <string name="auto">自動</string>
     <string name="switch_view">スイッチビュー</string>
-    <string name="app_update_notification_content_title">NewPipeのアップデートがあります！</string>
+    <string name="app_update_notification_content_title">NewPipe のアップデートがあります！</string>
     <string name="app_update_notification_content_text">タップでダウンロード</string>
     <string name="missions_header_finished">完了</string>
     <string name="missions_header_pending">保留中</string>
@@ -523,7 +522,7 @@
     <string name="enable_lock_screen_video_thumbnail_summary">バックグラウンドプレイヤーを使用中、ロック画面に動画のサムネイルが表示されるようになります</string>
     <string name="clear_download_history">ダウンロード履歴を消去</string>
     <string name="delete_downloaded_files">ダウンロードしたファイルを消去</string>
-    <string name="deleted_downloads">%1$s 個削除しました</string>
+    <string name="deleted_downloads">%1$d 個削除しました</string>
     <string name="playlist_no_uploader">自動生成 (アップローダーが見つかりません)</string>
     <string name="permission_display_over_apps">他のアプリの上に表示する権限を与えてください</string>
     <string name="app_language_title">アプリの言語</string>
@@ -602,4 +601,5 @@
     <string name="video_detail_by">%s による</string>
     <string name="channel_created_by">%s により作成</string>
     <string name="detail_sub_channel_thumbnail_view_description">チャンネルのサムネイル</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">グループ化されていない登録チャンネルのみ表示</string>
 </resources>

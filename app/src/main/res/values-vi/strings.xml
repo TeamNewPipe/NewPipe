@@ -307,8 +307,6 @@
     <string name="kiosk">Trang chủ</string>
     <string name="trending">Xu hướng</string>
     <string name="new_and_hot">Mới &amp; hot</string>
-    <string name="title_activity_background_player">Trình phát nền</string>
-    <string name="title_activity_popup_player">Trình phát popup</string>
     <string name="play_queue_remove">Tẩy xoá</string>
     <string name="play_queue_stream_detail">Chi tiết</string>
     <string name="play_queue_audio_settings">Cài đặt âm thanh</string>
@@ -520,7 +518,7 @@
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD. 
 \nMột số thiết bị có thể không tương thích</string>
     <string name="downloads_storage_use_saf_title">Dùng SAF</string>
-    <string name="deleted_downloads">Đã xóa %1$s file tải về</string>
+    <string name="deleted_downloads">Đã xóa %1$d file tải về</string>
     <string name="delete_downloaded_files">Xóa file đã tải về</string>
     <string name="clear_download_history">Xóa lịch sử tải về</string>
     <string name="error_download_resource_gone">Không thể khôi phục bản download này</string>

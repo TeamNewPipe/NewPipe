@@ -145,10 +145,10 @@ public class OggFromWebMWriter implements Closeable {
     }
 
     public void build() throws IOException {
-        float resolution;
+        final float resolution;
         SimpleBlock bloq;
-        ByteBuffer header = ByteBuffer.allocate(27 + (255 * 255));
-        ByteBuffer page = ByteBuffer.allocate(64 * 1024);
+        final ByteBuffer header = ByteBuffer.allocate(27 + (255 * 255));
+        final ByteBuffer page = ByteBuffer.allocate(64 * 1024);
 
         header.order(ByteOrder.LITTLE_ENDIAN);
 
@@ -181,7 +181,7 @@ public class OggFromWebMWriter implements Closeable {
         }
 
         /* step 3: create packet with metadata */
-        byte[] buffer = makeMetadata();
+        final byte[] buffer = makeMetadata();
         if (buffer != null) {
             addPacketSegment(buffer.length);
             makePacketheader(0x00, header, buffer);
@@ -194,7 +194,7 @@ public class OggFromWebMWriter implements Closeable {
             bloq = getNextBlock();
 
             if (bloq != null && addPacketSegment(bloq)) {
-                int pos = page.position();
+                final int pos = page.position();
                 //noinspection ResultOfMethodCallIgnored
                 bloq.data.read(page.array(), pos, bloq.dataSize);
                 page.position(pos + bloq.dataSize);
@@ -274,30 +274,15 @@ public class OggFromWebMWriter implements Closeable {
         if ("A_OPUS".equals(webmTrack.codecId)) {
             return new byte[]{
                     0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
-                    0x07, 0x00, 0x00, 0x00, // writing application string size
-                    0x4E, 0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
+                    0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
                     0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
             };
         } else if ("A_VORBIS".equals(webmTrack.codecId)) {
             return new byte[]{
-                    0x03, // ????????
+                    0x03, // ¿¿¿???
                     0x76, 0x6f, 0x72, 0x62, 0x69, 0x73, // "vorbis" binary string
-                    0x07, 0x00, 0x00, 0x00, // writting application string size
-                    0x4E, 0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
-                    0x01, 0x00, 0x00, 0x00, // additional tags count (zero means no tags)
-
-                    /*
-                        // whole file duration (not implemented)
-                        0x44,// tag string size
-                        0x55, 0x52, 0x41, 0x54, 0x49, 0x4F, 0x4E, 0x3D, 0x30,
-                        0x30, 0x3A, 0x30, 0x30, 0x3A, 0x30, 0x30, 0x2E, 0x30,
-                        0x30, 0x30, 0x30, 0x30, 0x30, 0x30
-                     */
-                    0x0F, // tag string size
-                    0x00, 0x00, 0x00, 0x45, 0x4E, 0x43, 0x4F,
-                    0x44, 0x45, 0x52, 0x3D, // "ENCODER=" binary string
-                    0x4E, 0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
-                    0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 // ????????
+                    0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
+                    0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
             };
         }
 
@@ -349,16 +334,16 @@ public class OggFromWebMWriter implements Closeable {
 
     private float getSampleFrequencyFromTrack(final byte[] bMetadata) {
         // hardcoded way
-        ByteBuffer buffer = ByteBuffer.wrap(bMetadata);
+        final ByteBuffer buffer = ByteBuffer.wrap(bMetadata);
 
         while (buffer.remaining() >= 6) {
-            int id = buffer.getShort() & 0xFFFF;
+            final int id = buffer.getShort() & 0xFFFF;
             if (id == 0x0000B584) {
                 return buffer.getFloat();
             }
         }
 
-        return 0f;
+        return 0.0f;
     }
 
     private void clearSegmentTable() {
@@ -368,7 +353,7 @@ public class OggFromWebMWriter implements Closeable {
     }
 
     private boolean addPacketSegment(final SimpleBlock block) {
-        long timestamp = block.absoluteTimeCodeNs + webmTrack.codecDelay;
+        final long timestamp = block.absoluteTimeCodeNs + webmTrack.codecDelay;
 
         if (timestamp >= segmentTableNextTimestamp) {
             return false;
@@ -377,13 +362,13 @@ public class OggFromWebMWriter implements Closeable {
         return addPacketSegment(block.dataSize);
     }
 
-    private boolean addPacketSegment(int size) {
+    private boolean addPacketSegment(final int size) {
         if (size > 65025) {
             throw new UnsupportedOperationException("page size cannot be larger than 65025");
         }
 
         int available = (segmentTable.length - segmentTableSize) * 255;
-        boolean extra = (size % 255) == 0;
+        final boolean extra = (size % 255) == 0;
 
         if (extra) {
             // add a zero byte entry in the table
@@ -396,8 +381,8 @@ public class OggFromWebMWriter implements Closeable {
             return false; // not enough space on the page
         }
 
-        for (; size > 0; size -= 255) {
-            segmentTable[segmentTableSize++] = (byte) Math.min(size, 255);
+        for (int seg = size; seg > 0; seg -= 255) {
+            segmentTable[segmentTableSize++] = (byte) Math.min(seg, 255);
         }
 
         if (extra) {
@@ -411,7 +396,7 @@ public class OggFromWebMWriter implements Closeable {
         for (int i = 0; i < 0x100; i++) {
             int crc = i << 24;
             for (int j = 0; j < 8; j++) {
-                long b = crc >>> 31;
+                final long b = crc >>> 31;
                 crc <<= 1;
                 crc ^= (int) (0x100000000L - b) & 0x04c11db7;
             }
@@ -419,12 +404,13 @@ public class OggFromWebMWriter implements Closeable {
         }
     }
 
-    private int calcCrc32(int initialCrc, final byte[] buffer, final int size) {
+    private int calcCrc32(final int initialCrc, final byte[] buffer, final int size) {
+        int crc = initialCrc;
         for (int i = 0; i < size; i++) {
-            int reg = (initialCrc >>> 24) & 0xff;
-            initialCrc = (initialCrc << 8) ^ crc32Table[reg ^ (buffer[i] & 0xff)];
+            final int reg = (crc >>> 24) & 0xff;
+            crc = (crc << 8) ^ crc32Table[reg ^ (buffer[i] & 0xff)];
         }
 
-        return initialCrc;
+        return crc;
     }
 }
