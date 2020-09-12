@@ -85,7 +85,7 @@
     <string name="show_next_and_similar_title">\'اگلی\' اور \'ملتی جلتی\' ویڈیوز دکھائیں</string>
     <string name="show_hold_to_append_title">’’شامل کرنے کے لئے پکڑیں‘‘ اشارہ دکھائیں</string>
     <string name="show_hold_to_append_summary">ویڈیو تفصیلات کے صفحے پر جب پس منظر یا پاپ اپ بٹن دبائے جانے پر ٹپ دکھائیں</string>
-    <string name="url_not_supported_toast">غیر موافق URL</string>
+    <string name="unsupported_url">غیر موافق URL</string>
     <string name="default_content_country_title">مشمولات کا طے شدہ ملک</string>
     <string name="service_title">خدمت</string>
     <string name="settings_category_player_title">پلیئر</string>

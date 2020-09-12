@@ -111,7 +111,8 @@
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
-    <string name="url_not_supported_toast">Unsupported URL</string>
+    <string name="unsupported_url">Unsupported URL</string>
+    <string name="unsupported_url_dialog_message">NewPipe could not recognize the provided url. Open it with another method?</string>
     <string name="default_content_country_title">Default content country</string>
     <string name="service_title">Service</string>
     <string name="content_language_title">Default content language</string>

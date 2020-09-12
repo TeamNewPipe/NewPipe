@@ -67,7 +67,7 @@
     <string name="download_dialog_title">Lataus</string>
     <string name="next_video_title">Seuraava</string>
     <string name="show_next_and_similar_title">Näytä seuraavia ja samankaltaisia videoita</string>
-    <string name="url_not_supported_toast">URL ei tuettu</string>
+    <string name="unsupported_url">URL ei tuettu</string>
     <string name="content_language_title">Oletus-sisällon kieli</string>
     <string name="settings_category_player_title">Soitin</string>
     <string name="settings_category_player_behavior_title">Käyttäytyminen</string>

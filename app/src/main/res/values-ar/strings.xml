@@ -46,7 +46,7 @@
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر بتاريخ %1$s</string>
-    <string name="url_not_supported_toast">رابط URL غير معتمد</string>
+    <string name="unsupported_url">رابط URL غير معتمد</string>
     <string name="use_external_audio_player_title">استخدام مشغل صوت خارجي</string>
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>

@@ -68,7 +68,7 @@
     <string name="next_video_title">Следващ клип</string>
     <string name="show_next_and_similar_title">Показвай „следващ“ и „подобни“</string>
     <string name="show_hold_to_append_title">Показвай съвет „задръж за добавяне“</string>
-    <string name="url_not_supported_toast">Непознат URL</string>
+    <string name="unsupported_url">Непознат URL</string>
     <string name="content_language_title">Език на съдържанието по подразбиране</string>
     <string name="settings_category_player_title">Плейър</string>
     <string name="settings_category_player_behavior_title">Поведение</string>

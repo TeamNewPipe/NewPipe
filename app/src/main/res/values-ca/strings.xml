@@ -279,7 +279,7 @@
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
     <string name="enable_watch_history_summary">Crea un historial de vídeos visualitzats</string>
     <string name="resume_on_audio_focus_gain_title">Reprèn automàticament</string>
-    <string name="url_not_supported_toast">Aquest URL no és compatible</string>
+    <string name="unsupported_url">Aquest URL no és compatible</string>
     <string name="error_report_title">Informe d\'error</string>
     <string name="later">Més tard</string>
     <string name="filter">Filtra</string>

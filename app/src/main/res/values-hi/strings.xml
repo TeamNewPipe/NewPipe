@@ -96,7 +96,7 @@
     <string name="show_next_and_similar_title">\'अगला\' और \'पहले समान\' वीडियो दिखाए</string>
     <string name="show_hold_to_append_title">\"जोड़ने के लिए पकड़ें रहे\" दिखाए</string>
     <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन विडियो के विवरण पन्ने में दबाई जाए तो tip को दिखाए</string>
-    <string name="url_not_supported_toast">ये वाला URL इसमें नहीं चलेगा</string>
+    <string name="unsupported_url">ये वाला URL इसमें नहीं चलेगा</string>
     <string name="content_language_title">डिफ़ॉल्ट विषय की भाषा</string>
     <string name="settings_category_player_title">प्लेयर</string>
     <string name="settings_category_player_behavior_title">चाल चलन</string>

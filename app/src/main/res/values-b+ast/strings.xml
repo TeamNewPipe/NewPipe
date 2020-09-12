@@ -276,7 +276,7 @@
     <string name="playback_tempo">Tempu</string>
     <string name="playback_pitch">Tonu</string>
     <string name="decline">Refugar</string>
-    <string name="url_not_supported_toast">La URL nun se sofita</string>
+    <string name="unsupported_url">La URL nun se sofita</string>
     <string name="background_player_playing_toast">Reproduciendo en segundu planu</string>
     <string name="popup_playing_toast">Reproduciendo nel mou ventanu</string>
     <string name="enable_search_history_summary">Atroxa llocalmente les consultes de gueta</string>

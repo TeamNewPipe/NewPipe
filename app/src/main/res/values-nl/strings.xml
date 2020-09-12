@@ -26,7 +26,7 @@
     <string name="default_audio_format_title">Standaardaudioformaat</string>
     <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende</string>
-    <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
+    <string name="unsupported_url">URL wordt niet ondersteund</string>
     <string name="show_next_and_similar_title">‘volgende’ en ‘vergelijkbare’ video’s weergeven</string>
     <string name="content_language_title">Standaardtaal voor inhoud</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>

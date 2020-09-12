@@ -28,7 +28,7 @@
     <string name="download_dialog_title">Prejem</string>
     <string name="next_video_title">Naslednji video</string>
     <string name="show_next_and_similar_title">Pokaži naslednji video in podobne posnetke</string>
-    <string name="url_not_supported_toast">Zapis naslova URL ni podprt.</string>
+    <string name="unsupported_url">Zapis naslova URL ni podprt.</string>
     <string name="content_language_title">Privzeti jezik vsebine</string>
     <string name="settings_category_video_audio_title">Video in Zvok</string>
     <string name="list_thumbnail_view_description">Sličica predogleda videa</string>

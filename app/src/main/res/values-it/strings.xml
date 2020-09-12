@@ -27,7 +27,7 @@
     <string name="download_dialog_title">Scarica</string>
     <string name="next_video_title">Prossimo</string>
     <string name="show_next_and_similar_title">Mostra video \"Prossimo\" e \"Simili\"</string>
-    <string name="url_not_supported_toast">URL non supportato</string>
+    <string name="unsupported_url">URL non supportato</string>
     <string name="content_language_title">Lingua Predefinita per Contenuti</string>
     <string name="settings_category_video_audio_title">Video e Audio</string>
     <string name="list_thumbnail_view_description">Copertina di anteprima video</string>

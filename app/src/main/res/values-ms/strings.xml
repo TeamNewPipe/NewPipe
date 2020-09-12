@@ -92,7 +92,7 @@
     <string name="show_next_and_similar_title">Paparkan video \'Seterusnya\' dan \'Berkaitan\'</string>
     <string name="show_hold_to_append_title">Tunjukkan tip \"Pegang untuk menambahkan\"</string>
     <string name="show_hold_to_append_summary">Tunjukkan tip apabila butang latar belakang atau popup ditekan pada halaman butiran video</string>
-    <string name="url_not_supported_toast">URL tidak disokong</string>
+    <string name="unsupported_url">URL tidak disokong</string>
     <string name="default_content_country_title">Negara kandungan utama</string>
     <string name="service_title">Perkhidmatan</string>
     <string name="content_language_title">Bahasa kandungan utama</string>

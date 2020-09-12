@@ -29,7 +29,7 @@
     <string name="black_theme_title">黑色</string>
     <string name="download_dialog_title">下载</string>
     <string name="next_video_title">下一个</string>
-    <string name="url_not_supported_toast">不支持的 URL</string>
+    <string name="unsupported_url">不支持的 URL</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="settings_category_other_title">其他</string>
     <string name="all">全部</string>

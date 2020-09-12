@@ -29,7 +29,7 @@
     <string name="download_dialog_title">Transferir</string>
     <string name="next_video_title">Seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \'Seguintes\' e \'Semelhantes\'</string>
-    <string name="url_not_supported_toast">URL não suportado</string>
+    <string name="unsupported_url">URL não suportado</string>
     <string name="content_language_title">Idioma do conteúdo predefinido</string>
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
     <string name="list_thumbnail_view_description">Miniatura de pré-visualização de vídeo</string>

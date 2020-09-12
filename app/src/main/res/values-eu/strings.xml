@@ -25,7 +25,7 @@
     <string name="download_dialog_title">Deskargatu</string>
     <string name="next_video_title">Hurrengoa</string>
     <string name="show_next_and_similar_title">Erakutsi \'hurrengo\' eta \'antzeko\' bideoak</string>
-    <string name="url_not_supported_toast">URLak ez du euskarririk</string>
+    <string name="unsupported_url">URLak ez du euskarririk</string>
     <string name="content_language_title">Edukiaren hizkuntz lehenetsia</string>
     <string name="settings_category_video_audio_title">Bideoa eta Audioa</string>
     <string name="play_btn_text">Erreproduzitu</string>
