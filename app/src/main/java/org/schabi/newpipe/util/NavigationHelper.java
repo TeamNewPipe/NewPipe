@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -174,7 +175,7 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
-        startService(context, intent);
+        ContextCompat.startForegroundService(context, intent);
     }
 
     public static void playOnBackgroundPlayer(final Context context,
@@ -184,7 +185,7 @@ public final class NavigationHelper {
                 .show();
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
-        startService(context, intent);
+        ContextCompat.startForegroundService(context, intent);
     }
 
     public static void enqueueOnVideoPlayer(final Context context, final PlayQueue queue,
@@ -201,7 +202,7 @@ public final class NavigationHelper {
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
 
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_VIDEO);
-        startService(context, intent);
+        ContextCompat.startForegroundService(context, intent);
     }
 
     public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue,
@@ -221,7 +222,7 @@ public final class NavigationHelper {
         final Intent intent = getPlayerEnqueueIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
-        startService(context, intent);
+        ContextCompat.startForegroundService(context, intent);
     }
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue,
@@ -237,15 +238,7 @@ public final class NavigationHelper {
         final Intent intent = getPlayerEnqueueIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
-        startService(context, intent);
-    }
-
-    public static void startService(@NonNull final Context context, @NonNull final Intent intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(intent);
-        } else {
-            context.startService(intent);
-        }
+        ContextCompat.startForegroundService(context, intent);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
