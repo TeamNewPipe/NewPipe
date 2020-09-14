@@ -1421,13 +1421,6 @@ public class VideoDetailFragment
         if (player != null && player.isFullscreen()) {
             player.toggleFullscreen();
         }
-        // This will show systemUI and pause the player.
-        // User can tap on Play button and video will be in fullscreen mode again
-        // Note for tablet: trying to avoid orientation changes since it's not easy
-        // to physically rotate the tablet every time
-        if (!DeviceUtils.isTablet(activity)) {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1934,6 +1927,11 @@ public class VideoDetailFragment
         // Just turn on fullscreen mode in landscape orientation
         if (isLandscape() && DeviceUtils.isTablet(activity)) {
             player.toggleFullscreen();
+            return;
+        }
+
+        if (isLandscape() && PlayerHelper.globalScreenOrientationLocked(activity)) {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             return;
         }
 

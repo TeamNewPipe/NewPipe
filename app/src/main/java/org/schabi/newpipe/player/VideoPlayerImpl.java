@@ -743,6 +743,15 @@ public class VideoPlayerImpl extends VideoPlayer
                 return;
             }
 
+            // This makes the button function correctly if you disable auto-rotate
+            // while watching a vertical video and your phones in landscape
+            final boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(service);
+            final boolean isTablet = DeviceUtils.isTablet(service);
+            if (orientationLocked && isFullscreen && service.isLandscape() && !isTablet) {
+                fragmentListener.onScreenRotationButtonClicked();
+                return;
+            }
+
             isFullscreen = !isFullscreen;
             setControlsSize();
             fragmentListener.onFullscreenStateChanged(isFullscreen());
