@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
@@ -1475,6 +1476,9 @@ public class VideoPlayerImpl extends VideoPlayer
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
             getParentActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
+            if (Build.VERSION.SDK_INT >= 30 /*Android 11*/) {
+                getParentActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
+            }
         }
     }
 

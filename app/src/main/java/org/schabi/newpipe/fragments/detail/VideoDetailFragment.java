@@ -2003,6 +2003,10 @@ public class VideoDetailFragment
         }
         activity.getWindow().getDecorView().setSystemUiVisibility(0);
         activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        if (Build.VERSION.SDK_INT >= 30 /*Android 11*/) {
+            activity.getWindow().setStatusBarColor(ThemeHelper.resolveColorFromAttr(
+                    requireContext(), android.R.attr.colorPrimary));
+        }
     }
 
     private void hideSystemUi() {
