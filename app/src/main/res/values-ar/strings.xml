@@ -158,12 +158,12 @@
     <string name="short_billion">بليون</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
-        <item quantity="zero">%s لا يوجد مشترك</item>
-        <item quantity="one">%s مشترك</item>
-        <item quantity="two">%s مشتركين</item>
+        <item quantity="zero">%s لا مشتركين</item>
+        <item quantity="one">%s مشترِك</item>
+        <item quantity="two">مشتركين</item>
         <item quantity="few">%s مشتركين</item>
         <item quantity="many">%s مشتركين</item>
-        <item quantity="other">%s مشتركين</item>
+        <item quantity="other">%s الاشتراكات</item>
     </plurals>
     <string name="no_views">دون مشاهدات</string>
     <string name="no_videos">لاتوجد فيديوهات</string>
@@ -237,12 +237,12 @@
     <string name="title_activity_recaptcha">تحدي الكابتشا</string>
     <string name="hold_to_append">ضغط مطول للإدراج الى قائمة الانتظار</string>
     <plurals name="views">
-        <item quantity="zero">%s بدون مشهادة</item>
+        <item quantity="zero">%s بدون مشاهد</item>
         <item quantity="one">%s مشاهدة</item>
-        <item quantity="two">%s مشاهدة</item>
-        <item quantity="few">%s مشاهدة</item>
-        <item quantity="many">%s مشاهدة</item>
-        <item quantity="other">%s مشاهدة</item>
+        <item quantity="two">%s مشاهدات</item>
+        <item quantity="few">%s مشاهدات</item>
+        <item quantity="many">%s مشاهدات</item>
+        <item quantity="other">%s مشاهدات</item>
     </plurals>
     <plurals name="videos">
         <item quantity="zero">%s فيديو</item>
