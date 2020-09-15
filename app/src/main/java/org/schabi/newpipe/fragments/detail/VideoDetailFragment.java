@@ -2105,7 +2105,6 @@ public class VideoDetailFragment
         // Let's give a user time to look at video information page if video is not playing
         if (orientationLocked && !player.isPlaying()) {
             player.onPlay();
-            player.showControlsThenHide();
         }
     }
 

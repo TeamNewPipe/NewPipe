@@ -753,8 +753,16 @@ public class VideoPlayerImpl extends VideoPlayer
             }
 
             isFullscreen = !isFullscreen;
-            // Prevent applying windows insets twice (open vertical video to reproduce)
-            getRootView().findViewById(R.id.playbackControlRoot).setPadding(0, 0, 0, 0);
+            if (!isFullscreen) {
+                // Apply window insets because Android will not do it when orientation changes
+                // from landscape to portrait (open vertical video to reproduce)
+                getControlsRoot().setPadding(0, 0, 0, 0);
+            } else {
+                // Android needs tens milliseconds to send new insets but a user is able to see
+                // how controls changes it's position from `0` to `nav bar height` padding.
+                // So just hide the controls to hide this visual inconsistency
+                hideControls(0, 0);
+            }
             fragmentListener.onFullscreenStateChanged(isFullscreen());
         }
 
@@ -1926,8 +1934,11 @@ public class VideoPlayerImpl extends VideoPlayer
     public void setFragmentListener(final PlayerServiceEventListener listener) {
         fragmentListener = listener;
         fragmentIsVisible = true;
-        // Prevent applying windows insets twice
-        getRootView().findViewById(R.id.playbackControlRoot).setPadding(0, 0, 0, 0);
+        // Apply window insets because Android will not do it when orientation changes
+        // from landscape to portrait
+        if (!isFullscreen) {
+            getControlsRoot().setPadding(0, 0, 0, 0);
+        }
         queueLayout.setPadding(0, 0, 0, 0);
         updateMetadata();
         updatePlayback();

@@ -20,7 +20,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:fitsSystemWindows="true"
         android:isScrollContainer="true">
 
         <com.google.android.material.appbar.AppBarLayout
