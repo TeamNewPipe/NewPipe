@@ -17,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import androidx.core.app.ActivityCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.preference.PreferenceManager;
 import android.provider.Settings;
@@ -2040,8 +2039,7 @@ public class VideoDetailFragment
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
                 && (isInMultiWindow() || (player != null && player.isFullscreen()))) {
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-            activity.getWindow().setNavigationBarColor(
-                    ActivityCompat.getColor(activity, R.color.video_overlay_color));
+            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
         }
         activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }

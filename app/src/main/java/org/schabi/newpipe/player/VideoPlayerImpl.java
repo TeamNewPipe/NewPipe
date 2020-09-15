@@ -27,13 +27,12 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.view.DisplayCutout;
-import androidx.annotation.ColorInt;
-import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -813,6 +812,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
         if (getCurrentState() != STATE_COMPLETED) {
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
+            showHideShadow(true, DEFAULT_CONTROLS_DURATION, 0);
             animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
                 if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
                     if (v.getId() == playPauseButton.getId()) {
@@ -842,7 +842,7 @@ public class VideoPlayerImpl extends VideoPlayer
         buildQueue();
         updatePlaybackButtons();
 
-        getControlsRoot().setVisibility(View.INVISIBLE);
+        hideControls(0, 0);
         queueLayout.requestFocus();
         animateView(queueLayout, SLIDE_AND_ALPHA, true,
                 DEFAULT_CONTROLS_DURATION);
@@ -1436,9 +1436,10 @@ public class VideoPlayerImpl extends VideoPlayer
         showOrHideButtons();
 
         getControlsVisibilityHandler().removeCallbacksAndMessages(null);
-        getControlsVisibilityHandler().postDelayed(() ->
-                animateView(getControlsRoot(), false, duration, 0,
-                        this::hideSystemUIIfNeeded), delay
+        getControlsVisibilityHandler().postDelayed(() -> {
+                    showHideShadow(false, duration, 0);
+                    animateView(getControlsRoot(), false, duration, 0, this::hideSystemUIIfNeeded);
+                }, delay
         );
     }
 
@@ -1469,10 +1470,8 @@ public class VideoPlayerImpl extends VideoPlayer
         final AppCompatActivity activity = getParentActivity();
         if (isFullscreen() && activity != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                @ColorInt final int systemUiColor =
-                        ActivityCompat.getColor(service, R.color.video_overlay_color);
-                activity.getWindow().setStatusBarColor(systemUiColor);
-                activity.getWindow().setNavigationBarColor(systemUiColor);
+                activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+                activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
             }
             final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
