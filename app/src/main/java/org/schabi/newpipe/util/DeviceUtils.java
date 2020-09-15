@@ -6,8 +6,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.BatteryManager;
 import android.os.Build;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
@@ -73,18 +71,5 @@ public final class DeviceUtils {
             default:
                 return false;
         }
-    }
-
-    /*
-     * Compares current status bar height with default status bar height in Android and decides,
-     * does the device has cutout or not
-     * */
-    public static boolean hasCutout(final float statusBarHeight, final DisplayMetrics metrics) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            final float defaultStatusBarHeight = TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 25, metrics);
-            return statusBarHeight > defaultStatusBarHeight;
-        }
-        return false;
     }
 }

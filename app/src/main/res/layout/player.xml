@@ -42,6 +42,7 @@
         android:id="@+id/playbackControlRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:background="@color/video_overlay_color"
         android:visibility="gone"
         tools:visibility="visible">
