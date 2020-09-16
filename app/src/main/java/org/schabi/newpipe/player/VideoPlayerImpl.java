@@ -32,12 +32,12 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.DisplayCutout;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -56,12 +56,15 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -71,6 +74,7 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nostra13.universalimageloader.core.assist.FailReason;
+
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -91,9 +95,9 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -202,6 +206,11 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private int cachedDuration;
     private String cachedDurationString;
+
+    private boolean gotCutout;
+    private int insetLeft;
+    private int insetRight;
+    private int insetBottom;
 
     // Popup
     private WindowManager.LayoutParams popupLayoutParams;
@@ -1490,13 +1499,13 @@ public class VideoPlayerImpl extends VideoPlayer
      * but not under them. Tablets have only bottom NavigationBar
      */
     public void setControlsSize() {
-        final Point size = new Point();
         final Display display = getRootView().getDisplay();
         if (display == null || !videoPlayerSelected()) {
             return;
         }
         // This method will give a correct size of a usable area of a window.
         // It doesn't include NavigationBar, notches, etc.
+        final Point size = new Point();
         display.getSize(size);
 
         final boolean isLandscape = service.isLandscape();
@@ -1508,7 +1517,84 @@ public class VideoPlayerImpl extends VideoPlayer
                 ? Gravity.START : Gravity.END)
                 : Gravity.TOP;
 
-        getTopControlsRoot().getLayoutParams().width = width;
+        final int navBarHeight = DeviceUtils.hasNavBar(windowManager) ? getNavBarHeight() : 0;
+        final int statusBarHeight = getStatusBarHeight();
+        final int controlsPadding = service.getResources()
+                .getDimensionPixelSize(R.dimen.player_main_controls_padding);
+        final int playerTopPadding = service.getResources()
+                .getDimensionPixelSize(R.dimen.player_main_top_padding);
+
+        // Handle rotation
+        final int ctrlPadLeft;
+        final int ctrlPadRight;
+        final int ctrlPadTop = playerTopPadding + statusBarHeight;
+        final int ctrlPadBottom = navBarHeight + insetBottom;
+        final int bottom = ctrlPadBottom + (navBarHeight == 0 ? controlsPadding : playerTopPadding);
+        final int rotation = windowManager.getDefaultDisplay().getRotation();
+
+        if (DeviceUtils.isTv(service)) {
+            gotCutout = false;
+            ctrlPadLeft = controlsPadding;
+            ctrlPadRight = controlsPadding;
+        } else if (DeviceUtils.isTablet(service)) {
+            if (gotCutout) {
+                ctrlPadLeft = controlsPadding + insetLeft;
+                ctrlPadRight = controlsPadding + insetRight;
+            } else {
+                ctrlPadLeft = controlsPadding;
+                ctrlPadRight = controlsPadding;
+            }
+        } else {
+            if (rotation == Surface.ROTATION_90) {
+                if (gotCutout) {
+                    ctrlPadLeft = controlsPadding + insetLeft;
+                    ctrlPadRight = controlsPadding
+                            + (getNavBarMode() == 2 ? 0 : navBarHeight) + insetRight;
+                } else {
+                    ctrlPadLeft = controlsPadding;
+                    ctrlPadRight = controlsPadding;
+                }
+            } else {
+                if (gotCutout) {
+                    ctrlPadLeft = controlsPadding
+                            + (getNavBarMode() == 2 ? 0 : navBarHeight) + insetLeft;
+                    ctrlPadRight = controlsPadding + insetRight;
+                } else {
+                    ctrlPadLeft = controlsPadding;
+                    ctrlPadRight = controlsPadding;
+                }
+            }
+        }
+
+        if (gotCutout) {
+            // We need the real screen size to position the controls correctly
+            getRealScreenSize(display, size);
+            getTopControlsRoot().getLayoutParams().width = size.x;
+            getBottomControlsRoot().getLayoutParams().width = size.x;
+        } else {
+            getBottomControlsRoot().getLayoutParams().width = width;
+            getTopControlsRoot().getLayoutParams().width = width;
+        }
+
+        if (isLandscape && isFullscreen && !isInMultiWindow()) {
+            getTopControlsRoot().setPaddingRelative(ctrlPadLeft, ctrlPadTop, ctrlPadRight,
+                    0);
+            getBottomControlsRoot().setPaddingRelative(ctrlPadLeft, 0, ctrlPadRight,
+                    getNavBarMode() == 2 ? bottom : (DeviceUtils.isTablet(service) ? ctrlPadBottom
+                            : 0));
+        } else if (!isLandscape && isFullscreen && !isInMultiWindow()) {
+            getTopControlsRoot().setPaddingRelative(controlsPadding, ctrlPadTop, controlsPadding,
+                    0);
+            getBottomControlsRoot().setPaddingRelative(controlsPadding, 0, controlsPadding,
+                    getNavBarMode() == 2 ? bottom : ctrlPadBottom);
+        } else {
+            final int topPad = isFullscreen && !isInMultiWindow() ? statusBarHeight : 0;
+            getTopControlsRoot().setPaddingRelative(controlsPadding, playerTopPadding + topPad,
+                    controlsPadding, 0);
+            getBottomControlsRoot().setPaddingRelative(controlsPadding, 0,
+                    controlsPadding, 0);
+        }
+
         final RelativeLayout.LayoutParams topParams =
                 ((RelativeLayout.LayoutParams) getTopControlsRoot().getLayoutParams());
         topParams.removeRule(RelativeLayout.ALIGN_PARENT_START);
@@ -1518,7 +1604,6 @@ public class VideoPlayerImpl extends VideoPlayer
                 : RelativeLayout.ALIGN_PARENT_START);
         getTopControlsRoot().requestLayout();
 
-        getBottomControlsRoot().getLayoutParams().width = width;
         final RelativeLayout.LayoutParams bottomParams =
                 ((RelativeLayout.LayoutParams) getBottomControlsRoot().getLayoutParams());
         bottomParams.removeRule(RelativeLayout.ALIGN_PARENT_START);
@@ -1527,22 +1612,42 @@ public class VideoPlayerImpl extends VideoPlayer
                 ? RelativeLayout.ALIGN_PARENT_END
                 : RelativeLayout.ALIGN_PARENT_START);
         getBottomControlsRoot().requestLayout();
+    }
 
-        final ViewGroup controlsRoot = getRootView().findViewById(R.id.playbackWindowRoot);
-        // In tablet navigationBar located at the bottom of the screen.
-        // And the situations when we need to set custom height is
-        // in fullscreen mode in tablet in non-multiWindow mode or with vertical video.
-        // Other than that MATCH_PARENT is good
-        final boolean navBarAtTheBottom = DeviceUtils.isTablet(service) || !isLandscape;
-        controlsRoot.getLayoutParams().height = isFullscreen && !isInMultiWindow()
-                && navBarAtTheBottom ? size.y : ViewGroup.LayoutParams.MATCH_PARENT;
-        controlsRoot.requestLayout();
+    @SuppressWarnings({"ConstantConditions", "JavaReflectionMemberAccess"})
+    @SuppressLint("ObsoleteSdkInt")
+    private void getRealScreenSize(final Display display, final Point size) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            display.getRealSize(size);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            try {
+                size.x = (Integer) Display.class.getMethod("getRawWidth").invoke(display);
+                size.y = (Integer) Display.class.getMethod("getRawHeight").invoke(display);
+            } catch (final Exception e) {
+                // This should never happen
+                Log.e(TAG, "getRealScreenSize() failed", e);
+            }
+        }
+    }
 
-        final DisplayMetrics metrics = getRootView().getResources().getDisplayMetrics();
-        int topPadding = isFullscreen && !isInMultiWindow() ? getStatusBarHeight() : 0;
-        topPadding = !isLandscape && DeviceUtils.hasCutout(topPadding, metrics) ? 0 : topPadding;
-        getRootView().findViewById(R.id.playbackWindowRoot).setTranslationY(topPadding);
-        getBottomControlsRoot().setTranslationY(-topPadding);
+    private int getNavBarMode() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            final int resourceId = service.getResources().getIdentifier(
+                    "config_navBarInteractionMode", "integer", "android");
+            if (resourceId > 0) {
+                return service.getResources().getInteger(resourceId);
+            }
+        }
+        return 0;
+    }
+
+    private int getNavBarHeight() {
+        final int resourceId = service.getResources().getIdentifier(
+                "navigation_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            return service.getResources().getDimensionPixelSize(resourceId);
+        }
+        return 0;
     }
 
     /**
@@ -2010,6 +2115,21 @@ public class VideoPlayerImpl extends VideoPlayer
     public void setFragmentListener(final PlayerServiceEventListener listener) {
         fragmentListener = listener;
         fragmentIsVisible = true;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            getRootView().setOnApplyWindowInsetsListener((view, windowInsets) -> {
+                final DisplayCutout cutout = windowInsets.getDisplayCutout();
+                if (cutout != null) {
+                    gotCutout = true;
+                    insetLeft = cutout.getSafeInsetLeft();
+                    insetRight = cutout.getSafeInsetRight();
+                    insetBottom = cutout.getSafeInsetBottom();
+                    setControlsSize();
+                }
+                return windowInsets;
+            });
+        }
+
         updateMetadata();
         updatePlayback();
         triggerProgressUpdate();

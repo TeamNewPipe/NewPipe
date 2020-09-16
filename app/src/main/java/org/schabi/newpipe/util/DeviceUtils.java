@@ -1,17 +1,24 @@
 package org.schabi.newpipe.util;
 
+import android.annotation.SuppressLint;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.BatteryManager;
 import android.os.Build;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
+import android.os.IBinder;
+import android.util.Log;
+import android.view.Display;
+import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.App;
+
+import java.lang.reflect.Method;
 
 import static android.content.Context.BATTERY_SERVICE;
 import static android.content.Context.UI_MODE_SERVICE;
@@ -75,16 +82,35 @@ public final class DeviceUtils {
         }
     }
 
-    /*
-     * Compares current status bar height with default status bar height in Android and decides,
-     * does the device has cutout or not
-     * */
-    public static boolean hasCutout(final float statusBarHeight, final DisplayMetrics metrics) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            final float defaultStatusBarHeight = TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 25, metrics);
-            return statusBarHeight > defaultStatusBarHeight;
+
+    // This method works on real devices and emulators
+    @SuppressWarnings("ConstantConditions")
+    @SuppressLint({"PrivateApi", "ObsoleteSdkInt"})
+    public static boolean hasNavBar(final WindowManager wm) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            try {
+                final Class<?> serviceManager = Class.forName("android.os.ServiceManager");
+                final IBinder serviceBinder = (IBinder) serviceManager
+                        .getMethod("getService", String.class)
+                        .invoke(serviceManager, "window");
+                final Class<?> stub = Class.forName("android.view.IWindowManager$Stub");
+                final Object windowManager = stub.getMethod("asInterface", IBinder.class)
+                        .invoke(stub, serviceBinder);
+                Method hasNavigationBar;
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                    hasNavigationBar = windowManager.getClass()
+                            .getMethod("hasNavigationBar");
+                    return (boolean) hasNavigationBar.invoke(windowManager);
+                }
+                hasNavigationBar = windowManager.getClass()
+                        .getMethod("hasNavigationBar", int.class);
+                final Display dsp = wm.getDefaultDisplay();
+                return (boolean) hasNavigationBar.invoke(windowManager, dsp.getDisplayId());
+            } catch (final Exception e) {
+                Log.e(".DeviceUtils", "hasNavBar() failed", e);
+            }
         }
-        return false;
+        return !(KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK)
+                && KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME));
     }
 }

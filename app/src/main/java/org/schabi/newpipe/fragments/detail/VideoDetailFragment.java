@@ -16,8 +16,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import androidx.core.text.HtmlCompat;
-import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -46,7 +44,9 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -1998,7 +1998,7 @@ public class VideoDetailFragment
         // Prevent jumping of the player on devices with cutout
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
         final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
