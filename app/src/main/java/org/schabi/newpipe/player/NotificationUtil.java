@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player;
 
 import android.annotation.SuppressLint;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
@@ -14,6 +13,7 @@ import android.util.Log;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.MainActivity;
@@ -23,7 +23,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import java.util.List;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
-import static android.content.Context.NOTIFICATION_SERVICE;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_BUFFERING;
@@ -51,7 +50,7 @@ public final class NotificationUtil {
     @NotificationConstants.Action
     private int[] notificationSlots = NotificationConstants.SLOT_DEFAULTS.clone();
 
-    private NotificationManager notificationManager;
+    private NotificationManagerCompat notificationManager;
     private NotificationCompat.Builder notificationBuilder;
 
     private NotificationUtil() {
@@ -82,6 +81,7 @@ public final class NotificationUtil {
             notificationBuilder = createNotification(player);
         }
         updateNotification(player);
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
 
     private synchronized NotificationCompat.Builder createNotification(
@@ -89,8 +89,7 @@ public final class NotificationUtil {
         if (DEBUG) {
             Log.d(TAG, "createNotification()");
         }
-        notificationManager =
-                (NotificationManager) player.context.getSystemService(NOTIFICATION_SERVICE);
+        notificationManager = NotificationManagerCompat.from(player.context);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
                 player.context.getString(R.string.notification_channel_id));
 
@@ -120,6 +119,7 @@ public final class NotificationUtil {
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setColor(ContextCompat.getColor(player.context, R.color.gray))
+                .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
                 .setDeleteIntent(PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
 
@@ -127,7 +127,7 @@ public final class NotificationUtil {
     }
 
     /**
-     * Updates the notification and the button icons depending on the playback state.
+     * Updates the notification builder and the button icons depending on the playback state.
      * @param player the player currently open, to take data from
      */
     private synchronized void updateNotification(final VideoPlayerImpl player) {
@@ -135,19 +135,14 @@ public final class NotificationUtil {
             Log.d(TAG, "updateNotification()");
         }
 
-        if (notificationBuilder == null) {
-            return;
-        }
-
         // also update content intent, in case the user switched players
         notificationBuilder.setContentIntent(PendingIntent.getActivity(player.context,
                 NOTIFICATION_ID, getIntentForNotification(player), FLAG_UPDATE_CURRENT));
         notificationBuilder.setContentTitle(player.getVideoTitle());
         notificationBuilder.setContentText(player.getUploaderName());
+        notificationBuilder.setTicker(player.getVideoTitle());
         updateActions(notificationBuilder, player);
         setLargeIcon(notificationBuilder, player);
-
-        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
 
 
@@ -158,7 +153,10 @@ public final class NotificationUtil {
 
 
     void createNotificationAndStartForeground(final VideoPlayerImpl player, final Service service) {
-        createNotificationIfNeededAndUpdate(player, false);
+        if (notificationBuilder == null) {
+            notificationBuilder = createNotification(player);
+        }
+        updateNotification(player);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             service.startForeground(NOTIFICATION_ID, notificationBuilder.build(),
@@ -169,17 +167,13 @@ public final class NotificationUtil {
     }
 
     void cancelNotificationAndStopForeground(final Service service) {
-        try {
-            if (notificationManager != null) {
-                notificationManager.cancel(NOTIFICATION_ID);
-            }
-        } catch (final Exception e) {
-            Log.e(TAG, "Could not cancel notification", e);
+        service.stopForeground(true);
+
+        if (notificationManager != null) {
+            notificationManager.cancel(NOTIFICATION_ID);
         }
         notificationManager = null;
         notificationBuilder = null;
-
-        service.stopForeground(true);
     }
 
 
