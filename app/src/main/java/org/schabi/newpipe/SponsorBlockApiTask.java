@@ -15,6 +15,8 @@ import org.schabi.newpipe.util.VideoSegment;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -65,23 +67,47 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
         String categoryParams = "[\"" + TextUtils.join("\",\"", categoryParamList) + "\"]";
         categoryParams = URLEncoder.encode(categoryParams, "utf-8");
 
-        final String params = "skipSegments?videoID=" + videoId + "&categories=" + categoryParams;
+        final String videoIdHash = toSha256(videoId);
 
-        final JsonArray arrayObj = execute(params).get();
+        if (videoIdHash == null) {
+            return null;
+        }
+
+        final String params = "skipSegments/" + videoIdHash.substring(0, 8)
+                + "?categories=" + categoryParams;
+
+        final JsonArray responseArray = execute(params).get();
 
         final ArrayList<VideoSegment> result = new ArrayList<>();
 
-        for (int i = 0; i < arrayObj.size(); i++) {
-            final JsonObject obj = (JsonObject) arrayObj.get(i);
-            final JsonArray segments = (JsonArray) obj.get("segment");
+        for (final Object obj1 : responseArray) {
+            final JsonObject jObj1 = (JsonObject) obj1;
 
-            final double startTime = segments.getDouble(0) * 1000;
-            final double endTime = segments.getDouble(1) * 1000;
-            final String category = obj.getString("category");
+            final String responseVideoId = (String) jObj1.getString("videoID");
+            if (!responseVideoId.equals(videoId)) {
+                continue;
+            }
 
-            final VideoSegment segment = new VideoSegment(startTime, endTime, category);
+            final JsonArray segmentArray = (JsonArray) jObj1.get("segments");
+            if (segmentArray == null) {
+                continue;
+            }
 
-            result.add(segment);
+            for (final Object obj2 : segmentArray) {
+                final JsonObject jObj2 = (JsonObject) obj2;
+
+                final JsonArray segmentInfo = (JsonArray) jObj2.get("segment");
+                if (segmentInfo == null) {
+                    continue;
+                }
+
+                final double startTime = segmentInfo.getDouble(0) * 1000;
+                final double endTime = segmentInfo.getDouble(1) * 1000;
+                final String category = jObj2.getString("category");
+
+                final VideoSegment segment = new VideoSegment(startTime, endTime, category);
+                result.add(segment);
+            }
         }
 
         return result.toArray(new VideoSegment[0]);
@@ -116,5 +142,28 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
                 (ConnectivityManager) APP.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null
                 && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    private String toSha256(final String videoId) {
+        try {
+            final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            final byte[] bytes = digest.digest(videoId.getBytes(StandardCharsets.UTF_8));
+            final StringBuilder sb = new StringBuilder();
+
+            for (final byte b : bytes) {
+                final String hex = Integer.toHexString(0xff & b);
+
+                if (hex.length() == 1) {
+                    sb.append('0');
+                }
+
+                sb.append(hex);
+            }
+
+            return sb.toString();
+        } catch (final Exception e) {
+            Log.e("SPONSOR_BLOCK", "Error getting video ID hash.", e);
+            return null;
+        }
     }
 }
