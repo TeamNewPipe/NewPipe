@@ -220,6 +220,10 @@ public final class MainPlayer extends Service {
         }
 
         if (playerImpl != null) {
+            // Exit from fullscreen when user closes the player via notification
+            if (playerImpl.isFullscreen()) {
+                playerImpl.toggleFullscreen();
+            }
             removeViewFromParent();
 
             playerImpl.setRecovery();

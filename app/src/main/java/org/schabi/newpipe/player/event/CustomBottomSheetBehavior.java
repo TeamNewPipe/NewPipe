@@ -39,7 +39,7 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
         }
 
         // Found that user still swiping, continue following
-        if (skippingInterception) {
+        if (skippingInterception || getState() == BottomSheetBehavior.STATE_SETTLING) {
             return false;
         }
 

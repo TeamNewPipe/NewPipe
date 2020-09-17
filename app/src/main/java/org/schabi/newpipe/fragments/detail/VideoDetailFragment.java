@@ -1902,10 +1902,11 @@ public class VideoDetailFragment
     public void onPlayerError(final ExoPlaybackException error) {
         if (error.type == ExoPlaybackException.TYPE_SOURCE
                 || error.type == ExoPlaybackException.TYPE_UNEXPECTED) {
-            hideMainPlayer();
+            // Properly exit from fullscreen
             if (playerService != null && player.isFullscreen()) {
                 player.toggleFullscreen();
             }
+            hideMainPlayer();
         }
     }
 
@@ -2307,6 +2308,7 @@ public class VideoDetailFragment
                                 && player.videoPlayerSelected()) {
                             player.toggleFullscreen();
                         }
+                        setOverlayLook(appBarLayout, behavior, 1);
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         moveFocusToMainFragment(true);
@@ -2316,6 +2318,7 @@ public class VideoDetailFragment
                         if (player != null) {
                             player.onQueueClosed();
                         }
+                        setOverlayLook(appBarLayout, behavior, 0);
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
                     case BottomSheetBehavior.STATE_SETTLING:
