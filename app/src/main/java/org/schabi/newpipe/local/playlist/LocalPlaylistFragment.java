@@ -553,9 +553,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setView(dialogView)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.rename, (dialogInterface, i) -> {
-                    changePlaylistName(nameEdit.getText().toString());
-                });
+                .setPositiveButton(R.string.rename, (dialogInterface, i) ->
+                        changePlaylistName(nameEdit.getText().toString()));
 
         dialogBuilder.show();
     }

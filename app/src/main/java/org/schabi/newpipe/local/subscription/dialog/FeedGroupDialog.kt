@@ -252,7 +252,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             }
         })
 
-        subscriptionGroupAdapter?.setOnItemClickListener(subscriptionPickerItemListener)
+        subscriptionGroupAdapter.setOnItemClickListener(subscriptionPickerItemListener)
     }
 
     private fun handlePositiveButton() = when {

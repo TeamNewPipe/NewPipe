@@ -16,9 +16,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
+import androidx.core.text.HtmlCompat;
+import androidx.preference.PreferenceManager;
 import android.provider.Settings;
-import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.util.Linkify;
@@ -244,7 +244,7 @@ public class VideoDetailFragment
 
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
-    private TabAdaptor pageAdapter;
+    private TabAdapter pageAdapter;
     private TabLayout tabLayout;
     private FrameLayout relatedStreamsLayout;
 
@@ -427,7 +427,7 @@ public class VideoDetailFragment
             currentWorker.dispose();
         }
         saveCurrentAndRestoreDefaultBrightness();
-        PreferenceManager.getDefaultSharedPreferences(getContext())
+        PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .edit()
                 .putString(getString(R.string.stream_info_selected_tab_key),
                         pageAdapter.getItemTitle(viewPager.getCurrentItem()))
@@ -553,7 +553,6 @@ public class VideoDetailFragment
 
         Serializable serializable = savedState.getSerializable(INFO_KEY);
         if (serializable instanceof StreamInfo) {
-            //noinspection unchecked
             currentInfo = (StreamInfo) serializable;
             InfoCache.getInstance().putInfo(serviceId, url, currentInfo, InfoItem.InfoType.STREAM);
         }
@@ -673,7 +672,8 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_title_root_layout:
-                ShareUtils.copyToClipboard(getContext(), videoTitleTextView.getText().toString());
+                ShareUtils.copyToClipboard(requireContext(),
+                        videoTitleTextView.getText().toString());
                 break;
         }
 
@@ -752,7 +752,7 @@ public class VideoDetailFragment
 
         appBarLayout = rootView.findViewById(R.id.appbarlayout);
         viewPager = rootView.findViewById(R.id.viewpager);
-        pageAdapter = new TabAdaptor(getChildFragmentManager());
+        pageAdapter = new TabAdapter(getChildFragmentManager());
         viewPager.setAdapter(pageAdapter);
         tabLayout = rootView.findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
@@ -1106,7 +1106,7 @@ public class VideoDetailFragment
             player.toggleFullscreen();
         }
 
-        if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
+        if (!useExternalAudioPlayer) {
             openNormalBackgroundPlayer(append);
         } else {
             startOnExternalPlayer(activity, currentInfo, audioStream);
@@ -1303,24 +1303,17 @@ public class VideoDetailFragment
 
         if (description.getType() == Description.HTML) {
             disposables.add(Single.just(description.getContent())
-                    .map((@NonNull String descriptionText) -> {
-                        final Spanned parsedDescription;
-                        if (Build.VERSION.SDK_INT >= 24) {
-                            parsedDescription = Html.fromHtml(descriptionText, 0);
-                        } else {
-                            //noinspection deprecation
-                            parsedDescription = Html.fromHtml(descriptionText);
-                        }
-                        return parsedDescription;
-                    })
+                    .map((@NonNull final String descriptionText) ->
+                            HtmlCompat.fromHtml(descriptionText,
+                                    HtmlCompat.FROM_HTML_MODE_LEGACY))
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe((@NonNull Spanned spanned) -> {
+                    .subscribe((@NonNull final Spanned spanned) -> {
                         videoDescriptionView.setText(spanned);
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));
         } else if (description.getType() == Description.MARKDOWN) {
-            final Markwon markwon = Markwon.builder(getContext())
+            final Markwon markwon = Markwon.builder(requireContext())
                     .usePlugin(LinkifyPlugin.create())
                     .build();
             markwon.setMarkdown(videoDescriptionView, description.getContent());
@@ -1984,6 +1977,11 @@ public class VideoDetailFragment
             return;
         }
 
+        // Prevent jumping of the player on devices with cutout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+        }
         activity.getWindow().getDecorView().setSystemUiVisibility(0);
         activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
@@ -1997,6 +1995,11 @@ public class VideoDetailFragment
             return;
         }
 
+        // Prevent jumping of the player on devices with cutout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
+        }
         final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION

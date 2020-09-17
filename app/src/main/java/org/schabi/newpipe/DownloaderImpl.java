@@ -2,7 +2,7 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.os.Build;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -114,8 +114,8 @@ public final class DownloaderImpl extends Downloader {
             // Necessary because some servers (e.g. Framatube.org)
             // don't support the old cipher suites.
             // https://github.com/square/okhttp/issues/4053#issuecomment-402579554
-            final List<CipherSuite> cipherSuites = new ArrayList<>();
-            cipherSuites.addAll(ConnectionSpec.MODERN_TLS.cipherSuites());
+            final List<CipherSuite> cipherSuites =
+                    new ArrayList<>(ConnectionSpec.MODERN_TLS.cipherSuites());
             cipherSuites.add(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA);
             cipherSuites.add(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA);
             final ConnectionSpec legacyTLS = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)

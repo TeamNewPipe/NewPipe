@@ -92,7 +92,7 @@
     <string name="show_next_and_similar_title">Vis \'Næste\' og \'Lignende\' videoer</string>
     <string name="show_hold_to_append_title">Vis \"Hold for at tilføje\"-tip</string>
     <string name="show_hold_to_append_summary">Vis et tip når der trykkes på baggrunds- eller pop op-knappen på siden med videodetaljer</string>
-    <string name="url_not_supported_toast">Denne webadresse er ikke understøttet</string>
+    <string name="unsupported_url">Denne webadresse er ikke understøttet</string>
     <string name="default_content_country_title">Standardland for indhold</string>
     <string name="service_title">Tjeneste</string>
     <string name="content_language_title">Standardsprog for indhold</string>

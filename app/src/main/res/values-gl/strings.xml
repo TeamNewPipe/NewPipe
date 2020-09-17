@@ -90,7 +90,7 @@
     <string name="show_next_and_similar_title">Mostrar vídeos «seguintes» e «semellantes»</string>
     <string name="show_hold_to_append_title">Mostrar a suxestión «Manteña presionado para engadir á cola»</string>
     <string name="show_hold_to_append_summary">Mostrar unha suxestión ao premer o botón de segundo plano ou o de popup na páxina de detalles do vídeo</string>
-    <string name="url_not_supported_toast">Este URL non está soportado</string>
+    <string name="unsupported_url">Este URL non está soportado</string>
     <string name="default_content_country_title">País predeterminado para o contido</string>
     <string name="service_title">Servizo</string>
     <string name="settings_category_player_title">Reprodutor</string>

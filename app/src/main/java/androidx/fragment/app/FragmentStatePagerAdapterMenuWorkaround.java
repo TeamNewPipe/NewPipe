@@ -300,8 +300,8 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
             mSavedState.clear();
             mFragments.clear();
             if (fss != null) {
-                for (int i = 0; i < fss.length; i++) {
-                    mSavedState.add((Fragment.SavedState) fss[i]);
+                for (final Parcelable parcelable : fss) {
+                    mSavedState.add((Fragment.SavedState) parcelable);
                 }
             }
             final Iterable<String> keys = bundle.keySet();

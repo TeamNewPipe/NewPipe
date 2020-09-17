@@ -208,12 +208,7 @@ public class SelectChannelFragment extends DialogFragment {
         public void onBindViewHolder(final SelectChannelItemHolder holder, final int position) {
             final SubscriptionEntity entry = subscriptions.get(position);
             holder.titleView.setText(entry.getName());
-            holder.view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    clickedItem(position);
-                }
-            });
+            holder.view.setOnClickListener(view -> clickedItem(position));
             imageLoader.displayImage(entry.getAvatarUrl(), holder.thumbnailView,
                     DISPLAY_IMAGE_OPTIONS);
         }

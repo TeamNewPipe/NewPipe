@@ -5,8 +5,8 @@ import org.schabi.newpipe.streams.io.SharpStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
@@ -259,11 +259,7 @@ public class Mp4DashReader {
     }
 
     private String boxName(final int type) {
-        try {
-            return new String(ByteBuffer.allocate(4).putInt(type).array(), "UTF-8");
-        } catch (final UnsupportedEncodingException e) {
-            return "0x" + Integer.toHexString(type);
-        }
+        return new String(ByteBuffer.allocate(4).putInt(type).array(), StandardCharsets.UTF_8);
     }
 
     private Box readBox() throws IOException {

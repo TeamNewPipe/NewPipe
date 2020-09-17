@@ -5,7 +5,7 @@
     android:key="general_preferences"
     android:title="@string/settings_category_updates_title">
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/update_app_key"

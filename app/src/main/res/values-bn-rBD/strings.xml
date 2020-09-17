@@ -49,7 +49,7 @@
     <string name="download_dialog_title">ডাউনলোড</string>
     <string name="next_video_title">পরবর্তী ভিডিও</string>
     <string name="show_next_and_similar_title">পরবর্তী এবং অনুরূপ ভিডিওগুলি দেখাও</string>
-    <string name="url_not_supported_toast">URL সমর্থিত নয়</string>
+    <string name="unsupported_url">URL সমর্থিত নয়</string>
     <string name="content_language_title">কন্টেন্ট এর জন্য পছন্দসই ভাষা</string>
     <string name="settings_category_video_audio_title">ভিডিও এবং অডিও</string>
     <string name="settings_category_popup_title">পপআপ</string>

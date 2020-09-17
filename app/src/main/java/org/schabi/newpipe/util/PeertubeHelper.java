@@ -2,7 +2,7 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;

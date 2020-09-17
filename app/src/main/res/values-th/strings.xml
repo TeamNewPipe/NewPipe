@@ -91,7 +91,7 @@
     <string name="show_next_and_similar_title">แสดงวิดีโอ \'ถัดไป\' และ \'ที่คล้ายกัน\'</string>
     <string name="show_hold_to_append_title">แสดงเคล็ดลับ \"แตะค้างเพื่อเพิ่ม\"</string>
     <string name="show_hold_to_append_summary">แสดงเคล็ดลับเมื่อกดปุ่มพื้นหลังหรือป๊อปอัพในหน้ารายละเอียดวิดีโอ</string>
-    <string name="url_not_supported_toast">URL ที่ไม่สนับสนุน</string>
+    <string name="unsupported_url">URL ที่ไม่สนับสนุน</string>
     <string name="default_content_country_title">ประเทศเริ่มต้นของเนื้อหา</string>
     <string name="service_title">บริการ</string>
     <string name="content_language_title">ภาษาของเนื้อหาเริ่มต้น</string>

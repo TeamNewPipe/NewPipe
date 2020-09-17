@@ -5,7 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.core.text.HtmlCompat;
+import androidx.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -73,7 +74,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
-import static android.text.Html.escapeHtml;
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static java.util.Arrays.asList;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -812,7 +812,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             getFM().popBackStackImmediate();
                             activity.startActivity(intent);
                         }, throwable ->
-                                showError(getString(R.string.url_not_supported_toast), false)));
+                                showError(getString(R.string.unsupported_url), false)));
                 return;
             }
         } catch (final Exception ignored) {
@@ -1005,10 +1005,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     : R.string.did_you_mean);
 
             final String highlightedSearchSuggestion =
-                    "<b><i>" + escapeHtml(searchSuggestion) + "</i></b>";
-            correctSuggestion.setText(
-                    Html.fromHtml(String.format(helperText, highlightedSearchSuggestion)));
-
+                    "<b><i>" + Html.escapeHtml(searchSuggestion) + "</i></b>";
+            final String text = String.format(helperText, highlightedSearchSuggestion);
+            correctSuggestion.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
 
             correctSuggestion.setOnClickListener(v -> {
                 correctSuggestion.setVisibility(View.GONE);

@@ -32,7 +32,7 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -1002,8 +1002,8 @@ public class VideoPlayerImpl extends VideoPlayer
         // show kodi button if it supports the current service and it is enabled in settings
         final boolean showKodiButton = playQueue != null && playQueue.getItem() != null
                 && KoreUtil.isServiceSupportedByKore(playQueue.getItem().getServiceId())
-                        && PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+                && PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
         playWithKodi.setVisibility(videoPlayerSelected() && kodiEnabled && showKodiButton
                 ? View.VISIBLE : View.GONE);
     }
@@ -1586,9 +1586,10 @@ public class VideoPlayerImpl extends VideoPlayer
         // It doesn't include NavigationBar, notches, etc.
         display.getSize(size);
 
+        final boolean isLandscape = service.isLandscape();
         final int width = isFullscreen
-                ? (service.isLandscape()
-                ? size.x : size.y) : ViewGroup.LayoutParams.MATCH_PARENT;
+                ? (isLandscape ? size.x : size.y)
+                : ViewGroup.LayoutParams.MATCH_PARENT;
         final int gravity = isFullscreen
                 ? (display.getRotation() == Surface.ROTATION_90
                 ? Gravity.START : Gravity.END)
@@ -1619,14 +1620,16 @@ public class VideoPlayerImpl extends VideoPlayer
         // And the situations when we need to set custom height is
         // in fullscreen mode in tablet in non-multiWindow mode or with vertical video.
         // Other than that MATCH_PARENT is good
-        final boolean navBarAtTheBottom = DeviceUtils.isTablet(service) || !service.isLandscape();
+        final boolean navBarAtTheBottom = DeviceUtils.isTablet(service) || !isLandscape;
         controlsRoot.getLayoutParams().height = isFullscreen && !isInMultiWindow()
                 && navBarAtTheBottom ? size.y : ViewGroup.LayoutParams.MATCH_PARENT;
         controlsRoot.requestLayout();
 
-        final int topPadding = isFullscreen && !isInMultiWindow() ? getStatusBarHeight() : 0;
-        getRootView().findViewById(R.id.playbackWindowRoot).setPadding(0, topPadding, 0, 0);
-        getRootView().findViewById(R.id.playbackWindowRoot).requestLayout();
+        final DisplayMetrics metrics = getRootView().getResources().getDisplayMetrics();
+        int topPadding = isFullscreen && !isInMultiWindow() ? getStatusBarHeight() : 0;
+        topPadding = !isLandscape && DeviceUtils.hasCutout(topPadding, metrics) ? 0 : topPadding;
+        getRootView().findViewById(R.id.playbackWindowRoot).setTranslationY(topPadding);
+        getBottomControlsRoot().setTranslationY(-topPadding);
     }
 
     /**
@@ -1635,8 +1638,12 @@ public class VideoPlayerImpl extends VideoPlayer
      */
     private int getStatusBarHeight() {
         int statusBarHeight = 0;
-        final int resourceId = service.getResources().getIdentifier(
-                "status_bar_height_landscape", "dimen", "android");
+        final int resourceId = service.isLandscape()
+                ? service.getResources().getIdentifier(
+                "status_bar_height_landscape", "dimen", "android")
+                : service.getResources().getIdentifier(
+                "status_bar_height", "dimen", "android");
+
         if (resourceId > 0) {
             statusBarHeight = service.getResources().getDimensionPixelSize(resourceId);
         }
@@ -2037,7 +2044,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private int popupLayoutParamType() {
-        return Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.O
                 ? WindowManager.LayoutParams.TYPE_PHONE
                 : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
     }
@@ -2193,7 +2200,7 @@ public class VideoPlayerImpl extends VideoPlayer
      * This will be called when a user goes to another app/activity, turns off a screen.
      * We don't want to interrupt playback and don't want to see notification so
      * next lines of code will enable audio-only playback only if needed
-     * */
+     */
     private void onFragmentStopped() {
         if (videoPlayerSelected() && (isPlaying() || isLoading())) {
             if (backgroundPlaybackEnabled()) {
