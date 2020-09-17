@@ -73,7 +73,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
             return null;
         }
 
-        final String params = "skipSegments/" + videoIdHash.substring(0, 8)
+        final String params = "skipSegments/" + videoIdHash.substring(0, 4)
                 + "?categories=" + categoryParams;
 
         final JsonArray responseArray = execute(params).get();
@@ -83,7 +83,7 @@ public class SponsorBlockApiTask extends AsyncTask<String, Void, JsonArray> {
         for (final Object obj1 : responseArray) {
             final JsonObject jObj1 = (JsonObject) obj1;
 
-            final String responseVideoId = (String) jObj1.getString("videoID");
+            final String responseVideoId = jObj1.getString("videoID");
             if (!responseVideoId.equals(videoId)) {
                 continue;
             }
