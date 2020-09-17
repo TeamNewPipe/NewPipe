@@ -1290,18 +1290,14 @@ public class VideoPlayerImpl extends VideoPlayer
                 // Interrupt playback only when screen turns on
                 // and user is watching video in popup player.
                 // Same actions for video player will be handled in ACTION_VIDEO_FRAGMENT_RESUMED
-                if (backgroundPlaybackEnabled()
-                        && popupPlayerSelected()
-                        && (isPlaying() || isLoading())) {
+                if (popupPlayerSelected() && (isPlaying() || isLoading())) {
                     useVideoSource(true);
                 }
                 break;
             case Intent.ACTION_SCREEN_OFF:
                 shouldUpdateOnProgress = false;
                 // Interrupt playback only when screen turns off with popup player working
-                if (backgroundPlaybackEnabled()
-                        && popupPlayerSelected()
-                        && (isPlaying() || isLoading())) {
+                if (popupPlayerSelected() && (isPlaying() || isLoading())) {
                     useVideoSource(false);
                 }
                 break;
