@@ -433,7 +433,7 @@
     <string name="playback_reset">بازنشانی</string>
     <string name="download_to_sdcard_error_title">فضای ذخیره‌سازی خارجی در دسترس نیست</string>
     <string name="download_to_sdcard_error_message">بارگیری روی کارت SD خارجی ممکن نیست. مایلید محل پوشه بارگیری را دوباره تعیین کنید؟</string>
-    <string name="saved_tabs_invalid_json">استفاده از برگه‌های پیش‌فرض، خطا حین خواندن برگه‌های ذخیره شده</string>
+    <string name="saved_tabs_invalid_json">به دلیل ناتوانی در خواندن برگه‌های ذخیره شده، برگه‌های پیش‌فرض استفاده می‌شوند</string>
     <string name="subscribers_count_not_available">تعداد مشترک‌شدگان دردسترس نیست</string>
     <string name="main_page_content_summary">چه برگه‌هایی در صفحه اصلی نمایش پیدا کنند</string>
     <string name="updates_setting_description">زمانی که نسخه جدید برنامه دردسرس است، اعلانی برای به‌روزرسانی نمایش بده</string>
@@ -584,4 +584,9 @@
     <string name="albums">آلبوم‌ها</string>
     <string name="songs">موسیقی‌ها</string>
     <string name="youtube_restricted_mode_enabled_title">حالت محدودیت یوتیوب</string>
+    <string name="search_showing_result_for">نمایش نتایج برای: %s</string>
+    <string name="error_report_open_issue_button_text">گزارش خطا در گیت‌هاب</string>
+    <string name="error_report_open_github_notice">لطفا بررسی کنید که آیا گفتگویی درباره مشکل‌تان از قبل وجود دارد یا خیر. ایجاد گزارش تکراری، وقتی را از ما می‌گیرد که ما می‌توانستیم صرف رفع مشکلات واقعی کنیم.</string>
+    <string name="select_a_playlist">انتخاب یک فهرست پخش</string>
+    <string name="no_playlist_bookmarked_yet">نشانک‌های فهرست پخش هنوز موجود نیستند</string>
 </resources>
