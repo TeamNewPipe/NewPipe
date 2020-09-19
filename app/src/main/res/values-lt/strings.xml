@@ -298,7 +298,7 @@
     <string name="create_playlist">Sukurti naują grojaraštį</string>
     <string name="delete_playlist">Ištrinti grojaraštį</string>
     <string name="rename_playlist">Pervadinti grajaraštį</string>
-    <string name="playlist_name_input">Pavadinimas</string>
+    <string name="name">Pavadinimas</string>
     <string name="append_playlist">Pridėti į grojaraštį</string>
     <string name="set_as_playlist_thumbnail">Nustatyti kaip grojaraščio paveikslėlį</string>
     <string name="bookmark_playlist">Pridėti grojaraštį į žymes</string>
@@ -313,7 +313,6 @@
     <string name="resize_fill">Užpildyti</string>
     <string name="resize_zoom">Priartinti</string>
     <string name="caption_auto_generated">Automatiškai sugeneruotas</string>
-    <string name="enable_leak_canary_title">Įjungti LeakCanary</string>
     <string name="enable_leak_canary_summary">Atminties nutekėjimo stebėjimas gali padaryti programėlę nestabilią</string>
     <string name="enable_disposed_exceptions_title">Pranešti apie Out-of-Lifecycle klaidas</string>
     <string name="enable_disposed_exceptions_summary">Priverstinai pranešti apie \"undeliverable Rx exceptions occurring outside of fragment or activity lifecycle after dispose\"</string>

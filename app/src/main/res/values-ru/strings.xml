@@ -313,7 +313,7 @@
     <string name="create_playlist">Новый плейлист</string>
     <string name="delete_playlist">Удалить</string>
     <string name="rename_playlist">Переименовать</string>
-    <string name="playlist_name_input">Имя</string>
+    <string name="name">Имя</string>
     <string name="append_playlist">В плейлист</string>
     <string name="set_as_playlist_thumbnail">На миниатюру плейлиста</string>
     <string name="bookmark_playlist">Сохранить плейлист</string>
@@ -328,7 +328,6 @@
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
     <string name="caption_auto_generated">Создано автоматически</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
     <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
     <string name="enable_disposed_exceptions_summary">Принудительно сообщать о недоставляемых Rx-исключениях вне фрагмента или жизненного цикла после удаления</string>

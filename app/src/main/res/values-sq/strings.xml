@@ -182,7 +182,6 @@
     <string name="import_export_title">Importo/eksporto</string>
     <string name="enable_disposed_exceptions_title">Raporto gabimet e jashtë-ciklit-të-jetës</string>
     <string name="enable_leak_canary_summary">Monitorimi i rrjedhjeve të memorjes mund të bëjë aplikacionin të mos reagojë kur bëhet zbrazja e memorjes heap</string>
-    <string name="enable_leak_canary_title">KanarinaERrjedhjeve</string>
     <string name="caption_setting_description">Modifikoni shkallën e tekstit të titrave dhe llojet e sfondeve të luajtësit. Kërkon një rinisje të aplikacionit që të aplikohen ndryshimet.</string>
     <string name="caption_setting_title">Titrat</string>
     <string name="caption_auto_generated">E gjeneruar automatikisht</string>
@@ -202,7 +201,7 @@
     <string name="unmute">Me zë</string>
     <string name="mute">Pa zë</string>
     <string name="append_playlist">Shto në Listën e Luajtjes</string>
-    <string name="playlist_name_input">Emri</string>
+    <string name="name">Emri</string>
     <string name="rename_playlist">Riemërto</string>
     <string name="delete_playlist">Fshij</string>
     <string name="create_playlist">Listë Luajtje e Re</string>

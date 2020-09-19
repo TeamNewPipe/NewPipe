@@ -332,7 +332,7 @@
     <string name="create_playlist">Νέα Λίστα Αναπαραγωγής</string>
     <string name="delete_playlist">Διαγραφή</string>
     <string name="rename_playlist">Μετονομασία</string>
-    <string name="playlist_name_input">Όνομα</string>
+    <string name="name">Όνομα</string>
     <string name="append_playlist">Προσθήκη στη Λίστα</string>
     <string name="set_as_playlist_thumbnail">Ορισμός ως μικρογραφία λίστας αναπαραγωγής</string>
     <string name="bookmark_playlist">Προσθήκη Σελιδοδείκτη στη Λίστα</string>
@@ -349,7 +349,6 @@
     <string name="caption_auto_generated">Αυτόματοι</string>
     <string name="caption_setting_title">Υπότιτλοι</string>
     <string name="caption_setting_description">Τροποποίηση του μεγέθους και του φόντου των υπότιτλων. Απαιτεί επανεκκίνηση της εφαρμογής.</string>
-    <string name="enable_leak_canary_title">Ενεργοποίηση του LeakCanary</string>
     <string name="enable_leak_canary_summary">Η παρακολούθηση των διαρροών μνήμης μπορεί να προκαλέσει την διακοπή της εφαρμογής</string>
     <string name="enable_disposed_exceptions_summary">Υποχρεωτική αναφορά μη παραδοτέων Rx εξαιρέσεων έξω από το κομμάτι ή τον κύκλο δραστηριότητας μετά από απόρριψη</string>
     <string name="import_export_title">Εισαγωγή/Εξαγωγή</string>

@@ -35,7 +35,6 @@
     <string name="enable_disposed_exceptions_summary">നീക്കംചെയ്യലിനുശേഷം ശകലം അല്ലെങ്കിൽ ആക്റ്റിവിറ്റി ജീവിതചക്രത്തിന് പുറത്തുള്ള വിതരണം ചെയ്യാനാവാത്ത Rx ഒഴിവാക്കലുകളുടെ നിർബന്ധിത റിപ്പോർട്ടിംഗ്</string>
     <string name="enable_disposed_exceptions_title">Out-of-lifecycle പിശകുകൾ റിപ്പോർട്ടുചെയ്യുക</string>
     <string name="enable_leak_canary_summary">മെമ്മറി ലീക്ക് മോണിറ്ററിംഗ്, ഹീപ്പ് ഡമ്പിംഗ് ചെയ്യുമ്പോൾ അപ്ലിക്കേഷൻ പ്രതികരിക്കാതിരിക്കാൻ കാരണമായേക്കാം</string>
-    <string name="enable_leak_canary_title">ലീക്ക്കാനറി</string>
     <string name="caption_setting_description">പ്ലെയർ അടിക്കുറിപ്പ് ടെക്സ്റ്റ് സ്‌കെയിലും പശ്ചാത്തല ശൈലികളും പരിഷ്‌ക്കരിക്കുക. പ്രാബല്യത്തിൽ വരാൻ അപ്ലിക്കേഷൻ പുനരാരംഭിക്കൽ ആവശ്യമാണ്.</string>
     <string name="caption_setting_title">അടിക്കുറിപ്പുകൾ</string>
     <string name="caption_auto_generated">യാന്ത്രികമായി സൃഷ്‌ടിച്ചവ</string>
@@ -55,7 +54,7 @@
     <string name="unmute">അൺമ്യൂട്ട്</string>
     <string name="mute">മ്യൂട്ട്</string>
     <string name="append_playlist">പ്ലേലിസ്റ്റിലേക്ക് ചേർക്കുക</string>
-    <string name="playlist_name_input">പേര്</string>
+    <string name="name">പേര്</string>
     <string name="rename_playlist">പേര് മാറ്റുക</string>
     <string name="delete_playlist">ഡിലീറ്റ്</string>
     <string name="create_playlist">പുതിയ പ്ലേലിസ്റ്റ്</string>

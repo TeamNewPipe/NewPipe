@@ -301,7 +301,7 @@
     <string name="create_playlist">רשימת נגינה חדשה</string>
     <string name="delete_playlist">מחיקה</string>
     <string name="rename_playlist">שינוי שם</string>
-    <string name="playlist_name_input">שם</string>
+    <string name="name">שם</string>
     <string name="append_playlist">הוספה לרשימת נגינה</string>
     <string name="bookmark_playlist">הוספת רשימת נגינה לסימניות</string>
     <string name="unbookmark_playlist">הסרת סימנייה</string>
@@ -373,7 +373,6 @@
     <string name="resize_fit">התאמה</string>
     <string name="caption_setting_title">כתוביות</string>
     <string name="caption_setting_description">שינוי גודל כותרת הנגן וסגנונות הרקע. נדרשת הפעלה מחדש כדי ששינויים אלה יכנסו לתוקף.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">מעקב אחר זליגת זיכרון עשויה לגרום ליישומון להיות בלתי זמין בזמן העתקת תוכן הזיכרון לקובץ</string>
     <string name="import_soundcloud_instructions_hint">המזהה שלך, soundcloud.com/המזהה שלך</string>
     <string name="import_network_expensive_warning">נא לשים לב כי פעולה זו עשויה להעמיס על תקשורת הנתונים. 

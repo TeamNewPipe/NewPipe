@@ -314,7 +314,7 @@ pentru a deschide în mod pop-up</string>
     <string name="donation_title">Donaţi</string>
     <string name="drawer_header_action_paceholder_text">Ceva va apărea aici în curând ;D</string>
     <string name="import_settings">De asemenea, doriți să importați setări?</string>
-    <string name="playlist_name_input">Nume</string>
+    <string name="name">Nume</string>
     <string name="playlist_creation_success">Listă de redare creată</string>
     <string name="playlist_add_stream_success">Adăugat la lista de redare</string>
     <string name="caption_auto_generated">Generat automat</string>
@@ -403,7 +403,6 @@ pentru a deschide în mod pop-up</string>
     <string name="clear_playback_states_title">Șterge pozițiile de redare memorate</string>
     <string name="download_choose_new_path">Schimbați folderul de descărcări pentru ca setările să aibă efect</string>
     <string name="bookmark_playlist">Salvează playlist-ul</string>
-    <string name="enable_leak_canary_title">Activează LeakCanary</string>
     <string name="limit_mobile_data_usage_title">Limitați rezoluția când folosiți date mobile</string>
     <string name="permission_display_over_apps">Acordă permisiunea de a afișa peste alte aplicații</string>
     <string name="delete_playback_states_alert">Ștergeți toate pozițiile din playback\?</string>

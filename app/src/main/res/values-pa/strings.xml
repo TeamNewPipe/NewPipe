@@ -322,7 +322,7 @@
     <string name="create_playlist">ਨਵੀਂ ਪਲੇ-ਲਿਸਟ</string>
     <string name="delete_playlist">ਮਿਟਾਓ</string>
     <string name="rename_playlist">ਨਾਮ ਬਦਲੋ</string>
-    <string name="playlist_name_input">ਨਾਮ</string>
+    <string name="name">ਨਾਮ</string>
     <string name="append_playlist">ਪਲੇ-ਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ</string>
     <string name="set_as_playlist_thumbnail">ਪਲੇ-ਲਿਸਟ thumbnail ਦੇ ਤੌਰ ਤੇ ਸੈੱਟ ਕਰੋ</string>
     <string name="bookmark_playlist">ਬੁੱਕਮਾਰਕ ਪਲੇ-ਲਿਸਟ</string>
@@ -339,7 +339,6 @@
     <string name="caption_auto_generated">Auto-Generated</string>
     <string name="caption_setting_title">captions</string>
     <string name="caption_setting_description">ਪਲੇਅਰ caption, text ਸਕੇਲ ਅਤੇ ਬੈਕਗ੍ਰਾਉਂਡ ਸਟਾਈਲ ਨੂੰ ਸੋਧੋ. ਪ੍ਰਭਾਵ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਐਪ ਨੂੰ ਮੁੜ ਚਾਲੂ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ.</string>
-    <string name="enable_leak_canary_title">LeakCanary ਚਲਾਓ</string>
     <string name="enable_leak_canary_summary">ਮੈਮੋਰੀ ਲੀਕ monitoring, ਐਪ ਨੂੰ Unresponsive ਬਣਾ ਸਕਦੀ ਹੈ ਜਦੋਂ ਹੀਪ dumping ਹੁੰਦੀ ਹੈ</string>
     <string name="enable_disposed_exceptions_title">Out-of-lifecycle ERROR ਰਿਪੋਰਟ ਕਰੋ</string>
     <string name="enable_disposed_exceptions_summary">ਨਿਪਟਾਰੇ ਦੇ ਬਾਅਦ ਟੁਕੜੇ ਜਾਂ ਗਤੀਵਿਧੀਆਂ ਦੇ lifecycle ਤੋਂ ਬਾਹਰ undeliverable Rx ਅਪਵਾਦਾਂ ਬਾਰੇ ਜ਼ਬਰੀ ਰਿਪੋਰਟ ਕਰਨਾ</string>

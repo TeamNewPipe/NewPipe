@@ -31,7 +31,7 @@
     <string name="settings_category_player_title">کارپێکەر</string>
     <string name="import_title">هێنانەوە</string>
     <string name="error_report_button_text">سکاڵا لەسەر کێشە لەڕێگای ئیمێڵ</string>
-    <string name="playlist_name_input">ناو</string>
+    <string name="name">ناو</string>
     <string name="error_postprocessing_failed">چارەسەرکردن شکستی هێنا</string>
     <string name="minimize_on_exit_title">بچوکبوونەوە لەکاتی گۆڕینی داوانامە</string>
     <string name="feed_page_summary">پەڕەی نوێترینەکان</string>
@@ -248,7 +248,6 @@
     <string name="channel_page_summary">پەڕەی کەناڵەکان</string>
     <string name="switch_to_background">گۆڕین بۆ پاشبنەما</string>
     <string name="infinite_videos">∞ ڤیدیۆ</string>
-    <string name="enable_leak_canary_title">چالاککردنی LeakCanary</string>
     <string name="use_inexact_seek_title">بەکارهێنانی بردنەپێشی ناتەواوی خێرا</string>
     <string name="error_occurred_detail">هەڵەیەک ڕوویدا : %1$s</string>
     <string name="download_path_dialog_title">بوخچەی داگرتن بۆ پەڕگەی ڤیدیۆکان هەڵبژێرە</string>

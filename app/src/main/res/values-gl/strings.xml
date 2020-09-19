@@ -333,7 +333,7 @@
     <string name="create_playlist">Nova lista de reprodución</string>
     <string name="delete_playlist">Eliminar</string>
     <string name="rename_playlist">Renomear</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="append_playlist">Engadir á lista de reprodución</string>
     <string name="set_as_playlist_thumbnail">Estabelecer como miniatura da lista de reprodución</string>
     <string name="bookmark_playlist">Gardar a lista de reprodución nos marcadores</string>
@@ -350,7 +350,6 @@
     <string name="caption_auto_generated">Xerado automaticamente</string>
     <string name="caption_setting_title">Lenda</string>
     <string name="caption_setting_description">Modificar a escala de texto da lenda e os estilos de segundo plano do reprodutor. Para ter efecto, é preciso reiniciar o aplicativo.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">A monitorización de fugas de memoria pode facer que o aplicativo deixe de responder cando hai vertedura da pila</string>
     <string name="enable_disposed_exceptions_title">Informar de erros fóra do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Forzar a comunicación de excepcións Rx non entregábeis fóra do ciclo de vida do fragmento ou actividade após o descarte</string>

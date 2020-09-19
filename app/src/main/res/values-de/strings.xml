@@ -310,7 +310,6 @@
     <string name="file_name_empty_error">Dateiname darf nicht leer sein</string>
     <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
     <string name="caption_auto_generated">Automatisch erzeugt</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="import_from">Import von</string>
     <string name="export_to">Export nach</string>
     <string name="import_ongoing">Importiere…</string>
@@ -329,7 +328,7 @@
     <string name="invalid_source">Datei-/Inhaltsquelle existiert nicht</string>
     <string name="export_complete_toast">Exportiert</string>
     <string name="import_complete_toast">Importiert</string>
-    <string name="playlist_name_input">Name</string>
+    <string name="name">Name</string>
     <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import</string>
     <string name="subscriptions_import_unsuccessful">Abonnements konnten nicht importiert werden</string>

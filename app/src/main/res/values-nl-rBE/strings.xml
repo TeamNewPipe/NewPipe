@@ -314,7 +314,7 @@
     <string name="create_playlist">Nieuwen afspeellijst</string>
     <string name="delete_playlist">Verwijderen</string>
     <string name="rename_playlist">Hernoemen</string>
-    <string name="playlist_name_input">Naam</string>
+    <string name="name">Naam</string>
     <string name="append_playlist">Toevoegen aan afspeellijst</string>
     <string name="set_as_playlist_thumbnail">Instellen als miniatuur voor afspeellijst</string>
     <string name="bookmark_playlist">Afspeellijst toevoegen aan bladwijzers</string>
@@ -331,7 +331,6 @@
     <string name="caption_auto_generated">Automatisch gegenereerd</string>
     <string name="caption_setting_title">Bijschriften</string>
     <string name="caption_setting_description">Bijschriftgrootte en achtergrondstijlen wijzigen. Vereist nen herstart van den app.</string>
-    <string name="enable_leak_canary_title">LeakCanary inschakelen</string>
     <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan dervoor zorgen da’ den app nie’ goe meer reageerd</string>
     <string name="enable_disposed_exceptions_title">Out-of-lifecycle-fouten melden</string>
     <string name="enable_disposed_exceptions_summary">Forceerd het melden van nie-bezorgbare Rx-uitzonderingen die gebeuren buiten fragments- of activiteitscyclus</string>

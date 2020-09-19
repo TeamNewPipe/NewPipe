@@ -330,7 +330,7 @@
     <string name="create_playlist">Нов Плейлист</string>
     <string name="delete_playlist">Изтрий</string>
     <string name="rename_playlist">"Преименувай "</string>
-    <string name="playlist_name_input">Име</string>
+    <string name="name">Име</string>
     <string name="append_playlist">Добави Към Плейлист</string>
     <string name="set_as_playlist_thumbnail">Задай като миниатюра на плейлиста</string>
     <string name="bookmark_playlist">Миниатюрата на плейлиста е сменена</string>
@@ -347,7 +347,6 @@
     <string name="caption_auto_generated">Авто-генерирани</string>
     <string name="caption_setting_title">Надписи</string>
     <string name="caption_setting_description">Модифицирай мащаба на текста и фона на надписите. Изисква рестарт на приложението, за да се приложат промените.</string>
-    <string name="enable_leak_canary_title">Включи LeakCanary</string>
     <string name="enable_leak_canary_summary">Следенето за пропускане на памет може да направи приложението нестабилно</string>
     <string name="enable_disposed_exceptions_title">Докладвай за извънредни грешки</string>
     <string name="import_export_title">Импортиране/Експортиране</string>

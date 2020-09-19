@@ -269,7 +269,7 @@
     <string name="create_playlist">فهرست پخش جدید</string>
     <string name="delete_playlist">پاک‌کردن</string>
     <string name="rename_playlist">تغییر نام</string>
-    <string name="playlist_name_input">نام</string>
+    <string name="name">نام</string>
     <string name="append_playlist">افزودن به فهرست پخش</string>
     <string name="set_as_playlist_thumbnail">استفاده به عنوان تصویر فهرست پخش</string>
     <string name="delete_playlist_prompt">این فهرست پخش پاک شود؟</string>

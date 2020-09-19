@@ -293,7 +293,7 @@
     <string name="create_playlist">새로운 재생목록</string>
     <string name="delete_playlist">삭제</string>
     <string name="rename_playlist">이름 바꾸기</string>
-    <string name="playlist_name_input">이름</string>
+    <string name="name">이름</string>
     <string name="append_playlist">재생목록에 추가</string>
     <string name="set_as_playlist_thumbnail">재생목록 썸네일로 설정</string>
     <string name="bookmark_playlist">재생목록 북마크하기</string>
@@ -308,7 +308,6 @@
     <string name="resize_fill">채우기</string>
     <string name="resize_zoom">확대</string>
     <string name="caption_auto_generated">자동 생성됨</string>
-    <string name="enable_leak_canary_title">LeakCanary 활성화</string>
     <string name="enable_leak_canary_summary">메모리 누수 감시를 사용할 시 힙 덤프로 인해 앱이 반응하지 않을 수 있습니다</string>
     <string name="enable_disposed_exceptions_title">out-of-lifecycle 오류 보고</string>
     <string name="enable_disposed_exceptions_summary">프래그먼트 또는 버려진 액티비티 주기 밖에서 일어나는 전달할 수 없는 Rx 예외를 강제적으로 보고하기</string>

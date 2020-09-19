@@ -239,7 +239,7 @@
     <string name="invalid_url_toast">অবৈধ ইউ আর এল</string>
     <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
     <string name="search_history_deleted">সার্চ ইতিহাস ডিলিট হয়েছে।</string>
-    <string name="playlist_name_input">নাম</string>
+    <string name="name">নাম</string>
     <string name="rename_playlist">নাম পরিবর্তন</string>
     <string name="action_history">ইতিহাস</string>
     <string name="read_full_license">লাইসেন্স পড়ুন</string>

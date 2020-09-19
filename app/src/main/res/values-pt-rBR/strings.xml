@@ -291,7 +291,7 @@
     <string name="create_playlist">Nova playlist</string>
     <string name="delete_playlist">Excluir</string>
     <string name="rename_playlist">Renomear</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="append_playlist">Adicionar à playlist</string>
     <string name="set_as_playlist_thumbnail">Definir como capa da playlist</string>
     <string name="bookmark_playlist">Favoritar playlist</string>
@@ -307,7 +307,6 @@
     <string name="resize_zoom">Zoom</string>
     <string name="drawer_header_action_paceholder_text">Algo aparecerá aqui em breve ;D</string>
     <string name="caption_auto_generated">Gerado automaticamente</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">A monitoração de vazamento de memória pode tornar o app instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Força relatório de exceções Rx não entregues fora do ciclo de vida do fragmento ou atividade após o descarte</string>

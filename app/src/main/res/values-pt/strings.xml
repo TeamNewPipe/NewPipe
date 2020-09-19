@@ -285,7 +285,7 @@
     <string name="override_current_data">Está prestes a substituir a configuração atual.</string>
     <string name="drawer_open">Abrir menu</string>
     <string name="drawer_close">Fechar menu</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="metadata_cache_wipe_title">Limpar os metadados em cache</string>
     <string name="metadata_cache_wipe_summary">Remover todos os dados da página da Web em cache</string>
     <string name="metadata_cache_wipe_complete_notice">Metadados em cache eliminados</string>
@@ -375,7 +375,6 @@
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
     <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o eliminação</string>

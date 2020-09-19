@@ -12,6 +12,6 @@
     android:inputType="text"
     android:maxLines="1"
     android:layout_margin="10dp"
-    android:hint="@string/playlist_name_input"/>
+    android:hint="@string/name"/>
 
 </LinearLayout>
