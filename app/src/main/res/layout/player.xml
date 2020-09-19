@@ -461,21 +461,20 @@
             android:layout_height="60dp"
             android:id="@+id/playQueueControl">
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/playQueueClose"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="40dp"
-                android:padding="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:scaleType="fitXY"
-                android:tint="?attr/colorAccent"
-                app:srcCompat="@drawable/ic_close_white_24dp"
                 android:background="?android:selectableItemBackground"
-                tools:ignore="ContentDescription"/>
+                android:clickable="true"
+                android:contentDescription="@string/close"
+                android:focusable="true"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_close_white_24dp" />
 
             <ImageButton
                 android:id="@+id/repeatButton"
