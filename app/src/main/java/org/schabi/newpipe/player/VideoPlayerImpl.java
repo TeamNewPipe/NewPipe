@@ -956,6 +956,8 @@ public class VideoPlayerImpl extends VideoPlayer
         if (orientationLocked
                 && isFullscreen()
                 && service.isLandscape() == isVerticalVideo
+                && !DeviceUtils.isTv(service)
+                && !DeviceUtils.isTablet(service)
                 && fragmentListener != null) {
             fragmentListener.onScreenRotationButtonClicked();
         }
