@@ -134,7 +134,6 @@ public class VideoPlayerImpl extends VideoPlayer
     static final String POPUP_SAVED_WIDTH = "popup_saved_width";
     static final String POPUP_SAVED_X = "popup_saved_x";
     static final String POPUP_SAVED_Y = "popup_saved_y";
-    private static final int MINIMUM_SHOW_EXTRA_WIDTH_DP = 300;
     private static final int IDLE_WINDOW_FLAGS = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
             | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
     private static final int ONGOING_PLAYBACK_WINDOW_FLAGS = IDLE_WINDOW_FLAGS
@@ -988,6 +987,7 @@ public class VideoPlayerImpl extends VideoPlayer
         super.onDismiss(menu);
         if (isPlaying()) {
             hideControls(DEFAULT_CONTROLS_DURATION, 0);
+            hideSystemUIIfNeeded();
         }
     }
 
@@ -1012,15 +1012,6 @@ public class VideoPlayerImpl extends VideoPlayer
 
             setInitialGestureValues();
             queueLayout.getLayoutParams().height = height - queueLayout.getTop();
-
-            if (popupPlayerSelected()) {
-                final float widthDp = Math.abs(r - l) / service.getResources()
-                        .getDisplayMetrics().density;
-                final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP
-                        ? View.VISIBLE
-                        : View.GONE;
-                secondaryControls.setVisibility(visibility);
-            }
         }
     }
 
