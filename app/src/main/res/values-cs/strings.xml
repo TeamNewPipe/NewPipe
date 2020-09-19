@@ -116,8 +116,8 @@
     <string name="short_thousand">tis.</string>
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
     <string name="short_million">mil.</string>
-    <string name="msg_popup_permission">Toto oprávnění je vyžadováno pro
-otevření ve vyskakovacím okně</string>
+    <string name="msg_popup_permission">Toto oprávnění je vyžadováno
+\npro otevření ve vyskakovacím okně</string>
     <string name="use_external_video_player_summary">Odstraňuje zvuk v některých rozlišeních</string>
     <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
     <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 2K/4K videa</string>
@@ -335,12 +335,9 @@ otevření ve vyskakovacím okně</string>
     <string name="invalid_file">Soubor neexistuje nebo chybí oprávnění k jeho čtení či zápisu</string>
     <string name="file_name_empty_error">Název souboru nesmí být prázdný</string>
     <string name="error_occurred_detail">Došlo k chybě: %1$s</string>
-    <string name="import_export_title">Import/export 
-\n</string>
-    <string name="import_title">Importovat
-\n</string>
-    <string name="import_from">Importovat z
-\n</string>
+    <string name="import_export_title">Import/export</string>
+    <string name="import_title">Importovat</string>
+    <string name="import_from">Importovat z</string>
     <string name="export_to">Exportovat do</string>
     <string name="import_ongoing">Importuji…</string>
     <string name="export_ongoing">Exportuji…</string>
