@@ -464,4 +464,5 @@
     <string name="delete_playback_states_alert">Összes lejátszási pozíció törlése\?</string>
     <string name="clear_playback_states_summary">Összes lejátszási pozíció törlése</string>
     <string name="clear_playback_states_title">Lejátszási pozíciók törlése</string>
+    <string name="search_showing_result_for">Találatok a következőre: %s</string>
 </resources>
