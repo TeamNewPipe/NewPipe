@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Palieskite paiešką, kad pradėtumėte</string>
+    <string name="main_bg_subtitle">Palieskite „Ieškoti“, kad pradėtumėte</string>
     <string name="view_count_text">%1$s peržiūrų</string>
     <string name="upload_date_text">Publikuota %1$s</string>
-    <string name="no_player_found">Nerastas srauto grotuvas. Ar norite įdiegti VLC?</string>
+    <string name="no_player_found">Nerastas srauto grotuvas. Įdiegti VLC\?</string>
     <string name="install">Įdiegti</string>
     <string name="cancel">Atšaukti</string>
     <string name="open_in_browser">Atverti naršyklėje</string>
-    <string name="open_in_popup_mode">Atverti išokančiojo lango rėžime</string>
+    <string name="open_in_popup_mode">Atverti iššokančio lango rėžime</string>
     <string name="share">Dalintis</string>
     <string name="download">Atsisiųsti</string>
     <string name="search">Paieška</string>
@@ -19,17 +19,17 @@
     <string name="use_external_video_player_title">Naudoti išorinį vaizdo grotuvą</string>
     <string name="use_external_video_player_summary">Kai kurios raiškos nepalaiko audio, kai ši parinktis įgalinta</string>
     <string name="use_external_audio_player_title">Naudoti išorinį audio grotuvą</string>
-    <string name="popup_mode_share_menu_title">NewPipe iššokančiojo lango rėžimas</string>
+    <string name="popup_mode_share_menu_title">iššokančio lango rėžimas</string>
     <string name="controls_background_title">Fonas</string>
     <string name="controls_popup_title">Išokantis langelis</string>
-    <string name="download_path_title">Vaizdo įrašų parsiuntimo kelias</string>
+    <string name="download_path_title">Vaizdo įrašų parsisiuntimo aplankas</string>
     <string name="download_path_summary">Vieta parsisiųstų vaizdo įrašų laikymui</string>
     <string name="download_path_dialog_title">Įvesti parsiuntimo kelią vaizdo įrašams</string>
     <string name="download_path_audio_title">Garso įrašų parsiuntimo kelias</string>
     <string name="download_path_audio_summary">Vieta laikyti parsisiųstus garso įrašus</string>
     <string name="download_path_audio_dialog_title">Įveskite atsisiuntimų kelią garso įrašams</string>
     <string name="autoplay_by_calling_app_title">Automatinis paleidimas</string>
-    <string name="autoplay_by_calling_app_summary">Automatiškai groti vaizdo įrašą, kai NewPipe iškvečiama per kitą programėlę</string>
+    <string name="autoplay_by_calling_app_summary">Groti vaizdo įrašą, kai NewPipe iškvečiama per kitą programėlę</string>
     <string name="default_resolution_title">Numatytoji raiška</string>
     <string name="default_popup_resolution_title">Numatytoji išokančiojo lango raiška</string>
     <string name="show_higher_resolutions_title">Rodyti aukštesnes raiškas</string>
@@ -97,11 +97,11 @@
     <string name="error_snackbar_action">ATASKAITA</string>
     <string name="what_device_headline">Informacija:</string>
     <string name="what_happened_headline">Kas nutiko:</string>
-    <string name="info_labels">Kas:\\nUžklausa:\\nTurinys Kalba:\\nPaslauga:\\nGMT Time:\\nPaketas:\\nVersija:\\nOperacinė Sistema versija:</string>
+    <string name="info_labels">Kas:\\nUžklausa:\\nTurinio Kalba:\\nTurinio Šalis:\\nProgramėlės Kalba:\\nPaslauga:\\nGMT Laikas:\\nPaketas:\\nVersija:\\nOS versija:</string>
     <string name="your_comment">Jūsų komentaras (anglų kalba):</string>
     <string name="error_details_headline">Detalės:</string>
     <string name="list_thumbnail_view_description">Vaizdo įrašo peržiūros miniatiūra</string>
-    <string name="detail_thumbnail_view_description">Vaizdo įrašo peržiūros miniatiūra</string>
+    <string name="detail_thumbnail_view_description">Paleisti vaizdo įrašą, trukmė:</string>
     <string name="detail_uploader_thumbnail_view_description">Įkėlėjo naudotojo paveikslėlio miniatiūra</string>
     <string name="detail_likes_img_view_description">Pamėgimai</string>
     <string name="detail_dislikes_img_view_description">Nemėgimai</string>
@@ -141,7 +141,8 @@
     <string name="msg_wait">Prašome palaukti…</string>
     <string name="msg_copied">Nukopijuota į iškarpinę</string>
     <string name="no_available_dir">Prašome pasirinkti galimą atsisiuntimų aplankalą</string>
-    <string name="msg_popup_permission">Šis leidimas nereikalingas, kad atidarytiviššokančio lango rėžime</string>
+    <string name="msg_popup_permission">Šis leidimas reikalingas
+\natidarymui iššokančio lango rėžime</string>
     <string name="title_activity_recaptcha">reCAPTCHA iššūkis</string>
     <string name="recaptcha_request_toast">reCAPTCHA prašomas iššūkis</string>
     <string name="subscribe_button_title">Prenumeruoti</string>
@@ -154,7 +155,7 @@
     <string name="fragment_feed_title">Kas Naujo</string>
     <string name="enable_search_history_title">Ieškoti istorijoje</string>
     <string name="enable_search_history_summary">Saugoti paieškos užklausas vietinėje atmintyje</string>
-    <string name="enable_watch_history_title">Istorija</string>
+    <string name="enable_watch_history_title">Žiūrėjimo istorija</string>
     <string name="enable_watch_history_summary">Sekite peržiūrėtus vaizdo įrašus</string>
     <string name="resume_on_audio_focus_gain_title">Atkurti kai dėmesio centre</string>
     <string name="resume_on_audio_focus_gain_summary">Tęsti grojimą po pertraukčių (pvz. skambučių)</string>
@@ -250,8 +251,8 @@
     <string name="start_here_on_main">Pradėti groti čia</string>
     <string name="start_here_on_background">Pradėti groti čia foniniame rėžime</string>
     <string name="start_here_on_popup">Pradėti groti čia langelio grotuvo rėžime</string>
-    <string name="no_player_found_toast">Nerastas srauto grotuvas (galite įdiegti VLC kad grotumėte)</string>
-    <string name="controls_download_desc">Parsisiųsti srauto failą.</string>
+    <string name="no_player_found_toast">Nerastas srauto grotuvas (galite įdiegti VLC kad grotumėte).</string>
+    <string name="controls_download_desc">Parsisiųsti srauto failą</string>
     <string name="show_info">Rodyti informaciją</string>
     <string name="tab_bookmarks">Adresynas</string>
     <string name="controls_add_to_playlist_title">Pridėti į</string>
