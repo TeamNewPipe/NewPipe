@@ -6,9 +6,9 @@ import android.content.SharedPreferences;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.Localization;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -40,22 +40,6 @@ public final class NotificationConstants {
     @IntDef({NOTHING, PREVIOUS, NEXT, REWIND, FORWARD, SMART_REWIND_PREVIOUS, SMART_FORWARD_NEXT,
             PLAY_PAUSE, PLAY_PAUSE_BUFFERING, REPEAT, SHUFFLE, CLOSE})
     public @interface Action { }
-
-    @StringRes
-    public static final int[] ACTION_SUMMARIES = {
-            R.string.notification_action_nothing,
-            R.string.notification_action_previous,
-            R.string.notification_action_next,
-            R.string.notification_action_rewind,
-            R.string.notification_action_forward,
-            R.string.notification_action_smart_rewind_previous,
-            R.string.notification_action_smart_forward_next,
-            R.string.notification_action_play_pause,
-            R.string.notification_action_play_pause_buffering,
-            R.string.notification_action_repeat,
-            R.string.notification_action_shuffle,
-            R.string.close,
-    };
 
     @DrawableRes
     public static final int[] ACTION_ICONS = {
@@ -109,6 +93,46 @@ public final class NotificationConstants {
             R.string.notification_slot_compact_1_key,
             R.string.notification_slot_compact_2_key,
     };
+
+
+    public static String getActionName(@NonNull final Context context, @Action final int action) {
+        switch (action) {
+            case PREVIOUS:
+                return context.getString(R.string.exo_controls_previous_description);
+            case NEXT:
+                return context.getString(R.string.exo_controls_next_description);
+            case REWIND:
+                return context.getString(R.string.exo_controls_rewind_description);
+            case FORWARD:
+                return context.getString(R.string.exo_controls_fastforward_description);
+            case SMART_REWIND_PREVIOUS:
+                return Localization.concatenateStrings(
+                        context.getString(R.string.exo_controls_rewind_description),
+                        context.getString(R.string.exo_controls_previous_description));
+            case SMART_FORWARD_NEXT:
+                return Localization.concatenateStrings(
+                        context.getString(R.string.exo_controls_fastforward_description),
+                        context.getString(R.string.exo_controls_next_description));
+            case PLAY_PAUSE:
+                return Localization.concatenateStrings(
+                        context.getString(R.string.exo_controls_play_description),
+                        context.getString(R.string.exo_controls_pause_description));
+            case PLAY_PAUSE_BUFFERING:
+                return Localization.concatenateStrings(
+                        context.getString(R.string.exo_controls_play_description),
+                        context.getString(R.string.exo_controls_pause_description),
+                        context.getString(R.string.notification_action_buffering));
+            case REPEAT:
+                return context.getString(R.string.notification_action_repeat);
+            case SHUFFLE:
+                return context.getString(R.string.notification_action_shuffle);
+            case CLOSE:
+                return context.getString(R.string.close);
+            case NOTHING: default:
+                return context.getString(R.string.notification_action_nothing);
+        }
+    }
+
 
     /**
      * @param context the context to use

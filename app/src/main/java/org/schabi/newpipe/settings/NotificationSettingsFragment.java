@@ -209,7 +209,7 @@ public class NotificationSettingsFragment extends Fragment {
                         NotificationConstants.ACTION_ICONS[selectedAction]));
             }
 
-            summary.setText(NotificationConstants.ACTION_SUMMARIES[selectedAction]);
+            summary.setText(NotificationConstants.getActionName(requireContext(), selectedAction));
         }
 
         void openActionChooserDialog() {
@@ -225,8 +225,7 @@ public class NotificationSettingsFragment extends Fragment {
                     .create();
 
             final View.OnClickListener radioButtonsClickListener = v -> {
-                final int id = ((RadioButton) v).getId();
-                selectedAction = NotificationConstants.SLOT_ALLOWED_ACTIONS[i][id];
+                selectedAction = NotificationConstants.SLOT_ALLOWED_ACTIONS[i][v.getId()];
                 updateInfo();
                 alertDialog.dismiss();
             };
@@ -253,7 +252,7 @@ public class NotificationSettingsFragment extends Fragment {
                     }
                 }
 
-                radioButton.setText(NotificationConstants.ACTION_SUMMARIES[action]);
+                radioButton.setText(NotificationConstants.getActionName(requireContext(), action));
                 radioButton.setChecked(action == selectedAction);
                 radioButton.setId(id);
                 radioButton.setLayoutParams(new RadioGroup.LayoutParams(

@@ -12,6 +12,7 @@ import android.util.Log;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -214,75 +215,89 @@ public final class NotificationUtil {
         final int baseActionIcon = NotificationConstants.ACTION_ICONS[selectedAction];
         switch (selectedAction) {
             case NotificationConstants.PREVIOUS:
-                return getAction(player, baseActionIcon, "Previous", ACTION_PLAY_PREVIOUS);
+                return getAction(player, baseActionIcon,
+                        R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS);
 
             case NotificationConstants.NEXT:
-                return getAction(player, baseActionIcon, "Next", ACTION_PLAY_NEXT);
+                return getAction(player, baseActionIcon,
+                        R.string.exo_controls_next_description, ACTION_PLAY_NEXT);
 
             case NotificationConstants.REWIND:
-                return getAction(player, baseActionIcon, "Rewind", ACTION_FAST_REWIND);
+                return getAction(player, baseActionIcon,
+                        R.string.exo_controls_rewind_description, ACTION_FAST_REWIND);
 
             case NotificationConstants.FORWARD:
-                return getAction(player, baseActionIcon, "Forward", ACTION_FAST_FORWARD);
+                return getAction(player, baseActionIcon,
+                        R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD);
 
             case NotificationConstants.SMART_REWIND_PREVIOUS:
                 if (player.playQueue != null && player.playQueue.size() > 1) {
                     return getAction(player, R.drawable.exo_notification_previous,
-                            "Previous", ACTION_PLAY_PREVIOUS);
+                            R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS);
                 } else {
                     return getAction(player, R.drawable.exo_controls_rewind,
-                            "Rewind", ACTION_FAST_REWIND);
+                            R.string.exo_controls_rewind_description, ACTION_FAST_REWIND);
                 }
 
             case NotificationConstants.SMART_FORWARD_NEXT:
                 if (player.playQueue != null && player.playQueue.size() > 1) {
                     return getAction(player, R.drawable.exo_notification_next,
-                            "Next", ACTION_PLAY_NEXT);
+                            R.string.exo_controls_next_description, ACTION_PLAY_NEXT);
                 } else {
                     return getAction(player, R.drawable.exo_controls_fastforward,
-                            "Forward", ACTION_FAST_FORWARD);
+                            R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD);
                 }
 
             case NotificationConstants.PLAY_PAUSE:
-                final boolean pauseOrPlay = player.isPlaying()
+                if (player.isPlaying()
                         || player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
                         || player.getCurrentState() == BasePlayer.STATE_BLOCKED
-                        || player.getCurrentState() == BasePlayer.STATE_BUFFERING;
-                return getAction(player,
-                        pauseOrPlay ? R.drawable.exo_notification_pause
-                                : R.drawable.exo_notification_play,
-                        pauseOrPlay ? "Pause" : "Play",
-                        ACTION_PLAY_PAUSE);
+                        || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
+                    return getAction(player, R.drawable.exo_notification_pause,
+                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
+                } else {
+                    return getAction(player, R.drawable.exo_notification_play,
+                            R.string.exo_controls_play_description, ACTION_PLAY_PAUSE);
+                }
 
             case NotificationConstants.PLAY_PAUSE_BUFFERING:
                 if (player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
                         || player.getCurrentState() == BasePlayer.STATE_BLOCKED
                         || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
                     return getAction(player, R.drawable.ic_hourglass_top_white_24dp_png,
-                            "Buffering", ACTION_BUFFERING);
+                            R.string.notification_action_buffering, ACTION_BUFFERING);
+                } else if (player.isPlaying()) {
+                    return getAction(player, R.drawable.exo_notification_pause,
+                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
                 } else {
-                    return getAction(player,
-                            player.isPlaying() ? R.drawable.exo_notification_pause
-                                    : R.drawable.exo_notification_play,
-                            player.isPlaying() ? "Pause" : "Play",
-                            ACTION_PLAY_PAUSE);
+                    return getAction(player, R.drawable.exo_notification_play,
+                            R.string.exo_controls_play_description, ACTION_PLAY_PAUSE);
                 }
 
             case NotificationConstants.REPEAT:
-                return getAction(player, getRepeatModeDrawable(player.getRepeatMode()),
-                        getRepeatModeTitle(player.getRepeatMode()), ACTION_REPEAT);
+                if (player.getRepeatMode() == REPEAT_MODE_ALL) {
+                    return getAction(player, R.drawable.exo_media_action_repeat_all,
+                            R.string.exo_controls_repeat_all_description, ACTION_REPEAT);
+                } else if (player.getRepeatMode() == REPEAT_MODE_ONE) {
+                    return getAction(player, R.drawable.exo_media_action_repeat_one,
+                            R.string.exo_controls_repeat_one_description, ACTION_REPEAT);
+                } else /* player.getRepeatMode() == REPEAT_MODE_OFF */ {
+                    return getAction(player, R.drawable.exo_media_action_repeat_off,
+                            R.string.exo_controls_repeat_off_description, ACTION_REPEAT);
+                }
 
             case NotificationConstants.SHUFFLE:
-                final boolean shuffled = player.playQueue != null && player.playQueue.isShuffled();
-                return getAction(player,
-                        shuffled ? R.drawable.exo_controls_shuffle_on
-                                : R.drawable.exo_controls_shuffle_off,
-                        shuffled ? "ShuffleOn" : "ShuffleOff",
-                        ACTION_SHUFFLE);
+                if (player.playQueue != null && player.playQueue.isShuffled()) {
+                    return getAction(player, R.drawable.exo_controls_shuffle_on,
+                            R.string.exo_controls_shuffle_on_description, ACTION_SHUFFLE);
+                } else {
+                    return getAction(player, R.drawable.exo_controls_shuffle_off,
+                            R.string.exo_controls_shuffle_off_description, ACTION_SHUFFLE);
+                }
 
             case NotificationConstants.CLOSE:
                 return getAction(player, R.drawable.ic_close_white_24dp_png,
-                        "Close", ACTION_CLOSE);
+                        R.string.close, ACTION_CLOSE);
 
             case NotificationConstants.NOTHING:
             default:
@@ -293,31 +308,11 @@ public final class NotificationUtil {
 
     private NotificationCompat.Action getAction(final VideoPlayerImpl player,
                                                 @DrawableRes final int drawable,
-                                                final String title,
+                                                @StringRes final int title,
                                                 final String intentAction) {
-        return new NotificationCompat.Action(drawable, title, PendingIntent.getBroadcast(
-                player.context, NOTIFICATION_ID, new Intent(intentAction), FLAG_UPDATE_CURRENT));
-    }
-
-    @DrawableRes
-    private int getRepeatModeDrawable(final int repeatMode) {
-        if (repeatMode == REPEAT_MODE_ALL) {
-            return R.drawable.exo_controls_repeat_all;
-        } else if (repeatMode == REPEAT_MODE_ONE) {
-            return R.drawable.exo_controls_repeat_one;
-        } else /* repeatMode == REPEAT_MODE_OFF */ {
-            return R.drawable.exo_controls_repeat_off;
-        }
-    }
-
-    private String getRepeatModeTitle(final int repeatMode) {
-        if (repeatMode == REPEAT_MODE_ALL) {
-            return "RepeatAll";
-        } else if (repeatMode == REPEAT_MODE_ONE) {
-            return "RepeatOne";
-        } else /* repeatMode == REPEAT_MODE_OFF */ {
-            return "RepeatOff";
-        }
+        return new NotificationCompat.Action(drawable, player.context.getString(title),
+                PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
+                        new Intent(intentAction), FLAG_UPDATE_CURRENT));
     }
 
     private Intent getIntentForNotification(final VideoPlayerImpl player) {

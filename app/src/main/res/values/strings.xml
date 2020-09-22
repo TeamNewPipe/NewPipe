@@ -69,16 +69,9 @@
     <string name="notification_actions_summary">Edit each notification action below by tapping on it.\nSelect up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
     <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
 
-    <string name="notification_action_previous">Previous</string>
-    <string name="notification_action_next">Next</string>
-    <string name="notification_action_rewind">Rewind</string>
-    <string name="notification_action_forward">Forward</string>
-    <string name="notification_action_smart_rewind_previous">Rewind / Previous</string>
-    <string name="notification_action_smart_forward_next">Forward / Next</string>
-    <string name="notification_action_play_pause_buffering">Play / Pause / Buffering</string>
-    <string name="notification_action_play_pause">Play / Pause</string>
     <string name="notification_action_repeat">Repeat</string>
     <string name="notification_action_shuffle">Shuffle</string>
+    <string name="notification_action_buffering">Buffering</string>
     <string name="notification_action_nothing">Nothing</string>
 
     <string name="play_audio">Audio</string>
@@ -126,7 +119,6 @@
     <string name="resume_on_audio_focus_gain_title">Resume playing</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phonecalls)</string>
     <string name="download_dialog_title">Download</string>
-    <string name="next_video_title">Next</string>
     <string name="autoplay_title">Autoplay</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
@@ -159,7 +151,6 @@
     <string name="background_player_append">Queued on background player</string>
     <string name="popup_playing_append">Queued on popup player</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
-    <string name="play_btn_text">Play</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
     <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
