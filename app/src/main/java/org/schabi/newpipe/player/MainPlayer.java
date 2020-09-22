@@ -76,8 +76,6 @@ public final class MainPlayer extends Service {
             = "org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND";
     static final String ACTION_FAST_FORWARD
             = "org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD";
-    static final String ACTION_BUFFERING
-            = "org.schabi.newpipe.player.MainPlayer.ACTION_BUFFERING";
     static final String ACTION_SHUFFLE
             = "org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE";
     public static final String ACTION_RECREATE_NOTIFICATION

@@ -26,7 +26,6 @@ import java.util.List;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_BUFFERING;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
@@ -147,9 +146,19 @@ public final class NotificationUtil {
     }
 
 
-    boolean hasSlotWithBuffering() {
-        return notificationSlots[1] == NotificationConstants.PLAY_PAUSE_BUFFERING
-                || notificationSlots[2] == NotificationConstants.PLAY_PAUSE_BUFFERING;
+    @SuppressLint("RestrictedApi")
+    boolean shouldUpdateBufferingSlot() {
+        if (notificationBuilder.mActions.size() < 3) {
+            // this should never happen, but let's make sure notification actions are populated
+            return true;
+        }
+
+        // only second and third slot could contain PLAY_PAUSE_BUFFERING, update them only if they
+        // are not already in the buffering state (the only one with a null action intent)
+        return (notificationSlots[1] == NotificationConstants.PLAY_PAUSE_BUFFERING
+                && notificationBuilder.mActions.get(1).actionIntent != null)
+                || (notificationSlots[2] == NotificationConstants.PLAY_PAUSE_BUFFERING
+                && notificationBuilder.mActions.get(2).actionIntent != null);
     }
 
 
@@ -264,8 +273,10 @@ public final class NotificationUtil {
                 if (player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
                         || player.getCurrentState() == BasePlayer.STATE_BLOCKED
                         || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
-                    return getAction(player, R.drawable.ic_hourglass_top_white_24dp_png,
-                            R.string.notification_action_buffering, ACTION_BUFFERING);
+                    // null intent -> show hourglass icon that does nothing when clicked
+                    return new NotificationCompat.Action(R.drawable.ic_hourglass_top_white_24dp_png,
+                            player.context.getString(R.string.notification_action_buffering),
+                            null);
                 } else if (player.isPlaying()) {
                     return getAction(player, R.drawable.exo_notification_pause,
                             R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);

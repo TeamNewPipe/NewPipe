@@ -105,7 +105,6 @@ import java.util.List;
 
 import static android.content.Context.WINDOW_SERVICE;
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_BUFFERING;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
@@ -191,8 +190,6 @@ public class VideoPlayerImpl extends VideoPlayer
     private boolean isVerticalVideo = false;
     private boolean fragmentIsVisible = false;
     boolean shouldUpdateOnProgress;
-    private boolean isForwardPressed;
-    private boolean isRewindPressed;
 
     private final MainPlayer service;
     private PlayerServiceEventListener fragmentListener;
@@ -1081,16 +1078,8 @@ public class VideoPlayerImpl extends VideoPlayer
         super.onBuffering();
         getRootView().setKeepScreenOn(true);
 
-        if (NotificationUtil.getInstance().hasSlotWithBuffering()
-                && (getCurrentState() == BasePlayer.STATE_PREFLIGHT
-                || getCurrentState() == BasePlayer.STATE_BLOCKED
-                || getCurrentState() == BasePlayer.STATE_BUFFERING)) {
-            if (isForwardPressed || isRewindPressed) {
-                isForwardPressed = false;
-                isRewindPressed = false;
-            } else {
-                NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-            }
+        if (NotificationUtil.getInstance().shouldUpdateBufferingSlot()) {
+            NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
         }
     }
 
@@ -1186,7 +1175,6 @@ public class VideoPlayerImpl extends VideoPlayer
         intentFilter.addAction(ACTION_PLAY_NEXT);
         intentFilter.addAction(ACTION_FAST_REWIND);
         intentFilter.addAction(ACTION_FAST_FORWARD);
-        intentFilter.addAction(ACTION_BUFFERING);
         intentFilter.addAction(ACTION_SHUFFLE);
         intentFilter.addAction(ACTION_RECREATE_NOTIFICATION);
 
@@ -1222,11 +1210,9 @@ public class VideoPlayerImpl extends VideoPlayer
                 onPlayPrevious();
                 break;
             case ACTION_FAST_FORWARD:
-                isForwardPressed = true;
                 onFastForward();
                 break;
             case ACTION_FAST_REWIND:
-                isRewindPressed = true;
                 onFastRewind();
                 break;
             case ACTION_PLAY_PAUSE:
@@ -1239,9 +1225,6 @@ public class VideoPlayerImpl extends VideoPlayer
                 break;
             case ACTION_REPEAT:
                 onRepeatClicked();
-                break;
-            case ACTION_BUFFERING:
-                onBuffering();
                 break;
             case ACTION_SHUFFLE:
                 onShuffleClicked();
