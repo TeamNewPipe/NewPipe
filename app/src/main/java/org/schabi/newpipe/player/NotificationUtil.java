@@ -257,18 +257,6 @@ public final class NotificationUtil {
                             R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD);
                 }
 
-            case NotificationConstants.PLAY_PAUSE:
-                if (player.isPlaying()
-                        || player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
-                        || player.getCurrentState() == BasePlayer.STATE_BLOCKED
-                        || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
-                    return getAction(player, R.drawable.exo_notification_pause,
-                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
-                } else {
-                    return getAction(player, R.drawable.exo_notification_play,
-                            R.string.exo_controls_play_description, ACTION_PLAY_PAUSE);
-                }
-
             case NotificationConstants.PLAY_PAUSE_BUFFERING:
                 if (player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
                         || player.getCurrentState() == BasePlayer.STATE_BLOCKED
@@ -277,7 +265,16 @@ public final class NotificationUtil {
                     return new NotificationCompat.Action(R.drawable.ic_hourglass_top_white_24dp_png,
                             player.context.getString(R.string.notification_action_buffering),
                             null);
-                } else if (player.isPlaying()) {
+                }
+
+            case NotificationConstants.PLAY_PAUSE:
+                if (player.getCurrentState() == BasePlayer.STATE_COMPLETED) {
+                    return getAction(player, R.drawable.ic_replay_white_24dp_png,
+                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
+                } else if (player.isPlaying()
+                        || player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
+                        || player.getCurrentState() == BasePlayer.STATE_BLOCKED
+                        || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
                     return getAction(player, R.drawable.exo_notification_pause,
                             R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
                 } else {
