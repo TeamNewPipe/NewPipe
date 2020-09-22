@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources translatable="false">
+    <!-- App versioning -->
+    <string name="last_used_version" translatable="false">last_used_version</string>
+    <string name="last_used_preferences_version" translatable="false">last_used_preferences_version</string>
+
     <!-- Service -->
     <string-array name="service_list" translatable="false">
         <item>@string/youtube</item>

@@ -20,7 +20,8 @@ public enum UserAction {
     DELETE_FROM_HISTORY("delete from history"),
     PLAY_STREAM("Play stream"),
     DOWNLOAD_POSTPROCESSING("download post-processing"),
-    DOWNLOAD_FAILED("download failed");
+    DOWNLOAD_FAILED("download failed"),
+    PREFERENCES_MIGRATION("migration of preferences");
 
 
     private final String message;
