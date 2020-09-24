@@ -127,7 +127,7 @@
     <string name="show_higher_resolutions_title">Afficher des définitions plus élevées</string>
     <string name="show_higher_resolutions_summary">Seuls certains appareils prennent en charge les vidéos 2K et 4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
-    <string name="popup_remember_size_pos_title">Mémoriser les taille et position de la fenêtre flottante</string>
+    <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
     <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
     <string name="settings_category_popup_title">Flottant</string>
     <string name="filter">Filtre</string>
@@ -617,4 +617,13 @@
     <string name="error_report_open_issue_button_text">Rapporter l’erreur sur GitHub</string>
     <string name="copy_for_github">Copier le rapport formaté</string>
     <string name="search_showing_result_for">Affichage des résultats pour : %s</string>
+    <string name="clear_queue_confirmation_summary">Après le changement d\'un lecteur a un autre, votre liste de lecture pourrait être remplacée</string>
+    <string name="never">Jamais</string>
+    <string name="wifi_only">Uniquement en Wi-Fi</string>
+    <string name="autoplay_summary">Démarrer la lecture automatiquement — %s</string>
+    <string name="title_activity_play_queue">Liste de lecture</string>
+    <string name="unsupported_url_dialog_message">NewPipe n\'a pas pu reconnaitre l\'URL fourni. Voulez vous l\'ouvrir avec une autre méthode \?</string>
+    <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
+    <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
+    <string name="clear_queue_confirmation_title">Demander une confirmation avant d\'effacer la liste de lecture</string>
 </resources>
