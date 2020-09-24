@@ -289,7 +289,7 @@
     <string name="create_playlist">Yeni Oynatma Listesi</string>
     <string name="delete_playlist">Sil</string>
     <string name="rename_playlist">Yeniden adlandır</string>
-    <string name="playlist_name_input">Ad</string>
+    <string name="name">Ad</string>
     <string name="append_playlist">Oynatma Listesine Ekle</string>
     <string name="set_as_playlist_thumbnail">Oynatma listesi küçük resmi olarak ayarla</string>
     <string name="bookmark_playlist">Oynatma listesini yer imlerine ekle</string>
@@ -306,7 +306,6 @@
     <string name="settings_category_debug_title">Hata ayıklama</string>
     <string name="drawer_header_action_paceholder_text">Yakında bir şeyler burada görünecek ;D</string>
     <string name="caption_auto_generated">Kendiliğinden oluşturulan</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Bellek sızıntısı izleme, yığın boşaltımı sırasında uygulamanın yanıt vermemesine neden olabilir</string>
     <string name="enable_disposed_exceptions_title">Yaşam döngüsü dışı hatalarını bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
@@ -567,7 +566,6 @@
         <item quantity="other">%d seçildi</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Boş küme adı</string>
-    <string name="feed_group_dialog_name_input">Ad</string>
     <string name="feed_group_dialog_delete_message">Bu kümeyi silmek istiyor musunuz\?</string>
     <string name="feed_create_new_group_button_title">Yeni</string>
     <string name="settings_category_feed_title">Besleme</string>

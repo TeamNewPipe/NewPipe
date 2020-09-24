@@ -293,7 +293,7 @@
     <string name="create_playlist">Nieuwe afspeellijst</string>
     <string name="delete_playlist">Verwijderen</string>
     <string name="rename_playlist">Naam wijzigen</string>
-    <string name="playlist_name_input">Naam</string>
+    <string name="name">Naam</string>
     <string name="append_playlist">Toevoegen aan afspeellijst</string>
     <string name="set_as_playlist_thumbnail">Instellen als miniatuur voor afspeellijst</string>
     <string name="bookmark_playlist">Afspeellijst toevoegen aan bladwijzers</string>
@@ -310,7 +310,6 @@
     <string name="drawer_header_action_paceholder_text">Hier zal binnenkort iets verschijnen ;D</string>
     <string name="settings_category_debug_title">Foutopsporing</string>
     <string name="caption_auto_generated">Automatisch gegenereerd</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan ervoor zorgen dat de app niet goed meer reageert</string>
     <string name="enable_disposed_exceptions_title">Out-of-lifecycle-fouten melden</string>
     <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen buiten fragment of activiteitscyclus</string>
@@ -564,7 +563,6 @@
         <item quantity="other">%d geselecteerd</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Lege groepsnaam</string>
-    <string name="feed_group_dialog_name_input">Naam</string>
     <string name="feed_group_dialog_delete_message">Wilt u deze groep verwijderen\?</string>
     <string name="feed_create_new_group_button_title">Nieuw</string>
     <string name="settings_category_feed_title">Feed</string>

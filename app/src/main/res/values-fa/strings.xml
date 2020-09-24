@@ -269,7 +269,7 @@
     <string name="create_playlist">فهرست پخش جدید</string>
     <string name="delete_playlist">پاک‌کردن</string>
     <string name="rename_playlist">تغییر نام</string>
-    <string name="playlist_name_input">نام</string>
+    <string name="name">نام</string>
     <string name="append_playlist">افزودن به فهرست پخش</string>
     <string name="set_as_playlist_thumbnail">استفاده به عنوان تصویر فهرست پخش</string>
     <string name="delete_playlist_prompt">این فهرست پخش پاک شود؟</string>
@@ -516,7 +516,6 @@
     <string name="settings_category_feed_title">خوراک</string>
     <string name="feed_create_new_group_button_title">جدید</string>
     <string name="feed_group_dialog_delete_message">می‌خواهید این گروه را پاک کنید؟</string>
-    <string name="feed_group_dialog_name_input">نام</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d مورد انتخاب شده</item>
         <item quantity="other">%d مورد انتخاب شده</item>

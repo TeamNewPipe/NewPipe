@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="view_count_text">%1$ visualizzazioni</string>
+    <string name="view_count_text">%1$s visualizzazioni</string>
     <string name="upload_date_text">Pubblicato il %1$s</string>
     <string name="no_player_found">Nessun lettore multimediale trovato. Installare VLC\?</string>
     <string name="install">Installa</string>
@@ -293,7 +293,7 @@
     <string name="create_playlist">Nuova Playlist</string>
     <string name="delete_playlist">Elimina</string>
     <string name="rename_playlist">Rinomina</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="append_playlist">Aggiungi a Playlist</string>
     <string name="set_as_playlist_thumbnail">Imposta come Copertina Playlist</string>
     <string name="bookmark_playlist">Salva Playlist</string>
@@ -310,7 +310,6 @@
     <string name="drawer_header_action_paceholder_text">A breve qualcosa apparirà qui ;D</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="caption_auto_generated">Generato automaticamente</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Il monitoraggio delle perdite di memoria potrebbe causare la mancata risposta dell\'applicazione durante il dumping dell\'heap</string>
     <string name="enable_disposed_exceptions_title">Segnala Errori \"Out-of-lifecycle\"</string>
     <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
@@ -566,7 +565,6 @@
         <item quantity="one">%d selezionato</item>
         <item quantity="other">%d selezionati</item>
     </plurals>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="feed_group_dialog_delete_message">Eliminare questo gruppo\?</string>
     <string name="feed_create_new_group_button_title">Nuovo</string>
     <string name="settings_category_feed_title">Feed</string>

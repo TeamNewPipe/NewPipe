@@ -333,7 +333,7 @@
     <string name="create_playlist">Ny spellista</string>
     <string name="delete_playlist">Radera</string>
     <string name="rename_playlist">Byt namn</string>
-    <string name="playlist_name_input">Namn</string>
+    <string name="name">Namn</string>
     <string name="append_playlist">Lägg till i spellistan</string>
     <string name="set_as_playlist_thumbnail">Använd som spellistans miniatyrbild</string>
     <string name="bookmark_playlist">Bokmärk spellistan</string>
@@ -350,7 +350,6 @@
     <string name="caption_auto_generated">Autogenererade</string>
     <string name="caption_setting_title">Textning</string>
     <string name="caption_setting_description">Ändra spelarens textskala och bakgrundsstil. Kräver att appen startar om för att träder i kraft.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Minnesläcka övervakning kan orsaka att appen inte svarar under heap dumpning</string>
     <string name="enable_disposed_exceptions_title">Rapportera out-of-lifecycle fel</string>
     <string name="enable_disposed_exceptions_summary">Tvinga rapportering av otillåtna Rx-undantag utanför fragment eller aktivitetslivscykel efter uppstädning</string>
@@ -530,7 +529,6 @@
     <string name="settings_category_feed_title">Flöde</string>
     <string name="feed_create_new_group_button_title">Ny</string>
     <string name="feed_group_dialog_delete_message">Vill du ta bort den här gruppen\?</string>
-    <string name="feed_group_dialog_name_input">Namn</string>
     <string name="feed_group_dialog_empty_name">Tomt gruppnamn</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d vald</item>

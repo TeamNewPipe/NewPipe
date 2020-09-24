@@ -332,7 +332,7 @@
     <string name="create_playlist">Ny spilleliste</string>
     <string name="delete_playlist">Slet</string>
     <string name="rename_playlist">Omdøb</string>
-    <string name="playlist_name_input">Navn</string>
+    <string name="name">Navn</string>
     <string name="append_playlist">Føj til spilleliste</string>
     <string name="delete_playlist_prompt">Slet denne spilleliste\?</string>
     <string name="playlist_creation_success">Spilleliste oprettet</string>
@@ -409,7 +409,6 @@
     <string name="playlist_thumbnail_change_success">Miniaturebillede for spilleliste ændret.</string>
     <string name="playlist_delete_failure">Kunne ikke slette spilleliste.</string>
     <string name="caption_setting_description">Ændr undertekststørrelse og baggrundsstil. Kræver genstart af appen for at træde i kraft.</string>
-    <string name="enable_leak_canary_title">Aktiver LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitorering for hukommelseslækager kan få appen til ikke at svare under heap dumping</string>
     <string name="enable_disposed_exceptions_title">Rapporter out-of-lifecycle-fejl</string>
     <string name="import_export_title">Importer/eksporter</string>

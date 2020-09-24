@@ -302,7 +302,6 @@ odpiranje v pojavnem načinu</string>
     <string name="import_from">Uvozi iz</string>
     <string name="import_title">Uvozi</string>
     <string name="import_export_title">Uvozi/Izvozi</string>
-    <string name="enable_leak_canary_title">Omogoči LeakCanary</string>
     <string name="resize_zoom">Povečaj</string>
     <string name="resize_fill">Napolni</string>
     <string name="playlist_delete_failure">Seznama predvajanja ni bilo mogoče izbrisati.</string>

@@ -105,7 +105,7 @@
     <string name="create_playlist">Crea una llista de reproducció</string>
     <string name="delete_playlist">Elimina</string>
     <string name="rename_playlist">Canvia el nom</string>
-    <string name="playlist_name_input">Nom</string>
+    <string name="name">Nom</string>
     <string name="append_playlist">Afegeix a una llista de reproducció</string>
     <string name="import_title">Importa</string>
     <string name="import_from">Importa des de</string>
@@ -329,7 +329,6 @@
     <string name="resize_fill">Omple</string>
     <string name="resize_zoom">Escala</string>
     <string name="caption_auto_generated">Generats automàticament</string>
-    <string name="enable_leak_canary_title">Habilita el LeakCanary</string>
     <string name="previous_export">Darrera exportació</string>
     <string name="subscriptions_import_unsuccessful">No s\'han pogut importar les subscripcions</string>
     <string name="subscriptions_export_unsuccessful">No s\'han pogut exportar les subscripcions</string>

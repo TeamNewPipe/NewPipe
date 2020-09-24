@@ -337,7 +337,7 @@
     <string name="create_playlist">Стварыць плэйліст</string>
     <string name="delete_playlist">Выдаліць</string>
     <string name="rename_playlist">Перайменаваць</string>
-    <string name="playlist_name_input">Імя</string>
+    <string name="name">Імя</string>
     <string name="append_playlist">Дадаць у плэйліст</string>
     <string name="set_as_playlist_thumbnail">На мініяцюру плэйліста</string>
     <string name="bookmark_playlist">Дадаць плэйліст у закладкі</string>
@@ -354,7 +354,6 @@
     <string name="caption_auto_generated">Створаны аўтаматычна</string>
     <string name="caption_setting_title">Тытры</string>
     <string name="caption_setting_description">Змяніць памер тэкста і фон тытраў. Патрэбен перазапуск</string>
-    <string name="enable_leak_canary_title">Уключыць LeakCanary</string>
     <string name="enable_leak_canary_summary">Маніторынг уцечкі памяці можа прывесці да завісання прыкладання</string>
     <string name="enable_disposed_exceptions_title">Паведамляць пра памылкі жыццёвага цыклу</string>
     <string name="enable_disposed_exceptions_summary">Прымусова паведамляць пра недастаўляемыя Rx-выключэнні па-за фрагментам або жыццёвым цыкле пасля выдалення</string>

@@ -285,7 +285,7 @@
     <string name="override_current_data">Está prestes a substituir a configuração atual.</string>
     <string name="drawer_open">Abrir menu</string>
     <string name="drawer_close">Fechar menu</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="metadata_cache_wipe_title">Limpar os metadados em cache</string>
     <string name="metadata_cache_wipe_summary">Remover todos os dados da página da Web em cache</string>
     <string name="metadata_cache_wipe_complete_notice">Metadados em cache eliminados</string>
@@ -375,7 +375,6 @@
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
     <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o eliminação</string>
@@ -555,7 +554,6 @@
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_create_new_group_button_title">Novo</string>
     <string name="feed_group_dialog_delete_message">Quer apagar este grupo\?</string>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="feed_group_dialog_empty_name">O nome do grupo está vazio</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d selecionada</item>
@@ -602,7 +600,7 @@
 \nSe quiser vê-lo, ative \"Conteúdo com restrição de idade\" nas definições.</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
 \nTem certeza\? Isto não pode ser desfeito!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e tambem os vídeos parcialmente vistos</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e também os vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_title">Remover vídeos vistos\?</string>
     <string name="remove_watched">Remover vistos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de fluxo</string>

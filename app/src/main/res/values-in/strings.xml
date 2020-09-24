@@ -291,7 +291,7 @@
     <string name="create_playlist">Playlist Baru</string>
     <string name="delete_playlist">Hapus</string>
     <string name="rename_playlist">Ubah Nama</string>
-    <string name="playlist_name_input">Nama</string>
+    <string name="name">Nama</string>
     <string name="append_playlist">Tambahkan Ke Playlist</string>
     <string name="set_as_playlist_thumbnail">Atur sebagai Thumbnail Playlist</string>
     <string name="bookmark_playlist">Markah Playlist</string>
@@ -306,7 +306,6 @@
     <string name="resize_fill">Isi</string>
     <string name="resize_zoom">Perbesar</string>
     <string name="caption_auto_generated">Otomatis dibuat</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="no_player_found_toast">Pemutar stream tidak ditemukan (anda bisa memasang VLC untuk memutarnya).</string>
     <string name="controls_download_desc">Unduh berkas stream</string>
     <string name="subscription_change_failed">Tidak bisa merubah subscription</string>
@@ -555,7 +554,6 @@
         <item quantity="other">%d dipilih</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nama grup kosong</string>
-    <string name="feed_group_dialog_name_input">Nama</string>
     <string name="feed_group_dialog_delete_message">Apakah anda ingin menghapus grup ini\?</string>
     <string name="feed_create_new_group_button_title">Baru</string>
     <string name="settings_category_feed_title">Feed</string>

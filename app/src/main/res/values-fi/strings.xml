@@ -334,7 +334,7 @@
     <string name="create_playlist">Uusi soittolista</string>
     <string name="delete_playlist">Poista</string>
     <string name="rename_playlist">Uudelleennimeä</string>
-    <string name="playlist_name_input">Nimi</string>
+    <string name="name">Nimi</string>
     <string name="append_playlist">Lisää soittolistaan</string>
     <string name="set_as_playlist_thumbnail">Aseta soittolistan kuvakkeeksi</string>
     <string name="bookmark_playlist">Tallenna soittolista kirjanmerkkeihin</string>
@@ -351,7 +351,6 @@
     <string name="caption_auto_generated">Automaattisesti luotu</string>
     <string name="caption_setting_title">Tekstitykset</string>
     <string name="caption_setting_description">Muokkaa soittimen tekstitysten kokoa ja taustatyylejä. Asetusten käyttöönotto vaatii uudelleenkäynnistyksen.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Muistivuotojen valvonta voi aiheuttaa ohjelman hidastumisen virhetilanteissa</string>
     <string name="enable_disposed_exceptions_title">Raportoi yhteensopivuusvirheitä, jotka aiheutuvat vanhoista ohjelmista</string>
     <string name="enable_disposed_exceptions_summary">Pakota raportointi toimituskelvottomille Rx-poikkeuksille, jotka ovat poiston jälkeen muistisirpaleiden tai aktiviteettielämänkaaren ulkopuolella</string>
@@ -514,7 +513,6 @@
     <string name="settings_category_feed_title">Syöte</string>
     <string name="feed_create_new_group_button_title">Uusi</string>
     <string name="feed_group_dialog_delete_message">Haluatko poistaa tämän ryhmän\?</string>
-    <string name="feed_group_dialog_name_input">Nimi</string>
     <string name="feed_group_dialog_empty_name">Tyhjä ryhmän nimi</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d valittu</item>

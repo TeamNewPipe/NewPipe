@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feed_create_new_group_button_title">ⴰⵎⴰⵢⵏⵓ</string>
-    <string name="feed_group_dialog_name_input">ⵉⵙⵎ</string>
+    <string name="name">ⵉⵙⵎ</string>
     <plurals name="days">
         <item quantity="one">%d ⵡⴰⵙⵙ</item>
         <item quantity="other">%d ⵓⵙⵙⴰⵏ</item>
@@ -20,7 +20,6 @@
     <string name="playback_step">ⴰⵙⵓⵔⵉⴼ</string>
     <string name="resize_zoom">ⵙⵎⵖⵕ</string>
     <string name="mute">ⵙⵓⵙⵎ</string>
-    <string name="playlist_name_input">ⵉⵙⵎ</string>
     <string name="rename_playlist">ⵙⵏⴼⵍ ⵉⵙⵎ</string>
     <string name="delete_playlist">ⴽⴽⵙ</string>
     <string name="play_queue_audio_settings">ⵜⵉⵙⵖⴰⵍ ⵓⵎⵙⵍⴰⵢ</string>

@@ -294,7 +294,7 @@
     <string name="create_playlist">Lista de reproducción nueva</string>
     <string name="delete_playlist">Eliminar</string>
     <string name="rename_playlist">Cambiar nombre</string>
-    <string name="playlist_name_input">Nombre</string>
+    <string name="name">Nombre</string>
     <string name="append_playlist">Añadir a la lista de reproducción</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura de lista de reproducción</string>
     <string name="bookmark_playlist">Marcar lista de reproducción</string>
@@ -311,7 +311,6 @@
     <string name="resize_zoom">Zoom</string>
     <string name="settings_category_debug_title">Depuración</string>
     <string name="caption_auto_generated">Auto generados</string>
-    <string name="enable_leak_canary_title">Activar LeakCanary</string>
     <string name="enable_leak_canary_summary">La monitorización de fugas de memoria puede causar que la app no responda cuando hay Heap Dump</string>
     <string name="enable_disposed_exceptions_title">Reportar errores fuera del ciclo de duración</string>
     <string name="enable_disposed_exceptions_summary">Forzar reporte de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
@@ -570,7 +569,6 @@
         <item quantity="other">%d elegidas</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nombre de grupo vacío</string>
-    <string name="feed_group_dialog_name_input">Nombre</string>
     <string name="feed_group_dialog_delete_message">¿Borrar este grupo\?</string>
     <string name="feed_create_new_group_button_title">Nuevo</string>
     <string name="settings_category_feed_title">Contenido</string>

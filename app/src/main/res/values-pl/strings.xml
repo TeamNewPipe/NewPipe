@@ -298,7 +298,7 @@
     <string name="create_playlist">Nowa playlista</string>
     <string name="delete_playlist">Usuń</string>
     <string name="rename_playlist">Zmień</string>
-    <string name="playlist_name_input">Nazwa</string>
+    <string name="name">Nazwa</string>
     <string name="append_playlist">Dodaj do playlisty</string>
     <string name="set_as_playlist_thumbnail">Ustaw jako miniaturę playlisty</string>
     <string name="bookmark_playlist">Dodaj do zakładek</string>
@@ -313,7 +313,6 @@
     <string name="resize_fill">Wypełnij</string>
     <string name="resize_zoom">Powiększ</string>
     <string name="caption_auto_generated">Wygenerowane automatycznie</string>
-    <string name="enable_leak_canary_title">Wyciek danych</string>
     <string name="enable_leak_canary_summary">Monitorowanie wycieków pamięci może powodować niestabilność aplikacji podczas zrzutu pamięci</string>
     <string name="enable_disposed_exceptions_title">Zgłaszanie błędów poza cyklem życia</string>
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
@@ -569,7 +568,6 @@
     <string name="settings_category_feed_title">Kanał</string>
     <string name="feed_create_new_group_button_title">Nowy</string>
     <string name="feed_group_dialog_delete_message">Czy chcesz usunąć tę grupę\?</string>
-    <string name="feed_group_dialog_name_input">Nazwa</string>
     <string name="feed_group_dialog_empty_name">Pusta nazwa grupy</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">wybrany %d</item>

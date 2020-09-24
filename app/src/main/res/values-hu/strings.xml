@@ -310,7 +310,7 @@
     <string name="create_playlist">Új lejátszási lista létrehozása</string>
     <string name="delete_playlist">Lejátszási lista törlése</string>
     <string name="rename_playlist">Lejátszási lista átnevezése</string>
-    <string name="playlist_name_input">Név</string>
+    <string name="name">Név</string>
     <string name="append_playlist">Lejátszási listához adás</string>
     <string name="set_as_playlist_thumbnail">Beállítás lejátszási lista előképeként</string>
     <string name="unbookmark_playlist">Könyvjelző törlése</string>
@@ -326,7 +326,6 @@
     <string name="caption_auto_generated">Automatikusan létrehozott</string>
     <string name="caption_setting_title">Feliratok</string>
     <string name="caption_setting_description">Feliratok méretének és hátterének stílusbeli módosítása. A módosítások életbelépésehez az alkalmazás újraindítása szükséges.</string>
-    <string name="enable_leak_canary_title">LeakCanary bekapcsolása</string>
     <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import</string>
     <string name="import_from">Importálás a következőből</string>

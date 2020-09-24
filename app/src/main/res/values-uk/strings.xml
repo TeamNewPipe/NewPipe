@@ -303,7 +303,7 @@
     <string name="create_playlist">Новий список відтворення</string>
     <string name="delete_playlist">Видалити</string>
     <string name="rename_playlist">Змінити назву</string>
-    <string name="playlist_name_input">Назва</string>
+    <string name="name">Назва</string>
     <string name="append_playlist">Додати до списку відтворення</string>
     <string name="set_as_playlist_thumbnail">Призначити ескізом списку відтворення</string>
     <string name="bookmark_playlist">Додати список відтворення до закладок</string>
@@ -318,7 +318,6 @@
     <string name="resize_fill">Заповнити</string>
     <string name="resize_zoom">Збільшити</string>
     <string name="caption_auto_generated">Створені автоматично</string>
-    <string name="enable_leak_canary_title">Увімкнути LeakCanary</string>
     <string name="enable_leak_canary_summary">Моніторинг втрат пам\'яті може призвести до нереагування застосунку під час запису дампу</string>
     <string name="enable_disposed_exceptions_title">Звітувати про помилки життєвого циклу застосунку</string>
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx-винятків, які відбуваються за межами фрагменту або діяльності життєвого циклу після усунення</string>
@@ -538,7 +537,6 @@
     <string name="recaptcha_done_button">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>
     <string name="feed_group_dialog_delete_message">Ви бажаєте видалити цю групу\?</string>
-    <string name="feed_group_dialog_name_input">Назва</string>
     <string name="feed_group_dialog_empty_selection">Підписки не вибрані</string>
     <string name="feed_groups_header_title">Групи каналів</string>
     <plurals name="days">

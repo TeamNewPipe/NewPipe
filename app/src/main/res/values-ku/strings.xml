@@ -268,7 +268,7 @@
     <string name="create_playlist">خشتەی کارپێکردنی نوێ</string>
     <string name="delete_playlist">سڕینەوە</string>
     <string name="rename_playlist">ناوںْوسینەوە</string>
-    <string name="playlist_name_input">ناو</string>
+    <string name="name">ناو</string>
     <string name="append_playlist">زیادکردن بۆ خشتەی کارپێکردن</string>
     <string name="set_as_playlist_thumbnail">دانان لەسەر وێنۆچکەی خشتەی کارپێکردن</string>
     <string name="bookmark_playlist">خشتەی کارپێکردنی نیشانەکراو</string>
@@ -283,7 +283,6 @@
     <string name="resize_fill">پڕ بە ڕونما</string>
     <string name="resize_zoom">هێنانەپێش</string>
     <string name="caption_auto_generated">دانانی خۆکاری</string>
-    <string name="enable_leak_canary_title">چالاککردنی LeakCanary</string>
     <string name="enable_disposed_exceptions_title">سکاڵا لەسەر کێشەکان</string>
     <string name="enable_disposed_exceptions_summary">سکاڵاکردن لەسەر نەگەیاندنی Rx ی پەسەندنەکرا لە دەرەوەی پارچە یان چالاکی لەدوای پوختەکردن</string>
     <string name="import_export_title">هێنانەوە/خەزنکردن</string>
@@ -571,7 +570,6 @@
         <item quantity="other">%d هەڵبژێردراو</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">ناوی کۆمەڵە بەتاڵە</string>
-    <string name="feed_group_dialog_name_input">ناو</string>
     <string name="feed_group_dialog_delete_message">ئایا دەتەوێ ئەم کۆمەڵەیە بسڕیتەوە؟</string>
     <string name="feed_create_new_group_button_title">نوێ</string>
     <string name="settings_category_feed_title">دیار</string>

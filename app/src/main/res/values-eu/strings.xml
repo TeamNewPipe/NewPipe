@@ -322,7 +322,7 @@
     <string name="create_playlist">Erreprodukzio-zerrenda berria</string>
     <string name="delete_playlist">Ezabatu</string>
     <string name="rename_playlist">Aldatu izena</string>
-    <string name="playlist_name_input">Izena</string>
+    <string name="name">Izena</string>
     <string name="append_playlist">Gehitu erreprodukzio-zerrendara</string>
     <string name="set_as_playlist_thumbnail">Ezarri erreprodukzio-zerrendaren iruditxo gisa</string>
     <string name="bookmark_playlist">Gogoko erreprodukzio-zerrenda</string>
@@ -339,7 +339,6 @@
     <string name="caption_auto_generated">Automatikoki sortuak</string>
     <string name="caption_setting_title">Azpitituluak</string>
     <string name="caption_setting_description">Aldatu azpitituluen testuaren eskala eta atzealdeko estiloa. Aplikazioa berrabiarazi behar da aldaketak aplikatzeko.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Memoria galeren monitorizazioa. Aplikazioak agian ez du erantzungo memoriaren aitortza egin bitartean</string>
     <string name="enable_disposed_exceptions_title">Eman bizitza-ziklo kanpoko erroreen berri</string>
     <string name="import_export_title">Inportatu/esportatu</string>
@@ -561,7 +560,6 @@
     <string name="settings_category_feed_title">Jarioa</string>
     <string name="feed_create_new_group_button_title">Berria</string>
     <string name="feed_group_dialog_delete_message">Talde hau ezabatu nahi duzu\?</string>
-    <string name="feed_group_dialog_name_input">Izena</string>
     <string name="feed_group_dialog_empty_name">Talde izena hutsik</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d hautatuta</item>

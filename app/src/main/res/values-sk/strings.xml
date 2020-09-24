@@ -296,7 +296,7 @@
     <string name="create_playlist">Nový zoznam skladieb</string>
     <string name="delete_playlist">Vymazať</string>
     <string name="rename_playlist">Premenovať</string>
-    <string name="playlist_name_input">Názov</string>
+    <string name="name">Názov</string>
     <string name="append_playlist">Pridať do zoznamu skladieb</string>
     <string name="set_as_playlist_thumbnail">Nastaviť ako miniatúru zoznamu skladieb</string>
     <string name="bookmark_playlist">Záložka zoznamu skladieb</string>
@@ -335,7 +335,6 @@
     <string name="caption_auto_generated">Automaticky vygenerované</string>
     <string name="caption_setting_title">Titulky</string>
     <string name="caption_setting_description">Upravte mierku textu titulkov prehrávača a štýly pozadia. Vyžaduje sa reštart aplikácie.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitorovanie pretečenia pamäte môže spôsobiť, že aplikácia nebude reagovať</string>
     <string name="enable_disposed_exceptions_title">Nahlásiť mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynútiť hlásenie výnimiek nedoručiteľných Rx mimo časového cyklu fragmentov alebo aktivity po zneškodnení</string>
@@ -577,7 +576,6 @@
         <item quantity="other">%d vybraných</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Bez názvu skupiny</string>
-    <string name="feed_group_dialog_name_input">Názov</string>
     <string name="feed_group_dialog_delete_message">Chcete zmazať vybranú skupinu\?</string>
     <string name="feed_create_new_group_button_title">Nová</string>
     <string name="settings_category_feed_title">Zdroj</string>

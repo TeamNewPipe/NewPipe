@@ -293,7 +293,7 @@
     <string name="create_playlist">Ny spilleliste</string>
     <string name="delete_playlist">Slett</string>
     <string name="rename_playlist">Gi nytt navn</string>
-    <string name="playlist_name_input">Navn</string>
+    <string name="name">Navn</string>
     <string name="append_playlist">Legg til i spilleliste</string>
     <string name="set_as_playlist_thumbnail">Sett som miniatyrbilde for spilleliste</string>
     <string name="bookmark_playlist">Bokmerk spilleliste</string>
@@ -316,7 +316,6 @@
     <string name="file_name_empty_error">Filnavn kan ikke være tomt</string>
     <string name="error_occurred_detail">En feil inntraff: %1$s</string>
     <string name="caption_auto_generated">Auto-generert</string>
-    <string name="enable_leak_canary_title">Skru på LeakCanary</string>
     <string name="import_title">Importer</string>
     <string name="import_from">Importer fra</string>
     <string name="export_to">Eksporter til</string>
@@ -517,7 +516,7 @@
     <string name="deleted_downloads">Slettet %1$d nedlastninger</string>
     <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde på låseskjerm</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises ent videominiatyrbilde på låseskjermen</string>
-    <string name="peertube_instance_url_summary">Velg dine favoritter blandt PeerTube-instansene</string>
+    <string name="peertube_instance_url_summary">Velg dine favoritter blant PeerTube-instansene</string>
     <string name="peertube_instance_url_help">Finn instansene som passer deg best på %s</string>
     <string name="peertube_instance_add_title">Legg til instans</string>
     <string name="peertube_instance_add_help">Skriv inn nettadresse til instans</string>
@@ -555,7 +554,6 @@
     </plurals>
     <string name="feed_subscription_not_loaded_count">Ikke innlastet: %d</string>
     <string name="feed_group_dialog_empty_name">Tomt gruppenavn</string>
-    <string name="feed_group_dialog_name_input">Navn</string>
     <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen\?</string>
     <string name="feed_create_new_group_button_title">Ny</string>
     <string name="feed_update_threshold_option_always_update">Alltid oppdater</string>

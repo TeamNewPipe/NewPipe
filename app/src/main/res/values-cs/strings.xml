@@ -297,7 +297,7 @@
     <string name="create_playlist">Nový playlist</string>
     <string name="delete_playlist">Vymazat</string>
     <string name="rename_playlist">Přejmenovat</string>
-    <string name="playlist_name_input">Jméno</string>
+    <string name="name">Jméno</string>
     <string name="append_playlist">Přidat do playlistu</string>
     <string name="set_as_playlist_thumbnail">Nastavit jako náhled playlistu</string>
     <string name="bookmark_playlist">Přidat playlist do záložek</string>
@@ -313,7 +313,6 @@
     <string name="resize_zoom">Zvětšit</string>
     <string name="settings_category_debug_title">Ladění</string>
     <string name="caption_auto_generated">Automaticky generováno</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitoring úniku paměti může způsobit nereagování aplikace při heap dumpingu</string>
     <string name="enable_disposed_exceptions_title">Nahlásit mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynutit hlášení nedoručitelných výjimek Rx mimo životnost fragmentu nebo aktivity po odstranění</string>
@@ -577,7 +576,6 @@
         <item quantity="other">%d vybráno</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Prázdné jméno skupiny</string>
-    <string name="feed_group_dialog_name_input">Jméno</string>
     <string name="feed_group_dialog_delete_message">Přejete si smazat tuto skupinu\?</string>
     <string name="feed_create_new_group_button_title">Nová</string>
     <string name="settings_category_feed_title">Novinky</string>

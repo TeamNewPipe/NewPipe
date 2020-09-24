@@ -290,7 +290,7 @@
     <string name="create_playlist">Nouvelle liste de lecture</string>
     <string name="delete_playlist">Supprimer</string>
     <string name="rename_playlist">Renommer</string>
-    <string name="playlist_name_input">Nom</string>
+    <string name="name">Nom</string>
     <string name="append_playlist">Ajouter à la liste de lecture</string>
     <string name="set_as_playlist_thumbnail">Définir comme miniature de la liste de lecture</string>
     <string name="bookmark_playlist">Enregister la liste de lecture</string>
@@ -325,7 +325,6 @@
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">La surveillance des fuites de mémoire peut geler l’application durant le vidage du tas</string>
     <string name="enable_disposed_exceptions_title">Rapporter les erreurs hors cycle de vie</string>
     <string name="enable_disposed_exceptions_summary">Forcer le rapport des exceptions Rx non livrables en dehors des fragments ou activités durant le cycle de vie après traitement</string>
@@ -568,7 +567,6 @@
         <item quantity="other">%d sélectionnés</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nom de groupe vide</string>
-    <string name="feed_group_dialog_name_input">Nom</string>
     <string name="feed_group_dialog_delete_message">Voulez-vous supprimer ce groupe ?</string>
     <string name="feed_create_new_group_button_title">Nouveau</string>
     <string name="settings_category_feed_title">Flux</string>

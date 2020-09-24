@@ -357,7 +357,7 @@
     <string name="create_playlist">नया प्लेलिस्ट</string>
     <string name="delete_playlist">मेटाउ</string>
     <string name="rename_playlist">पुनः नामकरण</string>
-    <string name="playlist_name_input">नाम</string>
+    <string name="name">नाम</string>
     <string name="append_playlist">प्लेसूचीमा थप्नुहोस</string>
     <string name="set_as_playlist_thumbnail">प्लेलिस्ट थम्बनेल रूपमा सेट</string>
     <string name="bookmark_playlist">बुकमार्क प्लेलिस्ट</string>
@@ -374,7 +374,6 @@
     <string name="caption_auto_generated">स्वतः उत्पन्न</string>
     <string name="caption_setting_title">क्याप्सनहरु</string>
     <string name="caption_setting_description">प्लायेरको क्याप्सन आकार मात्रा र पृष्ठभूमि शैलीहरू परिवर्तन। प्रभाव लागु हुन एप पुन: सुरु गर्न आवश्यक छ।</string>
-    <string name="enable_leak_canary_title">लिक केनरी (LeakCanary)</string>
     <string name="enable_leak_canary_summary">मेमोरी लिक अनुगमनका कारण हिप डम्पिङ्ग (heap dumping) गर्दा एप अडकिन सक्छ</string>
     <string name="enable_disposed_exceptions_title">बाहिर-को-जीवनचक्र त्रुटिहरू रिपोर्ट गर</string>
     <string name="enable_disposed_exceptions_summary">शक्ति निपटान पछि खण्ड वा गतिविधि जीवनचक्र को undeliverable Rx अपवाद बाहिर को रिपोर्ट</string>
@@ -563,7 +562,6 @@
     <string name="settings_category_feed_title">फिड</string>
     <string name="feed_create_new_group_button_title">नयाँ</string>
     <string name="feed_group_dialog_delete_message">के तपाइँ यो समूह हटाउन चाहानुहुन्छ\?</string>
-    <string name="feed_group_dialog_name_input">नाम</string>
     <string name="feed_group_dialog_empty_name">समूहको नाम खाली गर</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d चयन</item>

@@ -330,7 +330,7 @@
     <string name="create_playlist">Tạo playlist mới</string>
     <string name="delete_playlist">Xóa playlist</string>
     <string name="rename_playlist">Đổi tên playlist</string>
-    <string name="playlist_name_input">Tên</string>
+    <string name="name">Tên</string>
     <string name="append_playlist">Thêm vào playlist</string>
     <string name="set_as_playlist_thumbnail">Đặt làm hình thu nhỏ của playlist</string>
     <string name="bookmark_playlist">Đánh dấu playlist này</string>
@@ -347,7 +347,6 @@
     <string name="caption_auto_generated">Tự động tạo ra</string>
     <string name="caption_setting_title">Phụ đề</string>
     <string name="caption_setting_description">Sửa cỡ chữ và kiểu màu nền phụ đề. Yêu cầu khởi động lại ứng dụng để có hiệu lực.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Theo dõi rò rỉ bộ nhớ có thể khiến ứng dụng trở nên không phản hồi khi đổ xô đống</string>
     <string name="enable_disposed_exceptions_title">Báo các lỗi out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Buộc báo cáo ngoại lệ Rx không thể gửi được bên ngoài vòng đời của mảnh hoặc hoạt động sau khi xử lý</string>
@@ -585,7 +584,6 @@
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_create_new_group_button_title">Tạo</string>
     <string name="feed_group_dialog_delete_message">Bạn muốn xóa nhóm kênh này\?</string>
-    <string name="feed_group_dialog_name_input">Tên</string>
     <string name="feed_group_dialog_empty_name">Tên nhóm kênh trống</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="other">Đã chọn %d</item>

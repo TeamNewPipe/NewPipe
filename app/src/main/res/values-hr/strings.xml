@@ -258,7 +258,7 @@
     <string name="create_playlist">Nova reprodukcijska lista</string>
     <string name="delete_playlist">Izbriši</string>
     <string name="rename_playlist">Preimenuj</string>
-    <string name="playlist_name_input">Ime liste</string>
+    <string name="name">Ime</string>
     <string name="append_playlist">Dodaj na reprodukcijsku listu</string>
     <string name="set_as_playlist_thumbnail">Postavi kao sliku na listu</string>
     <string name="bookmark_playlist">Markirajte reprodukcijsku listu</string>
@@ -273,7 +273,6 @@
     <string name="resize_fill">Ispuniti</string>
     <string name="resize_zoom">Povećaj</string>
     <string name="caption_auto_generated">Auto generirano</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitoring curenja memorije može uzrokovati greške u radu aplikacije prilikom odlaganje gomile</string>
     <string name="enable_disposed_exceptions_title">Izvijestite o pogreškama izvan životnog ciklusa</string>
     <string name="show_info">Prikaži informacije</string>
@@ -503,7 +502,6 @@
     <string name="unmute">Uključi</string>
     <string name="help">Pomoć</string>
     <string name="feed_notification_loading">Učitavanje feeda…</string>
-    <string name="feed_group_dialog_name_input">Ime</string>
     <string name="feed_group_dialog_delete_message">Želite li izbrisati ovu grupu\?</string>
     <string name="feed_create_new_group_button_title">Novi</string>
     <string name="feed_update_threshold_option_always_update">Uvijek ažuriraj</string>

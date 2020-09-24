@@ -324,7 +324,7 @@
     <string name="create_playlist">新建播放列表</string>
     <string name="delete_playlist">删除</string>
     <string name="rename_playlist">重命名</string>
-    <string name="playlist_name_input">名称</string>
+    <string name="name">名称</string>
     <string name="append_playlist">添加到播放列表</string>
     <string name="set_as_playlist_thumbnail">设为播放列表缩略图</string>
     <string name="bookmark_playlist">收藏播放列表</string>
@@ -341,7 +341,6 @@
     <string name="drawer_header_action_paceholder_text">敬请期待</string>
     <string name="settings_category_debug_title">调试</string>
     <string name="caption_auto_generated">自动生成</string>
-    <string name="enable_leak_canary_title">启用LeakCanary</string>
     <string name="enable_leak_canary_summary">『内存泄漏监视』可能导致应用在『核心转储』时无响应</string>
     <string name="enable_disposed_exceptions_title">报告『提前结束Android生命周期』错误</string>
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的Activity或Fragment生命周期之外的Rx异常</string>
@@ -556,7 +555,6 @@
         <item quantity="other">已选中%d</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">组名为空</string>
-    <string name="feed_group_dialog_name_input">名称</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
     <string name="settings_category_feed_title">订阅</string>

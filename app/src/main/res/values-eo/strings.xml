@@ -190,7 +190,7 @@
     <string name="create_playlist">Nova ludlisto</string>
     <string name="delete_playlist">Forviŝi</string>
     <string name="rename_playlist">Alinomi</string>
-    <string name="playlist_name_input">Nomo</string>
+    <string name="name">Nomo</string>
     <string name="append_playlist">Aldoni al la ludlisto</string>
     <string name="set_as_playlist_thumbnail">Meti kiel bildeto de ludlisto</string>
     <string name="bookmark_playlist">Legosigno Ludlisto</string>
@@ -402,7 +402,6 @@
     <string name="resize_zoom">Zomi</string>
     <string name="drawer_header_action_paceholder_text">Io aperos ĉi tie baldaŭ ;D</string>
     <string name="caption_auto_generated">Aŭtomate generita</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">La monitorado de la memorlikadoj povas frostigi la apon dum la hejta dumpingo</string>
     <string name="enable_disposed_exceptions_title">Signali ekster-vivciklajn erarojn</string>
     <string name="enable_disposed_exceptions_summary">Perforti signalante neenretigaj Rx esceptoj eksere la fragmento aŭ aktiveco vivciklo post dispono</string>
@@ -564,7 +563,6 @@
     </plurals>
     <string name="feed_group_dialog_empty_selection">No subscription selected</string>
     <string name="feed_group_dialog_empty_name">Malplena grupa nomo</string>
-    <string name="feed_group_dialog_name_input">Nomo</string>
     <string name="feed_group_dialog_delete_message">Ĉu vi volas forviŝi tion grupon?</string>
     <string name="feed_create_new_group_button_title">Nova</string>
     <string name="settings_category_feed_title">Abonfluo</string>
