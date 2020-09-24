@@ -33,8 +33,8 @@
     <string name="list_thumbnail_view_description">Video-Vorschaubild</string>
     <string name="detail_thumbnail_view_description">Video abspielen, Dauer:</string>
     <string name="detail_uploader_thumbnail_view_description">Avatarbild des Uploaders</string>
-    <string name="detail_dislikes_img_view_description">Gefällt nicht</string>
-    <string name="detail_likes_img_view_description">Gefällt</string>
+    <string name="detail_dislikes_img_view_description">Gefällt mir nicht</string>
+    <string name="detail_likes_img_view_description">Gefällt mir</string>
     <string name="use_external_video_player_title">Externen Video-Player verwenden</string>
     <string name="use_external_audio_player_title">Externen Audio-Player verwenden</string>
     <string name="background_player_playing_toast">Im Hintergrund abspielen</string>
@@ -579,7 +579,7 @@
     <string name="feed_oldest_subscription_update">Abos zuletzt aktualisiert: %s</string>
     <string name="feed_update_threshold_title">Grenzwert für Feed-Aktualisierung</string>
     <string name="feed_use_dedicated_fetch_method_title">Aus fest zugeordnetem Feed abholen wenn verfügbar</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft inkomplette Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft unvollständige Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status).</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Glaubst du, dass das Laden von Feeds zu langsam ist\? Wenn ja, versuche den Schnelllademodus einzuschalten (du kannst ihn in den Einstellungen oder über die Schaltfläche unten ändern).
 \n
 \nNewPipe bietet zwei Feed-Ladestrategien:
@@ -614,4 +614,9 @@
     <string name="channel_created_by">Erstellt von %s</string>
     <string name="video_detail_by">Von %s</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Nur nicht gruppierte Abonnements anzeigen</string>
+    <string name="playlist_page_summary">Playlist-Seite</string>
+    <string name="no_playlist_bookmarked_yet">Bisher keine Lesezeichen für Wiedergabelisten</string>
+    <string name="select_a_playlist">Playlist auswählen</string>
+    <string name="error_report_open_github_notice">Bitte überprüfen Sie, ob es schon Fragen zu diesem Thema gibt. Doppelt erstellte Tickets kosten uns Zeit, die wir nutzen könnten, um diesen Fehler zu beheben.</string>
+    <string name="search_showing_result_for">Zeige Ergebnisse für: %s</string>
 </resources>

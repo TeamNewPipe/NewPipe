@@ -510,4 +510,13 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">Omogući brz način</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Onemogući brz način</string>
     <string name="error_insufficient_storage">Memorija uređaja je popunjena</string>
+    <string name="most_liked">Najomiljenije</string>
+    <string name="subtitle_activity_recaptcha">Pritisnite \"Gotovo\" kad riješeno</string>
+    <string name="recaptcha_done_button">Gotovo</string>
+    <string name="infinite_videos">∞ videozapisa</string>
+    <string name="more_than_100_videos">100+ videozapisa</string>
+    <string name="error_report_open_issue_button_text">Prijavite grešku na GitHub</string>
+    <string name="artists">Umjetnici</string>
+    <string name="albums">Albumi</string>
+    <string name="songs">Pjesme</string>
 </resources>

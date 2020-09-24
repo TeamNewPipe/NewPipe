@@ -62,7 +62,7 @@
     <string name="autoplay_by_calling_app_summary">Prehrá video pri zavolaní NewPipe inou aplikáciou</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Vekovo obmedzený obsah</string>
-    <string name="video_is_age_restricted">Toto video je vekovo obmedzené. Povoľte zobrazenie obsahu v nastavení.</string>
+    <string name="video_is_age_restricted">Zobrazit video s vekovým obmezením. Zmenit túto voľbu môžete v nastaveniach.</string>
     <string name="duration_live">Naživo</string>
     <string name="light_parsing_error">Nemožno kompletne zanalyzovať web</string>
     <string name="could_not_setup_download_menu">Nemožno nastaviť menu preberania</string>
@@ -105,7 +105,7 @@
     <string name="error_report_title">Hlásenie o chybe</string>
     <string name="could_not_load_image">Nemožno načítať obrázok</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
-    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:</string>
+    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nKrajina Obsahu:\\nJazyk Aplikácie:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="black_theme_title">Čierna</string>
     <string name="all">Všetko</string>
@@ -218,7 +218,7 @@
     <string name="tab_bookmarks">Uložené zoznamy</string>
     <string name="controls_add_to_playlist_title">Pridať do</string>
     <string name="show_hold_to_append_title">Zobrazovať tip \"Pridať podržaním\"</string>
-    <string name="show_hold_to_append_summary">Zobraziť tip pre stlačenie tlačidiel \"Pozadie\" alebo \"V okne\" na stránke videa</string>
+    <string name="show_hold_to_append_summary">Zobraziť tip pre stlačenie tlačidiel \"Pozadie\" alebo \"V okne\" v detailoch videa</string>
     <string name="default_content_country_title">Predvolený obsah pre krajinu</string>
     <string name="service_title">Služba</string>
     <string name="background_player_append">Pridané do zoznamu prehrávača na pozadí</string>
@@ -252,7 +252,7 @@
     <string name="donation_encouragement">Aplikácia NewPipe je vyvíjaná dobrovoľníkmi vo voľnom čase. Ak sa vám aplikácia páči, odmeňte vývojárov aby mohli NewPipe naďalej vylepšovať. Určite ich poteší napríklad šálka dobrej kávy.</string>
     <string name="give_back">Daruj</string>
     <string name="website_title">Webstránka</string>
-    <string name="website_encouragement">"Pre viac informácií  a noviniek navštívte webstránku NewPipe."</string>
+    <string name="website_encouragement">Pre viac informácií a noviniek navštívte webstránku NewPipe.</string>
     <string name="delete_item_search_history">Chcete odstrániť túto položku z histórie vyhľadávania?</string>
     <string name="delete_stream_history_prompt">Chcete odstrániť túto položku z histórie pozretých videí?</string>
     <string name="delete_all_history_prompt">Ste si istý, že chcete vymazať všetky položky z histórie?</string>
@@ -340,10 +340,8 @@
     <string name="enable_disposed_exceptions_title">Nahlásiť mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynútiť hlásenie výnimiek nedoručiteľných Rx mimo časového cyklu fragmentov alebo aktivity po zneškodnení</string>
     <string name="import_export_title">Import/export</string>
-    <string name="import_title">Import
-\n</string>
-    <string name="import_from">Importovať z
-\n</string>
+    <string name="import_title">Import</string>
+    <string name="import_from">Importovať z</string>
     <string name="export_to">Exportovať do</string>
     <string name="import_ongoing">Importovanie…</string>
     <string name="export_ongoing">Exportovanie…</string>
@@ -351,18 +349,17 @@
     <string name="previous_export">Predchádzajúci export</string>
     <string name="subscriptions_import_unsuccessful">Nemožno importovať odbery</string>
     <string name="subscriptions_export_unsuccessful">Nemožno exportovať odbery</string>
-    <string name="import_youtube_instructions">Import odberov služby YouTube pomocou exportovaného zoznamu
+    <string name="import_youtube_instructions">Import odberov služby YouTube pomocou exportovaného zoznamu 
 \n 
 \n1. Prejdite na túto adresu URL: %1$s 
 \n2. Po výzve sa prihláste do svojho účtu 
-\n3. Sťahovanie by malo začať (to je exportovaný zoznam) 
-\n</string>
-    <string name="import_soundcloud_instructions">"Importovať SoundCloud profil zadaním URL adresy alebo vášho ID: 
+\n3. Sťahovanie by malo začať (to je exportovaný zoznam)</string>
+    <string name="import_soundcloud_instructions">Importovať SoundCloud profil zadaním URL adresy alebo vášho ID:
 \n
-\n1. Prepnite režim na \"desktop\" (web nie je dostupný pre mobilné zariadenia) 
+\n1. Prepnite režim na \"desktop\" (web nie je dostupný pre mobilné zariadenia)
 \n2. Prejdite na túto URL adresu: %1$s
-\n3. Po výzve sa prihláste do svojho účtu 
-\n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní. "</string>
+\n3. Po výzve sa prihláste do svojho účtu
+\n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní.</string>
     <string name="import_soundcloud_instructions_hint">vašeID, soundcloud.com/vašeid</string>
     <string name="import_network_expensive_warning">Operácia môže byť náročná na počet prenesených dát.
 \n
@@ -370,7 +367,7 @@
     <string name="playback_speed_control">Ovládanie rýchlosti prehrávania</string>
     <string name="playback_tempo">Rýchlosť</string>
     <string name="playback_pitch">Výška</string>
-    <string name="unhook_checkbox">Spomalenie (môže spôsobovať skreslenie)</string>
+    <string name="unhook_checkbox">Spraviť nezavislími (môže spôsobovať skreslenie)</string>
     <string name="clear_views_history_title">Vymazať históriu pozretí</string>
     <string name="clear_views_history_summary">Odstráni históriu a pozície prehrávaných streamov</string>
     <string name="delete_view_history_alert">Vymazať celú históriu pozretí\?</string>
@@ -386,7 +383,8 @@
 \nNewPipe v ochrane súkromia podrobne vysvetľuje, aké údaje budú odoslané a uložené pri hlásení o páde.</string>
     <string name="read_privacy_policy">Prečítajte si pravidlá ochrany osobných údajov</string>
     <string name="import_settings">Chcete zároveň importovať aj nastavenia?</string>
-    <string name="start_accept_privacy_policy">V súlade s Európskym Všeobecným Nariadením o Ochrane Údajov (GDPR), chceme upriamiť vašu pozornosť na ochranu osobných údajov v NewPipe. Starostlivo si ich prečítajte. Musíte ich prijať pred nahlásením chyby.</string>
+    <string name="start_accept_privacy_policy">V súlade s Európskym Všeobecným Nariadením o Ochrane Údajov (GDPR), chceme upriamiť vašu pozornosť na ochranu osobných údajov v NewPipe. Starostlivo si ich prečítajte.
+\nMusíte ich prijať pred nahlásením chyby.</string>
     <string name="accept">Prijať</string>
     <string name="decline">Odmietnuť</string>
     <string name="limit_data_usage_none_description">Bez limitu</string>
@@ -494,7 +492,7 @@
     <string name="downloads_storage_ask_summary_kitkat">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára
 \nZvoľte SAF pokiaľ chcete ukladať na externé úložisko</string>
     <string name="downloads_storage_use_saf_title">Použiť SAF</string>
-    <string name="downloads_storage_use_saf_summary">Storage Access Framework umožňuje sťahovanie na externú SD kartu.
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework umožňuje sťahovanie na externú SD kartu. 
 \nPoznámka: Niektoré zariadenia nie sú kompatibilné</string>
     <string name="clear_playback_states_title">Odstrániť pozície prehrávania</string>
     <string name="clear_playback_states_summary">Odstráni všetky pozície prehrávania</string>
@@ -518,7 +516,7 @@
     <string name="seek_duration_title">Dĺžka rýchleho pretáčania</string>
     <string name="peertube_instance_url_title">Inštancie PeerTube</string>
     <string name="peertube_instance_url_summary">Vyberte si svoje obľúbené inštancie PeerTube</string>
-    <string name="peertube_instance_url_help">Nájdite najvyhovujúcejšie inštancie na %s</string>
+    <string name="peertube_instance_url_help">Vyhladať inštancie, ktoré sa vám páčia, na %s</string>
     <string name="peertube_instance_add_title">Pridať inštanciu</string>
     <string name="peertube_instance_add_help">Vložiť URL inštancie</string>
     <string name="peertube_instance_add_fail">Nepodarilo sa overiť inštanciu</string>
@@ -590,16 +588,16 @@
     <string name="feed_use_dedicated_fetch_method_summary">Služba je dostupná len pre určité zdroje, zvyčajne je rýchlejšia ale môže vrátiť obmedzený počet položiek alebo neúplné informácie (napr. dĺžka, typ, status).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Povoliť rýchly režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Zakázať rýchly režim</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že načítavanie informačného kanála je príliš pomalé\? Ak áno, skúste povoliť rýchle načítanie (môžete ho zmeniť v nastaveniach alebo stlačením tlačidla nižšie).
-\n
-\nNewPipe ponúka dve stratégie načítania informačného kanála:
-\n• Načítava sa celý kanál prihlásenia na odber, ktorý je pomalý, ale úplný.
-\n• Používanie vyhradeného koncového bodu služby, ktorý je rýchly, ale zvyčajne nie je kompletný.
-\n
-\nRozdiel medzi nimi je ten, že v prípade rýchleho videa zvyčajne chýbajú nejaké informácie, napríklad trvanie alebo typ položky (nedá sa rozlíšiť medzi živými videami a normálnymi videami) a môže sa vrátiť menej položiek.
-\n
-\nYouTube je príkladom služby, ktorá ponúka túto rýchlu metódu s informačným kanálom RSS.
-\n
+    <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že načítavanie informačného kanála je príliš pomalé\? Ak áno, skúste povoliť rýchle načítanie (môžete ho zmeniť v nastaveniach alebo stlačením tlačidla nižšie). 
+\n 
+\nNewPipe ponúka dve stratégie načítania informačného kanála: 
+\n• Načítava sa celý kanál prihlásenia na odber, ktorý je pomalý, ale úplný. 
+\n• Používanie vyhradeného koncového bodu služby, ktorý je rýchly, ale zvyčajne nie je kompletný. 
+\n 
+\nRozdiel medzi nimi je ten, že v prípade rýchleho zvyčajne chýbajú nejaké informácie, napríklad trvanie alebo typ položky (nedá sa rozlíšiť medzi živými videami a normálnymi videami) a môže načítať menej položiek. 
+\n 
+\nYouTube je príkladom služby, ktorá ponúka túto rýchlu metódu s informačným kanálom RSS. 
+\n 
 \nTakže výber sa zredukuje na to, čo uprednostňujete: rýchlosť alebo presné informácie.</string>
     <string name="content_not_supported">Tento obsah ešte nie je podporovaný v NwPipe.
 \n
@@ -623,4 +621,7 @@
     <string name="video_detail_by">%s</string>
     <string name="channel_created_by">Vytvoril %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Minuatúrny avatar kanála</string>
+    <string name="error_report_open_issue_button_text">Nahlásiť chybu na GitHub</string>
+    <string name="copy_for_github">Kopírovať formátované hlásenie</string>
+    <string name="search_showing_result_for">Zobrazujú sa výsledky pre: %s</string>
 </resources>

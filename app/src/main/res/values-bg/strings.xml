@@ -413,4 +413,5 @@
     <string name="settings_category_updates_title">Промени</string>
     <string name="enable_playback_resume_title">Продължи възпроизвеждане</string>
     <string name="settings_category_clear_data_title">Изтрии данни</string>
+    <string name="search_showing_result_for">Показване на резултати за: %s</string>
 </resources>

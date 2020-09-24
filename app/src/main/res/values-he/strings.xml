@@ -97,7 +97,7 @@
     <string name="error_snackbar_action">דיווח</string>
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
-    <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nשעון גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
+    <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nמדינת התוכן:\\nשפת היישומון:\\nשירות:\\nשעון גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
     <string name="subscribe_button_title">עריכת מינוי</string>
     <string name="subscribed_button_title">נרשמת</string>
     <string name="channel_unsubscribed">ביטול מינוי לערוץ</string>
@@ -632,4 +632,11 @@
     <string name="channel_created_by">נוצר ע״י %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">תמונה ממוזערת של הערוץ</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">להציג רק מינויים שאינם בקבוצות</string>
+    <string name="playlist_page_summary">עמוד רשימת נגינה</string>
+    <string name="no_playlist_bookmarked_yet">אין עדיין סימניות ברשימת הנגינה</string>
+    <string name="select_a_playlist">בחירת רשימת נגינה</string>
+    <string name="error_report_open_github_notice">נא לבדוק אם כבר קיים דיווח על הקריסה שלך. יצירת דיווחים כפולים גוזלת מאתנו זמן שיכולנו להשקיע בתיקון התקלה עצמה.</string>
+    <string name="error_report_open_issue_button_text">דיווח על שגיאה ב־GitHub</string>
+    <string name="copy_for_github">העתקת דוח מעוצב</string>
+    <string name="search_showing_result_for">מוצגות תוצאות עבור: %s</string>
 </resources>

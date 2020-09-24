@@ -409,7 +409,7 @@
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscriptions yet</string>
     <string name="select_a_playlist">Select a playlist</string>
-    <string name="no_playlist_bookmarked_yet">No playlists bookmarks yet</string>
+    <string name="no_playlist_bookmarked_yet">No playlist bookmarks yet</string>
     <string name="select_a_kiosk">Select a kiosk</string>
     <string name="export_complete_toast">Exported</string>
     <string name="import_complete_toast">Imported</string>

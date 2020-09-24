@@ -69,7 +69,7 @@
     <string name="error_snackbar_action">Bildir</string>
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
-    <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:</string>
+    <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nİçerik Ülkesi:\\nUygulama Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:</string>
     <string name="detail_thumbnail_view_description">Videoyu oynat, süre:</string>
     <string name="detail_uploader_thumbnail_view_description">Yükleyicinin avatar küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>
@@ -376,7 +376,7 @@
     <string name="privacy_policy_encouragement">NewPipe projesi, gizliliğinizi çok ciddiye alıyor. Bu nedenle, uygulama sizin izniniz olmadan herhangi bir veri toplamaz.
 \nNewPipe\'ın gizlilik ilkesi, çökme raporu gönderdiğinizde hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar.</string>
     <string name="read_privacy_policy">Gizlilik ilkesini oku</string>
-    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun.
+    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun. 
 \nBize hata bildirimini göndermek için kabul etmelisiniz.</string>
     <string name="accept">Kabul et</string>
     <string name="decline">Reddet</string>
@@ -612,4 +612,11 @@
     <string name="channel_created_by">%s tarafından oluşturuldu</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar küçük resmi</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Yalnızca kümelenmemiş abonelikleri göster</string>
+    <string name="playlist_page_summary">Oynatma listesi sayfası</string>
+    <string name="select_a_playlist">Oynatma listesi seç</string>
+    <string name="error_report_open_issue_button_text">Hatayı GitHub\'da bildir</string>
+    <string name="copy_for_github">Biçimlendirilmiş raporu kopyala</string>
+    <string name="search_showing_result_for">Sonuçlar gösteriliyor: %s</string>
+    <string name="error_report_open_github_notice">Lütfen yaşadığınız hatayı tartışan bildirimin daha önce oluşturulup oluşturulmadığını gözden geçirin. Yineleyen hata bildirimi oluşturarak, gerçek hatayı gidermekte harcadığımız zamanı uzatırsınız.</string>
+    <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
 </resources>

@@ -65,7 +65,7 @@
     <string name="light_parsing_error">Kunne ikke tolke nettside fullstendig</string>
     <string name="content_not_available">Innholdet er utilgjengelig</string>
     <string name="could_not_setup_download_menu">Kunne ikke sette opp nedlastingsmeny</string>
-    <string name="live_streams_not_supported">Direktesendinger støttes ikke ennå</string>
+    <string name="live_streams_not_supported">Direktesendinger støttes ikke enda</string>
     <string name="could_not_get_stream">Kunne ikke finne noen strømmer</string>
     <string name="sorry_string">Beklager, dette skal ikke skje.</string>
     <string name="error_report_button_text">Rapporter feil via e-post</string>
@@ -101,7 +101,7 @@
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle</string>
-    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOperativsystemsversjon:</string>
+    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nInnholdsland:\\nProgramspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOS-versjon:</string>
     <string name="start">Start</string>
     <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
@@ -425,7 +425,7 @@
     <string name="grid">Rutenett</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Veksle visning</string>
-    <string name="app_update_notification_content_title">NewPipe-oppdatering tilgjengelig!</string>
+    <string name="app_update_notification_content_title">Ny NewPipe-versjon tilgjengelig.</string>
     <string name="app_update_notification_content_text">Trykk for å laste ned</string>
     <string name="missions_header_finished">Fullført</string>
     <string name="paused">pauset</string>

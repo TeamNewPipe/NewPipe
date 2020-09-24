@@ -105,7 +105,7 @@
     <string name="error_report_title">不具合報告</string>
     <string name="could_not_load_image">画像を読み込みできません</string>
     <string name="app_ui_crash">アプリ/UI がクラッシュしました</string>
-    <string name="info_labels">何:\\\\n提案:\\\\nコンテンツ言語:\\\\nサービス:\\\\nGMT 時間:\\\\nパッケージ:\\\\nバージョン:\\\\nOSバージョン:</string>
+    <string name="info_labels">どんな問題:\\nリクエスト:\\nコンテンツ言語:\\nコンテンツ国:\\nアプリ言語:\\nサービス:\\nGMT 時間:\\nパッケージ:\\nバージョン:\\nOSバージョン:</string>
     <string name="title_activity_recaptcha">reCAPTCHA の要求</string>
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
     <string name="black_theme_title">ブラック</string>
@@ -602,4 +602,11 @@
     <string name="channel_created_by">%s により作成</string>
     <string name="detail_sub_channel_thumbnail_view_description">チャンネルのサムネイル</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">グループ化されていない登録チャンネルのみ表示</string>
+    <string name="no_playlist_bookmarked_yet">まだプレイリスト ブックマークはありません</string>
+    <string name="error_report_open_github_notice">クラッシュを説明する問題がすでに存在しているかどうかを確認してください。重複したチケットを作成する場合、あなたは私たちから実際のバグを修正する時間を奪うことになります。</string>
+    <string name="search_showing_result_for">次の検索結果を表示しています: %s</string>
+    <string name="error_report_open_issue_button_text">GitHub でエラーを報告する</string>
+    <string name="copy_for_github">整形済みリポートをコピー</string>
+    <string name="playlist_page_summary">プレイリスト ページ</string>
+    <string name="select_a_playlist">プレイリストを選択してください</string>
 </resources>

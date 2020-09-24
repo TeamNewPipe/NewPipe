@@ -122,15 +122,15 @@
     <string name="auto_queue_title">Αυτόματη πρόσθεση της επόμενης ροής στην ουρά</string>
     <string name="auto_queue_summary">Αυτόματη πρόσθεση μιας σχετικής ροής όταν αναπαράγεται η προηγούμενη ροή σε μια μη-επαναλαμβανόμενη ουρά</string>
     <string name="player_gesture_controls_title">Έλεγχος αναπαραγωγής με χειρονομίες</string>
-    <string name="player_gesture_controls_summary">Χρήση χειρονομιών για τον έλεγχο της φωτεινότητας και της έντασης ήχου της εφαρμογής</string>
+    <string name="player_gesture_controls_summary">Χρήση χειρονομιών για τον έλεγχο της φωτεινότητας και της έντασης ήχου</string>
     <string name="show_search_suggestions_summary">Εμφάνιση υποδείξεων ενώ κάνετε αναζήτηση</string>
     <string name="enable_search_history_summary">Αποθήκευση αναζητήσεων στη συσκευή</string>
     <string name="enable_watch_history_title">Προβολή Ιστορικού</string>
     <string name="enable_watch_history_summary">Κρατήστε ιστορικό των βίντεο που έχετε δει</string>
-    <string name="resume_on_audio_focus_gain_title">Συνέχεια όταν η εφαρμογή έρθει σε πρώτο πλάνο</string>
-    <string name="resume_on_audio_focus_gain_summary">Συνέχιση της αναπαραγωγής έπειτα από διακοπές (π.χ.: κλήσεις)</string>
+    <string name="resume_on_audio_focus_gain_title">Συνέχεια αναπαραγωγής</string>
+    <string name="resume_on_audio_focus_gain_summary">Συνέχιση της αναπαραγωγής έπειτα από διακοπές (π.χ. κλήσεις)</string>
     <string name="show_hold_to_append_title">Εμφάνιση της βοήθειας \"Πιέστε παρατεταμένα για πρόσθεση\"</string>
-    <string name="show_hold_to_append_summary">Εμφάνιση της βοήθειας όταν έχει πατηθεί το κουμπί Παρασκηνίου ή Αναδυόμενου παραθύρου στη σελίδα λεπτομερειών του βίντεο</string>
+    <string name="show_hold_to_append_summary">Εμφάνιση υπόδειξης όταν πατηθεί το κουμπί Παρασκηνίου ή Αναδυόμενου παραθύρου στη σελίδα λεπτομερειών του βίντεο</string>
     <string name="default_content_country_title">Προεπιλεγμένη χώρα περιεχομένου</string>
     <string name="service_title">Υπηρεσία</string>
     <string name="settings_category_player_title">Συσκευή Αναπαραγωγής</string>
@@ -402,9 +402,9 @@
     <string name="tab_new">Νέα Καρτέλα</string>
     <string name="tab_choose">Επιλογή Καρτέλας</string>
     <string name="volume_gesture_control_title">Ρυθμίσεις χειρονομιών ήχου</string>
-    <string name="volume_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο της έντασης του ήχου</string>
+    <string name="volume_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο έντασης του ήχου</string>
     <string name="brightness_gesture_control_title">Ρυθμίσεις χειρονομιών φωτεινότητας</string>
-    <string name="brightness_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο της φωτεινότητας</string>
+    <string name="brightness_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο φωτεινότητας</string>
     <string name="settings_category_updates_title">Ενημερώσεις</string>
     <string name="events">Συμβάντα</string>
     <string name="file_deleted">Το αρχείο διαγράφηκε</string>
@@ -517,4 +517,15 @@
     <string name="enable_lock_screen_video_thumbnail_title">Μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Χρήση μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
     <string name="seek_duration_title">Διάρκεια fastforward και rewind</string>
+    <string name="systems_language">Προεπιλογή συστήματος</string>
+    <string name="videos_string">Βίντεο</string>
+    <string name="search_showing_result_for">Εμφάνιση αποτελεσμάτων για:</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Ενεργοποίηση γρήγορης λειτουργίας</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Απενεργοποίηση γρήγορης λειτουργίας</string>
+    <string name="content_not_supported">Αυτό το περιεχόμενο δεν υποστηρίζεται ακόμη από το NewPipe.
+\n
+\nΕλπίζουμε ότι θα υποστηριχθεί σε μια μελλοντική έκδοση.</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Μικρογραφία avatar του καναλιού</string>
+    <string name="channel_created_by">Δημιουργήθηκε από %s</string>
+    <string name="playlist_page_summary">Σελίδα λίστας αναπαραγωγής</string>
 </resources>

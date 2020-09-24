@@ -102,7 +102,7 @@
     <string name="youtube_signature_decryption_error">Tidak bisa dekripsi tanda tangan URL video</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun</string>
-    <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
+    <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nNegara Konten:\\nBahasa Apl:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="user_report">Laporan pengguna</string>
     <string name="msg_threads">Thread</string>
     <string name="title_activity_recaptcha">Tantangan reCAPTCHA</string>
@@ -601,4 +601,12 @@
     <string name="video_detail_by">Oleh %s</string>
     <string name="channel_created_by">Dibuat oleh %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar channel</string>
+    <string name="error_report_open_github_notice">Harap periksa apakah masalah yang sama sudah ada atau belum. Ketika laporan anda ternyata sudah ada, anda membuat kami menghabiskan waktu yang seharusnya bisa kami gunakan untuk meningkatkan aplikasi menjadi lebih baik.</string>
+    <string name="error_report_open_issue_button_text">Laporkan kesalahan pada GitHub</string>
+    <string name="copy_for_github">Salin laporan dengan format</string>
+    <string name="search_showing_result_for">Menampilkan hasil untuk: %s</string>
+    <string name="playlist_page_summary">Halaman daftar putar</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Hanya tampilkan langganan tanpa grup</string>
+    <string name="no_playlist_bookmarked_yet">Belum ada markah daftar putar</string>
+    <string name="select_a_playlist">Pilih daftar putar</string>
 </resources>

@@ -494,4 +494,11 @@
     <string name="downloads_storage_use_saf_title">Выкарыстоўваць SAF</string>
     <string name="downloads_storage_use_saf_summary">Storage Framework Access дазваляе захоўваць файлы на вонкавым назапашвальніку.
 \nПадтрымліваецца не ўсімі прыладамі</string>
+    <string name="drawer_header_description">Пераключыць службу, выбраную ў дадзены момант:</string>
+    <string name="clear_playback_states_summary">Выдаліць ўсе пазіцыі прайгравання</string>
+    <string name="youtube_restricted_mode_enabled_title">Абмежаваны рэжым YouTube</string>
+    <string name="peertube_instance_add_https_only">Падтрымліваюцца толькі адрасы URL HTTPS</string>
+    <string name="peertube_instance_add_title">Дадаць інстанцыю</string>
+    <string name="peertube_instance_url_title">Інстанцыі PeerTube</string>
+    <string name="download_choose_new_path">Змяніце папкі загрузкі, каб змены ўступілі ў сілу</string>
 </resources>

@@ -405,4 +405,19 @@ pentru a deschide în mod pop-up</string>
     <string name="bookmark_playlist">Salvează playlist-ul</string>
     <string name="enable_leak_canary_title">Activează LeakCanary</string>
     <string name="limit_mobile_data_usage_title">Limitați rezoluția când folosiți date mobile</string>
+    <string name="permission_display_over_apps">Acordă permisiunea de a afișa peste alte aplicații</string>
+    <string name="delete_playback_states_alert">Ștergeți toate pozițiile din playback\?</string>
+    <string name="clear_playback_states_summary">Șterge toate pozițiile din playback</string>
+    <string name="videos_string">Videoclipuri</string>
+    <string name="peertube_instance_add_exists">Instanța există deja</string>
+    <string name="peertube_instance_add_https_only">Doar adresele URL HTTPS sunt suportate</string>
+    <string name="peertube_instance_add_fail">Nu sa putut valida instanța</string>
+    <string name="peertube_instance_add_help">Introdu adresa URL a instanței</string>
+    <string name="peertube_instance_add_title">Adaugă instanță</string>
+    <string name="peertube_instance_url_help">Găsește instanța care îți place în %s</string>
+    <string name="peertube_instance_url_summary">Selectează instanța preferată PeerTube</string>
+    <string name="peertube_instance_url_title">Instanțe PeerTube</string>
+    <string name="seek_duration_title">Durată redare-înainte/derulare</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">O miniatură a videoclipului apare pe ecran blocare când folosești redarea pe fundal</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Miniatură pentru ecran blocare</string>
 </resources>

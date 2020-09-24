@@ -105,7 +105,7 @@
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
     <string name="what_happened_headline">發生了什麼事：</string>
-    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
+    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n內容國家：\\n應用程式語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
     <string name="your_comment">您的留言(請用英文)：</string>
     <string name="error_details_headline">詳細資訊：</string>
     <string name="report_error">回報錯誤</string>
@@ -602,4 +602,11 @@
     <string name="channel_created_by">由 %s 建立</string>
     <string name="detail_sub_channel_thumbnail_view_description">頻道大頭貼縮圖</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">僅顯示未分組的訂閱</string>
+    <string name="no_playlist_bookmarked_yet">尚無播放清單書籤</string>
+    <string name="playlist_page_summary">播放清單頁面</string>
+    <string name="select_a_playlist">選取播放清單</string>
+    <string name="error_report_open_github_notice">請檢查是否已有與您的應用程式當機相關的討論議題。當建立重複的工單時，您就是在耗費我們本來可以用來修復臭蟲的時間。</string>
+    <string name="error_report_open_issue_button_text">在 GitHub 上回報錯誤</string>
+    <string name="copy_for_github">複製格式化過的報告</string>
+    <string name="search_showing_result_for">正在顯示結果：%s</string>
 </resources>
