@@ -131,7 +131,7 @@
     <string name="clear">Bersihkan</string>
     <string name="filter">Filter</string>
     <string name="use_external_video_player_summary">Menghapus audio pada beberapa resolusi</string>
-    <string name="popup_remember_size_pos_title">Ingat ukuran dan posisi popup</string>
+    <string name="popup_remember_size_pos_title">Ingat properti popup</string>
     <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Ubah ukuran</string>
@@ -607,4 +607,13 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">Hanya tampilkan langganan tanpa grup</string>
     <string name="no_playlist_bookmarked_yet">Belum ada markah daftar putar</string>
     <string name="select_a_playlist">Pilih daftar putar</string>
+    <string name="never">Tidak pernah</string>
+    <string name="wifi_only">Hanya pada WiFi</string>
+    <string name="autoplay_summary">Otomatis mulai pemutaran — %s</string>
+    <string name="title_activity_play_queue">Putar antrean</string>
+    <string name="unsupported_url_dialog_message">NewPipe tidak mengenali url tersebut. Buka dengan cara lain\?</string>
+    <string name="auto_queue_toggle">Otomatis antre</string>
+    <string name="clear_queue_confirmation_description">Antrean dari pemutar aktif akan digantikan</string>
+    <string name="clear_queue_confirmation_summary">Setelah beralih ke pemutar yang lain, antrean anda mungkin diganti</string>
+    <string name="clear_queue_confirmation_title">Konfirmasi sebelum mengosongkan antrean</string>
 </resources>
