@@ -515,7 +515,6 @@
     <string name="settings_category_feed_title">ഫീഡ്</string>
     <string name="feed_create_new_group_button_title">പുതിയത്</string>
     <string name="feed_group_dialog_delete_message">ഈ ഗ്രൂപ്പ് ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ\?</string>
-    <string name="feed_group_dialog_name_input">പേര്</string>
     <string name="feed_group_dialog_empty_name">ശൂന്യമായ ഗ്രൂപ്പ് പേര്</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d തിരഞ്ഞെടുത്തു</item>
@@ -609,7 +608,7 @@
     <string name="show_original_time_ago_summary">സേവനങ്ങളിൽ നിന്നുള്ള യഥാർത്ഥ വാചകങ്ങൾ സ്ട്രീം ഇനങ്ങളിൽ ദൃശ്യമാകും</string>
     <string name="show_original_time_ago_title">ഇനങ്ങളിൽ യഥാർത്ഥ സമയം മുമ്പ് കാണിക്കുക</string>
     <string name="youtube_restricted_mode_enabled_title">യുട്യൂബ് നിയന്ത്രിത മോഡ്</string>
-    <string name="search_showing_result_for">ഇതിനായുള്ള ഫലങ്ങൾ കാണിക്കുന്നു:% s</string>
+    <string name="search_showing_result_for">ഇതിനായുള്ള ഫലങ്ങൾ കാണിക്കുന്നു: %s</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">ഗ്രൂപ്പുചെയ്യാത്ത സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ മാത്രം കാണിക്കുക</string>
     <string name="no_playlist_bookmarked_yet">ഇതുവരെ ഒരു പ്ലേലിസ്റ്റ് ബുക്ക്മാർക്കുകളും ഇല്ല</string>
     <string name="select_a_playlist">ഒരു പ്ലേലിസ്റ്റ് തിരഞ്ഞെടുക്കുക</string>

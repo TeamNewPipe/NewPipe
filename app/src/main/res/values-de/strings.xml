@@ -561,7 +561,6 @@
         <item quantity="other">%d ausgewählte</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Leerer Gruppenname</string>
-    <string name="feed_group_dialog_name_input">Name</string>
     <string name="feed_group_dialog_delete_message">Möchtest du diese Gruppe löschen\?</string>
     <string name="feed_create_new_group_button_title">Neu</string>
     <string name="feed_update_threshold_option_always_update">Immer aktualisieren</string>

@@ -572,7 +572,6 @@
         <item quantity="many">%d минут</item>
     </plurals>
     <string name="feed_group_dialog_delete_message">Удалить эту группу\?</string>
-    <string name="feed_group_dialog_name_input">Имя</string>
     <string name="feed_subscription_not_loaded_count">Не загружено: %d</string>
     <string name="feed_create_new_group_button_title">Создать</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Обычный режим</string>

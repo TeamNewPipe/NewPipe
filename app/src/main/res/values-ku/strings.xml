@@ -570,7 +570,6 @@
         <item quantity="other">%d هەڵبژێردراو</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">ناوی کۆمەڵە بەتاڵە</string>
-    <string name="feed_group_dialog_name_input">ناو</string>
     <string name="feed_group_dialog_delete_message">ئایا دەتەوێ ئەم کۆمەڵەیە بسڕیتەوە؟</string>
     <string name="feed_create_new_group_button_title">نوێ</string>
     <string name="settings_category_feed_title">دیار</string>

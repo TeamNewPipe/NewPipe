@@ -576,7 +576,6 @@
         <item quantity="other">%d vybraných</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Bez názvu skupiny</string>
-    <string name="feed_group_dialog_name_input">Názov</string>
     <string name="feed_group_dialog_delete_message">Chcete zmazať vybranú skupinu\?</string>
     <string name="feed_create_new_group_button_title">Nová</string>
     <string name="settings_category_feed_title">Zdroj</string>

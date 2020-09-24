@@ -19,7 +19,6 @@
     <string name="enable_disposed_exceptions_summary">Fortzat sinnalatziones de etzetziones Rx non cunsinnàbiles in foras de su tziclu de bida de sos framnentos o de sas atividades a pustis de s\'ismaltimentu</string>
     <string name="enable_disposed_exceptions_title">Sinnala sos errores in foras de su tziclu de bida</string>
     <string name="enable_leak_canary_summary">Sa compidada de sa pèrdida de memòria diat pòdere causare blocos de s\'aplicatzione durante d\'iscarrigamentu de sa memòria (heap dumping)</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="caption_setting_description">Muda sa mannària e sos istiles de isfundu de su testu de sos suta-tìtulos. Depes torrare a allùghere s\'aplicatzione pro chi tèngiat efetu.</string>
     <string name="caption_setting_title">Suta-tìtulos</string>
     <string name="caption_auto_generated">Ingendradu automaticamente</string>
@@ -39,7 +38,7 @@
     <string name="unmute">Allughe su sonu</string>
     <string name="mute">Pone a sa muda</string>
     <string name="append_playlist">Annanghe a s\'iscalita</string>
-    <string name="playlist_name_input">Nùmene</string>
+    <string name="name">Nùmene</string>
     <string name="rename_playlist">Càmbia de nùmene</string>
     <string name="delete_playlist">Iscantzella</string>
     <string name="create_playlist">Iscalita noa</string>
@@ -63,8 +62,6 @@
     <string name="play_queue_audio_settings">Impostatziones àudio</string>
     <string name="play_queue_stream_detail">Detàllios</string>
     <string name="play_queue_remove">Boga</string>
-    <string name="title_activity_popup_player">Riproduidore a ventanedda</string>
-    <string name="title_activity_background_player">Riproduidore in s\'isfundu</string>
     <string name="conferences">Cunferèntzias</string>
     <string name="most_liked">Prus agradèssidos</string>
     <string name="recently_added">Annànghidos dae pagu</string>
@@ -299,7 +296,6 @@
     <string name="settings_category_feed_title">Fonte de cuntenutos</string>
     <string name="feed_create_new_group_button_title">Nou</string>
     <string name="feed_group_dialog_delete_message">Cheres iscantzellare custu grupu\?</string>
-    <string name="feed_group_dialog_name_input">Nùmene</string>
     <string name="feed_group_dialog_empty_name">Su nùmene de su grupu est bòidu</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d ischertadu</item>
@@ -518,7 +514,7 @@
     <string name="content_language_title">Limba predefinida pro sos cuntenutos</string>
     <string name="service_title">Servìtziu</string>
     <string name="default_content_country_title">Istadu predefinidu pro sos cuntenutos</string>
-    <string name="url_not_supported_toast">URL non suportadu</string>
+    <string name="unsupported_url">URL non suportadu</string>
     <string name="show_hold_to_append_summary">Ammustra un\'impòsitu cando incarcas in su butone de isfundu o de sa ventanedda in sa pàgina de sos detàllios de unu vìdeu</string>
     <string name="show_hold_to_append_title">Ammustra s\'impòsitu \"Mantene incarcadu pro pònnere in elencu\"</string>
     <string name="show_next_and_similar_title">Ammustra sos vìdeos imbenientes e simigiantes</string>

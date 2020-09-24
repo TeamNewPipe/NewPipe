@@ -516,7 +516,7 @@
     <string name="deleted_downloads">Slettet %1$d nedlastninger</string>
     <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde på låseskjerm</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises ent videominiatyrbilde på låseskjermen</string>
-    <string name="peertube_instance_url_summary">Velg dine favoritter blandt PeerTube-instansene</string>
+    <string name="peertube_instance_url_summary">Velg dine favoritter blant PeerTube-instansene</string>
     <string name="peertube_instance_url_help">Finn instansene som passer deg best på %s</string>
     <string name="peertube_instance_add_title">Legg til instans</string>
     <string name="peertube_instance_add_help">Skriv inn nettadresse til instans</string>
@@ -554,7 +554,6 @@
     </plurals>
     <string name="feed_subscription_not_loaded_count">Ikke innlastet: %d</string>
     <string name="feed_group_dialog_empty_name">Tomt gruppenavn</string>
-    <string name="feed_group_dialog_name_input">Navn</string>
     <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen\?</string>
     <string name="feed_create_new_group_button_title">Ny</string>
     <string name="feed_update_threshold_option_always_update">Alltid oppdater</string>

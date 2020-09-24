@@ -584,7 +584,6 @@
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_create_new_group_button_title">Tạo</string>
     <string name="feed_group_dialog_delete_message">Bạn muốn xóa nhóm kênh này\?</string>
-    <string name="feed_group_dialog_name_input">Tên</string>
     <string name="feed_group_dialog_empty_name">Tên nhóm kênh trống</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="other">Đã chọn %d</item>

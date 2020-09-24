@@ -527,7 +527,6 @@
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="other">%d 선택</item>
     </plurals>
-    <string name="feed_group_dialog_name_input">이름</string>
     <string name="feed_group_dialog_delete_message">이 그룹을 삭제하시겠어요\?</string>
     <string name="feed_create_new_group_button_title">새로운</string>
     <string name="settings_category_feed_title">피드</string>

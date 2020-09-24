@@ -98,7 +98,7 @@
     <string name="settings_category_player_title">প্লেয়ার</string>
     <string name="content_language_title">কন্টেন্ট এর জন্য পছন্দসই ভাষা</string>
     <string name="service_title">সেবা</string>
-    <string name="url_not_supported_toast">URL সমর্থিত নয়</string>
+    <string name="unsupported_url">URL সমর্থিত নয়</string>
     <string name="show_next_and_similar_title">পরবর্তী এবং অনুরূপ ভিডিওগুলি দেখাও</string>
     <string name="next_video_title">পরবর্তী ভিডিও</string>
     <string name="download_dialog_title">ডাউনলোড</string>
@@ -186,7 +186,6 @@
     <string name="view_count_text">%1$s জন দেখেছে</string>
     <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
     <string name="feed_create_new_group_button_title">নতুন</string>
-    <string name="feed_group_dialog_name_input">নাম</string>
     <string name="fragment_feed_title">নতুন কি</string>
     <string name="app_language_title">অ্যাপ এর ভাষা</string>
     <string name="stop">বন্ধ করুন</string>

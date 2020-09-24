@@ -76,10 +76,9 @@
     <string name="later">Ticki</string>
     <string name="events">Tidyanin</string>
     <string name="no_comments">Ulac iwenniten</string>
-    <string name="playlist_name_input">Isem</string>
+    <string name="name">Isem</string>
     <string name="settings_category_updates_title">Isedγiten</string>
     <string name="service_title">Ameẓlu</string>
-    <string name="feed_group_dialog_name_input">Isem</string>
     <string name="missions_header_pending">Yettraǧu</string>
     <string name="play_queue_audio_settings">Iɣewwaren n umeslaw</string>
     <string name="unmute">Sermed imesli</string>

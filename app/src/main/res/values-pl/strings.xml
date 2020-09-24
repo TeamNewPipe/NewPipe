@@ -568,7 +568,6 @@
     <string name="settings_category_feed_title">Kanał</string>
     <string name="feed_create_new_group_button_title">Nowy</string>
     <string name="feed_group_dialog_delete_message">Czy chcesz usunąć tę grupę\?</string>
-    <string name="feed_group_dialog_name_input">Nazwa</string>
     <string name="feed_group_dialog_empty_name">Pusta nazwa grupy</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">wybrany %d</item>

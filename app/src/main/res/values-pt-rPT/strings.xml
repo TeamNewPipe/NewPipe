@@ -22,7 +22,6 @@
     <string name="label_code">Código</string>
     <string name="import_soundcloud_instructions_hint">suaID, soundcloud.com/suaID</string>
     <string name="default_popup_resolution_title">Resolução da janela popup predefinida</string>
-    <string name="title_activity_popup_player">Reprodutor \'popup\'</string>
     <string name="could_not_import_all_files">Aviso: não foi possível importar todos os ficheiros.</string>
     <string name="download_already_running">Já existe uma transferência em progresso com este nome</string>
     <string name="view_on_github">Ver no GitHub</string>
@@ -48,7 +47,6 @@
     <string name="controls_popup_title">Popup</string>
     <string name="light_parsing_error">Não foi possível processar totalmente o site da Web</string>
     <string name="msg_running">Transferência do NewPipe</string>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="new_seek_duration_toast">Devido às restrições do ExoPlayer, a duração da procura foi definida para %d segundos</string>
     <string name="overwrite">Sobrescrever</string>
     <string name="mute">Silenciar</string>
@@ -257,14 +255,13 @@
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar a transferência</string>
     <string name="player_recoverable_failure">A recuperar de um erro do reprodutor</string>
     <string name="settings_category_other_title">Outros</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="duration_live">Em direto</string>
     <string name="feed_update_threshold_title">Limite de atualização do feed</string>
     <string name="finish">OK</string>
     <string name="could_not_get_stream">Não foi possível obter a emissão</string>
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e tambem os vídeos parcialmente vistos</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e também os vídeos parcialmente vistos</string>
     <string name="short_million">M</string>
     <string name="no_playlist_bookmarked_yet">Ainda não há marcadores de listas de reprodução</string>
     <string name="popup_playing_append">Em fila no reprodutor de janela popup</string>
@@ -468,7 +465,7 @@
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="kore_not_found">Instalar a app Kore\?</string>
     <string name="user_report">Relatório</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="msg_copied">Copiado para a área de transferência</string>
     <string name="settings_file_charset_title">Carateres permitidos nos nomes de ficheiros</string>
     <string name="caption_auto_generated">Gerado automaticamente</string>
@@ -483,7 +480,6 @@
     <string name="short_billion">B</string>
     <string name="unbookmark_playlist">Remover marcador</string>
     <string name="pause_downloads_on_mobile_desc">Útil quando mudar para dados móveis, embora algumas transferências não podem ser suspensas</string>
-    <string name="title_activity_background_player">Reprodutor em segundo plano</string>
     <string name="hold_to_append">Toque longo para enfileirar</string>
     <string name="downloads_title">Transferências</string>
     <string name="error_file_creation">O ficheiro não pode ser criado</string>
@@ -508,7 +504,7 @@
     <string name="updates_setting_title">Atualizações</string>
     <string name="start_downloads">Iniciar transferências</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
-    <string name="url_not_supported_toast">URL não suportado</string>
+    <string name="unsupported_url">URL não suportado</string>
     <string name="tab_contributors">Colaboradores</string>
     <string name="download_dialog_title">Transferir</string>
     <string name="app_license_title">Licença do NewPipe</string>

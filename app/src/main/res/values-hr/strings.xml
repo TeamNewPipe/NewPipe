@@ -258,7 +258,7 @@
     <string name="create_playlist">Nova reprodukcijska lista</string>
     <string name="delete_playlist">Izbriši</string>
     <string name="rename_playlist">Preimenuj</string>
-    <string name="name">Ime liste</string>
+    <string name="name">Ime</string>
     <string name="append_playlist">Dodaj na reprodukcijsku listu</string>
     <string name="set_as_playlist_thumbnail">Postavi kao sliku na listu</string>
     <string name="bookmark_playlist">Markirajte reprodukcijsku listu</string>
@@ -502,7 +502,6 @@
     <string name="unmute">Uključi</string>
     <string name="help">Pomoć</string>
     <string name="feed_notification_loading">Učitavanje feeda…</string>
-    <string name="feed_group_dialog_name_input">Ime</string>
     <string name="feed_group_dialog_delete_message">Želite li izbrisati ovu grupu\?</string>
     <string name="feed_create_new_group_button_title">Novi</string>
     <string name="feed_update_threshold_option_always_update">Uvijek ažuriraj</string>

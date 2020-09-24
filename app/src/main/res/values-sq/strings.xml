@@ -454,7 +454,6 @@
     <string name="settings_category_feed_title">Lista</string>
     <string name="feed_create_new_group_button_title">E re</string>
     <string name="feed_group_dialog_delete_message">A doni ta fshini këtë grup\?</string>
-    <string name="feed_group_dialog_name_input">Emri</string>
     <string name="feed_group_dialog_empty_name">Emër bosh i grupit</string>
     <string name="video_streams_empty">Nuk u gjendën stream për video</string>
     <string name="invalid_url_toast">URL e pasaktë</string>

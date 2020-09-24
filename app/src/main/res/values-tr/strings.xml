@@ -566,7 +566,6 @@
         <item quantity="other">%d seçildi</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Boş küme adı</string>
-    <string name="feed_group_dialog_name_input">Ad</string>
     <string name="feed_group_dialog_delete_message">Bu kümeyi silmek istiyor musunuz\?</string>
     <string name="feed_create_new_group_button_title">Yeni</string>
     <string name="settings_category_feed_title">Besleme</string>

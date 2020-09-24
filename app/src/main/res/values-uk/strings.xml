@@ -537,7 +537,6 @@
     <string name="recaptcha_done_button">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>
     <string name="feed_group_dialog_delete_message">Ви бажаєте видалити цю групу\?</string>
-    <string name="feed_group_dialog_name_input">Назва</string>
     <string name="feed_group_dialog_empty_selection">Підписки не вибрані</string>
     <string name="feed_groups_header_title">Групи каналів</string>
     <plurals name="days">

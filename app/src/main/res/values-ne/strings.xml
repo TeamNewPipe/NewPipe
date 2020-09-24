@@ -562,7 +562,6 @@
     <string name="settings_category_feed_title">फिड</string>
     <string name="feed_create_new_group_button_title">नयाँ</string>
     <string name="feed_group_dialog_delete_message">के तपाइँ यो समूह हटाउन चाहानुहुन्छ\?</string>
-    <string name="feed_group_dialog_name_input">नाम</string>
     <string name="feed_group_dialog_empty_name">समूहको नाम खाली गर</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d चयन</item>

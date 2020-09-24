@@ -580,7 +580,6 @@
     <string name="feed_group_dialog_select_subscriptions">בחירת מינויים</string>
     <string name="feed_group_dialog_empty_selection">לא נבחר מינוי</string>
     <string name="feed_group_dialog_empty_name">שם הקבוצה ריק</string>
-    <string name="feed_group_dialog_name_input">שם</string>
     <string name="feed_group_dialog_delete_message">למחוק את הקבוצה הזאת\?</string>
     <string name="feed_create_new_group_button_title">חדשה</string>
     <string name="settings_category_feed_title">הזנה</string>

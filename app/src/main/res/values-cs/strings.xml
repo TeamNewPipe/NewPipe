@@ -576,7 +576,6 @@
         <item quantity="other">%d vybráno</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Prázdné jméno skupiny</string>
-    <string name="feed_group_dialog_name_input">Jméno</string>
     <string name="feed_group_dialog_delete_message">Přejete si smazat tuto skupinu\?</string>
     <string name="feed_create_new_group_button_title">Nová</string>
     <string name="settings_category_feed_title">Novinky</string>

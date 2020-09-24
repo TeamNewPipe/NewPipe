@@ -554,7 +554,6 @@
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_create_new_group_button_title">Novo</string>
     <string name="feed_group_dialog_delete_message">Quer apagar este grupo\?</string>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="feed_group_dialog_empty_name">O nome do grupo está vazio</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d selecionada</item>
@@ -601,7 +600,7 @@
 \nSe quiser vê-lo, ative \"Conteúdo com restrição de idade\" nas definições.</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
 \nTem certeza\? Isto não pode ser desfeito!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e tambem os vídeos parcialmente vistos</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e também os vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_title">Remover vídeos vistos\?</string>
     <string name="remove_watched">Remover vistos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de fluxo</string>

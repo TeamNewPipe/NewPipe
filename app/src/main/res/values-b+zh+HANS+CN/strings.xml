@@ -555,7 +555,6 @@
         <item quantity="other">已选中%d</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">组名为空</string>
-    <string name="feed_group_dialog_name_input">名称</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
     <string name="settings_category_feed_title">订阅</string>

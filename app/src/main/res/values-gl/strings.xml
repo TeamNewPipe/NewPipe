@@ -392,7 +392,7 @@
     <string name="limit_data_usage_none_description">Sen límite</string>
     <string name="limit_mobile_data_usage_title">Limitar a resolución ao usar datos móbiles</string>
     <string name="minimize_on_exit_title">Minimizar cando se mude de aplicativo</string>
-    <string name="minimize_on_exit_summary">Acción ao cambiar a outro aplicativo do reprodutor de vídeo principal -% s</string>
+    <string name="minimize_on_exit_summary">Acción ao cambiar a outro aplicativo do reprodutor de vídeo principal - %s</string>
     <string name="minimize_on_exit_none_description">Ningunha</string>
     <string name="minimize_on_exit_background_description">Minimizar ao reprodutor en segundo plano</string>
     <string name="minimize_on_exit_popup_description">Minimizar o reprodutor popup</string>
@@ -424,13 +424,12 @@
     <string name="feed_use_dedicated_fetch_method_summary">Dispoñible nalgúns servizos, normalmente é moito máis rápido pero pode devolver unha cantidade limitada de elementos e moitas veces información incompleta (por exemplo, sen duración, tipo de elemento, sen estado en directo).</string>
     <string name="feed_use_dedicated_fetch_method_title">Obtén unha transmisión dedicada cando estea dispoñible</string>
     <string name="feed_update_threshold_option_always_update">Sempre actualizado</string>
-    <string name="feed_update_threshold_summary">Tempo despois da última actualización antes de que se subscriba unha subscrición -% s</string>
+    <string name="feed_update_threshold_summary">Tempo despois da última actualización antes de que se subscriba unha subscrición - %s</string>
     <string name="feed_update_threshold_title">Limiar da actualización das fontes</string>
     <string name="settings_category_feed_title">Transmisión</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Amosar só as subscricións non agrupadas</string>
     <string name="feed_create_new_group_button_title">Novo</string>
     <string name="feed_group_dialog_delete_message">Quere eliminar este grupo\?</string>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="feed_group_dialog_empty_name">Nome do grupo vacío</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d seleccionado</item>
@@ -441,7 +440,7 @@
     <string name="feed_processing_message">Procesando a transmisión…</string>
     <string name="feed_notification_loading">Cargando transmisión…</string>
     <string name="feed_subscription_not_loaded_count">Non se cargou:% d</string>
-    <string name="feed_oldest_subscription_update">Actualizada a última información:% s</string>
+    <string name="feed_oldest_subscription_update">Actualizada a última información: %s</string>
     <string name="feed_groups_header_title">Grupos da canle</string>
     <plurals name="days">
         <item quantity="one">%d día</item>
