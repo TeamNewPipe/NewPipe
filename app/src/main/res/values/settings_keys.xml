@@ -79,16 +79,16 @@
         <item>@string/autoplay_never_key</item>
     </string-array>
     <string-array name="autoplay_type_description" translatable="false">
-        <item>@string/autoplay_always_description</item>
-        <item>@string/autoplay_wifi_description</item>
-        <item>@string/autoplay_never_description</item>
+        <item>@string/always</item>
+        <item>@string/wifi_only</item>
+        <item>@string/never</item>
     </string-array>
 
     <string name="default_resolution_key" translatable="false">default_resolution</string>
-    <string name="default_resolution_value" translatable="false">360p</string>
+    <string name="default_resolution_value" translatable="false">720p60</string>
     <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions</string>
     <string name="default_popup_resolution_key" translatable="false">default_popup_resolution</string>
-    <string name="default_popup_resolution_value" translatable="false">360p</string>
+    <string name="default_popup_resolution_value" translatable="false">480p</string>
     <string name="best_resolution_key" translatable="false">best_resolution</string>
 
     <string-array name="resolution_list_values" translatable="false">

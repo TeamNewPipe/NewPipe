@@ -37,7 +37,7 @@
     <string name="download_dialog_title">Завантажити</string>
     <string name="next_video_title">Наступне</string>
     <string name="show_next_and_similar_title">Показувати \"Наступне\" і \"Схожі\" відео</string>
-    <string name="url_not_supported_toast">URL не підтримується</string>
+    <string name="unsupported_url">URL не підтримується</string>
     <string name="content_language_title">Переважна мова контенту</string>
     <string name="settings_category_video_audio_title">Відео та Аудіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
@@ -303,7 +303,7 @@
     <string name="create_playlist">Новий список відтворення</string>
     <string name="delete_playlist">Видалити</string>
     <string name="rename_playlist">Змінити назву</string>
-    <string name="playlist_name_input">Назва</string>
+    <string name="name">Назва</string>
     <string name="append_playlist">Додати до списку відтворення</string>
     <string name="set_as_playlist_thumbnail">Призначити ескізом списку відтворення</string>
     <string name="bookmark_playlist">Додати список відтворення до закладок</string>
@@ -318,7 +318,6 @@
     <string name="resize_fill">Заповнити</string>
     <string name="resize_zoom">Збільшити</string>
     <string name="caption_auto_generated">Створені автоматично</string>
-    <string name="enable_leak_canary_title">Увімкнути LeakCanary</string>
     <string name="enable_leak_canary_summary">Моніторинг втрат пам\'яті може призвести до нереагування застосунку під час запису дампу</string>
     <string name="enable_disposed_exceptions_title">Звітувати про помилки життєвого циклу застосунку</string>
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx-винятків, які відбуваються за межами фрагменту або діяльності життєвого циклу після усунення</string>
@@ -538,7 +537,6 @@
     <string name="recaptcha_done_button">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>
     <string name="feed_group_dialog_delete_message">Ви бажаєте видалити цю групу\?</string>
-    <string name="feed_group_dialog_name_input">Назва</string>
     <string name="feed_group_dialog_empty_selection">Підписки не вибрані</string>
     <string name="feed_groups_header_title">Групи каналів</string>
     <plurals name="days">
@@ -620,4 +618,13 @@
     <string name="detail_sub_channel_thumbnail_view_description">Ескіз аватара каналу</string>
     <string name="show_original_time_ago_summary">Оригінальні тексти сервісів будуть видимі в потокових елементах</string>
     <string name="youtube_restricted_mode_enabled_title">Режим обмеженого доступу YouTube</string>
+    <string name="search_showing_result_for">Результати для: %s</string>
+    <string name="channel_created_by">Створено %s</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Показати лише незгруповані підписки</string>
+    <string name="copy_for_github">Скопіювати відформатований звіт</string>
+    <string name="error_report_open_issue_button_text">Повідомити про помилку на GitBub</string>
+    <string name="error_report_open_github_notice">Перевірте, будь ласка, чи проблема що спричинила збій вже відома спільноті та розробникам. Дублюючи запити на вирішення помилок Ви забираєте час розробників який можна було б так на вирішення існуючих проблем.</string>
+    <string name="select_a_playlist">Вибрати плейліст</string>
+    <string name="no_playlist_bookmarked_yet">Жоден плейліст ще не додано</string>
+    <string name="playlist_page_summary">Сторінка плейлісту</string>
 </resources>

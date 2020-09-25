@@ -85,7 +85,7 @@
     <string name="show_next_and_similar_title">\'اگلی\' اور \'ملتی جلتی\' ویڈیوز دکھائیں</string>
     <string name="show_hold_to_append_title">’’شامل کرنے کے لئے پکڑیں‘‘ اشارہ دکھائیں</string>
     <string name="show_hold_to_append_summary">ویڈیو تفصیلات کے صفحے پر جب پس منظر یا پاپ اپ بٹن دبائے جانے پر ٹپ دکھائیں</string>
-    <string name="url_not_supported_toast">غیر موافق URL</string>
+    <string name="unsupported_url">غیر موافق URL</string>
     <string name="default_content_country_title">مشمولات کا طے شدہ ملک</string>
     <string name="service_title">خدمت</string>
     <string name="settings_category_player_title">پلیئر</string>
@@ -311,7 +311,7 @@
     <string name="create_playlist">نئی پلے لسٹ</string>
     <string name="delete_playlist">حذف کریں</string>
     <string name="rename_playlist">نام تبدیل کریں</string>
-    <string name="playlist_name_input">نام</string>
+    <string name="name">نام</string>
     <string name="append_playlist">پلے لسٹ میں شامل</string>
     <string name="set_as_playlist_thumbnail">بطور پلے لسٹ انگشتی طے کریں</string>
     <string name="bookmark_playlist">پلے لسٹ کو نشان زد کریں</string>
@@ -326,7 +326,6 @@
     <string name="resize_fill">بھریں</string>
     <string name="resize_zoom">زوم</string>
     <string name="caption_auto_generated">خود بخود تیار</string>
-    <string name="enable_leak_canary_title">لیک کیناری کو فعال کریں</string>
     <string name="enable_leak_canary_summary">میموری لیک ہونے کی مانیٹرنگ، ہیپ ڈمپنگ کے وقت ایپ کو غیرذمہ دار بننے کا باعث بن سکتی ہے</string>
     <string name="enable_disposed_exceptions_title">گردشِ حیات سے دوری کی غلطیوں کی اطلاع دیں</string>
     <string name="enable_disposed_exceptions_summary">فریگمنٹ یا دائرۂ حیات کی سر گرمی کے بعد Rx پیغامات نہ پہنچایا جا سکے تو ضرور کوشش کریں</string>

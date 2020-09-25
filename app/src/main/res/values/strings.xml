@@ -85,6 +85,7 @@
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
     <string name="auto_queue_title">Auto-queue next stream</string>
     <string name="auto_queue_summary">Continue ending (non-repeating) playback queue by appending a related stream</string>
+    <string name="auto_queue_toggle">Auto-queue</string>
     <string name="volume_gesture_control_title">Volume gesture control</string>
     <string name="volume_gesture_control_summary">Use gestures to control player volume</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
@@ -110,7 +111,8 @@
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
-    <string name="url_not_supported_toast">Unsupported URL</string>
+    <string name="unsupported_url">Unsupported URL</string>
+    <string name="unsupported_url_dialog_message">NewPipe could not recognize the provided url. Open it with another method?</string>
     <string name="default_content_country_title">Default content country</string>
     <string name="service_title">Service</string>
     <string name="content_language_title">Default content language</string>
@@ -407,7 +409,7 @@
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscriptions yet</string>
     <string name="select_a_playlist">Select a playlist</string>
-    <string name="no_playlist_bookmarked_yet">No playlists bookmarks yet</string>
+    <string name="no_playlist_bookmarked_yet">No playlist bookmarks yet</string>
     <string name="select_a_kiosk">Select a kiosk</string>
     <string name="export_complete_toast">Exported</string>
     <string name="import_complete_toast">Imported</string>
@@ -458,7 +460,7 @@
     <string name="create_playlist">New Playlist</string>
     <string name="delete_playlist">Delete</string>
     <string name="rename_playlist">Rename</string>
-    <string name="playlist_name_input">Name</string>
+    <string name="name">Name</string>
     <string name="append_playlist">Add To Playlist</string>
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
@@ -481,7 +483,7 @@
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect.</string>
     <!-- Debug Settings -->
-    <string name="enable_leak_canary_title">LeakCanary</string>
+    <string name="leakcanary" translatable="false">LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
@@ -540,9 +542,8 @@
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
     <!-- Autoplay behavior -->
     <string name="autoplay_summary">Start playback automatically — %s</string>
-    <string name="autoplay_always_description">Always</string>
-    <string name="autoplay_wifi_description">Only on WiFi</string>
-    <string name="autoplay_never_description">Never</string>
+    <string name="wifi_only">Only on WiFi</string>
+    <string name="never">Never</string>
     <string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
@@ -647,7 +648,6 @@
         <item quantity="other">%d selected</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Empty group name</string>
-    <string name="feed_group_dialog_name_input">Name</string>
     <string name="feed_group_dialog_delete_message">Do you want to delete this group?</string>
     <string name="feed_create_new_group_button_title">New</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Show only ungrouped subscriptions</string>

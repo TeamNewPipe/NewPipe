@@ -50,6 +50,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.urlfinder.UrlFinder;
 import org.schabi.newpipe.views.FocusOverlayView;
@@ -159,27 +160,36 @@ public class RouterActivity extends AppCompatActivity {
                     if (result) {
                         onSuccess();
                     } else {
-                        onError();
+                        showUnsupportedUrlDialog(url);
                     }
-                }, this::handleError));
+                }, throwable -> handleError(throwable, url)));
     }
 
-    private void handleError(final Throwable error) {
-        error.printStackTrace();
+    private void handleError(final Throwable throwable, final String url) {
+        throwable.printStackTrace();
 
-        if (error instanceof ExtractionException) {
-            Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
+        if (throwable instanceof ExtractionException) {
+            showUnsupportedUrlDialog(url);
         } else {
-            ExtractorHelper.handleGeneralException(this, -1, null, error,
+            ExtractorHelper.handleGeneralException(this, -1, url, throwable,
                     UserAction.SOMETHING_ELSE, null);
+            finish();
         }
-
-        finish();
     }
 
-    private void onError() {
-        Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
-        finish();
+    private void showUnsupportedUrlDialog(final String url) {
+        final Context context = getThemeWrapperContext();
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.unsupported_url)
+                .setMessage(R.string.unsupported_url_dialog_message)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_share))
+                .setPositiveButton(R.string.open_in_browser,
+                        (dialog, which) -> ShareUtils.openUrlInBrowser(this, url))
+                .setNegativeButton(R.string.share,
+                        (dialog, which) -> ShareUtils.shareUrl(this, "", url)) // no subject
+                .setNeutralButton(R.string.cancel, null)
+                .setOnDismissListener(dialog -> finish())
+                .show();
     }
 
     protected void onSuccess() {
@@ -459,7 +469,7 @@ public class RouterActivity extends AppCompatActivity {
                         startActivity(intent);
 
                         finish();
-                    }, this::handleError)
+                    }, throwable -> handleError(throwable, currentUrl))
             );
             return;
         }
@@ -493,7 +503,9 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
                     downloadDialog.getDialog().setOnDismissListener(dialog -> finish());
-                }, (@NonNull Throwable throwable) -> onError());
+                }, (@NonNull Throwable throwable) -> {
+                    showUnsupportedUrlDialog(currentUrl);
+                });
     }
 
     @Override

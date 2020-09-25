@@ -32,7 +32,7 @@
     <string name="download_dialog_title">下載</string>
     <string name="next_video_title">下一個</string>
     <string name="show_next_and_similar_title">顯示「下一部」與「相關」的影片</string>
-    <string name="url_not_supported_toast">不支援此網址</string>
+    <string name="unsupported_url">不支援此網址</string>
     <string name="content_language_title">預設內容語言</string>
     <string name="settings_category_video_audio_title">影片和音訊</string>
     <string name="settings_category_appearance_title">外觀</string>
@@ -105,7 +105,7 @@
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
     <string name="what_happened_headline">發生了什麼事：</string>
-    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
+    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n內容國家：\\n應用程式語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
     <string name="your_comment">您的留言(請用英文)：</string>
     <string name="error_details_headline">詳細資訊：</string>
     <string name="report_error">回報錯誤</string>
@@ -287,7 +287,7 @@
     <string name="create_playlist">新的播放清單</string>
     <string name="delete_playlist">刪除</string>
     <string name="rename_playlist">重新命名</string>
-    <string name="playlist_name_input">名稱</string>
+    <string name="name">名稱</string>
     <string name="append_playlist">新增至播放清單</string>
     <string name="set_as_playlist_thumbnail">設為播放清單縮圖</string>
     <string name="bookmark_playlist">將播放清單加入書籤</string>
@@ -304,7 +304,6 @@
     <string name="drawer_header_action_paceholder_text">某些東西即將在此出現 ;D</string>
     <string name="settings_category_debug_title">除錯</string>
     <string name="caption_auto_generated">自動產生</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">記憶體洩漏監測，在 heap dumping 時可能導致應用程式無法回應</string>
     <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
@@ -557,7 +556,6 @@
         <item quantity="other">已選取 %d 個</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">清空群組名稱</string>
-    <string name="feed_group_dialog_name_input">名稱</string>
     <string name="feed_group_dialog_delete_message">您想要刪除此群組嗎？</string>
     <string name="feed_create_new_group_button_title">新</string>
     <string name="settings_category_feed_title">Feed</string>
@@ -602,4 +600,11 @@
     <string name="channel_created_by">由 %s 建立</string>
     <string name="detail_sub_channel_thumbnail_view_description">頻道大頭貼縮圖</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">僅顯示未分組的訂閱</string>
+    <string name="no_playlist_bookmarked_yet">尚無播放清單書籤</string>
+    <string name="playlist_page_summary">播放清單頁面</string>
+    <string name="select_a_playlist">選取播放清單</string>
+    <string name="error_report_open_github_notice">請檢查是否已有與您的應用程式當機相關的討論議題。當建立重複的工單時，您就是在耗費我們本來可以用來修復臭蟲的時間。</string>
+    <string name="error_report_open_issue_button_text">在 GitHub 上回報錯誤</string>
+    <string name="copy_for_github">複製格式化過的報告</string>
+    <string name="search_showing_result_for">正在顯示結果：%s</string>
 </resources>

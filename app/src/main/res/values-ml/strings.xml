@@ -35,7 +35,6 @@
     <string name="enable_disposed_exceptions_summary">നീക്കംചെയ്യലിനുശേഷം ശകലം അല്ലെങ്കിൽ ആക്റ്റിവിറ്റി ജീവിതചക്രത്തിന് പുറത്തുള്ള വിതരണം ചെയ്യാനാവാത്ത Rx ഒഴിവാക്കലുകളുടെ നിർബന്ധിത റിപ്പോർട്ടിംഗ്</string>
     <string name="enable_disposed_exceptions_title">Out-of-lifecycle പിശകുകൾ റിപ്പോർട്ടുചെയ്യുക</string>
     <string name="enable_leak_canary_summary">മെമ്മറി ലീക്ക് മോണിറ്ററിംഗ്, ഹീപ്പ് ഡമ്പിംഗ് ചെയ്യുമ്പോൾ അപ്ലിക്കേഷൻ പ്രതികരിക്കാതിരിക്കാൻ കാരണമായേക്കാം</string>
-    <string name="enable_leak_canary_title">ലീക്ക്കാനറി</string>
     <string name="caption_setting_description">പ്ലെയർ അടിക്കുറിപ്പ് ടെക്സ്റ്റ് സ്‌കെയിലും പശ്ചാത്തല ശൈലികളും പരിഷ്‌ക്കരിക്കുക. പ്രാബല്യത്തിൽ വരാൻ അപ്ലിക്കേഷൻ പുനരാരംഭിക്കൽ ആവശ്യമാണ്.</string>
     <string name="caption_setting_title">അടിക്കുറിപ്പുകൾ</string>
     <string name="caption_auto_generated">യാന്ത്രികമായി സൃഷ്‌ടിച്ചവ</string>
@@ -55,7 +54,7 @@
     <string name="unmute">അൺമ്യൂട്ട്</string>
     <string name="mute">മ്യൂട്ട്</string>
     <string name="append_playlist">പ്ലേലിസ്റ്റിലേക്ക് ചേർക്കുക</string>
-    <string name="playlist_name_input">പേര്</string>
+    <string name="name">പേര്</string>
     <string name="rename_playlist">പേര് മാറ്റുക</string>
     <string name="delete_playlist">ഡിലീറ്റ്</string>
     <string name="create_playlist">പുതിയ പ്ലേലിസ്റ്റ്</string>
@@ -130,7 +129,7 @@
     <string name="website_encouragement">കൂടുതൽ വിവരങ്ങൾക്കും വാർത്തകൾക്കും ന്യൂപൈപ്പിന്റെ വെബ്സൈറ്റ് സന്ദർശിക്കുക.</string>
     <string name="website_title">വെബ്സൈറ്റ്</string>
     <string name="give_back">തിരികെ നൽകുക</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">എന്താണ്:\\nഅപേക്ഷ:\\nഉള്ളടക്കത്തിന്റെ ഭാഷ:\\nഉള്ളടക്കത്തിന്റെ രാജ്യം:\\n അപ്ലിക്കേഷന്റെ ഭാഷ:\\nസേവനം:\\nGMT സമയം:\\nപാക്കേജ്:\\nപതിപ്പ്:\\nOS ന്റെ പതിപ്പ്:</string>
     <string name="donation_encouragement">നിങ്ങൾക്ക് മികച്ച ഉപഭോക്തൃ അനുഭവം നൽകാനായി പ്രയത്‌നിക്കുന്ന ലോകമെമ്പാടുമുള്ള വൊളന്റിയർമാരാണ് ന്യൂപൈപ്പിന്റെ ശക്തി. ന്യൂപൈപ്പിനെ ഇനിയും മികവുറ്റതാക്കാൻ നിങ്ങൾക്ക് കഴിയും, നിങ്ങളുടെ സംഭാവനയിലൂടെ.</string>
     <string name="donation_title">സംഭാവന ചെയ്യുക</string>
     <string name="view_on_github">ജിറ്റ്ഹബിൽ കാണുക</string>
@@ -364,7 +363,7 @@
     <string name="content_language_title">സ്ഥിര കന്റെന്റ്‌ ഭാഷ</string>
     <string name="service_title">സേവനം</string>
     <string name="default_content_country_title">സ്ഥിര കന്റെന്റ് രാജ്യം</string>
-    <string name="url_not_supported_toast">അനുയോജ്യമല്ലാത്ത URL</string>
+    <string name="unsupported_url">അനുയോജ്യമല്ലാത്ത URL</string>
     <string name="show_hold_to_append_summary">പോപ്പപ്പ്/ബാക്ക്ഗ്രൗണ്ട് ബട്ടൺ അമർത്തുമ്പോൾ \"വിശദാംശങ്ങൾ\" എന്ന ടിപ് കാണിക്കും</string>
     <string name="show_hold_to_append_title">\"ഹോൾഡ് ടു അപ്പെൻഡ്\" എന്ന ടിപ് കാണിക്കുക</string>
     <string name="show_next_and_similar_title">\'അടുത്ത\' , \'സമാനമായ\' വീഡിയോകൾ കാണിക്കുക</string>
@@ -516,7 +515,6 @@
     <string name="settings_category_feed_title">ഫീഡ്</string>
     <string name="feed_create_new_group_button_title">പുതിയത്</string>
     <string name="feed_group_dialog_delete_message">ഈ ഗ്രൂപ്പ് ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ\?</string>
-    <string name="feed_group_dialog_name_input">പേര്</string>
     <string name="feed_group_dialog_empty_name">ശൂന്യമായ ഗ്രൂപ്പ് പേര്</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d തിരഞ്ഞെടുത്തു</item>
@@ -610,4 +608,12 @@
     <string name="show_original_time_ago_summary">സേവനങ്ങളിൽ നിന്നുള്ള യഥാർത്ഥ വാചകങ്ങൾ സ്ട്രീം ഇനങ്ങളിൽ ദൃശ്യമാകും</string>
     <string name="show_original_time_ago_title">ഇനങ്ങളിൽ യഥാർത്ഥ സമയം മുമ്പ് കാണിക്കുക</string>
     <string name="youtube_restricted_mode_enabled_title">യുട്യൂബ് നിയന്ത്രിത മോഡ്</string>
+    <string name="search_showing_result_for">ഇതിനായുള്ള ഫലങ്ങൾ കാണിക്കുന്നു: %s</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">ഗ്രൂപ്പുചെയ്യാത്ത സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ മാത്രം കാണിക്കുക</string>
+    <string name="no_playlist_bookmarked_yet">ഇതുവരെ ഒരു പ്ലേലിസ്റ്റ് ബുക്ക്മാർക്കുകളും ഇല്ല</string>
+    <string name="select_a_playlist">ഒരു പ്ലേലിസ്റ്റ് തിരഞ്ഞെടുക്കുക</string>
+    <string name="error_report_open_github_notice">നിങ്ങളുടെ ക്രാഷ് ചർച്ച ചെയ്യുന്ന ഒരു പ്രശ്നം ഇതിനകം നിലവിലുണ്ടോയെന്ന് ദയവായി പരിശോധിക്കുക. തനിപ്പകർപ്പ് ആയ ടിക്കറ്റുകള്‍ സൃഷ്ടിക്കുമ്പോൾ, യഥാർത്ഥ ബഗ് പരിഹരിക്കുവാന്‍ വേണ്ടി ഞങ്ങ‍ള്‍ക്ക് ചെലവഴിക്കാൻ കഴിയുമായിരുന്ന സമയം നിങ്ങൾ ഞങ്ങളിൽ നിന്ന് എടുക്കുകയാണ് ചെയ്യുന്നത്.</string>
+    <string name="copy_for_github">ഫോർമാറ്റുചെയ്‌ത റിപ്പോർട്ട് പകർത്തുക</string>
+    <string name="playlist_page_summary">പ്ലേലിസ്റ്റ് പേജ്</string>
+    <string name="error_report_open_issue_button_text">തെറ്റ് GitHub ല്‍ റിപ്പോര്‍ട്ട് ചെയ്യുക</string>
 </resources>

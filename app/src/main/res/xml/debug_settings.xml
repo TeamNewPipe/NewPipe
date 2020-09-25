@@ -9,7 +9,7 @@
         app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/allow_heap_dumping_key"
-        android:title="@string/enable_leak_canary_title"
+        android:title="@string/leakcanary"
         android:summary="@string/enable_leak_canary_summary"/>
 
     <SwitchPreferenceCompat

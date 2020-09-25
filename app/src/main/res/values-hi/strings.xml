@@ -96,7 +96,7 @@
     <string name="show_next_and_similar_title">\'अगला\' और \'पहले समान\' वीडियो दिखाए</string>
     <string name="show_hold_to_append_title">\"जोड़ने के लिए पकड़ें रहे\" दिखाए</string>
     <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन विडियो के विवरण पन्ने में दबाई जाए तो tip को दिखाए</string>
-    <string name="url_not_supported_toast">ये वाला URL इसमें नहीं चलेगा</string>
+    <string name="unsupported_url">ये वाला URL इसमें नहीं चलेगा</string>
     <string name="content_language_title">डिफ़ॉल्ट विषय की भाषा</string>
     <string name="settings_category_player_title">प्लेयर</string>
     <string name="settings_category_player_behavior_title">चाल चलन</string>
@@ -293,7 +293,7 @@
     <string name="create_playlist">नई प्लेलिस्ट</string>
     <string name="delete_playlist">हटाएं</string>
     <string name="rename_playlist">नाम बदलें</string>
-    <string name="playlist_name_input">नाम</string>
+    <string name="name">नाम</string>
     <string name="append_playlist">प्लेलिस्ट में जोड़ें</string>
     <string name="set_as_playlist_thumbnail">प्लेलिस्ट थंबनेल के रूप में सेट करें</string>
     <string name="bookmark_playlist">प्लेलिस्ट बुकमार्क करें</string>
@@ -309,7 +309,6 @@
     <string name="resize_zoom">ज़ूम करें</string>
     <string name="settings_category_debug_title">डीबग करें</string>
     <string name="caption_auto_generated">ऑटो-जनरेटेड</string>
-    <string name="enable_leak_canary_title">LeakCanary सक्षम करें</string>
     <string name="enable_leak_canary_summary">हीप डंप करने के दौरान मेमोरी लीक मॉनिटरिंग ऐप को अनुत्तरदायी बना सकता है</string>
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle त्रुटियों की रिपोर्ट करें</string>
     <string name="download_thumbnail_title">छायाप्रारुप लोड करें</string>

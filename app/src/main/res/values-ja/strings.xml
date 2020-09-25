@@ -26,7 +26,7 @@
     <string name="download_dialog_title">保存</string>
     <string name="next_video_title">次</string>
     <string name="show_next_and_similar_title">「次の動画」と「関連動画」を表示</string>
-    <string name="url_not_supported_toast">URLは使用できません</string>
+    <string name="unsupported_url">URLは使用できません</string>
     <string name="content_language_title">優先言語</string>
     <string name="settings_category_video_audio_title">動画と音声</string>
     <string name="view_count_text">%1$s ビュー</string>
@@ -105,7 +105,7 @@
     <string name="error_report_title">不具合報告</string>
     <string name="could_not_load_image">画像を読み込みできません</string>
     <string name="app_ui_crash">アプリ/UI がクラッシュしました</string>
-    <string name="info_labels">何:\\\\n提案:\\\\nコンテンツ言語:\\\\nサービス:\\\\nGMT 時間:\\\\nパッケージ:\\\\nバージョン:\\\\nOSバージョン:</string>
+    <string name="info_labels">どんな問題:\\nリクエスト:\\nコンテンツ言語:\\nコンテンツ国:\\nアプリ言語:\\nサービス:\\nGMT 時間:\\nパッケージ:\\nバージョン:\\nOSバージョン:</string>
     <string name="title_activity_recaptcha">reCAPTCHA の要求</string>
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
     <string name="black_theme_title">ブラック</string>
@@ -279,7 +279,7 @@
     <string name="create_playlist">新規プレイリスト</string>
     <string name="delete_playlist">削除する</string>
     <string name="rename_playlist">変更</string>
-    <string name="playlist_name_input">プレイリスト名</string>
+    <string name="name">プレイリスト名</string>
     <string name="append_playlist">プレイリストに追加</string>
     <string name="set_as_playlist_thumbnail">プレイリストのサムネイルに設定</string>
     <string name="bookmark_playlist">プレイリストをブックマーク</string>
@@ -372,7 +372,6 @@
     <string name="minimize_on_exit_none_description">何もしない</string>
     <string name="minimize_on_exit_background_description">バックグラウンドに変更</string>
     <string name="minimize_on_exit_popup_description">ポップアップに変更</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">メモリリークの監視は、ヒープダンピング時にアプリが無反応になる原因となります</string>
     <string name="enable_disposed_exceptions_title">ライフサイクルエラーの報告</string>
     <string name="enable_disposed_exceptions_summary">破棄されたフラグメントまたはアクティビティの、ライフサイクル範囲外での配信不能なRx例外を強制的に報告します</string>
@@ -557,7 +556,6 @@
         <item quantity="other">%d 選択中</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">グループ名が空です</string>
-    <string name="feed_group_dialog_name_input">グループ名</string>
     <string name="feed_group_dialog_delete_message">このグループを削除しますか？</string>
     <string name="feed_create_new_group_button_title">新規</string>
     <string name="settings_category_feed_title">フィード</string>
@@ -602,4 +600,11 @@
     <string name="channel_created_by">%s により作成</string>
     <string name="detail_sub_channel_thumbnail_view_description">チャンネルのサムネイル</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">グループ化されていない登録チャンネルのみ表示</string>
+    <string name="no_playlist_bookmarked_yet">まだプレイリスト ブックマークはありません</string>
+    <string name="error_report_open_github_notice">クラッシュを説明する問題がすでに存在しているかどうかを確認してください。重複したチケットを作成する場合、あなたは私たちから実際のバグを修正する時間を奪うことになります。</string>
+    <string name="search_showing_result_for">次の検索結果を表示しています: %s</string>
+    <string name="error_report_open_issue_button_text">GitHub でエラーを報告する</string>
+    <string name="copy_for_github">整形済みリポートをコピー</string>
+    <string name="playlist_page_summary">プレイリスト ページ</string>
+    <string name="select_a_playlist">プレイリストを選択してください</string>
 </resources>

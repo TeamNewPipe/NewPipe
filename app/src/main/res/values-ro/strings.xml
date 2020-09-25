@@ -36,7 +36,7 @@
     <string name="download_dialog_title">Descărcați</string>
     <string name="next_video_title">Următorul</string>
     <string name="show_next_and_similar_title">Arată videoclipurile care urmează și similare</string>
-    <string name="url_not_supported_toast">URL nesuportat</string>
+    <string name="unsupported_url">URL nesuportat</string>
     <string name="content_language_title">Limba dorită a conținutului</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="settings_category_appearance_title">Aspect</string>
@@ -314,7 +314,7 @@ pentru a deschide în mod pop-up</string>
     <string name="donation_title">Donaţi</string>
     <string name="drawer_header_action_paceholder_text">Ceva va apărea aici în curând ;D</string>
     <string name="import_settings">De asemenea, doriți să importați setări?</string>
-    <string name="playlist_name_input">Nume</string>
+    <string name="name">Nume</string>
     <string name="playlist_creation_success">Listă de redare creată</string>
     <string name="playlist_add_stream_success">Adăugat la lista de redare</string>
     <string name="caption_auto_generated">Generat automat</string>
@@ -403,6 +403,20 @@ pentru a deschide în mod pop-up</string>
     <string name="clear_playback_states_title">Șterge pozițiile de redare memorate</string>
     <string name="download_choose_new_path">Schimbați folderul de descărcări pentru ca setările să aibă efect</string>
     <string name="bookmark_playlist">Salvează playlist-ul</string>
-    <string name="enable_leak_canary_title">Activează LeakCanary</string>
     <string name="limit_mobile_data_usage_title">Limitați rezoluția când folosiți date mobile</string>
+    <string name="permission_display_over_apps">Acordă permisiunea de a afișa peste alte aplicații</string>
+    <string name="delete_playback_states_alert">Ștergeți toate pozițiile din playback\?</string>
+    <string name="clear_playback_states_summary">Șterge toate pozițiile din playback</string>
+    <string name="videos_string">Videoclipuri</string>
+    <string name="peertube_instance_add_exists">Instanța există deja</string>
+    <string name="peertube_instance_add_https_only">Doar adresele URL HTTPS sunt suportate</string>
+    <string name="peertube_instance_add_fail">Nu sa putut valida instanța</string>
+    <string name="peertube_instance_add_help">Introdu adresa URL a instanței</string>
+    <string name="peertube_instance_add_title">Adaugă instanță</string>
+    <string name="peertube_instance_url_help">Găsește instanța care îți place în %s</string>
+    <string name="peertube_instance_url_summary">Selectează instanța preferată PeerTube</string>
+    <string name="peertube_instance_url_title">Instanțe PeerTube</string>
+    <string name="seek_duration_title">Durată redare-înainte/derulare</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">O miniatură a videoclipului apare pe ecran blocare când folosești redarea pe fundal</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Miniatură pentru ecran blocare</string>
 </resources>

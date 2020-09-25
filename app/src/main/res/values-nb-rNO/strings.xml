@@ -35,7 +35,7 @@
     <string name="download_dialog_title">Last ned</string>
     <string name="next_video_title">Neste</string>
     <string name="show_next_and_similar_title">Vis \"Neste\" og \"Lignende\" -videoer</string>
-    <string name="url_not_supported_toast">Nettadressen støttes ikke</string>
+    <string name="unsupported_url">Nettadressen støttes ikke</string>
     <string name="content_language_title">Foretrukket innholdsspråk</string>
     <string name="settings_category_video_audio_title">Video og lyd</string>
     <string name="settings_category_appearance_title">Utseende</string>
@@ -65,7 +65,7 @@
     <string name="light_parsing_error">Kunne ikke tolke nettside fullstendig</string>
     <string name="content_not_available">Innholdet er utilgjengelig</string>
     <string name="could_not_setup_download_menu">Kunne ikke sette opp nedlastingsmeny</string>
-    <string name="live_streams_not_supported">Direktesendinger støttes ikke ennå</string>
+    <string name="live_streams_not_supported">Direktesendinger støttes ikke enda</string>
     <string name="could_not_get_stream">Kunne ikke finne noen strømmer</string>
     <string name="sorry_string">Beklager, dette skal ikke skje.</string>
     <string name="error_report_button_text">Rapporter feil via e-post</string>
@@ -101,7 +101,7 @@
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle</string>
-    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOperativsystemsversjon:</string>
+    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nInnholdsland:\\nProgramspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOS-versjon:</string>
     <string name="start">Start</string>
     <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
@@ -293,7 +293,7 @@
     <string name="create_playlist">Ny spilleliste</string>
     <string name="delete_playlist">Slett</string>
     <string name="rename_playlist">Gi nytt navn</string>
-    <string name="playlist_name_input">Navn</string>
+    <string name="name">Navn</string>
     <string name="append_playlist">Legg til i spilleliste</string>
     <string name="set_as_playlist_thumbnail">Sett som miniatyrbilde for spilleliste</string>
     <string name="bookmark_playlist">Bokmerk spilleliste</string>
@@ -316,7 +316,6 @@
     <string name="file_name_empty_error">Filnavn kan ikke være tomt</string>
     <string name="error_occurred_detail">En feil inntraff: %1$s</string>
     <string name="caption_auto_generated">Auto-generert</string>
-    <string name="enable_leak_canary_title">Skru på LeakCanary</string>
     <string name="import_title">Importer</string>
     <string name="import_from">Importer fra</string>
     <string name="export_to">Eksporter til</string>
@@ -425,7 +424,7 @@
     <string name="grid">Rutenett</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Veksle visning</string>
-    <string name="app_update_notification_content_title">NewPipe-oppdatering tilgjengelig!</string>
+    <string name="app_update_notification_content_title">Ny NewPipe-versjon tilgjengelig.</string>
     <string name="app_update_notification_content_text">Trykk for å laste ned</string>
     <string name="missions_header_finished">Fullført</string>
     <string name="paused">pauset</string>
@@ -517,7 +516,7 @@
     <string name="deleted_downloads">Slettet %1$d nedlastninger</string>
     <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde på låseskjerm</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises ent videominiatyrbilde på låseskjermen</string>
-    <string name="peertube_instance_url_summary">Velg dine favoritter blandt PeerTube-instansene</string>
+    <string name="peertube_instance_url_summary">Velg dine favoritter blant PeerTube-instansene</string>
     <string name="peertube_instance_url_help">Finn instansene som passer deg best på %s</string>
     <string name="peertube_instance_add_title">Legg til instans</string>
     <string name="peertube_instance_add_help">Skriv inn nettadresse til instans</string>
@@ -555,7 +554,6 @@
     </plurals>
     <string name="feed_subscription_not_loaded_count">Ikke innlastet: %d</string>
     <string name="feed_group_dialog_empty_name">Tomt gruppenavn</string>
-    <string name="feed_group_dialog_name_input">Navn</string>
     <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen\?</string>
     <string name="feed_create_new_group_button_title">Ny</string>
     <string name="feed_update_threshold_option_always_update">Alltid oppdater</string>

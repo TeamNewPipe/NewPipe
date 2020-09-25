@@ -84,7 +84,7 @@
     <string name="show_next_and_similar_title">Kuva \'järgmine\' ja \'sarnased\' videod</string>
     <string name="show_hold_to_append_title">Kuva vihjet \"lisamiseks hoia\"</string>
     <string name="show_hold_to_append_summary">Kuva vihje, kui videoandmete lehel vajutatakse tausta või hüpikakna nupule</string>
-    <string name="url_not_supported_toast">Mitte toetatud URL</string>
+    <string name="unsupported_url">Mitte toetatud URL</string>
     <string name="default_content_country_title">Sisu vaikimisi riik</string>
     <string name="service_title">Teenus</string>
     <string name="content_language_title">Sisu vaikimisi keel</string>
@@ -318,7 +318,7 @@
     <string name="create_playlist">Uus pleilist</string>
     <string name="delete_playlist">Kustuta</string>
     <string name="rename_playlist">Nimeta ümber</string>
-    <string name="playlist_name_input">Nimi</string>
+    <string name="name">Nimi</string>
     <string name="append_playlist">Lisa pleilisti</string>
     <string name="set_as_playlist_thumbnail">Määra pleilisti pisipildiks</string>
     <string name="bookmark_playlist">Lisa pleilist järjehoidjaks</string>
@@ -376,7 +376,6 @@
     <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid.
 \nNewPipe privaatsuspoliitika selgitab üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
     <string name="app_license">NewPipe vaba avatud koodiga tarkvara. Seada võib kasutada, uurida, jagada ja parandada. Täpsemalt - seda võib levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või hilisem) tingimustele.</string>
-    <string name="enable_leak_canary_title">Luba LeakCanary</string>
     <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
     <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID:
 \n

@@ -1485,6 +1485,10 @@ public class VideoPlayerImpl extends VideoPlayer
         }
     }
 
+    public void disablePreloadingOfCurrentTrack() {
+        getLoadController().disablePreloadingOfCurrentTrack();
+    }
+
     protected void setMuteButton(final ImageButton button, final boolean isMuted) {
         button.setImageDrawable(AppCompatResources.getDrawable(service, isMuted
                 ? R.drawable.ic_volume_off_white_24dp : R.drawable.ic_volume_up_white_24dp));

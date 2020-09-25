@@ -46,7 +46,7 @@
     <string name="next_video_title">తదుపరి వీడియో</string>
     <string name="show_next_and_similar_title">తదుపరి వీడియో మరియు ఇలాంటి వీడియో</string>
     <string name="show_hold_to_append_title">చిట్కాను అనుబంధించడానికి హోల్డ్ను చూపు</string>
-    <string name="url_not_supported_toast">Url మద్దతు లేదు</string>
+    <string name="unsupported_url">Url మద్దతు లేదు</string>
     <string name="content_language_title">డిఫాల్ట్ భాష</string>
     <string name="settings_category_player_title">ప్లేయర్</string>
     <string name="settings_category_player_behavior_title">ప్రవర్తన</string>
@@ -184,4 +184,5 @@
     <string name="default_popup_resolution_title">డిఫాల్ట్ పాపప్ స్పష్టత</string>
     <string name="controls_download_desc">ప్రసార ఫైల్ను డౌన్లోడ్ చేయండి</string>
     <string name="use_external_video_player_title">బాహ్య వీడియో ప్లేయర్ని ఉపయోగించండి</string>
+    <string name="use_external_video_player_summary">కొన్ని రెసొల్యూషన్స్ లో ఆడియో తీసేస్తుంది</string>
 </resources>

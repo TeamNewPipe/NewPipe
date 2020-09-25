@@ -978,6 +978,9 @@ public class VideoDetailFragment
             return;
         }
         setInitialData(sid, videoUrl, title, queue);
+        if (player != null) {
+            player.disablePreloadingOfCurrentTrack();
+        }
         startLoading(false, true);
     }
 

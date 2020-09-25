@@ -119,7 +119,7 @@
     <string name="resume_on_audio_focus_gain_summary">"தொலைபேசி அழைப்பு போன்ற குறுக்கீடுகளுக்கு பிறகு தொடரவும் "</string>
     <string name="show_next_and_similar_title">\'அடுத்து\' மற்றும் \'ஒப்பான\' காணொளிகலை காண்பி</string>
     <string name="enable_search_history_summary">தேடப்பட்ட வாக்கியத்தை அமைவிடத்தில் சேமிக்கவும்</string>
-    <string name="url_not_supported_toast">ஆதரிக்கப்படாத URL</string>
+    <string name="unsupported_url">ஆதரிக்கப்படாத URL</string>
     <string name="default_content_country_title">இயல்புநிலை தகவல்களின் நாடு</string>
     <string name="settings_category_debug_title">பிழைதிருத்து</string>
     <string name="content">உள்ளடக்கம்</string>

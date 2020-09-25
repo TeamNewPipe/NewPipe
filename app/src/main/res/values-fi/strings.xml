@@ -17,14 +17,14 @@
     <string name="choose_browser">Valitse selain</string>
     <string name="screen_rotation">kierto</string>
     <string name="use_external_video_player_title">Käytä ulkoista videosoitinta</string>
-    <string name="use_external_video_player_summary">Poistaa äänen joillakin resoluutioilla</string>
+    <string name="use_external_video_player_summary">Ääni saattaa lakata toimimasta joillakin resoluutioilla</string>
     <string name="use_external_audio_player_title">Käytä ulkoista äänisoitinta</string>
     <string name="popup_mode_share_menu_title">Ponnahdusikkunatila</string>
     <string name="subscribe_button_title">Tilaa</string>
     <string name="subscribed_button_title">Tilattu</string>
     <string name="channel_unsubscribed">Kanavan tilaus peruttu</string>
     <string name="subscription_change_failed">Tilauksen vaihtaminen epäonnistui</string>
-    <string name="subscription_update_failed">Ei pystytty päivittämään tilausta</string>
+    <string name="subscription_update_failed">Tilausta ei voitu päivittää</string>
     <string name="tab_main">Päävalikko</string>
     <string name="tab_subscriptions">Tilaukset</string>
     <string name="fragment_feed_title">Uudet</string>
@@ -40,12 +40,12 @@
     <string name="autoplay_by_calling_app_summary">Toistaa videon automaattisesti, kun NewPipe avataan toisesta ohjelmasta</string>
     <string name="default_resolution_title">Oletusresoluutio</string>
     <string name="default_popup_resolution_title">Ponnahdusikkunan oletusresoluutio</string>
-    <string name="show_higher_resolutions_title">Näytä korkeampia resoluutioita</string>
-    <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videoa</string>
-    <string name="play_with_kodi_title">Toista Kodi:ssa</string>
+    <string name="show_higher_resolutions_title">Näytä korkeammat resoluutiot</string>
+    <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videota</string>
+    <string name="play_with_kodi_title">Toista Kodissa</string>
     <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus\?</string>
-    <string name="show_play_with_kodi_title">Näytä \"Toista Kodi:ssa\" vaihtoehto</string>
-    <string name="show_play_with_kodi_summary">Näyttää painikkeen, jolla voi toistaa videon Kodi media center:llä</string>
+    <string name="show_play_with_kodi_title">Näytä \"Toista Kodissa\"-vaihtoehto</string>
+    <string name="show_play_with_kodi_summary">Näyttää vaihtoehdon videon toistamiseen Kodi-mediasoittimessa</string>
     <string name="play_audio">Ääni</string>
     <string name="default_audio_format_title">Oletusääniformaatti</string>
     <string name="default_video_format_title">Oletusvideoformaatti</string>
@@ -67,8 +67,8 @@
     <string name="download_dialog_title">Lataus</string>
     <string name="next_video_title">Seuraava</string>
     <string name="show_next_and_similar_title">Näytä seuraavia ja samankaltaisia videoita</string>
-    <string name="url_not_supported_toast">URL ei tuettu</string>
-    <string name="content_language_title">Oletus-sisällon kieli</string>
+    <string name="unsupported_url">URL ei tuettu</string>
+    <string name="content_language_title">Sisällon oletuskieli</string>
     <string name="settings_category_player_title">Soitin</string>
     <string name="settings_category_player_behavior_title">Käyttäytyminen</string>
     <string name="settings_category_video_audio_title">Video &amp; ääni</string>
@@ -102,12 +102,12 @@
     <string name="notification_channel_description">Ilmoitukset NewPipen tausta- ja ponnahdusikkunasoittimille</string>
     <string name="general_error">Virhe</string>
     <string name="network_error">Verkkovirhe</string>
-    <string name="could_not_load_thumbnails">Ei pystytty lataamaan kaikkia esikatselukuvia</string>
-    <string name="youtube_signature_decryption_error">Ei pystytty purkamaan salausta videon URL allekirjoitukselle</string>
-    <string name="parsing_error">Ei pystytty jäsentämään websivua</string>
-    <string name="light_parsing_error">Ei pystytty jäsentämään websivua kokonaan</string>
+    <string name="could_not_load_thumbnails">Kaikkia esikatselukuvia ei voitu ladata</string>
+    <string name="youtube_signature_decryption_error">Videon URL-allekirjoituksen salausta ei voitu purkaa</string>
+    <string name="parsing_error">Verkkosivua ei voitu jäsentää</string>
+    <string name="light_parsing_error">Verkkosivua ei voitu täysin jäsentää</string>
     <string name="content_not_available">Sisältö ei ole saatavilla</string>
-    <string name="could_not_setup_download_menu">Ei pystytty asettamaan latausvalikkoa</string>
+    <string name="could_not_setup_download_menu">Latausvalikkoa ei voitu asettaa</string>
     <string name="live_streams_not_supported">Live-suoratoistoa ei vielä tueta</string>
     <string name="could_not_get_stream">Suoratoistosisältöä ei saatu</string>
     <string name="could_not_load_image">Kuvan lataus epäonnistui</string>
@@ -178,9 +178,9 @@
     <string name="recaptcha_request_toast">reCAPTCHA-haaste pyydetty</string>
     <string name="settings_category_downloads_title">Lataus</string>
     <string name="settings_file_charset_title">Sallitut merkit tiedostonimissä</string>
-    <string name="settings_file_replacement_character_summary">Epäkelvot merkit korvataan tällä arvolla</string>
+    <string name="settings_file_replacement_character_summary">Kielletyt merkit korvataan tällä arvolla</string>
     <string name="settings_file_replacement_character_title">Korvaava merkki</string>
-    <string name="charset_letters_and_digits">Kirjaimia ja numeroita</string>
+    <string name="charset_letters_and_digits">Kirjaimet ja numerot</string>
     <string name="charset_most_special_characters">Suurin osa erikoismerkeistä</string>
     <string name="title_activity_about">Tietoja NewPipe</string>
     <string name="action_settings">Asetukset</string>
@@ -208,7 +208,7 @@
     <string name="delete_item_search_history">Haluatko poistaa tämän hakuhistoriasta?</string>
     <string name="resume_on_audio_focus_gain_title">Jatka toistoa</string>
     <string name="what_device_headline">Info:</string>
-    <string name="info_labels">Mikä:\\nPyyntö:\\nSisällön kieli:\\nPalvelu:\\nGMT Aika:\\nPaketti:\\nVersio:\\nOS versio:</string>
+    <string name="info_labels">Mikä:\\nPyyntö:\\nSisällön kieli:\\nSisällön maa:\\n:Sovelluksen kieli:\\nPalvelu:\\nGMT Aika:\\nPaketti:\\nVersio:\\nOS versio:</string>
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
     <string name="main_page_content">Pääsivun sisältö</string>
     <string name="blank_page_summary">Tyhjä sivu</string>
@@ -249,7 +249,7 @@
     <string name="no_player_found_toast">Suoratoistosoitinta ei löytynyt (voit asentaa VLC:n toistaaksesi).</string>
     <string name="controls_download_desc">Lataa suoratoistotiedosto</string>
     <string name="show_info">Näytä lisätietoja</string>
-    <string name="tab_bookmarks">Kirjanmerkityt soittolistat</string>
+    <string name="tab_bookmarks">Soittolistakirjanmerkit</string>
     <string name="controls_add_to_playlist_title">Lisää soittolistaan</string>
     <string name="use_inexact_seek_title">Käytä nopeampaa epätarkkaa pikakelausta</string>
     <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekuntia ei toimi tämän kanssa.</string>
@@ -334,7 +334,7 @@
     <string name="create_playlist">Uusi soittolista</string>
     <string name="delete_playlist">Poista</string>
     <string name="rename_playlist">Uudelleennimeä</string>
-    <string name="playlist_name_input">Nimi</string>
+    <string name="name">Nimi</string>
     <string name="append_playlist">Lisää soittolistaan</string>
     <string name="set_as_playlist_thumbnail">Aseta soittolistan kuvakkeeksi</string>
     <string name="bookmark_playlist">Tallenna soittolista kirjanmerkkeihin</string>
@@ -351,7 +351,6 @@
     <string name="caption_auto_generated">Automaattisesti luotu</string>
     <string name="caption_setting_title">Tekstitykset</string>
     <string name="caption_setting_description">Muokkaa soittimen tekstitysten kokoa ja taustatyylejä. Asetusten käyttöönotto vaatii uudelleenkäynnistyksen.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Muistivuotojen valvonta voi aiheuttaa ohjelman hidastumisen virhetilanteissa</string>
     <string name="enable_disposed_exceptions_title">Raportoi yhteensopivuusvirheitä, jotka aiheutuvat vanhoista ohjelmista</string>
     <string name="enable_disposed_exceptions_summary">Pakota raportointi toimituskelvottomille Rx-poikkeuksille, jotka ovat poiston jälkeen muistisirpaleiden tai aktiviteettielämänkaaren ulkopuolella</string>
@@ -392,7 +391,7 @@
     <string name="accept">Hyväksy</string>
     <string name="decline">Hylkää</string>
     <string name="limit_data_usage_none_description">Ei rajaa</string>
-    <string name="limit_mobile_data_usage_title">Rajoita resoluutiota kun mobiilidata on käytössä</string>
+    <string name="limit_mobile_data_usage_title">Rajoita resoluutiota mobiilidataa käytettäessä</string>
     <string name="minimize_on_exit_title">Pienennä vaihdettaessa ohjelmaa</string>
     <string name="minimize_on_exit_summary">Toiminto vaihdettaessa toiseen ohjelmaan päävideosoittimesta — %s</string>
     <string name="minimize_on_exit_none_description">Ei koskaan</string>
@@ -510,11 +509,10 @@
     <string name="feed_use_dedicated_fetch_method_title">Hae erityisestä syötteestä, kun sellainen on saatavilla</string>
     <string name="feed_update_threshold_option_always_update">Päivitä aina</string>
     <string name="feed_update_threshold_summary">Edellisestä päivityksestä kulunut aika, jonka jälkeen tilaus katsotaan vanhentuneeksi</string>
-    <string name="feed_update_threshold_title">Syötteen päivitysvälin kynnysarvo</string>
+    <string name="feed_update_threshold_title">Syötteen päivitysväli</string>
     <string name="settings_category_feed_title">Syöte</string>
     <string name="feed_create_new_group_button_title">Uusi</string>
     <string name="feed_group_dialog_delete_message">Haluatko poistaa tämän ryhmän\?</string>
-    <string name="feed_group_dialog_name_input">Nimi</string>
     <string name="feed_group_dialog_empty_name">Tyhjä ryhmän nimi</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d valittu</item>
@@ -550,13 +548,13 @@
     <string name="choose_instance_prompt">Valitse instanssi</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' sallii lataukset ulkoiselle SD-kortille.
 \nJotkin laitteet eivät ole yhteensopivia</string>
-    <string name="downloads_storage_use_saf_title">Käytä SAF:ää</string>
+    <string name="downloads_storage_use_saf_title">Ota SAF käyttöön</string>
     <string name="downloads_storage_ask_summary_kitkat">Jokaisen latauksen kohde kysytään.
 \nValitse SAF, jos haluat ladata ulkoiselle SD-kortille</string>
     <string name="downloads_storage_ask_summary">Jokaisen latauksen kohde kysytään</string>
     <string name="downloads_storage_ask_title">Kysy mihin ladataan</string>
     <string name="start_downloads">Aloita lataukset</string>
-    <string name="enable_queue_limit_desc">Yksi lataus kerrallaan on käynnissä</string>
+    <string name="enable_queue_limit_desc">Salli vain yksi lataus kerrallaan</string>
     <string name="enable_queue_limit">Rajoita latausjonon kokoa</string>
     <string name="max_retry_desc">Suurin määrä yrityksiä ennen kuin lataus perutaan</string>
     <string name="max_retry_msg">Uudelleenyritysten maksimimäärä</string>
@@ -596,7 +594,7 @@
     <string name="show_original_time_ago_title">Näytä alkuperäinen aika sisällölle</string>
     <string name="pause_downloads">Tauota lataukset</string>
     <string name="pause_downloads_on_mobile_desc">Hyödyllinen vaihdettaessa mobiilidataan, vaikka joitakin latauksia ei voi pysäyttää</string>
-    <string name="pause_downloads_on_mobile">Keskeytä käytön mukaan laskutettavilla yhteyksillä</string>
+    <string name="pause_downloads_on_mobile">Keskeytä, kun yhteys on käytön mukaan laskutettava</string>
     <string name="paused">tauotettu</string>
     <string name="app_update_notification_content_text">Napauta ladataksesi</string>
     <string name="app_update_notification_content_title">NewPipe-päivitys on saatavilla!</string>
@@ -611,4 +609,12 @@
     <string name="unmute">Poista mykistys</string>
     <string name="mute">Mykistä</string>
     <string name="conferences">Konferenssit</string>
+    <string name="playlist_page_summary">Soittolistasivu</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Näytä vain ryhmittelemättömät tilaukset</string>
+    <string name="no_playlist_bookmarked_yet">Ei soittolistakirjanmerkkejä vielä</string>
+    <string name="select_a_playlist">Valitse soittolista</string>
+    <string name="error_report_open_github_notice">Ole hyvä ja tarkasta onko kaatumiseen liittyvä ongelma jo raportoitu. Tikettien kaksoiskappaleiden selvittely vie aikaa varsinaisten ohjelmavirheiden korjaamiselta.</string>
+    <string name="error_report_open_issue_button_text">Raportoi virhe GitHubissa</string>
+    <string name="copy_for_github">Kopioi muotoiltu raportti</string>
+    <string name="search_showing_result_for">Näytetään tulokset haulle: %s</string>
 </resources>

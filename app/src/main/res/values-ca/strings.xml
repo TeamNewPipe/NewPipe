@@ -38,7 +38,7 @@
     <string name="content">Contingut</string>
     <string name="show_age_restricted_content_title">Desactiva les restriccions per edat</string>
     <string name="video_is_age_restricted">Mostra el vídeo restringit per edat. Podeu permetre aquesta mena de continguts des dels paràmetres.</string>
-    <string name="duration_live">EN DIRECTE</string>
+    <string name="duration_live">Directe</string>
     <string name="downloads">Baixades</string>
     <string name="downloads_title">Baixades</string>
     <string name="all">Tot</string>
@@ -105,7 +105,7 @@
     <string name="create_playlist">Crea una llista de reproducció</string>
     <string name="delete_playlist">Elimina</string>
     <string name="rename_playlist">Canvia el nom</string>
-    <string name="playlist_name_input">Nom</string>
+    <string name="name">Nom</string>
     <string name="append_playlist">Afegeix a una llista de reproducció</string>
     <string name="import_title">Importa</string>
     <string name="import_from">Importa des de</string>
@@ -123,7 +123,7 @@
     <string name="share_dialog_title">Comparteix-ho amb</string>
     <string name="screen_rotation">rotació</string>
     <string name="use_external_video_player_title">Reproductor de vídeo extern</string>
-    <string name="popup_mode_share_menu_title">Mode emergent del NewPipe</string>
+    <string name="popup_mode_share_menu_title">Mode emergent</string>
     <string name="channel_unsubscribed">Heu eliminat la subscripció a aquest canal</string>
     <string name="subscription_change_failed">No s\'ha pogut modificar la subscripció</string>
     <string name="subscription_update_failed">No s\'ha pogut actualitzar la subscripció</string>
@@ -140,13 +140,13 @@
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
     <string name="show_higher_resolutions_summary">No tots els dispositius són compatibles amb la reproducció de vídeos en 2K/4K</string>
     <string name="play_with_kodi_title">Reprodueix amb el Kodi</string>
-    <string name="kore_not_found">No s\'ha trobat l\'aplicació Kodi. Voleu instal·lar-la\?</string>
+    <string name="kore_not_found">No s\'ha trobat l\'aplicació Kore. Voleu instal·lar-la\?</string>
     <string name="show_play_with_kodi_title">Mostra «Reprodueix amb el Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra una opció per reproduir un vídeo amb el centre multimèdia Kodi</string>
     <string name="popup_remember_size_pos_title">Reproductor emergent intel·ligent</string>
     <string name="popup_remember_size_pos_summary">Recorda la darrera mida i posició del reproductor emergent</string>
     <string name="use_inexact_seek_title">Cerca ràpida poc precisa</string>
-    <string name="use_inexact_seek_summary">La cerca poc precisa permet que el reproductor cerqui una posició més ràpidament amb menys precisió</string>
+    <string name="use_inexact_seek_summary">La cerca poc precisa permet que el reproductor cerqui una posició més ràpidament amb menys precisió. Cerques de 5, 15 o 25 segons no hi funcionaran.</string>
     <string name="download_thumbnail_title">Carrega les miniatures</string>
     <string name="thumbnail_cache_wipe_complete_notice">S\'ha eliminat la memòria cau d\'imatges</string>
     <string name="metadata_cache_wipe_title">Elimina les metadades de la memòria cau</string>
@@ -193,7 +193,7 @@
     <string name="error_occurred_detail">S\'ha produït un error: %1$s</string>
     <string name="error_report_button_text">Informeu de l\'error per correu electrònic</string>
     <string name="error_snackbar_message">S\'han produït alguns errors.</string>
-    <string name="error_snackbar_action">INFORME</string>
+    <string name="error_snackbar_action">Informe</string>
     <string name="what_device_headline">Informació:</string>
     <string name="what_happened_headline">Què ha passat:</string>
     <string name="your_comment">Comentari (en anglès):</string>
@@ -205,7 +205,7 @@
     <string name="detail_dislikes_img_view_description">No m\'agrada</string>
     <string name="use_tor_title">Fes servir el Tor</string>
     <string name="use_tor_summary">(En proves) Força el trànsit de baixada a través del Tor per a més privadesa (no compatible encara amb les emissions de vídeo).</string>
-    <string name="report_error">Notifiqueu un error</string>
+    <string name="report_error">Notifiqueu error</string>
     <string name="user_report">Informe de l\'usuari</string>
     <string name="search_no_results">Cap resultat</string>
     <string name="empty_subscription_feed_subtitle">No hi ha res aquí</string>
@@ -272,14 +272,14 @@
     <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
-    <string name="main_bg_subtitle">Feu un toc al botó de cerca per començar</string>
+    <string name="main_bg_subtitle">Toca \"Cercar\" per començar</string>
     <string name="use_external_video_player_summary">Elimina l\'àudio en algunes resolucions</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
     <string name="download_thumbnail_summary">Desactiveu-ho per no generar miniatures i estalviar dades i memòria. Canviant aquesta opció, s\'eliminarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
     <string name="enable_watch_history_summary">Crea un historial de vídeos visualitzats</string>
     <string name="resume_on_audio_focus_gain_title">Reprèn automàticament</string>
-    <string name="url_not_supported_toast">Aquest URL no és compatible</string>
+    <string name="unsupported_url">Aquest URL no és compatible</string>
     <string name="error_report_title">Informe d\'error</string>
     <string name="later">Més tard</string>
     <string name="filter">Filtra</string>
@@ -329,7 +329,6 @@
     <string name="resize_fill">Omple</string>
     <string name="resize_zoom">Escala</string>
     <string name="caption_auto_generated">Generats automàticament</string>
-    <string name="enable_leak_canary_title">Habilita el LeakCanary</string>
     <string name="previous_export">Darrera exportació</string>
     <string name="subscriptions_import_unsuccessful">No s\'han pogut importar les subscripcions</string>
     <string name="subscriptions_export_unsuccessful">No s\'han pogut exportar les subscripcions</string>
@@ -503,8 +502,34 @@
     <string name="no_one_listening">Cap reproducció</string>
     <plurals name="listening">
         <item quantity="one">%s escoltant</item>
-        <item quantity="other">%s escoltant</item>
+        <item quantity="other">%s escoltants</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Es canviarà la llengua en reiniciar l\'aplicació.</string>
     <string name="default_kiosk_page_summary">Tendències</string>
+    <string name="show_original_time_ago_title">Ensenya el temps passat original sobre els \"items\"</string>
+    <string name="playlist_no_uploader">Auto-generat (no es troba cap uploader)</string>
+    <string name="unmute">Desactivar Silenci</string>
+    <string name="mute">Silenciar</string>
+    <string name="subtitle_activity_recaptcha">Prem \"Fet\" quan estigui resolt</string>
+    <string name="infinite_videos">∞ vídeos</string>
+    <string name="more_than_100_videos">100+ vídeos</string>
+    <string name="permission_display_over_apps">Dona permís per mostrarse per sobre d\'altres apps.</string>
+    <string name="help">Ajuda</string>
+    <string name="artists">Artistes</string>
+    <string name="albums">Albums</string>
+    <string name="songs">Cançons</string>
+    <string name="videos_string">Vídeos</string>
+    <string name="restricted_video">Aquest vídeo té una restricció per edat.
+\n
+\nSi desitges visualitzar-lo, activa el «Contingut restringit per edat» en la configuració.</string>
+    <string name="youtube_restricted_mode_enabled_title">Mode de restricció del YouTube</string>
+    <string name="peertube_instance_add_exists">La instància introduïda ja existeix</string>
+    <string name="peertube_instance_add_https_only">Només estàn soportades URLs HTTPS</string>
+    <string name="peertube_instance_add_fail">No ha estat possible validar la instància</string>
+    <string name="peertube_instance_add_help">Introdueix l\'enllaç d\'una instància</string>
+    <string name="peertube_instance_add_title">Afegeix-hi una instància</string>
+    <string name="peertube_instance_url_help">Troba les instàncies que t\'agraden en %s</string>
+    <string name="peertube_instance_url_summary">Selecciona les teves instàncies preferides del PeerTube</string>
+    <string name="peertube_instance_url_title">Instàncies del PeerTube</string>
+    <string name="seek_duration_title">Avançar/-rebobinar duració cerca</string>
 </resources>
