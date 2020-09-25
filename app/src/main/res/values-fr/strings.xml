@@ -625,5 +625,5 @@
     <string name="unsupported_url_dialog_message">NewPipe n\'a pas pu reconnaitre l\'URL fourni. Voulez vous l\'ouvrir avec une autre méthode \?</string>
     <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
-    <string name="clear_queue_confirmation_title">Demander une confirmation avant d\'effacer la liste de lecture</string>
+    <string name="clear_queue_confirmation_title">Confirmer av. de suppr. la liste de lecture</string>
 </resources>
