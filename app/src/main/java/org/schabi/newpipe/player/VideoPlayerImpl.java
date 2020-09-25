@@ -1484,6 +1484,10 @@ public class VideoPlayerImpl extends VideoPlayer
         }
     }
 
+    public void disablePreloadingOfCurrentTrack() {
+        getLoadController().disablePreloadingOfCurrentTrack();
+    }
+
     /**
      * Measures width and height of controls visible on screen.
      * It ensures that controls will be side-by-side with NavigationBar and notches
