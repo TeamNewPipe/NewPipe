@@ -122,7 +122,7 @@
     <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
     <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 2K/4K videa</string>
     <string name="default_video_format_title">Výchozí formát videa</string>
-    <string name="popup_remember_size_pos_title">Pamatovat si velikost a pozici vyskakovacího okna</string>
+    <string name="popup_remember_size_pos_title">Pamatovat si vlastnosti vyskakovacího okna</string>
     <string name="popup_remember_size_pos_summary">Pamatovat si poslední velikost a pozici vyskakovacího okna</string>
     <string name="popup_mode_share_menu_title">Režim vyskakovacího okna</string>
     <string name="subscribe_button_title">Odebírat</string>
@@ -627,4 +627,13 @@
     <string name="error_report_open_issue_button_text">Podat hlášení na GitHubu</string>
     <string name="copy_for_github">Zkopírovat formátované hlášení</string>
     <string name="search_showing_result_for">Ukazuji výsledky pro: %s</string>
+    <string name="never">Nikdy</string>
+    <string name="wifi_only">Pouze na WiFi</string>
+    <string name="autoplay_summary">Zahájit playback automaticky — %s</string>
+    <string name="title_activity_play_queue">Přehrát frontu</string>
+    <string name="unsupported_url_dialog_message">NewPipe nemohla rozpoznat zadané URL. Otevřít jinou metodou\?</string>
+    <string name="auto_queue_toggle">Auto-fronta</string>
+    <string name="clear_queue_confirmation_description">Fronta aktivního přehrávače bude vyměněna</string>
+    <string name="clear_queue_confirmation_summary">Po přechodu z jednoho přehrávače do druhého může dojít k výměně fronty</string>
+    <string name="clear_queue_confirmation_title">Žádat potvrzení před vyklizením fronty</string>
 </resources>
