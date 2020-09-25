@@ -3,9 +3,9 @@ NewPipe contribution guidelines
 
 ## Crash reporting
 
-Report crashes in the automated crash report system of NewPipe instead of the GitHub issue tracker.
-Reports are sent via e-mail, and contain all data needed for debugging, including your comments.
-You'll see exactly what is sent, and then send it.
+Report crashes in the automated crash report system of NewPipe.
+That way you get all data needed for debugging included in your bugreport for GitHub.
+You'll see exactly what is sent, add your comments, and then send it.
 
 ## Issue reporting/feature requests
 
@@ -20,7 +20,7 @@ hasn't been reported/requested.
 
 ## Join the developer team
 * Help rid NewPipe of bugs by sending an e-mail saying you want to join to <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a> that says what you want to help with.
-You will get further instructions. You may be asked to register at our [Sentry](https://sentry.schabi.org) instance.
+You may be asked to register at our [Sentry](https://sentry.schabi.org) instance.
 
 ## Translation
 
@@ -30,7 +30,7 @@ Log in there with your GitHub account, or register.
 
 ## Code contribution
 
-* Add a feature or change one by opening an issue describing your change. This gives the team and community a chance to give feedback before you spend time on something already underwway,could be done differently, or should be avoided.
+* Add a feature or change one by opening an issue describing your change. This gives the team and community a chance to give feedback before you spend time on something already underway,could be done differently, or should be avoided.
 * Stick to NewPipe's style conventions of [checkStyle](https://github.com/checkstyle/checkstyle). It runs each time you build the project.
 * Do not bring non-free software (e.g. binary blobs) into the project. Make sure you do not introduce Google
   libraries.
@@ -49,6 +49,7 @@ Log in there with your GitHub account, or register.
 ## Communication
 
 * The [#newpipe](irc:irc.freenode.net/newpipe) channel on freenode has the core team and other developers in it. [Click here for webchat](https://webchat.freenode.net/?channels=newpipe)!
+* There is also a Matrix room at #newpipe:matrix.org
 * If you want to get in touch with the core team or one of our other contributors you can send an e-mail to
   <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a>. Please do not send issue reports, they will be ignored and remain unanswered! Use the GitHub issue
   tracker described above, unless you can use the built-in crash reporter.
