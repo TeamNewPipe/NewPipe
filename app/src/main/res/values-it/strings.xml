@@ -127,7 +127,7 @@
     <string name="show_higher_resolutions_title">Mostra Altre Risoluzioni</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato Video Predefinito</string>
-    <string name="popup_remember_size_pos_title">Ricorda Dimensione e Posizione Popup</string>
+    <string name="popup_remember_size_pos_title">Ricorda Poprietà Popup</string>
     <string name="popup_remember_size_pos_summary">Ricorda dimensione e posizione della finestra Popup</string>
     <string name="player_gesture_controls_title">Controllo Gesti Lettore Multimediale</string>
     <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume del lettore multimediale</string>
@@ -617,4 +617,13 @@
     <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket potrebbe essere invece impiegato per correggere il problema stesso.</string>
     <string name="error_report_open_issue_button_text">Segnala Errore su GitHub</string>
     <string name="copy_for_github">Copia Segnalazione Formattata</string>
+    <string name="never">Mai</string>
+    <string name="title_activity_play_queue">Coda riproduzione</string>
+    <string name="wifi_only">Solo Wi-Fi</string>
+    <string name="autoplay_summary">Avvia riproduzione automaticamente — %s</string>
+    <string name="unsupported_url_dialog_message">NewPipe non riconosce questo URL. Apriro in un altro modo\?</string>
+    <string name="auto_queue_toggle">Accoda Automaticamente</string>
+    <string name="clear_queue_confirmation_description">La coda del lettore attivo sarà sostituita</string>
+    <string name="clear_queue_confirmation_title">Conferma Pulizia Coda</string>
+    <string name="clear_queue_confirmation_summary">Dopo aver cambiato tipo di riproduzione, la coda potrebbe essere sostituita</string>
 </resources>
