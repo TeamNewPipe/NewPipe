@@ -13,7 +13,7 @@
 - take over the world
 
 #### Fixes the following issue(s)
-<!-- Also add non-reddit or other links relevant to your change. -->
+<!-- Also add any other links relevant to your change. -->
 - 
 
 #### Relies on the following changes
