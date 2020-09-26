@@ -5,7 +5,7 @@ NewPipe contribution guidelines
 
 Report crashes in the automated crash report system of NewPipe.
 That way you get all data needed for debugging included in your bugreport for GitHub.
-You'll see exactly what is sent, add your comments, and then send it.
+You'll see exactly what is sent, be able to add your comments, and then send it.
 
 ## Issue reporting/feature requests
 
