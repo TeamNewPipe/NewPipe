@@ -52,5 +52,5 @@ Log in there with your GitHub account, or register.
 * There is also a Matrix room at #newpipe:matrix.org
 * If you want to get in touch with the core team or one of our other contributors you can send an e-mail to
   <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a>. Please do not send issue reports, they will be ignored and remain unanswered! Use the GitHub issue
-  tracker described above, unless you can use the built-in crash reporter.
+  tracker described above, unless you are using the built-in crash reporter.
 * Post suggestions, changes, ideas etc. on GitHub or IRC.
