@@ -15,11 +15,11 @@ hasn't been reported/requested.
 * **Still relevant**? Check if the issue still exists in the latest release/beta version.
 * **Can you fix it**? If you are an Android/Java developer, you are always welcome to fix an issue or implement a feature yourself. PRs welcome!
 * **Is it in English**? Issues in other languages will be ignored unless someone translates them.
-* **Is it one issue**?. Multiple issues require multiple reports, that can be linked.
+* **Is it one issue**?. Multiple issues require multiple reports, that can be linked to track their statuses.
 * **The template** Fill it out, everyone wins. Your issue has a chance of getting fixed.
 
 ## Join the developer team
-* Help rid NewPipe of bugs by sending an e-mail saying you want to join to <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a> that says what you want to help with.
+* Help rid NewPipe of bugs by sending an e-mail saying you want to join to <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a>, mentioning what you want to help with.
 You may be asked to register at our [Sentry](https://sentry.schabi.org) instance.
 
 ## Translation
@@ -30,7 +30,7 @@ Log in there with your GitHub account, or register.
 
 ## Code contribution
 
-* Add a feature or change one by opening an issue describing your change. This gives the team and community a chance to give feedback before you spend time on something already underway,could be done differently, or should be avoided.
+* Add a feature or change one by opening an issue describing your change. This gives the team and community a chance to give feedback before you spend time on something already underway,what shhould be done differently, or avoided.
 * Stick to NewPipe's style conventions of [checkStyle](https://github.com/checkstyle/checkstyle). It runs each time you build the project.
 * Do not bring non-free software (e.g. binary blobs) into the project. Make sure you do not introduce Google
   libraries.
@@ -41,7 +41,7 @@ Log in there with your GitHub account, or register.
 * Make sure your PR is up-to-date with the rest of the code. Often, a simple click on "Update branch" will do the job, but if not, you are asked to rebase the dev branch manually and resolve the problems on your own. You can find help [on the wiki](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-merge-a-PR). That makes the
   maintainers' jobs way easier.
 * Please show intention to maintain your features and code after you contribute a PR. Unmaintained code is a hassle for core developers. If you do not intend to maintain features you plan to contribute, please rethink your submission, or clearly state that in the PR description.
-* Respond yourselves if someone requests changes or otherwise raises issues about your PRs.
+* Respond if someone requests changes or otherwise raises issues about your PRs.
 * Send PRs that only cover one specific issue/solution/bug. Do not send PRs that are huge and consist of multiple independent solutions.
   independent solutions.
 * Try to figure out yourself why builds on our CI fail.
