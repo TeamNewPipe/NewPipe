@@ -43,7 +43,6 @@ Log in there with your GitHub account, or register.
 * Please show intention to maintain your features and code after you contribute a PR. Unmaintained code is a hassle for core developers. If you do not intend to maintain features you plan to contribute, please rethink your submission, or clearly state that in the PR description.
 * Respond if someone requests changes or otherwise raises issues about your PRs.
 * Send PRs that only cover one specific issue/solution/bug. Do not send PRs that are huge and consist of multiple independent solutions.
-  independent solutions.
 * Try to figure out yourself why builds on our CI fail.
 
 ## Communication
