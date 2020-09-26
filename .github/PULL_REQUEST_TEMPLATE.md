@@ -7,7 +7,7 @@
 - [ ] Meta improvement to the project (dev facing)
 
 #### Description of the changes in your PR
-<!-- While bullet points are the norm in this section, feel free to write a text instead of a list -->
+<!-- While bullet points are the norm in this section, feel free to write free-form text instead of a list -->
 - record videos
 - create clones
 - take over the world
