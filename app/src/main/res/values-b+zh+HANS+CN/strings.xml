@@ -211,7 +211,7 @@
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
     <string name="show_higher_resolutions_summary">仅某些设备支持播放2K / 4K视频</string>
     <string name="clear">清除</string>
-    <string name="popup_remember_size_pos_title">记住悬浮窗的尺寸与位置</string>
+    <string name="popup_remember_size_pos_title">记住悬浮窗属性</string>
     <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
@@ -607,4 +607,13 @@
     <string name="error_report_open_issue_button_text">去GitHub上报告错误</string>
     <string name="copy_for_github">复制格式报告</string>
     <string name="search_showing_result_for">显示结果为：%s</string>
+    <string name="never">永不</string>
+    <string name="wifi_only">仅在WiFi下</string>
+    <string name="autoplay_summary">自动开始回放 — %s</string>
+    <string name="title_activity_play_queue">播放队列</string>
+    <string name="unsupported_url_dialog_message">NewPipe无法识别所提供的url。用另一种方法打开它\?</string>
+    <string name="auto_queue_toggle">自动排队</string>
+    <string name="clear_queue_confirmation_description">来自活跃播放器的队列将被替换</string>
+    <string name="clear_queue_confirmation_summary">从一个播放器切换到另一个播放器后，你的队列可能会被替换</string>
+    <string name="clear_queue_confirmation_title">清除队列之前请求确认</string>
 </resources>

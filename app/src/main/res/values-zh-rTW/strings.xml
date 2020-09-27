@@ -64,7 +64,7 @@
     <string name="show_higher_resolutions_summary">僅部份裝置可播放 2K/4K 影片</string>
     <string name="default_video_format_title">預設影片格式</string>
     <string name="black_theme_title">純黑</string>
-    <string name="popup_remember_size_pos_title">記住懸浮視窗大小和位置</string>
+    <string name="popup_remember_size_pos_title">記住懸浮視窗屬性</string>
     <string name="popup_remember_size_pos_summary">記住上次使用時懸浮視窗的大小和位置</string>
     <string name="player_gesture_controls_title">播放器手勢控制</string>
     <string name="player_gesture_controls_summary">使用手勢來控制播放器的亮度及音量</string>
@@ -607,4 +607,13 @@
     <string name="error_report_open_issue_button_text">在 GitHub 上回報錯誤</string>
     <string name="copy_for_github">複製格式化過的報告</string>
     <string name="search_showing_result_for">正在顯示結果：%s</string>
+    <string name="never">從不</string>
+    <string name="wifi_only">僅在 WiFi 上</string>
+    <string name="autoplay_summary">自動開始播放 — %s</string>
+    <string name="title_activity_play_queue">播放佇列</string>
+    <string name="unsupported_url_dialog_message">NewPipe 無法識別提供的 URL。用其他方法開啟它？</string>
+    <string name="auto_queue_toggle">自動佇列</string>
+    <string name="clear_queue_confirmation_description">來自作用中播放器的佇列可能會被取代</string>
+    <string name="clear_queue_confirmation_summary">從一個播放器切換到另一個後，您的佇列可能會被取代</string>
+    <string name="clear_queue_confirmation_title">清除佇列前要求確認</string>
 </resources>

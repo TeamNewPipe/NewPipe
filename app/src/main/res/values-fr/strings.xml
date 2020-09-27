@@ -18,7 +18,7 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
-    <string name="show_play_with_kodi_summary">Affiche une option pour lire une vidéo via Kodi</string>
+    <string name="show_play_with_kodi_summary">Afficher une option pour lire une vidéo via Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Publiée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
@@ -75,7 +75,7 @@
     <string name="audio">Audio</string>
     <string name="retry">Réessayer</string>
     <string name="storage_permission_denied">Veuillez d’abord accorder l’accès au stockage</string>
-    <string name="main_bg_subtitle">Appuyer sur la loupe pour commencer</string>
+    <string name="main_bg_subtitle">Appuyer sur \"Rechercher\" pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
     <string name="video_is_age_restricted">Affiche les vidéos soumises à une limite d’âge. Modifier cette option est possible depuis les paramètres.</string>
     <string name="user_report">Rapport utilisateur</string>
@@ -127,7 +127,7 @@
     <string name="show_higher_resolutions_title">Afficher des définitions plus élevées</string>
     <string name="show_higher_resolutions_summary">Seuls certains appareils prennent en charge les vidéos 2K et 4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
-    <string name="popup_remember_size_pos_title">Mémoriser les taille et position de la fenêtre flottante</string>
+    <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
     <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
     <string name="settings_category_popup_title">Flottant</string>
     <string name="filter">Filtre</string>
@@ -617,4 +617,28 @@
     <string name="error_report_open_issue_button_text">Rapporter l’erreur sur GitHub</string>
     <string name="copy_for_github">Copier le rapport formaté</string>
     <string name="search_showing_result_for">Affichage des résultats pour : %s</string>
+    <string name="clear_queue_confirmation_summary">Après le changement d\'un lecteur a un autre, votre liste de lecture pourrait être remplacée</string>
+    <string name="never">Jamais</string>
+    <string name="wifi_only">Uniquement en Wi-Fi</string>
+    <string name="autoplay_summary">Démarrer la lecture automatiquement — %s</string>
+    <string name="title_activity_play_queue">Liste de lecture</string>
+    <string name="unsupported_url_dialog_message">NewPipe n\'a pas pu reconnaitre l\'URL fourni. Voulez vous l\'ouvrir avec une autre méthode \?</string>
+    <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
+    <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
+    <string name="clear_queue_confirmation_title">Confirmer av. de suppr. la liste de lecture</string>
+    <string name="settings_category_notification_title">Notification</string>
+    <string name="notification_action_nothing">Rien</string>
+    <string name="notification_action_buffering">Chargement</string>
+    <string name="notification_action_shuffle">Lire aléatoirement</string>
+    <string name="notification_action_repeat">Répéter</string>
+    <string name="notification_actions_at_most_three">Vous pouvez sélectionner au maximum trois actions à faire figurer dans la notification compacte !</string>
+    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus.
+\nSélectionnez jusqu\'à trois d\'entre elles pour les faire apparaitre dans la notification compacte en utilisant les cases à cocher à droite.</string>
+    <string name="notification_action_4_title">Cinquième bouton d\'action</string>
+    <string name="notification_action_3_title">Quatrième bouton d\'action</string>
+    <string name="notification_action_2_title">Troisième bouton d\'action</string>
+    <string name="notification_action_1_title">Deuxième bouton d\'action</string>
+    <string name="notification_action_0_title">Premier bouton d\'action</string>
+    <string name="notification_scale_to_square_image_summary">Mettre à l\'échelle la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1 (peut provoquer des déformations)</string>
+    <string name="notification_scale_to_square_image_title">Mettre à l\'échelle la miniature au format 1:1</string>
 </resources>

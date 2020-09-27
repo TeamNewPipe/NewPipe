@@ -115,7 +115,7 @@
     <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia mogą odtwarzać filmy 2K/4K</string>
     <string name="default_video_format_title">Domyślny format filmu</string>
     <string name="black_theme_title">Czarny</string>
-    <string name="popup_remember_size_pos_title">Zapamiętaj rozmiar i pozycję trybu okienkowego</string>
+    <string name="popup_remember_size_pos_title">Zapamiętaj właściwości wyskakującego okienka</string>
     <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję trybu okienkowego</string>
     <string name="player_gesture_controls_title">Sterowanie odtwarzaczem za pomocą gestów</string>
     <string name="player_gesture_controls_summary">Użyj gestów, aby sterować jasnością i głośnością odtwarzacza</string>
@@ -627,4 +627,13 @@
     <string name="error_report_open_issue_button_text">Zgłoś błąd na GitHub</string>
     <string name="copy_for_github">Skopiuj sformatowany raport</string>
     <string name="search_showing_result_for">Wyświetlono wyniki dla: %s</string>
+    <string name="never">Nigdy</string>
+    <string name="wifi_only">Tylko przez WiFi</string>
+    <string name="autoplay_summary">Rozpocznij odtwarzanie automatycznie — %s</string>
+    <string name="title_activity_play_queue">Playlista</string>
+    <string name="unsupported_url_dialog_message">NewPipe nie mógł rozpoznać podanego adresu url. Otworzyć go inną metodą\?</string>
+    <string name="auto_queue_toggle">Automatyczna kolejka</string>
+    <string name="clear_queue_confirmation_description">Kolejka aktywnego odtwarzacza zostanie zastąpiona</string>
+    <string name="clear_queue_confirmation_summary">Po przejściu z jednego odtwarzacza do drugiego kolejka może zostać zastąpiona</string>
+    <string name="clear_queue_confirmation_title">Poproś o potwierdzenie przed wyczyszczeniem kolejki</string>
 </resources>

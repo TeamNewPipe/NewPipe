@@ -131,7 +131,7 @@
     <string name="filter">Filtrele</string>
     <string name="refresh">Yenile</string>
     <string name="clear">Temizle</string>
-    <string name="popup_remember_size_pos_title">Açılır pencere boyutunu ve konumunu hatırla</string>
+    <string name="popup_remember_size_pos_title">Açılır pencere özelliklerini hatırla</string>
     <string name="popup_remember_size_pos_summary">Açılan pencerenin son boyutunu ve konumunu hatırla</string>
     <string name="settings_category_popup_title">Açılır pencere</string>
     <string name="popup_resizing_indicator_title">Yeniden boyutlandırılıyor</string>
@@ -617,4 +617,28 @@
     <string name="search_showing_result_for">Sonuçlar gösteriliyor: %s</string>
     <string name="error_report_open_github_notice">Lütfen yaşadığınız hatayı tartışan bildirimin daha önce oluşturulup oluşturulmadığını gözden geçirin. Yineleyen hata bildirimi oluşturarak, gerçek hatayı gidermekte harcadığımız zamanı uzatırsınız.</string>
     <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
+    <string name="never">Asla</string>
+    <string name="wifi_only">Yalnızca WiFi\'de</string>
+    <string name="autoplay_summary">Oynatmayı otomatik olarak başlat — %s</string>
+    <string name="title_activity_play_queue">Oynatma kuyruğu</string>
+    <string name="unsupported_url_dialog_message">NewPipe sağlanan URL\'yi tanıyamadı. Başka bir yöntemle açılsın mı\?</string>
+    <string name="auto_queue_toggle">Otomatik kuyruğa ekle</string>
+    <string name="clear_queue_confirmation_description">Etkin oynatıcının kuyruğu değiştirilecek</string>
+    <string name="clear_queue_confirmation_summary">Bir oynatıcıdan diğerine geçtikten sonra kuyruğunuz değiştirilebilir</string>
+    <string name="clear_queue_confirmation_title">Bir kuyruğu temizlemeden önce onay iste</string>
+    <string name="settings_category_notification_title">Bildirim</string>
+    <string name="notification_action_nothing">Hiçbir şey</string>
+    <string name="notification_action_buffering">Ara belleğe alınıyor</string>
+    <string name="notification_action_shuffle">Karıştır</string>
+    <string name="notification_action_repeat">Tekrarla</string>
+    <string name="notification_actions_at_most_three">Sıkı bildirimde gösterilecek en fazla üç eylem seçebilirsiniz!</string>
+    <string name="notification_actions_summary">Aşağıdaki her bildirim eylemini üzerine dokunarak düzenleyin.
+\nSağdaki onay kutularını kullanarak sıkı bildirimde gösterilmek üzere en fazla üç tanesini seçin.</string>
+    <string name="notification_action_4_title">Beşinci eylem düğmesi</string>
+    <string name="notification_action_3_title">Dördüncü eylem düğmesi</string>
+    <string name="notification_action_2_title">Üçüncü eylem düğmesi</string>
+    <string name="notification_action_1_title">İkinci eylem düğmesi</string>
+    <string name="notification_action_0_title">Birinci eylem düğmesi</string>
+    <string name="notification_scale_to_square_image_summary">Bildirimde gösterilen video küçük resmini 16:9\'dan 1:1 en/boy oranına ölçeklendir (bozulmalara neden olabilir)</string>
+    <string name="notification_scale_to_square_image_title">Küçük resmi 1:1 en/boy oranına ölçeklendir</string>
 </resources>
