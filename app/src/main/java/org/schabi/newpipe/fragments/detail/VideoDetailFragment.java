@@ -1946,7 +1946,13 @@ public class VideoDetailFragment
         }
         scrollToTop();
 
-        addVideoPlayerView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            addVideoPlayerView();
+        } else {
+            // KitKat needs a delay before addVideoPlayerView call or it reports wrong height in
+            // activity.getWindow().getDecorView().getHeight()
+            new Handler().post(this::addVideoPlayerView);
+        }
     }
 
     @Override
