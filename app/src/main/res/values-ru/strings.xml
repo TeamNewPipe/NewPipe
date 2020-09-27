@@ -10,7 +10,7 @@
     <string name="download">Скачать</string>
     <string name="search">Поиск</string>
     <string name="settings">Настройки</string>
-    <string name="did_you_mean">Возможно, вы имели в виду: %1$s?</string>
+    <string name="did_you_mean">Возможно, вы имели в виду \"%1$s\"\?</string>
     <string name="share_dialog_title">Поделиться</string>
     <string name="choose_browser">Выбор браузера</string>
     <string name="screen_rotation">поворот</string>
@@ -87,7 +87,7 @@
     <string name="app_ui_crash">Приложение/UI завершило работу</string>
     <string name="sorry_string">Простите, это не должно было произойти.</string>
     <string name="error_report_button_text">Отправить отчёт по e-mail</string>
-    <string name="error_snackbar_message">Простите, произошли ошибки.</string>
+    <string name="error_snackbar_message">Извините, что-то пошло не так.</string>
     <string name="error_snackbar_action">Отчёт</string>
     <string name="what_device_headline">Информация:</string>
     <string name="what_happened_headline">Что произошло:</string>
@@ -597,9 +597,9 @@
     <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, но может возвращать не всё содержимое канала и не содержать часть сведений (длительность, тип элемента, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
-    <string name="restricted_video">Это видео с ограничением по возрасту.
+    <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
-\nДля его просмотра включите \"Контент 18+\" в настройках.</string>
+\nВключите \"Контент с возрастным ограничением\" в настройках, если хотите его видеть.</string>
     <string name="content_not_supported">NewPipe не поддерживает этот контент. 
 \n 
 \nВозможно, поддержка появится в следующих версиях.</string>
@@ -626,15 +626,30 @@
     <string name="search_showing_result_for">Результаты для: %s</string>
     <string name="playlist_page_summary">Страница плейлиста</string>
     <string name="select_a_playlist">Выберите плейлист</string>
-    <string name="error_report_open_issue_button_text">Сообщить об ошибке на Github</string>
+    <string name="error_report_open_issue_button_text">Сообщить на GitHub</string>
     <string name="copy_for_github">Копировать отформатированный отчет</string>
     <string name="never">Никогда</string>
     <string name="wifi_only">Только по WiFi</string>
     <string name="autoplay_summary">Автоматический запуск воспроизведения — %s</string>
     <string name="title_activity_play_queue">Очередь воспроизведения</string>
-    <string name="unsupported_url_dialog_message">NewPipe не может распознать предоставленный URL. Открыть другим способом\?</string>
+    <string name="unsupported_url_dialog_message">Не удалось распознать URL. Открыть в другом приложении\?</string>
     <string name="auto_queue_toggle">Авто-очередь</string>
-    <string name="clear_queue_confirmation_description">Очередь от активного плеера будет заменена</string>
+    <string name="clear_queue_confirmation_description">Очередь активного плеера будет заменена</string>
     <string name="clear_queue_confirmation_title">Запросить подтверждение перед очисткой очереди</string>
-    <string name="clear_queue_confirmation_summary">После переключения с одного плеера на другой ваша очередь может быть заменена</string>
+    <string name="clear_queue_confirmation_summary">Переход от одного плеера к другому может заменить вашу очередь</string>
+    <string name="settings_category_notification_title">Уведомление</string>
+    <string name="notification_action_nothing">Ничего</string>
+    <string name="notification_action_buffering">Буферизация</string>
+    <string name="notification_action_shuffle">Перемешивать</string>
+    <string name="notification_action_repeat">Повторение</string>
+    <string name="notification_actions_at_most_three">Вы можете выбрать не более трёх действий для отображения в компактном уведомлении!</string>
+    <string name="notification_actions_summary">Отредактируйте каждое действие уведомления ниже, нажав на него.
+\nВыберите до трёх из них, которые будут отображаться в компактном уведомлении, с помощью флажков справа.</string>
+    <string name="notification_action_4_title">Кнопка пятого действия</string>
+    <string name="notification_action_3_title">Кнопка четвёртого действия</string>
+    <string name="notification_action_2_title">Кнопка третьего действия</string>
+    <string name="notification_action_1_title">Кнопка второго действия</string>
+    <string name="notification_action_0_title">Кнопка первого действия</string>
+    <string name="notification_scale_to_square_image_summary">Масштабировать эскиз видео, отображаемый в уведомлении, с соотношением сторон 16:9 до 1:1 (может привести к искажениям)</string>
+    <string name="notification_scale_to_square_image_title">Масштабировать эскиз до соотношения сторон 1: 1</string>
 </resources>
