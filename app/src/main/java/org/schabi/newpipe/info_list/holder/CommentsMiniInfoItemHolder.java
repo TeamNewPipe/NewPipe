@@ -86,7 +86,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
         itemBuilder.getImageLoader()
-                .displayImage(item.getUploaderAvatarUrl(),
+                .displayImage(null,
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
