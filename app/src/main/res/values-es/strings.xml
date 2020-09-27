@@ -10,7 +10,7 @@
     <string name="download">Descargar</string>
     <string name="search">Buscar</string>
     <string name="settings">Ajustes</string>
-    <string name="did_you_mean">¿Quiso decir: %1$s?</string>
+    <string name="did_you_mean">¿Quiso decir \"%1$s\"\?</string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Elegir navegador</string>
     <string name="screen_rotation">giro</string>
