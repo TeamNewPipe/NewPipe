@@ -40,6 +40,8 @@
     <dimen name="video_item_detail_description_to_details_margin">4dp</dimen>
     <dimen name="software_component_item_padding">8dp</dimen>
     <dimen name="channel_item_grid_padding">12dp</dimen>
+    <dimen name="comments_horizontal_padding">20dp</dimen>
+    <dimen name="comments_vertical_padding">12dp</dimen>
 
     <!-- Players padding & sizes -->
     <dimen name="player_main_controls_padding">16dp</dimen>
