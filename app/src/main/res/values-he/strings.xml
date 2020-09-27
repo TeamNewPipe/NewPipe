@@ -646,4 +646,19 @@
     <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
     <string name="clear_queue_confirmation_summary">לאחר מעבר מנגן אחד למשנהו התור שלך עלול להתחלף</string>
     <string name="clear_queue_confirmation_title">לבקש אישור לפני מחיקת התור</string>
+    <string name="settings_category_notification_title">התראה</string>
+    <string name="notification_action_nothing">כלום</string>
+    <string name="notification_action_buffering">איסוף</string>
+    <string name="notification_action_shuffle">ערבוב</string>
+    <string name="notification_action_repeat">חזרה</string>
+    <string name="notification_actions_at_most_three">ניתן לבחור עד שלוש פעולות בלבד שתופענה בהתראות המצומצמות!</string>
+    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה.
+\nמותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל.</string>
+    <string name="notification_action_4_title">כפתור פעולה חמישי</string>
+    <string name="notification_action_3_title">כפתור פעולה רביעי</string>
+    <string name="notification_action_2_title">כפתור פעולה שלישי</string>
+    <string name="notification_action_0_title">כפתור פעולה ראשון</string>
+    <string name="notification_action_1_title">כפתור פעולה שני</string>
+    <string name="notification_scale_to_square_image_summary">לשנות את יחס התצוגה הממוזערת שמופיעה בהתראות מיחס תצוגה של 16:9 ל־1:1 (עשוי לעוות את התמונה)</string>
+    <string name="notification_scale_to_square_image_title">שינוי גודל התצוגה הממוזערת ליחס תצוגה 1:1</string>
 </resources>
