@@ -626,4 +626,19 @@
     <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
     <string name="clear_queue_confirmation_title">Confirmer av. de suppr. la liste de lecture</string>
+    <string name="settings_category_notification_title">Notification</string>
+    <string name="notification_action_nothing">Rien</string>
+    <string name="notification_action_buffering">Chargement</string>
+    <string name="notification_action_shuffle">Lire aléatoirement</string>
+    <string name="notification_action_repeat">Répéter</string>
+    <string name="notification_actions_at_most_three">Vous pouvez sélectionner au maximum trois actions à faire figurer dans la notification compacte !</string>
+    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus.
+\nSélectionnez jusqu\'à trois d\'entre elles pour les faire apparaitre dans la notification compacte en utilisant les cases à cocher à droite.</string>
+    <string name="notification_action_4_title">Cinquième bouton d\'action</string>
+    <string name="notification_action_3_title">Quatrième bouton d\'action</string>
+    <string name="notification_action_2_title">Troisième bouton d\'action</string>
+    <string name="notification_action_1_title">Deuxième bouton d\'action</string>
+    <string name="notification_action_0_title">Premier bouton d\'action</string>
+    <string name="notification_scale_to_square_image_summary">Mettre à l\'échelle la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1 (peut provoquer des déformations)</string>
+    <string name="notification_scale_to_square_image_title">Mettre à l\'échelle la miniature au format 1:1</string>
 </resources>
