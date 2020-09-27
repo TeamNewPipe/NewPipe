@@ -616,4 +616,19 @@
     <string name="title_activity_play_queue">キューを再生</string>
     <string name="clear_queue_confirmation_title">キューをクリアする前に確認する</string>
     <string name="unsupported_url_dialog_message">NewPipe はその URL を認識できませんでした。他の方法で開きますか？</string>
+    <string name="notification_scale_to_square_image_summary">通知に表示される動画サムネイルを 16:9 から 1:1 のアスペクト比にスケールします (ゆがみが生じるかもしれません)</string>
+    <string name="notification_scale_to_square_image_title">サムネイルを 1:1 のアスペクト比にスケールする</string>
+    <string name="notification_actions_summary">以下をタップして通知のアクションを編集します。
+\n右側にあるチェックボックスを使用してコンパクトな通知に表示するものを 3 つまで選択します。</string>
+    <string name="notification_actions_at_most_three">コンパクトな通知に表示される 3 つのアクションを選ぶことができます！</string>
+    <string name="notification_action_4_title">5 番目のアクションボタン</string>
+    <string name="notification_action_3_title">4 番目のアクションボタン</string>
+    <string name="notification_action_2_title">3 番目のアクションボタン</string>
+    <string name="notification_action_1_title">2 番目のアクションボタン</string>
+    <string name="notification_action_0_title">1 番目のアクションボタン</string>
+    <string name="notification_action_nothing">何もない</string>
+    <string name="notification_action_repeat">リピート</string>
+    <string name="notification_action_shuffle">シャッフル</string>
+    <string name="notification_action_buffering">バッファリング</string>
+    <string name="settings_category_notification_title">通知</string>
 </resources>
