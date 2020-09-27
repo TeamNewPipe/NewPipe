@@ -46,6 +46,5 @@ You may be asked to register at our [Sentry](https://sentry.schabi.org) instance
 * The [#newpipe](irc:irc.freenode.net/newpipe) channel on freenode has the core team and other developers in it. [Click here for webchat](https://webchat.freenode.net/?channels=newpipe)!
 * You can also use a Matrix account to join the Newpipe channel at [#freenode_#newpipe:matrix.org](https://matrix.to/#/#freenode_#newpipe:matrix.org).
 * If you want to get in touch with the core team or one of our other contributors you can send an e-mail to
-  <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a>. Please do not send issue reports, they will be ignored and remain unanswered! Use the GitHub issue
-  tracker described above, unless you are using the built-in crash reporter.
+  <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a>. Please do not send issue reports, they will be ignored and remain unanswered! Use the GitHub issue tracker described above, unless you are using the built-in crash reporter.
 * Post suggestions, changes, ideas etc. on GitHub or IRC.
