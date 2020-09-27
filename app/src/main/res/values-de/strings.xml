@@ -485,7 +485,7 @@
     <string name="enable_queue_limit_desc">Ein Download wird zur gleichen Zeit ausgeführt</string>
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
-    <string name="downloads_storage_ask_title">Frage, wohin heruntergeladen werden soll</string>
+    <string name="downloads_storage_ask_title">Download-Ziel abfragen</string>
     <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin du jeden Download speichern willst</string>
     <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jeden Download speichern willst.
 \nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
