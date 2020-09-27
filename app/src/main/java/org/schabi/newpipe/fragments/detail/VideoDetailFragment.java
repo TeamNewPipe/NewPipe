@@ -11,6 +11,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.ContentObserver;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -102,13 +103,12 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 import org.schabi.newpipe.views.LargeTextMovementMethod;
 
-import java.io.Serializable;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -125,6 +125,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
+import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -337,7 +338,7 @@ public class VideoDetailFragment
             stopPlayerListener();
             playerService = null;
             player = null;
-            saveCurrentAndRestoreDefaultBrightness();
+            restoreDefaultBrightness();
         }
     }
 
@@ -404,7 +405,7 @@ public class VideoDetailFragment
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
             public void onChange(final boolean selfChange) {
-                if (activity != null && !PlayerHelper.globalScreenOrientationLocked(activity)) {
+                if (activity != null && !globalScreenOrientationLocked(activity)) {
                     activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                 }
             }
@@ -426,7 +427,7 @@ public class VideoDetailFragment
         if (currentWorker != null) {
             currentWorker.dispose();
         }
-        saveCurrentAndRestoreDefaultBrightness();
+        restoreDefaultBrightness();
         PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .edit()
                 .putString(getString(R.string.stream_info_selected_tab_key),
@@ -538,31 +539,51 @@ public class VideoDetailFragment
         super.onSaveInstanceState(outState);
 
         if (!isLoading.get() && currentInfo != null && isVisible()) {
-            outState.putSerializable(INFO_KEY, currentInfo);
+            final String infoCacheKey = SerializedCache.getInstance()
+                    .put(currentInfo, StreamInfo.class);
+            if (infoCacheKey != null) {
+                outState.putString(INFO_KEY, infoCacheKey);
+            }
         }
 
         if (playQueue != null) {
-            outState.putSerializable(VideoPlayer.PLAY_QUEUE_KEY, playQueue);
+            final String queueCacheKey = SerializedCache.getInstance()
+                    .put(playQueue, PlayQueue.class);
+            if (queueCacheKey != null) {
+                outState.putString(VideoPlayer.PLAY_QUEUE_KEY, queueCacheKey);
+            }
         }
-        outState.putSerializable(STACK_KEY, stack);
+        final String stackCacheKey = SerializedCache.getInstance().put(stack, LinkedList.class);
+        if (stackCacheKey != null) {
+            outState.putString(STACK_KEY, stackCacheKey);
+        }
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull final Bundle savedState) {
         super.onRestoreInstanceState(savedState);
 
-        Serializable serializable = savedState.getSerializable(INFO_KEY);
-        if (serializable instanceof StreamInfo) {
-            currentInfo = (StreamInfo) serializable;
-            InfoCache.getInstance().putInfo(serviceId, url, currentInfo, InfoItem.InfoType.STREAM);
+        final String infoCacheKey = savedState.getString(INFO_KEY);
+        if (infoCacheKey != null) {
+            currentInfo = SerializedCache.getInstance().take(infoCacheKey, StreamInfo.class);
+            if (currentInfo != null) {
+                InfoCache.getInstance()
+                        .putInfo(serviceId, url, currentInfo, InfoItem.InfoType.STREAM);
+            }
         }
 
-        serializable = savedState.getSerializable(STACK_KEY);
-        if (serializable instanceof Collection) {
-            //noinspection unchecked
-            stack.addAll((Collection<? extends StackItem>) serializable);
+        final String stackCacheKey = savedState.getString(STACK_KEY);
+        if (stackCacheKey != null) {
+            final LinkedList<StackItem> cachedStack =
+                    SerializedCache.getInstance().take(stackCacheKey, LinkedList.class);
+            if (cachedStack != null) {
+                stack.addAll(cachedStack);
+            }
         }
-        playQueue = (PlayQueue) savedState.getSerializable(VideoPlayer.PLAY_QUEUE_KEY);
+        final String queueCacheKey = savedState.getString(VideoPlayer.PLAY_QUEUE_KEY);
+        if (queueCacheKey != null) {
+            playQueue = SerializedCache.getInstance().take(queueCacheKey, PlayQueue.class);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1808,9 +1829,6 @@ public class VideoDetailFragment
         setOverlayPlayPauseImage();
 
         switch (state) {
-            case BasePlayer.STATE_COMPLETED:
-                restoreDefaultOrientation();
-                break;
             case BasePlayer.STATE_PLAYING:
                 if (positionView.getAlpha() != 1.0f
                         && player.getPlayQueue() != null
@@ -1869,10 +1887,11 @@ public class VideoDetailFragment
     public void onPlayerError(final ExoPlaybackException error) {
         if (error.type == ExoPlaybackException.TYPE_SOURCE
                 || error.type == ExoPlaybackException.TYPE_UNEXPECTED) {
-            hideMainPlayer();
+            // Properly exit from fullscreen
             if (playerService != null && player.isFullscreen()) {
                 player.toggleFullscreen();
             }
+            hideMainPlayer();
         }
     }
 
@@ -1911,7 +1930,13 @@ public class VideoDetailFragment
         }
         scrollToTop();
 
-        addVideoPlayerView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            addVideoPlayerView();
+        } else {
+            // KitKat needs a delay before addVideoPlayerView call or it reports wrong height in
+            // activity.getWindow().getDecorView().getHeight()
+            new Handler().post(this::addVideoPlayerView);
+        }
     }
 
     @Override
@@ -1919,13 +1944,15 @@ public class VideoDetailFragment
         // In tablet user experience will be better if screen will not be rotated
         // from landscape to portrait every time.
         // Just turn on fullscreen mode in landscape orientation
-        if (isLandscape() && DeviceUtils.isTablet(activity)) {
+        // or portrait & unlocked global orientation
+        if (DeviceUtils.isTablet(activity)
+                && (!globalScreenOrientationLocked(activity) || isLandscape())) {
             player.toggleFullscreen();
             return;
         }
 
         final int newOrientation = isLandscape()
-                ? ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
 
         activity.setRequestedOrientation(newOrientation);
@@ -1970,7 +1997,11 @@ public class VideoDetailFragment
                     WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
         }
         activity.getWindow().getDecorView().setSystemUiVisibility(0);
-        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity.getWindow().setStatusBarColor(ThemeHelper.resolveColorFromAttr(
+                    requireContext(), android.R.attr.colorPrimary));
+        }
     }
 
     private void hideSystemUi() {
@@ -1985,18 +2016,26 @@ public class VideoDetailFragment
         // Prevent jumping of the player on devices with cutout
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
-        final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        // In multiWindow mode status bar is not transparent for devices with cutout
+        // if I include this flag. So without it is better in this case
+        if (!isInMultiWindow()) {
+            visibility |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+        }
         activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
-        activity.getWindow().setFlags(
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                && (isInMultiWindow() || (player != null && player.isFullscreen()))) {
+            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        }
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     // Listener implementation
@@ -2014,13 +2053,11 @@ public class VideoDetailFragment
                 && player.getPlayer().getPlaybackState() != Player.STATE_IDLE;
     }
 
-    private void saveCurrentAndRestoreDefaultBrightness() {
+    private void restoreDefaultBrightness() {
         final WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
         if (lp.screenBrightness == -1) {
             return;
         }
-        // Save current brightness level
-        PlayerHelper.setScreenBrightness(activity, lp.screenBrightness);
 
         // Restore the old  brightness when fragment.onPause() called or
         // when a player is in portrait
@@ -2039,7 +2076,7 @@ public class VideoDetailFragment
                 || !player.isFullscreen()
                 || bottomSheetState != BottomSheetBehavior.STATE_EXPANDED) {
             // Apply system brightness when the player is not in fullscreen
-            saveCurrentAndRestoreDefaultBrightness();
+            restoreDefaultBrightness();
         } else {
             // Restore already saved brightness level
             final float brightnessLevel = PlayerHelper.getScreenBrightness(activity);
@@ -2058,11 +2095,9 @@ public class VideoDetailFragment
         }
 
         player.checkLandscape();
-        final boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(activity);
         // Let's give a user time to look at video information page if video is not playing
-        if (orientationLocked && !player.isPlaying()) {
+        if (globalScreenOrientationLocked(activity) && !player.isPlaying()) {
             player.onPlay();
-            player.showControlsThenHide();
         }
     }
 
@@ -2265,6 +2300,7 @@ public class VideoDetailFragment
                                 && player.videoPlayerSelected()) {
                             player.toggleFullscreen();
                         }
+                        setOverlayLook(appBarLayout, behavior, 1);
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         moveFocusToMainFragment(true);
@@ -2274,6 +2310,7 @@ public class VideoDetailFragment
                         if (player != null) {
                             player.onQueueClosed();
                         }
+                        setOverlayLook(appBarLayout, behavior, 0);
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
                     case BottomSheetBehavior.STATE_SETTLING:

@@ -1,14 +1,17 @@
 package org.schabi.newpipe.views;
 
 import android.content.Context;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
+import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
 
 public class ExpandableSurfaceView extends SurfaceView {
-    private int resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
+    private int resizeMode = RESIZE_MODE_FIT;
     private int baseHeight = 0;
     private int maxHeight = 0;
     private float videoAspectRatio = 0.0f;
@@ -30,7 +33,7 @@ public class ExpandableSurfaceView extends SurfaceView {
         final boolean verticalVideo = videoAspectRatio < 1;
         // Use maxHeight only on non-fit resize mode and in vertical videos
         int height = maxHeight != 0
-                && resizeMode != AspectRatioFrameLayout.RESIZE_MODE_FIT
+                && resizeMode != RESIZE_MODE_FIT
                 && verticalVideo ? maxHeight : baseHeight;
 
         if (height == 0) {
@@ -42,26 +45,22 @@ public class ExpandableSurfaceView extends SurfaceView {
         scaleX = 1.0f;
         scaleY = 1.0f;
 
-        switch (resizeMode) {
-            case AspectRatioFrameLayout.RESIZE_MODE_FIT:
-                if (aspectDeformation > 0) {
-                    height = (int) (width / videoAspectRatio);
-                } else {
-                    width = (int) (height * videoAspectRatio);
-                }
-
-                break;
-            case RESIZE_MODE_ZOOM:
-                if (aspectDeformation < 0) {
-                    scaleY = viewAspectRatio / videoAspectRatio;
-                } else {
-                    scaleX = videoAspectRatio / viewAspectRatio;
-                }
-
-                break;
-            default:
-                break;
+        if (resizeMode == RESIZE_MODE_FIT
+                // KitKat doesn't work well when a view has a scale like needed for ZOOM
+                || (resizeMode == RESIZE_MODE_ZOOM && VERSION.SDK_INT < VERSION_CODES.LOLLIPOP)) {
+            if (aspectDeformation > 0) {
+                height = (int) (width / videoAspectRatio);
+            } else {
+                width = (int) (height * videoAspectRatio);
+            }
+        } else if (resizeMode == RESIZE_MODE_ZOOM) {
+            if (aspectDeformation < 0) {
+                scaleY = viewAspectRatio / videoAspectRatio;
+            } else {
+                scaleX = videoAspectRatio / viewAspectRatio;
+            }
         }
+
         super.onMeasure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
     }

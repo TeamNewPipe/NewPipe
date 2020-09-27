@@ -18,11 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:fitsSystemWindows="true"
             app:elevation="0dp"
             app:layout_behavior="com.google.android.material.appbar.FlingBehavior">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <org.schabi.newpipe.views.CustomCollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll">
@@ -148,8 +147,7 @@
 					/>
 
                 </FrameLayout>
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </org.schabi.newpipe.views.CustomCollapsingToolbarLayout>
 
             <!-- CONTENT -->
             <RelativeLayout
