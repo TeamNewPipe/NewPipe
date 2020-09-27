@@ -3,7 +3,7 @@
     <string name="cancel">Annuler</string>
     <string name="choose_browser">Choisir un navigateur</string>
     <string name="default_resolution_title">Définition par défaut</string>
-    <string name="did_you_mean">Vouliez-vous dire : %1$s \?</string>
+    <string name="did_you_mean">Vouliez-vous dire « %1$s » \?</string>
     <string name="download">Télécharger</string>
     <string name="download_path_title">Dossier de téléchargement vidéo</string>
     <string name="download_path_dialog_title">Veuillez choisir le dossier de téléchargement des fichiers vidéos</string>
@@ -55,7 +55,7 @@
     <string name="general_error">Erreur</string>
     <string name="parsing_error">Impossible d’analyser le site web</string>
     <string name="content_not_available">Contenu indisponible</string>
-    <string name="error_snackbar_message">Désolé, des erreurs sont survenues.</string>
+    <string name="error_snackbar_message">Désolé, quelque chose s\'est mal passé.</string>
     <string name="content">Contenu</string>
     <string name="show_age_restricted_content_title">Contenu avec limite d’âge</string>
     <string name="duration_live">En direct</string>
@@ -217,7 +217,7 @@
     <string name="select_a_channel">Sélectionner une chaîne</string>
     <string name="trending">Tendances</string>
     <string name="top_50">Top 50</string>
-    <string name="new_and_hot">Nouveau &amp; populaire</string>
+    <string name="new_and_hot">Nouveau et populaire</string>
     <string name="background_player_append">Ajouté à la liste du lecteur en arrière-plan</string>
     <string name="popup_playing_append">Ajouté à la liste du lecteur flottant</string>
     <string name="play_all">Tout lire</string>
@@ -597,7 +597,7 @@
     <string name="songs">Chansons</string>
     <string name="restricted_video">Cette vidéo est bloquée à cause de la limite d\'âge.
 \n
-\nSi vous voulez la voir, activez « Contenu avec limite d\'âge » dans les paramètres, rubrique « Contenu ».</string>
+\nActivez « Contenu avec limite d\'âge » dans les paramètres, rubrique « Contenu » si vous voulez la voir.</string>
     <string name="remove_watched">Supprimer les vidéos vues</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui, et des vidéos partiellement regardées</string>
     <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
@@ -614,15 +614,15 @@
     <string name="no_playlist_bookmarked_yet">Aucune liste de lecture encore enregistrée</string>
     <string name="select_a_playlist">Sélectionner une liste de lecture</string>
     <string name="error_report_open_github_notice">Veuillez vérifier si un ticket concernant votre problème existe déjà. Lorsque vous créez des tickets dupliqués, cela nous prend du temps que nous pourrions passer à résoudre effectivement le problème.</string>
-    <string name="error_report_open_issue_button_text">Rapporter l’erreur sur GitHub</string>
+    <string name="error_report_open_issue_button_text">Signaler sur GitHub</string>
     <string name="copy_for_github">Copier le rapport formaté</string>
     <string name="search_showing_result_for">Affichage des résultats pour : %s</string>
-    <string name="clear_queue_confirmation_summary">Après le changement d\'un lecteur a un autre, votre liste de lecture pourrait être remplacée</string>
+    <string name="clear_queue_confirmation_summary">Changer d\'un lecteur à un autre pourrait remplacer votre liste de lecture</string>
     <string name="never">Jamais</string>
     <string name="wifi_only">Uniquement en Wi-Fi</string>
     <string name="autoplay_summary">Démarrer la lecture automatiquement — %s</string>
     <string name="title_activity_play_queue">Liste de lecture</string>
-    <string name="unsupported_url_dialog_message">NewPipe n\'a pas pu reconnaitre l\'URL fourni. Voulez vous l\'ouvrir avec une autre méthode \?</string>
+    <string name="unsupported_url_dialog_message">Impossible de reconnaitre l\'URL fourni. Voulez vous l\'ouvrir avec une autre appli \?</string>
     <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
     <string name="clear_queue_confirmation_title">Confirmer av. de suppr. la liste de lecture</string>
