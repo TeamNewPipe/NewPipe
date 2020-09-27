@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-             android:layout_height="64dp"
-             xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="64dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:id="@+id/notificationContent"
@@ -107,8 +107,8 @@
             android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_close_white_24dp"
-            tools:ignore="ContentDescription,RtlHardcoded"/>
+            app:srcCompat="@drawable/ic_close_white_24dp"
+            tools:ignore="ContentDescription,RtlHardcoded" />
     </LinearLayout>
 
     <ProgressBar

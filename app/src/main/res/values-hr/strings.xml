@@ -258,7 +258,7 @@
     <string name="create_playlist">Nova reprodukcijska lista</string>
     <string name="delete_playlist">Izbriši</string>
     <string name="rename_playlist">Preimenuj</string>
-    <string name="playlist_name_input">Ime liste</string>
+    <string name="name">Ime</string>
     <string name="append_playlist">Dodaj na reprodukcijsku listu</string>
     <string name="set_as_playlist_thumbnail">Postavi kao sliku na listu</string>
     <string name="bookmark_playlist">Markirajte reprodukcijsku listu</string>
@@ -273,7 +273,6 @@
     <string name="resize_fill">Ispuniti</string>
     <string name="resize_zoom">Povećaj</string>
     <string name="caption_auto_generated">Auto generirano</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitoring curenja memorije može uzrokovati greške u radu aplikacije prilikom odlaganje gomile</string>
     <string name="enable_disposed_exceptions_title">Izvijestite o pogreškama izvan životnog ciklusa</string>
     <string name="show_info">Prikaži informacije</string>
@@ -503,11 +502,19 @@
     <string name="unmute">Uključi</string>
     <string name="help">Pomoć</string>
     <string name="feed_notification_loading">Učitavanje feeda…</string>
-    <string name="feed_group_dialog_name_input">Ime</string>
     <string name="feed_group_dialog_delete_message">Želite li izbrisati ovu grupu\?</string>
     <string name="feed_create_new_group_button_title">Novi</string>
     <string name="feed_update_threshold_option_always_update">Uvijek ažuriraj</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Omogući brz način</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Onemogući brz način</string>
     <string name="error_insufficient_storage">Memorija uređaja je popunjena</string>
+    <string name="most_liked">Najomiljenije</string>
+    <string name="subtitle_activity_recaptcha">Pritisnite \"Gotovo\" kad riješeno</string>
+    <string name="recaptcha_done_button">Gotovo</string>
+    <string name="infinite_videos">∞ videozapisa</string>
+    <string name="more_than_100_videos">100+ videozapisa</string>
+    <string name="error_report_open_issue_button_text">Prijavite grešku na GitHub</string>
+    <string name="artists">Umjetnici</string>
+    <string name="albums">Albumi</string>
+    <string name="songs">Pjesme</string>
 </resources>

@@ -97,7 +97,7 @@
     <string name="error_snackbar_action">דיווח</string>
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
-    <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nשעון גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
+    <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nמדינת התוכן:\\nשפת היישומון:\\nשירות:\\nשעון גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
     <string name="subscribe_button_title">עריכת מינוי</string>
     <string name="subscribed_button_title">נרשמת</string>
     <string name="channel_unsubscribed">ביטול מינוי לערוץ</string>
@@ -301,7 +301,7 @@
     <string name="create_playlist">רשימת נגינה חדשה</string>
     <string name="delete_playlist">מחיקה</string>
     <string name="rename_playlist">שינוי שם</string>
-    <string name="playlist_name_input">שם</string>
+    <string name="name">שם</string>
     <string name="append_playlist">הוספה לרשימת נגינה</string>
     <string name="bookmark_playlist">הוספת רשימת נגינה לסימניות</string>
     <string name="unbookmark_playlist">הסרת סימנייה</string>
@@ -373,7 +373,6 @@
     <string name="resize_fit">התאמה</string>
     <string name="caption_setting_title">כתוביות</string>
     <string name="caption_setting_description">שינוי גודל כותרת הנגן וסגנונות הרקע. נדרשת הפעלה מחדש כדי ששינויים אלה יכנסו לתוקף.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">מעקב אחר זליגת זיכרון עשויה לגרום ליישומון להיות בלתי זמין בזמן העתקת תוכן הזיכרון לקובץ</string>
     <string name="import_soundcloud_instructions_hint">המזהה שלך, soundcloud.com/המזהה שלך</string>
     <string name="import_network_expensive_warning">נא לשים לב כי פעולה זו עשויה להעמיס על תקשורת הנתונים. 
@@ -581,7 +580,6 @@
     <string name="feed_group_dialog_select_subscriptions">בחירת מינויים</string>
     <string name="feed_group_dialog_empty_selection">לא נבחר מינוי</string>
     <string name="feed_group_dialog_empty_name">שם הקבוצה ריק</string>
-    <string name="feed_group_dialog_name_input">שם</string>
     <string name="feed_group_dialog_delete_message">למחוק את הקבוצה הזאת\?</string>
     <string name="feed_create_new_group_button_title">חדשה</string>
     <string name="settings_category_feed_title">הזנה</string>
@@ -632,4 +630,11 @@
     <string name="channel_created_by">נוצר ע״י %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">תמונה ממוזערת של הערוץ</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">להציג רק מינויים שאינם בקבוצות</string>
+    <string name="playlist_page_summary">עמוד רשימת נגינה</string>
+    <string name="no_playlist_bookmarked_yet">אין עדיין סימניות ברשימת הנגינה</string>
+    <string name="select_a_playlist">בחירת רשימת נגינה</string>
+    <string name="error_report_open_github_notice">נא לבדוק אם כבר קיים דיווח על הקריסה שלך. יצירת דיווחים כפולים גוזלת מאתנו זמן שיכולנו להשקיע בתיקון התקלה עצמה.</string>
+    <string name="error_report_open_issue_button_text">דיווח על שגיאה ב־GitHub</string>
+    <string name="copy_for_github">העתקת דוח מעוצב</string>
+    <string name="search_showing_result_for">מוצגות תוצאות עבור: %s</string>
 </resources>

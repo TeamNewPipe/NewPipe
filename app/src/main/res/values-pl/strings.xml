@@ -68,7 +68,7 @@
     <string name="error_snackbar_action">Zgłoś</string>
     <string name="what_device_headline">Informacje:</string>
     <string name="what_happened_headline">Co się stało:</string>
-    <string name="info_labels">Co:\\nRequest:\\nJęzyk treści:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
+    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu operacyjnego:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
     <string name="list_thumbnail_view_description">Miniatura filmu</string>
@@ -298,7 +298,7 @@
     <string name="create_playlist">Nowa playlista</string>
     <string name="delete_playlist">Usuń</string>
     <string name="rename_playlist">Zmień</string>
-    <string name="playlist_name_input">Nazwa</string>
+    <string name="name">Nazwa</string>
     <string name="append_playlist">Dodaj do playlisty</string>
     <string name="set_as_playlist_thumbnail">Ustaw jako miniaturę playlisty</string>
     <string name="bookmark_playlist">Dodaj do zakładek</string>
@@ -313,7 +313,6 @@
     <string name="resize_fill">Wypełnij</string>
     <string name="resize_zoom">Powiększ</string>
     <string name="caption_auto_generated">Wygenerowane automatycznie</string>
-    <string name="enable_leak_canary_title">Wyciek danych</string>
     <string name="enable_leak_canary_summary">Monitorowanie wycieków pamięci może powodować niestabilność aplikacji podczas zrzutu pamięci</string>
     <string name="enable_disposed_exceptions_title">Zgłaszanie błędów poza cyklem życia</string>
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
@@ -569,7 +568,6 @@
     <string name="settings_category_feed_title">Kanał</string>
     <string name="feed_create_new_group_button_title">Nowy</string>
     <string name="feed_group_dialog_delete_message">Czy chcesz usunąć tę grupę\?</string>
-    <string name="feed_group_dialog_name_input">Nazwa</string>
     <string name="feed_group_dialog_empty_name">Pusta nazwa grupy</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">wybrany %d</item>
@@ -622,4 +620,11 @@
     <string name="channel_created_by">Utworzone przez %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura awatara kanału</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Pokaż tylko niezgrupowane subskrypcje</string>
+    <string name="playlist_page_summary">Strona playlisty</string>
+    <string name="no_playlist_bookmarked_yet">Nie ma jeszcze zakładek do playlist</string>
+    <string name="select_a_playlist">Wybierz playlistę</string>
+    <string name="error_report_open_github_notice">Sprawdź, czy problem dotyczący Twojej awarii już istnieje. Tworząc zduplikowane wpisy, zajmujesz nam czas, który możemy poświęcić na naprawienie rzeczywistego błędu.</string>
+    <string name="error_report_open_issue_button_text">Zgłoś błąd na GitHub</string>
+    <string name="copy_for_github">Skopiuj sformatowany raport</string>
+    <string name="search_showing_result_for">Wyświetlono wyniki dla: %s</string>
 </resources>

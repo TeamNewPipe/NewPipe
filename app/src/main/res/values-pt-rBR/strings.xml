@@ -108,7 +108,7 @@
     <string name="use_tor_title">Usar tor</string>
     <string name="user_report">Relatório do usuário</string>
     <string name="show_play_with_kodi_title">Exibir opção \"Ver com Kodi\"</string>
-    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão SO:</string>
+    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão SO:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="default_popup_resolution_title">Resolução padrão de popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções maiores</string>
@@ -291,7 +291,7 @@
     <string name="create_playlist">Nova playlist</string>
     <string name="delete_playlist">Excluir</string>
     <string name="rename_playlist">Renomear</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="append_playlist">Adicionar à playlist</string>
     <string name="set_as_playlist_thumbnail">Definir como capa da playlist</string>
     <string name="bookmark_playlist">Favoritar playlist</string>
@@ -307,7 +307,6 @@
     <string name="resize_zoom">Zoom</string>
     <string name="drawer_header_action_paceholder_text">Algo aparecerá aqui em breve ;D</string>
     <string name="caption_auto_generated">Gerado automaticamente</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">A monitoração de vazamento de memória pode tornar o app instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Força relatório de exceções Rx não entregues fora do ciclo de vida do fragmento ou atividade após o descarte</string>
@@ -567,7 +566,6 @@
         <item quantity="other">%d selecionadas</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nome do grupo está vazio</string>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="feed_group_dialog_delete_message">Excluir este grupo\?</string>
     <string name="feed_create_new_group_button_title">Novo</string>
     <string name="settings_category_feed_title">Feed</string>
@@ -612,4 +610,11 @@
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Capa do avatar do canal</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas inscrições não agrupadas</string>
+    <string name="search_showing_result_for">Mostrando resultados para\? %s</string>
+    <string name="no_playlist_bookmarked_yet">Ainda não há favoritos de playlists</string>
+    <string name="playlist_page_summary">Página da playlist</string>
+    <string name="select_a_playlist">Selecione uma playlist</string>
+    <string name="error_report_open_github_notice">Verifique se já existe um assunto discutindo essa falha. Criar duplicatas tirará um tempo que poderíamos gastar corrigindo o bug real.</string>
+    <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
+    <string name="copy_for_github">Copiar relatório formatado</string>
 </resources>

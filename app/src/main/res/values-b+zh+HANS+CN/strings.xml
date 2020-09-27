@@ -71,7 +71,7 @@
     <string name="subscribers_count_not_available">无法得知订阅人数</string>
     <string name="updates_setting_description">发布新版本时，通知我升级应用</string>
     <string name="grid">网格</string>
-    <string name="app_update_notification_content_title">NewPipe有更新！</string>
+    <string name="app_update_notification_content_title">NewPipe可更新！</string>
     <string name="error_http_unsupported_range">服务器不接受 接收 multi-threaded 下载, 以 @string/msg_threads = 1 重试</string>
     <string name="autoplay_title">自动播放</string>
     <string name="settings_category_clear_data_title">清除数据</string>
@@ -191,7 +191,7 @@
     <string name="error_snackbar_action">报告</string>
     <string name="what_device_headline">信息：</string>
     <string name="what_happened_headline">发生了什么：</string>
-    <string name="info_labels">详情：\\n请求：\\n内容语言：\\n服务：\\nGMT时间：\\n包：\\n版本：\\n操作系统版本：</string>
+    <string name="info_labels">详情：\\n请求：\\n内容语言：\\n内容国家：\\n客户端语言：\\n服务：\\nGMT时间：\\n包名：\\n版本：\\n操作系统版本：</string>
     <string name="your_comment">您的附近说明（请用英文）：</string>
     <string name="error_details_headline">详细信息：</string>
     <string name="list_thumbnail_view_description">视频预览缩略图</string>
@@ -324,7 +324,7 @@
     <string name="create_playlist">新建播放列表</string>
     <string name="delete_playlist">删除</string>
     <string name="rename_playlist">重命名</string>
-    <string name="playlist_name_input">名称</string>
+    <string name="name">名称</string>
     <string name="append_playlist">添加到播放列表</string>
     <string name="set_as_playlist_thumbnail">设为播放列表缩略图</string>
     <string name="bookmark_playlist">收藏播放列表</string>
@@ -341,7 +341,6 @@
     <string name="drawer_header_action_paceholder_text">敬请期待</string>
     <string name="settings_category_debug_title">调试</string>
     <string name="caption_auto_generated">自动生成</string>
-    <string name="enable_leak_canary_title">启用LeakCanary</string>
     <string name="enable_leak_canary_summary">『内存泄漏监视』可能导致应用在『核心转储』时无响应</string>
     <string name="enable_disposed_exceptions_title">报告『提前结束Android生命周期』错误</string>
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的Activity或Fragment生命周期之外的Rx异常</string>
@@ -556,7 +555,6 @@
         <item quantity="other">已选中%d</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">组名为空</string>
-    <string name="feed_group_dialog_name_input">名称</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
     <string name="settings_category_feed_title">订阅</string>
@@ -602,4 +600,11 @@
     <string name="show_original_time_ago_title">在项目上显示原始时间</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube受限模式</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">仅显示未分组订阅</string>
+    <string name="playlist_page_summary">播放列表页</string>
+    <string name="no_playlist_bookmarked_yet">尚无播放列表书签</string>
+    <string name="select_a_playlist">选择播放列表</string>
+    <string name="error_report_open_github_notice">请检查您的问题是否已经存在。创建重复票证时，您需要从我们那里花些时间来让我们修复真正的bug。</string>
+    <string name="error_report_open_issue_button_text">去GitHub上报告错误</string>
+    <string name="copy_for_github">复制格式报告</string>
+    <string name="search_showing_result_for">显示结果为：%s</string>
 </resources>

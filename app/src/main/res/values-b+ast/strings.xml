@@ -150,7 +150,7 @@
     <string name="delete_all_history_prompt">¿De xuru que quies desaniciar tolos elementos del historial\?</string>
     <string name="drawer_header_action_paceholder_text">Equí va apaecer dalgo ceo ;D</string>
     <string name="create_playlist">Llista nueva de repoducción</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="append_playlist">Amestar a una llista de repoducción</string>
     <string name="delete_playlist_prompt">¿Desaniciar esta llista de reproducción\?</string>
     <string name="playlist_delete_failure">Nun pudo desaniciase la llista de reproducción.</string>

@@ -28,6 +28,22 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center"/>
 
+    <View
+        android:id="@+id/playerTopShadow"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/player_controls_top_background"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"/>
+
+    <View
+        android:id="@+id/playerBottomShadow"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/player_controls_background"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/endScreen"
         android:layout_width="match_parent"
@@ -42,28 +58,16 @@
         android:id="@+id/playbackControlRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:background="@color/video_overlay_color"
         android:visibility="gone"
         tools:visibility="visible">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@drawable/player_controls_top_background"
-            android:layout_alignParentTop="true" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@drawable/player_controls_background"
-            android:layout_alignParentBottom="true" />
 
         <!-- All top controls in this layout -->
         <RelativeLayout
             android:id="@+id/playbackWindowRoot"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/topControls"
@@ -228,29 +232,29 @@
                     tools:ignore="HardcodedText,RtlHardcoded"
                     tools:text="FIT"/>
 
-                <Button
-                    android:id="@+id/captionTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/player_main_buttons_padding"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center|left"
-                    android:minHeight="35dp"
-                    android:lines="1"
-                    android:ellipsize="end"
-                    android:minWidth="50dp"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:background="?attr/selectableItemBackground"
-                    tools:ignore="RelativeOverlap,RtlHardcoded"
-                    tools:text="English"/>
-
-                <Space
-                    android:id="@+id/spaceBeforeButton"
+                <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:id="@+id/captionTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/player_main_buttons_padding"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center|left"
+                        android:minHeight="35dp"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:minWidth="50dp"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:background="?attr/selectableItemBackground"
+                        tools:ignore="RelativeOverlap,RtlHardcoded"
+                        tools:text="English"/>
+
+                </FrameLayout>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/playWithKodi"
@@ -307,24 +311,23 @@
                     android:contentDescription="@string/mute"
                     tools:ignore="RtlHardcoded" />
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/fullScreenButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="@dimen/player_main_buttons_padding"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_fullscreen_white_24dp"
+                    tools:ignore="ContentDescription,RtlHardcoded"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
                 </LinearLayout>
 
             </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/fullScreenButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="@dimen/player_main_buttons_padding"
-                android:layout_alignParentRight="true"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_fullscreen_white_24dp"
-                tools:ignore="ContentDescription,RtlHardcoded"
-                android:visibility="gone"
-                tools:visibility="visible"/>
 
             <LinearLayout
                 android:id="@+id/bottomControls"
@@ -353,10 +356,10 @@
                     android:id="@+id/playbackSeekBar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:paddingBottom="4dp"
-                    android:paddingTop="8dp"
+                    android:layout_marginTop="2dp"
                     tools:progress="25"
                     android:nextFocusDown="@id/screenRotationButton"
                     tools:secondaryProgress="50"/>
@@ -465,21 +468,20 @@
             android:layout_height="60dp"
             android:id="@+id/playQueueControl">
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/playQueueClose"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="40dp"
-                android:padding="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:scaleType="fitXY"
-                android:tint="?attr/colorAccent"
-                android:src="@drawable/ic_close_white_24dp"
                 android:background="?android:selectableItemBackground"
-                tools:ignore="ContentDescription"/>
+                android:clickable="true"
+                android:contentDescription="@string/close"
+                android:focusable="true"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_close_white_24dp" />
 
             <ImageButton
                 android:id="@+id/repeatButton"

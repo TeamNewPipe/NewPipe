@@ -105,7 +105,7 @@
     <string name="msg_running">Transferência do NewPipe</string>
     <string name="could_not_load_image">Não foi possível carregar a imagem</string>
     <string name="app_ui_crash">Aplicação/IU terminou em erro</string>
-    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:</string>
+    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo\\nIdioma da app\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:</string>
     <string name="open_in_popup_mode">Abrir em modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
@@ -221,7 +221,7 @@
     <string name="select_a_channel">Selecione um canal</string>
     <string name="no_channel_subscribed_yet">Não existem canais subscritos</string>
     <string name="select_a_kiosk">Selecione um \"kiosk\"</string>
-    <string name="kiosk">Kiosk</string>
+    <string name="kiosk">Quiosque</string>
     <string name="trending">Tendências</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Tendências</string>
@@ -285,7 +285,7 @@
     <string name="override_current_data">Está prestes a substituir a configuração atual.</string>
     <string name="drawer_open">Abrir menu</string>
     <string name="drawer_close">Fechar menu</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="metadata_cache_wipe_title">Limpar os metadados em cache</string>
     <string name="metadata_cache_wipe_summary">Remover todos os dados da página da Web em cache</string>
     <string name="metadata_cache_wipe_complete_notice">Metadados em cache eliminados</string>
@@ -341,7 +341,7 @@
     <string name="playback_tempo">Ritmo</string>
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
     <string name="auto_queue_summary">Continuar terminando (sem repetição) a fila de reprodução anexando um vídeo relacionado</string>
-    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
+    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para pôr na fila\"</string>
     <string name="show_hold_to_append_summary">Mostrar sugestão quando o botão popup ou ambiente de trabalho é pressionado na página de detalhes do vídeo</string>
     <string name="channels">Canais</string>
     <string name="playlists">Listas de reprodução</string>
@@ -375,7 +375,6 @@
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
     <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o eliminação</string>
@@ -476,7 +475,7 @@
     <string name="overwrite_failed">não é possível sobrescrever o ficheiro</string>
     <string name="download_already_pending">Existe uma transferência pendente com este nome</string>
     <string name="error_postprocessing_stopped">NewPipe foi fechado enquanto trabalhava no ficheiro</string>
-    <string name="error_insufficient_storage">Não há espaço disponível no dispositivo</string>
+    <string name="error_insufficient_storage">Não há espaço disponível no aparelho</string>
     <string name="error_progress_lost">Progresso perdido, porque o ficheiro foi eliminado</string>
     <string name="error_timeout">Tempo limite de conexão</string>
     <string name="confirm_prompt">Quer limpar o seu histórico de transferências ou apagar todos os ficheiros transferidos\?</string>
@@ -555,7 +554,6 @@
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_create_new_group_button_title">Novo</string>
     <string name="feed_group_dialog_delete_message">Quer apagar este grupo\?</string>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="feed_group_dialog_empty_name">O nome do grupo está vazio</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d selecionada</item>
@@ -589,9 +587,9 @@
     <string name="mute">Silenciar</string>
     <string name="help">Ajuda</string>
     <string name="videos_string">Vídeos</string>
-    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe.
-\n
-\nEsperamos que seja suportado em uma versão futura.</string>
+    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. 
+\n 
+\nEsperamos que seja suportado numa versão futura.</string>
     <string name="infinite_videos">∞ vídeos</string>
     <string name="more_than_100_videos">+100 vídeos</string>
     <string name="artists">Artistas</string>
@@ -602,7 +600,7 @@
 \nSe quiser vê-lo, ative \"Conteúdo com restrição de idade\" nas definições.</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
 \nTem certeza\? Isto não pode ser desfeito!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e tambem os vídeos parcialmente vistos</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e também os vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_title">Remover vídeos vistos\?</string>
     <string name="remove_watched">Remover vistos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de fluxo</string>
@@ -612,4 +610,11 @@
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar do canal</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas assinaturas não agrupadas</string>
+    <string name="playlist_page_summary">Página da lista de reprodução</string>
+    <string name="no_playlist_bookmarked_yet">Ainda não há marcadores de listas de reprodução</string>
+    <string name="select_a_playlist">Selecione uma lista de reprodução</string>
+    <string name="error_report_open_github_notice">Por favor, verifique se já existe um assunto a discutir o seu acidente. Criar bilhetes duplicados tirará-nos tempo que poderíamos gastar com a reparação do bug real.</string>
+    <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
+    <string name="copy_for_github">Copiar relatório formatado</string>
+    <string name="search_showing_result_for">Mostrando resultados para: %s</string>
 </resources>

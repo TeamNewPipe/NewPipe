@@ -28,6 +28,7 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.ListHelper;
 
 import java.lang.annotation.Retention;
 import java.text.DecimalFormat;
@@ -245,6 +246,18 @@ public final class PlayerHelper {
             return AUTOPLAY_TYPE_NEVER;
         } else {
             return AUTOPLAY_TYPE_WIFI;
+        }
+    }
+
+    public static boolean isAutoplayAllowedByUser(@NonNull final Context context) {
+        switch (PlayerHelper.getAutoplayType(context)) {
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER:
+                return false;
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI:
+                return !ListHelper.isMeteredNetwork(context);
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS:
+            default:
+                return true;
         }
     }
 

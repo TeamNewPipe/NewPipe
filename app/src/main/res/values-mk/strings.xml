@@ -311,7 +311,7 @@
     <string name="create_playlist">Создај нова плејлиста</string>
     <string name="delete_playlist">Избриши плејлиста</string>
     <string name="rename_playlist">Прекрсти плејлиста</string>
-    <string name="playlist_name_input">Име</string>
+    <string name="name">Име</string>
     <string name="append_playlist">Додај во плејлиста</string>
     <string name="set_as_playlist_thumbnail">Постави како икона на плејлистата</string>
     <string name="bookmark_playlist">Обележи ја плејлистата</string>
@@ -326,7 +326,6 @@
     <string name="resize_fill">Исполни</string>
     <string name="resize_zoom">Зумирај</string>
     <string name="caption_auto_generated">Автоматски создадено</string>
-    <string name="enable_leak_canary_title">Вклучи LeakCanary</string>
     <string name="enable_leak_canary_summary">Следењето на мемориските грешки може да ја прикочува апликацијата</string>
     <string name="enable_disposed_exceptions_title">Пријави Out-of-lifecycle грешки</string>
     <string name="enable_disposed_exceptions_summary">Секогаш пријавувај неуспешни Rx исклучоци кои настануваат надвор од fragment или activity циклусот по отстранување</string>

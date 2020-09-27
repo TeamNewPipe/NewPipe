@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="view_count_text">%1$ visualizzazioni</string>
+    <string name="view_count_text">%1$s visualizzazioni</string>
     <string name="upload_date_text">Pubblicato il %1$s</string>
     <string name="no_player_found">Nessun lettore multimediale trovato. Installare VLC\?</string>
     <string name="install">Installa</string>
@@ -10,7 +10,7 @@
     <string name="download">Scarica</string>
     <string name="search">Cerca</string>
     <string name="settings">Impostazioni</string>
-    <string name="did_you_mean">Intendevi: %1$s\?</string>
+    <string name="did_you_mean">Forse cercavi: %1$s\?</string>
     <string name="share_dialog_title">Condividi con</string>
     <string name="choose_browser">Scegli Browser</string>
     <string name="screen_rotation">rotazione</string>
@@ -60,8 +60,8 @@
     <string name="could_not_setup_download_menu">Impossibile impostare il menu di download</string>
     <string name="live_streams_not_supported">I contenuti in diretta non sono ancora supportati</string>
     <string name="content">Contenuti</string>
-    <string name="show_age_restricted_content_title">Contenuti Vietati ai Minori</string>
-    <string name="video_is_age_restricted">Mostra video riservati a un pubblico maggiorenne. Si possono abilitare nelle Impostazioni.</string>
+    <string name="show_age_restricted_content_title">Contenuti con Restrizioni di Età</string>
+    <string name="video_is_age_restricted">Mostra video con restrizioni di età. È possibile modificare questa opzione nelle Impostazioni.</string>
     <string name="main_bg_subtitle">Tocca \"Cerca\" per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduzione Automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video quando NewPipe viene aperto da un\'altra app</string>
@@ -105,7 +105,7 @@
     <string name="no_available_dir">Seleziona una cartella per i download</string>
     <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
     <string name="app_ui_crash">L\'app/UI si è interrotta</string>
-    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuto:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
+    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua Contenuti:\\nPaese Contenuti\\nLingua App:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
     <string name="title_activity_recaptcha">Risoluzione reCAPTCHA</string>
     <string name="black_theme_title">Nero</string>
     <string name="all">Tutto</string>
@@ -229,7 +229,7 @@
     <string name="popup_playing_append">Accodato in Popup</string>
     <string name="play_all">Riproduci Tutto</string>
     <string name="player_stream_failure">Impossibile riprodurre questo flusso</string>
-    <string name="player_unrecoverable_failure">Si è verificato un errore irreversibile</string>
+    <string name="player_unrecoverable_failure">Si è verificato un errore irreversibile del lettore multimediale</string>
     <string name="player_recoverable_failure">Ripristino dell\'errore del lettore multimediale</string>
     <string name="play_queue_remove">Rimuovi</string>
     <string name="play_queue_stream_detail">Dettagli</string>
@@ -293,7 +293,7 @@
     <string name="create_playlist">Nuova Playlist</string>
     <string name="delete_playlist">Elimina</string>
     <string name="rename_playlist">Rinomina</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="append_playlist">Aggiungi a Playlist</string>
     <string name="set_as_playlist_thumbnail">Imposta come Copertina Playlist</string>
     <string name="bookmark_playlist">Salva Playlist</string>
@@ -310,7 +310,6 @@
     <string name="drawer_header_action_paceholder_text">A breve qualcosa apparirà qui ;D</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="caption_auto_generated">Generato automaticamente</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Il monitoraggio delle perdite di memoria potrebbe causare la mancata risposta dell\'applicazione durante il dumping dell\'heap</string>
     <string name="enable_disposed_exceptions_title">Segnala Errori \"Out-of-lifecycle\"</string>
     <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
@@ -320,8 +319,8 @@
     <string name="auto_queue_summary">Riproduzione continua (non ripetititva) quando si accoda un contenuto consigliato</string>
     <string name="file">File</string>
     <string name="invalid_directory">Nessuna cartella</string>
-    <string name="invalid_source">Nessun file o cartella che contiene sorgenti</string>
-    <string name="invalid_file">Il file non esiste o non si hanno i permessi sufficienti di scrittura o lettura</string>
+    <string name="invalid_source">Nessun file/contenuto sorgente</string>
+    <string name="invalid_file">Il file non esiste o non si hanno i permessi di scrittura o lettura</string>
     <string name="file_name_empty_error">Il nome del file non può essere vuoto</string>
     <string name="error_occurred_detail">Si è verificato un errore: %1$s</string>
     <string name="import_export_title">Importa/esporta</string>
@@ -366,8 +365,8 @@
     <string name="caption_setting_description">Modifica dimensione e stile dei sottotitoli. Riavviare per applicare le modifiche.</string>
     <string name="toast_no_player">Nessuna app installata per riprodurre questo file</string>
     <string name="clear_views_history_title">Pulisci Cronologia Visualizzazioni</string>
-    <string name="clear_views_history_summary">Elimina la cronologia degli elementi riprodotti e la posizione di riproduzione</string>
-    <string name="delete_view_history_alert">Elimina la cronologia delle visualizzazioni\?</string>
+    <string name="clear_views_history_summary">Elimina la cronologia degli elementi riprodotti e le posizioni di riproduzione</string>
+    <string name="delete_view_history_alert">Eliminare la cronologia delle visualizzazioni\?</string>
     <string name="watch_history_deleted">Cronologia visualizzazioni eliminata.</string>
     <string name="clear_search_history_title">Pulisci Cronologia Ricerche</string>
     <string name="clear_search_history_summary">Elimina la cronologia dei termini di ricerca</string>
@@ -410,7 +409,7 @@
     <string name="app_update_notification_channel_name">Notifiche di aggiornamenti dell\'applicazione</string>
     <string name="app_update_notification_channel_description">Notifiche per una nuova versione di NewPipe</string>
     <string name="download_to_sdcard_error_title">Archiviazione esterna non disponibile</string>
-    <string name="download_to_sdcard_error_message">Impossibile scaricare sulla scheda SD esterna. Ripristinare la cartella dei download\?</string>
+    <string name="download_to_sdcard_error_message">Impossibile scaricare sulla scheda SD esterna. Ripristinare la posizione della cartella dei download\?</string>
     <string name="saved_tabs_invalid_json">Impossibile leggere le schede salvate, verranno usate quelle predefinite</string>
     <string name="restore_defaults">Ripristina predefiniti</string>
     <string name="restore_defaults_confirmation">Ripristinare valori predefiniti\?</string>
@@ -456,7 +455,7 @@
     <string name="max_retry_msg">Numero Massimo Tentativi</string>
     <string name="max_retry_desc">Quante volte provare prima di annullare il download</string>
     <string name="pause_downloads_on_mobile">Interrompi con Connessioni a Consumo</string>
-    <string name="pause_downloads_on_mobile_desc">Utile quando si passa alla connessione dati mobile, altrimenti alcuni download potrebbero essere sospesi</string>
+    <string name="pause_downloads_on_mobile_desc">Utile quando si passa alla connessione dati mobile, tuttavia alcuni download non possono essere sospesi</string>
     <string name="events">Eventi</string>
     <string name="conferences">Conferenze</string>
     <string name="error_timeout">Connesione finita</string>
@@ -566,7 +565,6 @@
         <item quantity="one">%d selezionato</item>
         <item quantity="other">%d selezionati</item>
     </plurals>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="feed_group_dialog_delete_message">Eliminare questo gruppo\?</string>
     <string name="feed_create_new_group_button_title">Nuovo</string>
     <string name="settings_category_feed_title">Feed</string>
@@ -589,26 +587,34 @@
 \n
 \nLa scelta va fatta in base alle proprie preferenze: velocità o informazioni precise.</string>
     <string name="feed_group_dialog_empty_name">Gruppo senza nome</string>
-    <string name="content_not_supported">Questo contenuto non è ancora supportato da NewPipe.
-\n
-\nSi spera che sarà supportato in una versione futura.</string>
+    <string name="content_not_supported">Questo contenuto non è supportato da NewPipe. 
+\n 
+\nSi spera che possa essere supportato in una versione futura.</string>
     <string name="infinite_videos">∞ video</string>
     <string name="more_than_100_videos">100+ video</string>
     <string name="artists">Artisti</string>
     <string name="albums">Album</string>
     <string name="songs">Canzoni</string>
-    <string name="restricted_video">Questo video ha limiti sull\'età.
-\n
-\nSe vuoi guardarlo, attiva «Contenuti vietati ai minori» nelle impostazioni.</string>
+    <string name="restricted_video">Questo video ha restrizioni di età. 
+\n 
+\nPer vederlo, attivare \"Contenuti con Restrizioni di Età\" nelle Impostazioni.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visaualizzati parzialmente</string>
     <string name="remove_watched_popup_warning">Saranno rimossi gli elementi della playlist già visualizzati, sia precedenti che successivi.
 \nSei sicuro\? L\'azione è irreversibile!</string>
     <string name="remove_watched_popup_title">Rimuovere i gli elementi già visti\?</string>
     <string name="remove_watched">Rimuovi Elementi Visti</string>
-    <string name="youtube_restricted_mode_enabled_title">Modalità limitata di YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Modalità con Restrizioni (YouTube)</string>
     <string name="show_original_time_ago_summary">I testi originali dei servizi saranno visibili negli elementi video</string>
     <string name="show_original_time_ago_title">Mostra i tempi originali degli elementi</string>
     <string name="detail_sub_channel_thumbnail_view_description">Immagine del Canale</string>
     <string name="video_detail_by">Da %s</string>
     <string name="channel_created_by">Creato da %s</string>
+    <string name="no_playlist_bookmarked_yet">Non è ancora stata salvata alcuna playlist</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Mostra Solo Iscrizioni Non Raggruppate</string>
+    <string name="select_a_playlist">Seleziona una Playlist</string>
+    <string name="search_showing_result_for">Risultati per: %s</string>
+    <string name="playlist_page_summary">Playlist</string>
+    <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket potrebbe essere invece impiegato per correggere il problema stesso.</string>
+    <string name="error_report_open_issue_button_text">Segnala Errore su GitHub</string>
+    <string name="copy_for_github">Copia Segnalazione Formattata</string>
 </resources>

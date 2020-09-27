@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:gravity="center_vertical"
-                android:hint="@string/feed_group_dialog_name_input"
+                android:hint="@string/name"
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
                 app:errorEnabled="true"

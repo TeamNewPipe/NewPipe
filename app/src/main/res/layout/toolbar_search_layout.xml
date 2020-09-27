@@ -47,7 +47,7 @@
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"
             app:srcCompat="?attr/ic_close"
-            tools:ignore="RtlHardcoded"/>
+            tools:ignore="RtlHardcoded" />
     </FrameLayout>
 
 </FrameLayout>

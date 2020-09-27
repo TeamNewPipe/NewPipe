@@ -21,7 +21,7 @@
     <string name="use_external_video_player_title">Guna pemain video luaran</string>
     <string name="use_external_video_player_summary">Menghapus audio pada SESETENGAH resolusi</string>
     <string name="use_external_audio_player_title">Gunakan pemain audio luaran</string>
-    <string name="popup_mode_share_menu_title">Mod popup NewPipe</string>
+    <string name="popup_mode_share_menu_title">Mod popup</string>
     <string name="subscribe_button_title">Langgan</string>
     <string name="subscribed_button_title">Dilanggan</string>
     <string name="channel_unsubscribed">Langganan saluran dihenti</string>
@@ -49,7 +49,7 @@
     <string name="default_resolution_title">Resolusi utama</string>
     <string name="default_popup_resolution_title">Resolusi popup utama</string>
     <string name="show_higher_resolutions_title">Papar resolusi yang lebih tinggi</string>
-    <string name="show_higher_resolutions_summary">Hanya peranti tertentu yang mampu bermain video 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Hanya peranti tertentu yang boleh bermain video 2K/4K</string>
     <string name="play_with_kodi_title">Main dengan Kodi</string>
     <string name="kore_not_found">App Kore tidak dijumpai. Pasangkan\?</string>
     <string name="show_play_with_kodi_title">Paparkan opsyen \"Main dengan Kodi\"</string>
@@ -351,7 +351,7 @@
     <string name="create_playlist">Senarai Main Baru</string>
     <string name="delete_playlist">Padam</string>
     <string name="rename_playlist">Namakan semula</string>
-    <string name="playlist_name_input">Nama</string>
+    <string name="name">Nama</string>
     <string name="append_playlist">Tambah ke Senarai Main</string>
     <string name="set_as_playlist_thumbnail">Tetapkan sebagai Thumbnail Senarai Main</string>
     <string name="bookmark_playlist">Menanda senarai main</string>
@@ -368,7 +368,6 @@
     <string name="caption_auto_generated">Dibina secara automatik</string>
     <string name="caption_setting_title">Kapsyen</string>
     <string name="caption_setting_description">Ubah suai skala teks kapsyen pemain dan gaya latar belakang. Memerlukan aplikasi dimulakan semula untuk mula berkuatkuasa.</string>
-    <string name="enable_leak_canary_title">Dayakan LeakCanary</string>
     <string name="enable_leak_canary_summary">Pemantauan kebocoran memori boleh menyebabkan aplikasinya menjadi tidak bertindak balas semasa heap dumping</string>
     <string name="enable_disposed_exceptions_title">Laporkan kesilapan out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Memaksa pelaporan Rx yang tidak dapat dihantar di luar fragmen atau kitaran hayat aktiviti selepas pelupusan</string>
@@ -457,4 +456,5 @@
     <string name="missions_header_pending">Menunggu</string>
     <string name="download_choose_new_path">Ubah folder muat turun untuk melihat kesan</string>
     <string name="enable_lock_screen_video_thumbnail_title">Dayakan lakaran kecil video skrin kunci</string>
+    <string name="search_showing_result_for">Menunjuk carian untuk: %s</string>
 </resources>

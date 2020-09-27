@@ -33,7 +33,7 @@ android {
 
             // suffix the app id and the app name with git branch name
             def workingBranch = getGitWorkingBranch()
-            def normalizedWorkingBranch = workingBranch.replaceAll("[^A-Za-z]+", "").toLowerCase()
+            def normalizedWorkingBranch = workingBranch.replaceFirst("^[^A-Za-z]+", "").replaceAll("[^0-9A-Za-z]+", "")
             if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
                 // default values when branch name could not be determined or is master or dev
                 applicationIdSuffix ".debug"
