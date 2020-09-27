@@ -626,4 +626,19 @@
     <string name="clear_queue_confirmation_description">Etkin oynatıcının kuyruğu değiştirilecek</string>
     <string name="clear_queue_confirmation_summary">Bir oynatıcıdan diğerine geçtikten sonra kuyruğunuz değiştirilebilir</string>
     <string name="clear_queue_confirmation_title">Bir kuyruğu temizlemeden önce onay iste</string>
+    <string name="settings_category_notification_title">Bildirim</string>
+    <string name="notification_action_nothing">Hiçbir şey</string>
+    <string name="notification_action_buffering">Ara belleğe alınıyor</string>
+    <string name="notification_action_shuffle">Karıştır</string>
+    <string name="notification_action_repeat">Tekrarla</string>
+    <string name="notification_actions_at_most_three">Sıkı bildirimde gösterilecek en fazla üç eylem seçebilirsiniz!</string>
+    <string name="notification_actions_summary">Aşağıdaki her bildirim eylemini üzerine dokunarak düzenleyin.
+\nSağdaki onay kutularını kullanarak sıkı bildirimde gösterilmek üzere en fazla üç tanesini seçin.</string>
+    <string name="notification_action_4_title">Beşinci eylem düğmesi</string>
+    <string name="notification_action_3_title">Dördüncü eylem düğmesi</string>
+    <string name="notification_action_2_title">Üçüncü eylem düğmesi</string>
+    <string name="notification_action_1_title">İkinci eylem düğmesi</string>
+    <string name="notification_action_0_title">Birinci eylem düğmesi</string>
+    <string name="notification_scale_to_square_image_summary">Bildirimde gösterilen video küçük resmini 16:9\'dan 1:1 en/boy oranına ölçeklendir (bozulmalara neden olabilir)</string>
+    <string name="notification_scale_to_square_image_title">Küçük resmi 1:1 en/boy oranına ölçeklendir</string>
 </resources>
