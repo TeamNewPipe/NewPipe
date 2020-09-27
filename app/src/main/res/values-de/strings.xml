@@ -210,7 +210,7 @@
     <string name="item_deleted">Element gelöscht</string>
     <string name="resume_on_audio_focus_gain_title">Wiedergabe fortsetzen</string>
     <string name="settings_category_player_title">Player</string>
-    <string name="empty_subscription_feed_subtitle">Nichts hier außer das Zirpen der Grillen</string>
+    <string name="empty_subscription_feed_subtitle">Nichts hier außer dem Zirpen der Grillen</string>
     <string name="delete_item_search_history">Möchtest du dieses Element aus dem Suchverlauf löschen\?</string>
     <string name="blank_page_summary">Leere Seite</string>
     <string name="select_a_channel">Einen Kanal auswählen</string>
@@ -636,4 +636,8 @@
     <string name="notification_action_buffering">Puffern</string>
     <string name="notification_action_repeat">Wiederholen</string>
     <string name="notification_action_nothing">Nichts</string>
+    <string name="title_activity_play_queue">Warteschlange</string>
+    <string name="auto_queue_toggle">Automatische Warteschlange</string>
+    <string name="clear_queue_confirmation_summary">Den Player zu wechseln könnte deine Warteschlange überschreiben</string>
+    <string name="clear_queue_confirmation_title">Bestätige das Leeren der Warteschlange</string>
 </resources>
