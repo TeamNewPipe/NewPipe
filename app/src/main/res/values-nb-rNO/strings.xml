@@ -10,7 +10,7 @@
     <string name="download">Last ned</string>
     <string name="search">Søk</string>
     <string name="settings">Innstillinger</string>
-    <string name="did_you_mean">Mente du: %1$s?</string>
+    <string name="did_you_mean">Mente du «%1$s»\?</string>
     <string name="share_dialog_title">Del med</string>
     <string name="choose_browser">Velg nettleser</string>
     <string name="screen_rotation">sideoppsett</string>
@@ -57,7 +57,7 @@
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrenset innhold</string>
-    <string name="video_is_age_restricted">Vis aldersbegrenset video. Å tillate slikt materiale kan gjøres via innstillingene.</string>
+    <string name="video_is_age_restricted">Vis aldersbegrenset video. Å tillate slikt materiale kan gjøres fra innstillingene.</string>
     <string name="general_error">Feil</string>
     <string name="could_not_load_thumbnails">Kunne ikke laste inn alle miniatyrbilder</string>
     <string name="youtube_signature_decryption_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>
@@ -68,19 +68,19 @@
     <string name="live_streams_not_supported">Direktesendinger støttes ikke enda</string>
     <string name="could_not_get_stream">Kunne ikke finne noen strømmer</string>
     <string name="sorry_string">Beklager, dette skal ikke skje.</string>
-    <string name="error_report_button_text">Rapporter feil via e-post</string>
-    <string name="error_snackbar_message">Beklager, noen feiler inntraff.</string>
-    <string name="error_snackbar_action">RAPPORTER</string>
+    <string name="error_report_button_text">Rapporter denne feilen via e-post</string>
+    <string name="error_snackbar_message">Beklager, noe gikk galt.</string>
+    <string name="error_snackbar_action">Rapporter</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Hva skjedde:</string>
     <string name="your_comment">Din kommentar (på Engelsk):</string>
     <string name="error_details_headline">Detaljer:</string>
-    <string name="report_error">Rapporter en feil</string>
+    <string name="report_error">Rapporter feil</string>
     <string name="user_report">Brukerrapport</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Prøv igjen</string>
-    <string name="storage_permission_denied">Tilgang til lagring nektet</string>
+    <string name="storage_permission_denied">Innvilg lagringslesetilgang først</string>
     <string name="duration_live">Direkte</string>
     <string name="downloads">Nedlastinger</string>
     <string name="downloads_title">Nedlastinger</string>
@@ -172,7 +172,7 @@
     <string name="tab_main">Oversikt</string>
     <string name="player_gesture_controls_title">Spillerhåndvendinger</string>
     <string name="player_gesture_controls_summary">Bruk håndvendinger for å kontrollere lys- og lyd-styrken til avspilleren</string>
-    <string name="resume_on_audio_focus_gain_title">Fortsett ved fokus</string>
+    <string name="resume_on_audio_focus_gain_title">Fortsett avspilling</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsett å spille etter avbrytelser (f.eks. telefonsamtaler)</string>
     <string name="settings_category_player_title">Avspiller</string>
     <string name="settings_category_player_behavior_title">Oppførsel</string>
@@ -227,7 +227,7 @@
     <string name="play_queue_audio_settings">Lydinnstillinger</string>
     <string name="hold_to_append">Hold for å legge i kø</string>
     <string name="show_hold_to_append_title">Vis \"Hold for å legge til\" -tips</string>
-    <string name="show_hold_to_append_summary">Vis tips når bakgrunns- eller oppsårettsknapp trykkes på siden for videodetaljer</string>
+    <string name="show_hold_to_append_summary">Vis tips når bakgrunnen eller oppsprettsknappen i videoens «Detaljer:» trykkes</string>
     <string name="background_player_append">Lagt i kø for bakgrunnsavspiller</string>
     <string name="popup_playing_append">Lagt i kø for oppsprettsspiller</string>
     <string name="unknown_content">[Ukjent]</string>
@@ -237,12 +237,12 @@
     <string name="no_channel_subscribed_yet">Abonnerer ikke på noen kanaler enda</string>
     <string name="trending">På vei opp</string>
     <string name="enqueue_on_background">Legg i kø i bakgrunnen</string>
-    <string name="enqueue_on_popup">Legg i kø i nytt oppsprett</string>
+    <string name="enqueue_on_popup">Legg i kø i et oppsprett</string>
     <string name="start_here_on_main">Start avspilling her</string>
     <string name="start_here_on_background">Start avspilling i bakgrunnen</string>
-    <string name="start_here_on_popup">Start avspilling i nytt oppsprettsvindu</string>
+    <string name="start_here_on_popup">Start avspilling i et oppsprett</string>
     <string name="donation_title">Doner</string>
-    <string name="donation_encouragement">NewPipe utvikles av frivillige som bruker deres fritid til å gi deg den beste opplevelsen. Gi tilbake for å hjelpe utviklere å gjøre NewPipe enda bedre, mens de nyter en varm kopp kaffe.</string>
+    <string name="donation_encouragement">NewPipe utvikles av frivillige som bruker sin fritid til å gi deg den beste brukeropplevelsen. Gi tilbake for å hjelpe utviklere å gjøre NewPipe enda bedre, mens de nyter en varm kopp kaffe.</string>
     <string name="give_back">Bidra</string>
     <string name="website_title">Nettside</string>
     <string name="website_encouragement">Besøk NewPipe-nettsiden for mer info og nyheter.</string>
@@ -370,7 +370,7 @@
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
     <string name="use_inexact_seek_summary">Unøyaktig blafring tillater spilleren å blafre til posisjoner raskere med redusert nøyaktighet. Blafring i 5, 15, eller 25 sekunder fungerer ikke sammen med dette.</string>
     <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager.</string>
-    <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø</string>
+    <string name="auto_queue_summary">Fortsett fullendt (ikke-repeterende) avspillingskø ved å legge til en relatert strøm</string>
     <string name="enable_leak_canary_summary">Minnelekkasjeoppsyn kan forårsake programmet å opptre uresponsivt under haugdumping</string>
     <string name="enable_disposed_exceptions_title">Rapporter feil utenfor livssyklusen</string>
     <string name="enable_disposed_exceptions_summary">Tving rapportering av uleverbare Rx-unntak utenom fragment eller aktivitetslevetid etter forkastelse</string>
@@ -411,10 +411,10 @@
     <string name="app_update_notification_channel_description">Merknader for nye NewPipe-versjoner</string>
     <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
     <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe\?</string>
-    <string name="saved_tabs_invalid_json">Bruker forvalgte faner, feil under lesing av lagrede faner</string>
+    <string name="saved_tabs_invalid_json">Kunne ikke leste lagrede faner, så bruker forvalgte</string>
     <string name="restore_defaults">Gjenopprett forvalg</string>
-    <string name="restore_defaults_confirmation">Ønsker du å gjenopprette alt til forvalgene\?</string>
-    <string name="subscribers_count_not_available">Abonnementsantall ikke tilgjengelig</string>
+    <string name="restore_defaults_confirmation">Ønsker du å gjenopprette forvalg\?</string>
+    <string name="subscribers_count_not_available">Abonnementsantall utilgjengelig</string>
     <string name="main_page_content_summary">Hvilke faner vises på hovedsiden</string>
     <string name="selection">Utvalg</string>
     <string name="conferences">Konferanser</string>
@@ -445,7 +445,7 @@
     <string name="error_file_creation">Filen kan ikke opprettes</string>
     <string name="error_path_creation">Målmappen kan ikke opprettes</string>
     <string name="error_permission_denied">Tilgang nektet av systemet</string>
-    <string name="error_ssl_exception">Sikker tilkobling mislyktes</string>
+    <string name="error_ssl_exception">Kunne ikke etablere sikker tilkobling</string>
     <string name="error_unknown_host">Fant ikke tjeneren</string>
     <string name="error_connect_host">Kan ikke koble til tjeneren</string>
     <string name="error_http_no_content">Tjeneren sender ikke data</string>
@@ -478,7 +478,7 @@
     <string name="error_insufficient_storage">Ingen ledig plass på enheten</string>
     <string name="error_progress_lost">Framdrift gikk tapt, fordi filen ble slettet</string>
     <string name="error_timeout">Tilkoblingsavbrudd</string>
-    <string name="confirm_prompt">Er du sikker\?</string>
+    <string name="confirm_prompt">Ønsker du å slette din nedlastingshistorikk eller slette alle nedlastede filer\?</string>
     <string name="enable_queue_limit">Begrens nedlastingskø</string>
     <string name="enable_queue_limit_desc">Én nedlasting av gangen</string>
     <string name="start_downloads">Start nedlastinger</string>
@@ -505,7 +505,7 @@
         <item quantity="one">%s lytter</item>
         <item quantity="other">%s lyttere</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Språk vil ikke bli endret før programmet startes på ny.</string>
+    <string name="localization_changes_requires_app_restart">Språket vil endres når programmet startes på ny.</string>
     <string name="default_kiosk_page_summary">Forvalgt kiosk</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
     <string name="local">Lokal</string>
@@ -518,7 +518,7 @@
     <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde på låseskjerm</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises ent videominiatyrbilde på låseskjermen</string>
     <string name="peertube_instance_url_summary">Velg dine favoritter blant PeerTube-instansene</string>
-    <string name="peertube_instance_url_help">Finn instansene som passer deg best på %s</string>
+    <string name="peertube_instance_url_help">Finn instansene du liker på %s</string>
     <string name="peertube_instance_add_title">Legg til instans</string>
     <string name="peertube_instance_add_help">Skriv inn nettadresse til instans</string>
     <string name="peertube_instance_add_fail">Kunne ikke bekrefte instans</string>
@@ -573,6 +573,8 @@
     <string name="feed_oldest_subscription_update">Strøm sist oppdatert: %s</string>
     <string name="restricted_video">Denne videoen er aldersbegrenset.
 \n
+\nSkru på «Aldersbegrenset innhold» i innstillingene hvis du vil se den.
+\n
 \nHvis du ønsker å se den, skru på \"Aldersbegrenset innhold\" i innstillingene.</string>
     <string name="infinite_videos">∞ videoer</string>
     <string name="more_than_100_videos">100+ videoer</string>
@@ -588,7 +590,7 @@
     <string name="never">Aldri</string>
     <string name="wifi_only">Kun på Wi-Fi</string>
     <string name="select_a_playlist">Velg en spilleliste</string>
-    <string name="error_report_open_issue_button_text">Innrapporter feil på GitHub</string>
+    <string name="error_report_open_issue_button_text">Innrapporter på GitHub</string>
     <string name="auto_queue_toggle">Legg i kø automatisk</string>
     <string name="clear_queue_confirmation_description">Kø fra aktiv avspiller vil bli avspilt</string>
     <string name="clear_queue_confirmation_summary">Etter bytting fra en avspiller til en annen kan det hende at køen erstattes</string>
@@ -621,7 +623,7 @@
     <string name="remove_watched_popup_warning">Videoer som har blitt sett før og etter at de er lagt til spillelisten vil bli fjernet.
 \nEr du sikker\? Dette kan ikke angres!</string>
     <string name="autoplay_summary">Start avspilling automatisk — %s</string>
-    <string name="unsupported_url_dialog_message">NewPipe kunne ikke gjenkjenne angitt nettadresse. Åpne den med en annen metode\?</string>
+    <string name="unsupported_url_dialog_message">Kunne ikke gjenkjenne angitt nettadresse. Åpne den med annet program\?</string>
     <string name="content_not_supported">Innholdet støttes ikke enda av NewPipe.
 \n
 \nStøtte vil forhåpentligvis komme til i en senere versjon.</string>
