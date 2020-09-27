@@ -620,4 +620,6 @@
     <string name="error_report_open_issue_button_text">Reportar error en Github</string>
     <string name="copy_for_github">Copiar reporte con formato</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
+    <string name="notification_action_shuffle">orden aleatorio</string>
+    <string name="notification_scale_to_square_image_title">imagen en miniatura 1:1 relación de aspecto</string>
 </resources>
