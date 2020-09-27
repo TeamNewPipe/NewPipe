@@ -34,8 +34,7 @@ You may be asked to register at our [Sentry](https://sentry.schabi.org) instance
   libraries.
 * Stick to [F-Droid contribution guidelines](https://f-droid.org/wiki/page/Inclusion_Policy).
 * Make changes on a separate branch with a meaningful name, not on the _master_ nor the _dev_ branch. This is commonly known as *feature branch workflow*. You may then send your changes as a pull request (PR) on GitHub.
-* Please test (compile and run) your code before submitting changes! Ideally, provide test feedback in the PR
-  description. Untested code will **not** be merged!
+* Please test (compile and run) your code before submitting changes! Ideally, provide test feedback in the PR description. Untested code will **not** be merged!
 * Make sure your PR is up-to-date with the rest of the code. Often, a simple click on "Update branch" will do the job, but if not, you must rebase the dev branch manually and resolve the problems on your own. You can find help [on the wiki](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-merge-a-PR). That makes the maintainers' jobs way easier.
 * Please show intention to maintain your features and code after you contribute a PR. Unmaintained code is a hassle for core developers. If you do not intend to maintain features you plan to contribute, please rethink your submission, or clearly state that in the PR description.
 * Respond if someone requests changes or otherwise raises issues about your PRs.
