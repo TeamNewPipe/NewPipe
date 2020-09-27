@@ -627,7 +627,7 @@
     <string name="clear_queue_confirmation_summary">Mudar de um player para outro pode substituir sua fila</string>
     <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
     <string name="notification_action_shuffle">Embaralhar (Shuffle)</string>
-    <string name="notification_action_buffering">Carregando (Buffering)</string>
+    <string name="notification_action_buffering">Buferizando</string>
     <string name="settings_category_notification_title">Notificação</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_repeat">Repetir</string>
