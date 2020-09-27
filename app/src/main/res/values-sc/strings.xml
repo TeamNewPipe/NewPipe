@@ -625,4 +625,19 @@
     <string name="clear_queue_confirmation_description">Sa lista dae su riproduidore ativu at a èssere remplasada</string>
     <string name="clear_queue_confirmation_summary">A pustis de colare dae unu riproduidore a s\'àteru sa lista tua diat pòdere èssere remplasada</string>
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
+    <string name="settings_category_notification_title">Notìfica</string>
+    <string name="notification_action_shuffle">Riprodui casualmente</string>
+    <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la.
+\nIscherta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra.</string>
+    <string name="notification_scale_to_square_image_summary">Iscala sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1 (diat pòdere causare istorchimentos)</string>
+    <string name="notification_action_nothing">Nudda</string>
+    <string name="notification_action_buffering">Carrighende</string>
+    <string name="notification_action_repeat">Repite</string>
+    <string name="notification_actions_at_most_three">Podes ischertare a su màssimu tres atziones de ammustrare in sas notìficas cumpatas!</string>
+    <string name="notification_action_4_title">Su de chimbe butones de atzione</string>
+    <string name="notification_action_3_title">Su de bator butones de atzione</string>
+    <string name="notification_action_2_title">Su de tres butones de atzione</string>
+    <string name="notification_action_1_title">Su de duos butones de atzione</string>
+    <string name="notification_action_0_title">Su de unu butone de atzione</string>
+    <string name="notification_scale_to_square_image_title">Pone in iscala sa miniadura in formadu 1:1</string>
 </resources>
