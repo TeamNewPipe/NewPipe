@@ -39,6 +39,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
@@ -50,6 +51,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.urlfinder.UrlFinder;
 import org.schabi.newpipe.views.FocusOverlayView;
@@ -159,27 +161,36 @@ public class RouterActivity extends AppCompatActivity {
                     if (result) {
                         onSuccess();
                     } else {
-                        onError();
+                        showUnsupportedUrlDialog(url);
                     }
-                }, this::handleError));
+                }, throwable -> handleError(throwable, url)));
     }
 
-    private void handleError(final Throwable error) {
-        error.printStackTrace();
+    private void handleError(final Throwable throwable, final String url) {
+        throwable.printStackTrace();
 
-        if (error instanceof ExtractionException) {
-            Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
+        if (throwable instanceof ExtractionException) {
+            showUnsupportedUrlDialog(url);
         } else {
-            ExtractorHelper.handleGeneralException(this, -1, null, error,
+            ExtractorHelper.handleGeneralException(this, -1, url, throwable,
                     UserAction.SOMETHING_ELSE, null);
+            finish();
         }
-
-        finish();
     }
 
-    private void onError() {
-        Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
-        finish();
+    private void showUnsupportedUrlDialog(final String url) {
+        final Context context = getThemeWrapperContext();
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.unsupported_url)
+                .setMessage(R.string.unsupported_url_dialog_message)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_share))
+                .setPositiveButton(R.string.open_in_browser,
+                        (dialog, which) -> ShareUtils.openUrlInBrowser(this, url))
+                .setNegativeButton(R.string.share,
+                        (dialog, which) -> ShareUtils.shareUrl(this, "", url)) // no subject
+                .setNeutralButton(R.string.cancel, null)
+                .setOnDismissListener(dialog -> finish())
+                .show();
     }
 
     protected void onSuccess() {
@@ -258,7 +269,7 @@ public class RouterActivity extends AppCompatActivity {
 
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
         final LinearLayout rootLayout = (LinearLayout) inflater.inflate(
-                R.layout.preferred_player_dialog_view, null, false);
+                R.layout.single_choice_dialog_view, null, false);
         final RadioGroup radioGroup = rootLayout.findViewById(android.R.id.list);
 
         final DialogInterface.OnClickListener dialogButtonsClickListener = (dialog, which) -> {
@@ -268,6 +279,7 @@ public class RouterActivity extends AppCompatActivity {
 
             handleChoice(choice.key);
 
+            // open future streams always like this one, because "always" button was used by user
             if (which == DialogInterface.BUTTON_POSITIVE) {
                 preferences.edit()
                         .putString(getString(R.string.preferred_open_action_key), choice.key)
@@ -367,23 +379,50 @@ public class RouterActivity extends AppCompatActivity {
         final boolean isExtAudioEnabled = preferences.getBoolean(
                 getString(R.string.use_external_audio_player_key), false);
 
-        returnList.add(new AdapterChoiceItem(getString(R.string.show_info_key),
-                getString(R.string.show_info),
-                resolveResourceIdFromAttr(context, R.attr.ic_info_outline)));
+        final AdapterChoiceItem videoPlayer = new AdapterChoiceItem(
+                getString(R.string.video_player_key), getString(R.string.video_player),
+                resolveResourceIdFromAttr(context, R.attr.ic_play_arrow));
+        final AdapterChoiceItem showInfo = new AdapterChoiceItem(
+                getString(R.string.show_info_key), getString(R.string.show_info),
+                resolveResourceIdFromAttr(context, R.attr.ic_info_outline));
+        final AdapterChoiceItem popupPlayer = new AdapterChoiceItem(
+                getString(R.string.popup_player_key), getString(R.string.popup_player),
+                resolveResourceIdFromAttr(context, R.attr.ic_popup));
+        final AdapterChoiceItem backgroundPlayer = new AdapterChoiceItem(
+                getString(R.string.background_player_key), getString(R.string.background_player),
+                resolveResourceIdFromAttr(context, R.attr.ic_headset));
 
-        if (capabilities.contains(VIDEO) && !(isExtVideoEnabled && linkType != LinkType.STREAM)) {
-            returnList.add(new AdapterChoiceItem(getString(R.string.video_player_key),
-                    getString(R.string.video_player),
-                    resolveResourceIdFromAttr(context, R.attr.ic_play_arrow)));
-            returnList.add(new AdapterChoiceItem(getString(R.string.popup_player_key),
-                    getString(R.string.popup_player),
-                    resolveResourceIdFromAttr(context, R.attr.ic_popup)));
-        }
+        if (linkType == LinkType.STREAM) {
+            if (isExtVideoEnabled) {
+                // show both "show info" and "video player", they are two different activities
+                returnList.add(showInfo);
+                returnList.add(videoPlayer);
+            } else if (capabilities.contains(VIDEO)
+                    && PlayerHelper.isAutoplayAllowedByUser(context)) {
+                // show only "video player" since the details activity will be opened and the video
+                // will be autoplayed there and "show info" would do the exact same thing
+                returnList.add(videoPlayer);
+            } else {
+                // show only "show info" if video player is not applicable or autoplay is disabled
+                returnList.add(showInfo);
+            }
 
-        if (capabilities.contains(AUDIO) && !(isExtAudioEnabled && linkType != LinkType.STREAM)) {
-            returnList.add(new AdapterChoiceItem(getString(R.string.background_player_key),
-                    getString(R.string.background_player),
-                    resolveResourceIdFromAttr(context, R.attr.ic_headset)));
+            if (capabilities.contains(VIDEO)) {
+                returnList.add(popupPlayer);
+            }
+            if (capabilities.contains(AUDIO)) {
+                returnList.add(backgroundPlayer);
+            }
+
+        } else {
+            returnList.add(showInfo);
+            if (capabilities.contains(VIDEO) && !isExtVideoEnabled) {
+                returnList.add(videoPlayer);
+                returnList.add(popupPlayer);
+            }
+            if (capabilities.contains(AUDIO) && !isExtAudioEnabled) {
+                returnList.add(backgroundPlayer);
+            }
         }
 
         returnList.add(new AdapterChoiceItem(getString(R.string.download_key),
@@ -459,7 +498,7 @@ public class RouterActivity extends AppCompatActivity {
                         startActivity(intent);
 
                         finish();
-                    }, this::handleError)
+                    }, throwable -> handleError(throwable, currentUrl))
             );
             return;
         }
@@ -493,7 +532,9 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
                     downloadDialog.getDialog().setOnDismissListener(dialog -> finish());
-                }, (@NonNull Throwable throwable) -> onError());
+                }, (@NonNull Throwable throwable) -> {
+                    showUnsupportedUrlDialog(currentUrl);
+                });
     }
 
     @Override

@@ -13,6 +13,7 @@ public class LoadController implements LoadControl {
 
     private final long initialPlaybackBufferUs;
     private final LoadControl internalLoadControl;
+    private boolean preloadingEnabled = true;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Default Load Control
@@ -41,6 +42,7 @@ public class LoadController implements LoadControl {
 
     @Override
     public void onPrepared() {
+        preloadingEnabled = true;
         internalLoadControl.onPrepared();
     }
 
@@ -52,11 +54,13 @@ public class LoadController implements LoadControl {
 
     @Override
     public void onStopped() {
+        preloadingEnabled = true;
         internalLoadControl.onStopped();
     }
 
     @Override
     public void onReleased() {
+        preloadingEnabled = true;
         internalLoadControl.onReleased();
     }
 
@@ -78,6 +82,9 @@ public class LoadController implements LoadControl {
     @Override
     public boolean shouldContinueLoading(final long bufferedDurationUs,
                                          final float playbackSpeed) {
+        if (!preloadingEnabled) {
+            return false;
+        }
         return internalLoadControl.shouldContinueLoading(bufferedDurationUs, playbackSpeed);
     }
 
@@ -89,5 +96,9 @@ public class LoadController implements LoadControl {
         final boolean isInternalStartingPlayback = internalLoadControl
                 .shouldStartPlayback(bufferedDurationUs, playbackSpeed, rebuffering);
         return isInitialPlaybackBufferFilled || isInternalStartingPlayback;
+    }
+
+    public void disablePreloadingOfCurrentTrack() {
+        preloadingEnabled = false;
     }
 }

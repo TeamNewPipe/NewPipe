@@ -16,6 +16,6 @@
         android:layout_marginRight="10dp"
         android:saveEnabled="true"
         android:inputType="text"
-        android:hint="@string/playlist_name_input"
+        android:hint="@string/name"
         android:maxLines="1"/>
 </RelativeLayout>

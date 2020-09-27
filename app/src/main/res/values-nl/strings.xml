@@ -26,7 +26,7 @@
     <string name="default_audio_format_title">Standaardaudioformaat</string>
     <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende</string>
-    <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
+    <string name="unsupported_url">URL wordt niet ondersteund</string>
     <string name="show_next_and_similar_title">‘volgende’ en ‘vergelijkbare’ video’s weergeven</string>
     <string name="content_language_title">Standaardtaal voor inhoud</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
@@ -84,7 +84,7 @@
     <string name="error_report_title">Foutrapport</string>
     <string name="could_not_load_image">Kan afbeelding niet laden</string>
     <string name="app_ui_crash">App/UI gecrasht</string>
-    <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nDienst:\\nTijd in GMT:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
+    <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nTaal van land:\\nTaal van Applicatie:\\nDienst:\\nTijd in GMT:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
     <string name="report_error">Meld een probleem</string>
     <string name="user_report">Gebruikersrapport</string>
     <string name="storage_permission_denied">Geef eerst toegang tot de opslag</string>
@@ -293,7 +293,7 @@
     <string name="create_playlist">Nieuwe afspeellijst</string>
     <string name="delete_playlist">Verwijderen</string>
     <string name="rename_playlist">Naam wijzigen</string>
-    <string name="playlist_name_input">Naam</string>
+    <string name="name">Naam</string>
     <string name="append_playlist">Toevoegen aan afspeellijst</string>
     <string name="set_as_playlist_thumbnail">Instellen als miniatuur voor afspeellijst</string>
     <string name="bookmark_playlist">Afspeellijst toevoegen aan bladwijzers</string>
@@ -310,7 +310,6 @@
     <string name="drawer_header_action_paceholder_text">Hier zal binnenkort iets verschijnen ;D</string>
     <string name="settings_category_debug_title">Foutopsporing</string>
     <string name="caption_auto_generated">Automatisch gegenereerd</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan ervoor zorgen dat de app niet goed meer reageert</string>
     <string name="enable_disposed_exceptions_title">Out-of-lifecycle-fouten melden</string>
     <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen buiten fragment of activiteitscyclus</string>
@@ -481,7 +480,7 @@
     <string name="download_already_pending">Er is al een download met deze naam bezig</string>
     <string name="error_insufficient_storage">Geen ruimte meer op het apparaat</string>
     <string name="error_progress_lost">Voortgang verloren, omdat bestand was verwijderd</string>
-    <string name="confirm_prompt">Wil je je downloadgeschiedenis wissen of alle gedownloade bestanden verwijderen\?</string>
+    <string name="confirm_prompt">Wilt u de downloadgeschiedenis of alle gedownloade bestanden verwijderen\?</string>
     <string name="enable_queue_limit">Limiteer de download wachtrij</string>
     <string name="enable_queue_limit_desc">Er zal maximaal 1 bestand tegelijk worden gedownload</string>
     <string name="start_downloads">Download starten</string>
@@ -564,7 +563,6 @@
         <item quantity="other">%d geselecteerd</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Lege groepsnaam</string>
-    <string name="feed_group_dialog_name_input">Naam</string>
     <string name="feed_group_dialog_delete_message">Wilt u deze groep verwijderen\?</string>
     <string name="feed_create_new_group_button_title">Nieuw</string>
     <string name="settings_category_feed_title">Feed</string>
@@ -611,4 +609,12 @@
     <string name="detail_sub_channel_thumbnail_view_description">De avatar-miniatuur van het kanaal</string>
     <string name="video_detail_by">Door %s</string>
     <string name="channel_created_by">Gecreëerd door %s</string>
+    <string name="playlist_page_summary">Afspeellijst pagina</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Toon enkel ongegroepeerde abonnementen</string>
+    <string name="no_playlist_bookmarked_yet">Geen afspeellijst bookmarks</string>
+    <string name="select_a_playlist">Selecteer een afspeellijst</string>
+    <string name="error_report_open_github_notice">Controleer of er al een probleem bestaat dat uw crash beschrijft. Wanneer u dubbele tickets aanmaakt, neemt dit tijd van ons in beslag die we beter kunnen besteden aan het oplossen van het daadwerkelijke probleem.</string>
+    <string name="error_report_open_issue_button_text">Foutmelding in GitHub rapporteren</string>
+    <string name="copy_for_github">Kopieer opgemaakt rapport</string>
+    <string name="search_showing_result_for">Gevonden resultaten voor: %s</string>
 </resources>

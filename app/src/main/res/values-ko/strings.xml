@@ -27,7 +27,7 @@
     <string name="download_dialog_title">다운로드</string>
     <string name="next_video_title">다음</string>
     <string name="show_next_and_similar_title">다음/유사한 비디오 표시</string>
-    <string name="url_not_supported_toast">지원하지 않는 URL입니다</string>
+    <string name="unsupported_url">지원하지 않는 URL입니다</string>
     <string name="content_language_title">기본 컨텐츠 언어</string>
     <string name="settings_category_video_audio_title">비디오 &amp; 오디오</string>
     <string name="list_thumbnail_view_description">비디오 미리보기 썸네일</string>
@@ -293,7 +293,7 @@
     <string name="create_playlist">새로운 재생목록</string>
     <string name="delete_playlist">삭제</string>
     <string name="rename_playlist">이름 바꾸기</string>
-    <string name="playlist_name_input">이름</string>
+    <string name="name">이름</string>
     <string name="append_playlist">재생목록에 추가</string>
     <string name="set_as_playlist_thumbnail">재생목록 썸네일로 설정</string>
     <string name="bookmark_playlist">재생목록 북마크하기</string>
@@ -308,7 +308,6 @@
     <string name="resize_fill">채우기</string>
     <string name="resize_zoom">확대</string>
     <string name="caption_auto_generated">자동 생성됨</string>
-    <string name="enable_leak_canary_title">LeakCanary 활성화</string>
     <string name="enable_leak_canary_summary">메모리 누수 감시를 사용할 시 힙 덤프로 인해 앱이 반응하지 않을 수 있습니다</string>
     <string name="enable_disposed_exceptions_title">out-of-lifecycle 오류 보고</string>
     <string name="enable_disposed_exceptions_summary">프래그먼트 또는 버려진 액티비티 주기 밖에서 일어나는 전달할 수 없는 Rx 예외를 강제적으로 보고하기</string>
@@ -525,4 +524,31 @@
     <string name="clear_download_history">다운로드 기록 삭제</string>
     <string name="delete_downloaded_files">다운로드된 파일 삭제</string>
     <string name="deleted_downloads">%1$d 다운로드 삭제</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="other">%d 선택</item>
+    </plurals>
+    <string name="feed_group_dialog_delete_message">이 그룹을 삭제하시겠어요\?</string>
+    <string name="feed_create_new_group_button_title">새로운</string>
+    <string name="settings_category_feed_title">피드</string>
+    <string name="feed_processing_message">피드를 프로세싱합니다…</string>
+    <string name="feed_notification_loading">피드를 로딩하고 있습니다…</string>
+    <string name="feed_subscription_not_loaded_count">로드 실패: %d</string>
+    <string name="feed_oldest_subscription_update">마지막으로 업데이트 된 피드; %s</string>
+    <string name="feed_groups_header_title">채널 그룹</string>
+    <string name="unmute">무음해제</string>
+    <string name="mute">무음</string>
+    <string name="no_playlist_bookmarked_yet">아직 재생목록 책갈피가 없습니다</string>
+    <string name="select_a_playlist">재생목록 선택</string>
+    <string name="subtitle_activity_recaptcha">해결 되었다면 \"완료\"를 누르세요</string>
+    <string name="infinite_videos">∞ 비디오</string>
+    <string name="more_than_100_videos">100+ 비디오</string>
+    <string name="help">도움말</string>
+    <string name="songs">노래</string>
+    <string name="restricted_video">이 비디오는 연령제한이 있습니다.
+\n
+\n만약, 시청을 원한다면 설정에 \"연령 제한 컨텐츠\"를 활성화 하세요.</string>
+    <string name="recaptcha_done_button">완료</string>
+    <string name="artists">아티스트</string>
+    <string name="albums">앨범</string>
+    <string name="videos_string">비디오</string>
 </resources>

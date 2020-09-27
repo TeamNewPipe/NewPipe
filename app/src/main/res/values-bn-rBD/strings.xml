@@ -49,7 +49,7 @@
     <string name="download_dialog_title">ডাউনলোড</string>
     <string name="next_video_title">পরবর্তী ভিডিও</string>
     <string name="show_next_and_similar_title">পরবর্তী এবং অনুরূপ ভিডিওগুলি দেখাও</string>
-    <string name="url_not_supported_toast">URL সমর্থিত নয়</string>
+    <string name="unsupported_url">URL সমর্থিত নয়</string>
     <string name="content_language_title">কন্টেন্ট এর জন্য পছন্দসই ভাষা</string>
     <string name="settings_category_video_audio_title">ভিডিও এবং অডিও</string>
     <string name="settings_category_popup_title">পপআপ</string>
@@ -196,4 +196,16 @@
     <string name="volume_gesture_control_title">ভলিউম সংকেত নিয়ন্ত্রণ</string>
     <string name="missions_header_finished">সম্পূর্ণ</string>
     <string name="list">তালিকা</string>
+    <string name="enable_playback_state_lists_title">তালিকাতে পজিশন</string>
+    <string name="enable_playback_resume_summary">শেষ প্লেব্যাক পজিশন এ যাও</string>
+    <string name="enable_playback_resume_title">পুনরায় প্লে ব্যাক চালু করো</string>
+    <string name="enable_search_history_summary">সার্চগুলো স্থানীয়ভাবে জমা করো</string>
+    <string name="show_search_suggestions_summary">সার্চের সময় পরামর্শ দেখাও</string>
+    <string name="show_search_suggestions_title">সার্চ পরামর্শ</string>
+    <string name="player_gesture_controls_summary">প্লেয়ারের উজ্জ্বলতা এবং ভলিউম নিয়ন্ত্রণ করতে সংকেত ব্যবহার করো</string>
+    <string name="search_showing_result_for">রেজাল্ট দেখানো হচ্ছেঃ %s</string>
+    <string name="tab_about">সম্পর্কিত</string>
+    <string name="action_about">সম্পর্কিত</string>
+    <string name="title_activity_about">নিউপাইপ এর সম্বন্ধে</string>
+    <string name="trending">ট্রেন্ডিং</string>
 </resources>

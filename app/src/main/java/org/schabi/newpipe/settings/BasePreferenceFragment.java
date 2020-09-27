@@ -5,12 +5,12 @@ import android.os.Bundle;
 import androidx.preference.PreferenceManager;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.util.ThemeHelper;
 
 public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
@@ -25,24 +25,16 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onViewCreated(@NonNull final View rootView,
+                              @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
         setDivider(null);
-        updateTitle();
+        ThemeHelper.setTitleToAppCompatActivity(getActivity(), getPreferenceScreen().getTitle());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateTitle();
-    }
-
-    private void updateTitle() {
-        if (getActivity() instanceof AppCompatActivity) {
-            final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setTitle(getPreferenceScreen().getTitle());
-            }
-        }
+        ThemeHelper.setTitleToAppCompatActivity(getActivity(), getPreferenceScreen().getTitle());
     }
 }

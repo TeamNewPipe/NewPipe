@@ -57,9 +57,23 @@
     <string name="kore_not_found">Install missing Kore app?</string>
     <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Lock screen video thumbnail</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">A video thumbnail is shown on the lock screen when using the background player</string>
+
+    <string name="notification_scale_to_square_image_title">Scale thumbnail to 1:1 aspect ratio</string>
+    <string name="notification_scale_to_square_image_summary">Scale the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio (may introduce distortions)</string>
+    <string name="notification_action_0_title">First action button</string>
+    <string name="notification_action_1_title">Second action button</string>
+    <string name="notification_action_2_title">Third action button</string>
+    <string name="notification_action_3_title">Fourth action button</string>
+    <string name="notification_action_4_title">Fifth action button</string>
+    <string name="notification_actions_summary">Edit each notification action below by tapping on it.\nSelect up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
+    <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
+
+    <string name="notification_action_repeat">Repeat</string>
+    <string name="notification_action_shuffle">Shuffle</string>
+    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_action_nothing">Nothing</string>
+
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
@@ -85,6 +99,7 @@
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
     <string name="auto_queue_title">Auto-queue next stream</string>
     <string name="auto_queue_summary">Continue ending (non-repeating) playback queue by appending a related stream</string>
+    <string name="auto_queue_toggle">Auto-queue</string>
     <string name="volume_gesture_control_title">Volume gesture control</string>
     <string name="volume_gesture_control_summary">Use gestures to control player volume</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
@@ -105,12 +120,12 @@
     <string name="resume_on_audio_focus_gain_title">Resume playing</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phonecalls)</string>
     <string name="download_dialog_title">Download</string>
-    <string name="next_video_title">Next</string>
     <string name="autoplay_title">Autoplay</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
-    <string name="url_not_supported_toast">Unsupported URL</string>
+    <string name="unsupported_url">Unsupported URL</string>
+    <string name="unsupported_url_dialog_message">NewPipe could not recognize the provided url. Open it with another method?</string>
     <string name="default_content_country_title">Default content country</string>
     <string name="service_title">Service</string>
     <string name="content_language_title">Default content language</string>
@@ -132,12 +147,12 @@
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
+    <string name="settings_category_notification_title">Notification</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
     <string name="popup_playing_append">Queued on popup player</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
-    <string name="play_btn_text">Play</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
     <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
@@ -407,7 +422,7 @@
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscriptions yet</string>
     <string name="select_a_playlist">Select a playlist</string>
-    <string name="no_playlist_bookmarked_yet">No playlists bookmarks yet</string>
+    <string name="no_playlist_bookmarked_yet">No playlist bookmarks yet</string>
     <string name="select_a_kiosk">Select a kiosk</string>
     <string name="export_complete_toast">Exported</string>
     <string name="import_complete_toast">Imported</string>
@@ -458,7 +473,7 @@
     <string name="create_playlist">New Playlist</string>
     <string name="delete_playlist">Delete</string>
     <string name="rename_playlist">Rename</string>
-    <string name="playlist_name_input">Name</string>
+    <string name="name">Name</string>
     <string name="append_playlist">Add To Playlist</string>
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
@@ -481,7 +496,7 @@
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect.</string>
     <!-- Debug Settings -->
-    <string name="enable_leak_canary_title">LeakCanary</string>
+    <string name="leakcanary" translatable="false">LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
@@ -540,9 +555,8 @@
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
     <!-- Autoplay behavior -->
     <string name="autoplay_summary">Start playback automatically — %s</string>
-    <string name="autoplay_always_description">Always</string>
-    <string name="autoplay_wifi_description">Only on WiFi</string>
-    <string name="autoplay_never_description">Never</string>
+    <string name="wifi_only">Only on WiFi</string>
+    <string name="never">Never</string>
     <string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
@@ -647,7 +661,6 @@
         <item quantity="other">%d selected</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Empty group name</string>
-    <string name="feed_group_dialog_name_input">Name</string>
     <string name="feed_group_dialog_delete_message">Do you want to delete this group?</string>
     <string name="feed_create_new_group_button_title">New</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Show only ungrouped subscriptions</string>

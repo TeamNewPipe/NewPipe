@@ -26,7 +26,7 @@
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее</string>
-    <string name="url_not_supported_toast">URL не поддерживается</string>
+    <string name="unsupported_url">URL не поддерживается</string>
     <string name="show_next_and_similar_title">\"Следующее\" и похожие видео</string>
     <string name="content_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
@@ -49,7 +49,7 @@
     <string name="download_path_audio_title">Папка для скачанного аудио</string>
     <string name="download_path_audio_summary">Папка для скачанного аудио</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для скачивания аудио</string>
-    <string name="main_bg_subtitle">Начните с поиска</string>
+    <string name="main_bg_subtitle">Нажмите \"Поиск\", чтобы начать</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
@@ -121,7 +121,7 @@
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
     <string name="add">Новая цель</string>
-    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
+    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
@@ -313,7 +313,7 @@
     <string name="create_playlist">Новый плейлист</string>
     <string name="delete_playlist">Удалить</string>
     <string name="rename_playlist">Переименовать</string>
-    <string name="playlist_name_input">Имя</string>
+    <string name="name">Имя</string>
     <string name="append_playlist">В плейлист</string>
     <string name="set_as_playlist_thumbnail">На миниатюру плейлиста</string>
     <string name="bookmark_playlist">Сохранить плейлист</string>
@@ -328,7 +328,6 @@
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
     <string name="caption_auto_generated">Создано автоматически</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
     <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
     <string name="enable_disposed_exceptions_summary">Принудительно сообщать о недоставляемых Rx-исключениях вне фрагмента или жизненного цикла после удаления</string>
@@ -573,7 +572,6 @@
         <item quantity="many">%d минут</item>
     </plurals>
     <string name="feed_group_dialog_delete_message">Удалить эту группу\?</string>
-    <string name="feed_group_dialog_name_input">Имя</string>
     <string name="feed_subscription_not_loaded_count">Не загружено: %d</string>
     <string name="feed_create_new_group_button_title">Создать</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Обычный режим</string>
@@ -622,5 +620,12 @@
     <string name="video_detail_by">От %s</string>
     <string name="channel_created_by">Создано %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Показывать только несгруппированные подписки</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Только несгруппированные</string>
+    <string name="no_playlist_bookmarked_yet">Плейлистов ещё нет</string>
+    <string name="error_report_open_github_notice">Пожалуйста, проверьте, существует ли вопрос по вашей ошибке. Создавая дубликаты, вы отнимаете у нас время, которое мы могли бы использовать на решение проблемы.</string>
+    <string name="search_showing_result_for">Результаты для: %s</string>
+    <string name="playlist_page_summary">Страница плейлиста</string>
+    <string name="select_a_playlist">Выберите плейлист</string>
+    <string name="error_report_open_issue_button_text">Сообщить об ошибке на Github</string>
+    <string name="copy_for_github">Копировать отформатированный отчет</string>
 </resources>

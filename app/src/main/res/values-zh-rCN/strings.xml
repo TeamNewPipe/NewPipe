@@ -29,7 +29,7 @@
     <string name="black_theme_title">黑色</string>
     <string name="download_dialog_title">下载</string>
     <string name="next_video_title">下一个</string>
-    <string name="url_not_supported_toast">不支持的 URL</string>
+    <string name="unsupported_url">不支持的 URL</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="settings_category_other_title">其他</string>
     <string name="all">全部</string>
@@ -324,7 +324,7 @@
     <string name="create_playlist">新建播放列表</string>
     <string name="delete_playlist">删除</string>
     <string name="rename_playlist">重 命名</string>
-    <string name="playlist_name_input">名称</string>
+    <string name="name">名称</string>
     <string name="append_playlist">添加到播放列表</string>
     <string name="set_as_playlist_thumbnail">设为播放列表缩略图</string>
     <string name="bookmark_playlist">收藏播放列表</string>
@@ -341,7 +341,6 @@
     <string name="drawer_header_action_paceholder_text">敬请等待</string>
     <string name="settings_category_debug_title">调试</string>
     <string name="caption_auto_generated">自动生成</string>
-    <string name="enable_leak_canary_title">启用LeakCanary</string>
     <string name="enable_leak_canary_summary">『内存泄漏监视』可能导致应用在『核心转储』时无响应</string>
     <string name="enable_disposed_exceptions_title">报告『提前结束Android生命周期』错误</string>
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的Activity或Fragment生命周期之外的Rx异常</string>

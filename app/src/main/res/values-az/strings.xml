@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">Başlamaq üçün axtarışa bas</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_bg_subtitle">Başlamaq üçün axtarışa bas</string>
     <string name="view_count_text">%1$s baxış</string>
     <string name="upload_date_text">Dərc edilib %1$s</string>
     <string name="no_player_found">Axın oynadıcısı tapılmadı. VLC ni yükləmək istərdinizmi?</string>
@@ -22,22 +23,17 @@
     <string name="subscribed_button_title">Abunə olunub</string>
     <string name="channel_unsubscribed">Kanal</string>
     <string name="show_info">Məlumat göstər</string>
-
     <string name="tab_main">Əsas</string>
     <string name="tab_subscriptions">Abunəliklər</string>
     <string name="tab_bookmarks">Əlfəcinlər</string>
-
     <string name="fragment_feed_title">Yeni nə var</string>
-
     <string name="controls_background_title">Arxa fon</string>
     <string name="download_path_title">Video yükləmə ünvanı</string>
     <string name="download_path_summary">Yüklənən videoları saxlamaq üçün yer</string>
     <string name="download_path_dialog_title">Videolar üçün yükləmə yerini daxil et</string>
-
     <string name="download_path_audio_title">Audio yükləmə yeri</string>
     <string name="download_path_audio_summary">Yüklənən audioları saxlamaq üçün yer</string>
     <string name="download_path_audio_dialog_title">Audiolar üçün yükləmə yerini daxil et</string>
-
     <string name="autoplay_by_calling_app_summary">NewPipe başqa bir uyğulamadan çağrıldığı zaman avtomatik olaraq videonu oynadır</string>
     <string name="default_resolution_title">Defolt ölçü</string>
     <string name="show_higher_resolutions_title">Daha böyük ölçüləri göstər</string>
@@ -52,4 +48,8 @@
     <string name="light_theme_title">Açıq</string>
     <string name="dark_theme_title">Qaranlıq</string>
     <string name="black_theme_title">Qara</string>
-    </resources>
+    <string name="unsubscribe">Abunəlik ləğvi</string>
+    <string name="popup_mode_share_menu_title">Açılan pəncərə</string>
+    <string name="screen_rotation">Fırlanma</string>
+    <string name="open_in_popup_mode">Açılan pəncərə modunda aç</string>
+</resources>

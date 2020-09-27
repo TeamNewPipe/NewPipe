@@ -66,7 +66,7 @@
     <string name="next_video_title">Sequente</string>
     <string name="autoplay_title">Reproduction automatic</string>
     <string name="show_next_and_similar_title">Monstrar le videos sequente e simile</string>
-    <string name="url_not_supported_toast">URL non supportate</string>
+    <string name="unsupported_url">URL non supportate</string>
     <string name="default_content_country_title">Pais predefinite del contentos</string>
     <string name="service_title">Servicio</string>
     <string name="content_language_title">Lingua predefinite del contento</string>

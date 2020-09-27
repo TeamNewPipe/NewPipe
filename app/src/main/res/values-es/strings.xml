@@ -27,7 +27,7 @@
     <string name="default_audio_format_title">Formato de audio predeterminado</string>
     <string name="download_dialog_title">Descargar</string>
     <string name="next_video_title">Siguiente</string>
-    <string name="url_not_supported_toast">No se admite el URL</string>
+    <string name="unsupported_url">No se admite el URL</string>
     <string name="use_external_video_player_title">Usar reproductor de vídeo externo</string>
     <string name="use_external_audio_player_title">Usar reproductor de audio externo</string>
     <string name="theme_title">Tema</string>
@@ -51,17 +51,17 @@
     <string name="could_not_load_thumbnails">No se pudo cargar las miniaturas</string>
     <string name="youtube_signature_decryption_error">No se pudo descifrar la URL del vídeo</string>
     <string name="parsing_error">No se pudo analizar el sitio web</string>
-    <string name="show_next_and_similar_title">Mostrar vídeos «siguientes» y «similares»</string>
+    <string name="show_next_and_similar_title">Mostrar vídeos \'Siguientes\' y \'Similares\'</string>
     <string name="content_language_title">Idioma predeterminado del contenido</string>
     <string name="list_thumbnail_view_description">Miniatura de previsualización del vídeo</string>
     <string name="detail_thumbnail_view_description">Reproducir vídeo; duración:</string>
     <string name="detail_likes_img_view_description">Me gusta</string>
     <string name="detail_dislikes_img_view_description">No me gusta</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del usuario</string>
-    <string name="live_streams_not_supported">Aún no se admiten las transmisiones en vivo</string>
+    <string name="live_streams_not_supported">Las transmisiones en vivo no son soportadas aún</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Contenido restringido por edad</string>
-    <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Se pueden realizar más cambios desde los ajustes.</string>
+    <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Se pueden realizar cambios futuros desde los ajustes.</string>
     <string name="main_bg_subtitle">Toque «Buscar» para empezar</string>
     <string name="autoplay_by_calling_app_title">Reproducción automática</string>
     <string name="autoplay_by_calling_app_summary">Reproducir un vídeo cuando NewPipe es llamado desde otra app</string>
@@ -101,12 +101,12 @@
     <string name="msg_url_malform">URL mal escrito o Internet no disponible</string>
     <string name="msg_running">NewPipe está descargando</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
-    <string name="msg_wait">Espere…</string>
+    <string name="msg_wait">Espere, por favor…</string>
     <string name="msg_copied">Copiado en el portapapeles</string>
     <string name="no_available_dir">Defina una carpeta de descargas más tarde en la configuración</string>
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
     <string name="app_ui_crash">La interfaz de la app dejó de funcionar</string>
-    <string name="info_labels">Lo sucedido:\\nPetición:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
+    <string name="info_labels">Lo sucedido:\\nPetición:\\nIdioma del Contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
     <string name="channel">Canal</string>
@@ -114,7 +114,7 @@
     <string name="later">Después</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">MM</string>
+    <string name="short_billion">G</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
     <string name="msg_popup_permission">Se necesita este permiso
 \npara abrir en modo emergente</string>
@@ -193,7 +193,7 @@
     <string name="playlist">Lista de reproducción</string>
     <string name="undo">Deshacer</string>
     <string name="search_no_results">No hay resultados</string>
-    <string name="empty_subscription_feed_subtitle">Aquí no hay nada más que grillos</string>
+    <string name="empty_subscription_feed_subtitle">Nada aquí, sino grillos</string>
     <string name="no_subscribers">Sin suscriptores</string>
     <plurals name="subscribers">
         <item quantity="one">%s suscriptor</item>
@@ -239,12 +239,12 @@
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Reproducir en modo emergente</string>
-    <string name="show_hold_to_append_title">Mostrar consejo «Mantener presionado para agregar»</string>
+    <string name="show_hold_to_append_title">Mostrar consejo \"Mantener presionado para añadir\"</string>
     <string name="new_and_hot">Novedades</string>
     <string name="hold_to_append">Mantener presionado para agregar a la cola</string>
     <string name="donation_title">Donar</string>
     <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haga una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
-    <string name="give_back">Donar</string>
+    <string name="give_back">Dar de vuelta</string>
     <string name="website_title">Sitio web</string>
     <string name="website_encouragement">Visite el sitio web de NewPipe para más información y noticias.</string>
     <string name="default_content_country_title">País predeterminado del contenido</string>
@@ -294,7 +294,7 @@
     <string name="create_playlist">Lista de reproducción nueva</string>
     <string name="delete_playlist">Eliminar</string>
     <string name="rename_playlist">Cambiar nombre</string>
-    <string name="playlist_name_input">Nombre</string>
+    <string name="name">Nombre</string>
     <string name="append_playlist">Añadir a la lista de reproducción</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura de lista de reproducción</string>
     <string name="bookmark_playlist">Marcar lista de reproducción</string>
@@ -311,7 +311,6 @@
     <string name="resize_zoom">Zoom</string>
     <string name="settings_category_debug_title">Depuración</string>
     <string name="caption_auto_generated">Auto generados</string>
-    <string name="enable_leak_canary_title">Activar LeakCanary</string>
     <string name="enable_leak_canary_summary">La monitorización de fugas de memoria puede causar que la app no responda cuando hay Heap Dump</string>
     <string name="enable_disposed_exceptions_title">Reportar errores fuera del ciclo de duración</string>
     <string name="enable_disposed_exceptions_summary">Forzar reporte de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
@@ -322,7 +321,7 @@
     <string name="file">Archivo</string>
     <string name="missing_file">Archivo movido o eliminado</string>
     <string name="invalid_directory">La carpeta no existe</string>
-    <string name="invalid_source">No existe la fuente del archivo/contenido</string>
+    <string name="invalid_source">No existe tal archivo/origen del contenido</string>
     <string name="invalid_file">El archivo no existe o carece de los permisos para leer o escribir en él</string>
     <string name="file_name_empty_error">El nombre del archivo no puede estar vacío</string>
     <string name="error_occurred_detail">Ocurrió un error: %1$s</string>
@@ -379,9 +378,11 @@
     <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a tu elección) cualquier versión posterior.</string>
     <string name="import_settings">¿Quiere importar también la configuración\?</string>
     <string name="privacy_policy_title">Normativa de privacidad de NewPipe</string>
-    <string name="privacy_policy_encouragement">El proyecto NewPipe toma su privacidad muy en serio. Por ello, la aplicación no recopila ningún dato sin su consentimiento. La normativa de privacidad de NewPipe explica en detalle qué datos se envían y almacenan cuando envía un informe de fallo.</string>
+    <string name="privacy_policy_encouragement">El proyecto NewPipe toma su privacidad muy en serio. Por ello, la aplicación no recopila algún dato sin su consentimiento.
+\nLa normativa de privacidad de NewPipe explica en detalle qué datos se envían y almacenan cuando envía un informe de fallo.</string>
     <string name="read_privacy_policy">Leer la normativa de privacidad</string>
-    <string name="start_accept_privacy_policy">Para cumplir con el Reglamento general europeo de protección de datos (GDPR), podemos llamar su atención sobre la política de privacidad de NewPipe. Por favor léelo cuidadosamente. Debe aceptarlo para enviarnos el informe de error.</string>
+    <string name="start_accept_privacy_policy">Para cumplir con el Reglamento general europeo de protección de datos (GDPR), atraemos su atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
+\nDebe aceptarlo para enviarnos el informe de error.</string>
     <string name="accept">Aceptar</string>
     <string name="decline">Declinar</string>
     <string name="limit_data_usage_none_description">Sin límite</string>
@@ -456,7 +457,7 @@
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
     <string name="downloads_storage_use_saf_summary">El \'Framework de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa. 
 \nAlgunos dispositivos no son compatibles</string>
-    <string name="unsubscribe">Cancelar suscripción</string>
+    <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Pestaña nueva</string>
     <string name="tab_choose">Elija la pestaña</string>
     <string name="volume_gesture_control_title">Control de volumen por gestos</string>
@@ -526,11 +527,11 @@
     <string name="playlist_no_uploader">Generado automáticamente (no se encontró creador)</string>
     <string name="choose_instance_prompt">Elige una instancia</string>
     <string name="enable_lock_screen_video_thumbnail_title">Miniatura de vídeo en pantalla de bloqueo</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Se mostrará una miniatura del vídeo en la pantalla de bloqueo al usar el reproductor en segundo plano</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Una miniatura del vídeo es mostrada en la pantalla de bloqueo cuando se está usando el reproductor en segundo plano</string>
     <string name="clear_download_history">Limpiar historial de descargas</string>
     <string name="delete_downloaded_files">Eliminar archivos descargados</string>
     <string name="deleted_downloads">Eliminadas %1$d descargas</string>
-    <string name="permission_display_over_apps">Dar permisos para que se muestre por sobre otras apps</string>
+    <string name="permission_display_over_apps">Permitir mostrar sobre otras aplicaciones</string>
     <string name="app_language_title">Idioma de aplicación</string>
     <string name="systems_language">Predeterminado del sistema</string>
     <string name="subtitle_activity_recaptcha">Pulse en «Hecho» cuando esté resuelto</string>
@@ -568,7 +569,6 @@
         <item quantity="other">%d elegidas</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nombre de grupo vacío</string>
-    <string name="feed_group_dialog_name_input">Nombre</string>
     <string name="feed_group_dialog_delete_message">¿Borrar este grupo\?</string>
     <string name="feed_create_new_group_button_title">Nuevo</string>
     <string name="settings_category_feed_title">Contenido</string>
@@ -612,4 +612,12 @@
     <string name="show_original_time_ago_summary">Los textos originales de los servicios serán visibles en los ítems de transmisiones</string>
     <string name="show_original_time_ago_title">Mostrar tiempo atrás original en ítems</string>
     <string name="youtube_restricted_mode_enabled_title">Modo restringido de YouTube</string>
+    <string name="playlist_page_summary">Página de lista de reproducción</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar sólo suscripciones desagrupadas</string>
+    <string name="no_playlist_bookmarked_yet">Sin marcadores de lista de reproducción aún</string>
+    <string name="select_a_playlist">Seleccione una lista de reproducción</string>
+    <string name="error_report_open_github_notice">Por favor revise si ya existe una discusión sobre su problema. Cuando se crean entradas duplicadas, toma tiempo de nosotros que podríamos usar para arreglar tal problema.</string>
+    <string name="error_report_open_issue_button_text">Reportar error en Github</string>
+    <string name="copy_for_github">Copiar reporte con formato</string>
+    <string name="search_showing_result_for">Mostrando resultados para: %s</string>
 </resources>

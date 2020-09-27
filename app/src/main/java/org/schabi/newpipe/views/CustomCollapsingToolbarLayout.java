@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 public class CustomCollapsingToolbarLayout extends CollapsingToolbarLayout {
@@ -27,8 +28,10 @@ public class CustomCollapsingToolbarLayout extends CollapsingToolbarLayout {
     }
 
     /**
-     * CollapsingToolbarLayout overrides our logic with fitsSystemWindows and ruins the layout.
-     * Override Google's method
+     * CollapsingToolbarLayout sets it's own setOnApplyInsetsListener which consumes
+     * system insets {@link CollapsingToolbarLayout#onWindowInsetChanged(WindowInsetsCompat)}
+     * so we will not receive them in subviews with fitsSystemWindows = true.
+     * Override Google's behavior
      * */
     public void overrideListener() {
         ViewCompat.setOnApplyWindowInsetsListener(this, (v, insets) -> insets);
