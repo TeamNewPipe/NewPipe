@@ -18,7 +18,7 @@ You'll see exactly what is sent, be able to add your comments, and then send it.
 * **The template** Fill it out, everyone wins. Your issue has a chance of getting fixed.
 
 ## Join the developer team
-* Help rid NewPipe of bugs by sending an e-mail saying you want to join to <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a>, mentioning what you want to help with.
+* Help rid NewPipe of bugs by sending an e-mail to <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a> saying you want to join, mentioning what you want to help with.
 You may be asked to register at our [Sentry](https://sentry.schabi.org) instance.
 
 ## Translation
