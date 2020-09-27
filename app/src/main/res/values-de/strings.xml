@@ -337,7 +337,7 @@
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
     <string name="unhook_checkbox">Entkoppeln (kann zu Verzerrungen führen)</string>
-    <string name="download_thumbnail_summary">Abschalten, um das Laden von Miniaturansichten zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
+    <string name="download_thumbnail_summary">Abschalten, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Wiedergabe durch Anhängen eines verwandten Streams an die Warteschlange (ohne Wiederholungsschleife) fortsetzen</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
@@ -620,4 +620,16 @@
     <string name="autoplay_summary">Wiedergabe automatisch starten — %s</string>
     <string name="wifi_only">Nur über WLAN</string>
     <string name="never">Nie</string>
+    <string name="notification_actions_at_most_three">Du kannst maximal drei Aktionen auswählen, die in der Kompaktbenachrichtigung angezeigt werden sollen!</string>
+    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst.
+\nWähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen.</string>
+    <string name="settings_category_notification_title">Benachrichtigung</string>
+    <string name="unsupported_url_dialog_message">NewPipe konnte die angegebene URL nicht erkennen. Mit einer anderen Methode öffnen\?</string>
+    <string name="notification_action_4_title">Fünfte Aktionstaste</string>
+    <string name="notification_action_3_title">Vierte Aktionstaste</string>
+    <string name="notification_action_2_title">Dritte Aktionstaste</string>
+    <string name="notification_action_1_title">Zweite Aktionstaste</string>
+    <string name="notification_action_0_title">Erste Aktionstaste</string>
+    <string name="notification_scale_to_square_image_summary">Skaliert das in der Benachrichtigung angezeigte Vorschaubild von 16:9 auf ein 1:1 Seitenverhältnis (kann zu Verzerrungen führen)</string>
+    <string name="notification_scale_to_square_image_title">Vorschaubild auf 1:1 Seitenverhältnis skalieren</string>
 </resources>
