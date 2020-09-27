@@ -616,4 +616,19 @@
     <string name="clear_queue_confirmation_description">Antrean dari pemutar aktif akan digantikan</string>
     <string name="clear_queue_confirmation_summary">Setelah beralih ke pemutar yang lain, antrean anda mungkin diganti</string>
     <string name="clear_queue_confirmation_title">Konfirmasi sebelum mengosongkan antrean</string>
+    <string name="settings_category_notification_title">Notifikasi</string>
+    <string name="notification_action_nothing">Tidak ada</string>
+    <string name="notification_action_buffering">Bufer</string>
+    <string name="notification_action_shuffle">Shuffle</string>
+    <string name="notification_action_repeat">Ulangi</string>
+    <string name="notification_actions_at_most_three">Anda bisa memilih hingga tiga tindakan untuk ditampilkan dalam notifikasi ringkas!</string>
+    <string name="notification_actions_summary">Sentuh untuk menyunting tindakan notifikasi di bawah.
+\nPilih hingga tiga diantaranya untuk ditampilkan dalam notifikasi ringkas dengan menggunakan kotak centang di sebelah kanan.</string>
+    <string name="notification_action_4_title">Tombol tindakan kelima</string>
+    <string name="notification_action_3_title">Tombol tindakan keempat</string>
+    <string name="notification_action_2_title">Tombol tindakan ketiga</string>
+    <string name="notification_action_1_title">Tombol tindakan kedua</string>
+    <string name="notification_action_0_title">Tombol tindakan pertama</string>
+    <string name="notification_scale_to_square_image_summary">Ubah ukuran thumbnail yang ditampilkan di notifikasi dari rasio aspek 16:9 ke 1:1 (mungkin terdistorsi)</string>
+    <string name="notification_scale_to_square_image_title">Ubah ukuran thumbnail ke rasio aspek 1:1</string>
 </resources>
