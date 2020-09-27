@@ -112,6 +112,7 @@ import static org.schabi.newpipe.player.MainPlayer.ACTION_REPEAT;
 import static org.schabi.newpipe.player.MainPlayer.NOTIFICATION_ID;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
+import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -708,62 +709,33 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-        // Player Overrides
-        //////////////////////////////////////////////////////////////////////////*/
+    // Player Overrides
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void toggleFullscreen() {
         if (DEBUG) {
             Log.d(TAG, "toggleFullscreen() called");
         }
-        if (simpleExoPlayer == null || getCurrentMetadata() == null) {
+        if (popupPlayerSelected()
+                || simpleExoPlayer == null
+                || getCurrentMetadata() == null
+                || fragmentListener == null) {
             return;
         }
 
-        if (popupPlayerSelected()) {
-            setRecovery();
-            service.removeViewFromParent();
-            final Intent intent = NavigationHelper.getPlayerIntent(
-                    service,
-                    MainActivity.class,
-                    this.getPlayQueue(),
-                    this.getRepeatMode(),
-                    this.getPlaybackSpeed(),
-                    this.getPlaybackPitch(),
-                    this.getPlaybackSkipSilence(),
-                    null,
-                    true,
-                    !isPlaying(),
-                    isMuted()
-            );
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(Constants.KEY_SERVICE_ID,
-                    getCurrentMetadata().getMetadata().getServiceId());
-            intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
-            intent.putExtra(Constants.KEY_URL, getVideoUrl());
-            intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
-            intent.putExtra(VideoDetailFragment.AUTO_PLAY, true);
-            service.onDestroy();
-            context.startActivity(intent);
-            return;
+        isFullscreen = !isFullscreen;
+        if (!isFullscreen) {
+            // Apply window insets because Android will not do it when orientation changes
+            // from landscape to portrait (open vertical video to reproduce)
+            getControlsRoot().setPadding(0, 0, 0, 0);
         } else {
-            if (fragmentListener == null) {
-                return;
-            }
-
-            isFullscreen = !isFullscreen;
-            if (!isFullscreen) {
-                // Apply window insets because Android will not do it when orientation changes
-                // from landscape to portrait (open vertical video to reproduce)
-                getControlsRoot().setPadding(0, 0, 0, 0);
-            } else {
-                // Android needs tens milliseconds to send new insets but a user is able to see
-                // how controls changes it's position from `0` to `nav bar height` padding.
-                // So just hide the controls to hide this visual inconsistency
-                hideControls(0, 0);
-            }
-            fragmentListener.onFullscreenStateChanged(isFullscreen());
+            // Android needs tens milliseconds to send new insets but a user is able to see
+            // how controls changes it's position from `0` to `nav bar height` padding.
+            // So just hide the controls to hide this visual inconsistency
+            hideControls(0, 0);
         }
+        fragmentListener.onFullscreenStateChanged(isFullscreen());
 
         if (!isFullscreen()) {
             titleTextView.setVisibility(View.GONE);
@@ -775,6 +747,40 @@ public class VideoPlayerImpl extends VideoPlayer
             playerCloseButton.setVisibility(View.GONE);
         }
         setupScreenRotationButton();
+    }
+
+    public void switchFromPopupToMain() {
+        if (DEBUG) {
+            Log.d(TAG, "switchFromPopupToMain() called");
+        }
+        if (!popupPlayerSelected() || simpleExoPlayer == null || getCurrentMetadata() == null) {
+            return;
+        }
+
+        setRecovery();
+        service.removeViewFromParent();
+        final Intent intent = NavigationHelper.getPlayerIntent(
+                service,
+                MainActivity.class,
+                this.getPlayQueue(),
+                this.getRepeatMode(),
+                this.getPlaybackSpeed(),
+                this.getPlaybackPitch(),
+                this.getPlaybackSkipSilence(),
+                null,
+                true,
+                !isPlaying(),
+                isMuted()
+        );
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(Constants.KEY_SERVICE_ID,
+                getCurrentMetadata().getMetadata().getServiceId());
+        intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
+        intent.putExtra(Constants.KEY_URL, getVideoUrl());
+        intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
+        intent.putExtra(VideoDetailFragment.AUTO_PLAY, true);
+        service.onDestroy();
+        context.startActivity(intent);
     }
 
     @Override
@@ -804,9 +810,12 @@ public class VideoPlayerImpl extends VideoPlayer
         } else if (v.getId() == openInBrowser.getId()) {
             onOpenInBrowserClicked();
         } else if (v.getId() == fullscreenButton.getId()) {
-            toggleFullscreen();
+            switchFromPopupToMain();
         } else if (v.getId() == screenRotationButton.getId()) {
-            if (!isVerticalVideo) {
+            // Only if it's not a vertical video or vertical video but in landscape with locked
+            // orientation a screen orientation can be changed automatically
+            if (!isVerticalVideo
+                    || (service.isLandscape() && globalScreenOrientationLocked(service))) {
                 fragmentListener.onScreenRotationButtonClicked();
             } else {
                 toggleFullscreen();
