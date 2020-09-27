@@ -12,7 +12,7 @@
     <string name="download">הורדה</string>
     <string name="search">חיפוש</string>
     <string name="settings">הגדרות</string>
-    <string name="did_you_mean">כוונתך הייתה: %1$s\?</string>
+    <string name="did_you_mean">כוונתך הייתה „%1$s”\?</string>
     <string name="share_dialog_title">שיתוף עם</string>
     <string name="choose_browser">בחירת דפדפן</string>
     <string name="screen_rotation">הטייה</string>
@@ -93,7 +93,7 @@
     <string name="app_ui_crash">היישומון או מנשק המשתמש קרסו</string>
     <string name="sorry_string">זה לא אמור היה לקרות, עמך הסליחה.</string>
     <string name="error_report_button_text">דיווח על השגיאה דרך דוא״ל</string>
-    <string name="error_snackbar_message">אירעו מספר שגיאות, עמך הסליחה.</string>
+    <string name="error_snackbar_message">משהו השתבש, עמך הסליחה.</string>
     <string name="error_snackbar_action">דיווח</string>
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
@@ -617,7 +617,7 @@
     <string name="songs">שירים</string>
     <string name="restricted_video">סרטון זה מוגבל לצפייה מגיל מסוים.
 \n
-\nכדי לצפות בו, יש להפעיל את „תוכן עם הגבלת גיל” בהגדרות.</string>
+\nיש להפעיל את „תוכן עם הגבלת גיל” בהגדרות כדי לצפות בו.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">כן, לרבות סרטונים שהפסקתי באמצע</string>
     <string name="remove_watched_popup_warning">סרטונים שלאחר שצפית בהם מופיע לרשימת הנגינה יוסרו.
 \nלהמשיך\? זאת פעולה בלתי הפיכה!</string>
@@ -634,17 +634,17 @@
     <string name="no_playlist_bookmarked_yet">אין עדיין סימניות ברשימת הנגינה</string>
     <string name="select_a_playlist">בחירת רשימת נגינה</string>
     <string name="error_report_open_github_notice">נא לבדוק אם כבר קיים דיווח על הקריסה שלך. יצירת דיווחים כפולים גוזלת מאתנו זמן שיכולנו להשקיע בתיקון התקלה עצמה.</string>
-    <string name="error_report_open_issue_button_text">דיווח על שגיאה ב־GitHub</string>
+    <string name="error_report_open_issue_button_text">דיווח ב־GitHub</string>
     <string name="copy_for_github">העתקת דוח מעוצב</string>
     <string name="search_showing_result_for">מוצגות תוצאות עבור: %s</string>
     <string name="never">אף פעם לא</string>
     <string name="wifi_only">רק עם רשת אלחוטית</string>
     <string name="autoplay_summary">להתחיל לנגן אוטומטית — %s</string>
     <string name="title_activity_play_queue">לנגן את התור</string>
-    <string name="unsupported_url_dialog_message">הכתובת שסופקה אינה מובנת ל־NewPipe. לפתוח אותה בשיטה אחרת\?</string>
+    <string name="unsupported_url_dialog_message">לא ניתן לזהות את הכתובת. לפתוח אותה ביישומון אחר\?</string>
     <string name="auto_queue_toggle">תור אוטומטי</string>
     <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
-    <string name="clear_queue_confirmation_summary">לאחר מעבר מנגן אחד למשנהו התור שלך עלול להתחלף</string>
+    <string name="clear_queue_confirmation_summary">מעבר מנגן אחד למשנהו עלול להחליף את התור שלך</string>
     <string name="clear_queue_confirmation_title">לבקש אישור לפני מחיקת התור</string>
     <string name="settings_category_notification_title">התראה</string>
     <string name="notification_action_nothing">כלום</string>
