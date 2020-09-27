@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources translatable="false">
+    <!-- App versioning -->
+    <string name="last_used_version" translatable="false">last_used_version</string>
+    <string name="last_used_preferences_version" translatable="false">last_used_preferences_version</string>
+
     <!-- Service -->
     <string-array name="service_list" translatable="false">
         <item>@string/youtube</item>
@@ -52,7 +56,7 @@
     </string-array>
 
     <string name="minimize_on_exit_key" translatable="false">minimize_on_exit_key</string>
-    <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_none_key</string>
+    <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_background_key</string>
     <string name="minimize_on_exit_none_key" translatable="false">minimize_on_exit_none_key</string>
     <string name="minimize_on_exit_background_key" translatable="false">minimize_on_exit_background_key</string>
     <string name="minimize_on_exit_popup_key" translatable="false">minimize_on_exit_popup_key</string>
@@ -114,6 +118,19 @@
         <item>144p</item>
     </string-array>
 
+    <string name="settings_notifications_compact_view_key" translatable="false">notifications_compact_view</string>
+    <string name="settings_notifications_compact_view_default_value" translatable="false">0,1,2</string>
+    <string name="scale_to_square_image_in_notifications_key" translatable="false">scale_to_square_image_in_notifications</string>
+
+    <string name="notification_slot_0_key" translatable="false">notification_slot_0_key</string>
+    <string name="notification_slot_1_key" translatable="false">notification_slot_1_key</string>
+    <string name="notification_slot_2_key" translatable="false">notification_slot_2_key</string>
+    <string name="notification_slot_3_key" translatable="false">notification_slot_3_key</string>
+    <string name="notification_slot_4_key" translatable="false">notification_slot_4_key</string>
+
+    <string name="notification_slot_compact_0_key" translatable="false">notification_slot_compact_0_key</string>
+    <string name="notification_slot_compact_1_key" translatable="false">notification_slot_compact_1_key</string>
+    <string name="notification_slot_compact_2_key" translatable="false">notification_slot_compact_2_key</string>
 
     <string name="video_mp4_key" translatable="false">video_mp4</string>
     <string name="video_webm_key" translatable="false">video_webm</string>
@@ -199,7 +216,6 @@
     <string name="playback_skip_silence_key" translatable="false">playback_skip_silence_key</string>
 
     <string name="app_language_key" translatable="false">app_language_key</string>
-    <string name="enable_lock_screen_video_thumbnail_key" translatable="false">enable_lock_screen_video_thumbnail</string>
 
     <string name="feed_update_threshold_key" translatable="false">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value" translatable="false">300</string>

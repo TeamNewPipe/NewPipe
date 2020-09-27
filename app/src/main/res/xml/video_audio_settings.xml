@@ -81,13 +81,6 @@
             android:summary="@string/show_play_with_kodi_summary"
             android:title="@string/show_play_with_kodi_title"/>
 
-        <SwitchPreferenceCompat
-            app:iconSpaceReserved="false"
-            android:defaultValue="true"
-            android:key="@string/enable_lock_screen_video_thumbnail_key"
-            android:summary="@string/enable_lock_screen_video_thumbnail_summary"
-            android:title="@string/enable_lock_screen_video_thumbnail_title"/>
-
     </PreferenceCategory>
 
     <PreferenceCategory

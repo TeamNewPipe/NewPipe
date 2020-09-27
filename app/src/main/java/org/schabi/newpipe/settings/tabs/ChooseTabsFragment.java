@@ -16,9 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
@@ -92,7 +90,8 @@ public class ChooseTabsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        updateTitle();
+        ThemeHelper.setTitleToAppCompatActivity(getActivity(),
+                getString(R.string.main_page_content));
     }
 
     @Override
@@ -135,15 +134,6 @@ public class ChooseTabsFragment extends Fragment {
     private void updateTabList() {
         tabList.clear();
         tabList.addAll(tabsManager.getTabs());
-    }
-
-    private void updateTitle() {
-        if (getActivity() instanceof AppCompatActivity) {
-            final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setTitle(R.string.main_page_content);
-            }
-        }
     }
 
     private void saveChanges() {

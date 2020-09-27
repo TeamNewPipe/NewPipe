@@ -255,19 +255,19 @@ public class MediaSourceManager {
 
         // Loading and Syncing
         switch (event.type()) {
-            case INIT:
-            case REORDER:
-            case ERROR:
-            case SELECT:
+            case INIT: case REORDER: case ERROR: case SELECT:
                 loadImmediate(); // low frequency, critical events
                 break;
-            case APPEND:
-            case REMOVE:
-            case MOVE:
-            case RECOVERY:
+            case APPEND: case REMOVE: case MOVE: case RECOVERY:
             default:
                 loadDebounced(); // high frequency or noncritical events
                 break;
+        }
+
+        // update ui and notification
+        switch (event.type()) {
+            case APPEND: case REMOVE: case MOVE: case REORDER:
+                playbackListener.onPlayQueueEdited();
         }
 
         if (!isPlayQueueReady()) {

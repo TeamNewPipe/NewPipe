@@ -57,9 +57,23 @@
     <string name="kore_not_found">Install missing Kore app?</string>
     <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Lock screen video thumbnail</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">A video thumbnail is shown on the lock screen when using the background player</string>
+
+    <string name="notification_scale_to_square_image_title">Scale thumbnail to 1:1 aspect ratio</string>
+    <string name="notification_scale_to_square_image_summary">Scale the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio (may introduce distortions)</string>
+    <string name="notification_action_0_title">First action button</string>
+    <string name="notification_action_1_title">Second action button</string>
+    <string name="notification_action_2_title">Third action button</string>
+    <string name="notification_action_3_title">Fourth action button</string>
+    <string name="notification_action_4_title">Fifth action button</string>
+    <string name="notification_actions_summary">Edit each notification action below by tapping on it.\nSelect up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
+    <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
+
+    <string name="notification_action_repeat">Repeat</string>
+    <string name="notification_action_shuffle">Shuffle</string>
+    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_action_nothing">Nothing</string>
+
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
@@ -106,7 +120,6 @@
     <string name="resume_on_audio_focus_gain_title">Resume playing</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phonecalls)</string>
     <string name="download_dialog_title">Download</string>
-    <string name="next_video_title">Next</string>
     <string name="autoplay_title">Autoplay</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
@@ -134,12 +147,12 @@
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
+    <string name="settings_category_notification_title">Notification</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
     <string name="popup_playing_append">Queued on popup player</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
-    <string name="play_btn_text">Play</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
     <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>

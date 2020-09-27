@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:layout_alignBaseline="@+id/autoplay_switch"
-        android:text="@string/next_video_title"
+        android:text="@string/exo_controls_next_description"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="12sp"
         tools:ignore="RtlHardcoded" />
