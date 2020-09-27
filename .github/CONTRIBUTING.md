@@ -13,7 +13,7 @@ You'll see exactly what is sent, be able to add your comments, and then send it.
 hasn't been reported/requested.
 * **Already fixed**? Check whether your issue/feature is already fixed/implemented.
 * **Still relevant**? Check if the issue still exists in the latest release/beta version.
-* **Can you fix it**? If you are an Android/Java developer, you are always welcome to fix an issue or implement a feature yourself. PRs welcome!
+* **Can you fix it**? If you are an Android/Java developer, you are always welcome to fix an issue or implement a feature yourself. PRs welcome! See [Code contribution](#code-contribution) for more info.
 * **Is it in English**? Issues in other languages will be ignored unless someone translates them.
 * **Is it one issue**?. Multiple issues require multiple reports, that can be linked to track their statuses.
 * **The template** Fill it out, everyone wins. Your issue has a chance of getting fixed.
