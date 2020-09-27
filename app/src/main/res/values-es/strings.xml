@@ -132,7 +132,7 @@
     <string name="filter">Filtro</string>
     <string name="refresh">Actualizar</string>
     <string name="clear">Limpiar</string>
-    <string name="popup_remember_size_pos_title">Recordar tamaño y posición del reproductor emergente</string>
+    <string name="popup_remember_size_pos_title">Recordar propiedades del reproductor emergente</string>
     <string name="popup_remember_size_pos_summary">Recordar el último tamaño y posición del reproductor emergente</string>
     <string name="settings_category_popup_title">Emergente</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
@@ -620,8 +620,8 @@
     <string name="error_report_open_issue_button_text">Reportar en Github</string>
     <string name="copy_for_github">Copiar reporte con formato</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
-    <string name="notification_action_shuffle">orden aleatorio</string>
-    <string name="notification_scale_to_square_image_title">imagen en miniatura 1:1 relación de aspecto</string>
+    <string name="notification_action_shuffle">Orden aleatorio</string>
+    <string name="notification_scale_to_square_image_title">Escalar miniatura a relación de aspecto 1:1</string>
     <string name="never">Nunca</string>
     <string name="wifi_only">Solo en WiFi</string>
     <string name="autoplay_summary">Comenzar reproducción automáticamente — %s</string>
@@ -629,4 +629,19 @@
     <string name="settings_category_notification_title">Notificación</string>
     <string name="unsupported_url_dialog_message">No se pudo reconocer la URL. ¿Abrir con otra aplicación\?</string>
     <string name="auto_queue_toggle">Poner en cola</string>
+    <string name="clear_queue_confirmation_summary">Cambiar de un reproductor a otro puede reemplazar la cola de reproducción</string>
+    <string name="clear_queue_confirmation_description">La cola de reproducción activa será reemplazada</string>
+    <string name="clear_queue_confirmation_title">Pedir confirmación antes de eliminar una cola</string>
+    <string name="notification_action_nothing">Nada</string>
+    <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
+    <string name="notification_action_repeat">Repetir</string>
+    <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
+    <string name="notification_actions_summary">Edita cada una de las notificaciones de acción de abajo pulsando sobre ella.
+\nSelecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación de la derecha.</string>
+    <string name="notification_action_4_title">Botón de quinta acción</string>
+    <string name="notification_action_3_title">Botón de cuarta acción</string>
+    <string name="notification_action_2_title">Botón de tercera acción</string>
+    <string name="notification_action_1_title">Botón de segunda acción</string>
+    <string name="notification_action_0_title">Botón de primera acción</string>
+    <string name="notification_scale_to_square_image_summary">Escalar la miniatura del vídeo mostrada en la notificación de relación de aspecto 16:9 a 1:1 (puede ocasionar distorsiones)</string>
 </resources>
