@@ -309,6 +309,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
         titleTextView.setSelected(true);
         channelTextView.setSelected(true);
+
+        // Prevent hiding of bottom sheet via swipe inside queue
+        this.itemsList.setNestedScrollingEnabled(false);
     }
 
     @Override
