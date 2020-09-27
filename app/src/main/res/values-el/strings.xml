@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s προβολές</string>
-    <string name="upload_date_text">Ανέβηκε στις %1$s</string>
-    <string name="no_player_found">Δεν βρέθηκε πρόγραμμα αναπαραγωγής. Εγκατάσταση του VLC;</string>
+    <string name="upload_date_text">Δημοσιεύθηκε στις %1$s</string>
+    <string name="no_player_found">Δε βρέθηκε πρόγραμμα αναπαραγωγής. Εγκατάσταση του VLC;</string>
     <string name="install">Εγκατάσταση</string>
     <string name="cancel">Ακύρωση</string>
     <string name="open_in_browser">Άνοιγμα στο πρόγραμμα περιήγησης ιστού</string>
@@ -10,9 +10,9 @@
     <string name="download">Λήψη</string>
     <string name="search">Αναζήτηση</string>
     <string name="settings">Ρυθμίσεις</string>
-    <string name="did_you_mean">Μήπως εννοείτε: %1$s\?</string>
+    <string name="did_you_mean">Μήπως εννοείτε \"%1$s\";</string>
     <string name="share_dialog_title">Κοινοποίηση με</string>
-    <string name="choose_browser">Επιλέξτε browser</string>
+    <string name="choose_browser">Επιλέξτε πρόγραμμα περιήγησης</string>
     <string name="screen_rotation">περιστροφή</string>
     <string name="use_external_video_player_title">Χρήση εξωτερικής εφαρμογής αναπαραγωγής βίντεο</string>
     <string name="use_external_audio_player_title">Χρήση εξωτερικής συσκευής αναπαραγωγής ήχου</string>
@@ -37,7 +37,7 @@
     <string name="show_next_and_similar_title">Εμφάνιση \"Επόμενου\" και \"Σχετικών\" βίντεο</string>
     <string name="unsupported_url">Δεν υποστηρίζεται η διεύθυνση URL</string>
     <string name="content_language_title">Προεπιλεγμένη γλώσσα περιεχομένου</string>
-    <string name="settings_category_video_audio_title">Βίντεο &amp; Ήχος</string>
+    <string name="settings_category_video_audio_title">Βίντεο και ήχος</string>
     <string name="settings_category_appearance_title">Εμφάνιση</string>
     <string name="settings_category_other_title">Άλλα</string>
     <string name="background_player_playing_toast">Αναπαραγωγή στο παρασκήνιο</string>
@@ -56,7 +56,7 @@
     <string name="open_in_popup_mode">Άνοιγμα σε αναδυόμενο παράθυρο</string>
     <string name="subscribe_button_title">Εγγραφή</string>
     <string name="subscribed_button_title">Εγγεγραμμένος</string>
-    <string name="show_higher_resolutions_summary">Μόνο μερικές συσκευές υποστηρίζουν αναπαραγωγή 2K/4K βίντεο</string>
+    <string name="show_higher_resolutions_summary">Μόνο μερικές συσκευές μπορούν να παίξουν 2K/4K βίντεο</string>
     <string name="black_theme_title">Μαύρο</string>
     <string name="show_search_suggestions_title">Προτάσεις αναζήτησης</string>
     <string name="enable_search_history_title">Ιστορικό αναζήτησης</string>
@@ -91,10 +91,10 @@
     <string name="show_info">Εμφάνιση πληροφοριών</string>
     <string name="main_bg_subtitle">Πατήστε \"Αναζήτηση\" για να ξεκινήσετε</string>
     <string name="no_player_found_toast">Δε βρέθηκε πρόγραμμα αναπαραγωγής ροής δεδομένων (μπορείτε να εγκαταστήσετε το VLC για να κάνετε αναπαραγωγή).</string>
-    <string name="controls_download_desc">Κατέβασμα του αρχείου ροής</string>
+    <string name="controls_download_desc">Λήψη του αρχείου ροής</string>
     <string name="use_external_video_player_summary">Αφαίρεση του ήχου από κάποιες αναλύσεις</string>
     <string name="popup_mode_share_menu_title">Λειτουργία αναδυόμενου παραθύρου</string>
-    <string name="channel_unsubscribed">Έγινε διαγραφή από το κανάλι</string>
+    <string name="channel_unsubscribed">Απεγγραφή από το κανάλι</string>
     <string name="subscription_change_failed">Αδύνατη η αλλαγή της εγγραφής</string>
     <string name="subscription_update_failed">Αδύνατη η ενημέρωση της εγγραφής</string>
     <string name="tab_main">Κύριο</string>
@@ -109,13 +109,13 @@
     <string name="default_popup_resolution_title">Προεπιλεγμένη ανάλυση αναδυόμενου παραθύρου</string>
     <string name="show_higher_resolutions_title">Εμφάνιση υψηλότερων αναλύσεων</string>
     <string name="default_video_format_title">Προεπιλεγμένη μορφή βίντεο</string>
-    <string name="popup_remember_size_pos_title">Ενθύμιση του μεγέθους και της θέσης του αναδυόμενου παραθύρου</string>
+    <string name="popup_remember_size_pos_title">Ενθύμιση τις ιδιότητες του αναδυόμενου παραθύρου</string>
     <string name="popup_remember_size_pos_summary">Ενθύμιση του τελευταίου μεγέθους και θέσης του παραθύρου</string>
-    <string name="use_inexact_seek_title">Χρήση γρήγορης μη-ακριβούς αναζήτησης</string>
-    <string name="use_inexact_seek_summary">Η μη ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια. Δε λειτουργεί για διαστήματα των 5, 15 ή 25 δευτερολέπτων.</string>
-    <string name="download_thumbnail_title">Φόρτωση thumbnails</string>
-    <string name="download_thumbnail_summary">Με την απενεργοποίηση δεν φορτώνονται οι μικρογραφίες, χρησιμοποιώντας λιγότερα δεδομένα και μνήμη. Οι αλλαγές σβήνουν τις προσωρινά αποθηκευμένες εικόνες στην μνήμη.</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Εκκαθαρίστηκε η προσωρινή μνήμη εικονών</string>
+    <string name="use_inexact_seek_title">Χρήση γρήγορης ανακριβούς αναζήτησης</string>
+    <string name="use_inexact_seek_summary">Η μην ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια. Δε λειτουργεί για διαστήματα των 5, 15 ή 25 δευτερολέπτων.</string>
+    <string name="download_thumbnail_title">Φόρτωση μικρογραφιών</string>
+    <string name="download_thumbnail_summary">Με την απενεργοποίηση δε φορτώνονται οι μικρογραφίες, χρησιμοποιώντας λιγότερα δεδομένα και μνήμη. Οι αλλαγές σβήνουν τις προσωρινά αποθηκευμένες εικόνες στη μνήμη και στον δίσκο.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Εκκαθαρίστηκε η προσωρινή μνήμη εικόνων</string>
     <string name="metadata_cache_wipe_title">Εκκαθάριση προσωρινά αποθηκευμένων μεταδεδομένων</string>
     <string name="metadata_cache_wipe_summary">Αφαίρεση όλων των προσωρινά αποθηκευμένων δεδομένων ιστοσελίδων</string>
     <string name="metadata_cache_wipe_complete_notice">Η προσωρινή μνήμη μεταδεδομένων εκκαθαρίστηκε</string>
@@ -123,7 +123,7 @@
     <string name="auto_queue_summary">Αυτόματη πρόσθεση μιας σχετικής ροής όταν αναπαράγεται η προηγούμενη ροή σε μια μη-επαναλαμβανόμενη ουρά</string>
     <string name="player_gesture_controls_title">Έλεγχος αναπαραγωγής με χειρονομίες</string>
     <string name="player_gesture_controls_summary">Χρήση χειρονομιών για τον έλεγχο της φωτεινότητας και της έντασης ήχου</string>
-    <string name="show_search_suggestions_summary">Εμφάνιση υποδείξεων ενώ κάνετε αναζήτηση</string>
+    <string name="show_search_suggestions_summary">Εμφάνιση προτάσεων ενώ κάνετε αναζήτηση</string>
     <string name="enable_search_history_summary">Αποθήκευση αναζητήσεων στη συσκευή</string>
     <string name="enable_watch_history_title">Προβολή Ιστορικού</string>
     <string name="enable_watch_history_summary">Κρατήστε ιστορικό των βίντεο που έχετε δει</string>
@@ -135,7 +135,7 @@
     <string name="service_title">Υπηρεσία</string>
     <string name="settings_category_player_title">Συσκευή Αναπαραγωγής</string>
     <string name="settings_category_player_behavior_title">Συμπεριφορά</string>
-    <string name="settings_category_history_title">Ιστορικό &amp; Προσωρινή Αποθήκευση</string>
+    <string name="settings_category_history_title">Ιστορικό και προσωρινή αποθήκευση</string>
     <string name="settings_category_popup_title">Αναδυόμενο παράθυρο</string>
     <string name="settings_category_debug_title">Απασφαλμάτωση</string>
     <string name="popup_playing_toast">Αναπαραγωγή σε αναδυόμενο παράθυρο</string>
@@ -205,7 +205,7 @@
     <string name="no_streams_available_download">Δεν υπάρχουν διαθέσιμες ροές για λήψη</string>
     <string name="sorry_string">Λυπούμαστε, αυτό δεν έπρεπε να έχει συμβεί.</string>
     <string name="error_report_button_text">Αναφορά αυτού του σφάλματος μέσω ηλεκτρονικού ταχυδρομείου</string>
-    <string name="error_snackbar_message">Λυπούμαστε, συνέβησαν κάποια σφάλματα.</string>
+    <string name="error_snackbar_message">Συγγνώμη, κάτι πήγε στραβά.</string>
     <string name="info_labels">Τι:\\nΑίτημα:\\nΓλώσσα περιεχομένου:\\nΧώρα περιεχομένου:\\nΓλώσσα εφαρμογής:\\nΥπηρεσία:\\nΏρα GMT:\\nΠακέτο:\\nΈκδοση:\\nΈκδοση λειτουργικού συστήματος:</string>
     <string name="user_report">Αναφορά χρήστη</string>
     <string name="search_no_results">Κανένα αποτέλεσμα</string>
@@ -320,7 +320,7 @@
     <string name="drawer_close">Κλείσιμο Συρταριού</string>
     <string name="drawer_header_action_paceholder_text">Κάτι θα παιχτεί εδω σύντομα ;D</string>
     <string name="top_50">Τοπ 50</string>
-    <string name="new_and_hot">Καινούρια &amp; δημοφιλή</string>
+    <string name="new_and_hot">Καινούρια και δημοφιλή</string>
     <string name="preferred_open_action_settings_title">Προτιμώμενη ενέργεια ανοίγματος</string>
     <string name="preferred_open_action_settings_summary">Προεπιλεγμένη ενέργεια για το άνοιγμα περιεχομένου — %s</string>
     <string name="video_player">Συσκευή αναπαραγωγής βίντεο</string>
@@ -527,4 +527,55 @@
     <string name="detail_sub_channel_thumbnail_view_description">Μικρογραφία avatar του καναλιού</string>
     <string name="channel_created_by">Δημιουργήθηκε από %s</string>
     <string name="playlist_page_summary">Σελίδα λίστας αναπαραγωγής</string>
+    <string name="video_detail_by">Από %s</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Διαθέσιμο σε ορισμένες υπηρεσίες, είναι συνήθως πολύ πιο γρήγορο, αλλά μπορεί να επιστρέψει έναν περιορισμένο αριθμό αντικειμένων και συχνά ελλιπείς πληροφορίες (π.χ. χωρίς διάρκεια, τύπο αντικειμένου, χωρίς ζωντανή κατάσταση).</string>
+    <string name="feed_use_dedicated_fetch_method_title">Λήψη από ειδική ροή όταν είναι διαθέσιμη</string>
+    <string name="feed_update_threshold_option_always_update">Να γίνεται πάντα ενημέρωση</string>
+    <string name="feed_update_threshold_summary">Ώρα μετά την τελευταία ενημέρωση πριν από μια συνδρομή θεωρείται ξεπερασμένη — %s</string>
+    <string name="feed_update_threshold_title">Όριο ενημέρωσης ροής</string>
+    <string name="settings_category_feed_title">Ροή</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Εμφάνιση μόνο μη ομαδοποιημένων συνδρομών</string>
+    <string name="feed_create_new_group_button_title">Νέα</string>
+    <string name="feed_group_dialog_delete_message">Θέλετε να διαγράψετε αυτήν την ομάδα;</string>
+    <string name="feed_group_dialog_empty_name">Κενό όνομα ομάδας</string>
+    <string name="feed_group_dialog_empty_selection">Δεν έχει επιλεγεί συνδρομή</string>
+    <string name="feed_group_dialog_select_subscriptions">Επιλέξτε συνδρομές</string>
+    <string name="mute">Σίγαση</string>
+    <string name="title_activity_play_queue">Αναπαραγωγή ουράς</string>
+    <string name="no_playlist_bookmarked_yet">Δεν υπάρχουν σελιδοδείκτες λίστας αναπαραγωγής ακόμα</string>
+    <string name="select_a_playlist">Επιλέξτε μια λίστα αναπαραγωγής</string>
+    <string name="recaptcha_done_button">Τέλος</string>
+    <string name="subtitle_activity_recaptcha">Πατήστε \"Τέλος\" όταν επιλυθεί</string>
+    <string name="infinite_videos">∞ βίντεο</string>
+    <string name="more_than_100_videos">100+ βίντεο</string>
+    <string name="error_report_open_issue_button_text">Αναφορά στο GitHub</string>
+    <string name="copy_for_github">Αντιγραφή μορφοποιημένης αναφοράς</string>
+    <string name="permission_display_over_apps">Δώστε άδεια για προβολή πάνω από άλλες εφαρμογές</string>
+    <string name="help">Βοήθεια</string>
+    <string name="artists">Καλλιτέχνες</string>
+    <string name="albums">Άλμπουμ</string>
+    <string name="songs">Τραγούδια</string>
+    <string name="restricted_video">Αυτό το βίντεο έχει περιορισμό ηλικίας.
+\n
+\nΕνεργοποιήστε το \"Περιεχόμενο περιορισμένης ηλικίας\" στις ρυθμίσεις εάν θέλετε να το δείτε.</string>
+    <string name="youtube_restricted_mode_enabled_title">Λειτουργία περιορισμένης πρόσβασης στο YouTube</string>
+    <string name="settings_category_notification_title">Ειδοποίηση</string>
+    <string name="unsupported_url_dialog_message">Δεν ήταν δυνατή η αναγνώριση της διεύθυνσης URL. Άνοιγμα με άλλη εφαρμογή;</string>
+    <string name="auto_queue_toggle">Αυτόματη ουρά</string>
+    <string name="clear_queue_confirmation_description">Η ουρά ενεργού παίκτη θα αντικατασταθεί</string>
+    <string name="clear_queue_confirmation_summary">Η εναλλαγή από έναν παίκτη σε άλλο μπορεί να αντικαταστήσει την ουρά σας</string>
+    <string name="clear_queue_confirmation_title">Ζητήστε επιβεβαίωση πριν από την εκκαθάριση μιας ουράς</string>
+    <string name="notification_action_nothing">Τίποτα</string>
+    <string name="notification_action_shuffle">Ανάμιξη</string>
+    <string name="notification_action_repeat">Επανάληψη</string>
+    <string name="notification_actions_at_most_three">Μπορείτε να επιλέξετε το πολύ τρεις ενέργειες για εμφάνιση στη σύντομη ειδοποίηση!</string>
+    <string name="notification_actions_summary">Επεξεργαστείτε κάθε ενέργεια ειδοποίησης παρακάτω πατώντας πάνω της.
+\nΕπιλέξτε έως και τρεις από αυτές για να εμφανίζονται στη σύντομη ειδοποίηση, χρησιμοποιώντας τα πλαίσια ελέγχου στα δεξιά.</string>
+    <string name="notification_action_4_title">Κουμπί πέμπτης ενέργειας</string>
+    <string name="notification_action_3_title">Κουμπί τέταρτης ενέργειας</string>
+    <string name="notification_action_2_title">Κουμπί τρίτης ενέργειας</string>
+    <string name="notification_action_1_title">Κουμπί δεύτερης ενέργειας</string>
+    <string name="notification_action_0_title">Κουμπί πρώτης ενέργειας</string>
+    <string name="notification_scale_to_square_image_summary">Κλιμάκωση της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1 (μπορεί να προκαλέσει στρεβλώσεις)</string>
+    <string name="notification_scale_to_square_image_title">Κλιμάκωση μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
 </resources>
