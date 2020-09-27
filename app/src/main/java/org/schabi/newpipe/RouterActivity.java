@@ -268,7 +268,7 @@ public class RouterActivity extends AppCompatActivity {
 
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
         final LinearLayout rootLayout = (LinearLayout) inflater.inflate(
-                R.layout.preferred_player_dialog_view, null, false);
+                R.layout.single_choice_dialog_view, null, false);
         final RadioGroup radioGroup = rootLayout.findViewById(android.R.id.list);
 
         final DialogInterface.OnClickListener dialogButtonsClickListener = (dialog, which) -> {

@@ -19,6 +19,7 @@
 
 package org.schabi.newpipe.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import androidx.preference.PreferenceManager;
@@ -26,7 +27,10 @@ import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
@@ -230,5 +234,21 @@ public final class ThemeHelper {
         final String defaultTheme = context.getResources().getString(R.string.default_theme_value);
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(themeKey, defaultTheme);
+    }
+
+    /**
+     * Sets the title to the activity, if the activity is an {@link AppCompatActivity} and has an
+     * action bar.
+     * @param activity the activity to set the title of
+     * @param title the title to set to the activity
+     */
+    public static void setTitleToAppCompatActivity(@Nullable final Activity activity,
+                                                   final CharSequence title) {
+        if (activity instanceof AppCompatActivity) {
+            final ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle(title);
+            }
+        }
     }
 }
