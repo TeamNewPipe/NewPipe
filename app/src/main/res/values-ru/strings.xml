@@ -109,7 +109,7 @@
     <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
-    <string name="popup_remember_size_pos_title">Восстановить окно</string>
+    <string name="popup_remember_size_pos_title">Запомнить параметры всплывающего окна</string>
     <string name="player_gesture_controls_summary">Изменять яркость и громкость жестами</string>
     <string name="settings_category_popup_title">Всплывающее окно</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
@@ -628,4 +628,13 @@
     <string name="select_a_playlist">Выберите плейлист</string>
     <string name="error_report_open_issue_button_text">Сообщить об ошибке на Github</string>
     <string name="copy_for_github">Копировать отформатированный отчет</string>
+    <string name="never">Никогда</string>
+    <string name="wifi_only">Только по WiFi</string>
+    <string name="autoplay_summary">Автоматический запуск воспроизведения — %s</string>
+    <string name="title_activity_play_queue">Очередь воспроизведения</string>
+    <string name="unsupported_url_dialog_message">NewPipe не может распознать предоставленный URL. Открыть другим способом\?</string>
+    <string name="auto_queue_toggle">Авто-очередь</string>
+    <string name="clear_queue_confirmation_description">Очередь от активного плеера будет заменена</string>
+    <string name="clear_queue_confirmation_title">Запросить подтверждение перед очисткой очереди</string>
+    <string name="clear_queue_confirmation_summary">После переключения с одного плеера на другой ваша очередь может быть заменена</string>
 </resources>

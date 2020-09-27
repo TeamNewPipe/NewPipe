@@ -131,7 +131,7 @@
     <string name="clear">Limpar</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_background_title">Segundo plano</string>
-    <string name="popup_remember_size_pos_title">Lembrar tamanho e posição do popup</string>
+    <string name="popup_remember_size_pos_title">Lembrar propriedades do popup</string>
     <string name="popup_remember_size_pos_summary">Lembra do último tamanho e posição usado no popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
@@ -617,4 +617,13 @@
     <string name="error_report_open_github_notice">Verifique se já existe um assunto discutindo essa falha. Criar duplicatas tirará um tempo que poderíamos gastar corrigindo o bug real.</string>
     <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
     <string name="copy_for_github">Copiar relatório formatado</string>
+    <string name="never">Nunca</string>
+    <string name="wifi_only">Apenas no WiFi</string>
+    <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
+    <string name="title_activity_play_queue">Reproduzir fila</string>
+    <string name="unsupported_url_dialog_message">NewPipe não conseguiu reconhecer o url fornecido. Abrir com outro método\?</string>
+    <string name="auto_queue_toggle">Pôr na fila automaticamente</string>
+    <string name="clear_queue_confirmation_description">A fila do player ativo será substituída</string>
+    <string name="clear_queue_confirmation_summary">Depois de mudar de um player para outro, sua fila pode ser substituída</string>
+    <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
 </resources>

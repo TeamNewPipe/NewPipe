@@ -45,7 +45,7 @@
     <string name="light_theme_title">בהיר</string>
     <string name="dark_theme_title">כהה</string>
     <string name="black_theme_title">שחור</string>
-    <string name="popup_remember_size_pos_title">שמירת מיקומו וגודלו של החלון הצף</string>
+    <string name="popup_remember_size_pos_title">שמירת מאפייני החלון הצף</string>
     <string name="popup_remember_size_pos_summary">שמירת המיקום והגודל האחרונים של החלון הצף</string>
     <string name="player_gesture_controls_title">מחוות מגע לשליטה בנגן</string>
     <string name="player_gesture_controls_summary">שימוש במחוות כדי לשלוט בבהירות ובעצמת השמע של הנגן</string>
@@ -637,4 +637,13 @@
     <string name="error_report_open_issue_button_text">דיווח על שגיאה ב־GitHub</string>
     <string name="copy_for_github">העתקת דוח מעוצב</string>
     <string name="search_showing_result_for">מוצגות תוצאות עבור: %s</string>
+    <string name="never">אף פעם לא</string>
+    <string name="wifi_only">רק עם רשת אלחוטית</string>
+    <string name="autoplay_summary">להתחיל לנגן אוטומטית — %s</string>
+    <string name="title_activity_play_queue">לנגן את התור</string>
+    <string name="unsupported_url_dialog_message">הכתובת שסופקה אינה מובנת ל־NewPipe. לפתוח אותה בשיטה אחרת\?</string>
+    <string name="auto_queue_toggle">תור אוטומטי</string>
+    <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
+    <string name="clear_queue_confirmation_summary">לאחר מעבר מנגן אחד למשנהו התור שלך עלול להתחלף</string>
+    <string name="clear_queue_confirmation_title">לבקש אישור לפני מחיקת התור</string>
 </resources>
