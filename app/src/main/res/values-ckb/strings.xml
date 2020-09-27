@@ -609,4 +609,36 @@
     <string name="charset_letters_and_digits">پیت و ژمارەکان</string>
     <string name="default_content_country_title">وڵاتی بنەڕەتی</string>
     <string name="updates_setting_title">نوێکارییەکان</string>
+    <string name="playlist_page_summary">پەڕەی لیستی پەخشکردن</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">تەنها ئابوونە گروپنەکراوەکان پیشان بدە</string>
+    <string name="never">هەرگیز</string>
+    <string name="wifi_only">تەنها لەسەر وای فای</string>
+    <string name="autoplay_summary">دەست کردن بە پەخشکردنەوە خودکار — %s</string>
+    <string name="title_activity_play_queue">پەخشکردنی ڕیز</string>
+    <string name="no_playlist_bookmarked_yet">هێشتا هیچ نیشانەیەکی لیستی پەخشکردن نییە</string>
+    <string name="select_a_playlist">لیستی پەخشکردن دیاریبکە</string>
+    <string name="error_report_open_github_notice">تکایە بپشکنە کە ئایا کێشەێک کە باس لە پێکدادانەکەت دەکات پێش ئێستا بوونی هەیە. کاتێک بلیتی دووبارە دروست دەکەیت، کاتمان لێ وەرئەگریت کە دەتوانین لەگەڵ چاککردنی ئەو گێلە ڕاستەقینەدا بەسەری ببەین.</string>
+    <string name="error_report_open_issue_button_text">هەڵەی ڕاپۆرت لەسەر گیت هاوب</string>
+    <string name="copy_for_github">کۆپیکردنی ڕاپۆرتی چوارچێوەبەندیکراو</string>
+    <string name="settings_category_notification_title">ئاگانامە</string>
+    <string name="unsupported_url_dialog_message">NewPipe نەیتوانی URL ی دابینکراو بناسێتەوە. بە میتۆدێکی تر بیکەیتەوە؟</string>
+    <string name="auto_queue_toggle">ڕیزکردنی-خۆیی</string>
+    <string name="clear_queue_confirmation_description">ڕیز لە لێدەرێکی چالاک ەوە جێگۆڕکێی بۆ دەکرێت</string>
+    <string name="clear_queue_confirmation_summary">دوای گۆڕین لە یاریزانێک بۆ ڕیزێکی تر لەوانەیە جێگۆڕکێی پێ بکرێت</string>
+    <string name="clear_queue_confirmation_title">داوای دڵنیابوون بکە پێش ئەوەی ڕیزێک بسڕینەوە</string>
+    <string name="notification_action_nothing">هیچ</string>
+    <string name="notification_action_buffering">نێوانگری</string>
+    <string name="notification_action_shuffle">تێکەڵکردن</string>
+    <string name="notification_action_repeat">دووبارە</string>
+    <string name="notification_actions_at_most_three">دەتوانیت لە زۆربەی سێ چالاکی دیاریبکەیت بۆ نیشاندانی لە ئاگاداری پەستراودا!</string>
+    <string name="notification_actions_summary">دەستکاری هەر کردارێکی ئاگانامەکانی خوارەوە بکە بە لێدانی لەسەری.
+\nهەڵبژێرە تا سێ لەوان بۆ نیشان دراو لە ئاگاداری پەستێنراو بە بەکارهێنانی چێکبۆکسەکان لە ڕاست.</string>
+    <string name="notification_action_4_title">دوگمەی پێنجەم چالاک بکە</string>
+    <string name="notification_action_3_title">دوگمەی چوارەم چالاک بکە</string>
+    <string name="notification_action_2_title">دوگمەی سێیەم چالاک بکە</string>
+    <string name="notification_action_1_title">دوگمەی دووەم چالاک بکە</string>
+    <string name="notification_action_0_title">دوگمەی یەکەم چالاک بکە</string>
+    <string name="notification_scale_to_square_image_summary">پێوانەی وێنە بچووککراوە ڤیدیۆکە بکە کە لە ئاگانامەکان لە 16:9 بۆ 1:1 ڕێژەی ڕوو (لەوانەیە شێواندنەکان بنوسێت)</string>
+    <string name="notification_scale_to_square_image_title">پێوانەی بچووکبچووک بۆ 1:1 ڕێژەی ڕوو</string>
+    <string name="search_showing_result_for">پیشاندانی ئەنجامەکان بۆ: %s</string>
 </resources>
