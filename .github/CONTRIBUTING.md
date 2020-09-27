@@ -23,8 +23,7 @@ You may be asked to register at our [Sentry](https://sentry.schabi.org) instance
 
 ## Translation
 
-* NewPipe is translated via [Weblate](https://hosted.weblate.org/projects/newpipe/strings/).
-Log in there with your GitHub account, or register.
+* NewPipe is translated via [Weblate](https://hosted.weblate.org/projects/newpipe/strings/). Log in there with your GitHub account, or register.
 * Add the language you want to translate if it is not there already: see [How to add a new language](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-add-a-new-language-to-NewPipe) in the wiki.
 
 ## Code contribution
