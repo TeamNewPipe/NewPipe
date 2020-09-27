@@ -312,10 +312,10 @@
     <string name="play_queue_audio_settings">Ρυθμίσεις ήχου</string>
     <string name="hold_to_append">Πιέστε για να προστεθεί στην ουρά</string>
     <string name="enqueue_on_background">Προσθήκη στη λίστα αναπαραγωγής του παρασκηνίου</string>
-    <string name="enqueue_on_popup">Προσθήκη στη λίστα αναπαραγωγής νέου Αναδυόμενου παραθύρου</string>
+    <string name="enqueue_on_popup">Προσθήκη στη λίστα αναπαραγωγής αναδυόμενου παραθύρου</string>
     <string name="start_here_on_main">Εκκίνηση Αναπαραγωγής εδώ</string>
     <string name="start_here_on_background">Εκκίνηση αναπαραγωγής στο παρασκήνιο</string>
-    <string name="start_here_on_popup">Εκκίνηση αναπαραγωγής στο Αναδυόμενο Παράθυρο</string>
+    <string name="start_here_on_popup">Εκκίνηση αναπαραγωγής σε ένα αναδυόμενο παράθυρο</string>
     <string name="drawer_open">Άνοιγμα Συρταριού</string>
     <string name="drawer_close">Κλείσιμο Συρταριού</string>
     <string name="drawer_header_action_paceholder_text">Κάτι θα παιχτεί εδω σύντομα ;D</string>
@@ -425,7 +425,7 @@
     <string name="grid">Πλέγμα</string>
     <string name="auto">Αυτόματα</string>
     <string name="switch_view">Αλλαγή τρόπου προβολής</string>
-    <string name="app_update_notification_content_title">Νεά Έκδοση NewPipe Διαθέσιμη!</string>
+    <string name="app_update_notification_content_title">Νέα έκδοση του NewPipe είναι διαθέσιμη!</string>
     <string name="app_update_notification_content_text">Πατήστε για λήψη</string>
     <string name="missions_header_finished">Ολοκληρώθηκε</string>
     <string name="missions_header_pending">Εκκρεμεί</string>
@@ -507,7 +507,7 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Η γλώσσα θα αλλάξει μόλις θα επανεκκινηθεί η εφαρμογή.</string>
     <string name="default_kiosk_page_summary">Προεπιλεγμένο περίπτερο</string>
-    <string name="peertube_instance_add_https_only">Υποστηρίζονται μόνο διευθύνσεις URL HTTPS</string>
+    <string name="peertube_instance_add_https_only">Υποστηρίζονται μόνο HTTPS URLς</string>
     <string name="local">Τοπικό</string>
     <string name="recently_added">Προστέθηκε πρόσφατα</string>
     <string name="playlist_no_uploader">Δημιουργήθηκε αυτόματα (δεν βρέθηκε χρήστης μεταφόρτωσης)</string>
