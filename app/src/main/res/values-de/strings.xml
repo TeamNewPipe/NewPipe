@@ -632,4 +632,8 @@
     <string name="notification_action_0_title">Erste Aktionstaste</string>
     <string name="notification_scale_to_square_image_summary">Skaliert das in der Benachrichtigung angezeigte Vorschaubild von 16:9 auf ein 1:1 Seitenverhältnis (kann zu Verzerrungen führen)</string>
     <string name="notification_scale_to_square_image_title">Vorschaubild auf 1:1 Seitenverhältnis skalieren</string>
+    <string name="notification_action_shuffle">Zufällig</string>
+    <string name="notification_action_buffering">Puffern</string>
+    <string name="notification_action_repeat">Wiederholen</string>
+    <string name="notification_action_nothing">Nichts</string>
 </resources>
