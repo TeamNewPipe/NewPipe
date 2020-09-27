@@ -125,6 +125,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
+import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -404,7 +405,7 @@ public class VideoDetailFragment
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
             public void onChange(final boolean selfChange) {
-                if (activity != null && !PlayerHelper.globalScreenOrientationLocked(activity)) {
+                if (activity != null && !globalScreenOrientationLocked(activity)) {
                     activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                 }
             }
@@ -1844,9 +1845,6 @@ public class VideoDetailFragment
         setOverlayPlayPauseImage();
 
         switch (state) {
-            case BasePlayer.STATE_COMPLETED:
-                restoreDefaultOrientation();
-                break;
             case BasePlayer.STATE_PLAYING:
                 if (positionView.getAlpha() != 1.0f
                         && player.getPlayQueue() != null
@@ -1956,13 +1954,15 @@ public class VideoDetailFragment
         // In tablet user experience will be better if screen will not be rotated
         // from landscape to portrait every time.
         // Just turn on fullscreen mode in landscape orientation
-        if (isLandscape() && DeviceUtils.isTablet(activity)) {
+        // or portrait & unlocked global orientation
+        if (DeviceUtils.isTablet(activity)
+                && (!globalScreenOrientationLocked(activity) || isLandscape())) {
             player.toggleFullscreen();
             return;
         }
 
         final int newOrientation = isLandscape()
-                ? ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
 
         activity.setRequestedOrientation(newOrientation);
@@ -2105,9 +2105,8 @@ public class VideoDetailFragment
         }
 
         player.checkLandscape();
-        final boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(activity);
         // Let's give a user time to look at video information page if video is not playing
-        if (orientationLocked && !player.isPlaying()) {
+        if (globalScreenOrientationLocked(activity) && !player.isPlaying()) {
             player.onPlay();
         }
     }

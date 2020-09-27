@@ -822,7 +822,9 @@ public class VideoPlayerImpl extends VideoPlayer
             showHideShadow(true, DEFAULT_CONTROLS_DURATION, 0);
             animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
                 if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                    if (v.getId() == playPauseButton.getId()) {
+                    if (v.getId() == playPauseButton.getId()
+                            // Hide controls in fullscreen immediately
+                            || (v.getId() == screenRotationButton.getId() && isFullscreen)) {
                         hideControls(0, 0);
                     } else {
                         hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
@@ -941,9 +943,8 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void setupScreenRotationButton() {
         final boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(service);
-        final boolean tabletInLandscape = DeviceUtils.isTablet(service) && service.isLandscape();
         final boolean showButton = videoPlayerSelected()
-                && (orientationLocked || isVerticalVideo || tabletInLandscape);
+                && (orientationLocked || isVerticalVideo || DeviceUtils.isTablet(service));
         screenRotationButton.setVisibility(showButton ? View.VISIBLE : View.GONE);
         screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(service, isFullscreen()
                 ? R.drawable.ic_fullscreen_exit_white_24dp
@@ -1176,6 +1177,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
         service.resetNotification();
         service.updateNotification(R.drawable.ic_replay_white_24dp);
+        if (isFullscreen) {
+            toggleFullscreen();
+        }
 
         super.onCompleted();
     }
