@@ -11,7 +11,7 @@
     <string name="download">İndir</string>
     <string name="search">Ara</string>
     <string name="settings">Ayarlar</string>
-    <string name="did_you_mean">Bunu mu demek istediniz: %1$s\?</string>
+    <string name="did_you_mean">Bunu mu demek istediniz: \"%1$s\"\?</string>
     <string name="share_dialog_title">Şununla paylaş</string>
     <string name="choose_browser">Tarayıcı seçin</string>
     <string name="screen_rotation">döndürme</string>
@@ -65,7 +65,7 @@
     <string name="app_ui_crash">Uygulama/kullanıcı arayüzü çöktü</string>
     <string name="sorry_string">Üzgünüz, bu olmamalıydı.</string>
     <string name="error_report_button_text">Bu hatayı e-posta aracılığıyla bildir</string>
-    <string name="error_snackbar_message">Üzgünüz, bazı hatalar oluştu.</string>
+    <string name="error_snackbar_message">Üzgünüz, bir şeyler yanlış gitti.</string>
     <string name="error_snackbar_action">Bildir</string>
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
@@ -227,7 +227,7 @@
     <string name="kiosk">Kiosk</string>
     <string name="trending">Popüler</string>
     <string name="top_50">En iyi 50</string>
-    <string name="new_and_hot">En yeniler ve popülerler</string>
+    <string name="new_and_hot">Yeniler ve popülerler</string>
     <string name="play_queue_remove">Kaldır</string>
     <string name="play_queue_stream_detail">Ayrıntılar</string>
     <string name="play_queue_audio_settings">Ses Ayarları</string>
@@ -597,7 +597,7 @@
     <string name="songs">Şarkılar</string>
     <string name="restricted_video">Bu video yaş kısıtlamalı.
 \n
-\nGörüntülemek istiyorsanız, ayarlarda \"Yaş kısıtlamalı içerik\" seçeneğini etkinleştirin.</string>
+\nGörmek istiyorsanız ayarlarda \"Yaş kısıtlamalı içerik\" seçeneğini açın.</string>
     <string name="remove_watched_popup_warning">Oynatma listesine eklendikten önce ve sonra izlenen videolar kaldırılacak.
 \nEmin misiniz\? Bu geri döndürülemez!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Evet ve kısmen izlenmiş videolar</string>
@@ -612,7 +612,7 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">Yalnızca kümelenmemiş abonelikleri göster</string>
     <string name="playlist_page_summary">Oynatma listesi sayfası</string>
     <string name="select_a_playlist">Oynatma listesi seç</string>
-    <string name="error_report_open_issue_button_text">Hatayı GitHub\'da bildir</string>
+    <string name="error_report_open_issue_button_text">GitHub\'da bildir</string>
     <string name="copy_for_github">Biçimlendirilmiş raporu kopyala</string>
     <string name="search_showing_result_for">Sonuçlar gösteriliyor: %s</string>
     <string name="error_report_open_github_notice">Lütfen yaşadığınız hatayı tartışan bildirimin daha önce oluşturulup oluşturulmadığını gözden geçirin. Yineleyen hata bildirimi oluşturarak, gerçek hatayı gidermekte harcadığımız zamanı uzatırsınız.</string>
@@ -621,10 +621,10 @@
     <string name="wifi_only">Yalnızca WiFi\'de</string>
     <string name="autoplay_summary">Oynatmayı otomatik olarak başlat — %s</string>
     <string name="title_activity_play_queue">Oynatma kuyruğu</string>
-    <string name="unsupported_url_dialog_message">NewPipe sağlanan URL\'yi tanıyamadı. Başka bir yöntemle açılsın mı\?</string>
+    <string name="unsupported_url_dialog_message">URL tanınamadı. Başka bir uygulamayla açılsın mı\?</string>
     <string name="auto_queue_toggle">Otomatik kuyruğa ekle</string>
     <string name="clear_queue_confirmation_description">Etkin oynatıcının kuyruğu değiştirilecek</string>
-    <string name="clear_queue_confirmation_summary">Bir oynatıcıdan diğerine geçtikten sonra kuyruğunuz değiştirilebilir</string>
+    <string name="clear_queue_confirmation_summary">Bir oynatıcıdan diğerine geçmek kuyruğunuzu değiştirebilir</string>
     <string name="clear_queue_confirmation_title">Bir kuyruğu temizlemeden önce onay iste</string>
     <string name="settings_category_notification_title">Bildirim</string>
     <string name="notification_action_nothing">Hiçbir şey</string>
