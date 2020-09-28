@@ -48,6 +48,7 @@
     <dimen name="player_main_buttons_padding">6dp</dimen>
     <dimen name="player_popup_buttons_padding">1dp</dimen>
     <dimen name="player_main_buttons_min_width">40dp</dimen>
+    <dimen name="player_notification_thumbnail_width">200dp</dimen>
 
     <!-- Miscellaneous -->
     <dimen name="popup_default_width">180dp</dimen>

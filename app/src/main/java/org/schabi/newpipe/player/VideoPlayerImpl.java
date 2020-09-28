@@ -2107,4 +2107,8 @@ public class VideoPlayerImpl extends VideoPlayer
     public View getClosingOverlayView() {
         return closingOverlayView;
     }
+
+    public boolean isVerticalVideo() {
+        return isVerticalVideo;
+    }
 }
