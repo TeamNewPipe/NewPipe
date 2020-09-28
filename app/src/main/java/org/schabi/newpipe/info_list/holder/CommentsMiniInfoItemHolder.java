@@ -107,7 +107,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         preferences = PreferenceManager.getDefaultSharedPreferences(itemBuilder.getContext());
 
         itemBuilder.getImageLoader()
-                .displayImage(infoItem.getThumbnailUrl(),
+                .displayImage(item.getUploaderAvatarUrl(),
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
