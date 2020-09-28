@@ -74,7 +74,7 @@
     <string name="could_not_get_stream">No se pudo obtener ninguna transmisión</string>
     <string name="sorry_string">Lo siento, esto no debería haber ocurrido.</string>
     <string name="error_report_button_text">Informar de este error vía email</string>
-    <string name="error_snackbar_message">Lo siento, ocurrieron algunos errores.</string>
+    <string name="error_snackbar_message">Lo siento, algo salió mal.</string>
     <string name="error_snackbar_action">Informar</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Qué ha ocurrido:</string>
@@ -189,7 +189,7 @@
     <string name="notification_channel_description">Notificaciones de reproductores en segundo plano o emergentes de NewPipe</string>
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Funcionamiento</string>
-    <string name="settings_category_history_title">Historial y memoria caché</string>
+    <string name="settings_category_history_title">Historial y caché</string>
     <string name="playlist">Lista de reproducción</string>
     <string name="undo">Deshacer</string>
     <string name="search_no_results">No hay resultados</string>
@@ -240,7 +240,7 @@
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Reproducir en modo emergente</string>
     <string name="show_hold_to_append_title">Mostrar consejo \"Mantener presionado para añadir\"</string>
-    <string name="new_and_hot">Novedades</string>
+    <string name="new_and_hot">Nuevo y lo mejor</string>
     <string name="hold_to_append">Mantener presionado para agregar a la cola</string>
     <string name="donation_title">Donar</string>
     <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haga una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
@@ -600,7 +600,7 @@
     <string name="songs">Canciones</string>
     <string name="restricted_video">Este video tiene restricción por edades.
 \n
-\nSi quieres verlo, habilita \"Contenido restringido por edades\" en los ajustes.</string>
+\nHabilita \"Contenido restringido por edades\" en los ajustes si quieres verlo.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y también videos vistos parcialmente</string>
     <string name="remove_watched_popup_warning">Los videos que ya se hayan visto luego de agregados a la lista de reproducción, serán eliminados.
 \n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
@@ -617,9 +617,16 @@
     <string name="no_playlist_bookmarked_yet">Sin marcadores de lista de reproducción aún</string>
     <string name="select_a_playlist">Seleccione una lista de reproducción</string>
     <string name="error_report_open_github_notice">Por favor revise si ya existe una discusión sobre su problema. Cuando se crean entradas duplicadas, toma tiempo de nosotros que podríamos usar para arreglar tal problema.</string>
-    <string name="error_report_open_issue_button_text">Reportar error en Github</string>
+    <string name="error_report_open_issue_button_text">Reportar en Github</string>
     <string name="copy_for_github">Copiar reporte con formato</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
     <string name="notification_action_shuffle">orden aleatorio</string>
     <string name="notification_scale_to_square_image_title">imagen en miniatura 1:1 relación de aspecto</string>
+    <string name="never">Nunca</string>
+    <string name="wifi_only">Solo en WiFi</string>
+    <string name="autoplay_summary">Comenzar reproducción automáticamente — %s</string>
+    <string name="title_activity_play_queue">Reproducir cola</string>
+    <string name="settings_category_notification_title">Notificación</string>
+    <string name="unsupported_url_dialog_message">No se pudo reconocer la URL. ¿Abrir con otra aplicación\?</string>
+    <string name="auto_queue_toggle">Poner en cola</string>
 </resources>
