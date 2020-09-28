@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/notificationActionTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ellipsize="end"
@@ -36,11 +36,11 @@
         app:layout_constraintStart_toEndOf="@+id/notificationActionIcon"
         app:layout_constraintTop_toTopOf="@+id/notificationActionIcon"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="@string/notification_action_1_title" />
+        tools:text="Second action button | Lorem ipsum dolor sit amet, consectetur adipisci elit" />
 
     <TextView
         android:id="@+id/notificationActionSummary"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
@@ -49,7 +49,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/notificationActionTitle"
         app:layout_constraintTop_toBottomOf="@+id/notificationActionTitle"
-        tools:text="@string/notification_action_play_pause_buffering_value" />
+        tools:text="Play • Pause • Buffering | Lorem ipsum dolor sit amet, consectetur adipisci elit" />
 
     <View
         android:id="@+id/notificationActionClickableArea"
