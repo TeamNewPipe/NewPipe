@@ -126,4 +126,10 @@ public class LocalPlaylistManager {
                 }).subscribeOn(Schedulers.io());
     }
 
+    public Maybe<Boolean> hasPlaylists() {
+        return playlistTable.getCount()
+                .firstElement()
+                .map(count -> count > 0)
+                .subscribeOn(Schedulers.io());
+    }
 }

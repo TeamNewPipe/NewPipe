@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.dialog;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
@@ -37,6 +39,27 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     private LocalItemListAdapter playlistAdapter;
 
     private CompositeDisposable playlistDisposables = new CompositeDisposable();
+
+    public static Disposable checkPlaylists(
+            final Context context, final Invoker onSuccess, final Invoker onFailed
+    ) {
+        final LocalPlaylistManager playlistManager =
+                new LocalPlaylistManager(NewPipeDatabase.getInstance(context));
+
+        return playlistManager.hasPlaylists()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(hasPlaylists -> {
+                    if (hasPlaylists) {
+                        onSuccess.invoke();
+                    } else {
+                        onFailed.invoke();
+                    }
+                });
+    }
+
+    public interface Invoker {
+        void invoke();
+    }
 
     public static PlaylistAppendDialog fromStreamInfo(final StreamInfo info) {
         final PlaylistAppendDialog dialog = new PlaylistAppendDialog();
@@ -136,11 +159,6 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     }
 
     private void onPlaylistsReceived(@NonNull final List<PlaylistMetadataEntry> playlists) {
-        if (playlists.isEmpty()) {
-            openCreatePlaylistDialog();
-            return;
-        }
-
         if (playlistAdapter != null && playlistRecyclerView != null) {
             playlistAdapter.clearStreamItemList();
             playlistAdapter.addItems(playlists);

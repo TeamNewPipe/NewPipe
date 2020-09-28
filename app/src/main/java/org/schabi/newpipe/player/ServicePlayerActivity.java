@@ -33,6 +33,7 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -571,8 +572,13 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void openPlaylistAppendDialog(final List<PlayQueueItem> playlist) {
-        PlaylistAppendDialog.fromPlayQueueItems(playlist)
-                .show(getSupportFragmentManager(), getTag());
+        final PlaylistAppendDialog d = PlaylistAppendDialog.fromPlayQueueItems(playlist);
+
+        PlaylistAppendDialog.checkPlaylists(getApplicationContext(),
+            () -> d.show(getSupportFragmentManager(), getTag()),
+            () -> PlaylistCreationDialog.newInstance(d)
+                    .show(getSupportFragmentManager(), getTag()
+        ));
     }
 
     ////////////////////////////////////////////////////////////////////////////
