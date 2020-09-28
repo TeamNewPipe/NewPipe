@@ -9,7 +9,7 @@
     <string name="download">Stáhnout</string>
     <string name="search">Hledat</string>
     <string name="settings">Nastavení</string>
-    <string name="did_you_mean">Mysleli jste: %1$s\?</string>
+    <string name="did_you_mean">Mysleli jste \"%1$s\"\?</string>
     <string name="share_dialog_title">Sdílet s</string>
     <string name="choose_browser">Vybrat prohlížeč</string>
     <string name="screen_rotation">otočení</string>
@@ -87,7 +87,7 @@
     <string name="error_snackbar_action">Nahlásit</string>
     <string name="sorry_string">Omlouváme se, tohle se nemělo stát.</string>
     <string name="error_report_button_text">Nahlásit tuto chybu přes e-mail</string>
-    <string name="error_snackbar_message">Omlouváme se, nastaly určité chyby.</string>
+    <string name="error_snackbar_message">Omlouváme se, něco se pokazilo.</string>
     <string name="could_not_load_image">Nepodařilo se nahrát obrázek</string>
     <string name="app_ui_crash">Aplikace/UI spadlo</string>
     <string name="live_streams_not_supported">Živé streamy zatím nejsou podporovány</string>
@@ -233,7 +233,7 @@
     <string name="kiosk">Kiosek</string>
     <string name="trending">Trendy</string>
     <string name="top_50">Top 50</string>
-    <string name="new_and_hot">Nové &amp; hot</string>
+    <string name="new_and_hot">Nové a žhavé</string>
     <string name="play_queue_remove">Odebrat</string>
     <string name="play_queue_stream_detail">Podrobnosti</string>
     <string name="play_queue_audio_settings">Nastavení zvuku</string>
@@ -607,7 +607,7 @@
     <string name="songs">Písně</string>
     <string name="restricted_video">Toto je video s věkovým omezením.
 \n
-\nPokud ho chcete vidět, povolte \"Věkově omezený obsah\" v \"Nastavení\".</string>
+\nPokud ho chcete vidět, povolte \"Věkově omezený obsah\" v Nastavení.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Ano, i zčásti shlédnutá videa</string>
     <string name="remove_watched_popup_title">Odstranit shlédnutá videa\?</string>
     <string name="remove_watched">Odstranit shlédnutá</string>
@@ -616,24 +616,39 @@
     <string name="show_original_time_ago_summary">Původní texty služeb budou viditelné u položek streamů</string>
     <string name="show_original_time_ago_title">U položek ukázat původní čas \"před\"</string>
     <string name="youtube_restricted_mode_enabled_title">Omezený režim YouTube</string>
-    <string name="video_detail_by">%s</string>
-    <string name="channel_created_by">Založil %s</string>
+    <string name="video_detail_by">Od %s</string>
+    <string name="channel_created_by">Vytvořil %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura avatara kanálu</string>
     <string name="playlist_page_summary">Strana playlistů</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Ukázat jen neseskupené objednávky</string>
     <string name="no_playlist_bookmarked_yet">Zatím žádné záložky playlistů</string>
     <string name="select_a_playlist">Vybrat playlist</string>
     <string name="error_report_open_github_notice">Prosím, ověřte, zda chyba již existuje. Pokud založíte duplikovaný tiket, obíráte nás o čas, který bychom mohli věnovat řešení skutečných chyb.</string>
-    <string name="error_report_open_issue_button_text">Podat hlášení na GitHubu</string>
+    <string name="error_report_open_issue_button_text">Nahlásit na GitHubu</string>
     <string name="copy_for_github">Zkopírovat formátované hlášení</string>
     <string name="search_showing_result_for">Ukazuji výsledky pro: %s</string>
     <string name="never">Nikdy</string>
     <string name="wifi_only">Pouze na WiFi</string>
     <string name="autoplay_summary">Zahájit playback automaticky — %s</string>
     <string name="title_activity_play_queue">Přehrát frontu</string>
-    <string name="unsupported_url_dialog_message">NewPipe nemohla rozpoznat zadané URL. Otevřít jinou metodou\?</string>
+    <string name="unsupported_url_dialog_message">Nelze rozpoznat zadané URL. Otevřít pomocí jiné aplikace\?</string>
     <string name="auto_queue_toggle">Auto-fronta</string>
-    <string name="clear_queue_confirmation_description">Fronta aktivního přehrávače bude vyměněna</string>
-    <string name="clear_queue_confirmation_summary">Po přechodu z jednoho přehrávače do druhého může dojít k výměně fronty</string>
+    <string name="clear_queue_confirmation_description">Fronta aktivního přehrávače bude smazána</string>
+    <string name="clear_queue_confirmation_summary">Při přechodu z jednoho přehrávače do druhého může dojít k smazání fronty</string>
     <string name="clear_queue_confirmation_title">Žádat potvrzení před vyklizením fronty</string>
+    <string name="settings_category_notification_title">Oznámení</string>
+    <string name="notification_action_nothing">Nic</string>
+    <string name="notification_action_buffering">Bufferovat</string>
+    <string name="notification_action_shuffle">Promíchat</string>
+    <string name="notification_action_repeat">Opakovat</string>
+    <string name="notification_actions_at_most_three">Do kompaktního oznámení lze vybrat nejvíce tři akce!</string>
+    <string name="notification_actions_summary">Upravte každou akci notifikace níže poklepáním.
+\nPomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení.</string>
+    <string name="notification_action_4_title">Páté akční tlačítko</string>
+    <string name="notification_action_3_title">Čtvrté akční tlačítko</string>
+    <string name="notification_action_2_title">Třetí akční tlačítko</string>
+    <string name="notification_action_1_title">Druhé akční tlačítko</string>
+    <string name="notification_action_0_title">První akční tlačítko</string>
+    <string name="notification_scale_to_square_image_summary">Zmenšit miniaturu videa zobrazenou v oznámení z poměru stran 16: 9 na 1: 1 (může způsobit zkreslení)</string>
+    <string name="notification_scale_to_square_image_title">Změnit poměr stran miniatury na 1:1</string>
 </resources>
