@@ -359,8 +359,8 @@
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o tempo livre deles para proporcionar-lhe a melhor experiência. Retribua para ajudar os programadores a tornarem o NewPipe ainda melhor enquanto desfruta de um café.</string>
     <string name="give_back">Retribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
-    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, o aplicativo não coleta nenhum dado sem seu consentimento. 
-\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e salvo quando você envia um relatório de erros.</string>
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, a app não coleta nenhum dado sem o seu consentimento.
+\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e guardado quando envia um relatório de erros.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
     <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
     <string name="app_license">NewPipe é um software livre \"copyleft\": pode utilizar, estudar, partilhar e melhorar a aplicação. Especificamente, pode redistribuir e/ou modificar a aplicação nos termos da Licença Pública Geral GNU, conforme publicada pela Fundação de Software Livre, tanto a versão 3 da licença ou (por sua opção) qualquer versão superior.</string>
