@@ -616,4 +616,18 @@
     <string name="clear_queue_confirmation_description">来自活跃播放器的队列将被替换</string>
     <string name="clear_queue_confirmation_summary">从一个播放器切换到另一个播放器后，你的队列可能会被替换</string>
     <string name="clear_queue_confirmation_title">清除队列之前请求确认</string>
+    <string name="notification_action_nothing">无</string>
+    <string name="notification_action_buffering">缓冲</string>
+    <string name="notification_action_shuffle">随机播放</string>
+    <string name="notification_action_repeat">重复</string>
+    <string name="notification_actions_at_most_three">您最多可以选择三个操作显示在紧凑通知中!</string>
+    <string name="notification_actions_summary">点击来编辑下面的每个通知动作。
+\n通过使用右边的复选框，选择其中最多三个显示在紧凑通知中。</string>
+    <string name="notification_action_4_title">第五操作按钮</string>
+    <string name="notification_action_3_title">第四操作按钮</string>
+    <string name="notification_action_2_title">第三操作按钮</string>
+    <string name="notification_action_1_title">第二操作按钮</string>
+    <string name="notification_action_0_title">首选操作按钮</string>
+    <string name="notification_scale_to_square_image_summary">将通知中显示的视频缩略图长宽比从16:9缩放到1:1(可能会导致失真)</string>
+    <string name="notification_scale_to_square_image_title">缩放缩略图到1:1的长宽比</string>
 </resources>
