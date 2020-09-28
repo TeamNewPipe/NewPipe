@@ -18,7 +18,7 @@ public class ImageDownloader extends BaseImageDownloader {
     private final SharedPreferences preferences;
     private final String downloadThumbnailKey;
 
-    public ImageDownloader(final Context context) {
+    private ImageDownloader(final Context context) {
         super(context);
         this.resources = context.getResources();
         this.preferences = PreferenceManager.getDefaultSharedPreferences(context);

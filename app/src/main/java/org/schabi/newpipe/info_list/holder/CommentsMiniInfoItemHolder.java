@@ -1,13 +1,18 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
+
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -31,7 +36,12 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private static final int COMMENT_DEFAULT_LINES = 2;
     private static final int COMMENT_EXPANDED_LINES = 1000;
     private static final Pattern PATTERN = Pattern.compile("(\\d+:)?(\\d+)?:(\\d+)");
+    private final String downloadThumbnailKey;
+    private final int commentHorizontalPadding;
+    private final int commentVerticalPadding;
 
+    private SharedPreferences preferences = null;
+    private final RelativeLayout itemRoot;
     public final CircleImageView itemThumbnailView;
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
@@ -65,11 +75,20 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                                final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
 
+        itemRoot = itemView.findViewById(R.id.itemRoot);
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
         itemDislikesCountView = itemView.findViewById(R.id.detail_thumbs_down_count_view);
         itemPublishedTime = itemView.findViewById(R.id.itemPublishedTime);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
+
+        downloadThumbnailKey = infoItemBuilder.getContext().
+                getString(R.string.download_thumbnail_key);
+
+        commentHorizontalPadding = (int) infoItemBuilder.getContext()
+                .getResources().getDimension(R.dimen.comments_horizontal_padding);
+        commentVerticalPadding = (int) infoItemBuilder.getContext()
+                .getResources().getDimension(R.dimen.comments_vertical_padding);
     }
 
     public CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder,
@@ -85,10 +104,23 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(itemBuilder.getContext());
+
         itemBuilder.getImageLoader()
-                .displayImage(null,
+                .displayImage(infoItem.getThumbnailUrl(),
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
+
+        if (preferences.getBoolean(downloadThumbnailKey, true)) {
+            itemThumbnailView.setVisibility(View.VISIBLE);
+            itemRoot.setPadding(commentVerticalPadding, commentVerticalPadding,
+                    commentVerticalPadding, commentVerticalPadding);
+        } else {
+            itemThumbnailView.setVisibility(View.GONE);
+            itemRoot.setPadding(commentHorizontalPadding, commentVerticalPadding,
+                    commentHorizontalPadding, commentVerticalPadding);
+        }
+
 
         itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
 
