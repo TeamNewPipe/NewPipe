@@ -8,8 +8,7 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:paddingHorizontal="@dimen/comments_horizontal_padding"
-    android:paddingVertical="@dimen/comments_vertical_padding">
+    android:padding="@dimen/comments_vertical_padding">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/itemThumbnailView"
@@ -21,7 +20,6 @@
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
         android:contentDescription="@string/list_thumbnail_view_description"
         android:focusable="false"
-        android:visibility="gone"
         android:src="@drawable/buddy"
         tools:ignore="RtlHardcoded" />
 

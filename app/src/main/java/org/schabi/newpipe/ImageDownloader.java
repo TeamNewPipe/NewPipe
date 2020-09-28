@@ -25,7 +25,7 @@ public class ImageDownloader extends BaseImageDownloader {
         this.downloadThumbnailKey = context.getString(R.string.download_thumbnail_key);
     }
 
-    private boolean isDownloadingThumbnail() {
+    public boolean isDownloadingThumbnail() {
         return preferences.getBoolean(downloadThumbnailKey, true);
     }
 
