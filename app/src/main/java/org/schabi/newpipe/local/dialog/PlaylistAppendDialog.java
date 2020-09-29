@@ -40,8 +40,8 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
     private CompositeDisposable playlistDisposables = new CompositeDisposable();
 
-    public static Disposable checkPlaylists(
-            final Context context, final Invoker onSuccess, final Invoker onFailed
+    public static Disposable onPlaylistFound(
+            final Context context, final Runnable onSuccess, final Runnable onFailed
     ) {
         final LocalPlaylistManager playlistManager =
                 new LocalPlaylistManager(NewPipeDatabase.getInstance(context));
@@ -50,15 +50,11 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(hasPlaylists -> {
                     if (hasPlaylists) {
-                        onSuccess.invoke();
+                        onSuccess.run();
                     } else {
-                        onFailed.invoke();
+                        onFailed.run();
                     }
                 });
-    }
-
-    public interface Invoker {
-        void invoke();
     }
 
     public static PlaylistAppendDialog fromStreamInfo(final StreamInfo info) {

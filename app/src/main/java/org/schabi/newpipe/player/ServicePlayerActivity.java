@@ -574,7 +574,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void openPlaylistAppendDialog(final List<PlayQueueItem> playlist) {
         final PlaylistAppendDialog d = PlaylistAppendDialog.fromPlayQueueItems(playlist);
 
-        PlaylistAppendDialog.checkPlaylists(getApplicationContext(),
+        PlaylistAppendDialog.onPlaylistFound(getApplicationContext(),
             () -> d.show(getSupportFragmentManager(), getTag()),
             () -> PlaylistCreationDialog.newInstance(d)
                     .show(getSupportFragmentManager(), getTag()

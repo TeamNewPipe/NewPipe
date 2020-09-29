@@ -486,7 +486,7 @@ public class VideoDetailFragment
 
                     final PlaylistAppendDialog d = PlaylistAppendDialog.fromStreamInfo(currentInfo);
                     disposables.add(
-                        PlaylistAppendDialog.checkPlaylists(getContext(),
+                        PlaylistAppendDialog.onPlaylistFound(getContext(),
                             () -> d.show(getFM(), TAG),
                             () -> PlaylistCreationDialog.newInstance(d).show(getFM(), TAG)
                         )

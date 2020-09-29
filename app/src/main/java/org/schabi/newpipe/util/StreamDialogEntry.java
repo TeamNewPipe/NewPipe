@@ -62,7 +62,7 @@ public enum StreamDialogEntry {
             final PlaylistAppendDialog d = PlaylistAppendDialog
                     .fromStreamInfoItems(Collections.singletonList(item));
 
-            PlaylistAppendDialog.checkPlaylists(fragment.getContext(),
+            PlaylistAppendDialog.onPlaylistFound(fragment.getContext(),
                 () -> d.show(fragment.getFragmentManager(), "StreamDialogEntry@append_playlist"),
                 () -> PlaylistCreationDialog.newInstance(d)
                         .show(fragment.getFragmentManager(), "StreamDialogEntry@create_playlist")
