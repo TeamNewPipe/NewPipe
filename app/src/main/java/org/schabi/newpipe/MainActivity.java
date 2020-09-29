@@ -460,7 +460,9 @@ public class MainActivity extends AppCompatActivity {
         if (!isChangingConfigurations()) {
             StateSaver.clearStateFiles();
         }
-        unregisterReceiver(broadcastReceiver);
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+        }
     }
 
     @Override
@@ -811,8 +813,20 @@ public class MainActivity extends AppCompatActivity {
                     final Fragment fragmentPlayer = getSupportFragmentManager()
                             .findFragmentById(R.id.fragment_player_holder);
                     if (fragmentPlayer == null) {
+                        /*
+                         * We still don't have a fragment attached to the activity.
+                         * It can happen when a user started popup or background players
+                         * without opening a stream inside the fragment.
+                         * Adding it in a collapsed state (only mini player will be visible)
+                         * */
                         NavigationHelper.showMiniPlayer(getSupportFragmentManager());
                     }
+                    /*
+                    * At this point the player is added 100%, we can unregister.
+                    * Other actions are useless since the fragment will not be removed after that
+                     * */
+                    unregisterReceiver(broadcastReceiver);
+                    broadcastReceiver = null;
                 }
             }
         };

@@ -392,7 +392,7 @@ public final class NavigationHelper {
     }
 
     public static void showMiniPlayer(final FragmentManager fragmentManager) {
-        final VideoDetailFragment instance = VideoDetailFragment.getInstanceCollapsed();
+        final VideoDetailFragment instance = VideoDetailFragment.getInstanceInCollapsedState();
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_player_holder, instance)
                 .runOnCommit(() -> sendPlayerStartedEvent(instance.requireActivity()))

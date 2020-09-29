@@ -304,7 +304,7 @@ public class VideoDetailFragment
         return instance;
     }
 
-    public static VideoDetailFragment getInstanceCollapsed() {
+    public static VideoDetailFragment getInstanceInCollapsedState() {
         final VideoDetailFragment instance = new VideoDetailFragment();
         instance.bottomSheetState = BottomSheetBehavior.STATE_COLLAPSED;
         return instance;
