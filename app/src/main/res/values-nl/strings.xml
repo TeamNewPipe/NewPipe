@@ -631,8 +631,7 @@
     <string name="notification_action_shuffle">Shuffle</string>
     <string name="notification_action_repeat">Herhaal</string>
     <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
-    <string name="notification_actions_summary">Pas elke notificatieactie hieronder aan door er op te tikken.
-\nSelecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectievakjes aan de rechterkant.</string>
+    <string name="notification_actions_summary">Pas elke notificatieactie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectievakjes aan de rechterkant.</string>
     <string name="notification_action_4_title">Vijfde actieknop</string>
     <string name="notification_action_3_title">Vierde actieknop</string>
     <string name="notification_action_2_title">Derde actieknop</string>

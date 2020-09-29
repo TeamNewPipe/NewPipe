@@ -672,8 +672,7 @@
     <string name="notification_action_shuffle">خلط</string>
     <string name="notification_action_repeat">كرر</string>
     <string name="notification_actions_at_most_three">يمكنك تحديد ثلاثة إجراءات كحد أقصى لإظهارها في الإشعار المضغوط!</string>
-    <string name="notification_actions_summary">قم بتحرير كل اشعار أدناه من خلال النقر عليه.
-\nحدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين.</string>
+    <string name="notification_actions_summary">قم بتحرير كل اشعار أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين.</string>
     <string name="notification_action_4_title">زر الإجراء الخامس</string>
     <string name="notification_action_3_title">زر الإجراء الرابع</string>
     <string name="notification_action_2_title">زر الإجراء الثالث</string>

@@ -643,8 +643,7 @@
     <string name="notification_action_shuffle">Перемешивать</string>
     <string name="notification_action_repeat">Повторение</string>
     <string name="notification_actions_at_most_three">Вы можете выбрать не более трёх действий для отображения в компактном уведомлении!</string>
-    <string name="notification_actions_summary">Отредактируйте каждое действие уведомления ниже, нажав на него.
-\nВыберите до трёх из них, которые будут отображаться в компактном уведомлении, с помощью флажков справа.</string>
+    <string name="notification_actions_summary">Отредактируйте каждое действие уведомления ниже, нажав на него. Выберите до трёх из них, которые будут отображаться в компактном уведомлении, с помощью флажков справа.</string>
     <string name="notification_action_4_title">Кнопка пятого действия</string>
     <string name="notification_action_3_title">Кнопка четвёртого действия</string>
     <string name="notification_action_2_title">Кнопка третьего действия</string>

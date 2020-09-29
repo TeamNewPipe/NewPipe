@@ -642,8 +642,7 @@
     <string name="notification_action_shuffle">Promíchat</string>
     <string name="notification_action_repeat">Opakovat</string>
     <string name="notification_actions_at_most_three">Do kompaktního oznámení lze vybrat nejvíce tři akce!</string>
-    <string name="notification_actions_summary">Upravte každou akci notifikace níže poklepáním.
-\nPomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení.</string>
+    <string name="notification_actions_summary">Upravte každou akci notifikace níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení.</string>
     <string name="notification_action_4_title">Páté akční tlačítko</string>
     <string name="notification_action_3_title">Čtvrté akční tlačítko</string>
     <string name="notification_action_2_title">Třetí akční tlačítko</string>

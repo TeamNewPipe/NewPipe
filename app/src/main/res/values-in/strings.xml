@@ -622,8 +622,7 @@
     <string name="notification_action_shuffle">Shuffle</string>
     <string name="notification_action_repeat">Ulangi</string>
     <string name="notification_actions_at_most_three">Anda bisa memilih hingga tiga tindakan untuk ditampilkan dalam notifikasi ringkas!</string>
-    <string name="notification_actions_summary">Sentuh untuk menyunting tindakan notifikasi di bawah.
-\nPilih hingga tiga diantaranya untuk ditampilkan dalam notifikasi ringkas dengan menggunakan kotak centang di sebelah kanan.</string>
+    <string name="notification_actions_summary">Sentuh untuk menyunting tindakan notifikasi di bawah. Pilih hingga tiga diantaranya untuk ditampilkan dalam notifikasi ringkas dengan menggunakan kotak centang di sebelah kanan.</string>
     <string name="notification_action_4_title">Tombol tindakan kelima</string>
     <string name="notification_action_3_title">Tombol tindakan keempat</string>
     <string name="notification_action_2_title">Tombol tindakan ketiga</string>

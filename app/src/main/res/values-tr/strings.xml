@@ -632,8 +632,7 @@
     <string name="notification_action_shuffle">Karıştır</string>
     <string name="notification_action_repeat">Tekrarla</string>
     <string name="notification_actions_at_most_three">Sıkı bildirimde gösterilecek en fazla üç eylem seçebilirsiniz!</string>
-    <string name="notification_actions_summary">Aşağıdaki her bildirim eylemini üzerine dokunarak düzenleyin.
-\nSağdaki onay kutularını kullanarak sıkı bildirimde gösterilmek üzere en fazla üç tanesini seçin.</string>
+    <string name="notification_actions_summary">Aşağıdaki her bildirim eylemini üzerine dokunarak düzenleyin. Sağdaki onay kutularını kullanarak sıkı bildirimde gösterilmek üzere en fazla üç tanesini seçin.</string>
     <string name="notification_action_4_title">Beşinci eylem düğmesi</string>
     <string name="notification_action_3_title">Dördüncü eylem düğmesi</string>
     <string name="notification_action_2_title">Üçüncü eylem düğmesi</string>

@@ -642,8 +642,7 @@
     <string name="notification_action_shuffle">Náhodné</string>
     <string name="notification_action_repeat">Opakovať</string>
     <string name="notification_actions_at_most_three">V kompaktnom oznámení môžete vybrať najviac tri akcie, ktoré sa majú zobraziť!</string>
-    <string name="notification_actions_summary">Všetky nasledovné upozornenia môžete upraviť poklepaním.
-\nTri z nich môžete vybrať a tieto sa budú zobrazovať v kompaktnom oznámení.</string>
+    <string name="notification_actions_summary">Všetky nasledovné upozornenia môžete upraviť poklepaním. Tri z nich môžete vybrať a tieto sa budú zobrazovať v kompaktnom oznámení.</string>
     <string name="notification_action_4_title">Akčné tlačidlo päť</string>
     <string name="notification_action_3_title">Akčné tlačidlo štyri</string>
     <string name="notification_action_2_title">Akčné tlačidlo tri</string>

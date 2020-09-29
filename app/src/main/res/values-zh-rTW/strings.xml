@@ -622,8 +622,7 @@
     <string name="notification_action_shuffle">隨機播放</string>
     <string name="notification_action_repeat">重複</string>
     <string name="notification_actions_at_most_three">您可以選取最多三個動作來顯示在簡潔通知中！</string>
-    <string name="notification_actions_summary">透過點擊下方的每一個通知來編輯它。
-\n使用右側的勾選框，最多可以選取三個在簡潔通知中顯示。</string>
+    <string name="notification_actions_summary">透過點擊下方的每一個通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示。</string>
     <string name="notification_action_4_title">第五動作按鈕</string>
     <string name="notification_action_3_title">第四動作按鈕</string>
     <string name="notification_action_2_title">第三動作按鈕</string>

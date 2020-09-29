@@ -632,8 +632,7 @@
     <string name="notification_action_shuffle">Lire aléatoirement</string>
     <string name="notification_action_repeat">Répéter</string>
     <string name="notification_actions_at_most_three">Vous pouvez sélectionner au maximum trois actions à faire figurer dans la notification compacte !</string>
-    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus.
-\nSélectionnez jusqu\'à trois d\'entre elles pour les faire apparaitre dans la notification compacte en utilisant les cases à cocher à droite.</string>
+    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus. Sélectionnez jusqu\'à trois d\'entre elles pour les faire apparaitre dans la notification compacte en utilisant les cases à cocher à droite.</string>
     <string name="notification_action_4_title">Cinquième bouton d\'action</string>
     <string name="notification_action_3_title">Quatrième bouton d\'action</string>
     <string name="notification_action_2_title">Troisième bouton d\'action</string>

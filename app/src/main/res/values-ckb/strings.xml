@@ -631,8 +631,7 @@
     <string name="notification_action_shuffle">تێکەڵکردن</string>
     <string name="notification_action_repeat">دووبارە</string>
     <string name="notification_actions_at_most_three">دەتوانیت لە زۆربەی سێ چالاکی دیاریبکەیت بۆ نیشاندانی لە ئاگاداری پەستراودا!</string>
-    <string name="notification_actions_summary">دەستکاری هەر کردارێکی ئاگانامەکانی خوارەوە بکە بە لێدانی لەسەری.
-\nهەڵبژێرە تا سێ لەوان بۆ نیشان دراو لە ئاگاداری پەستێنراو بە بەکارهێنانی چێکبۆکسەکان لە ڕاست.</string>
+    <string name="notification_actions_summary">دەستکاری هەر کردارێکی ئاگانامەکانی خوارەوە بکە بە لێدانی لەسەری. هەڵبژێرە تا سێ لەوان بۆ نیشان دراو لە ئاگاداری پەستێنراو بە بەکارهێنانی چێکبۆکسەکان لە ڕاست.</string>
     <string name="notification_action_4_title">دوگمەی پێنجەم چالاک بکە</string>
     <string name="notification_action_3_title">دوگمەی چوارەم چالاک بکە</string>
     <string name="notification_action_2_title">دوگمەی سێیەم چالاک بکە</string>

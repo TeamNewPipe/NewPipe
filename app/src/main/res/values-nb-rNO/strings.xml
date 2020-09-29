@@ -613,8 +613,7 @@
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil vises for elementer i strømmen</string>
     <string name="error_report_open_github_notice">Sjekk hvorvidt en feilrapport som omhandler problemet ditt allerede finnes. Når du oppretter dupliserte feilrapporter stjeler du tid fra prosjektet som kunne blitt brukt til å fikse feilen.</string>
     <string name="notification_actions_at_most_three">Du kan velge opptil tre handlinger å vise i kompaktmerknaden.</string>
-    <string name="notification_actions_summary">Rediger hver merknadshandling nedenfor ved å trykke på den.
-\nVelg opptil tre av dem for visning i den kompakte merknaden ved å bruke avkryssningsboksene til høyre.</string>
+    <string name="notification_actions_summary">Rediger hver merknadshandling nedenfor ved å trykke på den. Velg opptil tre av dem for visning i den kompakte merknaden ved å bruke avkryssningsboksene til høyre.</string>
     <string name="notification_scale_to_square_image_summary">Skaler video-miniatyrbildet vist i merknaden fra 16:9 til 1:1-aspekt (forvrengning kan oppstå)</string>
     <string name="feed_use_dedicated_fetch_method_summary">Tilgjengelig i noen tjenester, det er vanligvis mye raskere, men kan gi et begrenset antall elementer, og ofte ufullstendig info (f.eks. ingen varighet, elementtype, ingen sanntidsstatus).</string>
     <string name="feed_use_dedicated_fetch_method_title">Hent fra dedikert strøm når tilgjengelig</string>

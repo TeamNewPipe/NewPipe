@@ -626,8 +626,7 @@
     <string name="clear_queue_confirmation_description">La coda del lettore attivo sarà sostituita</string>
     <string name="clear_queue_confirmation_title">Conferma Pulizia Coda</string>
     <string name="clear_queue_confirmation_summary">Cambiare tipo di riproduzione potrebbe sostituire gli elementi in coda</string>
-    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto.
-\nSelezionane fino a 3, utilizzando le caselle di controllo sulla destra. Verranno visualizzate nella notifica compatta.</string>
+    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a 3, utilizzando le caselle di controllo sulla destra. Verranno visualizzate nella notifica compatta.</string>
     <string name="notification_action_4_title">Azione Pulsante 5</string>
     <string name="notification_action_3_title">Azione Pulsante 4</string>
     <string name="notification_action_2_title">Azione Pulsante 3</string>

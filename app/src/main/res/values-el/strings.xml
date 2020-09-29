@@ -569,8 +569,7 @@
     <string name="notification_action_shuffle">Ανάμιξη</string>
     <string name="notification_action_repeat">Επανάληψη</string>
     <string name="notification_actions_at_most_three">Μπορείτε να επιλέξετε το πολύ τρεις ενέργειες για εμφάνιση στη σύντομη ειδοποίηση!</string>
-    <string name="notification_actions_summary">Επεξεργαστείτε κάθε ενέργεια ειδοποίησης παρακάτω πατώντας πάνω της.
-\nΕπιλέξτε έως και τρεις από αυτές για να εμφανίζονται στη σύντομη ειδοποίηση, χρησιμοποιώντας τα πλαίσια ελέγχου στα δεξιά.</string>
+    <string name="notification_actions_summary">Επεξεργαστείτε κάθε ενέργεια ειδοποίησης παρακάτω πατώντας πάνω της. Επιλέξτε έως και τρεις από αυτές για να εμφανίζονται στη σύντομη ειδοποίηση, χρησιμοποιώντας τα πλαίσια ελέγχου στα δεξιά.</string>
     <string name="notification_action_4_title">Κουμπί πέμπτης ενέργειας</string>
     <string name="notification_action_3_title">Κουμπί τέταρτης ενέργειας</string>
     <string name="notification_action_2_title">Κουμπί τρίτης ενέργειας</string>

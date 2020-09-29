@@ -652,8 +652,7 @@
     <string name="notification_action_shuffle">ערבוב</string>
     <string name="notification_action_repeat">חזרה</string>
     <string name="notification_actions_at_most_three">ניתן לבחור עד שלוש פעולות בלבד שתופענה בהתראות המצומצמות!</string>
-    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה.
-\nמותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל.</string>
+    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה. מותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל.</string>
     <string name="notification_action_4_title">כפתור פעולה חמישי</string>
     <string name="notification_action_3_title">כפתור פעולה רביעי</string>
     <string name="notification_action_2_title">כפתור פעולה שלישי</string>

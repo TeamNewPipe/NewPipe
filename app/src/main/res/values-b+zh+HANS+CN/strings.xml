@@ -621,8 +621,7 @@
     <string name="notification_action_shuffle">随机播放</string>
     <string name="notification_action_repeat">重复</string>
     <string name="notification_actions_at_most_three">您最多可以选择三个操作显示在紧凑通知中!</string>
-    <string name="notification_actions_summary">点击来编辑下面的每个通知动作。
-\n通过使用右边的复选框，选择其中最多三个显示在紧凑通知中。</string>
+    <string name="notification_actions_summary">点击来编辑下面的每个通知动作。通过使用右边的复选框，选择其中最多三个显示在紧凑通知中。</string>
     <string name="notification_action_4_title">第五操作按钮</string>
     <string name="notification_action_3_title">第四操作按钮</string>
     <string name="notification_action_2_title">第三操作按钮</string>
