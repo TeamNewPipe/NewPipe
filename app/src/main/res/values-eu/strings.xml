@@ -37,7 +37,7 @@
     <string name="use_tor_title">Tor erabili</string>
     <string name="use_tor_summary">(Esperimentala) Trafikoa Tor bidez deskargatzea behartzen du pribatutasuna hobetzeko (bideo-jarioak ez daude oraindik onartuta).</string>
     <string name="no_player_found">Ez da jario erreproduzigailurik aurkitu. VLC instalatu\?</string>
-    <string name="did_you_mean">Hau esan nahi al zenuen: %1$s?</string>
+    <string name="did_you_mean">\"%1$s\" esan nahi al zenuen\?</string>
     <string name="use_external_video_player_title">Erabili kanpo bideo-erreproduzigailua</string>
     <string name="use_external_audio_player_title">Erabili kanpo audio-erreproduzigailua</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>

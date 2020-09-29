@@ -611,4 +611,6 @@
     <string name="error_report_open_issue_button_text">هەڵە لە سکاڵا لەسەر GitHub</string>
     <string name="copy_for_github">لەبەرگرتنەوەی سکاڵا</string>
     <string name="search_showing_result_for">پیشاندانی ئەنجامەکان بۆ: %s</string>
+    <string name="clear_queue_confirmation_summary">دوای گۆڕینی لێدەری یەک بۆ دانەیەکیتر ڕەنگە ڕیزەکانت تێکەڵ بن</string>
+    <string name="clear_queue_confirmation_title">پرس بکرێ بۆ دڵنیابوونەوە پێش سڕینەوەی ڕیزێک</string>
 </resources>

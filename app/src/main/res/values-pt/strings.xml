@@ -10,7 +10,7 @@
     <string name="download">Transferir</string>
     <string name="search">Pesquisar</string>
     <string name="settings">Definições</string>
-    <string name="did_you_mean">Quis dizer: %1$s\?</string>
+    <string name="did_you_mean">Quis dizer \"%1$s\"\?</string>
     <string name="share_dialog_title">Partilhar com</string>
     <string name="choose_browser">Escolher navegador</string>
     <string name="screen_rotation">rotação</string>
@@ -359,8 +359,8 @@
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o tempo livre deles para proporcionar-lhe a melhor experiência. Retribua para ajudar os programadores a tornarem o NewPipe ainda melhor enquanto desfruta de um café.</string>
     <string name="give_back">Retribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
-    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, o aplicativo não coleta nenhum dado sem seu consentimento. 
-\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e salvo quando você envia um relatório de erros.</string>
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, a app não coleta nenhum dado sem o seu consentimento.
+\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e guardado quando envia um relatório de erros.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
     <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
     <string name="app_license">NewPipe é um software livre \"copyleft\": pode utilizar, estudar, partilhar e melhorar a aplicação. Especificamente, pode redistribuir e/ou modificar a aplicação nos termos da Licença Pública Geral GNU, conforme publicada pela Fundação de Software Livre, tanto a versão 3 da licença ou (por sua opção) qualquer versão superior.</string>
@@ -617,4 +617,10 @@
     <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
     <string name="copy_for_github">Copiar relatório formatado</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
+    <string name="notification_action_3_title">Quarto botão de ação</string>
+    <string name="notification_action_2_title">Terceiro botão de ação</string>
+    <string name="notification_action_1_title">Segundo botão de ação</string>
+    <string name="notification_action_0_title">Primeiro botão de ação</string>
+    <string name="notification_scale_to_square_image_summary">Dimensionar a miniatura de vídeo mostrada na notificação de proporção de 16:9 a 1:1 (pode introduzir distorções)</string>
+    <string name="notification_scale_to_square_image_title">Dimensionar a miniatura à proporção de 1:1</string>
 </resources>

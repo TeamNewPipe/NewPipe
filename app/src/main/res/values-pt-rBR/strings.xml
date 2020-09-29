@@ -10,7 +10,7 @@
     <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. É possível alterar esta opção no menu de configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz um vídeo se NewPipe for chamado por outro app</string>
-    <string name="autoplay_by_calling_app_title">Autorreprodução</string>
+    <string name="autoplay_by_calling_app_title">Autoreprodução</string>
     <string name="black_theme_title">Amoled</string>
     <string name="cancel">Cancelar</string>
     <string name="checksum">Checksum</string>
@@ -33,7 +33,7 @@
     <string name="error_report_button_text">Relatar erro via email</string>
     <string name="error_report_title">Relatório de erro</string>
     <string name="error_snackbar_action">Relatório</string>
-    <string name="error_snackbar_message">Desculpe, ocorreram alguns erros.</string>
+    <string name="error_snackbar_message">Desculpe, algo deu errado.</string>
     <string name="finish">OK</string>
     <string name="general_error">Erro</string>
     <string name="info_dir_created">Pasta de download criada \'%1$s\'</string>
@@ -73,7 +73,7 @@
     <string name="duration_live">Ao vivo</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
-    <string name="did_you_mean">Você quis dizer: %1$s\?</string>
+    <string name="did_you_mean">Você quis dizer \"%1$s\"\?</string>
     <string name="add">Nova missão</string>
     <string name="app_ui_crash">App/IU parou</string>
     <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
@@ -131,7 +131,7 @@
     <string name="clear">Limpar</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_background_title">Segundo plano</string>
-    <string name="popup_remember_size_pos_title">Lembrar tamanho e posição do popup</string>
+    <string name="popup_remember_size_pos_title">Lembrar propriedades do popup</string>
     <string name="popup_remember_size_pos_summary">Lembra do último tamanho e posição usado no popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
@@ -595,9 +595,9 @@
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>
-    <string name="restricted_video">Este vídeo tem restrição de idade.
+    <string name="restricted_video">Este vídeo tem restrisão de idade.
 \n
-\nSe quer vê-lo, ative \"Conteúdo com restrição de idade\" nas configurações.</string>
+\nAtive o \"Conteúdo com restrição de idade\" nas configurações se quiser vê-lo.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_warning">Vídeos vistos antes e depois de adicionar à lista de reprodução serão removidos. 
 \nTem certeza\? Isto não pode ser desfeito!</string>
@@ -615,6 +615,30 @@
     <string name="playlist_page_summary">Página da playlist</string>
     <string name="select_a_playlist">Selecione uma playlist</string>
     <string name="error_report_open_github_notice">Verifique se já existe um assunto discutindo essa falha. Criar duplicatas tirará um tempo que poderíamos gastar corrigindo o bug real.</string>
-    <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
+    <string name="error_report_open_issue_button_text">Reporte no GitHub</string>
     <string name="copy_for_github">Copiar relatório formatado</string>
+    <string name="never">Nunca</string>
+    <string name="wifi_only">Apenas no WiFi</string>
+    <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
+    <string name="title_activity_play_queue">Reproduzir fila</string>
+    <string name="unsupported_url_dialog_message">Não foi possível reconhecer a URL. Abrir com outro aplicativo\?</string>
+    <string name="auto_queue_toggle">Pôr na fila automaticamente</string>
+    <string name="clear_queue_confirmation_description">A fila do player ativo será substituída</string>
+    <string name="clear_queue_confirmation_summary">Mudar de um player para outro pode substituir sua fila</string>
+    <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
+    <string name="notification_action_shuffle">Embaralhar (Shuffle)</string>
+    <string name="notification_action_buffering">Buferizando</string>
+    <string name="settings_category_notification_title">Notificação</string>
+    <string name="notification_action_nothing">Nada</string>
+    <string name="notification_action_repeat">Repetir</string>
+    <string name="notification_actions_at_most_three">Você pode selecionar no máximo três ações para mostrar na notificação compacta!</string>
+    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela.
+\nSelecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
+    <string name="notification_action_4_title">Quinto botão de ação</string>
+    <string name="notification_action_3_title">Quarto botão de ação</string>
+    <string name="notification_action_2_title">Terceiro botão de ação</string>
+    <string name="notification_action_1_title">Segundo botão de ação</string>
+    <string name="notification_action_0_title">Primeiro botão de ação</string>
+    <string name="notification_scale_to_square_image_summary">Dimensione a miniatura do vídeo mostrada na notificação de proporção 16:9 para 1:1 (pode apresentar distorções)</string>
+    <string name="notification_scale_to_square_image_title">Dimensione a miniatura para a proporção de 1:1</string>
 </resources>

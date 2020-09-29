@@ -10,7 +10,7 @@
     <string name="download">Prevziať</string>
     <string name="search">Hľadať</string>
     <string name="settings">Nastavenia</string>
-    <string name="did_you_mean">Mysleli ste: %1$s?</string>
+    <string name="did_you_mean">Mysleli ste \"%1$s\"\?</string>
     <string name="share_dialog_title">Zdieľať s</string>
     <string name="choose_browser">Vyberte prehliadač</string>
     <string name="screen_rotation">otočenie</string>
@@ -37,7 +37,7 @@
     <string name="show_next_and_similar_title">Ukázať \'Ďalšie\' a \'Podobné\' videá</string>
     <string name="unsupported_url">URL nie je podporovaná</string>
     <string name="content_language_title">Preferovaný jazyk obsahu</string>
-    <string name="settings_category_video_audio_title">Video &amp; zvuk</string>
+    <string name="settings_category_video_audio_title">Video a zvuk</string>
     <string name="settings_category_appearance_title">Vzhľad</string>
     <string name="settings_category_other_title">Iné</string>
     <string name="background_player_playing_toast">Prehrávanie na pozadí</string>
@@ -70,7 +70,7 @@
     <string name="could_not_get_stream">Nemožno získať žiadny stream</string>
     <string name="sorry_string">Pardon, toto sa nemalo stať.</string>
     <string name="error_report_button_text">Nahlásiť túto chybu mejlom</string>
-    <string name="error_snackbar_message">Pardon, nastala chyba.</string>
+    <string name="error_snackbar_message">Pardon, niečo sa pokazilo.</string>
     <string name="error_snackbar_action">Nahlásiť</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Čo sa stalo:</string>
@@ -112,7 +112,7 @@
     <string name="channel">Kanál</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">mld.</string>
     <string name="recaptcha_request_toast">Požiadavka reCAPTCHA</string>
     <string name="yes">Áno</string>
     <string name="later">Neskôr</string>
@@ -132,7 +132,7 @@
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
     <string name="use_external_video_player_summary">Odoberie audio pri niektorých rozlíšeniach</string>
-    <string name="popup_remember_size_pos_title">Zapamätať si veľkosť a pozíciu mini okna</string>
+    <string name="popup_remember_size_pos_title">Zapamätať si parametre mini okna</string>
     <string name="popup_remember_size_pos_summary">Zapamätať si posledné nastavenie veľkosti a pozície mini okna</string>
     <string name="player_gesture_controls_title">Ovládanie prehrávača gestami</string>
     <string name="player_gesture_controls_summary">Používať gestá pre kontrolu jasu a hlasitosti prehrávača</string>
@@ -249,7 +249,7 @@
     <string name="dismiss">Zrušiť</string>
     <string name="rename">Premenovať</string>
     <string name="donation_title">Prispieť</string>
-    <string name="donation_encouragement">Aplikácia NewPipe je vyvíjaná dobrovoľníkmi vo voľnom čase. Ak sa vám aplikácia páči, odmeňte vývojárov aby mohli NewPipe naďalej vylepšovať. Určite ich poteší napríklad šálka dobrej kávy.</string>
+    <string name="donation_encouragement">Aplikácia NewPipe je vyvíjaná dobrovoľníkmi. Ak sa vám aplikácia páči, odmeňte vývojárov aby mohli NewPipe naďalej vylepšovať. Určite ich poteší napríklad šálka dobrej kávy.</string>
     <string name="give_back">Daruj</string>
     <string name="website_title">Webstránka</string>
     <string name="website_encouragement">Pre viac informácií a noviniek navštívte webstránku NewPipe.</string>
@@ -275,16 +275,16 @@
     <string name="kiosk">Kiosky</string>
     <string name="trending">Trendy</string>
     <string name="top_50">Top 50</string>
-    <string name="new_and_hot">Nové &amp; horúce</string>
+    <string name="new_and_hot">Nové a horúce</string>
     <string name="play_queue_remove">Odstrániť</string>
     <string name="play_queue_stream_detail">Podrobnosti</string>
     <string name="play_queue_audio_settings">Nastavenie zvuku</string>
     <string name="hold_to_append">Podržaním pridať do zoznamu</string>
-    <string name="enqueue_on_background">Zaradiť na pozadie</string>
-    <string name="enqueue_on_popup">Zaradiť do mini okna</string>
+    <string name="enqueue_on_background">Zaradiť do zoznamu na pozadí</string>
+    <string name="enqueue_on_popup">Zaradiť do zoznamu pre mini okno</string>
     <string name="start_here_on_main">Prehrať odtiaľto</string>
     <string name="start_here_on_background">Prehrať (zvuk) odtiaľto na pozadí</string>
-    <string name="start_here_on_popup">Prehrať odtiaľto v mini-okne</string>
+    <string name="start_here_on_popup">Začať prehrávanie v mini okne</string>
     <string name="drawer_open">Otvoriť zásuvku</string>
     <string name="drawer_close">Zavrieť zásuvku</string>
     <string name="video_player">Prehrávač videa</string>
@@ -614,12 +614,41 @@
     <string name="albums">Albumy</string>
     <string name="restricted_video">Vekovo obmedzené video.
 \n
-\nPokiaľ ho chcete pozerať, musíte povoliť \"Vekovo obmedzený obsah\" v nastaveniach.</string>
+\nPre zobrazenie videa povoľte \"Vekovo obmedzený obsah\" v nastaveniach.</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube v obmedzenom režime</string>
     <string name="video_detail_by">%s</string>
     <string name="channel_created_by">Vytvoril %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Minuatúrny avatar kanála</string>
-    <string name="error_report_open_issue_button_text">Nahlásiť chybu na GitHub</string>
+    <string name="error_report_open_issue_button_text">Nahlásiť na GitHub-e</string>
     <string name="copy_for_github">Kopírovať formátované hlásenie</string>
     <string name="search_showing_result_for">Zobrazujú sa výsledky pre: %s</string>
+    <string name="playlist_page_summary">Zoznamy skladieb</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Zobraziť iba nezoskupené odbery</string>
+    <string name="never">Nikdy</string>
+    <string name="wifi_only">Iba na WiFi</string>
+    <string name="autoplay_summary">Spustiť automatické prehrávanie — %s</string>
+    <string name="title_activity_play_queue">Prehrať zoznam</string>
+    <string name="no_playlist_bookmarked_yet">Zatiaľ bez záložiek zoznamu</string>
+    <string name="select_a_playlist">Vyberte zoznam skladieb</string>
+    <string name="error_report_open_github_notice">Skontrolujte prosím, či rovnaká chyba už nie je nahlásená. Vytváranie duplicitných hlásení komplikuje prácu vývojárov.</string>
+    <string name="settings_category_notification_title">Oznámenia</string>
+    <string name="unsupported_url_dialog_message">Nemožno rozpoznať URL. Otvoriť pomocou inej aplikácie\?</string>
+    <string name="auto_queue_toggle">Automatický rad</string>
+    <string name="clear_queue_confirmation_description">Zoznam aktuálneho prehrávača bude prepísaný</string>
+    <string name="clear_queue_confirmation_summary">Prepnutie prehrávača môže vymazať zoznam</string>
+    <string name="clear_queue_confirmation_title">Vyžadovať povolenie pred vyčistením zoznamu</string>
+    <string name="notification_action_nothing">Nič</string>
+    <string name="notification_action_buffering">Bufferuje</string>
+    <string name="notification_action_shuffle">Náhodné</string>
+    <string name="notification_action_repeat">Opakovať</string>
+    <string name="notification_actions_at_most_three">V kompaktnom oznámení môžete vybrať najviac tri akcie, ktoré sa majú zobraziť!</string>
+    <string name="notification_actions_summary">Všetky nasledovné upozornenia môžete upraviť poklepaním.
+\nTri z nich môžete vybrať a tieto sa budú zobrazovať v kompaktnom oznámení.</string>
+    <string name="notification_action_4_title">Akčné tlačidlo päť</string>
+    <string name="notification_action_3_title">Akčné tlačidlo štyri</string>
+    <string name="notification_action_2_title">Akčné tlačidlo tri</string>
+    <string name="notification_action_1_title">Akčné tlačidlo dva</string>
+    <string name="notification_action_0_title">Akčné tlačidlo jedna</string>
+    <string name="notification_scale_to_square_image_summary">Zmeniť pomer strán videa zobrazovaného v miniatúre z 16:9 na 1:1 (čo môže spôsobovať skreslenie)</string>
+    <string name="notification_scale_to_square_image_title">Zmenšiť pomer strán miniatúry na 1: 1</string>
 </resources>
