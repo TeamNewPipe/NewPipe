@@ -636,8 +636,7 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edita cada una de las notificaciones de acción de abajo pulsando sobre ella.
-\nSelecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación de la derecha.</string>
+    <string name="notification_actions_summary">Edita cada una de las notificaciones de acción de abajo pulsando sobre ella. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación de la derecha.</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>

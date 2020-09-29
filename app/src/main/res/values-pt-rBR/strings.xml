@@ -632,8 +632,7 @@
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">Você pode selecionar no máximo três ações para mostrar na notificação compacta!</string>
-    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela.
-\nSelecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
+    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela. Selecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
     <string name="notification_action_3_title">Quarto botão de ação</string>
     <string name="notification_action_2_title">Terceiro botão de ação</string>

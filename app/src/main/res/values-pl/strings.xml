@@ -642,8 +642,7 @@
     <string name="notification_action_shuffle">Losowo</string>
     <string name="notification_action_repeat">Powtórz</string>
     <string name="notification_actions_at_most_three">Możesz wybrać co najwyżej trzy akcje, które mają być wyświetlane w kompaktowym powiadomieniu!</string>
-    <string name="notification_actions_summary">Edytuj każdą poniższą akcję powiadomienia, dotykając jej.
-\nZaznacz maksymalnie trzy z nich, które mają być wyświetlane w powiadomieniu kompaktowym, korzystając z pól wyboru po prawej stronie.</string>
+    <string name="notification_actions_summary">Edytuj każdą poniższą akcję powiadomienia, dotykając jej. Zaznacz maksymalnie trzy z nich, które mają być wyświetlane w powiadomieniu kompaktowym, korzystając z pól wyboru po prawej stronie.</string>
     <string name="notification_action_4_title">Przycisk piątej akcji</string>
     <string name="notification_action_3_title">Przycisk czwartej akcji</string>
     <string name="notification_action_2_title">Przycisk trzeciej akcji</string>
