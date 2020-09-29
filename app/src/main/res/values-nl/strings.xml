@@ -640,4 +640,5 @@
     <string name="notification_action_0_title">Eerste actieknop</string>
     <string name="notification_scale_to_square_image_summary">Schaal de miniatuurafbeelding van de video die getoond wordt in de notificatie van verhouding 16:9 naar 1:1 (dit kan vervorming creëren)</string>
     <string name="notification_scale_to_square_image_title">Schaal de miniatuurafbeelding tot verhouding 1:1</string>
+    <string name="auto_queue_toggle">Auto-wachtrij</string>
 </resources>
