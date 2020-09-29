@@ -10,7 +10,7 @@
     <string name="download">Transferir</string>
     <string name="search">Pesquisar</string>
     <string name="settings">Definições</string>
-    <string name="did_you_mean">Quis dizer: %1$s\?</string>
+    <string name="did_you_mean">Quis dizer \"%1$s\"\?</string>
     <string name="share_dialog_title">Partilhar com</string>
     <string name="choose_browser">Escolher navegador</string>
     <string name="screen_rotation">rotação</string>
@@ -617,4 +617,10 @@
     <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
     <string name="copy_for_github">Copiar relatório formatado</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
+    <string name="notification_action_3_title">Quarto botão de ação</string>
+    <string name="notification_action_2_title">Terceiro botão de ação</string>
+    <string name="notification_action_1_title">Segundo botão de ação</string>
+    <string name="notification_action_0_title">Primeiro botão de ação</string>
+    <string name="notification_scale_to_square_image_summary">Dimensionar a miniatura de vídeo mostrada na notificação de proporção de 16:9 a 1:1 (pode introduzir distorções)</string>
+    <string name="notification_scale_to_square_image_title">Dimensionar a miniatura à proporção de 1:1</string>
 </resources>
