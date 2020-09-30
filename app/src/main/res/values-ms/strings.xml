@@ -69,7 +69,7 @@
     <string name="download_thumbnail_summary">Matikan untuk mengelakkan pemuatan thumbnail, menjimat penggunaan data dan memori. Perubahan akan menghapus cache imej dalam memori dan disk.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache imej dihapuskan</string>
     <string name="metadata_cache_wipe_title">Hapuskan cache metadata</string>
-    <string name="metadata_cache_wipe_summary">"Hapuskan semua cache data halaman web "</string>
+    <string name="metadata_cache_wipe_summary">Hapuskan semua cache data halaman web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadata dihapuskan</string>
     <string name="auto_queue_title">Automatik beratur strim seterusnya</string>
     <string name="auto_queue_summary">Tambahkan secara automatik strim berkaitan apabila memain strim terakhir dalam giliran tidak berulang.</string>
