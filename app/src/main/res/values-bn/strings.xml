@@ -353,7 +353,7 @@
     <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি (প্লে করতে VLC ইন্সটল করতে পারেন).</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চাও\?</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
-    <string name="view_count_text">"%1$s জন  দেখছে"</string>
+    <string name="view_count_text">%1$s জন দেখছে</string>
     <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
     <string name="notification_action_buffering">বাফারিং</string>
     <string name="notification_action_shuffle">সাফল</string>
