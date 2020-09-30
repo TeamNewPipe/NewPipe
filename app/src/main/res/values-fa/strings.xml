@@ -151,7 +151,7 @@
     <string name="notification_channel_name">اعلان نیوپایپ</string>
     <string name="unknown_content">[ناشناخته]</string>
     <string name="import_data_title">وارد کردن پایگاه‌داده</string>
-    <string name="export_data_title">"صادرکردن "</string>
+    <string name="export_data_title">صادرکردن</string>
     <string name="import_data_summary">تاریخچه و اشتراک‌های شما بازنویسی خواهند شد</string>
     <string name="export_data_summary">صادرکردن تاریخچه، اشتراک‌ها و سیاهه‌های پخش</string>
     <string name="clear_views_history_title">پاک‌کردن تاریخچه ویدئوهای دیده‌شده</string>
