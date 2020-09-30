@@ -54,7 +54,7 @@
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
     <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用</string>
     <string name="autoplay_by_calling_app_title">自動撥放</string>
-    <string name="autoplay_by_calling_app_summary">"當 NewPipe  被其他程式調用時播放視頻"</string>
+    <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他程式調用時播放視頻</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示已設年齡限制的影片</string>
     <string name="video_is_age_restricted">此影片設有年齡限制。若要觀看，請先在設定中解除年齡限制。</string>
