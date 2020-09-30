@@ -212,7 +212,7 @@
         <item quantity="one">%s video</item>
         <item quantity="other">%s videot</item>
     </plurals>
-    <string name="start">"Start "</string>
+    <string name="start">Start</string>
     <string name="pause">Paus</string>
     <string name="view">Esita</string>
     <string name="create">Loo</string>
@@ -291,9 +291,9 @@
     <string name="could_not_import_all_files">Hoiatus: Kõiki faile ei õnnestunud importida.</string>
     <string name="override_current_data">See alistab praeguse seadistuse.</string>
     <string name="import_settings">Kas importida ka seadistused?</string>
-    <string name="kiosk">"Kiosk "</string>
+    <string name="kiosk">Kiosk</string>
     <string name="trending">Trendid</string>
-    <string name="top_50">"Top 50 "</string>
+    <string name="top_50">Top 50</string>
     <string name="new_and_hot">Uus ja kuum</string>
     <string name="play_queue_remove">Eemalda</string>
     <string name="play_queue_stream_detail">Üksikasjad</string>
@@ -355,7 +355,7 @@
 \n
 \nKas jätkata?</string>
     <string name="playback_speed_control">Taasesituse kiiruse juhtimine</string>
-    <string name="playback_tempo">"Tempo "</string>
+    <string name="playback_tempo">Tempo</string>
     <string name="accept">Nõustu</string>
     <string name="decline">Keeldu</string>
     <string name="limit_data_usage_none_description">Piiranguta</string>
