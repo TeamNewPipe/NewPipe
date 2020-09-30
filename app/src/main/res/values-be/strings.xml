@@ -39,7 +39,7 @@
     <string name="download_path_summary">Папка для захоўвання загружаных відэа</string>
     <string name="download_path_dialog_title">Увядзіце шлях да папкі для загрузкі відэа</string>
     <string name="download_path_audio_title">Тэчка загрузкі аўдыё</string>
-    <string name="download_path_audio_summary">"Сюды захоўваецца загружанае аўдыё "</string>
+    <string name="download_path_audio_summary">Сюды захоўваецца загружанае аўдыё</string>
     <string name="download_path_audio_dialog_title">Увядзіце шлях да папкі для загрузкі аўдыё</string>
     <string name="autoplay_by_calling_app_title">Аўтапрайграванне</string>
     <string name="autoplay_by_calling_app_summary">Прайграваць відэа пры выкліку NewPipe з іншага прыкладання</string>
