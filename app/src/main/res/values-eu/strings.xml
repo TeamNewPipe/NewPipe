@@ -145,7 +145,7 @@
     <string name="action_settings">Ezarpenak</string>
     <string name="action_about">Honi buruz</string>
     <string name="title_licenses">Hirugarrengoen lizentziak</string>
-    <string name="copyright" formatted="true">"© %1$s %2$s.  %3$s"</string>
+    <string name="copyright" formatted="true">© %1$s %2$s. %3$s</string>
     <string name="error_unable_to_load_license">Ezin izan da lizentzia kargatu</string>
     <string name="action_open_website">Ireki webgunea</string>
     <string name="tab_about">Honi buruz</string>
@@ -252,7 +252,7 @@
     <string name="start_here_on_main">Hasi hemen erreproduzitzen</string>
     <string name="start_here_on_background">Hasi erreproduzitzen bigarren planoan</string>
     <string name="start_here_on_popup">Hasi erreproduzitzen laster-leihoan</string>
-    <string name="drawer_open">"Ireki tiradera "</string>
+    <string name="drawer_open">Ireki tiradera</string>
     <string name="drawer_close">Itxi tiradera</string>
     <string name="no_player_found_toast">Ez da jarioen erreproduzigailurik aurkitu (VLC instalatu dezakezu).</string>
     <string name="always">Beti</string>
@@ -379,8 +379,8 @@
     <string name="privacy_policy_encouragement">NewPipe proiektuak aintzat hartzen du zure pribatutasuna. Aplikazioak ez du zure baimenik gabe daturik jasotzen.
 \nNewPipe pribatutasun politikak azaltzen du zehazki bidali eta gordetako informazioa zein den kraskatze txosten bat bidaltzen duzunean.</string>
     <string name="read_privacy_policy">Irakurri pribatutasun politika</string>
-    <string name="start_accept_privacy_policy">"European General Data Protection Regulation (GDPR) legea betetzeko, NewPipe pribatutasun politika irakurtzera gonbidaatzen zaitugu.
-\nAkats txosten bat bidali ahal  izateko onartu behar duzu."</string>
+    <string name="start_accept_privacy_policy">European General Data Protection Regulation (GDPR) legea betetzeko, NewPipe pribatutasun politika irakurtzera gonbidaatzen zaitugu.
+\nAkats txosten bat bidali ahal izateko onartu behar duzu.</string>
     <string name="accept">Onartu</string>
     <string name="decline">Ukatu</string>
     <string name="limit_data_usage_none_description">Mugagabea</string>
