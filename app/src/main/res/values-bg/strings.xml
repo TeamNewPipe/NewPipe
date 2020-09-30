@@ -329,7 +329,7 @@
     <string name="preferred_player_fetcher_notification_message">Зареждане на заявеното съдържание</string>
     <string name="create_playlist">Нов Плейлист</string>
     <string name="delete_playlist">Изтрий</string>
-    <string name="rename_playlist">"Преименувай "</string>
+    <string name="rename_playlist">Преименувай</string>
     <string name="name">Име</string>
     <string name="append_playlist">Добави Към Плейлист</string>
     <string name="set_as_playlist_thumbnail">Задай като миниатюра на плейлиста</string>
