@@ -100,7 +100,6 @@
     <string name="popup_playing_toast">Прайграванне ва ўсплываючым акне</string>
     <string name="background_player_append">Дададзена ў чаргу ў фоне</string>
     <string name="popup_playing_append">Дададзена ў чаргу ў акне</string>
-    <string name="play_btn_text">Прайграць</string>
     <string name="content">Кантэнт</string>
     <string name="show_age_restricted_content_title">Кантэнт 18+</string>
     <string name="video_is_age_restricted">Відэа з узроставымі абмежаваннямі. Дазволіць падобны кантэнт можна ў \"Наладах\".</string>

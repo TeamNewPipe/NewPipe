@@ -80,7 +80,6 @@
     <string name="popup_playing_toast">Възпроизвеждане в подпрозорец</string>
     <string name="background_player_append">Включен в опашката на фоновия плейър</string>
     <string name="popup_playing_append">Включен в опашката в нов прозорец</string>
-    <string name="play_btn_text">Възпроизвеждане</string>
     <string name="content">Съдържание</string>
     <string name="show_age_restricted_content_title">Съдържание за възрастни</string>
     <string name="video_is_age_restricted">Покажи съдържание за възрастни. Разрешаването на такова съдържание става от Настройки.</string>

@@ -44,7 +44,6 @@
     <string name="settings_category_appearance_title">Uiterlijk</string>
     <string name="settings_category_other_title">Overig</string>
     <string name="background_player_playing_toast">Speelt af op achtergrond</string>
-    <string name="play_btn_text">Afspelen</string>
     <string name="content">Inhoud</string>
     <string name="show_age_restricted_content_title">Inhoud met leeftijdsbeperking</string>
     <string name="video_is_age_restricted">Toon video met leeftijdsbeperking. Toestaan van dit soort video’s kan worden ingeschakeld in de Instellingen.</string>

@@ -85,7 +85,6 @@
     <string name="settings_category_updates_title">Actualisationes</string>
     <string name="background_player_playing_toast">Es reproduce in fundo</string>
     <string name="popup_playing_toast">Es reproduce in modo emergente</string>
-    <string name="play_btn_text">Reproducer</string>
     <string name="content">Contento</string>
     <string name="show_age_restricted_content_title">Contento restricte per etate</string>
     <string name="duration_live">In directe</string>

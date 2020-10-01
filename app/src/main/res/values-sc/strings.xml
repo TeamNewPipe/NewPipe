@@ -489,7 +489,6 @@
     <string name="video_is_age_restricted">Ammustra su vìdeu limitadu pro edade. Podes mudare custa optzione dae sas impostatziones.</string>
     <string name="show_age_restricted_content_title">Cuntenutu limitadu pro edade</string>
     <string name="content">Cuntenutos</string>
-    <string name="play_btn_text">Riprodui</string>
     <string name="popup_playing_append">Postu in lista in su riproduidore a ventanedda</string>
     <string name="background_player_append">Pone in lista in s\'isfundu</string>
     <string name="popup_playing_toast">Riproduende in modalidade a ventanedda</string>

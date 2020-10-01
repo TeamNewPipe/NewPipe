@@ -100,7 +100,6 @@
     <string name="popup_playing_toast">Пуштено во прозорче</string>
     <string name="background_player_append">Ставено на листата за заднинско пуштање</string>
     <string name="popup_playing_append">Ставено на листа, за пуштање во прозорче</string>
-    <string name="play_btn_text">Пушти</string>
     <string name="content">Содржина</string>
     <string name="show_age_restricted_content_title">Покажи видеа со граница на возрастта</string>
     <string name="video_is_age_restricted">Видео за возрасни. Можете да дозволите вакви видеа преку Поставки.</string>

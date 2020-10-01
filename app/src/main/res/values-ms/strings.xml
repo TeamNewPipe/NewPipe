@@ -108,7 +108,6 @@
     <string name="popup_playing_toast">Bermain dalam mod popup</string>
     <string name="background_player_append">Beratur pada pemain latar belakang</string>
     <string name="popup_playing_append">Beratur pada pemain popup</string>
-    <string name="play_btn_text">Main</string>
     <string name="content">Kandungan</string>
     <string name="show_age_restricted_content_title">Kandungan terhad umur</string>
     <string name="video_is_age_restricted">Tunjukkan video terhad umur. Membenarkan bahan tersebut boleh dilakukan dari Tetapan.</string>

@@ -57,7 +57,6 @@
     <string name="background_player_playing_toast">వెనకవైపులో ఆడుతున్నారు</string>
     <string name="popup_playing_toast">పాపప్ రీతిలో ప్లే చేస్తోంది</string>
     <string name="background_player_append">"ఆటగాడిపై   క్యూ"</string>
-    <string name="play_btn_text">ప్లే</string>
     <string name="content">కంటెంట్</string>
     <string name="downloads">డౌన్ లోడ్ల</string>
     <string name="downloads_title">డౌన్ లోడ్</string>

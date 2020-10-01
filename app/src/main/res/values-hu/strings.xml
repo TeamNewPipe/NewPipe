@@ -31,7 +31,6 @@
     <string name="download_path_audio_dialog_title">Válaszd ki a hangfájlok letöltési helyét</string>
     <string name="use_tor_title">Tor használata</string>
     <string name="use_tor_summary">(Kísérleti) Adatforgalom Tor-on keresztüli kényszerítése a biztonság fokozása érdekében (a videó stream-elés még nem támogatott).</string>
-    <string name="play_btn_text">Lejátszás</string>
     <string name="network_error">Hálózati hiba</string>
     <string name="background_player_playing_toast">Lejátszás háttérben</string>
     <string name="settings_category_video_audio_title">Videó és audio</string>

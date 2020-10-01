@@ -75,7 +75,6 @@
     <string name="settings_category_other_title">Drugo</string>
     <string name="background_player_playing_toast">Reprodukcija u pozadini</string>
     <string name="popup_playing_toast">Reproduciram u skočnom prozoru</string>
-    <string name="play_btn_text">Reproduciraj</string>
     <string name="content">Sadržaj</string>
     <string name="show_age_restricted_content_title">Prikaži eksplicitni sadržaj</string>
     <string name="video_is_age_restricted">Videozapis je dobno ograničen. Dopuštanje takvog sadržaja moguće je u postavkama.</string>

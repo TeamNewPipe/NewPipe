@@ -47,7 +47,6 @@
     <string name="settings_category_appearance_title">Aspetto</string>
     <string name="settings_category_other_title">Altro</string>
     <string name="background_player_playing_toast">Riproduzione in Sottofondo</string>
-    <string name="play_btn_text">Riproduci</string>
     <string name="general_error">Errore</string>
     <string name="network_error">Errore di connessione</string>
     <string name="could_not_load_thumbnails">Impossibile caricare tutte le copertine</string>

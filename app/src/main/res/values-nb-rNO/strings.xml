@@ -40,7 +40,6 @@
     <string name="settings_category_appearance_title">Utseende</string>
     <string name="settings_category_other_title">Annet</string>
     <string name="background_player_playing_toast">Spiller i bakgrunnen</string>
-    <string name="play_btn_text">Spill av</string>
     <string name="network_error">Nettverksfeil</string>
     <string name="list_thumbnail_view_description">Video-forhåndsvisning i miniatyrbilde</string>
     <string name="detail_thumbnail_view_description">Spill av video, varighet:</string>

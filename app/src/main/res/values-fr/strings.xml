@@ -38,7 +38,6 @@
     <string name="use_external_video_player_title">Utiliser un lecteur vidéo externe</string>
     <string name="use_external_audio_player_title">Utiliser un lecteur audio externe</string>
     <string name="background_player_playing_toast">Lecture en arrière-plan</string>
-    <string name="play_btn_text">Lire</string>
     <string name="use_tor_title">Utiliser Tor</string>
     <string name="use_tor_summary">(Expérimental) Forcer la redirection du trafic de téléchargement via Tor pour plus de confidentialité (les flux vidéos ne sont pas encore pris en charge).</string>
     <string name="theme_title">Thème</string>

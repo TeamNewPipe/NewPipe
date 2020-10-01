@@ -43,7 +43,6 @@
     <string name="settings_category_appearance_title">Görünüm</string>
     <string name="settings_category_other_title">Diğer</string>
     <string name="background_player_playing_toast">Arka planda oynatılıyor</string>
-    <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş kısıtlamalı içerik</string>
     <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Daha sonra ayarlardan değiştirilebilir.</string>

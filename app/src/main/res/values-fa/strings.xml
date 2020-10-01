@@ -43,7 +43,6 @@
     <string name="settings_category_appearance_title">ظاهر</string>
     <string name="settings_category_other_title">دیگر</string>
     <string name="background_player_playing_toast">در حال پخش در پس‌زمینه</string>
-    <string name="play_btn_text">پخش</string>
     <string name="content">محتوا</string>
     <string name="show_age_restricted_content_title">محتوای محدود شده بر اساس سن</string>
     <string name="video_is_age_restricted">نمایش ویدیوهای دارای محدودیت سنی. تغییرات آتی از طریق تنظیمات ممکن است.</string>

@@ -61,7 +61,6 @@
     <string name="settings_category_other_title">Kita</string>
     <string name="background_player_playing_toast">Groja fone</string>
     <string name="popup_playing_toast">Grojama iššokančiojo lango rėžime</string>
-    <string name="play_btn_text">Groti</string>
     <string name="content">Turinys</string>
     <string name="show_age_restricted_content_title">Rodyti amžiaus cenzo apribotą turinį</string>
     <string name="duration_live">Gyvai</string>

@@ -56,7 +56,6 @@
     <string name="settings_category_other_title">অন্যান্য</string>
     <string name="background_player_playing_toast">ব্যাকগ্রাউন্ডে চলছে</string>
     <string name="popup_playing_toast">পপআপ মোডে চলছে</string>
-    <string name="play_btn_text">চালাও</string>
     <string name="content">কন্টেন্ট</string>
     <string name="show_age_restricted_content_title">বয়স সীমাবদ্ধ কন্টেন্ট দেখাও</string>
     <string name="video_is_age_restricted">ভিডিওটিকে বয়স সীমিত করা হয়েছে। প্রথমে সেটিংসে বয়স সীমাবদ্ধ ভিডিওগুলি সক্ষম করো।</string>

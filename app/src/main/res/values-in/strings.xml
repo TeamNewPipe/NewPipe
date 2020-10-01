@@ -39,7 +39,6 @@
     <string name="settings_category_appearance_title">Tampilan</string>
     <string name="settings_category_other_title">Lainnya</string>
     <string name="background_player_playing_toast">Memutar di latar belakang</string>
-    <string name="play_btn_text">Putar</string>
     <string name="content">Konten</string>
     <string name="show_age_restricted_content_title">Konten yang dibatasi usia</string>
     <string name="video_is_age_restricted">Tampilkan video yang dibatasi usia. Bisa diubah nanti dari pengaturan.</string>

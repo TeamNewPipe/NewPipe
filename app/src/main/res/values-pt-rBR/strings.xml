@@ -97,7 +97,6 @@
     <string name="no_player_found">Não há player de vídeo. Instalar VLC\?</string>
     <string name="parsing_error">O site não pôde ser analisado</string>
     <string name="play_audio">Áudio</string>
-    <string name="play_btn_text">Reproduzir</string>
     <string name="play_with_kodi_title">Ver com Kodi</string>
     <string name="search">Buscar</string>
     <string name="show_play_with_kodi_summary">Exibe opção para ver um vídeo via Kodi media center</string>

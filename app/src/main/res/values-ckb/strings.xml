@@ -160,7 +160,6 @@
     <string name="limit_data_usage_none_description">بێ سنوور</string>
     <string name="decline">ڕەتکردنەوە</string>
     <string name="show_error">پیشاندانی کێشە</string>
-    <string name="play_btn_text">کارپێکردن</string>
     <string name="feed_update_threshold_option_always_update">هەمیشە نوێکردنەوە</string>
     <string name="subscriptions_import_unsuccessful">ناتوانرێ بەشدارییەکان بهێنرێتەوە</string>
     <string name="brightness_gesture_control_title">کۆنترۆڵی ڕووناکی بەجوڵەی پەنجە</string>

@@ -531,7 +531,6 @@
     <string name="default_video_format_title">Formato de vídeo predefinido</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para pôr na fila\"</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
-    <string name="play_btn_text">Reproduzir</string>
     <string name="metadata_cache_wipe_summary">Remover todos os dados da página da Web em cache</string>
     <string name="drawer_close">Fechar menu</string>
     <string name="brightness_gesture_control_summary">Utilizar gestos para controlar o brilho do reprodutor</string>

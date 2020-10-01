@@ -165,7 +165,6 @@
     <string name="show_next_and_similar_title">显示“下一个”和“类似的”视频</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="background_player_playing_toast">在后台播放</string>
-    <string name="play_btn_text">播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">受年龄限制的内容</string>
     <string name="video_is_age_restricted">显示受年龄限制的视频。可从设置允许此类内容。</string>

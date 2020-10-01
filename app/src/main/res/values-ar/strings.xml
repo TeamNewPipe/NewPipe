@@ -29,7 +29,6 @@
     <string name="no_player_found">لم يتم العثور على مشغل بث. تثبيت VLC؟</string>
     <string name="open_in_browser">افتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
-    <string name="play_btn_text">تشغيل</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
     <string name="screen_rotation">التدوير</string>
     <string name="search">بحث</string>

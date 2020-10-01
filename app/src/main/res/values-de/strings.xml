@@ -37,7 +37,6 @@
     <string name="use_external_video_player_title">Externen Video-Player verwenden</string>
     <string name="use_external_audio_player_title">Externen Audio-Player verwenden</string>
     <string name="background_player_playing_toast">Im Hintergrund abspielen</string>
-    <string name="play_btn_text">Abspielen</string>
     <string name="use_tor_title">Tor benutzen</string>
     <string name="use_tor_summary">(Experimentell) Herunterladen über Tor zur Verbesserung des Datenschutzes erzwingen (Videostreaming wird noch nicht unterstützt).</string>
     <string name="network_error">Netzwerkfehler</string>

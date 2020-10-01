@@ -99,7 +99,6 @@
     <string name="popup_playing_toast">Taasesitus hüpikaknas</string>
     <string name="background_player_append">Lisati taustapleieri järjekorda</string>
     <string name="popup_playing_append">Lisati hüpikpleieri järjekorda</string>
-    <string name="play_btn_text">Esita</string>
     <string name="content">Sisu</string>
     <string name="show_age_restricted_content_title">Vanusepiiranguga sisu</string>
     <string name="video_is_age_restricted">Kuva vanusepiiranguga video. Sellist sisu saab lubada seadetes.</string>

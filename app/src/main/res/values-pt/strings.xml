@@ -42,7 +42,6 @@
     <string name="settings_category_appearance_title">Aparência</string>
     <string name="settings_category_other_title">Outros</string>
     <string name="background_player_playing_toast">Reprodução em segundo plano</string>
-    <string name="play_btn_text">Reproduzir</string>
     <string name="network_error">Erro de rede</string>
     <string name="use_tor_title">Usar Tor</string>
     <string name="use_tor_summary">(Experimental) Forçar o tráfego de transferência via Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>

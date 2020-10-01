@@ -110,7 +110,6 @@
     <string name="popup_playing_toast">पपअप मोडमा बजाईदै छ</string>
     <string name="background_player_append">पृष्ठभूमि प्लेयरमा लामबद्ध</string>
     <string name="popup_playing_append">पपअप प्लेयरमा लामबद्ध</string>
-    <string name="play_btn_text">बजाउनु</string>
     <string name="content">सामग्री</string>
     <string name="show_age_restricted_content_title">उमेर प्रतिबन्धित सामग्री</string>
     <string name="video_is_age_restricted">उमेर प्रतिबन्धित भिडियोहरु देखाऊ। भविष्यमा यो सेटिङ परिवर्तन सम्भव छ।</string>

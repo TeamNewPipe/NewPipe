@@ -37,7 +37,6 @@
     <string name="detail_likes_img_view_description">Všeč mi je</string>
     <string name="detail_dislikes_img_view_description">Ni mi všeč</string>
     <string name="background_player_playing_toast">Predvajanje v ozadju</string>
-    <string name="play_btn_text">Predvajaj</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Temna</string>
     <string name="light_theme_title">Svetla</string>

@@ -77,7 +77,6 @@
     <string name="settings_category_other_title">மற்றவை</string>
     <string name="background_player_playing_toast">பிண்ணணியில் ஓடுகிறது</string>
     <string name="popup_playing_toast">திரைமேல் நிலையில் ஓடுகிறது</string>
-    <string name="play_btn_text">இயக்கு</string>
     <string name="duration_live">நேரடி ஒளிபரப்பு</string>
     <string name="downloads">தரவிறக்கங்கள்</string>
     <string name="downloads_title">தரவிறக்கங்கள்</string>

@@ -42,7 +42,6 @@
     <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тёмная</string>
     <string name="light_theme_title">Светлая</string>
-    <string name="play_btn_text">Воспроизвести</string>
     <string name="network_error">Ошибка сети</string>
     <string name="use_tor_title">Использовать Tor</string>
     <string name="download_path_audio_title">Папка для скачанного аудио</string>

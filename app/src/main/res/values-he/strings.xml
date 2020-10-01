@@ -61,7 +61,6 @@
     <string name="settings_category_other_title">אחר</string>
     <string name="background_player_playing_toast">מתנגן ברקע</string>
     <string name="popup_playing_toast">מתנגן בחלון צף</string>
-    <string name="play_btn_text">נגינה</string>
     <string name="content">תוכן</string>
     <string name="show_age_restricted_content_title">תוכן עם הגבלת גיל</string>
     <string name="video_is_age_restricted">הצגת סרטונים עם הגבלת גיל. ניתן לשנות את זה בעתיד דרך ההגדרות.</string>

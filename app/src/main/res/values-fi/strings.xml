@@ -77,7 +77,6 @@
     <string name="settings_category_other_title">Muu</string>
     <string name="background_player_playing_toast">Toistaa taustalla</string>
     <string name="popup_playing_toast">Toistetaan ponnahdusikkunatilassa</string>
-    <string name="play_btn_text">Toista</string>
     <string name="content">Sisältö</string>
     <string name="show_age_restricted_content_title">Ikärajoitettu sisältö</string>
     <string name="video_is_age_restricted">Ikärajoitettu video. Muuttaminen on mahdollista asetuksissa.</string>

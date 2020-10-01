@@ -100,7 +100,6 @@
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
     <string name="background_player_append">Toegevoegd aan wachtrij voor achtergrondspeler</string>
     <string name="popup_playing_append">Toegevoegd aan wachtrij voor pop-upspeler</string>
-    <string name="play_btn_text">Afspelen</string>
     <string name="content">Inhoud</string>
     <string name="show_age_restricted_content_title">Inhoud met leeftijdsbeperking</string>
     <string name="video_is_age_restricted">Toont video met leeftijdsbeperking. Toelaten van deze soort video’s kan ingeschakeld worden in de Instellingen.</string>

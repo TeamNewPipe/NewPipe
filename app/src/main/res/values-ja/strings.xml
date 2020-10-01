@@ -37,7 +37,6 @@
     <string name="use_external_video_player_title">外部動画プレイヤーを使用する</string>
     <string name="use_external_audio_player_title">外部音声プレイヤーを使用する</string>
     <string name="background_player_playing_toast">バックグラウンドで再生中</string>
-    <string name="play_btn_text">再生</string>
     <string name="use_tor_title">Torを使用する</string>
     <string name="use_tor_summary">(実験的) 強制的に Tor を経由した経路で保存して､匿名性を高めます(ストリーミング再生には、まだ対応していません)。</string>
     <string name="theme_title">テーマ</string>

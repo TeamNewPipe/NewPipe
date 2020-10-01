@@ -166,7 +166,6 @@
     <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>
     <string name="background_player_append">S\'ha afegit a la cua del reproductor en rerefons</string>
     <string name="popup_playing_append">S\'ha afegit a la cua del reproductor emergent</string>
-    <string name="play_btn_text">Reprodueix</string>
     <string name="notification_channel_name">Notificació del NewPipe</string>
     <string name="notification_channel_description">Notificacions dels reproductors en rerefons o emergents del NewPipe</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>

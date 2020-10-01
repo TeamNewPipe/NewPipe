@@ -30,7 +30,6 @@
     <string name="settings_category_appearance_title">Apero</string>
     <string name="settings_category_other_title">Alia</string>
     <string name="background_player_playing_toast">Ludanta fone</string>
-    <string name="play_btn_text">Ludi</string>
     <string name="general_error">Eraro</string>
     <string name="network_error">Reteraro</string>
     <string name="content_not_available">Enhavo malhavebla</string>

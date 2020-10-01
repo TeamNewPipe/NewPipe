@@ -41,7 +41,6 @@
     <string name="settings_category_appearance_title">Aspect</string>
     <string name="settings_category_other_title">Altele</string>
     <string name="background_player_playing_toast">Redare în fundal</string>
-    <string name="play_btn_text">Redați</string>
     <string name="content">Conținut</string>
     <string name="show_age_restricted_content_title">Conținut restricționat în funcție de vârstă</string>
     <string name="video_is_age_restricted">Afișează videoclipuri restricționate în funcție de vârstă. Permiterea vizionării este posibilă din Setări.</string>

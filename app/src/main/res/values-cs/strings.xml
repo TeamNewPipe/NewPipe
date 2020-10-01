@@ -40,7 +40,6 @@
     <string name="settings_category_appearance_title">Vzhled</string>
     <string name="settings_category_other_title">Ostatní</string>
     <string name="background_player_playing_toast">Přehrávání na pozadí</string>
-    <string name="play_btn_text">Přehrát</string>
     <string name="general_error">Chyba</string>
     <string name="network_error">Chyba sítě</string>
     <string name="could_not_load_thumbnails">Nebylo možné nahrát všechny náhledy</string>

@@ -108,7 +108,6 @@
     <string name="popup_playing_toast">Afspiller i pop op-tilstand</string>
     <string name="background_player_append">Føjet til køen i baggrundsafspilleren</string>
     <string name="popup_playing_append">Føjet til pop op-afspilningskøen</string>
-    <string name="play_btn_text">Afspil</string>
     <string name="content">Indhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrænset indhold</string>
     <string name="video_is_age_restricted">Vis aldersbegrænsede videoer. Du kan tillade denne type videoer under Indstillinger.</string>

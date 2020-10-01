@@ -45,7 +45,6 @@
     <string name="settings_category_appearance_title">외관</string>
     <string name="settings_category_other_title">기타</string>
     <string name="background_player_playing_toast">백그라운드에서 재생 중</string>
-    <string name="play_btn_text">재생</string>
     <string name="network_error">네트워크 오류</string>
     <string name="use_tor_title">Tor 사용</string>
     <string name="use_tor_summary">(실험적) 향상된 프라이버시를 위해 다운로드 트래픽을 강제로 Tor를 통해 전송 (스트리밍 비디오는 아직 지원되지 않습니다).</string>
