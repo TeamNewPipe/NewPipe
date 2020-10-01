@@ -5,7 +5,6 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -21,12 +20,12 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
         super(context, attrs);
     }
 
-    boolean visible;
     Rect globalRect = new Rect();
     private boolean skippingInterception = false;
     private final List<Integer> skipInterceptionOfElements = Arrays.asList(
             R.id.detail_content_root_layout, R.id.relatedStreamsLayout,
-            R.id.playQueuePanel, R.id.viewpager, R.id.bottomControls);
+            R.id.playQueuePanel, R.id.viewpager, R.id.bottomControls,
+            R.id.playPauseButton, R.id.playPreviousButton, R.id.playNextButton);
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull final CoordinatorLayout parent,
@@ -48,9 +47,9 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
                 && event.getAction() == MotionEvent.ACTION_DOWN) {
             // Without overriding scrolling will not work when user touches these elements
             for (final Integer element : skipInterceptionOfElements) {
-                final ViewGroup viewGroup = child.findViewById(element);
-                if (viewGroup != null) {
-                    visible = viewGroup.getGlobalVisibleRect(globalRect);
+                final View view = child.findViewById(element);
+                if (view != null) {
+                    final boolean visible = view.getGlobalVisibleRect(globalRect);
                     if (visible
                             && globalRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                         // Makes bottom part of the player draggable in portrait when

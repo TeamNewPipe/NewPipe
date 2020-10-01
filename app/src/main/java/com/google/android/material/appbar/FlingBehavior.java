@@ -5,7 +5,6 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.OverScroller;
 
 import androidx.annotation.NonNull;
@@ -14,6 +13,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import org.schabi.newpipe.R;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.List;
 
 // See https://stackoverflow.com/questions/56849221#57997489
 public final class FlingBehavior extends AppBarLayout.Behavior {
@@ -25,6 +26,9 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
 
     private boolean allowScroll = true;
     private final Rect globalRect = new Rect();
+    private final List<Integer> skipInterceptionOfElements = Arrays.asList(
+            R.id.playQueuePanel, R.id.playbackSeekBar,
+            R.id.playPauseButton, R.id.playPreviousButton, R.id.playNextButton);
 
     @Override
     public boolean onRequestChildRectangleOnScreen(
@@ -60,20 +64,14 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
 
     public boolean onInterceptTouchEvent(final CoordinatorLayout parent, final AppBarLayout child,
                                          final MotionEvent ev) {
-        final ViewGroup playQueue = child.findViewById(R.id.playQueuePanel);
-        if (playQueue != null) {
-            final boolean visible = playQueue.getGlobalVisibleRect(globalRect);
-            if (visible && globalRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
-                allowScroll = false;
-                return false;
-            }
-        }
-        final View seekBar = child.findViewById(R.id.playbackSeekBar);
-        if (seekBar != null) {
-            final boolean visible = seekBar.getGlobalVisibleRect(globalRect);
-            if (visible && globalRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
-                allowScroll = false;
-                return false;
+        for (final Integer element : skipInterceptionOfElements) {
+            final View view = child.findViewById(element);
+            if (view != null) {
+                final boolean visible = view.getGlobalVisibleRect(globalRect);
+                if (visible && globalRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
+                    allowScroll = false;
+                    return false;
+                }
             }
         }
         allowScroll = true;
