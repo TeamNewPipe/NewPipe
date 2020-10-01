@@ -520,7 +520,6 @@
     <string name="recovering">بازیافتی ہو رہی</string>
     <string name="error_download_resource_gone">یہ ڈاؤن لوڈ بازیافت نہیں ہو سکتا</string>
     <string name="choose_instance_prompt">ایک مثال منتخب کریں</string>
-    <string name="enable_lock_screen_video_thumbnail_title">لاک اسکرین ویڈیو تھمب نیل کو فعال کریں</string>
     <string name="clear_download_history">ڈاؤن لوڈ کی سرگزشت صاف کریں</string>
     <string name="delete_downloaded_files">ڈاؤن لوڈ شدہ فائلیں حذف کریں</string>
     <string name="deleted_downloads">%1$d ڈاؤن لوڈز کو حذف کیا گیا</string>

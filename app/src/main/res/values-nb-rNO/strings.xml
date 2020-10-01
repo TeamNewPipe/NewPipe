@@ -513,7 +513,6 @@
     <string name="clear_download_history">Tøm nedlastingshistorikk</string>
     <string name="delete_downloaded_files">Slett nedlastede filer</string>
     <string name="deleted_downloads">Slettet %1$d nedlastninger</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde på låseskjerm</string>
     <string name="peertube_instance_url_summary">Velg dine favoritter blant PeerTube-instansene</string>
     <string name="peertube_instance_url_help">Finn instansene du liker på %s</string>
     <string name="peertube_instance_add_title">Legg til instans</string>

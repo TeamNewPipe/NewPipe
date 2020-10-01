@@ -521,7 +521,6 @@
     <string name="recovering">recuperando</string>
     <string name="error_download_resource_gone">O download não pôde ser recuperado</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Capa do vídeo na tela de bloqueio</string>
     <string name="clear_download_history">Limpar histórico de downloads</string>
     <string name="delete_downloaded_files">Excluir arquivos baixados</string>
     <string name="deleted_downloads">%1$d arquivos excluídos</string>

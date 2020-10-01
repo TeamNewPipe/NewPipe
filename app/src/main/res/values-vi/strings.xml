@@ -550,7 +550,6 @@
     <string name="peertube_instance_url_summary">Chọn thực thể PeerTube ưa thích</string>
     <string name="peertube_instance_url_title">Thực thể PeerTube</string>
     <string name="seek_duration_title">Thời lượng tua video</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Thumbnail video màn hình khóa</string>
     <string name="show_original_time_ago_summary">Dòng chữ mô tả thời gian gốc từ các dịch vụ sẽ được hiển thị thay thế</string>
     <string name="show_original_time_ago_title">Hiện thời gian gốc trên các item</string>
     <string name="drawer_header_description">Chọn dịch vụ; dịch vụ hiện tại:</string>

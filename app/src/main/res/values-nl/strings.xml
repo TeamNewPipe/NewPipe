@@ -518,7 +518,6 @@
     <string name="recovering">herstellen</string>
     <string name="error_download_resource_gone">Kan deze download niet herstellen</string>
     <string name="choose_instance_prompt">Kies een instantie</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Video afbeelding laten zien op vergrendelingsscherm</string>
     <string name="clear_download_history">Download geschiedenis verwijderen</string>
     <string name="delete_downloaded_files">Verwijder gedownloade bestanden</string>
     <string name="deleted_downloads">%1$d downloads verwijderd</string>

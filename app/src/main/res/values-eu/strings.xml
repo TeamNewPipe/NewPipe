@@ -521,7 +521,6 @@
     <string name="recovering">berreskuratzen</string>
     <string name="error_download_resource_gone">Ezin da deskarga hau berreskuratu</string>
     <string name="choose_instance_prompt">Aukeratu instantzia</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Bideoaren miniatura blokeo pantailan</string>
     <string name="clear_download_history">Garbitu deskargen historiala</string>
     <string name="delete_downloaded_files">Ezabatu deskargatutako fitxategiak</string>
     <string name="deleted_downloads">%1$d deskarga ezabatuta</string>

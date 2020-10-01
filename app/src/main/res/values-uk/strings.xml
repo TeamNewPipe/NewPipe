@@ -524,7 +524,6 @@
     <string name="recovering">відновлюється</string>
     <string name="error_download_resource_gone">Неможливо відновити це завантаження</string>
     <string name="choose_instance_prompt">Вибрати екземпляр</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Прев’ю відео на екрані блокування</string>
     <string name="clear_download_history">Очистити історію завантажень</string>
     <string name="delete_downloaded_files">Видалити завантажені файли</string>
     <string name="permission_display_over_apps">Потрібен дозвіл показувати поверх інших додатків</string>

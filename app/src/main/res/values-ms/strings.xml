@@ -453,6 +453,5 @@
     <string name="pause_downloads_on_mobile_desc">Muat turun yang tidak dapat dihentikan akan dimulakan semula</string>
     <string name="missions_header_pending">Menunggu</string>
     <string name="download_choose_new_path">Ubah folder muat turun untuk melihat kesan</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Dayakan lakaran kecil video skrin kunci</string>
     <string name="search_showing_result_for">Menunjuk carian untuk: %s</string>
 </resources>

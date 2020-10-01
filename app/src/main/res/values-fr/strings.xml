@@ -520,7 +520,6 @@
     <string name="error_download_resource_gone">Impossible de récupérer ce téléchargement</string>
     <string name="choose_instance_prompt">Veuillez choisir une instance</string>
     <string name="playlist_no_uploader">Généré automatiquement (pas de téléverseur trouvé)</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Miniature de la vidéo sur l’écran de verrouillage</string>
     <string name="clear_download_history">Effacer l’historique de téléchargement</string>
     <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
     <string name="deleted_downloads">%1$d téléchargements supprimés</string>

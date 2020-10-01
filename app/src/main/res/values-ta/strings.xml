@@ -215,5 +215,4 @@
         <item quantity="other">%s பார்க்கிறார்கள்</item>
     </plurals>
     <string name="seek_duration_title">வேகமாக முன்னோக்கி / திரும்பத் தேடும் காலம்</string>
-    <string name="enable_lock_screen_video_thumbnail_title">பூட்டு திரை வீடியோ சிறுபடத்தை இயக்கவும்</string>
 </resources>

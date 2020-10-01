@@ -521,7 +521,6 @@
     <string name="recovering">Reakiranta</string>
     <string name="error_download_resource_gone">Ne povas reakiri tion elŝuton</string>
     <string name="choose_instance_prompt">Elektu instancon</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Bildeta filmeton ĉe ŝlosita ekrano</string>
     <string name="clear_download_history">Forviŝi la historion de elŝutoj</string>
     <string name="delete_downloaded_files">Forviŝi elŝutitajn dosierojn</string>
     <string name="deleted_downloads">%1$d elŝutoj forviŝitaj</string>

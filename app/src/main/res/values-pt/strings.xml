@@ -521,7 +521,6 @@
     <string name="recovering">recuperando</string>
     <string name="error_download_resource_gone">Não é possível recuperar esta transferência</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Miniatura do vídeo no ecrã de bloqueio</string>
     <string name="clear_download_history">Limpar histórico de transferências</string>
     <string name="delete_downloaded_files">Apagar ficheiros transferidos</string>
     <string name="deleted_downloads">%1$d transferências apagadas</string>

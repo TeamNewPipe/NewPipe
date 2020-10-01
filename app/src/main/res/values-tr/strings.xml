@@ -521,7 +521,6 @@
     <string name="recovering">kurtarılıyor</string>
     <string name="error_download_resource_gone">Bu indirme kurtarılamıyor</string>
     <string name="choose_instance_prompt">Oluşum seçin</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Kilit ekranı video küçük resmi</string>
     <string name="clear_download_history">İndirme geçmişini temizle</string>
     <string name="delete_downloaded_files">İndirilen dosyaları sil</string>
     <string name="deleted_downloads">%1$d indirme silindi</string>

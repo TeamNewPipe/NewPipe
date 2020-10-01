@@ -581,7 +581,6 @@
     <string name="default_video_format_title">Formati i parazgjedhur video</string>
     <string name="default_audio_format_title">Formati i parazgjedhur audio</string>
     <string name="show_play_with_kodi_summary">Shfaq një opsion për të luajtur videot përmes Kodi</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Pamja video në ekranin e kyçur</string>
     <string name="show_play_with_kodi_title">Shfaq opsionin \"Luaj me Kodi\"</string>
     <string name="kore_not_found">Instaloni aplikacionin Kore që mungon\?</string>
     <string name="show_higher_resolutions_summary">Vetëm disa pajisje mund të luajnë video 2K/4K</string>

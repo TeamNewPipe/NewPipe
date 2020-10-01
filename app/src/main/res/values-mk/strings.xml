@@ -482,5 +482,4 @@
     <string name="peertube_instance_url_summary">Одберете ги вашите омилени PeerTube пример</string>
     <string name="peertube_instance_url_help">Пронајдете ги примерите кои ви се допаѓаат на %s</string>
     <string name="peertube_instance_add_title">Додадете пример</string>
-    <string name="enable_lock_screen_video_thumbnail_title">мала видео-сликичка на заклучен екран</string>
 </resources>

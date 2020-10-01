@@ -523,7 +523,6 @@
     <string name="most_liked">Am beliebtesten</string>
     <string name="recovering">Wiederherstellen</string>
     <string name="error_download_resource_gone">Dieser Download kann nicht wiederhergestellt werden</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Video-Vorschaubild auf Sperrbildschirm</string>
     <string name="clear_download_history">Downloadverlauf löschen</string>
     <string name="delete_downloaded_files">Heruntergeladene Dateien löschen</string>
     <string name="deleted_downloads">%1$d Downloads gelöscht</string>

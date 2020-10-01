@@ -168,7 +168,6 @@
     <string name="tab_subscriptions">訂閱項目</string>
     <string name="tab_bookmarks">已收藏播放清單</string>
     <string name="use_inexact_seek_title">使用粗略快查</string>
-    <string name="enable_lock_screen_video_thumbnail_title">鎖定畫面影片縮圖</string>
     <string name="download_choose_new_path">變更下載文件夾以生效</string>
     <string name="controls_add_to_playlist_title">添加到</string>
     <string name="tab_choose">選擇標籤</string>

@@ -519,7 +519,6 @@
     <string name="recovering">पुन (recovering)</string>
     <string name="error_download_resource_gone">यो डाउनलोड पुन:प्राप्त गर्न सकिँदैन</string>
     <string name="choose_instance_prompt">एउटा उदाहरण छनौट गर्नुहोस्</string>
-    <string name="enable_lock_screen_video_thumbnail_title">स्क्रिन भिडियो थम्बनेल लक</string>
     <string name="clear_download_history">डाउनलोड इतिहास मेटाउ</string>
     <string name="delete_downloaded_files">डाउनलोड गरिएका फाइलहरु मेटाउ</string>
     <string name="deleted_downloads">%1$d डाउनलोडहरु मेटियो</string>

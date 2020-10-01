@@ -410,7 +410,6 @@
     <string name="default_audio_format_title">സ്ഥിര ഓഡിയോ ഫോർമാറ്റ്</string>
     <string name="play_audio">ഓഡിയോ</string>
     <string name="show_play_with_kodi_summary">Kodi media center വഴി വീഡിയോ പ്ലേ ചെയ്യാനുള്ള ഓപ്ഷൻ കാണിക്കുക</string>
-    <string name="enable_lock_screen_video_thumbnail_title">ലോക്സക്രീനിൽ വീഡിയോ ലഘുചിത്രം കാണിക്കുക</string>
     <string name="show_play_with_kodi_title">\"Kodi ഉപയോഗിച്ച് പ്ലേ ചെയ്യുക\" ഓപ്ഷൻ കാണിക്കുക</string>
     <string name="kore_not_found">Kore ഇൻസ്റ്റാൾ ചെയ്യട്ടെയോ\?</string>
     <string name="play_with_kodi_title">Kodi ഉപയോഗിച്ച് പ്ലേ ചെയ്യുക</string>

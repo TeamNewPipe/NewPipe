@@ -129,7 +129,6 @@
     <string name="default_audio_format_title">ডিফল্ট অডিও ফরম্যাট</string>
     <string name="play_audio">অডিও</string>
     <string name="show_play_with_kodi_summary">Kodi মিডিয়া সেন্টারে এর মাধ্যমে ভিডিও প্লে করার জন্য একটি বিকল্প প্রদর্শন কর</string>
-    <string name="enable_lock_screen_video_thumbnail_title">লক স্ক্রিনের ভিডিও থাম্বনেইল</string>
     <string name="show_play_with_kodi_title">দেখাও \"Kodi এর মাধ্যমে চালাও \" বিকল্প</string>
     <string name="kore_not_found">হারানো কোর ইনস্টল করবেন\?</string>
     <string name="play_with_kodi_title">Kodi এর মাধ্যমে চালান</string>

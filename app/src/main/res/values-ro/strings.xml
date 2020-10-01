@@ -415,5 +415,4 @@ pentru a deschide în mod pop-up</string>
     <string name="peertube_instance_url_summary">Selectează instanța preferată PeerTube</string>
     <string name="peertube_instance_url_title">Instanțe PeerTube</string>
     <string name="seek_duration_title">Durată redare-înainte/derulare</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Miniatură pentru ecran blocare</string>
 </resources>

@@ -379,7 +379,6 @@
     <string name="enqueue">Sor</string>
     <string name="overwrite_failed">a fájl nem írható felül</string>
     <string name="seek_duration_title">Az előre- és visszatekerés időtartama</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Videó előnézet a lezárási képernyőn</string>
     <string name="enable_playback_resume_summary">Legutóbbi lejátszási pozíció visszaállítása</string>
     <string name="enable_playback_resume_title">Lejátszás folytatása</string>
     <string name="download_choose_new_path">Változtasd meg a letöltési helyet, hogy érvénybe lépjen</string>

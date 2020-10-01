@@ -482,7 +482,6 @@
     <string name="no_comments">Ei kommentteja</string>
     <string name="show_comments_title">Näytä kommentit</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanavan hahmokuvake</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Videon esikatselukuva lukitusnäytöllä</string>
     <string name="video_detail_by">Kenen toimesta: %s</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Onko syötteen lataaminen mielestäsi liian hidas\? Voit koittaa ottaa käyttöön nopean lataamisen (voit vaihtaa sen asetuksista tai painamalla alla olevaa painiketta).
 \n

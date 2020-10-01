@@ -526,7 +526,6 @@
     <string name="recovering">odzyskiwanie</string>
     <string name="error_download_resource_gone">Nie można odzyskać tego pobrania</string>
     <string name="choose_instance_prompt">Wybierz instancję</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Zablokuj miniaturę wideo na ekranie</string>
     <string name="clear_download_history">Wyczyść historię pobierania</string>
     <string name="delete_downloaded_files">Usuń pobrane pliki</string>
     <string name="deleted_downloads">Usunięte %1$d pobrania</string>

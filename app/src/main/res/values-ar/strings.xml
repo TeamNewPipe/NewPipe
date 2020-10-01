@@ -541,7 +541,6 @@
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
     <string name="choose_instance_prompt">اختيار مثيل</string>
     <string name="peertube_instance_url_help">ابحث عن مثيلات الخوادم التي تناسبك على %s</string>
-    <string name="enable_lock_screen_video_thumbnail_title">تمكين صورة العرض للفيديو في شاشة القفل</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
     <string name="delete_downloaded_files">حذف الملفات التي تم تنزيلها</string>
     <string name="deleted_downloads">التنزيلات %1$d المحذوفة</string>

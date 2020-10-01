@@ -515,7 +515,6 @@
     <string name="recovering">修復中</string>
     <string name="error_download_resource_gone">ダウンロードが修復できません</string>
     <string name="choose_instance_prompt">インスタンスを選択</string>
-    <string name="enable_lock_screen_video_thumbnail_title">ロック画面の動画サムネイル</string>
     <string name="clear_download_history">ダウンロード履歴を消去</string>
     <string name="delete_downloaded_files">ダウンロードしたファイルを消去</string>
     <string name="deleted_downloads">%1$d 個削除しました</string>

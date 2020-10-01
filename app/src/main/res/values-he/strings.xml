@@ -531,7 +531,6 @@
     <string name="recovering">בשחזור</string>
     <string name="error_download_resource_gone">לא ניתן לשחזר את ההורדה הזאת</string>
     <string name="choose_instance_prompt">נא לבחור מופע</string>
-    <string name="enable_lock_screen_video_thumbnail_title">תמונה מוקטנת של הסרטון במסך הנעילה</string>
     <string name="clear_download_history">מחיקת היסטוריית ההורדות</string>
     <string name="delete_downloaded_files">למחוק את הקבצים שהורדתי</string>
     <string name="deleted_downloads">נמחקו %1$d הורדות</string>
