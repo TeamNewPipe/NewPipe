@@ -146,6 +146,8 @@ public class VideoDetailFragment
             "org.schabi.newpipe.VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER";
     public static final String ACTION_HIDE_MAIN_PLAYER =
             "org.schabi.newpipe.VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
+    public static final String ACTION_PLAYER_STARTED =
+            "org.schabi.newpipe.VideoDetailFragment.ACTION_PLAYER_STARTED";
     public static final String ACTION_VIDEO_FRAGMENT_RESUMED =
             "org.schabi.newpipe.VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED";
     public static final String ACTION_VIDEO_FRAGMENT_STOPPED =
@@ -299,6 +301,12 @@ public class VideoDetailFragment
                                                   final String name, final PlayQueue queue) {
         final VideoDetailFragment instance = new VideoDetailFragment();
         instance.setInitialData(serviceId, videoUrl, name, queue);
+        return instance;
+    }
+
+    public static VideoDetailFragment getInstanceInCollapsedState() {
+        final VideoDetailFragment instance = new VideoDetailFragment();
+        instance.bottomSheetState = BottomSheetBehavior.STATE_COLLAPSED;
         return instance;
     }
 
@@ -518,7 +526,7 @@ public class VideoDetailFragment
                     openVideoPlayer();
                 }
 
-                setOverlayPlayPauseImage();
+                setOverlayPlayPauseImage(player != null && player.isPlaying());
                 break;
             case R.id.overlay_close_button:
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -1325,12 +1333,22 @@ public class VideoDetailFragment
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 } else if (intent.getAction().equals(ACTION_HIDE_MAIN_PLAYER)) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                } else if (intent.getAction().equals(ACTION_PLAYER_STARTED)) {
+                    // If the state is not hidden we don't need to show the mini player
+                    if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    }
+                    // Rebound to the service if it was closed via notification or mini player
+                    if (!PlayerHolder.bound) {
+                        PlayerHolder.startService(App.getApp(), false, VideoDetailFragment.this);
+                    }
                 }
             }
         };
         final IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_SHOW_MAIN_PLAYER);
         intentFilter.addAction(ACTION_HIDE_MAIN_PLAYER);
+        intentFilter.addAction(ACTION_PLAYER_STARTED);
         activity.registerReceiver(broadcastReceiver, intentFilter);
     }
 
@@ -1719,8 +1737,12 @@ public class VideoDetailFragment
         // It will allow to have live instance of PlayQueue with actual information about
         // deleted/added items inside Channel/Playlist queue and makes possible to have
         // a history of played items
-        if (stack.isEmpty() || !stack.peek().getPlayQueue().equals(queue)) {
-            stack.push(new StackItem(serviceId, url, name, playQueue));
+        if ((stack.isEmpty() || !stack.peek().getPlayQueue().equals(queue)
+                && queue.getItem() != null)) {
+            stack.push(new StackItem(queue.getItem().getServiceId(),
+                    queue.getItem().getUrl(),
+                    queue.getItem().getTitle(),
+                    queue));
         } else {
             final StackItem stackWithQueue = findQueueInStack(queue);
             if (stackWithQueue != null) {
@@ -1744,7 +1766,7 @@ public class VideoDetailFragment
                                  final int repeatMode,
                                  final boolean shuffled,
                                  final PlaybackParameters parameters) {
-        setOverlayPlayPauseImage();
+        setOverlayPlayPauseImage(player != null && player.isPlaying());
 
         switch (state) {
             case BasePlayer.STATE_PLAYING:
@@ -1818,7 +1840,7 @@ public class VideoDetailFragment
 
     @Override
     public void onServiceStopped() {
-        setOverlayPlayPauseImage();
+        setOverlayPlayPauseImage(false);
         if (currentInfo != null) {
             updateOverlayData(currentInfo.getName(),
                     currentInfo.getUploaderName(),
@@ -2224,6 +2246,9 @@ public class VideoDetailFragment
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         moveFocusToMainFragment(true);
+                        manageSpaceAtTheBottom(false);
+
+                        bottomSheetBehavior.setPeekHeight(peekHeight);
 
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
@@ -2270,8 +2295,8 @@ public class VideoDetailFragment
         }
     }
 
-    private void setOverlayPlayPauseImage() {
-        final int attr = player != null && player.isPlaying()
+    private void setOverlayPlayPauseImage(final boolean playerIsPlaying) {
+        final int attr = playerIsPlaying
                 ? R.attr.ic_pause
                 : R.attr.ic_play_arrow;
         overlayPlayPauseButton.setImageResource(

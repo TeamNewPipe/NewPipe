@@ -384,8 +384,19 @@ public final class NavigationHelper {
     }
 
     public static void expandMainPlayer(final Context context) {
-        final Intent intent = new Intent(VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER);
-        context.sendBroadcast(intent);
+        context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER));
+    }
+
+    public static void sendPlayerStartedEvent(final Context context) {
+        context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_PLAYER_STARTED));
+    }
+
+    public static void showMiniPlayer(final FragmentManager fragmentManager) {
+        final VideoDetailFragment instance = VideoDetailFragment.getInstanceInCollapsedState();
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_player_holder, instance)
+                .runOnCommit(() -> sendPlayerStartedEvent(instance.requireActivity()))
+                .commit();
     }
 
     public static void openChannelFragment(final FragmentManager fragmentManager,

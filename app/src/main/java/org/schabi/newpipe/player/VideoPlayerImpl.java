@@ -255,9 +255,9 @@ public class VideoPlayerImpl extends VideoPlayer
             onQueueClosed();
             // Android TV: without it focus will frame the whole player
             playPauseButton.requestFocus();
+            onPlay();
         }
-
-        onPlay();
+        NavigationHelper.sendPlayerStartedEvent(service);
     }
 
     VideoPlayerImpl(final MainPlayer service) {
@@ -662,6 +662,7 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onPlayQueueEdited() {
         updatePlayback();
+        showOrHideButtons();
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
@@ -1455,15 +1456,16 @@ public class VideoPlayerImpl extends VideoPlayer
             return;
         }
 
-        playPreviousButton.setVisibility(playQueue.getIndex() == 0
-                ? View.INVISIBLE
-                : View.VISIBLE);
-        playNextButton.setVisibility(playQueue.getIndex() + 1 == playQueue.getStreams().size()
-                ? View.INVISIBLE
-                : View.VISIBLE);
-        queueButton.setVisibility(playQueue.getStreams().size() <= 1 || popupPlayerSelected()
-                ? View.GONE
-                : View.VISIBLE);
+        final boolean showPrev = playQueue.getIndex() != 0;
+        final boolean showNext = playQueue.getIndex() + 1 != playQueue.getStreams().size();
+        final boolean showQueue = playQueue.getStreams().size() > 1 && !popupPlayerSelected();
+
+        playPreviousButton.setVisibility(showPrev ? View.VISIBLE : View.INVISIBLE);
+        playPreviousButton.setAlpha(showPrev ? 1.0f : 0.0f);
+        playNextButton.setVisibility(showNext ? View.VISIBLE : View.INVISIBLE);
+        playNextButton.setAlpha(showNext ? 1.0f : 0.0f);
+        queueButton.setVisibility(showQueue ? View.VISIBLE : View.GONE);
+        queueButton.setAlpha(showQueue ? 1.0f : 0.0f);
     }
 
     private void showSystemUIPartially() {
@@ -1936,6 +1938,7 @@ public class VideoPlayerImpl extends VideoPlayer
             getControlsRoot().setPadding(0, 0, 0, 0);
         }
         queueLayout.setPadding(0, 0, 0, 0);
+        updateQueue();
         updateMetadata();
         updatePlayback();
         triggerProgressUpdate();
