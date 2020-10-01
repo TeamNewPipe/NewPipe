@@ -128,7 +128,6 @@
     <string name="default_video_format_title">পছন্দসই ভিডিও ফরম্যাট</string>
     <string name="default_audio_format_title">ডিফল্ট অডিও ফরম্যাট</string>
     <string name="play_audio">অডিও</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">ব্যাকগ্রাউন্ড প্লেয়ার ব্যবহার করার সময় লক স্ক্রিনে ভিডিও থাম্বনেইল প্রদর্শিত হবে</string>
     <string name="show_play_with_kodi_summary">Kodi মিডিয়া সেন্টারে এর মাধ্যমে ভিডিও প্লে করার জন্য একটি বিকল্প প্রদর্শন কর</string>
     <string name="enable_lock_screen_video_thumbnail_title">লক স্ক্রিনের ভিডিও থাম্বনেইল</string>
     <string name="show_play_with_kodi_title">দেখাও \"Kodi এর মাধ্যমে চালাও \" বিকল্প</string>

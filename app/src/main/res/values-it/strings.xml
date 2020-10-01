@@ -522,7 +522,6 @@
     <string name="error_download_resource_gone">Impossibile recuperare questo download</string>
     <string name="choose_instance_prompt">Scegli un\'Istanza</string>
     <string name="enable_lock_screen_video_thumbnail_title">Copertina nella Schermata di Blocco</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">La copertina del video verrà mostrata nella schermata di blocco, durante la riproduzione in sottofondo</string>
     <string name="clear_download_history">Pulisci Cronologia Download</string>
     <string name="delete_downloaded_files">Elimina File Scaricati</string>
     <string name="deleted_downloads">%1$d download eliminati</string>

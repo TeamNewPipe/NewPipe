@@ -580,7 +580,6 @@
     <string name="theme_title">Tema</string>
     <string name="default_video_format_title">Formati i parazgjedhur video</string>
     <string name="default_audio_format_title">Formati i parazgjedhur audio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Një pamje statike video shfaqet në ekranin e kyçur kur përdoret luajtësi në sfond</string>
     <string name="show_play_with_kodi_summary">Shfaq një opsion për të luajtur videot përmes Kodi</string>
     <string name="enable_lock_screen_video_thumbnail_title">Pamja video në ekranin e kyçur</string>
     <string name="show_play_with_kodi_title">Shfaq opsionin \"Luaj me Kodi\"</string>

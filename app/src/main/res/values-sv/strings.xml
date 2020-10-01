@@ -456,7 +456,6 @@
     <string name="settings_category_clear_data_title">Töm data</string>
     <string name="seek_duration_title">Snabbspola -framåt/-bakåt</string>
     <string name="enable_lock_screen_video_thumbnail_title">Aktivera video på låsskärmen</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">När bakgrundsspelaren används så visas videon på låsskärmen</string>
     <string name="enable_playback_state_lists_summary">Visa positionindikationer i listor</string>
     <string name="clear_playback_states_title">Radera uppspelningspositioner</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>

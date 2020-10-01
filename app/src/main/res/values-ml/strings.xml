@@ -409,7 +409,6 @@
     <string name="default_video_format_title">സ്ഥിര വീഡിയോ ഫോർമാറ്റ്</string>
     <string name="default_audio_format_title">സ്ഥിര ഓഡിയോ ഫോർമാറ്റ്</string>
     <string name="play_audio">ഓഡിയോ</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">ബാക്ക്ഗ്രൗണ്ട് പ്ലേയർ ഉപയോഗിക്കുമ്പോൾ വീഡിയോയുടെ ലഘുചിത്രം ലോക്സ്ക്രീനിൽ കാണുന്നതാണ്</string>
     <string name="show_play_with_kodi_summary">Kodi media center വഴി വീഡിയോ പ്ലേ ചെയ്യാനുള്ള ഓപ്ഷൻ കാണിക്കുക</string>
     <string name="enable_lock_screen_video_thumbnail_title">ലോക്സക്രീനിൽ വീഡിയോ ലഘുചിത്രം കാണിക്കുക</string>
     <string name="show_play_with_kodi_title">\"Kodi ഉപയോഗിച്ച് പ്ലേ ചെയ്യുക\" ഓപ്ഷൻ കാണിക്കുക</string>

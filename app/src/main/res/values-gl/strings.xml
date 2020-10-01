@@ -608,7 +608,6 @@
     <string name="volume_gesture_control_summary">Use xestos para controlar o volume do reprodutor</string>
     <string name="show_comments_title">Amosar comentarios</string>
     <string name="seek_duration_title">Duración da busca rápida cara a adiante / cara atrás</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Na pantalla de bloqueo móstrase unha miniatura de vídeo cando se usa o reprodutor de fondo</string>
     <string name="enable_lock_screen_video_thumbnail_title">Miniatura do vídeo de pantalla de bloqueo</string>
     <string name="download_choose_new_path">Cambie os cartafoles de descarga para facer efecto</string>
     <string name="tab_choose">Elixir lapela</string>

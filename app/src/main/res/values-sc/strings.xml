@@ -559,7 +559,6 @@
     <string name="default_video_format_title">Formadu vìdeu predefinidu</string>
     <string name="default_audio_format_title">Formadu àudio predefinidu</string>
     <string name="play_audio">Àudio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Una miniadura de su vìdeu benit ammustrada in s\'ischermada de blocu cando ses impreende su riproduidore in s\'isfundu</string>
     <string name="show_play_with_kodi_summary">Ammustra un\'optzione pro riproduire unu vìdeu pro mèdiu de su tentru multimediale Kodi</string>
     <string name="enable_lock_screen_video_thumbnail_title">Miniadura vìdeu de s\'ischermada de blocu</string>
     <string name="show_play_with_kodi_title">Ammustra s\'optzione \"Riprodui cun Kodi\"</string>

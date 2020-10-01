@@ -176,7 +176,6 @@
     <string name="enable_lock_screen_video_thumbnail_title">লক স্ক্রিনের ভিডিও থাম্বনেইল</string>
     <string name="download_choose_new_path">প্রভাব দৃশ্যমান করার জন্য ডাউনলোড ফোল্ডার পরিবর্তন করুন</string>
     <string name="use_inexact_seek_summary">অনির্দিষ্ট সন্ধান প্লেয়ারকে আরো দ্রুত গতিতে সন্ধান করার সুবিধা দেয়, কিন্তু এটি সম্পূর্ণ নির্ভুল নাও হতে পারে ৷ ৫, ১৫ ও ২৫ সেকেন্ডের জন্য এটা কাজ করবে না ৷</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">ব্যাকগ্রাউন্ড প্লেয়ার ব্যবহার করার সময় লক স্ক্রিনে ভিডিও থাম্বনেইল প্রদর্শিত হবে</string>
     <string name="seek_duration_title">দ্রুত-ফরওয়ার্ড/-পুনরায় সন্ধান সময়কাল</string>
     <string name="show_comments_summary">মতামত প্রদর্শন বন্ধ করতে অপশনটি বন্ধ করুন</string>
     <string name="show_comments_title">মতামত প্রদর্শন করুন</string>

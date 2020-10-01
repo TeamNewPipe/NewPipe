@@ -8,7 +8,6 @@
 \n 
 \nDeseja continuar\?</string>
     <string name="main_bg_subtitle">Toque em \"Pesquisar\" para iniciar</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Uma miniatura de vídeo é mostrada no ecrã de bloqueio quando utilizando o leitor de fundo</string>
     <string name="enable_playback_resume_title">Continuar reprodução</string>
     <string name="msg_threads">Processos</string>
     <string name="settings_file_replacement_character_summary">Os carateres inválidos são substituídos por este valor</string>

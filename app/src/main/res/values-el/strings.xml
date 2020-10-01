@@ -512,7 +512,6 @@
     <string name="recovering">Ανάκτηση</string>
     <string name="error_download_resource_gone">Δεν είναι δυνατή η ανάκτηση αυτής της λήψης</string>
     <string name="enable_lock_screen_video_thumbnail_title">Μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Χρήση μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
     <string name="seek_duration_title">Διάρκεια fastforward και rewind</string>
     <string name="systems_language">Προεπιλογή συστήματος</string>
     <string name="videos_string">Βίντεο</string>

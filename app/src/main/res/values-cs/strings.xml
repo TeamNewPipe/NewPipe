@@ -527,7 +527,6 @@
     <string name="error_download_resource_gone">Toto stahování nelze obnovit</string>
     <string name="choose_instance_prompt">Vyberte instanci</string>
     <string name="enable_lock_screen_video_thumbnail_title">Náhled videa na zamknuté obrazovce</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Při použití přehrávače na pozadí se náhled videa ukáže na zamknuté obrazovce</string>
     <string name="clear_download_history">Smazat historii stahování</string>
     <string name="delete_downloaded_files">Smazat stažené soubory</string>
     <string name="deleted_downloads">Smazat %1$d stahování</string>

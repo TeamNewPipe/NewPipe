@@ -501,7 +501,6 @@
     <string name="peertube_instance_url_summary">نمونه پیرتیوب مورد علاقه خود در را انتخاب کنید</string>
     <string name="peertube_instance_url_title">نمونه‌های پیرتیوب</string>
     <string name="seek_duration_title">مدت زمان حرکت سریع به جلو یا عقب</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">به کمک پخش‌کننده پس‌زمینه، تصویر بندانگشتی ویدئو در حالت قفل صفحه نمایش یابد</string>
     <string name="enable_lock_screen_video_thumbnail_title">تصویر ویدئو در حالت قفل صفحه</string>
     <string name="minimize_on_exit_title">کمینه کردن به هنگام تغییر برنامه</string>
     <string name="video_detail_by">توسط %s</string>

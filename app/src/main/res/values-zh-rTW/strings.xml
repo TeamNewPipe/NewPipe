@@ -517,7 +517,6 @@
     <string name="error_download_resource_gone">無法復原此下載</string>
     <string name="choose_instance_prompt">選擇一個站臺</string>
     <string name="enable_lock_screen_video_thumbnail_title">鎖定畫面影片縮圖</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">使用背景播放器時，鎖定畫面上將會顯示影片縮圖</string>
     <string name="clear_download_history">清除下載歷史紀錄</string>
     <string name="delete_downloaded_files">刪除已下載的檔案</string>
     <string name="deleted_downloads">已刪除 %1$d 個下載</string>

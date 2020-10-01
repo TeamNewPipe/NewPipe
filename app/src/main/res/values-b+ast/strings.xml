@@ -303,7 +303,6 @@
     <string name="metadata_cache_wipe_summary">Desanicia los datos de les páxines web na caché</string>
     <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
     <string name="thumbnail_cache_wipe_complete_notice">Llimpióse la caché d\'imáxenes</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Amuésase una miniatura de videu na pantalla de bloquéu al usar el reproductor en segundu planu</string>
     <string name="kore_not_found">¿Instalar l\'aplicación Kore\?</string>
     <string name="autoplay_by_calling_app_summary">Reproduz un videu cuando s\'invoca a NewPipe dende otra aplicación</string>
 </resources>

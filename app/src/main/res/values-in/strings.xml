@@ -515,7 +515,6 @@
     <string name="error_download_resource_gone">Tidak bisa memulihkan unduhan ini</string>
     <string name="choose_instance_prompt">Pilih situs</string>
     <string name="enable_lock_screen_video_thumbnail_title">Thumbnail video layar kunci</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Ketika menggunakan pemutar latar belakang, thumbnail video akan ditampilkan pada layar kunci</string>
     <string name="default_kiosk_page_summary">Kiosk Default</string>
     <string name="clear_download_history">Hapus riwayat unduhan</string>
     <string name="delete_downloaded_files">Hapus berkas yang diunduh</string>

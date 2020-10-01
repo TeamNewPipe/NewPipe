@@ -483,5 +483,4 @@
     <string name="peertube_instance_url_help">Пронајдете ги примерите кои ви се допаѓаат на %s</string>
     <string name="peertube_instance_add_title">Додадете пример</string>
     <string name="enable_lock_screen_video_thumbnail_title">мала видео-сликичка на заклучен екран</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Мала видео-сликичка е прикажана на заклучниот екран при користење на плеерот во позадина</string>
 </resources>

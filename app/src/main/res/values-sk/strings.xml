@@ -527,7 +527,6 @@
     <string name="error_download_resource_gone">Sťahovanie nemožno obnoviť</string>
     <string name="choose_instance_prompt">Vyberte inštanciu</string>
     <string name="enable_lock_screen_video_thumbnail_title">Náhľad videa na uzamknutej obrazovke</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Pri prehrávaní videa na pozadí sa na zamknutej obrazovke zobrazí náhľad</string>
     <string name="clear_download_history">Vymazať históriu sťahovania</string>
     <string name="delete_downloaded_files">Vymazať stiahnuté súbory</string>
     <string name="deleted_downloads">%1$d odstránených</string>

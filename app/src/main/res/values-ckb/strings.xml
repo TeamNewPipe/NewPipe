@@ -89,7 +89,6 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">چالاککردنی دۆخی خێرا</string>
     <string name="minimize_on_exit_background_description">بچوککردنەوە بۆ کارپێکەری پاشبنەما</string>
     <string name="live_streams_not_supported">پەخشی ڕاستەوخۆ پشتگیری ناکرێ لەئێستادا</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">کاتێ کارپێکەری پاشبنەما کاردەکات ئەوا وێنۆچکەی ڤیدیۆکە لە ڕوونما داخراوەکەدا نیشاندەدرێت</string>
     <string name="channel_unsubscribed">به‌شداریت نەما له‌ كه‌ناڵ</string>
     <string name="player_stream_failure">ناتوانرێ ئەم پەخشە کارپێبکرێ</string>
     <string name="popup_remember_size_pos_title">بیرهاتنه‌وه‌ی شوێن و قه‌باره‌ی په‌نجه‌ره‌ی بچووک</string>

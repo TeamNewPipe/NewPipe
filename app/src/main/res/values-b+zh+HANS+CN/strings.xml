@@ -516,7 +516,6 @@
     <string name="choose_instance_prompt">选择一个服务器</string>
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
     <string name="enable_lock_screen_video_thumbnail_title">在锁屏上显示视频缩略图</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除已下载的文件</string>
     <string name="deleted_downloads">已删除 %1$d 下载</string>

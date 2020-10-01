@@ -525,7 +525,6 @@
     <string name="playlist_no_uploader">Generado automáticamente (no se encontró creador)</string>
     <string name="choose_instance_prompt">Elige una instancia</string>
     <string name="enable_lock_screen_video_thumbnail_title">Miniatura de vídeo en pantalla de bloqueo</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Una miniatura del vídeo es mostrada en la pantalla de bloqueo cuando se está usando el reproductor en segundo plano</string>
     <string name="clear_download_history">Limpiar historial de descargas</string>
     <string name="delete_downloaded_files">Eliminar archivos descargados</string>
     <string name="deleted_downloads">Eliminadas %1$d descargas</string>

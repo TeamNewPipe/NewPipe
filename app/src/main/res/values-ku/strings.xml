@@ -526,7 +526,6 @@
     <string name="error_download_resource_gone">ناتوانرێ ئەم داگرتنە بهێنرێتەوە</string>
     <string name="choose_instance_prompt">دۆخێک هەڵبژێرە</string>
     <string name="enable_lock_screen_video_thumbnail_title">وێنۆچکەی ڤیدیۆی ڕوونماداخراو</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">وێنۆچکەی ڤیدیۆیەک نیشان ئەدرێ لە ڕوونماداخراودا لەکاتی بەکارهێنانی کارپێکەری پاشبنەما</string>
     <string name="clear_download_history">سڕینەوەی مێژووی داگرتن</string>
     <string name="delete_downloaded_files">سڕینەوەی فایلە داگیراوەکان</string>
     <string name="deleted_downloads">%1$d لە داگرتنەکان سڕانەوە</string>
