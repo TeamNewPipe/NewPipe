@@ -12,12 +12,12 @@
 \n
 \nبۆیە هەڵژرادن بۆ خۆت دەگەڕێتەوە: زانیاری تەواو یان خێرا.</string>
     <string name="app_license">‫ئەم داوانامەیە سەرچاوە کراوەیە : دەتوانی بەکاریبهێنی، بیخوێنیتەوە و هاوبەشی پێبکەیت و بەرەوپێشی ببەیت. بەتایبەتی دەتوانی دابەشیبکەیتەوە یاخوود بگۆڕیت بەپێی مەرجەکانی GNU مۆڵەتنامەی گشتی وەک داوانامەیەکی بڵاوی خۆڕایی, بەهۆی وەشانی ٣ ی مۆڵەتنامە، یان هەر وەشانێک کە دوواتر.</string>
-    <string name="info_labels">چی:\\nداواکراو:\\nزمانی ناوەڕۆک:\\nخزمەتگوزاری:\\GMTnکات:\\nگورزە:\\nوەشان:\\nوەشانی سیستەم:</string>
+    <string name="info_labels">چی:\\nRequest:\\nContent زمان:\\nContent Country:\\nApp زمان:\\nService:\\nGMT کات:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="privacy_policy_encouragement">پڕۆژەی ئەپەکە زانیارییە تایبەتییەکانت بەوردی دەپارێزێ. هەروەها داوانامەکە هیچ زانایارییەکت بەبێ ئاگاداری تۆ بەکارنابات. 
 \n‫سیاسەتی تایبەتی داوانامە بەوردی ڕوونکردنەوەت دەداتێ لەسەر ئەو زانیاریانەی وەریاندەگرێ و بەکاریاندەبات.</string>
     <string name="download_to_sdcard_error_message">داگرتن لە بیرگەی دەرەکی ناکرێت. شوێنی بوخچەی داگرتنەکان دابنرێتەوە؟</string>
     <string name="download_thumbnail_summary">ناچالاكی بكه‌ بۆ ڕاگرتنی وێنۆچكه‌كان له‌ باركردن و پاشه‌كه‌وتبوون له‌سه‌ر بیرگه‌ی ئامێره‌كه‌ت, گۆڕینی ئه‌مه‌ ده‌بێته‌ هۆی سڕینه‌وه‌یان له‌سه‌ر بیرگه‌ی مۆبایله‌كه‌ت.</string>
-    <string name="did_you_mean">مەبەستت ئەمەیە: %1$s\?</string>
+    <string name="did_you_mean">مەبەستت لە \"%1$s\"ە؟</string>
     <string name="feed_update_threshold_title">ماوەی نوێکاری</string>
     <string name="grid">هێڵەکی</string>
     <string name="auto_queue_summary">پاشکۆی خۆکاری پەخشێکی بەستراوە لەکاتی کارپێکردنی کۆتا پەخشدا</string>
@@ -133,7 +133,7 @@
         <item quantity="other">%d هەڵبژێردراو</item>
     </plurals>
     <string name="error_unknown_host">ناتوانرێ ڕاژە بدۆزرێتەوە</string>
-    <string name="settings_category_history_title">مێژوو &amp; کاش</string>
+    <string name="settings_category_history_title">مێژوو وە کاش</string>
     <string name="settings_category_feed_title">دیار</string>
     <string name="delete_playlist">سڕینەوە</string>
     <plurals name="listening">
@@ -286,7 +286,7 @@
     <string name="autoplay_title">کارپێکردنی خۆکاری</string>
     <string name="max_retry_msg">زیاترین هەوڵدانەکان</string>
     <string name="service_title">خزمەتگوزاری</string>
-    <string name="new_and_hot">نوێ &amp; چالاک</string>
+    <string name="new_and_hot">نوێ وە چالاک</string>
     <string name="download_already_running">داگرتنێکی ترت هەیە بەهەمان ناو</string>
     <string name="kiosk">کیۆسک</string>
     <plurals name="videos">
@@ -506,7 +506,7 @@
     <string name="resume_on_audio_focus_gain_summary">بەردەوام بوونی ڤیدیۆ لەدوای هەبوونی هەر بڕینێک (وەک پەیوەندی تەلەفۆنی)</string>
     <string name="main_bg_subtitle">گرته‌ له‌ ”گه‌ڕان” بكه‌ بۆ ده‌ستپێكردن</string>
     <string name="enable_search_history_summary">کۆگای گەڕانی نێوخۆیی</string>
-    <string name="settings_category_video_audio_title">ڤیدیۆ &amp; دەنگ</string>
+    <string name="settings_category_video_audio_title">ڤیدیۆ وە دەنگ</string>
     <string name="share">هاوبه‌شپێكردن</string>
     <string name="download_choose_new_path">بوخچەی داگرتن بگۆڕە بۆ ئەنجامدانی کاریگەری</string>
     <string name="show_hold_to_append_summary">پیشاندانی ڕێنمایی کاتێ لە پاشبنەما یاخوود پەنجەرەی بچووکدا گرتە دەکرێ لەسەر” وردەکاری:” ڤیدیۆیەک</string>
