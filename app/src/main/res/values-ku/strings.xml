@@ -79,7 +79,6 @@
     <string name="enable_watch_history_summary">هێشتنەوەی تراکی ڤیدیۆ کارپێکراوەکان</string>
     <string name="resume_on_audio_focus_gain_summary">بەردەوام بوونی ڤیدیۆ لەدوای هەبوونی هەر بڕینێک (وەک پەیوەندی تەلەفۆنی)</string>
     <string name="download_dialog_title">داگرتن</string>
-    <string name="next_video_title">دواتر</string>
     <string name="show_next_and_similar_title">پیشاندانی ’دواتر’ و ڤیدیۆ ’هاوشێوەکان’</string>
     <string name="unsupported_url">بەستەرەکە پشتگیری نەکراوە</string>
     <string name="default_content_country_title">وڵاتی بنەڕەتی</string>

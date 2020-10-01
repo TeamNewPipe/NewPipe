@@ -81,7 +81,6 @@
     <string name="resume_on_audio_focus_gain_title">Аднавіць пры фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Аднаўляць прайграванне пасля перапынкаў (напрыклад, тэлефонных званкоў)</string>
     <string name="download_dialog_title">Спампаваць</string>
-    <string name="next_video_title">Наступнае</string>
     <string name="show_next_and_similar_title">\"Наступнае\" и \"Прапанаванае\" відэа</string>
     <string name="show_hold_to_append_title">\"Зацісніце, каб дадаць\"</string>
     <string name="show_hold_to_append_summary">Паказаць падказку пры націсканні \"У акне\" ці \"У фоне\" на старонцы звестак аб відэа</string>

@@ -35,7 +35,6 @@
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>
     <string name="download_dialog_title">İndir</string>
-    <string name="next_video_title">Sonraki</string>
     <string name="show_next_and_similar_title">\'Sonraki\' ve \'Benzer\' videoları göster</string>
     <string name="unsupported_url">Desteklenmeyen URL</string>
     <string name="content_language_title">Öntanımlı içerik dili</string>

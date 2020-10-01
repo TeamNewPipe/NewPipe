@@ -338,7 +338,6 @@
     <string name="delete">Eliminar</string>
     <string name="playback_tempo">Ritmo</string>
     <string name="peertube_instance_url_title">Instâncias do PeerTube</string>
-    <string name="next_video_title">Seguinte</string>
     <string name="settings_category_player_title">Reprodutor</string>
     <string name="settings_category_debug_title">Depuração</string>
     <string name="peertube_instance_add_help">Digite o URL da instância</string>

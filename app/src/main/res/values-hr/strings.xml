@@ -66,7 +66,6 @@
     <string name="resume_on_audio_focus_gain_title">Nastavi reprodukciju</string>
     <string name="resume_on_audio_focus_gain_summary">Nastavi reproducirati nakon prekidanja (npr. telefonski pozivi)</string>
     <string name="download_dialog_title">Preuzmi</string>
-    <string name="next_video_title">Sljedeće</string>
     <string name="show_next_and_similar_title">Prikaži \'Sljedeće\' i \'Slične\' videozapise</string>
     <string name="unsupported_url">URL nije podržan</string>
     <string name="content_language_title">Zadani jezik sadržaja</string>

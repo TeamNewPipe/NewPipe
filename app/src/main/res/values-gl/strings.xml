@@ -81,7 +81,6 @@
     <string name="resume_on_audio_focus_gain_title">Retormar o vídeo reproducíndoo</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproducindo o vídeo despois das interrupcións (como, por exemplo, as chamadas)</string>
     <string name="download_dialog_title">Descarregar</string>
-    <string name="next_video_title">Seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \"seguintes\" e \"semellantes\"</string>
     <string name="show_hold_to_append_title">Mostrar a suxestión \"Manteña presionado para engadir á cola\"</string>
     <string name="show_hold_to_append_summary">Amosar o consello ao premer o fondo ou o botón emerxente \"Detalles:\" no vídeo</string>

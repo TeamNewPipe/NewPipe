@@ -33,7 +33,6 @@
     <string name="dark_theme_title">Σκοτεινό</string>
     <string name="light_theme_title">Φωτεινό</string>
     <string name="download_dialog_title">Λήψη</string>
-    <string name="next_video_title">Επόμενο</string>
     <string name="show_next_and_similar_title">Εμφάνιση \"Επόμενου\" και \"Σχετικών\" βίντεο</string>
     <string name="unsupported_url">Δεν υποστηρίζεται η διεύθυνση URL</string>
     <string name="content_language_title">Προεπιλεγμένη γλώσσα περιεχομένου</string>

@@ -88,7 +88,6 @@
     <string name="resume_on_audio_focus_gain_title">Fortsæt når appen kommer i fokus</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsæt afspilning efter afbrydelser (fx telefonopkald)</string>
     <string name="download_dialog_title">Download</string>
-    <string name="next_video_title">Næste</string>
     <string name="show_next_and_similar_title">Vis \'Næste\' og \'Lignende\' videoer</string>
     <string name="show_hold_to_append_title">Vis \"Hold for at tilføje\"-tip</string>
     <string name="show_hold_to_append_summary">Vis et tip når der trykkes på baggrunds- eller pop op-knappen på siden med videodetaljer</string>

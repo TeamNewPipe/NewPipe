@@ -35,7 +35,6 @@
     <string name="dark_theme_title">Темна</string>
     <string name="light_theme_title">Світла</string>
     <string name="download_dialog_title">Завантажити</string>
-    <string name="next_video_title">Наступне</string>
     <string name="show_next_and_similar_title">Показувати \"Наступне\" і \"Схожі\" відео</string>
     <string name="unsupported_url">URL не підтримується</string>
     <string name="content_language_title">Переважна мова контенту</string>

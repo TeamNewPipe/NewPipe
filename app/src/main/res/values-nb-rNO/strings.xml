@@ -33,7 +33,6 @@
     <string name="dark_theme_title">Mørk</string>
     <string name="light_theme_title">Lys</string>
     <string name="download_dialog_title">Last ned</string>
-    <string name="next_video_title">Neste</string>
     <string name="show_next_and_similar_title">Vis \"Neste\" og \"Lignende\" -videoer</string>
     <string name="unsupported_url">Nettadressen støttes ikke</string>
     <string name="content_language_title">Foretrukket innholdsspråk</string>

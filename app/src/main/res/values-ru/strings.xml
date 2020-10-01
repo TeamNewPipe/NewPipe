@@ -25,7 +25,6 @@
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="download_dialog_title">Скачать</string>
-    <string name="next_video_title">Следующее</string>
     <string name="unsupported_url">URL не поддерживается</string>
     <string name="show_next_and_similar_title">\"Следующее\" и похожие видео</string>
     <string name="content_language_title">Язык контента по умолчанию</string>

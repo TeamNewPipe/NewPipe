@@ -36,7 +36,6 @@
     <string name="dark_theme_title">Ciemny</string>
     <string name="light_theme_title">Jasny</string>
     <string name="download_dialog_title">Pobrane</string>
-    <string name="next_video_title">Dalej</string>
     <string name="show_next_and_similar_title">Pokaż \"następne\" i \"podobne\" filmy</string>
     <string name="unsupported_url">Nieobsługiwany adres URL</string>
     <string name="content_language_title">Domyślny język treści</string>

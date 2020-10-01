@@ -81,7 +81,6 @@
     <string name="resume_on_audio_focus_gain_title">Продолжете со репродукција</string>
     <string name="resume_on_audio_focus_gain_summary">Продолжете со репродукција на видеото по прекини (пр. телефонски повик)</string>
     <string name="download_dialog_title">Преземи</string>
-    <string name="next_video_title">Следно видео</string>
     <string name="show_next_and_similar_title">Прикажи „следни“ и „слични“ видеа</string>
     <string name="show_hold_to_append_title">Прикажи „задржи за прикачување“</string>
     <string name="show_hold_to_append_summary">Покажи совет при притискање на позадината или кога скок копчето е притиснато на видео \"Детали:\"</string>

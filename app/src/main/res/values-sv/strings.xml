@@ -50,7 +50,6 @@
     <string name="show_search_suggestions_title">Sökförslag</string>
     <string name="show_search_suggestions_summary">Visa förslag i samband med sökning</string>
     <string name="download_dialog_title">Ladda ned</string>
-    <string name="next_video_title">Nästa</string>
     <string name="show_next_and_similar_title">Visa \'Nästa\' och \'Liknande\' videor</string>
     <string name="unsupported_url">Webbadressen stöds inte</string>
     <string name="content_language_title">Standard innehållsspråk</string>

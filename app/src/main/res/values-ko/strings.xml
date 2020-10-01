@@ -25,7 +25,6 @@
     <string name="play_audio">오디오</string>
     <string name="default_audio_format_title">기본 오디오 형식</string>
     <string name="download_dialog_title">다운로드</string>
-    <string name="next_video_title">다음</string>
     <string name="show_next_and_similar_title">다음/유사한 비디오 표시</string>
     <string name="unsupported_url">지원하지 않는 URL입니다</string>
     <string name="content_language_title">기본 컨텐츠 언어</string>

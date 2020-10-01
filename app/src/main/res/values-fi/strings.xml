@@ -65,7 +65,6 @@
     <string name="enable_watch_history_summary">Pidä muistissa katsotut videot</string>
     <string name="resume_on_audio_focus_gain_summary">Jatka toistoa keskeytysten jälkeen (esim. puhelut)</string>
     <string name="download_dialog_title">Lataus</string>
-    <string name="next_video_title">Seuraava</string>
     <string name="show_next_and_similar_title">Näytä seuraavia ja samankaltaisia videoita</string>
     <string name="unsupported_url">URL ei tuettu</string>
     <string name="content_language_title">Sisällon oletuskieli</string>

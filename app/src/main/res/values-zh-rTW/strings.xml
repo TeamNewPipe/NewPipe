@@ -30,7 +30,6 @@
     <string name="dark_theme_title">灰暗</string>
     <string name="light_theme_title">明亮</string>
     <string name="download_dialog_title">下載</string>
-    <string name="next_video_title">下一個</string>
     <string name="show_next_and_similar_title">顯示「下一部」與「相關」的影片</string>
     <string name="unsupported_url">不支援此網址</string>
     <string name="content_language_title">預設內容語言</string>

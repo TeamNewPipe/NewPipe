@@ -25,7 +25,6 @@
     <string name="black_theme_title">काली</string>
     <string name="enable_watch_history_title">देखे हुए वीडियो की सूची</string>
     <string name="download_dialog_title">डाउनलोड</string>
-    <string name="next_video_title">अगला</string>
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
     <string name="settings_category_history_title">इतिहास और कैश भंडार</string>
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>

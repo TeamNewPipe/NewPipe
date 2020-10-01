@@ -26,7 +26,6 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio predeterminado</string>
     <string name="download_dialog_title">Descargar</string>
-    <string name="next_video_title">Siguiente</string>
     <string name="unsupported_url">No se admite el URL</string>
     <string name="use_external_video_player_title">Usar reproductor de vídeo externo</string>
     <string name="use_external_audio_player_title">Usar reproductor de audio externo</string>

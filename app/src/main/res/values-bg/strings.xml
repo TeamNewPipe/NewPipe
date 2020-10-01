@@ -65,7 +65,6 @@
     <string name="resume_on_audio_focus_gain_title">Възобнови при връщане на фокус</string>
     <string name="resume_on_audio_focus_gain_summary">Продължавай възпроизвеждането след прекъсване (например телефонно обаждане)</string>
     <string name="download_dialog_title">Изтегли</string>
-    <string name="next_video_title">Следващ клип</string>
     <string name="show_next_and_similar_title">Показвай „следващ“ и „подобни“</string>
     <string name="show_hold_to_append_title">Показвай съвет „задръж за добавяне“</string>
     <string name="unsupported_url">Непознат URL</string>

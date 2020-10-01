@@ -51,7 +51,6 @@
     <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
     <string name="show_search_suggestions_summary">Hiển thị các đề xuất khi tìm kiếm</string>
     <string name="download_dialog_title">Tải về</string>
-    <string name="next_video_title">Tiếp theo</string>
     <string name="show_next_and_similar_title">Hiển thị video \"Tiếp theo\" và \"Tương tự\"</string>
     <string name="unsupported_url">URL không được hỗ trợ</string>
     <string name="settings_category_appearance_title">Hiển thị</string>

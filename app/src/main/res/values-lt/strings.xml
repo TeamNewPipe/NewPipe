@@ -52,7 +52,6 @@
     <string name="show_search_suggestions_title">Paieškos nuspėjimai</string>
     <string name="show_search_suggestions_summary">Rodyti nuspėjimus, kai ieškoma</string>
     <string name="download_dialog_title">Atsisiųsti</string>
-    <string name="next_video_title">Kitas vaizdo įrašas</string>
     <string name="show_next_and_similar_title">Rodyti kitus panašius vaizdo įrašus</string>
     <string name="unsupported_url">URL nepalaikoma</string>
     <string name="content_language_title">Numatytoji tūrinio kalba</string>

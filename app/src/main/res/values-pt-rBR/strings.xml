@@ -47,7 +47,6 @@
     <string name="msg_server_unsupported">Servidor não suportado</string>
     <string name="msg_wait">Aguarde…</string>
     <string name="network_error">Erro de rede</string>
-    <string name="next_video_title">Próximo</string>
     <string name="open_in_browser">Abrir no navegador</string>
     <string name="pause">Pausar</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>

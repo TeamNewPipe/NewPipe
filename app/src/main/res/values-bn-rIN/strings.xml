@@ -100,7 +100,6 @@
     <string name="service_title">সেবা</string>
     <string name="unsupported_url">URL সমর্থিত নয়</string>
     <string name="show_next_and_similar_title">পরবর্তী এবং অনুরূপ ভিডিওগুলি দেখাও</string>
-    <string name="next_video_title">পরবর্তী ভিডিও</string>
     <string name="download_dialog_title">ডাউনলোড</string>
     <string name="enable_watch_history_title">ইতিহাস</string>
     <string name="enable_search_history_title">খোজ ইতিহাস</string>

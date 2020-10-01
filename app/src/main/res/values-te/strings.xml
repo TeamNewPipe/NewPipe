@@ -43,7 +43,6 @@
     <string name="light_theme_title">ప్రకాశం</string>
     <string name="enable_watch_history_title">చరిత్ర</string>
     <string name="download_dialog_title">డౌన్లోడ్</string>
-    <string name="next_video_title">తదుపరి వీడియో</string>
     <string name="show_next_and_similar_title">తదుపరి వీడియో మరియు ఇలాంటి వీడియో</string>
     <string name="show_hold_to_append_title">చిట్కాను అనుబంధించడానికి హోల్డ్ను చూపు</string>
     <string name="unsupported_url">Url మద్దతు లేదు</string>

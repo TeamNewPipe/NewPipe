@@ -88,7 +88,6 @@
     <string name="resume_on_audio_focus_gain_title">Teruskan apabila fokus</string>
     <string name="resume_on_audio_focus_gain_summary">Teruskan bermain selepas gangguan (contohnya panggilan telefon)</string>
     <string name="download_dialog_title">Muat turun</string>
-    <string name="next_video_title">Seterusnya</string>
     <string name="show_next_and_similar_title">Paparkan video \'Seterusnya\' dan \'Berkaitan\'</string>
     <string name="show_hold_to_append_title">Tunjukkan tip \"Pegang untuk menambahkan\"</string>
     <string name="show_hold_to_append_summary">Tunjukkan tip apabila butang latar belakang atau popup ditekan pada halaman butiran video</string>

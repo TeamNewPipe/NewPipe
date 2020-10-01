@@ -36,7 +36,6 @@
     <string name="dark_theme_title">تیره</string>
     <string name="light_theme_title">روشن</string>
     <string name="download_dialog_title">بارگیری</string>
-    <string name="next_video_title">بعدی</string>
     <string name="show_next_and_similar_title">نماش ویدیوهای «بعدی» و «مشابه»</string>
     <string name="unsupported_url">نشانی پشتیبانی نشده</string>
     <string name="content_language_title">زبان محتوای ترجیحی</string>

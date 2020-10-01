@@ -25,7 +25,6 @@
     <string name="play_audio">Hang</string>
     <string name="default_audio_format_title">Alapértelmezett hang formátum</string>
     <string name="download_dialog_title">Letöltés</string>
-    <string name="next_video_title">Következő</string>
     <string name="unsupported_url">Nem támogatott webcím</string>
     <string name="use_external_video_player_title">Külső videólejátszó használata</string>
     <string name="use_external_audio_player_title">Külső hanglejátszó használata</string>

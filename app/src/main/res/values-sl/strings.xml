@@ -26,7 +26,6 @@
     <string name="default_audio_format_title">Privzet zapis zvoka</string>
     <string name="play_audio">Zvok</string>
     <string name="download_dialog_title">Prejem</string>
-    <string name="next_video_title">Naslednji video</string>
     <string name="show_next_and_similar_title">Pokaži naslednji video in podobne posnetke</string>
     <string name="unsupported_url">Zapis naslova URL ni podprt.</string>
     <string name="content_language_title">Privzeti jezik vsebine</string>

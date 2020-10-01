@@ -47,7 +47,6 @@
     <string name="popup_remember_size_pos_title">পপআপ আকার এবং অবস্থান মনে রাখো</string>
     <string name="popup_remember_size_pos_summary">শেষ আকার এবং পপআপ সেট অবস্থান মনে রাখো</string>
     <string name="download_dialog_title">ডাউনলোড</string>
-    <string name="next_video_title">পরবর্তী ভিডিও</string>
     <string name="show_next_and_similar_title">পরবর্তী এবং অনুরূপ ভিডিওগুলি দেখাও</string>
     <string name="unsupported_url">URL সমর্থিত নয়</string>
     <string name="content_language_title">কন্টেন্ট এর জন্য পছন্দসই ভাষা</string>

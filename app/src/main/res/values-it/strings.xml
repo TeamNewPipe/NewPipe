@@ -25,7 +25,6 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato Audio Predefinito</string>
     <string name="download_dialog_title">Scarica</string>
-    <string name="next_video_title">Prossimo</string>
     <string name="show_next_and_similar_title">Mostra video \"Prossimo\" e \"Simili\"</string>
     <string name="unsupported_url">URL non supportato</string>
     <string name="content_language_title">Lingua Predefinita per Contenuti</string>

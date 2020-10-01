@@ -280,7 +280,6 @@
         <item quantity="other">%d چرکە</item>
     </plurals>
     <string name="recovering">دەگەڕێنرێتەوە</string>
-    <string name="next_video_title">دواتر</string>
     <string name="action_open_website">کردنەوەی ماڵپەڕ</string>
     <string name="autoplay_by_calling_app_summary">ڤیدیۆ کارپێبکرێ کاتێ ئەپەکە لە ئەپێکیتر کرایەوە</string>
     <string name="autoplay_title">کارپێکردنی خۆکاری</string>

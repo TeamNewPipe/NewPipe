@@ -81,7 +81,6 @@
     <string name="resume_on_audio_focus_gain_title">فوکس حاصل پر دوبارہ شروع کریں</string>
     <string name="resume_on_audio_focus_gain_summary">مداخلت کے بعد چلانا جاری رکھیں (مثلاً فون کالز)</string>
     <string name="download_dialog_title">ڈاؤن لوڈ</string>
-    <string name="next_video_title">اگلی</string>
     <string name="show_next_and_similar_title">\'اگلی\' اور \'ملتی جلتی\' ویڈیوز دکھائیں</string>
     <string name="show_hold_to_append_title">’’شامل کرنے کے لئے پکڑیں‘‘ اشارہ دکھائیں</string>
     <string name="show_hold_to_append_summary">ویڈیو تفصیلات کے صفحے پر جب پس منظر یا پاپ اپ بٹن دبائے جانے پر ٹپ دکھائیں</string>

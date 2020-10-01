@@ -67,7 +67,6 @@
     <string name="enable_watch_history_title">வரலாறு மற்றும் பதுக்ககம்</string>
     <string name="enable_watch_history_summary">பார்த்த காணொலிகளை குறிப்பிடு</string>
     <string name="download_dialog_title">தரவிறக்கு</string>
-    <string name="next_video_title">அடுத்து</string>
     <string name="service_title">சேவை</string>
     <string name="settings_category_player_title">இயக்கி</string>
     <string name="settings_category_player_behavior_title">பண்பு</string>

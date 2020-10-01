@@ -81,7 +81,6 @@
     <string name="resume_on_audio_focus_gain_title">Focus gain ਹੋਣ ਤੇ ਦੋਬਾਰਾ ਚਲਾਓ</string>
     <string name="resume_on_audio_focus_gain_summary">ਰੁਕਾਵਟਾਂ (ਜਿਵੇਂ ਕਿ ਫੋਨ ਕਾਲਾਂ,ਮੈਸੇਜ) ਤੋਂ ਬਾਅਦ ਪਲੇਅ-ਬੈਕ ਜਾਰੀ ਰੱਖੋ</string>
     <string name="download_dialog_title">ਡਾਊਨਲੋਡ</string>
-    <string name="next_video_title">ਅੱਗੇ</string>
     <string name="show_next_and_similar_title">\'ਅੱਗੇ\' ਅਤੇ \'ਸਮਾਨਅੰਤਰ\' ਵੀਡੀਓ ਦਿਖਾਓ</string>
     <string name="show_hold_to_append_title">\"Hold to append\" ਸੁਝਾਅ ਦਿਖਾਓ</string>
     <string name="show_hold_to_append_summary">ਵੀਡੀਓ ਵੇਰਵੇ ਪੰਨੇ ਤੇ ਬੈਕਗ੍ਰਾਉਂਡ ਜਾਂ ਪੌਪ-ਅਪ ਬਟਨ ਦਬਾਉਣ ਤੇ ਸੰਕੇਤ ਦਿਖਾਓ</string>
