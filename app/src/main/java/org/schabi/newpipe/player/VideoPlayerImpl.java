@@ -172,6 +172,8 @@ public class VideoPlayerImpl extends VideoPlayer
     private RecyclerView itemsList;
     private ItemTouchHelper itemTouchHelper;
 
+    private RelativeLayout playerOverlays;
+
     private boolean queueVisible;
     private MainPlayer.PlayerType playerType = MainPlayer.PlayerType.VIDEO;
 
@@ -304,6 +306,8 @@ public class VideoPlayerImpl extends VideoPlayer
         this.queueLayout = view.findViewById(R.id.playQueuePanel);
         this.itemsListCloseButton = view.findViewById(R.id.playQueueClose);
         this.itemsList = view.findViewById(R.id.playQueue);
+
+        this.playerOverlays = view.findViewById(R.id.player_overlays);
 
         closingOverlayView = view.findViewById(R.id.closingOverlay);
 
@@ -481,6 +485,16 @@ public class VideoPlayerImpl extends VideoPlayer
                 return windowInsets;
             });
         }
+
+        // PlaybackControlRoot already consumed window insets but we should pass them to
+        // player_overlays too. Without it they will be off-centered
+        getControlsRoot().addOnLayoutChangeListener((v, left, top, right, bottom,
+                                                     oldLeft, oldTop, oldRight, oldBottom) ->
+                playerOverlays.setPadding(
+                        v.getPaddingLeft(),
+                        v.getPaddingTop(),
+                        v.getPaddingRight(),
+                        v.getPaddingBottom()));
     }
 
     public boolean onKeyDown(final int keyCode) {

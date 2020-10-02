@@ -12,7 +12,7 @@
     android:paddingTop="6dp"
     android:paddingBottom="6dp">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/itemSelected"
         android:layout_width="10dp"
         android:layout_height="10dp"
@@ -38,7 +38,7 @@
         android:src="@drawable/dummy_thumbnail"
         tools:ignore="RtlHardcoded"/>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/itemHandle"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

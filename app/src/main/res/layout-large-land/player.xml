@@ -530,117 +530,123 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/controlAnimationView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/background_oval_black_transparent"
-            android:padding="15dp"
-            android:visibility="gone"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/ic_fast_rewind_white_24dp"
-            tools:visibility="visible" />
-    </LinearLayout>
-
-
     <RelativeLayout
-        android:id="@+id/loading_panel"
+        android:id="@+id/player_overlays"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/black"
-        tools:visibility="gone">
+        android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBarLoadingPanel"
-            style="?android:attr/progressBarStyleLargeInverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:indeterminate="true"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        tools:ignore="RtlHardcoded">
-
-        <RelativeLayout
-            android:id="@+id/volumeRelativeLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/background_oval_black_transparent"
-            android:visibility="gone"
-            tools:visibility="visible">
-
-            <ProgressBar
-                android:id="@+id/volumeProgressBar"
-                style="?android:progressBarStyleHorizontal"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:indeterminate="false"
-                android:progressDrawable="@drawable/progress_circular_white" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/volumeImageView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/controlAnimationView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/background_oval_black_transparent"
+                android:padding="15dp"
+                android:visibility="gone"
                 tools:ignore="ContentDescription"
-                tools:src="@drawable/ic_volume_up_white_24dp" />
+                tools:src="@drawable/ic_fast_rewind_white_24dp"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/loading_panel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            tools:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/progressBarLoadingPanel"
+                style="?android:attr/progressBarStyleLargeInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/brightnessRelativeLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/background_oval_black_transparent"
-            android:visibility="gone"
-            tools:visibility="visible">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            tools:ignore="RtlHardcoded">
 
-            <ProgressBar
-                android:id="@+id/brightnessProgressBar"
-                style="?android:progressBarStyleHorizontal"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:indeterminate="false"
-                android:progressDrawable="@drawable/progress_circular_white" />
-
-            <ImageView
-                android:id="@+id/brightnessImageView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+            <RelativeLayout
+                android:id="@+id/volumeRelativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/ic_brightness_high_white_24dp" />
+                android:background="@drawable/background_oval_black_transparent"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ProgressBar
+                    android:id="@+id/volumeProgressBar"
+                    style="?android:progressBarStyleHorizontal"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progress_circular_white" />
+
+                <ImageView
+                    android:id="@+id/volumeImageView"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerInParent="true"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_volume_up_white_24dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/brightnessRelativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/background_oval_black_transparent"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ProgressBar
+                    android:id="@+id/brightnessProgressBar"
+                    style="?android:progressBarStyleHorizontal"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progress_circular_white" />
+
+                <ImageView
+                    android:id="@+id/brightnessImageView"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerInParent="true"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_brightness_high_white_24dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/currentDisplaySeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="58dp"
+                android:background="#64000000"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/white"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:ignore="RtlHardcoded"
+                tools:text="1:06:29"
+                tools:visibility="visible" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/currentDisplaySeek"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="58dp"
-            android:background="#64000000"
-            android:paddingBottom="10dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:paddingTop="10dp"
-            android:textColor="@android:color/white"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            tools:ignore="RtlHardcoded"
-            tools:text="1:06:29"
-            tools:visibility="visible" />
     </RelativeLayout>
 
     <TextView
