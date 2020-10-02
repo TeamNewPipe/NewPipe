@@ -103,6 +103,8 @@ public final class MainPlayer extends Service {
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(layout);
         playerImpl.shouldUpdateOnProgress = true;
+
+        NotificationUtil.getInstance().createNotificationAndStartForeground(playerImpl, this);
     }
 
     @Override
