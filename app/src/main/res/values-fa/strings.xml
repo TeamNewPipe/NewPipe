@@ -11,7 +11,7 @@
     <string name="download">بارگیری</string>
     <string name="search">جست‌وجو</string>
     <string name="settings">تنظیمات</string>
-    <string name="did_you_mean">منظورتان این بود: %1$s؟</string>
+    <string name="did_you_mean">منظورتان «%1$s» بود؟</string>
     <string name="share_dialog_title">هم‌رسانی با</string>
     <string name="choose_browser">گزیدن مرورگر</string>
     <string name="screen_rotation">چرخش</string>
@@ -62,7 +62,7 @@
     <string name="could_not_get_stream">نمی‌توان هیچ جریانی را گرفت</string>
     <string name="sorry_string">ببخشید! نباید این اتّفاق زخ می‌داد.</string>
     <string name="error_report_button_text">این خطا را با رایانامه گزارش کنید</string>
-    <string name="error_snackbar_message">ببخشید، چند مشکل رخ داد.</string>
+    <string name="error_snackbar_message">ببخشید، چیزی به درستی پیش نرفت.</string>
     <string name="error_snackbar_action">گزارش</string>
     <string name="what_device_headline">اطّلاعات:</string>
     <string name="what_happened_headline">چه روی داد:</string>
@@ -149,7 +149,7 @@
     <string name="notification_channel_name">اعلان نیوپایپ</string>
     <string name="unknown_content">[ناشناخته]</string>
     <string name="import_data_title">وارد کردن پایگاه‌داده</string>
-    <string name="export_data_title">"صادرکردن "</string>
+    <string name="export_data_title">صادرکردن</string>
     <string name="import_data_summary">تاریخچه و اشتراک‌های شما بازنویسی خواهند شد</string>
     <string name="export_data_summary">صادرکردن تاریخچه، اشتراک‌ها و سیاهه‌های پخش</string>
     <string name="clear_views_history_title">پاک‌کردن تاریخچه ویدئوهای دیده‌شده</string>
@@ -287,8 +287,8 @@
     <string name="open_in_popup_mode">در پنجره جداگانه باز شود</string>
     <string name="popup_mode_share_menu_title">حالت تصویر در تصویر</string>
     <string name="default_popup_resolution_title">اندازه پیش فرض پنجره جداگانه</string>
-    <string name="controls_popup_title">پنجره جداگانه</string>
-    <string name="popup_remember_size_pos_title">به یاد داشتن اندازه و موقعیت پنجره جداگانه</string>
+    <string name="controls_popup_title">تصویر در تصویر</string>
+    <string name="popup_remember_size_pos_title">به یاد نگه داشتن خصوصیات</string>
     <string name="popup_remember_size_pos_summary">به یاد داشتن آخرین اندازه و موقعیت قبلی پنجره جداگانه</string>
     <string name="use_inexact_seek_title">زمان فعلی پخش کننده را به صورت تقریبی و سریع جلو ببر</string>
     <string name="use_inexact_seek_summary">این گزینه باعث می شود هنگام جلو/عقب کردن زمان تصویر، به جای زمان دقیق انتخاب شده، به زمان غیر دقیق و نزدیک به مکان انتخاب شده برود که این کار سریع تر انجام می شود.</string>
@@ -332,7 +332,7 @@
     <string name="error_unable_to_load_comments">ناتوانی در دریافت نظرات</string>
     <string name="resume_on_audio_focus_gain_title">پخش ادامه یابد</string>
     <string name="enable_search_history_summary">ذخیره محلی نتایج جستجو</string>
-    <string name="auto_queue_summary">زمانی که صف پخش در حال پخش تکراری نیست، حین پخش آخرین جریان، یک جریان مرتبط به طور خودکار اضافه شود</string>
+    <string name="auto_queue_summary">صف پخش در حال پایان (بدون تکرار) را با افزودن یک جریان مرتبط ادامه دهید</string>
     <string name="download_thumbnail_summary">برای جلوگیری از بارگیری تصاویر بندانگشتی و ذخیره فضای ذخیره‌سازی و مصرف داده، خاموش کنید. تغییرات باعث پاک شدن حافظه نهان تصاویر روی حافظه می‌شود.</string>
     <string name="enable_playback_resume_title">ادامه پخش</string>
     <string name="enable_playback_resume_summary">بازگرداندن آخرین موقعیت پخش</string>
@@ -352,7 +352,7 @@
     <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی استفاده شود</string>
     <string name="undo">بازگردانی</string>
     <string name="background_player_append">در صف پخش کننده پس‌زمینه قرار گرفت</string>
-    <string name="info_labels">چه:\\nدرخواست:\\nزبان درخواست:\\nخدمت:\\nزمان GMT:\\nنگارش:\\nنگارش س.ع:\\nبازه آی‌پی:</string>
+    <string name="info_labels">چه:\\nدرخواست:\\nزبان محتوا:\\nکشور محتوا:\\nزبان برنامه:\\nخدمت:\\nزمان GM\\nبسته:T:\\nنگارش:\\nنگارش س.ع:</string>
     <string name="title_activity_recaptcha">چالش ری‌کپچا</string>
     <string name="recaptcha_request_toast">نیاز به چالش ری‌کپچا است</string>
     <string name="msg_popup_permission">این مجوز مورد نیاز است
@@ -566,11 +566,11 @@
     </plurals>
     <string name="no_one_listening">کسی در حال شنیدن نیست</string>
     <plurals name="watching">
-        <item quantity="one">%s تماشاچی</item>
-        <item quantity="other">%s تماشاچی</item>
+        <item quantity="one">%s بیننده</item>
+        <item quantity="other">%s بیننده</item>
     </plurals>
     <string name="no_one_watching">کسی در حال مشاهده نیست</string>
-    <string name="drawer_header_description">تغییر خدمت، خدمت جاری:</string>
+    <string name="drawer_header_description">تغییر خدمت، مورد انتخاب شده:</string>
     <string name="permission_display_over_apps">اجازه نمایش روی دیگر برنامه‌ها را بدهید</string>
     <string name="help">راهنما</string>
     <string name="artists">هنرمندان</string>
@@ -578,16 +578,62 @@
     <string name="songs">موسیقی‌ها</string>
     <string name="youtube_restricted_mode_enabled_title">حالت محدودیت یوتیوب</string>
     <string name="search_showing_result_for">نمایش نتایج برای: %s</string>
-    <string name="error_report_open_issue_button_text">گزارش خطا در گیت‌هاب</string>
+    <string name="error_report_open_issue_button_text">گزارش روی گیت‌هاب</string>
     <string name="error_report_open_github_notice">لطفا بررسی کنید که آیا گفتگویی درباره مشکل‌تان از قبل وجود دارد یا خیر. ایجاد گزارش تکراری، وقتی را از ما می‌گیرد که ما می‌توانستیم صرف رفع مشکلات واقعی کنیم.</string>
     <string name="select_a_playlist">انتخاب یک فهرست پخش</string>
     <string name="no_playlist_bookmarked_yet">نشانک‌های فهرست پخش هنوز موجود نیستند</string>
-    <string name="copy_for_github">گزارش قالب بندی شده را رونویسی کنید</string>
+    <string name="copy_for_github">از گزارش قالب‌بندی‌شده را رونوشت بگیرید</string>
     <string name="playlist_no_uploader">تولید شده به صورت خودکار (بارگذارکننده ای یافت نشد)</string>
-    <string name="feed_groups_header_title">دسته بندی کانال ها</string>
-    <string name="feed_group_dialog_select_subscriptions">انتخاب اشتراک ها</string>
+    <string name="feed_groups_header_title">گروه‌های کانال</string>
+    <string name="feed_group_dialog_select_subscriptions">انتخاب اشتراک‌ها</string>
     <string name="feed_group_dialog_empty_selection">اشتراکی انتخاب نشده است</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">نمایش اشتراک های دسته بندی نشده</string>
     <string name="detail_sub_channel_thumbnail_view_description">آواتار بندانگشتی کانال</string>
     <string name="playlist_page_summary">صفحه فهرست پخش</string>
+    <string name="remove_watched_popup_warning">ویدیوهایی که پیش و‌ پس از افزوده شدن به فهرست پخش دیده شده‌اند حذف خواهند شد.
+\nمطمئن هستید؟ این کار قابل بازگرداندن نیست!</string>
+    <string name="enable_disposed_exceptions_summary">گزارش اجباری خطاهای Rx غیرقابل تحویل خارج از چرخه حیات فعالیت یا بخش پس از اتمام</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">فکر می‌کنید دریافت خوراک بیش از حد آهسته است؟ اگر چنین است، بارگیری سریع را فعالی کنید (می‌توانید آن را در تنظیمات یا با فشردن دکمه زیر تغییر دهید)
+\n
+\nنیوپایپ دو راهبرد برای بارگیری خوراک عرضه می‌کند:
+\n• دریافت تمام کانال‌های مشترک شده، که آهسته اما کامل است.
+\n• استفاده از خدمت اختصاصی، که سریع اما معمولا ناقص است.
+\n
+\nتفاوت بین این دو در این است که راهکار سریع، غالبا فاقد برخی اطلاعات مانند طول زمان یا نوع است و مثلا نمی‌تواد بین ویدئوهای زنده و عادی تمایز قائل شود و ممکن است تعداد کم‌تری ویدئو را دریافت کند.
+\n
+\nیوتیوب نمونه‌ای از یک خدمت است که چنین روش سریعی را از طریق خوراک RSS ارائه می‌دهد.
+\n
+\nدر نتیجه انتخاب به این بر می‌گردد که کدام یک برای‌تان ترجیح داشته باشد: سرعیت یا اطلاعات دقیق.</string>
+    <string name="feed_use_dedicated_fetch_method_summary">در برخی خدمات دردسترس است، معمولا سریع‌تر است اما ممکن است مواردی محدودتر و اغلب با اطلاعات ناقص (مثلا بدون طول زمان، نوع مورد و یا وضعیت زنده بود) ارائه دهد.</string>
+    <string name="feed_use_dedicated_fetch_method_title">دریافت از خوراک اختصاصی هر زمان که در دسترس باشد</string>
+    <string name="feed_update_threshold_option_always_update">همواره به‌روز شود</string>
+    <string name="feed_update_threshold_summary">مدت زمان سپری شده پس از آخرین به‌روزرسانی پیش از آن که یک اشتراک، قدیمی به حساب بیاید — %s</string>
+    <string name="feed_update_threshold_title">آستانه به‌روزرسانی خوراک</string>
+    <string name="new_seek_duration_toast">به دنبال محدودیت‌های ExoPlayer، مدت جابجایی زمان پخش روی %d ثانیه تنظیم شد</string>
+    <string name="show_original_time_ago_summary">متن‌های اصلی از خدمات در جریان‌ها قابل دیدن خواهند بود</string>
+    <string name="notification_action_buffering">بافر کردن</string>
+    <string name="feed_group_dialog_empty_name">خالی کردن نام گروه</string>
+    <string name="pause_downloads_on_mobile">توقف روی شبکه‌های محدودشده</string>
+    <string name="never">هرگز</string>
+    <string name="wifi_only">فقط روی وای‌فای</string>
+    <string name="autoplay_summary">شروع خودکار پخش — %s</string>
+    <string name="title_activity_play_queue">پخش صف</string>
+    <string name="settings_category_notification_title">اعلان</string>
+    <string name="unsupported_url_dialog_message">نشانی قابل تشخیص نبود. با برنامه دیگری باز شود؟</string>
+    <string name="auto_queue_toggle">صف‌گذاری خودکار</string>
+    <string name="clear_queue_confirmation_description">صف پخش‌کنندهٔ فعال جایگزین می‌شود</string>
+    <string name="clear_queue_confirmation_summary">تغییر پخش کننده می‌تواند باعث جایگزین شدن صف شود</string>
+    <string name="clear_queue_confirmation_title">پیش از پاک کردن صف، سوال شود</string>
+    <string name="notification_action_nothing">هیچ</string>
+    <string name="notification_action_shuffle">تصادفی</string>
+    <string name="notification_action_repeat">تکرار</string>
+    <string name="notification_actions_at_most_three">حداکثر تا سه کنش را می‌توانید برای نمایش در اعلان فشرده انتخاب کنید!</string>
+    <string name="notification_actions_summary">هر کنش اعلان را با لمس کردنش‌شان ویرایش کنید. نهایتا تا سه مورد را برای نمایش در اعلان فشرده انتخاب کنید.</string>
+    <string name="notification_action_4_title">پنجمین دکمه کنشی</string>
+    <string name="notification_action_3_title">چهارمین دکمه کنشی</string>
+    <string name="notification_action_2_title">سومین دکمه کنشی</string>
+    <string name="notification_action_1_title">دومین دکمه کنشی</string>
+    <string name="notification_action_0_title">اولین دکمه کنشی</string>
+    <string name="notification_scale_to_square_image_summary">تصویر بندانگشتی ویدیو که در اعلان نمایش می‌یابد، از نسبت ۱۶:۹ به ۱:۱ تغییر اندازه پیدا کند (ممکن است منجر به اعوجاج شود)</string>
+    <string name="notification_scale_to_square_image_title">تغییر مقیاس تصویر بندانگشتی به نسبت ۱:۱</string>
 </resources>

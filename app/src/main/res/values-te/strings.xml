@@ -15,9 +15,8 @@
     <string name="choose_browser">బ్రౌజర్ను ఎంచుకోండి</string>
     <string name="screen_rotation">రొటేషన్</string>
     <string name="use_external_audio_player_title">బాహ్యట ఆడియో ప్లేయర్ని ఉపయోగించండి</string>
-    <string name="popup_mode_share_menu_title">న్యూపైప్ పాపప్ మోడ్
-\n</string>
-    <string name="subscribe_button_title">"సభ్యత్వం "</string>
+    <string name="popup_mode_share_menu_title">న్యూపైప్ పాపప్ మోడ్</string>
+    <string name="subscribe_button_title">సభ్యత్వం</string>
     <string name="subscribed_button_title">సబ్ స్క్రైబ్</string>
     <string name="channel_unsubscribed">అన్ సబ్స్క్రైబ్ చెసిరు</string>
     <string name="subscription_change_failed">సబ్ స్క్రైబ్ సాధ్యం కాలేదు</string>
@@ -56,7 +55,7 @@
     <string name="settings_category_other_title">ఇతర</string>
     <string name="background_player_playing_toast">వెనకవైపులో ఆడుతున్నారు</string>
     <string name="popup_playing_toast">పాపప్ రీతిలో ప్లే చేస్తోంది</string>
-    <string name="background_player_append">"ఆటగాడిపై   క్యూ"</string>
+    <string name="background_player_append">ఆటగాడిపై క్యూ</string>
     <string name="content">కంటెంట్</string>
     <string name="downloads">డౌన్ లోడ్ల</string>
     <string name="downloads_title">డౌన్ లోడ్</string>
@@ -177,7 +176,7 @@
     <string name="play_queue_audio_settings">ఆడియో సెట్టింగ్లు</string>
     <string name="hold_to_append">ఎన్క్యూలో పట్టుకోండి</string>
     <string name="no_player_found">మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు. VLC ప్లేయర్ ఇన్స్టాల్ చేసుకుంటారా\?</string>
-    <string name="no_player_found_toast">"మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు (మీరు VLC  ఇసన్తాల్ చేసుకోండి )"</string>
+    <string name="no_player_found_toast">మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు (మీరు VLC ఇసన్తాల్ చేసుకోండి )</string>
     <string name="open_in_popup_mode">పాపప్ మోడ్ తెరవండి</string>
     <string name="default_popup_resolution_title">డిఫాల్ట్ పాపప్ స్పష్టత</string>
     <string name="controls_download_desc">ప్రసార ఫైల్ను డౌన్లోడ్ చేయండి</string>

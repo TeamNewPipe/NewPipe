@@ -260,7 +260,7 @@
     <string name="append_playlist">Dodaj na reprodukcijsku listu</string>
     <string name="set_as_playlist_thumbnail">Postavi kao sliku na listu</string>
     <string name="bookmark_playlist">Markirajte reprodukcijsku listu</string>
-    <string name="unbookmark_playlist">"Odmarkirajte "</string>
+    <string name="unbookmark_playlist">Odmarkirajte</string>
     <string name="delete_playlist_prompt">Želite li izbrisati listu?</string>
     <string name="playlist_creation_success">Reprodukcijska lista je kreirana</string>
     <string name="playlist_add_stream_success">Dodano na listu</string>

@@ -353,7 +353,7 @@
     <string name="delete_search_history_alert">Eliminar todo o histórico de pesquisa\?</string>
     <string name="search_history_deleted">Histórico de pesquisa eliminado.</string>
     <string name="one_item_deleted">1 elemento eliminado.</string>
-    <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>
+    <string name="toast_no_player">Não existe uma app para reproduzir este ficheiro</string>
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o tempo livre deles para proporcionar-lhe a melhor experiência. Retribua para ajudar os programadores a tornarem o NewPipe ainda melhor enquanto desfruta de um café.</string>
     <string name="give_back">Retribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
@@ -372,8 +372,8 @@
     <string name="playlist_delete_failure">Não foi possível eliminar a lista de reprodução.</string>
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
-    <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações.</string>
-    <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
+    <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para app as alterações.</string>
+    <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a app instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o eliminação</string>
     <string name="import_network_expensive_warning">Tenha em atenção que esta operação pode sobrecarregar a sua rede.
@@ -390,8 +390,8 @@
     <string name="decline">Recusar</string>
     <string name="limit_data_usage_none_description">Ilimitado</string>
     <string name="limit_mobile_data_usage_title">Limitar resolução se estiver a usar dados móveis</string>
-    <string name="minimize_on_exit_title">Minimizar ao trocar de aplicação</string>
-    <string name="minimize_on_exit_summary">Ação a executar ao trocar para outra aplicação a partir do menu principal - %s</string>
+    <string name="minimize_on_exit_title">Minimizar ao trocar de app</string>
+    <string name="minimize_on_exit_summary">Ação a executar ao trocar para outra app do menu principal - %s</string>
     <string name="minimize_on_exit_none_description">Nenhuma</string>
     <string name="minimize_on_exit_background_description">Ativar o reprodutor em segundo plano</string>
     <string name="minimize_on_exit_popup_description">Ativar o reprodutor \'popup\'</string>
@@ -415,7 +415,7 @@
     <string name="main_page_content_summary">Quais os separadores que são mostrados na página principal</string>
     <string name="selection">Seleção</string>
     <string name="updates_setting_title">Atualizações</string>
-    <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
+    <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da app se uma nova versão existir</string>
     <string name="list_view_mode">Modo de exibição de lista</string>
     <string name="list">Lista</string>
     <string name="grid">Grelha</string>
@@ -525,7 +525,7 @@
     <string name="delete_downloaded_files">Apagar ficheiros transferidos</string>
     <string name="deleted_downloads">%1$d transferências apagadas</string>
     <string name="permission_display_over_apps">Permitir sobreposição da janela sobre outras aplicações</string>
-    <string name="app_language_title">Idioma da aplicação</string>
+    <string name="app_language_title">Idioma da app</string>
     <string name="systems_language">Predefinição do sistema</string>
     <string name="subtitle_activity_recaptcha">Pressionar \"Aceitar\" quando terminar</string>
     <string name="recaptcha_done_button">Aceitar</string>
