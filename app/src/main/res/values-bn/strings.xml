@@ -98,8 +98,9 @@
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
     <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="one_item_deleted">একটি আইটেম ডিলিট হয়েছে।</string>
-    <string name="msg_popup_permission">এই অনুমতিটি পপআপ মোডে খুলতে প্রয়োজন</string>
-    <string name="no_available_dir">অনুগ্রহ করে একটি উপলব্ধ ডাউনলোড ডিরেক্টরি নির্বাচন করো।</string>
+    <string name="msg_popup_permission">এই অনুমতিটি 
+\nপপআপ মোডে খুলতে প্রয়োজন</string>
+    <string name="no_available_dir">অনুগ্রহ করে একটি উপলব্ধ ডাউনলোড ডিরেক্টরি নির্বাচন করো</string>
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
     <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
@@ -307,7 +308,7 @@
     <string name="show_higher_resolutions_title">উচ্চ রেজোল্যুশন দেখাও</string>
     <string name="default_popup_resolution_title">ডিফল্ট পপআপ রেজোল্যুশন</string>
     <string name="default_resolution_title">ডিফল্ট রেজোল্যুশন</string>
-    <string name="autoplay_by_calling_app_summary">স্বয়ংক্রিয়ভাবে একটি ভিডিও প্লে করো যখন NewPipe অন্য অ্যাপ্লিকেশন থেকে চালু করা হয়।</string>
+    <string name="autoplay_by_calling_app_summary">স্বয়ংক্রিয়ভাবে একটি ভিডিও প্লে করো যখন NewPipe অন্য অ্যাপ্লিকেশন থেকে চালু করা হয়</string>
     <string name="autoplay_by_calling_app_title">স্বয়ংক্রিয়ভাবে প্লে করো যখন অন্য অ্যাপ্লিকেশন থেকে চালু করা হয়</string>
     <string name="download_choose_new_path">প্রভাব দৃশ্যমান করার জন্য ডাউনলোড ফোল্ডার পরিবর্তন করুন</string>
     <string name="download_path_audio_dialog_title">অডিও ফাইলগুলির জন্য ডাউনলোডের ফোল্ডার নির্বাচন করুন</string>
@@ -342,16 +343,22 @@
     <string name="did_you_mean">আপনি কি বুঝিয়েছেনঃ %1$s\?</string>
     <string name="settings">সেটিংস</string>
     <string name="search">খুঁজুন</string>
-    <string name="controls_download_desc">স্ট্রিম ফাইল ডাউনলোড করুন।</string>
+    <string name="controls_download_desc">স্ট্রিম ফাইল ডাউনলোড করুন</string>
     <string name="download">ডাউনলোউড</string>
     <string name="share">শেয়ার</string>
     <string name="open_in_popup_mode">পপ-আপ মোডে ওপেন করো</string>
     <string name="open_in_browser">ব্রাউজারে ওপেন করো</string>
     <string name="cancel">বাদ দিন</string>
     <string name="install">ইনস্টল</string>
-    <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি (প্লে করতে VLC ইন্সটল করতে পারেন)</string>
+    <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি (প্লে করতে VLC ইন্সটল করতে পারেন).</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চাও\?</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="view_count_text">"%1$s জন  দেখছে"</string>
     <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
+    <string name="notification_action_buffering">বাফারিং</string>
+    <string name="notification_action_shuffle">সাফল</string>
+    <string name="notification_action_4_title">পঞ্চম অ্যাকশন বাটন</string>
+    <string name="notification_action_3_title">চতুর্থ অ্যাকশন বাটন</string>
+    <string name="notification_action_2_title">তৃতীয় অ্যাকশন বাটন</string>
+    <string name="notification_action_1_title">দ্বিতীয় অ্যাকশান বাটন</string>
 </resources>
