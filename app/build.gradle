@@ -209,7 +209,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
-    implementation "org.ocpsoft.prettytime:prettytime:4.0.5.Final"
+    implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
 }
 
 static String getGitWorkingBranch() {

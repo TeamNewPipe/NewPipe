@@ -305,9 +305,7 @@ public final class Localization {
     }
 
     public static String relativeTime(final Calendar calendarTime) {
-        final String time = getPrettyTime().formatUnrounded(calendarTime);
-        return time.startsWith("-") ? time.substring(1) : time;
-        //workaround fix for russian showing -1 day ago, -19hrs ago…
+        return getPrettyTime().formatUnrounded(calendarTime);
     }
 
     private static void changeAppLanguage(final Locale loc, final Resources res) {
