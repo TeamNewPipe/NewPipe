@@ -25,7 +25,6 @@
     <string name="play_audio">오디오</string>
     <string name="default_audio_format_title">기본 오디오 형식</string>
     <string name="download_dialog_title">다운로드</string>
-    <string name="next_video_title">다음</string>
     <string name="show_next_and_similar_title">다음/유사한 비디오 표시</string>
     <string name="unsupported_url">지원하지 않는 URL입니다</string>
     <string name="content_language_title">기본 컨텐츠 언어</string>
@@ -46,7 +45,6 @@
     <string name="settings_category_appearance_title">외관</string>
     <string name="settings_category_other_title">기타</string>
     <string name="background_player_playing_toast">백그라운드에서 재생 중</string>
-    <string name="play_btn_text">재생</string>
     <string name="network_error">네트워크 오류</string>
     <string name="use_tor_title">Tor 사용</string>
     <string name="use_tor_summary">(실험적) 향상된 프라이버시를 위해 다운로드 트래픽을 강제로 Tor를 통해 전송 (스트리밍 비디오는 아직 지원되지 않습니다).</string>
@@ -519,8 +517,6 @@
     <string name="recovering">복구하기</string>
     <string name="error_download_resource_gone">이 다운로드를 복구할 수 없습니다</string>
     <string name="choose_instance_prompt">인스턴스를 선택하세요</string>
-    <string name="enable_lock_screen_video_thumbnail_title">비디어 썸네일 화면 고정을 가능하게 한다</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">백그라운드 플레이어를 사용하는 경우 비디오 썸네일은 잠금화면 상에 표시됩니다.</string>
     <string name="clear_download_history">다운로드 기록 삭제</string>
     <string name="delete_downloaded_files">다운로드된 파일 삭제</string>
     <string name="deleted_downloads">%1$d 다운로드 삭제</string>

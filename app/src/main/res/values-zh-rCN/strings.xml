@@ -28,7 +28,6 @@
     <string name="dark_theme_title">暗黑</string>
     <string name="black_theme_title">黑色</string>
     <string name="download_dialog_title">下载</string>
-    <string name="next_video_title">下一个</string>
     <string name="unsupported_url">不支持的 URL</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="settings_category_other_title">其他</string>
@@ -166,7 +165,6 @@
     <string name="show_next_and_similar_title">显示“下一个”和“类似的”视频</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="background_player_playing_toast">在后台播放</string>
-    <string name="play_btn_text">播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">受年龄限制的内容</string>
     <string name="video_is_age_restricted">显示受年龄限制的视频。可从设置允许此类内容。</string>
@@ -517,8 +515,6 @@
     <string name="error_download_resource_gone">无法恢复此下载</string>
     <string name="choose_instance_prompt">选择一个服务器</string>
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
-    <string name="enable_lock_screen_video_thumbnail_title">在锁屏上显示视频缩略图</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除下载了的文件</string>
     <string name="deleted_downloads">已删除 %1$d 下载</string>

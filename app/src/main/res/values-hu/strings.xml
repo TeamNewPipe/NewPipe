@@ -25,14 +25,12 @@
     <string name="play_audio">Hang</string>
     <string name="default_audio_format_title">Alapértelmezett hang formátum</string>
     <string name="download_dialog_title">Letöltés</string>
-    <string name="next_video_title">Következő</string>
     <string name="unsupported_url">Nem támogatott webcím</string>
     <string name="use_external_video_player_title">Külső videólejátszó használata</string>
     <string name="use_external_audio_player_title">Külső hanglejátszó használata</string>
     <string name="download_path_audio_dialog_title">Válaszd ki a hangfájlok letöltési helyét</string>
     <string name="use_tor_title">Tor használata</string>
     <string name="use_tor_summary">(Kísérleti) Adatforgalom Tor-on keresztüli kényszerítése a biztonság fokozása érdekében (a videó stream-elés még nem támogatott).</string>
-    <string name="play_btn_text">Lejátszás</string>
     <string name="network_error">Hálózati hiba</string>
     <string name="background_player_playing_toast">Lejátszás háttérben</string>
     <string name="settings_category_video_audio_title">Videó és audio</string>
@@ -78,7 +76,7 @@
     <string name="user_report">Felhasználói jelentés</string>
     <string name="video">Videó</string>
     <string name="audio">Audio</string>
-    <string name="main_bg_subtitle">A kezdéshez koppints a \"Keresés\"-re!</string>
+    <string name="main_bg_subtitle">A kezdéshez koppints a \"Keresés\"-re</string>
     <string name="could_not_load_thumbnails">Nem sikerült az összes előnézeti kép betöltése</string>
     <string name="parsing_error">Nem sikerült a weblap betöltése</string>
     <string name="light_parsing_error">Nem sikerült a weblap teljes betöltése</string>
@@ -381,10 +379,8 @@
     <string name="enqueue">Sor</string>
     <string name="overwrite_failed">a fájl nem írható felül</string>
     <string name="seek_duration_title">Az előre- és visszatekerés időtartama</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Videó előnézet a lezárási képernyőn</string>
     <string name="enable_playback_resume_summary">Legutóbbi lejátszási pozíció visszaállítása</string>
     <string name="enable_playback_resume_title">Lejátszás folytatása</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Megjeleníti a videó bélyegképét a képernyőzáron, amikor a háttér lejátszó van használva</string>
     <string name="download_choose_new_path">Változtasd meg a letöltési helyet, hogy érvénybe lépjen</string>
     <string name="app_update_notification_channel_description">Jelentés új NewPipe verzióról</string>
     <string name="app_update_notification_channel_name">Alkalmazás-frissítés jelzése</string>

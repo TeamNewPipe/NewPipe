@@ -51,14 +51,12 @@
     <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
     <string name="show_search_suggestions_summary">Hiển thị các đề xuất khi tìm kiếm</string>
     <string name="download_dialog_title">Tải về</string>
-    <string name="next_video_title">Tiếp theo</string>
     <string name="show_next_and_similar_title">Hiển thị video \"Tiếp theo\" và \"Tương tự\"</string>
     <string name="unsupported_url">URL không được hỗ trợ</string>
     <string name="settings_category_appearance_title">Hiển thị</string>
     <string name="settings_category_other_title">Khác</string>
     <string name="background_player_playing_toast">Phát ở chế độ nền</string>
     <string name="popup_playing_toast">Phát ở chế độ popup</string>
-    <string name="play_btn_text">Phát</string>
     <string name="content">Nội dung</string>
     <string name="show_age_restricted_content_title">Cho phép nội dung có giới hạn độ tuổi</string>
     <string name="video_is_age_restricted">Hiện video có giới hạn độ tuổi. Có thể thay đổi trong phần Cài đặt.</string>
@@ -552,8 +550,6 @@
     <string name="peertube_instance_url_summary">Chọn thực thể PeerTube ưa thích</string>
     <string name="peertube_instance_url_title">Thực thể PeerTube</string>
     <string name="seek_duration_title">Thời lượng tua video</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Một thumbail video hiện trên màn hình khóa khi trình phát chạy trong nền</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Thumbnail video màn hình khóa</string>
     <string name="show_original_time_ago_summary">Dòng chữ mô tả thời gian gốc từ các dịch vụ sẽ được hiển thị thay thế</string>
     <string name="show_original_time_ago_title">Hiện thời gian gốc trên các item</string>
     <string name="drawer_header_description">Chọn dịch vụ; dịch vụ hiện tại:</string>

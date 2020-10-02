@@ -69,7 +69,7 @@
     <string name="download_thumbnail_summary">Matikan untuk mengelakkan pemuatan thumbnail, menjimat penggunaan data dan memori. Perubahan akan menghapus cache imej dalam memori dan disk.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache imej dihapuskan</string>
     <string name="metadata_cache_wipe_title">Hapuskan cache metadata</string>
-    <string name="metadata_cache_wipe_summary">"Hapuskan semua cache data halaman web "</string>
+    <string name="metadata_cache_wipe_summary">Hapuskan semua cache data halaman web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadata dihapuskan</string>
     <string name="auto_queue_title">Automatik beratur strim seterusnya</string>
     <string name="auto_queue_summary">Tambahkan secara automatik strim berkaitan apabila memain strim terakhir dalam giliran tidak berulang.</string>
@@ -88,7 +88,6 @@
     <string name="resume_on_audio_focus_gain_title">Teruskan apabila fokus</string>
     <string name="resume_on_audio_focus_gain_summary">Teruskan bermain selepas gangguan (contohnya panggilan telefon)</string>
     <string name="download_dialog_title">Muat turun</string>
-    <string name="next_video_title">Seterusnya</string>
     <string name="show_next_and_similar_title">Paparkan video \'Seterusnya\' dan \'Berkaitan\'</string>
     <string name="show_hold_to_append_title">Tunjukkan tip \"Pegang untuk menambahkan\"</string>
     <string name="show_hold_to_append_summary">Tunjukkan tip apabila butang latar belakang atau popup ditekan pada halaman butiran video</string>
@@ -109,7 +108,6 @@
     <string name="popup_playing_toast">Bermain dalam mod popup</string>
     <string name="background_player_append">Beratur pada pemain latar belakang</string>
     <string name="popup_playing_append">Beratur pada pemain popup</string>
-    <string name="play_btn_text">Main</string>
     <string name="content">Kandungan</string>
     <string name="show_age_restricted_content_title">Kandungan terhad umur</string>
     <string name="video_is_age_restricted">Tunjukkan video terhad umur. Membenarkan bahan tersebut boleh dilakukan dari Tetapan.</string>
@@ -455,6 +453,5 @@
     <string name="pause_downloads_on_mobile_desc">Muat turun yang tidak dapat dihentikan akan dimulakan semula</string>
     <string name="missions_header_pending">Menunggu</string>
     <string name="download_choose_new_path">Ubah folder muat turun untuk melihat kesan</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Dayakan lakaran kecil video skrin kunci</string>
     <string name="search_showing_result_for">Menunjuk carian untuk: %s</string>
 </resources>

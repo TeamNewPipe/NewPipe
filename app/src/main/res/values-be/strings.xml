@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Націсніце пошук, каб пачаць</string>
+    <string name="main_bg_subtitle">Націсніце \"Пошук\", каб пачаць</string>
     <string name="view_count_text">%1$s праглядаў</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы плэер не знойдзены. Усталяваць VLC?</string>
@@ -14,14 +14,14 @@
     <string name="controls_download_desc">Загрузка файла прамой трансляцыі</string>
     <string name="search">Пошук</string>
     <string name="settings">Налады</string>
-    <string name="did_you_mean">Магчыма, вы мелі на ўвазе: %1$s?</string>
+    <string name="did_you_mean">Магчыма, вы мелі на ўвазе \"%1$s\"\?</string>
     <string name="share_dialog_title">Падзяліцца з дапамогай</string>
     <string name="choose_browser">Выбраць браўзэр</string>
     <string name="screen_rotation">паварот</string>
     <string name="use_external_video_player_title">Знешні відэаплэер</string>
-    <string name="use_external_video_player_summary">Адключае гук для НЕКАТОРЫХ разрозненняў</string>
+    <string name="use_external_video_player_summary">Прыбірае гук у некаторых разрозненнях</string>
     <string name="use_external_audio_player_title">Знешні аўдыяплэер</string>
-    <string name="popup_mode_share_menu_title">NewPipe ў акне</string>
+    <string name="popup_mode_share_menu_title">NewPipe ва ўсплывальным акне</string>
     <string name="subscribe_button_title">Падпісацца</string>
     <string name="subscribed_button_title">Вы падпісаныя</string>
     <string name="channel_unsubscribed">Падпіска адменена</string>
@@ -35,11 +35,11 @@
     <string name="controls_background_title">У фоне</string>
     <string name="controls_popup_title">У акне</string>
     <string name="controls_add_to_playlist_title">Дадаць да</string>
-    <string name="download_path_title">Шлях загрузкі відэа</string>
+    <string name="download_path_title">Каталог для спампаванага відэа</string>
     <string name="download_path_summary">Папка для захоўвання загружаных відэа</string>
     <string name="download_path_dialog_title">Увядзіце шлях да папкі для загрузкі відэа</string>
     <string name="download_path_audio_title">Тэчка загрузкі аўдыё</string>
-    <string name="download_path_audio_summary">"Сюды захоўваецца загружанае аўдыё "</string>
+    <string name="download_path_audio_summary">Сюды захоўваецца загружанае аўдыё</string>
     <string name="download_path_audio_dialog_title">Увядзіце шлях да папкі для загрузкі аўдыё</string>
     <string name="autoplay_by_calling_app_title">Аўтапрайграванне</string>
     <string name="autoplay_by_calling_app_summary">Прайграваць відэа пры выкліку NewPipe з іншага прыкладання</string>
@@ -81,7 +81,6 @@
     <string name="resume_on_audio_focus_gain_title">Аднавіць пры фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Аднаўляць прайграванне пасля перапынкаў (напрыклад, тэлефонных званкоў)</string>
     <string name="download_dialog_title">Спампаваць</string>
-    <string name="next_video_title">Наступнае</string>
     <string name="show_next_and_similar_title">\"Наступнае\" и \"Прапанаванае\" відэа</string>
     <string name="show_hold_to_append_title">\"Зацісніце, каб дадаць\"</string>
     <string name="show_hold_to_append_summary">Паказаць падказку пры націсканні \"У акне\" ці \"У фоне\" на старонцы звестак аб відэа</string>
@@ -101,7 +100,6 @@
     <string name="popup_playing_toast">Прайграванне ва ўсплываючым акне</string>
     <string name="background_player_append">Дададзена ў чаргу ў фоне</string>
     <string name="popup_playing_append">Дададзена ў чаргу ў акне</string>
-    <string name="play_btn_text">Прайграць</string>
     <string name="content">Кантэнт</string>
     <string name="show_age_restricted_content_title">Кантэнт 18+</string>
     <string name="video_is_age_restricted">Відэа з узроставымі абмежаваннямі. Дазволіць падобны кантэнт можна ў \"Наладах\".</string>
@@ -500,4 +498,5 @@
     <string name="peertube_instance_add_title">Дадаць інстанцыю</string>
     <string name="peertube_instance_url_title">Інстанцыі PeerTube</string>
     <string name="download_choose_new_path">Змяніце папкі загрузкі, каб змены ўступілі ў сілу</string>
+    <string name="search_showing_result_for">Вынікі для: %s</string>
 </resources>

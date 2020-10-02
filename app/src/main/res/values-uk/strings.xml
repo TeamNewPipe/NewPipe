@@ -35,7 +35,6 @@
     <string name="dark_theme_title">Темна</string>
     <string name="light_theme_title">Світла</string>
     <string name="download_dialog_title">Завантажити</string>
-    <string name="next_video_title">Наступне</string>
     <string name="show_next_and_similar_title">Показувати \"Наступне\" і \"Схожі\" відео</string>
     <string name="unsupported_url">URL не підтримується</string>
     <string name="content_language_title">Переважна мова контенту</string>
@@ -43,7 +42,6 @@
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="settings_category_other_title">Інше</string>
     <string name="background_player_playing_toast">Програвання у тлі</string>
-    <string name="play_btn_text">Програти</string>
     <string name="storage_permission_denied">Немає доступу до накопичувача</string>
     <string name="content">Контент</string>
     <string name="show_age_restricted_content_title">Контент з віковими обмеженнями</string>
@@ -526,8 +524,6 @@
     <string name="recovering">відновлюється</string>
     <string name="error_download_resource_gone">Неможливо відновити це завантаження</string>
     <string name="choose_instance_prompt">Вибрати екземпляр</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Прев’ю відео на екрані блокування</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Прев’ю відео буде показано на екрані блокування при використанні фонового плеєра</string>
     <string name="clear_download_history">Очистити історію завантажень</string>
     <string name="delete_downloaded_files">Видалити завантажені файли</string>
     <string name="permission_display_over_apps">Потрібен дозвіл показувати поверх інших додатків</string>

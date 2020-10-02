@@ -10,7 +10,7 @@
     <string name="download">Downloaden</string>
     <string name="search">Zoeken</string>
     <string name="settings">Instellingen</string>
-    <string name="did_you_mean">Bedoelde je: %1$s\?</string>
+    <string name="did_you_mean">Bedoelde je \"%1$s\"\?</string>
     <string name="share_dialog_title">Delen met</string>
     <string name="choose_browser">Kies een browser</string>
     <string name="screen_rotation">draaiing</string>
@@ -25,7 +25,6 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Standaardaudioformaat</string>
     <string name="download_dialog_title">Downloaden</string>
-    <string name="next_video_title">Volgende</string>
     <string name="unsupported_url">URL wordt niet ondersteund</string>
     <string name="show_next_and_similar_title">‘volgende’ en ‘vergelijkbare’ video’s weergeven</string>
     <string name="content_language_title">Standaardtaal voor inhoud</string>
@@ -45,7 +44,6 @@
     <string name="settings_category_appearance_title">Uiterlijk</string>
     <string name="settings_category_other_title">Overig</string>
     <string name="background_player_playing_toast">Speelt af op achtergrond</string>
-    <string name="play_btn_text">Afspelen</string>
     <string name="content">Inhoud</string>
     <string name="show_age_restricted_content_title">Inhoud met leeftijdsbeperking</string>
     <string name="video_is_age_restricted">Toon video met leeftijdsbeperking. Toestaan van dit soort video’s kan worden ingeschakeld in de Instellingen.</string>
@@ -66,7 +64,7 @@
     <string name="could_not_get_stream">Kan geen streams vinden</string>
     <string name="sorry_string">Sorry, dit had niet mogen gebeuren.</string>
     <string name="error_report_button_text">Deze fout melden via e-mail</string>
-    <string name="error_snackbar_message">Sorry, er traden enkele fouten op.</string>
+    <string name="error_snackbar_message">Sorry, er is iets fout gegaan.</string>
     <string name="error_snackbar_action">Melden</string>
     <string name="what_device_headline">Informatie:</string>
     <string name="what_happened_headline">Wat er is gebeurd:</string>
@@ -131,7 +129,7 @@
     <string name="filter">Filter</string>
     <string name="refresh">Verversen</string>
     <string name="clear">Wissen</string>
-    <string name="popup_remember_size_pos_title">Onthoud grootte en positie van pop-up</string>
+    <string name="popup_remember_size_pos_title">Onthoud de eigenschappen van de pop-up</string>
     <string name="popup_remember_size_pos_summary">Onthoud laatste grootte en positie van pop-up</string>
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="popup_resizing_indicator_title">Bezig met wijzigen van grootte</string>
@@ -520,8 +518,6 @@
     <string name="recovering">herstellen</string>
     <string name="error_download_resource_gone">Kan deze download niet herstellen</string>
     <string name="choose_instance_prompt">Kies een instantie</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Video afbeelding laten zien op vergrendelingsscherm</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Een video afbeelding wordt weergegeven op het vergrendelscherm wanneer de achtergrond speler wordt gebruikt</string>
     <string name="clear_download_history">Download geschiedenis verwijderen</string>
     <string name="delete_downloaded_files">Verwijder gedownloade bestanden</string>
     <string name="deleted_downloads">%1$d downloads verwijderd</string>
@@ -601,7 +597,7 @@
     <string name="more_than_100_videos">100+ video\'s</string>
     <string name="restricted_video">Deze video heeft een leeftijdsbeperking.
 \n
-\nAls u die wilt zien, schakel \"leeftijdsbeperkende inhoud\" in bij de instellingen.</string>
+\nSchakel \"leeftijdsbeperkende inhoud\" in bij de instellingen als u die wilt zien.</string>
     <string name="remove_watched">Verwijder bekeken</string>
     <string name="show_original_time_ago_summary">Originele teksten van services zijn zichtbaar in stream-items</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube beperkte modus</string>
@@ -614,7 +610,30 @@
     <string name="no_playlist_bookmarked_yet">Geen afspeellijst bookmarks</string>
     <string name="select_a_playlist">Selecteer een afspeellijst</string>
     <string name="error_report_open_github_notice">Controleer of er al een probleem bestaat dat uw crash beschrijft. Wanneer u dubbele tickets aanmaakt, neemt dit tijd van ons in beslag die we beter kunnen besteden aan het oplossen van het daadwerkelijke probleem.</string>
-    <string name="error_report_open_issue_button_text">Foutmelding in GitHub rapporteren</string>
+    <string name="error_report_open_issue_button_text">In GitHub rapporteren</string>
     <string name="copy_for_github">Kopieer opgemaakt rapport</string>
     <string name="search_showing_result_for">Gevonden resultaten voor: %s</string>
+    <string name="never">Nooit</string>
+    <string name="wifi_only">Enkel via wifi</string>
+    <string name="autoplay_summary">Start automatisch met afspelen — %s</string>
+    <string name="title_activity_play_queue">Speel wachtrij af</string>
+    <string name="settings_category_notification_title">Notificatie</string>
+    <string name="unsupported_url_dialog_message">Kon de URL niet herkennen. In een andere app openen\?</string>
+    <string name="clear_queue_confirmation_description">De actieve spelerswachtrij wordt vervangen</string>
+    <string name="clear_queue_confirmation_summary">Veranderen van één speler naar een andere kan jouw wachtrij vervangen</string>
+    <string name="clear_queue_confirmation_title">Vraag bevestiging alvorens de wachtrij te wissen</string>
+    <string name="notification_action_nothing">Niets</string>
+    <string name="notification_action_buffering">Aan het bufferen</string>
+    <string name="notification_action_shuffle">Shuffle</string>
+    <string name="notification_action_repeat">Herhaal</string>
+    <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
+    <string name="notification_actions_summary">Pas elke notificatieactie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectievakjes aan de rechterkant.</string>
+    <string name="notification_action_4_title">Vijfde actieknop</string>
+    <string name="notification_action_3_title">Vierde actieknop</string>
+    <string name="notification_action_2_title">Derde actieknop</string>
+    <string name="notification_action_1_title">Tweede actieknop</string>
+    <string name="notification_action_0_title">Eerste actieknop</string>
+    <string name="notification_scale_to_square_image_summary">Schaal de miniatuurafbeelding van de video die getoond wordt in de notificatie van verhouding 16:9 naar 1:1 (dit kan vervorming creëren)</string>
+    <string name="notification_scale_to_square_image_title">Schaal de miniatuurafbeelding tot verhouding 1:1</string>
+    <string name="auto_queue_toggle">Auto-wachtrij</string>
 </resources>

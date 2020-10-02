@@ -88,7 +88,6 @@
     <string name="resume_on_audio_focus_gain_title">Fortsæt når appen kommer i fokus</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsæt afspilning efter afbrydelser (fx telefonopkald)</string>
     <string name="download_dialog_title">Download</string>
-    <string name="next_video_title">Næste</string>
     <string name="show_next_and_similar_title">Vis \'Næste\' og \'Lignende\' videoer</string>
     <string name="show_hold_to_append_title">Vis \"Hold for at tilføje\"-tip</string>
     <string name="show_hold_to_append_summary">Vis et tip når der trykkes på baggrunds- eller pop op-knappen på siden med videodetaljer</string>
@@ -109,7 +108,6 @@
     <string name="popup_playing_toast">Afspiller i pop op-tilstand</string>
     <string name="background_player_append">Føjet til køen i baggrundsafspilleren</string>
     <string name="popup_playing_append">Føjet til pop op-afspilningskøen</string>
-    <string name="play_btn_text">Afspil</string>
     <string name="content">Indhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrænset indhold</string>
     <string name="video_is_age_restricted">Vis aldersbegrænsede videoer. Du kan tillade denne type videoer under Indstillinger.</string>

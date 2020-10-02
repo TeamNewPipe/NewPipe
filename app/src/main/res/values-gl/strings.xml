@@ -81,7 +81,6 @@
     <string name="resume_on_audio_focus_gain_title">Retormar o vídeo reproducíndoo</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproducindo o vídeo despois das interrupcións (como, por exemplo, as chamadas)</string>
     <string name="download_dialog_title">Descarregar</string>
-    <string name="next_video_title">Seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \"seguintes\" e \"semellantes\"</string>
     <string name="show_hold_to_append_title">Mostrar a suxestión \"Manteña presionado para engadir á cola\"</string>
     <string name="show_hold_to_append_summary">Amosar o consello ao premer o fondo ou o botón emerxente \"Detalles:\" no vídeo</string>
@@ -100,7 +99,6 @@
     <string name="popup_playing_toast">Reproducindo en modo «popup»</string>
     <string name="background_player_append">Na cola do reprodutor en segundo plano</string>
     <string name="popup_playing_append">Na cola do reprodutor popup</string>
-    <string name="play_btn_text">Reproducir</string>
     <string name="content">Contido</string>
     <string name="show_age_restricted_content_title">Contido restrinxido para certa idade</string>
     <string name="video_is_age_restricted">Mostrar vídeo restrinxido por idade. Os cambios futuros son posibles na configuración.</string>
@@ -610,8 +608,6 @@
     <string name="volume_gesture_control_summary">Use xestos para controlar o volume do reprodutor</string>
     <string name="show_comments_title">Amosar comentarios</string>
     <string name="seek_duration_title">Duración da busca rápida cara a adiante / cara atrás</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Na pantalla de bloqueo móstrase unha miniatura de vídeo cando se usa o reprodutor de fondo</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Miniatura do vídeo de pantalla de bloqueo</string>
     <string name="download_choose_new_path">Cambie os cartafoles de descarga para facer efecto</string>
     <string name="tab_choose">Elixir lapela</string>
     <string name="tab_new">Nova lapela</string>

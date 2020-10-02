@@ -338,7 +338,6 @@
     <string name="video_is_age_restricted">പ്രായപരിമിതിയുള്ള വീഡിയോ കാണിക്കുന്നു. ഭാവിയിൽ മാറ്റങ്ങൾ വരുത്താനാകും.</string>
     <string name="show_age_restricted_content_title">പ്രായപരിമിതപ്പെടുത്തിയ കന്റെന്റ്</string>
     <string name="content">കന്റെന്റ്</string>
-    <string name="play_btn_text">പ്ലേ</string>
     <string name="popup_playing_append">പോപ്പപ്പ് പ്ലേയറിൽ ക്യൂ ചെയ്തിരിക്കുന്നു</string>
     <string name="background_player_append">ബാക്ക്ഗ്രൗണ്ട് പ്ലേയറിൽ ക്യൂ ചെയ്തിരിക്കുന്നു</string>
     <string name="popup_playing_toast">പോപ്പപ്പ് മോഡിൽ പ്ലേ ചെയ്യുന്നു</string>
@@ -368,7 +367,6 @@
     <string name="show_hold_to_append_title">\"ഹോൾഡ് ടു അപ്പെൻഡ്\" എന്ന ടിപ് കാണിക്കുക</string>
     <string name="show_next_and_similar_title">\'അടുത്ത\' , \'സമാനമായ\' വീഡിയോകൾ കാണിക്കുക</string>
     <string name="autoplay_title">ഓട്ടോപ്ലേ</string>
-    <string name="next_video_title">അടുത്തത്</string>
     <string name="download_dialog_title">ഡൗൺലോഡ്</string>
     <string name="resume_on_audio_focus_gain_summary">തടസങ്ങൾക്ക് ശേഷം പ്ലേ ചെയ്യുന്നത് തുടരുക (eg. ഫോൺകോളുകൾക്ക് ശേഷം)</string>
     <string name="resume_on_audio_focus_gain_title">പ്ലേ ചെയ്യുന്നത് തുടരുക</string>
@@ -411,9 +409,7 @@
     <string name="default_video_format_title">സ്ഥിര വീഡിയോ ഫോർമാറ്റ്</string>
     <string name="default_audio_format_title">സ്ഥിര ഓഡിയോ ഫോർമാറ്റ്</string>
     <string name="play_audio">ഓഡിയോ</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">ബാക്ക്ഗ്രൗണ്ട് പ്ലേയർ ഉപയോഗിക്കുമ്പോൾ വീഡിയോയുടെ ലഘുചിത്രം ലോക്സ്ക്രീനിൽ കാണുന്നതാണ്</string>
     <string name="show_play_with_kodi_summary">Kodi media center വഴി വീഡിയോ പ്ലേ ചെയ്യാനുള്ള ഓപ്ഷൻ കാണിക്കുക</string>
-    <string name="enable_lock_screen_video_thumbnail_title">ലോക്സക്രീനിൽ വീഡിയോ ലഘുചിത്രം കാണിക്കുക</string>
     <string name="show_play_with_kodi_title">\"Kodi ഉപയോഗിച്ച് പ്ലേ ചെയ്യുക\" ഓപ്ഷൻ കാണിക്കുക</string>
     <string name="kore_not_found">Kore ഇൻസ്റ്റാൾ ചെയ്യട്ടെയോ\?</string>
     <string name="play_with_kodi_title">Kodi ഉപയോഗിച്ച് പ്ലേ ചെയ്യുക</string>

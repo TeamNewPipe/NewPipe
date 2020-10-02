@@ -81,7 +81,6 @@
     <string name="resume_on_audio_focus_gain_title">فوکس حاصل پر دوبارہ شروع کریں</string>
     <string name="resume_on_audio_focus_gain_summary">مداخلت کے بعد چلانا جاری رکھیں (مثلاً فون کالز)</string>
     <string name="download_dialog_title">ڈاؤن لوڈ</string>
-    <string name="next_video_title">اگلی</string>
     <string name="show_next_and_similar_title">\'اگلی\' اور \'ملتی جلتی\' ویڈیوز دکھائیں</string>
     <string name="show_hold_to_append_title">’’شامل کرنے کے لئے پکڑیں‘‘ اشارہ دکھائیں</string>
     <string name="show_hold_to_append_summary">ویڈیو تفصیلات کے صفحے پر جب پس منظر یا پاپ اپ بٹن دبائے جانے پر ٹپ دکھائیں</string>
@@ -100,7 +99,6 @@
     <string name="popup_playing_toast">پوپ اپ اسلوب میں جاری</string>
     <string name="background_player_append">پس منظر پلیئر میں شامل ہوئی</string>
     <string name="popup_playing_append">پاپ اپ پلیئر میں شامل ہوئی</string>
-    <string name="play_btn_text">چلائیں</string>
     <string name="content">مشمول</string>
     <string name="show_age_restricted_content_title">نازیبا مشمولات</string>
     <string name="video_is_age_restricted">نازیبا ویڈیو دکھائی دے گی۔ ترتیبات سے اس طرح کی مشمولات کی اجازت ممکن ہے۔</string>
@@ -522,8 +520,6 @@
     <string name="recovering">بازیافتی ہو رہی</string>
     <string name="error_download_resource_gone">یہ ڈاؤن لوڈ بازیافت نہیں ہو سکتا</string>
     <string name="choose_instance_prompt">ایک مثال منتخب کریں</string>
-    <string name="enable_lock_screen_video_thumbnail_title">لاک اسکرین ویڈیو تھمب نیل کو فعال کریں</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">بیک گراؤنڈ پلیئر استعمال کرتے وقت ایک ویڈیو تھمب نیل کو لاک اسکرین پر دکھایا جائے گا</string>
     <string name="clear_download_history">ڈاؤن لوڈ کی سرگزشت صاف کریں</string>
     <string name="delete_downloaded_files">ڈاؤن لوڈ شدہ فائلیں حذف کریں</string>
     <string name="deleted_downloads">%1$d ڈاؤن لوڈز کو حذف کیا گیا</string>

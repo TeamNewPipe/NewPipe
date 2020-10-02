@@ -66,7 +66,6 @@
     <string name="resume_on_audio_focus_gain_title">Nastavi reprodukciju</string>
     <string name="resume_on_audio_focus_gain_summary">Nastavi reproducirati nakon prekidanja (npr. telefonski pozivi)</string>
     <string name="download_dialog_title">Preuzmi</string>
-    <string name="next_video_title">Sljedeće</string>
     <string name="show_next_and_similar_title">Prikaži \'Sljedeće\' i \'Slične\' videozapise</string>
     <string name="unsupported_url">URL nije podržan</string>
     <string name="content_language_title">Zadani jezik sadržaja</string>
@@ -76,7 +75,6 @@
     <string name="settings_category_other_title">Drugo</string>
     <string name="background_player_playing_toast">Reprodukcija u pozadini</string>
     <string name="popup_playing_toast">Reproduciram u skočnom prozoru</string>
-    <string name="play_btn_text">Reproduciraj</string>
     <string name="content">Sadržaj</string>
     <string name="show_age_restricted_content_title">Prikaži eksplicitni sadržaj</string>
     <string name="video_is_age_restricted">Videozapis je dobno ograničen. Dopuštanje takvog sadržaja moguće je u postavkama.</string>
@@ -262,7 +260,7 @@
     <string name="append_playlist">Dodaj na reprodukcijsku listu</string>
     <string name="set_as_playlist_thumbnail">Postavi kao sliku na listu</string>
     <string name="bookmark_playlist">Markirajte reprodukcijsku listu</string>
-    <string name="unbookmark_playlist">"Odmarkirajte "</string>
+    <string name="unbookmark_playlist">Odmarkirajte</string>
     <string name="delete_playlist_prompt">Želite li izbrisati listu?</string>
     <string name="playlist_creation_success">Reprodukcijska lista je kreirana</string>
     <string name="playlist_add_stream_success">Dodano na listu</string>

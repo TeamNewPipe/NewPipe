@@ -25,7 +25,6 @@
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Подразумевани формат звука</string>
     <string name="download_dialog_title">Преузми</string>
-    <string name="next_video_title">Следећи видео</string>
     <string name="unsupported_url">УРЛ није подржан</string>
     <string name="show_next_and_similar_title">Прикажи следећи и слични видео</string>
     <string name="content_language_title">Подразумевани језик садржаја</string>
@@ -39,7 +38,6 @@
     <string name="use_external_video_player_title">Користи спољашњи видео плејер</string>
     <string name="use_external_audio_player_title">Користи спољашњи аудио плејер</string>
     <string name="background_player_playing_toast">Пуштам у позадини</string>
-    <string name="play_btn_text">Пусти</string>
     <string name="use_tor_title">Користи Тор</string>
     <string name="use_tor_summary">(Експериментално) Принудно преусмерење саобраћаја кроз Тор за доданту приватност (токови још нису подржани).</string>
     <string name="theme_title">Тема</string>

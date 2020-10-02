@@ -18,7 +18,6 @@
     <string name="theme_title">Estilu</string>
     <string name="dark_theme_title">Escuridá</string>
     <string name="light_theme_title">Claridá</string>
-    <string name="next_video_title">Darréu</string>
     <string name="content_language_title">Llingua predeterminada del conteníu</string>
     <string name="settings_category_video_audio_title">Videu y audiu</string>
     <string name="settings_category_appearance_title">Aspeutu</string>
@@ -304,7 +303,6 @@
     <string name="metadata_cache_wipe_summary">Desanicia los datos de les páxines web na caché</string>
     <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
     <string name="thumbnail_cache_wipe_complete_notice">Llimpióse la caché d\'imáxenes</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Amuésase una miniatura de videu na pantalla de bloquéu al usar el reproductor en segundu planu</string>
     <string name="kore_not_found">¿Instalar l\'aplicación Kore\?</string>
     <string name="autoplay_by_calling_app_summary">Reproduz un videu cuando s\'invoca a NewPipe dende otra aplicación</string>
 </resources>

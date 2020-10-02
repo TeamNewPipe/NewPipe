@@ -12,7 +12,7 @@
     <string name="download">הורדה</string>
     <string name="search">חיפוש</string>
     <string name="settings">הגדרות</string>
-    <string name="did_you_mean">כוונתך הייתה: %1$s\?</string>
+    <string name="did_you_mean">כוונתך הייתה „%1$s”\?</string>
     <string name="share_dialog_title">שיתוף עם</string>
     <string name="choose_browser">בחירת דפדפן</string>
     <string name="screen_rotation">הטייה</string>
@@ -45,14 +45,13 @@
     <string name="light_theme_title">בהיר</string>
     <string name="dark_theme_title">כהה</string>
     <string name="black_theme_title">שחור</string>
-    <string name="popup_remember_size_pos_title">שמירת מיקומו וגודלו של החלון הצף</string>
+    <string name="popup_remember_size_pos_title">שמירת מאפייני החלון הצף</string>
     <string name="popup_remember_size_pos_summary">שמירת המיקום והגודל האחרונים של החלון הצף</string>
     <string name="player_gesture_controls_title">מחוות מגע לשליטה בנגן</string>
     <string name="player_gesture_controls_summary">שימוש במחוות כדי לשלוט בבהירות ובעצמת השמע של הנגן</string>
     <string name="show_search_suggestions_title">הצעות חיפוש</string>
     <string name="show_search_suggestions_summary">הצגת הצעות בעת החיפוש</string>
     <string name="download_dialog_title">הורדה</string>
-    <string name="next_video_title">הבא</string>
     <string name="show_next_and_similar_title">להציג סרטונים דומים ובאים בתור</string>
     <string name="unsupported_url">כתובת לא נתמכת</string>
     <string name="content_language_title">שפת התוכן המועדפת</string>
@@ -62,7 +61,6 @@
     <string name="settings_category_other_title">אחר</string>
     <string name="background_player_playing_toast">מתנגן ברקע</string>
     <string name="popup_playing_toast">מתנגן בחלון צף</string>
-    <string name="play_btn_text">נגינה</string>
     <string name="content">תוכן</string>
     <string name="show_age_restricted_content_title">תוכן עם הגבלת גיל</string>
     <string name="video_is_age_restricted">הצגת סרטונים עם הגבלת גיל. ניתן לשנות את זה בעתיד דרך ההגדרות.</string>
@@ -93,7 +91,7 @@
     <string name="app_ui_crash">היישומון או מנשק המשתמש קרסו</string>
     <string name="sorry_string">זה לא אמור היה לקרות, עמך הסליחה.</string>
     <string name="error_report_button_text">דיווח על השגיאה דרך דוא״ל</string>
-    <string name="error_snackbar_message">אירעו מספר שגיאות, עמך הסליחה.</string>
+    <string name="error_snackbar_message">משהו השתבש, עמך הסליחה.</string>
     <string name="error_snackbar_action">דיווח</string>
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
@@ -533,8 +531,6 @@
     <string name="recovering">בשחזור</string>
     <string name="error_download_resource_gone">לא ניתן לשחזר את ההורדה הזאת</string>
     <string name="choose_instance_prompt">נא לבחור מופע</string>
-    <string name="enable_lock_screen_video_thumbnail_title">תמונה מוקטנת של הסרטון במסך הנעילה</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">תמונה מוקטנת של הסרטון תופיע על מסך הנעילה בעת שימוש בנגן הרקע</string>
     <string name="clear_download_history">מחיקת היסטוריית ההורדות</string>
     <string name="delete_downloaded_files">למחוק את הקבצים שהורדתי</string>
     <string name="deleted_downloads">נמחקו %1$d הורדות</string>
@@ -617,7 +613,7 @@
     <string name="songs">שירים</string>
     <string name="restricted_video">סרטון זה מוגבל לצפייה מגיל מסוים.
 \n
-\nכדי לצפות בו, יש להפעיל את „תוכן עם הגבלת גיל” בהגדרות.</string>
+\nיש להפעיל את „תוכן עם הגבלת גיל” בהגדרות כדי לצפות בו.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">כן, לרבות סרטונים שהפסקתי באמצע</string>
     <string name="remove_watched_popup_warning">סרטונים שלאחר שצפית בהם מופיע לרשימת הנגינה יוסרו.
 \nלהמשיך\? זאת פעולה בלתי הפיכה!</string>
@@ -634,7 +630,30 @@
     <string name="no_playlist_bookmarked_yet">אין עדיין סימניות ברשימת הנגינה</string>
     <string name="select_a_playlist">בחירת רשימת נגינה</string>
     <string name="error_report_open_github_notice">נא לבדוק אם כבר קיים דיווח על הקריסה שלך. יצירת דיווחים כפולים גוזלת מאתנו זמן שיכולנו להשקיע בתיקון התקלה עצמה.</string>
-    <string name="error_report_open_issue_button_text">דיווח על שגיאה ב־GitHub</string>
+    <string name="error_report_open_issue_button_text">דיווח ב־GitHub</string>
     <string name="copy_for_github">העתקת דוח מעוצב</string>
     <string name="search_showing_result_for">מוצגות תוצאות עבור: %s</string>
+    <string name="never">אף פעם לא</string>
+    <string name="wifi_only">רק עם רשת אלחוטית</string>
+    <string name="autoplay_summary">להתחיל לנגן אוטומטית — %s</string>
+    <string name="title_activity_play_queue">לנגן את התור</string>
+    <string name="unsupported_url_dialog_message">לא ניתן לזהות את הכתובת. לפתוח אותה ביישומון אחר\?</string>
+    <string name="auto_queue_toggle">תור אוטומטי</string>
+    <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
+    <string name="clear_queue_confirmation_summary">מעבר מנגן אחד למשנהו עלול להחליף את התור שלך</string>
+    <string name="clear_queue_confirmation_title">לבקש אישור לפני מחיקת התור</string>
+    <string name="settings_category_notification_title">התראה</string>
+    <string name="notification_action_nothing">כלום</string>
+    <string name="notification_action_buffering">איסוף</string>
+    <string name="notification_action_shuffle">ערבוב</string>
+    <string name="notification_action_repeat">חזרה</string>
+    <string name="notification_actions_at_most_three">ניתן לבחור עד שלוש פעולות בלבד שתופענה בהתראות המצומצמות!</string>
+    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה. מותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל.</string>
+    <string name="notification_action_4_title">כפתור פעולה חמישי</string>
+    <string name="notification_action_3_title">כפתור פעולה רביעי</string>
+    <string name="notification_action_2_title">כפתור פעולה שלישי</string>
+    <string name="notification_action_0_title">כפתור פעולה ראשון</string>
+    <string name="notification_action_1_title">כפתור פעולה שני</string>
+    <string name="notification_scale_to_square_image_summary">לשנות את יחס התצוגה הממוזערת שמופיעה בהתראות מיחס תצוגה של 16:9 ל־1:1 (עשוי לעוות את התמונה)</string>
+    <string name="notification_scale_to_square_image_title">שינוי גודל התצוגה הממוזערת ליחס תצוגה 1:1</string>
 </resources>

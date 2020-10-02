@@ -79,7 +79,6 @@
     <string name="enable_watch_history_summary">هێشتنەوەی تراکی ڤیدیۆ کارپێکراوەکان</string>
     <string name="resume_on_audio_focus_gain_summary">بەردەوام بوونی ڤیدیۆ لەدوای هەبوونی هەر بڕینێک (وەک پەیوەندی تەلەفۆنی)</string>
     <string name="download_dialog_title">داگرتن</string>
-    <string name="next_video_title">دواتر</string>
     <string name="show_next_and_similar_title">پیشاندانی ’دواتر’ و ڤیدیۆ ’هاوشێوەکان’</string>
     <string name="unsupported_url">بەستەرەکە پشتگیری نەکراوە</string>
     <string name="default_content_country_title">وڵاتی بنەڕەتی</string>
@@ -95,7 +94,6 @@
     <string name="popup_playing_toast">کارپێکردن لە پەنجەرە</string>
     <string name="background_player_append">ڕیزکرا لە کارپێکردن لە پاشبنەما</string>
     <string name="popup_playing_append">ڕیزکرا لە کارپێکردن لە پەنجەرە</string>
-    <string name="play_btn_text">لێدان</string>
     <string name="content">ناوەڕۆک</string>
     <string name="show_age_restricted_content_title">سنوردانانی تەمەن</string>
     <string name="duration_live">زیندوو</string>
@@ -527,8 +525,6 @@
     <string name="recovering">دەگەڕێنرێتەوە</string>
     <string name="error_download_resource_gone">ناتوانرێ ئەم داگرتنە بهێنرێتەوە</string>
     <string name="choose_instance_prompt">دۆخێک هەڵبژێرە</string>
-    <string name="enable_lock_screen_video_thumbnail_title">وێنۆچکەی ڤیدیۆی ڕوونماداخراو</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">وێنۆچکەی ڤیدیۆیەک نیشان ئەدرێ لە ڕوونماداخراودا لەکاتی بەکارهێنانی کارپێکەری پاشبنەما</string>
     <string name="clear_download_history">سڕینەوەی مێژووی داگرتن</string>
     <string name="delete_downloaded_files">سڕینەوەی فایلە داگیراوەکان</string>
     <string name="deleted_downloads">%1$d لە داگرتنەکان سڕانەوە</string>
@@ -611,4 +607,6 @@
     <string name="error_report_open_issue_button_text">هەڵە لە سکاڵا لەسەر GitHub</string>
     <string name="copy_for_github">لەبەرگرتنەوەی سکاڵا</string>
     <string name="search_showing_result_for">پیشاندانی ئەنجامەکان بۆ: %s</string>
+    <string name="clear_queue_confirmation_summary">دوای گۆڕینی لێدەری یەک بۆ دانەیەکیتر ڕەنگە ڕیزەکانت تێکەڵ بن</string>
+    <string name="clear_queue_confirmation_title">پرس بکرێ بۆ دڵنیابوونەوە پێش سڕینەوەی ڕیزێک</string>
 </resources>

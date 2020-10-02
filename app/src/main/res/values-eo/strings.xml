@@ -24,14 +24,12 @@
     <string name="dark_theme_title">Malluma</string>
     <string name="light_theme_title">Luma</string>
     <string name="download_dialog_title">Elŝuti</string>
-    <string name="next_video_title">Vica filmeto</string>
     <string name="unsupported_url">Ligilo ne subtenita</string>
     <string name="content_language_title">Preferata enhavlingvo</string>
     <string name="settings_category_video_audio_title">Filmeto kaj sono</string>
     <string name="settings_category_appearance_title">Apero</string>
     <string name="settings_category_other_title">Alia</string>
     <string name="background_player_playing_toast">Ludanta fone</string>
-    <string name="play_btn_text">Ludi</string>
     <string name="general_error">Eraro</string>
     <string name="network_error">Reteraro</string>
     <string name="content_not_available">Enhavo malhavebla</string>
@@ -523,8 +521,6 @@
     <string name="recovering">Reakiranta</string>
     <string name="error_download_resource_gone">Ne povas reakiri tion elŝuton</string>
     <string name="choose_instance_prompt">Elektu instancon</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Bildeta filmeton ĉe ŝlosita ekrano</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Bildeta filmeto estas montrita ĉe ŝlosita ekrano uzante la fona ludilo</string>
     <string name="clear_download_history">Forviŝi la historion de elŝutoj</string>
     <string name="delete_downloaded_files">Forviŝi elŝutitajn dosierojn</string>
     <string name="deleted_downloads">%1$d elŝutoj forviŝitaj</string>

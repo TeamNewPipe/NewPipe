@@ -176,6 +176,8 @@ public class VideoPlayerImpl extends VideoPlayer
     private RecyclerView itemsList;
     private ItemTouchHelper itemTouchHelper;
 
+    private RelativeLayout playerOverlays;
+
     private boolean queueVisible;
     private MainPlayer.PlayerType playerType = MainPlayer.PlayerType.VIDEO;
 
@@ -259,9 +261,9 @@ public class VideoPlayerImpl extends VideoPlayer
             onQueueClosed();
             // Android TV: without it focus will frame the whole player
             playPauseButton.requestFocus();
+            onPlay();
         }
-
-        onPlay();
+        NavigationHelper.sendPlayerStartedEvent(service);
     }
 
     VideoPlayerImpl(final MainPlayer service) {
@@ -309,6 +311,8 @@ public class VideoPlayerImpl extends VideoPlayer
         this.queueLayout = view.findViewById(R.id.playQueuePanel);
         this.itemsListCloseButton = view.findViewById(R.id.playQueueClose);
         this.itemsList = view.findViewById(R.id.playQueue);
+
+        this.playerOverlays = view.findViewById(R.id.player_overlays);
 
         closingOverlayView = view.findViewById(R.id.closingOverlay);
 
@@ -504,6 +508,16 @@ public class VideoPlayerImpl extends VideoPlayer
                 return windowInsets;
             });
         }
+
+        // PlaybackControlRoot already consumed window insets but we should pass them to
+        // player_overlays too. Without it they will be off-centered
+        getControlsRoot().addOnLayoutChangeListener((v, left, top, right, bottom,
+                                                     oldLeft, oldTop, oldRight, oldBottom) ->
+                playerOverlays.setPadding(
+                        v.getPaddingLeft(),
+                        v.getPaddingTop(),
+                        v.getPaddingRight(),
+                        v.getPaddingBottom()));
     }
 
     public boolean onKeyDown(final int keyCode) {
@@ -706,6 +720,7 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onPlayQueueEdited() {
         updatePlayback();
+        showOrHideButtons();
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
@@ -1540,15 +1555,16 @@ public class VideoPlayerImpl extends VideoPlayer
             return;
         }
 
-        playPreviousButton.setVisibility(playQueue.getIndex() == 0
-                ? View.INVISIBLE
-                : View.VISIBLE);
-        playNextButton.setVisibility(playQueue.getIndex() + 1 == playQueue.getStreams().size()
-                ? View.INVISIBLE
-                : View.VISIBLE);
-        queueButton.setVisibility(playQueue.getStreams().size() <= 1 || popupPlayerSelected()
-                ? View.GONE
-                : View.VISIBLE);
+        final boolean showPrev = playQueue.getIndex() != 0;
+        final boolean showNext = playQueue.getIndex() + 1 != playQueue.getStreams().size();
+        final boolean showQueue = playQueue.getStreams().size() > 1 && !popupPlayerSelected();
+
+        playPreviousButton.setVisibility(showPrev ? View.VISIBLE : View.INVISIBLE);
+        playPreviousButton.setAlpha(showPrev ? 1.0f : 0.0f);
+        playNextButton.setVisibility(showNext ? View.VISIBLE : View.INVISIBLE);
+        playNextButton.setAlpha(showNext ? 1.0f : 0.0f);
+        queueButton.setVisibility(showQueue ? View.VISIBLE : View.GONE);
+        queueButton.setAlpha(showQueue ? 1.0f : 0.0f);
     }
 
     private void showSystemUIPartially() {
@@ -2046,6 +2062,7 @@ public class VideoPlayerImpl extends VideoPlayer
             getControlsRoot().setPadding(0, 0, 0, 0);
         }
         queueLayout.setPadding(0, 0, 0, 0);
+        updateQueue();
         updateMetadata();
         updatePlayback();
         triggerProgressUpdate();
@@ -2216,5 +2233,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public View getClosingOverlayView() {
         return closingOverlayView;
+    }
+
+    public boolean isVerticalVideo() {
+        return isVerticalVideo;
     }
 }

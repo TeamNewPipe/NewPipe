@@ -86,7 +86,6 @@
     <string name="enable_watch_history_summary">เก็บประวัติการเข้าดูวีดิโอไว้</string>
     <string name="resume_on_audio_focus_gain_summary">เล่นต่อหลังการขัดจังหวะ (เช่น การรับโทรศัพท์)</string>
     <string name="download_dialog_title">ดาวน์โหลด</string>
-    <string name="next_video_title">วีดีโอถัดไป</string>
     <string name="autoplay_title">เล่นอัตโนมัติ</string>
     <string name="show_next_and_similar_title">แสดงวิดีโอ \'ถัดไป\' และ \'ที่คล้ายกัน\'</string>
     <string name="show_hold_to_append_title">แสดงเคล็ดลับ \"แตะค้างเพื่อเพิ่ม\"</string>
@@ -108,7 +107,6 @@
     <string name="popup_playing_toast">กำลังเล่นในโหมดป๊อปอัพ</string>
     <string name="background_player_append">จัดคิวลงในการเล่นโหมดพื้นหลังแล้ว</string>
     <string name="popup_playing_append">จัดคิวลงในการเล่นโหมดป๊อปอัพแล้ว</string>
-    <string name="play_btn_text">เล่น</string>
     <string name="content">เนื้อหา</string>
     <string name="show_age_restricted_content_title">เนื้อหาที่จำกัดอายุ</string>
     <string name="video_is_age_restricted">แสดงวิดีโอที่จำกัดอายุ การอนุญาตดังกล่าวเป็นไปได้จากการตั้งค่า</string>

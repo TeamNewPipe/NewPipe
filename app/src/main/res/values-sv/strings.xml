@@ -50,7 +50,6 @@
     <string name="show_search_suggestions_title">Sökförslag</string>
     <string name="show_search_suggestions_summary">Visa förslag i samband med sökning</string>
     <string name="download_dialog_title">Ladda ned</string>
-    <string name="next_video_title">Nästa</string>
     <string name="show_next_and_similar_title">Visa \'Nästa\' och \'Liknande\' videor</string>
     <string name="unsupported_url">Webbadressen stöds inte</string>
     <string name="content_language_title">Standard innehållsspråk</string>
@@ -60,7 +59,6 @@
     <string name="settings_category_other_title">Andra</string>
     <string name="background_player_playing_toast">Spelar upp i bakgrunden</string>
     <string name="popup_playing_toast">Spelar upp i popup-läge</string>
-    <string name="play_btn_text">Spela upp</string>
     <string name="content">Innehåll</string>
     <string name="show_age_restricted_content_title">Åldersbegränsat innehåll</string>
     <string name="video_is_age_restricted">Videon är åldersbegränsad. Du kan aktivera åldersbegränsade videor i inställningar.</string>
@@ -249,8 +247,8 @@
     <string name="show_info">Visa info</string>
     <string name="tab_bookmarks">Bokmärkta Spellistor</string>
     <string name="controls_add_to_playlist_title">Lägg till i</string>
-    <string name="use_inexact_seek_title">"Använd snabb icke-exakt sökning "</string>
-    <string name="download_thumbnail_title">"Ladda tumnaglar "</string>
+    <string name="use_inexact_seek_title">Använd snabb icke-exakt sökning</string>
+    <string name="download_thumbnail_title">Ladda tumnaglar</string>
     <string name="download_thumbnail_summary">Stäng av för att hindra laddning av miniatyrbilder, spara data och minnesanvändning. Förändringar kommer att rensa cache-minnet.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bild cacheminnet rensad</string>
     <string name="service_title">Tjänst</string>
@@ -265,7 +263,7 @@
     <string name="use_inexact_seek_summary">Inexakt sökning ger möjligheten att sökning snabbare med mindre precision. Att hoppa 5, 15 eller 25 sekunder fungerar inte med detta val.</string>
     <string name="metadata_cache_wipe_summary">Ta bort alla cachade webbsidor</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache rensad</string>
-    <string name="auto_queue_title">"Köa nästa ström automatiskt "</string>
+    <string name="auto_queue_title">Köa nästa ström automatiskt</string>
     <string name="auto_queue_summary">Fortsätt avsluta (icke-upprepande) uppspelningskö genom att lägga till en relaterad ström</string>
     <string name="default_content_country_title">Standard innehållsland</string>
     <string name="channels">Kanaler</string>
@@ -390,7 +388,7 @@
     <string name="decline">Avböj</string>
     <string name="limit_data_usage_none_description">Ingen gräns</string>
     <string name="limit_mobile_data_usage_title">Begränsa upplösningen när du använder mobil data</string>
-    <string name="minimize_on_exit_title">"Minimera vid växling av applikationen "</string>
+    <string name="minimize_on_exit_title">Minimera vid växling av applikationen</string>
     <string name="minimize_on_exit_summary">Åtgärd när du växlar till andra applikationer från huvudvideospelare — %s</string>
     <string name="minimize_on_exit_none_description">Ingen</string>
     <string name="minimize_on_exit_background_description">Minimera till Bakgrunds-spelare</string>
@@ -457,8 +455,6 @@
     <string name="autoplay_title">Spela automatiskt</string>
     <string name="settings_category_clear_data_title">Töm data</string>
     <string name="seek_duration_title">Snabbspola -framåt/-bakåt</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Aktivera video på låsskärmen</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">När bakgrundsspelaren används så visas videon på låsskärmen</string>
     <string name="enable_playback_state_lists_summary">Visa positionindikationer i listor</string>
     <string name="clear_playback_states_title">Radera uppspelningspositioner</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
@@ -599,4 +595,5 @@
     <string name="channel_created_by">Skapad av %s</string>
     <string name="no_playlist_bookmarked_yet">Ingen spellista bokmärkt än</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Visa endast prenumerationer som inte grupperats</string>
+    <string name="notification_scale_to_square_image_title">Skala tumnagel till 1:1 ratio</string>
 </resources>

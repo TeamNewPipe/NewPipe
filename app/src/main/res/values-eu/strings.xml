@@ -23,12 +23,10 @@
     <string name="play_audio">Audioa</string>
     <string name="default_audio_format_title">Audio formatu lehenetsia</string>
     <string name="download_dialog_title">Deskargatu</string>
-    <string name="next_video_title">Hurrengoa</string>
     <string name="show_next_and_similar_title">Erakutsi \'hurrengo\' eta \'antzeko\' bideoak</string>
     <string name="unsupported_url">URLak ez du euskarririk</string>
     <string name="content_language_title">Edukiaren hizkuntz lehenetsia</string>
     <string name="settings_category_video_audio_title">Bideoa eta Audioa</string>
-    <string name="play_btn_text">Erreproduzitu</string>
     <string name="list_thumbnail_view_description">Bideoaren aurreikuspen argazkitxoa</string>
     <string name="detail_thumbnail_view_description">Erreproduzitu bideoa, iraupena:</string>
     <string name="detail_uploader_thumbnail_view_description">Igotzailearen abatarraren iruditxoa</string>
@@ -37,7 +35,7 @@
     <string name="use_tor_title">Tor erabili</string>
     <string name="use_tor_summary">(Esperimentala) Trafikoa Tor bidez deskargatzea behartzen du pribatutasuna hobetzeko (bideo-jarioak ez daude oraindik onartuta).</string>
     <string name="no_player_found">Ez da jario erreproduzigailurik aurkitu. VLC instalatu\?</string>
-    <string name="did_you_mean">Hau esan nahi al zenuen: %1$s?</string>
+    <string name="did_you_mean">\"%1$s\" esan nahi al zenuen\?</string>
     <string name="use_external_video_player_title">Erabili kanpo bideo-erreproduzigailua</string>
     <string name="use_external_audio_player_title">Erabili kanpo audio-erreproduzigailua</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
@@ -145,7 +143,7 @@
     <string name="action_settings">Ezarpenak</string>
     <string name="action_about">Honi buruz</string>
     <string name="title_licenses">Hirugarrengoen lizentziak</string>
-    <string name="copyright" formatted="true">"© %1$s %2$s.  %3$s"</string>
+    <string name="copyright" formatted="true">© %1$s %2$s. %3$s</string>
     <string name="error_unable_to_load_license">Ezin izan da lizentzia kargatu</string>
     <string name="action_open_website">Ireki webgunea</string>
     <string name="tab_about">Honi buruz</string>
@@ -252,7 +250,7 @@
     <string name="start_here_on_main">Hasi hemen erreproduzitzen</string>
     <string name="start_here_on_background">Hasi erreproduzitzen bigarren planoan</string>
     <string name="start_here_on_popup">Hasi erreproduzitzen laster-leihoan</string>
-    <string name="drawer_open">"Ireki tiradera "</string>
+    <string name="drawer_open">Ireki tiradera</string>
     <string name="drawer_close">Itxi tiradera</string>
     <string name="no_player_found_toast">Ez da jarioen erreproduzigailurik aurkitu (VLC instalatu dezakezu).</string>
     <string name="always">Beti</string>
@@ -379,8 +377,8 @@
     <string name="privacy_policy_encouragement">NewPipe proiektuak aintzat hartzen du zure pribatutasuna. Aplikazioak ez du zure baimenik gabe daturik jasotzen.
 \nNewPipe pribatutasun politikak azaltzen du zehazki bidali eta gordetako informazioa zein den kraskatze txosten bat bidaltzen duzunean.</string>
     <string name="read_privacy_policy">Irakurri pribatutasun politika</string>
-    <string name="start_accept_privacy_policy">"European General Data Protection Regulation (GDPR) legea betetzeko, NewPipe pribatutasun politika irakurtzera gonbidaatzen zaitugu.
-\nAkats txosten bat bidali ahal  izateko onartu behar duzu."</string>
+    <string name="start_accept_privacy_policy">European General Data Protection Regulation (GDPR) legea betetzeko, NewPipe pribatutasun politika irakurtzera gonbidaatzen zaitugu.
+\nAkats txosten bat bidali ahal izateko onartu behar duzu.</string>
     <string name="accept">Onartu</string>
     <string name="decline">Ukatu</string>
     <string name="limit_data_usage_none_description">Mugagabea</string>
@@ -523,8 +521,6 @@
     <string name="recovering">berreskuratzen</string>
     <string name="error_download_resource_gone">Ezin da deskarga hau berreskuratu</string>
     <string name="choose_instance_prompt">Aukeratu instantzia</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Bideoaren miniatura blokeo pantailan</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Atzeko planoko bideo erreproduzitzailea erabiltzen den bitartean, bideoaren karatula blokeo pantailan erakutsiko da</string>
     <string name="clear_download_history">Garbitu deskargen historiala</string>
     <string name="delete_downloaded_files">Ezabatu deskargatutako fitxategiak</string>
     <string name="deleted_downloads">%1$d deskarga ezabatuta</string>

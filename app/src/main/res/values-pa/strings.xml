@@ -53,7 +53,7 @@
     <string name="show_play_with_kodi_summary">Kodi ਮੀਡੀਆ ਸੈਂਟਰ ਰਾਹੀਂ ਵੀਡੀਓ ਚਲਾਉਣ ਲਈ ਇੱਕ ਵਿਕਲਪ ਵਿਖਾਓ</string>
     <string name="play_audio">ਆਡੀਓ</string>
     <string name="default_audio_format_title">Default ਆਡੀਓ ਫਾਰਮੈਟ</string>
-    <string name="default_video_format_title">"Default  ਵੀਡੀਓ ਫਾਰਮੈਟ"</string>
+    <string name="default_video_format_title">Default ਵੀਡੀਓ ਫਾਰਮੈਟ</string>
     <string name="theme_title">ਥੀਮ</string>
     <string name="light_theme_title">ਸਫੈਦ</string>
     <string name="dark_theme_title">ਗੂੜਾ</string>
@@ -81,7 +81,6 @@
     <string name="resume_on_audio_focus_gain_title">Focus gain ਹੋਣ ਤੇ ਦੋਬਾਰਾ ਚਲਾਓ</string>
     <string name="resume_on_audio_focus_gain_summary">ਰੁਕਾਵਟਾਂ (ਜਿਵੇਂ ਕਿ ਫੋਨ ਕਾਲਾਂ,ਮੈਸੇਜ) ਤੋਂ ਬਾਅਦ ਪਲੇਅ-ਬੈਕ ਜਾਰੀ ਰੱਖੋ</string>
     <string name="download_dialog_title">ਡਾਊਨਲੋਡ</string>
-    <string name="next_video_title">ਅੱਗੇ</string>
     <string name="show_next_and_similar_title">\'ਅੱਗੇ\' ਅਤੇ \'ਸਮਾਨਅੰਤਰ\' ਵੀਡੀਓ ਦਿਖਾਓ</string>
     <string name="show_hold_to_append_title">\"Hold to append\" ਸੁਝਾਅ ਦਿਖਾਓ</string>
     <string name="show_hold_to_append_summary">ਵੀਡੀਓ ਵੇਰਵੇ ਪੰਨੇ ਤੇ ਬੈਕਗ੍ਰਾਉਂਡ ਜਾਂ ਪੌਪ-ਅਪ ਬਟਨ ਦਬਾਉਣ ਤੇ ਸੰਕੇਤ ਦਿਖਾਓ</string>
@@ -100,7 +99,6 @@
     <string name="popup_playing_toast">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਚੱਲ ਰਿਹਾ ਹੈ</string>
     <string name="background_player_append">ਬੈਕਗ੍ਰਾਉਂਡ ਪਲੇਅਰ ਵਿੱਚ ਕਤਾਰਬੱਧ</string>
     <string name="popup_playing_append">ਪੌਪ-ਅਪ ਪਲੇਯਰ ਵਿੱਚ ਕਤਾਰਬੱਧ</string>
-    <string name="play_btn_text">ਪਲੇ</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">ਉਮਰ ਪ੍ਰਤੀਬੰਧਿਤ Content</string>
     <string name="video_is_age_restricted">ਉਮਰ ਪ੍ਰਤੀਬੰਧਿਤ ਵੀਡੀਓ ਦਿਖਾਓ ਸੈਟਿੰਗਸ ਤੋਂ ਅਜਿਹੀ ਸਮੱਗਰੀ ਦੀ ਆਗਿਆ ਦੇਣੀ ਸੰਭਵ ਹੈ.</string>
@@ -306,7 +304,7 @@
     <string name="enqueue_on_background">ਬੈਕਗ੍ਰਆਊਂਡ ਵਿੱਚ ਕਤਾਰਬੱਧ ਕਰੋ</string>
     <string name="enqueue_on_popup">ਨਵੇਂ ਪੌਪ-ਅਪ ਵਿੱਚ ਕਤਾਰਬੱਧ ਕਰੋ</string>
     <string name="start_here_on_main">ਇਥੇ ਚਲਾਉ</string>
-    <string name="start_here_on_background">"ਬੈਕਗ੍ਰਾਊਂਡ  ਵਿੱਚ ਚਲਾਉ"</string>
+    <string name="start_here_on_background">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਚਲਾਉ</string>
     <string name="start_here_on_popup">ਨਵੇਂ ਪੌਪ-ਅਪ ਵਿੱਚ ਚਲਾਓ</string>
     <string name="drawer_open">Drawer ਖੋਲੋ</string>
     <string name="drawer_close">Drawer ਬੰਦ ਕਰੋ</string>

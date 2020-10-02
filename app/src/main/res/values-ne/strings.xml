@@ -89,7 +89,6 @@
     <string name="resume_on_audio_focus_gain_title">प्लेयर पुनर्स्थापना गर्नुहोस्</string>
     <string name="resume_on_audio_focus_gain_summary">रुकावट (जस्तै फोन कल) पछि प्लेयर जारी</string>
     <string name="download_dialog_title">डाउनलोड</string>
-    <string name="next_video_title">अर्को</string>
     <string name="autoplay_title">अटोप्ले</string>
     <string name="show_next_and_similar_title">\'अर्को\' र \'समान\' भिडियो देखाउन</string>
     <string name="show_hold_to_append_title">\"होल्ड संलग्न गर्न\" टिप देखाउन</string>
@@ -111,7 +110,6 @@
     <string name="popup_playing_toast">पपअप मोडमा बजाईदै छ</string>
     <string name="background_player_append">पृष्ठभूमि प्लेयरमा लामबद्ध</string>
     <string name="popup_playing_append">पपअप प्लेयरमा लामबद्ध</string>
-    <string name="play_btn_text">बजाउनु</string>
     <string name="content">सामग्री</string>
     <string name="show_age_restricted_content_title">उमेर प्रतिबन्धित सामग्री</string>
     <string name="video_is_age_restricted">उमेर प्रतिबन्धित भिडियोहरु देखाऊ। भविष्यमा यो सेटिङ परिवर्तन सम्भव छ।</string>
@@ -521,8 +519,6 @@
     <string name="recovering">पुन (recovering)</string>
     <string name="error_download_resource_gone">यो डाउनलोड पुन:प्राप्त गर्न सकिँदैन</string>
     <string name="choose_instance_prompt">एउटा उदाहरण छनौट गर्नुहोस्</string>
-    <string name="enable_lock_screen_video_thumbnail_title">स्क्रिन भिडियो थम्बनेल लक</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">पृष्ठभूमिमा प्लेयर प्रयोग गर्दा एउटा भिडियो थम्बनेल लक स्क्रिनमा देखाइएको छ</string>
     <string name="clear_download_history">डाउनलोड इतिहास मेटाउ</string>
     <string name="delete_downloaded_files">डाउनलोड गरिएका फाइलहरु मेटाउ</string>
     <string name="deleted_downloads">%1$d डाउनलोडहरु मेटियो</string>

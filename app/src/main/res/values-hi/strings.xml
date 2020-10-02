@@ -25,7 +25,6 @@
     <string name="black_theme_title">काली</string>
     <string name="enable_watch_history_title">देखे हुए वीडियो की सूची</string>
     <string name="download_dialog_title">डाउनलोड</string>
-    <string name="next_video_title">अगला</string>
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
     <string name="settings_category_history_title">इतिहास और कैश भंडार</string>
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
@@ -106,7 +105,6 @@
     <string name="popup_playing_toast">विडियो पॉपअप के अंदाज में चल रहा</string>
     <string name="background_player_append">बैकग्राउंड प्लेयर की कतार पर</string>
     <string name="popup_playing_append">पॉपअप प्लेयर की कतार पर</string>
-    <string name="play_btn_text">चलाये</string>
     <string name="content">विषयवस्तु</string>
     <string name="show_age_restricted_content_title">उम्र प्रतिबंधित विषय वस्तु</string>
     <string name="video_is_age_restricted">उम्र प्रतिबंदित विडियो है .इस प्रकार की विषयवस्तु को अनुमति देने के लिए सेटिंग से संभव है |</string>
@@ -138,7 +136,7 @@
     <string name="light_parsing_error">website का पूरी तरह से निरंक्षण नहीं हो सकता</string>
     <string name="content_not_available">विषय वस्तु उपलब्ध नहीं है</string>
     <string name="could_not_setup_download_menu">डाउनलोड मेनू को स्थापित नहीं कर सकते</string>
-    <string name="live_streams_not_supported">"सीधे प्रसारण के लिये फिलहाल समर्थन नहीं है "</string>
+    <string name="live_streams_not_supported">सीधे प्रसारण के लिये फिलहाल समर्थन नहीं है</string>
     <string name="could_not_get_stream">कोई भी विडियो नहीं मिल रहा</string>
     <string name="could_not_load_image">फोटो को load नहीं कर सकते</string>
     <string name="app_ui_crash">APP/UI टूट गया</string>
@@ -165,7 +163,7 @@
     <string name="user_report">उपयोगकर्ता की रिपोर्ट</string>
     <string name="search_no_results">कोई परिणाम नहीं मिला</string>
     <string name="empty_subscription_feed_subtitle">यंहा कुछ नहीं है</string>
-    <string name="err_dir_create">"डाउनलोड वाली डायरेक्टरी को बना नहीं सकते  \'%1$s\'"</string>
+    <string name="err_dir_create">डाउनलोड वाली डायरेक्टरी को बना नहीं सकते \'%1$s\'</string>
     <string name="info_dir_created">डाउनलोड की निर्देशिका बना दी गई है \'%1$s\'</string>
     <string name="video">विडियो</string>
     <string name="audio">ऑडियो</string>
@@ -505,5 +503,4 @@
         <item quantity="other">%s श्रोता</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी।</string>
-    <string name="enable_lock_screen_video_thumbnail_title">लॉक स्क्रीन पर वीडियो की छोटी तस्वीर दिखाए</string>
 </resources>

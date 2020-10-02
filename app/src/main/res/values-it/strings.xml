@@ -10,7 +10,7 @@
     <string name="download">Scarica</string>
     <string name="search">Cerca</string>
     <string name="settings">Impostazioni</string>
-    <string name="did_you_mean">Forse cercavi: %1$s\?</string>
+    <string name="did_you_mean">Forse cercavi \"%1$s\"\?</string>
     <string name="share_dialog_title">Condividi con</string>
     <string name="choose_browser">Scegli Browser</string>
     <string name="screen_rotation">rotazione</string>
@@ -25,7 +25,6 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato Audio Predefinito</string>
     <string name="download_dialog_title">Scarica</string>
-    <string name="next_video_title">Prossimo</string>
     <string name="show_next_and_similar_title">Mostra video \"Prossimo\" e \"Simili\"</string>
     <string name="unsupported_url">URL non supportato</string>
     <string name="content_language_title">Lingua Predefinita per Contenuti</string>
@@ -48,7 +47,6 @@
     <string name="settings_category_appearance_title">Aspetto</string>
     <string name="settings_category_other_title">Altro</string>
     <string name="background_player_playing_toast">Riproduzione in Sottofondo</string>
-    <string name="play_btn_text">Riproduci</string>
     <string name="general_error">Errore</string>
     <string name="network_error">Errore di connessione</string>
     <string name="could_not_load_thumbnails">Impossibile caricare tutte le copertine</string>
@@ -70,7 +68,7 @@
     <string name="could_not_get_stream">Impossibile ottenere alcun flusso</string>
     <string name="sorry_string">Spiacenti, non sarebbe dovuto succedere.</string>
     <string name="error_report_button_text">Segnala l\'errore via e-mail</string>
-    <string name="error_snackbar_message">Spiacenti, si sono verificati degli errori.</string>
+    <string name="error_snackbar_message">Spiacente, qualcosa è andato storto.</string>
     <string name="error_snackbar_action">Segnala</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Cosa è successo:</string>
@@ -127,7 +125,7 @@
     <string name="show_higher_resolutions_title">Mostra Altre Risoluzioni</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato Video Predefinito</string>
-    <string name="popup_remember_size_pos_title">Ricorda Dimensione e Posizione Popup</string>
+    <string name="popup_remember_size_pos_title">Ricorda Poprietà Popup</string>
     <string name="popup_remember_size_pos_summary">Ricorda dimensione e posizione della finestra Popup</string>
     <string name="player_gesture_controls_title">Controllo Gesti Lettore Multimediale</string>
     <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume del lettore multimediale</string>
@@ -349,7 +347,7 @@
 \n 
 \nVuoi continuare?</string>
     <string name="download_thumbnail_title">Carica Copertine</string>
-    <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle anteprime, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
+    <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle copertine, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache immagini svuotata</string>
     <string name="metadata_cache_wipe_title">Pulisci Cache Metadati</string>
     <string name="metadata_cache_wipe_summary">Elimina i dati delle pagine web memorizzati nella cache</string>
@@ -523,8 +521,6 @@
     <string name="recovering">recupero</string>
     <string name="error_download_resource_gone">Impossibile recuperare questo download</string>
     <string name="choose_instance_prompt">Scegli un\'Istanza</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Copertina nella Schermata di Blocco</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">La copertina del video verrà mostrata nella schermata di blocco, durante la riproduzione in sottofondo</string>
     <string name="clear_download_history">Pulisci Cronologia Download</string>
     <string name="delete_downloaded_files">Elimina File Scaricati</string>
     <string name="deleted_downloads">%1$d download eliminati</string>
@@ -595,9 +591,9 @@
     <string name="artists">Artisti</string>
     <string name="albums">Album</string>
     <string name="songs">Canzoni</string>
-    <string name="restricted_video">Questo video ha restrizioni di età. 
-\n 
-\nPer vederlo, attivare \"Contenuti con Restrizioni di Età\" nelle Impostazioni.</string>
+    <string name="restricted_video">Questo video ha restrizioni di età.
+\n
+\nAttivare \"Contenuti con Restrizioni di Età\" nelle Impostazioni per poterlo vedere.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visaualizzati parzialmente</string>
     <string name="remove_watched_popup_warning">Saranno rimossi gli elementi della playlist già visualizzati, sia precedenti che successivi.
 \nSei sicuro\? L\'azione è irreversibile!</string>
@@ -615,6 +611,29 @@
     <string name="search_showing_result_for">Risultati per: %s</string>
     <string name="playlist_page_summary">Playlist</string>
     <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket potrebbe essere invece impiegato per correggere il problema stesso.</string>
-    <string name="error_report_open_issue_button_text">Segnala Errore su GitHub</string>
+    <string name="error_report_open_issue_button_text">Segnala su GitHub</string>
     <string name="copy_for_github">Copia Segnalazione Formattata</string>
+    <string name="never">Mai</string>
+    <string name="title_activity_play_queue">Coda riproduzione</string>
+    <string name="wifi_only">Solo Wi-Fi</string>
+    <string name="autoplay_summary">Avvia riproduzione automaticamente — %s</string>
+    <string name="unsupported_url_dialog_message">URL non riconosciuto. Apriro con un\'altra app\?</string>
+    <string name="auto_queue_toggle">Accoda Automaticamente</string>
+    <string name="clear_queue_confirmation_description">La coda del lettore attivo sarà sostituita</string>
+    <string name="clear_queue_confirmation_title">Conferma Pulizia Coda</string>
+    <string name="clear_queue_confirmation_summary">Cambiare tipo di riproduzione potrebbe sostituire gli elementi in coda</string>
+    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a 3, utilizzando le caselle di controllo sulla destra. Verranno visualizzate nella notifica compatta.</string>
+    <string name="notification_action_4_title">Azione Pulsante 5</string>
+    <string name="notification_action_3_title">Azione Pulsante 4</string>
+    <string name="notification_action_2_title">Azione Pulsante 3</string>
+    <string name="notification_action_1_title">Azione Pulsante 2</string>
+    <string name="notification_action_0_title">Azione Pulsante 1</string>
+    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_actions_at_most_three">Nella notifica compatta è possibile visualizzare al massimo 3 azioni!</string>
+    <string name="notification_action_shuffle">Casuale</string>
+    <string name="settings_category_notification_title">Notifica</string>
+    <string name="notification_action_nothing">Niente</string>
+    <string name="notification_action_repeat">Ripeti</string>
+    <string name="notification_scale_to_square_image_title">Ridimensiona Copertina alla Proporzione 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Modifica la proporzione della copertina del video mostrata nella notifica da 16:9 a 1:1 (può introdurre distorsioni)</string>
 </resources>

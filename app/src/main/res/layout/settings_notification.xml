@@ -21,12 +21,11 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:maxLines="1"
             android:text="@string/notification_scale_to_square_image_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="14sp"
@@ -78,7 +77,6 @@
             android:clickable="false"
             android:focusable="false"
             android:gravity="center"
-            android:lines="4"
             android:text="@string/notification_actions_summary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

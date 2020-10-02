@@ -26,7 +26,6 @@
     <string name="enable_watch_history_title">Të shikuarat</string>
     <string name="enable_watch_history_summary">Ruaji videot e shikuara</string>
     <string name="download_dialog_title">Shkarko</string>
-    <string name="next_video_title">Tjetra</string>
     <string name="service_title">Shërbimi</string>
     <string name="content_language_title">Gjuha e dëshiruar e përmbajtjeve</string>
     <string name="settings_category_player_title">Luajtësi</string>
@@ -35,7 +34,6 @@
     <string name="settings_category_history_title">Historia &amp; depoja</string>
     <string name="settings_category_appearance_title">Pamja</string>
     <string name="settings_category_other_title">Të tjera</string>
-    <string name="play_btn_text">Luaj</string>
     <string name="content">Përmbajtja</string>
     <string name="downloads">Shkarkimet</string>
     <string name="downloads_title">Shkarkimet</string>
@@ -582,9 +580,7 @@
     <string name="theme_title">Tema</string>
     <string name="default_video_format_title">Formati i parazgjedhur video</string>
     <string name="default_audio_format_title">Formati i parazgjedhur audio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Një pamje statike video shfaqet në ekranin e kyçur kur përdoret luajtësi në sfond</string>
     <string name="show_play_with_kodi_summary">Shfaq një opsion për të luajtur videot përmes Kodi</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Pamja video në ekranin e kyçur</string>
     <string name="show_play_with_kodi_title">Shfaq opsionin \"Luaj me Kodi\"</string>
     <string name="kore_not_found">Instaloni aplikacionin Kore që mungon\?</string>
     <string name="show_higher_resolutions_summary">Vetëm disa pajisje mund të luajnë video 2K/4K</string>

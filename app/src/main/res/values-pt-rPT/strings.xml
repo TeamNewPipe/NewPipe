@@ -8,7 +8,6 @@
 \n 
 \nDeseja continuar\?</string>
     <string name="main_bg_subtitle">Toque em \"Pesquisar\" para iniciar</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Uma miniatura de vídeo é mostrada no ecrã de bloqueio quando utilizando o leitor de fundo</string>
     <string name="enable_playback_resume_title">Continuar reprodução</string>
     <string name="msg_threads">Processos</string>
     <string name="settings_file_replacement_character_summary">Os carateres inválidos são substituídos por este valor</string>
@@ -83,9 +82,9 @@
     <string name="downloads">Transferências</string>
     <string name="feed_processing_message">A processar feed…</string>
     <string name="volume_gesture_control_title">Gestos para controlar de volume</string>
-    <string name="restricted_video">Este vídeo tem restrição de idade. 
-\n 
-\nSe quiser vê-lo, ative \"Conteúdo com restrição de idade\" nas definições.</string>
+    <string name="restricted_video">Este vídeo é de idade restrita.
+\n
+\nAtive \"Conteúdo restrito à idade\" nas configurações se quiser vê-lo.</string>
     <string name="read_full_license">Ler licença</string>
     <string name="help">Ajuda</string>
     <string name="peertube_instance_add_https_only">Somente URLs HTTPS são suportada</string>
@@ -104,7 +103,6 @@
     <string name="controls_add_to_playlist_title">Adicionar a</string>
     <string name="clear_playback_states_summary">Elimina todas as posições de reprodução</string>
     <string name="create">Criar</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Miniatura do vídeo no ecrã de bloqueio</string>
     <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. Alterações serão possíveis nas definições.</string>
     <string name="toggle_orientation">Alternar orientação</string>
     <string name="subscribe_button_title">Subscrever</string>
@@ -121,7 +119,7 @@
     <string name="storage_permission_denied">Conceder primeiro acesso ao armazenamento</string>
     <string name="playlist_no_uploader">Geração automática (não foi encontrado nenhum enviador)</string>
     <string name="default_resolution_title">Resolução predefinida</string>
-    <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
+    <string name="error_report_open_issue_button_text">Reportar no GitHub</string>
     <string name="detail_likes_img_view_description">Gostos</string>
     <string name="history_disabled">O histórico está desativado</string>
     <string name="download_path_title">Pasta para transferir o vídeo</string>
@@ -160,7 +158,7 @@
     <string name="no_subscribers">Sem subscritores</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
     <string name="download_thumbnail_summary">Desative para parar o carregamento das miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagem do disco e da memória.</string>
-    <string name="did_you_mean">Quis dizer: %1$s\?</string>
+    <string name="did_you_mean">Quis dizer \"%1$s\"\?</string>
     <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
     <string name="enqueue">Fila</string>
     <string name="no_one_watching">Ninguém está a ver</string>
@@ -222,7 +220,7 @@
     <string name="detail_dislikes_img_view_description">Não gostar</string>
     <string name="import_file_title">Importar ficheiro</string>
     <string name="notification_channel_name">Notificação do NewPipe</string>
-    <string name="error_snackbar_message">Desculpe, ocorreram alguns erros.</string>
+    <string name="error_snackbar_message">Desculpa, algo correu mal.</string>
     <string name="theme_title">Tema</string>
     <string name="error_path_creation">A pasta de destino não pode ser criada</string>
     <string name="title_licenses">Licenças de terceiros</string>
@@ -241,7 +239,7 @@
     <string name="show_next_and_similar_title">Mostrar vídeos \'Seguintes\' e \'Semelhantes\'</string>
     <string name="queued">na fila</string>
     <string name="open_in_browser">Abrir no navegador</string>
-    <string name="new_and_hot">Tendências</string>
+    <string name="new_and_hot">Novo e tendências</string>
     <string name="clear_search_history_summary">Elimina o histórico das palavras-chave de pesquisa</string>
     <string name="app_update_notification_channel_name">Notificação de atualização</string>
     <string name="youtube_signature_decryption_error">Não foi possível desencriptar a assinatura do URL do vídeo</string>
@@ -338,7 +336,6 @@
     <string name="delete">Eliminar</string>
     <string name="playback_tempo">Ritmo</string>
     <string name="peertube_instance_url_title">Instâncias do PeerTube</string>
-    <string name="next_video_title">Seguinte</string>
     <string name="settings_category_player_title">Reprodutor</string>
     <string name="settings_category_debug_title">Depuração</string>
     <string name="peertube_instance_add_help">Digite o URL da instância</string>
@@ -454,7 +451,7 @@
     <string name="search_history_deleted">Histórico de pesquisa eliminado.</string>
     <string name="clear_search_history_title">Limpar o histórico de pesquisas</string>
     <string name="msg_error">Erro</string>
-    <string name="popup_remember_size_pos_title">Lembrar tamanho e posição da janela</string>
+    <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
     <string name="download_path_summary">Os ficheiros de vídeo transferidos são armazenados aqui</string>
     <string name="switch_to_main">Mudar para principal</string>
     <string name="msg_popup_permission">Esta permissão é necessária 
@@ -532,7 +529,6 @@
     <string name="default_video_format_title">Formato de vídeo predefinido</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para pôr na fila\"</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
-    <string name="play_btn_text">Reproduzir</string>
     <string name="metadata_cache_wipe_summary">Remover todos os dados da página da Web em cache</string>
     <string name="drawer_close">Fechar menu</string>
     <string name="brightness_gesture_control_summary">Utilizar gestos para controlar o brilho do reprodutor</string>
@@ -616,4 +612,28 @@
     <string name="show_comments_title">Mostrar comentários</string>
     <string name="recaptcha_done_button">Aceitar</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desativar modo rápido</string>
+    <string name="never">Nunca</string>
+    <string name="wifi_only">Apenas no WiFi</string>
+    <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
+    <string name="title_activity_play_queue">Reproduzir a fila</string>
+    <string name="settings_category_notification_title">Notificação</string>
+    <string name="unsupported_url_dialog_message">Não foi possível reconhecer o URL. Abrir com outra app\?</string>
+    <string name="auto_queue_toggle">Pôr na fila automaticamente</string>
+    <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
+    <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
+    <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
+    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do popup</string>
+    <string name="notification_action_nothing">Nada</string>
+    <string name="notification_action_buffering">A pôr no buffer</string>
+    <string name="notification_action_shuffle">Baralhar</string>
+    <string name="notification_action_repeat">Repetir</string>
+    <string name="notification_actions_at_most_three">Pode selecionar no máximo três ações para mostrar na notificação compacta!</string>
+    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela. Selecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
+    <string name="notification_action_4_title">Quinto botão de acção</string>
+    <string name="notification_action_3_title">Quarto botão de ação</string>
+    <string name="notification_action_2_title">Terceiro botão de ação</string>
+    <string name="notification_action_1_title">Segundo botão de ação</string>
+    <string name="notification_action_0_title">Primeiro botão de ação</string>
+    <string name="notification_scale_to_square_image_summary">Dimensionar a miniatura de vídeo mostrada na notificação de proporção de 16:9 a 1:1 (pode introduzir distorções)</string>
+    <string name="notification_scale_to_square_image_title">Dimensionar a miniatura à proporção de 1:1</string>
 </resources>

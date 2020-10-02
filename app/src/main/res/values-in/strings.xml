@@ -32,21 +32,19 @@
     <string name="dark_theme_title">Gelap</string>
     <string name="light_theme_title">Terang</string>
     <string name="download_dialog_title">Unduh</string>
-    <string name="next_video_title">Berikutnya</string>
     <string name="show_next_and_similar_title">Tampilkan video \'Berikutnya\' dan \'Serupa\'</string>
     <string name="unsupported_url">URL tidak didukung</string>
     <string name="content_language_title">Bahasa konten</string>
-    <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_video_audio_title">Video dan audio</string>
     <string name="settings_category_appearance_title">Tampilan</string>
     <string name="settings_category_other_title">Lainnya</string>
     <string name="background_player_playing_toast">Memutar di latar belakang</string>
-    <string name="play_btn_text">Putar</string>
     <string name="content">Konten</string>
     <string name="show_age_restricted_content_title">Konten yang dibatasi usia</string>
     <string name="video_is_age_restricted">Tampilkan video yang dibatasi usia. Bisa diubah nanti dari pengaturan.</string>
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua thumbnail</string>
-    <string name="did_you_mean">Apakah yang kamu maksud: %1$s\?</string>
+    <string name="did_you_mean">Apakah maksud anda \"%1$s\"\?</string>
     <string name="screen_rotation">rotasi</string>
     <string name="duration_live">Langsung</string>
     <string name="downloads">Unduhan</string>
@@ -61,7 +59,7 @@
     <string name="could_not_load_image">Tidak bisa memuat gambar</string>
     <string name="sorry_string">Maaf, hal tersebut seharusnya tidak terjadi.</string>
     <string name="error_report_button_text">Laporkan kesalahan via surel</string>
-    <string name="error_snackbar_message">Maaf, telah terjadi galat.</string>
+    <string name="error_snackbar_message">Maaf, telah terjadi kesalahan.</string>
     <string name="error_snackbar_action">Lapor</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Yang terjadi:</string>
@@ -131,7 +129,7 @@
     <string name="clear">Bersihkan</string>
     <string name="filter">Filter</string>
     <string name="use_external_video_player_summary">Menghapus audio pada beberapa resolusi</string>
-    <string name="popup_remember_size_pos_title">Ingat ukuran dan posisi popup</string>
+    <string name="popup_remember_size_pos_title">Ingat properti popup</string>
     <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Ubah ukuran</string>
@@ -190,7 +188,7 @@
     <string name="service_title">Layanan</string>
     <string name="settings_category_player_title">Pemutar</string>
     <string name="settings_category_player_behavior_title">Perilaku</string>
-    <string name="settings_category_history_title">Riwayat &amp; cache</string>
+    <string name="settings_category_history_title">Riwayat dan cache</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="background_player_append">Diantrekan di pemutar latar belakang</string>
     <string name="popup_playing_append">Diantrekan di pemutar popup</string>
@@ -269,7 +267,7 @@
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
-    <string name="new_and_hot">Baru &amp; panas</string>
+    <string name="new_and_hot">Baru dan aktual</string>
     <string name="play_queue_remove">Hapus</string>
     <string name="play_queue_stream_detail">Detail</string>
     <string name="play_queue_audio_settings">Pengaturan Audio</string>
@@ -516,8 +514,6 @@
     <string name="recovering">memulihkan</string>
     <string name="error_download_resource_gone">Tidak bisa memulihkan unduhan ini</string>
     <string name="choose_instance_prompt">Pilih situs</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Thumbnail video layar kunci</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Ketika menggunakan pemutar latar belakang, thumbnail video akan ditampilkan pada layar kunci</string>
     <string name="default_kiosk_page_summary">Kiosk Default</string>
     <string name="clear_download_history">Hapus riwayat unduhan</string>
     <string name="delete_downloaded_files">Hapus berkas yang diunduh</string>
@@ -573,7 +569,7 @@
     <string name="remove_watched">Buang ditonton</string>
     <string name="restricted_video">Video ini dibatasi usia.
 \n
-\nJika anda ingin menontonnya, aktifkan \"Konten yang dibatasi usia\" di dalam pengaturan.</string>
+\nAktifkan \"Konten yang dibatasi usia\" di dalam pengaturan jika anda ingin melihatnya.</string>
     <string name="content_not_supported">Konten ini belum didukung oleh NewPipe.
 \n
 \nSemoga akan didukung pada versi berikutnya.</string>
@@ -600,11 +596,34 @@
     <string name="channel_created_by">Dibuat oleh %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar channel</string>
     <string name="error_report_open_github_notice">Harap periksa apakah masalah yang sama sudah ada atau belum. Ketika laporan anda ternyata sudah ada, anda membuat kami menghabiskan waktu yang seharusnya bisa kami gunakan untuk meningkatkan aplikasi menjadi lebih baik.</string>
-    <string name="error_report_open_issue_button_text">Laporkan kesalahan pada GitHub</string>
+    <string name="error_report_open_issue_button_text">Laporkan di GitHub</string>
     <string name="copy_for_github">Salin laporan dengan format</string>
     <string name="search_showing_result_for">Menampilkan hasil untuk: %s</string>
     <string name="playlist_page_summary">Halaman daftar putar</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Hanya tampilkan langganan tanpa grup</string>
     <string name="no_playlist_bookmarked_yet">Belum ada markah daftar putar</string>
     <string name="select_a_playlist">Pilih daftar putar</string>
+    <string name="never">Tidak pernah</string>
+    <string name="wifi_only">Hanya pada WiFi</string>
+    <string name="autoplay_summary">Otomatis mulai pemutaran — %s</string>
+    <string name="title_activity_play_queue">Putar antrean</string>
+    <string name="unsupported_url_dialog_message">URL tidak dikenali. Buka dengan aplikasi lain\?</string>
+    <string name="auto_queue_toggle">Otomatis antre</string>
+    <string name="clear_queue_confirmation_description">Antrean dari pemutar yang aktif akan digantikan</string>
+    <string name="clear_queue_confirmation_summary">Beralih ke pemutar yang lain mungkin akan mengganti antrean anda</string>
+    <string name="clear_queue_confirmation_title">Konfirmasi sebelum mengosongkan antrean</string>
+    <string name="settings_category_notification_title">Notifikasi</string>
+    <string name="notification_action_nothing">Tidak ada</string>
+    <string name="notification_action_buffering">Bufer</string>
+    <string name="notification_action_shuffle">Shuffle</string>
+    <string name="notification_action_repeat">Ulangi</string>
+    <string name="notification_actions_at_most_three">Anda bisa memilih hingga tiga tindakan untuk ditampilkan dalam notifikasi ringkas!</string>
+    <string name="notification_actions_summary">Sentuh untuk menyunting tindakan notifikasi di bawah. Pilih hingga tiga diantaranya untuk ditampilkan dalam notifikasi ringkas dengan menggunakan kotak centang di sebelah kanan.</string>
+    <string name="notification_action_4_title">Tombol tindakan kelima</string>
+    <string name="notification_action_3_title">Tombol tindakan keempat</string>
+    <string name="notification_action_2_title">Tombol tindakan ketiga</string>
+    <string name="notification_action_1_title">Tombol tindakan kedua</string>
+    <string name="notification_action_0_title">Tombol tindakan pertama</string>
+    <string name="notification_scale_to_square_image_summary">Ubah ukuran thumbnail yang ditampilkan di notifikasi dari rasio aspek 16:9 ke 1:1 (mungkin terdistorsi)</string>
+    <string name="notification_scale_to_square_image_title">Ubah ukuran thumbnail ke rasio aspek 1:1</string>
 </resources>

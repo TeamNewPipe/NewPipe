@@ -164,7 +164,7 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:6633f26ec5a73a8e932de575b7a0643b6ad6c890'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:2463884aa8b696df5812f7feff553008bbd2f888'
 
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
     implementation "org.jsoup:jsoup:1.13.1"
@@ -209,7 +209,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
-    implementation "org.ocpsoft.prettytime:prettytime:4.0.5.Final"
+    implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
 }
 
 static String getGitWorkingBranch() {

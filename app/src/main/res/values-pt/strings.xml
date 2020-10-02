@@ -10,7 +10,7 @@
     <string name="download">Transferir</string>
     <string name="search">Pesquisar</string>
     <string name="settings">Definições</string>
-    <string name="did_you_mean">Quis dizer: %1$s\?</string>
+    <string name="did_you_mean">Quis dizer \"%1$s\"\?</string>
     <string name="share_dialog_title">Partilhar com</string>
     <string name="choose_browser">Escolher navegador</string>
     <string name="screen_rotation">rotação</string>
@@ -27,7 +27,6 @@
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato de áudio predefinido</string>
     <string name="download_dialog_title">Transferir</string>
-    <string name="next_video_title">Seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \'Seguintes\' e \'Semelhantes\'</string>
     <string name="unsupported_url">URL não suportado</string>
     <string name="content_language_title">Idioma do conteúdo predefinido</string>
@@ -43,7 +42,6 @@
     <string name="settings_category_appearance_title">Aparência</string>
     <string name="settings_category_other_title">Outros</string>
     <string name="background_player_playing_toast">Reprodução em segundo plano</string>
-    <string name="play_btn_text">Reproduzir</string>
     <string name="network_error">Erro de rede</string>
     <string name="use_tor_title">Usar Tor</string>
     <string name="use_tor_summary">(Experimental) Forçar o tráfego de transferência via Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>
@@ -355,12 +353,12 @@
     <string name="delete_search_history_alert">Eliminar todo o histórico de pesquisa\?</string>
     <string name="search_history_deleted">Histórico de pesquisa eliminado.</string>
     <string name="one_item_deleted">1 elemento eliminado.</string>
-    <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>
+    <string name="toast_no_player">Não existe uma app para reproduzir este ficheiro</string>
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o tempo livre deles para proporcionar-lhe a melhor experiência. Retribua para ajudar os programadores a tornarem o NewPipe ainda melhor enquanto desfruta de um café.</string>
     <string name="give_back">Retribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
-    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, o aplicativo não coleta nenhum dado sem seu consentimento. 
-\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e salvo quando você envia um relatório de erros.</string>
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, a app não coleta nenhum dado sem o seu consentimento.
+\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e guardado quando envia um relatório de erros.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
     <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
     <string name="app_license">NewPipe é um software livre \"copyleft\": pode utilizar, estudar, partilhar e melhorar a aplicação. Especificamente, pode redistribuir e/ou modificar a aplicação nos termos da Licença Pública Geral GNU, conforme publicada pela Fundação de Software Livre, tanto a versão 3 da licença ou (por sua opção) qualquer versão superior.</string>
@@ -374,8 +372,8 @@
     <string name="playlist_delete_failure">Não foi possível eliminar a lista de reprodução.</string>
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
-    <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações.</string>
-    <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
+    <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para app as alterações.</string>
+    <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a app instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o eliminação</string>
     <string name="import_network_expensive_warning">Tenha em atenção que esta operação pode sobrecarregar a sua rede.
@@ -392,8 +390,8 @@
     <string name="decline">Recusar</string>
     <string name="limit_data_usage_none_description">Ilimitado</string>
     <string name="limit_mobile_data_usage_title">Limitar resolução se estiver a usar dados móveis</string>
-    <string name="minimize_on_exit_title">Minimizar ao trocar de aplicação</string>
-    <string name="minimize_on_exit_summary">Ação a executar ao trocar para outra aplicação a partir do menu principal - %s</string>
+    <string name="minimize_on_exit_title">Minimizar ao trocar de app</string>
+    <string name="minimize_on_exit_summary">Ação a executar ao trocar para outra app do menu principal - %s</string>
     <string name="minimize_on_exit_none_description">Nenhuma</string>
     <string name="minimize_on_exit_background_description">Ativar o reprodutor em segundo plano</string>
     <string name="minimize_on_exit_popup_description">Ativar o reprodutor \'popup\'</string>
@@ -417,7 +415,7 @@
     <string name="main_page_content_summary">Quais os separadores que são mostrados na página principal</string>
     <string name="selection">Seleção</string>
     <string name="updates_setting_title">Atualizações</string>
-    <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
+    <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da app se uma nova versão existir</string>
     <string name="list_view_mode">Modo de exibição de lista</string>
     <string name="list">Lista</string>
     <string name="grid">Grelha</string>
@@ -523,13 +521,11 @@
     <string name="recovering">recuperando</string>
     <string name="error_download_resource_gone">Não é possível recuperar esta transferência</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Miniatura do vídeo no ecrã de bloqueio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Uma miniatura de vídeo é mostrada no ecrã de bloqueio quando utilizando o leitor de fundo</string>
     <string name="clear_download_history">Limpar histórico de transferências</string>
     <string name="delete_downloaded_files">Apagar ficheiros transferidos</string>
     <string name="deleted_downloads">%1$d transferências apagadas</string>
     <string name="permission_display_over_apps">Permitir sobreposição da janela sobre outras aplicações</string>
-    <string name="app_language_title">Idioma da aplicação</string>
+    <string name="app_language_title">Idioma da app</string>
     <string name="systems_language">Predefinição do sistema</string>
     <string name="subtitle_activity_recaptcha">Pressionar \"Aceitar\" quando terminar</string>
     <string name="recaptcha_done_button">Aceitar</string>
@@ -617,4 +613,10 @@
     <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
     <string name="copy_for_github">Copiar relatório formatado</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
+    <string name="notification_action_3_title">Quarto botão de ação</string>
+    <string name="notification_action_2_title">Terceiro botão de ação</string>
+    <string name="notification_action_1_title">Segundo botão de ação</string>
+    <string name="notification_action_0_title">Primeiro botão de ação</string>
+    <string name="notification_scale_to_square_image_summary">Dimensionar a miniatura de vídeo mostrada na notificação de proporção de 16:9 a 1:1 (pode introduzir distorções)</string>
+    <string name="notification_scale_to_square_image_title">Dimensionar a miniatura à proporção de 1:1</string>
 </resources>

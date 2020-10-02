@@ -267,17 +267,17 @@
     <string name="msg_popup_permission">B\'at bisòngiu de custu permissu pro
 \nabèrrere sa modalidade ventanedda</string>
     <string name="info_labels">Ite:\\nRechesta:\\nLimba de su cuntenutu\\nIstadu de su cuntenutu:\\nLimba de s\'aplicatzione:\\nServìtziu:\\nOràriu GMT:\\nPachete:\\nVersione:\\nVersione SO:</string>
-    <string name="error_snackbar_message">B\'at àpidu unos cantos errores.</string>
+    <string name="error_snackbar_message">A dolu mannu b\'at àpidu carchi problema.</string>
     <string name="search_history_deleted">Cronologia de chirca iscantzellada.</string>
     <string name="restricted_video">Custu vìdeu tenet unu lìmite de edade.
 \n
-\n Si lu cheres bìdere, abìlita \"Cuntenutos limitados pro edade\" in sas impostatziones.</string>
+\nAllughe \"Cuntenutos limitados pro edade\" in sas impostatziones si lu cheres pompiare.</string>
     <string name="no_player_found_toast">Perunu riproduidore de flussos agatadu (pro lu riproduire podes installare VLC).</string>
     <string name="playlist_page_summary">Pàgina de s\'iscalita</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Ammustra petzi sas iscritziones no agrupadas</string>
     <string name="select_a_playlist">Ischerta un\'iscalita</string>
     <string name="error_report_open_github_notice">Pro praghere verìfica si esistit giai una sinnalatzione chi chistionat de s\'arrestu anòmalu tuo. Creende sinnalatziones dòpias nos pigas tempus chi diamus pòdere impreare pro acontzare su problema.</string>
-    <string name="error_report_open_issue_button_text">Sinnala s\'errore in GitHub</string>
+    <string name="error_report_open_issue_button_text">Sinnala in GitHub</string>
     <string name="copy_for_github">Còpia su raportu formatadu</string>
     <string name="search_showing_result_for">Ammustrende sos resurtados pro: %s</string>
     <string name="video_detail_by">De %s</string>
@@ -489,7 +489,6 @@
     <string name="video_is_age_restricted">Ammustra su vìdeu limitadu pro edade. Podes mudare custa optzione dae sas impostatziones.</string>
     <string name="show_age_restricted_content_title">Cuntenutu limitadu pro edade</string>
     <string name="content">Cuntenutos</string>
-    <string name="play_btn_text">Riprodui</string>
     <string name="popup_playing_append">Postu in lista in su riproduidore a ventanedda</string>
     <string name="background_player_append">Pone in lista in s\'isfundu</string>
     <string name="popup_playing_toast">Riproduende in modalidade a ventanedda</string>
@@ -519,7 +518,6 @@
     <string name="show_hold_to_append_title">Ammustra s\'impòsitu \"Mantene incarcadu pro pònnere in elencu\"</string>
     <string name="show_next_and_similar_title">Ammustra sos vìdeos imbenientes e simigiantes</string>
     <string name="autoplay_title">Riprodutzione automàtica</string>
-    <string name="next_video_title">Imbeniente</string>
     <string name="download_dialog_title">Iscàrriga</string>
     <string name="resume_on_audio_focus_gain_summary">Sighi a riproduire a pustis de sas interrutziones (a es. una mutida)</string>
     <string name="resume_on_audio_focus_gain_title">Sighi a riproduire</string>
@@ -553,7 +551,7 @@
     <string name="seek_duration_title">Longària de s\'avantzamentu e de sa torrada in segus lestros</string>
     <string name="use_inexact_seek_summary">Su moimentu inesatu permitit a su riproduidore de si mòere cara a una positzione in manera prus lestra ma prus pagu pretzisa. Su de si mòere de 5, 15 o 25 segundos non funtzionat, cun custa optzione.</string>
     <string name="use_inexact_seek_title">Imprea su moimentu inesatu lestru</string>
-    <string name="popup_remember_size_pos_title">Ammenta sa mannària e sa positzione de sa ventanedda</string>
+    <string name="popup_remember_size_pos_title">Ammenta sas propriedades de sa ventanedda</string>
     <string name="black_theme_title">Nieddu</string>
     <string name="dark_theme_title">Iscuru</string>
     <string name="light_theme_title">Craru</string>
@@ -561,9 +559,7 @@
     <string name="default_video_format_title">Formadu vìdeu predefinidu</string>
     <string name="default_audio_format_title">Formadu àudio predefinidu</string>
     <string name="play_audio">Àudio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Una miniadura de su vìdeu benit ammustrada in s\'ischermada de blocu cando ses impreende su riproduidore in s\'isfundu</string>
     <string name="show_play_with_kodi_summary">Ammustra un\'optzione pro riproduire unu vìdeu pro mèdiu de su tentru multimediale Kodi</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Miniadura vìdeu de s\'ischermada de blocu</string>
     <string name="show_play_with_kodi_title">Ammustra s\'optzione \"Riprodui cun Kodi\"</string>
     <string name="kore_not_found">Cheres installare s\'aplicatzione Kore chi mancat\?</string>
     <string name="play_with_kodi_title">Riprodui cun Kodi</string>
@@ -602,7 +598,7 @@
     <string name="screen_rotation">rotatzione</string>
     <string name="choose_browser">Issèbera su navigadore</string>
     <string name="share_dialog_title">Cumpartzi cun</string>
-    <string name="did_you_mean">Cherias nàrrere: %1$s\?</string>
+    <string name="did_you_mean">Cherias nàrrere \"%1$s\"\?</string>
     <string name="settings">Impostatziones</string>
     <string name="search">Chirca</string>
     <string name="controls_download_desc">Iscàrriga su documentu de trasmissione</string>
@@ -616,4 +612,28 @@
     <string name="upload_date_text">Publicadu su %1$s</string>
     <string name="view_count_text">%1$s visualizatziones</string>
     <string name="main_bg_subtitle">Toca \"Chirca\" pro incumintzare</string>
+    <string name="never">Mai</string>
+    <string name="wifi_only">Cun su Wi-Fi ebbia</string>
+    <string name="autoplay_summary">Incumintza cun sa riprodutzione automaticamente — %s</string>
+    <string name="title_activity_play_queue">Lista de riprodutzione</string>
+    <string name="unsupported_url_dialog_message">Reconnoschimentu de s\'URL fallidu. Lu cheres abèrrere cun un\'àtera aplicatzione\?</string>
+    <string name="auto_queue_toggle">Annanghe a sa lista automaticamente</string>
+    <string name="clear_queue_confirmation_description">Sa lista dae su riproduidore ativu at a èssere remplasada</string>
+    <string name="clear_queue_confirmation_summary">Colende dae unu riproduidore a s\'àteru dias pòdere remplasare sa lista tua</string>
+    <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
+    <string name="settings_category_notification_title">Notìfica</string>
+    <string name="notification_action_shuffle">Òrdine casuale</string>
+    <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra.</string>
+    <string name="notification_scale_to_square_image_summary">Iscala sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1 (diat pòdere causare istorchimentos)</string>
+    <string name="notification_action_nothing">Nudda</string>
+    <string name="notification_action_buffering">Carrighende</string>
+    <string name="notification_action_repeat">Repite</string>
+    <string name="notification_actions_at_most_three">Podes ischertare a su màssimu tres atziones de ammustrare in sas notìficas cumpatas!</string>
+    <string name="notification_action_4_title">Su de chimbe butones de atzione</string>
+    <string name="notification_action_3_title">Su de bator butones de atzione</string>
+    <string name="notification_action_2_title">Su de tres butones de atzione</string>
+    <string name="notification_action_1_title">Su de duos butones de atzione</string>
+    <string name="notification_action_0_title">Su de unu butone de atzione</string>
+    <string name="notification_scale_to_square_image_title">Pone in iscala sa miniadura in formadu 1:1</string>
+    <string name="popup_remember_size_pos_summary">Ammenta s\'ùrtima mannària e sa positzione in sa ventanedda</string>
 </resources>

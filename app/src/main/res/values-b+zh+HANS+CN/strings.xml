@@ -5,7 +5,7 @@
     <string name="upload_date_text">发布于 %1$s</string>
     <string name="open_in_browser">在浏览器中打开</string>
     <string name="open_in_popup_mode">在悬浮窗模式下打开</string>
-    <string name="did_you_mean">您是不是要找：%1$s？</string>
+    <string name="did_you_mean">您是不是要找:%1$s？</string>
     <string name="no_player_found_toast">找不到串流播放器 （您可以安装 VLC 进行播放）。</string>
     <string name="controls_download_desc">下载串流文件</string>
     <string name="install">安装</string>
@@ -28,7 +28,6 @@
     <string name="dark_theme_title">暗黑</string>
     <string name="black_theme_title">黑色</string>
     <string name="download_dialog_title">下载</string>
-    <string name="next_video_title">下一个</string>
     <string name="unsupported_url">不支持的 URL</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="settings_category_other_title">其他</string>
@@ -166,7 +165,6 @@
     <string name="show_next_and_similar_title">显示“下一个”和“相似”视频</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="background_player_playing_toast">在后台播放</string>
-    <string name="play_btn_text">播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">受年龄限制的内容</string>
     <string name="video_is_age_restricted">显示受年龄限制的视频。可从设置允许此类内容。</string>
@@ -211,7 +209,7 @@
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
     <string name="show_higher_resolutions_summary">仅某些设备支持播放2K / 4K视频</string>
     <string name="clear">清除</string>
-    <string name="popup_remember_size_pos_title">记住悬浮窗的尺寸与位置</string>
+    <string name="popup_remember_size_pos_title">记住悬浮窗属性</string>
     <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
@@ -517,8 +515,6 @@
     <string name="error_download_resource_gone">无法恢复此下载</string>
     <string name="choose_instance_prompt">选择一个服务器</string>
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
-    <string name="enable_lock_screen_video_thumbnail_title">在锁屏上显示视频缩略图</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除已下载的文件</string>
     <string name="deleted_downloads">已删除 %1$d 下载</string>
@@ -604,7 +600,30 @@
     <string name="no_playlist_bookmarked_yet">尚无播放列表书签</string>
     <string name="select_a_playlist">选择播放列表</string>
     <string name="error_report_open_github_notice">请检查您的问题是否已经存在。创建重复票证时，您需要从我们那里花些时间来让我们修复真正的bug。</string>
-    <string name="error_report_open_issue_button_text">去GitHub上报告错误</string>
+    <string name="error_report_open_issue_button_text">在GitHub上反馈</string>
     <string name="copy_for_github">复制格式报告</string>
     <string name="search_showing_result_for">显示结果为：%s</string>
+    <string name="never">永不</string>
+    <string name="wifi_only">仅在WiFi下</string>
+    <string name="autoplay_summary">自动开始回放 — %s</string>
+    <string name="title_activity_play_queue">播放队列</string>
+    <string name="unsupported_url_dialog_message">无法识别该url。用另一个应用程序打开它\?</string>
+    <string name="auto_queue_toggle">自动排队</string>
+    <string name="clear_queue_confirmation_description">来自活跃播放器的队列将被替换</string>
+    <string name="clear_queue_confirmation_summary">从一个播放器切换到另一个播放器后，你的队列可能会被替换</string>
+    <string name="clear_queue_confirmation_title">清除队列之前请求确认</string>
+    <string name="notification_action_nothing">无</string>
+    <string name="notification_action_buffering">缓冲</string>
+    <string name="notification_action_shuffle">随机播放</string>
+    <string name="notification_action_repeat">重复</string>
+    <string name="notification_actions_at_most_three">您最多可以选择三个操作显示在紧凑通知中!</string>
+    <string name="notification_actions_summary">点击来编辑下面的每个通知动作。通过使用右边的复选框，选择其中最多三个显示在紧凑通知中。</string>
+    <string name="notification_action_4_title">第五操作按钮</string>
+    <string name="notification_action_3_title">第四操作按钮</string>
+    <string name="notification_action_2_title">第三操作按钮</string>
+    <string name="notification_action_1_title">第二操作按钮</string>
+    <string name="notification_action_0_title">首选操作按钮</string>
+    <string name="notification_scale_to_square_image_summary">将通知中显示的视频缩略图长宽比从16:9缩放到1:1(可能会导致失真)</string>
+    <string name="notification_scale_to_square_image_title">缩放缩略图到1:1的长宽比</string>
+    <string name="settings_category_notification_title">通知</string>
 </resources>
