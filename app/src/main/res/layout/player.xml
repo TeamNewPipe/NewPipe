@@ -99,7 +99,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:scaleType="fitXY"
-                        app:srcCompat="?attr/ic_close"
+                        app:srcCompat="@drawable/ic_close_white_24dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         tools:ignore="ContentDescription,RtlHardcoded"
                         android:visibility="gone" />
