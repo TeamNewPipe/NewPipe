@@ -1550,22 +1550,16 @@ public class VideoDetailFragment
                     0);
         }
 
-        switch (info.getStreamType()) {
-            case LIVE_STREAM:
-            case AUDIO_LIVE_STREAM:
-                detailControlsDownload.setVisibility(View.GONE);
-                break;
-            default:
-                if (info.getAudioStreams().isEmpty()) {
-                    detailControlsBackground.setVisibility(View.GONE);
-                }
-                if (!info.getVideoStreams().isEmpty() || !info.getVideoOnlyStreams().isEmpty()) {
-                    break;
-                }
-                detailControlsPopup.setVisibility(View.GONE);
-                thumbnailPlayButton.setImageResource(R.drawable.ic_headset_shadow);
-                break;
-        }
+        detailControlsDownload.setVisibility(info.getStreamType() == StreamType.LIVE_STREAM
+                || info.getStreamType() == StreamType.AUDIO_LIVE_STREAM ? View.GONE : View.VISIBLE);
+        detailControlsBackground.setVisibility(info.getAudioStreams().isEmpty()
+                ? View.GONE : View.VISIBLE);
+
+        final boolean noVideoStreams =
+                info.getVideoStreams().isEmpty() && info.getVideoOnlyStreams().isEmpty();
+        detailControlsPopup.setVisibility(noVideoStreams ? View.GONE : View.VISIBLE);
+        thumbnailPlayButton.setImageResource(
+                noVideoStreams ? R.drawable.ic_headset_shadow : R.drawable.ic_play_arrow_shadow);
     }
 
     private void hideAgeRestrictedContent() {
