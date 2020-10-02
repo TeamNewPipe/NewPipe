@@ -479,7 +479,7 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_close_white_24dp" />
+                app:srcCompat="?attr/ic_close" />
 
             <ImageButton
                 android:id="@+id/repeatButton"
