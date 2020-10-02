@@ -600,16 +600,16 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:alpha="0.9"
-			android:paddingLeft="@dimen/video_item_search_padding"
-			android:paddingRight="@dimen/video_item_search_padding"
             android:descendantFocusability="blocksDescendants"
 			android:background="?attr/windowBackground" >
 
 		<ImageButton
 				android:id="@+id/overlay_thumbnail"
-				android:layout_width="50dp"
+				android:layout_width="85dp"
 				android:layout_height="60dp"
 				android:layout_alignParentStart="true"
+                android:paddingLeft="@dimen/video_item_search_padding"
+                android:paddingRight="@dimen/video_item_search_padding"
 				android:scaleType="fitCenter"
 				android:gravity="center_vertical"
 				android:contentDescription="@string/list_thumbnail_view_description"
@@ -622,8 +622,6 @@
 				android:layout_height="60dp"
 				android:gravity="center_vertical"
 				android:orientation="vertical"
-				android:paddingLeft="@dimen/video_item_search_padding"
-				android:paddingRight="@dimen/video_item_search_padding"
 				android:clickable="true"
 				android:focusable="true"
 				android:layout_toEndOf="@+id/overlay_thumbnail"
@@ -665,6 +663,7 @@
 				android:layout_height="60dp"
 				android:gravity="center_vertical"
 				android:paddingLeft="@dimen/video_item_search_padding"
+                android:paddingRight="@dimen/video_item_search_padding"
 				android:layout_alignParentEnd="true"
 				tools:ignore="RtlHardcoded">
 
