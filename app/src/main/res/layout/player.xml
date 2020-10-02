@@ -99,7 +99,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:scaleType="fitXY"
-                        app:srcCompat="?attr/ic_close"
+                        app:srcCompat="@drawable/ic_close_white_24dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         tools:ignore="ContentDescription,RtlHardcoded"
                         android:visibility="gone" />
@@ -479,7 +479,7 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_close_white_24dp" />
+                app:srcCompat="?attr/ic_close" />
 
             <ImageButton
                 android:id="@+id/repeatButton"
