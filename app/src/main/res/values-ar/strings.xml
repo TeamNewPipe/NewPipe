@@ -89,8 +89,6 @@
     <string name="show_higher_resolutions_title">عرض أعلى جودة</string>
     <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل مقاطع الفيديو 2K/4K</string>
     <string name="default_video_format_title">تنسيق الفيديو الافتراضي</string>
-    <string name="popup_remember_size_pos_title">تذكر خصائص النوافذ المنبثقة</string>
-    <string name="popup_remember_size_pos_summary">تذكر آخر مكان و حجم للنافذة المنبثقة</string>
     <string name="player_gesture_controls_title">اعدادات إيماءة المشغل</string>
     <string name="player_gesture_controls_summary">استخدم الإيماءات للتحكم في سطوع وصوت المشغل</string>
     <string name="show_search_suggestions_title">اقتراحات البحث</string>

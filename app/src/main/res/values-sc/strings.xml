@@ -549,7 +549,6 @@
     <string name="seek_duration_title">Longària de s\'avantzamentu e de sa torrada in segus lestros</string>
     <string name="use_inexact_seek_summary">Su moimentu inesatu permitit a su riproduidore de si mòere cara a una positzione in manera prus lestra ma prus pagu pretzisa. Su de si mòere de 5, 15 o 25 segundos non funtzionat, cun custa optzione.</string>
     <string name="use_inexact_seek_title">Imprea su moimentu inesatu lestru</string>
-    <string name="popup_remember_size_pos_title">Ammenta sas propriedades de sa ventanedda</string>
     <string name="black_theme_title">Nieddu</string>
     <string name="dark_theme_title">Iscuru</string>
     <string name="light_theme_title">Craru</string>
@@ -633,5 +632,4 @@
     <string name="notification_action_1_title">Su de duos butones de atzione</string>
     <string name="notification_action_0_title">Su de unu butone de atzione</string>
     <string name="notification_scale_to_square_image_title">Pone in iscala sa miniadura in formadu 1:1</string>
-    <string name="popup_remember_size_pos_summary">Ammenta s\'ùrtima mannària e sa positzione in sa ventanedda</string>
 </resources>

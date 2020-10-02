@@ -62,8 +62,6 @@
     <string name="light_theme_title">Clar</string>
     <string name="dark_theme_title">Escur</string>
     <string name="black_theme_title">Negre</string>
-    <string name="popup_remember_size_pos_title">Se remembrar la talha e la posicion del fenestron</string>
-    <string name="popup_remember_size_pos_summary">Se remembrar las darrièras talha e posicion del fenestron</string>
     <string name="use_inexact_seek_title">Utilzar la recèrca rapida inexacta</string>
     <string name="use_inexact_seek_summary">La recèrca inexacta permet a l\'utilizaire de recercar mai rapidament una posicion amb mens de precision</string>
     <string name="seek_duration_title">Durada d\'avançada/reculada rapida</string>

@@ -120,8 +120,6 @@
     <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
     <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 2K/4K videa</string>
     <string name="default_video_format_title">Výchozí formát videa</string>
-    <string name="popup_remember_size_pos_title">Pamatovat si vlastnosti vyskakovacího okna</string>
-    <string name="popup_remember_size_pos_summary">Pamatovat si poslední velikost a pozici vyskakovacího okna</string>
     <string name="popup_mode_share_menu_title">Režim vyskakovacího okna</string>
     <string name="subscribe_button_title">Odebírat</string>
     <string name="subscribed_button_title">Odebíráno</string>

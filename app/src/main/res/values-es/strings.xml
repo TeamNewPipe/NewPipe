@@ -130,8 +130,6 @@
     <string name="filter">Filtro</string>
     <string name="refresh">Actualizar</string>
     <string name="clear">Limpiar</string>
-    <string name="popup_remember_size_pos_title">Recordar propiedades del reproductor emergente</string>
-    <string name="popup_remember_size_pos_summary">Recordar el último tamaño y posición del reproductor emergente</string>
     <string name="settings_category_popup_title">Emergente</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Elimina el audio en algunas resoluciones</string>

@@ -60,8 +60,6 @@
     <string name="light_theme_title">प्रकाश</string>
     <string name="dark_theme_title">गाढा</string>
     <string name="black_theme_title">कालो</string>
-    <string name="popup_remember_size_pos_title">पपअप आकार र स्थिति सम्झना</string>
-    <string name="popup_remember_size_pos_summary">पछिल्लो आकार र पपअप को स्थिति सम्झना</string>
     <string name="use_inexact_seek_title">तेज \'inexact\' खोज्न प्रयोग गर्नुहोस</string>
     <string name="use_inexact_seek_summary">\'Inexact\' प्लेयर कम सटीक छिटो स्थितिहरू गर्न खोज्न अनुमति दिन्छ खोज्छन्। 5, 15 वा 25 सेकेन्ड को लागि खोजी यो काम गर्दैन।</string>
     <string name="download_thumbnail_title">थम्बनेल लोड</string>

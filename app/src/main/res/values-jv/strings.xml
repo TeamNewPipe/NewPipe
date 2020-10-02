@@ -20,8 +20,6 @@
     <string name="show_comments_title">Duduhke komentar</string>
     <string name="download_thumbnail_title">Duduhke gambar cilik</string>
     <string name="seek_duration_title">Durasi cepet maju/mundure</string>
-    <string name="popup_remember_size_pos_summary">Eling-eling ukuran lan posisi ngambang terakhir</string>
-    <string name="popup_remember_size_pos_title">Eling-eling ukuran lan posisi ngambang</string>
     <string name="black_theme_title">Ireng</string>
     <string name="dark_theme_title">Peteng</string>
     <string name="light_theme_title">Padhang</string>

@@ -209,8 +209,6 @@
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
     <string name="show_higher_resolutions_summary">仅某些设备支持播放2K / 4K视频</string>
     <string name="clear">清除</string>
-    <string name="popup_remember_size_pos_title">记住悬浮窗的尺寸与位置</string>
-    <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
     <string name="use_external_video_player_summary">隐藏部分没有音频的分辨率</string>

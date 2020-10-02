@@ -129,8 +129,6 @@
     <string name="filter">Filtrele</string>
     <string name="refresh">Yenile</string>
     <string name="clear">Temizle</string>
-    <string name="popup_remember_size_pos_title">Açılır pencere özelliklerini hatırla</string>
-    <string name="popup_remember_size_pos_summary">Açılan pencerenin son boyutunu ve konumunu hatırla</string>
     <string name="settings_category_popup_title">Açılır pencere</string>
     <string name="popup_resizing_indicator_title">Yeniden boyutlandırılıyor</string>
     <string name="use_external_video_player_summary">Bazı çözünürlüklerde sesi kaldırır</string>

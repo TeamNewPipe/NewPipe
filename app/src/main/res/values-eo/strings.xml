@@ -90,8 +90,6 @@
     <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj povas ludi 2K / 4K filmetojn</string>
     <string name="default_video_format_title">Defaŭlta fomato de filmeto</string>
     <string name="black_theme_title">Nigra</string>
-    <string name="popup_remember_size_pos_title">Memoru ŝprucfenestran grandecon kaj pozicion</string>
-    <string name="popup_remember_size_pos_summary">Memoru lastan grandecon kaj pozicion de ŝprucfenestro</string>
     <string name="use_inexact_seek_title">Uzi rapide, ne precizan serĉon</string>
     <string name="use_inexact_seek_summary">Ne preciza serĉo permesas al la ludanto serĉi poziciojn pli rapide kun malalta precizeco. Serĉi por 5, 15 kaj 25 sekundoj ne funckios kun tio opcio.</string>
     <string name="download_thumbnail_title">Ŝarĝi bildetojn</string>
