@@ -614,7 +614,7 @@
     <string name="error_report_open_github_notice">Lütfen yaşadığınız hatayı tartışan bildirimin daha önce oluşturulup oluşturulmadığını gözden geçirin. Yineleyen hata bildirimi oluşturarak, gerçek hatayı gidermekte harcadığımız zamanı uzatırsınız.</string>
     <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
     <string name="never">Asla</string>
-    <string name="wifi_only">Yalnızca WiFi\'de</string>
+    <string name="wifi_only">Yalnızca Wi-Fi\'de</string>
     <string name="autoplay_summary">Oynatmayı otomatik olarak başlat — %s</string>
     <string name="title_activity_play_queue">Oynatma kuyruğu</string>
     <string name="unsupported_url_dialog_message">URL tanınamadı. Başka bir uygulamayla açılsın mı\?</string>
