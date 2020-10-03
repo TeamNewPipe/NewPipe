@@ -543,7 +543,7 @@
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d timme</item>
-        <item quantity="other">&amp;d timmar</item>
+        <item quantity="other">%d timmar</item>
     </plurals>
     <plurals name="minutes">
         <item quantity="one">%d minut</item>
@@ -596,4 +596,27 @@
     <string name="no_playlist_bookmarked_yet">Ingen spellista bokmärkt än</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Visa endast prenumerationer som inte grupperats</string>
     <string name="notification_scale_to_square_image_title">Skala tumnagel till 1:1 ratio</string>
+    <string name="wifi_only">Endast på Wi-Fi</string>
+    <string name="notification_scale_to_square_image_summary">Skala videominiatyrbilden som visast i underrättelsen frän 16:9 till 1:1 aspekt (kan orsaka snedvridningar)</string>
+    <string name="autoplay_summary">Starta avspelning automatiskt—%s</string>
+    <string name="title_activity_play_queue">Spel kö</string>
+    <string name="settings_category_notification_title">Underrättelse</string>
+    <string name="unsupported_url_dialog_message">Kunde inte igenkänna URL. Öppna med annat program\?</string>
+    <string name="auto_queue_toggle">Legg i kö automatiskt</string>
+    <string name="clear_queue_confirmation_description">Den aktiva spelaren vill ersättas</string>
+    <string name="clear_queue_confirmation_summary">Att byta frän en spelare till en annan kan ersätta din kö</string>
+    <string name="clear_queue_confirmation_title">Fråga om bekräftelse innan tömning av kö</string>
+    <string name="notification_action_buffering">Buffrar</string>
+    <string name="notification_action_repeat">Genta</string>
+    <string name="notification_action_4_title">Femte handlingstangent</string>
+    <string name="notification_action_3_title">Fjärde handlingstangent</string>
+    <string name="notification_action_2_title">Tredje handlingstangent</string>
+    <string name="notification_action_1_title">Andra handlingstangent</string>
+    <string name="notification_action_0_title">Första handlingstangent</string>
+    <string name="content_not_supported">Detta inhaltande stöds inte enda av NewPipe.
+\n
+\nDet vill förhoppningsvis ändras i en kommande version.</string>
+    <string name="playlist_page_summary">Spellista-sida</string>
+    <string name="never">Aldrig</string>
+    <string name="notification_action_nothing">Ingenting</string>
 </resources>
