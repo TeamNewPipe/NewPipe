@@ -614,7 +614,7 @@
     <string name="copy_for_github">Kopieer opgemaakt rapport</string>
     <string name="search_showing_result_for">Gevonden resultaten voor: %s</string>
     <string name="never">Nooit</string>
-    <string name="wifi_only">Enkel via wifi</string>
+    <string name="wifi_only">Enkel via Wi-Fi</string>
     <string name="autoplay_summary">Start automatisch met afspelen — %s</string>
     <string name="title_activity_play_queue">Speel wachtrij af</string>
     <string name="settings_category_notification_title">Notificatie</string>
