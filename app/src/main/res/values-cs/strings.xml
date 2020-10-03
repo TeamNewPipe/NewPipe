@@ -624,7 +624,7 @@
     <string name="copy_for_github">Zkopírovat formátované hlášení</string>
     <string name="search_showing_result_for">Ukazuji výsledky pro: %s</string>
     <string name="never">Nikdy</string>
-    <string name="wifi_only">Pouze na WiFi</string>
+    <string name="wifi_only">Pouze na Wi-Fi</string>
     <string name="autoplay_summary">Zahájit playback automaticky — %s</string>
     <string name="title_activity_play_queue">Přehrát frontu</string>
     <string name="unsupported_url_dialog_message">Nelze rozpoznat zadané URL. Otevřít pomocí jiné aplikace\?</string>
