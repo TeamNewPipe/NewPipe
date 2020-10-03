@@ -437,7 +437,7 @@
     <string name="feed_group_dialog_select_subscriptions">Seleccionar subscricións</string>
     <string name="feed_processing_message">Procesando a transmisión…</string>
     <string name="feed_notification_loading">Cargando transmisión…</string>
-    <string name="feed_subscription_not_loaded_count">Non se cargou:% d</string>
+    <string name="feed_subscription_not_loaded_count">Non se cargou: %d</string>
     <string name="feed_oldest_subscription_update">Actualizada a última información: %s</string>
     <string name="feed_groups_header_title">Grupos da canle</string>
     <plurals name="days">
@@ -456,7 +456,7 @@
         <item quantity="one">%d segundo</item>
         <item quantity="other">%d segundos</item>
     </plurals>
-    <string name="new_seek_duration_toast">Debido ás restricións de ExoPlayer, a duración da busca estableceuse en% d segundos</string>
+    <string name="new_seek_duration_toast">Debido ás restricións de ExoPlayer, a duración da busca estableceuse en %d segundos</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Si, e visualizou parcialmente estes vídeos</string>
     <string name="remove_watched_popup_warning">Eliminaranse os vídeos vistos antes e despois de seren engadidos á lista de reprodución.
 \nEstás seguro\? Isto non se pode desfacer.!</string>
