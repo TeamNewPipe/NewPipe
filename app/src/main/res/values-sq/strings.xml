@@ -10,7 +10,7 @@
     <string name="download">Shkarko</string>
     <string name="search">Kërko</string>
     <string name="settings">Cilësimet</string>
-    <string name="did_you_mean">A po mendonit: %1$s\?</string>
+    <string name="did_you_mean">A po mendonit \"%1$s\"\?</string>
     <string name="share_dialog_title">Shpërndaje me</string>
     <string name="show_info">Shfaq informatat</string>
     <string name="tab_main">Menyja kryesore</string>
@@ -30,8 +30,8 @@
     <string name="content_language_title">Gjuha e dëshiruar e përmbajtjeve</string>
     <string name="settings_category_player_title">Luajtësi</string>
     <string name="settings_category_player_behavior_title">Sjellja</string>
-    <string name="settings_category_video_audio_title">Video &amp; audio</string>
-    <string name="settings_category_history_title">Historia &amp; depoja</string>
+    <string name="settings_category_video_audio_title">Video dhe audio</string>
+    <string name="settings_category_history_title">Historia dhe depoja</string>
     <string name="settings_category_appearance_title">Pamja</string>
     <string name="settings_category_other_title">Të tjera</string>
     <string name="content">Përmbajtja</string>
@@ -227,7 +227,7 @@
     <string name="most_liked">Më të pëlqyerat</string>
     <string name="recently_added">Të shtuara së fundmi</string>
     <string name="local">Lokale</string>
-    <string name="new_and_hot">Të rejat &amp; të nxehtat</string>
+    <string name="new_and_hot">Të rejat dhe të nxehtat</string>
     <string name="top_50">Top 50</string>
     <string name="trending">E trendit</string>
     <string name="kiosk">Kioskë</string>
@@ -371,7 +371,7 @@
     <string name="what_happened_headline">Çfarë ndodhi:</string>
     <string name="what_device_headline">Informacion:</string>
     <string name="error_snackbar_action">Raporto</string>
-    <string name="error_snackbar_message">Na vjen keq, ndodhën disa probleme.</string>
+    <string name="error_snackbar_message">Na vjen keq, diçka shkoi keq.</string>
     <string name="error_report_button_text">Raportoni këtë problem përmes e-mailit</string>
     <string name="sorry_string">Na vjen keq, kjo nuk duhej të ndodhte.</string>
     <string name="permission_display_over_apps">Jepni leje për tu shfaqur mbi aplikacionet e tjera</string>
@@ -522,7 +522,7 @@
     <string name="duration_live">Në kohë reale</string>
     <string name="restricted_video">Kjo video ka kufizime moshe.
 \n
-\nNëse doni ta shihni, aktivizoni \"Përmbajtje me moshë të kufizuar\" tek aranzhimet.</string>
+\nAktivizoni \"Përmbajtje me moshë të kufizuar\" tek aranzhimet nëse doni ta shihni.</string>
     <string name="video_is_age_restricted">Shfaq videot me moshë të kufizuar. Ndryshime të tjera janë të mundura nga aranzhimet.</string>
     <string name="show_age_restricted_content_title">Përmbajtje me moshë të kufizuar</string>
     <string name="popup_playing_append">U radhit në luajtësin popup</string>
@@ -574,7 +574,7 @@
     <string name="use_inexact_seek_summary">Kërkuesi i pasaktë e lejon luajtësin që të kërkojë pozicionet më shpejt më saktësi të reduktuar. Kërkimi për 5, 15 ose 25 sekonda nuk punon me këtë.</string>
     <string name="use_inexact_seek_title">Përdor kërkuesin e pasaktë por të shpejtë</string>
     <string name="popup_remember_size_pos_summary">Mbaj mend madhësinë e fundit dhe pozicionin e popup</string>
-    <string name="popup_remember_size_pos_title">Mbaj mend madhësinë dhe rezolucionin e popup</string>
+    <string name="popup_remember_size_pos_title">Mbaj mend popup</string>
     <string name="dark_theme_title">E errët</string>
     <string name="light_theme_title">E bardhë</string>
     <string name="theme_title">Tema</string>
@@ -610,7 +610,30 @@
     <string name="no_playlist_bookmarked_yet">Nuk ka ende shënjues të listave të luajtjes</string>
     <string name="select_a_playlist">Zgjidhni një listë luajtjeje</string>
     <string name="error_report_open_github_notice">Ju lutemi kontrolloni nëse një raport ku diskutohet problemi ekziston tashmë. Kur krijoni raporte të duplikuara, ju merrni më tepër kohë nga ne, kohë të cilën mund ta shpenzonim mbi rregullimin e problemit aktual.</string>
-    <string name="error_report_open_issue_button_text">Raporto problemin në GitHub</string>
+    <string name="error_report_open_issue_button_text">Raporto në GitHub</string>
     <string name="copy_for_github">Kopjo raportin e formatuar</string>
     <string name="search_showing_result_for">Duke shfaqur rezultatet për: %s</string>
+    <string name="wifi_only">Vetëm në WiFi</string>
+    <string name="notification_actions_summary">Redakto çdo veprim njoftimi më poshtë duke shtypur mbi të. Zgjidhni deri në tre prej tyre që të shfaqen në njoftimin kompakt duke përdorur kutitë në të djathtë.</string>
+    <string name="never">Kurrë</string>
+    <string name="autoplay_summary">Nise luajtjen automatikisht — %s</string>
+    <string name="title_activity_play_queue">Lista e luajtjes</string>
+    <string name="settings_category_notification_title">Njoftim</string>
+    <string name="unsupported_url_dialog_message">Nuk u njoh URL. Të hapet me një aplikacion tjetër\?</string>
+    <string name="auto_queue_toggle">Listë automatike luajtjeje</string>
+    <string name="clear_queue_confirmation_description">Lista aktive e luajtjes do të zëvendësohet</string>
+    <string name="clear_queue_confirmation_summary">Kalimi nga një luajtës në një tjetër mund të zëvendësojë listën tuaj të luajtjes</string>
+    <string name="clear_queue_confirmation_title">Pyet për konfirmim para se të boshatiset një rradhë luajtjeje</string>
+    <string name="notification_action_nothing">Asgjë</string>
+    <string name="notification_action_buffering">Ngarkimi</string>
+    <string name="notification_action_shuffle">Trazo</string>
+    <string name="notification_action_repeat">Përsërit</string>
+    <string name="notification_actions_at_most_three">Ju mund të zgjidhni e shumta tre veprime për të shfaqur në njoftimin kompakt!</string>
+    <string name="notification_action_4_title">Butoni i pestë i veprimit</string>
+    <string name="notification_action_3_title">Butoni i katërt i veprimit</string>
+    <string name="notification_action_2_title">Butoni i tretë i veprimit</string>
+    <string name="notification_action_1_title">Butoni i dytë i veprimit</string>
+    <string name="notification_action_0_title">Butoni i parë i veprimit</string>
+    <string name="notification_scale_to_square_image_summary">Shkallëzoje pamjen miniaturë të videos së treguar në njoftim nga aspekti 16:9 në 1:1 (mund të shfaqë deformime)</string>
+    <string name="notification_scale_to_square_image_title">Shkallëzoje pamjen miniaturë në aspektin 1:1</string>
 </resources>
