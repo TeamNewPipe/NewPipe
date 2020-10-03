@@ -608,7 +608,7 @@
     <string name="clear_queue_confirmation_description">アクティブなプレイヤーのキューが入れ替わります</string>
     <string name="clear_queue_confirmation_summary">プレイヤーを別のプレイヤーに切り替えるとキューが置き換わる可能性があります</string>
     <string name="never">しない</string>
-    <string name="wifi_only">WiFi のみ</string>
+    <string name="wifi_only">Wi-Fi のみ</string>
     <string name="title_activity_play_queue">キューを再生</string>
     <string name="clear_queue_confirmation_title">キューをクリアする前に確認する</string>
     <string name="unsupported_url_dialog_message">URL を認識できませんでした。他のアプリで開きますか？</string>
