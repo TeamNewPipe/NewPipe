@@ -381,7 +381,7 @@
     <string name="limit_data_usage_none_description">ਕੋਈ ਸੀਮਾ ਨਹੀਂ</string>
     <string name="limit_mobile_data_usage_title">ਮੋਬਾਈਲ ਡਾਟਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਸਮੇਂ Resolution ਨੂੰ ਸੀਮਿਤ ਕਰੋ</string>
     <string name="minimize_on_exit_title">ਐਪ switch ਕਰਨ ਤੇ minimize ਕਰੋ</string>
-    <string name="minimize_on_exit_summary">ਮੁੱਖ ਵੀਡੀਓ ਪਲੇਅਰ ਤੋਂ ਦੂਜੇ ਐਪ \'ਤੇ ਜਾਣ ਵੇਲੇ ਐਕਸ਼ਨ</string>
+    <string name="minimize_on_exit_summary">ਮੁੱਖ ਵੀਡੀਓ ਪਲੇਅਰ ਤੋਂ ਦੂਜੇ ਐਪ \'ਤੇ ਜਾਣ ਵੇਲੇ ਐਕਸ਼ਨ — %s</string>
     <string name="minimize_on_exit_none_description">ਕੋਈ ਨਹੀਂ</string>
     <string name="minimize_on_exit_background_description">ਬੈਕਗ੍ਰਾਉਂਡ ਪਲੇਅਰ ਵਿੱਚ Minimize ਕਰੋ</string>
     <string name="minimize_on_exit_popup_description">ਪੌਪ-ਅਪ ਪਲੇਅਰ ਵਿੱਚ minimize ਕਰੋ</string>
