@@ -624,7 +624,7 @@
     <string name="copy_for_github">Skopiuj sformatowany raport</string>
     <string name="search_showing_result_for">Wyświetlono wyniki dla: %s</string>
     <string name="never">Nigdy</string>
-    <string name="wifi_only">Tylko przez WiFi</string>
+    <string name="wifi_only">Tylko przez Wi-Fi</string>
     <string name="autoplay_summary">Rozpocznij odtwarzanie automatycznie — %s</string>
     <string name="title_activity_play_queue">Playlista</string>
     <string name="unsupported_url_dialog_message">Nie udało się rozpoznać adresu URL. Otworzyć w innej aplikacji\?</string>
