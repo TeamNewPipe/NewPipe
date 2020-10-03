@@ -496,7 +496,8 @@
     </plurals>
     <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
-        <item quantity="other">％s 人在听</item>
+        <item quantity="one">%s 人在听</item>
+        <item quantity="other"></item>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
@@ -555,7 +556,7 @@
     <string name="feed_create_new_group_button_title">新建</string>
     <string name="settings_category_feed_title">订阅</string>
     <string name="feed_update_threshold_title">Feed更新阈值</string>
-    <string name="feed_update_threshold_summary">上次更新后，订阅被视为过时的时间-％s</string>
+    <string name="feed_update_threshold_summary">上次更新后，订阅被视为过时的时间-%s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>
     <string name="feed_use_dedicated_fetch_method_title">可用时从专用feed获取</string>
     <string name="feed_use_dedicated_fetch_method_summary">在某些服务中可用，通常速度要快得多，但可能返回的条目数量有限，而且信息通常不完整（例如，没有持续时间，条目类型，没有实时状态）。</string>
@@ -604,7 +605,7 @@
     <string name="copy_for_github">复制格式报告</string>
     <string name="search_showing_result_for">显示结果为：%s</string>
     <string name="never">永不</string>
-    <string name="wifi_only">仅在WiFi下</string>
+    <string name="wifi_only">仅在Wi-Fi下</string>
     <string name="autoplay_summary">自动开始回放 — %s</string>
     <string name="title_activity_play_queue">播放队列</string>
     <string name="unsupported_url_dialog_message">无法识别该url。用另一个应用程序打开它\?</string>
