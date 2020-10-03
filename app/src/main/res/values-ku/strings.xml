@@ -293,10 +293,10 @@
     <string name="previous_export">خەزنی پێشووتر</string>
     <string name="subscriptions_import_unsuccessful">ناتوانرێ بەشدارییەکان بهێنرێتەوە</string>
     <string name="subscriptions_export_unsuccessful">ناتوانرێ بەشدارییەکان خەزن بکرێن</string>
-    <string name="import_youtube_instructions">بۆ هێنانەوەی بەشداربوونەکانی یوتوب پێویستە پەڕگەی خەزن بوو بگەڕێنیتەوە: 
-\n 
-\n1. ئەم بەستەرە بکەوە: %1$ 
-\n2. بچۆرەژوورەوە گەر داوای‌ کرد 
+    <string name="import_youtube_instructions">بۆ هێنانەوەی بەشداربوونەکانی یوتوب پێویستە پەڕگەی خەزن بوو بگەڕێنیتەوە:
+\n
+\n1. ئەم بەستەرە بکەوە: s%1$s
+\n2. بچۆرەژوورەوە گەر داوای‌ کرد
 \n3. داگرتنێک دەست پێدەکات (ئەمە پەڕگەی خەزنکراوە)</string>
     <string name="import_soundcloud_instructions">هێنانەوەی پەڕەی کەسی SoundCloud بەدانانی بەستەر یاخوود ئایدی:
 \n
