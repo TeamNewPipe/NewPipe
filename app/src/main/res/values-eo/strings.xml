@@ -439,7 +439,7 @@
     <string name="decline">Rifuzi</string>
     <string name="limit_data_usage_none_description">Neniu limo</string>
     <string name="minimize_on_exit_title">Minimumigi dum la apo ŝanĝo</string>
-    <string name="minimize_on_exit_summary">Ago dum ŝanĝante al alia apo el la ĉefa filmetludilo</string>
+    <string name="minimize_on_exit_summary">Ago dum ŝanĝante al alia apo el la ĉefa filmetludilo—%s</string>
     <string name="minimize_on_exit_none_description">Neniu</string>
     <string name="minimize_on_exit_background_description">Minimumigi por ludi fone</string>
     <string name="skip_silence_checkbox">Plirapidigi dum silentoj</string>
