@@ -325,7 +325,7 @@
         <item quantity="one">%d segundos</item>
         <item quantity="other">%d segundu</item>
     </plurals>
-    <string name="new_seek_duration_toast">Pro more de sos lìmites de ExoPlayer sa longària de s\'iscostiamentu lestru est istada impostada a %s segundos</string>
+    <string name="new_seek_duration_toast">Pro more de sos lìmites de ExoPlayer sa longària de s\'iscostiamentu lestru est istada impostada a %d segundos</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Eja, e fintzas sos vìdeos pompiados in parte</string>
     <string name="remove_watched_popup_warning">Sos vìdeos pompiados in antis e a pustis de los àere annànghidos a s\'iscalita ant a èssere bogados.
 \n Seguru ses\? Custu no est reversìbile!</string>
@@ -349,7 +349,7 @@
     <string name="max_retry_desc">Nùmeru màssimu de tentativos in antis chi s\'annullet s\'iscarrigamentu</string>
     <string name="max_retry_msg">Tentativos màssimos</string>
     <string name="stop">Firma</string>
-    <string name="deleted_downloads">%1$s iscarrigamentos iscantzellados</string>
+    <string name="deleted_downloads">%1$d iscarrigamentos iscantzellados</string>
     <string name="delete_downloaded_files">Iscantzella sos documentos iscarrigados</string>
     <string name="confirm_prompt">Cheres isboidare sa cronologia de sos iscarrigamentos tuos o iscantzellare totu sos documentos iscarrigados\?</string>
     <string name="clear_download_history">Isbòida sa cronologia de sos iscarrigamentos</string>
