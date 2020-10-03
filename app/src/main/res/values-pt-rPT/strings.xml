@@ -613,7 +613,7 @@
     <string name="recaptcha_done_button">Aceitar</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desativar modo rápido</string>
     <string name="never">Nunca</string>
-    <string name="wifi_only">Apenas no WiFi</string>
+    <string name="wifi_only">Apenas no Wi-Fi</string>
     <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
     <string name="title_activity_play_queue">Reproduzir a fila</string>
     <string name="settings_category_notification_title">Notificação</string>
