@@ -1,9 +1,9 @@
-• Ny programarbeidsflyt: Spill videoer på «Detalj»-siden, dra nedover for å minimere
+• Ny programarbeidsflyt: Spill fra «Detalj»-siden, dra nedover for å minimere
 • MediaStyle-merknader: Handlingsknapper kan tilpasses i merknader, bedre ytelse
 • Størrelsen kan endres for NewPipe brukt som skrivebordsprogram
 
-• Vis valgdialog for ustøttede nettadresse-oppsprett
+• Valgdialog for ustøttede nettadresse-oppsprett
 • Bedre søkeforslag når de ikke kan innhentes annesteds fra
-• Økt forvalgt videokvalitet til 720p60 (innebygd) og 480p (i oppsprett)
+• Forvalgt videokvalitet nå 720p60 (innebygd) og 480p (i oppsprett)
 
 • +Mer
