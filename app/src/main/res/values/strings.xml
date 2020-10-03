@@ -58,7 +58,6 @@
     <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
-
     <string name="notification_scale_to_square_image_title">Scale thumbnail to 1:1 aspect ratio</string>
     <string name="notification_scale_to_square_image_summary">Scale the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio (may introduce distortions)</string>
     <string name="notification_action_0_title">First action button</string>
@@ -68,12 +67,10 @@
     <string name="notification_action_4_title">Fifth action button</string>
     <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
     <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
-
     <string name="notification_action_repeat">Repeat</string>
     <string name="notification_action_shuffle">Shuffle</string>
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_action_nothing">Nothing</string>
-
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
