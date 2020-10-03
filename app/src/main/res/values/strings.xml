@@ -552,7 +552,7 @@
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
     <!-- Autoplay behavior -->
     <string name="autoplay_summary">Start playback automatically — %s</string>
-    <string name="wifi_only">Only on WiFi</string>
+    <string name="wifi_only">Only on Wi-Fi</string>
     <string name="never">Never</string>
     <string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
