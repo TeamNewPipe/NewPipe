@@ -8,7 +8,7 @@
     <string name="share">اشتراک کریں</string>
     <string name="download">ڈاؤن لوڈ</string>
     <string name="search">تلاش کریں</string>
-    <string name="did_you_mean">کیا آپ کا مطلب یہ ہے: s$1%\?</string>
+    <string name="did_you_mean">کیا آپ کا مطلب یہ ہے: %1$s</string>
     <string name="open_in_browser">براؤزر میں کھولیں</string>
     <string name="settings">ترتیبات</string>
     <string name="no_player_found">کوئی اسٹریم پلیئر نہیں ملا۔ کیا آپ VLC انسٹال کرنا چاہتے ہیں؟</string>
@@ -179,8 +179,8 @@
     <string name="search_no_results">کوئی نتائج نہیں</string>
     <string name="empty_subscription_feed_subtitle">یہاں کچھ نہیں سوائے میرے</string>
     <string name="detail_drag_description">دوبارہ ترتیب دینے کیلئے کھینچں</string>
-    <string name="err_dir_create">ڈاؤن لوڈ ڈائریکٹری \'s$1%\' تشکیل نہیں دے سکتے</string>
-    <string name="info_dir_created">ڈاؤن لوڈ ڈائریکٹری \'s$1%\' بن گئی</string>
+    <string name="err_dir_create">ڈاؤن لوڈ ڈائریکٹری \'%1$s\' تشکیل نہیں دے سکتے</string>
+    <string name="info_dir_created">ڈاؤن لوڈ ڈائریکٹری \'s\'%1$s بن گئی</string>
     <string name="video">ویڈیو</string>
     <string name="audio">آڈیو</string>
     <string name="retry">دوبارہ کوشش کریں</string>
@@ -200,8 +200,8 @@
     </plurals>
     <string name="no_videos">ویڈیوز دستیاب نہیں</string>
     <plurals name="videos">
-        <item quantity="one">ویڈیو</item>
-        <item quantity="other">ویڈیوز</item>
+        <item quantity="one">%s ویڈیو</item>
+        <item quantity="other">%s ویڈیوز</item>
     </plurals>
     <string name="start">شروع کریں</string>
     <string name="pause">توقف</string>
