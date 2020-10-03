@@ -408,7 +408,7 @@
     <string name="max_retry_desc">A letöltés megszakítása előtti kísérletek maximális száma</string>
     <string name="max_retry_msg">Maximális próbálkozások</string>
     <string name="stop">Állj</string>
-    <string name="deleted_downloads">%1$s letöltés törölve</string>
+    <string name="deleted_downloads">%1$d letöltés törölve</string>
     <string name="delete_downloaded_files">Letöltött fájlok törlése</string>
     <string name="confirm_prompt">Törli a letöltési előzményeket, vagy törli az összes letöltött fájlt\?</string>
     <string name="clear_download_history">Letöltési előzmények törlése</string>
