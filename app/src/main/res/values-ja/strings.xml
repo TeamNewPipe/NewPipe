@@ -9,7 +9,7 @@
     <string name="download">保存</string>
     <string name="search">検索</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">もしかして: %1$s？</string>
+    <string name="did_you_mean">もしかして \"%1$s\" ですか？</string>
     <string name="share_dialog_title">共有</string>
     <string name="choose_browser">ブラウザを選択</string>
     <string name="screen_rotation">回転</string>
@@ -24,9 +24,8 @@
     <string name="play_audio">音声</string>
     <string name="default_audio_format_title">デフォルトの音声形式</string>
     <string name="download_dialog_title">保存</string>
-    <string name="next_video_title">次</string>
     <string name="show_next_and_similar_title">「次の動画」と「関連動画」を表示</string>
-    <string name="url_not_supported_toast">URLは使用できません</string>
+    <string name="unsupported_url">URLは使用できません</string>
     <string name="content_language_title">優先言語</string>
     <string name="settings_category_video_audio_title">動画と音声</string>
     <string name="view_count_text">%1$s ビュー</string>
@@ -38,7 +37,6 @@
     <string name="use_external_video_player_title">外部動画プレイヤーを使用する</string>
     <string name="use_external_audio_player_title">外部音声プレイヤーを使用する</string>
     <string name="background_player_playing_toast">バックグラウンドで再生中</string>
-    <string name="play_btn_text">再生</string>
     <string name="use_tor_title">Torを使用する</string>
     <string name="use_tor_summary">(実験的) 強制的に Tor を経由した経路で保存して､匿名性を高めます(ストリーミング再生には、まだ対応していません)。</string>
     <string name="theme_title">テーマ</string>
@@ -105,7 +103,7 @@
     <string name="error_report_title">不具合報告</string>
     <string name="could_not_load_image">画像を読み込みできません</string>
     <string name="app_ui_crash">アプリ/UI がクラッシュしました</string>
-    <string name="info_labels">何:\\\\n提案:\\\\nコンテンツ言語:\\\\nサービス:\\\\nGMT 時間:\\\\nパッケージ:\\\\nバージョン:\\\\nOSバージョン:</string>
+    <string name="info_labels">どんな問題:\\nリクエスト:\\nコンテンツ言語:\\nコンテンツ国:\\nアプリ言語:\\nサービス:\\nGMT 時間:\\nパッケージ:\\nバージョン:\\nOSバージョン:</string>
     <string name="title_activity_recaptcha">reCAPTCHA の要求</string>
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
     <string name="black_theme_title">ブラック</string>
@@ -131,7 +129,7 @@
     <string name="filter">フィルター</string>
     <string name="refresh">更新</string>
     <string name="clear">クリア</string>
-    <string name="popup_remember_size_pos_title">ポップアップのサイズと位置を記憶</string>
+    <string name="popup_remember_size_pos_title">ポップアップの属性を記憶</string>
     <string name="popup_remember_size_pos_summary">ポップアップしたサイズと位置を記憶します</string>
     <string name="settings_category_popup_title">ポップアップ</string>
     <string name="popup_resizing_indicator_title">サイズを変更</string>
@@ -216,7 +214,6 @@
     <string name="kiosk">Kiosk</string>
     <string name="trending">人気</string>
     <string name="top_50">トップ50</string>
-    <string name="title_activity_popup_player">ポップアップ再生</string>
     <string name="play_queue_remove">削除</string>
     <string name="play_queue_stream_detail">詳細</string>
     <string name="play_queue_audio_settings">音声の設定</string>
@@ -241,7 +238,6 @@
     <string name="no_valid_zip_file">有効な ZIP ファイルではありません</string>
     <string name="could_not_import_all_files">警告: すべてのファイルをインポートできませんでした。</string>
     <string name="override_current_data">これにより、現在の設定が上書きされます。</string>
-    <string name="title_activity_background_player">バックグラウンド再生</string>
     <string name="start_here_on_main">ここから再生を開始</string>
     <string name="start_here_on_background">バックグラウンドで連続再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>
@@ -281,7 +277,7 @@
     <string name="create_playlist">新規プレイリスト</string>
     <string name="delete_playlist">削除する</string>
     <string name="rename_playlist">変更</string>
-    <string name="playlist_name_input">プレイリスト名</string>
+    <string name="name">プレイリスト名</string>
     <string name="append_playlist">プレイリストに追加</string>
     <string name="set_as_playlist_thumbnail">プレイリストのサムネイルに設定</string>
     <string name="bookmark_playlist">プレイリストをブックマーク</string>
@@ -346,7 +342,7 @@
     <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示する</string>
     <string name="tracks">トラック</string>
     <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレイヤーの通知</string>
-    <string name="new_and_hot">新着 &amp; 人気</string>
+    <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押ししてキューに追加</string>
     <string name="enqueue_on_background">バックグラウンドのキューに追加</string>
     <string name="enqueue_on_popup">ポップアップのキューに追加</string>
@@ -374,7 +370,6 @@
     <string name="minimize_on_exit_none_description">何もしない</string>
     <string name="minimize_on_exit_background_description">バックグラウンドに変更</string>
     <string name="minimize_on_exit_popup_description">ポップアップに変更</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">メモリリークの監視は、ヒープダンピング時にアプリが無反応になる原因となります</string>
     <string name="enable_disposed_exceptions_title">ライフサイクルエラーの報告</string>
     <string name="enable_disposed_exceptions_summary">破棄されたフラグメントまたはアクティビティの、ライフサイクル範囲外での配信不能なRx例外を強制的に報告します</string>
@@ -520,8 +515,6 @@
     <string name="recovering">修復中</string>
     <string name="error_download_resource_gone">ダウンロードが修復できません</string>
     <string name="choose_instance_prompt">インスタンスを選択</string>
-    <string name="enable_lock_screen_video_thumbnail_title">ロック画面の動画サムネイル</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">バックグラウンドプレイヤーを使用中、ロック画面に動画のサムネイルが表示されるようになります</string>
     <string name="clear_download_history">ダウンロード履歴を消去</string>
     <string name="delete_downloaded_files">ダウンロードしたファイルを消去</string>
     <string name="deleted_downloads">%1$d 個削除しました</string>
@@ -559,7 +552,6 @@
         <item quantity="other">%d 選択中</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">グループ名が空です</string>
-    <string name="feed_group_dialog_name_input">グループ名</string>
     <string name="feed_group_dialog_delete_message">このグループを削除しますか？</string>
     <string name="feed_create_new_group_button_title">新規</string>
     <string name="settings_category_feed_title">フィード</string>
@@ -604,4 +596,34 @@
     <string name="channel_created_by">%s により作成</string>
     <string name="detail_sub_channel_thumbnail_view_description">チャンネルのサムネイル</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">グループ化されていない登録チャンネルのみ表示</string>
+    <string name="no_playlist_bookmarked_yet">まだプレイリスト ブックマークはありません</string>
+    <string name="error_report_open_github_notice">クラッシュを説明する問題がすでに存在しているかどうかを確認してください。重複したチケットを作成する場合、あなたは私たちから実際のバグを修正する時間を奪うことになります。</string>
+    <string name="search_showing_result_for">次の検索結果を表示しています: %s</string>
+    <string name="error_report_open_issue_button_text">GitHub で報告する</string>
+    <string name="copy_for_github">整形済みリポートをコピー</string>
+    <string name="playlist_page_summary">プレイリスト ページ</string>
+    <string name="select_a_playlist">プレイリストを選択してください</string>
+    <string name="autoplay_summary">自動的に再生を開始します — %s</string>
+    <string name="auto_queue_toggle">自動キュー</string>
+    <string name="clear_queue_confirmation_description">アクティブなプレイヤーのキューが入れ替わります</string>
+    <string name="clear_queue_confirmation_summary">プレイヤーを別のプレイヤーに切り替えるとキューが置き換わる可能性があります</string>
+    <string name="never">しない</string>
+    <string name="wifi_only">Wi-Fi のみ</string>
+    <string name="title_activity_play_queue">キューを再生</string>
+    <string name="clear_queue_confirmation_title">キューをクリアする前に確認する</string>
+    <string name="unsupported_url_dialog_message">URL を認識できませんでした。他のアプリで開きますか？</string>
+    <string name="notification_scale_to_square_image_summary">通知に表示される動画サムネイルを 16:9 から 1:1 のアスペクト比にスケールします (ゆがみが生じるかもしれません)</string>
+    <string name="notification_scale_to_square_image_title">サムネイルを 1:1 のアスペクト比にスケールする</string>
+    <string name="notification_actions_summary">以下をタップして通知のアクションを編集します。右側にあるチェックボックスを使用してコンパクトな通知に表示するものを 3 つまで選択します。</string>
+    <string name="notification_actions_at_most_three">コンパクトな通知に表示される 3 つのアクションを選ぶことができます！</string>
+    <string name="notification_action_4_title">5 番目のアクションボタン</string>
+    <string name="notification_action_3_title">4 番目のアクションボタン</string>
+    <string name="notification_action_2_title">3 番目のアクションボタン</string>
+    <string name="notification_action_1_title">2 番目のアクションボタン</string>
+    <string name="notification_action_0_title">1 番目のアクションボタン</string>
+    <string name="notification_action_nothing">何もない</string>
+    <string name="notification_action_repeat">リピート</string>
+    <string name="notification_action_shuffle">シャッフル</string>
+    <string name="notification_action_buffering">バッファリング</string>
+    <string name="settings_category_notification_title">通知</string>
 </resources>

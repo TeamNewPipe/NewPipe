@@ -65,10 +65,9 @@
     <string name="resume_on_audio_focus_gain_title">Възобнови при връщане на фокус</string>
     <string name="resume_on_audio_focus_gain_summary">Продължавай възпроизвеждането след прекъсване (например телефонно обаждане)</string>
     <string name="download_dialog_title">Изтегли</string>
-    <string name="next_video_title">Следващ клип</string>
     <string name="show_next_and_similar_title">Показвай „следващ“ и „подобни“</string>
     <string name="show_hold_to_append_title">Показвай съвет „задръж за добавяне“</string>
-    <string name="url_not_supported_toast">Непознат URL</string>
+    <string name="unsupported_url">Непознат URL</string>
     <string name="content_language_title">Език на съдържанието по подразбиране</string>
     <string name="settings_category_player_title">Плейър</string>
     <string name="settings_category_player_behavior_title">Поведение</string>
@@ -81,7 +80,6 @@
     <string name="popup_playing_toast">Възпроизвеждане в подпрозорец</string>
     <string name="background_player_append">Включен в опашката на фоновия плейър</string>
     <string name="popup_playing_append">Включен в опашката в нов прозорец</string>
-    <string name="play_btn_text">Възпроизвеждане</string>
     <string name="content">Съдържание</string>
     <string name="show_age_restricted_content_title">Съдържание за възрастни</string>
     <string name="video_is_age_restricted">Покажи съдържание за възрастни. Разрешаването на такова съдържание става от Настройки.</string>
@@ -307,8 +305,6 @@
     <string name="trending">Набиращи популярност</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Ново и горещо</string>
-    <string name="title_activity_background_player">Във фонов режим</string>
-    <string name="title_activity_popup_player">В прозорец</string>
     <string name="play_queue_remove">Премахни</string>
     <string name="play_queue_stream_detail">Детайли</string>
     <string name="play_queue_audio_settings">Аудио настройки</string>
@@ -331,8 +327,8 @@
     <string name="preferred_player_fetcher_notification_message">Зареждане на заявеното съдържание</string>
     <string name="create_playlist">Нов Плейлист</string>
     <string name="delete_playlist">Изтрий</string>
-    <string name="rename_playlist">"Преименувай "</string>
-    <string name="playlist_name_input">Име</string>
+    <string name="rename_playlist">Преименувай</string>
+    <string name="name">Име</string>
     <string name="append_playlist">Добави Към Плейлист</string>
     <string name="set_as_playlist_thumbnail">Задай като миниатюра на плейлиста</string>
     <string name="bookmark_playlist">Миниатюрата на плейлиста е сменена</string>
@@ -349,7 +345,6 @@
     <string name="caption_auto_generated">Авто-генерирани</string>
     <string name="caption_setting_title">Надписи</string>
     <string name="caption_setting_description">Модифицирай мащаба на текста и фона на надписите. Изисква рестарт на приложението, за да се приложат промените.</string>
-    <string name="enable_leak_canary_title">Включи LeakCanary</string>
     <string name="enable_leak_canary_summary">Следенето за пропускане на памет може да направи приложението нестабилно</string>
     <string name="enable_disposed_exceptions_title">Докладвай за извънредни грешки</string>
     <string name="import_export_title">Импортиране/Експортиране</string>
@@ -415,4 +410,5 @@
     <string name="settings_category_updates_title">Промени</string>
     <string name="enable_playback_resume_title">Продължи възпроизвеждане</string>
     <string name="settings_category_clear_data_title">Изтрии данни</string>
+    <string name="search_showing_result_for">Показване на резултати за: %s</string>
 </resources>

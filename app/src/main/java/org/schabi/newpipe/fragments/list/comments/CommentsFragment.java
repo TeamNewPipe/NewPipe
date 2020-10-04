@@ -26,11 +26,9 @@ import io.reactivex.disposables.CompositeDisposable;
 public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    private boolean mIsVisibleToUser = false;
-
     public static CommentsFragment getInstance(final int serviceId, final  String url,
                                                final String name) {
-        CommentsFragment instance = new CommentsFragment();
+        final CommentsFragment instance = new CommentsFragment();
         instance.setInitialData(serviceId, url, name);
         return instance;
     }
@@ -38,12 +36,6 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        mIsVisibleToUser = isVisibleToUser;
-    }
 
     @Override
     public void onAttach(final Context context) {
@@ -92,7 +84,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     public void handleResult(@NonNull final CommentsInfo result) {
         super.handleResult(result);
 
-        AnimationUtils.slideUp(getView(), 120, 150, 0.06f);
+        AnimationUtils.slideUp(requireView(), 120, 150, 0.06f);
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_COMMENTS,

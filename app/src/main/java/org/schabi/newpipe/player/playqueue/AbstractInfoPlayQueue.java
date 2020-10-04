@@ -129,7 +129,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
     }
 
     private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infos) {
-        List<PlayQueueItem> result = new ArrayList<>();
+        final List<PlayQueueItem> result = new ArrayList<>();
         for (final InfoItem stream : infos) {
             if (stream instanceof StreamInfoItem) {
                 result.add(new PlayQueueItem((StreamInfoItem) stream));

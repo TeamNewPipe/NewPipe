@@ -8,7 +8,7 @@
     <string name="download">Pobierz</string>
     <string name="search">Szukaj</string>
     <string name="settings">Ustawienia</string>
-    <string name="did_you_mean">Miałeś na myśli: %1$s\?</string>
+    <string name="did_you_mean">Miałeś na myśli \"%1$s\"\?</string>
     <string name="share_dialog_title">Udostępnij przez</string>
     <string name="choose_browser">Wybierz przeglądarkę</string>
     <string name="screen_rotation">obrót</string>
@@ -36,15 +36,13 @@
     <string name="dark_theme_title">Ciemny</string>
     <string name="light_theme_title">Jasny</string>
     <string name="download_dialog_title">Pobrane</string>
-    <string name="next_video_title">Dalej</string>
     <string name="show_next_and_similar_title">Pokaż \"następne\" i \"podobne\" filmy</string>
-    <string name="url_not_supported_toast">Nieobsługiwany adres URL</string>
+    <string name="unsupported_url">Nieobsługiwany adres URL</string>
     <string name="content_language_title">Domyślny język treści</string>
     <string name="settings_category_video_audio_title">Wideo i audio</string>
     <string name="settings_category_appearance_title">Wygląd</string>
     <string name="settings_category_other_title">Inne</string>
     <string name="background_player_playing_toast">Odtwarzanie w tle</string>
-    <string name="play_btn_text">Odtwórz</string>
     <string name="content">Zawartość</string>
     <string name="show_age_restricted_content_title">Treści z ograniczeniem wiekowym</string>
     <string name="video_is_age_restricted">Pokaż wideo z ograniczeniami wiekowymi. Przyszłe zmiany są możliwe z poziomu ustawień.</string>
@@ -64,11 +62,11 @@
     <string name="could_not_get_stream">Nie można otrzymać żadnego strumienia</string>
     <string name="sorry_string">Przepraszamy, to nie powinno mieć miejsca.</string>
     <string name="error_report_button_text">Zgłoś błąd przez e-mail</string>
-    <string name="error_snackbar_message">Przepraszamy, wystąpiły pewne błędy.</string>
+    <string name="error_snackbar_message">Niestety, coś poszło nie tak.</string>
     <string name="error_snackbar_action">Zgłoś</string>
     <string name="what_device_headline">Informacje:</string>
     <string name="what_happened_headline">Co się stało:</string>
-    <string name="info_labels">Co:\\nRequest:\\nJęzyk treści:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
+    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu operacyjnego:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
     <string name="list_thumbnail_view_description">Miniatura filmu</string>
@@ -115,7 +113,7 @@
     <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia mogą odtwarzać filmy 2K/4K</string>
     <string name="default_video_format_title">Domyślny format filmu</string>
     <string name="black_theme_title">Czarny</string>
-    <string name="popup_remember_size_pos_title">Zapamiętaj rozmiar i pozycję trybu okienkowego</string>
+    <string name="popup_remember_size_pos_title">Zapamiętaj właściwości wyskakującego okienka</string>
     <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję trybu okienkowego</string>
     <string name="player_gesture_controls_title">Sterowanie odtwarzaczem za pomocą gestów</string>
     <string name="player_gesture_controls_summary">Użyj gestów, aby sterować jasnością i głośnością odtwarzacza</string>
@@ -240,8 +238,6 @@
     <string name="trending">Najpopularniejsze</string>
     <string name="top_50">50 najlepszych</string>
     <string name="new_and_hot">Nowe i gorące</string>
-    <string name="title_activity_background_player">Odtwarzanie w tle</string>
-    <string name="title_activity_popup_player">Odtwarzacz w trybie okienkowym</string>
     <string name="play_queue_remove">Usuń</string>
     <string name="play_queue_stream_detail">Szczegóły</string>
     <string name="play_queue_audio_settings">Ustawienia dźwięku</string>
@@ -300,7 +296,7 @@
     <string name="create_playlist">Nowa playlista</string>
     <string name="delete_playlist">Usuń</string>
     <string name="rename_playlist">Zmień</string>
-    <string name="playlist_name_input">Nazwa</string>
+    <string name="name">Nazwa</string>
     <string name="append_playlist">Dodaj do playlisty</string>
     <string name="set_as_playlist_thumbnail">Ustaw jako miniaturę playlisty</string>
     <string name="bookmark_playlist">Dodaj do zakładek</string>
@@ -315,7 +311,6 @@
     <string name="resize_fill">Wypełnij</string>
     <string name="resize_zoom">Powiększ</string>
     <string name="caption_auto_generated">Wygenerowane automatycznie</string>
-    <string name="enable_leak_canary_title">Wyciek danych</string>
     <string name="enable_leak_canary_summary">Monitorowanie wycieków pamięci może powodować niestabilność aplikacji podczas zrzutu pamięci</string>
     <string name="enable_disposed_exceptions_title">Zgłaszanie błędów poza cyklem życia</string>
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
@@ -531,8 +526,6 @@
     <string name="recovering">odzyskiwanie</string>
     <string name="error_download_resource_gone">Nie można odzyskać tego pobrania</string>
     <string name="choose_instance_prompt">Wybierz instancję</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Zablokuj miniaturę wideo na ekranie</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Podczas korzystania z odtwarzacza w tle na ekranie blokady wyświetlana jest miniatura filmu</string>
     <string name="clear_download_history">Wyczyść historię pobierania</string>
     <string name="delete_downloaded_files">Usuń pobrane pliki</string>
     <string name="deleted_downloads">Usunięte %1$d pobrania</string>
@@ -571,7 +564,6 @@
     <string name="settings_category_feed_title">Kanał</string>
     <string name="feed_create_new_group_button_title">Nowy</string>
     <string name="feed_group_dialog_delete_message">Czy chcesz usunąć tę grupę\?</string>
-    <string name="feed_group_dialog_name_input">Nazwa</string>
     <string name="feed_group_dialog_empty_name">Pusta nazwa grupy</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">wybrany %d</item>
@@ -609,9 +601,9 @@
     <string name="artists">Artyści</string>
     <string name="albums">Albumy</string>
     <string name="songs">Piosenki</string>
-    <string name="restricted_video">Ten film wideo jest ograniczony wiekiem.
+    <string name="restricted_video">Ten film ma ograniczenia wiekowe.
 \n
-\nJeśli chcesz go wyświetlić, włącz w ustawieniach opcję \"Zawartość z ograniczeniami wiekowymi\".</string>
+\nWłącz „Treści z ograniczeniami wiekowymi” w ustawieniach, jeśli chcesz je zobaczyć.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Tak, i częściowo oglądane filmy</string>
     <string name="remove_watched_popup_warning">Filmy, które zostały obejrzane przed i po dodaniu do playlisty, zostaną usunięte.
 \nJesteś pewien\? Tego nie da się cofnąć!</string>
@@ -624,4 +616,34 @@
     <string name="channel_created_by">Utworzone przez %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura awatara kanału</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Pokaż tylko niezgrupowane subskrypcje</string>
+    <string name="playlist_page_summary">Strona playlisty</string>
+    <string name="no_playlist_bookmarked_yet">Nie ma jeszcze zakładek do playlist</string>
+    <string name="select_a_playlist">Wybierz playlistę</string>
+    <string name="error_report_open_github_notice">Sprawdź, czy problem dotyczący Twojej awarii już istnieje. Tworząc zduplikowane wpisy, zajmujesz nam czas, który możemy poświęcić na naprawienie rzeczywistego błędu.</string>
+    <string name="error_report_open_issue_button_text">Zgłoś na GitHub</string>
+    <string name="copy_for_github">Skopiuj sformatowany raport</string>
+    <string name="search_showing_result_for">Wyświetlono wyniki dla: %s</string>
+    <string name="never">Nigdy</string>
+    <string name="wifi_only">Tylko przez Wi-Fi</string>
+    <string name="autoplay_summary">Rozpocznij odtwarzanie automatycznie — %s</string>
+    <string name="title_activity_play_queue">Playlista</string>
+    <string name="unsupported_url_dialog_message">Nie udało się rozpoznać adresu URL. Otworzyć w innej aplikacji\?</string>
+    <string name="auto_queue_toggle">Automatyczna kolejka</string>
+    <string name="clear_queue_confirmation_description">Kolejka aktywnego odtwarzacza zostanie zastąpiona</string>
+    <string name="clear_queue_confirmation_summary">Przejście z jednego odtwarzacza na inny może zastąpić kolejkę</string>
+    <string name="clear_queue_confirmation_title">Poproś o potwierdzenie przed wyczyszczeniem kolejki</string>
+    <string name="settings_category_notification_title">Powiadomienia</string>
+    <string name="notification_action_nothing">Nic</string>
+    <string name="notification_action_buffering">Buforowanie</string>
+    <string name="notification_action_shuffle">Losowo</string>
+    <string name="notification_action_repeat">Powtórz</string>
+    <string name="notification_actions_at_most_three">Możesz wybrać co najwyżej trzy akcje, które mają być wyświetlane w kompaktowym powiadomieniu!</string>
+    <string name="notification_actions_summary">Edytuj każdą poniższą akcję powiadomienia, dotykając jej. Zaznacz maksymalnie trzy z nich, które mają być wyświetlane w powiadomieniu kompaktowym, korzystając z pól wyboru po prawej stronie.</string>
+    <string name="notification_action_4_title">Przycisk piątej akcji</string>
+    <string name="notification_action_3_title">Przycisk czwartej akcji</string>
+    <string name="notification_action_2_title">Przycisk trzeciej akcji</string>
+    <string name="notification_action_1_title">Przycisk drugiej akcji</string>
+    <string name="notification_action_0_title">Przycisk pierwszej akcji</string>
+    <string name="notification_scale_to_square_image_summary">Skaluj miniaturę wideo wyświetlaną w powiadomieniu z proporcji 16: 9 do 1: 1 (może powodować zniekształcenia)</string>
+    <string name="notification_scale_to_square_image_title">Skaluj miniatury do proporcji 1:1</string>
 </resources>

@@ -50,9 +50,8 @@
     <string name="show_search_suggestions_title">Sökförslag</string>
     <string name="show_search_suggestions_summary">Visa förslag i samband med sökning</string>
     <string name="download_dialog_title">Ladda ned</string>
-    <string name="next_video_title">Nästa</string>
     <string name="show_next_and_similar_title">Visa \'Nästa\' och \'Liknande\' videor</string>
-    <string name="url_not_supported_toast">Webbadressen stöds inte</string>
+    <string name="unsupported_url">Webbadressen stöds inte</string>
     <string name="content_language_title">Standard innehållsspråk</string>
     <string name="settings_category_video_audio_title">Video &amp; Ljud</string>
     <string name="settings_category_popup_title">Popup-ruta</string>
@@ -60,7 +59,6 @@
     <string name="settings_category_other_title">Andra</string>
     <string name="background_player_playing_toast">Spelar upp i bakgrunden</string>
     <string name="popup_playing_toast">Spelar upp i popup-läge</string>
-    <string name="play_btn_text">Spela upp</string>
     <string name="content">Innehåll</string>
     <string name="show_age_restricted_content_title">Åldersbegränsat innehåll</string>
     <string name="video_is_age_restricted">Videon är åldersbegränsad. Du kan aktivera åldersbegränsade videor i inställningar.</string>
@@ -134,7 +132,7 @@
     <string name="player_unrecoverable_failure">Allvarligt spelarfel inträffade</string>
     <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
     <string name="error_report_button_text">Rapportera detta fel via e-post</string>
-    <string name="info_labels">Vad:\\nBegäran:\\nInnehållsspråk:\\nTjänst:\\nGMT Tid:\\nPaket:\\nVersion:\\nOS-version:</string>
+    <string name="info_labels">Vad:\\nBegäran:\\nInnehållsspråk:\\nInnehållsland:\\nApp-språk:\\nTjänst:\\nGMT-tid:\\nPaket:\\nVersion:\\nOS-version:</string>
     <string name="list_thumbnail_view_description">Videons miniatyrbild</string>
     <string name="detail_thumbnail_view_description">Spela video, längd:</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar miniatyrbild</string>
@@ -232,8 +230,6 @@
     <string name="trending">Trend</string>
     <string name="top_50">Topp 50</string>
     <string name="new_and_hot">Aktuellt</string>
-    <string name="title_activity_background_player">Bakgrundsspelare</string>
-    <string name="title_activity_popup_player">Popup-spelare</string>
     <string name="play_queue_remove">Ta bort</string>
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Ljudinställningar</string>
@@ -251,8 +247,8 @@
     <string name="show_info">Visa info</string>
     <string name="tab_bookmarks">Bokmärkta Spellistor</string>
     <string name="controls_add_to_playlist_title">Lägg till i</string>
-    <string name="use_inexact_seek_title">"Använd snabb icke-exakt sökning "</string>
-    <string name="download_thumbnail_title">"Ladda tumnaglar "</string>
+    <string name="use_inexact_seek_title">Använd snabb icke-exakt sökning</string>
+    <string name="download_thumbnail_title">Ladda tumnaglar</string>
     <string name="download_thumbnail_summary">Stäng av för att hindra laddning av miniatyrbilder, spara data och minnesanvändning. Förändringar kommer att rensa cache-minnet.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bild cacheminnet rensad</string>
     <string name="service_title">Tjänst</string>
@@ -267,7 +263,7 @@
     <string name="use_inexact_seek_summary">Inexakt sökning ger möjligheten att sökning snabbare med mindre precision. Att hoppa 5, 15 eller 25 sekunder fungerar inte med detta val.</string>
     <string name="metadata_cache_wipe_summary">Ta bort alla cachade webbsidor</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache rensad</string>
-    <string name="auto_queue_title">"Köa nästa ström automatiskt "</string>
+    <string name="auto_queue_title">Köa nästa ström automatiskt</string>
     <string name="auto_queue_summary">Fortsätt avsluta (icke-upprepande) uppspelningskö genom att lägga till en relaterad ström</string>
     <string name="default_content_country_title">Standard innehållsland</string>
     <string name="channels">Kanaler</string>
@@ -335,7 +331,7 @@
     <string name="create_playlist">Ny spellista</string>
     <string name="delete_playlist">Radera</string>
     <string name="rename_playlist">Byt namn</string>
-    <string name="playlist_name_input">Namn</string>
+    <string name="name">Namn</string>
     <string name="append_playlist">Lägg till i spellistan</string>
     <string name="set_as_playlist_thumbnail">Använd som spellistans miniatyrbild</string>
     <string name="bookmark_playlist">Bokmärk spellistan</string>
@@ -352,7 +348,6 @@
     <string name="caption_auto_generated">Autogenererade</string>
     <string name="caption_setting_title">Textning</string>
     <string name="caption_setting_description">Ändra spelarens textskala och bakgrundsstil. Kräver att appen startar om för att träder i kraft.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Minnesläcka övervakning kan orsaka att appen inte svarar under heap dumpning</string>
     <string name="enable_disposed_exceptions_title">Rapportera out-of-lifecycle fel</string>
     <string name="enable_disposed_exceptions_summary">Tvinga rapportering av otillåtna Rx-undantag utanför fragment eller aktivitetslivscykel efter uppstädning</string>
@@ -393,7 +388,7 @@
     <string name="decline">Avböj</string>
     <string name="limit_data_usage_none_description">Ingen gräns</string>
     <string name="limit_mobile_data_usage_title">Begränsa upplösningen när du använder mobil data</string>
-    <string name="minimize_on_exit_title">"Minimera vid växling av applikationen "</string>
+    <string name="minimize_on_exit_title">Minimera vid växling av applikationen</string>
     <string name="minimize_on_exit_summary">Åtgärd när du växlar till andra applikationer från huvudvideospelare — %s</string>
     <string name="minimize_on_exit_none_description">Ingen</string>
     <string name="minimize_on_exit_background_description">Minimera till Bakgrunds-spelare</string>
@@ -460,8 +455,6 @@
     <string name="autoplay_title">Spela automatiskt</string>
     <string name="settings_category_clear_data_title">Töm data</string>
     <string name="seek_duration_title">Snabbspola -framåt/-bakåt</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Aktivera video på låsskärmen</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">När bakgrundsspelaren används så visas videon på låsskärmen</string>
     <string name="enable_playback_state_lists_summary">Visa positionindikationer i listor</string>
     <string name="clear_playback_states_title">Radera uppspelningspositioner</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
@@ -532,7 +525,6 @@
     <string name="settings_category_feed_title">Flöde</string>
     <string name="feed_create_new_group_button_title">Ny</string>
     <string name="feed_group_dialog_delete_message">Vill du ta bort den här gruppen\?</string>
-    <string name="feed_group_dialog_name_input">Namn</string>
     <string name="feed_group_dialog_empty_name">Tomt gruppnamn</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d vald</item>
@@ -551,7 +543,7 @@
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d timme</item>
-        <item quantity="other">&amp;d timmar</item>
+        <item quantity="other">%d timmar</item>
     </plurals>
     <plurals name="minutes">
         <item quantity="one">%d minut</item>
@@ -594,4 +586,37 @@
     <string name="error_insufficient_storage">Inget utrymme kvar på enhet</string>
     <string name="error_postprocessing_stopped">NewPipe stängdes under arbete med en fil</string>
     <string name="error_permission_denied">Tillåtelse nekat av systemet</string>
+    <string name="error_report_open_github_notice">Vänligen kontrollera om en felrapport som tar upp din krasch redan finns. Att skapa ärenden när en felrapport redan finns, tar av den tid som vi annars kunde ha ägnat åt att fixa den faktiska buggen.</string>
+    <string name="error_report_open_issue_button_text">Rapportera fel på GitHub</string>
+    <string name="copy_for_github">Kopiera formaterad felrapport</string>
+    <string name="search_showing_result_for">Visar resultat för: %s</string>
+    <string name="select_a_playlist">Välj en spellista</string>
+    <string name="video_detail_by">Av %s</string>
+    <string name="channel_created_by">Skapad av %s</string>
+    <string name="no_playlist_bookmarked_yet">Ingen spellista bokmärkt än</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Visa endast prenumerationer som inte grupperats</string>
+    <string name="notification_scale_to_square_image_title">Skala tumnagel till 1:1 ratio</string>
+    <string name="wifi_only">Endast på Wi-Fi</string>
+    <string name="notification_scale_to_square_image_summary">Skala videominiatyrbilden som visast i underrättelsen frän 16:9 till 1:1 aspekt (kan orsaka snedvridningar)</string>
+    <string name="autoplay_summary">Starta avspelning automatiskt—%s</string>
+    <string name="title_activity_play_queue">Spel kö</string>
+    <string name="settings_category_notification_title">Underrättelse</string>
+    <string name="unsupported_url_dialog_message">Kunde inte igenkänna URL. Öppna med annat program\?</string>
+    <string name="auto_queue_toggle">Legg i kö automatiskt</string>
+    <string name="clear_queue_confirmation_description">Den aktiva spelaren vill ersättas</string>
+    <string name="clear_queue_confirmation_summary">Att byta frän en spelare till en annan kan ersätta din kö</string>
+    <string name="clear_queue_confirmation_title">Fråga om bekräftelse innan tömning av kö</string>
+    <string name="notification_action_buffering">Buffrar</string>
+    <string name="notification_action_repeat">Genta</string>
+    <string name="notification_action_4_title">Femte handlingstangent</string>
+    <string name="notification_action_3_title">Fjärde handlingstangent</string>
+    <string name="notification_action_2_title">Tredje handlingstangent</string>
+    <string name="notification_action_1_title">Andra handlingstangent</string>
+    <string name="notification_action_0_title">Första handlingstangent</string>
+    <string name="content_not_supported">Detta inhaltande stöds inte enda av NewPipe.
+\n
+\nDet vill förhoppningsvis ändras i en kommande version.</string>
+    <string name="playlist_page_summary">Spellista-sida</string>
+    <string name="never">Aldrig</string>
+    <string name="notification_action_nothing">Ingenting</string>
 </resources>

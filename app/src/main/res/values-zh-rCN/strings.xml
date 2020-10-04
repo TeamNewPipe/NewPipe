@@ -28,8 +28,7 @@
     <string name="dark_theme_title">暗黑</string>
     <string name="black_theme_title">黑色</string>
     <string name="download_dialog_title">下载</string>
-    <string name="next_video_title">下一个</string>
-    <string name="url_not_supported_toast">不支持的 URL</string>
+    <string name="unsupported_url">不支持的 URL</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="settings_category_other_title">其他</string>
     <string name="all">全部</string>
@@ -166,7 +165,6 @@
     <string name="show_next_and_similar_title">显示“下一个”和“类似的”视频</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="background_player_playing_toast">在后台播放</string>
-    <string name="play_btn_text">播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">受年龄限制的内容</string>
     <string name="video_is_age_restricted">显示受年龄限制的视频。可从设置允许此类内容。</string>
@@ -273,8 +271,6 @@
     <string name="player_stream_failure">无法播放此串流</string>
     <string name="player_unrecoverable_failure">发生无法恢复播放器错误</string>
     <string name="player_recoverable_failure">恢复播放器错误</string>
-    <string name="title_activity_background_player">后台播放</string>
-    <string name="title_activity_popup_player">悬浮窗播放器</string>
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">详情</string>
     <string name="play_queue_audio_settings">音频设置</string>
@@ -326,7 +322,7 @@
     <string name="create_playlist">新建播放列表</string>
     <string name="delete_playlist">删除</string>
     <string name="rename_playlist">重 命名</string>
-    <string name="playlist_name_input">名称</string>
+    <string name="name">名称</string>
     <string name="append_playlist">添加到播放列表</string>
     <string name="set_as_playlist_thumbnail">设为播放列表缩略图</string>
     <string name="bookmark_playlist">收藏播放列表</string>
@@ -343,7 +339,6 @@
     <string name="drawer_header_action_paceholder_text">敬请等待</string>
     <string name="settings_category_debug_title">调试</string>
     <string name="caption_auto_generated">自动生成</string>
-    <string name="enable_leak_canary_title">启用LeakCanary</string>
     <string name="enable_leak_canary_summary">『内存泄漏监视』可能导致应用在『核心转储』时无响应</string>
     <string name="enable_disposed_exceptions_title">报告『提前结束Android生命周期』错误</string>
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的Activity或Fragment生命周期之外的Rx异常</string>
@@ -520,8 +515,6 @@
     <string name="error_download_resource_gone">无法恢复此下载</string>
     <string name="choose_instance_prompt">选择一个服务器</string>
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
-    <string name="enable_lock_screen_video_thumbnail_title">在锁屏上显示视频缩略图</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除下载了的文件</string>
     <string name="deleted_downloads">已删除 %1$d 下载</string>

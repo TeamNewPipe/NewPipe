@@ -5,7 +5,7 @@
     <string name="upload_date_text">发布于 %1$s</string>
     <string name="open_in_browser">在浏览器中打开</string>
     <string name="open_in_popup_mode">在悬浮窗模式下打开</string>
-    <string name="did_you_mean">您是不是要找：%1$s？</string>
+    <string name="did_you_mean">您是不是要找:%1$s？</string>
     <string name="no_player_found_toast">找不到串流播放器 （您可以安装 VLC 进行播放）。</string>
     <string name="controls_download_desc">下载串流文件</string>
     <string name="install">安装</string>
@@ -28,8 +28,7 @@
     <string name="dark_theme_title">暗黑</string>
     <string name="black_theme_title">黑色</string>
     <string name="download_dialog_title">下载</string>
-    <string name="next_video_title">下一个</string>
-    <string name="url_not_supported_toast">不支持的 URL</string>
+    <string name="unsupported_url">不支持的 URL</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="settings_category_other_title">其他</string>
     <string name="all">全部</string>
@@ -71,7 +70,7 @@
     <string name="subscribers_count_not_available">无法得知订阅人数</string>
     <string name="updates_setting_description">发布新版本时，通知我升级应用</string>
     <string name="grid">网格</string>
-    <string name="app_update_notification_content_title">NewPipe有更新！</string>
+    <string name="app_update_notification_content_title">NewPipe可更新！</string>
     <string name="error_http_unsupported_range">服务器不接受 接收 multi-threaded 下载, 以 @string/msg_threads = 1 重试</string>
     <string name="autoplay_title">自动播放</string>
     <string name="settings_category_clear_data_title">清除数据</string>
@@ -166,7 +165,6 @@
     <string name="show_next_and_similar_title">显示“下一个”和“相似”视频</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="background_player_playing_toast">在后台播放</string>
-    <string name="play_btn_text">播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">受年龄限制的内容</string>
     <string name="video_is_age_restricted">显示受年龄限制的视频。可从设置允许此类内容。</string>
@@ -191,7 +189,7 @@
     <string name="error_snackbar_action">报告</string>
     <string name="what_device_headline">信息：</string>
     <string name="what_happened_headline">发生了什么：</string>
-    <string name="info_labels">详情：\\n请求：\\n内容语言：\\n服务：\\nGMT时间：\\n包：\\n版本：\\n操作系统版本：</string>
+    <string name="info_labels">详情：\\n请求：\\n内容语言：\\n内容国家：\\n客户端语言：\\n服务：\\nGMT时间：\\n包名：\\n版本：\\n操作系统版本：</string>
     <string name="your_comment">您的附近说明（请用英文）：</string>
     <string name="error_details_headline">详细信息：</string>
     <string name="list_thumbnail_view_description">视频预览缩略图</string>
@@ -211,7 +209,7 @@
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
     <string name="show_higher_resolutions_summary">仅某些设备支持播放2K / 4K视频</string>
     <string name="clear">清除</string>
-    <string name="popup_remember_size_pos_title">记住悬浮窗的尺寸与位置</string>
+    <string name="popup_remember_size_pos_title">记住悬浮窗属性</string>
     <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
@@ -273,8 +271,6 @@
     <string name="player_stream_failure">无法播放此串流</string>
     <string name="player_unrecoverable_failure">发生无法恢复播放器错误</string>
     <string name="player_recoverable_failure">恢复播放器错误</string>
-    <string name="title_activity_background_player">后台播放</string>
-    <string name="title_activity_popup_player">悬浮窗播放器</string>
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">详情</string>
     <string name="play_queue_audio_settings">音频设置</string>
@@ -326,7 +322,7 @@
     <string name="create_playlist">新建播放列表</string>
     <string name="delete_playlist">删除</string>
     <string name="rename_playlist">重命名</string>
-    <string name="playlist_name_input">名称</string>
+    <string name="name">名称</string>
     <string name="append_playlist">添加到播放列表</string>
     <string name="set_as_playlist_thumbnail">设为播放列表缩略图</string>
     <string name="bookmark_playlist">收藏播放列表</string>
@@ -343,7 +339,6 @@
     <string name="drawer_header_action_paceholder_text">敬请期待</string>
     <string name="settings_category_debug_title">调试</string>
     <string name="caption_auto_generated">自动生成</string>
-    <string name="enable_leak_canary_title">启用LeakCanary</string>
     <string name="enable_leak_canary_summary">『内存泄漏监视』可能导致应用在『核心转储』时无响应</string>
     <string name="enable_disposed_exceptions_title">报告『提前结束Android生命周期』错误</string>
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的Activity或Fragment生命周期之外的Rx异常</string>
@@ -501,7 +496,8 @@
     </plurals>
     <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
-        <item quantity="other">％s 人在听</item>
+        <item quantity="one">%s 人在听</item>
+        <item quantity="other"></item>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
@@ -520,8 +516,6 @@
     <string name="error_download_resource_gone">无法恢复此下载</string>
     <string name="choose_instance_prompt">选择一个服务器</string>
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
-    <string name="enable_lock_screen_video_thumbnail_title">在锁屏上显示视频缩略图</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除已下载的文件</string>
     <string name="deleted_downloads">已删除 %1$d 下载</string>
@@ -558,12 +552,11 @@
         <item quantity="other">已选中%d</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">组名为空</string>
-    <string name="feed_group_dialog_name_input">名称</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
     <string name="settings_category_feed_title">订阅</string>
     <string name="feed_update_threshold_title">Feed更新阈值</string>
-    <string name="feed_update_threshold_summary">上次更新后，订阅被视为过时的时间-％s</string>
+    <string name="feed_update_threshold_summary">上次更新后，订阅被视为过时的时间-%s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>
     <string name="feed_use_dedicated_fetch_method_title">可用时从专用feed获取</string>
     <string name="feed_use_dedicated_fetch_method_summary">在某些服务中可用，通常速度要快得多，但可能返回的条目数量有限，而且信息通常不完整（例如，没有持续时间，条目类型，没有实时状态）。</string>
@@ -604,4 +597,34 @@
     <string name="show_original_time_ago_title">在项目上显示原始时间</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube受限模式</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">仅显示未分组订阅</string>
+    <string name="playlist_page_summary">播放列表页</string>
+    <string name="no_playlist_bookmarked_yet">尚无播放列表书签</string>
+    <string name="select_a_playlist">选择播放列表</string>
+    <string name="error_report_open_github_notice">请检查您的问题是否已经存在。创建重复票证时，您需要从我们那里花些时间来让我们修复真正的bug。</string>
+    <string name="error_report_open_issue_button_text">在GitHub上反馈</string>
+    <string name="copy_for_github">复制格式报告</string>
+    <string name="search_showing_result_for">显示结果为：%s</string>
+    <string name="never">永不</string>
+    <string name="wifi_only">仅在Wi-Fi下</string>
+    <string name="autoplay_summary">自动开始回放 — %s</string>
+    <string name="title_activity_play_queue">播放队列</string>
+    <string name="unsupported_url_dialog_message">无法识别该url。用另一个应用程序打开它\?</string>
+    <string name="auto_queue_toggle">自动排队</string>
+    <string name="clear_queue_confirmation_description">来自活跃播放器的队列将被替换</string>
+    <string name="clear_queue_confirmation_summary">从一个播放器切换到另一个播放器后，你的队列可能会被替换</string>
+    <string name="clear_queue_confirmation_title">清除队列之前请求确认</string>
+    <string name="notification_action_nothing">无</string>
+    <string name="notification_action_buffering">缓冲</string>
+    <string name="notification_action_shuffle">随机播放</string>
+    <string name="notification_action_repeat">重复</string>
+    <string name="notification_actions_at_most_three">您最多可以选择三个操作显示在紧凑通知中!</string>
+    <string name="notification_actions_summary">点击来编辑下面的每个通知动作。通过使用右边的复选框，选择其中最多三个显示在紧凑通知中。</string>
+    <string name="notification_action_4_title">第五操作按钮</string>
+    <string name="notification_action_3_title">第四操作按钮</string>
+    <string name="notification_action_2_title">第三操作按钮</string>
+    <string name="notification_action_1_title">第二操作按钮</string>
+    <string name="notification_action_0_title">首选操作按钮</string>
+    <string name="notification_scale_to_square_image_summary">将通知中显示的视频缩略图长宽比从16:9缩放到1:1(可能会导致失真)</string>
+    <string name="notification_scale_to_square_image_title">缩放缩略图到1:1的长宽比</string>
+    <string name="settings_category_notification_title">通知</string>
 </resources>

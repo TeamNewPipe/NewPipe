@@ -29,9 +29,7 @@
     <string name="default_video_format_title">Format video standar</string>
     <string name="default_audio_format_title">Format audio standar</string>
     <string name="play_audio">Suara ati</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Gambar cilik video diduduhke nang layar kegembok nalika nganggo pemuter mburi</string>
     <string name="show_play_with_kodi_summary">Duduhke pilihan muter video nganggo Kodi</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Gambar cilik nang lock screen</string>
     <string name="show_play_with_kodi_title">Duduhke pilihan \"Puter nganggo Kodi\"</string>
     <string name="kore_not_found">Aplikasi Kore rung ono, pasang\?</string>
     <string name="play_with_kodi_title">Puter nganggo Kodi</string>

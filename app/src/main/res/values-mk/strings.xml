@@ -81,11 +81,10 @@
     <string name="resume_on_audio_focus_gain_title">Продолжете со репродукција</string>
     <string name="resume_on_audio_focus_gain_summary">Продолжете со репродукција на видеото по прекини (пр. телефонски повик)</string>
     <string name="download_dialog_title">Преземи</string>
-    <string name="next_video_title">Следно видео</string>
     <string name="show_next_and_similar_title">Прикажи „следни“ и „слични“ видеа</string>
     <string name="show_hold_to_append_title">Прикажи „задржи за прикачување“</string>
     <string name="show_hold_to_append_summary">Покажи совет при притискање на позадината или кога скок копчето е притиснато на видео \"Детали:\"</string>
-    <string name="url_not_supported_toast">Неподдржана URL врска</string>
+    <string name="unsupported_url">Неподдржана URL врска</string>
     <string name="default_content_country_title">Земја на прикажани видеа</string>
     <string name="service_title">Услуга</string>
     <string name="content_language_title">Стандарден јазик на содржина</string>
@@ -101,7 +100,6 @@
     <string name="popup_playing_toast">Пуштено во прозорче</string>
     <string name="background_player_append">Ставено на листата за заднинско пуштање</string>
     <string name="popup_playing_append">Ставено на листа, за пуштање во прозорче</string>
-    <string name="play_btn_text">Пушти</string>
     <string name="content">Содржина</string>
     <string name="show_age_restricted_content_title">Покажи видеа со граница на возрастта</string>
     <string name="video_is_age_restricted">Видео за возрасни. Можете да дозволите вакви видеа преку Поставки.</string>
@@ -257,7 +255,7 @@
     <string name="give_back">Возврати</string>
     <string name="website_title">Вебсајт</string>
     <string name="website_encouragement">За повеќе информации и новости за NewPipe посети ја вебстраната.</string>
-    <string name="app_license_title">"Лиценцата на NewPipe "</string>
+    <string name="app_license_title">Лиценцата на NewPipe</string>
     <string name="read_full_license">Прочитај лиценца</string>
     <string name="title_activity_history">Историја</string>
     <string name="title_history_search">Пребарано</string>
@@ -290,8 +288,6 @@
     <string name="trending">Популарни</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Нови и жешки</string>
-    <string name="title_activity_background_player">Позадински плеер</string>
-    <string name="title_activity_popup_player">Подпрозорче</string>
     <string name="play_queue_remove">Одстрани</string>
     <string name="play_queue_stream_detail">Детали</string>
     <string name="play_queue_audio_settings">Звучни поставки</string>
@@ -313,7 +309,7 @@
     <string name="create_playlist">Создај нова плејлиста</string>
     <string name="delete_playlist">Избриши плејлиста</string>
     <string name="rename_playlist">Прекрсти плејлиста</string>
-    <string name="playlist_name_input">Име</string>
+    <string name="name">Име</string>
     <string name="append_playlist">Додај во плејлиста</string>
     <string name="set_as_playlist_thumbnail">Постави како икона на плејлистата</string>
     <string name="bookmark_playlist">Обележи ја плејлистата</string>
@@ -328,7 +324,6 @@
     <string name="resize_fill">Исполни</string>
     <string name="resize_zoom">Зумирај</string>
     <string name="caption_auto_generated">Автоматски создадено</string>
-    <string name="enable_leak_canary_title">Вклучи LeakCanary</string>
     <string name="enable_leak_canary_summary">Следењето на мемориските грешки може да ја прикочува апликацијата</string>
     <string name="enable_disposed_exceptions_title">Пријави Out-of-lifecycle грешки</string>
     <string name="enable_disposed_exceptions_summary">Секогаш пријавувај неуспешни Rx исклучоци кои настануваат надвор од fragment или activity циклусот по отстранување</string>
@@ -487,6 +482,4 @@
     <string name="peertube_instance_url_summary">Одберете ги вашите омилени PeerTube пример</string>
     <string name="peertube_instance_url_help">Пронајдете ги примерите кои ви се допаѓаат на %s</string>
     <string name="peertube_instance_add_title">Додадете пример</string>
-    <string name="enable_lock_screen_video_thumbnail_title">мала видео-сликичка на заклучен екран</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Мала видео-сликичка е прикажана на заклучниот екран при користење на плеерот во позадина</string>
 </resources>

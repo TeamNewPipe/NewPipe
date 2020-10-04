@@ -145,10 +145,10 @@ public class OggFromWebMWriter implements Closeable {
     }
 
     public void build() throws IOException {
-        float resolution;
+        final float resolution;
         SimpleBlock bloq;
-        ByteBuffer header = ByteBuffer.allocate(27 + (255 * 255));
-        ByteBuffer page = ByteBuffer.allocate(64 * 1024);
+        final ByteBuffer header = ByteBuffer.allocate(27 + (255 * 255));
+        final ByteBuffer page = ByteBuffer.allocate(64 * 1024);
 
         header.order(ByteOrder.LITTLE_ENDIAN);
 
@@ -181,7 +181,7 @@ public class OggFromWebMWriter implements Closeable {
         }
 
         /* step 3: create packet with metadata */
-        byte[] buffer = makeMetadata();
+        final byte[] buffer = makeMetadata();
         if (buffer != null) {
             addPacketSegment(buffer.length);
             makePacketheader(0x00, header, buffer);
@@ -194,7 +194,7 @@ public class OggFromWebMWriter implements Closeable {
             bloq = getNextBlock();
 
             if (bloq != null && addPacketSegment(bloq)) {
-                int pos = page.position();
+                final int pos = page.position();
                 //noinspection ResultOfMethodCallIgnored
                 bloq.data.read(page.array(), pos, bloq.dataSize);
                 page.position(pos + bloq.dataSize);
@@ -334,16 +334,16 @@ public class OggFromWebMWriter implements Closeable {
 
     private float getSampleFrequencyFromTrack(final byte[] bMetadata) {
         // hardcoded way
-        ByteBuffer buffer = ByteBuffer.wrap(bMetadata);
+        final ByteBuffer buffer = ByteBuffer.wrap(bMetadata);
 
         while (buffer.remaining() >= 6) {
-            int id = buffer.getShort() & 0xFFFF;
+            final int id = buffer.getShort() & 0xFFFF;
             if (id == 0x0000B584) {
                 return buffer.getFloat();
             }
         }
 
-        return 0f;
+        return 0.0f;
     }
 
     private void clearSegmentTable() {
@@ -353,7 +353,7 @@ public class OggFromWebMWriter implements Closeable {
     }
 
     private boolean addPacketSegment(final SimpleBlock block) {
-        long timestamp = block.absoluteTimeCodeNs + webmTrack.codecDelay;
+        final long timestamp = block.absoluteTimeCodeNs + webmTrack.codecDelay;
 
         if (timestamp >= segmentTableNextTimestamp) {
             return false;
@@ -368,7 +368,7 @@ public class OggFromWebMWriter implements Closeable {
         }
 
         int available = (segmentTable.length - segmentTableSize) * 255;
-        boolean extra = (size % 255) == 0;
+        final boolean extra = (size % 255) == 0;
 
         if (extra) {
             // add a zero byte entry in the table
@@ -396,7 +396,7 @@ public class OggFromWebMWriter implements Closeable {
         for (int i = 0; i < 0x100; i++) {
             int crc = i << 24;
             for (int j = 0; j < 8; j++) {
-                long b = crc >>> 31;
+                final long b = crc >>> 31;
                 crc <<= 1;
                 crc ^= (int) (0x100000000L - b) & 0x04c11db7;
             }
@@ -407,7 +407,7 @@ public class OggFromWebMWriter implements Closeable {
     private int calcCrc32(final int initialCrc, final byte[] buffer, final int size) {
         int crc = initialCrc;
         for (int i = 0; i < size; i++) {
-            int reg = (crc >>> 24) & 0xff;
+            final int reg = (crc >>> 24) & 0xff;
             crc = (crc << 8) ^ crc32Table[reg ^ (buffer[i] & 0xff)];
         }
 

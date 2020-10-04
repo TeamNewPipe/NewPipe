@@ -26,15 +26,13 @@
     <string name="dark_theme_title">黑暗</string>
     <string name="light_theme_title">明亮</string>
     <string name="download_dialog_title">下載</string>
-    <string name="next_video_title">下一部影片</string>
     <string name="show_next_and_similar_title">顯示下一部及相關的影片</string>
-    <string name="url_not_supported_toast">不支援此網址</string>
+    <string name="unsupported_url">不支援此網址</string>
     <string name="content_language_title">預設內容語言</string>
     <string name="settings_category_video_audio_title">影片及聲音</string>
     <string name="settings_category_appearance_title">外觀</string>
     <string name="settings_category_other_title">其他</string>
     <string name="background_player_playing_toast">背景播放</string>
-    <string name="play_btn_text">播放</string>
     <string name="network_error">網絡問題</string>
     <string name="list_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_thumbnail_view_description">影片預覽縮圖</string>
@@ -54,7 +52,7 @@
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
     <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用</string>
     <string name="autoplay_by_calling_app_title">自動撥放</string>
-    <string name="autoplay_by_calling_app_summary">"當 NewPipe  被其他程式調用時播放視頻"</string>
+    <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他程式調用時播放視頻</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示已設年齡限制的影片</string>
     <string name="video_is_age_restricted">此影片設有年齡限制。若要觀看，請先在設定中解除年齡限制。</string>
@@ -170,8 +168,6 @@
     <string name="tab_subscriptions">訂閱項目</string>
     <string name="tab_bookmarks">已收藏播放清單</string>
     <string name="use_inexact_seek_title">使用粗略快查</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">使用背景播放器時，鎖定畫面上將會顯示影片縮圖</string>
-    <string name="enable_lock_screen_video_thumbnail_title">鎖定畫面影片縮圖</string>
     <string name="download_choose_new_path">變更下載文件夾以生效</string>
     <string name="controls_add_to_playlist_title">添加到</string>
     <string name="tab_choose">選擇標籤</string>

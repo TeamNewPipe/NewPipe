@@ -9,8 +9,8 @@
     </style>
 
     <!-- Base themes -->
-
-    <style name="LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.LightTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="LightTheme" parent="Base.LightTheme">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
@@ -330,5 +330,4 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
-    <style name="VideoPlayerTheme" />
 </resources>

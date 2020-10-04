@@ -2,13 +2,13 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.view.accessibility.CaptioningManager;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
@@ -25,9 +25,11 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.extractor.utils.Utils;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.ListHelper;
 
 import java.lang.annotation.Retention;
 import java.text.DecimalFormat;
@@ -45,6 +47,9 @@ import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MOD
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
@@ -56,6 +61,15 @@ public final class PlayerHelper {
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
 
+    @Retention(SOURCE)
+    @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
+            AUTOPLAY_TYPE_NEVER})
+    public @interface AutoplayType {
+        int AUTOPLAY_TYPE_ALWAYS = 0;
+        int AUTOPLAY_TYPE_WIFI = 1;
+        int AUTOPLAY_TYPE_NEVER = 2;
+    }
+
     private PlayerHelper() { }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -63,10 +77,10 @@ public final class PlayerHelper {
     ////////////////////////////////////////////////////////////////////////////
 
     public static String getTimeString(final int milliSeconds) {
-        int seconds = (milliSeconds % 60000) / 1000;
-        int minutes = (milliSeconds % 3600000) / 60000;
-        int hours = (milliSeconds % 86400000) / 3600000;
-        int days = (milliSeconds % (86400000 * 7)) / 86400000;
+        final int seconds = (milliSeconds % 60000) / 1000;
+        final int minutes = (milliSeconds % 3600000) / 60000;
+        final int hours = (milliSeconds % 86400000) / 3600000;
+        final int days = (milliSeconds % (86400000 * 7)) / 86400000;
 
         STRING_BUILDER.setLength(0);
         return days > 0
@@ -158,7 +172,7 @@ public final class PlayerHelper {
         }
 
         final List<InfoItem> relatedItems = info.getRelatedStreams();
-        if (relatedItems == null) {
+        if (Utils.isNullOrEmpty(relatedItems)) {
             return null;
         }
 
@@ -203,6 +217,11 @@ public final class PlayerHelper {
         return isAutoQueueEnabled(context, false);
     }
 
+    public static boolean isClearingQueueConfirmationRequired(@NonNull final Context context) {
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.clear_queue_confirmation_key), false);
+    }
+
     @MinimizeMode
     public static int getMinimizeOnExitAction(@NonNull final Context context) {
         final String defaultAction = context.getString(R.string.minimize_on_exit_none_key);
@@ -216,6 +235,30 @@ public final class PlayerHelper {
             return MINIMIZE_ON_EXIT_MODE_BACKGROUND;
         } else {
             return MINIMIZE_ON_EXIT_MODE_NONE;
+        }
+    }
+
+    @AutoplayType
+    public static int getAutoplayType(@NonNull final Context context) {
+        final String type = getAutoplayType(context, context.getString(R.string.autoplay_wifi_key));
+        if (type.equals(context.getString(R.string.autoplay_always_key))) {
+            return AUTOPLAY_TYPE_ALWAYS;
+        } else if (type.equals(context.getString(R.string.autoplay_never_key))) {
+            return AUTOPLAY_TYPE_NEVER;
+        } else {
+            return AUTOPLAY_TYPE_WIFI;
+        }
+    }
+
+    public static boolean isAutoplayAllowedByUser(@NonNull final Context context) {
+        switch (PlayerHelper.getAutoplayType(context)) {
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER:
+                return false;
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI:
+                return !ListHelper.isMeteredNetwork(context);
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS:
+            default:
+                return true;
         }
     }
 
@@ -273,10 +316,6 @@ public final class PlayerHelper {
 
     @NonNull
     public static CaptionStyleCompat getCaptionStyle(@NonNull final Context context) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            return CaptionStyleCompat.DEFAULT;
-        }
-
         final CaptioningManager captioningManager = (CaptioningManager)
                 context.getSystemService(Context.CAPTIONING_SERVICE);
         if (captioningManager == null || !captioningManager.isEnabled()) {
@@ -301,14 +340,10 @@ public final class PlayerHelper {
      * @return caption scaling
      */
     public static float getCaptionScale(@NonNull final Context context) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            return 1f;
-        }
-
         final CaptioningManager captioningManager
                 = (CaptioningManager) context.getSystemService(Context.CAPTIONING_SERVICE);
         if (captioningManager == null || !captioningManager.isEnabled()) {
-            return 1f;
+            return 1.0f;
         }
 
         return captioningManager.getFontScale();
@@ -322,6 +357,13 @@ public final class PlayerHelper {
     public static void setScreenBrightness(@NonNull final Context context,
                                            final float setScreenBrightness) {
         setScreenBrightness(context, setScreenBrightness, System.currentTimeMillis());
+    }
+
+    public static boolean globalScreenOrientationLocked(final Context context) {
+        // 1: Screen orientation changes using accelerometer
+        // 0: Screen orientation is locked
+        return android.provider.Settings.System.getInt(
+                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -368,7 +410,7 @@ public final class PlayerHelper {
 
     private static void setScreenBrightness(@NonNull final Context context,
                                             final float screenBrightness, final long timestamp) {
-        SharedPreferences.Editor editor = getPreferences(context).edit();
+        final SharedPreferences.Editor editor = getPreferences(context).edit();
         editor.putFloat(context.getString(R.string.screen_brightness_key), screenBrightness);
         editor.putLong(context.getString(R.string.screen_brightness_timestamp_key), timestamp);
         editor.apply();
@@ -376,8 +418,8 @@ public final class PlayerHelper {
 
     private static float getScreenBrightness(@NonNull final Context context,
                                              final float screenBrightness) {
-        SharedPreferences sp = getPreferences(context);
-        long timestamp = sp
+        final SharedPreferences sp = getPreferences(context);
+        final long timestamp = sp
                 .getLong(context.getString(R.string.screen_brightness_timestamp_key), 0);
         // Hypothesis: 4h covers a viewing block, e.g. evening.
         // External lightning conditions will change in the next
@@ -396,9 +438,15 @@ public final class PlayerHelper {
                 .getString(context.getString(R.string.minimize_on_exit_key), key);
     }
 
+    private static String getAutoplayType(@NonNull final Context context,
+                                                  final String key) {
+        return getPreferences(context).getString(context.getString(R.string.autoplay_key),
+                key);
+    }
+
     private static SinglePlayQueue getAutoQueuedSinglePlayQueue(
             final StreamInfoItem streamInfoItem) {
-        SinglePlayQueue singlePlayQueue = new SinglePlayQueue(streamInfoItem);
+        final SinglePlayQueue singlePlayQueue = new SinglePlayQueue(streamInfoItem);
         singlePlayQueue.getItem().setAutoQueued(true);
         return singlePlayQueue;
     }

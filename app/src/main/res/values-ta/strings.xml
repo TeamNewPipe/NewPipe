@@ -67,7 +67,6 @@
     <string name="enable_watch_history_title">வரலாறு மற்றும் பதுக்ககம்</string>
     <string name="enable_watch_history_summary">பார்த்த காணொலிகளை குறிப்பிடு</string>
     <string name="download_dialog_title">தரவிறக்கு</string>
-    <string name="next_video_title">அடுத்து</string>
     <string name="service_title">சேவை</string>
     <string name="settings_category_player_title">இயக்கி</string>
     <string name="settings_category_player_behavior_title">பண்பு</string>
@@ -78,7 +77,6 @@
     <string name="settings_category_other_title">மற்றவை</string>
     <string name="background_player_playing_toast">பிண்ணணியில் ஓடுகிறது</string>
     <string name="popup_playing_toast">திரைமேல் நிலையில் ஓடுகிறது</string>
-    <string name="play_btn_text">இயக்கு</string>
     <string name="duration_live">நேரடி ஒளிபரப்பு</string>
     <string name="downloads">தரவிறக்கங்கள்</string>
     <string name="downloads_title">தரவிறக்கங்கள்</string>
@@ -116,16 +114,16 @@
     <string name="player_gesture_controls_title">இயக்கியின் சைகை கட்டுப்பாடுகள்</string>
     <string name="player_gesture_controls_summary">இயைக்கியின் பிரகாசம் மற்றும் ஒலியினை சைகைமூலம் கட்டுப்படுத்து</string>
     <string name="show_search_suggestions_summary">தேடும்போது பரிந்துரைகளை கான்பி</string>
-    <string name="resume_on_audio_focus_gain_summary">"தொலைபேசி அழைப்பு போன்ற குறுக்கீடுகளுக்கு பிறகு தொடரவும் "</string>
+    <string name="resume_on_audio_focus_gain_summary">தொலைபேசி அழைப்பு போன்ற குறுக்கீடுகளுக்கு பிறகு தொடரவும்</string>
     <string name="show_next_and_similar_title">\'அடுத்து\' மற்றும் \'ஒப்பான\' காணொளிகலை காண்பி</string>
     <string name="enable_search_history_summary">தேடப்பட்ட வாக்கியத்தை அமைவிடத்தில் சேமிக்கவும்</string>
-    <string name="url_not_supported_toast">ஆதரிக்கப்படாத URL</string>
+    <string name="unsupported_url">ஆதரிக்கப்படாத URL</string>
     <string name="default_content_country_title">இயல்புநிலை தகவல்களின் நாடு</string>
     <string name="settings_category_debug_title">பிழைதிருத்து</string>
     <string name="content">உள்ளடக்கம்</string>
     <string name="show_age_restricted_content_title">வயது வரம்புக்கு உட்பட்டது</string>
     <string name="auto_queue_title">அடுத்த தாரையில் தானாக சேர்</string>
-    <string name="background_player_append">"பின்னணி இயக்கியின் வரிசையில் சேர்க்கப்பட்டது "</string>
+    <string name="background_player_append">பின்னணி இயக்கியின் வரிசையில் சேர்க்கப்பட்டது</string>
     <string name="video_is_age_restricted">அமைப்புகள் மூலம் வயது வரையறுக்கப்பட்ட வீடியோக்கலை காணலாம்.</string>
     <string name="error_report_title">பிழை அறிக்கை</string>
     <string name="channel">சேனல்</string>
@@ -143,7 +141,7 @@
     <string name="show_hold_to_append_title">\"சேர்ப்பதர்க்கு அழுத்தவும்\" அறிவிப்பை காண்பி</string>
     <string name="import_data_title">தகவல்கலை இறக்குமதி செய்</string>
     <string name="export_data_title">தகவல்கலை ஏற்றுமதி செய்</string>
-    <string name="import_data_summary">"தற்போதைய வரலாறு மற்றும் சந்தாக்கள் பதிலாக சேர்க்கப்படும் "</string>
+    <string name="import_data_summary">தற்போதைய வரலாறு மற்றும் சந்தாக்கள் பதிலாக சேர்க்கப்படும்</string>
     <string name="export_data_summary">வரலாறு, சந்தாக்கள் மற்றும் பட்டியல்கலை ஏற்றுமதி செய்</string>
     <string name="delete_view_history_alert">பார்த்த அனைத்து வரலாற்றயும் அழிக்கவா\?</string>
     <string name="clear_search_history_summary">தேடப்பட்ட வார்த்தைகளின் வரலாற்றை அழி</string>
@@ -151,8 +149,8 @@
     <string name="general_error">பிழை</string>
     <string name="best_resolution">சிறந்த திரைத் தெளிவுத்திறன்</string>
     <string name="popup_playing_append">பாப் அப் இயக்கியின் வரிசையில் சேர்க்கப்பட்டது</string>
-    <string name="notification_channel_description">"NewPipe பின்னனி மற்றும் பாப்அப் இயக்கிகளின்  அறிவிப்புகள்"</string>
-    <string name="switch_to_popup">"பாப்அப் இயக்கிக்கு மாறு  "</string>
+    <string name="notification_channel_description">NewPipe பின்னனி மற்றும் பாப்அப் இயக்கிகளின் அறிவிப்புகள்</string>
+    <string name="switch_to_popup">பாப்அப் இயக்கிக்கு மாறு</string>
     <string name="unsubscribe">குழுவிலகு</string>
     <string name="enqueue">வரிசை</string>
     <string name="network_error">நெட்வொர்க் பிழை</string>
@@ -217,6 +215,4 @@
         <item quantity="other">%s பார்க்கிறார்கள்</item>
     </plurals>
     <string name="seek_duration_title">வேகமாக முன்னோக்கி / திரும்பத் தேடும் காலம்</string>
-    <string name="enable_lock_screen_video_thumbnail_title">பூட்டு திரை வீடியோ சிறுபடத்தை இயக்கவும்</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">பின்னணி பிளேயரைப் பயன்படுத்தும் போது பூட்டுத் திரையில் வீடியோ சிறுபடம் காண்பிக்கப்படும்</string>
 </resources>

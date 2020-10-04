@@ -80,11 +80,10 @@
     <string name="resume_on_audio_focus_gain_title">Jätka taasesitust fookuse saamisel</string>
     <string name="resume_on_audio_focus_gain_summary">Jätka taasesitust pärast katkestamist (nt. telefonikõne)</string>
     <string name="download_dialog_title">Laadi alla</string>
-    <string name="next_video_title">Järgmine</string>
     <string name="show_next_and_similar_title">Kuva \'järgmine\' ja \'sarnased\' videod</string>
     <string name="show_hold_to_append_title">Kuva vihjet \"lisamiseks hoia\"</string>
     <string name="show_hold_to_append_summary">Kuva vihje, kui videoandmete lehel vajutatakse tausta või hüpikakna nupule</string>
-    <string name="url_not_supported_toast">Mitte toetatud URL</string>
+    <string name="unsupported_url">Mitte toetatud URL</string>
     <string name="default_content_country_title">Sisu vaikimisi riik</string>
     <string name="service_title">Teenus</string>
     <string name="content_language_title">Sisu vaikimisi keel</string>
@@ -100,7 +99,6 @@
     <string name="popup_playing_toast">Taasesitus hüpikaknas</string>
     <string name="background_player_append">Lisati taustapleieri järjekorda</string>
     <string name="popup_playing_append">Lisati hüpikpleieri järjekorda</string>
-    <string name="play_btn_text">Esita</string>
     <string name="content">Sisu</string>
     <string name="show_age_restricted_content_title">Vanusepiiranguga sisu</string>
     <string name="video_is_age_restricted">Kuva vanusepiiranguga video. Sellist sisu saab lubada seadetes.</string>
@@ -212,7 +210,7 @@
         <item quantity="one">%s video</item>
         <item quantity="other">%s videot</item>
     </plurals>
-    <string name="start">"Start "</string>
+    <string name="start">Start</string>
     <string name="pause">Paus</string>
     <string name="view">Esita</string>
     <string name="create">Loo</string>
@@ -291,12 +289,10 @@
     <string name="could_not_import_all_files">Hoiatus: Kõiki faile ei õnnestunud importida.</string>
     <string name="override_current_data">See alistab praeguse seadistuse.</string>
     <string name="import_settings">Kas importida ka seadistused?</string>
-    <string name="kiosk">"Kiosk "</string>
+    <string name="kiosk">Kiosk</string>
     <string name="trending">Trendid</string>
-    <string name="top_50">"Top 50 "</string>
+    <string name="top_50">Top 50</string>
     <string name="new_and_hot">Uus ja kuum</string>
-    <string name="title_activity_background_player">Taustapleier</string>
-    <string name="title_activity_popup_player">Hüpikpleier</string>
     <string name="play_queue_remove">Eemalda</string>
     <string name="play_queue_stream_detail">Üksikasjad</string>
     <string name="play_queue_audio_settings">Heli seaded</string>
@@ -320,7 +316,7 @@
     <string name="create_playlist">Uus pleilist</string>
     <string name="delete_playlist">Kustuta</string>
     <string name="rename_playlist">Nimeta ümber</string>
-    <string name="playlist_name_input">Nimi</string>
+    <string name="name">Nimi</string>
     <string name="append_playlist">Lisa pleilisti</string>
     <string name="set_as_playlist_thumbnail">Määra pleilisti pisipildiks</string>
     <string name="bookmark_playlist">Lisa pleilist järjehoidjaks</string>
@@ -357,7 +353,7 @@
 \n
 \nKas jätkata?</string>
     <string name="playback_speed_control">Taasesituse kiiruse juhtimine</string>
-    <string name="playback_tempo">"Tempo "</string>
+    <string name="playback_tempo">Tempo</string>
     <string name="accept">Nõustu</string>
     <string name="decline">Keeldu</string>
     <string name="limit_data_usage_none_description">Piiranguta</string>
@@ -378,7 +374,6 @@
     <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid.
 \nNewPipe privaatsuspoliitika selgitab üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
     <string name="app_license">NewPipe vaba avatud koodiga tarkvara. Seada võib kasutada, uurida, jagada ja parandada. Täpsemalt - seda võib levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või hilisem) tingimustele.</string>
-    <string name="enable_leak_canary_title">Luba LeakCanary</string>
     <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
     <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID:
 \n

@@ -10,7 +10,7 @@
     <string name="download">Transferir</string>
     <string name="search">Pesquisar</string>
     <string name="settings">Definições</string>
-    <string name="did_you_mean">Quis dizer: %1$s\?</string>
+    <string name="did_you_mean">Quis dizer \"%1$s\"\?</string>
     <string name="share_dialog_title">Partilhar com</string>
     <string name="choose_browser">Escolher navegador</string>
     <string name="screen_rotation">rotação</string>
@@ -27,9 +27,8 @@
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato de áudio predefinido</string>
     <string name="download_dialog_title">Transferir</string>
-    <string name="next_video_title">Seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \'Seguintes\' e \'Semelhantes\'</string>
-    <string name="url_not_supported_toast">URL não suportado</string>
+    <string name="unsupported_url">URL não suportado</string>
     <string name="content_language_title">Idioma do conteúdo predefinido</string>
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
     <string name="list_thumbnail_view_description">Miniatura de pré-visualização de vídeo</string>
@@ -43,7 +42,6 @@
     <string name="settings_category_appearance_title">Aparência</string>
     <string name="settings_category_other_title">Outros</string>
     <string name="background_player_playing_toast">Reprodução em segundo plano</string>
-    <string name="play_btn_text">Reproduzir</string>
     <string name="network_error">Erro de rede</string>
     <string name="use_tor_title">Usar Tor</string>
     <string name="use_tor_summary">(Experimental) Forçar o tráfego de transferência via Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>
@@ -66,7 +64,7 @@
     <string name="could_not_get_stream">Não foi possível obter a emissão</string>
     <string name="sorry_string">Desculpe, isso não deveria ter acontecido.</string>
     <string name="error_report_button_text">Reportar erro por e-mail</string>
-    <string name="error_snackbar_message">Desculpe, ocorreram alguns erros.</string>
+    <string name="error_snackbar_message">Desculpa, algo correu mal.</string>
     <string name="error_snackbar_action">Relatório</string>
     <string name="what_device_headline">Informação:</string>
     <string name="what_happened_headline">O que ocorreu:</string>
@@ -105,7 +103,7 @@
     <string name="msg_running">Transferência do NewPipe</string>
     <string name="could_not_load_image">Não foi possível carregar a imagem</string>
     <string name="app_ui_crash">Aplicação/IU terminou em erro</string>
-    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:</string>
+    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo\\nIdioma da app\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:</string>
     <string name="open_in_popup_mode">Abrir em modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
@@ -127,14 +125,14 @@
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="show_higher_resolutions_summary">Apenas alguns aparelhos suportam a reprodução de vídeos em 2K/4K</string>
     <string name="controls_popup_title">Popup</string>
-    <string name="popup_remember_size_pos_title">Lembrar tamanho e posição da janela</string>
+    <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filtrar</string>
     <string name="refresh">Atualizar</string>
     <string name="clear">Limpar</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="use_external_video_player_summary">Remove o áudio em algumas resoluções</string>
-    <string name="popup_remember_size_pos_summary">Lembrar último tamanho e posição da janela</string>
+    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do popup</string>
     <string name="popup_resizing_indicator_title">Redimensionar</string>
     <string name="player_gesture_controls_title">Controlo de reprodução por gestos</string>
     <string name="player_gesture_controls_summary">Utilizar gestos para controlar o brilho e o volume do reprodutor</string>
@@ -221,12 +219,10 @@
     <string name="select_a_channel">Selecione um canal</string>
     <string name="no_channel_subscribed_yet">Não existem canais subscritos</string>
     <string name="select_a_kiosk">Selecione um \"kiosk\"</string>
-    <string name="kiosk">Kiosk</string>
+    <string name="kiosk">Quiosque</string>
     <string name="trending">Tendências</string>
     <string name="top_50">Top 50</string>
-    <string name="new_and_hot">Tendências</string>
-    <string name="title_activity_background_player">Reprodutor em segundo plano</string>
-    <string name="title_activity_popup_player">Reprodutor \'popup\'</string>
+    <string name="new_and_hot">Novo e tendências</string>
     <string name="play_queue_remove">Remover</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="play_queue_audio_settings">Definições de áudio</string>
@@ -287,7 +283,7 @@
     <string name="override_current_data">Está prestes a substituir a configuração atual.</string>
     <string name="drawer_open">Abrir menu</string>
     <string name="drawer_close">Fechar menu</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="metadata_cache_wipe_title">Limpar os metadados em cache</string>
     <string name="metadata_cache_wipe_summary">Remover todos os dados da página da Web em cache</string>
     <string name="metadata_cache_wipe_complete_notice">Metadados em cache eliminados</string>
@@ -343,7 +339,7 @@
     <string name="playback_tempo">Ritmo</string>
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
     <string name="auto_queue_summary">Continuar terminando (sem repetição) a fila de reprodução anexando um vídeo relacionado</string>
-    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
+    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para pôr na fila\"</string>
     <string name="show_hold_to_append_summary">Mostrar sugestão quando o botão popup ou ambiente de trabalho é pressionado na página de detalhes do vídeo</string>
     <string name="channels">Canais</string>
     <string name="playlists">Listas de reprodução</string>
@@ -361,7 +357,7 @@
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o tempo livre deles para proporcionar-lhe a melhor experiência. Retribua para ajudar os programadores a tornarem o NewPipe ainda melhor enquanto desfruta de um café.</string>
     <string name="give_back">Retribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
-    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, o aplicativo não coleta nenhum dado sem seu consentimento. 
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, o aplicativo não coleta nenhum dado sem seu consentimento.
 \nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e salvo quando você envia um relatório de erros.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
     <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
@@ -377,7 +373,6 @@
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
     <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações.</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o eliminação</string>
@@ -478,7 +473,7 @@
     <string name="overwrite_failed">não é possível sobrescrever o ficheiro</string>
     <string name="download_already_pending">Existe uma transferência pendente com este nome</string>
     <string name="error_postprocessing_stopped">NewPipe foi fechado enquanto trabalhava no ficheiro</string>
-    <string name="error_insufficient_storage">Não há espaço disponível no dispositivo</string>
+    <string name="error_insufficient_storage">Não há espaço disponível no aparelho</string>
     <string name="error_progress_lost">Progresso perdido, porque o ficheiro foi eliminado</string>
     <string name="error_timeout">Tempo limite de conexão</string>
     <string name="confirm_prompt">Quer limpar o seu histórico de transferências ou apagar todos os ficheiros transferidos\?</string>
@@ -526,8 +521,6 @@
     <string name="recovering">recuperando</string>
     <string name="error_download_resource_gone">Não é possível recuperar esta transferência</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Miniatura do vídeo no ecrã de bloqueio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Uma miniatura de vídeo é mostrada no ecrã de bloqueio quando utilizando o leitor de fundo</string>
     <string name="clear_download_history">Limpar histórico de transferências</string>
     <string name="delete_downloaded_files">Apagar ficheiros transferidos</string>
     <string name="deleted_downloads">%1$d transferências apagadas</string>
@@ -557,7 +550,6 @@
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_create_new_group_button_title">Novo</string>
     <string name="feed_group_dialog_delete_message">Quer apagar este grupo\?</string>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="feed_group_dialog_empty_name">O nome do grupo está vazio</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d selecionada</item>
@@ -591,20 +583,20 @@
     <string name="mute">Silenciar</string>
     <string name="help">Ajuda</string>
     <string name="videos_string">Vídeos</string>
-    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe.
-\n
-\nEsperamos que seja suportado em uma versão futura.</string>
+    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. 
+\n 
+\nEsperamos que seja suportado numa versão futura.</string>
     <string name="infinite_videos">∞ vídeos</string>
     <string name="more_than_100_videos">+100 vídeos</string>
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>
-    <string name="restricted_video">Este vídeo tem restrição de idade.
+    <string name="restricted_video">Este vídeo é de idade restrita.
 \n
-\nSe quiser vê-lo, ative \"Conteúdo com restrição de idade\" nas definições.</string>
+\nAtive \"Conteúdo restrito à idade\" nas configurações se quiser vê-lo.</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
 \nTem certeza\? Isto não pode ser desfeito!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e tambem os vídeos parcialmente vistos</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e também os vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_title">Remover vídeos vistos\?</string>
     <string name="remove_watched">Remover vistos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de fluxo</string>
@@ -614,4 +606,34 @@
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar do canal</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas assinaturas não agrupadas</string>
+    <string name="playlist_page_summary">Página da lista de reprodução</string>
+    <string name="no_playlist_bookmarked_yet">Ainda não há marcadores de listas de reprodução</string>
+    <string name="select_a_playlist">Selecione uma lista de reprodução</string>
+    <string name="error_report_open_github_notice">Por favor, verifique se já existe um assunto a discutir o seu acidente. Criar bilhetes duplicados tirará-nos tempo que poderíamos gastar com a reparação do bug real.</string>
+    <string name="error_report_open_issue_button_text">Reportar no GitHub</string>
+    <string name="copy_for_github">Copiar relatório formatado</string>
+    <string name="search_showing_result_for">Mostrando resultados para: %s</string>
+    <string name="notification_action_3_title">Quarto botão de ação</string>
+    <string name="notification_action_2_title">Terceiro botão de ação</string>
+    <string name="notification_action_1_title">Segundo botão de ação</string>
+    <string name="notification_action_0_title">Primeiro botão de ação</string>
+    <string name="notification_scale_to_square_image_summary">Dimensionar a miniatura de vídeo mostrada na notificação de proporção de 16:9 a 1:1 (pode introduzir distorções)</string>
+    <string name="notification_scale_to_square_image_title">Dimensionar a miniatura à proporção de 1:1</string>
+    <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
+    <string name="title_activity_play_queue">Reproduzir a fila</string>
+    <string name="never">Nunca</string>
+    <string name="notification_action_buffering">A pôr no buffer</string>
+    <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
+    <string name="unsupported_url_dialog_message">Não foi possível reconhecer o URL. Abrir com outra app\?</string>
+    <string name="auto_queue_toggle">Pôr na fila automaticamente</string>
+    <string name="notification_action_shuffle">Baralhar</string>
+    <string name="settings_category_notification_title">Notificação</string>
+    <string name="wifi_only">Apenas no Wi-Fi</string>
+    <string name="notification_action_nothing">Nada</string>
+    <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
+    <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
+    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela. Selecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
+    <string name="notification_actions_at_most_three">Pode selecionar no máximo três ações para mostrar na notificação compacta!</string>
+    <string name="notification_action_repeat">Repetir</string>
+    <string name="notification_action_4_title">Quinto botão de ação</string>
 </resources>

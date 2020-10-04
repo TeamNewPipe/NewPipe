@@ -21,7 +21,7 @@
     <string name="use_external_video_player_title">Guna pemain video luaran</string>
     <string name="use_external_video_player_summary">Menghapus audio pada SESETENGAH resolusi</string>
     <string name="use_external_audio_player_title">Gunakan pemain audio luaran</string>
-    <string name="popup_mode_share_menu_title">Mod popup NewPipe</string>
+    <string name="popup_mode_share_menu_title">Mod popup</string>
     <string name="subscribe_button_title">Langgan</string>
     <string name="subscribed_button_title">Dilanggan</string>
     <string name="channel_unsubscribed">Langganan saluran dihenti</string>
@@ -49,7 +49,7 @@
     <string name="default_resolution_title">Resolusi utama</string>
     <string name="default_popup_resolution_title">Resolusi popup utama</string>
     <string name="show_higher_resolutions_title">Papar resolusi yang lebih tinggi</string>
-    <string name="show_higher_resolutions_summary">Hanya peranti tertentu yang mampu bermain video 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Hanya peranti tertentu yang boleh bermain video 2K/4K</string>
     <string name="play_with_kodi_title">Main dengan Kodi</string>
     <string name="kore_not_found">App Kore tidak dijumpai. Pasangkan\?</string>
     <string name="show_play_with_kodi_title">Paparkan opsyen \"Main dengan Kodi\"</string>
@@ -69,7 +69,7 @@
     <string name="download_thumbnail_summary">Matikan untuk mengelakkan pemuatan thumbnail, menjimat penggunaan data dan memori. Perubahan akan menghapus cache imej dalam memori dan disk.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache imej dihapuskan</string>
     <string name="metadata_cache_wipe_title">Hapuskan cache metadata</string>
-    <string name="metadata_cache_wipe_summary">"Hapuskan semua cache data halaman web "</string>
+    <string name="metadata_cache_wipe_summary">Hapuskan semua cache data halaman web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadata dihapuskan</string>
     <string name="auto_queue_title">Automatik beratur strim seterusnya</string>
     <string name="auto_queue_summary">Tambahkan secara automatik strim berkaitan apabila memain strim terakhir dalam giliran tidak berulang.</string>
@@ -88,11 +88,10 @@
     <string name="resume_on_audio_focus_gain_title">Teruskan apabila fokus</string>
     <string name="resume_on_audio_focus_gain_summary">Teruskan bermain selepas gangguan (contohnya panggilan telefon)</string>
     <string name="download_dialog_title">Muat turun</string>
-    <string name="next_video_title">Seterusnya</string>
     <string name="show_next_and_similar_title">Paparkan video \'Seterusnya\' dan \'Berkaitan\'</string>
     <string name="show_hold_to_append_title">Tunjukkan tip \"Pegang untuk menambahkan\"</string>
     <string name="show_hold_to_append_summary">Tunjukkan tip apabila butang latar belakang atau popup ditekan pada halaman butiran video</string>
-    <string name="url_not_supported_toast">URL tidak disokong</string>
+    <string name="unsupported_url">URL tidak disokong</string>
     <string name="default_content_country_title">Negara kandungan utama</string>
     <string name="service_title">Perkhidmatan</string>
     <string name="content_language_title">Bahasa kandungan utama</string>
@@ -109,7 +108,6 @@
     <string name="popup_playing_toast">Bermain dalam mod popup</string>
     <string name="background_player_append">Beratur pada pemain latar belakang</string>
     <string name="popup_playing_append">Beratur pada pemain popup</string>
-    <string name="play_btn_text">Main</string>
     <string name="content">Kandungan</string>
     <string name="show_age_restricted_content_title">Kandungan terhad umur</string>
     <string name="video_is_age_restricted">Tunjukkan video terhad umur. Membenarkan bahan tersebut boleh dilakukan dari Tetapan.</string>
@@ -328,8 +326,6 @@
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Baru &amp; panas</string>
     <string name="conferences">Persidangan</string>
-    <string name="title_activity_background_player">Pemain latar belakang</string>
-    <string name="title_activity_popup_player">Pemain popup</string>
     <string name="play_queue_remove">Hapuskan</string>
     <string name="play_queue_stream_detail">Butiran</string>
     <string name="play_queue_audio_settings">Tetapan Audio</string>
@@ -353,7 +349,7 @@
     <string name="create_playlist">Senarai Main Baru</string>
     <string name="delete_playlist">Padam</string>
     <string name="rename_playlist">Namakan semula</string>
-    <string name="playlist_name_input">Nama</string>
+    <string name="name">Nama</string>
     <string name="append_playlist">Tambah ke Senarai Main</string>
     <string name="set_as_playlist_thumbnail">Tetapkan sebagai Thumbnail Senarai Main</string>
     <string name="bookmark_playlist">Menanda senarai main</string>
@@ -370,7 +366,6 @@
     <string name="caption_auto_generated">Dibina secara automatik</string>
     <string name="caption_setting_title">Kapsyen</string>
     <string name="caption_setting_description">Ubah suai skala teks kapsyen pemain dan gaya latar belakang. Memerlukan aplikasi dimulakan semula untuk mula berkuatkuasa.</string>
-    <string name="enable_leak_canary_title">Dayakan LeakCanary</string>
     <string name="enable_leak_canary_summary">Pemantauan kebocoran memori boleh menyebabkan aplikasinya menjadi tidak bertindak balas semasa heap dumping</string>
     <string name="enable_disposed_exceptions_title">Laporkan kesilapan out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Memaksa pelaporan Rx yang tidak dapat dihantar di luar fragmen atau kitaran hayat aktiviti selepas pelupusan</string>
@@ -458,5 +453,5 @@
     <string name="pause_downloads_on_mobile_desc">Muat turun yang tidak dapat dihentikan akan dimulakan semula</string>
     <string name="missions_header_pending">Menunggu</string>
     <string name="download_choose_new_path">Ubah folder muat turun untuk melihat kesan</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Dayakan lakaran kecil video skrin kunci</string>
+    <string name="search_showing_result_for">Menunjuk carian untuk: %s</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Націсніце пошук, каб пачаць</string>
+    <string name="main_bg_subtitle">Націсніце \"Пошук\", каб пачаць</string>
     <string name="view_count_text">%1$s праглядаў</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы плэер не знойдзены. Усталяваць VLC?</string>
@@ -14,14 +14,14 @@
     <string name="controls_download_desc">Загрузка файла прамой трансляцыі</string>
     <string name="search">Пошук</string>
     <string name="settings">Налады</string>
-    <string name="did_you_mean">Магчыма, вы мелі на ўвазе: %1$s?</string>
+    <string name="did_you_mean">Магчыма, вы мелі на ўвазе \"%1$s\"\?</string>
     <string name="share_dialog_title">Падзяліцца з дапамогай</string>
     <string name="choose_browser">Выбраць браўзэр</string>
     <string name="screen_rotation">паварот</string>
     <string name="use_external_video_player_title">Знешні відэаплэер</string>
-    <string name="use_external_video_player_summary">Адключае гук для НЕКАТОРЫХ разрозненняў</string>
+    <string name="use_external_video_player_summary">Прыбірае гук у некаторых разрозненнях</string>
     <string name="use_external_audio_player_title">Знешні аўдыяплэер</string>
-    <string name="popup_mode_share_menu_title">NewPipe ў акне</string>
+    <string name="popup_mode_share_menu_title">NewPipe ва ўсплывальным акне</string>
     <string name="subscribe_button_title">Падпісацца</string>
     <string name="subscribed_button_title">Вы падпісаныя</string>
     <string name="channel_unsubscribed">Падпіска адменена</string>
@@ -35,11 +35,11 @@
     <string name="controls_background_title">У фоне</string>
     <string name="controls_popup_title">У акне</string>
     <string name="controls_add_to_playlist_title">Дадаць да</string>
-    <string name="download_path_title">Шлях загрузкі відэа</string>
+    <string name="download_path_title">Каталог для спампаванага відэа</string>
     <string name="download_path_summary">Папка для захоўвання загружаных відэа</string>
     <string name="download_path_dialog_title">Увядзіце шлях да папкі для загрузкі відэа</string>
     <string name="download_path_audio_title">Тэчка загрузкі аўдыё</string>
-    <string name="download_path_audio_summary">"Сюды захоўваецца загружанае аўдыё "</string>
+    <string name="download_path_audio_summary">Сюды захоўваецца загружанае аўдыё</string>
     <string name="download_path_audio_dialog_title">Увядзіце шлях да папкі для загрузкі аўдыё</string>
     <string name="autoplay_by_calling_app_title">Аўтапрайграванне</string>
     <string name="autoplay_by_calling_app_summary">Прайграваць відэа пры выкліку NewPipe з іншага прыкладання</string>
@@ -81,11 +81,10 @@
     <string name="resume_on_audio_focus_gain_title">Аднавіць пры фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Аднаўляць прайграванне пасля перапынкаў (напрыклад, тэлефонных званкоў)</string>
     <string name="download_dialog_title">Спампаваць</string>
-    <string name="next_video_title">Наступнае</string>
     <string name="show_next_and_similar_title">\"Наступнае\" и \"Прапанаванае\" відэа</string>
     <string name="show_hold_to_append_title">\"Зацісніце, каб дадаць\"</string>
     <string name="show_hold_to_append_summary">Паказаць падказку пры націсканні \"У акне\" ці \"У фоне\" на старонцы звестак аб відэа</string>
-    <string name="url_not_supported_toast">URL не падтрымліваецца</string>
+    <string name="unsupported_url">URL не падтрымліваецца</string>
     <string name="default_content_country_title">Краіна кантэнту па змаўчанні</string>
     <string name="service_title">Сэрвіс</string>
     <string name="content_language_title">Мова кантэнту па змаўчанні</string>
@@ -101,7 +100,6 @@
     <string name="popup_playing_toast">Прайграванне ва ўсплываючым акне</string>
     <string name="background_player_append">Дададзена ў чаргу ў фоне</string>
     <string name="popup_playing_append">Дададзена ў чаргу ў акне</string>
-    <string name="play_btn_text">Прайграць</string>
     <string name="content">Кантэнт</string>
     <string name="show_age_restricted_content_title">Кантэнт 18+</string>
     <string name="video_is_age_restricted">Відэа з узроставымі абмежаваннямі. Дазволіць падобны кантэнт можна ў \"Наладах\".</string>
@@ -314,8 +312,6 @@
     <string name="trending">Трэнды</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Новае і гарачае</string>
-    <string name="title_activity_background_player">У фоне</string>
-    <string name="title_activity_popup_player">У акне</string>
     <string name="play_queue_remove">Выдаліць</string>
     <string name="play_queue_stream_detail">Падрабязнасці</string>
     <string name="play_queue_audio_settings">Налады аўдыё</string>
@@ -339,7 +335,7 @@
     <string name="create_playlist">Стварыць плэйліст</string>
     <string name="delete_playlist">Выдаліць</string>
     <string name="rename_playlist">Перайменаваць</string>
-    <string name="playlist_name_input">Імя</string>
+    <string name="name">Імя</string>
     <string name="append_playlist">Дадаць у плэйліст</string>
     <string name="set_as_playlist_thumbnail">На мініяцюру плэйліста</string>
     <string name="bookmark_playlist">Дадаць плэйліст у закладкі</string>
@@ -356,7 +352,6 @@
     <string name="caption_auto_generated">Створаны аўтаматычна</string>
     <string name="caption_setting_title">Тытры</string>
     <string name="caption_setting_description">Змяніць памер тэкста і фон тытраў. Патрэбен перазапуск</string>
-    <string name="enable_leak_canary_title">Уключыць LeakCanary</string>
     <string name="enable_leak_canary_summary">Маніторынг уцечкі памяці можа прывесці да завісання прыкладання</string>
     <string name="enable_disposed_exceptions_title">Паведамляць пра памылкі жыццёвага цыклу</string>
     <string name="enable_disposed_exceptions_summary">Прымусова паведамляць пра недастаўляемыя Rx-выключэнні па-за фрагментам або жыццёвым цыкле пасля выдалення</string>
@@ -496,4 +491,12 @@
     <string name="downloads_storage_use_saf_title">Выкарыстоўваць SAF</string>
     <string name="downloads_storage_use_saf_summary">Storage Framework Access дазваляе захоўваць файлы на вонкавым назапашвальніку.
 \nПадтрымліваецца не ўсімі прыладамі</string>
+    <string name="drawer_header_description">Пераключыць службу, выбраную ў дадзены момант:</string>
+    <string name="clear_playback_states_summary">Выдаліць ўсе пазіцыі прайгравання</string>
+    <string name="youtube_restricted_mode_enabled_title">Абмежаваны рэжым YouTube</string>
+    <string name="peertube_instance_add_https_only">Падтрымліваюцца толькі адрасы URL HTTPS</string>
+    <string name="peertube_instance_add_title">Дадаць інстанцыю</string>
+    <string name="peertube_instance_url_title">Інстанцыі PeerTube</string>
+    <string name="download_choose_new_path">Змяніце папкі загрузкі, каб змены ўступілі ў сілу</string>
+    <string name="search_showing_result_for">Вынікі для: %s</string>
 </resources>

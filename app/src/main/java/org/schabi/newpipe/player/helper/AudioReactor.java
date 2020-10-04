@@ -114,7 +114,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
     private void onAudioFocusGain() {
         Log.d(TAG, "onAudioFocusGain() called");
         player.setVolume(DUCK_AUDIO_TO);
-        animateAudio(DUCK_AUDIO_TO, 1f);
+        animateAudio(DUCK_AUDIO_TO, 1.0f);
 
         if (PlayerHelper.isResumeAfterAudioFocusGain(context)) {
             player.setPlayWhenReady(true);
@@ -133,7 +133,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
     }
 
     private void animateAudio(final float from, final float to) {
-        ValueAnimator valueAnimator = new ValueAnimator();
+        final ValueAnimator valueAnimator = new ValueAnimator();
         valueAnimator.setFloatValues(from, to);
         valueAnimator.setDuration(AudioReactor.DUCK_DURATION);
         valueAnimator.addListener(new AnimatorListenerAdapter() {

@@ -89,7 +89,7 @@ public abstract class Postprocessing implements Serializable {
     }
 
     public void setTemporalDir(@NonNull File directory) {
-        long rnd = (int) (Math.random() * 100000f);
+        long rnd = (int) (Math.random() * 100000.0f);
         tempFile = new File(directory, rnd + "_" + System.nanoTime() + ".tmp");
     }
 
@@ -115,7 +115,7 @@ public abstract class Postprocessing implements Serializable {
         mission.done = 0;
 
         long length = mission.storage.length() - mission.offsets[0];
-        mission.length = length > mission.nearLength ? length : mission.nearLength;
+        mission.length = Math.max(length, mission.nearLength);
 
         final ProgressReport readProgress = (long position) -> {
             position -= mission.offsets[0];

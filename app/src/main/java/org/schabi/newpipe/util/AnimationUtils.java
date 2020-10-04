@@ -84,11 +84,11 @@ public final class AnimationUtils {
             String id;
             try {
                 id = view.getResources().getResourceEntryName(view.getId());
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 id = view.getId() + "";
             }
 
-            String msg = String.format("%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s", enterOrExit,
+            final String msg = String.format("%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s", enterOrExit,
                     view.getClass().getSimpleName(), id, animationType, duration, delay, execOnEnd);
             Log.d(TAG, "animateView()" + msg);
         }
@@ -158,17 +158,13 @@ public final class AnimationUtils {
         }
 
         final int[][] empty = new int[][]{new int[0]};
-        ValueAnimator viewPropertyAnimator = ValueAnimator
+        final ValueAnimator viewPropertyAnimator = ValueAnimator
                 .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());
         viewPropertyAnimator.setDuration(duration);
-        viewPropertyAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(final ValueAnimator animation) {
+        viewPropertyAnimator.addUpdateListener(animation ->
                 ViewCompat.setBackgroundTintList(view,
-                        new ColorStateList(empty, new int[]{(int) animation.getAnimatedValue()}));
-            }
-        });
+                        new ColorStateList(empty, new int[]{(int) animation.getAnimatedValue()})));
         viewPropertyAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(final Animator animation) {
@@ -201,16 +197,12 @@ public final class AnimationUtils {
                     + "colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]");
         }
 
-        ValueAnimator viewPropertyAnimator = ValueAnimator
+        final ValueAnimator viewPropertyAnimator = ValueAnimator
                 .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());
         viewPropertyAnimator.setDuration(duration);
-        viewPropertyAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(final ValueAnimator animation) {
-                view.setTextColor((int) animation.getAnimatedValue());
-            }
-        });
+        viewPropertyAnimator.addUpdateListener(animation ->
+                view.setTextColor((int) animation.getAnimatedValue()));
         viewPropertyAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(final Animator animation) {
@@ -233,7 +225,7 @@ public final class AnimationUtils {
                     + "from " + height + " to → " + targetHeight + " in: " + view);
         }
 
-        ValueAnimator animator = ValueAnimator.ofFloat(height, targetHeight);
+        final ValueAnimator animator = ValueAnimator.ofFloat(height, targetHeight);
         animator.setInterpolator(new FastOutSlowInInterpolator());
         animator.setDuration(duration);
         animator.addUpdateListener(animation -> {
@@ -430,7 +422,7 @@ public final class AnimationUtils {
                                                   final long duration, final long delay,
                                                   final Runnable execOnEnd) {
         if (enterOrExit) {
-            view.setTranslationY(-view.getHeight() / 2);
+            view.setTranslationY(-view.getHeight() / 2.0f);
             view.setAlpha(0f);
             view.animate()
                     .setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).translationY(0)
@@ -445,7 +437,7 @@ public final class AnimationUtils {
             }).start();
         } else {
             view.animate().setInterpolator(new FastOutSlowInInterpolator())
-                    .alpha(0f).translationY(-view.getHeight() / 2)
+                    .alpha(0f).translationY(-view.getHeight() / 2.0f)
                     .setDuration(duration).setStartDelay(delay)
                     .setListener(new AnimatorListenerAdapter() {
                 @Override
@@ -462,7 +454,7 @@ public final class AnimationUtils {
     public static void slideUp(final View view, final long duration, final long delay,
                                @FloatRange(from = 0.0f, to = 1.0f)
                                final float translationPercent) {
-        int translationY = (int) (view.getResources().getDisplayMetrics().heightPixels
+        final int translationY = (int) (view.getResources().getDisplayMetrics().heightPixels
                 * (translationPercent));
 
         view.animate().setListener(null).cancel();

@@ -23,6 +23,7 @@
         android:logo="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/OpeningTheme"
+        android:resizeableActivity="true"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
@@ -43,8 +44,9 @@
         </receiver>
 
         <service
-            android:name=".player.BackgroundPlayer"
-            android:exported="false">
+            android:name=".player.MainPlayer"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -52,24 +54,8 @@
 
         <activity
             android:name=".player.BackgroundPlayerActivity"
-            android:label="@string/title_activity_background_player"
+            android:label="@string/title_activity_play_queue"
             android:launchMode="singleTask" />
-
-        <activity
-            android:name=".player.PopupVideoPlayerActivity"
-            android:label="@string/title_activity_popup_player"
-            android:launchMode="singleTask" />
-
-        <service
-            android:name=".player.PopupVideoPlayer"
-            android:exported="false" />
-
-        <activity
-            android:name=".player.MainVideoPlayer"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:theme="@style/VideoPlayerTheme" />
 
         <activity
             android:name=".settings.SettingsActivity"
@@ -334,5 +320,11 @@
         <service
             android:name=".RouterActivity$FetcherService"
             android:exported="false" />
+
+        <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
+        <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
+        <meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>
+        <!-- Version >= 3.0. DeX Dual Mode support -->
+        <meta-data android:name="com.samsung.android.multidisplay.keep_process_alive" android:value="true"/>
     </application>
 </manifest>

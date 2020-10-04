@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -136,7 +136,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             final RecyclerView.ViewHolder itemHolder =
                     itemsList.findContainingViewHolder(focusedItem);
             return itemHolder.getAdapterPosition();
-        } catch (NullPointerException e) {
+        } catch (final NullPointerException e) {
             return -1;
         }
     }
@@ -169,7 +169,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         }
 
         itemsList.post(() -> {
-            RecyclerView.ViewHolder focusedHolder =
+            final RecyclerView.ViewHolder focusedHolder =
                     itemsList.findViewHolderForAdapterPosition(position);
 
             if (focusedHolder != null) {
@@ -279,7 +279,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                             selectedItem.getServiceId(),
                             selectedItem.getUrl(),
                             selectedItem.getName());
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                 }
             }
@@ -294,7 +294,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                             selectedItem.getServiceId(),
                             selectedItem.getUrl(),
                             selectedItem.getName());
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                 }
             }
@@ -367,7 +367,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");
         }
         super.onCreateOptionsMenu(menu, inflater);
-        ActionBar supportActionBar = activity.getSupportActionBar();
+        final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayShowTitleEnabled(true);
             if (useAsFrontPage) {

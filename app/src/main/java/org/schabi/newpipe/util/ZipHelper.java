@@ -44,10 +44,10 @@ public final class ZipHelper {
      */
     public static void addFileToZip(final ZipOutputStream outZip, final String file,
                                     final String name) throws Exception {
-        byte[] data = new byte[BUFFER_SIZE];
-        FileInputStream fi = new FileInputStream(file);
-        BufferedInputStream inputStream = new BufferedInputStream(fi, BUFFER_SIZE);
-        ZipEntry entry = new ZipEntry(name);
+        final byte[] data = new byte[BUFFER_SIZE];
+        final FileInputStream fi = new FileInputStream(file);
+        final BufferedInputStream inputStream = new BufferedInputStream(fi, BUFFER_SIZE);
+        final ZipEntry entry = new ZipEntry(name);
         outZip.putNextEntry(entry);
         int count;
         while ((count = inputStream.read(data, 0, BUFFER_SIZE)) != -1) {
@@ -69,11 +69,11 @@ public final class ZipHelper {
     public static boolean extractFileFromZip(final String filePath, final String file,
                                              final String name) throws Exception {
 
-        ZipInputStream inZip = new ZipInputStream(
+        final ZipInputStream inZip = new ZipInputStream(
                 new BufferedInputStream(
                         new FileInputStream(filePath)));
 
-        byte[] data = new byte[BUFFER_SIZE];
+        final byte[] data = new byte[BUFFER_SIZE];
 
         boolean found = false;
 
@@ -82,14 +82,14 @@ public final class ZipHelper {
             if (ze.getName().equals(name)) {
                 found = true;
                 // delete old file first
-                File oldFile = new File(file);
+                final File oldFile = new File(file);
                 if (oldFile.exists()) {
                     if (!oldFile.delete()) {
                         throw new Exception("Could not delete " + file);
                     }
                 }
 
-                FileOutputStream outFile = new FileOutputStream(file);
+                final FileOutputStream outFile = new FileOutputStream(file);
                 int count = 0;
                 while ((count = inZip.read(data)) != -1) {
                     outFile.write(data, 0, count);

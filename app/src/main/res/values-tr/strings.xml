@@ -11,7 +11,7 @@
     <string name="download">İndir</string>
     <string name="search">Ara</string>
     <string name="settings">Ayarlar</string>
-    <string name="did_you_mean">Bunu mu demek istediniz: %1$s\?</string>
+    <string name="did_you_mean">Bunu mu demek istediniz: \"%1$s\"\?</string>
     <string name="share_dialog_title">Şununla paylaş</string>
     <string name="choose_browser">Tarayıcı seçin</string>
     <string name="screen_rotation">döndürme</string>
@@ -35,16 +35,14 @@
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>
     <string name="download_dialog_title">İndir</string>
-    <string name="next_video_title">Sonraki</string>
     <string name="show_next_and_similar_title">\'Sonraki\' ve \'Benzer\' videoları göster</string>
-    <string name="url_not_supported_toast">Desteklenmeyen URL</string>
+    <string name="unsupported_url">Desteklenmeyen URL</string>
     <string name="content_language_title">Öntanımlı içerik dili</string>
     <string name="play_audio">Ses</string>
     <string name="settings_category_video_audio_title">Video ve ses</string>
     <string name="settings_category_appearance_title">Görünüm</string>
     <string name="settings_category_other_title">Diğer</string>
     <string name="background_player_playing_toast">Arka planda oynatılıyor</string>
-    <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş kısıtlamalı içerik</string>
     <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Daha sonra ayarlardan değiştirilebilir.</string>
@@ -65,11 +63,11 @@
     <string name="app_ui_crash">Uygulama/kullanıcı arayüzü çöktü</string>
     <string name="sorry_string">Üzgünüz, bu olmamalıydı.</string>
     <string name="error_report_button_text">Bu hatayı e-posta aracılığıyla bildir</string>
-    <string name="error_snackbar_message">Üzgünüz, bazı hatalar oluştu.</string>
+    <string name="error_snackbar_message">Üzgünüz, bir şeyler yanlış gitti.</string>
     <string name="error_snackbar_action">Bildir</string>
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
-    <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:</string>
+    <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nİçerik Ülkesi:\\nUygulama Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:</string>
     <string name="detail_thumbnail_view_description">Videoyu oynat, süre:</string>
     <string name="detail_uploader_thumbnail_view_description">Yükleyicinin avatar küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>
@@ -131,7 +129,7 @@
     <string name="filter">Filtrele</string>
     <string name="refresh">Yenile</string>
     <string name="clear">Temizle</string>
-    <string name="popup_remember_size_pos_title">Açılır pencere boyutunu ve konumunu hatırla</string>
+    <string name="popup_remember_size_pos_title">Açılır pencere özelliklerini hatırla</string>
     <string name="popup_remember_size_pos_summary">Açılan pencerenin son boyutunu ve konumunu hatırla</string>
     <string name="settings_category_popup_title">Açılır pencere</string>
     <string name="popup_resizing_indicator_title">Yeniden boyutlandırılıyor</string>
@@ -227,9 +225,7 @@
     <string name="kiosk">Kiosk</string>
     <string name="trending">Popüler</string>
     <string name="top_50">En iyi 50</string>
-    <string name="new_and_hot">En yeniler ve popülerler</string>
-    <string name="title_activity_background_player">Arkaplan oynatıcı</string>
-    <string name="title_activity_popup_player">Açılır pencere oynatıcı</string>
+    <string name="new_and_hot">Yeni ve popüler</string>
     <string name="play_queue_remove">Kaldır</string>
     <string name="play_queue_stream_detail">Ayrıntılar</string>
     <string name="play_queue_audio_settings">Ses Ayarları</string>
@@ -291,7 +287,7 @@
     <string name="create_playlist">Yeni Oynatma Listesi</string>
     <string name="delete_playlist">Sil</string>
     <string name="rename_playlist">Yeniden adlandır</string>
-    <string name="playlist_name_input">Ad</string>
+    <string name="name">Ad</string>
     <string name="append_playlist">Oynatma Listesine Ekle</string>
     <string name="set_as_playlist_thumbnail">Oynatma listesi küçük resmi olarak ayarla</string>
     <string name="bookmark_playlist">Oynatma listesini yer imlerine ekle</string>
@@ -308,7 +304,6 @@
     <string name="settings_category_debug_title">Hata ayıklama</string>
     <string name="drawer_header_action_paceholder_text">Yakında bir şeyler burada görünecek ;D</string>
     <string name="caption_auto_generated">Kendiliğinden oluşturulan</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Bellek sızıntısı izleme, yığın boşaltımı sırasında uygulamanın yanıt vermemesine neden olabilir</string>
     <string name="enable_disposed_exceptions_title">Yaşam döngüsü dışı hatalarını bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
@@ -378,7 +373,7 @@
     <string name="privacy_policy_encouragement">NewPipe projesi, gizliliğinizi çok ciddiye alıyor. Bu nedenle, uygulama sizin izniniz olmadan herhangi bir veri toplamaz.
 \nNewPipe\'ın gizlilik ilkesi, çökme raporu gönderdiğinizde hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar.</string>
     <string name="read_privacy_policy">Gizlilik ilkesini oku</string>
-    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun.
+    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun. 
 \nBize hata bildirimini göndermek için kabul etmelisiniz.</string>
     <string name="accept">Kabul et</string>
     <string name="decline">Reddet</string>
@@ -526,8 +521,6 @@
     <string name="recovering">kurtarılıyor</string>
     <string name="error_download_resource_gone">Bu indirme kurtarılamıyor</string>
     <string name="choose_instance_prompt">Oluşum seçin</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Kilit ekranı video küçük resmi</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Arka plan oynatıcıyı kullanırken kilit ekranında bir video küçük resmi gösterilir</string>
     <string name="clear_download_history">İndirme geçmişini temizle</string>
     <string name="delete_downloaded_files">İndirilen dosyaları sil</string>
     <string name="deleted_downloads">%1$d indirme silindi</string>
@@ -569,7 +562,6 @@
         <item quantity="other">%d seçildi</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Boş küme adı</string>
-    <string name="feed_group_dialog_name_input">Ad</string>
     <string name="feed_group_dialog_delete_message">Bu kümeyi silmek istiyor musunuz\?</string>
     <string name="feed_create_new_group_button_title">Yeni</string>
     <string name="settings_category_feed_title">Besleme</string>
@@ -601,7 +593,7 @@
     <string name="songs">Şarkılar</string>
     <string name="restricted_video">Bu video yaş kısıtlamalı.
 \n
-\nGörüntülemek istiyorsanız, ayarlarda \"Yaş kısıtlamalı içerik\" seçeneğini etkinleştirin.</string>
+\nGörmek istiyorsanız ayarlarda \"Yaş kısıtlamalı içerik\" seçeneğini açın.</string>
     <string name="remove_watched_popup_warning">Oynatma listesine eklendikten önce ve sonra izlenen videolar kaldırılacak.
 \nEmin misiniz\? Bu geri döndürülemez!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Evet ve kısmen izlenmiş videolar</string>
@@ -614,4 +606,34 @@
     <string name="channel_created_by">%s tarafından oluşturuldu</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar küçük resmi</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Yalnızca kümelenmemiş abonelikleri göster</string>
+    <string name="playlist_page_summary">Oynatma listesi sayfası</string>
+    <string name="select_a_playlist">Oynatma listesi seç</string>
+    <string name="error_report_open_issue_button_text">GitHub\'da bildir</string>
+    <string name="copy_for_github">Biçimlendirilmiş raporu kopyala</string>
+    <string name="search_showing_result_for">Sonuçlar gösteriliyor: %s</string>
+    <string name="error_report_open_github_notice">Lütfen yaşadığınız hatayı tartışan bildirimin daha önce oluşturulup oluşturulmadığını gözden geçirin. Yineleyen hata bildirimi oluşturarak, gerçek hatayı gidermekte harcadığımız zamanı uzatırsınız.</string>
+    <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
+    <string name="never">Asla</string>
+    <string name="wifi_only">Yalnızca Wi-Fi\'de</string>
+    <string name="autoplay_summary">Oynatmayı otomatik olarak başlat — %s</string>
+    <string name="title_activity_play_queue">Oynatma kuyruğu</string>
+    <string name="unsupported_url_dialog_message">URL tanınamadı. Başka bir uygulamayla açılsın mı\?</string>
+    <string name="auto_queue_toggle">Otomatik kuyruğa ekle</string>
+    <string name="clear_queue_confirmation_description">Etkin oynatıcının kuyruğu değiştirilecek</string>
+    <string name="clear_queue_confirmation_summary">Bir oynatıcıdan diğerine geçmek kuyruğunuzu değiştirebilir</string>
+    <string name="clear_queue_confirmation_title">Bir kuyruğu temizlemeden önce onay iste</string>
+    <string name="settings_category_notification_title">Bildirim</string>
+    <string name="notification_action_nothing">Hiçbir şey</string>
+    <string name="notification_action_buffering">Ara belleğe alınıyor</string>
+    <string name="notification_action_shuffle">Karıştır</string>
+    <string name="notification_action_repeat">Tekrarla</string>
+    <string name="notification_actions_at_most_three">Sıkı bildirimde gösterilecek en fazla üç eylem seçebilirsiniz!</string>
+    <string name="notification_actions_summary">Aşağıdaki her bildirim eylemini üzerine dokunarak düzenleyin. Sağdaki onay kutularını kullanarak sıkı bildirimde gösterilmek üzere en fazla üç tanesini seçin.</string>
+    <string name="notification_action_4_title">Beşinci eylem düğmesi</string>
+    <string name="notification_action_3_title">Dördüncü eylem düğmesi</string>
+    <string name="notification_action_2_title">Üçüncü eylem düğmesi</string>
+    <string name="notification_action_1_title">İkinci eylem düğmesi</string>
+    <string name="notification_action_0_title">Birinci eylem düğmesi</string>
+    <string name="notification_scale_to_square_image_summary">Bildirimde gösterilen video küçük resmini 16:9\'dan 1:1 en/boy oranına ölçeklendir (bozulmalara neden olabilir)</string>
+    <string name="notification_scale_to_square_image_title">Küçük resmi 1:1 en/boy oranına ölçeklendir</string>
 </resources>

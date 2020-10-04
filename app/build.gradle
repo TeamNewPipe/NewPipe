@@ -13,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 953
-        versionName "0.19.8"
+        versionCode 954
+        versionName "0.20.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -33,7 +33,7 @@ android {
 
             // suffix the app id and the app name with git branch name
             def workingBranch = getGitWorkingBranch()
-            def normalizedWorkingBranch = workingBranch.replaceAll("[^A-Za-z]+", "").toLowerCase()
+            def normalizedWorkingBranch = workingBranch.replaceFirst("^[^A-Za-z]+", "").replaceAll("[^0-9A-Za-z]+", "")
             if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
                 // default values when branch name could not be determined or is master or dev
                 applicationIdSuffix ".debug"
@@ -84,11 +84,12 @@ ext {
     checkstyleVersion = '8.32'
     stethoVersion = '1.5.1'
     leakCanaryVersion = '2.2'
-    exoPlayerVersion = '2.11.6'
+    exoPlayerVersion = '2.11.8'
     androidxLifecycleVersion = '2.2.0'
     androidxRoomVersion = '2.2.5'
     groupieVersion = '2.8.0'
     markwonVersion = '4.3.1'
+    googleAutoServiceVersion = '1.0-rc7'
 }
 
 configurations {
@@ -138,7 +139,7 @@ afterEvaluate {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     implementation "frankiesardo:icepick:${icepickVersion}"
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
@@ -163,17 +164,20 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:5ac80624a40f4c600ae493e66881b5bf008f0ddb'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:2463884aa8b696df5812f7feff553008bbd2f888'
 
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
     implementation "org.jsoup:jsoup:1.13.1"
 
-    implementation "com.squareup.okhttp3:okhttp:3.12.11"
+    implementation "com.squareup.okhttp3:okhttp:3.12.12"
 
     implementation "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"
     implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
 
     implementation "com.google.android.material:material:1.1.0"
+
+    compileOnly "com.google.auto.service:auto-service-annotations:${googleAutoServiceVersion}"
+    kapt "com.google.auto.service:auto-service:${googleAutoServiceVersion}"
 
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.preference:preference:1.1.1"
@@ -183,7 +187,6 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-livedata:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel:${androidxLifecycleVersion}"
-    implementation "androidx.lifecycle:lifecycle-extensions:${androidxLifecycleVersion}"
 
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
     implementation "androidx.room:room-rxjava2:${androidxRoomVersion}"
@@ -206,7 +209,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
-    implementation "org.ocpsoft.prettytime:prettytime:4.0.5.Final"
+    implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
 }
 
 static String getGitWorkingBranch() {

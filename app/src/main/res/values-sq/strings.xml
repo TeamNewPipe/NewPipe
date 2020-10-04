@@ -10,7 +10,7 @@
     <string name="download">Shkarko</string>
     <string name="search">Kërko</string>
     <string name="settings">Cilësimet</string>
-    <string name="did_you_mean">A po mendonit: %1$s\?</string>
+    <string name="did_you_mean">A po mendonit \"%1$s\"\?</string>
     <string name="share_dialog_title">Shpërndaje me</string>
     <string name="show_info">Shfaq informatat</string>
     <string name="tab_main">Menyja kryesore</string>
@@ -26,16 +26,14 @@
     <string name="enable_watch_history_title">Të shikuarat</string>
     <string name="enable_watch_history_summary">Ruaji videot e shikuara</string>
     <string name="download_dialog_title">Shkarko</string>
-    <string name="next_video_title">Tjetra</string>
     <string name="service_title">Shërbimi</string>
     <string name="content_language_title">Gjuha e dëshiruar e përmbajtjeve</string>
     <string name="settings_category_player_title">Luajtësi</string>
     <string name="settings_category_player_behavior_title">Sjellja</string>
-    <string name="settings_category_video_audio_title">Video &amp; audio</string>
-    <string name="settings_category_history_title">Historia &amp; depoja</string>
+    <string name="settings_category_video_audio_title">Video dhe audio</string>
+    <string name="settings_category_history_title">Historia dhe depoja</string>
     <string name="settings_category_appearance_title">Pamja</string>
     <string name="settings_category_other_title">Të tjera</string>
-    <string name="play_btn_text">Luaj</string>
     <string name="content">Përmbajtja</string>
     <string name="downloads">Shkarkimet</string>
     <string name="downloads_title">Shkarkimet</string>
@@ -182,7 +180,6 @@
     <string name="import_export_title">Importo/eksporto</string>
     <string name="enable_disposed_exceptions_title">Raporto gabimet e jashtë-ciklit-të-jetës</string>
     <string name="enable_leak_canary_summary">Monitorimi i rrjedhjeve të memorjes mund të bëjë aplikacionin të mos reagojë kur bëhet zbrazja e memorjes heap</string>
-    <string name="enable_leak_canary_title">KanarinaERrjedhjeve</string>
     <string name="caption_setting_description">Modifikoni shkallën e tekstit të titrave dhe llojet e sfondeve të luajtësit. Kërkon një rinisje të aplikacionit që të aplikohen ndryshimet.</string>
     <string name="caption_setting_title">Titrat</string>
     <string name="caption_auto_generated">E gjeneruar automatikisht</string>
@@ -202,7 +199,7 @@
     <string name="unmute">Me zë</string>
     <string name="mute">Pa zë</string>
     <string name="append_playlist">Shto në Listën e Luajtjes</string>
-    <string name="playlist_name_input">Emri</string>
+    <string name="name">Emri</string>
     <string name="rename_playlist">Riemërto</string>
     <string name="delete_playlist">Fshij</string>
     <string name="create_playlist">Listë Luajtje e Re</string>
@@ -226,13 +223,11 @@
     <string name="play_queue_audio_settings">Aranzhimet Audio</string>
     <string name="play_queue_stream_detail">Detaje</string>
     <string name="play_queue_remove">Hiq</string>
-    <string name="title_activity_popup_player">Luajtësi popup</string>
-    <string name="title_activity_background_player">Luajtësi në sfond</string>
     <string name="conferences">Konferencat</string>
     <string name="most_liked">Më të pëlqyerat</string>
     <string name="recently_added">Të shtuara së fundmi</string>
     <string name="local">Lokale</string>
-    <string name="new_and_hot">Të rejat &amp; të nxehtat</string>
+    <string name="new_and_hot">Të rejat dhe të nxehtat</string>
     <string name="top_50">Top 50</string>
     <string name="trending">E trendit</string>
     <string name="kiosk">Kioskë</string>
@@ -283,7 +278,7 @@
     <string name="view_on_github">Shikoje në GitHub</string>
     <string name="contribution_encouragement">Nëse keni ide rreth; përkthimeve, ndryshimeve në dizajn, pastrimit të kodit, apo ndryshime rrënjësore të kodit—ndihma është gjithnjë e mirëpritur. Sa më shumë të bëhet aq më mirë do jetë!</string>
     <string name="contribution_title">Kontribuo</string>
-    <string name="app_description">Streaming i lirë dhe i lehtë në Android.</string>
+    <string name="app_description">Luajtës i lehtë dhe libre në Android.</string>
     <string name="tab_licenses">Licensat</string>
     <string name="tab_contributors">Kontribuesit</string>
     <string name="tab_about">Rreth</string>
@@ -372,11 +367,11 @@
     <string name="list_thumbnail_view_description">Pamjet statike të parapamjes së videove</string>
     <string name="error_details_headline">Detajet:</string>
     <string name="your_comment">Komenti juaj (në Anglisht):</string>
-    <string name="info_labels">Çfarë:\\nKërkesa:\\nGjuha e përmbajtjes:\\nShërbimi:\\nKoha në GMT:\\nPaketa:\\nVersioni:\\nVersioni i sistemit operativ:</string>
+    <string name="info_labels">Çfarë:\\nKërkesa:\\nGjuha e përmbajtjes:\\nShteti i pëmbajtjes:\\nGjuha e aplikacionit:\\nShërbimi:\\nKoha në GMT:\\nPaketa:\\nVersioni:\\nVersioni i sistemit operativ:</string>
     <string name="what_happened_headline">Çfarë ndodhi:</string>
     <string name="what_device_headline">Informacion:</string>
     <string name="error_snackbar_action">Raporto</string>
-    <string name="error_snackbar_message">Na vjen keq, ndodhën disa probleme.</string>
+    <string name="error_snackbar_message">Na vjen keq, diçka shkoi keq.</string>
     <string name="error_report_button_text">Raportoni këtë problem përmes e-mailit</string>
     <string name="sorry_string">Na vjen keq, kjo nuk duhej të ndodhte.</string>
     <string name="permission_display_over_apps">Jepni leje për tu shfaqur mbi aplikacionet e tjera</string>
@@ -405,7 +400,7 @@
     <string name="subscribed_button_title">I abonuar</string>
     <string name="popup_mode_share_menu_title">Modaliteti popup</string>
     <string name="use_external_audio_player_title">Përdor lexues të jashtëm audio</string>
-    <string name="use_external_video_player_summary">Heq audio në disa rezolucione</string>
+    <string name="use_external_video_player_summary">Heq audio për disa rezolucione</string>
     <string name="use_external_video_player_title">Përdorni lexues video të jashtëm</string>
     <string name="screen_rotation">rrotullimi</string>
     <string name="choose_browser">Zgjidhni shfletuesin</string>
@@ -457,7 +452,6 @@
     <string name="settings_category_feed_title">Lista</string>
     <string name="feed_create_new_group_button_title">E re</string>
     <string name="feed_group_dialog_delete_message">A doni ta fshini këtë grup\?</string>
-    <string name="feed_group_dialog_name_input">Emri</string>
     <string name="feed_group_dialog_empty_name">Emër bosh i grupit</string>
     <string name="video_streams_empty">Nuk u gjendën stream për video</string>
     <string name="invalid_url_toast">URL e pasaktë</string>
@@ -528,7 +522,7 @@
     <string name="duration_live">Në kohë reale</string>
     <string name="restricted_video">Kjo video ka kufizime moshe.
 \n
-\nNëse doni ta shihni, aktivizoni \"Përmbajtje me moshë të kufizuar\" tek aranzhimet.</string>
+\nAktivizoni \"Përmbajtje me moshë të kufizuar\" tek aranzhimet nëse doni ta shihni.</string>
     <string name="video_is_age_restricted">Shfaq videot me moshë të kufizuar. Ndryshime të tjera janë të mundura nga aranzhimet.</string>
     <string name="show_age_restricted_content_title">Përmbajtje me moshë të kufizuar</string>
     <string name="popup_playing_append">U radhit në luajtësin popup</string>
@@ -546,7 +540,7 @@
     <string name="peertube_instance_url_summary">Zgjidhni instancat tuaja të preferuara të PeerTube</string>
     <string name="peertube_instance_url_title">Instancat PeerTube</string>
     <string name="default_content_country_title">Shteti i parazgjedhur i përmbajtjes</string>
-    <string name="url_not_supported_toast">URL e pambështetur</string>
+    <string name="unsupported_url">URL e pambështetur</string>
     <string name="show_hold_to_append_summary">Trego ndihmën kur shtypet sfondi ose butoni i popup në \"Detajet:\" e videos</string>
     <string name="show_hold_to_append_title">Trego ndihmën \"Mbaje shtypur për ta shtuar në listë\"</string>
     <string name="show_next_and_similar_title">Trego \'Tjetra\' dhe videot \'E ngjashme\'</string>
@@ -580,15 +574,13 @@
     <string name="use_inexact_seek_summary">Kërkuesi i pasaktë e lejon luajtësin që të kërkojë pozicionet më shpejt më saktësi të reduktuar. Kërkimi për 5, 15 ose 25 sekonda nuk punon me këtë.</string>
     <string name="use_inexact_seek_title">Përdor kërkuesin e pasaktë por të shpejtë</string>
     <string name="popup_remember_size_pos_summary">Mbaj mend madhësinë e fundit dhe pozicionin e popup</string>
-    <string name="popup_remember_size_pos_title">Mbaj mend madhësinë dhe rezolucionin e popup</string>
+    <string name="popup_remember_size_pos_title">Mbaj mend popup</string>
     <string name="dark_theme_title">E errët</string>
     <string name="light_theme_title">E bardhë</string>
     <string name="theme_title">Tema</string>
     <string name="default_video_format_title">Formati i parazgjedhur video</string>
     <string name="default_audio_format_title">Formati i parazgjedhur audio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Një pamje statike video shfaqet në ekranin e kyçur kur përdoret luajtësi në sfond</string>
-    <string name="show_play_with_kodi_summary">Shfaq një opsion për të luajtur një video përmes qendrës mediatike Kodi</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Pamja video në ekranin e kyçur</string>
+    <string name="show_play_with_kodi_summary">Shfaq një opsion për të luajtur videot përmes Kodi</string>
     <string name="show_play_with_kodi_title">Shfaq opsionin \"Luaj me Kodi\"</string>
     <string name="kore_not_found">Instaloni aplikacionin Kore që mungon\?</string>
     <string name="show_higher_resolutions_summary">Vetëm disa pajisje mund të luajnë video 2K/4K</string>
@@ -603,14 +595,45 @@
     <string name="download_path_summary">Skedarët video të shkarkuara ruhen këtu</string>
     <string name="no_player_found_toast">Nuk u gjend lexues për stream (ju mund të instaloni VLC për ta lexuar).</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Po, dhe videot e shikuara pjesërisht</string>
-    <string name="remove_watched_popup_warning">Videot që janë shikuar më parë dhe dhe pasi janë shtuar në listën e luajtjes do të hiqen.
+    <string name="remove_watched_popup_warning">Videot që janë shikuar më parë dhe pasi janë shtuar në listën e luajtjes do të hiqen.
 \nA jeni të sigurt\? Kjo nuk mund të zhbëhet!</string>
     <string name="remove_watched_popup_title">Dëshironi t\'i hiqni videot e para\?</string>
     <string name="remove_watched">Hiq të parat</string>
-    <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do të jenë të dukshme në objektet e stream</string>
+    <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do shihen në produktet e luajtshme</string>
     <string name="show_original_time_ago_title">Shfaq titullin origjinal \"kohë më parë\" në objekte</string>
-    <string name="youtube_restricted_mode_enabled_title">Modaliteti i kufizuar i NewPipe</string>
+    <string name="youtube_restricted_mode_enabled_title">Modaliteti i censuruar i NewPipe</string>
     <string name="detail_sub_channel_thumbnail_view_description">Pamja statike e avatarit të kanalit</string>
     <string name="video_detail_by">Nga %s</string>
     <string name="channel_created_by">Krijuar nga %s</string>
+    <string name="playlist_page_summary">Faqja e listës së luajtjes</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Shfaq vetëm abonimet e pagrupuara</string>
+    <string name="no_playlist_bookmarked_yet">Nuk ka ende shënjues të listave të luajtjes</string>
+    <string name="select_a_playlist">Zgjidhni një listë luajtjeje</string>
+    <string name="error_report_open_github_notice">Ju lutemi kontrolloni nëse një raport ku diskutohet problemi ekziston tashmë. Kur krijoni raporte të duplikuara, ju merrni më tepër kohë nga ne, kohë të cilën mund ta shpenzonim mbi rregullimin e problemit aktual.</string>
+    <string name="error_report_open_issue_button_text">Raporto në GitHub</string>
+    <string name="copy_for_github">Kopjo raportin e formatuar</string>
+    <string name="search_showing_result_for">Duke shfaqur rezultatet për: %s</string>
+    <string name="wifi_only">Vetëm në Wi-Fi</string>
+    <string name="notification_actions_summary">Redakto çdo veprim njoftimi më poshtë duke shtypur mbi të. Zgjidhni deri në tre prej tyre që të shfaqen në njoftimin kompakt duke përdorur kutitë në të djathtë.</string>
+    <string name="never">Kurrë</string>
+    <string name="autoplay_summary">Nise luajtjen automatikisht — %s</string>
+    <string name="title_activity_play_queue">Lista e luajtjes</string>
+    <string name="settings_category_notification_title">Njoftim</string>
+    <string name="unsupported_url_dialog_message">Nuk u njoh URL. Të hapet me një aplikacion tjetër\?</string>
+    <string name="auto_queue_toggle">Listë automatike luajtjeje</string>
+    <string name="clear_queue_confirmation_description">Lista aktive e luajtjes do të zëvendësohet</string>
+    <string name="clear_queue_confirmation_summary">Kalimi nga një luajtës në një tjetër mund të zëvendësojë listën tuaj të luajtjes</string>
+    <string name="clear_queue_confirmation_title">Pyet për konfirmim para se të boshatiset një rradhë luajtjeje</string>
+    <string name="notification_action_nothing">Asgjë</string>
+    <string name="notification_action_buffering">Ngarkimi</string>
+    <string name="notification_action_shuffle">Trazo</string>
+    <string name="notification_action_repeat">Përsërit</string>
+    <string name="notification_actions_at_most_three">Ju mund të zgjidhni e shumta tre veprime për të shfaqur në njoftimin kompakt!</string>
+    <string name="notification_action_4_title">Butoni i pestë i veprimit</string>
+    <string name="notification_action_3_title">Butoni i katërt i veprimit</string>
+    <string name="notification_action_2_title">Butoni i tretë i veprimit</string>
+    <string name="notification_action_1_title">Butoni i dytë i veprimit</string>
+    <string name="notification_action_0_title">Butoni i parë i veprimit</string>
+    <string name="notification_scale_to_square_image_summary">Shkallëzoje pamjen miniaturë të videos së treguar në njoftim nga aspekti 16:9 në 1:1 (mund të shfaqë deformime)</string>
+    <string name="notification_scale_to_square_image_title">Shkallëzoje pamjen miniaturë në aspektin 1:1</string>
 </resources>

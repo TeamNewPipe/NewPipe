@@ -123,7 +123,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     + infoItemList.size() + ", data.size() = " + data.size());
         }
 
-        int offsetStart = sizeConsideringHeaderOffset();
+        final int offsetStart = sizeConsideringHeaderOffset();
         infoItemList.addAll(data);
 
         if (DEBUG) {
@@ -135,7 +135,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyItemRangeInserted(offsetStart, data.size());
 
         if (footer != null && showFooter) {
-            int footerNow = sizeConsideringHeaderOffset();
+            final int footerNow = sizeConsideringHeaderOffset();
             notifyItemMoved(offsetStart, footerNow);
 
             if (DEBUG) {
@@ -160,7 +160,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     + infoItemList.size() + ", thread = " + Thread.currentThread());
         }
 
-        int positionInserted = sizeConsideringHeaderOffset();
+        final int positionInserted = sizeConsideringHeaderOffset();
         infoItemList.add(data);
 
         if (DEBUG) {
@@ -172,7 +172,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyItemInserted(positionInserted);
 
         if (footer != null && showFooter) {
-            int footerNow = sizeConsideringHeaderOffset();
+            final int footerNow = sizeConsideringHeaderOffset();
             notifyItemMoved(positionInserted, footerNow);
 
             if (DEBUG) {
@@ -191,7 +191,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void setHeader(final View header) {
-        boolean changed = header != this.header;
+        final boolean changed = header != this.header;
         this.header = header;
         if (changed) {
             notifyDataSetChanged();
@@ -219,7 +219,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private int sizeConsideringHeaderOffset() {
-        int i = infoItemList.size() + (header != null ? 1 : 0);
+        final int i = infoItemList.size() + (header != null ? 1 : 0);
         if (DEBUG) {
             Log.d(TAG, "sizeConsideringHeaderOffset() called → " + i);
         }
@@ -347,7 +347,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
                                  @NonNull final List<Object> payloads) {
         if (!payloads.isEmpty() && holder instanceof InfoItemHolder) {
-            for (Object payload : payloads) {
+            for (final Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
                     ((InfoItemHolder) holder).updateState(infoItemList
                             .get(header == null ? position : position - 1), recordManager);

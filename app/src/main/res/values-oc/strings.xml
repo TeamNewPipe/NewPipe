@@ -54,9 +54,7 @@
     <string name="play_with_kodi_title">Jogar amb Kodi</string>
     <string name="kore_not_found">Trobam pas l\'aplicacion Kore. La volètz installar\?</string>
     <string name="show_play_with_kodi_title">Afichar l\'opcion \"Legir amb Kodi\"</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Activar la vidèo miniatura sus l\'ecran de blocatge</string>
     <string name="show_play_with_kodi_summary">Afichar una opcion per legir una vidèo dempuèi Kodi</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">En utilizant lo legidor de rèireplan, una vidèo miniatura s\'aficharà sus l\'ecran de blocatge</string>
     <string name="play_audio">Àudio</string>
     <string name="default_audio_format_title">Format àudio per defaut</string>
     <string name="default_video_format_title">Format vidèo per defaut</string>

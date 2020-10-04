@@ -230,7 +230,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         }
         Toast.makeText(activity, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
         // Starting ReCaptcha Challenge Activity
-        Intent intent = new Intent(activity, ReCaptchaActivity.class);
+        final Intent intent = new Intent(activity, ReCaptchaActivity.class);
         intent.putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA, exception.getUrl());
         startActivityForResult(intent, ReCaptchaActivity.RECAPTCHA_REQUEST);
 

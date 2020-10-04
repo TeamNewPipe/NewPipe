@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Սեղմեք որոնման կոճակը որ սկսել</string>
     <string name="search">Որոնել</string>
@@ -8,7 +8,6 @@
     <string name="share">Կիսվել</string>
     <string name="black_theme_title">Սև</string>
     <string name="theme_title">Թեմա</string>
-    <string name="next_video_title">Հաջորդ վիդեո</string>
     <string name="light_theme_title">Բաց</string>
     <string name="dark_theme_title">Մուգ</string>
     <string name="msg_wait">Սպասեք…</string>
@@ -18,8 +17,6 @@
     <string name="finish">Այո</string>
     <string name="delete">Ջնջել</string>
     <string name="start">Սկսել</string>
-
-
     <string name="detail_likes_img_view_description">Հավանում եմ</string>
     <string name="detail_dislikes_img_view_description">Չեմ հավանում</string>
     <string name="clear">Մաքրել</string>
@@ -29,4 +26,32 @@
     <string name="cancel">Վերացնել</string>
     <string name="open_in_browser">Բացել բրաուզերում</string>
     <string name="choose_browser">Ընտրեք բրաուզերը</string>
+    <string name="download_path_audio_title">Ձայնային բեռնման պանակ</string>
+    <string name="download_path_dialog_title">Ընտրեք ներբեռնման թղթապանակը տեսաֆայլերի համար</string>
+    <string name="download_path_summary">Ներբեռնված տեսաֆայլերը պահվում են այստեղ</string>
+    <string name="download_path_title">Տեսանյութի ներբեռնման պանակ</string>
+    <string name="controls_add_to_playlist_title">Ավելացնել</string>
+    <string name="controls_popup_title">Թռուցիկ</string>
+    <string name="controls_background_title">Ետին պլան</string>
+    <string name="tab_choose">Ընտրեք ներդիր</string>
+    <string name="tab_new">Նոր էջանշան</string>
+    <string name="tab_bookmarks">Էջանշված երգացանկեր</string>
+    <string name="tab_subscriptions">Բաժանորդագրումները</string>
+    <string name="tab_main">Հիմնական</string>
+    <string name="show_info">Ցուցադրել տեղեկույթը</string>
+    <string name="subscription_update_failed">Հնարավոր չէ թարմացնել բաժանորդագրումը</string>
+    <string name="subscription_change_failed">Հնարավոր չէ փոխել Բաժանորդագրումը</string>
+    <string name="channel_unsubscribed">Չեղարկել բաժանորդագրման հեռացումը</string>
+    <string name="unsubscribe">Բաժանորդագրման հեռացու</string>
+    <string name="subscribe_button_title">Բաժանորդագրվել</string>
+    <string name="use_external_video_player_summary">Հառացնում է ձայնը որոշ լուծաչափերոկմ</string>
+    <string name="screen_rotation">Դիրք</string>
+    <string name="share_dialog_title">Կիսվել</string>
+    <string name="controls_download_desc">Բեռնել հոսքի նշքը</string>
+    <string name="open_in_popup_mode">Բացել լողացող պատուհանում</string>
+    <string name="no_player_found_toast">Նվագարկիչ չի գտնվել (դուք կարող եք լբեռնել VLC և դիտել)։</string>
+    <string name="no_player_found">Նվագարկիչ չի գտնվել, ցանկանո՞ւմ եք բեռնել VLC։</string>
+    <string name="use_external_audio_player_title">Օգտագործել արտաքին աուդիո նվագարկիչ</string>
+    <string name="use_external_video_player_title">Օգտագործել արտաքին դերակատար</string>
+    <string name="popup_mode_share_menu_title">Լողացող ռեժիմ NewPipe</string>
 </resources>

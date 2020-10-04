@@ -35,15 +35,13 @@
     <string name="dark_theme_title">Темна</string>
     <string name="light_theme_title">Світла</string>
     <string name="download_dialog_title">Завантажити</string>
-    <string name="next_video_title">Наступне</string>
     <string name="show_next_and_similar_title">Показувати \"Наступне\" і \"Схожі\" відео</string>
-    <string name="url_not_supported_toast">URL не підтримується</string>
+    <string name="unsupported_url">URL не підтримується</string>
     <string name="content_language_title">Переважна мова контенту</string>
     <string name="settings_category_video_audio_title">Відео та Аудіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="settings_category_other_title">Інше</string>
     <string name="background_player_playing_toast">Програвання у тлі</string>
-    <string name="play_btn_text">Програти</string>
     <string name="storage_permission_denied">Немає доступу до накопичувача</string>
     <string name="content">Контент</string>
     <string name="show_age_restricted_content_title">Контент з віковими обмеженнями</string>
@@ -289,8 +287,6 @@
     <string name="override_current_data">Це перезапише ваші поточні налаштування.</string>
     <string name="kiosk">Кіоски</string>
     <string name="trending">Набуває популярності</string>
-    <string name="title_activity_background_player">Програвач у тлі</string>
-    <string name="title_activity_popup_player">Програвач у вікні</string>
     <string name="play_queue_remove">Видалити</string>
     <string name="hold_to_append">Утримуйте, щоб додати в чергу</string>
     <string name="enqueue_on_background">Додати до фону</string>
@@ -305,7 +301,7 @@
     <string name="create_playlist">Новий список відтворення</string>
     <string name="delete_playlist">Видалити</string>
     <string name="rename_playlist">Змінити назву</string>
-    <string name="playlist_name_input">Назва</string>
+    <string name="name">Назва</string>
     <string name="append_playlist">Додати до списку відтворення</string>
     <string name="set_as_playlist_thumbnail">Призначити ескізом списку відтворення</string>
     <string name="bookmark_playlist">Додати список відтворення до закладок</string>
@@ -320,7 +316,6 @@
     <string name="resize_fill">Заповнити</string>
     <string name="resize_zoom">Збільшити</string>
     <string name="caption_auto_generated">Створені автоматично</string>
-    <string name="enable_leak_canary_title">Увімкнути LeakCanary</string>
     <string name="enable_leak_canary_summary">Моніторинг втрат пам\'яті може призвести до нереагування застосунку під час запису дампу</string>
     <string name="enable_disposed_exceptions_title">Звітувати про помилки життєвого циклу застосунку</string>
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx-винятків, які відбуваються за межами фрагменту або діяльності життєвого циклу після усунення</string>
@@ -529,8 +524,6 @@
     <string name="recovering">відновлюється</string>
     <string name="error_download_resource_gone">Неможливо відновити це завантаження</string>
     <string name="choose_instance_prompt">Вибрати екземпляр</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Прев’ю відео на екрані блокування</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Прев’ю відео буде показано на екрані блокування при використанні фонового плеєра</string>
     <string name="clear_download_history">Очистити історію завантажень</string>
     <string name="delete_downloaded_files">Видалити завантажені файли</string>
     <string name="permission_display_over_apps">Потрібен дозвіл показувати поверх інших додатків</string>
@@ -540,7 +533,6 @@
     <string name="recaptcha_done_button">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>
     <string name="feed_group_dialog_delete_message">Ви бажаєте видалити цю групу\?</string>
-    <string name="feed_group_dialog_name_input">Назва</string>
     <string name="feed_group_dialog_empty_selection">Підписки не вибрані</string>
     <string name="feed_groups_header_title">Групи каналів</string>
     <plurals name="days">
@@ -622,4 +614,13 @@
     <string name="detail_sub_channel_thumbnail_view_description">Ескіз аватара каналу</string>
     <string name="show_original_time_ago_summary">Оригінальні тексти сервісів будуть видимі в потокових елементах</string>
     <string name="youtube_restricted_mode_enabled_title">Режим обмеженого доступу YouTube</string>
+    <string name="search_showing_result_for">Результати для: %s</string>
+    <string name="channel_created_by">Створено %s</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Показати лише незгруповані підписки</string>
+    <string name="copy_for_github">Скопіювати відформатований звіт</string>
+    <string name="error_report_open_issue_button_text">Повідомити про помилку на GitBub</string>
+    <string name="error_report_open_github_notice">Перевірте, будь ласка, чи проблема що спричинила збій вже відома спільноті та розробникам. Дублюючи запити на вирішення помилок Ви забираєте час розробників який можна було б так на вирішення існуючих проблем.</string>
+    <string name="select_a_playlist">Вибрати плейліст</string>
+    <string name="no_playlist_bookmarked_yet">Жоден плейліст ще не додано</string>
+    <string name="playlist_page_summary">Сторінка плейлісту</string>
 </resources>

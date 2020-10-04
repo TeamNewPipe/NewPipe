@@ -98,7 +98,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private boolean isRemovingWatched = false;
 
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
-        LocalPlaylistFragment instance = new LocalPlaylistFragment();
+        final LocalPlaylistFragment instance = new LocalPlaylistFragment();
         instance.setInitialData(playlistId, name);
         return instance;
     }
@@ -177,7 +177,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             public void selected(final LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistStreamEntry) {
                     final PlaylistStreamEntry item = (PlaylistStreamEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(getFragmentManager(),
+                    NavigationHelper.openVideoDetailFragment(getFM(),
                             item.getStreamEntity().getServiceId(), item.getStreamEntity().getUrl(),
                             item.getStreamEntity().getTitle());
                 }
@@ -411,7 +411,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     if (removePartiallyWatched) {
                         while (playlistIter.hasNext()) {
                             final PlaylistStreamEntry playlistItem = playlistIter.next();
-                            int indexInHistory = Collections.binarySearch(historyStreamIds,
+                            final int indexInHistory = Collections.binarySearch(historyStreamIds,
                                     playlistItem.getStreamId());
 
                             if (indexInHistory < 0) {
@@ -427,7 +427,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                                 .loadLocalStreamStateBatch(playlist).blockingGet().iterator();
 
                         while (playlistIter.hasNext()) {
-                            PlaylistStreamEntry playlistItem = playlistIter.next();
+                            final PlaylistStreamEntry playlistItem = playlistIter.next();
                             final int indexInHistory = Collections.binarySearch(historyStreamIds,
                                     playlistItem.getStreamId());
 
@@ -492,7 +492,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         setVideoCount(itemListAdapter.getItemsList().size());
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), false));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), true));
         headerPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->
@@ -544,7 +544,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         final View dialogView = View.inflate(getContext(), R.layout.dialog_playlist_name, null);
-        EditText nameEdit = dialogView.findViewById(R.id.playlist_name);
+        final EditText nameEdit = dialogView.findViewById(R.id.playlist_name);
         nameEdit.setText(name);
         nameEdit.setSelection(nameEdit.getText().length());
 
@@ -553,9 +553,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setView(dialogView)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.rename, (dialogInterface, i) -> {
-                    changePlaylistName(nameEdit.getText().toString());
-                });
+                .setPositiveButton(R.string.rename, (dialogInterface, i) ->
+                        changePlaylistName(nameEdit.getText().toString()));
 
         dialogBuilder.show();
     }
@@ -601,7 +600,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void updateThumbnailUrl() {
-        String newThumbnailUrl;
+        final String newThumbnailUrl;
 
         if (!itemListAdapter.getItemsList().isEmpty()) {
             newThumbnailUrl = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0))
@@ -662,7 +661,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         final List<LocalItem> items = itemListAdapter.getItemsList();
-        List<Long> streamIds = new ArrayList<>(items.size());
+        final List<Long> streamIds = new ArrayList<>(items.size());
         for (final LocalItem item : items) {
             if (item instanceof PlaylistStreamEntry) {
                 streamIds.add(((PlaylistStreamEntry) item).getStreamId());
@@ -815,7 +814,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         final List<LocalItem> infoItems = itemListAdapter.getItemsList();
-        List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
+        final List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
         for (final LocalItem item : infoItems) {
             if (item instanceof PlaylistStreamEntry) {
                 streamInfoItems.add(((PlaylistStreamEntry) item).toStreamInfoItem());

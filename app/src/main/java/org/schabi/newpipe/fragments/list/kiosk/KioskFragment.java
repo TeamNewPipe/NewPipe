@@ -72,9 +72,9 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     public static KioskFragment getInstance(final int serviceId, final String kioskId)
             throws ExtractionException {
-        KioskFragment instance = new KioskFragment();
-        StreamingService service = NewPipe.getService(serviceId);
-        ListLinkHandlerFactory kioskLinkHandlerFactory = service.getKioskList()
+        final KioskFragment instance = new KioskFragment();
+        final StreamingService service = NewPipe.getService(serviceId);
+        final ListLinkHandlerFactory kioskLinkHandlerFactory = service.getKioskList()
                 .getListLinkHandlerFactoryByType(kioskId);
         instance.setInitialData(serviceId,
                 kioskLinkHandlerFactory.fromId(kioskId).getUrl(), kioskId);
@@ -101,7 +101,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         if (useAsFrontPage && isVisibleToUser && activity != null) {
             try {
                 setTitle(kioskTranslatedName);
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 onUnrecoverableError(e, UserAction.UI_ERROR,
                         "none",
                         "none", R.string.app_ui_crash);
@@ -132,7 +132,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        ActionBar supportActionBar = activity.getSupportActionBar();
+        final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null && useAsFrontPage) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         }

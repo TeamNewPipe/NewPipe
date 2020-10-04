@@ -10,6 +10,7 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.R;
 
 import java.io.File;
+import java.util.Set;
 
 /*
  * Created by k3b on 07.01.2016.
@@ -38,6 +39,22 @@ public final class NewPipeSettings {
     private NewPipeSettings() { }
 
     public static void initSettings(final Context context) {
+        // check if there are entries in the prefs to determine whether this is the first app run
+        Boolean isFirstRun = null;
+        final Set<String> prefsKeys = PreferenceManager.getDefaultSharedPreferences(context)
+                .getAll().keySet();
+        for (final String key: prefsKeys) {
+            // ACRA stores some info in the prefs during app initialization
+            // which happens before this method is called. Therefore ignore ACRA-related keys.
+            if (!key.toLowerCase().startsWith("acra")) {
+                isFirstRun = false;
+                break;
+            }
+        }
+        if (isFirstRun == null) {
+            isFirstRun = true;
+        }
+
         PreferenceManager.setDefaultValues(context, R.xml.appearance_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.content_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.download_settings, true);
@@ -48,6 +65,8 @@ public final class NewPipeSettings {
 
         getVideoDownloadFolder(context);
         getAudioDownloadFolder(context);
+
+        SettingMigrations.initMigrations(context, isFirstRun);
     }
 
     private static void getVideoDownloadFolder(final Context context) {
@@ -60,14 +79,14 @@ public final class NewPipeSettings {
 
     private static void getDir(final Context context, final int keyID,
                                final String defaultDirectoryName) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String key = context.getString(keyID);
-        String downloadPath = prefs.getString(key, null);
+        final String downloadPath = prefs.getString(key, null);
         if ((downloadPath != null) && (!downloadPath.isEmpty())) {
             return;
         }
 
-        SharedPreferences.Editor spEditor = prefs.edit();
+        final SharedPreferences.Editor spEditor = prefs.edit();
         spEditor.putString(key, getNewPipeChildFolderPathForDir(getDir(defaultDirectoryName)));
         spEditor.apply();
     }

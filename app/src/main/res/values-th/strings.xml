@@ -86,12 +86,11 @@
     <string name="enable_watch_history_summary">เก็บประวัติการเข้าดูวีดิโอไว้</string>
     <string name="resume_on_audio_focus_gain_summary">เล่นต่อหลังการขัดจังหวะ (เช่น การรับโทรศัพท์)</string>
     <string name="download_dialog_title">ดาวน์โหลด</string>
-    <string name="next_video_title">วีดีโอถัดไป</string>
     <string name="autoplay_title">เล่นอัตโนมัติ</string>
     <string name="show_next_and_similar_title">แสดงวิดีโอ \'ถัดไป\' และ \'ที่คล้ายกัน\'</string>
     <string name="show_hold_to_append_title">แสดงเคล็ดลับ \"แตะค้างเพื่อเพิ่ม\"</string>
     <string name="show_hold_to_append_summary">แสดงเคล็ดลับเมื่อกดปุ่มพื้นหลังหรือป๊อปอัพในหน้ารายละเอียดวิดีโอ</string>
-    <string name="url_not_supported_toast">URL ที่ไม่สนับสนุน</string>
+    <string name="unsupported_url">URL ที่ไม่สนับสนุน</string>
     <string name="default_content_country_title">ประเทศเริ่มต้นของเนื้อหา</string>
     <string name="service_title">บริการ</string>
     <string name="content_language_title">ภาษาของเนื้อหาเริ่มต้น</string>
@@ -108,7 +107,6 @@
     <string name="popup_playing_toast">กำลังเล่นในโหมดป๊อปอัพ</string>
     <string name="background_player_append">จัดคิวลงในการเล่นโหมดพื้นหลังแล้ว</string>
     <string name="popup_playing_append">จัดคิวลงในการเล่นโหมดป๊อปอัพแล้ว</string>
-    <string name="play_btn_text">เล่น</string>
     <string name="content">เนื้อหา</string>
     <string name="show_age_restricted_content_title">เนื้อหาที่จำกัดอายุ</string>
     <string name="video_is_age_restricted">แสดงวิดีโอที่จำกัดอายุ การอนุญาตดังกล่าวเป็นไปได้จากการตั้งค่า</string>
@@ -311,8 +309,6 @@
     <string name="top_50">50 อันดับแรก</string>
     <string name="new_and_hot">ใหม่และมาแรง</string>
     <string name="conferences">การประชุม</string>
-    <string name="title_activity_background_player">เครื่องเล่นพื้นหลัง</string>
-    <string name="title_activity_popup_player">เครื่องเล่นป๊อปอัพ</string>
     <string name="play_queue_remove">เอาออก</string>
     <string name="play_queue_stream_detail">รายละเอียด</string>
     <string name="play_queue_audio_settings">การตั้งค่าเสียง</string>
@@ -334,7 +330,7 @@
     <string name="create_playlist">เพลย์ลิสต์ใหม่</string>
     <string name="delete_playlist">ลบ</string>
     <string name="rename_playlist">เปลี่ยนชื่อ</string>
-    <string name="playlist_name_input">ชื่อ</string>
+    <string name="name">ชื่อ</string>
     <string name="append_playlist">เพิ่มในเพลย์ลิสต์</string>
     <string name="set_as_playlist_thumbnail">ตั้งเป็นรูปขนาดย่อของเพลย์ลิสต์</string>
     <string name="bookmark_playlist">เก็บเพลย์ลิสต์</string>
@@ -351,7 +347,6 @@
     <string name="caption_auto_generated">สร้างขึ้นโดยอัตโนมัติ</string>
     <string name="caption_setting_title">คำบรรยายภาพ</string>
     <string name="caption_setting_description">ปรับเปลี่ยนขนาดตัวอักษร สีของข้อความหรือพื้นหลังของคำอธิบายภาพ (จำเป็นตองปิดและเปิดแอปใหม่เพื่อให้การเปลี่ยนแปลงมีผล)</string>
-    <string name="enable_leak_canary_title">เปิดใช้งาน LeakCanary</string>
     <string name="enable_leak_canary_summary">การตรวจสอบการรั่วไหลของหน่วยความจำอาจทำให้แอปจะไม่ตอบสนองเมื่อมีการดึงข้อมูลจากหน่วยความจำ</string>
     <string name="import_export_title">นำเข้า/ส่งออก</string>
     <string name="import_title">นำเข้า</string>

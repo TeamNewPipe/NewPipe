@@ -10,7 +10,7 @@
     <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. É possível alterar esta opção no menu de configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz um vídeo se NewPipe for chamado por outro app</string>
-    <string name="autoplay_by_calling_app_title">Autorreprodução</string>
+    <string name="autoplay_by_calling_app_title">Autoreprodução</string>
     <string name="black_theme_title">Amoled</string>
     <string name="cancel">Cancelar</string>
     <string name="checksum">Checksum</string>
@@ -33,7 +33,7 @@
     <string name="error_report_button_text">Relatar erro via email</string>
     <string name="error_report_title">Relatório de erro</string>
     <string name="error_snackbar_action">Relatório</string>
-    <string name="error_snackbar_message">Desculpe, ocorreram alguns erros.</string>
+    <string name="error_snackbar_message">Desculpe, algo deu errado.</string>
     <string name="finish">OK</string>
     <string name="general_error">Erro</string>
     <string name="info_dir_created">Pasta de download criada \'%1$s\'</string>
@@ -47,7 +47,6 @@
     <string name="msg_server_unsupported">Servidor não suportado</string>
     <string name="msg_wait">Aguarde…</string>
     <string name="network_error">Erro de rede</string>
-    <string name="next_video_title">Próximo</string>
     <string name="open_in_browser">Abrir no navegador</string>
     <string name="pause">Pausar</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
@@ -69,11 +68,11 @@
     <string name="storage_permission_denied">Permita acesso ao armazenamento primeiramente</string>
     <string name="theme_title">Tema</string>
     <string name="upload_date_text">Publicado em  %1$s</string>
-    <string name="url_not_supported_toast">Link não suportado</string>
+    <string name="unsupported_url">Link não suportado</string>
     <string name="duration_live">Ao vivo</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
-    <string name="did_you_mean">Você quis dizer: %1$s\?</string>
+    <string name="did_you_mean">Você quis dizer \"%1$s\"\?</string>
     <string name="add">Nova missão</string>
     <string name="app_ui_crash">App/IU parou</string>
     <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
@@ -98,7 +97,6 @@
     <string name="no_player_found">Não há player de vídeo. Instalar VLC\?</string>
     <string name="parsing_error">O site não pôde ser analisado</string>
     <string name="play_audio">Áudio</string>
-    <string name="play_btn_text">Reproduzir</string>
     <string name="play_with_kodi_title">Ver com Kodi</string>
     <string name="search">Buscar</string>
     <string name="show_play_with_kodi_summary">Exibe opção para ver um vídeo via Kodi media center</string>
@@ -108,7 +106,7 @@
     <string name="use_tor_title">Usar tor</string>
     <string name="user_report">Relatório do usuário</string>
     <string name="show_play_with_kodi_title">Exibir opção \"Ver com Kodi\"</string>
-    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão SO:</string>
+    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão SO:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="default_popup_resolution_title">Resolução padrão de popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções maiores</string>
@@ -131,7 +129,7 @@
     <string name="clear">Limpar</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_background_title">Segundo plano</string>
-    <string name="popup_remember_size_pos_title">Lembrar tamanho e posição do popup</string>
+    <string name="popup_remember_size_pos_title">Lembrar propriedades do popup</string>
     <string name="popup_remember_size_pos_summary">Lembra do último tamanho e posição usado no popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
@@ -231,8 +229,6 @@
     <string name="player_stream_failure">Este vídeo não pôde ser reproduzido</string>
     <string name="player_unrecoverable_failure">Ocorreu um erro irrecuperável no player</string>
     <string name="player_recoverable_failure">Recuperando do erro do player</string>
-    <string name="title_activity_background_player">Player em segundo plano</string>
-    <string name="title_activity_popup_player">Player Popup</string>
     <string name="play_queue_remove">Remover</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="play_queue_audio_settings">Configurações de áudio</string>
@@ -293,7 +289,7 @@
     <string name="create_playlist">Nova playlist</string>
     <string name="delete_playlist">Excluir</string>
     <string name="rename_playlist">Renomear</string>
-    <string name="playlist_name_input">Nome</string>
+    <string name="name">Nome</string>
     <string name="append_playlist">Adicionar à playlist</string>
     <string name="set_as_playlist_thumbnail">Definir como capa da playlist</string>
     <string name="bookmark_playlist">Favoritar playlist</string>
@@ -309,7 +305,6 @@
     <string name="resize_zoom">Zoom</string>
     <string name="drawer_header_action_paceholder_text">Algo aparecerá aqui em breve ;D</string>
     <string name="caption_auto_generated">Gerado automaticamente</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">A monitoração de vazamento de memória pode tornar o app instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Força relatório de exceções Rx não entregues fora do ciclo de vida do fragmento ou atividade após o descarte</string>
@@ -526,8 +521,6 @@
     <string name="recovering">recuperando</string>
     <string name="error_download_resource_gone">O download não pôde ser recuperado</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Capa do vídeo na tela de bloqueio</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">A capa do vídeo é exibida na tela de bloqueio ao usar o player em segundo plano</string>
     <string name="clear_download_history">Limpar histórico de downloads</string>
     <string name="delete_downloaded_files">Excluir arquivos baixados</string>
     <string name="deleted_downloads">%1$d arquivos excluídos</string>
@@ -569,7 +562,6 @@
         <item quantity="other">%d selecionadas</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nome do grupo está vazio</string>
-    <string name="feed_group_dialog_name_input">Nome</string>
     <string name="feed_group_dialog_delete_message">Excluir este grupo\?</string>
     <string name="feed_create_new_group_button_title">Novo</string>
     <string name="settings_category_feed_title">Feed</string>
@@ -599,9 +591,9 @@
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>
-    <string name="restricted_video">Este vídeo tem restrição de idade.
+    <string name="restricted_video">Este vídeo tem restrisão de idade.
 \n
-\nSe quer vê-lo, ative \"Conteúdo com restrição de idade\" nas configurações.</string>
+\nAtive o \"Conteúdo com restrição de idade\" nas configurações se quiser vê-lo.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_warning">Vídeos vistos antes e depois de adicionar à lista de reprodução serão removidos. 
 \nTem certeza\? Isto não pode ser desfeito!</string>
@@ -614,4 +606,34 @@
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Capa do avatar do canal</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas inscrições não agrupadas</string>
+    <string name="search_showing_result_for">Mostrando resultados para\? %s</string>
+    <string name="no_playlist_bookmarked_yet">Ainda não há favoritos de playlists</string>
+    <string name="playlist_page_summary">Página da playlist</string>
+    <string name="select_a_playlist">Selecione uma playlist</string>
+    <string name="error_report_open_github_notice">Verifique se já existe um assunto discutindo essa falha. Criar duplicatas tirará um tempo que poderíamos gastar corrigindo o bug real.</string>
+    <string name="error_report_open_issue_button_text">Reporte no GitHub</string>
+    <string name="copy_for_github">Copiar relatório formatado</string>
+    <string name="never">Nunca</string>
+    <string name="wifi_only">Apenas no Wi-Fi</string>
+    <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
+    <string name="title_activity_play_queue">Reproduzir fila</string>
+    <string name="unsupported_url_dialog_message">Não foi possível reconhecer a URL. Abrir com outro aplicativo\?</string>
+    <string name="auto_queue_toggle">Pôr na fila automaticamente</string>
+    <string name="clear_queue_confirmation_description">A fila do player ativo será substituída</string>
+    <string name="clear_queue_confirmation_summary">Mudar de um player para outro pode substituir sua fila</string>
+    <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
+    <string name="notification_action_shuffle">Embaralhar (Shuffle)</string>
+    <string name="notification_action_buffering">Buferizando</string>
+    <string name="settings_category_notification_title">Notificação</string>
+    <string name="notification_action_nothing">Nada</string>
+    <string name="notification_action_repeat">Repetir</string>
+    <string name="notification_actions_at_most_three">Você pode selecionar no máximo três ações para mostrar na notificação compacta!</string>
+    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela. Selecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
+    <string name="notification_action_4_title">Quinto botão de ação</string>
+    <string name="notification_action_3_title">Quarto botão de ação</string>
+    <string name="notification_action_2_title">Terceiro botão de ação</string>
+    <string name="notification_action_1_title">Segundo botão de ação</string>
+    <string name="notification_action_0_title">Primeiro botão de ação</string>
+    <string name="notification_scale_to_square_image_summary">Dimensione a miniatura do vídeo mostrada na notificação de proporção 16:9 para 1:1 (pode apresentar distorções)</string>
+    <string name="notification_scale_to_square_image_title">Dimensione a miniatura para a proporção de 1:1</string>
 </resources>

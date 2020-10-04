@@ -104,14 +104,14 @@ public class NewPipeRecyclerView extends RecyclerView {
         // can mess with focused View by moving it off-screen and detaching)
 
         if (focused != null) {
-            View focusedItem = findContainingItemView(focused);
+            final View focusedItem = findContainingItemView(focused);
             if (focusedItem != null) {
                 focusedItem.getHitRect(focusRect);
             }
         }
 
         // call focusSearch() to initiate layout, but disregard returned View for now
-        View adapterResult = super.focusSearch(focused, direction);
+        final View adapterResult = super.focusSearch(focused, direction);
         if (adapterResult != null && !isOutside(adapterResult)) {
             adapterResult.requestFocus(direction);
             return true;
@@ -142,22 +142,22 @@ public class NewPipeRecyclerView extends RecyclerView {
     }
 
     private boolean tryFocusFinder(final int direction) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             // Android 9 implemented bunch of handy changes to focus, that render code below less
             // useful, and also broke findNextFocusFromRect in way, that render this hack useless
             return false;
         }
 
-        FocusFinder finder = FocusFinder.getInstance();
+        final FocusFinder finder = FocusFinder.getInstance();
 
         // try to use FocusFinder instead of adapter
-        ViewGroup root = (ViewGroup) getRootView();
+        final ViewGroup root = (ViewGroup) getRootView();
 
         tempFocus.set(focusRect);
 
         root.offsetDescendantRectToMyCoords(this, tempFocus);
 
-        View focusFinderResult = finder.findNextFocusFromRect(root, tempFocus, direction);
+        final View focusFinderResult = finder.findNextFocusFromRect(root, tempFocus, direction);
         if (focusFinderResult != null && !isOutside(focusFinderResult)) {
             focusFinderResult.requestFocus(direction);
             return true;
@@ -172,7 +172,7 @@ public class NewPipeRecyclerView extends RecyclerView {
 
             parent.offsetDescendantRectToMyCoords(this, tempFocus);
 
-            View candidate = finder.findNextFocusFromRect(parent, tempFocus, direction);
+            final View candidate = finder.findNextFocusFromRect(parent, tempFocus, direction);
             if (candidate != null && candidate.requestFocus(direction)) {
                 return true;
             }

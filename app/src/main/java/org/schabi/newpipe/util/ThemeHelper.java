@@ -19,14 +19,18 @@
 
 package org.schabi.newpipe.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
@@ -126,11 +130,11 @@ public final class ThemeHelper {
      */
     @StyleRes
     public static int getThemeForService(final Context context, final int serviceId) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        final String lightTheme = context.getResources().getString(R.string.light_theme_key);
+        final String darkTheme = context.getResources().getString(R.string.dark_theme_key);
+        final String blackTheme = context.getResources().getString(R.string.black_theme_key);
 
-        String selectedTheme = getSelectedThemeString(context);
+        final String selectedTheme = getSelectedThemeString(context);
 
         int defaultTheme = R.style.DarkTheme;
         if (selectedTheme.equals(lightTheme)) {
@@ -148,7 +152,7 @@ public final class ThemeHelper {
         final StreamingService service;
         try {
             service = NewPipe.getService(serviceId);
-        } catch (ExtractionException ignored) {
+        } catch (final ExtractionException ignored) {
             return defaultTheme;
         }
 
@@ -162,7 +166,7 @@ public final class ThemeHelper {
         }
 
         themeName += "." + service.getServiceInfo().getName();
-        int resourceId = context
+        final int resourceId = context
                 .getResources()
                 .getIdentifier(themeName, "style", context.getPackageName());
 
@@ -175,11 +179,11 @@ public final class ThemeHelper {
 
     @StyleRes
     public static int getSettingsThemeStyle(final Context context) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        final String lightTheme = context.getResources().getString(R.string.light_theme_key);
+        final String darkTheme = context.getResources().getString(R.string.dark_theme_key);
+        final String blackTheme = context.getResources().getString(R.string.black_theme_key);
 
-        String selectedTheme = getSelectedThemeString(context);
+        final String selectedTheme = getSelectedThemeString(context);
 
         if (selectedTheme.equals(lightTheme)) {
             return R.style.LightSettingsTheme;
@@ -201,8 +205,8 @@ public final class ThemeHelper {
      * @return resource ID
      */
     public static int resolveResourceIdFromAttr(final Context context, @AttrRes final int attr) {
-        TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
-        int attributeResourceId = a.getResourceId(0, 0);
+        final TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
+        final int attributeResourceId = a.getResourceId(0, 0);
         a.recycle();
         return attributeResourceId;
     }
@@ -226,9 +230,25 @@ public final class ThemeHelper {
     }
 
     private static String getSelectedThemeString(final Context context) {
-        String themeKey = context.getString(R.string.theme_key);
-        String defaultTheme = context.getResources().getString(R.string.default_theme_value);
+        final String themeKey = context.getString(R.string.theme_key);
+        final String defaultTheme = context.getResources().getString(R.string.default_theme_value);
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(themeKey, defaultTheme);
+    }
+
+    /**
+     * Sets the title to the activity, if the activity is an {@link AppCompatActivity} and has an
+     * action bar.
+     * @param activity the activity to set the title of
+     * @param title the title to set to the activity
+     */
+    public static void setTitleToAppCompatActivity(@Nullable final Activity activity,
+                                                   final CharSequence title) {
+        if (activity instanceof AppCompatActivity) {
+            final ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle(title);
+            }
+        }
     }
 }

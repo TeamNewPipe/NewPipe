@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="?attr/windowBackground">
+
+<LinearLayout
     android:id="@+id/video_item_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +20,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:fitsSystemWindows="true"
         android:isScrollContainer="true">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -23,12 +27,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:fitsSystemWindows="true"
             android:touchscreenBlocksFocus="false"
             app:elevation="0dp"
             app:layout_behavior="com.google.android.material.appbar.FlingBehavior">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <org.schabi.newpipe.views.CustomCollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll">
@@ -42,6 +45,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:descendantFocusability="afterDescendants"
                     app:layout_collapseMode="parallax">
 
                     <ImageView
@@ -146,16 +150,23 @@
                         tools:progress="40"
                         tools:visibility="visible" />
 
+					<!-- Player will be inserted here in realtime -->
+                    <FrameLayout
+                        android:id="@+id/player_placeholder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:descendantFocusability="afterDescendants"
+                    />
+
                 </FrameLayout>
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </org.schabi.newpipe.views.CustomCollapsingToolbarLayout>
 
             <!-- CONTENT -->
             <RelativeLayout
                 android:id="@+id/detail_content_root_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:windowBackground"
                 app:layout_scrollFlags="scroll">
 
                 <!-- TITLE -->
@@ -555,25 +566,22 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+			app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+			<com.google.android.material.tabs.TabLayout
+				android:id="@+id/tablayout"
+				android:layout_width="match_parent"
+				android:layout_height="30dp"
+				android:layout_gravity="bottom|center"
+				app:tabBackground="@drawable/tab_selector"
+				app:tabGravity="center"
+				app:tabIndicatorHeight="0dp"/>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tablayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:background="@color/transparent_background_color"
-            app:tabBackground="@drawable/tab_selector"
-            app:tabGravity="center"
-            app:tabIndicatorHeight="0dp">
-
-        </com.google.android.material.tabs.TabLayout>
+		</androidx.viewpager.widget.ViewPager>
 
     </org.schabi.newpipe.views.FocusAwareCoordinator>
 
@@ -586,3 +594,104 @@
 
     </FrameLayout>
 </LinearLayout>
+
+	<RelativeLayout
+			android:id="@+id/overlay_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:alpha="0.9"
+            android:descendantFocusability="blocksDescendants"
+			android:background="?attr/windowBackground" >
+
+		<ImageButton
+				android:id="@+id/overlay_thumbnail"
+				android:layout_width="85dp"
+				android:layout_height="60dp"
+				android:layout_alignParentStart="true"
+                android:paddingLeft="@dimen/video_item_search_padding"
+                android:paddingRight="@dimen/video_item_search_padding"
+				android:scaleType="fitCenter"
+				android:gravity="center_vertical"
+				android:contentDescription="@string/list_thumbnail_view_description"
+				android:src="@drawable/dummy_thumbnail"
+				android:background="@color/transparent_background_color"/>
+
+		<LinearLayout
+				android:id="@+id/overlay_metadata_layout"
+				android:layout_width="match_parent"
+				android:layout_height="60dp"
+				android:gravity="center_vertical"
+				android:orientation="vertical"
+				android:clickable="true"
+				android:focusable="true"
+				android:layout_toEndOf="@+id/overlay_thumbnail"
+				android:layout_toStartOf="@+id/overlay_buttons_layout"
+				tools:ignore="RtlHardcoded">
+
+			<TextView
+					android:id="@+id/overlay_title_text_view"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:ellipsize="marquee"
+					android:fadingEdge="horizontal"
+					android:marqueeRepeatLimit="marquee_forever"
+					android:scrollHorizontally="true"
+					android:singleLine="true"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:textSize="@dimen/video_item_search_title_text_size"
+					tools:ignore="RtlHardcoded"
+					tools:text="The Video Title LONG very LONVideo Title LONG very LONG"/>
+
+			<TextView
+					android:id="@+id/overlay_channel_text_view"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:ellipsize="marquee"
+					android:fadingEdge="horizontal"
+					android:marqueeRepeatLimit="marquee_forever"
+					android:scrollHorizontally="true"
+					android:singleLine="true"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:textSize="@dimen/video_item_search_uploader_text_size"
+					tools:text="The Video Artist  LONG very LONG very Long"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+				android:id="@+id/overlay_buttons_layout"
+				android:layout_width="wrap_content"
+				android:layout_height="60dp"
+				android:gravity="center_vertical"
+				android:paddingLeft="@dimen/video_item_search_padding"
+                android:paddingRight="@dimen/video_item_search_padding"
+				android:layout_alignParentEnd="true"
+				tools:ignore="RtlHardcoded">
+
+			<ImageButton
+					android:id="@+id/overlay_play_pause_button"
+					android:layout_width="36dp"
+					android:layout_height="36dp"
+					android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+					android:padding="10dp"
+					android:scaleType="center"
+					app:srcCompat="?attr/ic_play_arrow"
+					android:background="?attr/selectableItemBackground"
+					tools:ignore="ContentDescription,RtlHardcoded"/>
+
+			<ImageButton
+					android:id="@+id/overlay_close_button"
+					android:layout_width="36dp"
+					android:layout_height="36dp"
+					android:layout_marginLeft="2dp"
+					android:padding="10dp"
+					android:scaleType="center"
+					app:srcCompat="?attr/ic_close"
+					android:background="?attr/selectableItemBackground"
+					tools:ignore="ContentDescription,RtlHardcoded"/>
+
+		</LinearLayout>
+
+	</RelativeLayout>
+
+</FrameLayout>

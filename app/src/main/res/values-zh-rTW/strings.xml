@@ -10,7 +10,7 @@
     <string name="download">下載</string>
     <string name="search">搜尋</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">您是不是要找：%1$s？</string>
+    <string name="did_you_mean">您是不是要找「%1$s」？</string>
     <string name="share_dialog_title">分享影片</string>
     <string name="choose_browser">選擇瀏覽器</string>
     <string name="screen_rotation">旋轉</string>
@@ -30,15 +30,13 @@
     <string name="dark_theme_title">灰暗</string>
     <string name="light_theme_title">明亮</string>
     <string name="download_dialog_title">下載</string>
-    <string name="next_video_title">下一個</string>
     <string name="show_next_and_similar_title">顯示「下一部」與「相關」的影片</string>
-    <string name="url_not_supported_toast">不支援此網址</string>
+    <string name="unsupported_url">不支援此網址</string>
     <string name="content_language_title">預設內容語言</string>
-    <string name="settings_category_video_audio_title">影片和音訊</string>
+    <string name="settings_category_video_audio_title">影片與音訊</string>
     <string name="settings_category_appearance_title">外觀</string>
     <string name="settings_category_other_title">其他</string>
     <string name="background_player_playing_toast">背景播放中</string>
-    <string name="play_btn_text">播放</string>
     <string name="network_error">網路錯誤</string>
     <string name="list_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_thumbnail_view_description">播放影片，持續時間：</string>
@@ -64,7 +62,7 @@
     <string name="show_higher_resolutions_summary">僅部份裝置可播放 2K/4K 影片</string>
     <string name="default_video_format_title">預設影片格式</string>
     <string name="black_theme_title">純黑</string>
-    <string name="popup_remember_size_pos_title">記住懸浮視窗大小和位置</string>
+    <string name="popup_remember_size_pos_title">記住懸浮視窗屬性</string>
     <string name="popup_remember_size_pos_summary">記住上次使用時懸浮視窗的大小和位置</string>
     <string name="player_gesture_controls_title">播放器手勢控制</string>
     <string name="player_gesture_controls_summary">使用手勢來控制播放器的亮度及音量</string>
@@ -105,7 +103,7 @@
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
     <string name="what_happened_headline">發生了什麼事：</string>
-    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
+    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n內容國家：\\n應用程式語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
     <string name="your_comment">您的留言(請用英文)：</string>
     <string name="error_details_headline">詳細資訊：</string>
     <string name="report_error">回報錯誤</string>
@@ -157,7 +155,7 @@
     <string name="resume_on_audio_focus_gain_summary">在干擾結束後繼續播放（例如有來電）</string>
     <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_player_behavior_title">行為</string>
-    <string name="settings_category_history_title">歷史記錄和快取</string>
+    <string name="settings_category_history_title">歷史記錄與快取</string>
     <string name="playlist">播放清單</string>
     <string name="undo">復原</string>
     <string name="notification_channel_name">NewPipe 通知</string>
@@ -251,9 +249,7 @@
     <string name="kiosk">互動導覽</string>
     <string name="trending">動向</string>
     <string name="top_50">前 50</string>
-    <string name="new_and_hot">最新和熱門</string>
-    <string name="title_activity_background_player">背景播放</string>
-    <string name="title_activity_popup_player">懸浮視窗播放</string>
+    <string name="new_and_hot">最新與熱門</string>
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">詳細資訊</string>
     <string name="play_queue_audio_settings">音訊設定</string>
@@ -289,7 +285,7 @@
     <string name="create_playlist">新的播放清單</string>
     <string name="delete_playlist">刪除</string>
     <string name="rename_playlist">重新命名</string>
-    <string name="playlist_name_input">名稱</string>
+    <string name="name">名稱</string>
     <string name="append_playlist">新增至播放清單</string>
     <string name="set_as_playlist_thumbnail">設為播放清單縮圖</string>
     <string name="bookmark_playlist">將播放清單加入書籤</string>
@@ -306,7 +302,6 @@
     <string name="drawer_header_action_paceholder_text">某些東西即將在此出現 ;D</string>
     <string name="settings_category_debug_title">除錯</string>
     <string name="caption_auto_generated">自動產生</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">記憶體洩漏監測，在 heap dumping 時可能導致應用程式無法回應</string>
     <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
@@ -521,8 +516,6 @@
     <string name="recovering">正在恢復</string>
     <string name="error_download_resource_gone">無法復原此下載</string>
     <string name="choose_instance_prompt">選擇一個站臺</string>
-    <string name="enable_lock_screen_video_thumbnail_title">鎖定畫面影片縮圖</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">使用背景播放器時，鎖定畫面上將會顯示影片縮圖</string>
     <string name="clear_download_history">清除下載歷史紀錄</string>
     <string name="delete_downloaded_files">刪除已下載的檔案</string>
     <string name="deleted_downloads">已刪除 %1$d 個下載</string>
@@ -559,7 +552,6 @@
         <item quantity="other">已選取 %d 個</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">清空群組名稱</string>
-    <string name="feed_group_dialog_name_input">名稱</string>
     <string name="feed_group_dialog_delete_message">您想要刪除此群組嗎？</string>
     <string name="feed_create_new_group_button_title">新</string>
     <string name="settings_category_feed_title">Feed</string>
@@ -591,7 +583,7 @@
     <string name="songs">歌曲</string>
     <string name="restricted_video">此影片有年鈴限制。
 \n
-\n如果您想要觀看，請在設定中啟用「年齡限制的內容」。</string>
+\n如果您想要觀看，請在設定中開啟「年齡限制的內容」。</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">是的，以及部份觀看的影片</string>
     <string name="remove_watched_popup_warning">在新增到播放清單前後的影片將被移除。
 \n您確定嗎？此動作無法復原！</string>
@@ -604,4 +596,34 @@
     <string name="channel_created_by">由 %s 建立</string>
     <string name="detail_sub_channel_thumbnail_view_description">頻道大頭貼縮圖</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">僅顯示未分組的訂閱</string>
+    <string name="no_playlist_bookmarked_yet">尚無播放清單書籤</string>
+    <string name="playlist_page_summary">播放清單頁面</string>
+    <string name="select_a_playlist">選取播放清單</string>
+    <string name="error_report_open_github_notice">請檢查是否已有與您的應用程式當機相關的討論議題。當建立重複的工單時，您就是在耗費我們本來可以用來修復臭蟲的時間。</string>
+    <string name="error_report_open_issue_button_text">在 GitHub 上回報</string>
+    <string name="copy_for_github">複製格式化過的報告</string>
+    <string name="search_showing_result_for">正在顯示結果：%s</string>
+    <string name="never">從不</string>
+    <string name="wifi_only">僅在 Wi-Fi 上</string>
+    <string name="autoplay_summary">自動開始播放 — %s</string>
+    <string name="title_activity_play_queue">播放佇列</string>
+    <string name="unsupported_url_dialog_message">無法識別 URL。要用其他應用程式開啟嗎？</string>
+    <string name="auto_queue_toggle">自動佇列</string>
+    <string name="clear_queue_confirmation_description">作用中播放器的佇列可能會被取代</string>
+    <string name="clear_queue_confirmation_summary">從一個播放器切換到另一個可能會取代您的佇列</string>
+    <string name="clear_queue_confirmation_title">清除佇列前要求確認</string>
+    <string name="settings_category_notification_title">通知</string>
+    <string name="notification_action_nothing">沒有東西</string>
+    <string name="notification_action_buffering">正在緩衝</string>
+    <string name="notification_action_shuffle">隨機播放</string>
+    <string name="notification_action_repeat">重複</string>
+    <string name="notification_actions_at_most_three">您可以選取最多三個動作來顯示在簡潔通知中！</string>
+    <string name="notification_actions_summary">透過點擊下方的每一個通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示。</string>
+    <string name="notification_action_4_title">第五動作按鈕</string>
+    <string name="notification_action_3_title">第四動作按鈕</string>
+    <string name="notification_action_2_title">第三動作按鈕</string>
+    <string name="notification_action_1_title">第二動作按鈕</string>
+    <string name="notification_action_0_title">第一動作按鈕</string>
+    <string name="notification_scale_to_square_image_summary">將通知中顯示的影片縮圖從 16:9 縮放到 1:1（可能會導致失真）</string>
+    <string name="notification_scale_to_square_image_title">把縮圖縮放到 1:1 的長寬比</string>
 </resources>

@@ -86,12 +86,12 @@ public final class ImportExportJsonHelper {
                 eventListener.onSizeReceived(channelsArray.size());
             }
 
-            for (Object o : channelsArray) {
+            for (final Object o : channelsArray) {
                 if (o instanceof JsonObject) {
-                    JsonObject itemObject = (JsonObject) o;
-                    int serviceId = itemObject.getInt(JSON_SERVICE_ID_KEY, 0);
-                    String url = itemObject.getString(JSON_URL_KEY);
-                    String name = itemObject.getString(JSON_NAME_KEY);
+                    final JsonObject itemObject = (JsonObject) o;
+                    final int serviceId = itemObject.getInt(JSON_SERVICE_ID_KEY, 0);
+                    final String url = itemObject.getString(JSON_URL_KEY);
+                    final String name = itemObject.getString(JSON_NAME_KEY);
 
                     if (url != null && name != null && !url.isEmpty() && !name.isEmpty()) {
                         channels.add(new SubscriptionItem(serviceId, url, name));
@@ -101,7 +101,7 @@ public final class ImportExportJsonHelper {
                     }
                 }
             }
-        } catch (Throwable e) {
+        } catch (final Throwable e) {
             throw new InvalidSourceException("Couldn't parse json", e);
         }
 
@@ -117,7 +117,7 @@ public final class ImportExportJsonHelper {
      */
     public static void writeTo(final List<SubscriptionItem> items, final OutputStream out,
                                @Nullable final ImportExportEventListener eventListener) {
-        JsonAppendableWriter writer = JsonWriter.on(out);
+        final JsonAppendableWriter writer = JsonWriter.on(out);
         writeTo(items, writer, eventListener);
         writer.done();
     }
@@ -140,7 +140,7 @@ public final class ImportExportJsonHelper {
         writer.value(JSON_APP_VERSION_INT_KEY, BuildConfig.VERSION_CODE);
 
         writer.array(JSON_SUBSCRIPTIONS_ARRAY_KEY);
-        for (SubscriptionItem item : items) {
+        for (final SubscriptionItem item : items) {
             writer.object();
             writer.value(JSON_SERVICE_ID_KEY, item.getServiceId());
             writer.value(JSON_URL_KEY, item.getUrl());

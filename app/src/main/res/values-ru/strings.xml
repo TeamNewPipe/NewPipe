@@ -10,7 +10,7 @@
     <string name="download">Скачать</string>
     <string name="search">Поиск</string>
     <string name="settings">Настройки</string>
-    <string name="did_you_mean">Возможно, вы имели в виду: %1$s?</string>
+    <string name="did_you_mean">Возможно, вы имели в виду \"%1$s\"\?</string>
     <string name="share_dialog_title">Поделиться</string>
     <string name="choose_browser">Выбор браузера</string>
     <string name="screen_rotation">поворот</string>
@@ -25,8 +25,7 @@
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="download_dialog_title">Скачать</string>
-    <string name="next_video_title">Следующее</string>
-    <string name="url_not_supported_toast">URL не поддерживается</string>
+    <string name="unsupported_url">URL не поддерживается</string>
     <string name="show_next_and_similar_title">\"Следующее\" и похожие видео</string>
     <string name="content_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
@@ -43,13 +42,12 @@
     <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тёмная</string>
     <string name="light_theme_title">Светлая</string>
-    <string name="play_btn_text">Воспроизвести</string>
     <string name="network_error">Ошибка сети</string>
     <string name="use_tor_title">Использовать Tor</string>
     <string name="download_path_audio_title">Папка для скачанного аудио</string>
     <string name="download_path_audio_summary">Папка для скачанного аудио</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для скачивания аудио</string>
-    <string name="main_bg_subtitle">Начните с поиска</string>
+    <string name="main_bg_subtitle">Нажмите \"Поиск\", чтобы начать</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
@@ -87,7 +85,7 @@
     <string name="app_ui_crash">Приложение/UI завершило работу</string>
     <string name="sorry_string">Простите, это не должно было произойти.</string>
     <string name="error_report_button_text">Отправить отчёт по e-mail</string>
-    <string name="error_snackbar_message">Простите, произошли ошибки.</string>
+    <string name="error_snackbar_message">Извините, что-то пошло не так.</string>
     <string name="error_snackbar_action">Отчёт</string>
     <string name="what_device_headline">Информация:</string>
     <string name="what_happened_headline">Что произошло:</string>
@@ -109,7 +107,7 @@
     <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
-    <string name="popup_remember_size_pos_title">Восстановить окно</string>
+    <string name="popup_remember_size_pos_title">Запомнить параметры всплывающего окна</string>
     <string name="player_gesture_controls_summary">Изменять яркость и громкость жестами</string>
     <string name="settings_category_popup_title">Всплывающее окно</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
@@ -121,7 +119,7 @@
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
     <string name="add">Новая цель</string>
-    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
+    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
@@ -242,8 +240,6 @@
     <string name="show_hold_to_append_summary">Показать подсказку при нажатии \"В окне\" или \"В фоне\" на странице сведений о видео</string>
     <string name="unknown_content">[Неизвестно]</string>
     <string name="player_recoverable_failure">Восстановление после ошибки плеера</string>
-    <string name="title_activity_background_player">В фоне</string>
-    <string name="title_activity_popup_player">В окне</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
     <string name="enqueue_on_background">В очередь в фоне</string>
     <string name="enqueue_on_popup">В очередь в окне</string>
@@ -315,7 +311,7 @@
     <string name="create_playlist">Новый плейлист</string>
     <string name="delete_playlist">Удалить</string>
     <string name="rename_playlist">Переименовать</string>
-    <string name="playlist_name_input">Имя</string>
+    <string name="name">Имя</string>
     <string name="append_playlist">В плейлист</string>
     <string name="set_as_playlist_thumbnail">На миниатюру плейлиста</string>
     <string name="bookmark_playlist">Сохранить плейлист</string>
@@ -330,7 +326,6 @@
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
     <string name="caption_auto_generated">Создано автоматически</string>
-    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
     <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
     <string name="enable_disposed_exceptions_summary">Принудительно сообщать о недоставляемых Rx-исключениях вне фрагмента или жизненного цикла после удаления</string>
@@ -530,8 +525,6 @@
     <string name="recovering">восстановление</string>
     <string name="error_download_resource_gone">Не удалось восстановить загрузку</string>
     <string name="choose_instance_prompt">Выберите сервер</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Миниатюра на экране блокировки</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Показать миниатюру видео на экране блокировки при воспроизведении в фоне</string>
     <string name="clear_download_history">Очистить историю загрузок</string>
     <string name="delete_downloaded_files">Удаление загруженных файлов</string>
     <string name="deleted_downloads">Удалено загрузок: %1$d</string>
@@ -575,7 +568,6 @@
         <item quantity="many">%d минут</item>
     </plurals>
     <string name="feed_group_dialog_delete_message">Удалить эту группу\?</string>
-    <string name="feed_group_dialog_name_input">Имя</string>
     <string name="feed_subscription_not_loaded_count">Не загружено: %d</string>
     <string name="feed_create_new_group_button_title">Создать</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Обычный режим</string>
@@ -601,9 +593,9 @@
     <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, но может возвращать не всё содержимое канала и не содержать часть сведений (длительность, тип элемента, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
-    <string name="restricted_video">Это видео с ограничением по возрасту.
+    <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
-\nДля его просмотра включите \"Контент 18+\" в настройках.</string>
+\nВключите \"Контент с возрастным ограничением\" в настройках, если хотите его видеть.</string>
     <string name="content_not_supported">NewPipe не поддерживает этот контент. 
 \n 
 \nВозможно, поддержка появится в следующих версиях.</string>
@@ -624,5 +616,35 @@
     <string name="video_detail_by">От %s</string>
     <string name="channel_created_by">Создано %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Показывать только несгруппированные подписки</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Только несгруппированные</string>
+    <string name="no_playlist_bookmarked_yet">Плейлистов ещё нет</string>
+    <string name="error_report_open_github_notice">Пожалуйста, проверьте, существует ли вопрос по вашей ошибке. Создавая дубликаты, вы отнимаете у нас время, которое мы могли бы использовать на решение проблемы.</string>
+    <string name="search_showing_result_for">Результаты для: %s</string>
+    <string name="playlist_page_summary">Страница плейлиста</string>
+    <string name="select_a_playlist">Выберите плейлист</string>
+    <string name="error_report_open_issue_button_text">Сообщить на GitHub</string>
+    <string name="copy_for_github">Копировать отформатированный отчет</string>
+    <string name="never">Никогда</string>
+    <string name="wifi_only">Только по Wi-Fi</string>
+    <string name="autoplay_summary">Автоматический запуск воспроизведения — %s</string>
+    <string name="title_activity_play_queue">Очередь воспроизведения</string>
+    <string name="unsupported_url_dialog_message">Не удалось распознать URL. Открыть в другом приложении\?</string>
+    <string name="auto_queue_toggle">Авто-очередь</string>
+    <string name="clear_queue_confirmation_description">Очередь активного плеера будет заменена</string>
+    <string name="clear_queue_confirmation_title">Запросить подтверждение перед очисткой очереди</string>
+    <string name="clear_queue_confirmation_summary">Переход от одного плеера к другому может заменить вашу очередь</string>
+    <string name="settings_category_notification_title">Уведомление</string>
+    <string name="notification_action_nothing">Ничего</string>
+    <string name="notification_action_buffering">Буферизация</string>
+    <string name="notification_action_shuffle">Перемешивать</string>
+    <string name="notification_action_repeat">Повторение</string>
+    <string name="notification_actions_at_most_three">Вы можете выбрать не более трёх действий для отображения в компактном уведомлении!</string>
+    <string name="notification_actions_summary">Отредактируйте каждое действие уведомления ниже, нажав на него. Выберите до трёх из них, которые будут отображаться в компактном уведомлении, с помощью флажков справа.</string>
+    <string name="notification_action_4_title">Кнопка пятого действия</string>
+    <string name="notification_action_3_title">Кнопка четвёртого действия</string>
+    <string name="notification_action_2_title">Кнопка третьего действия</string>
+    <string name="notification_action_1_title">Кнопка второго действия</string>
+    <string name="notification_action_0_title">Кнопка первого действия</string>
+    <string name="notification_scale_to_square_image_summary">Масштабировать эскиз видео, отображаемый в уведомлении, с соотношением сторон 16:9 до 1:1 (может привести к искажениям)</string>
+    <string name="notification_scale_to_square_image_title">Масштабировать эскиз до соотношения сторон 1: 1</string>
 </resources>
