@@ -1,0 +1,5 @@
+Gemenhetslig fri programvare.
+Bruker ingen av Google-rammeverksbibliotekene, eller YouTube-API-et.
+Det tolker kun nettsiden for å hente infoen som trengs.
+Derfor kan dette programmet brukes på enheter der Google-tjenestene ikke er installert.
+Du trenger heller ikke en YouTube-konto for å bruke installere det.
