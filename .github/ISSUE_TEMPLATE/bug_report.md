@@ -17,7 +17,7 @@ Oh no, a bug! It happens. Thanks for reporting an issue with NewPipe. To make it
 - [ ] I am using the latest version. <!-- compare Releases page and your version given in About in the app drawer -->
 - [ ] I checked, but didn't find any duplicates of this issue in the repo. <!-- Seriously, check. O_O -->
 - [ ] I have read the contribution guidelines given at https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md.
-- [ ] This issue contains only one bug. I will open one issue per bug report I want to file.
+- [ ] This issue contains only one bug. I will open one issue for every bug report I want to file.
 
 ### Steps to reproduce the bug
 <!--
