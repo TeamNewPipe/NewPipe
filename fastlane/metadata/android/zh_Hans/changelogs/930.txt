@@ -1,0 +1,19 @@
+新特性
+• 在YouTube Music搜索
+• 基本 Android TV 支持
+
+改进
+• 添加 在本地播放列表中清除所有已观看的视频选项
+• 显示 内容无法播放的信息而不是直接崩溃
+• 改进 画中画播放器resize with pinch gestures
+• Enqueue streams on long press on background and popup buttons in channel
+• 改进 size handling of the drawer header title
+
+修复
+• 修复 年龄限制内容设置失效
+• 修复 某些reCAPTCHA验证码失效
+• 修复 若播放列表为null时打开「书签」崩溃
+• 修复 detection of network related exceptions
+• 修复 visibility of group sort button in the subscriptions fragment
+
+以及更多

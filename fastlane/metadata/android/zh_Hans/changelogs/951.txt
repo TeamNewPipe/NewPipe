@@ -1,0 +1,17 @@
+新特性
+• 添加 search for subscription picker in the feed group dialog
+• 添加 filter to the feed group dialog to show only ungrouped subscriptions
+• 添加 播放列表(playlist)页 于Newpipe主页
+• 添加 快进/回退功能于后台/画中画播放队列
+• 添加 显示搜索建议: 「你是不是在找」(did you mean) 和 「显示...的结果」 (showing result for)
+
+改进
+• Drop writing application metadata in muxed files
+• 不再移除失效的视频流(failed streams)于播放队列
+• 更新 status bar 颜色以匹配 toolbar 颜色
+
+修复
+• 修复 浮点数错误导致的音像不同步
+• [PeerTube] 处理已删除的评论
+
+还有更多

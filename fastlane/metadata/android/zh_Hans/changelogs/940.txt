@@ -1,0 +1,16 @@
+新特性
+• 添加对SoundCloud评论的显示支持
+• 添加 YouTube 限制模式设置项目
+• 显示 PeerTube parent channel 详情
+
+改进
+• Show Kore button only for supported services
+• Block player gestures that begin at the NavigationBar or StatusBar
+• Change retry & subscribe buttons background color based on service color
+
+修复
+• 修复 下载对话框卡死
+• 修复「在浏览器中打开」(Open in browser )键失效
+• 修复 打开视频时崩溃 以及 "无法播放该视频"问题
+
+以及更多
