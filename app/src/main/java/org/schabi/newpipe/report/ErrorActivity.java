@@ -9,8 +9,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -230,8 +227,8 @@ public class ErrorActivity extends AppCompatActivity {
 
         // normal bugreport
         buildInfo(errorInfo);
-        if (errorInfo.message != 0) {
-            errorMessageView.setText(errorInfo.message);
+        if (errorInfo.getMessage() != 0) {
+            errorMessageView.setText(errorInfo.getMessage());
         } else {
             errorMessageView.setVisibility(View.GONE);
             findViewById(R.id.messageWhatHappenedView).setVisibility(View.GONE);
@@ -348,12 +345,12 @@ public class ErrorActivity extends AppCompatActivity {
 
         infoLabelView.setText(getString(R.string.info_labels).replace("\\n", "\n"));
 
-        text += getUserActionString(info.userAction) + "\n"
-                + info.request + "\n"
+        text += getUserActionString(info.getUserAction()) + "\n"
+                + info.getRequest() + "\n"
                 + getContentLanguageString() + "\n"
                 + getContentCountryString() + "\n"
                 + getAppLanguage() + "\n"
-                + info.serviceName + "\n"
+                + info.getServiceName() + "\n"
                 + currentTimeStamp + "\n"
                 + getPackageName() + "\n"
                 + BuildConfig.VERSION_NAME + "\n"
@@ -366,12 +363,12 @@ public class ErrorActivity extends AppCompatActivity {
         try {
             return JsonWriter.string()
                     .object()
-                    .value("user_action", getUserActionString(errorInfo.userAction))
-                    .value("request", errorInfo.request)
+                    .value("user_action", getUserActionString(errorInfo.getUserAction()))
+                    .value("request", errorInfo.getRequest())
                     .value("content_language", getContentLanguageString())
                     .value("content_country", getContentCountryString())
                     .value("app_language", getAppLanguage())
-                    .value("service", errorInfo.serviceName)
+                    .value("service", errorInfo.getServiceName())
                     .value("package", getPackageName())
                     .value("version", BuildConfig.VERSION_NAME)
                     .value("os", getOsString())
@@ -401,12 +398,12 @@ public class ErrorActivity extends AppCompatActivity {
             htmlErrorReport
                     .append("## Exception")
                     .append("\n* __User Action:__ ")
-                        .append(getUserActionString(errorInfo.userAction))
-                    .append("\n* __Request:__ ").append(errorInfo.request)
+                        .append(getUserActionString(errorInfo.getUserAction()))
+                    .append("\n* __Request:__ ").append(errorInfo.getRequest())
                     .append("\n* __Content Country:__ ").append(getContentCountryString())
                     .append("\n* __Content Language:__ ").append(getContentLanguageString())
                     .append("\n* __App Language:__ ").append(getAppLanguage())
-                    .append("\n* __Service:__ ").append(errorInfo.serviceName)
+                    .append("\n* __Service:__ ").append(errorInfo.getServiceName())
                     .append("\n* __Version:__ ").append(BuildConfig.VERSION_NAME)
                     .append("\n* __OS:__ ").append(getOsString()).append("\n");
 
@@ -494,57 +491,4 @@ public class ErrorActivity extends AppCompatActivity {
         return df.format(new Date());
     }
 
-    public static class ErrorInfo implements Parcelable {
-        public static final Parcelable.Creator<ErrorInfo> CREATOR
-                = new Parcelable.Creator<ErrorInfo>() {
-            @Override
-            public ErrorInfo createFromParcel(final Parcel source) {
-                return new ErrorInfo(source);
-            }
-
-            @Override
-            public ErrorInfo[] newArray(final int size) {
-                return new ErrorInfo[size];
-            }
-        };
-
-        final UserAction userAction;
-        public final String request;
-        final String serviceName;
-        @StringRes
-        public final int message;
-
-        private ErrorInfo(final UserAction userAction, final String serviceName,
-                          final String request, @StringRes final int message) {
-            this.userAction = userAction;
-            this.serviceName = serviceName;
-            this.request = request;
-            this.message = message;
-        }
-
-        protected ErrorInfo(final Parcel in) {
-            this.userAction = UserAction.valueOf(in.readString());
-            this.request = in.readString();
-            this.serviceName = in.readString();
-            this.message = in.readInt();
-        }
-
-        public static ErrorInfo make(final UserAction userAction, final String serviceName,
-                                     final String request, @StringRes final int message) {
-            return new ErrorInfo(userAction, serviceName, request, message);
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(final Parcel dest, final int flags) {
-            dest.writeString(this.userAction.name());
-            dest.writeString(this.request);
-            dest.writeString(this.serviceName);
-            dest.writeInt(this.message);
-        }
-    }
 }

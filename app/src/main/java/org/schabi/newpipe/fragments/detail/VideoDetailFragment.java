@@ -92,6 +92,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -1630,7 +1631,7 @@ public final class VideoDetailFragment
 
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         } catch (final Exception e) {
-            final ErrorActivity.ErrorInfo info = ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+            final ErrorInfo info = ErrorInfo.make(UserAction.UI_ERROR,
                     ServiceList.all()
                             .get(currentInfo
                                     .getServiceId())

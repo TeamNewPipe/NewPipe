@@ -23,6 +23,7 @@ import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.InfoCache;
@@ -252,7 +253,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         }
 
         ErrorActivity.reportError(getContext(), exception, MainActivity.class, null,
-                ErrorActivity.ErrorInfo.make(userAction, serviceName == null ? "none" : serviceName,
+                ErrorInfo.make(userAction, serviceName == null ? "none" : serviceName,
                         request == null ? "none" : request, errorId));
     }
 
@@ -265,7 +266,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
 
     /**
      * Show a SnackBar and only call
-     * {@link ErrorActivity#reportError(Context, List, Class, View, ErrorActivity.ErrorInfo)}
+     * {@link ErrorActivity#reportError(Context, List, Class, View, ErrorInfo)}
      * IF we a find a valid view (otherwise the error screen appears).
      *
      * @param exception List of the exceptions to show
@@ -291,6 +292,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         }
 
         ErrorActivity.reportError(getContext(), exception, MainActivity.class, rootView,
-                ErrorActivity.ErrorInfo.make(userAction, serviceName, request, errorId));
+                ErrorInfo.make(userAction, serviceName, request, errorId));
     }
 }
