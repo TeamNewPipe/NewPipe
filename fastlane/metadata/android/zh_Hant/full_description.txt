@@ -1,0 +1,1 @@
+Newpipe不使用任何Google框架庫組件，或YouTube API。它僅僅通過解析YouTube網頁版來獲取所需信息。因此該應用可工作在無GMS服務的設備上。此外，妳也不需要YouTube賬號，Newpipe是自由開源軟件(FLOSS)。

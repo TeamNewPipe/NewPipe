@@ -604,7 +604,7 @@
     <string name="no_playlist_bookmarked_yet">Belum ada markah daftar putar</string>
     <string name="select_a_playlist">Pilih daftar putar</string>
     <string name="never">Tidak pernah</string>
-    <string name="wifi_only">Hanya pada WiFi</string>
+    <string name="wifi_only">Hanya pada Wi-Fi</string>
     <string name="autoplay_summary">Otomatis mulai pemutaran — %s</string>
     <string name="title_activity_play_queue">Putar antrean</string>
     <string name="unsupported_url_dialog_message">URL tidak dikenali. Buka dengan aplikasi lain\?</string>

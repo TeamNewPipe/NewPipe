@@ -220,7 +220,7 @@
     <string name="audio">ഓഡിയോ</string>
     <string name="video">വീഡിയോ</string>
     <string name="info_dir_created">\'%1$s\' ഡൗൺലോഡ് പട്ടിക നിലവിൽ വന്നു</string>
-    <string name="err_dir_create">ഡൗൺലോഡ് പട്ടിക ഉണ്ടാക്കാൻ സാധിച്ചില്ല</string>
+    <string name="err_dir_create">\'%1$s\' ഡൗൺലോഡ് പട്ടിക ഉണ്ടാക്കാൻ സാധിച്ചില്ല</string>
     <string name="detail_drag_description">പുനക്രമീകരിക്കാൻ വലിച്ചിടുക</string>
     <string name="empty_subscription_feed_subtitle">¡ഇബടെ ഒരു കുന്തോമില്ല!</string>
     <string name="search_no_results">ഫലങ്ങൾ ലഭ്യമല്ല</string>

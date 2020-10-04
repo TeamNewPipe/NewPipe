@@ -604,7 +604,7 @@
     <string name="copy_for_github">複製格式化過的報告</string>
     <string name="search_showing_result_for">正在顯示結果：%s</string>
     <string name="never">從不</string>
-    <string name="wifi_only">僅在 WiFi 上</string>
+    <string name="wifi_only">僅在 Wi-Fi 上</string>
     <string name="autoplay_summary">自動開始播放 — %s</string>
     <string name="title_activity_play_queue">播放佇列</string>
     <string name="unsupported_url_dialog_message">無法識別 URL。要用其他應用程式開啟嗎？</string>

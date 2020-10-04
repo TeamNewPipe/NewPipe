@@ -444,4 +444,27 @@
     <string name="max_retry_desc">Maksimalt antal forsøg før downloaden opgives</string>
     <string name="pause_downloads_on_mobile">Sæt på pause ved skift til mobildata</string>
     <string name="pause_downloads_on_mobile_desc">Downloads som ikke kan sættes på pause vil blive genstartet</string>
+    <string name="peertube_instance_add_https_only">Kun HTTPS URL-er understøttet</string>
+    <string name="peertube_instance_add_exists">Instansen findes allerede</string>
+    <string name="peertube_instance_add_fail">Kunde ikke bekræfte instans</string>
+    <string name="peertube_instance_add_help">Skriv ind instans-URL</string>
+    <string name="peertube_instance_add_title">Tilføj instans</string>
+    <string name="peertube_instance_url_help">Finn instanserne du liger på %s</string>
+    <string name="peertube_instance_url_summary">Vælg dine favorit-PeerTube-instanser</string>
+    <string name="peertube_instance_url_title">PeerTube-instanser</string>
+    <string name="autoplay_title">Automatisk afspilning</string>
+    <string name="settings_category_clear_data_title">Tøm data</string>
+    <string name="enable_playback_state_lists_title">Positioner i lister</string>
+    <string name="enable_playback_resume_summary">Genopret forrige afspilningsposition</string>
+    <string name="enable_playback_resume_title">Fortsæt afspilning</string>
+    <string name="show_comments_summary">Skru av for at skjule kommentarer</string>
+    <string name="show_comments_title">Vis kommentarer</string>
+    <string name="notification_action_nothing">Ingenting</string>
+    <string name="notification_action_repeat">Gentagelse</string>
+    <string name="notification_action_4_title">Femte handlingstast</string>
+    <string name="notification_action_3_title">Fjerde handlingstast</string>
+    <string name="notification_action_0_title">Første handlingstast</string>
+    <string name="notification_action_1_title">Andre handlingstast</string>
+    <string name="notification_action_2_title">Tredje handlingstast</string>
+    <string name="search_showing_result_for">Viser resultater for: %s</string>
 </resources>

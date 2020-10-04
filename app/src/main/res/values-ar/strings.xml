@@ -510,20 +510,20 @@
     <string name="no_one_listening">لا أحد يستمع</string>
     <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق.</string>
     <plurals name="watching">
-        <item quantity="zero">مشاهد</item>
-        <item quantity="one">مشاهدة</item>
-        <item quantity="two">مشاهدة</item>
-        <item quantity="few">مشاهدات</item>
-        <item quantity="many">مشاهدات</item>
-        <item quantity="other">مشاهدات</item>
+        <item quantity="zero">%s مشاهد</item>
+        <item quantity="one">%s مشاهدة</item>
+        <item quantity="two">%s مشاهدة</item>
+        <item quantity="few">%s مشاهدات</item>
+        <item quantity="many">%s مشاهدات</item>
+        <item quantity="other">%s مشاهدات</item>
     </plurals>
     <plurals name="listening">
-        <item quantity="zero">مستمع</item>
-        <item quantity="one">مستمع</item>
-        <item quantity="two">مستمعين</item>
-        <item quantity="few">مستمعين</item>
-        <item quantity="many">مستمعين</item>
-        <item quantity="other">مستمعين</item>
+        <item quantity="zero">%s مستمع</item>
+        <item quantity="one">%s مستمع</item>
+        <item quantity="two">%s مستمعين</item>
+        <item quantity="few">%s مستمعين</item>
+        <item quantity="many">%s مستمعين</item>
+        <item quantity="other">%s مستمعين</item>
     </plurals>
     <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>

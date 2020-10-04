@@ -486,7 +486,7 @@
     <string name="downloads_storage_ask_summary_kitkat">매 다운로드 마다 저장경로를 묻습니다.
 \n외장 SD카드에 다운로드 하고자 한다면 SAF를 선택하십시오</string>
     <plurals name="videos">
-        <item quantity="other">동영상</item>
+        <item quantity="other">%s 동영상</item>
     </plurals>
     <string name="enable_queue_limit_desc">하나의 다운로드가 동시에 진행됩니다</string>
     <string name="download_choose_new_path">적용하려면 다운로드 폴더를 변경하세요</string>

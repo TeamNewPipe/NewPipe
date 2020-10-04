@@ -1,0 +1,9 @@
+• 新應用工作流(workflow):在視頻詳情頁播放視頻，下滑最小化播放器
+• MediaStyle通知: customizable actions in notifications, performance improvements
+• basic resizing when using NewPipe as desktop app
+
+• show dialog with open options in case of an unsupported URL toast
+• 改善搜索體驗(若遠程資源無法取得) [Improve search suggestion experience when remote ones can't be fetched]
+• 提升默認視頻分辨率:720p60 (內建播放器) 480p (畫中畫播放器)
+
+• 大量bug修復

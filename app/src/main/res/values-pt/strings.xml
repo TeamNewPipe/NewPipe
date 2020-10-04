@@ -64,7 +64,7 @@
     <string name="could_not_get_stream">Não foi possível obter a emissão</string>
     <string name="sorry_string">Desculpe, isso não deveria ter acontecido.</string>
     <string name="error_report_button_text">Reportar erro por e-mail</string>
-    <string name="error_snackbar_message">Desculpe, ocorreram alguns erros.</string>
+    <string name="error_snackbar_message">Desculpa, algo correu mal.</string>
     <string name="error_snackbar_action">Relatório</string>
     <string name="what_device_headline">Informação:</string>
     <string name="what_happened_headline">O que ocorreu:</string>
@@ -125,14 +125,14 @@
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="show_higher_resolutions_summary">Apenas alguns aparelhos suportam a reprodução de vídeos em 2K/4K</string>
     <string name="controls_popup_title">Popup</string>
-    <string name="popup_remember_size_pos_title">Lembrar tamanho e posição da janela</string>
+    <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filtrar</string>
     <string name="refresh">Atualizar</string>
     <string name="clear">Limpar</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="use_external_video_player_summary">Remove o áudio em algumas resoluções</string>
-    <string name="popup_remember_size_pos_summary">Lembrar último tamanho e posição da janela</string>
+    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do popup</string>
     <string name="popup_resizing_indicator_title">Redimensionar</string>
     <string name="player_gesture_controls_title">Controlo de reprodução por gestos</string>
     <string name="player_gesture_controls_summary">Utilizar gestos para controlar o brilho e o volume do reprodutor</string>
@@ -222,7 +222,7 @@
     <string name="kiosk">Quiosque</string>
     <string name="trending">Tendências</string>
     <string name="top_50">Top 50</string>
-    <string name="new_and_hot">Tendências</string>
+    <string name="new_and_hot">Novo e tendências</string>
     <string name="play_queue_remove">Remover</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="play_queue_audio_settings">Definições de áudio</string>
@@ -353,12 +353,12 @@
     <string name="delete_search_history_alert">Eliminar todo o histórico de pesquisa\?</string>
     <string name="search_history_deleted">Histórico de pesquisa eliminado.</string>
     <string name="one_item_deleted">1 elemento eliminado.</string>
-    <string name="toast_no_player">Não existe uma app para reproduzir este ficheiro</string>
+    <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o tempo livre deles para proporcionar-lhe a melhor experiência. Retribua para ajudar os programadores a tornarem o NewPipe ainda melhor enquanto desfruta de um café.</string>
     <string name="give_back">Retribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
-    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, a app não coleta nenhum dado sem o seu consentimento.
-\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e guardado quando envia um relatório de erros.</string>
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, o aplicativo não coleta nenhum dado sem seu consentimento.
+\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e salvo quando você envia um relatório de erros.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
     <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
     <string name="app_license">NewPipe é um software livre \"copyleft\": pode utilizar, estudar, partilhar e melhorar a aplicação. Especificamente, pode redistribuir e/ou modificar a aplicação nos termos da Licença Pública Geral GNU, conforme publicada pela Fundação de Software Livre, tanto a versão 3 da licença ou (por sua opção) qualquer versão superior.</string>
@@ -372,8 +372,8 @@
     <string name="playlist_delete_failure">Não foi possível eliminar a lista de reprodução.</string>
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
-    <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para app as alterações.</string>
-    <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a app instável</string>
+    <string name="caption_setting_description">Modificar escala das legendas e o estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações.</string>
+    <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="enable_disposed_exceptions_summary">Forçar reportagem de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o eliminação</string>
     <string name="import_network_expensive_warning">Tenha em atenção que esta operação pode sobrecarregar a sua rede.
@@ -390,8 +390,8 @@
     <string name="decline">Recusar</string>
     <string name="limit_data_usage_none_description">Ilimitado</string>
     <string name="limit_mobile_data_usage_title">Limitar resolução se estiver a usar dados móveis</string>
-    <string name="minimize_on_exit_title">Minimizar ao trocar de app</string>
-    <string name="minimize_on_exit_summary">Ação a executar ao trocar para outra app do menu principal - %s</string>
+    <string name="minimize_on_exit_title">Minimizar ao trocar de aplicação</string>
+    <string name="minimize_on_exit_summary">Ação a executar ao trocar para outra aplicação a partir do menu principal - %s</string>
     <string name="minimize_on_exit_none_description">Nenhuma</string>
     <string name="minimize_on_exit_background_description">Ativar o reprodutor em segundo plano</string>
     <string name="minimize_on_exit_popup_description">Ativar o reprodutor \'popup\'</string>
@@ -415,7 +415,7 @@
     <string name="main_page_content_summary">Quais os separadores que são mostrados na página principal</string>
     <string name="selection">Seleção</string>
     <string name="updates_setting_title">Atualizações</string>
-    <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da app se uma nova versão existir</string>
+    <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
     <string name="list_view_mode">Modo de exibição de lista</string>
     <string name="list">Lista</string>
     <string name="grid">Grelha</string>
@@ -525,7 +525,7 @@
     <string name="delete_downloaded_files">Apagar ficheiros transferidos</string>
     <string name="deleted_downloads">%1$d transferências apagadas</string>
     <string name="permission_display_over_apps">Permitir sobreposição da janela sobre outras aplicações</string>
-    <string name="app_language_title">Idioma da app</string>
+    <string name="app_language_title">Idioma da aplicação</string>
     <string name="systems_language">Predefinição do sistema</string>
     <string name="subtitle_activity_recaptcha">Pressionar \"Aceitar\" quando terminar</string>
     <string name="recaptcha_done_button">Aceitar</string>
@@ -591,9 +591,9 @@
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>
-    <string name="restricted_video">Este vídeo tem restrição de idade.
+    <string name="restricted_video">Este vídeo é de idade restrita.
 \n
-\nSe quiser vê-lo, ative \"Conteúdo com restrição de idade\" nas definições.</string>
+\nAtive \"Conteúdo restrito à idade\" nas configurações se quiser vê-lo.</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
 \nTem certeza\? Isto não pode ser desfeito!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e também os vídeos parcialmente vistos</string>
@@ -610,7 +610,7 @@
     <string name="no_playlist_bookmarked_yet">Ainda não há marcadores de listas de reprodução</string>
     <string name="select_a_playlist">Selecione uma lista de reprodução</string>
     <string name="error_report_open_github_notice">Por favor, verifique se já existe um assunto a discutir o seu acidente. Criar bilhetes duplicados tirará-nos tempo que poderíamos gastar com a reparação do bug real.</string>
-    <string name="error_report_open_issue_button_text">Reportar erro no GitHub</string>
+    <string name="error_report_open_issue_button_text">Reportar no GitHub</string>
     <string name="copy_for_github">Copiar relatório formatado</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
     <string name="notification_action_3_title">Quarto botão de ação</string>
@@ -619,4 +619,21 @@
     <string name="notification_action_0_title">Primeiro botão de ação</string>
     <string name="notification_scale_to_square_image_summary">Dimensionar a miniatura de vídeo mostrada na notificação de proporção de 16:9 a 1:1 (pode introduzir distorções)</string>
     <string name="notification_scale_to_square_image_title">Dimensionar a miniatura à proporção de 1:1</string>
+    <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
+    <string name="title_activity_play_queue">Reproduzir a fila</string>
+    <string name="never">Nunca</string>
+    <string name="notification_action_buffering">A pôr no buffer</string>
+    <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
+    <string name="unsupported_url_dialog_message">Não foi possível reconhecer o URL. Abrir com outra app\?</string>
+    <string name="auto_queue_toggle">Pôr na fila automaticamente</string>
+    <string name="notification_action_shuffle">Baralhar</string>
+    <string name="settings_category_notification_title">Notificação</string>
+    <string name="wifi_only">Apenas no Wi-Fi</string>
+    <string name="notification_action_nothing">Nada</string>
+    <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
+    <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
+    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela. Selecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
+    <string name="notification_actions_at_most_three">Pode selecionar no máximo três ações para mostrar na notificação compacta!</string>
+    <string name="notification_action_repeat">Repetir</string>
+    <string name="notification_action_4_title">Quinto botão de ação</string>
 </resources>

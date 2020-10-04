@@ -535,7 +535,7 @@
     <string name="subtitle_activity_recaptcha">Vyrieš a stlač \"Hotovo\"</string>
     <string name="recaptcha_done_button">Hotovo</string>
     <string name="videos_string">Videá</string>
-    <string name="new_seek_duration_toast">Pre obmedzenie ExoPlayera bolo prehľadávania nastavené na % d sekúnd</string>
+    <string name="new_seek_duration_toast">Pre obmedzenie ExoPlayera bolo prehľadávania nastavené na %d sekúnd</string>
     <string name="mute">Stlmiť</string>
     <string name="unmute">Povoliť</string>
     <string name="help">Pomoc</string>

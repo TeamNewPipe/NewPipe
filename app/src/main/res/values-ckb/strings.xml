@@ -531,10 +531,10 @@
     <string name="settings_file_replacement_character_title">هێمای جێگۆڕین</string>
     <string name="settings">ڕێكخستنه‌كان</string>
     <string name="missions_header_finished">تەواوبوو</string>
-    <string name="import_youtube_instructions">بۆ هێنانەوەی بەشداربوونەکانی یوتوب پێویستە پەڕگەی خەزن بوو بگەڕێنیتەوە: 
-\n 
-\n1. ئەم بەستەرە بکەوە: %1$ 
-\n2. بچۆرەژوورەوە گەر داوای‌ کرد 
+    <string name="import_youtube_instructions">بۆ هێنانەوەی بەشداربوونەکانی یوتوب پێویستە پەڕگەی خەزن بوو بگەڕێنیتەوە:
+\n
+\n1. ئەم بەستەرە بکەوە: %1$s
+\n2. بچۆرەژوورەوە گەر داوای‌ کرد
 \n3. داگرتنێک دەست پێدەکات (ئەمە پەڕگەی خەزنکراوە)</string>
     <string name="systems_language">بنەڕەتی سیستەم</string>
     <string name="network_error">کێشە لە هێڵەکەتدا هەیە</string>

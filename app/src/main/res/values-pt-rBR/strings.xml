@@ -614,7 +614,7 @@
     <string name="error_report_open_issue_button_text">Reporte no GitHub</string>
     <string name="copy_for_github">Copiar relatório formatado</string>
     <string name="never">Nunca</string>
-    <string name="wifi_only">Apenas no WiFi</string>
+    <string name="wifi_only">Apenas no Wi-Fi</string>
     <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
     <string name="title_activity_play_queue">Reproduzir fila</string>
     <string name="unsupported_url_dialog_message">Não foi possível reconhecer a URL. Abrir com outro aplicativo\?</string>

@@ -625,7 +625,7 @@
     <string name="error_report_open_issue_button_text">Сообщить на GitHub</string>
     <string name="copy_for_github">Копировать отформатированный отчет</string>
     <string name="never">Никогда</string>
-    <string name="wifi_only">Только по WiFi</string>
+    <string name="wifi_only">Только по Wi-Fi</string>
     <string name="autoplay_summary">Автоматический запуск воспроизведения — %s</string>
     <string name="title_activity_play_queue">Очередь воспроизведения</string>
     <string name="unsupported_url_dialog_message">Не удалось распознать URL. Открыть в другом приложении\?</string>
