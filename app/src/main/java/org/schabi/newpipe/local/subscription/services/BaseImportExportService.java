@@ -37,6 +37,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExceptionUtils;
 
@@ -153,7 +154,7 @@ public abstract class BaseImportExportService extends Service {
     protected void stopAndReportError(@Nullable final Throwable error, final String request) {
         stopService();
 
-        final ErrorActivity.ErrorInfo errorInfo = ErrorActivity.ErrorInfo
+        final ErrorInfo errorInfo = ErrorInfo
                 .make(UserAction.SUBSCRIPTION, "unknown", request, R.string.general_error);
         ErrorActivity.reportError(this, error != null ? Collections.singletonList(error)
                         : Collections.emptyList(), null, null, errorInfo);

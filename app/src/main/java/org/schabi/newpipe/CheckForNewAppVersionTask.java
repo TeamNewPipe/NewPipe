@@ -23,6 +23,7 @@ import com.grack.nanojson.JsonParserException;
 
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 
 import java.io.ByteArrayInputStream;
@@ -64,7 +65,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             packageInfo = pm.getPackageInfo(packageName, flags);
         } catch (final PackageManager.NameNotFoundException e) {
             ErrorActivity.reportError(APP, e, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Could not find package info", R.string.app_ui_crash));
         }
 
@@ -79,7 +80,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             c = (X509Certificate) cf.generateCertificate(input);
         } catch (final CertificateException e) {
             ErrorActivity.reportError(APP, e, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Certificate error", R.string.app_ui_crash));
         }
 
@@ -91,7 +92,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             hexString = byte2HexFormatted(publicKey);
         } catch (NoSuchAlgorithmException | CertificateEncodingException e) {
             ErrorActivity.reportError(APP, e, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Could not retrieve SHA1 key", R.string.app_ui_crash));
         }
 

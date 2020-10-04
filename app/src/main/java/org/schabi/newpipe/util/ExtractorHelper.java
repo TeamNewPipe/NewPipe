@@ -51,6 +51,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 
 import java.util.Collections;
@@ -298,7 +299,7 @@ public final class ExtractorHelper {
                         : exception instanceof ParsingException
                         ? R.string.parsing_error : R.string.general_error;
                 ErrorActivity.reportError(handler, context, exception, MainActivity.class, null,
-                        ErrorActivity.ErrorInfo.make(userAction, serviceId == -1 ? "none"
+                        ErrorInfo.make(userAction, serviceId == -1 ? "none"
                                 : NewPipe.getNameOfService(serviceId),
                                 url + (optionalErrorMessage == null ? ""
                                         : optionalErrorMessage), errorId));

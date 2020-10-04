@@ -28,6 +28,7 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 
 import java.util.List;
@@ -155,7 +156,7 @@ public class SelectPlaylistFragment extends DialogFragment {
 
     protected void onError(final Throwable e) {
         final Activity activity = getActivity();
-        ErrorActivity.reportError(activity, e, activity.getClass(), null, ErrorActivity.ErrorInfo
+        ErrorActivity.reportError(activity, e, activity.getClass(), null, ErrorInfo
                 .make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
     }
 

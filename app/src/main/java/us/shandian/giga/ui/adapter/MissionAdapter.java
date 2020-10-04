@@ -42,6 +42,7 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 
@@ -573,7 +574,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 mission.errObject,
                 null,
                 null,
-                ErrorActivity.ErrorInfo.make(action, service, request.toString(), reason)
+                ErrorInfo.make(action, service, request.toString(), reason)
         );
     }
 

@@ -49,6 +49,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -602,7 +603,7 @@ public class DownloadDialog extends DialogFragment
                 Collections.singletonList(e),
                 null,
                 null,
-                ErrorActivity.ErrorInfo
+                ErrorInfo
                         .make(UserAction.SOMETHING_ELSE, "-", "-", R.string.general_error)
         );
     }
