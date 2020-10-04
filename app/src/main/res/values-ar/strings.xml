@@ -510,7 +510,7 @@
     <string name="no_one_listening">لا أحد يستمع</string>
     <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق.</string>
     <plurals name="watching">
-        <item quantity="zero">%s مشاهد</item>
+        <item quantity="zero">%s مشاهدة</item>
         <item quantity="one">%s مشاهدة</item>
         <item quantity="two">%s مشاهدة</item>
         <item quantity="few">%s مشاهدات</item>
@@ -518,8 +518,8 @@
         <item quantity="other">%s مشاهدات</item>
     </plurals>
     <plurals name="listening">
-        <item quantity="zero">%s مستمع</item>
-        <item quantity="one">%s مستمع</item>
+        <item quantity="zero">%s الاستماع</item>
+        <item quantity="one">%s الاستماع</item>
         <item quantity="two">%s مستمعين</item>
         <item quantity="few">%s مستمعين</item>
         <item quantity="many">%s مستمعين</item>
@@ -654,7 +654,7 @@
     <string name="copy_for_github">نسخ تقرير منسق</string>
     <string name="search_showing_result_for">عرض النتائج ل : %s</string>
     <string name="never">أبدا</string>
-    <string name="wifi_only">فقط على واي فاي</string>
+    <string name="wifi_only">فقط على شبكة Wi-Fi</string>
     <string name="autoplay_summary">بدء التشغيل تلقائياً — %s</string>
     <string name="title_activity_play_queue">تشغيل قائمة الانتظار</string>
     <string name="settings_category_notification_title">الاشعار</string>
