@@ -31,7 +31,7 @@
     <string name="play_audio">الصوت</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
     <string name="screen_rotation">التدوير</string>
-    <string name="search">بحث</string>
+    <string name="search">البحث</string>
     <string name="content_language_title">اللغة الإفتراضية للمحتوى</string>
     <string name="settings">الإعدادات</string>
     <string name="settings_category_appearance_title">المظهر</string>
@@ -156,12 +156,12 @@
     <string name="short_billion">بليون</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
-        <item quantity="zero">%s لا مشتركين</item>
+        <item quantity="zero">%s لا مشترِك</item>
         <item quantity="one">%s مشترِك</item>
         <item quantity="two">مشتركين</item>
         <item quantity="few">%s مشتركين</item>
         <item quantity="many">%s مشتركين</item>
-        <item quantity="other">%s الاشتراكات</item>
+        <item quantity="other">%s مشتركين</item>
     </plurals>
     <string name="no_views">دون مشاهدات</string>
     <string name="no_videos">لاتوجد فيديوهات</string>
@@ -652,7 +652,7 @@
     <string name="error_report_open_github_notice">يرجى التحقق مما إذا كانت هناك مشكلة في مناقشة تعطلك بالفعل. عند إنشاء تذاكر مكررة ، ستأخذ وقتًا منا يمكن أن نقضيه في إصلاح الخطأ الفعلي.</string>
     <string name="error_report_open_issue_button_text">تقرير على جيثب</string>
     <string name="copy_for_github">نسخ تقرير منسق</string>
-    <string name="search_showing_result_for">عرض النتائج لـ: %s</string>
+    <string name="search_showing_result_for">إظهار النتائج ل %s</string>
     <string name="never">أبدا</string>
     <string name="wifi_only">فقط على شبكة Wi-Fi</string>
     <string name="autoplay_summary">بدء التشغيل تلقائياً — %s</string>
