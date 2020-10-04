@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਸਰਚ ਦਬਾਓ</string>
     <string name="view_count_text">%1$s VIEWS</string>
     <string name="upload_date_text">%1$s ਨੂੰ ਪਬਲਿਸ਼ ਕੀਤੀ ਗਈ</string>
-    <string name="no_player_found">ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ। ਤੁਸੀਂ VLC ਭਰਨਾ ਚਾਹੋਗੇ \?</string>
+    <string name="no_player_found">ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ । ਤੁਸੀਂ VLC ਭਰਨਾ ਚਾਹੋਗੇ \?</string>
     <string name="no_player_found_toast">ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ ਤੁਸੀਂ VLC ਇੰਸਟਾਲ ਕਰ ਸਕਦੇ ਹੋ.</string>
     <string name="install">ਇੰਸਟਾਲ</string>
     <string name="cancel">ਰੱਦ ਕਰੋ</string>
@@ -14,14 +14,14 @@
     <string name="controls_download_desc">ਡਾਊਨਲੋਡ ਸਟ੍ਰੀਮ ਫਾਈਲ</string>
     <string name="search">ਖੋਜੋ</string>
     <string name="settings">ਸੈਟਿੰਗਾਂ</string>
-    <string name="did_you_mean">ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ: %1$s\?</string>
+    <string name="did_you_mean">ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ: \"%1$s\"\?</string>
     <string name="share_dialog_title">ਸਾਂਝਾ ਕਰੋ</string>
     <string name="choose_browser">ਬ੍ਰਾਊਜ਼ਰ ਚੁਣੋ</string>
     <string name="screen_rotation">ਰੋਟੇਸ਼ਨ</string>
     <string name="use_external_video_player_title">ਹੋਰ ਵੀਡੀਓ ਪਲੇਅਰ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="use_external_video_player_summary">ਕੁਝ ਰੇਸੋਲਿਯੁਸ਼ਨ ਤੇ ਆਵਾਜ਼ ਨੂੰ ਹਟਾਉਂਦਾ ਹੈ</string>
     <string name="use_external_audio_player_title">ਬਾਹਰੀ ਆਡੀਓ ਪਲੇਅਰ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
-    <string name="popup_mode_share_menu_title">NewPipe ਪੌਪ-ਅਪ ਮੋਡ</string>
+    <string name="popup_mode_share_menu_title">ਪੌਪ-ਅਪ ਮੋਡ</string>
     <string name="subscribe_button_title">ਸਬਸਕ੍ਰਾਈਬ</string>
     <string name="subscribed_button_title">ਸਬਸਕ੍ਰਾਈਬ ਕੀਤਾ ਹੈ</string>
     <string name="channel_unsubscribed">ਚੈਨਲ ਅਨ-ਸਬਸਕ੍ਰਾਈਬ</string>
@@ -35,20 +35,20 @@
     <string name="controls_background_title">ਬੈਕਗਰਾਊਂਡ</string>
     <string name="controls_popup_title">ਪੋਪ-ਅਪ</string>
     <string name="controls_add_to_playlist_title">ਸ਼ਾਮਿਲ ਕਰੋ</string>
-    <string name="download_path_title">ਵੀਡੀਓ ਦਾ ਡਾਊਨਲੋਡ ਮਾਰਗ</string>
-    <string name="download_path_summary">ਡਾਉਨਲੋਡ ਕੀਤੇ ਵੀਡੀਓ ਨੂੰ ਸਟੋਰ ਕਰਨ ਦਾ ਮਾਰਗ</string>
-    <string name="download_path_dialog_title">ਵੀਡੀਓ ਲਈ ਡਾਊਨਲੋਡ ਮਾਰਗ ਭਰੋ</string>
+    <string name="download_path_title">ਵੀਡੀਓ ਦਾ ਡਾਊਨਲੋਡ ਫੋਲਡਰ</string>
+    <string name="download_path_summary">ਡਾਉਨਲੋਡ ਕੀਤੇ ਵੀਡੀਓ ਇਸ ਥਾਂ ਤੇ ਸਟੋਰ ਹੋਣਗੇ</string>
+    <string name="download_path_dialog_title">ਵੀਡੀਓ ਫਾਇਲ ਲਈ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਚੁਣੋ</string>
     <string name="download_path_audio_title">ਆਡੀਓ ਦਾ ਡਾਊਨਲੋਡ ਫੋਲਡਰ</string>
     <string name="download_path_audio_summary">ਡਾਊਨਲੋਡ ਕੀਤੇ ਆਡੀਓ ਇੱਥੇ ਸਟੋਰ ਹਨ</string>
-    <string name="download_path_audio_dialog_title">ਆਡੀਓ ਫਾਈਲਾਂ ਲਈ ਡਾਊਨਲੋਡ ਮਾਰਗ ਭਰੋ</string>
+    <string name="download_path_audio_dialog_title">ਆਡੀਓ ਫਾਈਲਾਂ ਲਈ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਚੁਣੋ</string>
     <string name="autoplay_by_calling_app_title">ਆਟੋ ਪਲੇ</string>
     <string name="autoplay_by_calling_app_summary">ਜਦੋਂ ਕਿਸੇ ਹੋਰ ਐਪ ਜਰੀਏ NewPipe ਨੂੰ ਖੋਲਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਇਹ ਵੀਡੀਓ ਚਲਾਉਂਦਾ ਹੈ</string>
     <string name="default_resolution_title">Default Resolution</string>
     <string name="default_popup_resolution_title">Default ਪੌਪ-ਅਪ Resolution</string>
     <string name="show_higher_resolutions_title">ਉੱਚ ਰੇਸੋਲਿਯੁਸ਼ਨਾਂ ਵੀ ਦਿਖਾਓ</string>
-    <string name="show_higher_resolutions_summary">ਸਿਰਫ ਕੁੱਝ ਉਪਕਰਣ ਹੀ 2K/4K ਵੀਡੀਓ ਵਿਖਾਉਣ ਵਿਚ ਸਮਰਥਨ ਹੁੰਦੇ ਹਨ</string>
+    <string name="show_higher_resolutions_summary">ਸਿਰਫ ਕੁੱਝ ਉਪਕਰਣ ਹੀ 2K/4K ਵੀਡੀਓ ਚਲਾਉਣ ਵਿੱਚ ਸਮਰਥਨ ਹੁੰਦੇ ਹਨ</string>
     <string name="play_with_kodi_title">Kodi ਨਾਲ ਚਲਾਓ</string>
-    <string name="kore_not_found">Kore ਐਪ ਮੌਜੂਦ ਨਹੀਂ ਹੈ। ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਇੰਸਟਾਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ \?</string>
+    <string name="kore_not_found">Kore ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ \?</string>
     <string name="show_play_with_kodi_title">\"Kodi ਨਾਲ ਚਲਾਓ\" ਵਿਕਲਪ ਦਿਖਾਓ</string>
     <string name="show_play_with_kodi_summary">Kodi ਮੀਡੀਆ ਸੈਂਟਰ ਰਾਹੀਂ ਵੀਡੀਓ ਚਲਾਉਣ ਲਈ ਇੱਕ ਵਿਕਲਪ ਵਿਖਾਓ</string>
     <string name="play_audio">ਆਡੀਓ</string>
@@ -61,7 +61,7 @@
     <string name="popup_remember_size_pos_title">ਪੌਪ-ਅਪ ਦਾ ਆਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
     <string name="popup_remember_size_pos_summary">ਪੌਪ-ਅਪ ਦਾ ਆਖਰੀ ਅਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
     <string name="use_inexact_seek_title">ਤੇਜ਼ ਪਰ inexact seek ਵਰਤੋ</string>
-    <string name="use_inexact_seek_summary">Inexact seek ਵੀਡੀਓ ਨੂੰ ਤੇਜ਼ ਪਰ ਅਣ-ਸਟੀਕ ਢੰਗ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ ਲਿਜਾਂਦਾ ਹੈ</string>
+    <string name="use_inexact_seek_summary">Inexact seek ਵੀਡੀਓ ਨੂੰ ਤੇਜ਼ ਪਰ ਅਣ-ਸਟੀਕ ਢੰਗ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ ਲਿਜਾਂਦਾ ਹੈ । ਇਸ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ 5,15 ਜਾਂ 25 ਸੈਕੰਡ ਜਾਣਾ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ।</string>
     <string name="download_thumbnail_title">ਥੰਬਨੇਲ ਲੋਡ ਕਰੋ</string>
     <string name="download_thumbnail_summary">ਥੰਬਨੇਲ ਲੋਡ, ਡਾਟਾ ਦੀ ਬਚਤ ਅਤੇ ਮੈਮੋਰੀ ਦੀ ਵਰਤੋਂ ਨੂੰ ਰੋਕਣ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰੋ। ਇਸ ਵਿਚ ਤਬਦੀਲੀ ਕਰਨ ਨਾਲ ਇਨ-ਮੈਮੋਰੀ ਅਤੇ ਆਨ-ਡਿਸਕ ਚਿੱਤਰ cache ਦੋਵੇਂ ਮਿਟ ਜਾਣਗੇ।</string>
     <string name="thumbnail_cache_wipe_complete_notice">ਚਿੱਤਰ cache ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
@@ -454,7 +454,7 @@
     <string name="events">ਇਵੇੰਟਸ</string>
     <string name="conferences">ਕਾਨਫਰੰਸਾਂ</string>
     <string name="show_comments_title">ਟਿੱਪਣੀਆਂ ਦਿਖਾਓ</string>
-    <string name="show_comments_summary">ਟਿੱਪਣੀਆਂ ਵਿਖਾਉਣਾ ਬੰਦ ਕਰਨ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰੋ</string>
+    <string name="show_comments_summary">ਟਿੱਪਣੀਆਂ ਵਿਖਾਉਣਾ ਰੋਕਣ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰੋ</string>
     <string name="autoplay_title">ਆਟੋ-ਪਲੇ</string>
     <string name="no_comments">ਕੋਈ ਟਿੱਪਣੀ ਨਹੀਂ ਕੀਤੀ ਗਈ</string>
     <string name="error_unable_to_load_comments">ਟਿੱਪਣੀਆਂ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ</string>
@@ -487,4 +487,7 @@
     <string name="downloads_storage_use_saf_title">SAF ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="downloads_storage_use_saf_summary">ਸਟੋਰੇਜ਼ ਐਕਸੈਸ ਫਰੇਮਵਰਕ ਬਾਹਰੀ SD ਕਾਰਡ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ.
 \nਨੋਟ: ਕੁਝ ਉਪਕਰਣ ਅਨੁਕੂਲ ਨਹੀਂ ਹਨ</string>
+    <string name="notification_scale_to_square_image_title">ਥੰਬਨੇਲ 1:1 ਪੈਮਾਨੇ ਵਿੱਚ</string>
+    <string name="download_choose_new_path">ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਬਦਲੋ</string>
+    <string name="search_showing_result_for">%s ਵਾਸਤੇ ਨਤੀਜੇ</string>
 </resources>
