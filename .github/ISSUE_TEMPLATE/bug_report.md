@@ -49,3 +49,12 @@ Oh no, a bug! It happens. Thanks for reporting an issue with NewPipe. To make it
 <!-- If your bug includes a crash (where you're shown the Error Report page with a bunch of info), tap on "Copy formatted report" at the bottom and paste it here: -->
 
 <!-- That's right, here! -->
+
+
+
+
+<!-- please fill this out when you do not provide a log generate by NewPipe -->
+### Device info
+
+ - Android version/Custom ROM version:
+ - Device model:
