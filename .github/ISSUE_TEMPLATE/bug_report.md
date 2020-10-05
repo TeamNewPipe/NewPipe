@@ -56,5 +56,5 @@ Oh no, a bug! It happens. Thanks for reporting an issue with NewPipe. To make it
 <!-- please fill this out when you do not provide a log generate by NewPipe -->
 ### Device info
 
- - Android version:
+ - Android version/Custom ROM version:
  - Device model:
