@@ -19,6 +19,11 @@ Oh no, a bug! It happens. Thanks for reporting an issue with NewPipe. To make it
 - [ ] I have read the contribution guidelines given at https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md.
 - [ ] This issue contains only one bug. I will open one issue for every bug report I want to file.
 
+### Device info
+
+ - Android version:
+ - Device model:
+
 ### Steps to reproduce the bug
 <!--
 1. Go to '...'
