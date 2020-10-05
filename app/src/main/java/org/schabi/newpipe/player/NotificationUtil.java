@@ -148,7 +148,10 @@ public final class NotificationUtil {
 
     @SuppressLint("RestrictedApi")
     boolean shouldUpdateBufferingSlot() {
-        if (notificationBuilder.mActions.size() < 3) {
+        if (notificationBuilder == null) {
+            // if there is no notification active, there is no point in updating it
+            return false;
+        } else if (notificationBuilder.mActions.size() < 3) {
             // this should never happen, but let's make sure notification actions are populated
             return true;
         }
