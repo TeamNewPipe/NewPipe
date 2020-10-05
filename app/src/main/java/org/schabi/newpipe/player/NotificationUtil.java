@@ -116,10 +116,11 @@ public final class NotificationUtil {
                     .setMediaSession(player.mediaSessionManager.getSessionToken())
                     .setShowActionsInCompactView(compactSlots))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setColor(ContextCompat.getColor(player.context, R.color.gray))
                 .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
+                .setShowWhen(false)
+                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                .setColor(ContextCompat.getColor(player.context, R.color.gray))
                 .setDeleteIntent(PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
 
@@ -148,7 +149,10 @@ public final class NotificationUtil {
 
     @SuppressLint("RestrictedApi")
     boolean shouldUpdateBufferingSlot() {
-        if (notificationBuilder.mActions.size() < 3) {
+        if (notificationBuilder == null) {
+            // if there is no notification active, there is no point in updating it
+            return false;
+        } else if (notificationBuilder.mActions.size() < 3) {
             // this should never happen, but let's make sure notification actions are populated
             return true;
         }
