@@ -46,11 +46,7 @@ public final class PlayerHolder {
         if (player == null) {
             return null;
         }
-
-        return player.videoPlayerSelected() ? MainPlayer.PlayerType.VIDEO
-                : player.popupPlayerSelected() ? MainPlayer.PlayerType.POPUP
-                : player.audioPlayerSelected() ? MainPlayer.PlayerType.AUDIO
-                : null;
+        return player.getPlayerType();
     }
 
     public static void setListener(final PlayerServiceExtendedEventListener newListener) {

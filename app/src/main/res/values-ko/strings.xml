@@ -232,8 +232,6 @@
     <string name="play_queue_stream_detail">상세 정보</string>
     <string name="play_queue_audio_settings">오디오 설정</string>
     <string name="hold_to_append">눌러서 대기열에 추가</string>
-    <string name="enqueue_on_background">백그라운드 대기열에 추가</string>
-    <string name="enqueue_on_popup">새 팝업으로 대기열에 추가</string>
     <string name="start_here_on_main">여기서부터 재생</string>
     <string name="start_here_on_background">백그라운드에서 재생</string>
     <string name="start_here_on_popup">새 팝업에서 재생</string>

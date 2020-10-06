@@ -253,8 +253,6 @@
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">詳細資訊</string>
     <string name="play_queue_audio_settings">音訊設定</string>
-    <string name="enqueue_on_background">在背景加入佇列</string>
-    <string name="enqueue_on_popup">在彈出式視窗中加入佇列</string>
     <string name="start_here_on_main">從這裡開始播放</string>
     <string name="start_here_on_background">在背景開始播放</string>
     <string name="start_here_on_popup">在彈出式視窗中開始播放</string>

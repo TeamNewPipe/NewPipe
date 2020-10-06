@@ -431,8 +431,6 @@
     <string name="top_50">باشترین 50</string>
     <string name="new_and_hot">نوێ &amp; چالاک</string>
     <string name="hold_to_append">پەنجەت داگرە بۆ ڕیزنەبوون</string>
-    <string name="enqueue_on_background">ڕیزنەبوون لە پاشبنەما</string>
-    <string name="enqueue_on_popup">ڕیزنەبوون لە پەنجەرەی بچووک</string>
     <string name="drawer_open">کردنەوەی پلیکانە</string>
     <string name="drawer_close">داخستنی پلیکانە</string>
     <string name="enable_leak_canary_summary">چاودێری دزەکردنی بیرگە ڕەنگە ببێتە هۆی وەڵامنەدانەوەی لەکاتی گەرمبوون</string>

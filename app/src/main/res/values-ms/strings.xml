@@ -330,8 +330,6 @@
     <string name="play_queue_stream_detail">Butiran</string>
     <string name="play_queue_audio_settings">Tetapan Audio</string>
     <string name="hold_to_append">Pegang untuk beratur</string>
-    <string name="enqueue_on_background">Beratur apabila di latar belakang</string>
-    <string name="enqueue_on_popup">Beratur pada popup baru</string>
     <string name="start_here_on_main">Mula bermain di sini</string>
     <string name="start_here_on_background">Mula di sini apabila di latar belakang</string>
     <string name="start_here_on_popup">Mula di sini pada popup baru</string>

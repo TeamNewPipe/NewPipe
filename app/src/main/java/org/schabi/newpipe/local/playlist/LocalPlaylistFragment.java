@@ -761,7 +761,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
 
         if (PlayerHolder.getType() != null) {
-            entries.add(StreamDialogEntry.enqueue_stream);
+            entries.add(StreamDialogEntry.enqueue);
         }
         if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
             entries.addAll(Arrays.asList(

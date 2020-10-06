@@ -234,8 +234,6 @@
     <string name="play_queue_audio_settings">Configurações de áudio</string>
     <string name="hold_to_append">Segure para pôr na fila</string>
     <string name="unknown_content">[Desconhecido]</string>
-    <string name="enqueue_on_background">Pôr na fila em segundo plano</string>
-    <string name="enqueue_on_popup">Pôr na fila em um popup</string>
     <string name="start_here_on_main">Reproduzir daqui</string>
     <string name="start_here_on_background">Reproduzir em segundo plano</string>
     <string name="start_here_on_popup">Reproduzir em um popup</string>

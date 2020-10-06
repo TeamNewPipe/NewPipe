@@ -234,8 +234,6 @@
     <string name="play_queue_audio_settings">Impostazioni Audio</string>
     <string name="hold_to_append">Tenere premuto per accodare</string>
     <string name="unknown_content">[Sconosciuto]</string>
-    <string name="enqueue_on_background">Accoda in Sottofondo</string>
-    <string name="enqueue_on_popup">Accoda in Popup</string>
     <string name="start_here_on_main">Inizia la riproduzione qui</string>
     <string name="start_here_on_background">Avvia in Sottofondo</string>
     <string name="start_here_on_popup">Avvia in Popup</string>

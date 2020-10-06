@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -12,8 +11,11 @@ import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import static org.schabi.newpipe.player.MainPlayer.PlayerType.AUDIO;
+import static org.schabi.newpipe.player.MainPlayer.PlayerType.POPUP;
 
 public enum StreamDialogEntry {
     //////////////////////////////////////
@@ -25,44 +27,20 @@ public enum StreamDialogEntry {
      * <br>
      * Info: Add this entry within showStreamDialog.
      */
-    enqueue_stream(R.string.enqueue_stream, (fragment, item) -> {
+    enqueue(R.string.enqueue_stream, (fragment, item) -> {
         final MainPlayer.PlayerType type = PlayerHolder.getType();
 
-        if (type == null) {
-            // This code shouldn't be reached since the checks for appending this entry should be
-            // done within the showStreamDialog calls.
-            Toast.makeText(fragment.getContext(),
-                    "No player currently playing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        switch (type) {
-            case AUDIO:
-                NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
-                        new SinglePlayQueue(item), false);
-                break;
-            case POPUP:
-                NavigationHelper.enqueueOnPopupPlayer(fragment.getContext(),
-                        new SinglePlayQueue(item), false);
-                break;
-            case VIDEO:
-                NavigationHelper.enqueueOnVideoPlayer(fragment.getContext(),
-                        new SinglePlayQueue(item), false);
-                break;
-            default:
-                // Same as above, but keep it for now for debugging.
-                Toast.makeText(fragment.getContext(),
-                        "Unreachable code executed", Toast.LENGTH_SHORT).show();
-                break;
+        if (type == AUDIO) {
+            NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
+                    new SinglePlayQueue(item), false);
+        } else if (type == POPUP) {
+            NavigationHelper.enqueueOnPopupPlayer(fragment.getContext(),
+                    new SinglePlayQueue(item), false);
+        } else /* type == VIDEO */ {
+            NavigationHelper.enqueueOnVideoPlayer(fragment.getContext(),
+                    new SinglePlayQueue(item), false);
         }
     }),
-
-    enqueue_on_background(R.string.enqueue_on_background, (fragment, item) ->
-            NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false)),
-
-    enqueue_on_popup(R.string.enqueue_on_popup, (fragment, item) ->
-            NavigationHelper.enqueueOnPopupPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false)),
 
     start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
             NavigationHelper.playOnBackgroundPlayer(fragment.getContext(),
@@ -109,7 +87,7 @@ public enum StreamDialogEntry {
     // non-static methods to initialize and edit entries //
     ///////////////////////////////////////////////////////
 
-    public static void setEnabledEntries(final ArrayList<StreamDialogEntry> entries) {
+    public static void setEnabledEntries(final List<StreamDialogEntry> entries) {
         setEnabledEntries(entries.toArray(new StreamDialogEntry[0]));
     }
 

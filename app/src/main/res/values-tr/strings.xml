@@ -230,8 +230,6 @@
     <string name="play_queue_stream_detail">Ayrıntılar</string>
     <string name="play_queue_audio_settings">Ses Ayarları</string>
     <string name="hold_to_append">Kuyruğa eklemek için basılı tutun</string>
-    <string name="enqueue_on_background">Arka planda kuyruğa ekle</string>
-    <string name="enqueue_on_popup">Açılır pencerede kuyruğa ekle</string>
     <string name="start_here_on_main">Burada oynatmaya başla</string>
     <string name="start_here_on_background">Arka planda oynatmayı başlat</string>
     <string name="start_here_on_popup">Açılır pencerede oynatmayı başlat</string>

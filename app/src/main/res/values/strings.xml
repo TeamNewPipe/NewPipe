@@ -445,9 +445,8 @@
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
     <string name="hold_to_append">Hold to enqueue</string>
-    <string name="enqueue_stream">Enqueue stream</string>
-    <string name="enqueue_on_background">Enqueue in the background</string>
-    <string name="enqueue_on_popup">Enqueue in a popup</string>
+    <string name="enqueue_stream">Enqueue</string>
+    <string name="player_append">Enqueued</string>
     <string name="start_here_on_main">Start playing here</string>
     <string name="start_here_on_background">Start playing in the background</string>
     <string name="start_here_on_popup">Start playing in a popup</string>

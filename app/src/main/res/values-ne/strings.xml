@@ -336,8 +336,6 @@
     <string name="play_queue_stream_detail">विवरण</string>
     <string name="play_queue_audio_settings">अडियो सेटिङहरू</string>
     <string name="hold_to_append">लामबद्ध गर्न पकड</string>
-    <string name="enqueue_on_background">पृष्ठभूमिमा लामबद्ध</string>
-    <string name="enqueue_on_popup">नयाँ पपअपमा लामबद्ध</string>
     <string name="start_here_on_main">यहाँ प्ले सुरु</string>
     <string name="start_here_on_background">पृष्ठभूमिमा बजाउन सुरु गर्नुहोस</string>
     <string name="start_here_on_popup">पपअपमा बजाउन सुरु गर्नुहोस</string>

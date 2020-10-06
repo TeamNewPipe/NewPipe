@@ -278,8 +278,6 @@
     <string name="play_queue_stream_detail">Podrobnosti</string>
     <string name="play_queue_audio_settings">Nastavenie zvuku</string>
     <string name="hold_to_append">Podržaním pridať do zoznamu</string>
-    <string name="enqueue_on_background">Zaradiť do zoznamu na pozadí</string>
-    <string name="enqueue_on_popup">Zaradiť do zoznamu pre mini okno</string>
     <string name="start_here_on_main">Prehrať odtiaľto</string>
     <string name="start_here_on_background">Prehrať (zvuk) odtiaľto na pozadí</string>
     <string name="start_here_on_popup">Začať prehrávanie v mini okne</string>

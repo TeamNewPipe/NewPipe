@@ -292,8 +292,6 @@
     <string name="play_queue_stream_detail">Детали</string>
     <string name="play_queue_audio_settings">Звучни поставки</string>
     <string name="hold_to_append">Задржи за ставање во листа</string>
-    <string name="enqueue_on_background">Додај во листата за заднинско пуштање</string>
-    <string name="enqueue_on_popup">Додај во листата за пуштање во прозорче</string>
     <string name="start_here_on_main">Пушти тука</string>
     <string name="start_here_on_background">Пушти тука во позадина</string>
     <string name="start_here_on_popup">Пушти тука во прозорче</string>

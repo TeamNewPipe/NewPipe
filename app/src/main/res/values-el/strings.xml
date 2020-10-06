@@ -309,8 +309,6 @@
     <string name="play_queue_stream_detail">Λεπτομέρειες</string>
     <string name="play_queue_audio_settings">Ρυθμίσεις ήχου</string>
     <string name="hold_to_append">Πιέστε για να προστεθεί στην ουρά</string>
-    <string name="enqueue_on_background">Προσθήκη στη λίστα αναπαραγωγής του παρασκηνίου</string>
-    <string name="enqueue_on_popup">Προσθήκη στη λίστα αναπαραγωγής αναδυόμενου παραθύρου</string>
     <string name="start_here_on_main">Εκκίνηση Αναπαραγωγής εδώ</string>
     <string name="start_here_on_background">Εκκίνηση αναπαραγωγής στο παρασκήνιο</string>
     <string name="start_here_on_popup">Εκκίνηση αναπαραγωγής σε ένα αναδυόμενο παράθυρο</string>

@@ -289,8 +289,6 @@
     <string name="trending">Набуває популярності</string>
     <string name="play_queue_remove">Видалити</string>
     <string name="hold_to_append">Утримуйте, щоб додати в чергу</string>
-    <string name="enqueue_on_background">Додати до фону</string>
-    <string name="enqueue_on_popup">Додати до вікна</string>
     <string name="start_here_on_main">Розпочати програвання звідси</string>
     <string name="start_here_on_background">Розпочати програвання на фоні</string>
     <string name="start_here_on_popup">Розпочати програванні у вікні</string>

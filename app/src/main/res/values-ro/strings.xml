@@ -288,8 +288,6 @@ pentru a deschide în mod pop-up</string>
     <string name="play_queue_stream_detail">Detalii</string>
     <string name="play_queue_audio_settings">Setări Audio</string>
     <string name="hold_to_append">Apăsaţi pentru a adăuga în lista de redare</string>
-    <string name="enqueue_on_background">Adăugaţi în fundal</string>
-    <string name="enqueue_on_popup">Adăugaţi în Popup</string>
     <string name="start_here_on_main">Începeţi să redaţi de aici</string>
     <string name="start_here_on_background">Începe redarea în fundal</string>
     <string name="start_here_on_popup">Începe redarea în popup</string>

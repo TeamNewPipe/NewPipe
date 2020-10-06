@@ -56,8 +56,6 @@
     <string name="start_here_on_popup">Incumintza a riproduire in una ventanedda</string>
     <string name="start_here_on_background">Incumintza a riproduire in s\'isfundu</string>
     <string name="start_here_on_main">Incumintza a riproduire inoghe</string>
-    <string name="enqueue_on_popup">Pone in s\'elencu in una ventanedda</string>
-    <string name="enqueue_on_background">Pone in s\'elencu in s\'isfundu</string>
     <string name="hold_to_append">Mantene incarcadu pro pònnere in s\'elencu</string>
     <string name="play_queue_audio_settings">Impostatziones àudio</string>
     <string name="play_queue_stream_detail">Detàllios</string>

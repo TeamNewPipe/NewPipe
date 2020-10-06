@@ -234,8 +234,6 @@
     <string name="hold_to_append">Pidä pohjassa lisätäksesi jonoon</string>
     <string name="show_hold_to_append_title">Näytä vihje soittolistaan lisäämiseksi</string>
     <string name="unknown_content">[Tuntematon]</string>
-    <string name="enqueue_on_background">Lisää taustatoistojonoon</string>
-    <string name="enqueue_on_popup">Lisää ponnahdusikkunajonoon</string>
     <string name="start_here_on_main">Aloita toistaminen tässä</string>
     <string name="start_here_on_background">Aloita toisto taustalla</string>
     <string name="start_here_on_popup">Aloita toisto ponnahdusikkunassa</string>

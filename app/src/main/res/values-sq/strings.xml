@@ -217,8 +217,6 @@
     <string name="start_here_on_popup">Nis luajtjen në një popup të ri</string>
     <string name="start_here_on_background">Nis luajtjen në sfond</string>
     <string name="start_here_on_main">Nis luajtjen këtu</string>
-    <string name="enqueue_on_popup">Shtoje në radhën e një popup të ri</string>
-    <string name="enqueue_on_background">Shtoje në radhën në sfond</string>
     <string name="hold_to_append">Mbaj shtypur për të shtuar në radhë</string>
     <string name="play_queue_audio_settings">Aranzhimet Audio</string>
     <string name="play_queue_stream_detail">Detaje</string>

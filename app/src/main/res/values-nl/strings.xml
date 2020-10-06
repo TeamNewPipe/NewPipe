@@ -234,8 +234,6 @@
     <string name="play_queue_audio_settings">Audio-instellingen</string>
     <string name="hold_to_append">Houd ingedrukt om toe te voegen aan de wachtrij</string>
     <string name="unknown_content">[Onbekend]</string>
-    <string name="enqueue_on_background">Toevoegen aan wachtrij in de achtergrond</string>
-    <string name="enqueue_on_popup">Toevoegen aan wachtrij in pop-up</string>
     <string name="start_here_on_main">Begin hier met afspelen</string>
     <string name="start_here_on_background">Begin hier met afspelen in de achtergrond</string>
     <string name="start_here_on_popup">Begin met afspelen in pop-up</string>

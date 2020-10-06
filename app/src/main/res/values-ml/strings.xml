@@ -72,8 +72,6 @@
     <string name="start_here_on_popup">ഒരു പുതിയ പോപ്പ്അപ്പിൽ പ്ലേ ചെയ്യാൻ ആരംഭിക്കുക</string>
     <string name="start_here_on_background">പശ്ചാത്തലത്തിൽ പ്ലേ ആരംഭിക്കുക</string>
     <string name="start_here_on_main">ഇവിടെ പ്ലേ ആരംഭിക്കുക</string>
-    <string name="enqueue_on_popup">ഒരു പുതിയ പോപ്പ്അപ്പിൽ എൻ‌ക്യൂ ചെയ്യുക</string>
-    <string name="enqueue_on_background">പശ്ചാത്തലത്തിൽ എൻക്യൂ ചെയ്യുക</string>
     <string name="hold_to_append">എൻക്യൂ ചെയ്യാൻ പിടിക്കുക</string>
     <string name="play_queue_audio_settings">ഓഡിയോ ക്രമീകരണങ്ങൾ</string>
     <string name="play_queue_stream_detail">വിശദാംശങ്ങൾ</string>

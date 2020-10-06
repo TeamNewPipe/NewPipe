@@ -290,8 +290,6 @@
     <string name="play_queue_stream_detail">تفصیلات</string>
     <string name="play_queue_audio_settings">آڈیو کی ترتیبات</string>
     <string name="hold_to_append">انقطار کو پکڑو</string>
-    <string name="enqueue_on_background">پس منظر میں قطار</string>
-    <string name="enqueue_on_popup">ایک نئی پوپ اپ میں انقطار</string>
     <string name="start_here_on_main">یہاں چلانا شروع کریں</string>
     <string name="start_here_on_background">پس منظر میں چلانا شروع کریں</string>
     <string name="start_here_on_popup">نئے پاپ اپ میں چلانا شروع کریں</string>

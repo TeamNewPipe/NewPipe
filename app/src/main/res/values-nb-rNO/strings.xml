@@ -234,8 +234,6 @@
     <string name="feed_page_summary">Strømside</string>
     <string name="no_channel_subscribed_yet">Abonnerer ikke på noen kanaler enda</string>
     <string name="trending">På vei opp</string>
-    <string name="enqueue_on_background">Legg i kø i bakgrunnen</string>
-    <string name="enqueue_on_popup">Legg i kø i et oppsprett</string>
     <string name="start_here_on_main">Start avspilling her</string>
     <string name="start_here_on_background">Start avspilling i bakgrunnen</string>
     <string name="start_here_on_popup">Start avspilling i et oppsprett</string>

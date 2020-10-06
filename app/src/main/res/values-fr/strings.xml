@@ -233,8 +233,6 @@
     <string name="select_a_kiosk">Sélectionner un kiosque</string>
     <string name="kiosk">Kiosque</string>
     <string name="hold_to_append">Maintenir pour mettre en liste de lecture</string>
-    <string name="enqueue_on_background">Mettre en liste du lecteur en arrière-plan</string>
-    <string name="enqueue_on_popup">Mettre en liste d’une fenêtre flottante</string>
     <string name="start_here_on_main">Démarrer la lecture ici</string>
     <string name="start_here_on_background">Démarrer la lecture en arrière-plan</string>
     <string name="start_here_on_popup">Démarrer la lecture dans une fenêtre flottante</string>
