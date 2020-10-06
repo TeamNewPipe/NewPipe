@@ -276,8 +276,6 @@
     <string name="play_queue_audio_settings">音频设置</string>
     <string name="hold_to_append">长按队列</string>
     <string name="unknown_content">[未知]</string>
-    <string name="enqueue_on_background">添加到后台部分队列</string>
-    <string name="enqueue_on_popup">添加至新悬浮窗列表</string>
     <string name="start_here_on_main">开始在此处开始播放</string>
     <string name="start_here_on_background">开始后台播放</string>
     <string name="start_here_on_popup">开始在新悬浮窗中播放</string>

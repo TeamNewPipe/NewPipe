@@ -241,8 +241,6 @@
     <string name="website_title">Web stranica</string>
     <string name="start_here_on_main">Ovdje započni reprodukciju</string>
     <string name="start_here_on_background">Započni reprodukciju u pozadini</string>
-    <string name="enqueue_on_background">Dodaj na red čekanja u pozadini</string>
-    <string name="enqueue_on_popup">Dodaj na red u novom skočnom prozoru</string>
     <string name="start_here_on_popup">Započni reprodukciju u skočnom prozoru</string>
     <string name="drawer_open">Otvori ladicu</string>
     <string name="drawer_close">Zatvori ladicu</string>

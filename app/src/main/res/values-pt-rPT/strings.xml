@@ -91,7 +91,6 @@
     <string name="peertube_instance_add_fail">Falha ao validar a instância</string>
     <string name="delete_all">Eliminar todos</string>
     <string name="clear_download_history">Limpar histórico de transferências</string>
-    <string name="enqueue_on_background">Colocar em fila em segundo plano</string>
     <string name="delete_playback_states_alert">Eliminar todas as posições de reprodução\?</string>
     <string name="switch_view">Mudar visualização</string>
     <string name="enable_queue_limit">Limitar a fila de transferências</string>
@@ -359,7 +358,6 @@
     <string name="playlist_page_summary">Página da lista de reprodução</string>
     <string name="settings">Definições</string>
     <string name="title_most_played">Mais reproduzido</string>
-    <string name="enqueue_on_popup">Pôr na fila num popup</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
     <string name="switch_to_background">Mudar para segundo plano</string>
     <string name="albums">Álbuns</string>

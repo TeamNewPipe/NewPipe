@@ -301,8 +301,6 @@
     <string name="play_queue_stream_detail">ਵੇਰਵੇ</string>
     <string name="play_queue_audio_settings">ਆਡੀਓ ਸੈਟਿੰਗਾਂ</string>
     <string name="hold_to_append">ਕਤਾਰਬੱਧ ਕਰਨ ਵਾਸਤੇ ਦਬਾ ਕੇ ਰੱਖੋ</string>
-    <string name="enqueue_on_background">ਬੈਕਗ੍ਰਆਊਂਡ ਵਿੱਚ ਕਤਾਰਬੱਧ ਕਰੋ</string>
-    <string name="enqueue_on_popup">ਨਵੇਂ ਪੌਪ-ਅਪ ਵਿੱਚ ਕਤਾਰਬੱਧ ਕਰੋ</string>
     <string name="start_here_on_main">ਇਥੇ ਚਲਾਉ</string>
     <string name="start_here_on_background">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਚਲਾਉ</string>
     <string name="start_here_on_popup">ਨਵੇਂ ਪੌਪ-ਅਪ ਵਿੱਚ ਚਲਾਓ</string>

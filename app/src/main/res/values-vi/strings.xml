@@ -309,8 +309,6 @@
     <string name="play_queue_stream_detail">Chi tiết</string>
     <string name="play_queue_audio_settings">Cài đặt âm thanh</string>
     <string name="hold_to_append">Giữ để nối tiếp</string>
-    <string name="enqueue_on_background">Thêm vào trình phát nền</string>
-    <string name="enqueue_on_popup">Thêm vào trình phát popup mới</string>
     <string name="start_here_on_main">Bắt đầu phát ở đây</string>
     <string name="start_here_on_background">Bắt đầu phát từ đây trong nền</string>
     <string name="start_here_on_popup">Bắt đầu phát từ đây trên trình phát popup mới</string>

@@ -245,8 +245,6 @@
     <string name="play_queue_stream_detail">Xehetasunak</string>
     <string name="play_queue_audio_settings">Audio ezarpenak</string>
     <string name="hold_to_append">Mantendu ilaran jartzeko</string>
-    <string name="enqueue_on_background">Jarri ilaran bigarren planoan</string>
-    <string name="enqueue_on_popup">Jarri ilaran laster-leihoan</string>
     <string name="start_here_on_main">Hasi hemen erreproduzitzen</string>
     <string name="start_here_on_background">Hasi erreproduzitzen bigarren planoan</string>
     <string name="start_here_on_popup">Hasi erreproduzitzen laster-leihoan</string>

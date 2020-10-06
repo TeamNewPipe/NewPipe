@@ -344,8 +344,6 @@
     <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレイヤーの通知</string>
     <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押ししてキューに追加</string>
-    <string name="enqueue_on_background">バックグラウンドのキューに追加</string>
-    <string name="enqueue_on_popup">ポップアップのキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
     <string name="drawer_header_action_paceholder_text">すぐにここに表示されます;D</string>
     <string name="preferred_open_action_settings_title">お好みの \'開く\' アクション</string>

@@ -297,8 +297,6 @@
     <string name="play_queue_stream_detail">Üksikasjad</string>
     <string name="play_queue_audio_settings">Heli seaded</string>
     <string name="hold_to_append">Hoia järjekorda lisamiseks</string>
-    <string name="enqueue_on_background">Lisa järjekorda taustal</string>
-    <string name="enqueue_on_popup">Lisa järjekorda uue hüpikaknaga</string>
     <string name="start_here_on_main">Alusta taasesitust siit</string>
     <string name="start_here_on_background">Alusta siit olles taustal</string>
     <string name="start_here_on_popup">Alusta siit uue hüpikaknaga</string>

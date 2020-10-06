@@ -236,8 +236,6 @@
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
     <string name="show_hold_to_append_title">„Zum Anhängen gedrückt halten“ Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
-    <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
-    <string name="enqueue_on_popup">In Warteschlange in einem Pop-up</string>
     <string name="start_here_on_main">Ab hier wiedergeben</string>
     <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
     <string name="start_here_on_popup">Wiedergabe in einem Pop-up starten</string>

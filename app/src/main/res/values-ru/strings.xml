@@ -241,8 +241,6 @@
     <string name="unknown_content">[Неизвестно]</string>
     <string name="player_recoverable_failure">Восстановление после ошибки плеера</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
-    <string name="enqueue_on_background">В очередь в фоне</string>
-    <string name="enqueue_on_popup">В очередь в окне</string>
     <string name="start_here_on_main">Играть отсюда в плеере</string>
     <string name="start_here_on_background">Играть отсюда в фоне</string>
     <string name="start_here_on_popup">Играть отсюда в окне</string>

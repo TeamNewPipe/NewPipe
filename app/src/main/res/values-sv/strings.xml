@@ -234,8 +234,6 @@
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Ljudinställningar</string>
     <string name="hold_to_append">Håll för att placera i kön</string>
-    <string name="enqueue_on_background">Placera i bakgrunds-kön</string>
-    <string name="enqueue_on_popup">Bifoga i en popup</string>
     <string name="start_here_on_main">Börja spela här</string>
     <string name="start_here_on_background">Börja spela i bakgrunden</string>
     <string name="start_here_on_popup">Börja spela i en popup</string>

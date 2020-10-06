@@ -253,8 +253,6 @@
     <string name="kiosk_page_summary">صفحة الكشك</string>
     <string name="select_a_kiosk">حدد كشك</string>
     <string name="kiosk">الكشك</string>
-    <string name="enqueue_on_background">إدراج في قائمة الانتظار في الخلفية</string>
-    <string name="enqueue_on_popup">إدراج في قائمة الانتظار على المنبثقة</string>
     <string name="start_here_on_background">ابدأ التشغيل في الخلفية</string>
     <string name="default_content_country_title">المحتوى الإفتراضي حسب البلد</string>
     <string name="toggle_orientation">تغيير الإتجاه</string>

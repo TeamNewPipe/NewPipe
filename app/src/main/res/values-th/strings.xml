@@ -313,8 +313,6 @@
     <string name="play_queue_stream_detail">รายละเอียด</string>
     <string name="play_queue_audio_settings">การตั้งค่าเสียง</string>
     <string name="hold_to_append">กดค้างไว้เพื่อเพิ่มลงในคิว</string>
-    <string name="enqueue_on_background">เพิ่มคิวในโหมดพื้นหลัง</string>
-    <string name="enqueue_on_popup">เพิ่มคิวในโหมดป๊อปอัพ</string>
     <string name="start_here_on_main">เริ่มเล่นจากตรงนี้</string>
     <string name="start_here_on_background">เล่นจากจุดนี้ในโหมดพื้นหลัง</string>
     <string name="start_here_on_popup">เล่นจากจุดนี้ในโหมดป๊อปอัพ</string>

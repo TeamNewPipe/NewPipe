@@ -368,8 +368,6 @@
     <string name="popup_playing_append">قرار دادن در صف پخش به صورت تصویر در تصویر</string>
     <string name="player_unrecoverable_failure">خطای عدم احیای پخش‌کننده رخ داد</string>
     <string name="player_recoverable_failure">در حال احیا از خطای پخش‌کننده</string>
-    <string name="enqueue_on_background">در صف پخش پس‌زمینه قرار بده</string>
-    <string name="enqueue_on_popup">در صف پخش تصویر در تصویر قرار بده</string>
     <string name="start_here_on_main">شروع پخش در اینجا</string>
     <string name="start_here_on_background">شروع پخش در پس‌زمینه</string>
     <string name="start_here_on_popup">شروع پخش در حالت تصویر در تصویر</string>

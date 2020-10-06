@@ -2094,6 +2094,10 @@ public class VideoPlayerImpl extends VideoPlayer
         return popupLayoutParams;
     }
 
+    public MainPlayer.PlayerType getPlayerType() {
+        return playerType;
+    }
+
     public float getScreenWidth() {
         return screenWidth;
     }

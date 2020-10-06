@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
+
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -30,6 +34,20 @@ public final class PlayerHolder {
     public static boolean bound;
     private static MainPlayer playerService;
     private static VideoPlayerImpl player;
+
+    /**
+     * Returns the current {@link MainPlayer.PlayerType} of the {@link MainPlayer} service,
+     * otherwise `null` if no service running.
+     *
+     * @return Current PlayerType
+     */
+    @Nullable
+    public static MainPlayer.PlayerType getType() {
+        if (player == null) {
+            return null;
+        }
+        return player.getPlayerType();
+    }
 
     public static void setListener(final PlayerServiceExtendedEventListener newListener) {
         listener = newListener;

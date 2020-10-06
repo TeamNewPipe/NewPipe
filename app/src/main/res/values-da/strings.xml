@@ -317,7 +317,6 @@
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Lydindstillinger</string>
     <string name="hold_to_append">Hold for at føje til kø</string>
-    <string name="enqueue_on_background">Føj til kø når baggrundstilstand aktiveres</string>
     <string name="start_here_on_main">Start afspilning her</string>
     <string name="drawer_header_action_paceholder_text">Noget vil dukke op her snart ;D</string>
     <string name="preferred_open_action_settings_title">Foretrukket \'åbn\'-handling</string>
@@ -393,7 +392,6 @@
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
     <string name="user_report">Brugerrapport</string>
     <string name="conferences">Konferencer</string>
-    <string name="enqueue_on_popup">Føj til kø ved ny pop op</string>
     <string name="start_here_on_background">Start her når i baggrunden</string>
     <string name="start_here_on_popup">Start her ved ny pop op</string>
     <string name="drawer_open">Åbn skuffe</string>

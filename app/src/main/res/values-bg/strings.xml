@@ -309,8 +309,6 @@
     <string name="play_queue_stream_detail">Детайли</string>
     <string name="play_queue_audio_settings">Аудио настройки</string>
     <string name="hold_to_append">Задръжте, за да поставите на опашката</string>
-    <string name="enqueue_on_background">На опашката при „фонов режим“</string>
-    <string name="enqueue_on_popup">На опашката при „режим в прозорец“</string>
     <string name="start_here_on_main">Възпроизвеждане от тук</string>
     <string name="start_here_on_background">Възпроизвеждане от тук при фонов режим</string>
     <string name="start_here_on_popup">Възпроизвеждане от тук при прозорец</string>

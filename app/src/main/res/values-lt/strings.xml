@@ -242,8 +242,6 @@
     <string name="play_queue_stream_detail">Detalės</string>
     <string name="play_queue_audio_settings">Garso nustatymai</string>
     <string name="hold_to_append">Laikykite kad įtraukti į eilę</string>
-    <string name="enqueue_on_background">Įtrauktį į foninio grotuvo eilę</string>
-    <string name="enqueue_on_popup">Įtraukti į langelio rėžimo grotuvo eilę</string>
     <string name="start_here_on_main">Pradėti groti čia</string>
     <string name="start_here_on_background">Pradėti groti čia foniniame rėžime</string>
     <string name="start_here_on_popup">Pradėti groti čia langelio grotuvo rėžime</string>
