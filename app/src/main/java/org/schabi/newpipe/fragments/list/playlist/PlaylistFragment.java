@@ -33,6 +33,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
+import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -46,6 +47,7 @@ import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -151,25 +153,26 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             return;
         }
 
+        final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
+
+        if (PlayerHolder.getType() != null) {
+            entries.add(StreamDialogEntry.enqueue_stream);
+        }
         if (item.getStreamType() == StreamType.AUDIO_STREAM) {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
+            entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-        } else {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
-                    StreamDialogEntry.enqueue_on_popup,
+                    StreamDialogEntry.share
+            ));
+        } else  {
+            entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.start_here_on_popup,
                     StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-
-            StreamDialogEntry.start_here_on_popup.setCustomAction((fragment, infoItem) ->
-                    NavigationHelper.playOnPopupPlayer(context,
-                            getPlayQueueStartingAt(infoItem), true));
+                    StreamDialogEntry.share
+            ));
         }
+        StreamDialogEntry.setEnabledEntries(entries);
 
         StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItem) ->
                 NavigationHelper.playOnBackgroundPlayer(context,

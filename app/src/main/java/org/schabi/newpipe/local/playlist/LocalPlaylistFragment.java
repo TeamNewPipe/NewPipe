@@ -36,6 +36,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
@@ -45,6 +46,7 @@ import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StreamDialogEntry;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -756,29 +758,30 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
+        final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
+
+        if (PlayerHolder.getType() != null) {
+            entries.add(StreamDialogEntry.enqueue_stream);
+        }
         if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
+            entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.set_as_playlist_thumbnail,
                     StreamDialogEntry.delete,
                     StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-        } else {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
-                    StreamDialogEntry.enqueue_on_popup,
+                    StreamDialogEntry.share
+            ));
+        } else  {
+            entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.start_here_on_popup,
                     StreamDialogEntry.set_as_playlist_thumbnail,
                     StreamDialogEntry.delete,
                     StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-
-            StreamDialogEntry.start_here_on_popup.setCustomAction(
-                    (fragment, infoItemDuplicate) -> NavigationHelper.
-                            playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
+                    StreamDialogEntry.share
+            ));
         }
+        StreamDialogEntry.setEnabledEntries(entries);
 
         StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItemDuplicate) ->
                 NavigationHelper.playOnBackgroundPlayer(context,

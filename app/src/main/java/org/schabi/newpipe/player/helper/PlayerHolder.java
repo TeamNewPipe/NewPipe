@@ -38,6 +38,8 @@ public final class PlayerHolder {
     /**
      * Returns the current {@link MainPlayer.PlayerType} of the {@link MainPlayer} service,
      * otherwise `null` if no service running.
+     *
+     * @return Current PlayerType
      */
     @Nullable
     public static MainPlayer.PlayerType getType() {

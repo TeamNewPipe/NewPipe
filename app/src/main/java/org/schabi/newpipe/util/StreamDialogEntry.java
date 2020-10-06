@@ -12,6 +12,7 @@ import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public enum StreamDialogEntry {
@@ -107,6 +108,10 @@ public enum StreamDialogEntry {
     ///////////////////////////////////////////////////////
     // non-static methods to initialize and edit entries //
     ///////////////////////////////////////////////////////
+
+    public static void setEnabledEntries(final ArrayList<StreamDialogEntry> entries) {
+        setEnabledEntries(entries.toArray(new StreamDialogEntry[0]));
+    }
 
     /**
      * To be called before using {@link #setCustomAction(StreamDialogEntryAction)}.
