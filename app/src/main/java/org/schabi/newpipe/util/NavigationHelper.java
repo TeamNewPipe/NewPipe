@@ -196,7 +196,7 @@ public final class NavigationHelper {
                                             final boolean selectOnAppend,
                                             final boolean resumePlayback) {
 
-        Toast.makeText(context, R.string.player_append, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
 
@@ -217,7 +217,7 @@ public final class NavigationHelper {
             return;
         }
 
-        Toast.makeText(context, R.string.player_append, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
@@ -233,7 +233,7 @@ public final class NavigationHelper {
                                                  final PlayQueue queue,
                                                  final boolean selectOnAppend,
                                                  final boolean resumePlayback) {
-        Toast.makeText(context, R.string.player_append, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
