@@ -1,12 +1,15 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 
 import java.util.Collections;
@@ -15,6 +18,42 @@ public enum StreamDialogEntry {
     //////////////////////////////////////
     // enum values with DEFAULT actions //
     //////////////////////////////////////
+
+    /**
+     * Enqueues the stream automatically to the current PlayerType.<br>
+     * <br>
+     * Info: Add this entry within showStreamDialog.
+     */
+    enqueue_stream(R.string.enqueue_stream, (fragment, item) -> {
+        final MainPlayer.PlayerType type = PlayerHolder.getType();
+
+        if (type == null) {
+            // This code shouldn't be reached since the checks for appending this entry should be
+            // done within the showStreamDialog calls.
+            Toast.makeText(fragment.getContext(),
+                    "No player currently playing", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        switch (type) {
+            case AUDIO:
+                NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
+                        new SinglePlayQueue(item), false);
+                break;
+            case POPUP:
+                NavigationHelper.enqueueOnPopupPlayer(fragment.getContext(),
+                        new SinglePlayQueue(item), false);
+                break;
+            case VIDEO:
+                NavigationHelper.enqueueOnVideoPlayer(fragment.getContext(),
+                        new SinglePlayQueue(item), false);
+                break;
+            default:
+                // Same as above, but keep it for now for debugging.
+                Toast.makeText(fragment.getContext(),
+                        "Unreachable code executed", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }),
 
     enqueue_on_background(R.string.enqueue_on_background, (fragment, item) ->
             NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
