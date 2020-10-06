@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="view_count_text">%1$s visualizzazioni</string>
+    <string name="choose_browser">Sciglie \'o browser</string>
+    <string name="search">Truova</string>
+    <string name="open_in_popup_mode">Arape comme fenesta popup</string>
+    <string name="open_in_browser">Arape ncopp\'\'o browser</string>
+    <string name="cancel">Chiure</string>
+    <string name="install">Installa</string>
+    <string name="upload_date_text">Pubblicato \'o %1$s</string>
+</resources>
