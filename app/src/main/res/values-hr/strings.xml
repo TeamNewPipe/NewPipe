@@ -516,4 +516,33 @@
     <string name="albums">Albumi</string>
     <string name="songs">Pjesme</string>
     <string name="channel_created_by">Napravio %s</string>
+    <string name="settings_category_notification_title">Obavijest</string>
+    <string name="never">Nikad</string>
+    <string name="enable_queue_limit">Ograniči red preuzimanja</string>
+    <string name="downloads_storage_use_saf_title">Koristi SAF</string>
+    <string name="remove_watched">Ukloni pregledano</string>
+    <string name="remove_watched_popup_title">Ukloni pogledane videozapise\?</string>
+    <plurals name="seconds">
+        <item quantity="one">%d sekunda</item>
+        <item quantity="few">%d sekundi</item>
+        <item quantity="other">%d sekundi</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minutu</item>
+        <item quantity="few">%d minuta</item>
+        <item quantity="other">%d minuta</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d dan</item>
+        <item quantity="few">%d dana</item>
+        <item quantity="other">%d dana</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d sat</item>
+        <item quantity="few">%d sati</item>
+        <item quantity="other">%d sati</item>
+    </plurals>
+    <string name="feed_subscription_not_loaded_count">Nije učitano: %d</string>
+    <string name="feed_group_dialog_empty_selection">Nije odabrana nijedna pretplata</string>
+    <string name="feed_group_dialog_select_subscriptions">Odaberi pretplate</string>
 </resources>
