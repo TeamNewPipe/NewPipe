@@ -9,8 +9,9 @@ assignees: ''
 <!-- The comments between these brackets won't show up in the submitted issue (as you can see in the preview). -->
 
 ### Checklist
+<!-- The first box has been checked for you to show you how it is done. -->
 
-- [ ] I checked, but didn't find any duplicates of this issue in the repo. <!-- Seriously, check. O_O -->
+- [x] I checked, but didn't find any duplicates of this issue in the repo. <!-- Seriously, check. O_O -->
 - [ ] I have read the contribution guidelines given at https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md.
 - [ ] This issue contains only one feature request. I will open one issue for every feature I want to request.
 
