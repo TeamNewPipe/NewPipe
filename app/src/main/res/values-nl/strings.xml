@@ -129,8 +129,6 @@
     <string name="filter">Filter</string>
     <string name="refresh">Verversen</string>
     <string name="clear">Wissen</string>
-    <string name="popup_remember_size_pos_title">Onthoud de eigenschappen van de pop-up</string>
-    <string name="popup_remember_size_pos_summary">Onthoud laatste grootte en positie van pop-up</string>
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="popup_resizing_indicator_title">Bezig met wijzigen van grootte</string>
     <string name="use_external_video_player_summary">Verwijdert geluid bij sommige resoluties</string>

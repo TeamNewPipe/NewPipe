@@ -53,8 +53,6 @@
     <string name="light_theme_title">Svijetla</string>
     <string name="dark_theme_title">Tamna</string>
     <string name="black_theme_title">Crno</string>
-    <string name="popup_remember_size_pos_title">Zapamti veličinu i poziciju skočnog prozora</string>
-    <string name="popup_remember_size_pos_summary">Zapamti posljednju veličinu i poziciju skočnog prozora</string>
     <string name="player_gesture_controls_title">Kontroliranje reproduktora gestama</string>
     <string name="player_gesture_controls_summary">Koristi geste za kontrolu svjetline i glasnoće reproduktora</string>
     <string name="show_search_suggestions_title">Sugestije pri traženju</string>

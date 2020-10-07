@@ -129,8 +129,6 @@
     <string name="filter">フィルター</string>
     <string name="refresh">更新</string>
     <string name="clear">クリア</string>
-    <string name="popup_remember_size_pos_title">ポップアップの属性を記憶</string>
-    <string name="popup_remember_size_pos_summary">ポップアップしたサイズと位置を記憶します</string>
     <string name="settings_category_popup_title">ポップアップ</string>
     <string name="popup_resizing_indicator_title">サイズを変更</string>
     <string name="use_external_video_player_summary">一部の解像度では音声がありません</string>

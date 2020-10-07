@@ -107,8 +107,6 @@
     <string name="default_popup_resolution_title">Προεπιλεγμένη ανάλυση αναδυόμενου παραθύρου</string>
     <string name="show_higher_resolutions_title">Εμφάνιση υψηλότερων αναλύσεων</string>
     <string name="default_video_format_title">Προεπιλεγμένη μορφή βίντεο</string>
-    <string name="popup_remember_size_pos_title">Ενθύμιση τις ιδιότητες του αναδυόμενου παραθύρου</string>
-    <string name="popup_remember_size_pos_summary">Ενθύμιση του τελευταίου μεγέθους και θέσης του παραθύρου</string>
     <string name="use_inexact_seek_title">Χρήση γρήγορης ανακριβούς αναζήτησης</string>
     <string name="use_inexact_seek_summary">Η μην ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια. Δε λειτουργεί για διαστήματα των 5, 15 ή 25 δευτερολέπτων.</string>
     <string name="download_thumbnail_title">Φόρτωση μικρογραφιών</string>

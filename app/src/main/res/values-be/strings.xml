@@ -58,8 +58,6 @@
     <string name="light_theme_title">Светлая</string>
     <string name="dark_theme_title">Цёмная</string>
     <string name="black_theme_title">Чорная</string>
-    <string name="popup_remember_size_pos_title">Аднавіць акно</string>
-    <string name="popup_remember_size_pos_summary">Запамінаць памер і становішча ўсплываючага акна</string>
     <string name="use_inexact_seek_title">Хуткі пошук пазіцыі</string>
     <string name="use_inexact_seek_summary">Недакладны пошук дазваляе плэеру шукаць пазіцыю хутчэй, але менш дакладна</string>
     <string name="download_thumbnail_title">Загружаць мініяцюры</string>

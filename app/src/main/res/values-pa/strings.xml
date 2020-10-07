@@ -58,8 +58,6 @@
     <string name="light_theme_title">ਸਫੈਦ</string>
     <string name="dark_theme_title">ਗੂੜਾ</string>
     <string name="black_theme_title">ਕਾਲਾ</string>
-    <string name="popup_remember_size_pos_title">ਪੌਪ-ਅਪ ਦਾ ਆਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
-    <string name="popup_remember_size_pos_summary">ਪੌਪ-ਅਪ ਦਾ ਆਖਰੀ ਅਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
     <string name="use_inexact_seek_title">ਤੇਜ਼ ਪਰ inexact seek ਵਰਤੋ</string>
     <string name="use_inexact_seek_summary">Inexact seek ਵੀਡੀਓ ਨੂੰ ਤੇਜ਼ ਪਰ ਅਣ-ਸਟੀਕ ਢੰਗ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ ਲਿਜਾਂਦਾ ਹੈ । ਇਸ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ 5,15 ਜਾਂ 25 ਸੈਕੰਡ ਜਾਣਾ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ।</string>
     <string name="download_thumbnail_title">ਥੰਬਨੇਲ ਲੋਡ ਕਰੋ</string>

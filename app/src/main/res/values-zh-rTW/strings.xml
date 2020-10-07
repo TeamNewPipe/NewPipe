@@ -62,8 +62,6 @@
     <string name="show_higher_resolutions_summary">僅部份裝置可播放 2K/4K 影片</string>
     <string name="default_video_format_title">預設影片格式</string>
     <string name="black_theme_title">純黑</string>
-    <string name="popup_remember_size_pos_title">記住懸浮視窗屬性</string>
-    <string name="popup_remember_size_pos_summary">記住上次使用時懸浮視窗的大小和位置</string>
     <string name="player_gesture_controls_title">播放器手勢控制</string>
     <string name="player_gesture_controls_summary">使用手勢來控制播放器的亮度及音量</string>
     <string name="show_search_suggestions_title">搜尋建議</string>

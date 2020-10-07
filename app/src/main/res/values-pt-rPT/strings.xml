@@ -449,7 +449,6 @@
     <string name="search_history_deleted">Histórico de pesquisa eliminado.</string>
     <string name="clear_search_history_title">Limpar o histórico de pesquisas</string>
     <string name="msg_error">Erro</string>
-    <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
     <string name="download_path_summary">Os ficheiros de vídeo transferidos são armazenados aqui</string>
     <string name="switch_to_main">Mudar para principal</string>
     <string name="msg_popup_permission">Esta permissão é necessária 
@@ -620,7 +619,6 @@
     <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
     <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
     <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
-    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do popup</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_buffering">A pôr no buffer</string>
     <string name="notification_action_shuffle">Baralhar</string>

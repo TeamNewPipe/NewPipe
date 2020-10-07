@@ -58,8 +58,6 @@
     <string name="light_theme_title">روشن</string>
     <string name="dark_theme_title">تاریک</string>
     <string name="black_theme_title">سیاہ</string>
-    <string name="popup_remember_size_pos_title">پاپ اپ جسامت اور مقام کو یاد رکھیں</string>
-    <string name="popup_remember_size_pos_summary">پچھلی جسامت اور پوپ اپ کا مقام یاد رکھیں</string>
     <string name="use_inexact_seek_title">بالواسطہ رسائی استعمال کریں</string>
     <string name="use_inexact_seek_summary">بالواسطہ تلاش مشکلات کو کم کر کے پلیئر کو تیز رفتاری سے مقامات تک رسائی کرنے دیتی ہے</string>
     <string name="download_thumbnail_title">نظرِ انگشتی لوڈ کریں</string>
