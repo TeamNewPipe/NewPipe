@@ -12,6 +12,11 @@
         android:title="@string/leakcanary"
         android:summary="@string/enable_leak_canary_summary"/>
 
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="@string/show_memory_leaks_key"
+        android:title="@string/show_memory_leaks"/>
+
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         android:defaultValue="false"
