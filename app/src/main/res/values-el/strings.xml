@@ -118,7 +118,7 @@
     <string name="metadata_cache_wipe_summary">Αφαίρεση όλων των προσωρινά αποθηκευμένων δεδομένων ιστοσελίδων</string>
     <string name="metadata_cache_wipe_complete_notice">Η προσωρινή μνήμη μεταδεδομένων εκκαθαρίστηκε</string>
     <string name="auto_queue_title">Αυτόματη πρόσθεση της επόμενης ροής στην ουρά</string>
-    <string name="auto_queue_summary">Αυτόματη πρόσθεση μιας σχετικής ροής όταν αναπαράγεται η προηγούμενη ροή σε μια μη-επαναλαμβανόμενη ουρά</string>
+    <string name="auto_queue_summary">Συνεχίστε να τερματίζετε (μη επαναλαμβανόμενη) τη σειρά αναπαραγωγής προσθέτοντας μια σχετική ροή</string>
     <string name="player_gesture_controls_title">Έλεγχος αναπαραγωγής με χειρονομίες</string>
     <string name="player_gesture_controls_summary">Χρήση χειρονομιών για τον έλεγχο της φωτεινότητας και της έντασης ήχου</string>
     <string name="show_search_suggestions_summary">Εμφάνιση προτάσεων ενώ κάνετε αναζήτηση</string>
@@ -573,4 +573,5 @@
     <string name="notification_action_0_title">Κουμπί πρώτης ενέργειας</string>
     <string name="notification_scale_to_square_image_summary">Κλιμάκωση της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1 (μπορεί να προκαλέσει στρεβλώσεις)</string>
     <string name="notification_scale_to_square_image_title">Κλιμάκωση μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
+    <string name="notification_action_buffering">Φόρτωση</string>
 </resources>
