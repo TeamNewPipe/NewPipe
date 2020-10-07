@@ -515,4 +515,5 @@
     <string name="artists">Umjetnici</string>
     <string name="albums">Albumi</string>
     <string name="songs">Pjesme</string>
+    <string name="channel_created_by">Napravio %s</string>
 </resources>
