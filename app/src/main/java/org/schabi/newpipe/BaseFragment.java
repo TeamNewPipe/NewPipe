@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -20,7 +19,7 @@ public abstract class BaseFragment extends Fragment {
     public static final ImageLoader IMAGE_LOADER = ImageLoader.getInstance();
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
     protected final boolean DEBUG = MainActivity.DEBUG;
-    protected AppCompatActivity activity;
+    protected MainActivity activity;
     //These values are used for controlling fragments when they are part of the frontpage
     @State
     protected boolean useAsFrontPage = false;
@@ -37,7 +36,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(final Context context) {
         super.onAttach(context);
-        activity = (AppCompatActivity) context;
+        activity = (MainActivity) context;
     }
 
     @Override

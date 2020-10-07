@@ -351,9 +351,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             }
         }).attachToRecyclerView(binding.suggestionsList);
 
-        searchToolbarContainer = activity.findViewById(R.id.toolbar_search_container);
-        searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
-        searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
+        searchToolbarContainer = activity.binding.toolbarLayout.toolbarSearchContainer.getRoot();
+        searchEditText
+                = activity.binding.toolbarLayout.toolbarSearchContainer.toolbarSearchEditText;
+        searchClear = activity.binding.toolbarLayout.toolbarSearchContainer.toolbarSearchClear;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

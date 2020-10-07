@@ -30,9 +30,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
-
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,11 +39,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -55,10 +52,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 
+import org.schabi.newpipe.databinding.ActivityMainBinding;
+import org.schabi.newpipe.databinding.DrawerHeaderBinding;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -71,8 +71,8 @@ import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -83,6 +83,7 @@ import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusAwareDrawerLayout;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.ArrayList;
@@ -94,15 +95,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
 
+    public ActivityMainBinding binding;
+    private DrawerHeaderBinding headerBinding;
+
     private ActionBarDrawerToggle toggle;
-    private DrawerLayout drawer;
-    private NavigationView drawerItems;
-    private ImageView headerServiceIcon;
-    private TextView headerServiceView;
-    private Button toggleServiceButton;
 
     private boolean servicesShown = false;
-    private ImageView serviceArrow;
 
     private BroadcastReceiver broadcastReceiver;
 
@@ -135,14 +133,16 @@ public class MainActivity extends AppCompatActivity {
 
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        final View view = binding.getRoot();
+        setContentView(view);
 
         if (getSupportFragmentManager() != null
                 && getSupportFragmentManager().getBackStackEntryCount() == 0) {
             initFragments();
         }
 
-        setSupportActionBar(findViewById(R.id.toolbar));
+        setSupportActionBar(binding.toolbarLayout.toolbar);
         try {
             setupDrawer();
         } catch (final Exception e) {
@@ -156,9 +156,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawer() throws Exception {
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-        drawer = findViewById(R.id.drawer_layout);
-        drawerItems = findViewById(R.id.navigation);
+        final Toolbar toolbar = binding.toolbarLayout.toolbar;
+        final FocusAwareDrawerLayout drawer = binding.mainDrawerLayout;
+        final NavigationView drawerItems = binding.drawerLayout.drawerLayout;
 
         //Tabs
         final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
@@ -245,16 +245,16 @@ public class MainActivity extends AppCompatActivity {
                 return false;
         }
 
-        drawer.closeDrawers();
+        binding.mainDrawerLayout.closeDrawers();
         return true;
     }
 
     private void changeService(final MenuItem item) {
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this))
-                .setChecked(false);
+        binding.drawerLayout.drawerLayout.getMenu()
+                .getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
         ServiceHelper.setSelectedServiceId(this, item.getItemId());
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this))
-                .setChecked(true);
+        binding.drawerLayout.drawerLayout.getMenu()
+                .getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
     }
 
     private void tabSelected(final MenuItem item) throws ExtractionException {
@@ -305,19 +305,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerHeader() {
-        final NavigationView navigationView = findViewById(R.id.navigation);
-        final View hView = navigationView.getHeaderView(0);
+        final View hView = binding.drawerLayout.drawerLayout.getHeaderView(0);
+        headerBinding = DrawerHeaderBinding.bind(hView);
 
-        serviceArrow = hView.findViewById(R.id.drawer_arrow);
-        headerServiceIcon = hView.findViewById(R.id.drawer_header_service_icon);
-        headerServiceView = hView.findViewById(R.id.drawer_header_service_view);
-        toggleServiceButton = hView.findViewById(R.id.drawer_header_action_button);
-        toggleServiceButton.setOnClickListener(view -> toggleServices());
+        headerBinding.drawerHeaderActionButton.setOnClickListener(view -> toggleServices());
 
         // If the current app name is bigger than the default "NewPipe" (7 chars),
         // let the text view grow a little more as well.
         if (getString(R.string.app_name).length() > "NewPipe".length()) {
-            final TextView headerTitle = hView.findViewById(R.id.drawer_header_newpipe_title);
+            final TextView headerTitle = headerBinding.drawerHeaderNewpipeTitle;
             final ViewGroup.LayoutParams layoutParams = headerTitle.getLayoutParams();
             layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
             headerTitle.setLayoutParams(layoutParams);
@@ -332,9 +328,9 @@ public class MainActivity extends AppCompatActivity {
     private void toggleServices() {
         servicesShown = !servicesShown;
 
-        drawerItems.getMenu().removeGroup(R.id.menu_services_group);
-        drawerItems.getMenu().removeGroup(R.id.menu_tabs_group);
-        drawerItems.getMenu().removeGroup(R.id.menu_options_about_group);
+        binding.drawerLayout.drawerLayout.getMenu().removeGroup(R.id.menu_services_group);
+        binding.drawerLayout.drawerLayout.getMenu().removeGroup(R.id.menu_tabs_group);
+        binding.drawerLayout.drawerLayout.getMenu().removeGroup(R.id.menu_options_about_group);
 
         if (servicesShown) {
             showServices();
@@ -348,13 +344,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showServices() {
-        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
+        headerBinding.drawerArrow.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
 
         for (final StreamingService s : NewPipe.getServices()) {
             final String title = s.getServiceInfo().getName()
                     + (ServiceHelper.isBeta(s) ? " (beta)" : "");
 
-            final MenuItem menuItem = drawerItems.getMenu()
+            final MenuItem menuItem = binding.drawerLayout.drawerLayout.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
 
@@ -363,8 +359,8 @@ public class MainActivity extends AppCompatActivity {
                 enhancePeertubeMenu(s, menuItem);
             }
         }
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this))
-                .setChecked(true);
+        binding.drawerLayout.drawerLayout.getMenu()
+                .getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
     }
 
     private void enhancePeertubeMenu(final StreamingService s, final MenuItem menuItem) {
@@ -396,7 +392,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 PeertubeHelper.selectInstance(newInstance, getApplicationContext());
                 changeService(menuItem);
-                drawer.closeDrawers();
+                binding.mainDrawerLayout.closeDrawers();
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
                     getSupportFragmentManager().popBackStack(null,
                             FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -413,13 +409,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showTabs() throws ExtractionException {
-        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
+        headerBinding.drawerArrow.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
 
         //Tabs
         final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
         final StreamingService service = NewPipe.getService(currentServiceId);
 
         int kioskId = 0;
+
+        final NavigationView drawerItems = binding.drawerLayout.drawerLayout;
 
         for (final String ks : service.getKioskList().getAvailableKiosks()) {
             drawerItems.getMenu()
@@ -474,16 +472,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Close drawer on return, and don't show animation,
         // so it looks like the drawer isn't open when the user returns to MainActivity
-        drawer.closeDrawer(GravityCompat.START, false);
+        binding.mainDrawerLayout.closeDrawer(GravityCompat.START, false);
         try {
             final int selectedServiceId = ServiceHelper.getSelectedServiceId(this);
             final String selectedServiceName = NewPipe.getService(selectedServiceId)
                     .getServiceInfo().getName();
-            headerServiceView.setText(selectedServiceName);
-            headerServiceIcon.setImageResource(ServiceHelper.getIcon(selectedServiceId));
+            headerBinding.drawerHeaderServiceView.setText(selectedServiceName);
+            headerBinding.drawerHeaderServiceIcon
+                    .setImageResource(ServiceHelper.getIcon(selectedServiceId));
 
-            headerServiceView.post(() -> headerServiceView.setSelected(true));
-            toggleServiceButton.setContentDescription(
+            headerBinding.drawerHeaderServiceView.post(() ->
+                    headerBinding.drawerHeaderServiceView.setSelected(true));
+            headerBinding.drawerHeaderActionButton.setContentDescription(
                     getString(R.string.drawer_header_description) + selectedServiceName);
         } catch (final Exception e) {
             ErrorActivity.reportUiError(this, e);
@@ -512,7 +512,8 @@ public class MainActivity extends AppCompatActivity {
 
         final boolean isHistoryEnabled = sharedPreferences.getBoolean(
                 getString(R.string.enable_watch_history_key), true);
-        drawerItems.getMenu().findItem(ITEM_ID_HISTORY).setVisible(isHistoryEnabled);
+        binding.drawerLayout.drawerLayout.getMenu().findItem(ITEM_ID_HISTORY)
+                .setVisible(isHistoryEnabled);
     }
 
     @Override
@@ -556,9 +557,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (DeviceUtils.isTv(this)) {
-            final View drawerPanel = findViewById(R.id.navigation);
-            if (drawer.isDrawerOpen(drawerPanel)) {
-                drawer.closeDrawers();
+            final View drawerPanel = binding.drawerLayout.drawerLayout;
+            if (binding.mainDrawerLayout.isDrawerOpen(drawerPanel)) {
+                binding.mainDrawerLayout.closeDrawers();
                 return;
             }
         }
@@ -584,8 +585,7 @@ public class MainActivity extends AppCompatActivity {
             // delegate the back press to it
             if (fragmentPlayer instanceof BackPressable) {
                 if (!((BackPressable) fragmentPlayer).onBackPressed()) {
-                    final FrameLayout bottomSheetLayout =
-                            findViewById(R.id.fragment_player_holder);
+                    final FrameLayout bottomSheetLayout = binding.fragmentPlayerHolder;
                     BottomSheetBehavior.from(bottomSheetLayout)
                             .setState(BottomSheetBehavior.STATE_COLLAPSED);
                 }
@@ -669,8 +669,7 @@ public class MainActivity extends AppCompatActivity {
         final Fragment fragment
                 = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (!(fragment instanceof SearchFragment)) {
-            findViewById(R.id.toolbar).findViewById(R.id.toolbar_search_container)
-                    .setVisibility(View.GONE);
+            binding.toolbarLayout.toolbarSearchContainer.getRoot().setVisibility(View.GONE);
         }
 
         final ActionBar actionBar = getSupportActionBar();
@@ -731,7 +730,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        final Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = binding.toolbarLayout.toolbar;
 
         final Fragment fragment = getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_holder);
@@ -739,11 +738,12 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             if (toggle != null) {
                 toggle.syncState();
-                toolbar.setNavigationOnClickListener(v -> drawer.openDrawer(GravityCompat.START));
-                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
+                toolbar.setNavigationOnClickListener(v ->
+                        binding.mainDrawerLayout.openDrawer(GravityCompat.START));
+                binding.mainDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
             }
         } else {
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.mainDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
         }
@@ -836,7 +836,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean bottomSheetHiddenOrCollapsed() {
-        final FrameLayout bottomSheetLayout = findViewById(R.id.fragment_player_holder);
+        final FrameLayout bottomSheetLayout = binding.fragmentPlayerHolder;
         final BottomSheetBehavior<FrameLayout> bottomSheetBehavior =
                 BottomSheetBehavior.from(bottomSheetLayout);
 
