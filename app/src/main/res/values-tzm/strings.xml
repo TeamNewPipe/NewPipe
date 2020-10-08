@@ -12,4 +12,12 @@
     <string name="share">Bḍu</string>
     <string name="cancel">Ser</string>
     <string name="view_count_text">%1$s n tannayin</string>
+    <string name="show_comments_title">Semal iɣfawalen</string>
+    <string name="black_theme_title">Aberkan</string>
+    <string name="dark_theme_title">Adeɣmum</string>
+    <string name="light_theme_title">Anafaw</string>
+    <string name="theme_title">Asgum</string>
+    <string name="play_audio">Imesli</string>
+    <string name="notification_action_nothing">Walu</string>
+    <string name="play_with_kodi_title">Γeṛ s Kodi</string>
 </resources>
