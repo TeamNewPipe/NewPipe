@@ -545,4 +545,11 @@
     <string name="feed_subscription_not_loaded_count">Nije učitano: %d</string>
     <string name="feed_group_dialog_empty_selection">Nije odabrana nijedna pretplata</string>
     <string name="feed_group_dialog_select_subscriptions">Odaberi pretplate</string>
+    <string name="notification_action_4_title">Peti akcijski gumb</string>
+    <string name="notification_action_3_title">Četvrti akcijski gumb</string>
+    <string name="notification_action_2_title">Treći akcijski gumb</string>
+    <string name="notification_action_1_title">Drugi akcijski gumb</string>
+    <string name="notification_action_0_title">Prvi akcijski gumb</string>
+    <string name="download_choose_new_path">Promijenite mape za preuzimanje kako bi stupile na snagu</string>
+    <string name="search_showing_result_for">Prikazuju se rezultati za: %s</string>
 </resources>
