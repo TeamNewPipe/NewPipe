@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="controls_add_to_playlist_title">Rnu ɣer</string>
+    <string name="tab_choose">Sety aseksel</string>
+    <string name="tab_new">Aseksel amaynu</string>
+    <string name="tab_main">Asenubeg</string>
+    <string name="show_info">Semal ineɣmisen</string>
+    <string name="share_dialog_title">Bḍu aked</string>
+    <string name="settings">Tisɣal</string>
+    <string name="search">Rzu</string>
+    <string name="download">Agem</string>
+    <string name="share">Bḍu</string>
+    <string name="cancel">Ser</string>
+    <string name="view_count_text">%1$s n tannayin</string>
+</resources>
