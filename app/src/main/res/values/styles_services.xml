@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- YouTube -->
-    <style name="LightTheme.YouTube" parent="LightTheme">
-    </style>
+    <style name="LightTheme.YouTube" parent="LightTheme"></style>
 
-    <style name="DarkTheme.YouTube" parent="DarkTheme">
-    </style>
+    <style name="DarkTheme.YouTube" parent="DarkTheme"></style>
 
-    <style name="BlackTheme.YouTube" parent="BlackTheme">
-    </style>
+    <style name="BlackTheme.YouTube" parent="BlackTheme"></style>
 
     <!-- SoundCloud -->
     <style name="LightTheme.SoundCloud" parent="LightTheme">
         <item name="colorPrimary">@color/light_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/light_soundcloud_dark_color</item>
         <item name="colorAccent">@color/light_soundcloud_accent_color</item>
-        <item name="progress_horizontal_drawable">@drawable/progress_soundcloud_horizontal_light</item>
+        <item name="progress_horizontal_drawable">@drawable/progress_soundcloud_horizontal_light
+        </item>
     </style>
 
     <style name="DarkTheme.SoundCloud" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_soundcloud_dark_color</item>
         <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
-        <item name="progress_horizontal_drawable">@drawable/progress_soundcloud_horizontal_dark</item>
+        <item name="progress_horizontal_drawable">@drawable/progress_soundcloud_horizontal_dark
+        </item>
     </style>
 
     <style name="BlackTheme.SoundCloud" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_soundcloud_dark_color</item>
         <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
-        <item name="progress_horizontal_drawable">@drawable/progress_soundcloud_horizontal_dark</item>
+        <item name="progress_horizontal_drawable">@drawable/progress_soundcloud_horizontal_dark
+        </item>
     </style>
 
     <!-- PeerTube -->

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="128dp"
     android:gravity="center"
+    android:minHeight="128dp"
     android:orientation="vertical">
 
     <TextView
@@ -13,12 +12,12 @@
         android:layout_height="wrap_content"
         android:text="¯\\_(ツ)_/¯"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        tools:ignore="HardcodedText"/>
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="6dp"
-        android:text="@string/empty_subscription_feed_subtitle"/>
+        android:text="@string/empty_subscription_feed_subtitle" />
 </LinearLayout>

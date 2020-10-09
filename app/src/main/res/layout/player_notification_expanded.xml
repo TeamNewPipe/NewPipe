@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/notificationContent"
@@ -17,7 +16,7 @@
         android:layout_alignParentLeft="true"
         android:scaleType="centerCrop"
         android:src="@drawable/dummy_thumbnail"
-        tools:ignore="ContentDescription,RtlHardcoded"/>
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <ImageButton
         android:id="@+id/notificationStop"
@@ -49,9 +48,9 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textSize="14sp"
             android:textColor="@color/background_title_color"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."/>
+            android:textSize="14sp"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
 
         <TextView
             android:id="@+id/notificationArtist"
@@ -59,9 +58,9 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textSize="12sp"
             android:textColor="@color/background_subtext_color"
-            tools:text="Duis posuere arcu condimentum lobortis mattis."/>
+            android:textSize="12sp"
+            tools:text="Duis posuere arcu condimentum lobortis mattis." />
     </LinearLayout>
 
     <ProgressBar
@@ -75,47 +74,47 @@
         android:layout_toRightOf="@+id/notificationCover"
         android:progressDrawable="@drawable/custom_progress_bar"
         tools:ignore="RtlHardcoded"
-        tools:progress="52"/>
+        tools:progress="52" />
 
     <TextView
         android:id="@+id/notificationTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
         android:layout_alignTop="@+id/notificationProgressBar"
-        android:layout_toRightOf="@+id/notificationCover"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/notificationCover"
+        android:layout_toRightOf="@+id/notificationCover"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textSize="12sp"
         android:textColor="@color/background_subtext_color"
-        tools:text="Duis posuere"/>
+        android:textSize="12sp"
+        tools:text="Duis posuere" />
 
     <RelativeLayout
         android:id="@+id/notificationControls"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:paddingTop="10dp"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/notificationCover"
         android:orientation="horizontal"
+        android:paddingTop="10dp"
         tools:ignore="RtlHardcoded">
 
         <ImageButton
             android:id="@+id/notificationRepeat"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginLeft="8dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
             android:background="#00000000"
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitXY"
             android:src="@drawable/exo_controls_repeat_all"
-            tools:ignore="ContentDescription"/>
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/notificationFRewind"
@@ -130,7 +129,7 @@
             android:padding="2dp"
             android:scaleType="fitCenter"
             android:src="@drawable/exo_controls_previous"
-            tools:ignore="ContentDescription"/>
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/notificationPlayPause"
@@ -140,12 +139,12 @@
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/notificationFForward"
             android:background="#00000000"
-            android:padding="2dp"
             android:clickable="true"
             android:focusable="true"
+            android:padding="2dp"
             android:scaleType="fitCenter"
             android:src="@drawable/exo_controls_pause"
-            tools:ignore="ContentDescription"/>
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/notificationFForward"
@@ -160,6 +159,6 @@
             android:padding="2dp"
             android:scaleType="fitCenter"
             android:src="@drawable/exo_controls_next"
-            tools:ignore="ContentDescription"/>
+            tools:ignore="ContentDescription" />
     </RelativeLayout>
 </RelativeLayout>

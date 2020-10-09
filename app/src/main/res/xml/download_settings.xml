@@ -1,75 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_downloads_title">
 
 
     <CheckBoxPreference
-        app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/downloads_storage_ask"
         android:summary="@string/downloads_storage_ask_summary_kitkat"
-        android:title="@string/downloads_storage_ask_title" />
+        android:title="@string/downloads_storage_ask_title"
+        app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
-        app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/storage_use_saf"
         android:summary="@string/downloads_storage_use_saf_summary"
-        android:title="@string/downloads_storage_use_saf_title" />
+        android:title="@string/downloads_storage_use_saf_title"
+        app:iconSpaceReserved="false" />
 
     <Preference
-        app:iconSpaceReserved="false"
         android:dialogTitle="@string/download_path_dialog_title"
         android:key="@string/download_path_video_key"
         android:summary="@string/download_path_summary"
-        android:title="@string/download_path_title"/>
+        android:title="@string/download_path_title"
+        app:iconSpaceReserved="false" />
 
     <Preference
-        app:iconSpaceReserved="false"
         android:dialogTitle="@string/download_path_audio_dialog_title"
         android:key="@string/download_path_audio_key"
         android:summary="@string/download_path_audio_summary"
-        android:title="@string/download_path_audio_title"/>
+        android:title="@string/download_path_audio_title"
+        app:iconSpaceReserved="false" />
 
     <ListPreference
-        app:iconSpaceReserved="false"
         android:defaultValue="@string/default_file_charset_value"
         android:entries="@array/settings_filename_charset_name"
         android:entryValues="@array/settings_filename_charset"
         android:key="@string/settings_file_charset_key"
         android:summary="%s"
-        android:title="@string/settings_file_charset_title"/>
+        android:title="@string/settings_file_charset_title"
+        app:iconSpaceReserved="false" />
 
     <EditTextPreference
-        app:iconSpaceReserved="false"
         android:defaultValue="@string/settings_file_replacement_character_default_value"
         android:key="@string/settings_file_replacement_character_key"
         android:summary="@string/settings_file_replacement_character_summary"
-        android:title="@string/settings_file_replacement_character_title"/>
+        android:title="@string/settings_file_replacement_character_title"
+        app:iconSpaceReserved="false" />
 
     <ListPreference
-        app:iconSpaceReserved="false"
         android:defaultValue="@string/downloads_maximum_retry_default"
         android:entries="@array/downloads_maximum_retry_list"
         android:entryValues="@array/downloads_maximum_retry_list"
         android:key="@string/downloads_maximum_retry"
         android:summary="@string/max_retry_desc"
-        android:title="@string/max_retry_msg" />
+        android:title="@string/max_retry_msg"
+        app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
-        app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/downloads_cross_network"
         android:summary="@string/pause_downloads_on_mobile_desc"
-        android:title="@string/pause_downloads_on_mobile" />
+        android:title="@string/pause_downloads_on_mobile"
+        app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
-        app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/downloads_queue_limit"
         android:summary="@string/enable_queue_limit_desc"
-        android:title="@string/enable_queue_limit" />
+        android:title="@string/enable_queue_limit"
+        app:iconSpaceReserved="false" />
 
 </PreferenceScreen>

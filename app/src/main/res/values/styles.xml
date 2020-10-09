@@ -10,6 +10,7 @@
 
     <!-- Base themes -->
     <style name="Base.LightTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+
     <style name="LightTheme" parent="Base.LightTheme">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
@@ -116,7 +117,9 @@
     </style>
 
     <style name="Base.V7.DarkTheme" parent="Theme.AppCompat.NoActionBar" />
+
     <style name="Base.DarkTheme" parent="Base.V7.DarkTheme" />
+
     <style name="DarkTheme" parent="Base.DarkTheme">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
@@ -222,8 +225,10 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
-    <style name="Base.V7.BlackTheme" parent="DarkTheme"/>
-    <style name="Base.BlackTheme" parent="Base.V7.BlackTheme"/>
+    <style name="Base.V7.BlackTheme" parent="DarkTheme" />
+
+    <style name="Base.BlackTheme" parent="Base.V7.BlackTheme" />
+
     <style name="BlackTheme" parent="Base.BlackTheme">
         <item name="android:windowBackground">@color/black_background_color</item>
         <item name="windowBackground">@color/black_background_color</item>

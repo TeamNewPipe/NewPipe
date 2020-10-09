@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.schabi.newpipe.history.HistoryActivity">
 
-    <item android:id="@+id/action_history_clear"
+    <item
+        android:id="@+id/action_history_clear"
         android:orderInCategory="940"
         android:title="@string/clear_views_history_title"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 </menu>

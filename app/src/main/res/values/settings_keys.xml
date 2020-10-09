@@ -37,8 +37,8 @@
     <string name="seek_duration_key" translatable="false">seek_duration</string>
     <string name="seek_duration_default_value" translatable="false">10000</string>
     <string-array name="seek_duration_description" translatable="false">
-    <!--   They are overridden in VideoAudioSettingsFragment.java if the translation
-    (seconds) exist. Otherwise this array is picked-->
+        <!--   They are overridden in VideoAudioSettingsFragment.java if the translation
+        (seconds) exist. Otherwise this array is picked-->
         <item>5 seconds</item>
         <item>10 seconds</item>
         <item>15 seconds</item>
