@@ -2074,8 +2074,7 @@ public class VideoDetailFragment
         if (isClearingQueueConfirmationRequired(activity)
                 && playerIsNotStopped()
                 && activeQueue != null
-                && !activeQueue.equals(playQueue)
-                && activeQueue.getStreams().size() > 1) {
+                && !activeQueue.equals(playQueue)) {
             showClearingQueueConfirmation(onAllow);
         } else {
             onAllow.run();
