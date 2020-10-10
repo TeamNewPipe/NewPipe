@@ -21,10 +21,5 @@ public class MainSettingsFragment extends BasePreferenceFragment {
 
             defaultPreferences.edit().putBoolean(getString(R.string.update_app_key), false).apply();
         }
-
-        if (!DEBUG) {
-            final Preference debug = findPreference(getString(R.string.debug_pref_screen_key));
-            getPreferenceScreen().removePreference(debug);
-        }
     }
 }
