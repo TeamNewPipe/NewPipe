@@ -9,6 +9,8 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import org.schabi.newpipe.R;
 
 public final class ShareUtils {
@@ -95,7 +97,7 @@ public final class ShareUtils {
      */
     public static void copyToClipboard(final Context context, final String text) {
         final ClipboardManager clipboardManager =
-                (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                ContextCompat.getSystemService(context, ClipboardManager.class);
 
         if (clipboardManager == null) {
             Toast.makeText(context,

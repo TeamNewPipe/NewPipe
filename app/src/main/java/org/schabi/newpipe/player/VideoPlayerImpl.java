@@ -58,6 +58,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewCompat;
 import androidx.preference.PreferenceManager;
@@ -105,7 +106,6 @@ import org.schabi.newpipe.util.ShareUtils;
 
 import java.util.List;
 
-import static android.content.Context.WINDOW_SERVICE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
@@ -269,7 +269,7 @@ public class VideoPlayerImpl extends VideoPlayer
         super("MainPlayer" + TAG, service);
         this.service = service;
         this.shouldUpdateOnProgress = true;
-        this.windowManager = (WindowManager) service.getSystemService(WINDOW_SERVICE);
+        this.windowManager = ContextCompat.getSystemService(service, WindowManager.class);
         this.defaultPreferences = PreferenceManager.getDefaultSharedPreferences(service);
         this.resolver = new AudioPlaybackResolver(context, dataSource);
     }

@@ -3,6 +3,8 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
@@ -543,7 +545,7 @@ public final class ListHelper {
      */
     public static boolean isMeteredNetwork(final Context context) {
         final ConnectivityManager manager
-                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                = ContextCompat.getSystemService(context, ConnectivityManager.class);
         if (manager == null || manager.getActiveNetworkInfo() == null) {
             return false;
         }

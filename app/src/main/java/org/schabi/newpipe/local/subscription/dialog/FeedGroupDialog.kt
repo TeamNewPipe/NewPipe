@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.subscription.dialog
 
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.text.Editable
@@ -12,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.getSystemService
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -459,7 +459,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     }
 
     private val inputMethodManager by lazy {
-        requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        requireActivity().getSystemService<InputMethodManager>()!!
     }
 
     private fun showKeyboardSearch() {

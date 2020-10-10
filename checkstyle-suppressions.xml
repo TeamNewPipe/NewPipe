@@ -13,7 +13,7 @@
 
   <suppress checks="FinalParameters"
       files="ListHelper.java"
-      lines="280,312"/>
+      lines="282,314"/>
 
   <!-- org.schabi.newpipe.streams -->
   <suppress checks="LineLength"
