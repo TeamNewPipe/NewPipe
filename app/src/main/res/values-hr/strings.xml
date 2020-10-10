@@ -77,7 +77,7 @@
     <string name="popup_playing_toast">Reproduciram u skočnom prozoru</string>
     <string name="content">Sadržaj</string>
     <string name="show_age_restricted_content_title">Prikaži eksplicitni sadržaj</string>
-    <string name="video_is_age_restricted">Videozapis je dobno ograničen. Dopuštanje takvog sadržaja moguće je u postavkama.</string>
+    <string name="video_is_age_restricted">Prikaži dobno ograničeni videozapis. Buduće promjene moguće je postaviti u postavkama.</string>
     <string name="duration_live">Uživo</string>
     <string name="downloads">Preuzimanja</string>
     <string name="downloads_title">Preuzimanja</string>
@@ -110,7 +110,7 @@
     <string name="error_snackbar_action">Prijavi</string>
     <string name="what_device_headline">Informacije:</string>
     <string name="what_happened_headline">Što se dogodilo:</string>
-    <string name="info_labels">Što:\\nRequest:\\nContent Jezik:\\nService:\\nGMT Vrijeme:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">Što:\\nZahtijev:\\nJezik sadržaja:\\nZemlja sadržaja:\\nJezik programa:\\nUsluga:\\nGMT vrijeme:\\nPaket:\\nVerzija:\\nVerzija OS-a:</string>
     <string name="your_comment">Vaš komentar (na engleskom):</string>
     <string name="error_details_headline">Detalji:</string>
     <string name="list_thumbnail_view_description">Sličica pregleda videozapisa</string>
@@ -398,7 +398,7 @@
     <string name="invalid_source">Nema takve datoteke/izvora sadržaja</string>
     <string name="invalid_file">Datoteka ne postoji ili joj nedostaje dopuštenje za čitanje ili pisanje</string>
     <string name="no_streams_available_download">Nema dostupnih videozapisa za preuzimanje</string>
-    <string name="saved_tabs_invalid_json">Pomoću zadanih kartica pojavljuje se pogreška prilikom čitanja spremljenih kartica</string>
+    <string name="saved_tabs_invalid_json">Neuspjelo čitanje spremljenih kartica, stoga se koriste zadane</string>
     <string name="restore_defaults">Vratiti zadane</string>
     <string name="restore_defaults_confirmation">Želite li vratiti zadane postavke\?</string>
     <string name="subscribers_count_not_available">Broj pretplatnika nije dostupan</string>
