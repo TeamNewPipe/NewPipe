@@ -55,7 +55,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                     .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                     .setPositiveButton(R.string.delete, ((dialog, which) -> {
                         final Disposable onDeletePlaybackStates
-                                = recordManager.deleteCompelteStreamStateHistory()
+                                = recordManager.deleteCompleteStreamStateHistory()
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(
                                         howManyDeleted -> Toast.makeText(getActivity(),
@@ -113,7 +113,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                     .setPositiveButton(R.string.delete, ((dialog, which) -> {
 
                         final Disposable onDeletePlaybackStates
-                                = recordManager.deleteCompelteStreamStateHistory()
+                                = recordManager.deleteCompleteStreamStateHistory()
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(
                                         howManyDeleted -> Toast.makeText(getActivity(),

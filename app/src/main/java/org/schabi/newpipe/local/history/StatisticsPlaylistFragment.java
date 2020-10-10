@@ -423,14 +423,14 @@ public class StatisticsPlaylistFragment
     }
 
     private void deleteEntry(final int index) {
-        final LocalItem infoItem = itemListAdapter.getItemsList()
-                .get(index);
+        final LocalItem infoItem = itemListAdapter.getItemsList().get(index);
         if (infoItem instanceof StreamStatisticsEntry) {
             final StreamStatisticsEntry entry = (StreamStatisticsEntry) infoItem;
-            final Disposable onDelete = recordManager.deleteStreamHistory(entry.getStreamId())
+            final Disposable onDelete = recordManager
+                    .deleteStreamHistoryAndState(entry.getStreamId())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
-                            howManyDeleted -> {
+                            () -> {
                                 if (getView() != null) {
                                     Snackbar.make(getView(), R.string.one_item_deleted,
                                             Snackbar.LENGTH_SHORT).show();
