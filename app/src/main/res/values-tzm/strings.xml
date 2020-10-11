@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="controls_add_to_playlist_title">Rnu ɣer</string>
-    <string name="tab_choose">Sety aseksel</string>
+    <string name="tab_choose">Sty aseksel</string>
     <string name="tab_new">Aseksel amaynu</string>
     <string name="tab_main">Asenubeg</string>
-    <string name="show_info">Semal ineɣmisen</string>
+    <string name="show_info">Smal ineɣmisen</string>
     <string name="share_dialog_title">Bḍu aked</string>
     <string name="settings">Tisɣal</string>
     <string name="search">Rzu</string>
@@ -12,7 +12,7 @@
     <string name="share">Bḍu</string>
     <string name="cancel">Ser</string>
     <string name="view_count_text">%1$s n tannayin</string>
-    <string name="show_comments_title">Semal iɣfawalen</string>
+    <string name="show_comments_title">Smal iɣfawalen</string>
     <string name="black_theme_title">Aberkan</string>
     <string name="dark_theme_title">Adeɣmum</string>
     <string name="light_theme_title">Anafaw</string>
@@ -20,4 +20,6 @@
     <string name="play_audio">Imesli</string>
     <string name="notification_action_nothing">Walu</string>
     <string name="play_with_kodi_title">Γeṛ s Kodi</string>
+    <string name="search_showing_result_for">Asmal n tyufa i: %s</string>
+    <string name="upload_date_text">ittufser g %1$s</string>
 </resources>
