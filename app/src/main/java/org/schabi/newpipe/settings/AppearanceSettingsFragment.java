@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
@@ -19,57 +18,43 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
     private static final boolean CAPTIONING_SETTINGS_ACCESSIBLE =
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
-    /**
-     * Theme that was applied when the settings was opened (or recreated after a theme change).
-     */
-    private String startThemeKey;
-    private final Preference.OnPreferenceChangeListener themePreferenceChange
-            = new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(final Preference preference, final Object newValue) {
-            defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
-            defaultPreferences.edit()
-                    .putString(getString(R.string.theme_key), newValue.toString()).apply();
-
-            if (!newValue.equals(startThemeKey) && getActivity() != null) {
-                // If it's not the current theme
-                ActivityCompat.recreate(requireActivity());
-            }
-
-            return false;
-        }
-    };
-    private final Preference.OnPreferenceChangeListener deviceThemePreferenceChange
-            = new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(final Preference preference, final Object newValue) {
-            defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
-
-            final Activity activity = getActivity();
-            if (activity != null) {
-                activity.recreate();
-            }
-
-            return true;
-        }
-    };
     private String captionSettingsKey;
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final String themeKey = getString(R.string.theme_key);
-        startThemeKey = defaultPreferences
-                .getString(themeKey, getString(R.string.default_theme_value));
-        findPreference(themeKey).setOnPreferenceChangeListener(themePreferenceChange);
 
-        findPreference(getString(R.string.use_device_theme_key))
-                .setOnPreferenceChangeListener(deviceThemePreferenceChange);
+        final String themeKey = getString(R.string.theme_key);
+        // the key of the active theme when settings were opened (or recreated after theme change)
+        final String startThemeKey = defaultPreferences
+                .getString(themeKey, getString(R.string.default_theme_value));
+        final String autoDeviceThemeKey = getString(R.string.auto_device_theme_key);
+        findPreference(themeKey).setOnPreferenceChangeListener((preference, newValue) -> {
+            if (newValue.toString().equals(autoDeviceThemeKey)) {
+                Toast.makeText(getContext(), getString(R.string.select_night_theme_toast),
+                        Toast.LENGTH_LONG).show();
+            }
+
+            applyThemeChange(startThemeKey, themeKey, newValue);
+            return false;
+        });
+
+        final String nightThemeKey = getString(R.string.night_theme_key);
+        if (startThemeKey.equals(autoDeviceThemeKey)) {
+            final String startNightThemeKey = defaultPreferences
+                    .getString(nightThemeKey, getString(R.string.default_night_theme_value));
+
+            findPreference(nightThemeKey).setOnPreferenceChangeListener((preference, newValue) -> {
+                applyThemeChange(startNightThemeKey, nightThemeKey, newValue);
+                return false;
+            });
+        } else {
+            removePreference(nightThemeKey);
+        }
 
         captionSettingsKey = getString(R.string.caption_settings_key);
         if (!CAPTIONING_SETTINGS_ACCESSIBLE) {
-            final Preference captionSettings = findPreference(captionSettingsKey);
-            getPreferenceScreen().removePreference(captionSettings);
+            removePreference(captionSettingsKey);
         }
     }
 
@@ -89,5 +74,24 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         }
 
         return super.onPreferenceTreeClick(preference);
+    }
+
+    private void removePreference(final String preferenceKey) {
+        final Preference preference = findPreference(preferenceKey);
+        if (preference != null) {
+            getPreferenceScreen().removePreference(preference);
+        }
+    }
+
+    private void applyThemeChange(final String beginningThemeKey,
+                                  final String themeKey,
+                                  final Object newValue) {
+        defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
+        defaultPreferences.edit().putString(themeKey, newValue.toString()).apply();
+
+        if (!newValue.equals(beginningThemeKey) && getActivity() != null) {
+            // if it's not the current theme
+            ActivityCompat.recreate(getActivity());
+        }
     }
 }

@@ -77,7 +77,8 @@ public final class ThemeHelper {
         final Resources res = context.getResources();
 
         return selectedThemeString.equals(res.getString(R.string.light_theme_key))
-                || (shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context));
+                || (selectedThemeString.equals(res.getString(R.string.auto_device_theme_key))
+                && !isDeviceDarkThemeEnabled(context));
     }
 
 
@@ -140,6 +141,7 @@ public final class ThemeHelper {
         final String lightTheme = res.getString(R.string.light_theme_key);
         final String darkTheme = res.getString(R.string.dark_theme_key);
         final String blackTheme = res.getString(R.string.black_theme_key);
+        final String automaticDeviceTheme = res.getString(R.string.auto_device_theme_key);
 
         final String selectedTheme = getSelectedThemeString(context);
 
@@ -147,11 +149,20 @@ public final class ThemeHelper {
         if (selectedTheme.equals(lightTheme)) {
             defaultTheme = R.style.LightTheme;
         } else if (selectedTheme.equals(blackTheme)) {
-            defaultTheme = shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context)
-                    ? R.style.LightTheme : R.style.BlackTheme;
-        } else if (selectedTheme.equals(darkTheme)) {
-            defaultTheme = shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context)
-                    ? R.style.LightTheme : R.style.DarkTheme;
+            defaultTheme = R.style.BlackTheme;
+        } else if (selectedTheme.equals(automaticDeviceTheme)) {
+
+            if (isDeviceDarkThemeEnabled(context)) {
+                final String selectedNightTheme = getSelectedNightThemeString(context);
+                if (selectedNightTheme.equals(blackTheme)) {
+                    defaultTheme = R.style.BlackTheme;
+                } else {
+                    defaultTheme = R.style.DarkTheme;
+                }
+            } else {
+                // there is only one day theme
+                defaultTheme = R.style.LightTheme;
+            }
         }
 
         if (serviceId <= -1) {
@@ -190,17 +201,29 @@ public final class ThemeHelper {
         final String lightTheme = res.getString(R.string.light_theme_key);
         final String darkTheme = res.getString(R.string.dark_theme_key);
         final String blackTheme = res.getString(R.string.black_theme_key);
+        final String automaticDeviceTheme = res.getString(R.string.auto_device_theme_key);
+
 
         final String selectedTheme = getSelectedThemeString(context);
 
         if (selectedTheme.equals(lightTheme)) {
             return R.style.LightSettingsTheme;
         } else if (selectedTheme.equals(blackTheme)) {
-            return shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context)
-                    ? R.style.LightSettingsTheme : R.style.BlackSettingsTheme;
+            return R.style.BlackSettingsTheme;
         } else if (selectedTheme.equals(darkTheme)) {
-            return shouldFollowDeviceTheme(context) && !isDeviceDarkThemeEnabled(context)
-                    ? R.style.LightSettingsTheme : R.style.DarkSettingsTheme;
+            return R.style.DarkSettingsTheme;
+        } else if (selectedTheme.equals(automaticDeviceTheme)) {
+            if (isDeviceDarkThemeEnabled(context)) {
+                final String selectedNightTheme = getSelectedNightThemeString(context);
+                if (selectedNightTheme.equals(blackTheme)) {
+                    return R.style.BlackSettingsTheme;
+                } else {
+                    return R.style.DarkSettingsTheme;
+                }
+            } else {
+                // there is only one day theme
+                return R.style.LightSettingsTheme;
+            }
         } else {
             // Fallback
             return R.style.DarkSettingsTheme;
@@ -246,6 +269,14 @@ public final class ThemeHelper {
                 .getString(themeKey, defaultTheme);
     }
 
+    private static String getSelectedNightThemeString(final Context context) {
+        final String nightThemeKey = context.getString(R.string.night_theme_key);
+        final String defaultNightTheme = context.getResources()
+                .getString(R.string.default_night_theme_value);
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(nightThemeKey, defaultNightTheme);
+    }
+
     /**
      * Sets the title to the activity, if the activity is an {@link AppCompatActivity} and has an
      * action bar.
@@ -285,16 +316,5 @@ public final class ThemeHelper {
             default:
                 return false;
         }
-    }
-
-    /**
-     * Tells if the user wants the theme to follow the device theme.
-     *
-     * @param context the context to use
-     * @return whether the user wants the theme to follow the device's theme
-     */
-    public static boolean shouldFollowDeviceTheme(final Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.use_device_theme_key), false);
     }
 }

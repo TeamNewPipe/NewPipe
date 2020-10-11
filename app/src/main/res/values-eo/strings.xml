@@ -579,6 +579,4 @@
     <string name="artists">Artistoj</string>
     <string name="albums">Albumoj</string>
     <string name="songs">Kantoj</string>
-    <string name="follow_device_theme_title">Sekvi la etoson de la aparato</string>
-    <string name="follow_device_theme_summary">La apo sekvos la etoson de la aparato. Ĝi povus malfunkcii se via Android versiono malsupras Android 10.</string>
 </resources>
