@@ -528,7 +528,7 @@
     <string name="deleted_downloads">%1$d Downloads gelöscht</string>
     <string name="permission_display_over_apps">Berechtigung zur Anzeige über andere Apps erteilen</string>
     <string name="app_language_title">Sprache der App</string>
-    <string name="systems_language">Systemstandard</string>
+    <string name="systems_language">Systemvorgabe</string>
     <string name="subtitle_activity_recaptcha">„Fertig“ drücken, wenn es gelöst wurde</string>
     <string name="recaptcha_done_button">Fertig</string>
     <string name="videos_string">Videos</string>
