@@ -271,7 +271,10 @@ public class PlayerGestureListener
             bar.setProgress((int) (bar.getMax() * Math.max(0, Math.min(1, oldBrightness))));
             bar.incrementProgressBy((int) distanceY);
 
-            final float currentProgressPercent = (float) bar.getProgress() / bar.getMax();
+            float currentProgressPercent = (float) bar.getProgress() / bar.getMax();
+            if (currentProgressPercent <= 0.01) {
+                currentProgressPercent = 0.01f;
+            }
             layoutParams.screenBrightness = currentProgressPercent;
             window.setAttributes(layoutParams);
 
