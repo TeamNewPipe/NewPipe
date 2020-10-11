@@ -71,6 +71,7 @@ public final class DownloaderImpl extends Downloader {
      * @param builder if null, default builder will be used
      * @return a new instance of {@link DownloaderImpl}
      */
+    @NonNull
     public static DownloaderImpl init(@Nullable final OkHttpClient.Builder builder) {
         instance = new DownloaderImpl(
                 builder != null ? builder : new OkHttpClient.Builder());

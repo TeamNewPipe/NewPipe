@@ -10,6 +10,18 @@ import okhttp3.OkHttpClient
 import org.schabi.newpipe.extractor.downloader.Downloader
 
 class DebugApp : App() {
+    override val isDisposedRxExceptionsReported: Boolean
+        get() = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(getString(R.string.allow_disposed_exceptions_key), false)
+
+    override val downloader: Downloader
+        get() {
+            val downloader = DownloaderImpl.init(OkHttpClient.Builder()
+                    .addNetworkInterceptor(StethoInterceptor()))
+            setCookiesToDownloader(downloader)
+            return downloader
+        }
+
     override fun onCreate() {
         super.onCreate()
         initStetho()
@@ -19,13 +31,6 @@ class DebugApp : App() {
         LeakCanary.config = LeakCanary.config.copy(dumpHeap = PreferenceManager
                 .getDefaultSharedPreferences(this).getBoolean(getString(
                         R.string.allow_heap_dumping_key), false))
-    }
-
-    override fun getDownloader(): Downloader {
-        val downloader = DownloaderImpl.init(OkHttpClient.Builder()
-                .addNetworkInterceptor(StethoInterceptor()))
-        setCookiesToDownloader(downloader)
-        return downloader
     }
 
     override fun initACRA() {
@@ -50,10 +55,5 @@ class DebugApp : App() {
 
         // Initialize Stetho with the Initializer
         Stetho.initialize(initializer)
-    }
-
-    override fun isDisposedRxExceptionsReported(): Boolean {
-        return PreferenceManager.getDefaultSharedPreferences(this)
-                .getBoolean(getString(R.string.allow_disposed_exceptions_key), false)
     }
 }
