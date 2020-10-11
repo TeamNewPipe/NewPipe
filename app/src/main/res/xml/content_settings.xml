@@ -49,13 +49,15 @@
         app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/show_age_restricted_content"
-        android:title="@string/show_age_restricted_content_title"/>
+        android:title="@string/show_age_restricted_content_title"
+        android:summary="@string/show_age_restricted_content_summary"/>
 
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/youtube_restricted_mode_enabled"
-        android:title="@string/youtube_restricted_mode_enabled_title"/>
+        android:title="@string/youtube_restricted_mode_enabled_title"
+        android:summary="@string/youtube_restricted_mode_enabled_summary"/>
 
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"

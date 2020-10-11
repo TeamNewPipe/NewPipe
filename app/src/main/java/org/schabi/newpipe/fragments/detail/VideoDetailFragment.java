@@ -1563,7 +1563,8 @@ public class VideoDetailFragment
     }
 
     private void hideAgeRestrictedContent() {
-        showError(getString(R.string.restricted_video), false);
+        showError(getString(R.string.restricted_video,
+                getString(R.string.show_age_restricted_content_title)), false);
 
         if (relatedStreamsLayout != null) { // tablet
             relatedStreamsLayout.setVisibility(View.INVISIBLE);

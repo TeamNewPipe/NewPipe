@@ -149,10 +149,11 @@
     <string name="popup_playing_append">Queued on popup player</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
     <string name="content">Content</string>
-    <string name="show_age_restricted_content_title">Age restricted content</string>
-    <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube restricted mode</string>
-    <string name="restricted_video">This video is age restricted.\n\nTurn on \"Age restricted content\" in the settings if you want to see it.</string>
+    <string name="show_age_restricted_content_title">Show age restricted content</string>
+    <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (like 18+).</string>
+    <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s \"Restricted Mode\"</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content.</string>
+    <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
