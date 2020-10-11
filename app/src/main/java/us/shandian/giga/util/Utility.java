@@ -200,7 +200,7 @@ public class Utility {
         }
     }
 
-    public static void copyToClipboard(Context context, String str) {
+    public static void copyToClipboard(@NonNull Context context, @NonNull String str) {
         ClipboardManager cm = ContextCompat.getSystemService(context, ClipboardManager.class);
 
         if (cm == null) {
@@ -212,6 +212,7 @@ public class Utility {
         Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
     }
 
+    @NonNull
     public static String checksum(StoredFileHelper source, String algorithm) {
         MessageDigest md;
 
@@ -249,7 +250,6 @@ public class Utility {
         }
 
         return sb.toString();
-
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
