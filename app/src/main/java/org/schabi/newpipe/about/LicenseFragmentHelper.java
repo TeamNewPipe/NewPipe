@@ -1,8 +1,6 @@
 package org.schabi.newpipe.about;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Base64;
 import android.webkit.WebView;
 
@@ -16,18 +14,18 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.ref.WeakReference;
 import java.nio.charset.StandardCharsets;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.Disposables;
+import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
-public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
-    private final WeakReference<Activity> weakReference;
-    private License license;
-
-    public LicenseFragmentHelper(@Nullable final Activity activity) {
-        weakReference = new WeakReference<>(activity);
-    }
+public final class LicenseFragmentHelper {
+    private LicenseFragmentHelper() { }
 
     /**
      * @param context the context to use
@@ -62,7 +60,7 @@ public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
      * @param context
      * @return String which is a CSS stylesheet according to the context's theme
      */
-    private static String getLicenseStylesheet(final Context context) {
+    private static String getLicenseStylesheet(@NonNull final Context context) {
         final boolean isLightTheme = ThemeHelper.isLightThemeSelected(context);
         return "body{padding:12px 15px;margin:0;"
                 + "background:#" + getHexRGBColor(context, isLightTheme
@@ -84,45 +82,31 @@ public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
      * @param color   the color number from R.color
      * @return a six characters long String with hexadecimal RGB values
      */
-    private static String getHexRGBColor(final Context context, final int color) {
+    private static String getHexRGBColor(@NonNull final Context context, final int color) {
         return context.getResources().getString(color).substring(3);
     }
 
-    @Nullable
-    private Activity getActivity() {
-        final Activity activity = weakReference.get();
-
-        if (activity != null && activity.isFinishing()) {
-            return null;
-        } else {
-            return activity;
-        }
-    }
-
-    @Override
-    protected Integer doInBackground(final Object... objects) {
-        license = (License) objects[0];
-        return 1;
-    }
-
-    @Override
-    protected void onPostExecute(final Integer result) {
-        final Activity activity = getActivity();
-        if (activity == null) {
-            return;
+    static Disposable showLicense(@Nullable final Context context, @NonNull final License license) {
+        if (context == null) {
+            return Disposables.empty();
         }
 
-        final String webViewData = Base64.encodeToString(getFormattedLicense(activity, license)
-                .getBytes(StandardCharsets.UTF_8), Base64.NO_PADDING);
-        final WebView webView = new WebView(activity);
-        webView.loadData(webViewData, "text/html; charset=UTF-8", "base64");
+        return Observable.fromCallable(() -> getFormattedLicense(context, license))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(formattedLicense -> {
+                    final String webViewData = Base64.encodeToString(formattedLicense
+                            .getBytes(StandardCharsets.UTF_8), Base64.NO_PADDING);
+                    final WebView webView = new WebView(context);
+                    webView.loadData(webViewData, "text/html; charset=UTF-8", "base64");
 
-        final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-        alert.setTitle(license.getName());
-        alert.setView(webView);
-        assureCorrectAppLanguage(activity);
-        alert.setNegativeButton(activity.getString(R.string.finish),
-                (dialog, which) -> dialog.dismiss());
-        alert.show();
+                    final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                    alert.setTitle(license.getName());
+                    alert.setView(webView);
+                    assureCorrectAppLanguage(context);
+                    alert.setNegativeButton(context.getString(R.string.finish),
+                            (dialog, which) -> dialog.dismiss());
+                    alert.show();
+                });
     }
 }
