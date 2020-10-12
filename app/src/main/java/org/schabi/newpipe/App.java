@@ -36,6 +36,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import io.reactivex.disposables.Disposable;
 import io.reactivex.exceptions.CompositeException;
 import io.reactivex.exceptions.MissingBackpressureException;
 import io.reactivex.exceptions.OnErrorNotImplementedException;
@@ -65,6 +66,9 @@ public class App extends MultiDexApplication {
     protected static final String TAG = App.class.toString();
     private static App app;
 
+    private Disposable disposable = null;
+
+    @NonNull
     public static App getApp() {
         return app;
     }
@@ -100,7 +104,15 @@ public class App extends MultiDexApplication {
         configureRxJavaErrorHandler();
 
         // Check for new version
-        new CheckForNewAppVersionTask().execute();
+        disposable = CheckForNewAppVersion.checkNewVersion(this);
+    }
+
+    @Override
+    public void onTerminate() {
+        if (disposable != null) {
+            disposable.dispose();
+        }
+        super.onTerminate();
     }
 
     protected Downloader getDownloader() {
