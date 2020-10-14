@@ -1,13 +1,12 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/item_bkg"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:background="@color/bluegray">
 
@@ -16,10 +15,10 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_centerVertical="true"
-            android:scaleType="fitXY"
+            android:contentDescription="TODO"
             android:gravity="center"
             android:padding="15dp"
-            android:contentDescription="TODO" />
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/item_name"
@@ -38,13 +37,13 @@
             android:id="@+id/item_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/item_icon"
             android:layout_below="@+id/item_name"
+            android:layout_toRightOf="@id/item_icon"
             android:padding="6dp"
             android:singleLine="true"
             android:text="100.00MB"
-            android:textSize="12sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/item_status"
@@ -57,22 +56,22 @@
             android:layout_toRightOf="@id/item_size"
             android:padding="6dp"
             android:singleLine="true"
-            android:textStyle="bold"
             android:text="0%"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <ImageView
-            style="?attr/buttonBarButtonStyle"
             android:id="@+id/item_more"
+            style="?attr/buttonBarButtonStyle"
             android:layout_width="49dp"
             android:layout_height="49dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="4dp"
-            app:srcCompat="@drawable/ic_more_vert_white_24dp"
+            android:contentDescription="TODO"
             android:scaleType="centerInside"
-            android:contentDescription="TODO" />
+            app:srcCompat="@drawable/ic_more_vert_white_24dp" />
 
     </RelativeLayout>
 

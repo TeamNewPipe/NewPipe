@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="90dp"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
     </androidx.core.widget.NestedScrollView>
 

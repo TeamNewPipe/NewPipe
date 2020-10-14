@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,27 +10,28 @@
         android:id="@+id/playlist_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/video_item_search_padding"
-        android:paddingTop="@dimen/video_item_search_padding"
         android:ellipsize="end"
         android:maxLines="2"
+        android:paddingHorizontal="@dimen/video_item_search_padding"
+        android:paddingTop="@dimen/video_item_search_padding"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/playlist_detail_title_text_size"
         tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
     <RelativeLayout
+        android:id="@+id/playlist_meta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/playlist_title_view"
         android:paddingHorizontal="@dimen/video_item_search_padding"
-        android:paddingTop="6dp"
-        android:id="@+id/playlist_meta">
+        android:paddingTop="6dp">
+
         <RelativeLayout
             android:id="@+id/uploader_layout"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/playlist_detail_uploader_layout_height"
-            android:layout_toLeftOf="@+id/playlist_stream_count"
             android:layout_toStartOf="@+id/playlist_stream_count"
+            android:layout_toLeftOf="@+id/playlist_stream_count"
             android:background="?attr/selectableItemBackground"
             android:gravity="left|center_vertical"
             android:visibility="gone"
@@ -42,32 +42,32 @@
                 android:id="@+id/uploader_avatar_view"
                 android:layout_width="@dimen/playlist_detail_uploader_image_size"
                 android:layout_height="@dimen/playlist_detail_uploader_image_size"
-                android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/buddy"
                 app:civ_border_color="#ffffff"
-                app:civ_border_width="1dp"/>
+                app:civ_border_width="1dp" />
 
             <TextView
                 android:id="@+id/uploader_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="6dp"
                 android:layout_toRightOf="@+id/uploader_avatar_view"
                 android:ellipsize="end"
                 android:gravity="left|center_vertical"
                 android:maxLines="1"
+                android:paddingHorizontal="6dp"
                 android:textSize="@dimen/playlist_detail_subtext_size"
                 tools:ignore="RtlHardcoded"
-                tools:text="Typical uploader name"/>
+                tools:text="Typical uploader name" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/playlist_stream_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/uploader_layout"
             android:layout_alignTop="@+id/uploader_layout"
+            android:layout_alignBottom="@+id/uploader_layout"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="6dp"
             android:ellipsize="end"
@@ -75,7 +75,7 @@
             android:maxLines="1"
             android:textSize="@dimen/playlist_detail_subtext_size"
             tools:ignore="RtlHardcoded"
-            tools:text="234 videos"/>
+            tools:text="234 videos" />
     </RelativeLayout>
 
     <LinearLayout
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/playlist_meta">
 
-        <include layout="@layout/playlist_control"/>
+        <include layout="@layout/playlist_control" />
     </LinearLayout>
 
 </RelativeLayout>

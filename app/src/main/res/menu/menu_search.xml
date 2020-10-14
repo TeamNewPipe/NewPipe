@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/filter"
@@ -14,16 +14,16 @@
                 <item
                     android:id="@+id/menu_filter_all"
                     android:checked="true"
-                    android:title="@string/all"/>
+                    android:title="@string/all" />
                 <item
                     android:id="@+id/menu_filter_video"
-                    android:title="@string/video"/>
+                    android:title="@string/video" />
                 <item
                     android:id="@+id/menu_filter_channel"
-                    android:title="@string/channel"/>
+                    android:title="@string/channel" />
                 <item
                     android:id="@+id/menu_filter_playlist"
-                    android:title="@string/playlist"/>
+                    android:title="@string/playlist" />
             </group>
         </menu>
     </item>

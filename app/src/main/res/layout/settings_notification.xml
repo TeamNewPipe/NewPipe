@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <Switch
             android:id="@+id/notificationScaleSwitch"
@@ -49,11 +49,11 @@
             android:id="@+id/notificationScaleSwitchClickableArea"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="?android:selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             app:layout_constraintBottom_toTopOf="@+id/divider"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="?android:selectableItemBackground" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider"

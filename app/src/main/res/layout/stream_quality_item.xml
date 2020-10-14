@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="48dp">
 
     <ImageView
         android:id="@+id/wo_sound_icon"
@@ -14,7 +14,7 @@
         android:layout_marginLeft="6dp"
         android:scaleType="fitCenter"
         app:srcCompat="?attr/ic_volume_off"
-        tools:ignore="ContentDescription,RtlHardcoded"/>
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <TextView
         android:id="@+id/stream_format_name"
@@ -30,7 +30,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textSize="12sp"
         tools:ignore="RtlHardcoded"
-        tools:text="MPEG-4"/>
+        tools:text="MPEG-4" />
 
     <TextView
         android:id="@+id/stream_quality"
@@ -46,7 +46,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="14sp"
         tools:ignore="RtlHardcoded"
-        tools:text="1080p60"/>
+        tools:text="1080p60" />
 
     <TextView
         android:id="@+id/stream_size"
@@ -62,5 +62,5 @@
         android:visibility="gone"
         tools:ignore="RtlHardcoded"
         tools:text="123.4 MB"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 </RelativeLayout>

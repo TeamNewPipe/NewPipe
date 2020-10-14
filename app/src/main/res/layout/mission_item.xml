@@ -1,13 +1,12 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/item_bkg"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:background="@color/bluegray">
 
@@ -27,20 +26,20 @@
                 android:layout_marginLeft="6dp"
                 android:singleLine="true"
                 android:text="0%"
-                android:textSize="20sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <ImageView
-                style="?attr/buttonBarButtonStyle"
                 android:id="@+id/item_more"
+                style="?attr/buttonBarButtonStyle"
                 android:layout_width="49dp"
                 android:layout_height="49dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="1dp"
-                app:srcCompat="@drawable/ic_more_vert_white_24dp"
+                android:contentDescription="TODO"
                 android:scaleType="center"
-                android:contentDescription="TODO" />
+                app:srcCompat="@drawable/ic_more_vert_white_24dp" />
 
         </RelativeLayout>
 
@@ -50,25 +49,25 @@
             android:layout_height="72dp"
             android:layout_below="@id/item_title_line"
             android:layout_centerHorizontal="true"
-            android:scaleType="fitXY"
+            android:contentDescription="TODO"
             android:gravity="center"
             android:padding="10dp"
-            android:contentDescription="TODO" />
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_icon"
-            android:padding="6dp"
-            android:singleLine="true"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
+            android:padding="6dp"
             android:scrollHorizontally="true"
+            android:singleLine="true"
             android:text="XXX.xx"
+            android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/item_size"
@@ -78,9 +77,9 @@
             android:padding="6dp"
             android:singleLine="true"
             android:text="100.00MB"
-            android:textSize="12sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
     </RelativeLayout>
-    
+
 </RelativeLayout>

@@ -1,42 +1,41 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include
         android:id="@+id/toolbar_layout"
-        layout="@layout/toolbar_layout"/>
+        layout="@layout/toolbar_layout" />
 
     <TextView
         android:id="@+id/file_name_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_layout"
-        android:layout_marginBottom="6dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
         android:layout_marginTop="12dp"
-        android:text="@string/msg_name"/>
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="6dp"
+        android:text="@string/msg_name" />
 
     <EditText
         android:id="@+id/file_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/file_name_text_view"
-        android:layout_marginBottom="6dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="6dp"
         android:inputType="text"
-        android:maxLines="1"/>
+        android:maxLines="1" />
 
     <RadioGroup
         android:id="@+id/video_audio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/file_name"
-        android:layout_marginBottom="6dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginBottom="6dp"
         android:gravity="left"
         android:orientation="horizontal"
         tools:ignore="RtlHardcoded">
@@ -46,19 +45,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/video"/>
+            android:text="@string/video" />
 
         <RadioButton
             android:id="@+id/audio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/audio"/>
+            android:text="@string/audio" />
 
         <RadioButton
             android:id="@+id/subtitle_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/caption_setting_title"/>
+            android:text="@string/caption_setting_title" />
     </RadioGroup>
 
     <Spinner
@@ -66,21 +65,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/video_audio_group"
-        android:layout_marginBottom="12dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="12dp"
         android:minWidth="150dp"
-        tools:listitem="@layout/stream_quality_item"/>
+        tools:listitem="@layout/stream_quality_item" />
 
     <TextView
         android:id="@+id/threads_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/quality_spinner"
-        android:layout_marginBottom="6dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:text="@string/msg_threads"/>
+        android:layout_marginBottom="6dp"
+        android:text="@string/msg_threads" />
 
     <LinearLayout
         android:id="@+id/threads_layout"
@@ -99,13 +98,13 @@
             android:gravity="center_vertical"
             android:paddingLeft="2dp"
             tools:ignore="RtlHardcoded,RtlSymmetry"
-            tools:text="3"/>
+            tools:text="3" />
 
         <SeekBar
             android:id="@+id/threads"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:max="31"
-            android:progress="3"/>
+            android:progress="3" />
     </LinearLayout>
 </RelativeLayout>

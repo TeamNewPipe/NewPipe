@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp"
     android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
     android:layout_marginTop="3dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="3dp"
     android:minHeight="?listPreferredItemHeightSmall"
     android:orientation="horizontal"
     app:cardCornerRadius="5dp"
@@ -24,11 +23,11 @@
             android:id="@+id/instanceIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             tools:ignore="ContentDescription,RtlHardcoded"
-            tools:src="@drawable/place_holder_peertube"/>
+            tools:src="@drawable/place_holder_peertube" />
 
         <TextView
             android:id="@+id/instanceName"
@@ -36,36 +35,36 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="6dp"
-            android:layout_toRightOf="@+id/instanceIcon"
             android:layout_toLeftOf="@id/selectInstanceRB"
-            android:singleLine="true"
+            android:layout_toRightOf="@+id/instanceIcon"
             android:ellipsize="marquee"
+            android:singleLine="true"
             android:textAppearance="?textAppearanceListItem"
             tools:ignore="RtlHardcoded"
-            tools:text="Framatube"/>
+            tools:text="Framatube" />
 
         <TextView
             android:id="@+id/instanceUrl"
-            android:autoLink="web"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/instanceIcon"
-            android:layout_toLeftOf="@id/selectInstanceRB"
             android:layout_below="@id/instanceName"
-            android:singleLine="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="6dp"
+            android:layout_toLeftOf="@id/selectInstanceRB"
+            android:layout_toRightOf="@id/instanceIcon"
+            android:autoLink="web"
             android:ellipsize="marquee"
+            android:singleLine="true"
             android:textAppearance="?textAppearanceListItemSecondary"
             tools:ignore="RtlHardcoded"
-            tools:text="https://framatube.org"/>
+            tools:text="https://framatube.org" />
 
         <RadioButton
             android:id="@+id/selectInstanceRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/handle"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/handle" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/handle"
@@ -73,11 +72,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:paddingBottom="12dp"
             android:paddingLeft="16dp"
-            android:paddingRight="10dp"
             android:paddingTop="12dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="12dp"
             app:srcCompat="?attr/ic_drag_handle"
-            tools:ignore="ContentDescription,RtlHardcoded"/>
+            tools:ignore="ContentDescription,RtlHardcoded" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

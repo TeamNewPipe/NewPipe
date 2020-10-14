@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,32 +14,32 @@
         android:id="@+id/itemThumbnailView"
         android:layout_width="@dimen/video_item_grid_thumbnail_image_width"
         android:layout_height="@dimen/video_item_grid_thumbnail_image_height"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
         android:contentDescription="@string/list_thumbnail_view_description"
         android:scaleType="centerCrop"
         android:src="@drawable/dummy_thumbnail_playlist"
-        tools:ignore="RtlHardcoded"/>
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/itemStreamCountView"
         android:layout_width="@dimen/playlist_item_thumbnail_stream_count_width"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@id/itemThumbnailView"
-        android:layout_alignRight="@id/itemThumbnailView"
         android:layout_alignTop="@id/itemThumbnailView"
+        android:layout_alignRight="@id/itemThumbnailView"
+        android:layout_alignBottom="@id/itemThumbnailView"
         android:background="@color/playlist_stream_count_background_color"
-        app:drawableTopCompat="@drawable/ic_playlist_play_white_24dp"
         android:gravity="center"
-        android:paddingBottom="14dp"
         android:paddingTop="16dp"
+        android:paddingBottom="14dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/duration_text_color"
         android:textSize="@dimen/video_item_search_duration_text_size"
         android:textStyle="bold"
+        app:drawableTopCompat="@drawable/ic_playlist_play_white_24dp"
         tools:ignore="RtlHardcoded"
-        tools:text="314159"/>
+        tools:text="314159" />
 
     <TextView
         android:id="@+id/itemTitleView"
@@ -54,7 +54,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/video_item_search_title_text_size"
         tools:ignore="RtlHardcoded"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"/>
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
     <TextView
         android:id="@+id/itemUploaderView"
@@ -67,6 +67,6 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
         tools:ignore="RtlHardcoded"
-        tools:text="Uploader"/>
+        tools:text="Uploader" />
 
 </RelativeLayout>
