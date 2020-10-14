@@ -23,8 +23,6 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.Icepick
 import icepick.State
-import java.io.Serializable
-import kotlin.collections.contains
 import kotlinx.android.synthetic.main.dialog_feed_group_create.*
 import kotlinx.android.synthetic.main.toolbar_search_layout.*
 import org.schabi.newpipe.R
@@ -42,6 +40,8 @@ import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.ThemeHelper
+import java.io.Serializable
+import kotlin.collections.contains
 
 class FeedGroupDialog : DialogFragment(), BackPressable {
     private lateinit var viewModel: FeedGroupDialogViewModel
@@ -115,21 +115,30 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this,
-            FeedGroupDialogViewModel.Factory(requireContext(),
-                groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped)
+        viewModel = ViewModelProvider(
+            this,
+            FeedGroupDialogViewModel.Factory(
+                requireContext(),
+                groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped
+            )
         ).get(FeedGroupDialogViewModel::class.java)
 
         viewModel.groupLiveData.observe(viewLifecycleOwner, Observer(::handleGroup))
-        viewModel.subscriptionsLiveData.observe(viewLifecycleOwner, Observer {
-            setupSubscriptionPicker(it.first, it.second)
-        })
-        viewModel.dialogEventLiveData.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                ProcessingEvent -> disableInput()
-                SuccessEvent -> dismiss()
+        viewModel.subscriptionsLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                setupSubscriptionPicker(it.first, it.second)
             }
-        })
+        )
+        viewModel.dialogEventLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                when (it) {
+                    ProcessingEvent -> disableInput()
+                    SuccessEvent -> dismiss()
+                }
+            }
+        )
 
         subscriptionGroupAdapter = GroupAdapter<GroupieViewHolder>().apply {
             add(subscriptionMainSection)
@@ -140,8 +149,10 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             // Disable animations, too distracting.
             itemAnimator = null
             adapter = subscriptionGroupAdapter
-            layoutManager = GridLayoutManager(requireContext(), subscriptionGroupAdapter.spanCount,
-                RecyclerView.VERTICAL, false).apply {
+            layoutManager = GridLayoutManager(
+                requireContext(), subscriptionGroupAdapter.spanCount,
+                RecyclerView.VERTICAL, false
+            ).apply {
                 spanSizeLookup = subscriptionGroupAdapter.spanSizeLookup
             }
         }
@@ -354,7 +365,8 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         val selectedCount = this.selectedSubscriptions.size
         val selectedCountText = resources.getQuantityString(
             R.plurals.feed_group_dialog_selection_count,
-            selectedCount, selectedCount)
+            selectedCount, selectedCount
+        )
         selected_subscription_count_view.text = selectedCountText
         subscriptions_header_info.text = selectedCountText
     }
@@ -409,10 +421,12 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         separator.onlyVisibleIn(SubscriptionsPickerScreen, IconPickerScreen)
         cancel_button.onlyVisibleIn(InitialScreen, DeleteScreen)
 
-        confirm_button.setText(when {
-            currentScreen == InitialScreen && groupId == NO_GROUP_SELECTED -> R.string.create
-            else -> android.R.string.ok
-        })
+        confirm_button.setText(
+            when {
+                currentScreen == InitialScreen && groupId == NO_GROUP_SELECTED -> R.string.create
+                else -> android.R.string.ok
+            }
+        )
 
         delete_button.visibility = when {
             currentScreen != InitialScreen -> View.GONE
@@ -469,8 +483,10 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     }
 
     private fun hideKeyboardSearch() {
-        inputMethodManager.hideSoftInputFromWindow(toolbar_search_edit_text.windowToken,
-            InputMethodManager.RESULT_UNCHANGED_SHOWN)
+        inputMethodManager.hideSoftInputFromWindow(
+            toolbar_search_edit_text.windowToken,
+            InputMethodManager.RESULT_UNCHANGED_SHOWN
+        )
         toolbar_search_edit_text.clearFocus()
     }
 
@@ -481,8 +497,10 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     }
 
     private fun hideKeyboard() {
-        inputMethodManager.hideSoftInputFromWindow(group_name_input.windowToken,
-            InputMethodManager.RESULT_UNCHANGED_SHOWN)
+        inputMethodManager.hideSoftInputFromWindow(
+            group_name_input.windowToken,
+            InputMethodManager.RESULT_UNCHANGED_SHOWN
+        )
         group_name_input.clearFocus()
     }
 

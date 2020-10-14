@@ -33,8 +33,8 @@ import org.schabi.newpipe.report.UserAction;
 import java.util.List;
 import java.util.Vector;
 
-import io.reactivex.Flowable;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class SelectPlaylistFragment extends DialogFragment {
     /**

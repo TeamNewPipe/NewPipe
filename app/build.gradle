@@ -85,14 +85,14 @@ android {
 
 ext {
     icepickVersion = '3.2.0'
-    checkstyleVersion = '8.32'
+    checkstyleVersion = '8.36.2'
     stethoVersion = '1.5.1'
-    leakCanaryVersion = '2.2'
+    leakCanaryVersion = '2.5'
     exoPlayerVersion = '2.11.8'
     androidxLifecycleVersion = '2.2.0'
-    androidxRoomVersion = '2.2.5'
-    groupieVersion = '2.8.0'
-    markwonVersion = '4.3.1'
+    androidxRoomVersion = '2.3.0-alpha03'
+    groupieVersion = '2.8.1'
+    markwonVersion = '4.6.0'
     googleAutoServiceVersion = '1.0-rc7'
 }
 
@@ -126,13 +126,20 @@ task runCheckstyle(type: Checkstyle) {
     }
 }
 
+def outputDir = "${project.buildDir}/reports/ktlint/"
+def inputFiles = project.fileTree(dir: "src", include: "**/*.kt")
+
 task runKtlint(type: JavaExec) {
+    inputs.files(inputFiles)
+    outputs.dir(outputDir)
     main = "com.pinterest.ktlint.Main"
     classpath = configurations.ktlint
     args "src/**/*.kt"
 }
 
 task formatKtlint(type: JavaExec) {
+    inputs.files(inputFiles)
+    outputs.dir(outputDir)
     main = "com.pinterest.ktlint.Main"
     classpath = configurations.ktlint
     args "-F", "src/**/*.kt"
@@ -149,26 +156,27 @@ dependencies {
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
-    ktlint "com.pinterest:ktlint:0.35.0"
+    ktlint "com.pinterest:ktlint:0.39.0"
 
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
     implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
+    implementation "com.squareup.leakcanary:plumber-android:${leakCanaryVersion}"
 
     debugImplementation "androidx.multidex:multidex:2.0.1"
 
-    testImplementation 'junit:junit:4.13'
-    testImplementation 'org.mockito:mockito-core:3.3.3'
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.mockito:mockito-core:3.5.13'
 
-    androidTestImplementation "androidx.test.ext:junit:1.1.1"
+    androidTestImplementation "androidx.test.ext:junit:1.1.2"
     androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0", {
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0", {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:2463884aa8b696df5812f7feff553008bbd2f888'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:acb04eb351374229a023518605edf6360bc92e80'
 
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
     implementation "org.jsoup:jsoup:1.13.1"
@@ -178,23 +186,25 @@ dependencies {
     implementation "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"
     implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
 
-    implementation "com.google.android.material:material:1.1.0"
+    implementation "com.google.android.material:material:1.2.1"
 
     compileOnly "com.google.auto.service:auto-service-annotations:${googleAutoServiceVersion}"
     kapt "com.google.auto.service:auto-service:${googleAutoServiceVersion}"
 
-    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.appcompat:appcompat:1.2.0"
     implementation "androidx.preference:preference:1.1.1"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
-    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation "androidx.constraintlayout:constraintlayout:2.0.2"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 
     implementation "androidx.lifecycle:lifecycle-livedata:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel:${androidxLifecycleVersion}"
 
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
-    implementation "androidx.room:room-rxjava2:${androidxRoomVersion}"
+    implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
 
     implementation "com.xwray:groupie:${groupieVersion}"
@@ -208,11 +218,11 @@ dependencies {
 
     implementation "com.nononsenseapps:filepicker:4.2.1"
 
-    implementation "ch.acra:acra-core:5.5.0"
+    implementation "ch.acra:acra-core:5.7.0"
 
-    implementation "io.reactivex.rxjava2:rxjava:2.2.19"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
-    implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
+    implementation "io.reactivex.rxjava3:rxjava:3.0.7"
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
+    implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
     implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
 }

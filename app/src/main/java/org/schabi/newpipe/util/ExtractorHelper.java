@@ -56,8 +56,8 @@ import org.schabi.newpipe.report.UserAction;
 import java.util.Collections;
 import java.util.List;
 
-import io.reactivex.Maybe;
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Single;
 
 public final class ExtractorHelper {
     private static final String TAG = ExtractorHelper.class.getSimpleName();

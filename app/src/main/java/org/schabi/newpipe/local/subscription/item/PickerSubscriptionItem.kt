@@ -21,8 +21,10 @@ data class PickerSubscriptionItem(
     override fun getSpanSize(spanCount: Int, position: Int): Int = 1
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        ImageLoader.getInstance().displayImage(subscriptionEntity.avatarUrl,
-                viewHolder.thumbnail_view, ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS)
+        ImageLoader.getInstance().displayImage(
+            subscriptionEntity.avatarUrl,
+            viewHolder.thumbnail_view, ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS
+        )
 
         viewHolder.title_view.text = subscriptionEntity.name
         viewHolder.selected_highlight.visibility = if (isSelected) View.VISIBLE else View.GONE
@@ -38,7 +40,9 @@ data class PickerSubscriptionItem(
 
     fun updateSelected(containerView: View, isSelected: Boolean) {
         this.isSelected = isSelected
-        animateView(containerView.selected_highlight,
-                AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA, isSelected, 150)
+        animateView(
+            containerView.selected_highlight,
+            AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA, isSelected, 150
+        )
     }
 }

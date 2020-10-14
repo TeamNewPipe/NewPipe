@@ -25,10 +25,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.subjects.BehaviorSubject;
+import io.reactivex.rxjava3.core.BackpressureStrategy;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.subjects.BehaviorSubject;
 
 /**
  * PlayQueue is responsible for keeping track of a list of streams and the index of
@@ -86,7 +86,7 @@ public abstract class PlayQueue implements Serializable {
 
         broadcastReceiver = eventBroadcast.toFlowable(BackpressureStrategy.BUFFER)
                 .observeOn(AndroidSchedulers.mainThread())
-                .startWith(new InitEvent());
+                .startWithItem(new InitEvent());
 
         if (DEBUG) {
             broadcastReceiver.subscribe(getSelfReporter());

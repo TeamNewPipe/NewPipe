@@ -4,20 +4,21 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import java.util.Date
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity.Companion.FEED_LAST_UPDATED_TABLE
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity.Companion.SUBSCRIPTION_ID
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
+import java.util.Date
 
 @Entity(
-        tableName = FEED_LAST_UPDATED_TABLE,
-        foreignKeys = [
-            ForeignKey(
-                    entity = SubscriptionEntity::class,
-                    parentColumns = [SubscriptionEntity.SUBSCRIPTION_UID],
-                    childColumns = [SUBSCRIPTION_ID],
-                    onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE, deferred = true)
-        ]
+    tableName = FEED_LAST_UPDATED_TABLE,
+    foreignKeys = [
+        ForeignKey(
+            entity = SubscriptionEntity::class,
+            parentColumns = [SubscriptionEntity.SUBSCRIPTION_UID],
+            childColumns = [SUBSCRIPTION_ID],
+            onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE, deferred = true
+        )
+    ]
 )
 data class FeedLastUpdatedEntity(
     @PrimaryKey

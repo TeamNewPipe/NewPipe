@@ -37,11 +37,11 @@ class HeaderWithMenuItem(
         viewHolder.header_menu_item.setImageResource(itemIcon)
 
         val listener: OnClickListener? =
-                onClickListener?.let { OnClickListener { onClickListener.invoke() } }
+            onClickListener?.let { OnClickListener { onClickListener.invoke() } }
         viewHolder.root.setOnClickListener(listener)
 
         val menuItemListener: OnClickListener? =
-                menuItemOnClickListener?.let { OnClickListener { menuItemOnClickListener.invoke() } }
+            menuItemOnClickListener?.let { OnClickListener { menuItemOnClickListener.invoke() } }
         viewHolder.header_menu_item.setOnClickListener(menuItemListener)
         updateMenuItemVisibility(viewHolder)
     }

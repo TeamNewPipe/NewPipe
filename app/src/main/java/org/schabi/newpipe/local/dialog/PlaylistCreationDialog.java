@@ -17,7 +17,7 @@ import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 public final class PlaylistCreationDialog extends PlaylistDialog {
     public static PlaylistCreationDialog newInstance(final List<StreamEntity> streams) {

@@ -7,9 +7,9 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
-import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RemotePlaylistManager {
 

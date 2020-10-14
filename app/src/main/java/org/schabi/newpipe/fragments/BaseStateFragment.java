@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
-import com.jakewharton.rxbinding2.view.RxView;
+import com.jakewharton.rxbinding4.view.RxView;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.MainActivity;
@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 

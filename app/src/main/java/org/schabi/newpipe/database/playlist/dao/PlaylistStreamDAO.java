@@ -11,7 +11,7 @@ import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 
 import static org.schabi.newpipe.database.playlist.PlaylistMetadataEntry.PLAYLIST_STREAM_COUNT;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_ID;
