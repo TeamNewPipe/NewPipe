@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamak için \"Arama\"ya dokunun</string>
+    <string name="main_bg_subtitle">Başlamak için \"Ara\" bölümüne dokunun
+\n</string>
     <string name="view_count_text">%1$s görüntüleme</string>
     <string name="upload_date_text">Yayınlanma: %1$s</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC yüklensin mi\?</string>
@@ -535,8 +536,8 @@
         <item quantity="other">%d saniye</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer kısıtlamaları gereği konumlama süresi %d saniyeye belirlenmiştir</string>
-    <string name="mute">Sessiz</string>
-    <string name="unmute">Sesli</string>
+    <string name="mute">Sessize al</string>
+    <string name="unmute">Sesi aç</string>
     <string name="help">Yardım</string>
     <plurals name="minutes">
         <item quantity="one">%d dakika</item>
@@ -611,7 +612,7 @@
     <string name="error_report_open_issue_button_text">GitHub\'da bildir</string>
     <string name="copy_for_github">Biçimlendirilmiş raporu kopyala</string>
     <string name="search_showing_result_for">Sonuçlar gösteriliyor: %s</string>
-    <string name="error_report_open_github_notice">Lütfen yaşadığınız hatayı tartışan bildirimin daha önce oluşturulup oluşturulmadığını gözden geçirin. Yineleyen hata bildirimi oluşturarak, gerçek hatayı gidermekte harcadığımız zamanı uzatırsınız.</string>
+    <string name="error_report_open_github_notice">Lütfen kilitlenmenizi tartışan bir sorunun zaten var olup olmadığını kontrol edin. Yinelenen talepler oluştururken, bizden asıl hatayı düzeltmek için harcayabileceğimiz zamanı alırsınız.</string>
     <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
     <string name="never">Asla</string>
     <string name="wifi_only">Yalnızca Wi-Fi\'de</string>
