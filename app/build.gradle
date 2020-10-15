@@ -98,7 +98,7 @@ ext {
 
 configurations {
     checkstyle
-    ktlint
+//    ktlint
 }
 
 checkstyle {
@@ -126,20 +126,20 @@ task runCheckstyle(type: Checkstyle) {
     }
 }
 
-task runKtlint(type: JavaExec) {
-    main = "com.pinterest.ktlint.Main"
-    classpath = configurations.ktlint
-    args "src/**/*.kt"
-}
-
-task formatKtlint(type: JavaExec) {
-    main = "com.pinterest.ktlint.Main"
-    classpath = configurations.ktlint
-    args "-F", "src/**/*.kt"
-}
+//task runKtlint(type: JavaExec) {
+//    main = "com.pinterest.ktlint.Main"
+//    classpath = configurations.ktlint
+//    args "src/**/*.kt"
+//}
+//
+//task formatKtlint(type: JavaExec) {
+//    main = "com.pinterest.ktlint.Main"
+//    classpath = configurations.ktlint
+//    args "-F", "src/**/*.kt"
+//}
 
 afterEvaluate {
-    preDebugBuild.dependsOn runCheckstyle, runKtlint
+    preDebugBuild.dependsOn runCheckstyle //, runKtlint
 }
 
 dependencies {
@@ -149,7 +149,7 @@ dependencies {
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
-    ktlint "com.pinterest:ktlint:0.35.0"
+//    ktlint "com.pinterest:ktlint:0.35.0"
 
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
@@ -159,7 +159,7 @@ dependencies {
 
     debugImplementation "androidx.multidex:multidex:2.0.1"
 
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.mockito:mockito-core:3.3.3'
 
     androidTestImplementation "androidx.test.ext:junit:1.1.1"
