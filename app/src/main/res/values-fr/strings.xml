@@ -317,7 +317,7 @@
     <string name="error_occurred_detail">Une erreur est survenue : %1$s</string>
     <string name="delete_one">Supprimer un seul média</string>
     <string name="drawer_header_action_paceholder_text">Quelque chose va bientôt apparaître ici ;D</string>
-    <string name="controls_download_desc">Télécharger le fichier de flux</string>
+    <string name="controls_download_desc">Télécharger le flux</string>
     <string name="auto_queue_title">Ajouter automatiquement le flux suivant à la liste de lecture</string>
     <string name="auto_queue_summary">Continue la liste de lecture (non répétitive) en ajoutant un flux lié</string>
     <string name="settings_category_debug_title">Débogage</string>
