@@ -11,6 +11,7 @@ import android.content.pm.ActivityInfo;
 import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -90,6 +91,7 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -193,6 +195,7 @@ public final class VideoDetailFragment
     private TabAdapter pageAdapter;
 
     private ContentObserver settingsContentObserver;
+    @Nullable
     private MainPlayer playerService;
     private Player player;
 
@@ -452,6 +455,30 @@ public final class VideoDetailFragment
                     this.openDownloadDialog();
                 }
                 break;
+            case R.id.detail_controls_share:
+                if (currentInfo != null) {
+                    ShareUtils.shareText(requireContext(),
+                            currentInfo.getName(), currentInfo.getUrl());
+                }
+                break;
+            case R.id.detail_controls_open_in_browser:
+                if (currentInfo != null) {
+                    ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getUrl());
+                }
+                break;
+            case R.id.detail_controls_play_with_kodi:
+                if (currentInfo != null) {
+                    try {
+                        NavigationHelper.playWithKore(
+                                requireContext(), Uri.parse(currentInfo.getUrl()));
+                    } catch (final Exception e) {
+                        if (DEBUG) {
+                            Log.i(TAG, "Failed to start kore", e);
+                        }
+                        KoreUtil.showInstallKoreDialog(requireContext());
+                    }
+                }
+                break;
             case R.id.detail_uploader_root_layout:
                 if (isEmpty(currentInfo.getSubChannelUrl())) {
                     if (!isEmpty(currentInfo.getUploaderUrl())) {
@@ -549,6 +576,7 @@ public final class VideoDetailFragment
             binding.detailDescriptionView.setFocusable(false);
             binding.detailToggleDescriptionView.setImageResource(
                     ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
+            binding.detailSecondaryControlPanel.setVisibility(View.GONE);
         } else {
             binding.detailVideoTitleView.setMaxLines(10);
             binding.detailDescriptionRootLayout.setVisibility(View.VISIBLE);
@@ -556,6 +584,7 @@ public final class VideoDetailFragment
             binding.detailDescriptionView.setMovementMethod(new LargeTextMovementMethod());
             binding.detailToggleDescriptionView.setImageResource(
                     ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_less));
+            binding.detailSecondaryControlPanel.setVisibility(View.VISIBLE);
         }
     }
 
@@ -582,6 +611,9 @@ public final class VideoDetailFragment
             binding.detailControlsBackground.setBackgroundColor(transparent);
             binding.detailControlsPopup.setBackgroundColor(transparent);
             binding.detailControlsDownload.setBackgroundColor(transparent);
+            binding.detailControlsShare.setBackgroundColor(transparent);
+            binding.detailControlsOpenInBrowser.setBackgroundColor(transparent);
+            binding.detailControlsPlayWithKodi.setBackgroundColor(transparent);
         }
     }
 
@@ -589,21 +621,22 @@ public final class VideoDetailFragment
     protected void initListeners() {
         super.initListeners();
 
+        binding.detailTitleRootLayout.setOnClickListener(this);
         binding.detailTitleRootLayout.setOnLongClickListener(this);
         binding.detailUploaderRootLayout.setOnClickListener(this);
         binding.detailUploaderRootLayout.setOnLongClickListener(this);
-        binding.detailTitleRootLayout.setOnClickListener(this);
         binding.detailThumbnailRootLayout.setOnClickListener(this);
         binding.detailControlsBackground.setOnClickListener(this);
+        binding.detailControlsBackground.setOnLongClickListener(this);
         binding.detailControlsPopup.setOnClickListener(this);
+        binding.detailControlsPopup.setOnLongClickListener(this);
         binding.detailControlsPlaylistAppend.setOnClickListener(this);
         binding.detailControlsDownload.setOnClickListener(this);
         binding.detailControlsDownload.setOnLongClickListener(this);
-
-        binding.detailControlsBackground.setLongClickable(true);
-        binding.detailControlsPopup.setLongClickable(true);
-        binding.detailControlsBackground.setOnLongClickListener(this);
-        binding.detailControlsPopup.setOnLongClickListener(this);
+        binding.detailControlsShare.setOnClickListener(this);
+        binding.detailControlsOpenInBrowser.setOnClickListener(this);
+        binding.detailControlsPlayWithKodi.setOnClickListener(this);
+        showHideKodiButton();
 
         binding.overlayThumbnail.setOnClickListener(this);
         binding.overlayThumbnail.setOnLongClickListener(this);
@@ -670,6 +703,12 @@ public final class VideoDetailFragment
                     binding.detailUploaderThumbnailView,
                     ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
+    }
+
+    private void showHideKodiButton() {
+        // show kodi button if it supports the current service and it is enabled in settings
+        binding.detailControlsPlayWithKodi.setVisibility(KoreUtil.shouldShowPlayWithKodi(
+                requireContext(), serviceId) ? View.VISIBLE : View.GONE);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1312,6 +1351,7 @@ public final class VideoDetailFragment
         binding.detailDescriptionRootLayout.setVisibility(View.GONE);
         binding.detailToggleDescriptionView.setVisibility(View.GONE);
         binding.detailTitleRootLayout.setClickable(false);
+        binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
         if (binding.relatedStreamsLayout != null) {
             if (showRelatedStreams) {
@@ -1431,6 +1471,7 @@ public final class VideoDetailFragment
                 ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
         binding.detailToggleDescriptionView.setVisibility(View.VISIBLE);
         binding.detailDescriptionRootLayout.setVisibility(View.GONE);
+        binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
         if (info.getUploadDate() != null) {
             binding.detailUploadDateView.setText(Localization
