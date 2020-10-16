@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">点击搜索按钮即可开始使用</string>
+    <string name="main_bg_subtitle">点击\"搜索\" 开始使用
+\n</string>
     <string name="view_count_text">%1$s 次观看</string>
     <string name="upload_date_text">发布于 %1$s</string>
     <string name="open_in_browser">在浏览器中打开</string>
