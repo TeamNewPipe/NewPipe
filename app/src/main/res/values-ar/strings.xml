@@ -55,7 +55,8 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
     <string name="youtube_signature_decryption_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">انقر على \"بحث\" للبدء</string>
+    <string name="main_bg_subtitle">اضغط على \"بحث\" للبدء
+\n</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
