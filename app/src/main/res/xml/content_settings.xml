@@ -97,6 +97,12 @@
         android:title="@string/export_data_title"
         app:iconSpaceReserved="false" />
 
+    <Preference
+        android:key="@string/clear_cookie_key"
+        android:summary="@string/clear_cookie_summary"
+        android:title="@string/clear_cookie_title"
+        app:iconSpaceReserved="false" />
+
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_feed_title">
