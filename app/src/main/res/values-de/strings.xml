@@ -82,7 +82,8 @@
     <string name="report_error">Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">Live</string>
-    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen</string>
+    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen
+\n</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
