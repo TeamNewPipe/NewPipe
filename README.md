@@ -103,6 +103,10 @@ The more is done the better it gets!
 
 If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTING.md).
 
+<a href="https://hosted.weblate.org/engage/newpipe/">
+<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
+</a>
+
 ## Donate
 If you like NewPipe we'd be happy about a donation. You can either send bitcoin or donate via Bountysource or Liberapay. For further info on donating to NewPipe, please visit our [website](https://newpipe.schabi.org/donate).
 
