@@ -790,6 +790,17 @@ public class VideoPlayerImpl extends VideoPlayer
         context.startActivity(intent);
     }
 
+    public void onScreenRotationButtonClicked() {
+        // Only if it's not a vertical video or vertical video but in landscape with locked
+        // orientation a screen orientation can be changed automatically
+        if (!isVerticalVideo
+                || (service.isLandscape() && globalScreenOrientationLocked(service))) {
+            fragmentListener.onScreenRotationButtonClicked();
+        } else {
+            toggleFullscreen();
+        }
+    }
+
     @Override
     public void onClick(final View v) {
         super.onClick(v);
@@ -819,14 +830,7 @@ public class VideoPlayerImpl extends VideoPlayer
         } else if (v.getId() == fullscreenButton.getId()) {
             switchFromPopupToMain();
         } else if (v.getId() == screenRotationButton.getId()) {
-            // Only if it's not a vertical video or vertical video but in landscape with locked
-            // orientation a screen orientation can be changed automatically
-            if (!isVerticalVideo
-                    || (service.isLandscape() && globalScreenOrientationLocked(service))) {
-                fragmentListener.onScreenRotationButtonClicked();
-            } else {
-                toggleFullscreen();
-            }
+            onScreenRotationButtonClicked();
         } else if (v.getId() == muteButton.getId()) {
             onMuteUnmuteButtonClicked();
         } else if (v.getId() == playerCloseButton.getId()) {

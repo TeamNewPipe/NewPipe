@@ -243,9 +243,15 @@ public class VideoDetailFragment
     private TabLayout tabLayout;
     private FrameLayout relatedStreamsLayout;
 
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Service
+    //////////////////////////////////////////////////////////////////////////*/
+
     private ContentObserver settingsContentObserver;
     private MainPlayer playerService;
     private VideoPlayerImpl player;
+    private boolean makeFullscreenWhenPlaybackStarts = false;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -550,6 +556,10 @@ public class VideoDetailFragment
         }
 
         switch (v.getId()) {
+            case R.id.detail_thumbnail_root_layout:
+                openVideoPlayer();
+                makeFullscreenWhenPlaybackStarts = true;
+                break;
             case R.id.detail_controls_background:
                 openBackgroundPlayer(true);
                 break;
@@ -683,6 +693,7 @@ public class VideoDetailFragment
         uploaderRootLayout.setOnLongClickListener(this);
         videoTitleRoot.setOnClickListener(this);
         thumbnailBackgroundButton.setOnClickListener(this);
+        thumbnailBackgroundButton.setOnLongClickListener(this);
         detailControlsBackground.setOnClickListener(this);
         detailControlsPopup.setOnClickListener(this);
         detailControlsAddToPlaylist.setOnClickListener(this);
@@ -1771,6 +1782,16 @@ public class VideoDetailFragment
                         && player.getPlayQueue().getItem().getUrl().equals(url)) {
                     animateView(positionView, true, 100);
                     animateView(detailPositionView, true, 100);
+                }
+                break;
+            case BasePlayer.STATE_BUFFERING:
+                if (makeFullscreenWhenPlaybackStarts) {
+                    // This will only run after the user long clicked on a video to start
+                    // playback directly in fullscreen.
+                    makeFullscreenWhenPlaybackStarts = false;
+                    if (globalScreenOrientationLocked(requireContext())) {
+                        player.onScreenRotationButtonClicked();
+                    }
                 }
                 break;
         }
