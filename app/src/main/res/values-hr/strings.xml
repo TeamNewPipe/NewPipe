@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Dodirnite pretragu za početak</string>
+    <string name="main_bg_subtitle">Dodirnite pretragu za početak
+\n</string>
     <string name="view_count_text">%1$s pregleda</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
     <string name="no_player_found">Reproduktor za stream nije pronađen. Želite li instalirati VLC?</string>
@@ -552,4 +553,7 @@
     <string name="notification_action_0_title">Prvi akcijski gumb</string>
     <string name="download_choose_new_path">Promijenite mape za preuzimanje kako bi stupile na snagu</string>
     <string name="search_showing_result_for">Prikazuju se rezultati za: %s</string>
+    <string name="unsupported_url_dialog_message">Nije moguće prepoznati URL. Želite li otvoriti u drugoj aplikaciji\?</string>
+    <string name="notification_scale_to_square_image_title"></string>
+    <string name="notification_action_buffering">Učitavam</string>
 </resources>
