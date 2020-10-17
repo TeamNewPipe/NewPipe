@@ -29,6 +29,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -330,12 +331,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         @JvmStatic
         fun newInstance(groupId: Long = FeedGroupEntity.GROUP_ALL_ID, groupName: String? = null): FeedFragment {
             val feedFragment = FeedFragment()
-
-            feedFragment.arguments = Bundle().apply {
-                putLong(KEY_GROUP_ID, groupId)
-                putString(KEY_GROUP_NAME, groupName)
-            }
-
+            feedFragment.arguments = bundleOf(KEY_GROUP_ID to groupId, KEY_GROUP_NAME to groupName)
             return feedFragment
         }
     }

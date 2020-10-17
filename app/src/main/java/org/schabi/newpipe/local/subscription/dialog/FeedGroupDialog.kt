@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.getSystemService
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -501,11 +502,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
         fun newInstance(groupId: Long = NO_GROUP_SELECTED): FeedGroupDialog {
             val dialog = FeedGroupDialog()
-
-            dialog.arguments = Bundle().apply {
-                putLong(KEY_GROUP_ID, groupId)
-            }
-
+            dialog.arguments = bundleOf(KEY_GROUP_ID to groupId)
             return dialog
         }
     }
