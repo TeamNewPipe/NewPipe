@@ -52,7 +52,6 @@ public class PlayQueueItemBuilder {
             return false;
         });
 
-        holder.itemThumbnailView.setOnTouchListener(getOnTouchListener(holder));
         holder.itemHandle.setOnTouchListener(getOnTouchListener(holder));
     }
 
