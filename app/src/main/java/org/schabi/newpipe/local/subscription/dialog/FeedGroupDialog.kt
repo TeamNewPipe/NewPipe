@@ -13,6 +13,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.getSystemService
 import androidx.core.os.bundleOf
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -415,21 +417,14 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             else -> android.R.string.ok
         })
 
-        delete_button.visibility = when {
-            currentScreen != InitialScreen -> View.GONE
-            groupId == NO_GROUP_SELECTED -> View.GONE
-            else -> View.VISIBLE
-        }
+        delete_button.isGone = currentScreen != InitialScreen || groupId == NO_GROUP_SELECTED
 
         hideKeyboard()
         hideSearch()
     }
 
     private fun View.onlyVisibleIn(vararg screens: ScreenState) {
-        visibility = when (currentScreen) {
-            in screens -> View.VISIBLE
-            else -> View.GONE
-        }
+        isVisible = currentScreen in screens
     }
 
     /*/​//////////////////////////////////////////////////////////////////////////

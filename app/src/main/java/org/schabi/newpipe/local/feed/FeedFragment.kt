@@ -30,6 +30,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -254,11 +255,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
         oldestSubscriptionUpdate = loadedState.oldestUpdate
 
+        refresh_subtitle_text.isVisible = loadedState.notLoadedCount > 0
         if (loadedState.notLoadedCount > 0) {
-            refresh_subtitle_text.visibility = View.VISIBLE
             refresh_subtitle_text.text = getString(R.string.feed_subscription_not_loaded_count, loadedState.notLoadedCount)
-        } else {
-            refresh_subtitle_text.visibility = View.GONE
         }
 
         if (loadedState.itemsErrors.isNotEmpty()) {
