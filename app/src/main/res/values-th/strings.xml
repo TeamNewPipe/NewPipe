@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">แตะที่ปุ่มค้นหาเพื่อเริ่มต้น</string>
+    <string name="main_bg_subtitle">แตะที่ปุ่ม \"ค้นหา\" เพื่อเริ่มต้น
+\n</string>
     <string name="view_count_text">%1$s ครั้ง</string>
     <string name="upload_date_text">เผยแพร่เมื่อ %1$s</string>
     <string name="no_player_found">ไม่พบแอปที่สามารถสตรีมสื่อวีดีโอได้ คุณต้องการติดตั้ง VLC หรือไม่\?</string>
@@ -14,13 +15,13 @@
     <string name="controls_download_desc">ดาวน์โหลดไฟล์สตรีม</string>
     <string name="search">ค้นหา</string>
     <string name="settings">ตั้งค่า</string>
-    <string name="did_you_mean">หรือคุณหมายถึง: %1$s\?</string>
+    <string name="did_you_mean">หรือคุณหมายถึง \"%1$s\"\?</string>
     <string name="share_dialog_title">แชร์ด้วย</string>
     <string name="choose_browser">เลือกบราวเซอร์</string>
     <string name="screen_rotation">หมุน</string>
     <string name="use_external_video_player_title">Use external video player</string>
     <string name="use_external_audio_player_title">ใช้แอปเล่นเสียงภายนอก</string>
-    <string name="popup_mode_share_menu_title">NewPipe โหมดป๊อปอัพ</string>
+    <string name="popup_mode_share_menu_title">โหมดป๊อปอัพ</string>
     <string name="subscribe_button_title">ติดตาม</string>
     <string name="subscribed_button_title">ติดตามแล้ว</string>
     <string name="unsubscribe">ยกเลิกการติดตาม</string>
@@ -305,7 +306,7 @@
     <string name="override_current_data">สิ่งนี้จะแทนที่การตั้งค่าปัจจุบันของคุณ</string>
     <string name="import_settings">คุณยังต้องการนำเข้าการตั้งค่าด้วยหรือไม่\?</string>
     <string name="error_unable_to_load_comments">ไม่สามารถโหลดความคิดเห็นได้</string>
-    <string name="trending">ได้รับความนิยม</string>
+    <string name="trending">มาแรง</string>
     <string name="top_50">50 อันดับแรก</string>
     <string name="new_and_hot">ใหม่และมาแรง</string>
     <string name="conferences">การประชุม</string>
@@ -436,4 +437,5 @@
     <string name="enable_playback_state_lists_title">ตำแหน่งวีดิโอในรายการ</string>
     <string name="enable_playback_state_lists_summary">แสดงตำแหน่งวีดิโอที่เล่นในรายการ</string>
     <string name="settings_category_clear_data_title">ล้างข้อมูล</string>
+    <string name="search_showing_result_for">กำลังแสดงผลลัพธ์สำหรับ: %s</string>
 </resources>
