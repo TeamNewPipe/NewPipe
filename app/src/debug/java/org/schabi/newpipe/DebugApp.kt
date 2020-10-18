@@ -1,6 +1,5 @@
 package org.schabi.newpipe
 
-import androidx.multidex.MultiDex
 import androidx.preference.PreferenceManager
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -26,12 +25,6 @@ class DebugApp : App() {
                 .addNetworkInterceptor(StethoInterceptor()))
         setCookiesToDownloader(downloader)
         return downloader
-    }
-
-    override fun initACRA() {
-        // install MultiDex before initializing ACRA
-        MultiDex.install(this)
-        super.initACRA()
     }
 
     private fun initStetho() {
