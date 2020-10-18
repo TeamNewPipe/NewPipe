@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.subscription.item
 
 import android.view.View
+import androidx.core.view.isVisible
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
@@ -25,7 +26,7 @@ data class PickerSubscriptionItem(
                 viewHolder.thumbnail_view, ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS)
 
         viewHolder.title_view.text = subscriptionEntity.name
-        viewHolder.selected_highlight.visibility = if (isSelected) View.VISIBLE else View.GONE
+        viewHolder.selected_highlight.isVisible = isSelected
     }
 
     override fun unbind(viewHolder: GroupieViewHolder) {

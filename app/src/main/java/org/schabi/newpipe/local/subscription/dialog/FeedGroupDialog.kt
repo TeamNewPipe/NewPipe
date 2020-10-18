@@ -3,15 +3,17 @@ package org.schabi.newpipe.local.subscription.dialog
 import android.app.Dialog
 import android.os.Bundle
 import android.os.Parcelable
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.getSystemService
+import androidx.core.os.bundleOf
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -191,16 +193,11 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         }
 
         group_name_input_container.error = null
-        group_name_input.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (group_name_input_container.isErrorEnabled && !s.isNullOrBlank()) {
-                    group_name_input_container.error = null
-                }
+        group_name_input.doOnTextChanged { text, _, _, _ ->
+            if (group_name_input_container.isErrorEnabled && !text.isNullOrBlank()) {
+                group_name_input_container.error = null
             }
-        })
+        }
 
         confirm_button.setOnClickListener { handlePositiveButton() }
 
@@ -242,15 +239,11 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             }
         }
 
-        toolbar_search_edit_text.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = Unit
-            override fun afterTextChanged(s: Editable) = Unit
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                val newQuery: String = toolbar_search_edit_text.text.toString()
-                subscriptionsCurrentSearchQuery = newQuery
-                viewModel.filterSubscriptionsBy(newQuery)
-            }
-        })
+        toolbar_search_edit_text.doOnTextChanged { _, _, _, _ ->
+            val newQuery: String = toolbar_search_edit_text.text.toString()
+            subscriptionsCurrentSearchQuery = newQuery
+            viewModel.filterSubscriptionsBy(newQuery)
+        }
 
         subscriptionGroupAdapter.setOnItemClickListener(subscriptionPickerItemListener)
     }
@@ -414,21 +407,14 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             else -> android.R.string.ok
         })
 
-        delete_button.visibility = when {
-            currentScreen != InitialScreen -> View.GONE
-            groupId == NO_GROUP_SELECTED -> View.GONE
-            else -> View.VISIBLE
-        }
+        delete_button.isGone = currentScreen != InitialScreen || groupId == NO_GROUP_SELECTED
 
         hideKeyboard()
         hideSearch()
     }
 
     private fun View.onlyVisibleIn(vararg screens: ScreenState) {
-        visibility = when (currentScreen) {
-            in screens -> View.VISIBLE
-            else -> View.GONE
-        }
+        isVisible = currentScreen in screens
     }
 
     /*/​//////////////////////////////////////////////////////////////////////////
@@ -501,11 +487,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
         fun newInstance(groupId: Long = NO_GROUP_SELECTED): FeedGroupDialog {
             val dialog = FeedGroupDialog()
-
-            dialog.arguments = Bundle().apply {
-                putLong(KEY_GROUP_ID, groupId)
-            }
-
+            dialog.arguments = bundleOf(KEY_GROUP_ID to groupId)
             return dialog
         }
     }
