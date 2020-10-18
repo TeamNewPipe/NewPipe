@@ -9,11 +9,11 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function4
 import io.reactivex.schedulers.Schedulers
-import java.util.Calendar
-import java.util.Date
+import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.ktx.toCalendar
 import org.schabi.newpipe.local.feed.service.FeedEventManager
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
@@ -41,7 +41,7 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
                     feedDatabaseManager.notLoadedCount(groupId),
                     feedDatabaseManager.oldestSubscriptionUpdate(groupId),
 
-                    Function4 { t1: FeedEventManager.Event, t2: List<StreamInfoItem>, t3: Long, t4: List<Date> ->
+                    Function4 { t1: FeedEventManager.Event, t2: List<StreamInfoItem>, t3: Long, t4: List<OffsetDateTime> ->
                         return@Function4 CombineResultHolder(t1, t2, t3, t4.firstOrNull())
                     }
             )
@@ -51,8 +51,7 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
             .subscribe {
                 val (event, listFromDB, notLoadedCount, oldestUpdate) = it
 
-                val oldestUpdateCalendar =
-                        oldestUpdate?.let { Calendar.getInstance().apply { time = it } }
+                val oldestUpdateCalendar = oldestUpdate?.toCalendar()
 
                 mutableStateLiveData.postValue(when (event) {
                     is IdleEvent -> FeedState.LoadedState(listFromDB, oldestUpdateCalendar, notLoadedCount)
@@ -71,5 +70,5 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
         combineDisposable.dispose()
     }
 
-    private data class CombineResultHolder(val t1: FeedEventManager.Event, val t2: List<StreamInfoItem>, val t3: Long, val t4: Date?)
+    private data class CombineResultHolder(val t1: FeedEventManager.Event, val t2: List<StreamInfoItem>, val t3: Long, val t4: OffsetDateTime?)
 }

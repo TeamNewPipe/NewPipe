@@ -5,31 +5,35 @@ import androidx.room.TypeConverter;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.local.subscription.FeedGroupIcon;
 
-import java.util.Date;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 public final class Converters {
     private Converters() { }
 
     /**
-     * Convert a long value to a date.
+     * Convert a long value to a {@link OffsetDateTime}.
      *
      * @param value the long value
-     * @return the date
+     * @return the {@code OffsetDateTime}
      */
     @TypeConverter
-    public static Date fromTimestamp(final Long value) {
-        return value == null ? null : new Date(value);
+    public static OffsetDateTime offsetDateTimeFromTimestamp(final Long value) {
+        return value == null ? null : OffsetDateTime.ofInstant(Instant.ofEpochMilli(value),
+                ZoneOffset.UTC);
     }
 
     /**
-     * Convert a date to a long value.
+     * Convert a {@link OffsetDateTime} to a long value.
      *
-     * @param date the date
+     * @param offsetDateTime the {@code OffsetDateTime}
      * @return the long value
      */
     @TypeConverter
-    public static Long dateToTimestamp(final Date date) {
-        return date == null ? null : date.getTime();
+    public static Long offsetDateTimeToTimestamp(final OffsetDateTime offsetDateTime) {
+        return offsetDateTime == null ? null : offsetDateTime.withOffsetSameInstant(ZoneOffset.UTC)
+                .toInstant().toEpochMilli();
     }
 
     @TypeConverter

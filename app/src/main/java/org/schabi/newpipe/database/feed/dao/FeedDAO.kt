@@ -7,7 +7,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import io.reactivex.Flowable
-import java.util.Date
+import java.time.OffsetDateTime
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
@@ -58,10 +58,10 @@ abstract class FeedDAO {
             INNER JOIN feed f
             ON s.uid = f.stream_id
 
-            WHERE s.upload_date < :date
+            WHERE s.upload_date < :offsetDateTime
         )
         """)
-    abstract fun unlinkStreamsOlderThan(date: Date)
+    abstract fun unlinkStreamsOlderThan(offsetDateTime: OffsetDateTime)
 
     @Query("""
         DELETE FROM feed
@@ -106,10 +106,10 @@ abstract class FeedDAO {
         INNER JOIN feed_group_subscription_join fgs
         ON fgs.subscription_id = lu.subscription_id AND fgs.group_id = :groupId
         """)
-    abstract fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<Date>>
+    abstract fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime>>
 
     @Query("SELECT MIN(last_updated) FROM feed_last_updated")
-    abstract fun oldestSubscriptionUpdateFromAll(): Flowable<List<Date>>
+    abstract fun oldestSubscriptionUpdateFromAll(): Flowable<List<OffsetDateTime>>
 
     @Query("SELECT COUNT(*) FROM feed_last_updated WHERE last_updated IS NULL")
     abstract fun notLoadedCount(): Flowable<Long>
@@ -135,7 +135,7 @@ abstract class FeedDAO {
 
         WHERE lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold
         """)
-    abstract fun getAllOutdated(outdatedThreshold: Date): Flowable<List<SubscriptionEntity>>
+    abstract fun getAllOutdated(outdatedThreshold: OffsetDateTime): Flowable<List<SubscriptionEntity>>
 
     @Query("""
         SELECT s.* FROM subscriptions s
@@ -148,5 +148,5 @@ abstract class FeedDAO {
 
         WHERE lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold
         """)
-    abstract fun getAllOutdatedForGroup(groupId: Long, outdatedThreshold: Date): Flowable<List<SubscriptionEntity>>
+    abstract fun getAllOutdatedForGroup(groupId: Long, outdatedThreshold: OffsetDateTime): Flowable<List<SubscriptionEntity>>
 }

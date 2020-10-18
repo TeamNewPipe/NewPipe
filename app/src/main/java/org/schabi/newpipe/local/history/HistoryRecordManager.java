@@ -44,9 +44,10 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Completable;
@@ -85,7 +86,7 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
 
-        final Date currentTime = new Date();
+        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
             final StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
@@ -161,7 +162,7 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
 
-        final Date currentTime = new Date();
+        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         final SearchHistoryEntry newEntry = new SearchHistoryEntry(currentTime, serviceId, search);
 
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {

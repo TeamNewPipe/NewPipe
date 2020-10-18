@@ -5,7 +5,7 @@
 <suppressions>
   <suppress checks="FinalParameters"
     files="LocalItemListAdapter.java"
-    lines="220,292"/>
+    lines="221,293"/>
 
   <suppress checks="FinalParameters"
     files="InfoListAdapter.java"
