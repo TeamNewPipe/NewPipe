@@ -62,7 +62,8 @@
     <string name="video_is_age_restricted">Zobrazit video s věkovým omezením. Změnit tuto volbu v budoucnu lze v \"Nastavení\".</string>
     <string name="duration_live">Živě</string>
     <string name="light_parsing_error">Nebylo možné kompletně analyzovat stránku</string>
-    <string name="main_bg_subtitle">Začít klepnutím na \"Hledat\"</string>
+    <string name="main_bg_subtitle">Začít klepnutím na \"Hledat\"
+\n</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">NewPipe stahuje</string>
