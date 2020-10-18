@@ -104,7 +104,6 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
             return true;
         });
 
-        itemThumbnailView.setOnTouchListener(getOnTouchListener(item));
         itemHandleView.setOnTouchListener(getOnTouchListener(item));
     }
 
