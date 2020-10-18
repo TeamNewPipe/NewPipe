@@ -16,6 +16,8 @@ android {
         versionCode 955
         versionName "0.20.1"
 
+        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
@@ -28,7 +30,6 @@ android {
 
     buildTypes {
         debug {
-            multiDexEnabled true
             debuggable true
 
             // suffix the app id and the app name with git branch name
@@ -157,7 +158,7 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
     implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
 
-    debugImplementation "androidx.multidex:multidex:2.0.1"
+    implementation "androidx.multidex:multidex:2.0.1"
 
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.mockito:mockito-core:3.3.3'

@@ -1,6 +1,5 @@
 package org.schabi.newpipe;
 
-import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -9,6 +8,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.multidex.MultiDexApplication;
 import androidx.preference.PreferenceManager;
 
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
@@ -61,7 +61,7 @@ import io.reactivex.plugins.RxJavaPlugins;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class App extends Application {
+public class App extends MultiDexApplication {
     protected static final String TAG = App.class.toString();
     private static App app;
 
