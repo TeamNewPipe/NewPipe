@@ -367,7 +367,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         final MenuItem detail = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1,
                 Menu.NONE, R.string.play_queue_stream_detail);
         detail.setOnMenuItemClickListener(menuItem -> {
-            onOpenDetail(item.getServiceId(), item.getUrl(), item.getTitle());
+            // playQueue is null since we don't want any queue change
+            NavigationHelper.openVideoDetail(
+                    this, item.getServiceId(), item.getUrl(), item.getTitle(), null);
             return true;
         });
 
@@ -452,11 +454,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 }
             }
         };
-    }
-
-    private void onOpenDetail(final int serviceId, final String videoUrl,
-                              final String videoTitle) {
-        NavigationHelper.openVideoDetail(this, serviceId, videoUrl, videoTitle);
     }
 
     private void scrollToSelected() {

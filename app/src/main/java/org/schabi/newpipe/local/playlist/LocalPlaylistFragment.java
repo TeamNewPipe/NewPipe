@@ -30,6 +30,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -178,10 +179,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             @Override
             public void selected(final LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistStreamEntry) {
-                    final PlaylistStreamEntry item = (PlaylistStreamEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(getFM(),
-                            item.getStreamEntity().getServiceId(), item.getStreamEntity().getUrl(),
-                            item.getStreamEntity().getTitle());
+                    final StreamEntity item =
+                            ((PlaylistStreamEntry) selectedItem).getStreamEntity();
+                    NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
+                            item.getServiceId(), item.getUrl(), item.getTitle(), null, false);
                 }
             }
 
@@ -494,7 +495,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         setVideoCount(itemListAdapter.getItemsList().size());
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), true));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
         headerPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->

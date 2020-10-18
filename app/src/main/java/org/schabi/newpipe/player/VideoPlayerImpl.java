@@ -785,7 +785,7 @@ public class VideoPlayerImpl extends VideoPlayer
         intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
         intent.putExtra(Constants.KEY_URL, getVideoUrl());
         intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
-        intent.putExtra(VideoDetailFragment.AUTO_PLAY, true);
+        intent.putExtra(VideoDetailFragment.KEY_SWITCHING_PLAYERS, true);
         service.onDestroy();
         context.startActivity(intent);
     }
