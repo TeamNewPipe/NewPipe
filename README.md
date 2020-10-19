@@ -69,11 +69,6 @@ NewPipe does not use any Google framework libraries, nor the YouTube API. Websit
 * Livestream support
 * Show comments
 
-### Coming Features
-
-* Cast to UPnP and Cast
-* … and many more
-
 ### Supported Services
 
 NewPipe supports multiple services. Our [docs](https://teamnewpipe.github.io/documentation/) provide more info on how a new service can be added to the app and the extractor. Please get in touch with us if you intend to add a new one. Currently supported services are:
