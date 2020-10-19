@@ -50,7 +50,8 @@
     <string name="download_path_audio_dialog_title">選擇音訊檔的下載資料夾</string>
     <string name="err_dir_create">無法建立下載目錄「%1$s」</string>
     <string name="info_dir_created">已建立下載目錄「%1$s」</string>
-    <string name="main_bg_subtitle">輕觸「搜尋」按鈕開始使用</string>
+    <string name="main_bg_subtitle">輕觸「搜尋」按鈕開始使用
+\n</string>
     <string name="open_in_popup_mode">以懸浮視窗開啟</string>
     <string name="use_external_video_player_summary">移除某些解析度的音訊</string>
     <string name="popup_mode_share_menu_title">懸浮視窗模式</string>
