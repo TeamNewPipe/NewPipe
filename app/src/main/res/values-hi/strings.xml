@@ -523,4 +523,5 @@
     <string name="video_detail_by">%s के द्वारा</string>
     <string name="channel_created_by">%s के द्वारा बनाया गया</string>
     <string name="playlist_page_summary">प्लेलिस्ट पृष्ठ</string>
+    <string name="search_showing_result_for">परिणाम दिखा रहे हैं : %s</string>
 </resources>
