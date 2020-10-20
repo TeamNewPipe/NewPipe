@@ -1,0 +1,1 @@
+NewPipe ne koristi nijednu Googleovu biblioteku niti YouTube API, već samo analizira web-stranicu kako bi pribavio potrebne podatke. Stoga se ovaj program može koristiti na uređajima bez da su Googleove usluge instalirane. Također, za korištenje programa NewPipe nije potreban YouTube račun. NewPipe je slobodan program otvorenog koda.
