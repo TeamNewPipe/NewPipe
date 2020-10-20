@@ -98,6 +98,7 @@ ext {
     groupieVersion = '2.8.1'
     markwonVersion = '4.6.0'
     googleAutoServiceVersion = '1.0-rc7'
+    daggerVersion = '2.29.1'
 }
 
 configurations {
@@ -227,6 +228,10 @@ dependencies {
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
     implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
+
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.mockito:mockito-core:3.6.0'
