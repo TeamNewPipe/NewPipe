@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">יש ללחוץ על „חיפוש” כדי להתחיל</string>
+    <string name="main_bg_subtitle">יש לגעת ב־„חיפוש” כדי להתחיל
+\n</string>
     <string name="view_count_text">%1$s צפיות</string>
     <string name="upload_date_text">פורסם ב־%1$s</string>
     <string name="no_player_found">לא נמצאו נגני צפייה ישירה, להתקין את VLC\?</string>
