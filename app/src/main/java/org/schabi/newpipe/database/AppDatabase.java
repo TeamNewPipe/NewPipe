@@ -1,5 +1,7 @@
 package org.schabi.newpipe.database;
 
+import android.database.Cursor;
+
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
@@ -73,4 +75,11 @@ public abstract class AppDatabase extends RoomDatabase {
 
     @NonNull
     public abstract SubscriptionDAO subscriptionDAO();
+
+    public void checkpoint() {
+        final Cursor c = query("pragma wal_checkpoint(full)", null);
+        if (c.moveToFirst() && c.getInt(0) == 1) {
+            throw new RuntimeException("Checkpoint was blocked from completing");
+        }
+    }
 }

@@ -1,7 +1,6 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
-import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 import androidx.room.Room;
@@ -40,15 +39,5 @@ public final class NewPipeDatabase {
         }
 
         return result;
-    }
-
-    public static void checkpoint() {
-        if (databaseInstance == null) {
-            throw new IllegalStateException("database is not initialized");
-        }
-        final Cursor c = databaseInstance.query("pragma wal_checkpoint(full)", null);
-        if (c.moveToFirst() && c.getInt(0) == 1) {
-            throw new RuntimeException("Checkpoint was blocked from completing");
-        }
     }
 }

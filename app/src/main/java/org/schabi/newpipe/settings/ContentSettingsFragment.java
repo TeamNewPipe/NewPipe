@@ -17,10 +17,11 @@ import androidx.preference.PreferenceManager;
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.DownloaderImpl;
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
@@ -44,11 +45,16 @@ import java.util.Map;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
+import javax.inject.Inject;
+
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_IMPORT_PATH = 8945;
     private static final int REQUEST_EXPORT_PATH = 30945;
+
+    @Inject
+    AppDatabase appDatabase;
 
     private File databasesDir;
     private File newpipeDb;
@@ -63,6 +69,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
     private String initialLanguage;
+
+    @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
+    }
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -210,7 +222,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private void exportDatabase(final String path) {
         try {
             //checkpoint before export
-            NewPipeDatabase.checkpoint();
+            appDatabase.checkpoint();
 
             try (ZipOutputStream outZip = new ZipOutputStream(new BufferedOutputStream(
                             new FileOutputStream(path)))) {
