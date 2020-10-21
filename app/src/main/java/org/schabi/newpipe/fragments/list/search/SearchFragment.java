@@ -34,6 +34,7 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
@@ -47,7 +48,6 @@ import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
@@ -142,7 +142,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     private SuggestionListAdapter suggestionListAdapter;
-    private HistoryRecordManager historyRecordManager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -186,6 +185,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public void onAttach(final Context context) {
+        App.getApp().getAppComponent().inject(this);
         super.onAttach(context);
 
         suggestionListAdapter = new SuggestionListAdapter(activity);
@@ -194,8 +194,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         final boolean isSearchHistoryEnabled = preferences
                 .getBoolean(getString(R.string.enable_search_history_key), true);
         suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
-
-        historyRecordManager = new HistoryRecordManager(context);
     }
 
     @Override
@@ -663,7 +661,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     private void showDeleteSuggestionDialog(final SuggestionItem item) {
-        if (activity == null || historyRecordManager == null || searchEditText == null) {
+        if (activity == null || recordManager == null || searchEditText == null) {
             return;
         }
         final String query = item.query;
@@ -673,7 +671,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.delete, (dialog, which) -> {
-                    final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
+                    final Disposable onDelete = recordManager.deleteSearchHistory(query)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     howManyDeleted -> suggestionPublisher
@@ -716,7 +714,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         suggestionDisposable = observable
                 .switchMap(query -> {
-                    final Flowable<List<SearchHistoryEntry>> flowable = historyRecordManager
+                    final Flowable<List<SearchHistoryEntry>> flowable = recordManager
                             .getRelatedSearches(query, 3, 25);
                     final Observable<List<SuggestionItem>> local = flowable.toObservable()
                             .map(searchHistoryEntries -> {
@@ -820,7 +818,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         hideSuggestionsPanel();
         hideKeyboardSearch();
 
-        disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
+        disposables.add(recordManager.onSearched(serviceId, theSearchString)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         ignored -> {
@@ -1075,7 +1073,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void onSuggestionItemSwiped(@NonNull final RecyclerView.ViewHolder viewHolder) {
         final int position = viewHolder.getAdapterPosition();
         final String query = suggestionListAdapter.getItem(position).query;
-        final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
+        final Disposable onDelete = recordManager.deleteSearchHistory(query)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         howManyDeleted -> suggestionPublisher

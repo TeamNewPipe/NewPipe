@@ -19,6 +19,7 @@
 
 package org.schabi.newpipe.local.feed
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
@@ -47,6 +48,7 @@ import kotlinx.android.synthetic.main.fragment_feed.loading_progress_text
 import kotlinx.android.synthetic.main.fragment_feed.refresh_root_view
 import kotlinx.android.synthetic.main.fragment_feed.refresh_subtitle_text
 import kotlinx.android.synthetic.main.fragment_feed.refresh_text
+import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.fragments.list.BaseListFragment
@@ -70,6 +72,11 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     init {
         setHasOptionsMenu(true)
         setUseDefaultStateSaving(false)
+    }
+
+    override fun onAttach(context: Context) {
+        App.getApp().appComponent.inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -113,6 +113,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import icepick.State;
 import io.noties.markwon.Markwon;
 import io.noties.markwon.linkify.LinkifyPlugin;
@@ -158,6 +160,9 @@ public final class VideoDetailFragment
     private static final String COMMENTS_TAB_TAG = "COMMENTS";
     private static final String RELATED_TAB_TAG = "NEXT VIDEO";
     private static final String EMPTY_TAB_TAG = "EMPTY TAB";
+
+    @Inject
+    HistoryRecordManager recordManager;
 
     private boolean showRelatedStreams;
     private boolean showComments;
@@ -323,6 +328,12 @@ public final class VideoDetailFragment
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's Lifecycle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onAttach(final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
+    }
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -1161,7 +1172,6 @@ public final class VideoDetailFragment
         NavigationHelper.playOnExternalPlayer(context, currentInfo.getName(),
                 currentInfo.getSubChannelName(), selectedStream);
 
-        final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
         disposables.add(recordManager.onViewed(info).onErrorComplete()
                 .subscribe(
                         ignored -> { /* successful */ },
@@ -1699,7 +1709,6 @@ public final class VideoDetailFragment
             }
             return;
         }
-        final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
 
         // TODO: Separate concerns when updating database data.
         //  (move the updating part to when the loading happens)

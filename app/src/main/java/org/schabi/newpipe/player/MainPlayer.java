@@ -33,8 +33,12 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import javax.inject.Inject;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -47,6 +51,9 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 public final class MainPlayer extends Service {
     private static final String TAG = "MainPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
+
+    @Inject
+    HistoryRecordManager recordManager;
 
     private VideoPlayerImpl playerImpl;
     private WindowManager windowManager;
@@ -93,6 +100,7 @@ public final class MainPlayer extends Service {
         if (DEBUG) {
             Log.d(TAG, "onCreate() called");
         }
+        App.getApp().getAppComponent().inject(this);
         assureCorrectAppLanguage(this);
         windowManager = ContextCompat.getSystemService(this, WindowManager.class);
 
@@ -103,7 +111,7 @@ public final class MainPlayer extends Service {
     private void createView() {
         final View layout = View.inflate(this, R.layout.player, null);
 
-        playerImpl = new VideoPlayerImpl(this);
+        playerImpl = new VideoPlayerImpl(this, recordManager);
         playerImpl.setup(layout);
         playerImpl.shouldUpdateOnProgress = true;
 

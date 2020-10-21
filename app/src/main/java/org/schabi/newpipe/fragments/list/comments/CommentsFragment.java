@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -39,6 +40,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
 
     @Override
     public void onAttach(final Context context) {
+        App.getApp().getAppComponent().inject(this);
         super.onAttach(context);
     }
 

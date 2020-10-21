@@ -1,12 +1,15 @@
 package org.schabi.newpipe.settings;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -14,17 +17,27 @@ import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.InfoCache;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public class HistorySettingsFragment extends BasePreferenceFragment {
+    @Inject
+    HistoryRecordManager recordManager;
+
     private String cacheWipeKey;
     private String viewsHistoryClearKey;
     private String playbackStatesClearKey;
     private String searchHistoryClearKey;
-    private HistoryRecordManager recordManager;
     private CompositeDisposable disposables;
+
+    @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
+    }
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -33,7 +46,6 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         viewsHistoryClearKey = getString(R.string.clear_views_history_key);
         playbackStatesClearKey = getString(R.string.clear_playback_states_key);
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
-        recordManager = new HistoryRecordManager(getActivity());
         disposables = new CompositeDisposable();
     }
 

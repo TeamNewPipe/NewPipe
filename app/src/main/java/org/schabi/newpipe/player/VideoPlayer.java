@@ -65,6 +65,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
@@ -162,8 +163,10 @@ public abstract class VideoPlayer extends BasePlayer
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public VideoPlayer(final String debugTag, final Context context) {
-        super(context);
+    public VideoPlayer(final String debugTag,
+                       @NonNull final Context context,
+                       @NonNull final HistoryRecordManager recordManager) {
+        super(context, recordManager);
         this.TAG = debugTag;
         this.resolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
     }

@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat;
 
 import com.jakewharton.rxbinding4.view.RxView;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -118,6 +119,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     @Override
     public void onAttach(final Context context) {
+        App.getApp().getAppComponent().inject(this);
         super.onAttach(context);
         subscriptionManager = new SubscriptionManager(activity);
     }
@@ -140,9 +142,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
         if (subscribeButtonMonitor != null) {
             subscribeButtonMonitor.dispose();
         }

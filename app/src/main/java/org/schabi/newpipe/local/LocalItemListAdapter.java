@@ -77,8 +77,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private View header = null;
     private View footer = null;
 
-    public LocalItemListAdapter(final Context context) {
-        recordManager = new HistoryRecordManager(context);
+    public LocalItemListAdapter(final Context context, final HistoryRecordManager recordManager) {
+        this.recordManager = recordManager;
         localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
         dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)

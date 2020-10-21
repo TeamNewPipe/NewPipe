@@ -36,7 +36,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
@@ -405,8 +404,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     final Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
 
                     // History data
-                    final HistoryRecordManager recordManager
-                            = new HistoryRecordManager(getContext());
                     final Iterator<StreamHistoryEntry> historyIter = recordManager
                             .getStreamHistorySortedById().blockingFirst().iterator();
 

@@ -199,8 +199,10 @@ public abstract class BasePlayer implements
 
     protected int currentState = STATE_PREFLIGHT;
 
-    public BasePlayer(@NonNull final Context context) {
+    public BasePlayer(@NonNull final Context context,
+                      @NonNull final HistoryRecordManager recordManager) {
         this.context = context;
+        this.recordManager = recordManager;
 
         this.broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -211,7 +213,6 @@ public abstract class BasePlayer implements
         this.intentFilter = new IntentFilter();
         setupBroadcastReceiver(intentFilter);
 
-        this.recordManager = new HistoryRecordManager(context);
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         this.progressUpdateReactor = new SerialDisposable();

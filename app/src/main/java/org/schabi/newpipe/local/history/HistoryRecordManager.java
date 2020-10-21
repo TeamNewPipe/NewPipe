@@ -18,13 +18,12 @@ package org.schabi.newpipe.local.history;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import android.content.Context;
+import android.app.Application;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.LocalItem;
@@ -50,6 +49,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Maybe;
@@ -66,15 +67,21 @@ public class HistoryRecordManager {
     private final String searchHistoryKey;
     private final String streamHistoryKey;
 
-    public HistoryRecordManager(final Context context) {
-        database = NewPipeDatabase.getInstance(context);
-        streamTable = database.streamDAO();
-        streamHistoryTable = database.streamHistoryDAO();
-        searchHistoryTable = database.searchHistoryDAO();
-        streamStateTable = database.streamStateDAO();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        searchHistoryKey = context.getString(R.string.enable_search_history_key);
-        streamHistoryKey = context.getString(R.string.enable_watch_history_key);
+    @Inject
+    public HistoryRecordManager(@NonNull final Application application,
+                                @NonNull final AppDatabase database,
+                                @NonNull final StreamDAO streamTable,
+                                @NonNull final StreamHistoryDAO streamHistoryTable,
+                                @NonNull final SearchHistoryDAO searchHistoryTable,
+                                @NonNull final StreamStateDAO streamStateTable) {
+        this.database = database;
+        this.streamTable = streamTable;
+        this.streamHistoryTable = streamHistoryTable;
+        this.searchHistoryTable = searchHistoryTable;
+        this.streamStateTable = streamStateTable;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
+        searchHistoryKey = application.getString(R.string.enable_search_history_key);
+        streamHistoryKey = application.getString(R.string.enable_watch_history_key);
     }
 
     ///////////////////////////////////////////////////////

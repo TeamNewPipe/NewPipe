@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments.list.kiosk;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -85,6 +87,12 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onAttach(final Context context) {
+        App.getApp().getAppComponent().inject(this);
+        super.onAttach(context);
+    }
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {

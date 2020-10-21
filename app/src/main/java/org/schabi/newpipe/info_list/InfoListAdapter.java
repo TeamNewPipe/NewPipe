@@ -84,8 +84,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View header = null;
     private View footer = null;
 
-    public InfoListAdapter(final Context context) {
-        this.recordManager = new HistoryRecordManager(context);
+    public InfoListAdapter(final Context context, final HistoryRecordManager recordManager) {
+        this.recordManager = recordManager;
         infoItemBuilder = new InfoItemBuilder(context);
         infoItemList = new ArrayList<>();
     }

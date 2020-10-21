@@ -29,6 +29,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -42,6 +43,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Queue;
 
+import javax.inject.Inject;
+
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
@@ -49,6 +52,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         SharedPreferences.OnSharedPreferenceChangeListener {
     private static final int LIST_MODE_UPDATE_FLAG = 0x32;
     protected org.schabi.newpipe.util.SavedState savedState;
+
+    @Inject
+    protected HistoryRecordManager recordManager;
 
     private boolean useDefaultStateSaving = true;
     private int updateFlags = 0;
@@ -65,12 +71,15 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
 
+    // The inject method needs to be called in the subclasses to inject the HistoryRecordManager
+    // before calling this, as a compilation error is produced if an inject method accepts a value
+    // with generics.
     @Override
     public void onAttach(final Context context) {
         super.onAttach(context);
 
         if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(activity);
+            infoListAdapter = new InfoListAdapter(activity, recordManager);
         }
     }
 

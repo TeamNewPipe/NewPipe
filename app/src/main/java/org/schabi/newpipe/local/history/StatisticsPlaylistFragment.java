@@ -22,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
@@ -68,7 +69,6 @@ public class StatisticsPlaylistFragment
     private TextView sortButtonText;
     /* Used for independent events */
     private Subscription databaseSubscription;
-    private HistoryRecordManager recordManager;
 
     private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
         final Comparator<StreamStatisticsEntry> comparator;
@@ -91,9 +91,9 @@ public class StatisticsPlaylistFragment
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        recordManager = new HistoryRecordManager(getContext());
+    public void onAttach(final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
     }
 
     @Override

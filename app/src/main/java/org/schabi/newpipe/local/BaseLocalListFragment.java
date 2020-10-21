@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +11,7 @@ import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.ListViewContract;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
+
+import javax.inject.Inject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -36,6 +39,9 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  */
 public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, SharedPreferences.OnSharedPreferenceChangeListener {
+
+    @Inject
+    protected HistoryRecordManager recordManager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -113,7 +119,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        itemListAdapter = new LocalItemListAdapter(activity);
+        itemListAdapter = new LocalItemListAdapter(activity, recordManager);
 
         final boolean useGrid = isGridLayout();
         itemsList = rootView.findViewById(R.id.items_list);
