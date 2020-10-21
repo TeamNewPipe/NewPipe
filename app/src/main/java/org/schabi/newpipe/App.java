@@ -20,6 +20,10 @@ import org.acra.ACRA;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.CoreConfiguration;
 import org.acra.config.CoreConfigurationBuilder;
+import org.schabi.newpipe.di.AppComponent;
+import org.schabi.newpipe.di.AppModule;
+import org.schabi.newpipe.di.DaggerAppComponent;
+import org.schabi.newpipe.di.RoomModule;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -67,12 +71,31 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 public class App extends MultiDexApplication {
     protected static final String TAG = App.class.toString();
     private static App app;
+    private AppComponent appComponent;
 
     @Nullable private Disposable disposable = null;
 
     @NonNull
     public static App getApp() {
         return app;
+    }
+
+    @NonNull
+    public AppComponent getAppComponent() {
+        AppComponent result = appComponent;
+        if (result == null) {
+            synchronized (this) {
+                result = appComponent;
+                if (result == null) {
+                    appComponent = DaggerAppComponent.builder()
+                            .appModule(new AppModule(this))
+                            .roomModule(new RoomModule(this))
+                            .build();
+                    result = appComponent;
+                }
+            }
+        }
+        return result;
     }
 
     @Override
