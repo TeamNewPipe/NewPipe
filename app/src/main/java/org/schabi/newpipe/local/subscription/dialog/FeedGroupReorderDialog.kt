@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -25,9 +26,13 @@ import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewMo
 import org.schabi.newpipe.local.subscription.item.FeedGroupReorderItem
 import org.schabi.newpipe.util.ThemeHelper
 import java.util.Collections
+import javax.inject.Inject
 
 class FeedGroupReorderDialog : DialogFragment() {
-    private lateinit var viewModel: FeedGroupReorderDialogViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by viewModels<FeedGroupReorderDialogViewModel> { viewModelFactory }
 
     @State
     @JvmField
@@ -49,7 +54,6 @@ class FeedGroupReorderDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(FeedGroupReorderDialogViewModel::class.java)
         viewModel.groupsLiveData.observe(viewLifecycleOwner, Observer(::handleGroups))
         viewModel.dialogEventLiveData.observe(
             viewLifecycleOwner,

@@ -1,6 +1,5 @@
 package org.schabi.newpipe.local.subscription.dialog
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,15 +17,12 @@ import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 
 class FeedGroupDialogViewModel(
-    applicationContext: Context,
+    private val feedDatabaseManager: FeedDatabaseManager,
+    private val subscriptionManager: SubscriptionManager,
     private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     initialQuery: String = "",
     initialShowOnlyUngrouped: Boolean = false
 ) : ViewModel() {
-
-    private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
-    private var subscriptionManager = SubscriptionManager(applicationContext)
-
     private var filterSubscriptions = BehaviorProcessor.create<String>()
     private var toggleShowOnlyUngrouped = BehaviorProcessor.create<Boolean>()
 
@@ -119,7 +115,8 @@ class FeedGroupDialogViewModel(
     data class Filter(val query: String, val showOnlyUngrouped: Boolean)
 
     class Factory(
-        private val context: Context,
+        private val feedDatabaseManager: FeedDatabaseManager,
+        private val subscriptionManager: SubscriptionManager,
         private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
         private val initialQuery: String = "",
         private val initialShowOnlyUngrouped: Boolean = false
@@ -127,7 +124,8 @@ class FeedGroupDialogViewModel(
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return FeedGroupDialogViewModel(
-                context.applicationContext,
+                feedDatabaseManager,
+                subscriptionManager,
                 groupId, initialQuery, initialShowOnlyUngrouped
             ) as T
         }

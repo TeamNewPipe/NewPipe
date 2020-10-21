@@ -1,11 +1,10 @@
 package org.schabi.newpipe.local.subscription
 
-import android.content.Context
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.schabi.newpipe.NewPipeDatabase
+import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.SubscriptionDAO
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
@@ -14,12 +13,15 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo
 import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SubscriptionManager(context: Context) {
-    private val database = NewPipeDatabase.getInstance(context)
-    private val subscriptionTable = database.subscriptionDAO()
-    private val feedDatabaseManager = FeedDatabaseManager(context)
-
+@Singleton
+class SubscriptionManager @Inject constructor(
+    private val database: AppDatabase,
+    private val subscriptionTable: SubscriptionDAO,
+    private val feedDatabaseManager: FeedDatabaseManager
+) {
     fun subscriptionTable(): SubscriptionDAO = subscriptionTable
     fun subscriptions() = subscriptionTable.all
 

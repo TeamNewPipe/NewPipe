@@ -42,6 +42,7 @@ import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
+import org.schabi.newpipe.App
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -62,6 +63,7 @@ import java.time.ZoneOffset
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
+import javax.inject.Inject
 
 class FeedLoadService : Service() {
     companion object {
@@ -87,10 +89,13 @@ class FeedLoadService : Service() {
         const val EXTRA_GROUP_ID: String = "FeedLoadService.EXTRA_GROUP_ID"
     }
 
-    private var loadingSubscription: Subscription? = null
-    private lateinit var subscriptionManager: SubscriptionManager
+    @Inject
+    lateinit var subscriptionManager: SubscriptionManager
+    @Inject
+    lateinit var feedDatabaseManager: FeedDatabaseManager
 
-    private lateinit var feedDatabaseManager: FeedDatabaseManager
+    private var loadingSubscription: Subscription? = null
+
     private lateinit var feedResultsHolder: ResultsHolder
 
     private var disposables = CompositeDisposable()
@@ -102,8 +107,7 @@ class FeedLoadService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        subscriptionManager = SubscriptionManager(this)
-        feedDatabaseManager = FeedDatabaseManager(this)
+        App.getApp().appComponent.inject(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

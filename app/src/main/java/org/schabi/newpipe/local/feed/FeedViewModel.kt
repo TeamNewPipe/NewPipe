@@ -1,6 +1,5 @@
 package org.schabi.newpipe.local.feed
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,15 +20,19 @@ import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
 import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
-class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModel() {
-    class Factory(val context: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModelProvider.Factory {
+class FeedViewModel(
+    val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+    feedDatabaseManager: FeedDatabaseManager
+) : ViewModel() {
+    class Factory(
+        val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+        private val feedDatabaseManager: FeedDatabaseManager
+    ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return FeedViewModel(context.applicationContext, groupId) as T
+            return FeedViewModel(groupId, feedDatabaseManager) as T
         }
     }
-
-    private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
 
     private val mutableStateLiveData = MutableLiveData<FeedState>()
     val stateLiveData: LiveData<FeedState> = mutableStateLiveData

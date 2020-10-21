@@ -54,6 +54,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -78,7 +80,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private SubscriptionManager subscriptionManager;
+    @Inject
+    SubscriptionManager subscriptionManager;
+
     private View headerRootLayout;
     private ImageView headerChannelBanner;
     private ImageView headerAvatarView;
@@ -121,7 +125,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     public void onAttach(final Context context) {
         App.getApp().getAppComponent().inject(this);
         super.onAttach(context);
-        subscriptionManager = new SubscriptionManager(activity);
     }
 
     @Override

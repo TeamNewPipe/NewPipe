@@ -33,6 +33,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import org.reactivestreams.Publisher;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
@@ -46,6 +47,8 @@ import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -55,12 +58,14 @@ import io.reactivex.rxjava3.processors.PublishProcessor;
 public abstract class BaseImportExportService extends Service {
     protected final String TAG = this.getClass().getSimpleName();
 
+    @Inject
+    protected SubscriptionManager subscriptionManager;
+
     protected final CompositeDisposable disposables = new CompositeDisposable();
     protected final PublishProcessor<String> notificationUpdater = PublishProcessor.create();
 
     protected NotificationManagerCompat notificationManager;
     protected NotificationCompat.Builder notificationBuilder;
-    protected SubscriptionManager subscriptionManager;
 
     private static final int NOTIFICATION_SAMPLING_PERIOD = 2500;
 
@@ -91,7 +96,7 @@ public abstract class BaseImportExportService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        subscriptionManager = new SubscriptionManager(this);
+        App.getApp().getAppComponent().subscriptionComponent().create().inject(this);
         setupNotification();
     }
 

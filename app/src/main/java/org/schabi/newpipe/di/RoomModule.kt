@@ -5,7 +5,6 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import org.schabi.newpipe.database.AppDatabase
-import org.schabi.newpipe.database.Migrations
 import javax.inject.Singleton
 
 @Module

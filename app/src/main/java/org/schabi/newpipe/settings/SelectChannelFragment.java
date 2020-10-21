@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
@@ -28,6 +30,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 import java.util.Vector;
+
+import javax.inject.Inject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.rxjava3.core.Observer;
@@ -65,6 +69,9 @@ public class SelectChannelFragment extends DialogFragment {
 
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
+    @Inject
+    SubscriptionManager subscriptionManager;
+
     private OnSelectedListener onSelectedListener = null;
     private OnCancelListener onCancelListener = null;
 
@@ -85,6 +92,12 @@ public class SelectChannelFragment extends DialogFragment {
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
+    }
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -108,7 +121,6 @@ public class SelectChannelFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
 
-        final SubscriptionManager subscriptionManager = new SubscriptionManager(getContext());
         subscriptionManager.subscriptions().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

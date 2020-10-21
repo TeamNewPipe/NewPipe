@@ -9,10 +9,12 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
+import javax.inject.Inject
 
-class FeedGroupReorderDialogViewModel(application: Application) : AndroidViewModel(application) {
-    private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(application)
-
+class FeedGroupReorderDialogViewModel @Inject constructor(
+    application: Application,
+    private val feedDatabaseManager: FeedDatabaseManager
+) : AndroidViewModel(application) {
     private val mutableGroupsLiveData = MutableLiveData<List<FeedGroupEntity>>()
     private val mutableDialogEventLiveData = MutableLiveData<DialogEvent>()
     val groupsLiveData: LiveData<List<FeedGroupEntity>> = mutableGroupsLiveData

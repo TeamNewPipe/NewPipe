@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.subscription.dialog
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -26,10 +27,13 @@ import icepick.Icepick
 import icepick.State
 import kotlinx.android.synthetic.main.dialog_feed_group_create.*
 import kotlinx.android.synthetic.main.toolbar_search_layout.*
+import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.fragments.BackPressable
+import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
+import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.DeleteScreen
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.IconPickerScreen
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.InitialScreen
@@ -42,9 +46,14 @@ import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.ThemeHelper
 import java.io.Serializable
-import kotlin.collections.contains
+import javax.inject.Inject
 
 class FeedGroupDialog : DialogFragment(), BackPressable {
+    @Inject
+    lateinit var feedDatabaseManager: FeedDatabaseManager
+    @Inject
+    lateinit var subscriptionManager: SubscriptionManager
+
     private lateinit var viewModel: FeedGroupDialogViewModel
     private var groupId: Long = NO_GROUP_SELECTED
     private var groupIcon: FeedGroupIcon? = null
@@ -71,6 +80,11 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     private val subscriptionMainSection = Section()
     private val subscriptionEmptyFooter = Section()
     private lateinit var subscriptionGroupAdapter: GroupAdapter<GroupieViewHolder>
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        App.getApp().appComponent.feedGroupDialogsComponent().create().inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,7 +133,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         viewModel = ViewModelProvider(
             this,
             FeedGroupDialogViewModel.Factory(
-                requireContext(),
+                feedDatabaseManager, subscriptionManager,
                 groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped
             )
         ).get(FeedGroupDialogViewModel::class.java)

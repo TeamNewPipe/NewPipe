@@ -38,16 +38,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import icepick.State
-import kotlinx.android.synthetic.main.error_retry.error_button_retry
-import kotlinx.android.synthetic.main.error_retry.error_message_view
-import kotlinx.android.synthetic.main.fragment_feed.empty_state_view
-import kotlinx.android.synthetic.main.fragment_feed.error_panel
-import kotlinx.android.synthetic.main.fragment_feed.items_list
-import kotlinx.android.synthetic.main.fragment_feed.loading_progress_bar
-import kotlinx.android.synthetic.main.fragment_feed.loading_progress_text
-import kotlinx.android.synthetic.main.fragment_feed.refresh_root_view
-import kotlinx.android.synthetic.main.fragment_feed.refresh_subtitle_text
-import kotlinx.android.synthetic.main.fragment_feed.refresh_text
+import kotlinx.android.synthetic.main.error_retry.*
+import kotlinx.android.synthetic.main.fragment_feed.*
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -57,8 +49,12 @@ import org.schabi.newpipe.report.UserAction
 import org.schabi.newpipe.util.AnimationUtils.animateView
 import org.schabi.newpipe.util.Localization
 import java.util.Calendar
+import javax.inject.Inject
 
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
+    @Inject
+    lateinit var feedDatabaseManager: FeedDatabaseManager
+
     private lateinit var viewModel: FeedViewModel
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     @State
@@ -95,7 +91,8 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         super.onViewCreated(rootView, savedInstanceState)
         swipeRefreshLayout = requireView().findViewById(R.id.swiperefresh)
         swipeRefreshLayout.setOnRefreshListener { reloadContent() }
-        viewModel = ViewModelProvider(this, FeedViewModel.Factory(requireContext(), groupId)).get(FeedViewModel::class.java)
+        viewModel = ViewModelProvider(this, FeedViewModel.Factory(groupId, feedDatabaseManager))
+            .get(FeedViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { it?.let(::handleResult) })
     }
 

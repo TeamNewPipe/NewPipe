@@ -17,6 +17,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.preference.PreferenceManager
@@ -32,6 +33,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.dialog_title.view.itemAdditionalDetails
 import kotlinx.android.synthetic.main.dialog_title.view.itemTitleView
 import kotlinx.android.synthetic.main.fragment_subscription.items_list
+import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
@@ -66,12 +68,18 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 import kotlin.math.floor
 import kotlin.math.max
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
-    private lateinit var viewModel: SubscriptionViewModel
-    private lateinit var subscriptionManager: SubscriptionManager
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var subscriptionManager: SubscriptionManager
+
+    private val viewModel by viewModels<SubscriptionViewModel> { viewModelFactory }
+
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     private var subscriptionBroadcastReceiver: BroadcastReceiver? = null
@@ -115,7 +123,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        subscriptionManager = SubscriptionManager(requireContext())
+        App.getApp().appComponent.subscriptionComponent().create().inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -283,7 +291,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
         items_list.adapter = groupAdapter
 
-        viewModel = ViewModelProvider(this).get(SubscriptionViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer { it?.let(this::handleResult) })
         viewModel.feedGroupsLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer { it?.let(this::handleFeedGroups) })
     }
