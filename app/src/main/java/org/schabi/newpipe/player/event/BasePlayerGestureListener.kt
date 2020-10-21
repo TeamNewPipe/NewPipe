@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.event
 
 import android.content.Context
+import android.os.Handler
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -203,6 +204,11 @@ abstract class BasePlayerGestureListener(
         if (DEBUG)
             Log.d(TAG, "onDown called with e = [$e]")
 
+        if (isDoubleTapping && isDoubleTapEnabled) {
+            doubleTapControls?.onDoubleTapProgressDown(getDisplayPortion(e))
+            return true
+        }
+
         return if (playerImpl.popupPlayerSelected())
             onDownInPopup(e)
         else
@@ -232,6 +238,9 @@ abstract class BasePlayerGestureListener(
     override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
         if (DEBUG)
             Log.d(TAG, "onSingleTapConfirmed() called with: e = [$e]")
+
+        if (isDoubleTapping)
+            return true
 
         if (playerImpl.popupPlayerSelected()) {
             if (playerImpl.player == null)
@@ -375,6 +384,65 @@ abstract class BasePlayerGestureListener(
     }
 
     // ///////////////////////////////////////////////////////////////////
+    // Multi double tapping
+    // ///////////////////////////////////////////////////////////////////
+
+    var doubleTapControls: DoubleTapListener? = null
+        private set
+
+    val isDoubleTapEnabled: Boolean
+        get() = doubleTapDelay > 0
+
+    var isDoubleTapping = false
+        private set
+
+    fun doubleTapControls(listener: DoubleTapListener) = apply {
+        doubleTapControls = listener
+    }
+
+    private var doubleTapDelay = DOUBLE_TAP_DELAY
+    private val doubleTapHandler: Handler = Handler()
+    private val doubleTapRunnable = Runnable {
+        if (DEBUG)
+            Log.d(TAG, "doubleTapRunnable called")
+
+        isDoubleTapping = false
+        doubleTapControls?.onDoubleTapFinished()
+    }
+
+    fun startMultiDoubleTap(e: MotionEvent) {
+        if (!isDoubleTapping) {
+            if (DEBUG)
+                Log.d(TAG, "startMultiDoubleTap called with e = [$e]")
+
+            keepInDoubleTapMode()
+            doubleTapControls?.onDoubleTapStarted(getDisplayPortion(e))
+        }
+    }
+
+    fun keepInDoubleTapMode() {
+        if (DEBUG)
+            Log.d(TAG, "keepInDoubleTapMode called")
+
+        isDoubleTapping = true
+        doubleTapHandler.removeCallbacks(doubleTapRunnable)
+        doubleTapHandler.postDelayed(doubleTapRunnable, doubleTapDelay)
+    }
+
+    fun endMultiDoubleTap() {
+        if (DEBUG)
+            Log.d(TAG, "endMultiDoubleTap called")
+
+        isDoubleTapping = false
+        doubleTapHandler.removeCallbacks(doubleTapRunnable)
+        doubleTapControls?.onDoubleTapFinished()
+    }
+
+    fun enableMultiDoubleTap(enable: Boolean) = apply {
+        doubleTapDelay = if (enable) DOUBLE_TAP_DELAY else 0
+    }
+
+    // ///////////////////////////////////////////////////////////////////
     // Utils
     // ///////////////////////////////////////////////////////////////////
 
@@ -429,6 +497,7 @@ abstract class BasePlayerGestureListener(
         private const val TAG = "BasePlayerGestListener"
         private val DEBUG = BasePlayer.DEBUG
 
+        private const val DOUBLE_TAP_DELAY = 550L
         private const val MOVEMENT_THRESHOLD = 40
     }
 }

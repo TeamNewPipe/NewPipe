@@ -62,6 +62,8 @@ public class PlayerGestureListener
 
         if (portion == DisplayPortion.LEFT) {
             playerImpl.onFastRewind();
+        } else if (portion == DisplayPortion.MIDDLE) {
+            playerImpl.onPlayPause();
         } else if (portion == DisplayPortion.RIGHT) {
             playerImpl.onFastForward();
         }
