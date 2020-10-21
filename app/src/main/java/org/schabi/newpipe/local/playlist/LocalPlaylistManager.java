@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.playlist;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.database.AppDatabase;
@@ -15,23 +16,31 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+@Singleton
 public class LocalPlaylistManager {
     private final AppDatabase database;
     private final StreamDAO streamTable;
     private final PlaylistDAO playlistTable;
     private final PlaylistStreamDAO playlistStreamTable;
 
-    public LocalPlaylistManager(final AppDatabase db) {
-        database = db;
-        streamTable = db.streamDAO();
-        playlistTable = db.playlistDAO();
-        playlistStreamTable = db.playlistStreamDAO();
+    @Inject
+    public LocalPlaylistManager(@NonNull final AppDatabase database,
+                                @NonNull final StreamDAO streamTable,
+                                @NonNull final PlaylistDAO playlistTable,
+                                @NonNull final PlaylistStreamDAO playlistStreamTable) {
+        this.database = database;
+        this.streamTable = streamTable;
+        this.playlistTable = playlistTable;
+        this.playlistStreamTable = playlistStreamTable;
     }
 
     public Maybe<List<Long>> createPlaylist(final String name, final List<StreamEntity> streams) {

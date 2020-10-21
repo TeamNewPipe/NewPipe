@@ -2,6 +2,7 @@ package org.schabi.newpipe.local.bookmark;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
@@ -32,6 +34,8 @@ import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import icepick.State;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
@@ -40,17 +44,25 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
+    @Inject
+    LocalPlaylistManager localPlaylistManager;
+
     @State
     protected Parcelable itemsListState;
 
     private Subscription databaseSubscription;
     private CompositeDisposable disposables = new CompositeDisposable();
-    private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
     ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onAttach(final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
+    }
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -59,7 +71,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             return;
         }
         final AppDatabase database = NewPipeDatabase.getInstance(activity);
-        localPlaylistManager = new LocalPlaylistManager(database);
         remotePlaylistManager = new RemotePlaylistManager(database);
         disposables = new CompositeDisposable();
     }

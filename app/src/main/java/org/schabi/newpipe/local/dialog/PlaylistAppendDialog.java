@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.schabi.newpipe.NewPipeDatabase;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
@@ -28,12 +28,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
+
+    @Inject
+    LocalPlaylistManager playlistManager;
 
     private RecyclerView playlistRecyclerView;
     private LocalItemListAdapter playlistAdapter;
@@ -88,6 +93,12 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
+    }
+
+    @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.dialog_playlists, container);
@@ -96,9 +107,6 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        final LocalPlaylistManager playlistManager =
-                new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
 
         playlistAdapter = new LocalItemListAdapter(getActivity());
         playlistAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {

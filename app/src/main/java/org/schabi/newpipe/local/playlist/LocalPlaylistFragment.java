@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.NewPipeDatabase;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
@@ -54,6 +54,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javax.inject.Inject;
+
 import icepick.State;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -68,6 +70,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
+
+    @Inject
+    LocalPlaylistManager playlistManager;
 
     @State
     protected Long playlistId;
@@ -86,7 +91,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private ItemTouchHelper itemTouchHelper;
 
-    private LocalPlaylistManager playlistManager;
     private Subscription databaseSubscription;
 
     private PublishSubject<Long> debouncedSaveSignal;
@@ -109,10 +113,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     // Fragment LifeCycle - Creation
     ///////////////////////////////////////////////////////////////////////////
 
+
+    @Override
+    public void onAttach(final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
+    }
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
         debouncedSaveSignal = PublishSubject.create();
 
         disposables = new CompositeDisposable();

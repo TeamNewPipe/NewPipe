@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
@@ -33,6 +35,8 @@ import org.schabi.newpipe.report.UserAction;
 import java.util.List;
 import java.util.Vector;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -43,6 +47,9 @@ public class SelectPlaylistFragment extends DialogFragment {
      */
     private static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS
             = new DisplayImageOptions.Builder().cacheInMemory(true).build();
+
+    @Inject
+    LocalPlaylistManager localPlaylistManager;
 
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
@@ -62,6 +69,12 @@ public class SelectPlaylistFragment extends DialogFragment {
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's Lifecycle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
+    }
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
@@ -97,7 +110,6 @@ public class SelectPlaylistFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
         final AppDatabase database = NewPipeDatabase.getInstance(requireContext());
-        final LocalPlaylistManager localPlaylistManager = new LocalPlaylistManager(database);
         final RemotePlaylistManager remotePlaylistManager = new RemotePlaylistManager(database);
 
         disposable = Flowable.combineLatest(localPlaylistManager.getPlaylists(),
