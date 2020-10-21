@@ -503,4 +503,24 @@
         <item quantity="other">%s श्रोता</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी।</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">तेज मोड सक्षम करें</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">तेज मोड अक्षम करें</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">क्या आपको लगता है कि फीड लोडिंग बहुत धीमी है\? यदि ऐसा है, तो तेज़ लोडिंग को सक्षम करने का प्रयास करें (आप इसे सेटिंग्स में या नीचे दिए गए बटन को दबाकर बदल सकते हैं)।
+\n
+\nNewPipe दो फीड लोडिंग रणनीति प्रदान करता है:
+\n• संपूर्ण सदस्यता चैनल प्राप्त करना, जो धीमा है लेकिन पूरा होता है।
+\n• एक समर्पित सेवा के समापन बिंदु का उपयोग करना, जो तेज़ है लेकिन आमतौर पर पूरा नहीं होता है।
+\n
+\nदोनों के बीच अंतर यह है कि तेज वाली रणनीति में आमतौर पर कुछ जानकारी का अभाव होता है, जैसे कि आइटम की अवधि या प्रकार (लाइव वीडियो और सामान्य वीडियो के बीच अंतर पता नहीं लगा सकते हैं) और ऐसा भी हो सकता है कि ये कम आइटम दिखाए।
+\n
+\nYouTube उस सेवा का एक उदाहरण है जो RSS फ़ीड के साथ तेज़ विधि प्रदान करता है।
+\n
+\nतो आखिर में चुनाव आपकी पसंद पर है: गति या फिर सटीक जानकारी।</string>
+    <string name="content_not_supported">यह सामग्री फिलहाल NewPipe सपोर्ट नहीं करता है। 
+\n
+\nइसे आशा से भविष्य के संस्करणों में सपोर्ट किया जायेगा।</string>
+    <string name="detail_sub_channel_thumbnail_view_description">चैनल का avatar थंबनेल</string>
+    <string name="video_detail_by">%s के द्वारा</string>
+    <string name="channel_created_by">%s के द्वारा बनाया गया</string>
+    <string name="playlist_page_summary">प्लेलिस्ट पृष्ठ</string>
 </resources>
