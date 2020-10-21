@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.NewPipeDatabase;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -51,6 +51,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
@@ -60,11 +62,13 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
+    @Inject
+    RemotePlaylistManager remotePlaylistManager;
+
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
     private AtomicBoolean isBookmarkButtonReady;
 
-    private RemotePlaylistManager remotePlaylistManager;
     private PlaylistRemoteEntity playlistEntity;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -96,12 +100,16 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onAttach(final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().inject(this);
+    }
+
+    @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         disposables = new CompositeDisposable();
         isBookmarkButtonReady = new AtomicBoolean(false);
-        remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase
-                .getInstance(requireContext()));
     }
 
     @Override

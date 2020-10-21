@@ -2,6 +2,7 @@ package org.schabi.newpipe.di
 
 import dagger.Component
 import javax.inject.Singleton
+import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment
 import org.schabi.newpipe.local.bookmark.BookmarkFragment
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog
@@ -15,6 +16,7 @@ interface AppComponent {
     fun inject(bookmarkFragment: BookmarkFragment)
     fun inject(contentSettingsFragment: ContentSettingsFragment)
     fun inject(localPlaylistFragment: LocalPlaylistFragment)
+    fun inject(playlistFragment: PlaylistFragment)
     fun inject(selectPlaylistFragment: SelectPlaylistFragment)
 
     fun inject(playlistAppendDialog: PlaylistAppendDialog)
