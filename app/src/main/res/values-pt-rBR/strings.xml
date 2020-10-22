@@ -89,7 +89,8 @@
     <string name="light_parsing_error">O site não pôde ser analisado totalmente</string>
     <string name="list_thumbnail_view_description">Capa de visualização do vídeo</string>
     <string name="live_streams_not_supported">Transmissões ao vivo ainda não são suportadas</string>
-    <string name="main_bg_subtitle">Toque em \"Buscar\" para iniciar</string>
+    <string name="main_bg_subtitle">Toque em \"Buscar\" para iniciar
+\n</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">Link inválido ou internet indisponível</string>
