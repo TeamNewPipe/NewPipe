@@ -120,7 +120,7 @@
     <string name="use_inexact_seek_summary">অনির্দিষ্ট সন্ধান প্লেয়ারকে আরো দ্রুত গতিতে সন্ধান করার সুবিধা দেয়, কিন্তু এটি সম্পূর্ণ নির্ভুল নাও হতে পারে ৷ ৫, ১৫ ও ২৫ সেকেন্ডের জন্য এটা কাজ করবে না ৷</string>
     <string name="use_inexact_seek_title">দ্রুত টানা ব্যাবহার করুন</string>
     <string name="popup_remember_size_pos_summary">শেষ আকার এবং পপআপ সেট অবস্থান মনে রাখো</string>
-    <string name="popup_remember_size_pos_title">পপআপ আকার এবং অবস্থান মনে রাখো</string>
+    <string name="popup_remember_size_pos_title">পপআপ এর বৈশিষ্ট্য মনে রাখো</string>
     <string name="black_theme_title">কালো</string>
     <string name="dark_theme_title">অন্ধকার</string>
     <string name="light_theme_title">উজ্জ্বল</string>
@@ -166,7 +166,7 @@
     <string name="screen_rotation">ঘূর্ণন</string>
     <string name="choose_browser">ব্রাউজার বাছাই করুন</string>
     <string name="share_dialog_title">শেয়ার করুন</string>
-    <string name="did_you_mean">আপনি কি বুঝিয়েছেনঃ %1$s\?</string>
+    <string name="did_you_mean">আপনি কি বুঝিয়েছেন \"%1$s\"\?</string>
     <string name="settings">সেটিংস</string>
     <string name="search">খুঁজুন</string>
     <string name="controls_download_desc">স্ট্রিম ফাইল ডাউনলোড করুন</string>
@@ -180,7 +180,8 @@
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চান\?</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="view_count_text">%1$s জন দেখেছে</string>
-    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
+    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন
+\n</string>
     <string name="feed_create_new_group_button_title">নতুন</string>
     <string name="fragment_feed_title">নতুন কি</string>
     <string name="app_language_title">অ্যাপ এর ভাষা</string>
@@ -333,4 +334,6 @@
     <string name="error_report_open_issue_button_text">গিটহাব এ এরর রিপোর্ট করুন</string>
     <string name="restore_defaults">ডিফল্ট এ ফিরে যান</string>
     <string name="search_showing_result_for">রেজাল্ট দেখান হচ্ছেঃ %s</string>
+    <string name="clear_queue_confirmation_title">কিউ মোছার আগে নিশ্চিত করুন</string>
+    <string name="notification_action_repeat">পুনরায়</string>
 </resources>
