@@ -406,7 +406,7 @@ public final class NavigationHelper {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_player_holder, instance)
                 .runOnCommit(() -> sendPlayerStartedEvent(instance.requireActivity()))
-                .commit();
+                .commitAllowingStateLoss();
     }
 
     public static void openChannelFragment(final FragmentManager fragmentManager,
