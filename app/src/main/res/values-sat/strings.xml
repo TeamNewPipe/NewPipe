@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="screen_rotation">ᱟᱹᱪᱩᱨ</string>
+    <string name="choose_browser">ᱵᱨᱟᱣᱡᱚᱨ ᱪᱚᱭᱚᱱ ᱢᱮ</string>
+    <string name="share_dialog_title">ᱥᱟᱞᱟᱜ ᱦᱟᱹᱴᱤᱧ ᱢᱮ</string>
+    <string name="settings">ᱥᱟᱡᱟᱣᱠᱚ</string>
+    <string name="search">ᱥᱮᱸᱫᱽᱨᱟ</string>
+    <string name="download">ᱰᱟᱩᱱᱞᱚᱰ</string>
+    <string name="share">ᱦᱟᱹᱴᱤᱧ</string>
+    <string name="open_in_browser">ᱵᱨᱟᱣᱡᱟᱚᱨ ᱨᱮ ᱠᱷᱩᱞᱟᱹᱭ ᱢᱮ</string>
+    <string name="cancel">ᱵᱟᱹᱰᱨᱟᱹ</string>
+    <string name="install">ᱵᱚᱦᱟᱞ</string>
+    <string name="view_count_text">%1$s ᱧᱮᱞᱠᱚ</string>
+    <string name="main_bg_subtitle">ᱮᱦᱲᱵ ᱞᱟᱹᱜᱤᱫ \"ᱥᱮᱸᱫᱽᱨᱟ\" ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ
+\n</string>
+</resources>
