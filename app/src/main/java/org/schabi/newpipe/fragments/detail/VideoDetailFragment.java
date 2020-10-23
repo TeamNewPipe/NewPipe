@@ -80,6 +80,7 @@ import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.MainPlayer;
@@ -482,8 +483,14 @@ public class VideoDetailFragment
                 break;
             case R.id.detail_controls_playlist_append:
                 if (getFM() != null && currentInfo != null) {
-                    PlaylistAppendDialog.fromStreamInfo(currentInfo)
-                            .show(getFM(), TAG);
+
+                    final PlaylistAppendDialog d = PlaylistAppendDialog.fromStreamInfo(currentInfo);
+                    disposables.add(
+                        PlaylistAppendDialog.onPlaylistFound(getContext(),
+                            () -> d.show(getFM(), TAG),
+                            () -> PlaylistCreationDialog.newInstance(d).show(getFM(), TAG)
+                        )
+                    );
                 }
                 break;
             case R.id.detail_controls_download:

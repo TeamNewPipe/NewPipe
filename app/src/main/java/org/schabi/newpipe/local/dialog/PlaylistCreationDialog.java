@@ -26,6 +26,12 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
         return dialog;
     }
 
+    public static PlaylistCreationDialog newInstance(final PlaylistAppendDialog appendDialog) {
+        final PlaylistCreationDialog dialog = new PlaylistCreationDialog();
+        dialog.setInfo(appendDialog.getStreams());
+        return dialog;
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Dialog
     //////////////////////////////////////////////////////////////////////////*/
