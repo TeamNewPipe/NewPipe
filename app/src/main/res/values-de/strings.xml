@@ -56,7 +56,7 @@
     <string name="parsing_error">Konnte Webseite nicht analysieren</string>
     <string name="content_not_available">Inhalt nicht verfügbar</string>
     <string name="content">Inhalt</string>
-    <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte</string>
+    <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
     <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Spätere Änderungen sind in den Einstellungen möglich.</string>
     <string name="could_not_setup_download_menu">Konnte Download-Menü nicht einrichten</string>
     <string name="live_streams_not_supported">Live-Streams werden noch nicht unterstützt</string>
@@ -592,7 +592,7 @@
 \nEs wird hoffentlich in einer zukünftigen Version unterstützt.</string>
     <string name="restricted_video">Dieses Video ist altersbeschränkt.
 \n
-\nAktiviere in den Einstellungen „Altersbeschränkte Inhalte“, falls du diese sehen möchtest.</string>
+\nAktiviere in den Einstellungen „%1$s“, falls du diese sehen möchtest.</string>
     <string name="remove_watched_popup_warning">Videos, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt.
 \nBist du sicher\? Dies kann nicht rückgängig gemacht werden!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, und teilweise gesehene Videos</string>
@@ -635,4 +635,9 @@
     <string name="clear_queue_confirmation_description">Die aktive Wiedergabeliste wird ersetzt werden</string>
     <string name="enqueued">Eingereiht</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube bietet einen \"Eingeschränkten Modus\", der potenzielle Inhalte für Erwachsene ausblendet.</string>
+    <string name="show_memory_leaks">Zeige Speicherlecks</string>
+    <string name="clear_cookie_summary">Lösche Cookies, die NewPipe speichert, wenn du ein reCAPTCHA löst</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA-Cookies wurden gelöscht</string>
+    <string name="clear_cookie_title">reCAPTCHA-Cookies löschen</string>
+    <string name="show_age_restricted_content_summary">Zeige Inhalt, der möglicherweise unpassend für Kinder ist, da er eine Altersbeschränkung (wie z.B. 18+) hat.</string>
 </resources>
