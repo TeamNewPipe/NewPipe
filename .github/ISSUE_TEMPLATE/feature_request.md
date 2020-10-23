@@ -5,13 +5,15 @@ labels: enhancement
 assignees: ''
 
 ---
+<!-- IF YOU DON'T FILL IN THE TEMPLATE PROPERLY, YOUR ISSUE IS LIABLE TO BE CLOSED. If you feel tired/lazy right now, open your issue some other time. We'll wait. -->
 
-<!-- The comments between these brackets won't show up in the submitted issue (as you can see in the preview). -->
+
+<!-- The comments between these brackets won't show up in the submitted issue (as you can see in the Preview). -->
 
 ### Checklist
 <!-- The first box has been checked for you to show you how it is done. -->
 
-- [x] I checked, but didn't find any duplicates of this issue in the repo. <!-- Seriously, check. O_O -->
+- [x] I checked, but didn't find any duplicates (open OR closed) of this issue in the repo. <!-- Seriously, check. O_O -->
 - [ ] I have read the contribution guidelines given at https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md.
 - [ ] This issue contains only one feature request. I will open one issue for every feature I want to request.
 
