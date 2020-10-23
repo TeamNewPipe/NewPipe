@@ -61,7 +61,7 @@
     <string name="background_player_playing_toast">מתנגן ברקע</string>
     <string name="popup_playing_toast">מתנגן בחלון צף</string>
     <string name="content">תוכן</string>
-    <string name="show_age_restricted_content_title">תוכן עם הגבלת גיל</string>
+    <string name="show_age_restricted_content_title">הצגת תוכן עם הגבלת גיל</string>
     <string name="video_is_age_restricted">הצגת סרטונים עם הגבלת גיל. ניתן לשנות את זה בעתיד דרך ההגדרות.</string>
     <string name="duration_live">חי</string>
     <string name="downloads">הורדות</string>
@@ -610,7 +610,7 @@
     <string name="songs">שירים</string>
     <string name="restricted_video">סרטון זה מוגבל לצפייה מגיל מסוים.
 \n
-\nיש להפעיל את „תוכן עם הגבלת גיל” בהגדרות כדי לצפות בו.</string>
+\nיש להפעיל את „%1$s” בהגדרות כדי לצפות בו.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">כן, לרבות סרטונים שהפסקתי באמצע</string>
     <string name="remove_watched_popup_warning">סרטונים שלאחר שצפית בהם מופיע לרשימת הנגינה יוסרו.
 \nלהמשיך\? זאת פעולה בלתי הפיכה!</string>
@@ -618,7 +618,7 @@
     <string name="remove_watched_popup_title">להסיר סרטונים שנצפו\?</string>
     <string name="show_original_time_ago_summary">הטקסט המקורי משירותים יופיע בפריטי התזרים</string>
     <string name="show_original_time_ago_title">הצגת לפני כמה זמן מקורי על פריטים</string>
-    <string name="youtube_restricted_mode_enabled_title">מצב מוגבל של YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">הפעלת „מצב מוגבל” של YouTube</string>
     <string name="video_detail_by">מאת %s</string>
     <string name="channel_created_by">נוצר ע״י %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">תמונה ממוזערת של הערוץ</string>
@@ -653,4 +653,12 @@
     <string name="notification_action_1_title">כפתור פעולה שני</string>
     <string name="notification_scale_to_square_image_summary">לשנות את יחס התצוגה הממוזערת שמופיעה בהתראות מיחס תצוגה של 16:9 ל־1:1 (עשוי לעוות את התמונה)</string>
     <string name="notification_scale_to_square_image_title">שינוי גודל התצוגה הממוזערת ליחס תצוגה 1:1</string>
+    <string name="show_memory_leaks">הצגת דליפות זיכרון</string>
+    <string name="enqueued">נוסף לתור</string>
+    <string name="enqueue_stream">הוספה לתור</string>
+    <string name="clear_cookie_summary">לנקות עוגיות שנשמרות על ידי NewPipe בעת פתרון reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">העוגיות של ה־reCAPTCHA נמחקו</string>
+    <string name="clear_cookie_title">פינוי עוגיות reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">פלטפורמת YouTube מספקת „מצב מוגבל” שמסתיר תוכן שעשוי להתאים למבוגרים בלבד.</string>
+    <string name="show_age_restricted_content_summary">הצגת תוכן שעלול להיות בלתי הולם לילדים עקב מגבלת גיל (כגון 18+).</string>
 </resources>
