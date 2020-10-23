@@ -640,4 +640,5 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA-Cookies wurden gelöscht</string>
     <string name="clear_cookie_title">reCAPTCHA-Cookies löschen</string>
     <string name="show_age_restricted_content_summary">Zeige Inhalt, der möglicherweise unpassend für Kinder ist, da er eine Altersbeschränkung (wie z.B. 18+) hat.</string>
+    <string name="enqueue_stream">Wiedergabe einreihen</string>
 </resources>
