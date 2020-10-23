@@ -600,7 +600,7 @@
     <string name="remove_watched_popup_title">Gesehene Videos entfernen\?</string>
     <string name="show_original_time_ago_title">Originalzeit vor Elementen anzeigen</string>
     <string name="show_original_time_ago_summary">Originaltexte von Diensten werden in Stream-Elementen sichtbar sein</string>
-    <string name="youtube_restricted_mode_enabled_title">Eingeschränkter YouTube-Modus</string>
+    <string name="youtube_restricted_mode_enabled_title">Aktivieren des \"Eingeschränkten Modus\" von YouTube</string>
     <string name="detail_sub_channel_thumbnail_view_description">Avatarbild des Kanals</string>
     <string name="channel_created_by">Erstellt von %s</string>
     <string name="video_detail_by">Von %s</string>
@@ -633,4 +633,6 @@
     <string name="clear_queue_confirmation_summary">Den Player zu wechseln könnte deine Warteschlange überschreiben</string>
     <string name="clear_queue_confirmation_title">Bestätige das Leeren der Warteschlange</string>
     <string name="clear_queue_confirmation_description">Die aktive Wiedergabeliste wird ersetzt werden</string>
+    <string name="enqueued">Eingereiht</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube bietet einen \"Eingeschränkten Modus\", der potenzielle Inhalte für Erwachsene ausblendet.</string>
 </resources>
