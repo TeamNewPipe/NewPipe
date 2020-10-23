@@ -88,7 +88,7 @@
     <string name="checksum">체크섬</string>
     <string name="open_in_popup_mode">팝업 모드로 열기</string>
     <string name="use_external_video_player_summary">일부 해상도에서 소리가 나지 않을 수 있습니다</string>
-    <string name="popup_mode_share_menu_title">NewPipe 팝업 모드</string>
+    <string name="popup_mode_share_menu_title">팝업 모드</string>
     <string name="subscribe_button_title">구독</string>
     <string name="subscribed_button_title">구독중</string>
     <string name="channel_unsubscribed">구독 취소됨</string>
@@ -543,4 +543,8 @@
     <string name="artists">아티스트</string>
     <string name="albums">앨범</string>
     <string name="videos_string">비디오</string>
+    <string name="notification_action_0_title">첫번째 버튼</string>
+    <string name="notification_scale_to_square_image_summary">알림에 표시되는 비디오 썸네일을 16:9에서 1:1 비율로 바꿉니다. (왜곡이 생길 수도 있습니다.)</string>
+    <string name="notification_scale_to_square_image_title">썸네일을 1:1 비율로 하기</string>
+    <string name="search_showing_result_for">%s에 대한 검색 결과</string>
 </resources>

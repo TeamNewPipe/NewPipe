@@ -187,14 +187,14 @@
     <string name="no_views">Peruna visualizatzione</string>
     <string name="subscribers_count_not_available">Contadore de sos iscritos non disponìbile</string>
     <plurals name="subscribers">
-        <item quantity="one">%s iscritos</item>
-        <item quantity="other">%s iscritu</item>
+        <item quantity="one">%s iscritu</item>
+        <item quantity="other">%s iscritos</item>
     </plurals>
     <string name="no_subscribers">Perunu iscritu</string>
     <string name="drawer_header_description">Allughe/istuda su servìtziu. Ischertadu como:</string>
     <string name="short_billion">Mrd</string>
     <string name="short_million">Mlln</string>
-    <string name="short_thousand">mil</string>
+    <string name="short_thousand">mìg</string>
     <string name="storage_permission_denied">In antis fruni s\'atzessu a sa memòria</string>
     <string name="retry">Torra a proare</string>
     <string name="audio">Àudio</string>

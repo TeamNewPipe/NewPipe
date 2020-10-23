@@ -1,0 +1,1 @@
+NewPipe không sử dụng bất kì thư viện nào của Google, hay API của YouTube. Nó chỉ đọc và phân tích trang web để lấy thông tin cần thiết. Vì thế, ứng dụng này có thể dùng được trên các thiết bị không có cài đặt Dịch vụ của Google Play. Bạn cũng không cần tài khoản YouTube để sử dụng NewPipe, và ứng dụng này là mã nguồn mở (FLOSS).

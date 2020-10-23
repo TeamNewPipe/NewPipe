@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">点击搜索按钮即可开始使用</string>
+    <string name="main_bg_subtitle">点击\"搜索\" 开始使用
+\n</string>
     <string name="view_count_text">%1$s 次观看</string>
     <string name="upload_date_text">发布于 %1$s</string>
     <string name="open_in_browser">在浏览器中打开</string>
@@ -278,7 +279,7 @@
     <string name="start_here_on_background">开始后台播放</string>
     <string name="start_here_on_popup">开始在悬浮窗中播放</string>
     <string name="donation_title">捐赠</string>
-    <string name="donation_encouragement">NewPipe 是由志愿者花费时间为您带来最佳体验开发的。回馈帮助开发人员在享用一杯咖啡的同时，让 NewPipe 变得更好。</string>
+    <string name="donation_encouragement">NewPipe是由志愿者开发的，他们利用自己的空闲时间为您带来最佳的用户体验。在开发者享受一杯咖啡的时候，回报他们，帮助他们让NewPipe变得更好。</string>
     <string name="give_back">反馈</string>
     <string name="website_title">网站</string>
     <string name="website_encouragement">请访问 NewPipe 网站了解更多信息和讯息。</string>
@@ -493,7 +494,7 @@
     <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
         <item quantity="one">%s 人在听</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
