@@ -79,7 +79,8 @@
     <string name="report_error">不具合を報告</string>
     <string name="user_report">利用者レポートを送る</string>
     <string name="duration_live">生放送</string>
-    <string name="main_bg_subtitle">開始するには \"検索\" をタップ</string>
+    <string name="main_bg_subtitle">開始するには \"検索\" をタップ
+\n</string>
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
     <string name="view">再生</string>
@@ -579,7 +580,7 @@
     <string name="albums">アルバム</string>
     <string name="restricted_video">この動画には年齢制限があります。
 \n
-\n閲覧したい場合、設定から \"年齢制限のあるコンテンツを表示する\" を有効化してください。</string>
+\n閲覧したい場合、設定から \"%1$s\" を有効化してください。</string>
     <string name="remove_watched_popup_warning">プレイリストに追加される前も追加された後も視聴した動画はプレイリストから削除されます。
 \nよろしいですか？この操作は元に戻せません！</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">はい、部分的に視聴した動画も削除します</string>
@@ -587,7 +588,7 @@
     <string name="remove_watched">視聴済みを削除</string>
     <string name="show_original_time_ago_summary">サービスのオリジナルのテキストが生放送に表示されます</string>
     <string name="show_original_time_ago_title">アイテムに元の時間を表示</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube 制限付きモード</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube 制限付きモードを有効化</string>
     <string name="video_detail_by">%s による</string>
     <string name="channel_created_by">%s により作成</string>
     <string name="detail_sub_channel_thumbnail_view_description">チャンネルのサムネイル</string>
@@ -624,4 +625,10 @@
     <string name="settings_category_notification_title">通知</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube は、成人向けの可能性があるコンテンツを除外する「制限付きモード」を提供しています。</string>
     <string name="show_age_restricted_content_summary">年齢制限（18歳以上など）があるため、子供には不適切な可能性のあるコンテンツを表示します。</string>
+    <string name="enqueue_stream">キューに追加</string>
+    <string name="enqueued">キューに追加しました</string>
+    <string name="clear_cookie_summary">reCAPTCHA を解いたときに NewPipe が保存した Cookie を消去します</string>
+    <string name="clear_cookie_title">reCAPTCHA の Cookie を消去</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA の Cookie が消去されました</string>
+    <string name="show_memory_leaks">メモリリークを表示</string>
 </resources>
