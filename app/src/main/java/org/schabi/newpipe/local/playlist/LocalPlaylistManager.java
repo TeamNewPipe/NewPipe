@@ -43,6 +43,10 @@ public class LocalPlaylistManager {
         this.playlistStreamTable = playlistStreamTable;
     }
 
+    public LocalPlaylistManager(@NonNull final AppDatabase database) {
+        this(database, database.streamDAO(), database.playlistDAO(), database.playlistStreamDAO());
+    }
+
     public Maybe<List<Long>> createPlaylist(final String name, final List<StreamEntity> streams) {
         // Disallow creation of empty playlists
         if (streams.isEmpty()) {

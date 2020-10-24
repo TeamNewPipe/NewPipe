@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -52,7 +53,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
             final Context context, final Runnable onSuccess, final Runnable onFailed
     ) {
         final LocalPlaylistManager playlistManager =
-                new LocalPlaylistManager(NewPipeDatabase.getInstance(context));
+                new LocalPlaylistManager(AppDatabase.getInstance(context));
 
         return playlistManager.hasPlaylists()
                 .observeOn(AndroidSchedulers.mainThread())
