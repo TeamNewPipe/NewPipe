@@ -45,7 +45,7 @@
     <string name="settings_category_other_title">Diğer</string>
     <string name="background_player_playing_toast">Arka planda oynatılıyor</string>
     <string name="content">İçerik</string>
-    <string name="show_age_restricted_content_title">Yaş kısıtlamalı içerik</string>
+    <string name="show_age_restricted_content_title">Yaş kısıtlı içeriği göster</string>
     <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Daha sonra ayarlardan değiştirilebilir.</string>
     <string name="duration_live">Canlı</string>
     <string name="downloads">İndirilenler</string>
@@ -133,8 +133,8 @@
     <string name="settings_category_popup_title">Açılır pencere</string>
     <string name="popup_resizing_indicator_title">Yeniden boyutlandırılıyor</string>
     <string name="use_external_video_player_summary">Bazı çözünürlüklerde sesi kaldırır</string>
-    <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini kontrol etmek için hareketleri kullanın</string>
-    <string name="player_gesture_controls_title">Hareketli oynatıcı kontrolü</string>
+    <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini denetlemek için hareketleri kullan</string>
+    <string name="player_gesture_controls_title">Hareketli oynatıcı denetimi</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
     <string name="show_search_suggestions_summary">Arama yaparken önerileri göster</string>
     <string name="best_resolution">En iyi çözünürlük</string>
@@ -391,10 +391,10 @@
     <string name="unsubscribe">Abonelikten çık</string>
     <string name="tab_new">Yeni Sekme</string>
     <string name="tab_choose">Sekmeyi Seçin</string>
-    <string name="volume_gesture_control_title">Hareketli ses kontrolü</string>
-    <string name="volume_gesture_control_summary">Oynatıcının sesini kontrol etmek için hareketleri kullanın</string>
-    <string name="brightness_gesture_control_title">Hareketli parlaklık kontrolü</string>
-    <string name="brightness_gesture_control_summary">Oynatıcının parlaklığını kontrol etmek için hareketleri kullanın</string>
+    <string name="volume_gesture_control_title">Hareketli ses denetimi</string>
+    <string name="volume_gesture_control_summary">Oynatıcının sesini denetlemek için hareketleri kullan</string>
+    <string name="brightness_gesture_control_title">Hareketli parlaklık denetimi</string>
+    <string name="brightness_gesture_control_summary">Oynatıcının parlaklığını denetlemek için hareketleri kullan</string>
     <string name="settings_category_updates_title">Güncellemeler</string>
     <string name="file_deleted">Dosya silindi</string>
     <string name="app_update_notification_channel_name">Uygulama Güncelleme Bildirimi</string>
@@ -588,9 +588,9 @@
     <string name="artists">Sanatçılar</string>
     <string name="albums">Albümler</string>
     <string name="songs">Şarkılar</string>
-    <string name="restricted_video">Bu video yaş kısıtlamalı.
+    <string name="restricted_video">Bu video yaş kısıtlıdır.
 \n
-\nGörmek istiyorsanız ayarlarda \"Yaş kısıtlamalı içerik\" seçeneğini açın.</string>
+\nGörmek istiyorsanız ayarlarda \"%1$s\" seçeneğini açın.</string>
     <string name="remove_watched_popup_warning">Oynatma listesine eklendikten önce ve sonra izlenen videolar kaldırılacak.
 \nEmin misiniz\? Bu geri döndürülemez!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Evet ve kısmen izlenmiş videolar</string>
@@ -598,7 +598,7 @@
     <string name="remove_watched">İzleneni kaldır</string>
     <string name="show_original_time_ago_summary">Akış ögelerinde hizmetlerden alınan özgün metinler görünecektir</string>
     <string name="show_original_time_ago_title">Ögelerde özgün \'… önce\'yi göster</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube kısıtlı kip</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube\'un \"Kısıtlı Kip\"ini aç</string>
     <string name="video_detail_by">%s tarafından</string>
     <string name="channel_created_by">%s tarafından oluşturuldu</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar küçük resmi</string>
@@ -608,7 +608,7 @@
     <string name="error_report_open_issue_button_text">GitHub\'da bildir</string>
     <string name="copy_for_github">Biçimlendirilmiş raporu kopyala</string>
     <string name="search_showing_result_for">Sonuçlar gösteriliyor: %s</string>
-    <string name="error_report_open_github_notice">Lütfen kilitlenmenizi tartışan bir sorunun zaten var olup olmadığını kontrol edin. Yinelenen talepler oluştururken, bizden asıl hatayı düzeltmek için harcayabileceğimiz zamanı alırsınız.</string>
+    <string name="error_report_open_github_notice">Lütfen hatanızı tartışan bildirimin var olup olmadığını denetleyin. Yinelenen istekler oluştururken, bizden asıl hatayı düzeltmek için harcayabileceğimiz zamanı alırsınız.</string>
     <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
     <string name="never">Asla</string>
     <string name="wifi_only">Yalnızca Wi-Fi\'de</string>
@@ -633,4 +633,12 @@
     <string name="notification_action_0_title">Birinci eylem düğmesi</string>
     <string name="notification_scale_to_square_image_summary">Bildirimde gösterilen video küçük resmini 16:9\'dan 1:1 en/boy oranına ölçeklendir (bozulmalara neden olabilir)</string>
     <string name="notification_scale_to_square_image_title">Küçük resmi 1:1 en/boy oranına ölçeklendir</string>
+    <string name="show_memory_leaks">Bellek sızıntılarını göster</string>
+    <string name="enqueued">Sıraya eklendi</string>
+    <string name="enqueue_stream">Kuyruğa ekle</string>
+    <string name="clear_cookie_summary">reCAPTCHA çözdüğünüzde NewPipe\'ın sakladığı çerezleri temizle</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA çerezleri temizlendi</string>
+    <string name="clear_cookie_title">reCAPTCHA çerezlerini temizle</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube, olası yetişkin içeriği gizleyen \"Kısıtlı Kip\" sağlamaktadır.</string>
+    <string name="show_age_restricted_content_summary">Yaş kısıtı (18+ gibi) nedeniyle çocuklara uygun olmayabilecek içeriği göster.</string>
 </resources>
