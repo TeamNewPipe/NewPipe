@@ -129,8 +129,6 @@
     <string name="clear">Limpar</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_background_title">Segundo plano</string>
-    <string name="popup_remember_size_pos_title">Lembrar propriedades do popup</string>
-    <string name="popup_remember_size_pos_summary">Lembra do último tamanho e posição usado no popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Remove o som em algumas resoluções</string>
@@ -234,8 +232,6 @@
     <string name="play_queue_audio_settings">Configurações de áudio</string>
     <string name="hold_to_append">Segure para pôr na fila</string>
     <string name="unknown_content">[Desconhecido]</string>
-    <string name="enqueue_on_background">Pôr na fila em segundo plano</string>
-    <string name="enqueue_on_popup">Pôr na fila em um popup</string>
     <string name="start_here_on_main">Reproduzir daqui</string>
     <string name="start_here_on_background">Reproduzir em segundo plano</string>
     <string name="start_here_on_popup">Reproduzir em um popup</string>
@@ -458,7 +454,7 @@
     <string name="missions_header_pending">Pendente</string>
     <string name="show_comments_title">Mostrar comentários</string>
     <string name="show_comments_summary">Desative para ocultar comentários</string>
-    <string name="autoplay_title">Autorreprodução</string>
+    <string name="autoplay_title">Reprodução Automática</string>
     <string name="no_comments">Sem comentários</string>
     <string name="error_unable_to_load_comments">Não foi possível carregar os comentários</string>
     <string name="close">Fechar</string>
@@ -614,7 +610,7 @@
     <string name="error_report_open_issue_button_text">Reporte no GitHub</string>
     <string name="copy_for_github">Copiar relatório formatado</string>
     <string name="never">Nunca</string>
-    <string name="wifi_only">Apenas no WiFi</string>
+    <string name="wifi_only">Apenas no Wi-Fi</string>
     <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
     <string name="title_activity_play_queue">Reproduzir fila</string>
     <string name="unsupported_url_dialog_message">Não foi possível reconhecer a URL. Abrir com outro aplicativo\?</string>

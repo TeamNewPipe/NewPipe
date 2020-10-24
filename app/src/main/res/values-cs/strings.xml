@@ -62,7 +62,8 @@
     <string name="video_is_age_restricted">Zobrazit video s věkovým omezením. Změnit tuto volbu v budoucnu lze v \"Nastavení\".</string>
     <string name="duration_live">Živě</string>
     <string name="light_parsing_error">Nebylo možné kompletně analyzovat stránku</string>
-    <string name="main_bg_subtitle">Začít klepnutím na \"Hledat\"</string>
+    <string name="main_bg_subtitle">Začít klepnutím na \"Hledat\"
+\n</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">NewPipe stahuje</string>
@@ -120,8 +121,6 @@
     <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
     <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 2K/4K videa</string>
     <string name="default_video_format_title">Výchozí formát videa</string>
-    <string name="popup_remember_size_pos_title">Pamatovat si vlastnosti vyskakovacího okna</string>
-    <string name="popup_remember_size_pos_summary">Pamatovat si poslední velikost a pozici vyskakovacího okna</string>
     <string name="popup_mode_share_menu_title">Režim vyskakovacího okna</string>
     <string name="subscribe_button_title">Odebírat</string>
     <string name="subscribed_button_title">Odebíráno</string>
@@ -237,8 +236,6 @@
     <string name="play_queue_audio_settings">Nastavení zvuku</string>
     <string name="hold_to_append">Podrž pro zařazení do fronty</string>
     <string name="unknown_content">[Neznámý]</string>
-    <string name="enqueue_on_background">Do fronty na pozadí</string>
-    <string name="enqueue_on_popup">Do fronty v pop-upu</string>
     <string name="start_here_on_main">Začne hrát zde</string>
     <string name="start_here_on_background">Začít přehrávat na pozadí</string>
     <string name="start_here_on_popup">Začít přehrávat v pop-upu</string>
@@ -624,7 +621,7 @@
     <string name="copy_for_github">Zkopírovat formátované hlášení</string>
     <string name="search_showing_result_for">Ukazuji výsledky pro: %s</string>
     <string name="never">Nikdy</string>
-    <string name="wifi_only">Pouze na WiFi</string>
+    <string name="wifi_only">Pouze na Wi-Fi</string>
     <string name="autoplay_summary">Zahájit playback automaticky — %s</string>
     <string name="title_activity_play_queue">Přehrát frontu</string>
     <string name="unsupported_url_dialog_message">Nelze rozpoznat zadané URL. Otevřít pomocí jiné aplikace\?</string>

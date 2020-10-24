@@ -8,7 +8,7 @@
     <string name="share">اشتراک کریں</string>
     <string name="download">ڈاؤن لوڈ</string>
     <string name="search">تلاش کریں</string>
-    <string name="did_you_mean">کیا آپ کا مطلب یہ ہے: s$1%\?</string>
+    <string name="did_you_mean">کیا آپ کا مطلب یہ ہے: %1$s</string>
     <string name="open_in_browser">براؤزر میں کھولیں</string>
     <string name="settings">ترتیبات</string>
     <string name="no_player_found">کوئی اسٹریم پلیئر نہیں ملا۔ کیا آپ VLC انسٹال کرنا چاہتے ہیں؟</string>
@@ -58,8 +58,6 @@
     <string name="light_theme_title">روشن</string>
     <string name="dark_theme_title">تاریک</string>
     <string name="black_theme_title">سیاہ</string>
-    <string name="popup_remember_size_pos_title">پاپ اپ جسامت اور مقام کو یاد رکھیں</string>
-    <string name="popup_remember_size_pos_summary">پچھلی جسامت اور پوپ اپ کا مقام یاد رکھیں</string>
     <string name="use_inexact_seek_title">بالواسطہ رسائی استعمال کریں</string>
     <string name="use_inexact_seek_summary">بالواسطہ تلاش مشکلات کو کم کر کے پلیئر کو تیز رفتاری سے مقامات تک رسائی کرنے دیتی ہے</string>
     <string name="download_thumbnail_title">نظرِ انگشتی لوڈ کریں</string>
@@ -179,8 +177,8 @@
     <string name="search_no_results">کوئی نتائج نہیں</string>
     <string name="empty_subscription_feed_subtitle">یہاں کچھ نہیں سوائے میرے</string>
     <string name="detail_drag_description">دوبارہ ترتیب دینے کیلئے کھینچں</string>
-    <string name="err_dir_create">ڈاؤن لوڈ ڈائریکٹری \'s$1%\' تشکیل نہیں دے سکتے</string>
-    <string name="info_dir_created">ڈاؤن لوڈ ڈائریکٹری \'s$1%\' بن گئی</string>
+    <string name="err_dir_create">ڈاؤن لوڈ ڈائریکٹری \'%1$s\' تشکیل نہیں دے سکتے</string>
+    <string name="info_dir_created">ڈاؤن لوڈ ڈائریکٹری \'s\'%1$s بن گئی</string>
     <string name="video">ویڈیو</string>
     <string name="audio">آڈیو</string>
     <string name="retry">دوبارہ کوشش کریں</string>
@@ -200,8 +198,8 @@
     </plurals>
     <string name="no_videos">ویڈیوز دستیاب نہیں</string>
     <plurals name="videos">
-        <item quantity="one">ویڈیو</item>
-        <item quantity="other">ویڈیوز</item>
+        <item quantity="one">%s ویڈیو</item>
+        <item quantity="other">%s ویڈیوز</item>
     </plurals>
     <string name="start">شروع کریں</string>
     <string name="pause">توقف</string>
@@ -290,8 +288,6 @@
     <string name="play_queue_stream_detail">تفصیلات</string>
     <string name="play_queue_audio_settings">آڈیو کی ترتیبات</string>
     <string name="hold_to_append">انقطار کو پکڑو</string>
-    <string name="enqueue_on_background">پس منظر میں قطار</string>
-    <string name="enqueue_on_popup">ایک نئی پوپ اپ میں انقطار</string>
     <string name="start_here_on_main">یہاں چلانا شروع کریں</string>
     <string name="start_here_on_background">پس منظر میں چلانا شروع کریں</string>
     <string name="start_here_on_popup">نئے پاپ اپ میں چلانا شروع کریں</string>

@@ -113,8 +113,6 @@
     <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia mogą odtwarzać filmy 2K/4K</string>
     <string name="default_video_format_title">Domyślny format filmu</string>
     <string name="black_theme_title">Czarny</string>
-    <string name="popup_remember_size_pos_title">Zapamiętaj właściwości wyskakującego okienka</string>
-    <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję trybu okienkowego</string>
     <string name="player_gesture_controls_title">Sterowanie odtwarzaczem za pomocą gestów</string>
     <string name="player_gesture_controls_summary">Użyj gestów, aby sterować jasnością i głośnością odtwarzacza</string>
     <string name="show_search_suggestions_title">Podpowiedzi wyszukiwania</string>
@@ -242,8 +240,6 @@
     <string name="play_queue_stream_detail">Szczegóły</string>
     <string name="play_queue_audio_settings">Ustawienia dźwięku</string>
     <string name="hold_to_append">Przytrzymaj, aby zakolejkować</string>
-    <string name="enqueue_on_background">Kolejkuj w tle</string>
-    <string name="enqueue_on_popup">Kolejkuj w wyskakującym okienku</string>
     <string name="start_here_on_main">Zacznij odtwarzać tutaj</string>
     <string name="start_here_on_background">Zacznij odtwarzać w tle</string>
     <string name="start_here_on_popup">Zacznij odtwarzać w wyskakującym okienku</string>
@@ -624,7 +620,7 @@
     <string name="copy_for_github">Skopiuj sformatowany raport</string>
     <string name="search_showing_result_for">Wyświetlono wyniki dla: %s</string>
     <string name="never">Nigdy</string>
-    <string name="wifi_only">Tylko przez WiFi</string>
+    <string name="wifi_only">Tylko przez Wi-Fi</string>
     <string name="autoplay_summary">Rozpocznij odtwarzanie automatycznie — %s</string>
     <string name="title_activity_play_queue">Playlista</string>
     <string name="unsupported_url_dialog_message">Nie udało się rozpoznać adresu URL. Otworzyć w innej aplikacji\?</string>

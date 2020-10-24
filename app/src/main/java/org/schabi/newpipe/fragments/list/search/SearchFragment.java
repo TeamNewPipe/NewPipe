@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.core.text.HtmlCompat;
-import androidx.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -30,6 +28,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.text.HtmlCompat;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,9 +50,9 @@ import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -639,8 +640,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
 
         if (searchEditText.requestFocus()) {
-            final InputMethodManager imm = (InputMethodManager) activity.getSystemService(
-                    Context.INPUT_METHOD_SERVICE);
+            final InputMethodManager imm = ContextCompat.getSystemService(activity,
+                    InputMethodManager.class);
             imm.showSoftInput(searchEditText, InputMethodManager.SHOW_FORCED);
         }
     }
@@ -653,8 +654,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             return;
         }
 
-        final InputMethodManager imm = (InputMethodManager) activity
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        final InputMethodManager imm = ContextCompat.getSystemService(activity,
+                InputMethodManager.class);
         imm.hideSoftInputFromWindow(searchEditText.getWindowToken(),
                 InputMethodManager.RESULT_UNCHANGED_SHOWN);
 

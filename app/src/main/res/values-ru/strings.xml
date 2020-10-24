@@ -47,7 +47,8 @@
     <string name="download_path_audio_title">Папка для скачанного аудио</string>
     <string name="download_path_audio_summary">Папка для скачанного аудио</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для скачивания аудио</string>
-    <string name="main_bg_subtitle">Нажмите \"Поиск\", чтобы начать</string>
+    <string name="main_bg_subtitle">Нажмите \"Поиск\", чтобы начать
+\n</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
@@ -107,7 +108,6 @@
     <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
-    <string name="popup_remember_size_pos_title">Запомнить параметры всплывающего окна</string>
     <string name="player_gesture_controls_summary">Изменять яркость и громкость жестами</string>
     <string name="settings_category_popup_title">Всплывающее окно</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
@@ -132,7 +132,6 @@
     <string name="short_billion">" млрд"</string>
     <string name="short_thousand">" тыс."</string>
     <string name="default_popup_resolution_title">Разрешение всплывающего окна</string>
-    <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
     <string name="show_search_suggestions_title">Поисковые предложения</string>
     <string name="best_resolution">Лучшее разрешение</string>
     <string name="title_activity_recaptcha">Запрос reCAPTCHA</string>
@@ -241,8 +240,6 @@
     <string name="unknown_content">[Неизвестно]</string>
     <string name="player_recoverable_failure">Восстановление после ошибки плеера</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
-    <string name="enqueue_on_background">В очередь в фоне</string>
-    <string name="enqueue_on_popup">В очередь в окне</string>
     <string name="start_here_on_main">Играть отсюда в плеере</string>
     <string name="start_here_on_background">Играть отсюда в фоне</string>
     <string name="start_here_on_popup">Играть отсюда в окне</string>
@@ -625,7 +622,7 @@
     <string name="error_report_open_issue_button_text">Сообщить на GitHub</string>
     <string name="copy_for_github">Копировать отформатированный отчет</string>
     <string name="never">Никогда</string>
-    <string name="wifi_only">Только по WiFi</string>
+    <string name="wifi_only">Только по Wi-Fi</string>
     <string name="autoplay_summary">Автоматический запуск воспроизведения — %s</string>
     <string name="title_activity_play_queue">Очередь воспроизведения</string>
     <string name="unsupported_url_dialog_message">Не удалось распознать URL. Открыть в другом приложении\?</string>

@@ -12,7 +12,7 @@
     <string name="download">Tải về</string>
     <string name="search">Tìm kiếm</string>
     <string name="settings">Cài đặt</string>
-    <string name="did_you_mean">Ý của bạn là: %1$s\?</string>
+    <string name="did_you_mean">Ý bạn là \"%1$s\"\?</string>
     <string name="share_dialog_title">Chia sẻ với</string>
     <string name="choose_browser">Chọn trình duyệt</string>
     <string name="use_external_video_player_title">Sử dụng trình phát video bên ngoài</string>
@@ -44,8 +44,6 @@
     <string name="light_theme_title">Sáng</string>
     <string name="dark_theme_title">Tối</string>
     <string name="black_theme_title">Đen</string>
-    <string name="popup_remember_size_pos_title">Nhớ kích thước và vị trí của popup</string>
-    <string name="popup_remember_size_pos_summary">Nhớ kích thước và vị trí lần trước của popup</string>
     <string name="player_gesture_controls_title">Điều khiển cử chỉ trình phát</string>
     <string name="player_gesture_controls_summary">Sử dụng cử chỉ để điều chỉnh độ sáng và âm lượng</string>
     <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
@@ -88,11 +86,11 @@
     <string name="app_ui_crash">Ứng dụng / Giao diện người dùng bị lỗi</string>
     <string name="sorry_string">Xin lỗi, điều đó không nên xảy ra.</string>
     <string name="error_report_button_text">Báo lỗi qua email</string>
-    <string name="error_snackbar_message">Xin lỗi, một số lỗi đã xảy ra.</string>
+    <string name="error_snackbar_message">Xin lỗi, có gì đó đã xảy ra.</string>
     <string name="error_snackbar_action">Báo cáo</string>
     <string name="what_device_headline">Thông tin:</string>
     <string name="what_happened_headline">Chuyện gì đã xảy ra:</string>
-    <string name="info_labels">Gì: \\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">Cái gì:\\nYêu cầu:\\nNgôn ngữ của nội dung:\\nVùng miền (quốc gia) của nội dung:\\nNgôn ngữ của ứng dụng:\\nDịch vụ:\\nThời gian GMT:\\nTên gói:\\nPhiên bản:\\nPhiên bản hệ điều hành:</string>
     <string name="your_comment">Nhận xét của bạn (bằng tiếng Anh):</string>
     <string name="error_details_headline">Chi tiết:</string>
     <string name="list_thumbnail_view_description">Hình thu nhỏ xem trước video</string>
@@ -153,10 +151,10 @@
     <string name="contribution_title">Đóng góp</string>
     <string name="screen_rotation">xoay màn hình</string>
     <string name="content_language_title">Ngôn ngữ nội dung ưu tiên</string>
-    <string name="settings_category_video_audio_title">Video &amp; âm thanh</string>
+    <string name="settings_category_video_audio_title">Video và âm thanh</string>
     <string name="settings_category_popup_title">Trình phát nổi</string>
     <string name="enable_watch_history_title">Lịch sử xem</string>
-    <string name="settings_category_history_title">Lịch sử &amp; bộ nhớ cache</string>
+    <string name="settings_category_history_title">Lịch sử và bộ nhớ cache</string>
     <string name="playlist">Playlist</string>
     <string name="search_no_results">Không tìm thấy</string>
     <string name="subscribe_button_title">Đăng ký</string>
@@ -180,7 +178,7 @@
     <string name="metadata_cache_wipe_title">Xóa siêu dữ liệu đã lưu vào bộ nhớ cache</string>
     <string name="metadata_cache_wipe_summary">Xóa tất cả dữ liệu trang web được lưu trong bộ nhớ cache</string>
     <string name="metadata_cache_wipe_complete_notice">Đã xóa bộ nhớ cache siêu dữ liệu</string>
-    <string name="auto_queue_title">Tự động phát tiếp theo theo hàng</string>
+    <string name="auto_queue_title">Tự động phát tiếp theo hàng</string>
     <string name="auto_queue_summary">Tiếp tục hàng đợi (không lặp lại) bằng cách thêm một luồng phát liên quan</string>
     <string name="enable_search_history_title">Lịch sử tìm kiếm</string>
     <string name="enable_search_history_summary">Lưu trữ truy vấn tìm kiếm cục bộ</string>
@@ -304,16 +302,14 @@
     <string name="import_settings">Bạn cũng muốn nhập cài đặt?</string>
     <string name="kiosk">Trang chủ</string>
     <string name="trending">Xu hướng</string>
-    <string name="new_and_hot">Mới &amp; hot</string>
+    <string name="new_and_hot">Mới và hot</string>
     <string name="play_queue_remove">Tẩy xoá</string>
     <string name="play_queue_stream_detail">Chi tiết</string>
     <string name="play_queue_audio_settings">Cài đặt âm thanh</string>
     <string name="hold_to_append">Giữ để nối tiếp</string>
-    <string name="enqueue_on_background">Thêm vào trình phát nền</string>
-    <string name="enqueue_on_popup">Thêm vào trình phát popup mới</string>
     <string name="start_here_on_main">Bắt đầu phát ở đây</string>
     <string name="start_here_on_background">Bắt đầu phát từ đây trong nền</string>
-    <string name="start_here_on_popup">Bắt đầu phát từ đây trên trình phát popup mới</string>
+    <string name="start_here_on_popup">Bắt đầu phát trên trình phát popup</string>
     <string name="drawer_open">Mở ngăn kéo</string>
     <string name="drawer_close">Đóng ngăn</string>
     <string name="drawer_header_action_paceholder_text">Một cái gì đó sẽ xuất hiện ở đây sớm ;D</string>
@@ -542,9 +538,9 @@
     <string name="albums">Album</string>
     <string name="songs">Bài hát</string>
     <string name="videos_string">Video</string>
-    <string name="restricted_video">Video này giới hạn độ tuổi.
+    <string name="restricted_video">Video này bị giới hạn độ tuổi.
 \n
-\nNếu bạn muốn xem, bật \"Nội dung giới hạn độ tuổi\" trong cài đặt.</string>
+\nBật \"Nội dung giới hạn độ tuổi\" trong cài đặt nếu bạn muốn xem video này.</string>
     <string name="youtube_restricted_mode_enabled_title">Chế độ giới hạn YouTube</string>
     <string name="peertube_instance_add_https_only">Chỉ URL HTTPS được hỗ trợ</string>
     <string name="peertube_instance_url_summary">Chọn thực thể PeerTube ưa thích</string>
@@ -595,4 +591,35 @@
     <string name="playlist_no_uploader">Tự tạo (không tìm thấy người upload)</string>
     <string name="local">Cục bộ</string>
     <string name="default_kiosk_page_summary">Trang chính mặc định</string>
+    <string name="playlist_page_summary">Trang danh sách phát</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Chỉ hiện các kênh chưa được nhóm</string>
+    <string name="never">Không bao giờ</string>
+    <string name="wifi_only">Chỉ trên Wi-Fi</string>
+    <string name="autoplay_summary">Hành vi tự động phát — %s</string>
+    <string name="title_activity_play_queue">Hàng đợi phát</string>
+    <string name="no_playlist_bookmarked_yet">Không có danh sách nào ở đây</string>
+    <string name="select_a_playlist">Chọn danh sách</string>
+    <string name="error_report_open_github_notice">Vui lòng kiểm tra xem vấn đề bạn đang gặp đã có báo cáo trước đó chưa. Nếu bạn tạo nhiều báo cáo trùng lặp, bạn sẽ làm tốn thời gian để chúng tôi đọc thay vì thực sự sửa lỗi.</string>
+    <string name="error_report_open_issue_button_text">Báo cáo trên GitHub</string>
+    <string name="copy_for_github">Sao chép bản báo cáo đã được định dạng</string>
+    <string name="settings_category_notification_title">Thông báo</string>
+    <string name="unsupported_url_dialog_message">Không thể đọc URL này. Mở với app khác\?</string>
+    <string name="auto_queue_toggle">Tự động thêm vào hàng đợi</string>
+    <string name="clear_queue_confirmation_description">Hàng đợi của trình phát hiện tại sẽ bị thay thế</string>
+    <string name="clear_queue_confirmation_summary">Chuyển từ trình phát này sang trình phát khác có thể sẽ thay thế hàng đợi</string>
+    <string name="clear_queue_confirmation_title">Hỏi trước khi xóa hết hàng đợi</string>
+    <string name="notification_action_nothing">Để trống</string>
+    <string name="notification_action_buffering">Đang tải</string>
+    <string name="notification_action_shuffle">Ngẫu nhiên</string>
+    <string name="notification_action_repeat">Lặp lại</string>
+    <string name="notification_actions_at_most_three">Bạn chỉ có thể chọn tối đa 3 nút trong thông báo thu gọn!</string>
+    <string name="notification_actions_summary">Thay đổi các nút trong thông báo bằng cách nhấn mở nút đó. Chọn tối đa 3 nút để hiện trong thông báo thu gọn bằng cách tick vào các ô bên phải.</string>
+    <string name="notification_action_4_title">Nút thứ năm</string>
+    <string name="notification_action_3_title">Nút thứ tư</string>
+    <string name="notification_action_2_title">Nút thứ ba</string>
+    <string name="notification_action_1_title">Nút thứ hai</string>
+    <string name="notification_action_0_title">Nút đầu tiên</string>
+    <string name="notification_scale_to_square_image_summary">Thu nhỏ ảnh thumbnail trong thông báo từ tỉ lệ 16:9 xuống 1:1 (có thể gây méo ảnh)</string>
+    <string name="notification_scale_to_square_image_title">Thu nhỏ ảnh thumbnail theo tỉ lệ 1:1</string>
+    <string name="search_showing_result_for">Hiện kết quả cho: %s</string>
 </resources>

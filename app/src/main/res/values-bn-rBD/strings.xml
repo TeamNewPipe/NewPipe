@@ -44,8 +44,6 @@
     <string name="light_theme_title">উজ্জ্বল</string>
     <string name="dark_theme_title">অন্ধকার</string>
     <string name="black_theme_title">কালো</string>
-    <string name="popup_remember_size_pos_title">পপআপ আকার এবং অবস্থান মনে রাখো</string>
-    <string name="popup_remember_size_pos_summary">শেষ আকার এবং পপআপ সেট অবস্থান মনে রাখো</string>
     <string name="download_dialog_title">ডাউনলোড</string>
     <string name="show_next_and_similar_title">পরবর্তী এবং অনুরূপ ভিডিওগুলি দেখাও</string>
     <string name="unsupported_url">URL সমর্থিত নয়</string>

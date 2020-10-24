@@ -60,8 +60,6 @@
     <string name="light_theme_title">प्रकाश</string>
     <string name="dark_theme_title">गाढा</string>
     <string name="black_theme_title">कालो</string>
-    <string name="popup_remember_size_pos_title">पपअप आकार र स्थिति सम्झना</string>
-    <string name="popup_remember_size_pos_summary">पछिल्लो आकार र पपअप को स्थिति सम्झना</string>
     <string name="use_inexact_seek_title">तेज \'inexact\' खोज्न प्रयोग गर्नुहोस</string>
     <string name="use_inexact_seek_summary">\'Inexact\' प्लेयर कम सटीक छिटो स्थितिहरू गर्न खोज्न अनुमति दिन्छ खोज्छन्। 5, 15 वा 25 सेकेन्ड को लागि खोजी यो काम गर्दैन।</string>
     <string name="download_thumbnail_title">थम्बनेल लोड</string>
@@ -188,7 +186,7 @@
     <string name="invalid_source">यस्तो कुनै फाइल / सामग्री स्रोत भेटिएन</string>
     <string name="invalid_file">फाइल अवस्थित छैन वा पढ्न वा यो लेख्न अनुमति अभाव छ</string>
     <string name="file_name_empty_error">फाइलको नाम खाली हुन सक्दैन</string>
-    <string name="error_occurred_detail">एउटा त्रुटि देखापर्यो:%s</string>
+    <string name="error_occurred_detail">एउटा त्रुटि देखापर्यो: %1$s</string>
     <string name="no_streams_available_download">कुनै धाराहरु डाउनलोड गर्न उपलब्ध छैनन्</string>
     <string name="saved_tabs_invalid_json">बचत गरिएका ट्याबहरू पढ्न सकिएन, पूर्वनिर्धारित प्रयोग गरिदै</string>
     <string name="restore_defaults">फेरी पहिलाकै अवस्थामा लैजाऊ</string>
@@ -214,7 +212,7 @@
     <string name="search_no_results">कुनै परिणाम</string>
     <string name="empty_subscription_feed_subtitle">यहाँ केही छैन</string>
     <string name="detail_drag_description">पुन: क्रमबद्ध गर्न तान्नुहोस्</string>
-    <string name="err_dir_create">डाउनलोड फोल्डर \'%1$\' सिर्जना गर्न सकिँएन</string>
+    <string name="err_dir_create">डाउनलोड फोल्डर \'%1$s\' सिर्जना गर्न सकिँएन</string>
     <string name="info_dir_created">डाउनलोड फोल्डर \'%1$s\' सिर्जना गरियो</string>
     <string name="video">भिडियो</string>
     <string name="audio">अडियो</string>
@@ -336,8 +334,6 @@
     <string name="play_queue_stream_detail">विवरण</string>
     <string name="play_queue_audio_settings">अडियो सेटिङहरू</string>
     <string name="hold_to_append">लामबद्ध गर्न पकड</string>
-    <string name="enqueue_on_background">पृष्ठभूमिमा लामबद्ध</string>
-    <string name="enqueue_on_popup">नयाँ पपअपमा लामबद्ध</string>
     <string name="start_here_on_main">यहाँ प्ले सुरु</string>
     <string name="start_here_on_background">पृष्ठभूमिमा बजाउन सुरु गर्नुहोस</string>
     <string name="start_here_on_popup">पपअपमा बजाउन सुरु गर्नुहोस</string>
@@ -390,10 +386,10 @@
 \n1. जानुहोस् यो URL:%1$s 
 \n2. सोधिएको बेलामा लग इन गर्नुहोस् 
 \n3. एउटा डाउनलोड सुरु हुनुपर्दछ (त्यो निर्यात फाईल हो)</string>
-    <string name="import_soundcloud_instructions">या त URL वा तपाईंको ID टाइप गरेर साउन्डक्लाउड(soundcloud) प्रोफाइल आयात गर्नुहोस्:
+    <string name="import_soundcloud_instructions">या त URL वा तपाईंको ID टाइप गरेर साउन्डक्लाउड(SoundCloud) प्रोफाइल आयात गर्नुहोस्:
 \n
 \n1. वेब ब्राउजरमा \"डेस्कटप मोड\" सक्षम गर्नुहोस् (साइट मोबाइल उपकरणहरूको लागि उपलब्ध छैन)
-\n2. यस URL:%$s मा जानुहोस्
+\n2. यस URL:%1$s मा जानुहोस्
 \n3. सोधिएको बेलामा लग इन गर्नुहोस्
 \n4. तपाईंलाई URL मा निर्देशित गरिएको प्रोफाइल URL प्रतिलिपि गर्नुहोस्।</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/youridyourID, soundcloud.com/yourid</string>

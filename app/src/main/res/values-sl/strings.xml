@@ -129,8 +129,6 @@ odpiranje v pojavnem načinu</string>
     <string name="filter">Filter</string>
     <string name="refresh">Osveži</string>
     <string name="clear">Počisti</string>
-    <string name="popup_remember_size_pos_title">Zapomni si položaj in velikost pojavnega okna</string>
-    <string name="popup_remember_size_pos_summary">Zapomni si položaj in velikost pojavnega okna</string>
     <string name="settings_category_popup_title">Pojavno okno</string>
     <string name="popup_resizing_indicator_title">Prilagajanje velikosti</string>
     <string name="use_external_video_player_summary">Pri nekaterih ločljivostih bo posnetek brez zvoka, če je ta možnost omogočena</string>

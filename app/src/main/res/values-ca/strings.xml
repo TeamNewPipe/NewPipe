@@ -143,8 +143,6 @@
     <string name="kore_not_found">No s\'ha trobat l\'aplicació Kore. Voleu instal·lar-la\?</string>
     <string name="show_play_with_kodi_title">Mostra «Reprodueix amb el Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra una opció per reproduir un vídeo amb el centre multimèdia Kodi</string>
-    <string name="popup_remember_size_pos_title">Reproductor emergent intel·ligent</string>
-    <string name="popup_remember_size_pos_summary">Recorda la darrera mida i posició del reproductor emergent</string>
     <string name="use_inexact_seek_title">Cerca ràpida poc precisa</string>
     <string name="use_inexact_seek_summary">La cerca poc precisa permet que el reproductor cerqui una posició més ràpidament amb menys precisió. Cerques de 5, 15 o 25 segons no hi funcionaran.</string>
     <string name="download_thumbnail_title">Carrega les miniatures</string>
@@ -219,8 +217,8 @@
     </plurals>
     <string name="no_videos">Cap vídeo</string>
     <plurals name="videos">
-        <item quantity="one">Vídeo</item>
-        <item quantity="other">Vídeos</item>
+        <item quantity="one">%s vídeo</item>
+        <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="pause">Pausa</string>
     <string name="view">Reprodueix</string>
@@ -257,8 +255,6 @@
     <string name="kiosk">Quiosc</string>
     <string name="trending">Tendències</string>
     <string name="top_50">Els millors 50</string>
-    <string name="enqueue_on_background">Afegeix a la cua de reproducció en rerefons</string>
-    <string name="enqueue_on_popup">Afegeix a la cua de reproducció emergent</string>
     <string name="start_here_on_main">Reprodueix aquí</string>
     <string name="drawer_open">Obre el calaix</string>
     <string name="drawer_close">Tanca el calaix</string>

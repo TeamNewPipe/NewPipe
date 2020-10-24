@@ -5,6 +5,5 @@
         android:title="@string/action_open_website" />
     <item
         android:id="@+id/action_show_license"
-        android:title="@string/read_full_license">
-    </item>
+        android:title="@string/read_full_license"></item>
 </menu>

@@ -5,5 +5,5 @@
     <item
         android:id="@+id/menu_item_remove_watched"
         android:title="@string/remove_watched"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 </menu>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Dodirnite pretragu za početak</string>
+    <string name="main_bg_subtitle">Dodirnite pretragu za početak
+\n</string>
     <string name="view_count_text">%1$s pregleda</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
     <string name="no_player_found">Reproduktor za stream nije pronađen. Želite li instalirati VLC?</string>
@@ -53,8 +54,6 @@
     <string name="light_theme_title">Svijetla</string>
     <string name="dark_theme_title">Tamna</string>
     <string name="black_theme_title">Crno</string>
-    <string name="popup_remember_size_pos_title">Zapamti veličinu i poziciju skočnog prozora</string>
-    <string name="popup_remember_size_pos_summary">Zapamti posljednju veličinu i poziciju skočnog prozora</string>
     <string name="player_gesture_controls_title">Kontroliranje reproduktora gestama</string>
     <string name="player_gesture_controls_summary">Koristi geste za kontrolu svjetline i glasnoće reproduktora</string>
     <string name="show_search_suggestions_title">Sugestije pri traženju</string>
@@ -77,7 +76,7 @@
     <string name="popup_playing_toast">Reproduciram u skočnom prozoru</string>
     <string name="content">Sadržaj</string>
     <string name="show_age_restricted_content_title">Prikaži eksplicitni sadržaj</string>
-    <string name="video_is_age_restricted">Videozapis je dobno ograničen. Dopuštanje takvog sadržaja moguće je u postavkama.</string>
+    <string name="video_is_age_restricted">Prikaži dobno ograničeni videozapis. Buduće promjene moguće je postaviti u postavkama.</string>
     <string name="duration_live">Uživo</string>
     <string name="downloads">Preuzimanja</string>
     <string name="downloads_title">Preuzimanja</string>
@@ -110,7 +109,7 @@
     <string name="error_snackbar_action">Prijavi</string>
     <string name="what_device_headline">Informacije:</string>
     <string name="what_happened_headline">Što se dogodilo:</string>
-    <string name="info_labels">Što:\\nRequest:\\nContent Jezik:\\nService:\\nGMT Vrijeme:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">Što:\\nZahtijev:\\nJezik sadržaja:\\nZemlja sadržaja:\\nJezik programa:\\nUsluga:\\nGMT vrijeme:\\nPaket:\\nVerzija:\\nVerzija OS-a:</string>
     <string name="your_comment">Vaš komentar (na engleskom):</string>
     <string name="error_details_headline">Detalji:</string>
     <string name="list_thumbnail_view_description">Sličica pregleda videozapisa</string>
@@ -241,8 +240,6 @@
     <string name="website_title">Web stranica</string>
     <string name="start_here_on_main">Ovdje započni reprodukciju</string>
     <string name="start_here_on_background">Započni reprodukciju u pozadini</string>
-    <string name="enqueue_on_background">Dodaj na red čekanja u pozadini</string>
-    <string name="enqueue_on_popup">Dodaj na red u novom skočnom prozoru</string>
     <string name="start_here_on_popup">Započni reprodukciju u skočnom prozoru</string>
     <string name="drawer_open">Otvori ladicu</string>
     <string name="drawer_close">Zatvori ladicu</string>
@@ -398,7 +395,7 @@
     <string name="invalid_source">Nema takve datoteke/izvora sadržaja</string>
     <string name="invalid_file">Datoteka ne postoji ili joj nedostaje dopuštenje za čitanje ili pisanje</string>
     <string name="no_streams_available_download">Nema dostupnih videozapisa za preuzimanje</string>
-    <string name="saved_tabs_invalid_json">Pomoću zadanih kartica pojavljuje se pogreška prilikom čitanja spremljenih kartica</string>
+    <string name="saved_tabs_invalid_json">Neuspjelo čitanje spremljenih kartica, stoga se koriste zadane</string>
     <string name="restore_defaults">Vratiti zadane</string>
     <string name="restore_defaults_confirmation">Želite li vratiti zadane postavke\?</string>
     <string name="subscribers_count_not_available">Broj pretplatnika nije dostupan</string>
@@ -515,4 +512,44 @@
     <string name="artists">Umjetnici</string>
     <string name="albums">Albumi</string>
     <string name="songs">Pjesme</string>
+    <string name="channel_created_by">Napravio %s</string>
+    <string name="settings_category_notification_title">Obavijest</string>
+    <string name="never">Nikad</string>
+    <string name="enable_queue_limit">Ograniči red preuzimanja</string>
+    <string name="downloads_storage_use_saf_title">Koristi SAF</string>
+    <string name="remove_watched">Ukloni pregledano</string>
+    <string name="remove_watched_popup_title">Ukloni pogledane videozapise\?</string>
+    <plurals name="seconds">
+        <item quantity="one">%d sekunda</item>
+        <item quantity="few">%d sekundi</item>
+        <item quantity="other">%d sekundi</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minutu</item>
+        <item quantity="few">%d minuta</item>
+        <item quantity="other">%d minuta</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d dan</item>
+        <item quantity="few">%d dana</item>
+        <item quantity="other">%d dana</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d sat</item>
+        <item quantity="few">%d sati</item>
+        <item quantity="other">%d sati</item>
+    </plurals>
+    <string name="feed_subscription_not_loaded_count">Nije učitano: %d</string>
+    <string name="feed_group_dialog_empty_selection">Nije odabrana nijedna pretplata</string>
+    <string name="feed_group_dialog_select_subscriptions">Odaberi pretplate</string>
+    <string name="notification_action_4_title">Peti akcijski gumb</string>
+    <string name="notification_action_3_title">Četvrti akcijski gumb</string>
+    <string name="notification_action_2_title">Treći akcijski gumb</string>
+    <string name="notification_action_1_title">Drugi akcijski gumb</string>
+    <string name="notification_action_0_title">Prvi akcijski gumb</string>
+    <string name="download_choose_new_path">Promijenite mape za preuzimanje kako bi stupile na snagu</string>
+    <string name="search_showing_result_for">Prikazuju se rezultati za: %s</string>
+    <string name="unsupported_url_dialog_message">Nije moguće prepoznati URL. Želite li otvoriti u drugoj aplikaciji\?</string>
+    <string name="notification_scale_to_square_image_title"></string>
+    <string name="notification_action_buffering">Učitavam</string>
 </resources>

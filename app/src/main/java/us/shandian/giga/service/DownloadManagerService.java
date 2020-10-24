@@ -24,6 +24,8 @@ import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcelable;
+
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.util.SparseArray;
@@ -157,8 +159,10 @@ public class DownloadManagerService extends Service {
 
         mNotification = builder.build();
 
-        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        mNotificationManager = ContextCompat.getSystemService(this,
+                NotificationManager.class);
+        mConnectivityManager = ContextCompat.getSystemService(this,
+                ConnectivityManager.class);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mNetworkStateListenerL = new ConnectivityManager.NetworkCallback() {

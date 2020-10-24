@@ -5,13 +5,13 @@
     android:id="@+id/video_item_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:background="?attr/windowBackground"
+    android:background="?attr/windowBackground"
     android:focusableInTouchMode="true">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/detail_main_content"
         android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbarlayout"
@@ -54,8 +54,8 @@
                         android:layout_height="64dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
-                        app:srcCompat="@drawable/ic_play_arrow_shadow"
                         android:visibility="invisible"
+                        app:srcCompat="@drawable/ic_play_arrow_shadow"
                         tools:ignore="ContentDescription"
                         tools:visibility="visible" />
 
@@ -139,12 +139,11 @@
                         tools:progress="40"
                         tools:visibility="visible" />
 
-					<!-- Player will be inserted here in realtime -->
-					<FrameLayout
-						android:id="@+id/player_placeholder"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-					/>
+                    <!-- Player will be inserted here in realtime -->
+                    <FrameLayout
+                        android:id="@+id/player_placeholder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
                 </FrameLayout>
             </org.schabi.newpipe.views.CustomCollapsingToolbarLayout>
@@ -431,13 +430,13 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
                             android:contentDescription="@string/append_playlist"
-                            app:drawableTopCompat="?attr/ic_playlist_add"
                             android:focusable="true"
                             android:gravity="center"
                             android:paddingTop="6dp"
                             android:paddingBottom="6dp"
                             android:text="@string/controls_add_to_playlist_title"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableTopCompat="?attr/ic_playlist_add" />
 
                         <TextView
                             android:id="@+id/detail_controls_background"
@@ -448,13 +447,13 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
                             android:contentDescription="@string/play_audio"
-                            app:drawableTopCompat="?attr/ic_headset"
                             android:focusable="true"
                             android:gravity="center"
                             android:paddingTop="6dp"
                             android:paddingBottom="6dp"
                             android:text="@string/controls_background_title"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableTopCompat="?attr/ic_headset" />
 
                         <TextView
                             android:id="@+id/detail_controls_popup"
@@ -465,13 +464,13 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
                             android:contentDescription="@string/open_in_popup_mode"
-                            app:drawableTopCompat="?attr/ic_popup"
                             android:focusable="true"
                             android:gravity="center"
                             android:paddingTop="6dp"
                             android:paddingBottom="6dp"
                             android:text="@string/controls_popup_title"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableTopCompat="?attr/ic_popup" />
 
                         <TextView
                             android:id="@+id/detail_controls_download"
@@ -482,13 +481,13 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
                             android:contentDescription="@string/controls_download_desc"
-                            app:drawableTopCompat="?attr/ic_file_download"
                             android:focusable="true"
                             android:gravity="center"
                             android:paddingTop="6dp"
                             android:paddingBottom="6dp"
                             android:text="@string/download"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:drawableTopCompat="?attr/ic_file_download" />
 
                     </LinearLayout>
 
@@ -551,117 +550,117 @@
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-			app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-			<com.google.android.material.tabs.TabLayout
-				android:id="@+id/tablayout"
-				android:layout_width="match_parent"
-				android:layout_height="30dp"
-				android:layout_gravity="bottom|center"
-				app:tabBackground="@drawable/tab_selector"
-				app:tabGravity="center"
-				app:tabIndicatorHeight="0dp"/>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom|center"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp" />
 
-		</androidx.viewpager.widget.ViewPager>
+        </androidx.viewpager.widget.ViewPager>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-	<RelativeLayout
-		android:id="@+id/overlay_layout"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:alpha="0.9"
-		android:background="?attr/windowBackground" >
+    <RelativeLayout
+        android:id="@+id/overlay_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.9"
+        android:background="?attr/windowBackground">
 
-		<ImageButton
-			android:id="@+id/overlay_thumbnail"
-			android:layout_width="62dp"
-			android:layout_height="60dp"
-			android:layout_alignParentStart="true"
+        <ImageButton
+            android:id="@+id/overlay_thumbnail"
+            android:layout_width="62dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:background="@color/transparent_background_color"
+            android:contentDescription="@string/list_thumbnail_view_description"
+            android:gravity="center_vertical"
             android:paddingLeft="@dimen/video_item_search_padding"
             android:paddingRight="@dimen/video_item_search_padding"
-			android:scaleType="fitCenter"
-			android:gravity="center_vertical"
-			android:contentDescription="@string/list_thumbnail_view_description"
-			android:src="@drawable/dummy_thumbnail"
-			android:background="@color/transparent_background_color"/>
+            android:scaleType="fitCenter"
+            android:src="@drawable/dummy_thumbnail" />
 
-		<LinearLayout
-			android:id="@+id/overlay_metadata_layout"
-			android:layout_width="match_parent"
-			android:layout_height="60dp"
-			android:gravity="center_vertical"
-			android:orientation="vertical"
-			android:clickable="true"
-			android:focusable="true"
-			android:layout_toEndOf="@+id/overlay_thumbnail"
-			android:layout_toStartOf="@+id/overlay_buttons_layout"
-			tools:ignore="RtlHardcoded">
+        <LinearLayout
+            android:id="@+id/overlay_metadata_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_toStartOf="@+id/overlay_buttons_layout"
+            android:layout_toEndOf="@+id/overlay_thumbnail"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            tools:ignore="RtlHardcoded">
 
-			<TextView
-				android:id="@+id/overlay_title_text_view"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:ellipsize="marquee"
-				android:fadingEdge="horizontal"
-				android:marqueeRepeatLimit="marquee_forever"
-				android:scrollHorizontally="true"
-				android:singleLine="true"
-				android:textAppearance="?android:attr/textAppearanceLarge"
-				android:textSize="@dimen/video_item_search_title_text_size"
-				tools:ignore="RtlHardcoded"
-				tools:text="The Video Title LONG very LONVideo Title LONG very LONG"/>
+            <TextView
+                android:id="@+id/overlay_title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/video_item_search_title_text_size"
+                tools:ignore="RtlHardcoded"
+                tools:text="The Video Title LONG very LONVideo Title LONG very LONG" />
 
-			<TextView
-				android:id="@+id/overlay_channel_text_view"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:ellipsize="marquee"
-				android:fadingEdge="horizontal"
-				android:marqueeRepeatLimit="marquee_forever"
-				android:scrollHorizontally="true"
-				android:singleLine="true"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textSize="@dimen/video_item_search_uploader_text_size"
-				tools:text="The Video Artist  LONG very LONG very Long"/>
+            <TextView
+                android:id="@+id/overlay_channel_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="@dimen/video_item_search_uploader_text_size"
+                tools:text="The Video Artist  LONG very LONG very Long" />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<LinearLayout
-			android:id="@+id/overlay_buttons_layout"
-			android:layout_width="wrap_content"
-			android:layout_height="60dp"
-			android:gravity="center_vertical"
-			android:paddingLeft="@dimen/video_item_search_padding"
-			android:paddingRight="@dimen/video_item_search_padding"
-			android:layout_alignParentEnd="true"
-			tools:ignore="RtlHardcoded">
+        <LinearLayout
+            android:id="@+id/overlay_buttons_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/video_item_search_padding"
+            android:paddingRight="@dimen/video_item_search_padding"
+            tools:ignore="RtlHardcoded">
 
-		<ImageButton
-			android:id="@+id/overlay_play_pause_button"
-			android:layout_width="36dp"
-			android:layout_height="36dp"
-			android:layout_marginLeft="2dp"
-			android:layout_marginRight="2dp"
-			android:padding="10dp"
-			android:scaleType="center"
-			app:srcCompat="?attr/ic_play_arrow"
-			android:background="?attr/selectableItemBackground"
-			tools:ignore="ContentDescription,RtlHardcoded"/>
+            <ImageButton
+                android:id="@+id/overlay_play_pause_button"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:background="?attr/selectableItemBackground"
+                android:padding="10dp"
+                android:scaleType="center"
+                app:srcCompat="?attr/ic_play_arrow"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
-		<ImageButton
-			android:id="@+id/overlay_close_button"
-			android:layout_width="36dp"
-			android:layout_height="36dp"
-			android:layout_marginLeft="2dp"
-			android:padding="10dp"
-			android:scaleType="center"
-            app:srcCompat="?attr/ic_close"
-			android:background="?attr/selectableItemBackground"
-			tools:ignore="ContentDescription,RtlHardcoded"/>
+            <ImageButton
+                android:id="@+id/overlay_close_button"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="2dp"
+                android:background="?attr/selectableItemBackground"
+                android:padding="10dp"
+                android:scaleType="center"
+                app:srcCompat="?attr/ic_close"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
-		</LinearLayout>
+        </LinearLayout>
 
-	</RelativeLayout>
+    </RelativeLayout>
 
 </FrameLayout>

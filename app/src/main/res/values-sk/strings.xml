@@ -130,8 +130,6 @@
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
     <string name="use_external_video_player_summary">Odoberie audio pri niektorých rozlíšeniach</string>
-    <string name="popup_remember_size_pos_title">Zapamätať si parametre mini okna</string>
-    <string name="popup_remember_size_pos_summary">Zapamätať si posledné nastavenie veľkosti a pozície mini okna</string>
     <string name="player_gesture_controls_title">Ovládanie prehrávača gestami</string>
     <string name="player_gesture_controls_summary">Používať gestá pre kontrolu jasu a hlasitosti prehrávača</string>
     <string name="show_search_suggestions_title">Hľadať návrhy</string>
@@ -278,8 +276,6 @@
     <string name="play_queue_stream_detail">Podrobnosti</string>
     <string name="play_queue_audio_settings">Nastavenie zvuku</string>
     <string name="hold_to_append">Podržaním pridať do zoznamu</string>
-    <string name="enqueue_on_background">Zaradiť do zoznamu na pozadí</string>
-    <string name="enqueue_on_popup">Zaradiť do zoznamu pre mini okno</string>
     <string name="start_here_on_main">Prehrať odtiaľto</string>
     <string name="start_here_on_background">Prehrať (zvuk) odtiaľto na pozadí</string>
     <string name="start_here_on_popup">Začať prehrávanie v mini okne</string>
@@ -535,7 +531,7 @@
     <string name="subtitle_activity_recaptcha">Vyrieš a stlač \"Hotovo\"</string>
     <string name="recaptcha_done_button">Hotovo</string>
     <string name="videos_string">Videá</string>
-    <string name="new_seek_duration_toast">Pre obmedzenie ExoPlayera bolo prehľadávania nastavené na % d sekúnd</string>
+    <string name="new_seek_duration_toast">Pre obmedzenie ExoPlayera bolo prehľadávania nastavené na %d sekúnd</string>
     <string name="mute">Stlmiť</string>
     <string name="unmute">Povoliť</string>
     <string name="help">Pomoc</string>

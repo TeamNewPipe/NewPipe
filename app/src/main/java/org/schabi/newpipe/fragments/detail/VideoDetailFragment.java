@@ -80,6 +80,7 @@ import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.MainPlayer;
@@ -482,8 +483,14 @@ public class VideoDetailFragment
                 break;
             case R.id.detail_controls_playlist_append:
                 if (getFM() != null && currentInfo != null) {
-                    PlaylistAppendDialog.fromStreamInfo(currentInfo)
-                            .show(getFM(), TAG);
+
+                    final PlaylistAppendDialog d = PlaylistAppendDialog.fromStreamInfo(currentInfo);
+                    disposables.add(
+                        PlaylistAppendDialog.onPlaylistFound(getContext(),
+                            () -> d.show(getFM(), TAG),
+                            () -> PlaylistCreationDialog.newInstance(d).show(getFM(), TAG)
+                        )
+                    );
                 }
                 break;
             case R.id.detail_controls_download:
@@ -1563,7 +1570,8 @@ public class VideoDetailFragment
     }
 
     private void hideAgeRestrictedContent() {
-        showError(getString(R.string.restricted_video), false);
+        showError(getString(R.string.restricted_video,
+                getString(R.string.show_age_restricted_content_title)), false);
 
         if (relatedStreamsLayout != null) { // tablet
             relatedStreamsLayout.setVisibility(View.INVISIBLE);
@@ -2074,8 +2082,7 @@ public class VideoDetailFragment
         if (isClearingQueueConfirmationRequired(activity)
                 && playerIsNotStopped()
                 && activeQueue != null
-                && !activeQueue.equals(playQueue)
-                && activeQueue.getStreams().size() > 1) {
+                && !activeQueue.equals(playQueue)) {
             showClearingQueueConfirmation(onAllow);
         } else {
             onAllow.run();

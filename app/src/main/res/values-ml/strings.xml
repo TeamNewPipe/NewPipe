@@ -72,8 +72,6 @@
     <string name="start_here_on_popup">ഒരു പുതിയ പോപ്പ്അപ്പിൽ പ്ലേ ചെയ്യാൻ ആരംഭിക്കുക</string>
     <string name="start_here_on_background">പശ്ചാത്തലത്തിൽ പ്ലേ ആരംഭിക്കുക</string>
     <string name="start_here_on_main">ഇവിടെ പ്ലേ ആരംഭിക്കുക</string>
-    <string name="enqueue_on_popup">ഒരു പുതിയ പോപ്പ്അപ്പിൽ എൻ‌ക്യൂ ചെയ്യുക</string>
-    <string name="enqueue_on_background">പശ്ചാത്തലത്തിൽ എൻക്യൂ ചെയ്യുക</string>
     <string name="hold_to_append">എൻക്യൂ ചെയ്യാൻ പിടിക്കുക</string>
     <string name="play_queue_audio_settings">ഓഡിയോ ക്രമീകരണങ്ങൾ</string>
     <string name="play_queue_stream_detail">വിശദാംശങ്ങൾ</string>
@@ -220,7 +218,7 @@
     <string name="audio">ഓഡിയോ</string>
     <string name="video">വീഡിയോ</string>
     <string name="info_dir_created">\'%1$s\' ഡൗൺലോഡ് പട്ടിക നിലവിൽ വന്നു</string>
-    <string name="err_dir_create">ഡൗൺലോഡ് പട്ടിക ഉണ്ടാക്കാൻ സാധിച്ചില്ല</string>
+    <string name="err_dir_create">\'%1$s\' ഡൗൺലോഡ് പട്ടിക ഉണ്ടാക്കാൻ സാധിച്ചില്ല</string>
     <string name="detail_drag_description">പുനക്രമീകരിക്കാൻ വലിച്ചിടുക</string>
     <string name="empty_subscription_feed_subtitle">¡ഇബടെ ഒരു കുന്തോമില്ല!</string>
     <string name="search_no_results">ഫലങ്ങൾ ലഭ്യമല്ല</string>
@@ -400,8 +398,6 @@
     <string name="seek_duration_title">ഫാസ്റ്റ്-ഫോർവേർഡ്/റീവൈൻഡ് സമയദൈർഘ്യം</string>
     <string name="use_inexact_seek_title">Inexact seek ഉപയോഗിക്കുക</string>
     <string name="use_inexact_seek_summary">കുറഞ്ഞ കൃത്യതയോടെ സീക് ചെയ്യാൻ Inexact seek സഹായിക്കുന്നു. 5/15/25 സെക്കൻഡ് സീക്‌ ഈ മോഡിൽ പ്രവർത്തിക്കുകയില്ല.</string>
-    <string name="popup_remember_size_pos_summary">പോപ്പപ്പിന്റെ അവസാന വലുപ്പവും സ്ഥാനവും ഓർത്തിരിക്കുക</string>
-    <string name="popup_remember_size_pos_title">പോപ്പപ്പ് വലുപ്പവും സ്ഥാനവും ഓർത്തിരിക്കുക</string>
     <string name="black_theme_title">കട്ട ഇരുട്ട് തീം</string>
     <string name="dark_theme_title">ഡാർക്ക് തീം</string>
     <string name="light_theme_title">ലൈറ്റ് തീം</string>

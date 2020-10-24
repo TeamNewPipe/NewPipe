@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp"
     android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
     android:layout_marginTop="3dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="3dp"
+    android:focusable="true"
     android:minHeight="?listPreferredItemHeightSmall"
     android:orientation="horizontal"
-    android:focusable="true"
     app:cardCornerRadius="5dp"
     app:cardElevation="4dp">
 
@@ -29,23 +28,23 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             tools:ignore="ContentDescription,RtlHardcoded"
-            tools:src="?attr/ic_kiosk_hot"/>
+            tools:src="?attr/ic_kiosk_hot" />
 
         <TextView
             android:id="@+id/tabName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="6dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:layout_toLeftOf="@+id/handle"
             android:layout_toRightOf="@+id/tabIcon"
             android:ellipsize="end"
             android:maxLines="2"
             android:textAppearance="?textAppearanceListItem"
             tools:ignore="RtlHardcoded"
-            tools:text="Lorem ipsum dolor sit amet"/>
+            tools:text="Lorem ipsum dolor sit amet" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/handle"
@@ -53,11 +52,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:paddingBottom="12dp"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:paddingTop="12dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="12dp"
             app:srcCompat="?attr/ic_drag_handle"
-            tools:ignore="ContentDescription,RtlHardcoded"/>
+            tools:ignore="ContentDescription,RtlHardcoded" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

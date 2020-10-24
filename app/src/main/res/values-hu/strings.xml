@@ -122,8 +122,6 @@
     <string name="show_higher_resolutions_summary">Csak néhány eszköz tud lejátszani 2K/4K videókat</string>
     <string name="default_video_format_title">Alapértelmezett videó formátum</string>
     <string name="black_theme_title">Fekete</string>
-    <string name="popup_remember_size_pos_title">Jegyezze meg a felugró ablak helyét és méretét</string>
-    <string name="popup_remember_size_pos_summary">Jegyezze meg a felugró ablak előző helyét és méretét</string>
     <string name="show_search_suggestions_title">Keresési javaslatok</string>
     <string name="show_search_suggestions_summary">Mutasson javaslatokat keresés közben</string>
     <string name="enable_search_history_title">Keresési előzmények</string>
@@ -408,7 +406,7 @@
     <string name="max_retry_desc">A letöltés megszakítása előtti kísérletek maximális száma</string>
     <string name="max_retry_msg">Maximális próbálkozások</string>
     <string name="stop">Állj</string>
-    <string name="deleted_downloads">%1$s letöltés törölve</string>
+    <string name="deleted_downloads">%1$d letöltés törölve</string>
     <string name="delete_downloaded_files">Letöltött fájlok törlése</string>
     <string name="confirm_prompt">Törli a letöltési előzményeket, vagy törli az összes letöltött fájlt\?</string>
     <string name="clear_download_history">Letöltési előzmények törlése</string>

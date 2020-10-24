@@ -5,13 +5,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import androidx.preference.PreferenceManager;
+import android.icu.text.CompactDecimalFormat;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
+import androidx.preference.PreferenceManager;
 
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
@@ -184,6 +186,11 @@ public final class Localization {
     }
 
     public static String shortCount(final Context context, final long count) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            return CompactDecimalFormat.getInstance(getAppLocale(context),
+                    CompactDecimalFormat.CompactStyle.SHORT).format(count);
+        }
+
         final double value = (double) count;
         if (count >= 1000000000) {
             return localizeNumber(context, round(value / 1000000000, 1))

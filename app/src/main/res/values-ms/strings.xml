@@ -61,8 +61,6 @@
     <string name="light_theme_title">Cerah</string>
     <string name="dark_theme_title">Gelap</string>
     <string name="black_theme_title">Hitam</string>
-    <string name="popup_remember_size_pos_title">Mengingat saiz dan posisi popup</string>
-    <string name="popup_remember_size_pos_summary">Mengingat saiz dan posisi popup terakhir</string>
     <string name="use_inexact_seek_title">Gunakan tinjau laju tidak tepat</string>
     <string name="use_inexact_seek_summary">Membolehkan pemain untuk meninjau ke posisi lebih laju dengan kurang ketepatan</string>
     <string name="download_thumbnail_title">Muatkan thumbnail</string>
@@ -330,8 +328,6 @@
     <string name="play_queue_stream_detail">Butiran</string>
     <string name="play_queue_audio_settings">Tetapan Audio</string>
     <string name="hold_to_append">Pegang untuk beratur</string>
-    <string name="enqueue_on_background">Beratur apabila di latar belakang</string>
-    <string name="enqueue_on_popup">Beratur pada popup baru</string>
     <string name="start_here_on_main">Mula bermain di sini</string>
     <string name="start_here_on_background">Mula di sini apabila di latar belakang</string>
     <string name="start_here_on_popup">Mula di sini pada popup baru</string>

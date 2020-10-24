@@ -60,7 +60,8 @@
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Contenido restringido por edad</string>
     <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Se pueden realizar cambios futuros desde los ajustes.</string>
-    <string name="main_bg_subtitle">Toque «Buscar» para empezar</string>
+    <string name="main_bg_subtitle">Toque «Buscar» para empezar
+\n</string>
     <string name="autoplay_by_calling_app_title">Reproducción automática</string>
     <string name="autoplay_by_calling_app_summary">Reproducir un vídeo cuando NewPipe es llamado desde otra app</string>
     <string name="duration_live">En directo</string>
@@ -130,8 +131,6 @@
     <string name="filter">Filtro</string>
     <string name="refresh">Actualizar</string>
     <string name="clear">Limpiar</string>
-    <string name="popup_remember_size_pos_title">Recordar propiedades del reproductor emergente</string>
-    <string name="popup_remember_size_pos_summary">Recordar el último tamaño y posición del reproductor emergente</string>
     <string name="settings_category_popup_title">Emergente</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Elimina el audio en algunas resoluciones</string>
@@ -232,8 +231,6 @@
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="play_queue_audio_settings">Configuración de audio</string>
     <string name="unknown_content">[Desconocido]</string>
-    <string name="enqueue_on_background">Añadir a cola en segundo plano</string>
-    <string name="enqueue_on_popup">Añadir al reproductor emergente</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Reproducir en modo emergente</string>
@@ -619,7 +616,7 @@
     <string name="notification_action_shuffle">Orden aleatorio</string>
     <string name="notification_scale_to_square_image_title">Escalar miniatura a relación de aspecto 1:1</string>
     <string name="never">Nunca</string>
-    <string name="wifi_only">Solo en WiFi</string>
+    <string name="wifi_only">Solo en Wi-Fi</string>
     <string name="autoplay_summary">Comenzar reproducción automáticamente — %s</string>
     <string name="title_activity_play_queue">Reproducir cola</string>
     <string name="settings_category_notification_title">Notificación</string>

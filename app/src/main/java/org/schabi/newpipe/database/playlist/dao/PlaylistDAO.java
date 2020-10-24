@@ -33,4 +33,7 @@ public abstract class PlaylistDAO implements BasicDAO<PlaylistEntity> {
 
     @Query("DELETE FROM " + PLAYLIST_TABLE + " WHERE " + PLAYLIST_ID + " = :playlistId")
     public abstract int deletePlaylist(long playlistId);
+
+    @Query("SELECT COUNT(*) FROM " + PLAYLIST_TABLE)
+    public abstract Flowable<Long> getCount();
 }

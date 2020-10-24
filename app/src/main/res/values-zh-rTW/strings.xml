@@ -50,7 +50,8 @@
     <string name="download_path_audio_dialog_title">選擇音訊檔的下載資料夾</string>
     <string name="err_dir_create">無法建立下載目錄「%1$s」</string>
     <string name="info_dir_created">已建立下載目錄「%1$s」</string>
-    <string name="main_bg_subtitle">輕觸「搜尋」按鈕開始使用</string>
+    <string name="main_bg_subtitle">輕觸「搜尋」按鈕開始使用
+\n</string>
     <string name="open_in_popup_mode">以懸浮視窗開啟</string>
     <string name="use_external_video_player_summary">移除某些解析度的音訊</string>
     <string name="popup_mode_share_menu_title">懸浮視窗模式</string>
@@ -62,8 +63,6 @@
     <string name="show_higher_resolutions_summary">僅部份裝置可播放 2K/4K 影片</string>
     <string name="default_video_format_title">預設影片格式</string>
     <string name="black_theme_title">純黑</string>
-    <string name="popup_remember_size_pos_title">記住懸浮視窗屬性</string>
-    <string name="popup_remember_size_pos_summary">記住上次使用時懸浮視窗的大小和位置</string>
     <string name="player_gesture_controls_title">播放器手勢控制</string>
     <string name="player_gesture_controls_summary">使用手勢來控制播放器的亮度及音量</string>
     <string name="show_search_suggestions_title">搜尋建議</string>
@@ -253,8 +252,6 @@
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">詳細資訊</string>
     <string name="play_queue_audio_settings">音訊設定</string>
-    <string name="enqueue_on_background">在背景加入佇列</string>
-    <string name="enqueue_on_popup">在彈出式視窗中加入佇列</string>
     <string name="start_here_on_main">從這裡開始播放</string>
     <string name="start_here_on_background">在背景開始播放</string>
     <string name="start_here_on_popup">在彈出式視窗中開始播放</string>
@@ -604,7 +601,7 @@
     <string name="copy_for_github">複製格式化過的報告</string>
     <string name="search_showing_result_for">正在顯示結果：%s</string>
     <string name="never">從不</string>
-    <string name="wifi_only">僅在 WiFi 上</string>
+    <string name="wifi_only">僅在 Wi-Fi 上</string>
     <string name="autoplay_summary">自動開始播放 — %s</string>
     <string name="title_activity_play_queue">播放佇列</string>
     <string name="unsupported_url_dialog_message">無法識別 URL。要用其他應用程式開啟嗎？</string>

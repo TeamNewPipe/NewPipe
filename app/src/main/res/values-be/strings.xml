@@ -58,8 +58,6 @@
     <string name="light_theme_title">Светлая</string>
     <string name="dark_theme_title">Цёмная</string>
     <string name="black_theme_title">Чорная</string>
-    <string name="popup_remember_size_pos_title">Аднавіць акно</string>
-    <string name="popup_remember_size_pos_summary">Запамінаць памер і становішча ўсплываючага акна</string>
     <string name="use_inexact_seek_title">Хуткі пошук пазіцыі</string>
     <string name="use_inexact_seek_summary">Недакладны пошук дазваляе плэеру шукаць пазіцыю хутчэй, але менш дакладна</string>
     <string name="download_thumbnail_title">Загружаць мініяцюры</string>
@@ -316,8 +314,6 @@
     <string name="play_queue_stream_detail">Падрабязнасці</string>
     <string name="play_queue_audio_settings">Налады аўдыё</string>
     <string name="hold_to_append">Зацісніце, каб дадаць у чаргу</string>
-    <string name="enqueue_on_background">Дадаць ў чаргу \"У фоне\"</string>
-    <string name="enqueue_on_popup">Дадаць ў чаргу \"У акне\"</string>
     <string name="start_here_on_main">Пачаць адсюль у плэеры</string>
     <string name="start_here_on_background">Пачаць адсюль у фоне</string>
     <string name="start_here_on_popup">Пачаць адсюль у акне</string>

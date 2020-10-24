@@ -82,7 +82,8 @@
     <string name="report_error">Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">Live</string>
-    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen</string>
+    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen
+\n</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
@@ -128,9 +129,7 @@
     <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 2K/4K abspielen</string>
     <string name="controls_background_title">Hintergrund</string>
     <string name="controls_popup_title">Pop-up</string>
-    <string name="popup_remember_size_pos_title">Pop-up Eigenschaften merken</string>
     <string name="use_external_video_player_summary">Entfernt Tonspur bei manchen Auflösungen</string>
-    <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Helligkeit und Lautstärke mittels Gesten einstellen</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
@@ -236,8 +235,6 @@
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
     <string name="show_hold_to_append_title">„Zum Anhängen gedrückt halten“ Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
-    <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
-    <string name="enqueue_on_popup">In Warteschlange in einem Pop-up</string>
     <string name="start_here_on_main">Ab hier wiedergeben</string>
     <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
     <string name="start_here_on_popup">Wiedergabe in einem Pop-up starten</string>

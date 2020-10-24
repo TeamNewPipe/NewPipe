@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">יש ללחוץ על „חיפוש” כדי להתחיל</string>
+    <string name="main_bg_subtitle">יש לגעת ב־„חיפוש” כדי להתחיל
+\n</string>
     <string name="view_count_text">%1$s צפיות</string>
     <string name="upload_date_text">פורסם ב־%1$s</string>
     <string name="no_player_found">לא נמצאו נגני צפייה ישירה, להתקין את VLC\?</string>
@@ -45,8 +46,6 @@
     <string name="light_theme_title">בהיר</string>
     <string name="dark_theme_title">כהה</string>
     <string name="black_theme_title">שחור</string>
-    <string name="popup_remember_size_pos_title">שמירת מאפייני החלון הצף</string>
-    <string name="popup_remember_size_pos_summary">שמירת המיקום והגודל האחרונים של החלון הצף</string>
     <string name="player_gesture_controls_title">מחוות מגע לשליטה בנגן</string>
     <string name="player_gesture_controls_summary">שימוש במחוות כדי לשלוט בבהירות ובעצמת השמע של הנגן</string>
     <string name="show_search_suggestions_title">הצעות חיפוש</string>
@@ -245,8 +244,6 @@
     <string name="play_queue_stream_detail">פרטים</string>
     <string name="play_queue_audio_settings">אפשרויות שמע</string>
     <string name="hold_to_append">להחזיק כדי להוסיף לרשימת נגינה</string>
-    <string name="enqueue_on_background">להוסיף לרשימת הנגינה ברקע</string>
-    <string name="enqueue_on_popup">הוספה לתור בנגן צף</string>
     <string name="start_here_on_main">להתחיל לנגן מכאן</string>
     <string name="start_here_on_background">להתחיל לנגן ברקע</string>
     <string name="start_here_on_popup">להתחיל לנגן בנגן צף</string>
@@ -626,7 +623,7 @@
     <string name="channel_created_by">נוצר ע״י %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">תמונה ממוזערת של הערוץ</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">להציג רק מינויים שאינם בקבוצות</string>
-    <string name="playlist_page_summary">עמוד רשימת נגינה</string>
+    <string name="playlist_page_summary">עמוד רשימות נגינה</string>
     <string name="no_playlist_bookmarked_yet">אין עדיין סימניות ברשימת הנגינה</string>
     <string name="select_a_playlist">בחירת רשימת נגינה</string>
     <string name="error_report_open_github_notice">נא לבדוק אם כבר קיים דיווח על הקריסה שלך. יצירת דיווחים כפולים גוזלת מאתנו זמן שיכולנו להשקיע בתיקון התקלה עצמה.</string>

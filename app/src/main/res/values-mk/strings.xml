@@ -58,8 +58,6 @@
     <string name="light_theme_title">Светла</string>
     <string name="dark_theme_title">Темна</string>
     <string name="black_theme_title">Црна</string>
-    <string name="popup_remember_size_pos_title">Запамти го местото и големината на малиот прозорец</string>
-    <string name="popup_remember_size_pos_summary">Запамти ја последната големина и место на прозорчето</string>
     <string name="use_inexact_seek_title">Брзо, непрецизно премотување</string>
     <string name="use_inexact_seek_summary">Со непрецизното премотување се пребарува побрзо, но со намалена презицност.</string>
     <string name="download_thumbnail_title">Прочитај мали видео-сликички</string>
@@ -292,8 +290,6 @@
     <string name="play_queue_stream_detail">Детали</string>
     <string name="play_queue_audio_settings">Звучни поставки</string>
     <string name="hold_to_append">Задржи за ставање во листа</string>
-    <string name="enqueue_on_background">Додај во листата за заднинско пуштање</string>
-    <string name="enqueue_on_popup">Додај во листата за пуштање во прозорче</string>
     <string name="start_here_on_main">Пушти тука</string>
     <string name="start_here_on_background">Пушти тука во позадина</string>
     <string name="start_here_on_popup">Пушти тука во прозорче</string>

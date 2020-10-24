@@ -32,8 +32,6 @@ import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.view.DisplayCutout;
-import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -60,8 +58,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.DisplayCutoutCompat;
+import androidx.core.view.ViewCompat;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -72,6 +75,7 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nostra13.universalimageloader.core.assist.FailReason;
+
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -92,9 +96,9 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -105,7 +109,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static android.content.Context.WINDOW_SERVICE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
@@ -270,7 +273,7 @@ public class VideoPlayerImpl extends VideoPlayer
         super("MainPlayer" + TAG, service);
         this.service = service;
         this.shouldUpdateOnProgress = true;
-        this.windowManager = (WindowManager) service.getSystemService(WINDOW_SERVICE);
+        this.windowManager = ContextCompat.getSystemService(service, WindowManager.class);
         this.defaultPreferences = PreferenceManager.getDefaultSharedPreferences(service);
         this.resolver = new AudioPlaybackResolver(context, dataSource);
     }
@@ -498,16 +501,14 @@ public class VideoPlayerImpl extends VideoPlayer
                 settingsContentObserver);
         getRootView().addOnLayoutChangeListener(this);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            queueLayout.setOnApplyWindowInsetsListener((view, windowInsets) -> {
-                final DisplayCutout cutout = windowInsets.getDisplayCutout();
-                if (cutout != null) {
-                    view.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
-                            cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
-                }
-                return windowInsets;
-            });
-        }
+        ViewCompat.setOnApplyWindowInsetsListener(queueLayout, (view, windowInsets) -> {
+            final DisplayCutoutCompat cutout = windowInsets.getDisplayCutout();
+            if (cutout != null) {
+                view.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
+                        cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
+            }
+            return windowInsets;
+        });
 
         // PlaybackControlRoot already consumed window insets but we should pass them to
         // player_overlays too. Without it they will be off-centered
@@ -1765,13 +1766,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
         updateScreenSize();
 
-        final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(service);
         final float defaultSize = service.getResources().getDimension(R.dimen.popup_default_width);
         final SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(service);
-        popupWidth = popupRememberSizeAndPos
-                ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize)
-                : defaultSize;
+        popupWidth = sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize);
         popupHeight = getMinimumVideoHeight(popupWidth);
 
         popupLayoutParams = new WindowManager.LayoutParams(
@@ -1785,10 +1783,8 @@ public class VideoPlayerImpl extends VideoPlayer
 
         final int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
         final int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
-        popupLayoutParams.x = popupRememberSizeAndPos
-                ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
-        popupLayoutParams.y = popupRememberSizeAndPos
-                ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
+        popupLayoutParams.x = sharedPreferences.getInt(POPUP_SAVED_X, centerX);
+        popupLayoutParams.y = sharedPreferences.getInt(POPUP_SAVED_Y, centerY);
 
         checkPopupPositionBounds();
 
@@ -2201,6 +2197,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public WindowManager.LayoutParams getPopupLayoutParams() {
         return popupLayoutParams;
+    }
+
+    public MainPlayer.PlayerType getPlayerType() {
+        return playerType;
     }
 
     public float getScreenWidth() {

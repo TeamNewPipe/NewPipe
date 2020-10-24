@@ -14,7 +14,7 @@
         <item quantity="one">%d ⵜⵙⴷⵉⴷⵉⵜ</item>
         <item quantity="other">%d ⵜⵙⴷⵉⴷⵉⵏ</item>
     </plurals>
-    <string name="app_language_title">ⵜⵓⵜⵍⴰⵢⵜ ⵏ ⵓⵙⵏⵙⵉ</string>
+    <string name="app_language_title">ⵜⵓⵜⵍⴰⵢⵜ ⵏ ⵜⵙⵏⵙⵉ</string>
     <string name="close">ⵇⵇⵏ</string>
     <string name="minimize_on_exit_none_description">ⵡⴰⵍⵓ</string>
     <string name="playback_step">ⴰⵙⵓⵔⵉⴼ</string>
@@ -73,7 +73,7 @@
     <string name="downloads">ⵓⴳⴳⴰⵎⵏ</string>
     <string name="duration_live">ⵓⵙⵔⵉⴷ</string>
     <string name="settings_category_other_title">ⵢⴰⴹⵏ</string>
-    <string name="settings_category_video_audio_title">ⴰⴼⵉⴷⵢⵓ ⴷ ⵓⵎⵙⵍⴰⵢ</string>
+    <string name="settings_category_video_audio_title">ⴰⴼⵉⴷⵢⵓ ⴷ ⵉⵎⵙⵍⵉ</string>
     <string name="download_dialog_title">ⴰⴳⵎ</string>
     <string name="enable_watch_history_title">ⵥⵕ ⴰⵎⵣⵔⵓⵢ</string>
     <string name="enable_search_history_title">ⴰⵎⵣⵔⵓⵢ ⵏ ⵓⵔⵣⵣⵓ</string>
@@ -124,7 +124,10 @@
     <string name="screen_rotation">ⵓⵜⵓⵢ</string>
     <string name="choose_browser">ⵙⵜⵉ ⵉⵎⵉⵏⵉⴳ</string>
     <string name="search_showing_result_for">ⴰⵙⵎⴰⵍ ⵏ ⵜⴰⵢⴰⴼⵓⵜ ⵉ: %s</string>
-    <string name="did_you_mean">ⵎⵉⵏ ⵜⵅⵙⴷ ⴰⴷ ⵜⵜ ⵜⵉⵏⵉⴷ: %1$s\?</string>
+    <string name="did_you_mean">ⵎⵉⵏ ⵜⵅⵙⴷ ⴰⴷ ⵜⵉⵏⵉⴷ:\"%1$s\"\?</string>
     <string name="view_count_text">%1$s ⵏ ⵜⴰⵏⵏⴰⵢⵉⵏ</string>
-    <string name="main_bg_subtitle">ⴰⴷⵔ ⵅ \"ⵔⵣⵓ\"ⴰⴼⴰⴷ ⴰⴷ ⵜⵜⴰⵡⵍⴷ</string>
+    <string name="main_bg_subtitle">ⴰⴷⵔ ⵅ \"ⵔⵣⵓ\"ⴰⴼⴰⴷ ⴰⴷ ⵜⵜⴰⵡⵍⴷ
+\n</string>
+    <string name="show_comments_title">ⵙⴽⵏ ⵉⵅⴼⴰⵡⴰⵍⵏ</string>
+    <string name="theme_title">ⴰⵙⴳⵓⵎ</string>
 </resources>

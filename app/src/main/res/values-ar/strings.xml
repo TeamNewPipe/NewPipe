@@ -3,7 +3,7 @@
     <string name="background_player_playing_toast">يتم التشغيل في الخلفية</string>
     <string name="cancel">إلغاء</string>
     <string name="choose_browser">اختر المتصفح</string>
-    <string name="dark_theme_title">مظلم</string>
+    <string name="dark_theme_title">داكن</string>
     <string name="default_audio_format_title">صيغة الصوت الإفتراضية</string>
     <string name="default_resolution_title">الدقة الافتراضية</string>
     <string name="detail_dislikes_img_view_description">عدم الإعجاب</string>
@@ -15,7 +15,7 @@
     <string name="download_dialog_title">تنزيل</string>
     <string name="download_path_audio_dialog_title">اختر مجلد التنزيل للملفات الصوتية</string>
     <string name="download_path_audio_summary">يتم تخزين الملفات الصوتية التي تم تنزيلها هنا</string>
-    <string name="download_path_audio_title">مسار مجلد الصوتيات المحفوظة</string>
+    <string name="download_path_audio_title">مجلد الصوتيات المحفوظة</string>
     <string name="download_path_dialog_title">اختر مجلد التنزيل لملفات الفيديو</string>
     <string name="download_path_summary">يتم تخزين ملفات الفيديو التي تم تنزيلها هنا</string>
     <string name="download_path_title">مجلد تحميل الفيديو</string>
@@ -23,7 +23,7 @@
     <string name="info_dir_created">إنشاء دليل التحميل \'%1$s\'</string>
     <string name="install">تثبيت</string>
     <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تنصيبه؟</string>
-    <string name="light_theme_title">مضيء</string>
+    <string name="light_theme_title">فاتح</string>
     <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="no_player_found">لم يتم العثور على مشغل بث. تثبيت VLC؟</string>
@@ -31,7 +31,7 @@
     <string name="play_audio">الصوت</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
     <string name="screen_rotation">التدوير</string>
-    <string name="search">بحث</string>
+    <string name="search">البحث</string>
     <string name="content_language_title">اللغة الإفتراضية للمحتوى</string>
     <string name="settings">الإعدادات</string>
     <string name="settings_category_appearance_title">المظهر</string>
@@ -44,7 +44,7 @@
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر بتاريخ %1$s</string>
-    <string name="unsupported_url">رابط URL غير معتمد</string>
+    <string name="unsupported_url">رابط غير مدعوم</string>
     <string name="use_external_audio_player_title">استخدام مشغل صوت خارجي</string>
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
@@ -55,7 +55,8 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
     <string name="youtube_signature_decryption_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">انقر على \"بحث\" للبدء</string>
+    <string name="main_bg_subtitle">اضغط على \"بحث\" للبدء
+\n</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
@@ -63,8 +64,8 @@
     <string name="fragment_feed_title">ما الجديد</string>
     <string name="controls_background_title">في الخلفية</string>
     <string name="autoplay_by_calling_app_title">تشغيل تلقائي</string>
-    <string name="black_theme_title">اسود</string>
-    <string name="enable_watch_history_title">مراقبة السجل</string>
+    <string name="black_theme_title">أسود</string>
+    <string name="enable_watch_history_title">تاريخ المشاهدة</string>
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
     <string name="content">محتوى</string>
     <string name="downloads">التحميلات</string>
@@ -89,8 +90,6 @@
     <string name="show_higher_resolutions_title">عرض أعلى جودة</string>
     <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل مقاطع الفيديو 2K/4K</string>
     <string name="default_video_format_title">تنسيق الفيديو الافتراضي</string>
-    <string name="popup_remember_size_pos_title">تذكر خصائص النوافذ المنبثقة</string>
-    <string name="popup_remember_size_pos_summary">تذكر آخر مكان و حجم للنافذة المنبثقة</string>
     <string name="player_gesture_controls_title">اعدادات إيماءة المشغل</string>
     <string name="player_gesture_controls_summary">استخدم الإيماءات للتحكم في سطوع وصوت المشغل</string>
     <string name="show_search_suggestions_title">اقتراحات البحث</string>
@@ -156,12 +155,12 @@
     <string name="short_billion">بليون</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
-        <item quantity="zero">%s لا مشتركين</item>
+        <item quantity="zero">%s لا مشترِك</item>
         <item quantity="one">%s مشترِك</item>
         <item quantity="two">مشتركين</item>
         <item quantity="few">%s مشتركين</item>
         <item quantity="many">%s مشتركين</item>
-        <item quantity="other">%s الاشتراكات</item>
+        <item quantity="other">%s مشتركين</item>
     </plurals>
     <string name="no_views">دون مشاهدات</string>
     <string name="no_videos">لاتوجد فيديوهات</string>
@@ -253,8 +252,6 @@
     <string name="kiosk_page_summary">صفحة الكشك</string>
     <string name="select_a_kiosk">حدد كشك</string>
     <string name="kiosk">الكشك</string>
-    <string name="enqueue_on_background">إدراج في قائمة الانتظار في الخلفية</string>
-    <string name="enqueue_on_popup">إدراج في قائمة الانتظار على المنبثقة</string>
     <string name="start_here_on_background">ابدأ التشغيل في الخلفية</string>
     <string name="default_content_country_title">المحتوى الإفتراضي حسب البلد</string>
     <string name="toggle_orientation">تغيير الإتجاه</string>
@@ -267,7 +264,7 @@
     <string name="always">دائماً</string>
     <string name="just_once">مرة واحدة فقط</string>
     <string name="invalid_url_toast">العنوان خاطئ</string>
-    <string name="no_player_found_toast">لم يتم العثور على مشغل دفق (يمكنك تثبيت VLC لتشغيله).</string>
+    <string name="no_player_found_toast">لم يتم العثور على مشغل بث (يمكنك تثبيت VLC لتشغيله).</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
     <string name="import_data_summary">يتجاوز السجل والاشتراكات الحالية</string>
@@ -305,7 +302,7 @@
     <string name="controls_download_desc">تنزيل ملف البث</string>
     <string name="tab_bookmarks">الإشارات المرجعية</string>
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
-    <string name="use_inexact_seek_summary">الطلب غير الدقيق يسمح للمشغل بالبحث عن مواقع أسرع ودقة أقل. البحث عن 5 ,15 أو 25 ثانية لا يعمل مع هذا.</string>
+    <string name="use_inexact_seek_summary">الطلب غير الدقيق يسمح للمشغل بالبحث عن مواقع أسرع بدقة أقل. البحث عن 5 ,15 أو 25 ثانية لا يعمل مع هذا.</string>
     <string name="download_thumbnail_title">تحميل الصور المصغرة</string>
     <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
     <string name="file">الملف</string>
@@ -324,7 +321,7 @@
     <string name="export_ongoing">عملية التصدير جارية …</string>
     <string name="import_file_title">إستيراد ملف</string>
     <string name="import_soundcloud_instructions_hint">معرفك, soundcloud.com/هويتك</string>
-    <string name="download_thumbnail_summary">عند إيقاف تحميل أي صور مصغرة ، وتوفير البيانات واستخدام الذاكرة. تعمل التغييرات على محو ذاكرة التخزين المؤقت للصورة الموجودة على الذاكرة أو على القرص.</string>
+    <string name="download_thumbnail_summary">عند إيقاف تحميل أي صور مصغرة، وتوفير البيانات واستخدام الذاكرة. تعمل التغييرات على محو ذاكرة التخزين المؤقت للصورة الموجودة على الذاكرة أو على القرص.</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفية المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
@@ -510,26 +507,26 @@
     <string name="no_one_listening">لا أحد يستمع</string>
     <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق.</string>
     <plurals name="watching">
-        <item quantity="zero">مشاهد</item>
-        <item quantity="one">مشاهدة</item>
-        <item quantity="two">مشاهدة</item>
-        <item quantity="few">مشاهدات</item>
-        <item quantity="many">مشاهدات</item>
-        <item quantity="other">مشاهدات</item>
+        <item quantity="zero">%s مشاهدة</item>
+        <item quantity="one">%s مشاهدة</item>
+        <item quantity="two">%s مشاهدة</item>
+        <item quantity="few">%s مشاهدات</item>
+        <item quantity="many">%s مشاهدات</item>
+        <item quantity="other">%s مشاهدات</item>
     </plurals>
     <plurals name="listening">
-        <item quantity="zero">مستمع</item>
-        <item quantity="one">مستمع</item>
-        <item quantity="two">مستمعين</item>
-        <item quantity="few">مستمعين</item>
-        <item quantity="many">مستمعين</item>
-        <item quantity="other">مستمعين</item>
+        <item quantity="zero">%s الاستماع</item>
+        <item quantity="one">%s الاستماع</item>
+        <item quantity="two">%s مستمعين</item>
+        <item quantity="few">%s مستمعين</item>
+        <item quantity="many">%s مستمعين</item>
+        <item quantity="other">%s مستمعين</item>
     </plurals>
     <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
     <string name="peertube_instance_url_summary">حدد مثيلات PeerTube المفضلة لديك</string>
     <string name="peertube_instance_add_title">إضافة نموذج</string>
-    <string name="peertube_instance_add_help">أدخل عنوان URL للمثيل</string>
+    <string name="peertube_instance_add_help">أدخل عنوان للمثيل</string>
     <string name="peertube_instance_add_fail">لا يمكن التحقق من صحة المثال</string>
     <string name="peertube_instance_add_https_only">يتم دعم عناوين URL HTTPS فقط</string>
     <string name="peertube_instance_add_exists">مثيل الخادم موجود بالفعل</string>
@@ -652,19 +649,19 @@
     <string name="error_report_open_github_notice">يرجى التحقق مما إذا كانت هناك مشكلة في مناقشة تعطلك بالفعل. عند إنشاء تذاكر مكررة ، ستأخذ وقتًا منا يمكن أن نقضيه في إصلاح الخطأ الفعلي.</string>
     <string name="error_report_open_issue_button_text">تقرير على جيثب</string>
     <string name="copy_for_github">نسخ تقرير منسق</string>
-    <string name="search_showing_result_for">عرض النتائج ل : %s</string>
+    <string name="search_showing_result_for">إظهار النتائج ل %s</string>
     <string name="never">أبدا</string>
-    <string name="wifi_only">فقط على واي فاي</string>
+    <string name="wifi_only">فقط على شبكة Wi-Fi</string>
     <string name="autoplay_summary">بدء التشغيل تلقائياً — %s</string>
     <string name="title_activity_play_queue">تشغيل قائمة الانتظار</string>
     <string name="settings_category_notification_title">الاشعار</string>
-    <string name="unsupported_url_dialog_message">تعذر التعرف على URL. فتح باستخدام تطبيق آخر؟</string>
+    <string name="unsupported_url_dialog_message">تعذر التعرف على الرابط. فتح باستخدام تطبيق آخر؟</string>
     <string name="auto_queue_toggle">قائمة انتظار تلقائية</string>
     <string name="clear_queue_confirmation_description">سيتم استبدال قائمة انتظار للمشغل النشط</string>
     <string name="clear_queue_confirmation_summary">قد يؤدي التبديل من مشغل إلى آخر إلى استبدال قائمة الانتظار الخاصة بك</string>
     <string name="clear_queue_confirmation_title">طلب تأكيد قبل مسح قائمة الانتظار</string>
-    <string name="notification_action_nothing">لا شيئ</string>
-    <string name="notification_action_buffering">التخزين المؤقت</string>
+    <string name="notification_action_nothing">لا شيء</string>
+    <string name="notification_action_buffering">جارٍ التحميل</string>
     <string name="notification_action_shuffle">خلط</string>
     <string name="notification_action_repeat">كرر</string>
     <string name="notification_actions_at_most_three">يمكنك تحديد ثلاثة إجراءات كحد أقصى لإظهارها في الإشعار المضغوط!</string>

@@ -30,6 +30,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import androidx.core.content.ContextCompat;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -91,7 +93,7 @@ public final class MainPlayer extends Service {
             Log.d(TAG, "onCreate() called");
         }
         assureCorrectAppLanguage(this);
-        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        windowManager = ContextCompat.getSystemService(this, WindowManager.class);
 
         ThemeHelper.setTheme(this);
         createView();

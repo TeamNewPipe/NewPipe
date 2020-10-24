@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="64dp"
@@ -23,11 +22,11 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:paddingBottom="2dp"
             android:paddingTop="2dp"
+            android:paddingBottom="2dp"
             android:scaleType="fitCenter"
             tools:ignore="ContentDescription"
-            tools:src="?attr/ic_fastfood"/>
+            tools:src="?attr/ic_fastfood" />
 
         <TextView
             android:id="@+id/title"
@@ -43,6 +42,6 @@
             android:textSize="10sp"
             android:textStyle="bold"
             tools:ignore="SmallSp"
-            tools:text="ALL"/>
+            tools:text="ALL" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

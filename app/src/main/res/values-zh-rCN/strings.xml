@@ -209,8 +209,6 @@
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
     <string name="show_higher_resolutions_summary">仅某些设备支持播放2K / 4K视频</string>
     <string name="clear">清除</string>
-    <string name="popup_remember_size_pos_title">记住悬浮窗的尺寸与位置</string>
-    <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
     <string name="use_external_video_player_summary">隐藏部分没有音频的分辨率</string>
@@ -276,8 +274,6 @@
     <string name="play_queue_audio_settings">音频设置</string>
     <string name="hold_to_append">长按队列</string>
     <string name="unknown_content">[未知]</string>
-    <string name="enqueue_on_background">添加到后台部分队列</string>
-    <string name="enqueue_on_popup">添加至新悬浮窗列表</string>
     <string name="start_here_on_main">开始在此处开始播放</string>
     <string name="start_here_on_background">开始后台播放</string>
     <string name="start_here_on_popup">开始在新悬浮窗中播放</string>

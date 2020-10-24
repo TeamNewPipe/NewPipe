@@ -3,10 +3,10 @@
     <string name="cancel">Annuler</string>
     <string name="choose_browser">Choisir un navigateur</string>
     <string name="default_resolution_title">Définition par défaut</string>
-    <string name="did_you_mean">Vouliez-vous dire « %1$s » \?</string>
+    <string name="did_you_mean">Vouliez-vous dire « %1$s » \?</string>
     <string name="download">Télécharger</string>
     <string name="download_path_title">Dossier de téléchargement vidéo</string>
-    <string name="download_path_dialog_title">Veuillez choisir le dossier de téléchargement des fichiers vidéos</string>
+    <string name="download_path_dialog_title">Choisissez le dossier de téléchargement des vidéos</string>
     <string name="download_path_summary">Les vidéos téléchargées sont stockées ici</string>
     <string name="install">Installer</string>
     <string name="kore_not_found">Installer l’application Kore manquante \?</string>
@@ -18,7 +18,7 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
-    <string name="show_play_with_kodi_summary">Afficher une option pour lire une vidéo via Kodi</string>
+    <string name="show_play_with_kodi_summary">Affiche une option pour lire une vidéo avec Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Publiée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
@@ -47,7 +47,7 @@
     <string name="network_error">Erreur réseau</string>
     <string name="download_path_audio_title">Dossier de téléchargement audio</string>
     <string name="download_path_audio_summary">Les fichiers audios téléchargés sont stockés ici</string>
-    <string name="download_path_audio_dialog_title">Veuillez choisir le dossier de téléchargement des fichiers audios</string>
+    <string name="download_path_audio_dialog_title">Choisissez le dossier de téléchargement des fichiers audios</string>
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
     <string name="general_error">Erreur</string>
@@ -62,7 +62,7 @@
     <string name="light_parsing_error">Impossible d’analyser complètement le site web</string>
     <string name="live_streams_not_supported">Les flux en direct ne sont pas encore pris en charge</string>
     <string name="sorry_string">Désolé, une erreur est survenue.</string>
-    <string name="autoplay_by_calling_app_summary">Lire la vidéo lorsque NewPipe est lancée depuis une autre application</string>
+    <string name="autoplay_by_calling_app_summary">Lit la vidéo lorsque NewPipe est lancée depuis une autre application</string>
     <string name="error_report_button_text">Signaler cette erreur par courriel</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s’est passé :</string>
@@ -121,12 +121,10 @@
 \nutiliser le mode flottant</string>
     <string name="controls_background_title">Arrière-plan</string>
     <string name="controls_popup_title">Flottant</string>
-    <string name="default_popup_resolution_title">Définition de la fenêtre flottante par défaut</string>
+    <string name="default_popup_resolution_title">Définition par défaut de la fenêtre flottante</string>
     <string name="show_higher_resolutions_title">Afficher des définitions plus élevées</string>
-    <string name="show_higher_resolutions_summary">Seuls certains appareils prennent en charge les vidéos 2K et 4K</string>
+    <string name="show_higher_resolutions_summary">Seuls certains appareils peuvent lire les vidéos 2K et 4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
-    <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
-    <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
     <string name="settings_category_popup_title">Flottant</string>
     <string name="filter">Filtre</string>
     <string name="refresh">Rafraîchir</string>
@@ -233,8 +231,6 @@
     <string name="select_a_kiosk">Sélectionner un kiosque</string>
     <string name="kiosk">Kiosque</string>
     <string name="hold_to_append">Maintenir pour mettre en liste de lecture</string>
-    <string name="enqueue_on_background">Mettre en liste du lecteur en arrière-plan</string>
-    <string name="enqueue_on_popup">Mettre en liste d’une fenêtre flottante</string>
     <string name="start_here_on_main">Démarrer la lecture ici</string>
     <string name="start_here_on_background">Démarrer la lecture en arrière-plan</string>
     <string name="start_here_on_popup">Démarrer la lecture dans une fenêtre flottante</string>
@@ -317,7 +313,7 @@
     <string name="error_occurred_detail">Une erreur est survenue : %1$s</string>
     <string name="delete_one">Supprimer un seul média</string>
     <string name="drawer_header_action_paceholder_text">Quelque chose va bientôt apparaître ici ;D</string>
-    <string name="controls_download_desc">Télécharger le fichier de flux</string>
+    <string name="controls_download_desc">Télécharger le flux</string>
     <string name="auto_queue_title">Ajouter automatiquement le flux suivant à la liste de lecture</string>
     <string name="auto_queue_summary">Continue la liste de lecture (non répétitive) en ajoutant un flux lié</string>
     <string name="settings_category_debug_title">Débogage</string>
@@ -635,5 +631,5 @@
     <string name="notification_action_1_title">Deuxième bouton d\'action</string>
     <string name="notification_action_0_title">Premier bouton d\'action</string>
     <string name="notification_scale_to_square_image_summary">Mettre à l\'échelle la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1 (peut provoquer des déformations)</string>
-    <string name="notification_scale_to_square_image_title">Mettre à l\'échelle la miniature au format 1:1</string>
+    <string name="notification_scale_to_square_image_title">Dimensionner la miniature au format 1:1</string>
 </resources>

@@ -19,7 +19,7 @@
     <string name="default_resolution_title">デフォルトの解像度</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
     <string name="kore_not_found">Kore をインストールしますか？</string>
-    <string name="show_play_with_kodi_title">\"Kodi で再生\" オプションを表示</string>
+    <string name="show_play_with_kodi_title">「Kodi で再生」オプションを表示</string>
     <string name="show_play_with_kodi_summary">Kodi メディアセンター経由で動画を再生するための設定を表示します</string>
     <string name="play_audio">音声</string>
     <string name="default_audio_format_title">デフォルトの音声形式</string>
@@ -58,7 +58,7 @@
     <string name="could_not_setup_download_menu">保存メニューを設定できませんでした</string>
     <string name="live_streams_not_supported">生放送にはまだ対応していません</string>
     <string name="content">コンテンツ</string>
-    <string name="show_age_restricted_content_title">年齢制限のあるコンテンツを表示する</string>
+    <string name="show_age_restricted_content_title">年齢制限のあるコンテンツを表示</string>
     <string name="video_is_age_restricted">年齢制限された動画を表示しています。設定から許可することができます。</string>
     <string name="light_parsing_error">ウェブサイトを完全には解析できませんでした</string>
     <string name="could_not_get_stream">動画を取得できませんでした</string>
@@ -129,8 +129,6 @@
     <string name="filter">フィルター</string>
     <string name="refresh">更新</string>
     <string name="clear">クリア</string>
-    <string name="popup_remember_size_pos_title">ポップアップの属性を記憶</string>
-    <string name="popup_remember_size_pos_summary">ポップアップしたサイズと位置を記憶します</string>
     <string name="settings_category_popup_title">ポップアップ</string>
     <string name="popup_resizing_indicator_title">サイズを変更</string>
     <string name="use_external_video_player_summary">一部の解像度では音声がありません</string>
@@ -170,7 +168,7 @@
     <string name="resume_on_audio_focus_gain_title">再生の再開</string>
     <string name="resume_on_audio_focus_gain_summary">電話などによる中断の後、再生を再開します</string>
     <string name="settings_category_player_title">プレイヤー</string>
-    <string name="show_hold_to_append_summary">動画の詳細ページで、\"バックグラウンド\" または \"ポップアップ\" ボタンが押されたときにヒントを表示する</string>
+    <string name="show_hold_to_append_summary">動画の詳細ページで、「バックグラウンド」または「ポップアップ」ボタンが押されたときにヒントを表示する</string>
     <string name="settings_category_player_behavior_title">動作</string>
     <string name="settings_category_history_title">履歴とキャッシュ</string>
     <string name="playlist">プレイリスト</string>
@@ -253,7 +251,7 @@
     <string name="download_thumbnail_title">サムネイルを読み込む</string>
     <string name="thumbnail_cache_wipe_complete_notice">画像キャッシュを消去しました</string>
     <string name="metadata_cache_wipe_title">キャッシュを消去</string>
-    <string name="metadata_cache_wipe_summary">アプリ内のキャッシュをデータすべて削除します</string>
+    <string name="metadata_cache_wipe_summary">アプリ内のキャッシュデータをすべて削除します</string>
     <string name="metadata_cache_wipe_complete_notice">キャッシュが消去されました</string>
     <string name="auto_queue_title">関連動画を自動でキューに追加する</string>
     <string name="settings_category_debug_title">デバッグ</string>
@@ -318,8 +316,8 @@
     <string name="read_privacy_policy">プライバシーポリシーを確認</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
     <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません。</string>
-    <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します、このオプションを切り替えるとメモリおよびディスク上の画像キャッシュがクリアされます。</string>
-    <string name="auto_queue_summary">キューに関連動画を追加し続けて、再生を続ける(リピートしない場合)</string>
+    <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します。このオプションを切り替えるとメモリおよびディスク上の画像キャッシュがクリアされます。</string>
+    <string name="auto_queue_summary">キューに関連動画を追加しつつ、再生を続ける(リピートしない場合)</string>
     <string name="delete_view_history_alert">すべての再生履歴を削除しますか？</string>
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
     <string name="invalid_source">このファイル/コンテンツはありません</string>
@@ -339,16 +337,14 @@
     <string name="title_most_played">最も再生した動画</string>
     <string name="resize_zoom">ズーム</string>
     <string name="controls_add_to_playlist_title">プレイリスト</string>
-    <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示する</string>
+    <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示</string>
     <string name="tracks">トラック</string>
     <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレイヤーの通知</string>
     <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押ししてキューに追加</string>
-    <string name="enqueue_on_background">バックグラウンドのキューに追加</string>
-    <string name="enqueue_on_popup">ポップアップのキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
     <string name="drawer_header_action_paceholder_text">すぐにここに表示されます;D</string>
-    <string name="preferred_open_action_settings_title">お好みの \'開く\' アクション</string>
+    <string name="preferred_open_action_settings_title">お好みの「開く」アクション</string>
     <string name="preferred_open_action_settings_summary">コンテンツを開くときのデフォルト動作 — %s</string>
     <string name="resize_fit">フィット</string>
     <string name="resize_fill">全画面</string>
@@ -558,8 +554,8 @@
     <string name="feed_update_threshold_title">フィードの更新間隔</string>
     <string name="feed_update_threshold_summary">最後の更新後、登録チャンネルを更新すべきとするまでの時間 ― %s</string>
     <string name="feed_update_threshold_option_always_update">常に更新する</string>
-    <string name="feed_use_dedicated_fetch_method_title">利用可能な場合は専用フィードから取得</string>
-    <string name="feed_use_dedicated_fetch_method_summary">いくつかのサービスで利用可能、通常よりも高速ですが制限された情報が取得され、たいていの場合不完全です (例: 再生時間、種類、ライブ ステータスなどがない)。</string>
+    <string name="feed_use_dedicated_fetch_method_title">可能ならば専用フィードから取得</string>
+    <string name="feed_use_dedicated_fetch_method_summary">いくつかのサービスで利用可能。通常よりも高速ですが制限された情報が取得され、たいていの場合不完全です (例: 再生時間、種類、ライブ ステータスなどがない)。</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">高速モードを有効化</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">高速モードを無効化</string>
     <string name="feed_use_dedicated_fetch_method_help_text">フィードの読み込みが遅すぎると思いますか？ その場合、高速読み込みを有効化してみてください (設定、もしくは下のボタンを押して変更することができます)。
@@ -608,7 +604,7 @@
     <string name="clear_queue_confirmation_description">アクティブなプレイヤーのキューが入れ替わります</string>
     <string name="clear_queue_confirmation_summary">プレイヤーを別のプレイヤーに切り替えるとキューが置き換わる可能性があります</string>
     <string name="never">しない</string>
-    <string name="wifi_only">WiFi のみ</string>
+    <string name="wifi_only">Wi-Fi のみ</string>
     <string name="title_activity_play_queue">キューを再生</string>
     <string name="clear_queue_confirmation_title">キューをクリアする前に確認する</string>
     <string name="unsupported_url_dialog_message">URL を認識できませんでした。他のアプリで開きますか？</string>

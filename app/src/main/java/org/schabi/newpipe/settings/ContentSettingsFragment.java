@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceManager;
 
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -23,6 +23,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
@@ -78,6 +79,22 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredContentCountry(requireContext());
         initialLanguage = PreferenceManager
                 .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
+
+        final Preference clearCookiePref = findPreference(getString(R.string.clear_cookie_key));
+
+        clearCookiePref.setOnPreferenceClickListener(preference -> {
+            defaultPreferences.edit()
+                    .putString(getString(R.string.recaptcha_cookies_key), "").apply();
+            DownloaderImpl.getInstance().setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, "");
+            Toast.makeText(getActivity(), R.string.recaptcha_cookies_cleared,
+                    Toast.LENGTH_SHORT).show();
+            clearCookiePref.setVisible(false);
+            return true;
+        });
+
+        if (defaultPreferences.getString(getString(R.string.recaptcha_cookies_key), "").isEmpty()) {
+            clearCookiePref.setVisible(false);
+        }
     }
 
     @Override

@@ -37,8 +37,8 @@
     <string name="seek_duration_key" translatable="false">seek_duration</string>
     <string name="seek_duration_default_value" translatable="false">10000</string>
     <string-array name="seek_duration_description" translatable="false">
-    <!--   They are overridden in VideoAudioSettingsFragment.java if the translation
-    (seconds) exist. Otherwise this array is picked-->
+        <!--   They are overridden in VideoAudioSettingsFragment.java if the translation
+        (seconds) exist. Otherwise this array is picked-->
         <item>5 seconds</item>
         <item>10 seconds</item>
         <item>15 seconds</item>
@@ -166,6 +166,7 @@
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
+    <string name="show_memory_leaks_key" translatable="false">show_memory_leaks_key</string>
     <string name="allow_disposed_exceptions_key" translatable="false">allow_disposed_exceptions_key</string>
     <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_text_key</string>
 
@@ -244,6 +245,8 @@
 
     <string name="import_data" translatable="false">import_data</string>
     <string name="export_data" translatable="false">export_data</string>
+
+    <string name="clear_cookie_key" translatable="false">clear_cookie</string>
 
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 
@@ -1066,6 +1069,7 @@
         <item>lt</item>
         <item>mk</item>
         <item>ms</item>
+        <item>nap</item>
         <item>nb-no</item>
         <item>ne</item>
         <item>nl</item>
@@ -1075,8 +1079,10 @@
         <item>pl</item>
         <item>pt</item>
         <item>pt-br</item>
+        <item>pt-pt</item>
         <item>ro</item>
         <item>ru</item>
+        <item>sc</item>
         <item>sk</item>
         <item>sl</item>
         <item>sq</item>
@@ -1138,6 +1144,7 @@
         <item>Lietuvių kalba</item>
         <item>македонски јазик</item>
         <item>Bahasa Melayu</item>
+        <item>napulitano</item>
         <item>Norsk bokmål</item>
         <item>Nनेपाली</item>
         <item>Nederlands (NL)</item>
@@ -1145,10 +1152,12 @@
         <item>Occitan</item>
         <item>ਪੰਜਾਬੀ</item>
         <item>Polski</item>
-        <item>Português (PT)</item>
+        <item>Português</item>
         <item>Português (BR)</item>
+        <item>Português (PT)</item>
         <item>Română</item>
         <item>русский язык</item>
+        <item>sardu</item>
         <item>Slovenčina</item>
         <item>Slovenščina</item>
         <item>Shqip</item>

@@ -58,8 +58,6 @@
     <string name="light_theme_title">Claro</string>
     <string name="dark_theme_title">Escuro</string>
     <string name="black_theme_title">Negro</string>
-    <string name="popup_remember_size_pos_title">Lembrar o tamaño e a posición do «popup»</string>
-    <string name="popup_remember_size_pos_summary">Lembrar o tamaño e a posición anteriores do «popup»</string>
     <string name="use_inexact_seek_title">Usar un salto inexacto mais inexacto</string>
     <string name="use_inexact_seek_summary">Busca incorrecta permite ao xogador buscar posicións máis rápidas con precisión reducida. A busca de 5, 15 ou 25 segundos non funciona con isto.</string>
     <string name="download_thumbnail_title">Carregar miniaturas</string>
@@ -312,8 +310,6 @@
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="play_queue_audio_settings">Opcións de audio</string>
     <string name="hold_to_append">Manteña para colocalo na cola</string>
-    <string name="enqueue_on_background">Colocar na cola en segundo plano</string>
-    <string name="enqueue_on_popup">Executa nunha xanela emerxente</string>
     <string name="start_here_on_main">Comezar a reprodución aquí</string>
     <string name="start_here_on_background">Comezar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Comezar reproducindo nunha xanela emerxente</string>
@@ -437,7 +433,7 @@
     <string name="feed_group_dialog_select_subscriptions">Seleccionar subscricións</string>
     <string name="feed_processing_message">Procesando a transmisión…</string>
     <string name="feed_notification_loading">Cargando transmisión…</string>
-    <string name="feed_subscription_not_loaded_count">Non se cargou:% d</string>
+    <string name="feed_subscription_not_loaded_count">Non se cargou: %d</string>
     <string name="feed_oldest_subscription_update">Actualizada a última información: %s</string>
     <string name="feed_groups_header_title">Grupos da canle</string>
     <plurals name="days">
@@ -456,7 +452,7 @@
         <item quantity="one">%d segundo</item>
         <item quantity="other">%d segundos</item>
     </plurals>
-    <string name="new_seek_duration_toast">Debido ás restricións de ExoPlayer, a duración da busca estableceuse en% d segundos</string>
+    <string name="new_seek_duration_toast">Debido ás restricións de ExoPlayer, a duración da busca estableceuse en %d segundos</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Si, e visualizou parcialmente estes vídeos</string>
     <string name="remove_watched_popup_warning">Eliminaranse os vídeos vistos antes e despois de seren engadidos á lista de reprodución.
 \nEstás seguro\? Isto non se pode desfacer.!</string>

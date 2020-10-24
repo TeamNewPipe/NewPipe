@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">点击搜索按钮即可开始使用</string>
+    <string name="main_bg_subtitle">点击\"搜索\" 开始使用
+\n</string>
     <string name="view_count_text">%1$s 次观看</string>
     <string name="upload_date_text">发布于 %1$s</string>
     <string name="open_in_browser">在浏览器中打开</string>
@@ -209,8 +210,6 @@
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
     <string name="show_higher_resolutions_summary">仅某些设备支持播放2K / 4K视频</string>
     <string name="clear">清除</string>
-    <string name="popup_remember_size_pos_title">记住悬浮窗属性</string>
-    <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
     <string name="use_external_video_player_summary">隐藏部分没有音频的分辨率</string>
@@ -276,13 +275,11 @@
     <string name="play_queue_audio_settings">音频设置</string>
     <string name="hold_to_append">长按队列</string>
     <string name="unknown_content">[未知]</string>
-    <string name="enqueue_on_background">添加到后台部分队列</string>
-    <string name="enqueue_on_popup">加入悬浮窗队列</string>
     <string name="start_here_on_main">开始在此处开始播放</string>
     <string name="start_here_on_background">开始后台播放</string>
     <string name="start_here_on_popup">开始在悬浮窗中播放</string>
     <string name="donation_title">捐赠</string>
-    <string name="donation_encouragement">NewPipe 是由志愿者花费时间为您带来最佳体验开发的。回馈帮助开发人员在享用一杯咖啡的同时，让 NewPipe 变得更好。</string>
+    <string name="donation_encouragement">NewPipe是由志愿者开发的，他们利用自己的空闲时间为您带来最佳的用户体验。在开发者享受一杯咖啡的时候，回报他们，帮助他们让NewPipe变得更好。</string>
     <string name="give_back">反馈</string>
     <string name="website_title">网站</string>
     <string name="website_encouragement">请访问 NewPipe 网站了解更多信息和讯息。</string>
@@ -496,7 +493,8 @@
     </plurals>
     <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
-        <item quantity="other">％s 人在听</item>
+        <item quantity="one">%s 人在听</item>
+        <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
@@ -555,7 +553,7 @@
     <string name="feed_create_new_group_button_title">新建</string>
     <string name="settings_category_feed_title">订阅</string>
     <string name="feed_update_threshold_title">Feed更新阈值</string>
-    <string name="feed_update_threshold_summary">上次更新后，订阅被视为过时的时间-％s</string>
+    <string name="feed_update_threshold_summary">上次更新后，订阅被视为过时的时间-%s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>
     <string name="feed_use_dedicated_fetch_method_title">可用时从专用feed获取</string>
     <string name="feed_use_dedicated_fetch_method_summary">在某些服务中可用，通常速度要快得多，但可能返回的条目数量有限，而且信息通常不完整（例如，没有持续时间，条目类型，没有实时状态）。</string>
@@ -604,7 +602,7 @@
     <string name="copy_for_github">复制格式报告</string>
     <string name="search_showing_result_for">显示结果为：%s</string>
     <string name="never">永不</string>
-    <string name="wifi_only">仅在WiFi下</string>
+    <string name="wifi_only">仅在Wi-Fi下</string>
     <string name="autoplay_summary">自动开始回放 — %s</string>
     <string name="title_activity_play_queue">播放队列</string>
     <string name="unsupported_url_dialog_message">无法识别该url。用另一个应用程序打开它\?</string>

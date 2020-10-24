@@ -1,9 +1,8 @@
 package org.schabi.newpipe.local.subscription.item
 
-import android.view.View.GONE
 import android.view.View.OnClickListener
-import android.view.View.VISIBLE
 import androidx.annotation.DrawableRes
+import androidx.core.view.isVisible
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.header_with_menu_item.header_menu_item
@@ -47,6 +46,6 @@ class HeaderWithMenuItem(
     }
 
     private fun updateMenuItemVisibility(viewHolder: GroupieViewHolder) {
-        viewHolder.header_menu_item.visibility = if (showMenuItem) VISIBLE else GONE
+        viewHolder.header_menu_item.isVisible = showMenuItem
     }
 }

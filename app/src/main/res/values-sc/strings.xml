@@ -56,8 +56,6 @@
     <string name="start_here_on_popup">Incumintza a riproduire in una ventanedda</string>
     <string name="start_here_on_background">Incumintza a riproduire in s\'isfundu</string>
     <string name="start_here_on_main">Incumintza a riproduire inoghe</string>
-    <string name="enqueue_on_popup">Pone in s\'elencu in una ventanedda</string>
-    <string name="enqueue_on_background">Pone in s\'elencu in s\'isfundu</string>
     <string name="hold_to_append">Mantene incarcadu pro pònnere in s\'elencu</string>
     <string name="play_queue_audio_settings">Impostatziones àudio</string>
     <string name="play_queue_stream_detail">Detàllios</string>
@@ -189,14 +187,14 @@
     <string name="no_views">Peruna visualizatzione</string>
     <string name="subscribers_count_not_available">Contadore de sos iscritos non disponìbile</string>
     <plurals name="subscribers">
-        <item quantity="one">%s iscritos</item>
-        <item quantity="other">%s iscritu</item>
+        <item quantity="one">%s iscritu</item>
+        <item quantity="other">%s iscritos</item>
     </plurals>
     <string name="no_subscribers">Perunu iscritu</string>
     <string name="drawer_header_description">Allughe/istuda su servìtziu. Ischertadu como:</string>
     <string name="short_billion">Mrd</string>
     <string name="short_million">Mlln</string>
-    <string name="short_thousand">mil</string>
+    <string name="short_thousand">mìg</string>
     <string name="storage_permission_denied">In antis fruni s\'atzessu a sa memòria</string>
     <string name="retry">Torra a proare</string>
     <string name="audio">Àudio</string>
@@ -325,7 +323,7 @@
         <item quantity="one">%d segundos</item>
         <item quantity="other">%d segundu</item>
     </plurals>
-    <string name="new_seek_duration_toast">Pro more de sos lìmites de ExoPlayer sa longària de s\'iscostiamentu lestru est istada impostada a %s segundos</string>
+    <string name="new_seek_duration_toast">Pro more de sos lìmites de ExoPlayer sa longària de s\'iscostiamentu lestru est istada impostada a %d segundos</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Eja, e fintzas sos vìdeos pompiados in parte</string>
     <string name="remove_watched_popup_warning">Sos vìdeos pompiados in antis e a pustis de los àere annànghidos a s\'iscalita ant a èssere bogados.
 \n Seguru ses\? Custu no est reversìbile!</string>
@@ -349,7 +347,7 @@
     <string name="max_retry_desc">Nùmeru màssimu de tentativos in antis chi s\'annullet s\'iscarrigamentu</string>
     <string name="max_retry_msg">Tentativos màssimos</string>
     <string name="stop">Firma</string>
-    <string name="deleted_downloads">%1$s iscarrigamentos iscantzellados</string>
+    <string name="deleted_downloads">%1$d iscarrigamentos iscantzellados</string>
     <string name="delete_downloaded_files">Iscantzella sos documentos iscarrigados</string>
     <string name="confirm_prompt">Cheres isboidare sa cronologia de sos iscarrigamentos tuos o iscantzellare totu sos documentos iscarrigados\?</string>
     <string name="clear_download_history">Isbòida sa cronologia de sos iscarrigamentos</string>
@@ -551,7 +549,6 @@
     <string name="seek_duration_title">Longària de s\'avantzamentu e de sa torrada in segus lestros</string>
     <string name="use_inexact_seek_summary">Su moimentu inesatu permitit a su riproduidore de si mòere cara a una positzione in manera prus lestra ma prus pagu pretzisa. Su de si mòere de 5, 15 o 25 segundos non funtzionat, cun custa optzione.</string>
     <string name="use_inexact_seek_title">Imprea su moimentu inesatu lestru</string>
-    <string name="popup_remember_size_pos_title">Ammenta sas propriedades de sa ventanedda</string>
     <string name="black_theme_title">Nieddu</string>
     <string name="dark_theme_title">Iscuru</string>
     <string name="light_theme_title">Craru</string>
@@ -635,5 +632,4 @@
     <string name="notification_action_1_title">Su de duos butones de atzione</string>
     <string name="notification_action_0_title">Su de unu butone de atzione</string>
     <string name="notification_scale_to_square_image_title">Pone in iscala sa miniadura in formadu 1:1</string>
-    <string name="popup_remember_size_pos_summary">Ammenta s\'ùrtima mannària e sa positzione in sa ventanedda</string>
 </resources>

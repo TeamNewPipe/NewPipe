@@ -124,8 +124,6 @@
     <string name="show_higher_resolutions_summary">Лише деякі пристрої можуть відтворювати 2K/4K-відео</string>
     <string name="show_higher_resolutions_title">Показувати вищі роздільні здатності</string>
     <string name="default_video_format_title">Типовий формат відео</string>
-    <string name="popup_remember_size_pos_title">Пам\'ятати розмір і позицію вікна</string>
-    <string name="popup_remember_size_pos_summary">Пам\'ятати останній розмір і позицію вікна</string>
     <string name="player_gesture_controls_title">Жести керування програвачем</string>
     <string name="player_gesture_controls_summary">Контролювати яскравость та гучність програвача жестами</string>
     <string name="show_search_suggestions_title">Пошукові пропозиції</string>
@@ -289,8 +287,6 @@
     <string name="trending">Набуває популярності</string>
     <string name="play_queue_remove">Видалити</string>
     <string name="hold_to_append">Утримуйте, щоб додати в чергу</string>
-    <string name="enqueue_on_background">Додати до фону</string>
-    <string name="enqueue_on_popup">Додати до вікна</string>
     <string name="start_here_on_main">Розпочати програвання звідси</string>
     <string name="start_here_on_background">Розпочати програвання на фоні</string>
     <string name="start_here_on_popup">Розпочати програванні у вікні</string>

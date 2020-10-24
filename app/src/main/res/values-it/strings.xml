@@ -60,7 +60,8 @@
     <string name="content">Contenuti</string>
     <string name="show_age_restricted_content_title">Contenuti con Restrizioni di Età</string>
     <string name="video_is_age_restricted">Mostra video con restrizioni di età. È possibile modificare questa opzione nelle Impostazioni.</string>
-    <string name="main_bg_subtitle">Tocca \"Cerca\" per iniziare</string>
+    <string name="main_bg_subtitle">Tocca \"Cerca\" per iniziare
+\n</string>
     <string name="autoplay_by_calling_app_title">Riproduzione Automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video quando NewPipe viene aperto da un\'altra app</string>
     <string name="duration_live">Diretta</string>
@@ -125,8 +126,6 @@
     <string name="show_higher_resolutions_title">Mostra Altre Risoluzioni</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato Video Predefinito</string>
-    <string name="popup_remember_size_pos_title">Ricorda Poprietà Popup</string>
-    <string name="popup_remember_size_pos_summary">Ricorda dimensione e posizione della finestra Popup</string>
     <string name="player_gesture_controls_title">Controllo Gesti Lettore Multimediale</string>
     <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume del lettore multimediale</string>
     <string name="show_search_suggestions_title">Suggerimenti Ricerca</string>
@@ -234,8 +233,6 @@
     <string name="play_queue_audio_settings">Impostazioni Audio</string>
     <string name="hold_to_append">Tenere premuto per accodare</string>
     <string name="unknown_content">[Sconosciuto]</string>
-    <string name="enqueue_on_background">Accoda in Sottofondo</string>
-    <string name="enqueue_on_popup">Accoda in Popup</string>
     <string name="start_here_on_main">Inizia la riproduzione qui</string>
     <string name="start_here_on_background">Avvia in Sottofondo</string>
     <string name="start_here_on_popup">Avvia in Popup</string>

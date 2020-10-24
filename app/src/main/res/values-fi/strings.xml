@@ -53,8 +53,6 @@
     <string name="light_theme_title">Kirkas</string>
     <string name="dark_theme_title">Tumma</string>
     <string name="black_theme_title">Musta</string>
-    <string name="popup_remember_size_pos_title">Muista ponnahdusikkunan ominaisuudet</string>
-    <string name="popup_remember_size_pos_summary">Muista ponnahdusikkunan viimeisin koko ja sijainti</string>
     <string name="player_gesture_controls_title">Soittimen eleohjaus</string>
     <string name="player_gesture_controls_summary">Käytä eleitä ohjataksesi soittimen kirkkautta ja äänentasoa</string>
     <string name="show_search_suggestions_title">Hakuehdotukset</string>
@@ -234,8 +232,6 @@
     <string name="hold_to_append">Pidä pohjassa lisätäksesi jonoon</string>
     <string name="show_hold_to_append_title">Näytä vihje soittolistaan lisäämiseksi</string>
     <string name="unknown_content">[Tuntematon]</string>
-    <string name="enqueue_on_background">Lisää taustatoistojonoon</string>
-    <string name="enqueue_on_popup">Lisää ponnahdusikkunajonoon</string>
     <string name="start_here_on_main">Aloita toistaminen tässä</string>
     <string name="start_here_on_background">Aloita toisto taustalla</string>
     <string name="start_here_on_popup">Aloita toisto ponnahdusikkunassa</string>
@@ -504,7 +500,7 @@
     <string name="feed_use_dedicated_fetch_method_summary">Saatavilla joissakin palveluissa, on yleensä paljon nopeampi, mutta voi palauttaa rajallisen määrän sisältöä ja usein epätäydelliset tiedot (esim. ei kestoa, ei sisällön tyyppiä, ei livestatusta).</string>
     <string name="feed_use_dedicated_fetch_method_title">Hae erityisestä syötteestä, kun sellainen on saatavilla</string>
     <string name="feed_update_threshold_option_always_update">Päivitä aina</string>
-    <string name="feed_update_threshold_summary">Edellisestä päivityksestä kulunut aika, jonka jälkeen tilaus katsotaan vanhentuneeksi</string>
+    <string name="feed_update_threshold_summary">Edellisestä päivityksestä kulunut aika, jonka jälkeen tilaus katsotaan vanhentuneeksi—%s</string>
     <string name="feed_update_threshold_title">Syötteen päivitysväli</string>
     <string name="settings_category_feed_title">Syöte</string>
     <string name="feed_create_new_group_button_title">Uusi</string>
@@ -614,7 +610,7 @@
     <string name="copy_for_github">Kopioi muotoiltu raportti</string>
     <string name="search_showing_result_for">Näytetään tulokset haulle: %s</string>
     <string name="never">Ei koskaan</string>
-    <string name="wifi_only">Vain WiFi-verkossa</string>
+    <string name="wifi_only">Vain Wi-Fi-verkossa</string>
     <string name="autoplay_summary">Aloita toisto automaattisesti — %s</string>
     <string name="title_activity_play_queue">Toistojono</string>
     <string name="settings_category_notification_title">Ilmoitus</string>

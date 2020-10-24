@@ -134,8 +134,6 @@
     <string name="fragment_feed_title">Hva er nytt</string>
     <string name="controls_background_title">Bakgrunn</string>
     <string name="controls_popup_title">Oppsprett</string>
-    <string name="popup_remember_size_pos_title">Husk oppsprettsegenskaper</string>
-    <string name="popup_remember_size_pos_summary">Husk siste størrelse og posisjon for oppsprettsvinduet</string>
     <string name="show_search_suggestions_title">Søkeforslag</string>
     <string name="show_search_suggestions_summary">Vis søkeforslag ved søk</string>
     <string name="enable_search_history_title">Søkehistorikk</string>
@@ -234,8 +232,6 @@
     <string name="feed_page_summary">Strømside</string>
     <string name="no_channel_subscribed_yet">Abonnerer ikke på noen kanaler enda</string>
     <string name="trending">På vei opp</string>
-    <string name="enqueue_on_background">Legg i kø i bakgrunnen</string>
-    <string name="enqueue_on_popup">Legg i kø i et oppsprett</string>
     <string name="start_here_on_main">Start avspilling her</string>
     <string name="start_here_on_background">Start avspilling i bakgrunnen</string>
     <string name="start_here_on_popup">Start avspilling i et oppsprett</string>

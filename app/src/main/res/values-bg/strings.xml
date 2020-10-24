@@ -52,8 +52,6 @@
     <string name="light_theme_title">Светла</string>
     <string name="dark_theme_title">Тъмна</string>
     <string name="black_theme_title">Черна</string>
-    <string name="popup_remember_size_pos_title">Помни размера и позицията на прозореца</string>
-    <string name="popup_remember_size_pos_summary">Използвай размера и позицията на прозореца от предишния път</string>
     <string name="player_gesture_controls_title">Контролиране на плейъра чрез жестове</string>
     <string name="player_gesture_controls_summary">Позволи използване на жестове за контрол на яркостта и силата на звука на плейъра</string>
     <string name="show_search_suggestions_title">Предложения за търсене</string>
@@ -309,8 +307,6 @@
     <string name="play_queue_stream_detail">Детайли</string>
     <string name="play_queue_audio_settings">Аудио настройки</string>
     <string name="hold_to_append">Задръжте, за да поставите на опашката</string>
-    <string name="enqueue_on_background">На опашката при „фонов режим“</string>
-    <string name="enqueue_on_popup">На опашката при „режим в прозорец“</string>
     <string name="start_here_on_main">Възпроизвеждане от тук</string>
     <string name="start_here_on_background">Възпроизвеждане от тук при фонов режим</string>
     <string name="start_here_on_popup">Възпроизвеждане от тук при прозорец</string>

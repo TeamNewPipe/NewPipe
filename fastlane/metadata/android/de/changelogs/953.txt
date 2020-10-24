@@ -1,0 +1,1 @@
+Korrektur der Extraktion der Entschlüsselungsfunktion von YouTube.

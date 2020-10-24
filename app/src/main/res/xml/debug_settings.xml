@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="general_preferences"
     android:title="@string/settings_category_debug_title">
 
     <SwitchPreferenceCompat
-        app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/allow_heap_dumping_key"
+        android:summary="@string/enable_leak_canary_summary"
         android:title="@string/leakcanary"
-        android:summary="@string/enable_leak_canary_summary"/>
+        app:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/show_memory_leaks_key"
+        android:title="@string/show_memory_leaks"
+        app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
-        app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/allow_disposed_exceptions_key"
+        android:summary="@string/enable_disposed_exceptions_summary"
         android:title="@string/enable_disposed_exceptions_title"
-        android:summary="@string/enable_disposed_exceptions_summary"/>
+        app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
-        app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/show_original_time_ago_key"
+        android:summary="@string/show_original_time_ago_summary"
         android:title="@string/show_original_time_ago_title"
-        android:summary="@string/show_original_time_ago_summary"/>
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>

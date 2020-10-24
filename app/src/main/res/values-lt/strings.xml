@@ -45,8 +45,6 @@
     <string name="light_theme_title">Šviesi</string>
     <string name="dark_theme_title">Tamsi</string>
     <string name="black_theme_title">Juoda</string>
-    <string name="popup_remember_size_pos_title">Prisiminti iššokančio lango dydį ir vietą</string>
-    <string name="popup_remember_size_pos_summary">Prisiminti paskutinį iššokančio lango dydį ir vietą</string>
     <string name="player_gesture_controls_title">Grotuvo valdymas gestais</string>
     <string name="player_gesture_controls_summary">Naudokite gestus valdyti grotuvo ryškumą ir garsumą</string>
     <string name="show_search_suggestions_title">Paieškos nuspėjimai</string>
@@ -242,8 +240,6 @@
     <string name="play_queue_stream_detail">Detalės</string>
     <string name="play_queue_audio_settings">Garso nustatymai</string>
     <string name="hold_to_append">Laikykite kad įtraukti į eilę</string>
-    <string name="enqueue_on_background">Įtrauktį į foninio grotuvo eilę</string>
-    <string name="enqueue_on_popup">Įtraukti į langelio rėžimo grotuvo eilę</string>
     <string name="start_here_on_main">Pradėti groti čia</string>
     <string name="start_here_on_background">Pradėti groti čia foniniame rėžime</string>
     <string name="start_here_on_popup">Pradėti groti čia langelio grotuvo rėžime</string>
