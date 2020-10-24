@@ -314,7 +314,7 @@
     <string name="delete_all_history_prompt">是否确实要从历史记录中删除所有项目？</string>
     <string name="title_last_played">最后播放</string>
     <string name="title_most_played">播放最多</string>
-    <string name="always_ask_open_action">总是寻问</string>
+    <string name="always_ask_open_action">总是询问</string>
     <string name="create_playlist">新建播放列表</string>
     <string name="delete_playlist">删除</string>
     <string name="rename_playlist">重 命名</string>
