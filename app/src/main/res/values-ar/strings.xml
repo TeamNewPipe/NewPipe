@@ -673,4 +673,9 @@
     <string name="notification_action_0_title">زر الإجراء الأول</string>
     <string name="notification_scale_to_square_image_summary">قياس الصورة المصغرة للفيديو المعروض في الإشعار من 16: 9 إلى 1: 1 نسبة العرض إلى الارتفاع (قد يؤدي إلى تشوهات)</string>
     <string name="notification_scale_to_square_image_title">مقياس الصورة المصغرة إلى نسبة عرض إلى ارتفاع 1: 1</string>
+    <string name="clear_cookie_summary">امسح ملفات تعريف الارتباط التي يخزنها NewPipe عند حل reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">تم مسح ملفات تعريف الارتباط reCAPTCHA</string>
+    <string name="clear_cookie_title">امسح ملفات تعريف الارتباط reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">يوفر YouTube \"وضع تقييد المحتوى\" الذي يخفي المحتوى المحتمل للكبار.</string>
+    <string name="show_age_restricted_content_summary">عرض المحتوى الذي يُحتمل أن يكون غير مناسب للأطفال لأن له حدًا عمريًا (مثل 18+).</string>
 </resources>
