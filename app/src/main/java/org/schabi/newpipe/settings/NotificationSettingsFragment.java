@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
@@ -247,7 +248,7 @@ public class NotificationSettingsFragment extends Fragment {
                         } else {
                             drawable.mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
                         }
-                        radioButton.setCompoundDrawablesWithIntrinsicBounds(
+                        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(radioButton,
                                 null, null, drawable, null);
                     }
                 }
