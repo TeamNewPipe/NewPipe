@@ -745,6 +745,10 @@ public abstract class BasePlayer implements
     }
 
     public void triggerProgressUpdate() {
+        triggerProgressUpdate(false);
+    }
+
+    public void triggerProgressUpdate(final boolean isRewind) {
         if (simpleExoPlayer == null) {
             return;
         }
@@ -761,13 +765,19 @@ public abstract class BasePlayer implements
                 return;
             }
 
-            final int skipTo = (int) Math.ceil((segment.endTime));
+            int skipTarget = isRewind
+                    ? (int) Math.ceil((segment.startTime)) - 1
+                    : (int) Math.ceil((segment.endTime));
+
+            if (skipTarget < 0) {
+                skipTarget = 0;
+            }
 
             // temporarily force EXACT seek parameters to prevent infinite skip looping
             final SeekParameters seekParams = simpleExoPlayer.getSeekParameters();
             simpleExoPlayer.setSeekParameters(SeekParameters.EXACT);
 
-            seekTo(skipTo);
+            seekTo(skipTarget);
 
             simpleExoPlayer.setSeekParameters(seekParams);
 
@@ -807,7 +817,7 @@ public abstract class BasePlayer implements
 
             if (DEBUG) {
                 Log.d("SPONSOR_BLOCK", "Skipped segment: currentProgress = ["
-                        + currentProgress + "], skipped to = [" + skipTo + "]");
+                        + currentProgress + "], skipped to = [" + skipTarget + "]");
             }
         }
     }
@@ -1357,7 +1367,7 @@ public abstract class BasePlayer implements
             Log.d(TAG, "onFastRewind() called");
         }
         seekBy(-getSeekDuration());
-        triggerProgressUpdate();
+        triggerProgressUpdate(true);
     }
 
     public void onFastForward() {
