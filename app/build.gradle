@@ -86,7 +86,7 @@ android {
 
 ext {
     icepickVersion = '3.2.0'
-    checkstyleVersion = '8.32'
+    checkstyleVersion = '8.36.2'
     stethoVersion = '1.5.1'
     leakCanaryVersion = '2.2'
     exoPlayerVersion = '2.11.8'
