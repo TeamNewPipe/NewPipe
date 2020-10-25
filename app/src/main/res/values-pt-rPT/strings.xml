@@ -83,9 +83,9 @@
     <string name="downloads">Descargas</string>
     <string name="feed_processing_message">A processar…</string>
     <string name="volume_gesture_control_title">Gestos para controlo de volume</string>
-    <string name="restricted_video">Este vídeo é de idade restrita.
+    <string name="restricted_video">Este vídeo é de restrita à idade.
 \n
-\nPara o poder ver, tem que ativar \"Conteúdo com restrição de idade\" nas definições.</string>
+\nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
     <string name="read_full_license">Ver licença</string>
     <string name="help">Ajuda</string>
     <string name="peertube_instance_add_https_only">Apenas pode usar URL no formato HTTPS</string>
@@ -95,7 +95,7 @@
     <string name="delete_playback_states_alert">Remover todas as posições de reprodução\?</string>
     <string name="switch_view">Trocar de vista</string>
     <string name="enable_queue_limit">Limitar fila de descargas</string>
-    <string name="show_age_restricted_content_title">Conteúdo com restrição de idade</string>
+    <string name="show_age_restricted_content_title">Mostrar conteúdo com restrição de idade</string>
     <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, não recolhe quaisquer dados sem o seu consentimento.
 \nA polícia de privacidade do NewPipe explica, em detalhe, os tipos de dados enviados sempre que submete um relatório de erro.</string>
     <string name="file">Ficheiro</string>
@@ -142,7 +142,7 @@
     <string name="share">Partilhar</string>
     <string name="read_privacy_policy">Ver política de privacidade</string>
     <string name="player_unrecoverable_failure">Ocorreu um erro compulsivo do reprodutor</string>
-    <string name="youtube_restricted_mode_enabled_title">Modo restrito do YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Ligar o \"Modo Restringido\" do YouTube</string>
     <string name="invalid_directory">Pasta inexistente</string>
     <string name="all">Tudo</string>
     <string name="sorry_string">Bolas, isto não deveria ter acontecido.</string>
@@ -635,4 +635,12 @@
     <string name="notification_action_0_title">Primeiro botão de ação</string>
     <string name="notification_scale_to_square_image_summary">Ajustar miniatura de vídeo mostrada na notificação de 16:9 para 1:1 (pode introduzir distorções)</string>
     <string name="notification_scale_to_square_image_title">Ajustar miniatura à proporção de 1:1</string>
+    <string name="show_memory_leaks">Mostrar vazamentos de memória</string>
+    <string name="enqueued">Enfileirado</string>
+    <string name="enqueue_stream">Pôr na fila</string>
+    <string name="clear_cookie_summary">Limpar cookies que NewPipe armazena quando resolve um reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Os cookies reCAPTCHA foram limpos</string>
+    <string name="clear_cookie_title">Limpar cookies reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">O YouTube fornece um \"Modo Restrito\" que oculta conteúdo potencialmente para adultos.</string>
+    <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente impróprio para crianças porque tem um limite de idade (como 18+).</string>
 </resources>
