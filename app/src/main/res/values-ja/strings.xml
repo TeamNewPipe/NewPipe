@@ -322,11 +322,11 @@
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
     <string name="invalid_source">このファイル/コンテンツはありません</string>
     <plurals name="subscribers">
-        <item quantity="other">%s が登録しています</item>
+        <item quantity="other">%s人が登録しています</item>
     </plurals>
     <string name="no_views">視聴なし</string>
     <plurals name="views">
-        <item quantity="other">視聴回数 %s 回</item>
+        <item quantity="other">視聴回数 %s回</item>
     </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
@@ -414,7 +414,7 @@
     <string name="permission_denied">操作がシステムによって拒否されました</string>
     <string name="download_failed">ダウンロードに失敗しました</string>
     <string name="download_finished">ダウンロードが完了しました</string>
-    <string name="download_finished_more">%s 件のダウンロード終了</string>
+    <string name="download_finished_more">%s件のダウンロード終了</string>
     <string name="generate_unique_name">一意の名前を生成します</string>
     <string name="overwrite">上書き</string>
     <string name="overwrite_unrelated_warning">この名前のファイルは既に存在します</string>
@@ -484,12 +484,12 @@
     <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
     <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
     <plurals name="videos">
-        <item quantity="other">%s つの動画</item>
+        <item quantity="other">%s本の動画</item>
     </plurals>
     <string name="default_kiosk_page_summary">デフォルトのキオスク</string>
     <string name="no_one_watching">誰も見ていません</string>
     <plurals name="watching">
-        <item quantity="other">%s 視聴中</item>
+        <item quantity="other">%s人が視聴中</item>
     </plurals>
     <string name="no_one_listening">誰も聞いていません</string>
     <plurals name="listening">
@@ -622,4 +622,6 @@
     <string name="notification_action_shuffle">シャッフル</string>
     <string name="notification_action_buffering">バッファリング</string>
     <string name="settings_category_notification_title">通知</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube は、成人向けの可能性があるコンテンツを除外する「制限付きモード」を提供しています。</string>
+    <string name="show_age_restricted_content_summary">年齢制限（18歳以上など）があるため、子供には不適切な可能性のあるコンテンツを表示します。</string>
 </resources>
