@@ -65,7 +65,7 @@
     <string name="msg_running_detail">Подробнее</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
     <string name="no_available_dir">Выберите папку для загрузки позже в настройках</string>
-    <string name="show_age_restricted_content_title">Контент 18+</string>
+    <string name="show_age_restricted_content_title">Показать контент с возрастным ограничением</string>
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (English):</string>
     <string name="err_dir_create">Не удалось создать папку для загрузки \"%1$s\"</string>
@@ -592,7 +592,7 @@
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
-\nВключите \"Контент с возрастным ограничением\" в настройках, если хотите его видеть.</string>
+\nВключите \"%1$s\" в настройках, если хотите его видеть.</string>
     <string name="content_not_supported">NewPipe не поддерживает этот контент. 
 \n 
 \nВозможно, поддержка появится в следующих версиях.</string>
@@ -644,4 +644,8 @@
     <string name="notification_action_0_title">Кнопка первого действия</string>
     <string name="notification_scale_to_square_image_summary">Масштабировать эскиз видео, отображаемый в уведомлении, с соотношением сторон 16:9 до 1:1 (может привести к искажениям)</string>
     <string name="notification_scale_to_square_image_title">Масштабировать эскиз до соотношения сторон 1: 1</string>
+    <string name="show_memory_leaks">Показать утечки памяти</string>
+    <string name="recaptcha_cookies_cleared">Файлы cookie reCAPTCHA были удалены</string>
+    <string name="clear_cookie_title">Очистить файлы cookie reCAPTCHA</string>
+    <string name="show_age_restricted_content_summary">Показывать контент, который, возможно, не подходит для детей, потому что он имеет возрастное ограничение (например, 18+).</string>
 </resources>
