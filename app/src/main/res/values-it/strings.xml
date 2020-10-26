@@ -58,7 +58,7 @@
     <string name="could_not_setup_download_menu">Impossibile impostare il menu di download</string>
     <string name="live_streams_not_supported">I contenuti in diretta non sono ancora supportati</string>
     <string name="content">Contenuti</string>
-    <string name="show_age_restricted_content_title">Contenuti con Restrizioni di Età</string>
+    <string name="show_age_restricted_content_title">Mostra Contenuti con Restrizioni di Età</string>
     <string name="video_is_age_restricted">Mostra video con restrizioni di età. È possibile modificare questa opzione nelle Impostazioni.</string>
     <string name="main_bg_subtitle">Tocca \"Cerca\" per iniziare
 \n</string>
@@ -305,7 +305,7 @@
     <string name="drawer_header_action_paceholder_text">A breve qualcosa apparirà qui ;D</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="caption_auto_generated">Generato automaticamente</string>
-    <string name="enable_leak_canary_summary">Il monitoraggio delle perdite di memoria potrebbe causare la mancata risposta dell\'applicazione durante il dumping dell\'heap</string>
+    <string name="enable_leak_canary_summary">Il monitoraggio di memory leak potrebbe causare la mancata risposta dell\'applicazione durante il dumping dell\'heap</string>
     <string name="enable_disposed_exceptions_title">Segnala Errori \"Out-of-lifecycle\"</string>
     <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
     <string name="use_inexact_seek_title">Usa Ricerca Rapida (Imprecisa)</string>
@@ -590,13 +590,13 @@
     <string name="songs">Canzoni</string>
     <string name="restricted_video">Questo video ha restrizioni di età.
 \n
-\nAttivare \"Contenuti con Restrizioni di Età\" nelle Impostazioni per poterlo vedere.</string>
+\nAttivare \"%1$s\" nelle Impostazioni per poterlo vedere.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visaualizzati parzialmente</string>
     <string name="remove_watched_popup_warning">Saranno rimossi gli elementi della playlist già visualizzati, sia precedenti che successivi.
 \nSei sicuro\? L\'azione è irreversibile!</string>
     <string name="remove_watched_popup_title">Rimuovere i gli elementi già visti\?</string>
     <string name="remove_watched">Rimuovi Elementi Visti</string>
-    <string name="youtube_restricted_mode_enabled_title">Modalità con Restrizioni (YouTube)</string>
+    <string name="youtube_restricted_mode_enabled_title">Attiva la \"Modalità con Restrizioni\" di YouTube</string>
     <string name="show_original_time_ago_summary">I testi originali dei servizi saranno visibili negli elementi video</string>
     <string name="show_original_time_ago_title">Mostra i tempi originali degli elementi</string>
     <string name="detail_sub_channel_thumbnail_view_description">Immagine del Canale</string>
@@ -633,4 +633,12 @@
     <string name="notification_action_repeat">Ripeti</string>
     <string name="notification_scale_to_square_image_title">Ridimensiona Copertina alla Proporzione 1:1</string>
     <string name="notification_scale_to_square_image_summary">Modifica la proporzione della copertina del video mostrata nella notifica da 16:9 a 1:1 (può introdurre distorsioni)</string>
+    <string name="show_memory_leaks">Mostra Memory Leak</string>
+    <string name="enqueued">Aggiunto alla coda</string>
+    <string name="enqueue_stream">Accoda</string>
+    <string name="clear_cookie_summary">Cancella i cookie che NewPipe memorizza quando si risolve un reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Cookie reCAPTCHA puliti</string>
+    <string name="clear_cookie_title">Pulisci Cookie reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">Consente di usufruire della \"Modalità con Restrizioni\" di YouTube, che esclude contenuti potenzialmente inappropriati per i minori.</string>
+    <string name="show_age_restricted_content_summary">Mostra contenuti che hanno un limite di età (es. 18+). Potrebbero essere inadatti ai bambini.</string>
 </resources>
