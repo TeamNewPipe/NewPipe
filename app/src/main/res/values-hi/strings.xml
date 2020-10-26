@@ -129,7 +129,7 @@
     <string name="general_error">त्रुटी</string>
     <string name="network_error">नेटवर्क में त्रुटी</string>
     <string name="could_not_load_thumbnails">सारे thumbnail(फोटो जो फ़ोन की मेमोरी में है ) भरे नहीं जा सकते</string>
-    <string name="youtube_signature_decryption_error">विडियो के URL signature को decrypt नहीं कर सकते</string>
+    <string name="youtube_signature_deobfuscation_error">विडियो के URL signature को decrypt नहीं कर सकते</string>
     <string name="parsing_error">इस website का निरंक्षण नहीं कर सकते</string>
     <string name="light_parsing_error">website का पूरी तरह से निरंक्षण नहीं हो सकता</string>
     <string name="content_not_available">विषय वस्तु उपलब्ध नहीं है</string>

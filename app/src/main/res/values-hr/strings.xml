@@ -94,7 +94,7 @@
     <string name="general_error">Greška</string>
     <string name="network_error">Greška u mreži</string>
     <string name="could_not_load_thumbnails">Nije moguće učitati sve ikone</string>
-    <string name="youtube_signature_decryption_error">Nije moguće dešifrirati URL potpis videozapisa</string>
+    <string name="youtube_signature_deobfuscation_error">Nije moguće dešifrirati URL potpis videozapisa</string>
     <string name="parsing_error">Nije moguće dohvatiti stranicu</string>
     <string name="light_parsing_error">Nije moguće u potpunosti dohvatiti stranicu</string>
     <string name="content_not_available">Sadržaj nije dostupan</string>

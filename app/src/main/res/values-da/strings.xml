@@ -164,7 +164,7 @@
     <string name="download_to_sdcard_error_message">Download til eksternt SD-kort er endnu ikke muligt. Nulstil placering af download-mappe\?</string>
     <string name="network_error">Netværksfejl</string>
     <string name="could_not_load_thumbnails">Kunne ikke indlæse alle miniaturebilleder</string>
-    <string name="youtube_signature_decryption_error">Kunne ikke dekryptere URL-signatur for video</string>
+    <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere URL-signatur for video</string>
     <string name="parsing_error">Kunne ikke analysere websted</string>
     <string name="light_parsing_error">Kunne ikke analysere webstedet fuldstændig</string>
     <string name="content_not_available">Indhold ikke tilgængeligt</string>

@@ -166,7 +166,7 @@
     <string name="download_to_sdcard_error_message">बाह्य एस डी कार्ड (SD card) छैन। डाउनलोड फोल्डर स्थान रिसेट गर्ने\?</string>
     <string name="network_error">नेटवर्क त्रुटि</string>
     <string name="could_not_load_thumbnails">सबै थम्बनेल लोड गर्न सकेन</string>
-    <string name="youtube_signature_decryption_error">भिडियो URL हस्ताक्षर डिक्रिप्टगर्न सकेन</string>
+    <string name="youtube_signature_deobfuscation_error">भिडियो URL हस्ताक्षर डिक्रिप्टगर्न सकेन</string>
     <string name="parsing_error">वेबसाइट पार्स गर्न सकिँएन</string>
     <string name="light_parsing_error">वेबसाइट पूर्ण तरिकाले पार्स गर्न सकिँएन</string>
     <string name="content_not_available">सामग्री अनउपलब्ध</string>

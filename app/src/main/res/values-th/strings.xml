@@ -160,7 +160,7 @@
     <string name="download_to_sdcard_error_message">การดาวน์โหลดไปยังการ์ดความจำภายนอกยังไม่สามารถทำได้ รีเซ็ตตำแหน่งโฟลเดอร์ดาวน์โหลดหรือไม่\?</string>
     <string name="network_error">ข้อผิดพลาดของเครือข่าย</string>
     <string name="could_not_load_thumbnails">ไม่สามารถโหลดรูปขนาดย่อทั้งหมด</string>
-    <string name="youtube_signature_decryption_error">ไม่สามารถถอดรหัสลายเซ็น URL ของวิดีโอ</string>
+    <string name="youtube_signature_deobfuscation_error">ไม่สามารถถอดรหัสลายเซ็น URL ของวิดีโอ</string>
     <string name="parsing_error">ไม่สามารถแยกวิเคราะห์เว็บไซต์</string>
     <string name="light_parsing_error">ไม่สามารถแยกวิเคราะห์เว็บไซต์ได้อย่างสมบูรณ์</string>
     <string name="content_not_available">เนื้อหาไม่พร้อมใช้งาน</string>

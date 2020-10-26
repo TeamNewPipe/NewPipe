@@ -50,7 +50,7 @@
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
     <string name="could_not_load_thumbnails">Kan niet alle miniatuurvoorbeelden laden</string>
-    <string name="youtube_signature_decryption_error">Kan video-URL-ondertekening niet ontsleutelen</string>
+    <string name="youtube_signature_deobfuscation_error">Kan video-URL-ondertekening niet ontsleutelen</string>
     <string name="parsing_error">Kan website niet verwerken</string>
     <string name="content_not_available">Inhoud niet beschikbaar</string>
     <string name="could_not_setup_download_menu">Kan downloadmenu niet instellen</string>

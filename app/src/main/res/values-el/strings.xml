@@ -177,7 +177,7 @@
     <string name="delete_search_history_alert">Διαγραφή ολόκληρου του ιστορικού αναζητήσεων;</string>
     <string name="search_history_deleted">Το ιστορικό αναζητήσεων διαγράφηκε.</string>
     <string name="could_not_load_thumbnails">Δεν ήταν δυνατή η φόρτωση όλων των εικονιδίων</string>
-    <string name="youtube_signature_decryption_error">Δεν ήταν δυνατή η αποκρυπτογράφηση της υπογραφής του URL του βίντεο</string>
+    <string name="youtube_signature_deobfuscation_error">Δεν ήταν δυνατή η αποκρυπτογράφηση της υπογραφής του URL του βίντεο</string>
     <string name="parsing_error">Δεν ήταν δυνατή η ανάλυση του ιστοτόπου</string>
     <string name="light_parsing_error">Δεν ήταν δυνατή η ανάλυση ολόκληρου του ιστοτόπου</string>
     <string name="content_not_available">Το περιεχόμενο δεν είναι διαθέσιμο</string>

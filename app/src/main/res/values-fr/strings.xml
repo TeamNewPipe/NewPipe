@@ -58,7 +58,7 @@
     <string name="show_age_restricted_content_title">Contenu avec limite d’âge</string>
     <string name="duration_live">En direct</string>
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
-    <string name="youtube_signature_decryption_error">Impossible de déchiffrer la signature URL de la vidéo</string>
+    <string name="youtube_signature_deobfuscation_error">Impossible de déchiffrer la signature URL de la vidéo</string>
     <string name="light_parsing_error">Impossible d’analyser complètement le site web</string>
     <string name="live_streams_not_supported">Les flux en direct ne sont pas encore pris en charge</string>
     <string name="sorry_string">Désolé, une erreur est survenue.</string>

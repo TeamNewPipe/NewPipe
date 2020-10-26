@@ -53,7 +53,7 @@
     <string name="general_error">Błąd</string>
     <string name="network_error">Błąd sieci</string>
     <string name="could_not_load_thumbnails">Nie można załadować wszystkich miniatur</string>
-    <string name="youtube_signature_decryption_error">Nie można odszyfrować sygnatury URL filmu</string>
+    <string name="youtube_signature_deobfuscation_error">Nie można odszyfrować sygnatury URL filmu</string>
     <string name="parsing_error">Nie można przetworzyć strony</string>
     <string name="light_parsing_error">Nie można przetworzyć całości strony</string>
     <string name="content_not_available">Zawartość niedostępna</string>

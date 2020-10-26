@@ -422,7 +422,7 @@
     <string name="content_not_available">Cuntenutu no a disponimentu</string>
     <string name="light_parsing_error">No est istadu possìbile analizare de su totu su situ web</string>
     <string name="parsing_error">Anàlisi de su situ web fallida</string>
-    <string name="youtube_signature_decryption_error">Detziframentu de sa firma URL de su vìdeu fallida</string>
+    <string name="youtube_signature_deobfuscation_error">Detziframentu de sa firma URL de su vìdeu fallida</string>
     <string name="could_not_load_thumbnails">No est istadu possìbile carrigare totu sas miniaduras</string>
     <string name="network_error">Errore de retza</string>
     <string name="download_to_sdcard_error_message">Impossìbile iscarrigare in s\'ischeda SD esterna. Cheres resetare sa positzione de sa cartella de iscarrigamentu\?</string>

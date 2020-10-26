@@ -147,7 +147,7 @@
     <string name="general_error">Памылка</string>
     <string name="network_error">Памылка сеткі</string>
     <string name="could_not_load_thumbnails">Не атрымалася загрузіць усе мініяцюры</string>
-    <string name="youtube_signature_decryption_error">Не атрымалася расшыфраваць подпіс URL у відэа</string>
+    <string name="youtube_signature_deobfuscation_error">Не атрымалася расшыфраваць подпіс URL у відэа</string>
     <string name="parsing_error">Не атрымалася разабраць вэб-сайт</string>
     <string name="light_parsing_error">Не атрымалася цалкам разабраць вэб-сайт</string>
     <string name="content_not_available">Кантэнт недаступны</string>

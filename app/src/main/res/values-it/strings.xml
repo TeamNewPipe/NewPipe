@@ -50,7 +50,7 @@
     <string name="general_error">Errore</string>
     <string name="network_error">Errore di connessione</string>
     <string name="could_not_load_thumbnails">Impossibile caricare tutte le copertine</string>
-    <string name="youtube_signature_decryption_error">Impossibile decriptare la firma dell\'URL del video</string>
+    <string name="youtube_signature_deobfuscation_error">Impossibile decriptare la firma dell\'URL del video</string>
     <string name="content_not_available">Contenuto non disponibile</string>
     <string name="use_tor_title">Usa Tor</string>
     <string name="use_tor_summary">(Sperimentale) Forza il download tramite Tor per una maggiore riservatezza (lo streaming dei video non è ancora supportato).</string>
