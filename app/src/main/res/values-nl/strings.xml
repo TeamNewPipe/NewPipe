@@ -486,7 +486,7 @@
 \nKies SAF als je wilt downloaden naar een externe SD-kaart</string>
     <string name="downloads_storage_use_saf_title">Gebruik SAF</string>
     <string name="clear_playback_states_title">Verwijder afspeelposities</string>
-    <string name="clear_playback_states_summary">Verwijder alle afspeelposities</string>
+    <string name="clear_playback_states_summary">Verwijdert alle afspeelposities</string>
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen\?</string>
     <string name="no_one_watching">Niemand is aan het kijken</string>
     <plurals name="watching">
@@ -503,7 +503,7 @@
     <string name="seek_duration_title">Duur voor-/achteruit spoelen</string>
     <string name="peertube_instance_url_title">PeerTube kanaal</string>
     <string name="peertube_instance_url_summary">Selecteer je favorite PeerTube kanaal</string>
-    <string name="peertube_instance_url_help">Vind het kanaal dat je leuk vind op %s</string>
+    <string name="peertube_instance_url_help">Vind het kanaal dat je leuk vindt op %s</string>
     <string name="peertube_instance_add_title">Kanaal toevoegen</string>
     <string name="peertube_instance_add_help">Kanaal URL invoeren</string>
     <string name="peertube_instance_add_fail">Kon kanaal niet valideren</string>
