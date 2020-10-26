@@ -4,15 +4,15 @@
 \n</string>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Gepubliceerd op %1$s</string>
-    <string name="no_player_found">Er is geen videospeler met streamondersteuning gevonden. Wilt u VLC installeren\?</string>
-    <string name="no_player_found_toast">Geen speler met streamondersteuning gevonden (je kan VLC installeren om af te spelen).</string>
+    <string name="no_player_found">Er is geen stream videospeler gevonden. Wilt u VLC installeren\?</string>
+    <string name="no_player_found_toast">Geen speler met stream ondersteuning gevonden (je kan VLC installeren om af te spelen).</string>
     <string name="install">Installeren</string>
     <string name="cancel">Annuleren</string>
     <string name="open_in_browser">In browser openen</string>
-    <string name="open_in_popup_mode">Openen in pop-upmodus</string>
+    <string name="open_in_popup_mode">Openen in pop-up modus</string>
     <string name="share">Delen</string>
     <string name="download">Downloaden</string>
-    <string name="controls_download_desc">Streambestand downloaden</string>
+    <string name="controls_download_desc">Stream bestand downloaden</string>
     <string name="search">Zoeken</string>
     <string name="settings">Instellingen</string>
     <string name="did_you_mean">Bedoelde je \"%1$s\"\?</string>
@@ -22,7 +22,7 @@
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
     <string name="use_external_video_player_summary">Verwijdert het geluid bij sommige resoluties</string>
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
-    <string name="popup_mode_share_menu_title">Pop-up-modus</string>
+    <string name="popup_mode_share_menu_title">Pop-up modus</string>
     <string name="subscribe_button_title">Abonneer</string>
     <string name="subscribed_button_title">Geabonneerd</string>
     <string name="channel_unsubscribed">Abonnement opgezegd</string>
@@ -174,7 +174,7 @@
     <string name="detail_dislikes_img_view_description">Duimen omlaag</string>
     <string name="use_tor_title">Gebruik Tor</string>
     <string name="use_tor_summary">(Experimenteel) Dwing downloadverkeer door Tor voor verhoogde privacy (streamen van video’s wordt nog niet ondersteund).</string>
-    <string name="report_error">Foutrapport</string>
+    <string name="report_error">Meld een probleem</string>
     <string name="user_report">Gebruikersrapport</string>
     <string name="search_no_results">Geen resultaten</string>
     <string name="empty_subscription_feed_subtitle">Niks te zien</string>
@@ -187,7 +187,7 @@
     <string name="storage_permission_denied">Geef eerst toegang tot opslag</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">mld.</string>
     <string name="no_subscribers">Geen abonnees</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnee</item>
