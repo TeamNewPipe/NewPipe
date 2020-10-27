@@ -3,18 +3,15 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:title="@string/settings_category_notification_title">
 
-    <PreferenceCategory>
-        <SwitchPreferenceCompat
-                android:defaultValue="false"
-                android:key="@string/scale_to_square_image_in_notifications_key"
-                android:summary="@string/notification_scale_to_square_image_summary"
-                android:title="@string/notification_scale_to_square_image_title"
-                app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/scale_to_square_image_in_notifications_key"
+            android:summary="@string/notification_scale_to_square_image_summary"
+            android:title="@string/notification_scale_to_square_image_title"
+            app:iconSpaceReserved="false" />
 
-    </PreferenceCategory>
-
-    <PreferenceCategory>
-        <org.schabi.newpipe.settings.custom.NotificationActionsPreference></org.schabi.newpipe.settings.custom.NotificationActionsPreference>
+    <PreferenceCategory android:layout="@layout/settings_category_header_layout">
+        <org.schabi.newpipe.settings.custom.NotificationActionsPreference />
     </PreferenceCategory>
 
 
