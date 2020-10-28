@@ -52,7 +52,7 @@
     <string name="info_dir_created">Pasta \'%1$s\' criada com sucesso</string>
     <string name="general_error">Erro</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
-    <string name="youtube_signature_decryption_error">Não foi possível decifrar a assinatura do URL</string>
+    <string name="youtube_signature_deobfuscation_error">Não foi possível decifrar a assinatura do URL</string>
     <string name="parsing_error">Não foi possível processar o site</string>
     <string name="content_not_available">Conteúdo indisponível</string>
     <string name="content">Conteúdo</string>

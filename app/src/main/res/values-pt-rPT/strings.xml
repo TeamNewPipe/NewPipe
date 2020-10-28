@@ -242,7 +242,7 @@
     <string name="new_and_hot">Novos e tendências</string>
     <string name="clear_search_history_summary">Remove o histórico de pesquisas</string>
     <string name="app_update_notification_channel_name">Notificação de nova versão</string>
-    <string name="youtube_signature_decryption_error">Não foi possível decifrar a assinatura do URL</string>
+    <string name="youtube_signature_deobfuscation_error">Não foi possível decifrar a assinatura do URL</string>
     <string name="service_title">Serviço</string>
     <string name="player_gesture_controls_title">Controlo de reprodução por gestos</string>
     <string name="select_a_playlist">Selecione uma lista de reprodução</string>

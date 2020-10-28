@@ -167,7 +167,7 @@
     <string name="notification_channel_name">Notificació del NewPipe</string>
     <string name="notification_channel_description">Notificacions dels reproductors en rerefons o emergents del NewPipe</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
-    <string name="youtube_signature_decryption_error">No s\'ha pogut desxifrar la signatura de l\'URL del vídeo</string>
+    <string name="youtube_signature_deobfuscation_error">No s\'ha pogut desxifrar la signatura de l\'URL del vídeo</string>
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
     <string name="light_parsing_error">No s\'ha pogut processar del tot el lloc web</string>
     <string name="content_not_available">Contingut no disponible</string>

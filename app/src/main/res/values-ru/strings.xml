@@ -100,7 +100,7 @@
     <string name="retry">Повторить попытку</string>
     <string name="storage_permission_denied">Нет доступа к накопителю</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
-    <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись URL у видео</string>
+    <string name="youtube_signature_deobfuscation_error">Не удалось расшифровать подпись URL у видео</string>
     <string name="could_not_get_stream">Не удалось найти ни одного потока</string>
     <string name="view">Воспроизвести</string>
     <string name="controls_background_title">В фоне</string>

@@ -69,7 +69,7 @@
     <string name="error_report_button_text">Hibajelentés e-mailben</string>
     <string name="could_not_get_stream">A stream nem elérhető</string>
     <string name="could_not_setup_download_menu">Nem sikerült a letöltés menü beállítása</string>
-    <string name="youtube_signature_decryption_error">Nem sikerült a videó URL aláírás azonosítása</string>
+    <string name="youtube_signature_deobfuscation_error">Nem sikerült a videó URL aláírás azonosítása</string>
     <string name="storage_permission_denied">Háttértárhoz való hozzáférés megtagadva</string>
     <string name="retry">Újra</string>
     <string name="report_error">Hibajelentés</string>

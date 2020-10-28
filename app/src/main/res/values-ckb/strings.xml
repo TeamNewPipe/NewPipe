@@ -449,7 +449,7 @@
     <string name="invalid_directory">هەمان فۆڵدەر بوونی نییە</string>
     <string name="bookmark_playlist">دڵخوازکردنی لیستی کارپێکردن</string>
     <string name="file_name_empty_error">ناوی پەڕگە ناکرێ بەتاڵ بێت</string>
-    <string name="youtube_signature_decryption_error">ناتوانرێ واژووی بەستەری ڤیدیۆ بخوێنرێتەوە</string>
+    <string name="youtube_signature_deobfuscation_error">ناتوانرێ واژووی بەستەری ڤیدیۆ بخوێنرێتەوە</string>
     <string name="updates_setting_description">پیشاندانی ئاگانامەیەک بۆ ئامادەبوونی داوانامە لەکاتی بەردەست بوونی وەشانی نوێ</string>
     <string name="tab_contributors">بەشداربووەکان</string>
     <string name="enable_watch_history_title">مێژووی تەماشاکردن</string>

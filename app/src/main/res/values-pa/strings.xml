@@ -141,7 +141,7 @@
     <string name="general_error">ERROR</string>
     <string name="network_error">ਨੈੱਟਵਰਕ ERROR</string>
     <string name="could_not_load_thumbnails">ਸਾਰੇ ਥੰਬਨੇਲ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ</string>
-    <string name="youtube_signature_decryption_error">ਵੀਡੀਓ URL ਦਸਤਖਤ ਡੀਕ੍ਰਿਪਟ ਨਹੀਂ ਹੋ ਸਕਿਆ</string>
+    <string name="youtube_signature_deobfuscation_error">ਵੀਡੀਓ URL ਦਸਤਖਤ ਡੀਕ੍ਰਿਪਟ ਨਹੀਂ ਹੋ ਸਕਿਆ</string>
     <string name="parsing_error">ਵੈਬਸਾਈਟ parse ਨਹੀਂ ਹੋ ਸਕੀ</string>
     <string name="light_parsing_error">ਵੈਬਸਾਈਟ ਪੂਰੀ ਤਰਾਂ Parse ਨਹੀਂ ਹੋ ਸਕੀ</string>
     <string name="content_not_available">Content ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>

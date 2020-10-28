@@ -86,7 +86,7 @@
     <string name="general_error">Errorea</string>
     <string name="network_error">Sare-errorea</string>
     <string name="could_not_load_thumbnails">Ezin izan dira iruditxo guztiak deskargatu</string>
-    <string name="youtube_signature_decryption_error">Ezin izan da bideoaren URL sinadura deskodetu</string>
+    <string name="youtube_signature_deobfuscation_error">Ezin izan da bideoaren URL sinadura deskodetu</string>
     <string name="parsing_error">Ezin izan da webgunea analizatu</string>
     <string name="light_parsing_error">Ezin izan da webgunea guztiz analizatu</string>
     <string name="content_not_available">Edukia ez dago eskuragarri</string>

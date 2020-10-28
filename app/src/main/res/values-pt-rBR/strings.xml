@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="audio">Áudio</string>
-    <string name="youtube_signature_decryption_error">Não foi possível descriptografar assinatura do URL do vídeo</string>
+    <string name="youtube_signature_deobfuscation_error">Não foi possível descriptografar assinatura do URL do vídeo</string>
     <string name="your_comment">Seu comentário (em inglês):</string>
     <string name="what_happened_headline">O que ocorreu:</string>
     <string name="what_device_headline">Informação:</string>

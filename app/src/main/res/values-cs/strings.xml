@@ -43,7 +43,7 @@
     <string name="general_error">Chyba</string>
     <string name="network_error">Chyba sítě</string>
     <string name="could_not_load_thumbnails">Nebylo možné nahrát všechny náhledy</string>
-    <string name="youtube_signature_decryption_error">Nebylo možné dekódovat URL videa</string>
+    <string name="youtube_signature_deobfuscation_error">Nebylo možné dekódovat URL videa</string>
     <string name="parsing_error">Nebylo možné analyzovat stránku</string>
     <string name="content_not_available">Obsah není k dispozici</string>
     <string name="list_thumbnail_view_description">Náhled videa</string>

@@ -79,7 +79,7 @@
     <string name="general_error">שגיאה</string>
     <string name="network_error">שגיאת רשת</string>
     <string name="could_not_load_thumbnails">אין אפשרות לטעון את כל התמונות הממוזערות</string>
-    <string name="youtube_signature_decryption_error">לא ניתן לפענח את חתימת כתובת הסרטון</string>
+    <string name="youtube_signature_deobfuscation_error">לא ניתן לפענח את חתימת כתובת הסרטון</string>
     <string name="parsing_error">ניתוח האתר לא התאפשר</string>
     <string name="light_parsing_error">לא הייתה אפשרות לנתח את האתר לחלוטין</string>
     <string name="content_not_available">תוכן אינו זמין</string>

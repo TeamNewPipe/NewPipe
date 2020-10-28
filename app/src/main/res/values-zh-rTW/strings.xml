@@ -87,7 +87,7 @@
     <string name="popup_resizing_indicator_title">調整大小</string>
     <string name="general_error">錯誤</string>
     <string name="could_not_load_thumbnails">無法載入所有縮圖</string>
-    <string name="youtube_signature_decryption_error">無法解析影片 URL 簽章</string>
+    <string name="youtube_signature_deobfuscation_error">無法解析影片 URL 簽章</string>
     <string name="parsing_error">無法解析網站</string>
     <string name="light_parsing_error">無法完全解析網站</string>
     <string name="content_not_available">內容無法使用</string>

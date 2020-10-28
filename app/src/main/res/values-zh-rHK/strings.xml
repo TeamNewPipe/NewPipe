@@ -59,7 +59,7 @@
     <string name="duration_live">直播</string>
     <string name="general_error">問題</string>
     <string name="could_not_load_thumbnails">無法載入全部縮圖</string>
-    <string name="youtube_signature_decryption_error">無法為影片地址的簽署解碼。</string>
+    <string name="youtube_signature_deobfuscation_error">無法為影片地址的簽署解碼。</string>
     <string name="parsing_error">無法讀取網站。</string>
     <string name="light_parsing_error">無法完全讀取網站。</string>
     <string name="could_not_setup_download_menu">無法設定下載清單</string>
