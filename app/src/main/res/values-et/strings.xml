@@ -141,7 +141,7 @@
     <string name="general_error">Viga</string>
     <string name="network_error">Võrgu viga</string>
     <string name="could_not_load_thumbnails">Kõiki pisipilte ei õnnestunud laadida</string>
-    <string name="youtube_signature_decryption_error">Video URLi dekrüptimine nurjus</string>
+    <string name="youtube_signature_deobfuscation_error">Video URLi dekrüptimine nurjus</string>
     <string name="parsing_error">Veebilehe töötlemine nurjus</string>
     <string name="light_parsing_error">Veebilehe täielik töötlemine nurjus</string>
     <string name="content_not_available">Sisu pole saadaval</string>

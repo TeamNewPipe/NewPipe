@@ -217,7 +217,7 @@
     <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи</string>
     <string name="delete_search_history_alert">Изтрий цялата история на търсенията\?</string>
     <string name="search_history_deleted">Историята на търсенията е изтрита.</string>
-    <string name="youtube_signature_decryption_error">URL подписът на клипа не можа да бъде дешифрован</string>
+    <string name="youtube_signature_deobfuscation_error">URL подписът на клипа не можа да бъде дешифрован</string>
     <string name="external_player_unsupported_link_type">Външните плейъри не поддържат този вид линкове</string>
     <string name="invalid_url_toast">Невалиден URL</string>
     <string name="invalid_directory">Невалидна директория</string>

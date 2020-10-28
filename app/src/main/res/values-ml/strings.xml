@@ -265,7 +265,7 @@
     <string name="content_not_available">കന്റെന്റ് ലഭ്യമല്ല</string>
     <string name="light_parsing_error">വെബ്സൈറ്റ് പൂർണമായി വ്യാപരിക്കാനായില്ല</string>
     <string name="parsing_error">വെബ്സൈറ്റ് വ്യാപരിക്കാനായില്ല</string>
-    <string name="youtube_signature_decryption_error">വീഡിയോ URL സിഗ്നേച്ചർ ഡീക്രിപ്റ്റ് ചെയ്യാൻ സാധിച്ചില്ല</string>
+    <string name="youtube_signature_deobfuscation_error">വീഡിയോ URL സിഗ്നേച്ചർ ഡീക്രിപ്റ്റ് ചെയ്യാൻ സാധിച്ചില്ല</string>
     <string name="could_not_load_thumbnails">ലഘുചിത്രങ്ങൾ ലോഡ് ചെയ്യാനായില്ല</string>
     <string name="network_error">നെറ്റ്‌വർക്ക് പിശക്</string>
     <string name="download_to_sdcard_error_message">എസ്ഡി കാർഡിലേക്ക്‌ ഡൗൺലോഡ് അസാധ്യം. ഡൗൺലോഡ് ഫോൾഡർ മാറ്റട്ടെ\?</string>

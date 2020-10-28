@@ -58,7 +58,7 @@
     <string name="video_is_age_restricted">Vis aldersbegrenset video. Å tillate slikt materiale kan gjøres fra innstillingene.</string>
     <string name="general_error">Feil</string>
     <string name="could_not_load_thumbnails">Kunne ikke laste inn alle miniatyrbilder</string>
-    <string name="youtube_signature_decryption_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>
+    <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>
     <string name="parsing_error">Kunne ikke tolke nettside</string>
     <string name="light_parsing_error">Kunne ikke tolke nettside fullstendig</string>
     <string name="content_not_available">Innholdet er utilgjengelig</string>

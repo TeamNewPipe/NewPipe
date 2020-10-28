@@ -2,9 +2,7 @@ package org.schabi.newpipe.settings;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -23,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
 
@@ -238,16 +237,13 @@ public class NotificationSettingsFragment extends Fragment {
 
                 // if present set action icon with correct color
                 if (NotificationConstants.ACTION_ICONS[action] != 0) {
-                    final Drawable drawable = AppCompatResources.getDrawable(requireContext(),
+                    Drawable drawable = AppCompatResources.getDrawable(requireContext(),
                             NotificationConstants.ACTION_ICONS[action]);
                     if (drawable != null) {
                         final int color = ThemeHelper.resolveColorFromAttr(requireContext(),
                                 android.R.attr.textColorPrimary);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            drawable.setTint(color);
-                        } else {
-                            drawable.mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
-                        }
+                        drawable = DrawableCompat.wrap(drawable).mutate();
+                        DrawableCompat.setTint(drawable, color);
                         TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(radioButton,
                                 null, null, drawable, null);
                     }

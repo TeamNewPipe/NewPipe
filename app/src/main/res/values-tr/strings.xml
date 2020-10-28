@@ -54,7 +54,7 @@
     <string name="general_error">Hata</string>
     <string name="network_error">Ağ hatası</string>
     <string name="could_not_load_thumbnails">Küçük resimlerin tamamı yüklenemedi</string>
-    <string name="youtube_signature_decryption_error">Video URL imzasının şifresi çözülemedi</string>
+    <string name="youtube_signature_deobfuscation_error">Video URL imzasının şifresi çözülemedi</string>
     <string name="parsing_error">Web sitesi ayrıştırılamadı</string>
     <string name="light_parsing_error">Web sitesi tamamen ayrıştırılamadı</string>
     <string name="content_not_available">İçerik kullanılamıyor</string>

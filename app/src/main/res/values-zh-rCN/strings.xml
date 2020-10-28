@@ -174,7 +174,7 @@
     <string name="error_report_title">错误报告</string>
     <string name="general_error">错误</string>
     <string name="could_not_load_thumbnails">无法加载所有缩略图</string>
-    <string name="youtube_signature_decryption_error">无法解密视频的 URL 签名</string>
+    <string name="youtube_signature_deobfuscation_error">无法解密视频的 URL 签名</string>
     <string name="parsing_error">无法解析网址</string>
     <string name="light_parsing_error">无法完全解析网址</string>
     <string name="content_not_available">内容不可用</string>

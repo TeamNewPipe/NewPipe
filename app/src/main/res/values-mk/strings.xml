@@ -135,7 +135,7 @@
     <string name="general_error">Грешка</string>
     <string name="network_error">Мрежна грешка</string>
     <string name="could_not_load_thumbnails">Не можеа да се прочитаат сите сликички</string>
-    <string name="youtube_signature_decryption_error">Невозможно децифрирање на URL потписот</string>
+    <string name="youtube_signature_deobfuscation_error">Невозможно децифрирање на URL потписот</string>
     <string name="parsing_error">Не може да се прочита страната</string>
     <string name="light_parsing_error">Не може целосно да се прочита страната</string>
     <string name="content_not_available">Содржината е недостапна</string>

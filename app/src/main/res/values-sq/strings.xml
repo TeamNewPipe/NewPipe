@@ -465,7 +465,7 @@
     <string name="content_not_available">Përmbajtja e padisponueshme</string>
     <string name="light_parsing_error">Nuk u arrit të analizohej plotësisht faqja</string>
     <string name="parsing_error">Nuk u arrit të analizohej faqja</string>
-    <string name="youtube_signature_decryption_error">Nuk u arrit të dekriptohej firma e URL së videos</string>
+    <string name="youtube_signature_deobfuscation_error">Nuk u arrit të dekriptohej firma e URL së videos</string>
     <string name="could_not_load_thumbnails">Nuk u mundën të ngarkoheshin të gjitha pamjet statike</string>
     <string name="network_error">Problem rrjeti</string>
     <string name="download_to_sdcard_error_message">Shkarkimi në kartën SD të jashtme nuk ishte i mundur. Doni të rivendosni vendndodhjen e dosjes së shkarkimeve\?</string>

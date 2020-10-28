@@ -52,7 +52,7 @@
     <string name="info_dir_created">Ustvarjena je mapa za prejem \'%1$s\'</string>
     <string name="general_error">Napaka</string>
     <string name="could_not_load_thumbnails">Vseh sličic videov ni mogoče naložiti</string>
-    <string name="youtube_signature_decryption_error">Ni mogoče odšifrirati podpisa naslova URL videa</string>
+    <string name="youtube_signature_deobfuscation_error">Ni mogoče odšifrirati podpisa naslova URL videa</string>
     <string name="parsing_error">Ni mogoče razčleniti spletišča.</string>
     <string name="content_not_available">Vsebina ni na voljo.</string>
     <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek.</string>

@@ -54,7 +54,7 @@
     <string name="could_not_load_thumbnails">تعذرت عملية تحميل كافة صور المعاينة</string>
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
-    <string name="youtube_signature_decryption_error">تعذر فك تشفير توقيع رابط الفيديو</string>
+    <string name="youtube_signature_deobfuscation_error">تعذر فك تشفير توقيع رابط الفيديو</string>
     <string name="main_bg_subtitle">اضغط على \"بحث\" للبدء
 \n</string>
     <string name="subscribe_button_title">اشتراك</string>

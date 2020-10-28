@@ -240,7 +240,7 @@
     <string name="download_to_sdcard_error_message">Downloading to external SD card not possible. Reset download folder location?</string>
     <string name="network_error">Network error</string>
     <string name="could_not_load_thumbnails">Could not load all thumbnails</string>
-    <string name="youtube_signature_decryption_error">Could not decrypt video URL signature</string>
+    <string name="youtube_signature_deobfuscation_error">Could not deobfuscate video URL signature</string>
     <string name="parsing_error">Could not parse website</string>
     <string name="light_parsing_error">Could not parse website completely</string>
     <string name="content_not_available">Content unavailable</string>
