@@ -1,0 +1,4 @@
+Cette sortie apporte trois petites corrections :
+- Correction de l'accès aux fichiers pour Android 10 +
+- Correction de l'ouverture des kiosques
+- Correction de la lecture de durée pour les longues vidéos
