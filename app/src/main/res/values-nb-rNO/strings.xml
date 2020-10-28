@@ -634,4 +634,12 @@
     <string name="notification_action_0_title">Første handlingstast</string>
     <string name="notification_scale_to_square_image_title">Skaler miniatyrbilde til 1:1-aspekt</string>
     <string name="notification_action_nothing">Ingenting</string>
+    <string name="show_memory_leaks">Vis minnelekkasjer</string>
+    <string name="enqueued">Satt i kø</string>
+    <string name="enqueue_stream">Sett i kø</string>
+    <string name="clear_cookie_title">Tøm reCAPTCHA-kaker</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA-kaker har blitt slettet</string>
+    <string name="clear_cookie_summary">Tøm kaker som NewPipe lagrer når du løser en reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube tilbyr et «Begrenset modus» som skjuler mulig innhold kun for voksne.</string>
+    <string name="show_age_restricted_content_summary">Vis innhold som muligens er upassende for barn, siden det har aldersgrense (som 18+).</string>
 </resources>
