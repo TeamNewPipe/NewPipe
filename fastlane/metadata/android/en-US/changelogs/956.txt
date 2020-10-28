@@ -1,1 +1,1 @@
-[YouTube] Fixed crash when loading video
+[YouTube] Fixed crash when loading any video
