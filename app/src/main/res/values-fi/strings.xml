@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Napauta hakua aloittaaksesi</string>
+    <string name="main_bg_subtitle">Napauta hakua aloittaaksesi
+\n</string>
     <string name="view_count_text">%1$s näyttökertaa</string>
     <string name="upload_date_text">Julkaistu %1$s</string>
     <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Asennetaanko VLC\?</string>
@@ -76,7 +77,7 @@
     <string name="background_player_playing_toast">Toistaa taustalla</string>
     <string name="popup_playing_toast">Toistetaan ponnahdusikkunatilassa</string>
     <string name="content">Sisältö</string>
-    <string name="show_age_restricted_content_title">Ikärajoitettu sisältö</string>
+    <string name="show_age_restricted_content_title">Näytä ikärajoitettu sisältö</string>
     <string name="video_is_age_restricted">Ikärajoitettu video. Muuttaminen on mahdollista asetuksissa.</string>
     <string name="duration_live">Suora</string>
     <string name="downloads">Lataukset</string>
@@ -438,8 +439,8 @@
     <string name="videos_string">Videot</string>
     <string name="restricted_video">Tämä video on ikärajoitettu.
 \n
-\nSalli ikärajoitettu sisältö asetuksissa katsoaksesi.</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTuben rajoitettu tila</string>
+\nSalli \"%1$s\" asetuksissa katsoaksesi.</string>
+    <string name="youtube_restricted_mode_enabled_title">Ota käyttöön YouTuben \"Rajoitettu tila\"</string>
     <string name="settings_category_updates_title">Päivitykset</string>
     <string name="peertube_instance_add_exists">Instanssi on jo olemassa</string>
     <string name="peertube_instance_add_https_only">Vain HTTPS-URL:t ovat tuettuja</string>
@@ -632,4 +633,12 @@
     <string name="notification_action_0_title">Ensimmäinen toimintopainike</string>
     <string name="notification_scale_to_square_image_summary">Skaalaa ilmoituksessa näytettävä videon esikatselukuva kuvasuhteesta 16:9 kuvasuhteeseen 1:1 (saattaa aiheuttaa vääristymiä)</string>
     <string name="notification_scale_to_square_image_title">Skaalaa esikatselukuva 1:1-kuvasuhteeseen</string>
+    <string name="show_memory_leaks">Näytä muistivuodot</string>
+    <string name="enqueued">Lisätty jonoon</string>
+    <string name="enqueue_stream">Lisää jonoon</string>
+    <string name="clear_cookie_summary">Poista evästeet, jotka NewPipe tallentaa, kun ratkaiset reCAPTCHA:n</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA-evästeet on poistettu</string>
+    <string name="clear_cookie_title">Poista reCAPTCHA-evästeet</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube tarjoaa \"Rajoitetun tilan\", joka piilottaa aikuisviihdesisällön.</string>
+    <string name="show_age_restricted_content_summary">Näytä mahdollisesti lapsille sopimaton sisältö, jolla on ikäraja (esim. 18+).</string>
 </resources>
