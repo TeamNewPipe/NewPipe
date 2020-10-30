@@ -12,7 +12,7 @@
     <string name="download">Lataus</string>
     <string name="search">Haku</string>
     <string name="settings">Asetukset</string>
-    <string name="did_you_mean">Tarkoititko \"%1$s\"\?</string>
+    <string name="did_you_mean">Tarkoititko ”%1$s”\?</string>
     <string name="share_dialog_title">Jaa</string>
     <string name="choose_browser">Valitse selain</string>
     <string name="screen_rotation">kierto</string>
@@ -44,7 +44,7 @@
     <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videota</string>
     <string name="play_with_kodi_title">Toista Kodissa</string>
     <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus\?</string>
-    <string name="show_play_with_kodi_title">Näytä \"Toista Kodissa\"-vaihtoehto</string>
+    <string name="show_play_with_kodi_title">Näytä ”Toista Kodissa”-vaihtoehto</string>
     <string name="show_play_with_kodi_summary">Näyttää vaihtoehdon videon toistamiseen Kodi-mediasoittimessa</string>
     <string name="play_audio">Ääni</string>
     <string name="default_audio_format_title">Oletusääniformaatti</string>
