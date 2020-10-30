@@ -406,7 +406,7 @@
     <string name="selection">Valinta</string>
     <string name="main_page_content_summary">Mitkä välilehdet näytetään pääsivulla</string>
     <string name="recaptcha_done_button">Valmis</string>
-    <string name="subtitle_activity_recaptcha">Paina \"Valmis\", kun ratkaistu</string>
+    <string name="subtitle_activity_recaptcha">Paina ”Valmis”, kun ratkaistu</string>
     <string name="infinite_videos">∞ videota</string>
     <string name="more_than_100_videos">100+ videota</string>
     <plurals name="watching">
@@ -439,8 +439,8 @@
     <string name="videos_string">Videot</string>
     <string name="restricted_video">Tämä video on ikärajoitettu.
 \n
-\nSalli \"%1$s\" asetuksissa katsoaksesi.</string>
-    <string name="youtube_restricted_mode_enabled_title">Ota käyttöön YouTuben \"Rajoitettu tila\"</string>
+\nSalli ”%1$s” asetuksissa katsoaksesi.</string>
+    <string name="youtube_restricted_mode_enabled_title">Ota käyttöön YouTuben ”Rajoitettu tila”</string>
     <string name="settings_category_updates_title">Päivitykset</string>
     <string name="peertube_instance_add_exists">Instanssi on jo olemassa</string>
     <string name="peertube_instance_add_https_only">Vain HTTPS-URL:t ovat tuettuja</string>
@@ -639,6 +639,6 @@
     <string name="clear_cookie_summary">Poista evästeet, jotka NewPipe tallentaa, kun ratkaiset reCAPTCHA:n</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-evästeet on poistettu</string>
     <string name="clear_cookie_title">Poista reCAPTCHA-evästeet</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube tarjoaa \"Rajoitetun tilan\", joka piilottaa aikuisviihdesisällön.</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube tarjoaa ”Rajoitetun tilan”, joka piilottaa aikuisviihdesisällön.</string>
     <string name="show_age_restricted_content_summary">Näytä mahdollisesti lapsille sopimaton sisältö, jolla on ikäraja (esim. 18+).</string>
 </resources>
