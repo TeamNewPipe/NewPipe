@@ -10,7 +10,7 @@
     <string name="download">Descargar</string>
     <string name="search">Buscar</string>
     <string name="settings">Ajustes</string>
-    <string name="did_you_mean">¿Quiso decir \"%1$s\"\?</string>
+    <string name="did_you_mean">¿Quiso decir «%1$s»\?</string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Elegir navegador</string>
     <string name="screen_rotation">giro</string>
@@ -58,7 +58,7 @@
     <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del usuario</string>
     <string name="live_streams_not_supported">Las transmisiones en vivo no son soportadas aún</string>
     <string name="content">Contenido</string>
-    <string name="show_age_restricted_content_title">Contenido restringido por edad</string>
+    <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
     <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Se pueden realizar cambios futuros desde los ajustes.</string>
     <string name="main_bg_subtitle">Toque «Buscar» para empezar
 \n</string>
@@ -72,7 +72,7 @@
     <string name="could_not_setup_download_menu">No se pudo configurar el menú de descarga</string>
     <string name="could_not_get_stream">No se pudo obtener ninguna transmisión</string>
     <string name="sorry_string">Lo siento, esto no debería haber ocurrido.</string>
-    <string name="error_report_button_text">Informar de este error vía email</string>
+    <string name="error_report_button_text">Informar de este error vía correo electrónico</string>
     <string name="error_snackbar_message">Lo siento, algo salió mal.</string>
     <string name="error_snackbar_action">Informar</string>
     <string name="what_device_headline">Información:</string>
@@ -220,7 +220,7 @@
     <string name="kiosk">Quiosco</string>
     <string name="trending">Tendencias</string>
     <string name="top_50">50 mejores</string>
-    <string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o emergente en la página \"Detalles:\" del vídeo</string>
+    <string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o emergente en la página «Detalles:» del vídeo</string>
     <string name="background_player_append">En cola en el reproductor de 2.º plano</string>
     <string name="popup_playing_append">En cola en el reproductor emergente</string>
     <string name="play_all">Reproducir todo</string>
@@ -234,7 +234,7 @@
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Reproducir en modo emergente</string>
-    <string name="show_hold_to_append_title">Mostrar consejo \"Mantener presionado para añadir\"</string>
+    <string name="show_hold_to_append_title">Mostrar consejo «Mantener presionado para añadir»</string>
     <string name="new_and_hot">Nuevo y lo mejor</string>
     <string name="hold_to_append">Mantener presionado para agregar a la cola</string>
     <string name="donation_title">Donar</string>
@@ -335,11 +335,11 @@
 \n1. Vaya a esta URL: %1$s 
 \n2. Inicie sesión cuando se le pida 
 \n3. Una descarga debería empezar (ese es el archivo de exportación)</string>
-    <string name="import_soundcloud_instructions">Importe un perfil de SoundCloud escribiendo la URL o su ID: 
-\n 
-\n1. Active el \"modo escritorio\" en un navegador web (el sitio no está disponible para dispositivos móviles) 
-\n2. Vaya a esta URL: %1$s 
-\n3. Inicie sesión cuando se le pida 
+    <string name="import_soundcloud_instructions">Importe un perfil de SoundCloud escribiendo la URL o su ID:
+\n
+\n1. Active el «modo escritorio» en un navegador web (el sitio no está disponible para dispositivos móviles)
+\n2. Vaya a esta URL: %1$s
+\n3. Inicie sesión cuando se le pida
 \n4. Copie la URL del perfil a la que fue redireccionado.</string>
     <string name="import_soundcloud_instructions_hint">suID, soundcloud.com/suID</string>
     <string name="import_network_expensive_warning">Observe que esta operación puede causar un uso intensivo de la red.
@@ -593,7 +593,7 @@
     <string name="songs">Canciones</string>
     <string name="restricted_video">Este video tiene restricción por edades.
 \n
-\nHabilita \"Contenido restringido por edades\" en los ajustes si quieres verlo.</string>
+\nHabilita «%1$s» en los ajustes si quieres verlo.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y también videos vistos parcialmente</string>
     <string name="remove_watched_popup_warning">Los videos que ya se hayan visto luego de agregados a la lista de reproducción, serán eliminados.
 \n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
@@ -604,7 +604,7 @@
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura de avatar del canal</string>
     <string name="show_original_time_ago_summary">Los textos originales de los servicios serán visibles en los ítems de transmisiones</string>
     <string name="show_original_time_ago_title">Mostrar tiempo atrás original en ítems</string>
-    <string name="youtube_restricted_mode_enabled_title">Modo restringido de YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Activar el «Modo restringido» de YouTube</string>
     <string name="playlist_page_summary">Página de lista de reproducción</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar sólo suscripciones desagrupadas</string>
     <string name="no_playlist_bookmarked_yet">Sin marcadores de lista de reproducción aún</string>
@@ -636,4 +636,12 @@
     <string name="notification_action_1_title">Botón de segunda acción</string>
     <string name="notification_action_0_title">Botón de primera acción</string>
     <string name="notification_scale_to_square_image_summary">Escalar la miniatura del vídeo mostrada en la notificación de relación de aspecto 16:9 a 1:1 (puede ocasionar distorsiones)</string>
+    <string name="clear_cookie_summary">Limpiar las cookies que NewPipe guarda cuando resuelves un reCAPTCHA</string>
+    <string name="show_age_restricted_content_summary">Mostrar contenido inapropiado para niños porque tiene un limite de edad (como 18+).</string>
+    <string name="show_memory_leaks">Mostrar pérdidas de memoria</string>
+    <string name="enqueued">Añadido a la cola</string>
+    <string name="enqueue_stream">Añadir a la cola</string>
+    <string name="recaptcha_cookies_cleared">Las cookies reCAPTCHA han sido limpiadas</string>
+    <string name="clear_cookie_title">Limpiar las cookies reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube provee un «Modo restringido», el cual oculta contenido potencialmente sólo apto para adultos.</string>
 </resources>
