@@ -10,7 +10,7 @@
     <string name="download">Scarica</string>
     <string name="search">Cerca</string>
     <string name="settings">Impostazioni</string>
-    <string name="did_you_mean">Forse cercavi \"%1$s\"\?</string>
+    <string name="did_you_mean">Forse cercavi «%1$s»\?</string>
     <string name="share_dialog_title">Condividi con</string>
     <string name="choose_browser">Scegli Browser</string>
     <string name="screen_rotation">rotazione</string>
@@ -20,12 +20,12 @@
     <string name="default_resolution_title">Risoluzione Predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
     <string name="kore_not_found">Installare l\'app Kore\?</string>
-    <string name="show_play_with_kodi_title">Mostra \"Riproduci con Kodi\"</string>
+    <string name="show_play_with_kodi_title">Mostra «Riproduci con Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra l\'opzione per riprodurre video tramite Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato Audio Predefinito</string>
     <string name="download_dialog_title">Scarica</string>
-    <string name="show_next_and_similar_title">Mostra video \"Prossimo\" e \"Simili\"</string>
+    <string name="show_next_and_similar_title">Mostra video «Prossimo» e «Simili»</string>
     <string name="unsupported_url">URL non supportato</string>
     <string name="content_language_title">Lingua Predefinita per Contenuti</string>
     <string name="settings_category_video_audio_title">Video e Audio</string>
@@ -60,7 +60,7 @@
     <string name="content">Contenuti</string>
     <string name="show_age_restricted_content_title">Mostra Contenuti con Restrizioni di Età</string>
     <string name="video_is_age_restricted">Mostra video con restrizioni di età. È possibile modificare questa opzione nelle Impostazioni.</string>
-    <string name="main_bg_subtitle">Tocca \"Cerca\" per iniziare
+    <string name="main_bg_subtitle">Tocca «Cerca» per iniziare
 \n</string>
     <string name="autoplay_by_calling_app_title">Riproduzione Automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video quando NewPipe viene aperto da un\'altra app</string>
@@ -220,8 +220,8 @@
     <string name="trending">Tendenze</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nuovi e Popolari</string>
-    <string name="show_hold_to_append_title">Mostra suggerimento \"Tieni premuto per accodare\"</string>
-    <string name="show_hold_to_append_summary">Nei \"Dettagli\" dei video, mostra suggerimento alla pressione dei pulsanti per la riproduzione Popup o in Sottofondo</string>
+    <string name="show_hold_to_append_title">Mostra suggerimento «Tieni premuto per accodare»</string>
+    <string name="show_hold_to_append_summary">Nei «Dettagli» dei video, mostra suggerimento alla pressione dei pulsanti per la riproduzione Popup o in Sottofondo</string>
     <string name="background_player_append">Accoda in Sottofondo</string>
     <string name="popup_playing_append">Accodato in Popup</string>
     <string name="play_all">Riproduci Tutto</string>
@@ -306,7 +306,7 @@
     <string name="settings_category_debug_title">Debug</string>
     <string name="caption_auto_generated">Generato automaticamente</string>
     <string name="enable_leak_canary_summary">Il monitoraggio di memory leak potrebbe causare la mancata risposta dell\'applicazione durante il dumping dell\'heap</string>
-    <string name="enable_disposed_exceptions_title">Segnala Errori \"Out-of-lifecycle\"</string>
+    <string name="enable_disposed_exceptions_title">Segnala errori «fuori del ciclo di vita»</string>
     <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
     <string name="use_inexact_seek_title">Usa Ricerca Rapida (Imprecisa)</string>
     <string name="use_inexact_seek_summary">Consente al lettore multimediale di spostarsi più velocemente, ma con precisione ridotta. Spostamenti di 5, 15 o 25 secondi non funzionano con questo.</string>
@@ -333,11 +333,11 @@
 \n1. Vai a questo URL: %1$s 
 \n2. Accedi quando richiesto 
 \n3. Il download del file d\'esportazione dovrebbe partire in automatico</string>
-    <string name="import_soundcloud_instructions">Importa un profilo SoundCloud inserendo l\'URL o il tuo ID: 
-\n 
-\n1. Abilitare la \"modalità desktop\" del browser (il sito non è disponibile per i dispositivi mobili) 
-\n2. Aprire questo URL: %1$s 
-\n3. Accedere quando richiesto 
+    <string name="import_soundcloud_instructions">Importa un profilo SoundCloud inserendo l\'URL o il tuo ID:
+\n
+\n1. Abilitare la «modalità desktop» del browser (il sito non è disponibile per i dispositivi mobili)
+\n2. Aprire questo URL: %1$s
+\n3. Accedere quando richiesto
 \n4. Copiare l\'URL del profilo a cui si viene indirizzati.</string>
     <string name="import_soundcloud_instructions_hint">iltuoID, soundcloud.com/iltuoid</string>
     <string name="import_network_expensive_warning">Tieni presente che questa operazione può consumare una grande quantità di traffico dati.
@@ -483,7 +483,7 @@
     <string name="enable_queue_limit">Limita Coda Download</string>
     <string name="downloads_storage_ask_summary_kitkat">Ogni volta verrà chiesta la destinazione dei file.
 \nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" consente di salvare file su una memoria esterna.
+    <string name="downloads_storage_use_saf_summary">Lo Storage Access Framework consente di salvare file su una memoria esterna.
 \nAlcuni dispositivi non sono compatibili</string>
     <string name="clear_playback_states_title">Elimina posizioni di riproduzione</string>
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
@@ -524,7 +524,7 @@
     <string name="permission_display_over_apps">Consentire la visualizzazione sopra altre applicazioni</string>
     <string name="app_language_title">Lingua Applicazione</string>
     <string name="systems_language">Predefinita di Sistema</string>
-    <string name="subtitle_activity_recaptcha">Premere \"Fatto\" quando risolto</string>
+    <string name="subtitle_activity_recaptcha">Premere «Fatto» quando risolto</string>
     <string name="recaptcha_done_button">Fatto</string>
     <string name="videos_string">Video</string>
     <plurals name="seconds">
@@ -590,13 +590,13 @@
     <string name="songs">Canzoni</string>
     <string name="restricted_video">Questo video ha restrizioni di età.
 \n
-\nAttivare \"%1$s\" nelle Impostazioni per poterlo vedere.</string>
+\nAttivare «%1$s» nelle Impostazioni per poterlo vedere.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visaualizzati parzialmente</string>
     <string name="remove_watched_popup_warning">Saranno rimossi gli elementi della playlist già visualizzati, sia precedenti che successivi.
 \nSei sicuro\? L\'azione è irreversibile!</string>
     <string name="remove_watched_popup_title">Rimuovere i gli elementi già visti\?</string>
     <string name="remove_watched">Rimuovi Elementi Visti</string>
-    <string name="youtube_restricted_mode_enabled_title">Attiva la \"Modalità con Restrizioni\" di YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Attiva la «Modalità con restrizioni» di YouTube</string>
     <string name="show_original_time_ago_summary">I testi originali dei servizi saranno visibili negli elementi video</string>
     <string name="show_original_time_ago_title">Mostra i tempi originali degli elementi</string>
     <string name="detail_sub_channel_thumbnail_view_description">Immagine del Canale</string>
@@ -639,6 +639,6 @@
     <string name="clear_cookie_summary">Cancella i cookie che NewPipe memorizza quando si risolve un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Cookie reCAPTCHA puliti</string>
     <string name="clear_cookie_title">Pulisci Cookie reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">Consente di usufruire della \"Modalità con Restrizioni\" di YouTube, che esclude contenuti potenzialmente inappropriati per i minori.</string>
+    <string name="youtube_restricted_mode_enabled_summary">Consente di usufruire della «Modalità con restrizioni» di YouTube, che esclude contenuti potenzialmente inappropriati per i minori.</string>
     <string name="show_age_restricted_content_summary">Mostra contenuti che hanno un limite di età (es. 18+). Potrebbero essere inadatti ai bambini.</string>
 </resources>
