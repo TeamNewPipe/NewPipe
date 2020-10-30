@@ -158,7 +158,7 @@
     <string name="subscribe_button_title">Suscribirse</string>
     <string name="subscribed_button_title">Suscrito</string>
     <string name="channel_unsubscribed">Canal no suscrito</string>
-    <string name="subscription_change_failed">No se pudo cambiar la suscripción</string>
+    <string name="subscription_change_failed">No se puede cambiar la suscripción</string>
     <string name="subscription_update_failed">No se pudo actualizar la suscripción</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Suscripciones</string>
