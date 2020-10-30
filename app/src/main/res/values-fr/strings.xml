@@ -73,7 +73,7 @@
     <string name="audio">Audio</string>
     <string name="retry">Réessayer</string>
     <string name="storage_permission_denied">Veuillez d’abord accorder l’accès au stockage</string>
-    <string name="main_bg_subtitle">Appuyer sur \"Rechercher\" pour commencer
+    <string name="main_bg_subtitle">Appuyez sur « Rechercher » pour commencer
 \n</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
     <string name="video_is_age_restricted">Affiche les vidéos soumises à une limite d’âge. Modifier cette option est possible depuis les paramètres.</string>
@@ -639,6 +639,6 @@
     <string name="clear_cookie_summary">Effacer les cookies que NewPipe garde lorsque vous résolvez un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Les cookies reCAPTCHA ont été effacés</string>
     <string name="clear_cookie_title">Effacer les cookies reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube dispose d\'un « Mode restreint » qui cache le contenu potentiellement mature.</string>
-    <string name="show_age_restricted_content_summary">Le contenu de cette émission n\'est peut-être pas approprié aux enfants à cause d\'une limite d\'âge (18 +).</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube dispose d\'un « Mode restreint » qui cache le contenu potentiellement inapproprié.</string>
+    <string name="show_age_restricted_content_summary">Le contenu de cette émission n\'est peut-être pas approprié pour les enfants à cause d\'une limite d\'âge (18 +).</string>
 </resources>
