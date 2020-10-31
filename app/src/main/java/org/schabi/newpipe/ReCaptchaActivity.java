@@ -18,10 +18,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 import androidx.preference.PreferenceManager;
 
+import org.schabi.newpipe.databinding.ActivityRecaptchaBinding;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.UnsupportedEncodingException;
@@ -62,30 +62,28 @@ public class ReCaptchaActivity extends AppCompatActivity {
         }
     }
 
-
-    private WebView webView;
+    private ActivityRecaptchaBinding recaptchaBinding;
     private String foundCookies = "";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recaptcha);
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        recaptchaBinding = ActivityRecaptchaBinding.inflate(getLayoutInflater());
+        setContentView(recaptchaBinding.getRoot());
+        setSupportActionBar(recaptchaBinding.toolbar);
 
         final String url = sanitizeRecaptchaUrl(getIntent().getStringExtra(RECAPTCHA_URL_EXTRA));
         // set return to Cancel by default
         setResult(RESULT_CANCELED);
 
-        webView = findViewById(R.id.reCaptchaWebView);
-
         // enable Javascript
-        final WebSettings webSettings = webView.getSettings();
+        final WebSettings webSettings = recaptchaBinding.reCaptchaWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUserAgentString(DownloaderImpl.USER_AGENT);
 
-        webView.setWebViewClient(new WebViewClient() {
+        recaptchaBinding.reCaptchaWebView.setWebViewClient(new WebViewClient() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean shouldOverrideUrlLoading(final WebView view,
@@ -117,16 +115,16 @@ public class ReCaptchaActivity extends AppCompatActivity {
         });
 
         // cleaning cache, history and cookies from webView
-        webView.clearCache(true);
-        webView.clearHistory();
-        final android.webkit.CookieManager cookieManager = CookieManager.getInstance();
+        recaptchaBinding.reCaptchaWebView.clearCache(true);
+        recaptchaBinding.reCaptchaWebView.clearHistory();
+        final CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             cookieManager.removeAllCookies(value -> { });
         } else {
             cookieManager.removeAllCookie();
         }
 
-        webView.loadUrl(url);
+        recaptchaBinding.reCaptchaWebView.loadUrl(url);
     }
 
     @Override
@@ -158,7 +156,8 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     private void saveCookiesAndFinish() {
-        handleCookiesFromUrl(webView.getUrl()); // try to get cookies of unclosed page
+        // try to get cookies of unclosed page
+        handleCookiesFromUrl(recaptchaBinding.reCaptchaWebView.getUrl());
         if (MainActivity.DEBUG) {
             Log.d(TAG, "saveCookiesAndFinish: foundCookies=" + foundCookies);
         }
