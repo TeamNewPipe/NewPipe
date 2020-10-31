@@ -5,12 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.BiFunction
-import io.reactivex.processors.BehaviorProcessor
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.functions.BiFunction
+import io.reactivex.rxjava3.processors.BehaviorProcessor
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
@@ -32,9 +32,9 @@ class FeedGroupDialogViewModel(
 
     private var subscriptionsFlowable = Flowable
         .combineLatest(
-                filterSubscriptions.startWith(initialQuery),
-                toggleShowOnlyUngrouped.startWith(initialShowOnlyUngrouped),
-                BiFunction { t1: String, t2: Boolean -> Filter(t1, t2) }
+            filterSubscriptions.startWithItem(initialQuery),
+            toggleShowOnlyUngrouped.startWithItem(initialShowOnlyUngrouped),
+            BiFunction { t1: String, t2: Boolean -> Filter(t1, t2) }
         )
         .distinctUntilChanged()
         .switchMap { (query, showOnlyUngrouped) ->
@@ -55,8 +55,10 @@ class FeedGroupDialogViewModel(
         .subscribe(mutableGroupLiveData::postValue)
 
     private var subscriptionsDisposable = Flowable
-        .combineLatest(subscriptionsFlowable, feedDatabaseManager.subscriptionIdsForGroup(groupId),
-            BiFunction { t1: List<PickerSubscriptionItem>, t2: List<Long> -> t1 to t2.toSet() })
+        .combineLatest(
+            subscriptionsFlowable, feedDatabaseManager.subscriptionIdsForGroup(groupId),
+            BiFunction { t1: List<PickerSubscriptionItem>, t2: List<Long> -> t1 to t2.toSet() }
+        )
         .subscribeOn(Schedulers.io())
         .subscribe(mutableSubscriptionsLiveData::postValue)
 
@@ -68,15 +70,19 @@ class FeedGroupDialogViewModel(
     }
 
     fun createGroup(name: String, selectedIcon: FeedGroupIcon, selectedSubscriptions: Set<Long>) {
-        doAction(feedDatabaseManager.createGroup(name, selectedIcon)
-            .flatMapCompletable {
-                feedDatabaseManager.updateSubscriptionsForGroup(it, selectedSubscriptions.toList())
-            })
+        doAction(
+            feedDatabaseManager.createGroup(name, selectedIcon)
+                .flatMapCompletable {
+                    feedDatabaseManager.updateSubscriptionsForGroup(it, selectedSubscriptions.toList())
+                }
+        )
     }
 
     fun updateGroup(name: String, selectedIcon: FeedGroupIcon, selectedSubscriptions: Set<Long>, sortOrder: Long) {
-        doAction(feedDatabaseManager.updateSubscriptionsForGroup(groupId, selectedSubscriptions.toList())
-            .andThen(feedDatabaseManager.updateGroup(FeedGroupEntity(groupId, name, selectedIcon, sortOrder))))
+        doAction(
+            feedDatabaseManager.updateSubscriptionsForGroup(groupId, selectedSubscriptions.toList())
+                .andThen(feedDatabaseManager.updateGroup(FeedGroupEntity(groupId, name, selectedIcon, sortOrder)))
+        )
     }
 
     fun deleteGroup() {
@@ -120,8 +126,10 @@ class FeedGroupDialogViewModel(
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return FeedGroupDialogViewModel(context.applicationContext,
-                groupId, initialQuery, initialShowOnlyUngrouped) as T
+            return FeedGroupDialogViewModel(
+                context.applicationContext,
+                groupId, initialQuery, initialShowOnlyUngrouped
+            ) as T
         }
     }
 }

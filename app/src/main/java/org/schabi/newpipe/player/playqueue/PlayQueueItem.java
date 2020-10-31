@@ -10,8 +10,8 @@ import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.io.Serializable;
 
-import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class PlayQueueItem implements Serializable {
     public static final long RECOVERY_UNSET = Long.MIN_VALUE;

@@ -26,7 +26,7 @@ import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 
 import icepick.State;
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Single;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 

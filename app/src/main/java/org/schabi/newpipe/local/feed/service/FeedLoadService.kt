@@ -31,21 +31,15 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.preference.PreferenceManager
-import io.reactivex.Flowable
-import io.reactivex.Notification
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
-import io.reactivex.processors.PublishProcessor
-import io.reactivex.schedulers.Schedulers
-import java.io.IOException
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicInteger
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Notification
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.functions.Consumer
+import io.reactivex.rxjava3.functions.Function
+import io.reactivex.rxjava3.processors.PublishProcessor
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
 import org.schabi.newpipe.MainActivity.DEBUG
@@ -55,14 +49,17 @@ import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
-import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
-import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
-import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ProgressEvent
-import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.SuccessResultEvent
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.*
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ExceptionUtils
 import org.schabi.newpipe.util.ExtractorHelper
+import java.io.IOException
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 
 class FeedLoadService : Service() {
     companion object {
@@ -109,8 +106,11 @@ class FeedLoadService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (DEBUG) {
-            Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "]," +
-                    " flags = [" + flags + "], startId = [" + startId + "]")
+            Log.d(
+                TAG,
+                "onStartCommand() called with: intent = [" + intent + "]," +
+                    " flags = [" + flags + "], startId = [" + startId + "]"
+            )
         }
 
         if (intent == null || loadingSubscription != null) {
@@ -123,10 +123,10 @@ class FeedLoadService : Service() {
 
         val groupId = intent.getLongExtra(EXTRA_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID)
         val useFeedExtractor = defaultSharedPreferences
-                .getBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
+            .getBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
 
         val thresholdOutdatedSecondsString = defaultSharedPreferences
-                .getString(getString(R.string.feed_update_threshold_key), getString(R.string.feed_update_threshold_default_value))
+            .getString(getString(R.string.feed_update_threshold_key), getString(R.string.feed_update_threshold_default_value))
         val thresholdOutdatedSeconds = thresholdOutdatedSecondsString!!.toInt()
 
         startLoading(groupId, useFeedExtractor, thresholdOutdatedSeconds)
@@ -181,63 +181,63 @@ class FeedLoadService : Service() {
         }
 
         subscriptions
-                .limit(1)
+            .take(1)
 
-                .doOnNext {
-                    currentProgress.set(0)
-                    maxProgress.set(it.size)
+            .doOnNext {
+                currentProgress.set(0)
+                maxProgress.set(it.size)
+            }
+            .filter { it.isNotEmpty() }
+
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext {
+                startForeground(NOTIFICATION_ID, notificationBuilder.build())
+                updateNotificationProgress(null)
+                broadcastProgress()
+            }
+
+            .observeOn(Schedulers.io())
+            .flatMap { Flowable.fromIterable(it) }
+            .takeWhile { !cancelSignal.get() }
+
+            .parallel(PARALLEL_EXTRACTIONS, PARALLEL_EXTRACTIONS * 2)
+            .runOn(Schedulers.io(), PARALLEL_EXTRACTIONS * 2)
+            .filter { !cancelSignal.get() }
+
+            .map { subscriptionEntity ->
+                try {
+                    val listInfo = if (useFeedExtractor) {
+                        ExtractorHelper
+                            .getFeedInfoFallbackToChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url)
+                            .blockingGet()
+                    } else {
+                        ExtractorHelper
+                            .getChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url, true)
+                            .blockingGet()
+                    } as ListInfo<StreamInfoItem>
+
+                    return@map Notification.createOnNext(Pair(subscriptionEntity.uid, listInfo))
+                } catch (e: Throwable) {
+                    val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
+                    val wrapper = RequestException(subscriptionEntity.uid, request, e)
+                    return@map Notification.createOnError<Pair<Long, ListInfo<StreamInfoItem>>>(wrapper)
                 }
-                .filter { it.isNotEmpty() }
+            }
+            .sequential()
 
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext {
-                    startForeground(NOTIFICATION_ID, notificationBuilder.build())
-                    updateNotificationProgress(null)
-                    broadcastProgress()
-                }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext(errorHandlingConsumer)
 
-                .observeOn(Schedulers.io())
-                .flatMap { Flowable.fromIterable(it) }
-                .takeWhile { !cancelSignal.get() }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext(notificationsConsumer)
 
-                .parallel(PARALLEL_EXTRACTIONS, PARALLEL_EXTRACTIONS * 2)
-                .runOn(Schedulers.io(), PARALLEL_EXTRACTIONS * 2)
-                .filter { !cancelSignal.get() }
+            .observeOn(Schedulers.io())
+            .buffer(BUFFER_COUNT_BEFORE_INSERT)
+            .doOnNext(databaseConsumer)
 
-                .map { subscriptionEntity ->
-                    try {
-                        val listInfo = if (useFeedExtractor) {
-                            ExtractorHelper
-                                    .getFeedInfoFallbackToChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url)
-                                    .blockingGet()
-                        } else {
-                            ExtractorHelper
-                                    .getChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url, true)
-                                    .blockingGet()
-                        } as ListInfo<StreamInfoItem>
-
-                        return@map Notification.createOnNext(Pair(subscriptionEntity.uid, listInfo))
-                    } catch (e: Throwable) {
-                        val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
-                        val wrapper = RequestException(subscriptionEntity.uid, request, e)
-                        return@map Notification.createOnError<Pair<Long, ListInfo<StreamInfoItem>>>(wrapper)
-                    }
-                }
-                .sequential()
-
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(errorHandlingConsumer)
-
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(notificationsConsumer)
-
-                .observeOn(Schedulers.io())
-                .buffer(BUFFER_COUNT_BEFORE_INSERT)
-                .doOnNext(databaseConsumer)
-
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(resultSubscriber)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(resultSubscriber)
     }
 
     private fun broadcastProgress() {
@@ -274,7 +274,8 @@ class FeedLoadService : Service() {
                 notificationUpdater.onNext(getString(R.string.feed_processing_message))
                 postEvent(ProgressEvent(R.string.feed_processing_message))
 
-                disposables.add(Single
+                disposables.add(
+                    Single
                         .fromCallable {
                             feedResultsHolder.ready()
 
@@ -293,7 +294,8 @@ class FeedLoadService : Service() {
                                 return@subscribe
                             }
                             stopService()
-                        })
+                        }
+                )
             }
         }
 
@@ -364,16 +366,18 @@ class FeedLoadService : Service() {
     private var maxProgress = AtomicInteger(-1)
 
     private fun createNotification(): NotificationCompat.Builder {
-        val cancelActionIntent = PendingIntent.getBroadcast(this,
-                NOTIFICATION_ID, Intent(ACTION_CANCEL), 0)
+        val cancelActionIntent = PendingIntent.getBroadcast(
+            this,
+            NOTIFICATION_ID, Intent(ACTION_CANCEL), 0
+        )
 
         return NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
-                .setOngoing(true)
-                .setProgress(-1, -1, true)
-                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .addAction(0, getString(R.string.cancel), cancelActionIntent)
-                .setContentTitle(getString(R.string.feed_notification_loading))
+            .setOngoing(true)
+            .setProgress(-1, -1, true)
+            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .addAction(0, getString(R.string.cancel), cancelActionIntent)
+            .setContentTitle(getString(R.string.feed_notification_loading))
     }
 
     private fun setupNotification() {
@@ -381,13 +385,15 @@ class FeedLoadService : Service() {
         notificationBuilder = createNotification()
 
         val throttleAfterFirstEmission = Function { flow: Flowable<String> ->
-            flow.limit(1).concatWith(flow.skip(1).throttleLatest(NOTIFICATION_SAMPLING_PERIOD.toLong(), TimeUnit.MILLISECONDS))
+            flow.take(1).concatWith(flow.skip(1).throttleLatest(NOTIFICATION_SAMPLING_PERIOD.toLong(), TimeUnit.MILLISECONDS))
         }
 
-        disposables.add(notificationUpdater
+        disposables.add(
+            notificationUpdater
                 .publish(throttleAfterFirstEmission)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::updateNotificationProgress))
+                .subscribe(this::updateNotificationProgress)
+        )
     }
 
     private fun updateNotificationProgress(updateDescription: String?) {

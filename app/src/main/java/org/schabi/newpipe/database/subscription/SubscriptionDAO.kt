@@ -5,8 +5,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import io.reactivex.Flowable
-import io.reactivex.Maybe
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
 import org.schabi.newpipe.database.BasicDAO
 
 @Dao
@@ -20,16 +20,19 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     @Query("SELECT * FROM subscriptions ORDER BY name COLLATE NOCASE ASC")
     abstract override fun getAll(): Flowable<List<SubscriptionEntity>>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM subscriptions
 
         WHERE name LIKE '%' || :filter || '%'
 
         ORDER BY name COLLATE NOCASE ASC
-        """)
+        """
+    )
     abstract fun getSubscriptionsFiltered(filter: String): Flowable<List<SubscriptionEntity>>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM subscriptions s
 
         LEFT JOIN feed_group_subscription_join fgs
@@ -38,12 +41,14 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
         WHERE (fgs.subscription_id IS NULL OR fgs.group_id = :currentGroupId)
 
         ORDER BY name COLLATE NOCASE ASC
-        """)
+        """
+    )
     abstract fun getSubscriptionsOnlyUngrouped(
         currentGroupId: Long
     ): Flowable<List<SubscriptionEntity>>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM subscriptions s
 
         LEFT JOIN feed_group_subscription_join fgs
@@ -53,7 +58,8 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
         AND s.name LIKE '%' || :filter || '%'
 
         ORDER BY name COLLATE NOCASE ASC
-        """)
+        """
+    )
     abstract fun getSubscriptionsOnlyUngroupedFiltered(
         currentGroupId: Long,
         filter: String

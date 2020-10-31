@@ -13,8 +13,10 @@ class FeedGroupIconTest {
             val added = usedIds.add(currentIcon.id)
             assertTrue("Repeated ids (current item: ${currentIcon.name} - ${currentIcon.id})", added)
 
-            assertEquals("Gap between ids detected (current item: ${currentIcon.name} - ${currentIcon.id} → should be: $shouldBeId)",
-                    shouldBeId, currentIcon.id)
+            assertEquals(
+                "Gap between ids detected (current item: ${currentIcon.name} - ${currentIcon.id} → should be: $shouldBeId)",
+                shouldBeId, currentIcon.id
+            )
         }
     }
 
