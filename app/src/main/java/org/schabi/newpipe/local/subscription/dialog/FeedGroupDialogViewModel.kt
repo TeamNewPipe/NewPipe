@@ -37,8 +37,8 @@ class FeedGroupDialogViewModel(
                 BiFunction { t1: String, t2: Boolean -> Filter(t1, t2) }
         )
         .distinctUntilChanged()
-        .switchMap { filter ->
-            subscriptionManager.getSubscriptions(groupId, filter.query, filter.showOnlyUngrouped)
+        .switchMap { (query, showOnlyUngrouped) ->
+            subscriptionManager.getSubscriptions(groupId, query, showOnlyUngrouped)
         }.map { list -> list.map { PickerSubscriptionItem(it) } }
 
     private val mutableGroupLiveData = MutableLiveData<FeedGroupEntity>()

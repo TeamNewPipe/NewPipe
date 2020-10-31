@@ -29,7 +29,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DiffUtil;
@@ -121,7 +120,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         mContext = context;
         mDownloadManager = downloadManager;
 
-        mInflater = ContextCompat.getSystemService(mContext, LayoutInflater.class);
+        mInflater = LayoutInflater.from(mContext);
         mLayout = R.layout.mission_item;
 
         mHandler = new Handler(context.getMainLooper());

@@ -186,7 +186,7 @@ public final class Localization {
     }
 
     public static String shortCount(final Context context, final long count) {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return CompactDecimalFormat.getInstance(getAppLocale(context),
                     CompactDecimalFormat.CompactStyle.SHORT).format(count);
         }

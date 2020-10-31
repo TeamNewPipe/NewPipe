@@ -748,11 +748,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
             //2) Icon change accordingly to current App Theme
             // using rootView.getContext() because getApplicationContext() didn't work
-            item.setIcon(player.isMuted()
-                    ? ThemeHelper.resolveResourceIdFromAttr(rootView.getContext(),
-                            R.attr.ic_volume_off)
-                    : ThemeHelper.resolveResourceIdFromAttr(rootView.getContext(),
-                            R.attr.ic_volume_up));
+            item.setIcon(ThemeHelper.resolveResourceIdFromAttr(rootView.getContext(),
+                    player.isMuted()
+                            ? R.attr.ic_volume_off
+                            : R.attr.ic_volume_up));
         }
     }
 }

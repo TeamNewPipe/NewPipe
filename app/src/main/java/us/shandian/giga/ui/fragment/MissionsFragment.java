@@ -224,9 +224,10 @@ public class MissionsFragment extends Fragment {
         mList.setAdapter(mAdapter);
 
         if (mSwitch != null) {
-            mSwitch.setIcon(mLinear
-                    ? ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_grid)
-                    : ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_list));
+            mSwitch.setIcon(ThemeHelper.resolveResourceIdFromAttr(
+                    requireContext(), mLinear
+                            ? R.attr.ic_grid
+                            : R.attr.ic_list));
             mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
             mPrefs.edit().putBoolean("linear", mLinear).apply();
         }

@@ -12,8 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
@@ -95,8 +94,7 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter =
-                new SectionsPagerAdapter(getSupportFragmentManager(), getLifecycle());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(this);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);
@@ -179,8 +177,8 @@ public class AboutActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public static class SectionsPagerAdapter extends FragmentStateAdapter {
-        public SectionsPagerAdapter(final FragmentManager fm, final Lifecycle lifecycle) {
-            super(fm, lifecycle);
+        public SectionsPagerAdapter(final FragmentActivity fa) {
+            super(fa);
         }
 
         @NonNull

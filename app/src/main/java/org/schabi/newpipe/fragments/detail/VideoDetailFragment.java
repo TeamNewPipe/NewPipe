@@ -1246,9 +1246,9 @@ public class VideoDetailFragment
                     final DisplayMetrics metrics = getResources().getDisplayMetrics();
 
                     if (getView() != null) {
-                        final int height = isInMultiWindow()
-                                ? requireView().getHeight()
-                                : activity.getWindow().getDecorView().getHeight();
+                        final int height = (isInMultiWindow()
+                                ? requireView()
+                                : activity.getWindow().getDecorView()).getHeight();
                         setHeightThumbnail(height, metrics);
                         getView().getViewTreeObserver().removeOnPreDrawListener(preDrawListener);
                     }
@@ -1269,9 +1269,9 @@ public class VideoDetailFragment
         requireView().getViewTreeObserver().removeOnPreDrawListener(preDrawListener);
 
         if (player != null && player.isFullscreen()) {
-            final int height = isInMultiWindow()
-                    ? requireView().getHeight()
-                    : activity.getWindow().getDecorView().getHeight();
+            final int height = (isInMultiWindow()
+                    ? requireView()
+                    : activity.getWindow().getDecorView()).getHeight();
             // Height is zero when the view is not yet displayed like after orientation change
             if (height != 0) {
                 setHeightThumbnail(height, metrics);
@@ -1279,9 +1279,9 @@ public class VideoDetailFragment
                 requireView().getViewTreeObserver().addOnPreDrawListener(preDrawListener);
             }
         } else {
-            final int height = isPortrait
-                    ? (int) (metrics.widthPixels / (16.0f / 9.0f))
-                    : (int) (metrics.heightPixels / 2.0f);
+            final int height = (int) (isPortrait
+                    ? metrics.widthPixels / (16.0f / 9.0f)
+                    : metrics.heightPixels / 2.0f);
             setHeightThumbnail(height, metrics);
         }
     }

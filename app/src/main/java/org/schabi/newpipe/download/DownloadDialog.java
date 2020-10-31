@@ -646,7 +646,7 @@ public class DownloadDialog extends DialogFragment
                 mainStorage = mainStorageVideo; // subtitle & video files go together
                 format = subtitleStreamsAdapter.getItem(selectedSubtitleIndex).getFormat();
                 mime = format.mimeType;
-                filename += format == MediaFormat.TTML ? MediaFormat.SRT.suffix : format.suffix;
+                filename += (format == MediaFormat.TTML ? MediaFormat.SRT : format).suffix;
                 break;
             default:
                 throw new RuntimeException("No stream selected");
