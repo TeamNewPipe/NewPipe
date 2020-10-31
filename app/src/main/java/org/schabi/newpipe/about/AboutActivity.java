@@ -6,22 +6,19 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.ActivityAboutBinding;
+import org.schabi.newpipe.databinding.FragmentAboutBinding;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
@@ -68,40 +65,27 @@ public class AboutActivity extends AppCompatActivity {
     private static final int POS_ABOUT = 0;
     private static final int POS_LICENSE = 1;
     private static final int TOTAL_COUNT = 2;
-    /**
-     * The {@link RecyclerView.Adapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentStateAdapter} derivative, which will keep every
-     * loaded fragment in memory.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    /**
-     * The {@link ViewPager2} that will host the section contents.
-     */
-    private ViewPager2 mViewPager;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
-        this.setTitle(getString(R.string.title_activity_about));
+        setTitle(getString(R.string.title_activity_about));
 
-        setContentView(R.layout.activity_about);
+        final ActivityAboutBinding aboutBinding = ActivityAboutBinding.inflate(getLayoutInflater());
+        setContentView(aboutBinding.getRoot());
 
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(aboutBinding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(this);
+        final SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(this);
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        aboutBinding.container.setAdapter(mSectionsPagerAdapter);
 
-        final TabLayout tabLayout = findViewById(R.id.tabs);
-        new TabLayoutMediator(tabLayout, mViewPager, (tab, position) -> {
+        new TabLayoutMediator(aboutBinding.tabs, aboutBinding.container, (tab, position) -> {
             switch (position) {
                 default:
                 case POS_ABOUT:
@@ -143,33 +127,28 @@ public class AboutActivity extends AppCompatActivity {
         }
 
         @Override
-        public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+        public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                                  final Bundle savedInstanceState) {
-            final View rootView = inflater.inflate(R.layout.fragment_about, container, false);
-            final Context context = this.getContext();
+            final FragmentAboutBinding aboutBinding =
+                    FragmentAboutBinding.inflate(inflater, container, false);
+            final Context context = getContext();
 
-            final TextView version = rootView.findViewById(R.id.app_version);
-            version.setText(BuildConfig.VERSION_NAME);
+            aboutBinding.appVersion.setText(BuildConfig.VERSION_NAME);
 
-            final View githubLink = rootView.findViewById(R.id.github_link);
-            githubLink.setOnClickListener(nv ->
+            aboutBinding.githubLink.setOnClickListener(nv ->
                     openUrlInBrowser(context, context.getString(R.string.github_url)));
 
-            final View donationLink = rootView.findViewById(R.id.donation_link);
-            donationLink.setOnClickListener(v ->
+            aboutBinding.donationLink.setOnClickListener(v ->
                     openUrlInBrowser(context, context.getString(R.string.donation_url)));
 
-            final View websiteLink = rootView.findViewById(R.id.website_link);
-            websiteLink.setOnClickListener(nv ->
+            aboutBinding.websiteLink.setOnClickListener(nv ->
                     openUrlInBrowser(context, context.getString(R.string.website_url)));
 
-            final View privacyPolicyLink = rootView.findViewById(R.id.privacy_policy_link);
-            privacyPolicyLink.setOnClickListener(v ->
+            aboutBinding.privacyPolicyLink.setOnClickListener(v ->
                     openUrlInBrowser(context, context.getString(R.string.privacy_policy_url)));
 
-            return rootView;
+            return aboutBinding.getRoot();
         }
-
     }
 
     /**
