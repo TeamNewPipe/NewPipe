@@ -240,7 +240,7 @@ public final class MainPlayer extends Service {
     }
 
     public void removeViewFromParent() {
-        if (getView().getParent() != null) {
+        if (getView() != null && getView().getParent() != null) {
             if (playerImpl.getParentActivity() != null) {
                 // This means view was added to fragment
                 final ViewGroup parent = (ViewGroup) getView().getParent();

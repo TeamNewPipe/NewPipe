@@ -63,7 +63,7 @@ abstract class BasePlayerGestureListener(
     private var isMovingInPopup = false
     private var isResizing = false
 
-    private val tossFlingVelocity = PlayerHelper.getTossFlingVelocity(service)
+    private val tossFlingVelocity = PlayerHelper.getTossFlingVelocity()
 
     // [popup] initial coordinates and distance between fingers
     private var initPointerDistance = -1.0
@@ -104,9 +104,6 @@ abstract class BasePlayerGestureListener(
     }
 
     private fun onTouchInPopup(v: View, event: MotionEvent): Boolean {
-        if (playerImpl == null) {
-            return false
-        }
         playerImpl.gestureDetector.onTouchEvent(event)
         if (event.pointerCount == 2 && !isMovingInPopup && !isResizing) {
             if (DEBUG) {

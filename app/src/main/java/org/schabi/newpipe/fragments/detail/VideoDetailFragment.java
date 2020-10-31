@@ -1097,7 +1097,7 @@ public final class VideoDetailFragment
 
     private void openMainPlayer() {
         if (playerService == null) {
-            PlayerHolder.startService(App.getApp(), true, this);
+            PlayerHolder.startService(App.getApp(), autoPlayEnabled, this);
             return;
         }
         if (currentInfo == null) {
@@ -1112,7 +1112,7 @@ public final class VideoDetailFragment
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper
-                .getPlayerIntent(requireContext(), MainPlayer.class, queue, null, true);
+                .getPlayerIntent(requireContext(), MainPlayer.class, queue, true, autoPlayEnabled);
         activity.startService(playerIntent);
     }
 

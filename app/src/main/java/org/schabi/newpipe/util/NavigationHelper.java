@@ -37,7 +37,6 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
-import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
@@ -73,7 +72,6 @@ public final class NavigationHelper {
     public static <T> Intent getPlayerIntent(@NonNull final Context context,
                                              @NonNull final Class<T> targetClazz,
                                              @Nullable final PlayQueue playQueue,
-                                             @Nullable final String quality,
                                              final boolean resumePlayback) {
         final Intent intent = new Intent(context, targetClazz);
 
@@ -82,9 +80,6 @@ public final class NavigationHelper {
             if (cacheKey != null) {
                 intent.putExtra(VideoPlayer.PLAY_QUEUE_KEY, cacheKey);
             }
-        }
-        if (quality != null) {
-            intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
         }
         intent.putExtra(VideoPlayer.RESUME_PLAYBACK, resumePlayback);
         intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_VIDEO);
@@ -96,8 +91,10 @@ public final class NavigationHelper {
     public static <T> Intent getPlayerIntent(@NonNull final Context context,
                                              @NonNull final Class<T> targetClazz,
                                              @Nullable final PlayQueue playQueue,
-                                             final boolean resumePlayback) {
-        return getPlayerIntent(context, targetClazz, playQueue, null, resumePlayback);
+                                             final boolean resumePlayback,
+                                             final boolean playWhenReady) {
+        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
+                .putExtra(BasePlayer.PLAY_WHEN_READY, playWhenReady);
     }
 
     @NonNull
@@ -111,24 +108,6 @@ public final class NavigationHelper {
                 .putExtra(BasePlayer.SELECT_ON_APPEND, selectOnAppend);
     }
 
-    @NonNull
-    public static <T> Intent getPlayerIntent(@NonNull final Context context,
-                                             @NonNull final Class<T> targetClazz,
-                                             @Nullable final PlayQueue playQueue,
-                                             final int repeatMode,
-                                             final float playbackSpeed,
-                                             final float playbackPitch,
-                                             final boolean playbackSkipSilence,
-                                             @Nullable final String playbackQuality,
-                                             final boolean resumePlayback,
-                                             final boolean startPaused,
-                                             final boolean isMuted) {
-        return getPlayerIntent(context, targetClazz, playQueue, playbackQuality, resumePlayback)
-                .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
-                .putExtra(BasePlayer.START_PAUSED, startPaused)
-                .putExtra(BasePlayer.IS_MUTED, isMuted);
-    }
-
     public static void playOnMainPlayer(final AppCompatActivity activity,
                                         @NonNull final PlayQueue playQueue) {
         final PlayQueueItem item = playQueue.getItem();
@@ -138,10 +117,12 @@ public final class NavigationHelper {
     }
 
     public static void playOnMainPlayer(final Context context,
-                                        @NonNull final PlayQueue playQueue) {
+                                        @NonNull final PlayQueue playQueue,
+                                        final boolean switchingPlayers) {
         final PlayQueueItem item = playQueue.getItem();
         assert item != null;
-        openVideoDetail(context, item.getServiceId(), item.getUrl(), item.getTitle(), playQueue);
+        openVideoDetail(context,
+                item.getServiceId(), item.getUrl(), item.getTitle(), playQueue, switchingPlayers);
     }
 
     public static void playOnPopupPlayer(final Context context,
@@ -370,7 +351,7 @@ public final class NavigationHelper {
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         } else if (switchingPlayers) {
             // switching player to main player
-            autoPlay = true;
+            autoPlay = PlayerHolder.isPlaying(); // keep play/pause state
         } else if (playerType == MainPlayer.PlayerType.VIDEO) {
             // opening new stream while already playing in main player
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
@@ -412,16 +393,6 @@ public final class NavigationHelper {
                                            @NonNull final String name) {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
-                .addToBackStack(null)
-                .commit();
-    }
-
-    public static void openCommentsFragment(final FragmentManager fragmentManager,
-                                            final int serviceId, final String url,
-                                            @NonNull final String name) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.switch_service_in, R.anim.switch_service_out)
-                .replace(R.id.fragment_holder, CommentsFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }
@@ -506,23 +477,17 @@ public final class NavigationHelper {
         context.startActivity(mIntent);
     }
 
-    public static void openChannel(final Context context, final int serviceId,
-                                   final String url, @NonNull final String name) {
-        final Intent openIntent = getOpenIntent(context, url, serviceId,
-                StreamingService.LinkType.CHANNEL);
-        openIntent.putExtra(Constants.KEY_TITLE, name);
-        context.startActivity(openIntent);
-    }
-
     public static void openVideoDetail(final Context context,
                                        final int serviceId,
                                        final String url,
                                        @NonNull final String title,
-                                       @Nullable final PlayQueue playQueue) {
+                                       @Nullable final PlayQueue playQueue,
+                                       final boolean switchingPlayers) {
 
         final Intent intent = getOpenIntent(context, url, serviceId,
                 StreamingService.LinkType.STREAM);
         intent.putExtra(Constants.KEY_TITLE, title);
+        intent.putExtra(VideoDetailFragment.KEY_SWITCHING_PLAYERS, switchingPlayers);
 
         if (playQueue != null) {
             final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);

@@ -685,7 +685,7 @@ public class RouterActivity extends AppCompatActivity {
                 }
 
                 if (choice.playerChoice.equals(videoPlayerKey)) {
-                    NavigationHelper.playOnMainPlayer(this, playQueue);
+                    NavigationHelper.playOnMainPlayer(this, playQueue, false);
                 } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
                     NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
                 } else if (choice.playerChoice.equals(popupPlayerKey)) {

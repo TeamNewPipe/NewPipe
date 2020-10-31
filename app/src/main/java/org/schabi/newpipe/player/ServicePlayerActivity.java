@@ -27,9 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -42,9 +40,9 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Collections;
@@ -113,9 +111,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     public abstract int getPlayerOptionMenuResource();
 
-    public abstract boolean onPlayerOptionSelected(MenuItem item);
-
     public abstract void setupMenu(Menu m);
+
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
     ////////////////////////////////////////////////////////////////////////////
@@ -187,36 +184,28 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 return true;
             case R.id.action_switch_main:
                 this.player.setRecovery();
-                getApplicationContext().startActivity(
-                        getSwitchIntent(MainActivity.class, MainPlayer.PlayerType.VIDEO)
-                                .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying()));
+                NavigationHelper.playOnMainPlayer(this, player.getPlayQueue(), true);
+                return true;
+            case R.id.action_switch_popup:
+                if (PermissionHelper.isPopupEnabled(this)) {
+                    this.player.setRecovery();
+                    NavigationHelper.playOnPopupPlayer(this, player.playQueue, true);
+                } else {
+                    PermissionHelper.showPopupEnablementToast(this);
+                }
+                return true;
+            case R.id.action_switch_background:
+                this.player.setRecovery();
+                NavigationHelper.playOnBackgroundPlayer(this, player.playQueue, true);
                 return true;
         }
-        return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unbind();
-    }
-
-    protected Intent getSwitchIntent(final Class clazz, final MainPlayer.PlayerType playerType) {
-        return NavigationHelper.getPlayerIntent(getApplicationContext(), clazz,
-                this.player.getPlayQueue(), this.player.getRepeatMode(),
-                this.player.getPlaybackSpeed(), this.player.getPlaybackPitch(),
-                this.player.getPlaybackSkipSilence(),
-                null,
-                true,
-                !this.player.isPlaying(),
-                this.player.isMuted())
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM)
-                .putExtra(Constants.KEY_URL, this.player.getVideoUrl())
-                .putExtra(Constants.KEY_TITLE, this.player.getVideoTitle())
-                .putExtra(Constants.KEY_SERVICE_ID,
-                        this.player.getCurrentMetadata().getMetadata().getServiceId())
-                .putExtra(VideoPlayer.PLAYER_TYPE, playerType);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -368,8 +357,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 Menu.NONE, R.string.play_queue_stream_detail);
         detail.setOnMenuItemClickListener(menuItem -> {
             // playQueue is null since we don't want any queue change
-            NavigationHelper.openVideoDetail(
-                    this, item.getServiceId(), item.getUrl(), item.getTitle(), null);
+            NavigationHelper.openVideoDetail(this, item.getServiceId(), item.getUrl(),
+                    item.getTitle(), null, false);
             return true;
         });
 

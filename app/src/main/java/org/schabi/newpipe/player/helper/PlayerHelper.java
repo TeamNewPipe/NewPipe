@@ -295,7 +295,7 @@ public final class PlayerHelper {
         return 60000;
     }
 
-    public static TrackSelection.Factory getQualitySelector(@NonNull final Context context) {
+    public static TrackSelection.Factory getQualitySelector() {
         return new AdaptiveTrackSelection.Factory(
                 1000,
                 AdaptiveTrackSelection.DEFAULT_MAX_DURATION_FOR_QUALITY_DECREASE_MS,
@@ -303,11 +303,11 @@ public final class PlayerHelper {
                 AdaptiveTrackSelection.DEFAULT_BANDWIDTH_FRACTION);
     }
 
-    public static boolean isUsingDSP(@NonNull final Context context) {
+    public static boolean isUsingDSP() {
         return true;
     }
 
-    public static int getTossFlingVelocity(@NonNull final Context context) {
+    public static int getTossFlingVelocity() {
         return 2500;
     }
 
