@@ -378,11 +378,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayShowTitleEnabled(true);
-            if (useAsFrontPage) {
-                supportActionBar.setDisplayHomeAsUpEnabled(false);
-            } else {
-                supportActionBar.setDisplayHomeAsUpEnabled(true);
-            }
+            supportActionBar.setDisplayHomeAsUpEnabled(!useAsFrontPage);
         }
     }
 
