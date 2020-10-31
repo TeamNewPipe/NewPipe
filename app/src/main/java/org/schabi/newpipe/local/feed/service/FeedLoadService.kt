@@ -161,8 +161,8 @@ class FeedLoadService : Service() {
         companion object {
             fun wrapList(subscriptionId: Long, info: ListInfo<StreamInfoItem>): List<Throwable> {
                 val toReturn = ArrayList<Throwable>(info.errors.size)
-                for (error in info.errors) {
-                    toReturn.add(RequestException(subscriptionId, info.serviceId.toString() + ":" + info.url, error))
+                info.errors.mapTo(toReturn) {
+                    RequestException(subscriptionId, info.serviceId.toString() + ":" + info.url, it)
                 }
                 return toReturn
             }

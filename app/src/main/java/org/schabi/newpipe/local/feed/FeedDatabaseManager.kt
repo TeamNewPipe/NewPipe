@@ -50,7 +50,7 @@ class FeedDatabaseManager(context: Context) {
 
         return streams.map<List<StreamInfoItem>> {
             val items = ArrayList<StreamInfoItem>(it.size)
-            for (streamEntity in it) items.add(streamEntity.toStreamInfoItem())
+            it.mapTo(items) { it.toStreamInfoItem() }
             return@map items
         }
     }
