@@ -84,7 +84,8 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_player_behavior_title">
+        android:title="@string/settings_category_player_behavior_title"
+        app:iconSpaceReserved="false">
 
         <ListPreference
             android:defaultValue="@string/preferred_open_action_default"
