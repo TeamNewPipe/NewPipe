@@ -84,12 +84,12 @@ public final class PlayerHelper {
         final int days = (milliSeconds % (86400000 * 7)) / 86400000;
 
         STRING_BUILDER.setLength(0);
-        return days > 0
+        return (days > 0
                 ? STRING_FORMATTER.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds)
-                .toString()
                 : hours > 0
-                ? STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds).toString()
-                : STRING_FORMATTER.format("%02d:%02d", minutes, seconds).toString();
+                ? STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds)
+                : STRING_FORMATTER.format("%02d:%02d", minutes, seconds)
+        ).toString();
     }
 
     public static String formatSpeed(final double speed) {

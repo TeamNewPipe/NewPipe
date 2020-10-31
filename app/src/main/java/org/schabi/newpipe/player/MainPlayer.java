@@ -225,9 +225,9 @@ public final class MainPlayer extends Service {
         // DisplayMetrics from activity context knows about MultiWindow feature
         // while DisplayMetrics from app context doesn't
         final DisplayMetrics metrics = (playerImpl != null
-                && playerImpl.getParentActivity() != null)
-                ? playerImpl.getParentActivity().getResources().getDisplayMetrics()
-                : getResources().getDisplayMetrics();
+                && playerImpl.getParentActivity() != null
+                ? playerImpl.getParentActivity().getResources()
+                : getResources()).getDisplayMetrics();
         return metrics.heightPixels < metrics.widthPixels;
     }
 
