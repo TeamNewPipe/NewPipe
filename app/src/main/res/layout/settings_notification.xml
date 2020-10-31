@@ -1,78 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp">
 
-        <Switch
-            android:id="@+id/notificationScaleSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:clickable="false"
-            android:focusable="false"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
-
-        <TextView
+    <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/notification_scale_to_square_image_title"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/notificationScaleSwitch"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/notification_scale_to_square_image_summary"
-            app:layout_constraintEnd_toStartOf="@+id/notificationScaleSwitch"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <View
-            android:id="@+id/notificationScaleSwitchClickableArea"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="?android:selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:clickable="false"
             android:focusable="false"
@@ -81,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <include
             android:id="@+id/notificationAction0"
@@ -91,7 +30,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <include
             android:id="@+id/notificationAction1"
@@ -130,4 +69,3 @@
             app:layout_constraintTop_toBottomOf="@+id/notificationAction3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
