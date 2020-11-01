@@ -72,6 +72,8 @@
     <string name="notification_action_shuffle">Shuffle</string>
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_action_nothing">Nothing</string>
+    <string name="notification_colorize_title">Colorize notification</string>
+    <string name="notification_colorize_summary">Have Android customize the notification\'s color according to the main color in the thumbnail (note that this is not available on all devices)</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
