@@ -61,7 +61,6 @@ import org.schabi.newpipe.util.ServiceHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -758,16 +757,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                         }
 
                         // Remove duplicates
-                        final Iterator<SuggestionItem> iterator = networkResult.iterator();
-                        while (iterator.hasNext() && localResult.size() > 0) {
-                            final SuggestionItem next = iterator.next();
-                            for (final SuggestionItem item : localResult) {
-                                if (item.query.equals(next.query)) {
-                                    iterator.remove();
-                                    break;
-                                }
-                            }
-                        }
+                        networkResult.removeIf(networkItem ->
+                                localResult.stream().anyMatch(localItem ->
+                                        localItem.query.equals(networkItem.query)));
 
                         if (networkResult.size() > 0) {
                             result.addAll(networkResult);

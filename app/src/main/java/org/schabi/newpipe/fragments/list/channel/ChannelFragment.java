@@ -50,7 +50,6 @@ import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -495,13 +494,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
             // handling ContentNotSupportedException not to show the error but an appropriate string
             // so that crashes won't be sent uselessly and the user will understand what happened
-            for (Iterator<Throwable> it = errors.iterator(); it.hasNext();) {
-                final Throwable throwable = it.next();
+            errors.removeIf(throwable -> {
                 if (throwable instanceof ContentNotSupportedException) {
                     showContentNotSupported();
-                    it.remove();
                 }
-            }
+                return throwable instanceof ContentNotSupportedException;
+            });
 
             if (!errors.isEmpty()) {
                 showSnackBarError(errors, UserAction.REQUESTED_CHANNEL,

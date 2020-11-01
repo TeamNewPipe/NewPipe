@@ -35,6 +35,10 @@ public abstract class Mission implements Serializable {
      */
     public StoredFileHelper storage;
 
+    public long getTimestamp() {
+        return timestamp;
+    }
+
     /**
      * Delete the downloaded file
      *

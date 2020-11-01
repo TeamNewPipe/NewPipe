@@ -5,6 +5,7 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public interface PlaylistLocalItem extends LocalItem {
@@ -18,15 +19,8 @@ public interface PlaylistLocalItem extends LocalItem {
         items.addAll(localPlaylists);
         items.addAll(remotePlaylists);
 
-        Collections.sort(items, (left, right) -> {
-            final String on1 = left.getOrderingName();
-            final String on2 = right.getOrderingName();
-            if (on1 == null) {
-                return on2 == null ? 0 : 1;
-            } else {
-                return on2 == null ? -1 : on1.compareToIgnoreCase(on2);
-            }
-        });
+        Collections.sort(items, Comparator.comparing(PlaylistLocalItem::getOrderingName,
+                Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
 
         return items;
     }
