@@ -132,6 +132,8 @@
     <string name="notification_slot_compact_1_key" translatable="false">notification_slot_compact_1_key</string>
     <string name="notification_slot_compact_2_key" translatable="false">notification_slot_compact_2_key</string>
 
+    <string name="notification_colorize_key" translatable="false">notification_colorize_key</string>
+
     <string name="video_mp4_key" translatable="false">video_mp4</string>
     <string name="video_webm_key" translatable="false">video_webm</string>
     <string name="video_3gp_key" translatable="false">video_3gp</string>

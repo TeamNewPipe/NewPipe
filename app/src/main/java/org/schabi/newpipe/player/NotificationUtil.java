@@ -120,7 +120,10 @@ public final class NotificationUtil {
                 .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
                 .setShowWhen(false)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                .setColor(ContextCompat.getColor(player.context, R.color.gray))
+                .setColor(ContextCompat.getColor(player.context, R.color.dark_background_color))
+                .setColorized(player.sharedPreferences.getBoolean(
+                        player.context.getString(R.string.notification_colorize_key),
+                        true))
                 .setDeleteIntent(PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
 
