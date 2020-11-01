@@ -289,6 +289,7 @@ public final class VideoDetailFragment
                 || (currentInfo != null
                 && isAutoplayEnabled()
                 && player.getParentActivity() == null)) {
+            autoPlayEnabled = true; // forcefully start playing
             openVideoPlayer();
         }
     }
@@ -521,6 +522,7 @@ public final class VideoDetailFragment
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
+                autoPlayEnabled = true; // forcefully start playing
                 openVideoPlayer();
                 break;
             case R.id.detail_title_root_layout:
@@ -537,6 +539,7 @@ public final class VideoDetailFragment
                     player.hideControls(0, 0);
                     showSystemUi();
                 } else {
+                    autoPlayEnabled = true; // forcefully start playing
                     openVideoPlayer();
                 }
 
