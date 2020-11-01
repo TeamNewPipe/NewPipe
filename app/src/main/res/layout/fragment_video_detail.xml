@@ -493,7 +493,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="@dimen/detail_control_padding"
+                        android:paddingHorizontal="@dimen/detail_control_padding"
+                        android:paddingBottom="@dimen/detail_control_padding"
                         android:visibility="gone"
                         tools:visibility="visible">
 
@@ -570,49 +571,6 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:background="?attr/separator_color" />
-
-                    <!--DESCRIPTIONS-->
-                    <LinearLayout
-                        android:id="@+id/detail_description_root_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        tools:visibility="visible">
-
-                        <TextView
-                            android:id="@+id/detail_upload_date_view"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textSize="@dimen/video_item_detail_upload_date_text_size"
-                            android:textStyle="bold"
-                            tools:text="Published on Oct 2, 2009" />
-
-                        <TextView
-                            android:id="@+id/detail_description_view"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginBottom="8dp"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textIsSelectable="true"
-                            android:textSize="@dimen/video_item_detail_description_text_size"
-                            tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum." />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:background="?attr/separator_color" />
-
-                    </LinearLayout>
 
                 </LinearLayout>
             </RelativeLayout>

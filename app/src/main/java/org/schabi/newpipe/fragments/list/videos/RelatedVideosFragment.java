@@ -52,7 +52,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
     }
 
@@ -182,7 +182,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle outState) {
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(INFO_KEY, relatedStreamInfo);
     }

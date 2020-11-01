@@ -106,7 +106,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
         subscriptionManager = new SubscriptionManager(activity);
     }
@@ -119,7 +119,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     @Override
-    public void onViewCreated(final View rootView, final Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
         channelBinding = FragmentChannelBinding.bind(rootView);
     }

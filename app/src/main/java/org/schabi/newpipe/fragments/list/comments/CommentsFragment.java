@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.list.comments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,11 +37,6 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(final Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
@@ -52,9 +46,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

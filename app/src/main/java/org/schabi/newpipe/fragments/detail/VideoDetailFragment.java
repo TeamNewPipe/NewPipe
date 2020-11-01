@@ -38,7 +38,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
@@ -61,14 +60,12 @@ import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
-import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
 import org.schabi.newpipe.ktx.AnimationType;
@@ -97,9 +94,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
-import org.schabi.newpipe.util.TextLinkifier;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.views.LargeTextMovementMethod;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -150,7 +145,7 @@ public final class VideoDetailFragment
 
     private static final String COMMENTS_TAB_TAG = "COMMENTS";
     private static final String RELATED_TAB_TAG = "NEXT VIDEO";
-    private static final String EMPTY_TAB_TAG = "EMPTY TAB";
+    private static final String DESCRIPTION_TAB_TAG = "DESCRIPTION TAB";
 
     private boolean showRelatedStreams;
     private boolean showComments;
@@ -570,21 +565,16 @@ public final class VideoDetailFragment
     }
 
     private void toggleTitleAndDescription() {
-        if (binding.detailDescriptionRootLayout.getVisibility() == View.VISIBLE) {
-            binding.detailVideoTitleView.setMaxLines(1);
-            binding.detailDescriptionRootLayout.setVisibility(View.GONE);
-            binding.detailDescriptionView.setFocusable(false);
-            binding.detailToggleDescriptionView.setImageResource(
-                    ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
-            binding.detailSecondaryControlPanel.setVisibility(View.GONE);
-        } else {
+        if (binding.detailSecondaryControlPanel.getVisibility() == View.GONE) {
             binding.detailVideoTitleView.setMaxLines(10);
-            binding.detailDescriptionRootLayout.setVisibility(View.VISIBLE);
-            binding.detailDescriptionView.setFocusable(true);
-            binding.detailDescriptionView.setMovementMethod(new LargeTextMovementMethod());
             binding.detailToggleDescriptionView.setImageResource(
                     ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_less));
             binding.detailSecondaryControlPanel.setVisibility(View.VISIBLE);
+        } else {
+            binding.detailVideoTitleView.setMaxLines(1);
+            binding.detailToggleDescriptionView.setImageResource(
+                    ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
+            binding.detailSecondaryControlPanel.setVisibility(View.GONE);
         }
     }
 
@@ -928,10 +918,8 @@ public final class VideoDetailFragment
             pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
         }
 
-        if (pageAdapter.getCount() == 0) {
-            pageAdapter.addFragment(new EmptyFragment(), EMPTY_TAB_TAG);
-        }
-
+        //temp empty fragment. will be updated in handleResult
+        pageAdapter.addFragment(new Fragment(), DESCRIPTION_TAB_TAG);
         pageAdapter.notifyDataSetUpdate();
 
         if (pageAdapter.getCount() < 2) {
@@ -1153,29 +1141,6 @@ public final class VideoDetailFragment
         binding.playerPlaceholder.requestLayout();
     }
 
-    private void prepareDescription(final Description description) {
-        if (description == null || isEmpty(description.getContent())
-                || description == Description.emptyDescription) {
-            return;
-        }
-
-        switch (description.getType()) {
-            case Description.HTML:
-                disposables.add(TextLinkifier.createLinksFromHtmlBlock(requireContext(),
-                        description.getContent(), binding.detailDescriptionView,
-                        HtmlCompat.FROM_HTML_MODE_LEGACY));
-                break;
-            case Description.MARKDOWN:
-                disposables.add(TextLinkifier.createLinksFromMarkdownText(requireContext(),
-                        description.getContent(), binding.detailDescriptionView));
-                break;
-            case Description.PLAIN_TEXT: default:
-                disposables.add(TextLinkifier.createLinksFromPlainText(requireContext(),
-                        description.getContent(), binding.detailDescriptionView));
-                break;
-        }
-    }
-
     private final ViewTreeObserver.OnPreDrawListener preDrawListener =
             new ViewTreeObserver.OnPreDrawListener() {
                 @Override
@@ -1348,7 +1313,6 @@ public final class VideoDetailFragment
         binding.detailVideoTitleView.setMaxLines(1);
         animate(binding.detailVideoTitleView, true, 0);
 
-        binding.detailDescriptionRootLayout.setVisibility(View.GONE);
         binding.detailToggleDescriptionView.setVisibility(View.GONE);
         binding.detailTitleRootLayout.setClickable(false);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
@@ -1379,7 +1343,6 @@ public final class VideoDetailFragment
             if (binding.relatedStreamsLayout == null) { //phone
                 pageAdapter.updateItem(RELATED_TAB_TAG,
                         RelatedVideosFragment.getInstance(info));
-                pageAdapter.notifyDataSetUpdate();
             } else { //tablet
                 getChildFragmentManager().beginTransaction()
                         .replace(R.id.relatedStreamsLayout,
@@ -1389,6 +1352,10 @@ public final class VideoDetailFragment
                         player != null && player.isFullscreen() ? View.GONE : View.VISIBLE);
             }
         }
+        pageAdapter.updateItem(DESCRIPTION_TAB_TAG,
+                new DescriptionFragment(info));
+        pageAdapter.notifyDataSetUpdate();
+
         animate(binding.detailThumbnailPlayButton, true, 200);
         binding.detailVideoTitleView.setText(title);
 
@@ -1397,7 +1364,7 @@ public final class VideoDetailFragment
         } else if (!isEmpty(info.getUploaderName())) {
             displayUploaderAsSubChannel(info);
         } else {
-            binding.detailUploadDateView.setVisibility(View.GONE);
+            binding.detailUploaderTextView.setVisibility(View.GONE);
             binding.detailUploaderThumbnailView.setVisibility(View.GONE);
         }
 
@@ -1465,22 +1432,11 @@ public final class VideoDetailFragment
             binding.detailDurationView.setVisibility(View.GONE);
         }
 
-        binding.detailDescriptionView.setVisibility(View.GONE);
         binding.detailTitleRootLayout.setClickable(true);
         binding.detailToggleDescriptionView.setImageResource(
                 ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
         binding.detailToggleDescriptionView.setVisibility(View.VISIBLE);
-        binding.detailDescriptionRootLayout.setVisibility(View.GONE);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
-
-        if (info.getUploadDate() != null) {
-            binding.detailUploadDateView.setText(Localization
-                    .localizeUploadDate(activity, info.getUploadDate().offsetDateTime()));
-            binding.detailUploadDateView.setVisibility(View.VISIBLE);
-        } else {
-            binding.detailUploadDateView.setText(null);
-            binding.detailUploadDateView.setVisibility(View.GONE);
-        }
 
         sortedVideoStreams = ListHelper.getSortedStreamVideosList(
                 activity,
@@ -1489,7 +1445,6 @@ public final class VideoDetailFragment
                 false);
         selectedVideoStreamIndex = ListHelper
                 .getDefaultResolutionIndex(activity, sortedVideoStreams);
-        prepareDescription(info.getDescription());
         updateProgressInfo(info);
         initThumbnailViews(info);
         disposables.add(showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
@@ -1535,7 +1490,7 @@ public final class VideoDetailFragment
         binding.detailSubChannelTextView.setText(info.getUploaderName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
-        binding.detailUploadDateView.setVisibility(View.GONE);
+        binding.detailUploaderTextView.setVisibility(View.GONE);
     }
 
     private void displayBothUploaderAndSubChannel(final StreamInfo info) {
@@ -1546,12 +1501,12 @@ public final class VideoDetailFragment
         binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
 
         if (!isEmpty(info.getUploaderName())) {
-            binding.detailUploadDateView.setText(
+            binding.detailUploaderTextView.setText(
                     String.format(getString(R.string.video_detail_by), info.getUploaderName()));
-            binding.detailUploadDateView.setVisibility(View.VISIBLE);
-            binding.detailUploadDateView.setSelected(true);
+            binding.detailUploaderTextView.setVisibility(View.VISIBLE);
+            binding.detailUploaderTextView.setSelected(true);
         } else {
-            binding.detailUploadDateView.setVisibility(View.GONE);
+            binding.detailUploaderTextView.setVisibility(View.GONE);
         }
     }
 
