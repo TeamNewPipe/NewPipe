@@ -643,4 +643,12 @@
     <string name="notification_action_0_title">První akční tlačítko</string>
     <string name="notification_scale_to_square_image_summary">Zmenšit miniaturu videa zobrazenou v oznámení z poměru stran 16: 9 na 1: 1 (může způsobit zkreslení)</string>
     <string name="notification_scale_to_square_image_title">Změnit poměr stran miniatury na 1:1</string>
+    <string name="show_memory_leaks">Ukázat memory leaks</string>
+    <string name="enqueued">Zařazeno do fronty</string>
+    <string name="enqueue_stream">Zařadit do fronty</string>
+    <string name="clear_cookie_summary">Vymazat cookies, které NewPipe uloží, po vyřešení reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Cookies reCAPTCHA byly vymazány</string>
+    <string name="clear_cookie_title">Vymazat cookies reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Omezený režim\", který skrývá potenciální obsahy pro dospělé.</string>
+    <string name="show_age_restricted_content_summary">Zobrazit obsah, i když je patrně nevhodný pro děti, protože odkazuje na věkové omezení (např. 18+).</string>
 </resources>
