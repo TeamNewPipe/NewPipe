@@ -56,6 +56,10 @@ public final class PlayerHolder {
         return player.isPlaying();
     }
 
+    public static boolean isPlayerOpen() {
+        return player != null;
+    }
+
     public static void setListener(final PlayerServiceExtendedEventListener newListener) {
         listener = newListener;
         // Force reload data from service

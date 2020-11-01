@@ -69,6 +69,7 @@ import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
+import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
@@ -152,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
-        setupBroadcastReceiver();
+        openMiniPlayerUponPlayerStarted();
     }
 
     private void setupDrawer() throws Exception {
@@ -809,34 +810,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setupBroadcastReceiver() {
-        broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(final Context context, final Intent intent) {
-                if (intent.getAction().equals(VideoDetailFragment.ACTION_PLAYER_STARTED)) {
-                    final Fragment fragmentPlayer = getSupportFragmentManager()
-                            .findFragmentById(R.id.fragment_player_holder);
-                    if (fragmentPlayer == null) {
-                        /*
-                         * We still don't have a fragment attached to the activity.
-                         * It can happen when a user started popup or background players
-                         * without opening a stream inside the fragment.
-                         * Adding it in a collapsed state (only mini player will be visible)
-                         * */
-                        NavigationHelper.showMiniPlayer(getSupportFragmentManager());
+    private void openMiniPlayerIfMissing() {
+        final Fragment fragmentPlayer = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_player_holder);
+        if (fragmentPlayer == null) {
+            // We still don't have a fragment attached to the activity. It can happen when a user
+            // started popup or background players without opening a stream inside the fragment.
+            // Adding it in a collapsed state (only mini player will be visible).
+            NavigationHelper.showMiniPlayer(getSupportFragmentManager());
+        }
+    }
+
+    private void openMiniPlayerUponPlayerStarted() {
+        if (PlayerHolder.isPlayerOpen()) {
+            // no need for a broadcast receiver if the player is already open
+            openMiniPlayerIfMissing();
+        } else {
+            // listen for player intents being sent around
+            broadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(final Context context, final Intent intent) {
+                    if (intent.getAction().equals(VideoDetailFragment.ACTION_PLAYER_STARTED)) {
+                        openMiniPlayerIfMissing();
+                        // At this point the player is added 100%, we can unregister. Other actions
+                        // are useless since the fragment will not be removed after that.
+                        unregisterReceiver(broadcastReceiver);
+                        broadcastReceiver = null;
                     }
-                    /*
-                    * At this point the player is added 100%, we can unregister.
-                    * Other actions are useless since the fragment will not be removed after that
-                     * */
-                    unregisterReceiver(broadcastReceiver);
-                    broadcastReceiver = null;
                 }
-            }
-        };
-        final IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
-        registerReceiver(broadcastReceiver, intentFilter);
+            };
+            final IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
+            registerReceiver(broadcastReceiver, intentFilter);
+        }
     }
 
     private boolean bottomSheetHiddenOrCollapsed() {
