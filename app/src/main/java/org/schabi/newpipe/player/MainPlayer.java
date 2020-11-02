@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
@@ -231,6 +232,7 @@ public final class MainPlayer extends Service {
         return metrics.heightPixels < metrics.widthPixels;
     }
 
+    @Nullable
     public View getView() {
         if (playerImpl == null) {
             return null;

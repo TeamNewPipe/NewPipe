@@ -88,6 +88,7 @@ import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -822,15 +823,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openMiniPlayerUponPlayerStarted() {
+        if (getIntent().getSerializableExtra(Constants.KEY_LINK_TYPE)
+                == StreamingService.LinkType.STREAM) {
+            // handleIntent() already takes care of opening video detail fragment
+            // due to an intent containing a STREAM link
+            return;
+        }
+
         if (PlayerHolder.isPlayerOpen()) {
-            // no need for a broadcast receiver if the player is already open
+            // if the player is already open, no need for a broadcast receiver
             openMiniPlayerIfMissing();
         } else {
-            // listen for player intents being sent around
+            // listen for player start intent being sent around
             broadcastReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(final Context context, final Intent intent) {
-                    if (intent.getAction().equals(VideoDetailFragment.ACTION_PLAYER_STARTED)) {
+                    if (Objects.equals(intent.getAction(),
+                            VideoDetailFragment.ACTION_PLAYER_STARTED)) {
                         openMiniPlayerIfMissing();
                         // At this point the player is added 100%, we can unregister. Other actions
                         // are useless since the fragment will not be removed after that.

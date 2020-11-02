@@ -1111,7 +1111,9 @@ public final class VideoDetailFragment
 
         // Video view can have elements visible from popup,
         // We hide it here but once it ready the view will be shown in handleIntent()
-        playerService.getView().setVisibility(View.GONE);
+        if (playerService.getView() != null) {
+            playerService.getView().setVisibility(View.GONE);
+        }
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper

@@ -486,6 +486,7 @@ public final class NavigationHelper {
 
         final Intent intent = getOpenIntent(context, url, serviceId,
                 StreamingService.LinkType.STREAM);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(Constants.KEY_TITLE, title);
         intent.putExtra(VideoDetailFragment.KEY_SWITCHING_PLAYERS, switchingPlayers);
 
