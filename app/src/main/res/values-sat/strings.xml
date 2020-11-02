@@ -21,4 +21,5 @@
     <string name="no_player_found_toast">ᱚᱠᱟ ᱥᱴᱨᱤᱢ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ (ᱟᱢ VLC ᱯᱞᱮᱭᱟᱹᱨ ᱵᱚᱦᱟᱞ ᱠᱟᱛᱮ ᱚᱱᱟ ᱨᱮ ᱯᱞᱮ ᱫᱟᱲᱮᱭᱟᱜᱼᱟᱢ) ᱾</string>
     <string name="no_player_found">ᱚᱠᱟ ᱥᱴᱨᱤᱢ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ ᱾ VLC ᱵᱚᱦᱟᱞ ᱟᱢ ᱥᱮ\?</string>
     <string name="upload_date_text">%1$s ᱨᱮ ᱩᱪᱷᱟᱹᱱ ᱮᱱᱟ</string>
+    <string name="subscribe_button_title">ᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ</string>
 </resources>
