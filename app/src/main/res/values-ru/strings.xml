@@ -648,4 +648,5 @@
     <string name="recaptcha_cookies_cleared">Файлы cookie reCAPTCHA были удалены</string>
     <string name="clear_cookie_title">Очистить файлы cookie reCAPTCHA</string>
     <string name="show_age_restricted_content_summary">Показывать контент, который, возможно, не подходит для детей, потому что он имеет возрастное ограничение (например, 18+).</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube предоставляет \"Ограниченный режим\", который скрывает потенциально взрослый контент.</string>
 </resources>
