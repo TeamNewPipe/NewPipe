@@ -83,8 +83,8 @@ public class ProgressDrawable extends Drawable {
             // render marquee
             width += size * 2;
             Path marquee = new Path();
-            for (float i = -size; i < width; i += size) {
-                marquee.addPath(mMarqueeLine, i + mMarqueeProgress, 0);
+            for (int i = -size; i < width; i += size) {
+                marquee.addPath(mMarqueeLine, ((float)i + mMarqueeProgress), 0);
             }
             marquee.close();
 
