@@ -359,4 +359,11 @@
     <string name="notification_action_3_title">চতুর্থ অ্যাকশন বাটন</string>
     <string name="notification_action_2_title">তৃতীয় অ্যাকশন বাটন</string>
     <string name="notification_action_1_title">দ্বিতীয় অ্যাকশান বাটন</string>
+    <string name="auto_queue_summary">একটি সংশ্লিষ্ট স্ট্রিম যোগ করে প্লেব্যাক সারি শেষ করা অব্যাহত রাখো (পুনরাবৃত্তি ছাড়া)</string>
+    <string name="clear_queue_confirmation_description">সক্রিয় প্লেয়ার সারি প্রতিস্থাপন করা হবে</string>
+    <string name="clear_queue_confirmation_summary">এক প্লেয়ার থেকে অন্য প্লেয়ারে পরিবর্তন করলে তোমার সারি প্রতিস্থাপিত হতে পারে</string>
+    <string name="clear_queue_confirmation_title">কিউ মোছার আগে নিশ্চিত করো</string>
+    <string name="notification_actions_at_most_three">কমপ্যাক্ট বিজ্ঞপ্তিতে প্রদর্শন করতে তুমি সর্বাধিক তিনটি ক্রিয়া নির্বাচন করতে পারো!</string>
+    <string name="notification_actions_summary">নিচের প্রতিটি প্রজ্ঞাপন ক্রিয়া সম্পাদনা করো। ডান দিকের চেকবাক্স ব্যবহার করে কম্প্যাক্ট নোটিফিকেশনে দেখানোর জন্য তিনটি পর্যন্ত নির্বাচন করো।</string>
+    <string name="notification_scale_to_square_image_summary">১৬:৯ থেকে ১:১অনুপাতে প্রদর্শিত ভিডিও থাম্বনেইল পরিবর্তন করো (বিকৃতি প্রবর্তন করতে পারে)</string>
 </resources>
