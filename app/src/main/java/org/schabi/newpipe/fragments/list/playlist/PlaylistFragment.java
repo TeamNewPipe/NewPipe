@@ -11,18 +11,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.viewbinding.ViewBinding;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.databinding.PlaylistControlBinding;
+import org.schabi.newpipe.databinding.PlaylistHeaderBinding;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -53,7 +55,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
@@ -74,17 +75,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private View headerRootLayout;
-    private TextView headerTitleView;
-    private View headerUploaderLayout;
-    private TextView headerUploaderName;
-    private CircleImageView headerUploaderAvatar;
-    private TextView headerStreamCount;
-    private View playlistCtrl;
-
-    private View headerPlayAllButton;
-    private View headerPopupButton;
-    private View headerBackgroundButton;
+    private PlaylistHeaderBinding headerBinding;
+    private PlaylistControlBinding playlistControlBinding;
 
     private MenuItem playlistBookmarkButton;
 
@@ -119,22 +111,13 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected View getListHeader() {
-        headerRootLayout = activity.getLayoutInflater()
-                .inflate(R.layout.playlist_header, itemsList, false);
-        headerTitleView = headerRootLayout.findViewById(R.id.playlist_title_view);
-        headerUploaderLayout = headerRootLayout.findViewById(R.id.uploader_layout);
-        headerUploaderName = headerRootLayout.findViewById(R.id.uploader_name);
-        headerUploaderAvatar = headerRootLayout.findViewById(R.id.uploader_avatar_view);
-        headerStreamCount = headerRootLayout.findViewById(R.id.playlist_stream_count);
-        playlistCtrl = headerRootLayout.findViewById(R.id.playlist_control);
+    @Override
+    protected ViewBinding getListHeader() {
+        headerBinding = PlaylistHeaderBinding
+                .inflate(activity.getLayoutInflater(), itemsList, false);
+        playlistControlBinding = headerBinding.playlistControl;
 
-        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
-        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
-        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
-
-
-        return headerRootLayout;
+        return headerBinding;
     }
 
     @Override
@@ -203,6 +186,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     @Override
     public void onDestroyView() {
+        headerBinding = null;
+        playlistControlBinding = null;
+
         super.onDestroyView();
         if (isBookmarkButtonReady != null) {
             isBookmarkButtonReady.set(false);
@@ -275,25 +261,25 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     @Override
     public void showLoading() {
         super.showLoading();
-        animateView(headerRootLayout, false, 200);
+        animateView(headerBinding.getRoot(), false, 200);
         animateView(itemsList, false, 100);
 
-        IMAGE_LOADER.cancelDisplayTask(headerUploaderAvatar);
-        animateView(headerUploaderLayout, false, 200);
+        IMAGE_LOADER.cancelDisplayTask(headerBinding.uploaderAvatarView);
+        animateView(headerBinding.uploaderLayout, false, 200);
     }
 
     @Override
     public void handleResult(@NonNull final PlaylistInfo result) {
         super.handleResult(result);
 
-        animateView(headerRootLayout, true, 100);
-        animateView(headerUploaderLayout, true, 300);
-        headerUploaderLayout.setOnClickListener(null);
+        animateView(headerBinding.getRoot(), true, 100);
+        animateView(headerBinding.uploaderLayout, true, 300);
+        headerBinding.uploaderLayout.setOnClickListener(null);
         // If we have an uploader put them into the UI
         if (!TextUtils.isEmpty(result.getUploaderName())) {
-            headerUploaderName.setText(result.getUploaderName());
+            headerBinding.uploaderName.setText(result.getUploaderName());
             if (!TextUtils.isEmpty(result.getUploaderUrl())) {
-                headerUploaderLayout.setOnClickListener(v -> {
+                headerBinding.uploaderLayout.setOnClickListener(v -> {
                     try {
                         NavigationHelper.openChannelFragment(getFM(), result.getServiceId(),
                                 result.getUploaderUrl(), result.getUploaderName());
@@ -303,28 +289,29 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 });
             }
         } else { // Otherwise say we have no uploader
-            headerUploaderName.setText(R.string.playlist_no_uploader);
+            headerBinding.uploaderName.setText(R.string.playlist_no_uploader);
         }
 
-        playlistCtrl.setVisibility(View.VISIBLE);
+        playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
 
         final String avatarUrl = result.getUploaderAvatarUrl();
         if (result.getServiceId() == ServiceList.YouTube.getServiceId()
                 && (YoutubeParsingHelper.isYoutubeMixId(result.getId())
                 || YoutubeParsingHelper.isYoutubeMusicMixId(result.getId()))) {
             // this is an auto-generated playlist (e.g. Youtube mix), so a radio is shown
-            headerUploaderAvatar.setDisableCircularTransformation(true);
-            headerUploaderAvatar.setBorderColor(
+            headerBinding.uploaderAvatarView.setDisableCircularTransformation(true);
+            headerBinding.uploaderAvatarView.setBorderColor(
                     getResources().getColor(R.color.transparent_background_color));
-            headerUploaderAvatar.setImageDrawable(AppCompatResources.getDrawable(requireContext(),
-                    resolveResourceIdFromAttr(requireContext(), R.attr.ic_radio)));
-
+            headerBinding.uploaderAvatarView.setImageDrawable(
+                    AppCompatResources.getDrawable(requireContext(),
+                    resolveResourceIdFromAttr(requireContext(), R.attr.ic_radio))
+            );
         } else {
-            IMAGE_LOADER.displayImage(avatarUrl, headerUploaderAvatar,
+            IMAGE_LOADER.displayImage(avatarUrl, headerBinding.uploaderAvatarView,
                     ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
 
-        headerStreamCount.setText(Localization
+        headerBinding.playlistStreamCount.setText(Localization
                 .localizeStreamCount(getContext(), result.getStreamCount()));
 
         if (!result.getErrors().isEmpty()) {
@@ -338,19 +325,19 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistBookmarkSubscriber());
 
-        headerPlayAllButton.setOnClickListener(view ->
+        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
-        headerPopupButton.setOnClickListener(view ->
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
-        headerBackgroundButton.setOnClickListener(view ->
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
 
-        headerPopupButton.setOnLongClickListener(view -> {
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
             return true;
         });
 
-        headerBackgroundButton.setOnLongClickListener(view -> {
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
             return true;
         });
@@ -459,7 +446,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     @Override
     public void setTitle(final String title) {
         super.setTitle(title);
-        headerTitleView.setText(title);
+        headerBinding.playlistTitleView.setText(title);
     }
 
     private void onBookmarkClicked() {

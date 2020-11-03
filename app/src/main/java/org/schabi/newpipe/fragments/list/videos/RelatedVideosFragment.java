@@ -8,13 +8,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
+import androidx.viewbinding.ViewBinding;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.RelatedStreamsHeaderBinding;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -38,8 +39,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private View headerRootLayout;
-    private Switch autoplaySwitch;
+    private RelatedStreamsHeaderBinding headerBinding;
 
     public static RelatedVideosFragment getInstance(final StreamInfo info) {
         final RelatedVideosFragment instance = new RelatedVideosFragment();
@@ -66,25 +66,29 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
     }
 
-    protected View getListHeader() {
+    @Override
+    public void onDestroyView() {
+        headerBinding = null;
+        super.onDestroyView();
+    }
+
+    @Override
+    protected ViewBinding getListHeader() {
         if (relatedStreamInfo != null && relatedStreamInfo.getRelatedItems() != null) {
-            headerRootLayout = activity.getLayoutInflater()
-                    .inflate(R.layout.related_streams_header, itemsList, false);
-            autoplaySwitch = headerRootLayout.findViewById(R.id.autoplay_switch);
+            headerBinding = RelatedStreamsHeaderBinding
+                    .inflate(activity.getLayoutInflater(), itemsList, false);
 
             final SharedPreferences pref = PreferenceManager
                     .getDefaultSharedPreferences(requireContext());
             final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
-            autoplaySwitch.setChecked(autoplay);
-            autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
+            headerBinding.autoplaySwitch.setChecked(autoplay);
+            headerBinding.autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
                     PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
                             .putBoolean(getString(R.string.auto_queue_key), b).apply());
-            return headerRootLayout;
+            return headerBinding;
         } else {
             return null;
         }
@@ -107,8 +111,8 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     public void showLoading() {
         super.showLoading();
-        if (headerRootLayout != null) {
-            headerRootLayout.setVisibility(View.INVISIBLE);
+        if (headerBinding != null) {
+            headerBinding.getRoot().setVisibility(View.INVISIBLE);
         }
     }
 
@@ -116,8 +120,8 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     public void handleResult(@NonNull final RelatedStreamInfo result) {
         super.handleResult(result);
 
-        if (headerRootLayout != null) {
-            headerRootLayout.setVisibility(View.VISIBLE);
+        if (headerBinding != null) {
+            headerBinding.getRoot().setVisibility(View.VISIBLE);
         }
         AnimationUtils.slideUp(getView(), 120, 96, 0.06f);
 
@@ -126,9 +130,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
                     NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
     }
 
     @Override
@@ -202,8 +204,8 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         final SharedPreferences pref =
                 PreferenceManager.getDefaultSharedPreferences(requireContext());
         final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
-        if (autoplaySwitch != null) {
-            autoplaySwitch.setChecked(autoplay);
+        if (headerBinding != null) {
+            headerBinding.autoplaySwitch.setChecked(autoplay);
         }
     }
 
