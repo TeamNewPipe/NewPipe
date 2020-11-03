@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +27,7 @@ import com.jakewharton.rxbinding4.view.RxView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.databinding.ChannelHeaderBinding;
+import org.schabi.newpipe.databinding.FragmentChannelBinding;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -80,13 +80,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     private SubscriptionManager subscriptionManager;
 
+    private FragmentChannelBinding channelBinding;
     private ChannelHeaderBinding headerBinding;
     private PlaylistControlBinding playlistControlBinding;
 
     private MenuItem menuRssButton;
-    private TextView contentNotSupportedTextView;
-    private TextView kaomojiTextView;
-    private TextView noVideosTextView;
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -125,9 +123,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     @Override
     public void onViewCreated(final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
-        contentNotSupportedTextView = rootView.findViewById(R.id.error_content_not_supported);
-        kaomojiTextView = rootView.findViewById(R.id.channel_kaomoji);
-        noVideosTextView = rootView.findViewById(R.id.channel_no_videos);
+        channelBinding = FragmentChannelBinding.bind(rootView);
     }
 
     @Override
@@ -141,6 +137,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     @Override
     public void onDestroyView() {
+        channelBinding = null;
         headerBinding = null;
         playlistControlBinding = null;
         super.onDestroyView();
@@ -529,10 +526,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     private void showContentNotSupported() {
-        contentNotSupportedTextView.setVisibility(View.VISIBLE);
-        kaomojiTextView.setText("(︶︹︺)");
-        kaomojiTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
-        noVideosTextView.setVisibility(View.GONE);
+        channelBinding.errorContentNotSupported.setVisibility(View.VISIBLE);
+        channelBinding.channelKaomoji.setText("(︶︹︺)");
+        channelBinding.channelKaomoji.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
+        channelBinding.channelNoVideos.setVisibility(View.GONE);
     }
 
     private PlayQueue getPlayQueue() {
