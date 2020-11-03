@@ -17,6 +17,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.preference.PreferenceManager
@@ -29,11 +30,10 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.State
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.dialog_title.view.itemAdditionalDetails
-import kotlinx.android.synthetic.main.dialog_title.view.itemTitleView
-import kotlinx.android.synthetic.main.fragment_subscription.items_list
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
+import org.schabi.newpipe.databinding.DialogTitleBinding
+import org.schabi.newpipe.databinding.FragmentSubscriptionBinding
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionState
@@ -70,6 +70,9 @@ import kotlin.math.floor
 import kotlin.math.max
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
+    private var _binding: FragmentSubscriptionBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var viewModel: SubscriptionViewModel
     private lateinit var subscriptionManager: SubscriptionManager
     private val disposables: CompositeDisposable = CompositeDisposable()
@@ -129,7 +132,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     override fun onPause() {
         super.onPause()
-        itemsListState = items_list.layoutManager?.onSaveInstanceState()
+        itemsListState = binding.itemsList.layoutManager?.onSaveInstanceState()
         feedGroupsListState = feedGroupsCarousel?.onSaveInstanceState()
         importExportItemExpandedState = importExportItem.isExpanded
 
@@ -169,7 +172,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         filters.addAction(IMPORT_COMPLETE_ACTION)
         subscriptionBroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
-                items_list?.post {
+                _binding?.itemsList?.post {
                     importExportItem.isExpanded = false
                     importExportItem.notifyChanged(FeedImportExportItem.REFRESH_EXPANDED_STATUS)
                 }
@@ -275,17 +278,18 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     override fun initViews(rootView: View, savedInstanceState: Bundle?) {
         super.initViews(rootView, savedInstanceState)
+        _binding = FragmentSubscriptionBinding.bind(rootView)
 
         val shouldUseGridLayout = shouldUseGridLayout()
         groupAdapter.spanCount = if (shouldUseGridLayout) getGridSpanCount() else 1
-        items_list.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
+        binding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
-        items_list.adapter = groupAdapter
+        binding.itemsList.adapter = groupAdapter
 
         viewModel = ViewModelProvider(this).get(SubscriptionViewModel::class.java)
-        viewModel.stateLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer { it?.let(this::handleResult) })
-        viewModel.feedGroupsLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer { it?.let(this::handleFeedGroups) })
+        viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { it?.let(this::handleResult) })
+        viewModel.feedGroupsLiveData.observe(viewLifecycleOwner, Observer { it?.let(this::handleFeedGroups) })
     }
 
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
@@ -301,16 +305,16 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             }
         }
 
-        val bannerView = View.inflate(requireContext(), R.layout.dialog_title, null)
-        bannerView.isSelected = true
-        bannerView.itemTitleView.text = selectedItem.name
-        bannerView.itemAdditionalDetails.visibility = View.GONE
+        val dialogTitleBinding = DialogTitleBinding.inflate(LayoutInflater.from(requireContext()))
+        dialogTitleBinding.root.isSelected = true
+        dialogTitleBinding.itemTitleView.text = selectedItem.name
+        dialogTitleBinding.itemAdditionalDetails.visibility = View.GONE
 
         AlertDialog.Builder(requireContext())
-            .setCustomTitle(bannerView)
-            .setItems(commands, actions)
-            .create()
-            .show()
+                .setCustomTitle(dialogTitleBinding.root)
+                .setItems(commands, actions)
+                .create()
+                .show()
     }
 
     private fun deleteChannel(selectedItem: ChannelInfoItem) {
@@ -368,14 +372,14 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 subscriptionsSection.setHideWhenEmpty(false)
 
                 if (result.subscriptions.isEmpty() && importExportItemExpandedState == null) {
-                    items_list.post {
+                    binding.itemsList.post {
                         importExportItem.isExpanded = true
                         importExportItem.notifyChanged(FeedImportExportItem.REFRESH_EXPANDED_STATUS)
                     }
                 }
 
                 if (itemsListState != null) {
-                    items_list.layoutManager?.onRestoreInstanceState(itemsListState)
+                    binding.itemsList.layoutManager?.onRestoreInstanceState(itemsListState)
                     itemsListState = null
                 }
             }
@@ -394,7 +398,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
 
         feedGroupsSortMenuItem.showMenuItem = groups.size > 1
-        items_list.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
+        binding.itemsList.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -403,12 +407,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     override fun showLoading() {
         super.showLoading()
-        animateView(items_list, false, 100)
+        animateView(binding.itemsList, false, 100)
     }
 
     override fun hideLoading() {
         super.hideLoading()
-        animateView(items_list, true, 200)
+        animateView(binding.itemsList, true, 200)
     }
 
     // /////////////////////////////////////////////////////////////////////////
