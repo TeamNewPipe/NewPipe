@@ -204,9 +204,9 @@
     </plurals>
     <string name="no_videos">Nema videozapisa</string>
     <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="few">%s videa</item>
-        <item quantity="other">%s videa</item>
+        <item quantity="one">%s videozapis</item>
+        <item quantity="few">%s videozapisa</item>
+        <item quantity="other">%s videozapisa</item>
     </plurals>
     <string name="item_deleted">Stavka je izbrisana</string>
     <string name="background_player_append">Stavljeno u popis izvođenja playera u pozadini</string>
@@ -585,7 +585,7 @@
     <string name="feed_processing_message">Obrada feeda …</string>
     <string name="feed_oldest_subscription_update">Zadnje aktualiziranje feeda: %s</string>
     <string name="feed_groups_header_title">Grupe kanala</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Da, i djelomično pogledane videa</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Da, i djelomično pogledane videozapise</string>
     <string name="choose_instance_prompt">Odaberi primjerak</string>
     <string name="downloads_storage_ask_summary_kitkat">Program će te pitati kamo spremati preuzimanja.
 \nOdaberi SAF, ako želiš preuzeti na vanjsku SD karticu</string>
@@ -594,7 +594,7 @@
     <string name="error_progress_lost">Napredak je izgubljen, jer je datoteka izbrisana</string>
     <string name="error_postprocessing_stopped">NewPipe se zatvorio tijekom rada s datotekom</string>
     <string name="playlist_page_summary">Stranica playliste</string>
-    <string name="remove_watched_popup_warning">Videa koji su gledani prije i nakon dodavanja u playlistu će se ukloniti.
+    <string name="remove_watched_popup_warning">Videzapisi koji su gledani prije i nakon dodavanja u playlistu će se ukloniti.
 \nStvarno ih želiš ukloniti\? Ovo je nepovratna radnja!</string>
     <string name="no_playlist_bookmarked_yet">Još nema zabilježenih playlista</string>
     <string name="select_a_playlist">Odaberi playlistu</string>
