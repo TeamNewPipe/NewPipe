@@ -111,10 +111,10 @@ public class PlayerGestureListener
         }
         if (playerType == MainPlayer.PlayerType.VIDEO) {
             if (portion == DisplayPortion.LEFT_HALF) {
-                onScrollMainVolume(distanceX, distanceY);
+                onScrollMainBrightness(distanceX, distanceY);
 
             } else /* DisplayPortion.RIGHT_HALF */ {
-                onScrollMainBrightness(distanceX, distanceY);
+                onScrollMainVolume(distanceX, distanceY);
             }
 
         } else /* MainPlayer.PlayerType.POPUP */ {
