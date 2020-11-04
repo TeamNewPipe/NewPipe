@@ -516,7 +516,7 @@
     <string name="previous_export">Previous export</string>
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
-    <string name="import_youtube_instructions">Import YouTube subscriptions by downloading the export file:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. A download should start (that\'s the export file) </string>
+    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"\n4. Click on \"Next step\" and then on \"Create export\"\n5. Click on the \"Download\" button after it appears and \n6. From the downloaded takeout zip extract the .json file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.json\") and import it here.</string>
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>
