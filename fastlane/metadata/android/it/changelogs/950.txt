@@ -1,0 +1,4 @@
+Aggiustato
+• Accesso archiviazione su Adroid 10+
+• Apertura kiosk
+• Analisi durata per video lunghi
