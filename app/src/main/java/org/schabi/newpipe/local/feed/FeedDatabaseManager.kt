@@ -7,9 +7,6 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.time.LocalDate
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.feed.model.FeedEntity
@@ -19,6 +16,9 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
+import java.time.LocalDate
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
 class FeedDatabaseManager(context: Context) {
     private val database = NewPipeDatabase.getInstance(context)
@@ -31,7 +31,7 @@ class FeedDatabaseManager(context: Context) {
          * Only items that are newer than this will be saved.
          */
         val FEED_OLDEST_ALLOWED_DATE: OffsetDateTime = LocalDate.now().minusWeeks(13)
-                .atStartOfDay().atOffset(ZoneOffset.UTC)
+            .atStartOfDay().atOffset(ZoneOffset.UTC)
     }
 
     fun groups() = feedGroupTable.getAll()
@@ -92,8 +92,12 @@ class FeedDatabaseManager(context: Context) {
             feedTable.insertAll(feedEntities)
         }
 
-        feedTable.setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId,
-                OffsetDateTime.now(ZoneOffset.UTC)))
+        feedTable.setLastUpdatedForSubscription(
+            FeedLastUpdatedEntity(
+                subscriptionId,
+                OffsetDateTime.now(ZoneOffset.UTC)
+            )
+        )
     }
 
     fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE) {

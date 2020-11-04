@@ -49,7 +49,9 @@ import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
-import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.*
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ProgressEvent
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.SuccessResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ExceptionUtils
@@ -262,7 +264,7 @@ class FeedLoadService : Service() {
 
             override fun onComplete() {
                 if (maxProgress.get() == 0) {
-                    postEvent(IdleEvent)
+                    postEvent(FeedEventManager.Event.IdleEvent)
                     stopService()
 
                     return

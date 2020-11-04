@@ -13,7 +13,10 @@ import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.toCalendar
 import org.schabi.newpipe.local.feed.service.FeedEventManager
-import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.*
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ProgressEvent
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.SuccessResultEvent
 import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
 import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
@@ -37,9 +40,9 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
             feedDatabaseManager.asStreamItems(groupId),
             feedDatabaseManager.notLoadedCount(groupId),
             feedDatabaseManager.oldestSubscriptionUpdate(groupId),
-                Function4 { t1: FeedEventManager.Event, t2: List<StreamInfoItem>, t3: Long, t4: List<OffsetDateTime> ->
-                    return@Function4 CombineResultHolder(t1, t2, t3, t4.firstOrNull())
-                }
+            Function4 { t1: FeedEventManager.Event, t2: List<StreamInfoItem>, t3: Long, t4: List<OffsetDateTime> ->
+                return@Function4 CombineResultHolder(t1, t2, t3, t4.firstOrNull())
+            }
         )
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
         .subscribeOn(Schedulers.io())
