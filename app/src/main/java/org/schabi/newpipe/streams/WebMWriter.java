@@ -1,28 +1,31 @@
 package org.schabi.newpipe.streams;
 
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.streams.WebMReader.Cluster;
 import org.schabi.newpipe.streams.WebMReader.Segment;
 import org.schabi.newpipe.streams.WebMReader.SimpleBlock;
 import org.schabi.newpipe.streams.WebMReader.WebMTrack;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-
 import org.schabi.newpipe.streams.io.SharpStream;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+
 /**
- *
  * @author kapodamy
  */
-public class WebMWriter {
-
-    private final static int BUFFER_SIZE = 8 * 1024;
-    private final static int DEFAULT_TIMECODE_SCALE = 1000000;
-    private final static int INTERV = 100;// 100ms on 1000000us timecode scale
-    private final static int DEFAULT_CUES_EACH_MS = 5000;// 100ms on 1000000us timecode scale
+public class WebMWriter implements Closeable {
+    private static final int BUFFER_SIZE = 8 * 1024;
+    private static final int DEFAULT_TIMECODE_SCALE = 1000000;
+    private static final int INTERV = 100; // 100ms on 1000000us timecode scale
+    private static final int DEFAULT_CUES_EACH_MS = 5000; // 5000ms on 1000000us timecode scale
+    private static final byte CLUSTER_HEADER_SIZE = 8;
+    private static final int CUE_RESERVE_SIZE = 65535;
+    private static final byte MINIMUM_EBML_VOID_SIZE = 4;
 
     private WebMReader.WebMTrack[] infoTracks;
     private SharpStream[] sourceTracks;
@@ -35,20 +38,23 @@ public class WebMWriter {
     private long written = 0;
 
     private Segment[] readersSegment;
-    private Cluster[] readersCluter;
+    private Cluster[] readersCluster;
 
-    private int[] predefinedDurations;
+    private ArrayList<ClusterInfo> clustersOffsetsSizes;
 
     private byte[] outBuffer;
+    private ByteBuffer outByteBuffer;
 
-    public WebMWriter(SharpStream... source) {
+    public WebMWriter(final SharpStream... source) {
         sourceTracks = source;
         readers = new WebMReader[sourceTracks.length];
         infoTracks = new WebMTrack[sourceTracks.length];
         outBuffer = new byte[BUFFER_SIZE];
+        outByteBuffer = ByteBuffer.wrap(outBuffer);
+        clustersOffsetsSizes = new ArrayList<>(256);
     }
 
-    public WebMTrack[] getTracksFromSource(int sourceIndex) throws IllegalStateException {
+    public WebMTrack[] getTracksFromSource(final int sourceIndex) throws IllegalStateException {
         if (done) {
             throw new IllegalStateException("already done");
         }
@@ -78,15 +84,13 @@ public class WebMWriter {
         }
     }
 
-    public void selectTracks(int... trackIndex) throws IOException {
+    public void selectTracks(final int... trackIndex) throws IOException {
         try {
             readersSegment = new Segment[readers.length];
-            readersCluter = new Cluster[readers.length];
-            predefinedDurations = new int[readers.length];
+            readersCluster = new Cluster[readers.length];
 
             for (int i = 0; i < readers.length; i++) {
                 infoTracks[i] = readers[i].selectTrack(trackIndex[i]);
-                predefinedDurations[i] = -1;
                 readersSegment[i] = readers[i].getNextSegment();
             }
         } finally {
@@ -94,123 +98,108 @@ public class WebMWriter {
         }
     }
 
-    public long getBytesWritten() {
-        return written;
-    }
-
     public boolean isDone() {
         return done;
     }
 
-    public boolean isParsed() {
-        return parsed;
-    }
-
+    @Override
     public void close() {
         done = true;
         parsed = true;
 
-        for (SharpStream src : sourceTracks) {
-            src.dispose();
+        for (final SharpStream src : sourceTracks) {
+            src.close();
         }
 
         sourceTracks = null;
         readers = null;
         infoTracks = null;
         readersSegment = null;
-        readersCluter = null;
+        readersCluster = null;
         outBuffer = null;
+        outByteBuffer = null;
+        clustersOffsetsSizes = null;
     }
 
-    public void build(SharpStream out) throws IOException, RuntimeException {
+    public void build(final SharpStream out) throws IOException, RuntimeException {
         if (!out.canRewind()) {
             throw new IOException("The output stream must be allow seek");
         }
 
         makeEBML(out);
 
-        long offsetSegmentSizeSet = written + 5;
-        long offsetInfoDurationSet = written + 94;
-        long offsetClusterSet = written + 58;
-        long offsetCuesSet = written + 75;
+        final long offsetSegmentSizeSet = written + 5;
+        final long offsetInfoDurationSet = written + 94;
+        final long offsetClusterSet = written + 58;
+        final long offsetCuesSet = written + 75;
 
-        ArrayList<byte[]> listBuffer = new ArrayList<>(4);
+        final ArrayList<byte[]> listBuffer = new ArrayList<>(4);
 
         /* segment */
         listBuffer.add(new byte[]{
-            0x18, 0x53, (byte) 0x80, 0x67, 0x01,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00// segment content size
+                0x18, 0x53, (byte) 0x80, 0x67, 0x01,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00// segment content size
         });
 
-        long baseSegmentOffset = written + listBuffer.get(0).length;
+        final long segmentOffset = written + listBuffer.get(0).length;
 
         /* seek head */
         listBuffer.add(new byte[]{
-            0x11, 0x4d, (byte) 0x9b, 0x74, (byte) 0xbe,
-            0x4d, (byte) 0xbb, (byte) 0x8b,
-            0x53, (byte) 0xab, (byte) 0x84, 0x15, 0x49, (byte) 0xa9, 0x66, 0x53,
-            (byte) 0xac, (byte) 0x81, /*info offset*/ 0x43,
-            0x4d, (byte) 0xbb, (byte) 0x8b, 0x53, (byte) 0xab,
-            (byte) 0x84, 0x16, 0x54, (byte) 0xae, 0x6b, 0x53, (byte) 0xac, (byte) 0x81,
-            /*tracks offset*/ 0x6a,
-            0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1f,
-            0x43, (byte) 0xb6, 0x75, 0x53, (byte) 0xac, (byte) 0x84, /*cluster offset [2]*/ 0x00, 0x00, 0x00, 0x00,
-            0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1c, 0x53,
-            (byte) 0xbb, 0x6b, 0x53, (byte) 0xac, (byte) 0x84, /*cues offset [7]*/ 0x00, 0x00, 0x00, 0x00
+                0x11, 0x4d, (byte) 0x9b, 0x74, (byte) 0xbe,
+                0x4d, (byte) 0xbb, (byte) 0x8b,
+                0x53, (byte) 0xab, (byte) 0x84, 0x15, 0x49, (byte) 0xa9, 0x66, 0x53,
+                (byte) 0xac, (byte) 0x81,
+                /*info offset*/ 0x43,
+                0x4d, (byte) 0xbb, (byte) 0x8b, 0x53, (byte) 0xab,
+                (byte) 0x84, 0x16, 0x54, (byte) 0xae, 0x6b, 0x53, (byte) 0xac, (byte) 0x81,
+                /*tracks offset*/ 0x56,
+                0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1f,
+                0x43, (byte) 0xb6, 0x75, 0x53, (byte) 0xac, (byte) 0x84,
+                /*cluster offset [2]*/ 0x00, 0x00, 0x00, 0x00,
+                0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1c, 0x53,
+                (byte) 0xbb, 0x6b, 0x53, (byte) 0xac, (byte) 0x84,
+                /*cues offset [7]*/ 0x00, 0x00, 0x00, 0x00
         });
 
         /* info */
         listBuffer.add(new byte[]{
-            0x15, 0x49, (byte) 0xa9, 0x66, (byte) 0xa2, 0x2a, (byte) 0xd7, (byte) 0xb1
+                0x15, 0x49, (byte) 0xa9, 0x66, (byte) 0x8e, 0x2a, (byte) 0xd7, (byte) 0xb1
         });
-        listBuffer.add(encode(DEFAULT_TIMECODE_SCALE, true));// this value MUST NOT exceed 4 bytes
+        // the segment duration MUST NOT exceed 4 bytes
+        listBuffer.add(encode(DEFAULT_TIMECODE_SCALE, true));
         listBuffer.add(new byte[]{0x44, (byte) 0x89, (byte) 0x84,
-            0x00, 0x00, 0x00, 0x00,// info.duration
-            
-            /* MuxingApp */
-            0x4d, (byte) 0x80, (byte) 0x87, 0x4E, 
-            0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
-            
-            /* WritingApp */ 
-            0x57, 0x41, (byte) 0x87, 0x4E, 
-            0x65, 0x77, 0x50, 0x69, 0x70, 0x65// "NewPipe" binary string
+                0x00, 0x00, 0x00, 0x00, // info.duration
         });
 
         /* tracks */
         listBuffer.addAll(makeTracks());
 
-        for (byte[] buff : listBuffer) {
-            dump(buff, out);
-        }
+        dump(listBuffer, out);
 
-        // reserve space for Cues element, but is a waste of space (actually is 64 KiB)
-        // TODO: better Cue maker
-        long cueReservedOffset = written;
-        dump(new byte[]{(byte) 0xec, 0x20, (byte) 0xff, (byte) 0xfb}, out);
-        int reserved = (1024 * 63) - 4;
-        while (reserved > 0) {
-            int write = Math.min(reserved, outBuffer.length);
-            out.write(outBuffer, 0, write);
-            reserved -= write;
-            written += write;
+        // reserve space for Cues element
+        final long cueOffset = written;
+        makeEbmlVoid(out, CUE_RESERVE_SIZE, true);
+
+        final int[] defaultSampleDuration = new int[infoTracks.length];
+        final long[] duration = new long[infoTracks.length];
+
+        for (int i = 0; i < infoTracks.length; i++) {
+            if (infoTracks[i].defaultDuration < 0) {
+                defaultSampleDuration[i] = -1; // not available
+            } else {
+                defaultSampleDuration[i] = (int) Math.ceil(infoTracks[i].defaultDuration
+                        / (float) DEFAULT_TIMECODE_SCALE);
+            }
+            duration[i] = -1;
         }
 
         // Select a track for the cue
-        int cuesForTrackId = selectTrackForCue();
+        final int cuesForTrackId = selectTrackForCue();
         long nextCueTime = infoTracks[cuesForTrackId].trackType == 1 ? -1 : 0;
-        ArrayList<KeyFrame> keyFrames = new ArrayList<>(32);
-
-        //ArrayList<Block> chunks = new ArrayList<>(readers.length);
-        ArrayList<Long> clusterOffsets = new ArrayList<>(32);
-        ArrayList<Integer> clusterSizes = new ArrayList<>(32);
-
-        long duration = 0;
-        int durationFromTrackId = 0;
-
-        byte[] bTimecode = makeTimecode(0);
+        final ArrayList<KeyFrame> keyFrames = new ArrayList<>(32);
 
         int firstClusterOffset = (int) written;
-        long currentClusterOffset = makeCluster(out, bTimecode, 0, clusterOffsets, clusterSizes);
+        long currentClusterOffset = makeCluster(out, 0, 0, true);
 
         long baseTimecode = 0;
         long limitTimecode = -1;
@@ -224,14 +213,14 @@ public class WebMWriter {
             blockWritten = 0;
             int i = 0;
             while (i < readers.length) {
-                Block bloq = getNextBlockFrom(i);
+                final Block bloq = getNextBlockFrom(i);
                 if (bloq == null) {
                     i++;
                     continue;
                 }
 
                 if (bloq.data == null) {
-                    blockWritten = 1;// fake block
+                    blockWritten = 1; // fake block
                     newClusterByTrackId = i;
                     i++;
                     continue;
@@ -242,28 +231,30 @@ public class WebMWriter {
                     newClusterByTrackId = -1;
                     baseTimecode = bloq.absoluteTimecode;
                     limitTimecode = baseTimecode + INTERV;
-                    bTimecode = makeTimecode(baseTimecode);
-                    currentClusterOffset = makeCluster(out, bTimecode, currentClusterOffset, clusterOffsets, clusterSizes);
+                    currentClusterOffset = makeCluster(out, baseTimecode, currentClusterOffset,
+                            true);
                 }
 
                 if (cuesForTrackId == i) {
-                    if ((nextCueTime > -1 && bloq.absoluteTimecode >= nextCueTime) || (nextCueTime < 0 && bloq.isKeyframe())) {
+                    if ((nextCueTime > -1 && bloq.absoluteTimecode >= nextCueTime)
+                            || (nextCueTime < 0 && bloq.isKeyframe())) {
                         if (nextCueTime > -1) {
                             nextCueTime += DEFAULT_CUES_EACH_MS;
                         }
-                        keyFrames.add(
-                                new KeyFrame(baseSegmentOffset, currentClusterOffset - 7, written, bTimecode.length, bloq.absoluteTimecode)
-                        );
+                        keyFrames.add(new KeyFrame(segmentOffset, currentClusterOffset, written,
+                                bloq.absoluteTimecode));
                     }
                 }
 
                 writeBlock(out, bloq, baseTimecode);
                 blockWritten++;
 
-                if (bloq.absoluteTimecode > duration) {
-                    duration = bloq.absoluteTimecode;
-                    durationFromTrackId = bloq.trackNumber;
+                if (defaultSampleDuration[i] < 0 && duration[i] >= 0) {
+                    // if the sample duration in unknown,
+                    // calculate using current_duration - previous_duration
+                    defaultSampleDuration[i] = (int) (bloq.absoluteTimecode - duration[i]);
                 }
+                duration[i] = bloq.absoluteTimecode;
 
                 if (limitTimecode < 0) {
                     limitTimecode = bloq.absoluteTimecode + INTERV;
@@ -279,141 +270,132 @@ public class WebMWriter {
             }
         }
 
-        makeCluster(out, null, currentClusterOffset, null, clusterSizes);
+        makeCluster(out, -1, currentClusterOffset, false);
 
-        long segmentSize = written - offsetSegmentSizeSet - 7;
+        final long segmentSize = written - offsetSegmentSizeSet - 7;
 
-        // final step write offsets and sizes
-        out.rewind();
-        written = 0;
+        /* Segment size */
+        seekTo(out, offsetSegmentSizeSet);
+        outByteBuffer.putLong(0, segmentSize);
+        out.write(outBuffer, 1, DataReader.LONG_SIZE - 1);
 
-        skipTo(out, offsetSegmentSizeSet);
-        writeLong(out, segmentSize);
-
-        if (predefinedDurations[durationFromTrackId] > -1) {
-            duration += predefinedDurations[durationFromTrackId];// this value is full-filled in makeTrackEntry() method
-        }
-        skipTo(out, offsetInfoDurationSet);
-        writeFloat(out, duration);
-
-        firstClusterOffset -= baseSegmentOffset;
-        skipTo(out, offsetClusterSet);
-        writeInt(out, firstClusterOffset);
-
-        skipTo(out, cueReservedOffset);
-
-        /* Cue */
-        dump(new byte[]{0x1c, 0x53, (byte) 0xbb, 0x6b, 0x20, 0x00, 0x00}, out);
-
-        for (KeyFrame keyFrame : keyFrames) {
-            for (byte[] buffer : makeCuePoint(cuesForTrackId, keyFrame)) {
-                dump(buffer, out);
-                if (written >= (cueReservedOffset + 65535 - 16)) {
-                    throw new IOException("Too many Cues");
-                }
+        /* Segment duration */
+        long longestDuration = 0;
+        for (int i = 0; i < duration.length; i++) {
+            if (defaultSampleDuration[i] > 0) {
+                duration[i] += defaultSampleDuration[i];
+            }
+            if (duration[i] > longestDuration) {
+                longestDuration = duration[i];
             }
         }
-        short cueSize = (short) (written - cueReservedOffset - 7);
+        seekTo(out, offsetInfoDurationSet);
+        outByteBuffer.putFloat(0, longestDuration);
+        dump(outBuffer, DataReader.FLOAT_SIZE, out);
 
-        /*  EBML Void */
-        ByteBuffer voidBuffer = ByteBuffer.allocate(4);
-        voidBuffer.putShort((short) 0xec20);
-        voidBuffer.putShort((short) (firstClusterOffset - written - 4));
-        dump(voidBuffer.array(), out);
+        /* first Cluster offset */
+        firstClusterOffset -= segmentOffset;
+        writeInt(out, offsetClusterSet, firstClusterOffset);
 
-        out.rewind();
-        written = 0;
+        seekTo(out, cueOffset);
 
-        skipTo(out, offsetCuesSet);
-        writeInt(out, (int) (cueReservedOffset - baseSegmentOffset));
+        /* Cue */
+        short cueSize = 0;
+        dump(new byte[]{0x1c, 0x53, (byte) 0xbb, 0x6b, 0x20, 0x00, 0x00}, out); // header size is 7
 
-        skipTo(out, cueReservedOffset + 5);
-        writeShort(out, cueSize);
+        for (final KeyFrame keyFrame : keyFrames) {
+            final int size = makeCuePoint(cuesForTrackId, keyFrame, outBuffer);
 
-        for (int i = 0; i < clusterSizes.size(); i++) {
-            skipTo(out, clusterOffsets.get(i));
-            byte[] size = ByteBuffer.allocate(4).putInt(clusterSizes.get(i) | 0x200000).array();
-            out.write(size, 1, 3);
-            written += 3;
+            if ((cueSize + size + 7 + MINIMUM_EBML_VOID_SIZE) > CUE_RESERVE_SIZE) {
+                break; // no space left
+            }
+
+            cueSize += size;
+            dump(outBuffer, size, out);
+        }
+
+        makeEbmlVoid(out, CUE_RESERVE_SIZE - cueSize - 7, false);
+
+        seekTo(out, cueOffset + 5);
+        outByteBuffer.putShort(0, cueSize);
+        dump(outBuffer, DataReader.SHORT_SIZE, out);
+
+        /* seek head, seek for cues element */
+        writeInt(out, offsetCuesSet, (int) (cueOffset - segmentOffset));
+
+        for (final ClusterInfo cluster : clustersOffsetsSizes) {
+            writeInt(out, cluster.offset, cluster.size | 0x10000000);
         }
     }
 
-    private Block getNextBlockFrom(int internalTrackId) throws IOException {
+    private Block getNextBlockFrom(final int internalTrackId) throws IOException {
         if (readersSegment[internalTrackId] == null) {
             readersSegment[internalTrackId] = readers[internalTrackId].getNextSegment();
             if (readersSegment[internalTrackId] == null) {
-                return null;// no more blocks in the selected track
+                return null; // no more blocks in the selected track
             }
         }
 
-        if (readersCluter[internalTrackId] == null) {
-            readersCluter[internalTrackId] = readersSegment[internalTrackId].getNextCluster();
-            if (readersCluter[internalTrackId] == null) {
+        if (readersCluster[internalTrackId] == null) {
+            readersCluster[internalTrackId] = readersSegment[internalTrackId].getNextCluster();
+            if (readersCluster[internalTrackId] == null) {
                 readersSegment[internalTrackId] = null;
                 return getNextBlockFrom(internalTrackId);
             }
         }
 
-        SimpleBlock res = readersCluter[internalTrackId].getNextSimpleBlock();
+        final SimpleBlock res = readersCluster[internalTrackId].getNextSimpleBlock();
         if (res == null) {
-            readersCluter[internalTrackId] = null;
-            return new Block();// fake block to indicate the end of the cluster
+            readersCluster[internalTrackId] = null;
+            return new Block(); // fake block to indicate the end of the cluster
         }
 
-        Block bloq = new Block();
+        final Block bloq = new Block();
         bloq.data = res.data;
-        bloq.dataSize = (int) res.dataSize;
+        bloq.dataSize = res.dataSize;
         bloq.trackNumber = internalTrackId;
         bloq.flags = res.flags;
-        bloq.absoluteTimecode = convertTimecode(res.relativeTimeCode, readersSegment[internalTrackId].info.timecodeScale, DEFAULT_TIMECODE_SCALE);
-        bloq.absoluteTimecode += readersCluter[internalTrackId].timecode;
+        bloq.absoluteTimecode = res.absoluteTimeCodeNs / DEFAULT_TIMECODE_SCALE;
 
         return bloq;
     }
 
-    private short convertTimecode(int time, long oldTimeScale, int newTimeScale) {
-        return (short) (time * (newTimeScale / oldTimeScale));
+    private void seekTo(final SharpStream stream, final long offset) throws IOException {
+        if (stream.canSeek()) {
+            stream.seek(offset);
+        } else {
+            if (offset > written) {
+                stream.skip(offset - written);
+            } else {
+                stream.rewind();
+                stream.skip(offset);
+            }
+        }
+
+        written = offset;
     }
 
-    private void skipTo(SharpStream stream, long absoluteOffset) throws IOException {
-        absoluteOffset -= written;
-        written += absoluteOffset;
-        stream.skip(absoluteOffset);
+    private void writeInt(final SharpStream stream, final long offset, final int number)
+            throws IOException {
+        seekTo(stream, offset);
+        outByteBuffer.putInt(0, number);
+        dump(outBuffer, DataReader.INTEGER_SIZE, stream);
     }
 
-    private void writeLong(SharpStream stream, long number) throws IOException {
-        byte[] buffer = ByteBuffer.allocate(DataReader.LONG_SIZE).putLong(number).array();
-        stream.write(buffer, 1, buffer.length - 1);
-        written += buffer.length - 1;
-    }
-
-    private void writeFloat(SharpStream stream, float number) throws IOException {
-        byte[] buffer = ByteBuffer.allocate(DataReader.FLOAT_SIZE).putFloat(number).array();
-        dump(buffer, stream);
-    }
-
-    private void writeShort(SharpStream stream, short number) throws IOException {
-        byte[] buffer = ByteBuffer.allocate(DataReader.SHORT_SIZE).putShort(number).array();
-        dump(buffer, stream);
-    }
-
-    private void writeInt(SharpStream stream, int number) throws IOException {
-        byte[] buffer = ByteBuffer.allocate(DataReader.INTEGER_SIZE).putInt(number).array();
-        dump(buffer, stream);
-    }
-
-    private void writeBlock(SharpStream stream, Block bloq, long clusterTimecode) throws IOException {
-        long relativeTimeCode = bloq.absoluteTimecode - clusterTimecode;
+    private void writeBlock(final SharpStream stream, final Block bloq, final long clusterTimecode)
+            throws IOException {
+        final long relativeTimeCode = bloq.absoluteTimecode - clusterTimecode;
 
         if (relativeTimeCode < Short.MIN_VALUE || relativeTimeCode > Short.MAX_VALUE) {
             throw new IndexOutOfBoundsException("SimpleBlock timecode overflow.");
         }
 
-        ArrayList<byte[]> listBuffer = new ArrayList<>(5);
+        final ArrayList<byte[]> listBuffer = new ArrayList<>(5);
         listBuffer.add(new byte[]{(byte) 0xa3});
-        listBuffer.add(null);// block size
+        listBuffer.add(null); // block size
         listBuffer.add(encode(bloq.trackNumber + 1, false));
-        listBuffer.add(ByteBuffer.allocate(DataReader.SHORT_SIZE).putShort((short) relativeTimeCode).array());
+        listBuffer.add(ByteBuffer.allocate(DataReader.SHORT_SIZE).putShort((short) relativeTimeCode)
+                .array());
         listBuffer.add(new byte[]{bloq.flags});
 
         int blockSize = bloq.dataSize;
@@ -422,63 +404,61 @@ public class WebMWriter {
         }
         listBuffer.set(1, encode(blockSize, false));
 
-        for (byte[] buff : listBuffer) {
-            dump(buff, stream);
-        }
+        dump(listBuffer, stream);
 
         int read;
         while ((read = bloq.data.read(outBuffer)) > 0) {
-            stream.write(outBuffer, 0, read);
-            written += read;
+            dump(outBuffer, read, stream);
         }
     }
 
-    private byte[] makeTimecode(long timecode) {
-        ByteBuffer buffer = ByteBuffer.allocate(9);
-        buffer.put((byte) 0xe7);
-        buffer.put(encode(timecode, true));
+    private long makeCluster(final SharpStream stream, final long timecode, final long offsetStart,
+                             final boolean create) throws IOException {
+        ClusterInfo cluster;
+        long offset = offsetStart;
 
-        byte[] res = new byte[buffer.position()];
-        System.arraycopy(buffer.array(), 0, res, 0, res.length);
-
-        return res;
-    }
-
-    private long makeCluster(SharpStream stream, byte[] bTimecode, long startOffset, ArrayList<Long> clusterOffsets, ArrayList<Integer> clusterSizes) throws IOException {
-        if (startOffset > 0) {
-            clusterSizes.add((int) (written - startOffset));// size for last offset
+        if (offset > 0) {
+            // save the size of the previous cluster (maximum 256 MiB)
+            cluster = clustersOffsetsSizes.get(clustersOffsetsSizes.size() - 1);
+            cluster.size = (int) (written - offset - CLUSTER_HEADER_SIZE);
         }
 
-        if (clusterOffsets != null) {
+        offset = written;
+
+        if (create) {
             /* cluster */
             dump(new byte[]{0x1f, 0x43, (byte) 0xb6, 0x75}, stream);
-            clusterOffsets.add(written);// warning: max cluster size is 256 MiB
-            dump(new byte[]{0x20, 0x00, 0x00}, stream);
 
-            startOffset = written;// size for the this cluster
+            cluster = new ClusterInfo();
+            cluster.offset = written;
+            clustersOffsetsSizes.add(cluster);
 
-            dump(bTimecode, stream);
+            dump(new byte[]{
+                    0x10, 0x00, 0x00, 0x00,
+                    /* timestamp */
+                    (byte) 0xe7
+            }, stream);
 
-            return startOffset;
+            dump(encode(timecode, true), stream);
         }
 
-        return -1;
+        return offset;
     }
 
-    private void makeEBML(SharpStream stream) throws IOException {
-        // deafult values
+    private void makeEBML(final SharpStream stream) throws IOException {
+        // default values
         dump(new byte[]{
-            0x1A, 0x45, (byte) 0xDF, (byte) 0xA3, 0x01, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x1F, 0x42, (byte) 0x86, (byte) 0x81, 0x01,
-            0x42, (byte) 0xF7, (byte) 0x81, 0x01, 0x42, (byte) 0xF2, (byte) 0x81, 0x04,
-            0x42, (byte) 0xF3, (byte) 0x81, 0x08, 0x42, (byte) 0x82, (byte) 0x84, 0x77,
-            0x65, 0x62, 0x6D, 0x42, (byte) 0x87, (byte) 0x81, 0x02,
-            0x42, (byte) 0x85, (byte) 0x81, 0x02
+                0x1A, 0x45, (byte) 0xDF, (byte) 0xA3, 0x01, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x1F, 0x42, (byte) 0x86, (byte) 0x81, 0x01,
+                0x42, (byte) 0xF7, (byte) 0x81, 0x01, 0x42, (byte) 0xF2, (byte) 0x81, 0x04,
+                0x42, (byte) 0xF3, (byte) 0x81, 0x08, 0x42, (byte) 0x82, (byte) 0x84, 0x77,
+                0x65, 0x62, 0x6D, 0x42, (byte) 0x87, (byte) 0x81, 0x02,
+                0x42, (byte) 0x85, (byte) 0x81, 0x02
         }, stream);
     }
 
     private ArrayList<byte[]> makeTracks() {
-        ArrayList<byte[]> buffer = new ArrayList<>(1);
+        final ArrayList<byte[]> buffer = new ArrayList<>(1);
         buffer.add(new byte[]{0x16, 0x54, (byte) 0xae, 0x6b});
         buffer.add(null);
 
@@ -489,9 +469,9 @@ public class WebMWriter {
         return lengthFor(buffer);
     }
 
-    private ArrayList<byte[]> makeTrackEntry(int internalTrackId, WebMTrack track) {
-        byte[] id = encode(internalTrackId + 1, true);
-        ArrayList<byte[]> buffer = new ArrayList<>(12);
+    private ArrayList<byte[]> makeTrackEntry(final int internalTrackId, final WebMTrack track) {
+        final byte[] id = encode(internalTrackId + 1, true);
+        final ArrayList<byte[]> buffer = new ArrayList<>(12);
 
         /* track */
         buffer.add(new byte[]{(byte) 0xae});
@@ -515,13 +495,24 @@ public class WebMWriter {
         buffer.add(new byte[]{(byte) 0x86});
         buffer.addAll(encode(track.codecId));
 
+        /* codec delay*/
+        if (track.codecDelay >= 0) {
+            buffer.add(new byte[]{0x56, (byte) 0xAA});
+            buffer.add(encode(track.codecDelay, true));
+        }
+
+        /* codec seek pre-roll*/
+        if (track.seekPreRoll >= 0) {
+            buffer.add(new byte[]{0x56, (byte) 0xBB});
+            buffer.add(encode(track.seekPreRoll, true));
+        }
+
         /* type */
         buffer.add(new byte[]{(byte) 0x83});
         buffer.add(encode(track.trackType, true));
 
         /* default duration */
-        if (track.defaultDuration != 0) {
-            predefinedDurations[internalTrackId] = (int) Math.ceil(track.defaultDuration / (float) DEFAULT_TIMECODE_SCALE);
+        if (track.defaultDuration >= 0) {
             buffer.add(new byte[]{0x23, (byte) 0xe3, (byte) 0x83});
             buffer.add(encode(track.defaultDuration, true));
         }
@@ -541,28 +532,37 @@ public class WebMWriter {
         }
 
         return lengthFor(buffer);
-
     }
 
-    private ArrayList<byte[]> makeCuePoint(int internalTrackId, KeyFrame keyFrame) {
-        ArrayList<byte[]> buffer = new ArrayList<>(5);
+    private int makeCuePoint(final int internalTrackId, final KeyFrame keyFrame,
+                             final byte[] buffer) {
+        final ArrayList<byte[]> cue = new ArrayList<>(5);
 
         /* CuePoint */
-        buffer.add(new byte[]{(byte) 0xbb});
-        buffer.add(null);
+        cue.add(new byte[]{(byte) 0xbb});
+        cue.add(null);
 
         /* CueTime */
-        buffer.add(new byte[]{(byte) 0xb3});
-        buffer.add(encode(keyFrame.atTimecode, true));
+        cue.add(new byte[]{(byte) 0xb3});
+        cue.add(encode(keyFrame.duration, true));
 
         /* CueTrackPosition */
-        buffer.addAll(makeCueTrackPosition(internalTrackId, keyFrame));
+        cue.addAll(makeCueTrackPosition(internalTrackId, keyFrame));
 
-        return lengthFor(buffer);
+        int size = 0;
+        lengthFor(cue);
+
+        for (final byte[] buff : cue) {
+            System.arraycopy(buff, 0, buffer, size, buff.length);
+            size += buff.length;
+        }
+
+        return size;
     }
 
-    private ArrayList<byte[]> makeCueTrackPosition(int internalTrackId, KeyFrame keyFrame) {
-        ArrayList<byte[]> buffer = new ArrayList<>(8);
+    private ArrayList<byte[]> makeCueTrackPosition(final int internalTrackId,
+                                                   final KeyFrame keyFrame) {
+        final ArrayList<byte[]> buffer = new ArrayList<>(8);
 
         /* CueTrackPositions */
         buffer.add(new byte[]{(byte) 0xb7});
@@ -574,23 +574,56 @@ public class WebMWriter {
 
         /* CueClusterPosition */
         buffer.add(new byte[]{(byte) 0xf1});
-        buffer.add(encode(keyFrame.atCluster, true));
+        buffer.add(encode(keyFrame.clusterPosition, true));
 
         /* CueRelativePosition */
-        if (keyFrame.atBlock > 0) {
+        if (keyFrame.relativePosition > 0) {
             buffer.add(new byte[]{(byte) 0xf0});
-            buffer.add(encode(keyFrame.atBlock, true));
+            buffer.add(encode(keyFrame.relativePosition, true));
         }
 
         return lengthFor(buffer);
     }
 
-    private void dump(byte[] buffer, SharpStream stream) throws IOException {
-        stream.write(buffer);
-        written += buffer.length;
+    private void makeEbmlVoid(final SharpStream out, final int amount, final boolean wipe)
+            throws IOException {
+        int size = amount;
+
+        /* ebml void */
+        outByteBuffer.putShort(0, (short) 0xec20);
+        outByteBuffer.putShort(2, (short) (size - 4));
+
+        dump(outBuffer, 4, out);
+
+        if (wipe) {
+            size -= 4;
+            while (size > 0) {
+                final int write = Math.min(size, outBuffer.length);
+                dump(outBuffer, write, out);
+                size -= write;
+            }
+        }
     }
 
-    private ArrayList<byte[]> lengthFor(ArrayList<byte[]> buffer) {
+    private void dump(final byte[] buffer, final SharpStream stream) throws IOException {
+        dump(buffer, buffer.length, stream);
+    }
+
+    private void dump(final byte[] buffer, final int count, final SharpStream stream)
+            throws IOException {
+        stream.write(buffer, 0, count);
+        written += count;
+    }
+
+    private void dump(final ArrayList<byte[]> buffers, final SharpStream stream)
+            throws IOException {
+        for (final byte[] buffer : buffers) {
+            stream.write(buffer);
+            written += buffer.length;
+        }
+    }
+
+    private ArrayList<byte[]> lengthFor(final ArrayList<byte[]> buffer) {
         long size = 0;
         for (int i = 2; i < buffer.size(); i++) {
             size += buffer.get(i).length;
@@ -599,7 +632,7 @@ public class WebMWriter {
         return buffer;
     }
 
-    private byte[] encode(long number, boolean withLength) {
+    private byte[] encode(final long number, final boolean withLength) {
         int length = -1;
         for (int i = 1; i <= 7; i++) {
             if (number < Math.pow(2, 7 * i)) {
@@ -616,14 +649,15 @@ public class WebMWriter {
             length++;
         }
 
-        int offset = withLength ? 1 : 0;
-        byte[] buffer = new byte[offset + length];
-        long marker = (long) Math.floor((length - 1) / 8);
+        final int offset = withLength ? 1 : 0;
+        final byte[] buffer = new byte[offset + length];
+        final long marker = (long) Math.floor((length - 1f) / 8f);
 
-        for (int i = length - 1, mul = 1; i >= 0; i--, mul *= 0x100) {
-            long b = (long) Math.floor(number / mul);
+        int shift = 0;
+        for (int i = length - 1; i >= 0; i--, shift += 8) {
+            long b = number >>> shift;
             if (!withLength && i == marker) {
-                b = b | (0x80 >> (length - 1));
+                b = b | (0x80 >>> (length - 1));
             }
             buffer[offset + i] = (byte) b;
         }
@@ -635,22 +669,17 @@ public class WebMWriter {
         return buffer;
     }
 
-    private ArrayList<byte[]> encode(String value) {
-        byte[] str;
-        try {
-            str = value.getBytes("utf-8");
-        } catch (UnsupportedEncodingException err) {
-            str = value.getBytes();
-        }
+    private ArrayList<byte[]> encode(final String value) {
+        final byte[] str = value.getBytes(StandardCharsets.UTF_8); // or use "utf-8"
 
-        ArrayList<byte[]> buffer = new ArrayList<>(2);
+        final ArrayList<byte[]> buffer = new ArrayList<>(2);
         buffer.add(encode(str.length, false));
         buffer.add(str);
 
         return buffer;
     }
 
-    private boolean valid(byte[] buffer) {
+    private boolean valid(final byte[] buffer) {
         return buffer != null && buffer.length > 0;
     }
 
@@ -670,7 +699,7 @@ public class WebMWriter {
             }
         }
 
-        int kind;
+        final int kind;
         if (audioTracks == infoTracks.length) {
             kind = 2;
         } else if (videoTracks == infoTracks.length) {
@@ -693,23 +722,19 @@ public class WebMWriter {
         return 0;
     }
 
-    class KeyFrame {
-
-        KeyFrame(long segment, long cluster, long block, int bTimecodeLength, long timecode) {
-            atCluster = cluster - segment;
-            if ((block - bTimecodeLength) > cluster) {
-                atBlock = (int) (block - cluster);
-            }
-            atTimecode = timecode;
+    static class KeyFrame {
+        KeyFrame(final long segment, final long cluster, final long block, final long timecode) {
+            clusterPosition = cluster - segment;
+            relativePosition = (int) (block - cluster - CLUSTER_HEADER_SIZE);
+            duration = timecode;
         }
 
-        long atCluster;
-        int atBlock;
-        long atTimecode;
+        final long clusterPosition;
+        final int relativePosition;
+        final long duration;
     }
 
-    class Block {
-
+    static class Block {
         InputStream data;
         int trackNumber;
         byte flags;
@@ -720,9 +745,16 @@ public class WebMWriter {
             return (flags & 0x80) == 0x80;
         }
 
+        @NonNull
         @Override
         public String toString() {
-            return String.format("trackNumber=%s  isKeyFrame=%S  absoluteTimecode=%s", trackNumber, (flags & 0x80) == 0x80, absoluteTimecode);
+            return String.format("trackNumber=%s  isKeyFrame=%S  absoluteTimecode=%s", trackNumber,
+                    isKeyframe(), absoluteTimecode);
         }
+    }
+
+    static class ClusterInfo {
+        long offset;
+        int size;
     }
 }

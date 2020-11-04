@@ -1,25 +1,31 @@
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.list.impl.ChannelFragment">
 
     <item
-        android:id="@+id/menu_item_openInBrowser"
-        android:title="@string/open_in_browser"
-        app:showAsAction="never"/>
-
-    <item
         android:id="@+id/menu_item_rss"
-        android:icon="?attr/rss"
+        android:icon="?attr/ic_rss"
         android:title="@string/rss_button_title"
         android:visible="false"
         app:showAsAction="ifRoom"
-        tools:visible="true"/>
+        tools:visible="true" />
 
     <item
         android:id="@+id/menu_item_share"
-        android:icon="?attr/share"
+        android:icon="?attr/ic_share"
         android:title="@string/share"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="1"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_openInBrowser"
+        android:orderInCategory="2"
+        android:title="@string/open_in_browser"
+        app:showAsAction="never" />
 </menu>

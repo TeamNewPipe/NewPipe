@@ -1,69 +1,80 @@
 package org.schabi.newpipe.download;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewTreeObserver;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusOverlayView;
 
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.MissionsFragment;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadActivity extends AppCompatActivity {
 
     private static final String MISSIONS_FRAGMENT_TAG = "fragment_tag";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         // Service
-        Intent i = new Intent();
+        final Intent i = new Intent();
         i.setClass(this, DownloadManagerService.class);
         startService(i);
 
+        assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloader);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(R.string.downloads_title);
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        getWindow().getDecorView().getViewTreeObserver()
+                .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 updateFragments();
-                getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
+
+        if (DeviceUtils.isTv(this)) {
+            FocusOverlayView.setupFocusObserver(this);
+        }
     }
 
     private void updateFragments() {
-        MissionsFragment fragment = new MissionsFragment();
+        final MissionsFragment fragment = new MissionsFragment();
 
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame, fragment, MISSIONS_FRAGMENT_TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
         super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
+        final MenuInflater inflater = getMenuInflater();
 
         inflater.inflate(R.menu.download_menu, menu);
 
@@ -71,24 +82,13 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home: {
+            case android.R.id.home:
                 onBackPressed();
                 return true;
-            }
-            case R.id.action_settings: {
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
-            }
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle inState){
-        super.onRestoreInstanceState(inState);
     }
 }

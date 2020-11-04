@@ -1,0 +1,17 @@
+New
+• Add search for subscription picker in the feed group dialog
+• Add filter to the feed group dialog to show only ungrouped subscriptions
+• Add playlist tab to main page
+• Fast forward/rewind in background/pop-up player queue
+• Display search suggestion: did you mean & showing result for
+
+Improved
+• Drop writing application metadata in muxed files
+• Do not remove failed streams from the queue
+• Update status bar color to match toolbar color
+
+Fixed
+• Fixed audio/video desync caused by floating point cumulative errors
+• [PeerTube] Handle deleted comments
+
+and more

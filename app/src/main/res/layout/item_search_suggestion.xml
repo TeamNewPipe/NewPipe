@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,16 +10,16 @@
         android:id="@+id/suggestion_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/suggestion_insert"
+        android:layout_toLeftOf="@id/suggestion_insert"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@id/suggestion_insert"
-        android:layout_toStartOf="@id/suggestion_insert"
-        android:layout_centerVertical="true"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp">
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
         <ImageView
             android:id="@+id/item_suggestion_icon"
@@ -29,7 +29,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             tools:ignore="ContentDescription,RtlHardcoded"
-            tools:src="?attr/history"/>
+            tools:src="?attr/ic_history" />
 
         <TextView
             android:id="@+id/item_suggestion_query"
@@ -41,30 +41,30 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="14sp"
             tools:ignore="RtlHardcoded"
-            tools:text="Search query"/>
+            tools:text="Search query" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/suggestion_insert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
         android:paddingLeft="16dp"
+        android:paddingTop="10dp"
         android:paddingRight="16dp"
-        android:paddingBottom="8dp"
-        android:paddingTop="10dp">
+        android:paddingBottom="8dp">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="?attr/search_add"
-            tools:ignore="ContentDescription,RtlHardcoded"/>
+            app:srcCompat="?attr/ic_search_add"
+            tools:ignore="ContentDescription,RtlHardcoded" />
     </LinearLayout>
 
 

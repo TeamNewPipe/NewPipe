@@ -1,13 +1,13 @@
 package org.schabi.newpipe.database.playlist.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Index;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 
-import static android.arch.persistence.room.ForeignKey.CASCADE;
+import static androidx.room.ForeignKey.CASCADE;
 import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JOIN_INDEX;
 import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JOIN_PLAYLIST_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JOIN_STREAM_ID;
@@ -30,11 +30,10 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PL
                         onDelete = CASCADE, onUpdate = CASCADE, deferred = true)
         })
 public class PlaylistStreamEntity {
-
-    final public static String PLAYLIST_STREAM_JOIN_TABLE   = "playlist_stream_join";
-    final public static String JOIN_PLAYLIST_ID             = "playlist_id";
-    final public static String JOIN_STREAM_ID               = "stream_id";
-    final public static String JOIN_INDEX                   = "join_index";
+    public static final String PLAYLIST_STREAM_JOIN_TABLE = "playlist_stream_join";
+    public static final String JOIN_PLAYLIST_ID = "playlist_id";
+    public static final String JOIN_STREAM_ID = "stream_id";
+    public static final String JOIN_INDEX = "join_index";
 
     @ColumnInfo(name = JOIN_PLAYLIST_ID)
     private long playlistUid;
@@ -55,23 +54,23 @@ public class PlaylistStreamEntity {
         return playlistUid;
     }
 
+    public void setPlaylistUid(final long playlistUid) {
+        this.playlistUid = playlistUid;
+    }
+
     public long getStreamUid() {
         return streamUid;
+    }
+
+    public void setStreamUid(final long streamUid) {
+        this.streamUid = streamUid;
     }
 
     public int getIndex() {
         return index;
     }
 
-    public void setPlaylistUid(long playlistUid) {
-        this.playlistUid = playlistUid;
-    }
-
-    public void setStreamUid(long streamUid) {
-        this.streamUid = streamUid;
-    }
-
-    public void setIndex(int index) {
+    public void setIndex(final int index) {
         this.index = index;
     }
 }

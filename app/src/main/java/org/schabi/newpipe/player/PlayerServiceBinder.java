@@ -1,7 +1,8 @@
 package org.schabi.newpipe.player;
 
 import android.os.Binder;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 class PlayerServiceBinder extends Binder {
     private final BasePlayer basePlayer;

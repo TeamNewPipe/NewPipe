@@ -5,132 +5,132 @@
     android:layout_height="match_parent"
     android:clickable="false"
     android:paddingLeft="@dimen/video_item_search_padding"
-    android:paddingRight="@dimen/video_item_search_padding"
-    android:paddingTop="@dimen/video_item_search_padding">
+    android:paddingTop="@dimen/video_item_search_padding"
+    android:paddingRight="@dimen/video_item_search_padding">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:scrollbarAlwaysDrawVerticalTrack="true">
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical">
 
         <!-- START HERE -->
         <TextView
             android:id="@+id/tempoControlText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:text="@string/playback_tempo"
-            android:textStyle="bold"
             android:textColor="?attr/colorAccent"
-            android:layout_alignParentTop="true"/>
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/tempoControl"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:orientation="horizontal"
+            android:layout_below="@id/tempoControlText"
             android:layout_marginTop="4dp"
-            android:layout_below="@id/tempoControlText">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tempoStepDown"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center"
                 android:text="--%"
-                android:textStyle="bold"
                 android:textColor="?attr/colorAccent"
-                android:background="?attr/selectableItemBackground"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText"
-                tools:text="-5%"/>
+                tools:text="-5%" />
 
             <RelativeLayout
                 android:id="@+id/tempoDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:layout_toRightOf="@id/tempoStepDown"
-                android:layout_toEndOf="@id/tempoStepDown"
+                android:layout_toStartOf="@id/tempoStepUp"
                 android:layout_toLeftOf="@id/tempoStepUp"
-                android:layout_toStartOf="@id/tempoStepUp">
+                android:layout_toEndOf="@id/tempoStepDown"
+                android:layout_toRightOf="@id/tempoStepDown"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tempoMinimumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
                     android:gravity="center"
                     android:text="-.--x"
                     android:textColor="?attr/colorAccent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginStart="4dp"
                     tools:ignore="HardcodedText"
-                    tools:text="1.00x"/>
+                    tools:text="1.00x" />
 
                 <TextView
                     android:id="@+id/tempoCurrentText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
-                    android:layout_centerHorizontal="true"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText"
-                    tools:text="100%"/>
+                    tools:text="100%" />
 
                 <TextView
                     android:id="@+id/tempoMaximumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
                     android:gravity="center"
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginEnd="4dp"
                     tools:ignore="HardcodedText"
-                    tools:text="300%"/>
+                    tools:text="300%" />
 
-                <android.support.v7.widget.AppCompatSeekBar
+                <androidx.appcompat.widget.AppCompatSeekBar
                     android:id="@+id/tempoSeekbar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tempoCurrentText"
                     android:paddingBottom="4dp"
-                    tools:progress="50"/>
+                    tools:progress="50" />
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/tempoStepUp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center"
                 android:text="+-%"
-                android:textStyle="bold"
                 android:textColor="?attr/colorAccent"
-                android:background="?attr/selectableItemBackground"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="4dp"
-                android:layout_marginEnd="4dp"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText"
-                tools:text="+5%"/>
+                tools:text="+5%" />
         </RelativeLayout>
 
         <View
@@ -139,124 +139,124 @@
             android:layout_height="1dp"
             android:layout_below="@id/tempoControl"
             android:layout_margin="@dimen/video_item_search_padding"
-            android:background="?attr/separator_color"/>
+            android:background="?attr/separator_color" />
 
         <TextView
             android:id="@+id/pitchControlText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_below="@id/separatorPitch"
             android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:text="@string/playback_pitch"
-            android:textStyle="bold"
             android:textColor="?attr/colorAccent"
-            android:layout_below="@id/separatorPitch"/>
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/pitchControl"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:orientation="horizontal"
+            android:layout_below="@id/pitchControlText"
             android:layout_marginTop="4dp"
-            android:layout_below="@id/pitchControlText">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/pitchStepDown"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center"
                 android:text="--%"
-                android:textStyle="bold"
                 android:textColor="?attr/colorAccent"
-                android:background="?attr/selectableItemBackground"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText"
-                tools:text="-5%"/>
+                tools:text="-5%" />
 
             <RelativeLayout
                 android:id="@+id/pitchDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:layout_toRightOf="@+id/pitchStepDown"
-                android:layout_toEndOf="@+id/pitchStepDown"
+                android:layout_toStartOf="@+id/pitchStepUp"
                 android:layout_toLeftOf="@+id/pitchStepUp"
-                android:layout_toStartOf="@+id/pitchStepUp">
+                android:layout_toEndOf="@+id/pitchStepDown"
+                android:layout_toRightOf="@+id/pitchStepDown"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/pitchMinimumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
                     android:gravity="center"
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginStart="4dp"
                     tools:ignore="HardcodedText"
-                    tools:text="25%"/>
+                    tools:text="25%" />
 
                 <TextView
                     android:id="@+id/pitchCurrentText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
-                    android:layout_centerHorizontal="true"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText"
-                    tools:text="100%"/>
+                    tools:text="100%" />
 
                 <TextView
                     android:id="@+id/pitchMaximumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
                     android:gravity="center"
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginEnd="4dp"
                     tools:ignore="HardcodedText"
-                    tools:text="300%"/>
+                    tools:text="300%" />
 
-                <android.support.v7.widget.AppCompatSeekBar
+                <androidx.appcompat.widget.AppCompatSeekBar
                     android:id="@+id/pitchSeekbar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pitchCurrentText"
                     android:paddingBottom="4dp"
-                    tools:progress="50"/>
+                    tools:progress="50" />
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/pitchStepUp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center"
                 android:text="+-%"
-                android:textStyle="bold"
                 android:textColor="?attr/colorAccent"
-                android:background="?attr/selectableItemBackground"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="4dp"
-                android:layout_marginEnd="4dp"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText"
-                tools:text="+5%"/>
+                tools:text="+5%" />
         </RelativeLayout>
 
         <View
@@ -265,80 +265,80 @@
             android:layout_height="1dp"
             android:layout_below="@+id/pitchControl"
             android:layout_margin="@dimen/video_item_search_padding"
-            android:background="?attr/separator_color"/>
+            android:background="?attr/separator_color" />
 
         <LinearLayout
             android:id="@+id/stepSizeSelector"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:layout_below="@id/separatorStepSizeSelector">
+            android:layout_below="@id/separatorStepSizeSelector"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/stepSizeText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:clickable="false"
                 android:gravity="center"
                 android:text="@string/playback_step"
-                android:textStyle="bold"
-                android:clickable="false"
-                android:textColor="?attr/colorAccent"/>
+                android:textColor="?attr/colorAccent"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/stepSizeOnePercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                android:textColor="?attr/colorAccent"/>
+                android:gravity="center"
+                android:textColor="?attr/colorAccent" />
 
             <TextView
                 android:id="@+id/stepSizeFivePercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                android:textColor="?attr/colorAccent"/>
+                android:gravity="center"
+                android:textColor="?attr/colorAccent" />
 
             <TextView
                 android:id="@+id/stepSizeTenPercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                android:textColor="?attr/colorAccent"/>
+                android:gravity="center"
+                android:textColor="?attr/colorAccent" />
 
             <TextView
                 android:id="@+id/stepSizeTwentyFivePercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                android:textColor="?attr/colorAccent"/>
+                android:gravity="center"
+                android:textColor="?attr/colorAccent" />
 
             <TextView
                 android:id="@+id/stepSizeOneHundredPercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                android:textColor="?attr/colorAccent"/>
+                android:gravity="center"
+                android:textColor="?attr/colorAccent" />
         </LinearLayout>
 
         <View
@@ -347,31 +347,31 @@
             android:layout_height="1dp"
             android:layout_below="@+id/stepSizeSelector"
             android:layout_margin="@dimen/video_item_search_padding"
-            android:background="?attr/separator_color"/>
+            android:background="?attr/separator_color" />
 
         <CheckBox
             android:id="@+id/unhookCheckbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/separatorCheckbox"
+            android:layout_centerHorizontal="true"
             android:checked="false"
             android:clickable="true"
             android:focusable="true"
-            android:text="@string/unhook_checkbox"
             android:maxLines="1"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/separatorCheckbox"/>
+            android:text="@string/unhook_checkbox" />
 
         <CheckBox
             android:id="@+id/skipSilenceCheckbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/unhookCheckbox"
+            android:layout_centerHorizontal="true"
             android:checked="false"
             android:clickable="true"
             android:focusable="true"
-            android:text="@string/skip_silence_checkbox"
             android:maxLines="1"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/unhookCheckbox"/>
+            android:text="@string/skip_silence_checkbox" />
 
         <!-- END HERE -->
 

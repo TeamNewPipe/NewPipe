@@ -16,12 +16,17 @@ public final class SinglePlayQueue extends PlayQueue {
         super(0, Collections.singletonList(new PlayQueueItem(info)));
     }
 
+    public SinglePlayQueue(final StreamInfo info, final long startPosition) {
+        super(0, Collections.singletonList(new PlayQueueItem(info)));
+        getItem().setRecoveryPosition(startPosition);
+    }
+
     public SinglePlayQueue(final List<StreamInfoItem> items, final int index) {
         super(index, playQueueItemsOf(items));
     }
 
-    private static List<PlayQueueItem> playQueueItemsOf(List<StreamInfoItem> items) {
-        List<PlayQueueItem> playQueueItems = new ArrayList<>(items.size());
+    private static List<PlayQueueItem> playQueueItemsOf(final List<StreamInfoItem> items) {
+        final List<PlayQueueItem> playQueueItems = new ArrayList<>(items.size());
         for (final StreamInfoItem item : items) {
             playQueueItems.add(new PlayQueueItem(item));
         }
@@ -34,5 +39,6 @@ public final class SinglePlayQueue extends PlayQueue {
     }
 
     @Override
-    public void fetch() {}
+    public void fetch() {
+    }
 }

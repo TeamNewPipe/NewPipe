@@ -1,24 +1,25 @@
 package org.schabi.newpipe.database.playlist;
 
-import android.arch.persistence.room.ColumnInfo;
+import androidx.room.ColumnInfo;
 
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_NAME;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_THUMBNAIL_URL;
 
 public class PlaylistMetadataEntry implements PlaylistLocalItem {
-    final public static String PLAYLIST_STREAM_COUNT = "streamCount";
+    public static final String PLAYLIST_STREAM_COUNT = "streamCount";
 
     @ColumnInfo(name = PLAYLIST_ID)
-    final public long uid;
+    public final long uid;
     @ColumnInfo(name = PLAYLIST_NAME)
-    final public String name;
+    public final String name;
     @ColumnInfo(name = PLAYLIST_THUMBNAIL_URL)
-    final public String thumbnailUrl;
+    public final String thumbnailUrl;
     @ColumnInfo(name = PLAYLIST_STREAM_COUNT)
-    final public long streamCount;
+    public final long streamCount;
 
-    public PlaylistMetadataEntry(long uid, String name, String thumbnailUrl, long streamCount) {
+    public PlaylistMetadataEntry(final long uid, final String name, final String thumbnailUrl,
+                                 final long streamCount) {
         this.uid = uid;
         this.name = name;
         this.thumbnailUrl = thumbnailUrl;

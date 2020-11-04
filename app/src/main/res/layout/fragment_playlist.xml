@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        tools:listitem="@layout/list_stream_mini_item"/>
+        tools:listitem="@layout/list_stream_mini_item" />
 
     <ProgressBar
         android:id="@+id/loading_progress_bar"
@@ -19,7 +18,7 @@
         android:layout_centerInParent="true"
         android:indeterminate="true"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/empty_state_view"
@@ -35,18 +34,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
             android:fontFamily="monospace"
             android:text="(ಠ_ಠ)"
-            android:layout_marginBottom="10dp"
             android:textSize="35sp"
-            tools:ignore="HardcodedText,UnusedAttribute"/>
+            tools:ignore="HardcodedText,UnusedAttribute" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/empty_view_no_videos"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -59,12 +58,12 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:background="?attr/toolbar_shadow_drawable"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:background="?attr/toolbar_shadow" />
 
 </RelativeLayout>

@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="org.schabi.newpipe.player.BackgroundPlayerActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_weight="1"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:title="@string/app_name"/>
+            app:title="@string/app_name" />
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/play_queue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appbar"
         android:layout_above="@id/progress_bar"
-        android:layout_toLeftOf="@+id/control_pane"
+        android:layout_below="@+id/appbar"
         android:layout_toStartOf="@+id/control_pane"
+        android:layout_toLeftOf="@+id/control_pane"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/play_queue_item"/>
+        tools:listitem="@layout/play_queue_item" />
 
     <RelativeLayout
         android:id="@+id/control_pane"
         android:layout_width="200dp"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_above="@id/progress_bar"
-        android:layout_below="@id/appbar">
+        android:layout_below="@id/appbar"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
 
         <LinearLayout
             android:id="@+id/metadata"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/playback_controls_top"
-            android:orientation="vertical"
-            android:padding="8dp"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="8dp"
             tools:ignore="RtlHardcoded,RtlSymmetry">
 
             <TextView
@@ -68,8 +68,7 @@
                 android:maxLines="4"
                 android:textColor="?attr/colorAccent"
                 android:textSize="14sp"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."
-                />
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
 
             <TextView
                 android:id="@+id/artist_name"
@@ -86,52 +85,52 @@
             android:id="@+id/seek_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/playback_controls_top"
             android:layout_centerInParent="true"
             android:background="#c0000000"
-            android:paddingBottom="5dp"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:paddingTop="5dp"
-            android:layout_above="@+id/playback_controls_top"
+            android:paddingRight="30dp"
+            android:paddingBottom="5dp"
             android:textColor="@android:color/white"
             android:textSize="22sp"
             android:textStyle="bold"
             android:visibility="gone"
             tools:ignore="RtlHardcoded"
             tools:text="1:06:29"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <RelativeLayout
             android:id="@+id/playback_controls_top"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:paddingTop="10dp"
             android:layout_above="@+id/playback_controls_bottom"
             android:orientation="horizontal"
+            android:paddingTop="10dp"
             tools:ignore="RtlHardcoded">
 
             <ImageButton
-                android:id="@+id/control_backward"
+                android:id="@+id/control_fast_rewind"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toLeftOf="@+id/control_play_pause"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
+                android:src="@drawable/exo_controls_rewind"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/exo_controls_previous"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                tools:ignore="ContentDescription"/>
+                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/control_play_pause"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -139,29 +138,29 @@
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/ic_pause_white"
-                tools:ignore="ContentDescription"/>
+                app:srcCompat="@drawable/ic_pause_white_24dp"
+                tools:ignore="ContentDescription" />
 
             <ProgressBar
                 android:id="@+id/control_progress_bar"
                 style="?android:attr/progressBarStyleLargeInverse"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="#00000000"
-                android:tint="?attr/colorAccent"
-                android:padding="2dp"
                 android:clickable="false"
-                android:scaleType="fitCenter"
                 android:indeterminate="true"
-                android:visibility="invisible"/>
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+                android:tint="?attr/colorAccent"
+                android:visibility="invisible" />
 
             <ImageButton
-                android:id="@+id/control_forward"
+                android:id="@+id/control_fast_forward"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
@@ -171,86 +170,91 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
+                android:src="@drawable/exo_controls_fastforward"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/exo_controls_next"
-                tools:ignore="ContentDescription"/>
+                tools:ignore="ContentDescription" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/playback_controls_bottom"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:paddingTop="10dp"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
+            android:paddingTop="10dp"
             tools:ignore="RtlHardcoded">
 
-            <TextView
-                android:id="@+id/control_playback_speed"
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/control_backward"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/control_repeat"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:minWidth="50dp"
-                android:text="1x"
-                android:textColor="?attr/colorAccent"
-                android:textStyle="bold"
-                android:background="?attr/selectableItemBackground"
-                tools:ignore="HardcodedText,RtlHardcoded"/>
+                android:scaleType="fitCenter"
+                android:tint="?attr/colorAccent"
+                app:srcCompat="@drawable/ic_previous_white_24dp"
+                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/control_repeat"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_toLeftOf="@+id/anchor"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@+id/anchor"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/ic_repeat_white"
-                tools:ignore="ContentDescription"/>
+                app:srcCompat="@drawable/ic_repeat_white_24dp"
+                tools:ignore="ContentDescription" />
 
-            <View android:layout_width="10dp"
+            <View
+                android:id="@+id/anchor"
+                android:layout_width="10dp"
                 android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:id="@+id/anchor"/>
+                android:layout_centerInParent="true" />
 
             <ImageButton
                 android:id="@+id/control_shuffle"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_toRightOf="@+id/anchor"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/anchor"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/ic_shuffle_white_24dp"
-                tools:ignore="ContentDescription"/>
+                app:srcCompat="@drawable/ic_shuffle_white_24dp"
+                tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/control_playback_pitch"
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/control_forward"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/control_shuffle"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:minWidth="50dp"
-                android:text="100%"
-                android:textColor="?attr/colorAccent"
-                android:textStyle="bold"
-                android:background="?attr/selectableItemBackground"
-                tools:ignore="HardcodedText,RtlHardcoded"/>
+                android:scaleType="fitCenter"
+                android:tint="?attr/colorAccent"
+                app:srcCompat="@drawable/ic_next_white_24dp"
+                tools:ignore="ContentDescription" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -259,10 +263,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/player_controls_background"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
-        android:background="@drawable/player_controls_bg"
         android:paddingRight="16dp">
 
         <TextView
@@ -274,18 +278,18 @@
             android:text="-:--:--"
             android:textColor="?attr/colorAccent"
             tools:ignore="HardcodedText"
-            tools:text="1:06:29"/>
+            tools:text="1:06:29" />
 
-        <android.support.v7.widget.AppCompatSeekBar
+        <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/seek_bar"
             style="@style/Widget.AppCompat.SeekBar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingBottom="4dp"
             android:paddingTop="8dp"
+            android:paddingBottom="4dp"
             tools:progress="25"
-            tools:secondaryProgress="50"/>
+            tools:secondaryProgress="50" />
 
         <TextView
             android:id="@+id/end_time"
@@ -295,20 +299,19 @@
             android:text="-:--:--"
             android:textColor="?attr/colorAccent"
             tools:ignore="HardcodedText"
-            tools:text="1:23:49"/>
+            tools:text="1:23:49" />
 
         <TextView
             android:id="@+id/live_sync"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:gravity="center"
-            android:text="@string/duration_live_button"
+            android:text="@string/duration_live"
             android:textAllCaps="true"
             android:textColor="?attr/colorAccent"
-            android:maxLength="4"
-            android:background="?attr/selectableItemBackground"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

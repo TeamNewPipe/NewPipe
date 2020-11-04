@@ -2,10 +2,12 @@ package org.schabi.newpipe.player.mediasession;
 
 import android.os.Bundle;
 import android.os.ResultReceiver;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.media.session.MediaSessionCompat;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.exoplayer2.ControlDispatcher;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.util.Util;
@@ -17,7 +19,6 @@ import java.util.List;
 import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_NEXT;
 import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS;
 import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_QUEUE_ITEM;
-
 
 public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator {
     public static final int DEFAULT_MAX_QUEUE_SIZE = 10;
@@ -38,17 +39,17 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public long getSupportedQueueNavigatorActions(@Nullable Player player) {
+    public long getSupportedQueueNavigatorActions(@Nullable final Player player) {
         return ACTION_SKIP_TO_NEXT | ACTION_SKIP_TO_PREVIOUS | ACTION_SKIP_TO_QUEUE_ITEM;
     }
 
     @Override
-    public void onTimelineChanged(Player player) {
+    public void onTimelineChanged(final Player player) {
         publishFloatingQueueWindow();
     }
 
     @Override
-    public void onCurrentWindowIndexChanged(Player player) {
+    public void onCurrentWindowIndexChanged(final Player player) {
         if (activeQueueItemId == MediaSessionCompat.QueueItem.UNKNOWN_ID
                 || player.getCurrentTimeline().getWindowCount() > maxQueueSize) {
             publishFloatingQueueWindow();
@@ -58,22 +59,23 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public long getActiveQueueItemId(@Nullable Player player) {
+    public long getActiveQueueItemId(@Nullable final Player player) {
         return callback.getCurrentPlayingIndex();
     }
 
     @Override
-    public void onSkipToPrevious(Player player) {
+    public void onSkipToPrevious(final Player player, final ControlDispatcher controlDispatcher) {
         callback.onSkipToPrevious();
     }
 
     @Override
-    public void onSkipToQueueItem(Player player, long id) {
+    public void onSkipToQueueItem(final Player player, final ControlDispatcher controlDispatcher,
+                                  final long id) {
         callback.onSkipToIndex((int) id);
     }
 
     @Override
-    public void onSkipToNext(Player player) {
+    public void onSkipToNext(final Player player, final ControlDispatcher controlDispatcher) {
         callback.onSkipToNext();
     }
 
@@ -85,13 +87,13 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
         }
 
         // Yes this is almost a copypasta, got a problem with that? =\
-        int windowCount = callback.getQueueSize();
-        int currentWindowIndex = callback.getCurrentPlayingIndex();
-        int queueSize = Math.min(maxQueueSize, windowCount);
-        int startIndex = Util.constrainValue(currentWindowIndex - ((queueSize - 1) / 2), 0,
+        final int windowCount = callback.getQueueSize();
+        final int currentWindowIndex = callback.getCurrentPlayingIndex();
+        final int queueSize = Math.min(maxQueueSize, windowCount);
+        final int startIndex = Util.constrainValue(currentWindowIndex - ((queueSize - 1) / 2), 0,
                 windowCount - queueSize);
 
-        List<MediaSessionCompat.QueueItem> queue = new ArrayList<>();
+        final List<MediaSessionCompat.QueueItem> queue = new ArrayList<>();
         for (int i = startIndex; i < startIndex + queueSize; i++) {
             queue.add(new MediaSessionCompat.QueueItem(callback.getQueueMetadata(i), i));
         }
@@ -100,12 +102,8 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public String[] getCommands() {
-        return new String[0];
-    }
-
-    @Override
-    public void onCommand(Player player, String command, Bundle extras, ResultReceiver cb) {
-
+    public boolean onCommand(final Player player, final ControlDispatcher controlDispatcher,
+                             final String command, final Bundle extras, final ResultReceiver cb) {
+        return false;
     }
 }

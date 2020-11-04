@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_appearance_title">
 
     <ListPreference
@@ -9,18 +9,15 @@
         android:entryValues="@array/theme_values_list"
         android:key="@string/theme_key"
         android:summary="%s"
-        android:title="@string/theme_title"/>
+        android:title="@string/theme_title"
+        app:iconSpaceReserved="false" />
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="@string/show_next_video_key"
-        android:title="@string/show_next_and_similar_title"/>
-
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="@string/show_hold_to_append_key"
+        android:summary="@string/show_hold_to_append_summary"
         android:title="@string/show_hold_to_append_title"
-        android:summary="@string/show_hold_to_append_summary"/>
+        app:iconSpaceReserved="false" />
 
     <ListPreference
         android:defaultValue="@string/list_view_mode_value"
@@ -28,17 +25,13 @@
         android:entryValues="@array/list_view_mode_values"
         android:key="@string/list_view_mode_key"
         android:summary="%s"
-        android:title="@string/list_view_mode"/>
+        android:title="@string/list_view_mode"
+        app:iconSpaceReserved="false" />
 
     <Preference
         android:key="@string/caption_settings_key"
+        android:summary="@string/caption_setting_description"
         android:title="@string/caption_setting_title"
-        android:summary="@string/caption_setting_description"/>
-
-    <PreferenceScreen
-        android:fragment="org.schabi.newpipe.settings.tabs.ChooseTabsFragment"
-        android:summary="@string/main_page_content_summary"
-        android:key="@string/main_page_content_key"
-        android:title="@string/main_page_content"/>
+        app:iconSpaceReserved="false" />
 
 </PreferenceScreen>

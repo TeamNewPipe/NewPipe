@@ -2,17 +2,18 @@ package org.schabi.newpipe.player.resolver;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -25,18 +26,15 @@ import static com.google.android.exoplayer2.C.SELECTION_FLAG_AUTOSELECT;
 import static com.google.android.exoplayer2.C.TIME_UNSET;
 
 public class VideoPlaybackResolver implements PlaybackResolver {
+    @NonNull
+    private final Context context;
+    @NonNull
+    private final PlayerDataSource dataSource;
+    @NonNull
+    private final QualityResolver qualityResolver;
 
-    public interface QualityResolver {
-        int getDefaultResolutionIndex(final List<VideoStream> sortedVideos);
-        int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
-                                       final String playbackQuality);
-    }
-
-    @NonNull private final Context context;
-    @NonNull private final PlayerDataSource dataSource;
-    @NonNull private final QualityResolver qualityResolver;
-
-    @Nullable private String playbackQuality;
+    @Nullable
+    private String playbackQuality;
 
     public VideoPlaybackResolver(@NonNull final Context context,
                                  @NonNull final PlayerDataSource dataSource,
@@ -48,11 +46,13 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
     @Override
     @Nullable
-    public MediaSource resolve(@NonNull StreamInfo info) {
+    public MediaSource resolve(@NonNull final StreamInfo info) {
         final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
-        if (liveSource != null) return liveSource;
+        if (liveSource != null) {
+            return liveSource;
+        }
 
-        List<MediaSource> mediaSources = new ArrayList<>();
+        final List<MediaSource> mediaSources = new ArrayList<>();
 
         // Create video stream source
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
@@ -81,7 +81,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                 ListHelper.getDefaultAudioFormat(context, audioStreams));
         // Use the audio stream if there is no video stream, or
         // Merge with audio stream in case if video does not contain audio
-        if (audio != null && ((video != null && video.isVideoOnly) || video == null)) {
+        if (audio != null && (video == null || video.isVideoOnly)) {
             final MediaSource audioSource = buildMediaSource(dataSource, audio.getUrl(),
                     PlayerHelper.cacheKeyOf(info, audio),
                     MediaFormat.getSuffixById(audio.getFormatId()), tag);
@@ -89,26 +89,33 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         }
 
         // If there is no audio or video sources, then this media source cannot be played back
-        if (mediaSources.isEmpty()) return null;
+        if (mediaSources.isEmpty()) {
+            return null;
+        }
         // Below are auxiliary media sources
 
         // Create subtitle sources
-        for (final SubtitlesStream subtitle : info.getSubtitles()) {
-            final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
-            if (mimeType == null) continue;
+        if (info.getSubtitles() != null) {
+            for (final SubtitlesStream subtitle : info.getSubtitles()) {
+                final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
+                if (mimeType == null) {
+                    continue;
+                }
 
-            final Format textFormat = Format.createTextSampleFormat(null, mimeType,
-                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
-            final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                    .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
-            mediaSources.add(textSource);
+                final Format textFormat = Format.createTextSampleFormat(null, mimeType,
+                        SELECTION_FLAG_AUTOSELECT,
+                        PlayerHelper.captionLanguageOf(context, subtitle));
+                final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
+                        .createMediaSource(Uri.parse(subtitle.getUrl()), textFormat, TIME_UNSET);
+                mediaSources.add(textSource);
+            }
         }
 
         if (mediaSources.size() == 1) {
             return mediaSources.get(0);
         } else {
             return new MergingMediaSource(mediaSources.toArray(
-                    new MediaSource[mediaSources.size()]));
+                    new MediaSource[0]));
         }
     }
 
@@ -117,7 +124,13 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         return playbackQuality;
     }
 
-    public void setPlaybackQuality(@Nullable String playbackQuality) {
+    public void setPlaybackQuality(@Nullable final String playbackQuality) {
         this.playbackQuality = playbackQuality;
+    }
+
+    public interface QualityResolver {
+        int getDefaultResolutionIndex(List<VideoStream> sortedVideos);
+
+        int getOverrideResolutionIndex(List<VideoStream> sortedVideos, String playbackQuality);
     }
 }

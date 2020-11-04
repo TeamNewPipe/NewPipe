@@ -5,13 +5,13 @@ android:
   components:
     # The BuildTools version used by NewPipe
     - tools
-    - build-tools-28.0.3
+    - build-tools-29.0.3
 
     # The SDK version used to compile NewPipe
-    - android-28
+    - android-29
 
 before_install: 
-  - yes | sdkmanager "platforms;android-28"
+  - yes | sdkmanager "platforms;android-29"
 script: ./gradlew -Dorg.gradle.jvmargs=-Xmx1536m assembleDebug lintDebug testDebugUnitTest
 
 licenses:

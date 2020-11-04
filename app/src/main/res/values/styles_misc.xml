@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="RedButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">@color/subscribe_background_color</item>
+    <!-- Follows service's primary color -->
+    <style name="ServiceColoredButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">?attr/colorPrimary</item>
         <item name="android:textColor">@color/subscribe_text_color</item>
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
     </style>

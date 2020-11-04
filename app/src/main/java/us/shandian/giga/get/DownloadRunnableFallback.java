@@ -1,77 +1,78 @@
 package us.shandian.giga.get;
 
-import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
-
+import us.shandian.giga.get.DownloadMission.HttpError;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
 /**
  * Single-threaded fallback mode
  */
 public class DownloadRunnableFallback extends Thread {
-    private static final String TAG = "DownloadRunnableFallback";
+    private static final String TAG = "DownloadRunnableFallbac";
 
     private final DownloadMission mMission;
-    private final int mId = 1;
 
     private int mRetryCount = 0;
     private InputStream mIs;
-    private RandomAccessFile mF;
+    private SharpStream mF;
     private HttpURLConnection mConn;
 
     DownloadRunnableFallback(@NonNull DownloadMission mission) {
         mMission = mission;
-        mIs = null;
-        mF = null;
-        mConn = null;
     }
 
     private void dispose() {
         try {
-            if (mIs != null) mIs.close();
+            try {
+                if (mIs != null) mIs.close();
+            } finally {
+                mConn.disconnect();
+            }
         } catch (IOException e) {
             // nothing to do
         }
 
-        try {
-            if (mF != null) mF.close();
-        } catch (IOException e) {
-            // ¿ejected media storage? ¿file deleted? ¿storage ran out of space?
-        }
+        if (mF != null) mF.close();
     }
 
     @Override
-    @SuppressLint("LongLogTag")
     public void run() {
         boolean done;
+        long start = mMission.fallbackResumeOffset;
 
-        long start = 0;
-
-        if (!mMission.unknownLength) {
-            start = mMission.getThreadBytePosition(0);
-            if (DEBUG && start > 0) {
-                Log.i(TAG, "Resuming a single-thread download at " + start);
-            }
+        if (DEBUG && !mMission.unknownLength && start > 0) {
+            Log.i(TAG, "Resuming a single-thread download at " + start);
         }
 
         try {
             long rangeStart = (mMission.unknownLength || start < 1) ? -1 : start;
 
-            mConn = mMission.openConnection(mId, rangeStart, -1);
+            int mId = 1;
+            mConn = mMission.openConnection(false, rangeStart, -1);
+
+            if (mRetryCount == 0 && rangeStart == -1) {
+                // workaround: bypass android connection pool
+                mConn.setRequestProperty("Range", "bytes=0-");
+            }
+
             mMission.establishConnection(mId, mConn);
 
             // check if the download can be resumed
             if (mConn.getResponseCode() == 416 && start > 0) {
+                mMission.notifyProgress(-start);
                 start = 0;
                 mRetryCount--;
                 throw new DownloadMission.HttpError(416);
@@ -81,12 +82,17 @@ public class DownloadRunnableFallback extends Thread {
             if (!mMission.unknownLength)
                 mMission.unknownLength = Utility.getContentLength(mConn) == -1;
 
-            mF = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
+            if (mMission.unknownLength || mConn.getResponseCode() == 200) {
+                // restart amount of bytes downloaded
+                mMission.done = mMission.offsets[mMission.current] - mMission.offsets[0];
+            }
+
+            mF = mMission.storage.getStream();
             mF.seek(mMission.offsets[mMission.current] + start);
 
             mIs = mConn.getInputStream();
 
-            byte[] buf = new byte[64 * 1024];
+            byte[] buf = new byte[DownloadMission.BUFFER_SIZE];
             int len = 0;
 
             while (mMission.running && (len = mIs.read(buf, 0, buf.length)) != -1) {
@@ -95,31 +101,41 @@ public class DownloadRunnableFallback extends Thread {
                 mMission.notifyProgress(len);
             }
 
-            // if thread goes interrupted check if the last part mIs written. This avoid re-download the whole file
+            dispose();
+
+            // if thread goes interrupted check if the last part is written. This avoid re-download the whole file
             done = len == -1;
         } catch (Exception e) {
             dispose();
 
-            // save position
-            mMission.setThreadBytePosition(0, start);
+            mMission.fallbackResumeOffset = start;
 
             if (!mMission.running || e instanceof ClosedByInterruptException) return;
+
+            if (e instanceof HttpError && ((HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
+                // for youtube streams. The url has expired, recover
+                dispose();
+                mMission.doRecover(ERROR_HTTP_FORBIDDEN);
+                return;
+            }
 
             if (mRetryCount++ >= mMission.maxRetry) {
                 mMission.notifyError(e);
                 return;
             }
 
+            if (DEBUG) {
+                Log.e(TAG, "got exception, retrying...", e);
+            }
+
             run();// try again
             return;
         }
 
-        dispose();
-
         if (done) {
             mMission.notifyFinished();
         } else {
-            mMission.setThreadBytePosition(0, start);
+            mMission.fallbackResumeOffset = start;
         }
     }
 

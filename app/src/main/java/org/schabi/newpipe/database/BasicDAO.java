@@ -1,10 +1,10 @@
 package org.schabi.newpipe.database;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Update;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Update;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,14 +14,14 @@ import io.reactivex.Flowable;
 @Dao
 public interface BasicDAO<Entity> {
     /* Inserts */
-    @Insert(onConflict = OnConflictStrategy.FAIL)
-    long insert(final Entity entity);
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    long insert(Entity entity);
 
-    @Insert(onConflict = OnConflictStrategy.FAIL)
-    List<Long> insertAll(final Entity... entities);
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    List<Long> insertAll(Entity... entities);
 
-    @Insert(onConflict = OnConflictStrategy.FAIL)
-    List<Long> insertAll(final Collection<Entity> entities);
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    List<Long> insertAll(Collection<Entity> entities);
 
     /* Searches */
     Flowable<List<Entity>> getAll();
@@ -30,17 +30,17 @@ public interface BasicDAO<Entity> {
 
     /* Deletes */
     @Delete
-    void delete(final Entity entity);
+    void delete(Entity entity);
 
     @Delete
-    int delete(final Collection<Entity> entities);
+    int delete(Collection<Entity> entities);
 
     int deleteAll();
 
     /* Updates */
     @Update
-    int update(final Entity entity);
+    int update(Entity entity);
 
     @Update
-    void update(final Collection<Entity> entities);
+    void update(Collection<Entity> entities);
 }

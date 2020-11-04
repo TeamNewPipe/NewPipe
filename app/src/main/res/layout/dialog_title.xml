@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="false"
     android:paddingLeft="@dimen/video_item_search_padding"
-    android:paddingRight="@dimen/video_item_search_padding"
-    android:paddingTop="@dimen/video_item_search_padding">
+    android:paddingTop="@dimen/video_item_search_padding"
+    android:paddingRight="@dimen/video_item_search_padding">
 
     <TextView
         android:id="@+id/itemTitleView"
@@ -22,15 +21,15 @@
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/channel_item_detail_title_text_size"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. "/>
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. " />
 
     <TextView
         android:id="@+id/itemAdditionalDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemTitleView"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:marqueeRepeatLimit="marquee_forever"
@@ -39,6 +38,6 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
         android:visibility="gone"
-        tools:visibility="visible"
-        tools:text="UPLOADER" />
+        tools:text="UPLOADER"
+        tools:visibility="visible" />
 </RelativeLayout>

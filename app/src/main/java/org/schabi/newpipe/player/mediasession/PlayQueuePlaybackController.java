@@ -1,9 +1,9 @@
 package org.schabi.newpipe.player.mediasession;
 
+import com.google.android.exoplayer2.DefaultControlDispatcher;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.ext.mediasession.DefaultPlaybackController;
 
-public class PlayQueuePlaybackController extends DefaultPlaybackController {
+public class PlayQueuePlaybackController extends DefaultControlDispatcher {
     private final MediaSessionCallback callback;
 
     public PlayQueuePlaybackController(final MediaSessionCallback callback) {
@@ -12,12 +12,12 @@ public class PlayQueuePlaybackController extends DefaultPlaybackController {
     }
 
     @Override
-    public void onPlay(Player player) {
-        callback.onPlay();
-    }
-
-    @Override
-    public void onPause(Player player) {
-        callback.onPause();
+    public boolean dispatchSetPlayWhenReady(final Player player, final boolean playWhenReady) {
+        if (playWhenReady) {
+            callback.onPlay();
+        } else {
+            callback.onPause();
+        }
+        return true;
     }
 }

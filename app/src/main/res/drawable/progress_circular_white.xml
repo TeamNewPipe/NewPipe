@@ -2,7 +2,7 @@
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
     android:fromDegrees="-90"
     android:toDegrees="-90">
-    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+    <shape
         android:innerRadiusRatio="2.25"
         android:shape="ring"
         android:thicknessRatio="17.75"

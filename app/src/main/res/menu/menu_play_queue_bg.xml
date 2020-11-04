@@ -3,8 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.schabi.newpipe.history.HistoryActivity">
 
-    <item android:id="@+id/action_switch_popup"
+    <item
+        android:id="@+id/action_switch_popup"
         android:orderInCategory="1999"
         android:title="@string/switch_to_popup"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_switch_background"
+        android:orderInCategory="999"
+        android:title="@string/switch_to_background"
+        app:showAsAction="never" />
 </menu>

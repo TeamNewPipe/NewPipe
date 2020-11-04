@@ -1,7 +1,7 @@
 package org.schabi.newpipe.player;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 
@@ -9,11 +9,13 @@ import java.io.Serializable;
 
 public class PlayerState implements Serializable {
 
-    @NonNull private final PlayQueue playQueue;
+    @NonNull
+    private final PlayQueue playQueue;
     private final int repeatMode;
     private final float playbackSpeed;
     private final float playbackPitch;
-    @Nullable private final String playbackQuality;
+    @Nullable
+    private final String playbackQuality;
     private final boolean playbackSkipSilence;
     private final boolean wasPlaying;
 

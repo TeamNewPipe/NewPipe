@@ -4,19 +4,21 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,6 +28,8 @@ import java.net.HttpURLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
+
+import us.shandian.giga.io.StoredFileHelper;
 
 public class Utility {
 
@@ -37,26 +41,28 @@ public class Utility {
     }
 
     public static String formatBytes(long bytes) {
+        Locale locale = Locale.getDefault();
         if (bytes < 1024) {
-            return String.format("%d B", bytes);
+            return String.format(locale, "%d B", bytes);
         } else if (bytes < 1024 * 1024) {
-            return String.format("%.2f kB", bytes / 1024d);
+            return String.format(locale, "%.2f kB", bytes / 1024d);
         } else if (bytes < 1024 * 1024 * 1024) {
-            return String.format("%.2f MB", bytes / 1024d / 1024d);
+            return String.format(locale, "%.2f MB", bytes / 1024d / 1024d);
         } else {
-            return String.format("%.2f GB", bytes / 1024d / 1024d / 1024d);
+            return String.format(locale, "%.2f GB", bytes / 1024d / 1024d / 1024d);
         }
     }
 
-    public static String formatSpeed(float speed) {
+    public static String formatSpeed(double speed) {
+        Locale locale = Locale.getDefault();
         if (speed < 1024) {
-            return String.format("%.2f B/s", speed);
+            return String.format(locale, "%.2f B/s", speed);
         } else if (speed < 1024 * 1024) {
-            return String.format("%.2f kB/s", speed / 1024);
+            return String.format(locale, "%.2f kB/s", speed / 1024);
         } else if (speed < 1024 * 1024 * 1024) {
-            return String.format("%.2f MB/s", speed / 1024 / 1024);
+            return String.format(locale, "%.2f MB/s", speed / 1024 / 1024);
         } else {
-            return String.format("%.2f GB/s", speed / 1024 / 1024 / 1024);
+            return String.format(locale, "%.2f GB/s", speed / 1024 / 1024 / 1024);
         }
     }
 
@@ -80,6 +86,7 @@ public class Utility {
             objectInputStream = new ObjectInputStream(new FileInputStream(file));
             object = (T) objectInputStream.readObject();
         } catch (Exception e) {
+            Log.e("Utility", "Failed to deserialize the object", e);
             object = null;
         }
 
@@ -184,18 +191,17 @@ public class Utility {
     public static int getIconForFileType(FileType type) {
         switch (type) {
             case MUSIC:
-                return R.drawable.music;
-            case VIDEO:
-                return R.drawable.video;
-            case SUBTITLE:
-                return R.drawable.subtitle;
+                return R.drawable.ic_headset_white_24dp;
             default:
-                return R.drawable.video;
+            case VIDEO:
+                return R.drawable.ic_movie_white_24dp;
+            case SUBTITLE:
+                return R.drawable.ic_subtitles_white_24dp;
         }
     }
 
     public static void copyToClipboard(Context context, String str) {
-        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager cm = ContextCompat.getSystemService(context, ClipboardManager.class);
 
         if (cm == null) {
             Toast.makeText(context, R.string.permission_denied, Toast.LENGTH_LONG).show();
@@ -206,7 +212,7 @@ public class Utility {
         Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
     }
 
-    public static String checksum(String path, String algorithm) {
+    public static String checksum(StoredFileHelper source, String algorithm) {
         MessageDigest md;
 
         try {
@@ -215,11 +221,11 @@ public class Utility {
             throw new RuntimeException(e);
         }
 
-        FileInputStream i;
+        SharpStream i;
 
         try {
-            i = new FileInputStream(path);
-        } catch (FileNotFoundException e) {
+            i = source.getStream();
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -247,15 +253,15 @@ public class Utility {
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static boolean mkdir(File path, boolean allDirs) {
-        if (path.exists()) return true;
+    public static boolean mkdir(File p, boolean allDirs) {
+        if (p.exists()) return true;
 
         if (allDirs)
-            path.mkdirs();
+            p.mkdirs();
         else
-            path.mkdir();
+            p.mkdir();
 
-        return path.exists();
+        return p.exists();
     }
 
     public static long getContentLength(HttpURLConnection connection) {
@@ -264,12 +270,32 @@ public class Utility {
         }
 
         try {
-            long length = Long.parseLong(connection.getHeaderField("Content-Length"));
-            if (length >= 0) return length;
+            return Long.parseLong(connection.getHeaderField("Content-Length"));
         } catch (Exception err) {
             // nothing to do
         }
 
         return -1;
+    }
+
+    private static String pad(int number) {
+        return number < 10 ? ("0" + number) : String.valueOf(number);
+    }
+
+    public static String stringifySeconds(double seconds) {
+        int h = (int) Math.floor(seconds / 3600);
+        int m = (int) Math.floor((seconds - (h * 3600)) / 60);
+        int s = (int) (seconds - (h * 3600) - (m * 60));
+
+        String str = "";
+
+        if (h < 1 && m < 1) {
+            str = "00:";
+        } else {
+            if (h > 0) str = pad(h) + ":";
+            if (m > 0) str += pad(m) + ":";
+        }
+
+        return str + pad(s);
     }
 }

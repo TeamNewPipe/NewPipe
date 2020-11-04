@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary">
+    tools:background="?attr/colorPrimary">
 
     <EditText
         android:id="@+id/toolbar_search_edit_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="4dp"
-        android:layout_marginRight="48dp"
         android:layout_marginTop="4dp"
-        android:background="?attr/colorPrimary"
-        android:drawableLeft="?attr/search"
-        android:drawablePadding="8dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:hint="@string/search"
         android:imeOptions="actionSearch|flagNoFullscreen"
         android:inputType="textFilter|textNoSuggestions"
         android:maxLines="1"
-        tools:ignore="RtlHardcoded"/>
+        android:nextFocusDown="@+id/suggestions_list"
+        tools:ignore="RtlHardcoded" />
 
     <FrameLayout
         android:id="@+id/toolbar_search_clear"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="right|center_vertical"
+        android:contentDescription="@string/clear"
+        android:focusable="true"
         tools:ignore="RtlHardcoded">
 
         <View
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_gravity="center"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
+            android:background="?attr/selectableItemBackgroundBorderless" />
 
         <ImageView
             android:layout_width="24dp"
@@ -44,8 +45,8 @@
             android:layout_gravity="center"
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"
-            android:src="?attr/close"
-            tools:ignore="RtlHardcoded"/>
+            app:srcCompat="?attr/ic_close"
+            tools:ignore="RtlHardcoded" />
     </FrameLayout>
 
 </FrameLayout>

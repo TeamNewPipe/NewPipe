@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/error_message_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/general_error"
         android:gravity="center"
+        android:text="@string/general_error"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:text="Network error"/>
+        tools:text="Network error" />
 
     <Button
         android:id="@+id/error_button_retry"
@@ -28,6 +27,6 @@
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"
-        android:theme="@style/RedButton"/>
+        android:theme="@style/ServiceColoredButton" />
 
 </LinearLayout>

@@ -1,23 +1,19 @@
 package org.schabi.newpipe.streams;
 
+import org.schabi.newpipe.streams.io.SharpStream;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-
 import java.nio.ByteBuffer;
-
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-
-import org.schabi.newpipe.streams.io.SharpStream;
 
 /**
  * @author kapodamy
  */
 public class Mp4DashReader {
-
-    // <editor-fold defaultState="collapsed" desc="Constants">
     private static final int ATOM_MOOF = 0x6D6F6F66;
     private static final int ATOM_MFHD = 0x6D666864;
     private static final int ATOM_TRAF = 0x74726166;
@@ -35,14 +31,28 @@ public class Mp4DashReader {
     private static final int ATOM_TREX = 0x74726578;
     private static final int ATOM_TKHD = 0x746B6864;
     private static final int ATOM_MFRA = 0x6D667261;
-    private static final int ATOM_TFRA = 0x74667261;
     private static final int ATOM_MDHD = 0x6D646864;
+    private static final int ATOM_EDTS = 0x65647473;
+    private static final int ATOM_ELST = 0x656C7374;
+    private static final int ATOM_HDLR = 0x68646C72;
+    private static final int ATOM_MINF = 0x6D696E66;
+    private static final int ATOM_DINF = 0x64696E66;
+    private static final int ATOM_STBL = 0x7374626C;
+    private static final int ATOM_STSD = 0x73747364;
+    private static final int ATOM_VMHD = 0x766D6864;
+    private static final int ATOM_SMHD = 0x736D6864;
+
     private static final int BRAND_DASH = 0x64617368;
-    // </editor-fold>
+    private static final int BRAND_ISO5 = 0x69736F35;
+
+    private static final int HANDLER_VIDE = 0x76696465;
+    private static final int HANDLER_SOUN = 0x736F756E;
+    private static final int HANDLER_SUBT = 0x73756274;
 
     private final DataReader stream;
 
     private Mp4Track[] tracks = null;
+    private int[] brands = null;
 
     private Box box;
     private Moof moof;
@@ -50,12 +60,13 @@ public class Mp4DashReader {
     private boolean chunkZero = false;
 
     private int selectedTrack = -1;
+    private Box backupBox = null;
 
     public enum TrackKind {
-        Audio, Video, Other
+        Audio, Video, Subtitles, Other
     }
 
-    public Mp4DashReader(SharpStream source) {
+    public Mp4DashReader(final SharpStream source) {
         this.stream = new DataReader(source);
     }
 
@@ -65,8 +76,16 @@ public class Mp4DashReader {
         }
 
         box = readBox(ATOM_FTYP);
-        if (parse_ftyp() != BRAND_DASH) {
-            throw new NoSuchElementException("Main Brand is not dash");
+        brands = parseFtyp(box);
+        switch (brands[0]) {
+            case BRAND_DASH:
+            case BRAND_ISO5:// ¿why not?
+                break;
+            default:
+                throw new NoSuchElementException(
+                        "Not a MPEG-4 DASH container, major brand is not 'dash' or 'iso5' is "
+                                + boxName(brands[0])
+                );
         }
 
         Moov moov = null;
@@ -78,14 +97,11 @@ public class Mp4DashReader {
 
             switch (box.type) {
                 case ATOM_MOOV:
-                    moov = parse_moov(box);
+                    moov = parseMoov(box);
                     break;
                 case ATOM_SIDX:
-                    break;
                 case ATOM_MFRA:
                     break;
-                case ATOM_MDAT:
-                    throw new IOException("Expected moof, found mdat");
             }
         }
 
@@ -99,81 +115,66 @@ public class Mp4DashReader {
             tracks[i] = new Mp4Track();
             tracks[i].trak = moov.trak[i];
 
-            if (moov.mvex_trex != null) {
-                for (Trex mvex_trex : moov.mvex_trex) {
-                    if (tracks[i].trak.tkhd.trackId == mvex_trex.trackId) {
-                        tracks[i].trex = mvex_trex;
+            if (moov.mvexTrex != null) {
+                for (final Trex mvexTrex : moov.mvexTrex) {
+                    if (tracks[i].trak.tkhd.trackId == mvexTrex.trackId) {
+                        tracks[i].trex = mvexTrex;
                     }
                 }
             }
 
-            if (moov.trak[i].tkhd.bHeight == 0 && moov.trak[i].tkhd.bWidth == 0) {
-                tracks[i].kind = moov.trak[i].tkhd.bVolume == 0 ? TrackKind.Other : TrackKind.Audio;
-            } else {
-                tracks[i].kind = TrackKind.Video;
+            switch (moov.trak[i].mdia.hdlr.subType) {
+                case HANDLER_VIDE:
+                    tracks[i].kind = TrackKind.Video;
+                    break;
+                case HANDLER_SOUN:
+                    tracks[i].kind = TrackKind.Audio;
+                    break;
+                case HANDLER_SUBT:
+                    tracks[i].kind = TrackKind.Subtitles;
+                    break;
+                default:
+                    tracks[i].kind = TrackKind.Other;
+                    break;
             }
         }
+
+        backupBox = box;
     }
 
-    public Mp4Track selectTrack(int index) {
+    Mp4Track selectTrack(final int index) {
         selectedTrack = index;
         return tracks[index];
     }
 
-    /**
-     * Count all fragments present. This operation requires a seekable stream
-     *
-     * @return list with a basic info
-     * @throws IOException if the source stream is not seekeable
-     */
-    public int getFragmentsCount() throws IOException {
-        if (selectedTrack < 0) {
-            throw new IllegalStateException("track no selected");
+    public int[] getBrands() {
+        if (brands == null) {
+            throw new IllegalStateException("Not parsed");
         }
+        return brands;
+    }
+
+    public void rewind() throws IOException {
         if (!stream.canRewind()) {
             throw new IOException("The provided stream doesn't allow seek");
         }
-
-        Box tmp;
-        int count = 0;
-        long orig_offset = stream.position();
-
-        if (box.type == ATOM_MOOF) {
-            tmp = box;
-        } else {
-            ensure(box);
-            tmp = readBox();
+        if (box == null) {
+            return;
         }
 
-        do {
-            if (tmp.type == ATOM_MOOF) {
-                ensure(readBox(ATOM_MFHD));
-                Box traf;
-                while ((traf = untilBox(tmp, ATOM_TRAF)) != null) {
-                    Box tfhd = readBox(ATOM_TFHD);
-                    if (parse_tfhd(tracks[selectedTrack].trak.tkhd.trackId) != null) {
-                        count++;
-                        break;
-                    }
-                    ensure(tfhd);
-                    ensure(traf);
-                }
-            }
-            ensure(tmp);
-        } while (stream.available() && (tmp = readBox()) != null);
+        box = backupBox;
+        chunkZero = false;
 
         stream.rewind();
-        stream.skipBytes((int) orig_offset);
-
-        return count;
+        stream.skipBytes(backupBox.offset + (DataReader.INTEGER_SIZE * 2));
     }
 
     public Mp4Track[] getAvailableTracks() {
         return tracks;
     }
 
-    public Mp4TrackChunk getNextChunk() throws IOException {
-        Mp4Track track = tracks[selectedTrack];
+    public Mp4DashChunk getNextChunk(final boolean infoOnly) throws IOException {
+        final Mp4Track track = tracks[selectedTrack];
 
         while (stream.available()) {
 
@@ -193,27 +194,31 @@ public class Mp4DashReader {
                         throw new IOException("moof found without mdat");
                     }
 
-                    moof = parse_moof(box, track.trak.tkhd.trackId);
+                    moof = parseMoof(box, track.trak.tkhd.trackId);
 
                     if (moof.traf != null) {
 
                         if (hasFlag(moof.traf.trun.bFlags, 0x0001)) {
                             moof.traf.trun.dataOffset -= box.size + 8;
                             if (moof.traf.trun.dataOffset < 0) {
-                                throw new IOException("trun box has wrong data offset, points outside of concurrent mdat box");
+                                throw new IOException("trun box has wrong data offset, "
+                                        + "points outside of concurrent mdat box");
                             }
                         }
 
                         if (moof.traf.trun.chunkSize < 1) {
                             if (hasFlag(moof.traf.tfhd.bFlags, 0x10)) {
-                                moof.traf.trun.chunkSize = moof.traf.tfhd.defaultSampleSize * moof.traf.trun.entryCount;
+                                moof.traf.trun.chunkSize = moof.traf.tfhd.defaultSampleSize
+                                        * moof.traf.trun.entryCount;
                             } else {
-                                moof.traf.trun.chunkSize = box.size - 8;
+                                moof.traf.trun.chunkSize = (int) (box.size - 8);
                             }
                         }
-                        if (!hasFlag(moof.traf.trun.bFlags, 0x900) && moof.traf.trun.chunkDuration == 0) {
+                        if (!hasFlag(moof.traf.trun.bFlags, 0x900)
+                                && moof.traf.trun.chunkDuration == 0) {
                             if (hasFlag(moof.traf.tfhd.bFlags, 0x20)) {
-                                moof.traf.trun.chunkDuration = moof.traf.tfhd.defaultSampleDuration * moof.traf.trun.entryCount;
+                                moof.traf.trun.chunkDuration = moof.traf.tfhd.defaultSampleDuration
+                                        * moof.traf.trun.entryCount;
                             }
                         }
                     }
@@ -225,12 +230,15 @@ public class Mp4DashReader {
 
                     if (moof.traf == null) {
                         moof = null;
-                        continue;// find another chunk
+                        continue; // find another chunk
                     }
 
-                    Mp4TrackChunk chunk = new Mp4TrackChunk();
+                    final Mp4DashChunk chunk = new Mp4DashChunk();
                     chunk.moof = moof;
-                    chunk.data = new TrackDataChunk(stream, moof.traf.trun.chunkSize);
+                    if (!infoOnly) {
+                        chunk.data = stream.getView(moof.traf.trun.chunkSize);
+                    }
+
                     moof = null;
 
                     stream.skipBytes(chunk.moof.traf.trun.dataOffset);
@@ -242,46 +250,60 @@ public class Mp4DashReader {
         return null;
     }
 
-    // <editor-fold defaultState="collapsed" desc="Utils">
-    private long readUint() throws IOException {
-        return stream.readInt() & 0xffffffffL;
-    }
-
-    public static boolean hasFlag(int flags, int mask) {
+    public static boolean hasFlag(final int flags, final int mask) {
         return (flags & mask) == mask;
     }
 
-    private String boxName(Box ref) {
+    private String boxName(final Box ref) {
         return boxName(ref.type);
     }
 
-    private String boxName(int type) {
-        try {
-            return new String(ByteBuffer.allocate(4).putInt(type).array(), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            return "0x" + Integer.toHexString(type);
-        }
+    private String boxName(final int type) {
+        return new String(ByteBuffer.allocate(4).putInt(type).array(), StandardCharsets.UTF_8);
     }
 
     private Box readBox() throws IOException {
-        Box b = new Box();
+        final Box b = new Box();
         b.offset = stream.position();
-        b.size = stream.readInt();
+        b.size = stream.readUnsignedInt();
         b.type = stream.readInt();
+
+        if (b.size == 1) {
+            b.size = stream.readLong();
+        }
 
         return b;
     }
 
-    private Box readBox(int expected) throws IOException {
-        Box b = readBox();
+    private Box readBox(final int expected) throws IOException {
+        final Box b = readBox();
         if (b.type != expected) {
-            throw new NoSuchElementException("expected " + boxName(expected) + " found " + boxName(b));
+            throw new NoSuchElementException("expected " + boxName(expected)
+                    + " found " + boxName(b));
         }
         return b;
     }
 
-    private void ensure(Box ref) throws IOException {
-        long skip = ref.offset + ref.size - stream.position();
+    private byte[] readFullBox(final Box ref) throws IOException {
+        // full box reading is limited to 2 GiB, and should be enough
+        final int size = (int) ref.size;
+
+        final ByteBuffer buffer = ByteBuffer.allocate(size);
+        buffer.putInt(size);
+        buffer.putInt(ref.type);
+
+        final int read = size - 8;
+
+        if (stream.read(buffer.array(), 8, read) != read) {
+            throw new EOFException(String.format("EOF reached in box: type=%s offset=%s size=%s",
+                    boxName(ref.type), ref.offset, ref.size));
+        }
+
+        return buffer.array();
+    }
+
+    private void ensure(final Box ref) throws IOException {
+        final long skip = ref.offset + ref.size - stream.position();
 
         if (skip == 0) {
             return;
@@ -295,11 +317,11 @@ public class Mp4DashReader {
         stream.skipBytes((int) skip);
     }
 
-    private Box untilBox(Box ref, int... expected) throws IOException {
+    private Box untilBox(final Box ref, final int... expected) throws IOException {
         Box b;
         while (stream.position() < (ref.offset + ref.size)) {
             b = readBox();
-            for (int type : expected) {
+            for (final int type : expected) {
                 if (b.type == type) {
                     return b;
                 }
@@ -310,30 +332,34 @@ public class Mp4DashReader {
         return null;
     }
 
-    // </editor-fold>
+    private Box untilAnyBox(final Box ref) throws IOException {
+        if (stream.position() >= (ref.offset + ref.size)) {
+            return null;
+        }
 
-    // <editor-fold defaultState="collapsed" desc="Box readers">
+        return readBox();
+    }
 
-    private Moof parse_moof(Box ref, int trackId) throws IOException {
-        Moof obj = new Moof();
+    private Moof parseMoof(final Box ref, final int trackId) throws IOException {
+        final Moof obj = new Moof();
 
         Box b = readBox(ATOM_MFHD);
-        obj.mfhd_SequenceNumber = parse_mfhd();
+        obj.mfhdSequenceNumber = parseMfhd();
         ensure(b);
 
         while ((b = untilBox(ref, ATOM_TRAF)) != null) {
-            obj.traf = parse_traf(b, trackId);
+            obj.traf = parseTraf(b, trackId);
             ensure(b);
 
             if (obj.traf != null) {
                 return obj;
             }
         }
-        
+
         return obj;
     }
 
-    private int parse_mfhd() throws IOException {
+    private int parseMfhd() throws IOException {
         // version
         // flags
         stream.skipBytes(4);
@@ -341,11 +367,11 @@ public class Mp4DashReader {
         return stream.readInt();
     }
 
-    private Traf parse_traf(Box ref, int trackId) throws IOException {
-        Traf traf = new Traf();
+    private Traf parseTraf(final Box ref, final int trackId) throws IOException {
+        final Traf traf = new Traf();
 
         Box b = readBox(ATOM_TFHD);
-        traf.tfhd = parse_tfhd(trackId);
+        traf.tfhd = parseTfhd(trackId);
         ensure(b);
 
         if (traf.tfhd == null) {
@@ -355,19 +381,19 @@ public class Mp4DashReader {
         b = untilBox(ref, ATOM_TRUN, ATOM_TFDT);
 
         if (b.type == ATOM_TFDT) {
-            traf.tfdt = parse_tfdt();
+            traf.tfdt = parseTfdt();
             ensure(b);
             b = readBox(ATOM_TRUN);
         }
 
-        traf.trun = parse_trun();
+        traf.trun = parseTrun();
         ensure(b);
 
         return traf;
     }
 
-    private Tfhd parse_tfhd(int trackId) throws IOException {
-        Tfhd obj = new Tfhd();
+    private Tfhd parseTfhd(final int trackId) throws IOException {
+        final Tfhd obj = new Tfhd();
 
         obj.bFlags = stream.readInt();
         obj.trackId = stream.readInt();
@@ -395,31 +421,31 @@ public class Mp4DashReader {
         return obj;
     }
 
-    private long parse_tfdt() throws IOException {
-        int version = stream.read();
-        stream.skipBytes(3);// flags     
-        return version == 0 ? readUint() : stream.readLong();
+    private long parseTfdt() throws IOException {
+        final int version = stream.read();
+        stream.skipBytes(3); // flags
+        return version == 0 ? stream.readUnsignedInt() : stream.readLong();
     }
 
-    private Trun parse_trun() throws IOException {
-        Trun obj = new Trun();
+    private Trun parseTrun() throws IOException {
+        final Trun obj = new Trun();
         obj.bFlags = stream.readInt();
-        obj.entryCount = stream.readInt();// unsigned int    
+        obj.entryCount = stream.readInt(); // unsigned int
 
-        obj.entries_rowSize = 0;
+        obj.entriesRowSize = 0;
         if (hasFlag(obj.bFlags, 0x0100)) {
-            obj.entries_rowSize += 4;
+            obj.entriesRowSize += 4;
         }
         if (hasFlag(obj.bFlags, 0x0200)) {
-            obj.entries_rowSize += 4;
+            obj.entriesRowSize += 4;
         }
         if (hasFlag(obj.bFlags, 0x0400)) {
-            obj.entries_rowSize += 4;
+            obj.entriesRowSize += 4;
         }
         if (hasFlag(obj.bFlags, 0x0800)) {
-            obj.entries_rowSize += 4;
+            obj.entriesRowSize += 4;
         }
-        obj.bEntries = new byte[obj.entries_rowSize * obj.entryCount];
+        obj.bEntries = new byte[obj.entriesRowSize * obj.entryCount];
 
         if (hasFlag(obj.bFlags, 0x0001)) {
             obj.dataOffset = stream.readInt();
@@ -431,7 +457,7 @@ public class Mp4DashReader {
         stream.read(obj.bEntries);
 
         for (int i = 0; i < obj.entryCount; i++) {
-            TrunEntry entry = obj.getEntry(i);
+            final TrunEntry entry = obj.getEntry(i);
             if (hasFlag(obj.bFlags, 0x0100)) {
                 obj.chunkDuration += entry.sampleDuration;
             }
@@ -448,23 +474,31 @@ public class Mp4DashReader {
         return obj;
     }
 
-    private int parse_ftyp() throws IOException {
-        int brand = stream.readInt();
-        stream.skipBytes(4);// minor version
+    private int[] parseFtyp(final Box ref) throws IOException {
+        int i = 0;
+        final int[] list = new int[(int) ((ref.offset + ref.size - stream.position() - 4) / 4)];
 
-        return brand;
+        list[i++] = stream.readInt(); // major brand
+
+        stream.skipBytes(4); // minor version
+
+        for (; i < list.length; i++) {
+            list[i] = stream.readInt(); // compatible brands
+        }
+
+        return list;
     }
 
-    private Mvhd parse_mvhd() throws IOException {
-        int version = stream.read();
-        stream.skipBytes(3);// flags
+    private Mvhd parseMvhd() throws IOException {
+        final int version = stream.read();
+        stream.skipBytes(3); // flags
 
         // creation entries_time
         // modification entries_time
         stream.skipBytes(2 * (version == 0 ? 4 : 8));
 
-        Mvhd obj = new Mvhd();
-        obj.timeScale = readUint();
+        final Mvhd obj = new Mvhd();
+        obj.timeScale = stream.readUnsignedInt();
 
         // chunkDuration
         stream.skipBytes(version == 0 ? 4 : 8);
@@ -476,15 +510,15 @@ public class Mp4DashReader {
         // predefined
         stream.skipBytes(76);
 
-        obj.nextTrackId = readUint();
+        obj.nextTrackId = stream.readUnsignedInt();
 
         return obj;
     }
 
-    private Tkhd parse_tkhd() throws IOException {
-        int version = stream.read();
+    private Tkhd parseTkhd() throws IOException {
+        final int version = stream.read();
 
-        Tkhd obj = new Tkhd();
+        final Tkhd obj = new Tkhd();
 
         // flags
         // creation entries_time
@@ -493,17 +527,17 @@ public class Mp4DashReader {
 
         obj.trackId = stream.readInt();
 
-        stream.skipBytes(4);// reserved
+        stream.skipBytes(4); // reserved
 
-        obj.duration = version == 0 ? readUint() : stream.readLong();
+        obj.duration = version == 0 ? stream.readUnsignedInt() : stream.readLong();
 
-        stream.skipBytes(2 * 4);// reserved
+        stream.skipBytes(2 * 4); // reserved
 
         obj.bLayer = stream.readShort();
         obj.bAlternateGroup = stream.readShort();
         obj.bVolume = stream.readShort();
 
-        stream.skipBytes(2);// reserved
+        stream.skipBytes(2); // reserved
 
         obj.matrix = new byte[9 * 4];
         stream.read(obj.matrix);
@@ -514,85 +548,119 @@ public class Mp4DashReader {
         return obj;
     }
 
-    private Trak parse_trak(Box ref) throws IOException {
-        Trak trak = new Trak();
+    private Trak parseTrak(final Box ref) throws IOException {
+        final Trak trak = new Trak();
 
         Box b = readBox(ATOM_TKHD);
-        trak.tkhd = parse_tkhd();
+        trak.tkhd = parseTkhd();
         ensure(b);
 
-        b = untilBox(ref, ATOM_MDIA);
-        trak.mdia = new byte[b.size];
+        while ((b = untilBox(ref, ATOM_MDIA, ATOM_EDTS)) != null) {
+            switch (b.type) {
+                case ATOM_MDIA:
+                    trak.mdia = parseMdia(b);
+                    break;
+                case ATOM_EDTS:
+                    trak.edstElst = parseEdts(b);
+                    break;
+            }
 
-        ByteBuffer buffer = ByteBuffer.wrap(trak.mdia);
-        buffer.putInt(b.size);
-        buffer.putInt(ATOM_MDIA);
-        stream.read(trak.mdia, 8, b.size - 8);
-
-        trak.mdia_mdhd_timeScale = parse_mdia(buffer);
+            ensure(b);
+        }
 
         return trak;
     }
 
-    private int parse_mdia(ByteBuffer data) {
-        while (data.hasRemaining()) {
-            int end = data.position() + data.getInt();
-            if (data.getInt() == ATOM_MDHD) {
-                byte version = data.get();
-                data.position(data.position() + 3 + ((version == 0 ? 4 : 8) * 2));
-                return data.getInt();
-            }
-
-            data.position(end);
-        }
-
-        return 0;// this NEVER should happen
-    }
-
-    private Moov parse_moov(Box ref) throws IOException {
-        Box b = readBox(ATOM_MVHD);
-        Moov moov = new Moov();
-        moov.mvhd = parse_mvhd();
-        ensure(b);
-
-        ArrayList<Trak> tmp = new ArrayList<>((int) moov.mvhd.nextTrackId);
-        while ((b = untilBox(ref, ATOM_TRAK, ATOM_MVEX)) != null) {
-
-            switch (b.type) {
-                case ATOM_TRAK:
-                    tmp.add(parse_trak(b));
-                    break;
-                case ATOM_MVEX:
-                    moov.mvex_trex = parse_mvex(b, (int) moov.mvhd.nextTrackId);
-                    break;
-            }
-
-            ensure(b);
-        }
-
-        moov.trak = tmp.toArray(new Trak[tmp.size()]);
-
-        return moov;
-    }
-
-    private Trex[] parse_mvex(Box ref, int possibleTrackCount) throws IOException {
-        ArrayList<Trex> tmp = new ArrayList<>(possibleTrackCount);
+    private Mdia parseMdia(final Box ref) throws IOException {
+        final Mdia obj = new Mdia();
 
         Box b;
-        while ((b = untilBox(ref, ATOM_TREX)) != null) {
-            tmp.add(parse_trex());
+        while ((b = untilBox(ref, ATOM_MDHD, ATOM_HDLR, ATOM_MINF)) != null) {
+            switch (b.type) {
+                case ATOM_MDHD:
+                    obj.mdhd = readFullBox(b);
+
+                    // read time scale
+                    final ByteBuffer buffer = ByteBuffer.wrap(obj.mdhd);
+                    final byte version = buffer.get(8);
+                    buffer.position(12 + ((version == 0 ? 4 : 8) * 2));
+                    obj.mdhdTimeScale = buffer.getInt();
+                    break;
+                case ATOM_HDLR:
+                    obj.hdlr = parseHdlr(b);
+                    break;
+                case ATOM_MINF:
+                    obj.minf = parseMinf(b);
+                    break;
+            }
             ensure(b);
         }
 
-        return tmp.toArray(new Trex[tmp.size()]);
+        return obj;
     }
 
-    private Trex parse_trex() throws IOException {
+    private Hdlr parseHdlr(final Box ref) throws IOException {
         // version
         // flags
         stream.skipBytes(4);
 
-        Trex obj = new Trex();
+        final Hdlr obj = new Hdlr();
+        obj.bReserved = new byte[12];
+
+        obj.type = stream.readInt();
+        obj.subType = stream.readInt();
+        stream.read(obj.bReserved);
+
+        // component name (is a ansi/ascii string)
+        stream.skipBytes((ref.offset + ref.size) - stream.position());
+
+        return obj;
+    }
+
+    private Moov parseMoov(final Box ref) throws IOException {
+        Box b = readBox(ATOM_MVHD);
+        final Moov moov = new Moov();
+        moov.mvhd = parseMvhd();
+        ensure(b);
+
+        final ArrayList<Trak> tmp = new ArrayList<>((int) moov.mvhd.nextTrackId);
+        while ((b = untilBox(ref, ATOM_TRAK, ATOM_MVEX)) != null) {
+
+            switch (b.type) {
+                case ATOM_TRAK:
+                    tmp.add(parseTrak(b));
+                    break;
+                case ATOM_MVEX:
+                    moov.mvexTrex = parseMvex(b, (int) moov.mvhd.nextTrackId);
+                    break;
+            }
+
+            ensure(b);
+        }
+
+        moov.trak = tmp.toArray(new Trak[0]);
+
+        return moov;
+    }
+
+    private Trex[] parseMvex(final Box ref, final int possibleTrackCount) throws IOException {
+        final ArrayList<Trex> tmp = new ArrayList<>(possibleTrackCount);
+
+        Box b;
+        while ((b = untilBox(ref, ATOM_TREX)) != null) {
+            tmp.add(parseTrex());
+            ensure(b);
+        }
+
+        return tmp.toArray(new Trex[0]);
+    }
+
+    private Trex parseTrex() throws IOException {
+        // version
+        // flags
+        stream.skipBytes(4);
+
+        final Trex obj = new Trex();
         obj.trackId = stream.readInt();
         obj.defaultSampleDescriptionIndex = stream.readInt();
         obj.defaultSampleDuration = stream.readInt();
@@ -602,108 +670,97 @@ public class Mp4DashReader {
         return obj;
     }
 
-    private Tfra parse_tfra() throws IOException {
-        int version = stream.read();
-
-        stream.skipBytes(3);// flags
-
-        Tfra tfra = new Tfra();
-        tfra.trackId = stream.readInt();
-
-        stream.skipBytes(3);// reserved
-        int bFlags = stream.read();
-        int size_tts = ((bFlags >> 4) & 3) + ((bFlags >> 2) & 3) + (bFlags & 3);
-
-        tfra.entries_time = new int[stream.readInt()];
-
-        for (int i = 0; i < tfra.entries_time.length; i++) {
-            tfra.entries_time[i] = version == 0 ? stream.readInt() : (int) stream.readLong();
-            stream.skipBytes(size_tts + (version == 0 ? 4 : 8));
+    private Elst parseEdts(final Box ref) throws IOException {
+        final Box b = untilBox(ref, ATOM_ELST);
+        if (b == null) {
+            return null;
         }
 
-        return tfra;
+        final Elst obj = new Elst();
+
+        final boolean v1 = stream.read() == 1;
+        stream.skipBytes(3); // flags
+
+        final int entryCount = stream.readInt();
+        if (entryCount < 1) {
+            obj.bMediaRate = 0x00010000; // default media rate (1.0)
+            return obj;
+        }
+
+        if (v1) {
+            stream.skipBytes(DataReader.LONG_SIZE); // segment duration
+            obj.mediaTime = stream.readLong();
+            // ignore all remain entries
+            stream.skipBytes((entryCount - 1) * (DataReader.LONG_SIZE * 2));
+        } else {
+            stream.skipBytes(DataReader.INTEGER_SIZE); // segment duration
+            obj.mediaTime = stream.readInt();
+        }
+
+        obj.bMediaRate = stream.readInt();
+
+        return obj;
     }
 
-    private Sidx parse_sidx() throws IOException {
-        int version = stream.read();
+    private Minf parseMinf(final Box ref) throws IOException {
+        final Minf obj = new Minf();
 
-        stream.skipBytes(3);// flags
+        Box b;
+        while ((b = untilAnyBox(ref)) != null) {
 
-        Sidx obj = new Sidx();
-        obj.referenceId = stream.readInt();
-        obj.timescale = stream.readInt();
+            switch (b.type) {
+                case ATOM_DINF:
+                    obj.dinf = readFullBox(b);
+                    break;
+                case ATOM_STBL:
+                    obj.stblStsd = parseStbl(b);
+                    break;
+                case ATOM_VMHD:
+                case ATOM_SMHD:
+                    obj.mhd = readFullBox(b);
+                    break;
 
-        // earliest presentation entries_time
-        // first offset
-        // reserved
-        stream.skipBytes((2 * (version == 0 ? 4 : 8)) + 2);
-
-        obj.entries_subsegmentDuration = new int[stream.readShort()];
-
-        for (int i = 0; i < obj.entries_subsegmentDuration.length; i++) {
-            // reference type
-            // referenced size
-            stream.skipBytes(4);
-            obj.entries_subsegmentDuration[i] = stream.readInt();// unsigned int
-
-            // starts with SAP
-            // SAP type
-            // SAP delta entries_time
-            stream.skipBytes(4);
+            }
+            ensure(b);
         }
 
         return obj;
     }
 
-    private Tfra[] parse_mfra(Box ref, int trackCount) throws IOException {
-        ArrayList<Tfra> tmp = new ArrayList<>(trackCount);
-        long limit = ref.offset + ref.size;
+    /**
+     * This only reads the "stsd" box inside.
+     *
+     * @param ref stbl box
+     * @return stsd box inside
+     */
+    private byte[] parseStbl(final Box ref) throws IOException {
+        final Box b = untilBox(ref, ATOM_STSD);
 
-        while (stream.position() < limit) {
-            box = readBox();
-
-            if (box.type == ATOM_TFRA) {
-                tmp.add(parse_tfra());
-            }
-
-            ensure(box);
+        if (b == null) {
+            return new byte[0]; // this never should happens (missing codec startup data)
         }
 
-        return tmp.toArray(new Tfra[tmp.size()]);
+        return readFullBox(b);
     }
 
-    // </editor-fold>
-
-    // <editor-fold defaultState="collapsed" desc="Helper classes">
     class Box {
-
         int type;
         long offset;
-        int size;
-    }
-
-    class Sidx {
-
-        int timescale;
-        int referenceId;
-        int[] entries_subsegmentDuration;
+        long size;
     }
 
     public class Moof {
-
-        int mfhd_SequenceNumber;
+        int mfhdSequenceNumber;
         public Traf traf;
     }
 
     public class Traf {
-
         public Tfhd tfhd;
         long tfdt;
         public Trun trun;
     }
 
     public class Tfhd {
-
         int bFlags;
         public int trackId;
         int defaultSampleDuration;
@@ -711,16 +768,18 @@ public class Mp4DashReader {
         int defaultSampleFlags;
     }
 
-    public class TrunEntry {
+    class TrunEntry {
+        int sampleDuration;
+        int sampleSize;
+        int sampleFlags;
+        int sampleCompositionTimeOffset;
 
-        public int sampleDuration;
-        public int sampleSize;
-        public int sampleFlags;
-        public int sampleCompositionTimeOffset;
+        boolean hasCompositionTimeOffset;
+        boolean isKeyframe;
+
     }
 
     public class Trun {
-
         public int chunkDuration;
         public int chunkSize;
 
@@ -730,11 +789,11 @@ public class Mp4DashReader {
 
         public int entryCount;
         byte[] bEntries;
-        int entries_rowSize;
+        int entriesRowSize;
 
-        public TrunEntry getEntry(int i) {
-            ByteBuffer buffer = ByteBuffer.wrap(bEntries, i * entries_rowSize, entries_rowSize);
-            TrunEntry entry = new TrunEntry();
+        public TrunEntry getEntry(final int i) {
+            final ByteBuffer buffer = ByteBuffer.wrap(bEntries, i * entriesRowSize, entriesRowSize);
+            final TrunEntry entry = new TrunEntry();
 
             if (hasFlag(bFlags, 0x0100)) {
                 entry.sampleDuration = buffer.getInt();
@@ -749,12 +808,36 @@ public class Mp4DashReader {
                 entry.sampleCompositionTimeOffset = buffer.getInt();
             }
 
+            entry.hasCompositionTimeOffset = hasFlag(bFlags, 0x0800);
+            entry.isKeyframe = !hasFlag(entry.sampleFlags, 0x10000);
+
+            return entry;
+        }
+
+        public TrunEntry getAbsoluteEntry(final int i, final Tfhd header) {
+            final TrunEntry entry = getEntry(i);
+
+            if (!hasFlag(bFlags, 0x0100) && hasFlag(header.bFlags, 0x20)) {
+                entry.sampleFlags = header.defaultSampleFlags;
+            }
+
+            if (!hasFlag(bFlags, 0x0200) && hasFlag(header.bFlags, 0x10)) {
+                entry.sampleSize = header.defaultSampleSize;
+            }
+
+            if (!hasFlag(bFlags, 0x0100) && hasFlag(header.bFlags, 0x08)) {
+                entry.sampleDuration = header.defaultSampleDuration;
+            }
+
+            if (i == 0 && hasFlag(bFlags, 0x0004)) {
+                entry.sampleFlags = bFirstSampleFlags;
+            }
+
             return entry;
         }
     }
 
     public class Tkhd {
-
         int trackId;
         long duration;
         short bVolume;
@@ -766,34 +849,24 @@ public class Mp4DashReader {
     }
 
     public class Trak {
-
         public Tkhd tkhd;
-        public int mdia_mdhd_timeScale;
+        public Elst edstElst;
+        public Mdia mdia;
 
-        byte[] mdia;
     }
 
     class Mvhd {
-
         long timeScale;
         long nextTrackId;
     }
 
     class Moov {
-
         Mvhd mvhd;
         Trak[] trak;
-        Trex[] mvex_trex;
-    }
-
-    class Tfra {
-
-        int trackId;
-        int[] entries_time;
+        Trex[] mvexTrex;
     }
 
     public class Trex {
-
         private int trackId;
         int defaultSampleDescriptionIndex;
         int defaultSampleDuration;
@@ -801,17 +874,70 @@ public class Mp4DashReader {
         int defaultSampleFlags;
     }
 
-    public class Mp4Track {
+    public class Elst {
+        public long mediaTime;
+        public int bMediaRate;
+    }
 
+    public class Mdia {
+        public int mdhdTimeScale;
+        public byte[] mdhd;
+        public Hdlr hdlr;
+        public Minf minf;
+    }
+
+    public class Hdlr {
+        public int type;
+        public int subType;
+        public byte[] bReserved;
+    }
+
+    public class Minf {
+        public byte[] dinf;
+        public byte[] stblStsd;
+        public byte[] mhd;
+    }
+
+    public class Mp4Track {
         public TrackKind kind;
         public Trak trak;
         public Trex trex;
     }
 
-    public class Mp4TrackChunk {
-
+    public class Mp4DashChunk {
         public InputStream data;
         public Moof moof;
+        private int i = 0;
+
+        public TrunEntry getNextSampleInfo() {
+            if (i >= moof.traf.trun.entryCount) {
+                return null;
+            }
+            return moof.traf.trun.getAbsoluteEntry(i++, moof.traf.tfhd);
+        }
+
+        public Mp4DashSample getNextSample() throws IOException {
+            if (data == null) {
+                throw new IllegalStateException("This chunk has info only");
+            }
+            if (i >= moof.traf.trun.entryCount) {
+                return null;
+            }
+
+            final Mp4DashSample sample = new Mp4DashSample();
+            sample.info = moof.traf.trun.getAbsoluteEntry(i++, moof.traf.tfhd);
+            sample.data = new byte[sample.info.sampleSize];
+
+            if (data.read(sample.data) != sample.info.sampleSize) {
+                throw new EOFException("EOF reached while reading a sample");
+            }
+
+            return sample;
+        }
     }
-//</editor-fold>
+
+    public class Mp4DashSample {
+        public TrunEntry info;
+        public byte[] data;
+    }
 }

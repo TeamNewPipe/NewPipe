@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <android.support.design.widget.TabLayout
+    <org.schabi.newpipe.views.ScrollableTabLayout
         android:id="@+id/main_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
-        app:tabGravity="fill"/>
+        app:tabGravity="fill"
+        app:tabMinWidth="60dp" />
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/main_tab_layout"/>
+        android:layout_below="@id/main_tab_layout" />
 
 </RelativeLayout>

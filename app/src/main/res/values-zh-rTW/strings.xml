@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">點播 %1$s 次</string>
     <string name="upload_date_text">%1$s 發布</string>
-    <string name="no_player_found">找不到串流播放器，您要安裝 VLC 嗎？</string>
+    <string name="no_player_found">找不到串流播放器。安裝 VLC 嗎？</string>
     <string name="install">安裝</string>
     <string name="cancel">取消</string>
     <string name="open_in_browser">以瀏覽器開啟</string>
@@ -10,75 +10,68 @@
     <string name="download">下載</string>
     <string name="search">搜尋</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">您是不是要找： %1$s ?</string>
+    <string name="did_you_mean">您是不是要找「%1$s」？</string>
     <string name="share_dialog_title">分享影片</string>
     <string name="choose_browser">選擇瀏覽器</string>
     <string name="screen_rotation">旋轉</string>
     <string name="use_external_video_player_title">使用外部影片播放器</string>
     <string name="use_external_audio_player_title">使用外部音訊播放器</string>
-    <string name="download_path_title">影片下載路徑</string>
-    <string name="download_path_summary">已下載影片的存放路徑</string>
-    <string name="download_path_dialog_title">輸入影片下載路徑</string>
+    <string name="download_path_title">影片下載資料夾</string>
+    <string name="download_path_summary">已下載的影片檔案會儲存在這裡</string>
+    <string name="download_path_dialog_title">選擇影片檔的下載資料夾</string>
     <string name="default_resolution_title">預設解析度</string>
     <string name="play_with_kodi_title">用 Kodi 播放</string>
     <string name="show_play_with_kodi_summary">顯示用 Kodi 媒體中心播放影片的選項</string>
     <string name="play_audio">聲音</string>
-    <string name="kore_not_found">找不到 Kore ，您要安裝 Kore 嗎？</string>
+    <string name="kore_not_found">安裝遺失的 Kore 應用程式嗎？</string>
     <string name="show_play_with_kodi_title">顯示「用 Kodi 播放」的選項</string>
     <string name="default_audio_format_title">預設音訊格式</string>
     <string name="theme_title">主題</string>
     <string name="dark_theme_title">灰暗</string>
     <string name="light_theme_title">明亮</string>
-
     <string name="download_dialog_title">下載</string>
-    <string name="next_video_title">下一部影片</string>
     <string name="show_next_and_similar_title">顯示「下一部」與「相關」的影片</string>
-    <string name="url_not_supported_toast">不支援此網址</string>
+    <string name="unsupported_url">不支援此網址</string>
     <string name="content_language_title">預設內容語言</string>
-    <string name="settings_category_video_audio_title">影片和音訊</string>
+    <string name="settings_category_video_audio_title">影片與音訊</string>
     <string name="settings_category_appearance_title">外觀</string>
     <string name="settings_category_other_title">其他</string>
     <string name="background_player_playing_toast">背景播放中</string>
-    <string name="play_btn_text">播放</string>
     <string name="network_error">網路錯誤</string>
-
     <string name="list_thumbnail_view_description">影片預覽縮圖</string>
-    <string name="detail_thumbnail_view_description">影片預覽縮圖</string>
+    <string name="detail_thumbnail_view_description">播放影片，持續時間：</string>
     <string name="detail_uploader_thumbnail_view_description">發佈者的個人頭像縮圖</string>
     <string name="detail_likes_img_view_description">喜歡</string>
     <string name="detail_dislikes_img_view_description">不喜歡</string>
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">(實驗性) 強迫下載流量繞經 Tor 以加強隱私 (暫未支援串流影片)。</string>
-    <string name="download_path_audio_title">音訊下載路徑</string>
-    <string name="download_path_audio_summary">已下載音訊的存放路徑</string>
-    <string name="download_path_audio_dialog_title">輸入音訊檔案的下載路徑</string>
-
+    <string name="download_path_audio_title">音訊下載資料夾</string>
+    <string name="download_path_audio_summary">已下載的音訊檔案會儲存在這裡</string>
+    <string name="download_path_audio_dialog_title">選擇音訊檔的下載資料夾</string>
     <string name="err_dir_create">無法建立下載目錄「%1$s」</string>
     <string name="info_dir_created">已建立下載目錄「%1$s」</string>
-<string name="main_bg_subtitle">輕觸搜尋按鈕開始使用 NewPipe</string>
+    <string name="main_bg_subtitle">輕觸「搜尋」按鈕開始使用
+\n</string>
     <string name="open_in_popup_mode">以懸浮視窗開啟</string>
-    <string name="use_external_video_player_summary">勾選後，部分解析度的影片將沒有聲音</string>
-    <string name="popup_mode_share_menu_title">NewPipe 懸浮視窗模式</string>
+    <string name="use_external_video_player_summary">移除某些解析度的音訊</string>
+    <string name="popup_mode_share_menu_title">懸浮視窗模式</string>
     <string name="controls_background_title">背景播放</string>
     <string name="autoplay_by_calling_app_title">自動播放</string>
     <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他應用程式呼叫時播放影片</string>
     <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
-    <string name="show_higher_resolutions_summary">只有部分裝置能播 2K 及 4K 影片</string>
+    <string name="show_higher_resolutions_summary">僅部份裝置可播放 2K/4K 影片</string>
     <string name="default_video_format_title">預設影片格式</string>
     <string name="black_theme_title">純黑</string>
-    <string name="popup_remember_size_pos_title">記住懸浮視窗大小和位置</string>
-    <string name="popup_remember_size_pos_summary">記住上次使用時懸浮視窗的大小和位置</string>
     <string name="player_gesture_controls_title">播放器手勢控制</string>
     <string name="player_gesture_controls_summary">使用手勢來控制播放器的亮度及音量</string>
     <string name="show_search_suggestions_title">搜尋建議</string>
     <string name="show_search_suggestions_summary">搜尋時顯示搜尋建議</string>
-
     <string name="settings_category_popup_title">懸浮視窗</string>
     <string name="popup_playing_toast">以懸浮視窗播放中</string>
     <string name="content">內容</string>
-    <string name="show_age_restricted_content_title">顯示具有年齡限制的內容</string>
-    <string name="video_is_age_restricted">有年齡限制的影片。可於設定中選擇允許此種內容。</string>
+    <string name="show_age_restricted_content_title">年齡限制內容</string>
+    <string name="video_is_age_restricted">顯示有年齡限制的影片。未來仍可從設定中變更。</string>
     <string name="downloads">下載</string>
     <string name="downloads_title">下載</string>
     <string name="error_report_title">錯誤回報</string>
@@ -91,55 +84,43 @@
     <string name="refresh">重新整理</string>
     <string name="clear">清除</string>
     <string name="best_resolution">最佳解析度</string>
-
     <string name="popup_resizing_indicator_title">調整大小</string>
     <string name="general_error">錯誤</string>
     <string name="could_not_load_thumbnails">無法載入所有縮圖</string>
-    <string name="youtube_signature_decryption_error">無法解析影片 URL 簽章</string>
+    <string name="youtube_signature_deobfuscation_error">無法解析影片 URL 簽章</string>
     <string name="parsing_error">無法解析網站</string>
     <string name="light_parsing_error">無法完全解析網站</string>
     <string name="content_not_available">內容無法使用</string>
-    <string name="blocked_by_gema">已被 GEMA 阻擋</string>
     <string name="could_not_setup_download_menu">無法設定下載選單</string>
-    <string name="live_streams_not_supported">尚未支援現場直播。</string>
+    <string name="live_streams_not_supported">尚未支援現場串流</string>
     <string name="could_not_get_stream">無法取得串流</string>
     <string name="could_not_load_image">無法載入圖片</string>
     <string name="app_ui_crash">應用程式或界面已停止運作</string>
     <string name="sorry_string">抱歉，這是不該發生的。</string>
-    <string name="error_report_button_text">使用電子郵件回報錯誤</string>
+    <string name="error_report_button_text">使用電子郵件回報此錯誤</string>
     <string name="error_snackbar_message">抱歉，發生了一些問題。</string>
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
     <string name="what_happened_headline">發生了什麼事：</string>
-    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
+    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n內容國家：\\n應用程式語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
     <string name="your_comment">您的留言(請用英文)：</string>
     <string name="error_details_headline">詳細資訊：</string>
-
-
     <string name="report_error">回報錯誤</string>
     <string name="user_report">使用者回報</string>
-
     <string name="video">影片</string>
     <string name="audio">音訊</string>
     <string name="retry">重試</string>
-    <string name="storage_permission_denied">無法存取儲存空間</string>
-    <string name="use_old_player_title">使用舊式播放器</string>
-    <string name="use_old_player_summary">舊型內建 Mediaframework 播放器</string>
-
-
-    <string name="short_thousand">千</string>
+    <string name="storage_permission_denied">先授予儲存空間權限</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">百萬</string>
-    <string name="short_billion">十億</string>
-
+    <string name="short_billion">B</string>
     <string name="start">開始</string>
     <string name="pause">暫停</string>
     <string name="view">播放</string>
     <string name="delete">刪除</string>
     <string name="checksum">檢查碼</string>
-
     <string name="add">新任務</string>
     <string name="finish">好</string>
-
     <string name="msg_name">檔案名稱</string>
     <string name="msg_threads">連線數</string>
     <string name="msg_error">錯誤</string>
@@ -150,68 +131,51 @@
     <string name="msg_running_detail">輕觸以顯示詳細資訊</string>
     <string name="msg_wait">請稍候…</string>
     <string name="msg_copied">已複製至剪貼簿</string>
-    <string name="no_available_dir">請選擇下載資料夾</string>
-    <string name="msg_popup_permission">使用懸浮視窗模式需要此權限</string>
-
-    <string name="reCaptchaActivity">reCAPTCHA 驗證</string>
-    <string name="reCaptcha_title">reCAPTCHA 驗證</string>
+    <string name="no_available_dir">稍後請在設定中選擇下載資料夾</string>
+    <string name="msg_popup_permission">使用懸浮視窗模式
+\n需要此權限</string>
+    <string name="title_activity_recaptcha">reCAPTCHA 驗證</string>
     <string name="recaptcha_request_toast">已請求 reCAPTCHA 驗證</string>
-
     <string name="controls_popup_title">懸浮視窗</string>
-
-    <string name="duration_live">現場直播</string>
+    <string name="duration_live">直播</string>
     <string name="subscribe_button_title">訂閱</string>
     <string name="subscribed_button_title">已訂閱</string>
     <string name="channel_unsubscribed">已取消訂閱頻道</string>
     <string name="subscription_change_failed">無法更改訂閱</string>
     <string name="subscription_update_failed">無法更新訂閱</string>
-
     <string name="tab_main">主頁</string>
     <string name="tab_subscriptions">訂閱清單</string>
-
-    <string name="fragment_whats_new">新鮮事</string>
-
+    <string name="fragment_feed_title">新鮮事</string>
     <string name="enable_search_history_title">搜尋紀錄</string>
     <string name="enable_search_history_summary">在本機儲存搜尋紀錄</string>
-    <string name="enable_watch_history_title">歷史紀錄與快取</string>
+    <string name="enable_watch_history_title">檢視歷史</string>
     <string name="enable_watch_history_summary">記錄觀看過的影片</string>
-    <string name="resume_on_audio_focus_gain_title">取得視窗焦點時繼續播放</string>
+    <string name="resume_on_audio_focus_gain_title">恢復播放</string>
     <string name="resume_on_audio_focus_gain_summary">在干擾結束後繼續播放（例如有來電）</string>
     <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_player_behavior_title">行為</string>
-    <string name="settings_category_history_title">歷史記錄和快取</string>
+    <string name="settings_category_history_title">歷史記錄與快取</string>
     <string name="playlist">播放清單</string>
     <string name="undo">復原</string>
-
     <string name="notification_channel_name">NewPipe 通知</string>
     <string name="notification_channel_description">NewPipe 背景播放與懸浮模式播放器的通知</string>
-
     <string name="search_no_results">沒有結果</string>
     <string name="empty_subscription_feed_subtitle">這裡空空如也</string>
-
     <string name="no_subscribers">無訂閱者</string>
     <plurals name="subscribers">
-	<item quantity="other">%s 位訂閱者</item>
-</plurals>
-
+        <item quantity="other">%s 位訂閱者</item>
+    </plurals>
     <string name="no_views">無觀看次數</string>
     <plurals name="views">
-	<item quantity="other">%s 次觀看</item>
-</plurals>
-
+        <item quantity="other">%s 次觀看</item>
+    </plurals>
     <string name="no_videos">沒有影片</string>
-    <plurals name="videos">
-	<item quantity="other">%s 部影片</item>
-</plurals>
-
     <string name="settings_category_downloads_title">下載</string>
     <string name="settings_file_charset_title">檔案名稱中允許的字元</string>
     <string name="settings_file_replacement_character_summary">不符合設定的字元將會被替換為此字串</string>
     <string name="settings_file_replacement_character_title">替換為</string>
-
     <string name="charset_letters_and_digits">字母與數字</string>
     <string name="charset_most_special_characters">大部分的特殊字元</string>
-
     <string name="title_activity_about">關於 NewPipe</string>
     <string name="action_settings">設定</string>
     <string name="action_about">關於</string>
@@ -228,17 +192,16 @@
     <string name="contribution_encouragement">不管你有什麼點子——翻譯、設計、程式碼整理，或者程式碼撰寫——我們永遠歡迎你來幫忙。完成的越多，NewPipe 也會更好！</string>
     <string name="read_full_license">閱讀授權條款</string>
     <string name="contribution_title">貢獻</string>
-
     <string name="title_activity_history">歷史紀錄</string>
     <string name="title_history_search">已搜尋</string>
     <string name="title_history_view">已觀看</string>
-    <string name="history_disabled">歷史紀錄已被停用</string>
+    <string name="history_disabled">歷史紀錄已關閉</string>
     <string name="action_history">歷史紀錄</string>
     <string name="history_empty">沒有歷史紀錄</string>
     <string name="history_cleared">已清除歷史紀錄</string>
     <string name="item_deleted">項目已刪除</string>
     <string name="delete_item_search_history">確定要刪除此項搜尋紀錄嗎？</string>
-<string name="no_player_found_toast">找不到串流播放器（您可以安裝 VLC 播放）</string>
+    <string name="no_player_found_toast">找不到串流播放器（您可以安裝 VLC 播放）。</string>
     <string name="show_hold_to_append_title">顯示「長按以新增」提示</string>
     <string name="default_content_country_title">預設內容國家</string>
     <string name="service_title">服務</string>
@@ -247,28 +210,24 @@
     <string name="play_all">全部播放</string>
     <string name="always">總是</string>
     <string name="just_once">僅一次</string>
-
     <string name="unknown_content">[未知]</string>
-
     <string name="toggle_orientation">切換方向</string>
     <string name="switch_to_background">切換到背景</string>
     <string name="switch_to_popup">切換到懸浮視窗</string>
     <string name="switch_to_main">切換到主介面</string>
-
     <string name="player_stream_failure">無法播放此串流</string>
     <string name="player_unrecoverable_failure">發生無法復原的播放器錯誤</string>
     <string name="player_recoverable_failure">正在從播放器錯誤中復原</string>
-    <string name="show_hold_to_append_summary">在影片詳細資訊頁按下背景播放或懸浮視窗按鈕時顯示提示</string>
+    <string name="show_hold_to_append_summary">按下影片「詳細資訊：」中的背景或懸浮式視窗按鈕時顯示提示</string>
     <string name="external_player_unsupported_link_type">外部播放器不支援此類型連結</string>
     <string name="invalid_url_toast">無效的 URL</string>
     <string name="video_streams_empty">找不到影片串流</string>
     <string name="audio_streams_empty">找不到音訊串流</string>
-
     <string name="donation_title">贊助</string>
     <string name="website_title">網站</string>
     <string name="import_data_title">匯入資料庫</string>
     <string name="export_data_title">匯出資料庫</string>
-    <string name="import_data_summary">將覆蓋您目前的歷史記錄和訂閱</string>
+    <string name="import_data_summary">覆蓋您目前的歷史記錄和訂閱</string>
     <string name="export_data_summary">匯出歷史記錄、訂閱和播放清單</string>
     <string name="give_back">回饋</string>
     <string name="website_encouragement">如欲了解更多有關 NewPipe 的資訊和新聞，請造訪我們的網站。</string>
@@ -281,148 +240,105 @@
     <string name="select_a_channel">選擇頻道</string>
     <string name="no_channel_subscribed_yet">尚未訂閱任何頻道</string>
     <string name="select_a_kiosk">選擇互動導覽</string>
-    <string name="export_complete_toast">匯出已完成</string>
-    <string name="import_complete_toast">匯入已完成</string>
+    <string name="export_complete_toast">已匯出</string>
+    <string name="import_complete_toast">已匯入</string>
     <string name="no_valid_zip_file">無有效的 ZIP 檔案</string>
     <string name="could_not_import_all_files">警告：無法匯入所有檔案。</string>
     <string name="override_current_data">這將覆蓋您目前的設定。</string>
-
     <string name="kiosk">互動導覽</string>
     <string name="trending">動向</string>
     <string name="top_50">前 50</string>
-    <string name="new_and_hot">最新和熱門</string>
-    <string name="title_activity_background_player">背景播放</string>
-    <string name="title_activity_popup_player">懸浮視窗播放</string>
+    <string name="new_and_hot">最新與熱門</string>
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">詳細資訊</string>
     <string name="play_queue_audio_settings">音訊設定</string>
-    <string name="enqueue_on_background">新增至背景佇列</string>
-    <string name="enqueue_on_popup">新增至懸浮視窗佇列</string>
     <string name="start_here_on_main">從這裡開始播放</string>
-    <string name="start_here_on_background">從這裡開始以背景播放</string>
-    <string name="start_here_on_popup">從這裡開始以懸浮視窗播放</string>
-
+    <string name="start_here_on_background">在背景開始播放</string>
+    <string name="start_here_on_popup">在彈出式視窗中開始播放</string>
     <string name="hold_to_append">長按以新增至佇列</string>
-    <string name="donation_encouragement">NewPipe 由志願者所開發，他們耗費時間務求為您帶來最佳體驗。現在是時候回過頭來，讓我們的開發人員能夠在使 NewPipe 更臻完美的同時，享受一杯咖啡。</string>
+    <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費他們的空閒時間務求為您帶來最佳的使用體驗。現在是時候回過頭來，讓我們的開發人員能夠在使 NewPipe 更臻完美的同時，享受一杯咖啡。</string>
     <string name="drawer_open">打開抽屜</string>
     <string name="drawer_close">關閉抽屜</string>
-
     <string name="video_player">影片播放器</string>
     <string name="background_player">背景播放器</string>
     <string name="popup_player">懸浮視窗播放器</string>
-    <string name="always_ask_player">總是詢問</string>
-    
     <string name="preferred_player_fetcher_notification_title">正在取得資訊…</string>
     <string name="preferred_player_fetcher_notification_message">正在載入要求的內容</string>
-<string name="controls_download_desc">下載串流檔案。</string>
+    <string name="controls_download_desc">下載串流檔案</string>
     <string name="show_info">顯示資訊</string>
-
-    <string name="tab_bookmarks">書籤</string>
-
+    <string name="tab_bookmarks">書籤已加入播放清單</string>
     <string name="controls_add_to_playlist_title">新增至</string>
-
     <string name="detail_drag_description">拖曳以重新排序</string>
-
     <string name="create">建立</string>
     <string name="delete_one">刪除</string>
     <string name="delete_all">全部刪除</string>
     <string name="dismiss">退出</string>
     <string name="rename">重新命名</string>
-
     <string name="delete_stream_history_prompt">您是否要刪除此項觀看記錄？</string>
     <string name="delete_all_history_prompt">您確定要刪除歷史記錄中的所有項目嗎？</string>
     <string name="title_last_played">上一次播放</string>
     <string name="title_most_played">最常播放</string>
-
     <string name="always_ask_open_action">總是詢問</string>
-    
-    <string name="create_playlist">建立新的播放清單</string>
-    <string name="delete_playlist">刪除播放清單</string>
-    <string name="rename_playlist">重新命名播放清單</string>
-    <string name="playlist_name_input">名稱</string>
+    <string name="create_playlist">新的播放清單</string>
+    <string name="delete_playlist">刪除</string>
+    <string name="rename_playlist">重新命名</string>
+    <string name="name">名稱</string>
     <string name="append_playlist">新增至播放清單</string>
     <string name="set_as_playlist_thumbnail">設為播放清單縮圖</string>
-
     <string name="bookmark_playlist">將播放清單加入書籤</string>
     <string name="unbookmark_playlist">移除書籤</string>
-
-    <string name="delete_playlist_prompt">您是否要刪除此播放清單？</string>
+    <string name="delete_playlist_prompt">刪除此播放清單？</string>
     <string name="playlist_creation_success">已建立播放清單</string>
-    <string name="playlist_add_stream_success">已新增至播放清單</string>
-    <string name="playlist_thumbnail_change_success">播放清單縮圖已更改</string>
-    <string name="playlist_delete_failure">無法刪除播放清單</string>
-
+    <string name="playlist_add_stream_success">已增至播放清單</string>
+    <string name="playlist_thumbnail_change_success">播放清單縮圖已更改。</string>
+    <string name="playlist_delete_failure">無法刪除播放清單。</string>
     <string name="caption_none">沒有字幕</string>
-
     <string name="resize_fit">合適的</string>
     <string name="resize_fill">填滿</string>
     <string name="resize_zoom">縮放</string>
-
-    <string name="caption_font_size_settings_title">標題字體大小</string>
-    <string name="smaller_caption_font_size">縮小字體</string>
-    <string name="normal_caption_font_size">正常字體</string>
-    <string name="larger_caption_font_size">加大字體</string>
-
     <string name="drawer_header_action_paceholder_text">某些東西即將在此出現 ;D</string>
-
-
-    <string name="toggle_leak_canary">監測流失</string>
-    <string name="enable_leak_canary_notice">啟用記憶體流失監測技術，當 heap dump 時，應用程式可能會反應遲鈍</string>
-    <string name="disable_leak_canary_notice">已停用記憶體流失監測</string>
-<string name="settings_category_debug_title">除錯</string>
+    <string name="settings_category_debug_title">除錯</string>
     <string name="caption_auto_generated">自動產生</string>
-    <string name="enable_leak_canary_title">啟用 LeakCanary</string>
     <string name="enable_leak_canary_summary">記憶體洩漏監測，在 heap dumping 時可能導致應用程式無法回應</string>
-
     <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
-
-<string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
-    <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置</string>
+    <string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
+    <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置。尋找 5、15或25秒無法與其一同使用。</string>
     <string name="auto_queue_title">自動將下一部影片新增至佇列</string>
-    <string name="auto_queue_summary">在非重複播放佇列中最後一個串流開始播放時，自動新增相關串流</string>
-    <string name="live_sync">同步</string>
-
+    <string name="auto_queue_summary">透過加入相關的串流來繼續結束的（未重複）播放佇列</string>
     <string name="file">檔案</string>
-
-    <string name="invalid_directory">無效的目錄</string>
+    <string name="invalid_directory">無效的資料夾</string>
     <string name="invalid_source">無效的檔案/內容來源</string>
     <string name="file_name_empty_error">檔案名稱不能留空</string>
     <string name="error_occurred_detail">發生錯誤： %1$s</string>
-
     <string name="import_export_title">匯入/匯出</string>
     <string name="import_title">匯入</string>
     <string name="import_from">匯入自</string>
     <string name="export_to">匯出至</string>
-
     <string name="import_ongoing">正在匯入…</string>
     <string name="export_ongoing">正在匯出…</string>
-
     <string name="import_file_title">匯入檔案</string>
     <string name="subscriptions_import_unsuccessful">無法匯入訂閱</string>
     <string name="subscriptions_export_unsuccessful">無法匯出訂閱</string>
-
     <string name="previous_export">之前的匯出</string>
-
-    <string name="invalid_file">檔案不存在或權限不足以讀取或寫入該檔案</string>
-    <string name="import_youtube_instructions">透過下載匯出檔案來匯入您的 YouTube 訂閱： 
+    <string name="invalid_file">檔案不存在或讀取或寫入權限不足</string>
+    <string name="import_youtube_instructions">透過下載匯出檔來匯入您的 YouTube 訂閱： 
 \n 
 \n1. 移至此網址：%1$s 
-\n2. 當被詢問時登入
-\n3. 下載應該開始 ( 這就是匯出的檔案 )</string>
+\n2. 當被提示時登入帳號
+\n3. 應該會開始下載（這就是匯出檔 ）</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
-
     <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。 
 \n 
 \n您是否希望繼續？</string>
-<string name="import_soundcloud_instructions">透過輸入 URL 或您的 ID 來匯入 SoundCloud 個人設定檔： 
+    <string name="import_soundcloud_instructions">透過輸入 URL 或您的 ID 來匯入 SoundCloud 個人設定檔： 
 \n 
 \n1. 在瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置) 
 \n2. 移至此網址： %1$s 
-\n3. 當被詢問時登入 
+\n3. 當被提示時登入帳號 
 \n4. 複製您被重新導向到的個人設定檔網址。</string>
     <string name="download_thumbnail_title">載入縮圖</string>
-    <string name="download_thumbnail_summary">停用後 NewPipe 將不再載入縮圖，減少數據和儲存空間的用量。改變此選項時將清除記憶體和磁碟上的縮圖快取</string>
+    <string name="download_thumbnail_summary">關閉以防止載入縮圖，減少數據和儲存空間的用量。改變時將清除記憶體和磁碟上的縮圖快取。</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除圖片快取</string>
     <string name="metadata_cache_wipe_title">清除快取中介資料</string>
     <string name="metadata_cache_wipe_summary">移除所有網頁的快取資料</string>
@@ -430,32 +346,24 @@
     <string name="playback_speed_control">播放速度控制</string>
     <string name="playback_tempo">節奏</string>
     <string name="playback_pitch">音高</string>
-    <string name="unhook_checkbox">解除連結（可能導致失真）</string>
-    <string name="playback_nightcore">Nightcore</string>
-    <string name="playback_default">預設</string>
-<string name="preferred_open_action_settings_title">偏好的「開啟」動作</string>
+    <string name="unhook_checkbox">解除掛鉤（可能導致失真）</string>
+    <string name="preferred_open_action_settings_title">偏好的「開啟」動作</string>
     <string name="preferred_open_action_settings_summary">開啟內容時的預設動作 — %s</string>
-
     <string name="no_streams_available_download">沒有可供下載的串流</string>
-
     <string name="caption_setting_title">字幕</string>
-    <string name="caption_setting_description">調整播放器字幕文字大小與背景樣式。必須重新啟動應用程式才會生效</string>
-
+    <string name="caption_setting_description">調整播放器字幕文字大小與背景樣式。必須重新啟動應用程式才會生效。</string>
     <string name="toast_no_player">未安裝可播放此檔案的應用程式</string>
-
     <string name="clear_views_history_title">清除觀看歷史</string>
-    <string name="clear_views_history_summary">刪除播放過的串流歷史</string>
-    <string name="delete_view_history_alert">刪除所有觀看歷史。</string>
-    <string name="view_history_deleted">觀看歷史已刪除。</string>
+    <string name="clear_views_history_summary">刪除播放過的串流與播放位置歷史</string>
+    <string name="delete_view_history_alert">刪除所有觀看歷史記錄？</string>
+    <string name="watch_history_deleted">觀看歷史已刪除。</string>
     <string name="clear_search_history_title">清除搜尋歷史</string>
     <string name="clear_search_history_summary">刪除搜尋關鍵字的歷史</string>
-    <string name="delete_search_history_alert">刪除所有搜尋歷史。</string>
+    <string name="delete_search_history_alert">刪除所有搜尋歷史記錄？</string>
     <string name="search_history_deleted">搜尋歷史已刪除。</string>
     <string name="one_item_deleted">已刪除 1 個項目。</string>
-
     <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     <string name="import_settings">您是否要同時匯入設定？</string>
-
     <string name="privacy_policy_title">NewPipe 的隱私政策</string>
     <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。 
 \nNewPipe 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
@@ -464,20 +372,255 @@
 \n您必須接受它才能向我們發送錯誤報告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒絕</string>
-<string name="limit_data_usage_none_description">沒有限制</string>
+    <string name="limit_data_usage_none_description">沒有限制</string>
     <string name="limit_mobile_data_usage_title">使用行動網路時限制解析度</string>
-    <string name="minimize_on_exit_title">切換應用程式時最小化</string>
-    <string name="minimize_on_exit_summary">從主影片播放器切換到其他應用程式時要執行的動作 — %s</string>
+    <string name="minimize_on_exit_title">切換 app 時最小化</string>
+    <string name="minimize_on_exit_summary">從主影片播放器切換到其他 app 時要執行的動作 — %s</string>
     <string name="minimize_on_exit_none_description">無</string>
     <string name="minimize_on_exit_background_description">最小化為背景播放器</string>
     <string name="minimize_on_exit_popup_description">最小化為彈出式播放器</string>
-
-<string name="skip_silence_checkbox">靜音時快轉</string>
+    <string name="skip_silence_checkbox">靜音時快轉</string>
     <string name="playback_step">步進</string>
     <string name="playback_reset">重設</string>
-
     <string name="channels">頻道</string>
     <string name="playlists">播放清單</string>
     <string name="tracks">軌</string>
     <string name="users">使用者</string>
-    </resources>
+    <string name="unsubscribe">取消訂閱</string>
+    <string name="tab_new">新分頁</string>
+    <string name="tab_choose">選擇分頁</string>
+    <string name="volume_gesture_control_title">音量手勢控制</string>
+    <string name="volume_gesture_control_summary">使用手勢控制播放器音量</string>
+    <string name="brightness_gesture_control_title">亮度手勢控制</string>
+    <string name="brightness_gesture_control_summary">使用手勢控制播放器亮度</string>
+    <string name="settings_category_updates_title">更新</string>
+    <string name="file_deleted">已刪除檔案</string>
+    <string name="app_update_notification_channel_name">應用程式更新通知</string>
+    <string name="app_update_notification_channel_description">新 NewPipe 版本通知</string>
+    <string name="download_to_sdcard_error_title">外部儲存不可用</string>
+    <string name="download_to_sdcard_error_message">無法下載到外部 SD 卡。重設下載資料夾位置？</string>
+    <string name="saved_tabs_invalid_json">無法讀取已儲存的分頁，因此使用預設分頁</string>
+    <string name="restore_defaults">恢復預設值</string>
+    <string name="restore_defaults_confirmation">您想要恢復預設值嗎？</string>
+    <string name="subscribers_count_not_available">訂閱數不可用</string>
+    <string name="main_page_content_summary">要在首頁顯示哪些分頁</string>
+    <string name="selection">選擇</string>
+    <string name="updates_setting_title">更新</string>
+    <string name="updates_setting_description">當有新版本可用時顯示通知以告知應用程式更新</string>
+    <string name="list_view_mode">清單檢視模式</string>
+    <string name="list">清單</string>
+    <string name="grid">網格</string>
+    <string name="auto">自動</string>
+    <string name="switch_view">切換檢視</string>
+    <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
+    <string name="app_update_notification_content_text">輕觸以下載</string>
+    <string name="missions_header_finished">結束</string>
+    <string name="missions_header_pending">有待</string>
+    <string name="paused">已暫停</string>
+    <string name="queued">已排入佇列</string>
+    <string name="post_processing">正在後處理</string>
+    <string name="enqueue">佇列</string>
+    <string name="permission_denied">動作被系統拒絕</string>
+    <string name="download_failed">下載失敗</string>
+    <string name="download_finished">下載已結束</string>
+    <string name="download_finished_more">%s 個下載已結束</string>
+    <string name="generate_unique_name">生成獨特的名稱</string>
+    <string name="overwrite">覆寫</string>
+    <string name="overwrite_finished_warning">已有此名稱的已下載檔案</string>
+    <string name="download_already_running">已有此名稱的當案的下載正在進行</string>
+    <string name="show_error">顯示錯誤</string>
+    <string name="label_code">代碼</string>
+    <string name="error_file_creation">無法建立檔案</string>
+    <string name="error_path_creation">無法建立目的地資料夾</string>
+    <string name="error_permission_denied">被系統拒絕的權限</string>
+    <string name="error_ssl_exception">無法建立安全連線</string>
+    <string name="error_unknown_host">找不到伺服器</string>
+    <string name="error_connect_host">無法連線到伺服器</string>
+    <string name="error_http_no_content">伺服器沒有傳送資料</string>
+    <string name="error_http_unsupported_range">伺服器不接受多執行緒下載，請以 @string/msg_threads = 1 重試</string>
+    <string name="error_http_not_found">找不到</string>
+    <string name="error_postprocessing_failed">後處理失敗</string>
+    <string name="stop">停止</string>
+    <string name="max_retry_msg">最大重試次數</string>
+    <string name="max_retry_desc">在取消下載前的最大嘗試數</string>
+    <string name="pause_downloads_on_mobile">在計量收費網路上時中斷</string>
+    <string name="pause_downloads_on_mobile_desc">在切換到行動數據時很有用（雖然某些下載無法暫停）</string>
+    <string name="events">事件</string>
+    <string name="conferences">會議</string>
+    <string name="error_timeout">連接超時</string>
+    <string name="show_comments_title">顯示留言</string>
+    <string name="show_comments_summary">關閉以隱藏留言</string>
+    <string name="autoplay_title">自動播放</string>
+    <string name="no_comments">沒有留言</string>
+    <string name="error_unable_to_load_comments">無法載入留言</string>
+    <string name="close">關閉</string>
+    <string name="enable_playback_resume_title">恢復播放</string>
+    <string name="enable_playback_resume_summary">回復到上一次播放的位置</string>
+    <string name="enable_playback_state_lists_title">清單中的位置</string>
+    <string name="enable_playback_state_lists_summary">在清單中顯示播放位置指示器</string>
+    <string name="settings_category_clear_data_title">清除資料</string>
+    <string name="watch_history_states_deleted">播放位置已刪除。</string>
+    <string name="missing_file">檔案已移動或已刪除</string>
+    <string name="overwrite_unrelated_warning">與此同名的檔案已存在</string>
+    <string name="overwrite_failed">無法覆寫檔案</string>
+    <string name="download_already_pending">有同名的擱置中下載</string>
+    <string name="error_postprocessing_stopped">NewPipe 在處理檔案時被關閉</string>
+    <string name="error_insufficient_storage">裝置上沒有剩餘的空間</string>
+    <string name="error_progress_lost">進度遺失，因為檔案已被刪除</string>
+    <string name="confirm_prompt">您想要清除您的下載歷史紀錄或刪除所有已下載的檔案嗎？</string>
+    <string name="enable_queue_limit">限制下載佇列</string>
+    <string name="enable_queue_limit_desc">一次執行一個下載</string>
+    <string name="start_downloads">開始下載</string>
+    <string name="pause_downloads">暫停下載</string>
+    <string name="downloads_storage_ask_title">詢問要下載到哪裡</string>
+    <string name="downloads_storage_ask_summary">每次下載您都會被詢問要下載到哪裡</string>
+    <string name="downloads_storage_ask_summary_kitkat">每次下載您都會被詢問要下載到哪裡。
+\n如果您想要下載到外部的 SD 卡的話，請選擇 SAF</string>
+    <string name="downloads_storage_use_saf_title">使用 SAF</string>
+    <string name="downloads_storage_use_saf_summary">儲存存取框架讓您可以下載到外部的 SD 卡。 
+\n可能與某些裝置不相容</string>
+    <string name="clear_playback_states_title">刪除播放位置</string>
+    <string name="clear_playback_states_summary">刪除所有播放位置</string>
+    <string name="delete_playback_states_alert">刪除所有播放位置？</string>
+    <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
+    <string name="drawer_header_description">切換服務，目前已選取：</string>
+    <plurals name="videos">
+        <item quantity="other">%s 影片</item>
+    </plurals>
+    <string name="default_kiosk_page_summary">預設 Kiosk</string>
+    <string name="no_one_watching">沒有人在看</string>
+    <plurals name="watching">
+        <item quantity="other">%s 個觀眾</item>
+    </plurals>
+    <string name="no_one_listening">沒有人正在聽</string>
+    <plurals name="listening">
+        <item quantity="other">%s 個聽眾</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更。</string>
+    <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
+    <string name="peertube_instance_url_title">PeerTube 站臺</string>
+    <string name="peertube_instance_url_summary">選取您最愛的 PeerTube 站臺</string>
+    <string name="peertube_instance_url_help">在 %s 上找到您喜愛的站臺</string>
+    <string name="peertube_instance_add_title">新增站臺</string>
+    <string name="peertube_instance_add_help">輸入站臺 URL</string>
+    <string name="peertube_instance_add_fail">無法驗證站臺</string>
+    <string name="peertube_instance_add_https_only">僅支援 HTTPS URL</string>
+    <string name="peertube_instance_add_exists">站臺已存在</string>
+    <string name="local">本機</string>
+    <string name="recently_added">最近新增</string>
+    <string name="most_liked">最喜歡</string>
+    <string name="playlist_no_uploader">自動生成（未找到上傳者）</string>
+    <string name="recovering">正在恢復</string>
+    <string name="error_download_resource_gone">無法復原此下載</string>
+    <string name="choose_instance_prompt">選擇一個站臺</string>
+    <string name="clear_download_history">清除下載歷史紀錄</string>
+    <string name="delete_downloaded_files">刪除已下載的檔案</string>
+    <string name="deleted_downloads">已刪除 %1$d 個下載</string>
+    <string name="permission_display_over_apps">給予顯示在其他應用程式上層的權限</string>
+    <string name="app_language_title">應用程式語言</string>
+    <string name="systems_language">系統預設值</string>
+    <string name="subtitle_activity_recaptcha">解決後請按「完成」</string>
+    <string name="recaptcha_done_button">完成</string>
+    <string name="videos_string">影片</string>
+    <plurals name="seconds">
+        <item quantity="other">%d 秒</item>
+    </plurals>
+    <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
+    <string name="mute">靜音</string>
+    <string name="unmute">取消靜音</string>
+    <string name="help">說明</string>
+    <plurals name="minutes">
+        <item quantity="other">%d 分鐘</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="other">%d 小時</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="other">%d 天</item>
+    </plurals>
+    <string name="feed_groups_header_title">頻道群組</string>
+    <string name="feed_oldest_subscription_update">Feed 最後更新：%s</string>
+    <string name="feed_subscription_not_loaded_count">未載入：%d</string>
+    <string name="feed_notification_loading">正在載入 feed……</string>
+    <string name="feed_processing_message">正在處理 feed……</string>
+    <string name="feed_group_dialog_select_subscriptions">選取訂閱</string>
+    <string name="feed_group_dialog_empty_selection">未選取訂閱</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="other">已選取 %d 個</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_name">清空群組名稱</string>
+    <string name="feed_group_dialog_delete_message">您想要刪除此群組嗎？</string>
+    <string name="feed_create_new_group_button_title">新</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Feed 更新閾值</string>
+    <string name="feed_update_threshold_summary">上次更新後，訂閱被視為過時的時間 — %s</string>
+    <string name="feed_update_threshold_option_always_update">總是更新</string>
+    <string name="feed_use_dedicated_fetch_method_title">在可用時從專用 feed 擷取</string>
+    <string name="feed_use_dedicated_fetch_method_summary">其在某些服務中可用，且通常較快速，但可能只會回傳有限的項目，而且資訊通常不完整（例如：沒有持續時間、項目類型、沒有即時狀態）。</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">啟用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">您覺得 feed 載入太慢了嗎？如果是的話，試著啟用快速載入（您可以在設定中變更或按下下方的按鈕）。
+\n
+\nNewPipe 提供兩個 feed 載入策略：
+\n• 擷取整個訂閱頻道，慢但是完整。
+\n• 使用專用的伺服器端點，較快速但是通常不完整。
+\n
+\n兩者之間的差別是，較快速的通常缺少部份資訊，如項目的持續時間或類型（無法區分直播影片或一般影片），而且其可能會回傳較少項目。
+\n
+\nYouTube 是一種透過其 RSS feed 提供這種快速方式的例子。
+\n
+\n因此，請選取您較偏好的：速度或準確的資訊。</string>
+    <string name="content_not_supported">NewPipe 尚未支援此內容。
+\n
+\n希望它會在未來的版本中支援。</string>
+    <string name="infinite_videos">∞ 部影片</string>
+    <string name="more_than_100_videos">超過 100 部影片</string>
+    <string name="artists">藝術家</string>
+    <string name="albums">專輯</string>
+    <string name="songs">歌曲</string>
+    <string name="restricted_video">此影片有年鈴限制。
+\n
+\n如果您想要觀看，請在設定中開啟「年齡限制的內容」。</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">是的，以及部份觀看的影片</string>
+    <string name="remove_watched_popup_warning">在新增到播放清單前後的影片將被移除。
+\n您確定嗎？此動作無法復原！</string>
+    <string name="remove_watched_popup_title">移除已觀看的影片？</string>
+    <string name="remove_watched">移除已觀看</string>
+    <string name="show_original_time_ago_summary">來自服務的原始文字將在串流項目中可見</string>
+    <string name="show_original_time_ago_title">在項目上顯示原始時間</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube 受限模式</string>
+    <string name="video_detail_by">由 %s</string>
+    <string name="channel_created_by">由 %s 建立</string>
+    <string name="detail_sub_channel_thumbnail_view_description">頻道大頭貼縮圖</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">僅顯示未分組的訂閱</string>
+    <string name="no_playlist_bookmarked_yet">尚無播放清單書籤</string>
+    <string name="playlist_page_summary">播放清單頁面</string>
+    <string name="select_a_playlist">選取播放清單</string>
+    <string name="error_report_open_github_notice">請檢查是否已有與您的應用程式當機相關的討論議題。當建立重複的工單時，您就是在耗費我們本來可以用來修復臭蟲的時間。</string>
+    <string name="error_report_open_issue_button_text">在 GitHub 上回報</string>
+    <string name="copy_for_github">複製格式化過的報告</string>
+    <string name="search_showing_result_for">正在顯示結果：%s</string>
+    <string name="never">從不</string>
+    <string name="wifi_only">僅在 Wi-Fi 上</string>
+    <string name="autoplay_summary">自動開始播放 — %s</string>
+    <string name="title_activity_play_queue">播放佇列</string>
+    <string name="unsupported_url_dialog_message">無法識別 URL。要用其他應用程式開啟嗎？</string>
+    <string name="auto_queue_toggle">自動佇列</string>
+    <string name="clear_queue_confirmation_description">作用中播放器的佇列可能會被取代</string>
+    <string name="clear_queue_confirmation_summary">從一個播放器切換到另一個可能會取代您的佇列</string>
+    <string name="clear_queue_confirmation_title">清除佇列前要求確認</string>
+    <string name="settings_category_notification_title">通知</string>
+    <string name="notification_action_nothing">沒有東西</string>
+    <string name="notification_action_buffering">正在緩衝</string>
+    <string name="notification_action_shuffle">隨機播放</string>
+    <string name="notification_action_repeat">重複</string>
+    <string name="notification_actions_at_most_three">您可以選取最多三個動作來顯示在簡潔通知中！</string>
+    <string name="notification_actions_summary">透過點擊下方的每一個通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示。</string>
+    <string name="notification_action_4_title">第五動作按鈕</string>
+    <string name="notification_action_3_title">第四動作按鈕</string>
+    <string name="notification_action_2_title">第三動作按鈕</string>
+    <string name="notification_action_1_title">第二動作按鈕</string>
+    <string name="notification_action_0_title">第一動作按鈕</string>
+    <string name="notification_scale_to_square_image_summary">將通知中顯示的影片縮圖從 16:9 縮放到 1:1（可能會導致失真）</string>
+    <string name="notification_scale_to_square_image_title">把縮圖縮放到 1:1 的長寬比</string>
+</resources>

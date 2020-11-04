@@ -6,8 +6,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 
 public class PlaylistInfoItemHolder extends PlaylistMiniInfoItemHolder {
-
-    public PlaylistInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
+    public PlaylistInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         super(infoItemBuilder, R.layout.list_playlist_item, parent);
     }
 }

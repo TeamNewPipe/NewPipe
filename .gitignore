@@ -7,7 +7,14 @@
 /app/app.iml
 /.idea
 /*.iml
-gradle.properties
 *~
 .weblate
 *.class
+
+# vscode / eclipse files
+*.classpath
+*.project
+*.settings
+bin/
+.vscode/
+*.code-workspace

@@ -4,19 +4,21 @@
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> 
 
 <p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <a href="https://travis-ci.org/TeamNewPipe/NewPipe" alt="Build Status"><img src="https://travis-ci.org/TeamNewPipe/NewPipe.svg"></a>
-<a href="https://hosted.weblate.org/engage/NewPipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg"></a>
+<a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="http://webchat.freenode.net/?channels=%23newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donate">Donate</a> &bull; <a href="#license">License</a></p>
-<p align="center"><a href="https://newpipe.schabi.org">Website</a> &bull; <a href="https://newpipe.schabi.org/blog/">Blog</a>  &bull; <a href="https://newpipe.schabi.org/press/">Press</a></p>
+<p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#updates">Updates</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donate">Donate</a> &bull; <a href="#license">License</a></p>
+<p align="center"><a href="https://newpipe.schabi.org">Website</a> &bull; <a href="https://newpipe.schabi.org/blog/">Blog</a> &bull; <a href="https://newpipe.schabi.org/FAQ/">FAQ</a> &bull; <a href="https://newpipe.schabi.org/press/">Press</a></p>
 <hr>
 
-<b>WARNING: PUTTING NEWPIPE OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR TERMS OF CONDITIONS.</b>
+<b>WARNING: THIS IS A BETA VERSION, THEREFORE YOU MAY ENCOUNTER BUGS. IF YOU DO, OPEN AN ISSUE VIA OUR GITHUB REPOSITORY.</b>
+
+<b>PUTTING NEWPIPE OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR TERMS OF CONDITIONS.</b>
 
 ## Screenshots
 
@@ -64,20 +66,42 @@ NewPipe does not use any Google framework libraries, nor the YouTube API. Websit
 * Enqueue videos
 * Local playlists
 * Subtitles
-* Multi-service support (e.g. SoundCloud \[beta\])
 * Livestream support
-
-### Coming Features
-
-* Cast to UPnP and Cast
 * Show comments
-* … and many more
+
+### Supported Services
+
+NewPipe supports multiple services. Our [docs](https://teamnewpipe.github.io/documentation/) provide more info on how a new service can be added to the app and the extractor. Please get in touch with us if you intend to add a new one. Currently supported services are:
+
+* YouTube
+* SoundCloud \[beta\]
+* media.ccc.de \[beta\]
+* PeerTube instances \[beta\]
+
+## Updates
+When a change to the NewPipe code occurs (due to either adding features or bug fixing), eventually a release will occur. These are in the format x.xx.x . In order to get this new version, you can:
+ 1. Build a debug APK yourself. This is the fastest way to get new features on your device, but is much more complicated, so we recommend using one of the other methods.
+ 2. Add our custom repo to F-Droid and install it from there as soon as we publish a release. The instructions are here: https://newpipe.schabi.org/FAQ/tutorials/install-add-fdroid-repo/
+ 3. Download the APK from [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases) and install it as soon as we publish a release.
+ 4. Update via F-droid. This is the slowest method of getting updates, as F-Droid must recognize changes, build the APK itself, sign it, then push the update to users.
+
+We recommend method 2 for most users. APKs installed using method 2 or 3 are compatible with each other, but not with those installed using method 4. This is due to the same signing key (ours) being using for 2 and 3, but a different signing key (F-Droid's) being used for 4. Building a debug APK using method 1 excludes a key entirely. Signing keys help ensure that a user isn't tricked into installing a malicious update to an app.
+
+In the meanwhile, if you want to switch sources for some reason (e.g. NewPipe's core functionality was broken and F-Droid doesn't have the update yet), we recommend following this procedure:
+1. Back up your data via Settings > Content > Export Database so you keep your history, subscriptions, and playlists
+2. Uninstall NewPipe
+3. Download the APK from the new source and install it
+4. Import the data from step 1 via Settings > Content > Import Database
 
 ## Contribution
 Whether you have ideas, translations, design changes, code cleaning, or real heavy code changes, help is always welcome.
 The more is done the better it gets!
 
 If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTING.md).
+
+<a href="https://hosted.weblate.org/engage/newpipe/">
+<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
+</a>
 
 ## Donate
 If you like NewPipe we'd be happy about a donation. You can either send bitcoin or donate via Bountysource or Liberapay. For further info on donating to NewPipe, please visit our [website](https://newpipe.schabi.org/donate).

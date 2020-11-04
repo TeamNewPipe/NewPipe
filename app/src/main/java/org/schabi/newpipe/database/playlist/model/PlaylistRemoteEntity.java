@@ -1,10 +1,12 @@
 package org.schabi.newpipe.database.playlist.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
+import android.text.TextUtils;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
@@ -22,14 +24,14 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.RE
                 @Index(value = {REMOTE_PLAYLIST_SERVICE_ID, REMOTE_PLAYLIST_URL}, unique = true)
         })
 public class PlaylistRemoteEntity implements PlaylistLocalItem {
-    final public static String REMOTE_PLAYLIST_TABLE         = "remote_playlists";
-    final public static String REMOTE_PLAYLIST_ID            = "uid";
-    final public static String REMOTE_PLAYLIST_SERVICE_ID    = "service_id";
-    final public static String REMOTE_PLAYLIST_NAME          = "name";
-    final public static String REMOTE_PLAYLIST_URL           = "url";
-    final public static String REMOTE_PLAYLIST_THUMBNAIL_URL = "thumbnail_url";
-    final public static String REMOTE_PLAYLIST_UPLOADER_NAME = "uploader";
-    final public static String REMOTE_PLAYLIST_STREAM_COUNT  = "stream_count";
+    public static final String REMOTE_PLAYLIST_TABLE = "remote_playlists";
+    public static final String REMOTE_PLAYLIST_ID = "uid";
+    public static final String REMOTE_PLAYLIST_SERVICE_ID = "service_id";
+    public static final String REMOTE_PLAYLIST_NAME = "name";
+    public static final String REMOTE_PLAYLIST_URL = "url";
+    public static final String REMOTE_PLAYLIST_THUMBNAIL_URL = "thumbnail_url";
+    public static final String REMOTE_PLAYLIST_UPLOADER_NAME = "uploader";
+    public static final String REMOTE_PLAYLIST_STREAM_COUNT = "stream_count";
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = REMOTE_PLAYLIST_ID)
@@ -53,8 +55,9 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     @ColumnInfo(name = REMOTE_PLAYLIST_STREAM_COUNT)
     private Long streamCount;
 
-    public PlaylistRemoteEntity(int serviceId, String name, String url, String thumbnailUrl,
-                                String uploader, Long streamCount) {
+    public PlaylistRemoteEntity(final int serviceId, final String name, final String url,
+                                final String thumbnailUrl, final String uploader,
+                                final Long streamCount) {
         this.serviceId = serviceId;
         this.name = name;
         this.url = url;
@@ -66,23 +69,30 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     @Ignore
     public PlaylistRemoteEntity(final PlaylistInfo info) {
         this(info.getServiceId(), info.getName(), info.getUrl(),
-                info.getThumbnailUrl() == null ? info.getUploaderAvatarUrl() : info.getThumbnailUrl(),
+                info.getThumbnailUrl() == null
+                        ? info.getUploaderAvatarUrl() : info.getThumbnailUrl(),
                 info.getUploaderName(), info.getStreamCount());
     }
 
     @Ignore
     public boolean isIdenticalTo(final PlaylistInfo info) {
-        return getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
-                getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
-                getThumbnailUrl().equals(info.getThumbnailUrl()) &&
-                getUploader().equals(info.getUploaderName());
+        /*
+         * Returns boolean comparing the online playlist and the local copy.
+         * (False if info changed such as playlist name or track count)
+         */
+        return getServiceId() == info.getServiceId()
+                && getStreamCount() == info.getStreamCount()
+                && TextUtils.equals(getName(), info.getName())
+                && TextUtils.equals(getUrl(), info.getUrl())
+                && TextUtils.equals(getThumbnailUrl(), info.getThumbnailUrl())
+                && TextUtils.equals(getUploader(), info.getUploaderName());
     }
 
     public long getUid() {
         return uid;
     }
 
-    public void setUid(long uid) {
+    public void setUid(final long uid) {
         this.uid = uid;
     }
 
@@ -90,7 +100,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         return serviceId;
     }
 
-    public void setServiceId(int serviceId) {
+    public void setServiceId(final int serviceId) {
         this.serviceId = serviceId;
     }
 
@@ -98,7 +108,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -106,7 +116,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         return thumbnailUrl;
     }
 
-    public void setThumbnailUrl(String thumbnailUrl) {
+    public void setThumbnailUrl(final String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
 
@@ -114,7 +124,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(final String url) {
         this.url = url;
     }
 
@@ -122,7 +132,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         return uploader;
     }
 
-    public void setUploader(String uploader) {
+    public void setUploader(final String uploader) {
         this.uploader = uploader;
     }
 
@@ -130,7 +140,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         return streamCount;
     }
 
-    public void setStreamCount(Long streamCount) {
+    public void setStreamCount(final Long streamCount) {
         this.streamCount = streamCount;
     }
 

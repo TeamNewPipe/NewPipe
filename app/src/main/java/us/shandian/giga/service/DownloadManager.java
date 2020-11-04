@@ -2,25 +2,25 @@ package us.shandian.giga.service;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.util.DiffUtil;
 import android.util.Log;
-import android.widget.Toast;
 
-import org.schabi.newpipe.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DiffUtil;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
+import java.util.Comparator;
+import java.util.List;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
-import us.shandian.giga.get.sqlite.DownloadDataSource;
+import us.shandian.giga.get.sqlite.FinishedMissionStore;
+import us.shandian.giga.io.StoredDirectoryHelper;
+import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
@@ -28,13 +28,17 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
 public class DownloadManager {
     private static final String TAG = DownloadManager.class.getSimpleName();
 
-    enum NetworkState {Unavailable, WifiOperating, MobileOperating, OtherOperating}
+    enum NetworkState {Unavailable, Operating, MeteredOperating}
 
     public final static int SPECIAL_NOTHING = 0;
     public final static int SPECIAL_PENDING = 1;
     public final static int SPECIAL_FINISHED = 2;
 
-    private final DownloadDataSource mDownloadDataSource;
+    public static final String TAG_AUDIO = "audio";
+    public static final String TAG_VIDEO = "video";
+    private static final String DOWNLOADS_METADATA_FOLDER = "pending_downloads";
+
+    private final FinishedMissionStore mFinishedMissionStore;
 
     private final ArrayList<DownloadMission> mMissionsPending = new ArrayList<>();
     private final ArrayList<FinishedMission> mMissionsFinished;
@@ -45,7 +49,12 @@ public class DownloadManager {
     private NetworkState mLastNetworkStatus = NetworkState.Unavailable;
 
     int mPrefMaxRetry;
-    boolean mPrefCrossNetwork;
+    boolean mPrefMeteredDownloads;
+    boolean mPrefQueueLimit;
+    private boolean mSelfMissionsControl;
+
+    StoredDirectoryHelper mMainStorageAudio;
+    StoredDirectoryHelper mMainStorageVideo;
 
     /**
      * Create a new instance
@@ -53,64 +62,71 @@ public class DownloadManager {
      * @param context Context for the data source for finished downloads
      * @param handler Thread required for Messaging
      */
-    DownloadManager(@NonNull Context context, Handler handler) {
+    DownloadManager(@NonNull Context context, Handler handler, StoredDirectoryHelper storageVideo, StoredDirectoryHelper storageAudio) {
         if (DEBUG) {
             Log.d(TAG, "new DownloadManager instance. 0x" + Integer.toHexString(this.hashCode()));
         }
 
-        mDownloadDataSource = new DownloadDataSource(context);
+        mFinishedMissionStore = new FinishedMissionStore(context);
         mHandler = handler;
+        mMainStorageAudio = storageAudio;
+        mMainStorageVideo = storageVideo;
         mMissionsFinished = loadFinishedMissions();
         mPendingMissionsDir = getPendingDir(context);
 
-        if (!Utility.mkdir(mPendingMissionsDir, false)) {
-            throw new RuntimeException("failed to create pending_downloads in data directory");
-        }
-
-        loadPendingMissions();
+        loadPendingMissions(context);
     }
 
     private static File getPendingDir(@NonNull Context context) {
-        //File dir = new File(ContextCompat.getDataDir(context), "pending_downloads");
-        File dir = context.getExternalFilesDir("pending_downloads");
+        File dir = context.getExternalFilesDir(DOWNLOADS_METADATA_FOLDER);
+        if (testDir(dir)) return dir;
 
-        if (dir == null) {
-            // One of the following paths are not accessible ¿unmounted internal memory?
-            //        /storage/emulated/0/Android/data/org.schabi.newpipe[.debug]/pending_downloads
-            //        /sdcard/Android/data/org.schabi.newpipe[.debug]/pending_downloads
-            Log.w(TAG, "path to pending downloads are not accessible");
+        dir = new File(context.getFilesDir(), DOWNLOADS_METADATA_FOLDER);
+        if (testDir(dir)) return dir;
+
+        throw new RuntimeException("path to pending downloads are not accessible");
+    }
+
+    private static boolean testDir(@Nullable File dir) {
+        if (dir == null) return false;
+
+        try {
+            if (!Utility.mkdir(dir, false)) {
+                Log.e(TAG, "testDir() cannot create the directory in path: " + dir.getAbsolutePath());
+                return false;
+            }
+
+            File tmp = new File(dir, ".tmp");
+            if (!tmp.createNewFile()) return false;
+            return tmp.delete();// if the file was created, SHOULD BE deleted too
+        } catch (Exception e) {
+            Log.e(TAG, "testDir() failed: " + dir.getAbsolutePath(), e);
+            return false;
         }
-
-        return dir;
     }
 
     /**
      * Loads finished missions from the data source
      */
     private ArrayList<FinishedMission> loadFinishedMissions() {
-        ArrayList<FinishedMission> finishedMissions = mDownloadDataSource.loadFinishedMissions();
+        ArrayList<FinishedMission> finishedMissions = mFinishedMissionStore.loadFinishedMissions();
 
-        // missions always is stored by creation order, simply reverse the list
-        ArrayList<FinishedMission> result = new ArrayList<>(finishedMissions.size());
+        // check if the files exists, otherwise, forget the download
         for (int i = finishedMissions.size() - 1; i >= 0; i--) {
             FinishedMission mission = finishedMissions.get(i);
-            File file = mission.getDownloadedFile();
 
-            if (!file.isFile()) {
-                if (DEBUG) {
-                    Log.d(TAG, "downloaded file removed: " + file.getAbsolutePath());
-                }
-                mDownloadDataSource.deleteMission(mission);
-                continue;
+            if (!mission.storage.existsAsFile()) {
+                if (DEBUG) Log.d(TAG, "downloaded file removed: " + mission.storage.getName());
+
+                mFinishedMissionStore.deleteMission(mission);
+                finishedMissions.remove(i);
             }
-
-            result.add(mission);
         }
 
-        return result;
+        return finishedMissions;
     }
 
-    private void loadPendingMissions() {
+    private void loadPendingMissions(Context ctx) {
         File[] subs = mPendingMissionsDir.listFiles();
 
         if (subs == null) {
@@ -124,107 +140,80 @@ public class DownloadManager {
             Log.d(TAG, "Loading pending downloads from directory: " + mPendingMissionsDir.getAbsolutePath());
         }
 
+        File tempDir = pickAvailableTemporalDir(ctx);
+        Log.i(TAG, "using '" + tempDir + "' as temporal directory");
+
         for (File sub : subs) {
-            if (sub.isFile()) {
-                DownloadMission mis = Utility.readFromFile(sub);
+            if (!sub.isFile()) continue;
+            if (sub.getName().equals(".tmp")) continue;
 
-                if (mis == null) {
-                    //noinspection ResultOfMethodCallIgnored
-                    sub.delete();
-                } else {
-                    if (mis.isFinished()) {
-                        //noinspection ResultOfMethodCallIgnored
-                        sub.delete();
-                        continue;
-                    }
-
-                    File dl = mis.getDownloadedFile();
-                    boolean exists = dl.exists();
-
-                    if (mis.postprocessingRunning && mis.postprocessingThis) {
-                        // Incomplete post-processing results in a corrupted download file
-                        // because the selected algorithm works on the same file to save space.
-                        if (!dl.delete()) {
-                            Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
-                        }
-                        exists = true;
-                        mis.postprocessingRunning = false;
-                        mis.errCode = DownloadMission.ERROR_POSTPROCESSING_FAILED;
-                        mis.errObject = new RuntimeException("stopped unexpectedly");
-                    } else if (exists && !dl.isFile()) {
-                        // probably a folder, this should never happens
-                        if (!sub.delete()) {
-                            Log.w(TAG, "Unable to delete serialized file: " + sub.getPath());
-                        }
-                        continue;
-                    }
-
-                    if (!exists) {
-                        // downloaded file deleted, reset mission state
-                        DownloadMission m = new DownloadMission(mis.urls, mis.name, mis.location, mis.kind, mis.postprocessingName, mis.postprocessingArgs);
-                        m.timestamp = mis.timestamp;
-                        m.threadCount = mis.threadCount;
-                        m.source = mis.source;
-                        m.maxRetry = mis.maxRetry;
-                        m.nearLength = mis.nearLength;
-                        mis = m;
-                    }
-
-                    mis.running = false;
-                    mis.recovered = exists;
-                    mis.metadata = sub;
-                    mis.mHandler = mHandler;
-
-                    mMissionsPending.add(mis);
-                }
+            DownloadMission mis = Utility.readFromFile(sub);
+            if (mis == null || mis.isFinished()) {
+                //noinspection ResultOfMethodCallIgnored
+                sub.delete();
+                continue;
             }
+
+            mis.threads = new Thread[0];
+
+            boolean exists;
+            try {
+                mis.storage = StoredFileHelper.deserialize(mis.storage, ctx);
+                exists = !mis.storage.isInvalid() && mis.storage.existsAsFile();
+            } catch (Exception ex) {
+                Log.e(TAG, "Failed to load the file source of " + mis.storage.toString(), ex);
+                mis.storage.invalidate();
+                exists = false;
+            }
+
+            if (mis.isPsRunning()) {
+                if (mis.psAlgorithm.worksOnSameFile) {
+                    // Incomplete post-processing results in a corrupted download file
+                    // because the selected algorithm works on the same file to save space.
+                    // the file will be deleted if the storage API
+                    // is Java IO (avoid showing the "Save as..." dialog)
+                    if (exists && mis.storage.isDirect() && !mis.storage.delete())
+                        Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
+                }
+
+                mis.psState = 0;
+                mis.errCode = DownloadMission.ERROR_POSTPROCESSING_STOPPED;
+            } else if (!exists) {
+                tryRecover(mis);
+
+                // the progress is lost, reset mission state
+                if (mis.isInitialized())
+                    mis.resetState(true, true, DownloadMission.ERROR_PROGRESS_LOST);
+            }
+
+            if (mis.psAlgorithm != null) {
+                mis.psAlgorithm.cleanupTemporalDir();
+                mis.psAlgorithm.setTemporalDir(tempDir);
+            }
+
+            mis.metadata = sub;
+            mis.maxRetry = mPrefMaxRetry;
+            mis.mHandler = mHandler;
+
+            mMissionsPending.add(mis);
         }
 
-        if (mMissionsPending.size() > 1) {
-            Collections.sort(mMissionsPending, (mission1, mission2) -> Long.compare(mission1.timestamp, mission2.timestamp));
-        }
+        if (mMissionsPending.size() > 1)
+            Collections.sort(mMissionsPending, Comparator.comparingLong(Mission::getTimestamp));
     }
 
     /**
      * Start a new download mission
      *
-     * @param urls     the list of urls to download
-     * @param location the location
-     * @param name     the name of the file to create
-     * @param kind     type of file (a: audio  v: video  s: subtitle ?: file-extension defined)
-     * @param threads  the number of threads maximal used to download chunks of the file.
-     * @param psName   the name of the required post-processing algorithm, or {@code null} to ignore.
-     * @param source   source url of the resource
-     * @param psArgs   the arguments for the post-processing algorithm.
+     * @param mission the new download mission to add and run (if possible)
      */
-    void startMission(String[] urls, String location, String name, char kind, int threads,
-                      String source, String psName, String[] psArgs, long nearLength) {
+    void startMission(DownloadMission mission) {
         synchronized (this) {
-            // check for existing pending download
-            DownloadMission pendingMission = getPendingMission(location, name);
-            if (pendingMission != null) {
-                // generate unique filename (?)
-                try {
-                    name = generateUniqueName(location, name);
-                } catch (Exception e) {
-                    Log.e(TAG, "Unable to generate unique name", e);
-                    name = System.currentTimeMillis() + name;
-                    Log.i(TAG, "Using " + name);
-                }
-            } else {
-                // check for existing finished download
-                int index = getFinishedMissionIndex(location, name);
-                if (index >= 0) mDownloadDataSource.deleteMission(mMissionsFinished.remove(index));
-            }
-
-            DownloadMission mission = new DownloadMission(urls, name, location, kind, psName, psArgs);
             mission.timestamp = System.currentTimeMillis();
-            mission.threadCount = threads;
-            mission.source = source;
             mission.mHandler = mHandler;
             mission.maxRetry = mPrefMaxRetry;
-            mission.nearLength = nearLength;
 
+            // create metadata file
             while (true) {
                 mission.metadata = new File(mPendingMissionsDir, String.valueOf(mission.timestamp));
                 if (!mission.metadata.isFile() && !mission.metadata.exists()) {
@@ -239,14 +228,24 @@ public class DownloadManager {
                 mission.timestamp = System.currentTimeMillis();
             }
 
+            mSelfMissionsControl = true;
             mMissionsPending.add(mission);
 
-            // Before starting, save the state in case the internet connection is not available
+            // Before continue, save the metadata in case the internet connection is not available
             Utility.writeToFile(mission.metadata, mission);
 
-            if (canDownloadInCurrentNetwork() && (getRunningMissionsCount() < 1)) {
+            if (mission.storage == null) {
+                // noting to do here
+                mission.errCode = DownloadMission.ERROR_FILE_CREATION;
+                if (mission.errObject != null)
+                    mission.errObject = new IOException("DownloadMission.storage == NULL");
+                return;
+            }
+
+            boolean start = !mPrefQueueLimit || getRunningMissionsCount() < 1;
+
+            if (canDownloadInCurrentNetwork() && start) {
                 mission.start();
-                mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_RUNNING);
             }
         }
     }
@@ -255,14 +254,13 @@ public class DownloadManager {
     public void resumeMission(DownloadMission mission) {
         if (!mission.running) {
             mission.start();
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_RUNNING);
         }
     }
 
     public void pauseMission(DownloadMission mission) {
         if (mission.running) {
+            mission.setEnqueued(false);
             mission.pause();
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
         }
     }
 
@@ -272,26 +270,60 @@ public class DownloadManager {
                 mMissionsPending.remove(mission);
             } else if (mission instanceof FinishedMission) {
                 mMissionsFinished.remove(mission);
-                mDownloadDataSource.deleteMission(mission);
+                mFinishedMissionStore.deleteMission(mission);
             }
 
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_DELETED);
             mission.delete();
         }
     }
 
+    public void forgetMission(StoredFileHelper storage) {
+        synchronized (this) {
+            Mission mission = getAnyMission(storage);
+            if (mission == null) return;
+
+            if (mission instanceof DownloadMission) {
+                mMissionsPending.remove(mission);
+            } else if (mission instanceof FinishedMission) {
+                mMissionsFinished.remove(mission);
+                mFinishedMissionStore.deleteMission(mission);
+            }
+
+            mission.storage = null;
+            mission.delete();
+        }
+    }
+
+    public void tryRecover(DownloadMission mission) {
+        StoredDirectoryHelper mainStorage = getMainStorage(mission.storage.getTag());
+
+        if (!mission.storage.isInvalid() && mission.storage.create()) return;
+
+        // using javaIO cannot recreate the file
+        // using SAF in older devices (no tree available)
+        //
+        // force the user to pick again the save path
+        mission.storage.invalidate();
+
+        if (mainStorage == null) return;
+
+        // if the user has changed the save path before this download, the original save path will be lost
+        StoredFileHelper newStorage = mainStorage.createFile(mission.storage.getName(), mission.storage.getType());
+
+        if (newStorage != null) mission.storage = newStorage;
+    }
+
 
     /**
-     * Get a pending mission by its location and name
+     * Get a pending mission by its path
      *
-     * @param location the location
-     * @param name     the name
+     * @param storage where the file possible is stored
      * @return the mission or null if no such mission exists
      */
     @Nullable
-    private DownloadMission getPendingMission(String location, String name) {
+    private DownloadMission getPendingMission(StoredFileHelper storage) {
         for (DownloadMission mission : mMissionsPending) {
-            if (location.equalsIgnoreCase(mission.location) && name.equalsIgnoreCase(mission.name)) {
+            if (mission.storage.equals(storage)) {
                 return mission;
             }
         }
@@ -299,16 +331,14 @@ public class DownloadManager {
     }
 
     /**
-     * Get a finished mission by its location and name
+     * Get a finished mission by its path
      *
-     * @param location the location
-     * @param name     the name
+     * @param storage where the file possible is stored
      * @return the mission index or -1 if no such mission exists
      */
-    private int getFinishedMissionIndex(String location, String name) {
+    private int getFinishedMissionIndex(StoredFileHelper storage) {
         for (int i = 0; i < mMissionsFinished.size(); i++) {
-            FinishedMission mission = mMissionsFinished.get(i);
-            if (location.equalsIgnoreCase(mission.location) && name.equalsIgnoreCase(mission.name)) {
+            if (mMissionsFinished.get(i).storage.equals(storage)) {
                 return i;
             }
         }
@@ -316,12 +346,12 @@ public class DownloadManager {
         return -1;
     }
 
-    public Mission getAnyMission(String location, String name) {
+    private Mission getAnyMission(StoredFileHelper storage) {
         synchronized (this) {
-            Mission mission = getPendingMission(location, name);
+            Mission mission = getPendingMission(storage);
             if (mission != null) return mission;
 
-            int idx = getFinishedMissionIndex(location, name);
+            int idx = getFinishedMissionIndex(storage);
             if (idx >= 0) return mMissionsFinished.get(idx);
         }
 
@@ -332,7 +362,7 @@ public class DownloadManager {
         int count = 0;
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running && mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED && !mission.isFinished())
+                if (mission.running && !mission.isPsFailed() && !mission.isFinished())
                     count++;
             }
         }
@@ -340,62 +370,30 @@ public class DownloadManager {
         return count;
     }
 
-    void pauseAllMissions() {
+    public void pauseAllMissions(boolean force) {
         synchronized (this) {
-            for (DownloadMission mission : mMissionsPending) mission.pause();
-        }
-    }
+            for (DownloadMission mission : mMissionsPending) {
+                if (!mission.running || mission.isPsRunning() || mission.isFinished()) continue;
 
+                if (force) {
+                    // avoid waiting for threads
+                    mission.init = null;
+                    mission.threads = new Thread[0];
+                }
 
-    /**
-     * Splits the filename into name and extension
-     * <p>
-     * Dots are ignored if they appear: not at all, at the beginning of the file,
-     * at the end of the file
-     *
-     * @param name the name to split
-     * @return a string array with a length of 2 containing the name and the extension
-     */
-    private static String[] splitName(String name) {
-        int dotIndex = name.lastIndexOf('.');
-        if (dotIndex <= 0 || (dotIndex == name.length() - 1)) {
-            return new String[]{name, ""};
-        } else {
-            return new String[]{name.substring(0, dotIndex), name.substring(dotIndex + 1)};
-        }
-    }
-
-    /**
-     * Generates a unique file name.
-     * <p>
-     * e.g. "myName (1).txt" if the name "myName.txt" exists.
-     *
-     * @param location the location (to check for existing files)
-     * @param name     the name of the file
-     * @return the unique file name
-     * @throws IllegalArgumentException if the location is not a directory
-     * @throws SecurityException        if the location is not readable
-     */
-    private static String generateUniqueName(String location, String name) {
-        if (location == null) throw new NullPointerException("location is null");
-        if (name == null) throw new NullPointerException("name is null");
-        File destination = new File(location);
-        if (!destination.isDirectory()) {
-            throw new IllegalArgumentException("location is not a directory: " + location);
-        }
-        final String[] nameParts = splitName(name);
-        String[] existingName = destination.list((dir, name1) -> name1.startsWith(nameParts[0]));
-        Arrays.sort(existingName);
-        String newName;
-        int downloadIndex = 0;
-        do {
-            newName = nameParts[0] + " (" + downloadIndex + ")." + nameParts[1];
-            ++downloadIndex;
-            if (downloadIndex == 1000) {  // Probably an error on our side
-                throw new RuntimeException("Too many existing files");
+                mission.pause();
             }
-        } while (Arrays.binarySearch(existingName, newName) >= 0);
-        return newName;
+        }
+    }
+
+    public void startAllMissions() {
+        synchronized (this) {
+            for (DownloadMission mission : mMissionsPending) {
+                if (mission.running || mission.isCorrupt()) continue;
+
+                mission.start();
+            }
+        }
     }
 
     /**
@@ -407,36 +405,43 @@ public class DownloadManager {
         synchronized (this) {
             mMissionsPending.remove(mission);
             mMissionsFinished.add(0, new FinishedMission(mission));
-            mDownloadDataSource.addMission(mission);
+            mFinishedMissionStore.addFinishedMission(mission);
         }
     }
 
     /**
-     * runs another mission in queue if possible
+     * runs one or multiple missions in from queue if possible
      *
-     * @return true if exits pending missions running or a mission was started, otherwise, false
+     * @return true if one or multiple missions are running, otherwise, false
      */
-    boolean runAnotherMission() {
+    boolean runMissions() {
         synchronized (this) {
             if (mMissionsPending.size() < 1) return false;
-
-            int i = getRunningMissionsCount();
-            if (i > 0) return true;
-
             if (!canDownloadInCurrentNetwork()) return false;
 
-            for (DownloadMission mission : mMissionsPending) {
-                if (!mission.running && mission.errCode == DownloadMission.ERROR_NOTHING && mission.enqueued) {
-                    resumeMission(mission);
-                    return true;
-                }
+            if (mPrefQueueLimit) {
+                for (DownloadMission mission : mMissionsPending)
+                    if (!mission.isFinished() && mission.running) return true;
             }
 
-            return false;
+            boolean flag = false;
+            for (DownloadMission mission : mMissionsPending) {
+                if (mission.running || !mission.enqueued || mission.isFinished())
+                    continue;
+
+                resumeMission(mission);
+                if (mission.errCode != DownloadMission.ERROR_NOTHING) continue;
+
+                if (mPrefQueueLimit) return true;
+                flag = true;
+            }
+
+            return flag;
         }
     }
 
     public MissionIterator getIterator() {
+        mSelfMissionsControl = true;
         return new MissionIterator();
     }
 
@@ -446,7 +451,7 @@ public class DownloadManager {
     public void forgetFinishedDownloads() {
         synchronized (this) {
             for (FinishedMission mission : mMissionsFinished) {
-                mDownloadDataSource.deleteMission(mission);
+                mFinishedMissionStore.deleteMission(mission);
             }
             mMissionsFinished.clear();
         }
@@ -454,31 +459,33 @@ public class DownloadManager {
 
     private boolean canDownloadInCurrentNetwork() {
         if (mLastNetworkStatus == NetworkState.Unavailable) return false;
-        return !(mPrefCrossNetwork && mLastNetworkStatus == NetworkState.MobileOperating);
+        return !(mPrefMeteredDownloads && mLastNetworkStatus == NetworkState.MeteredOperating);
     }
 
-    void handleConnectivityChange(NetworkState currentStatus) {
+    void handleConnectivityState(NetworkState currentStatus, boolean updateOnly) {
         if (currentStatus == mLastNetworkStatus) return;
 
         mLastNetworkStatus = currentStatus;
+        if (currentStatus == NetworkState.Unavailable) return;
 
-        if (currentStatus == NetworkState.Unavailable) {
-            return;
-        } else if (currentStatus != NetworkState.MobileOperating || !mPrefCrossNetwork) {
-            return;
+        if (!mSelfMissionsControl || updateOnly) {
+            return;// don't touch anything without the user interaction
         }
 
-        boolean flag = false;
+        boolean isMetered = mPrefMeteredDownloads && mLastNetworkStatus == NetworkState.MeteredOperating;
+
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running && mission.isFinished() && !mission.postprocessingRunning) {
-                    flag = true;
+                if (mission.isCorrupt() || mission.isPsRunning()) continue;
+
+                if (mission.running && isMetered) {
                     mission.pause();
+                } else if (!mission.running && !isMetered && mission.enqueued) {
+                    mission.start();
+                    if (mPrefQueueLimit) break;
                 }
             }
         }
-
-        if (flag) mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
     }
 
     void updateMaximumAttempts() {
@@ -487,37 +494,54 @@ public class DownloadManager {
         }
     }
 
-    /**
-     * Fast check for pending downloads. If exists, the user will be notified
-     * TODO: call this method in somewhere
-     *
-     * @param context the application context
-     */
-    public static void notifyUserPendingDownloads(Context context) {
-        int pending = getPendingDir(context).list().length;
-        if (pending < 1) return;
-
-        Toast.makeText(context, context.getString(
-                R.string.msg_pending_downloads,
-                String.valueOf(pending)
-        ), Toast.LENGTH_LONG).show();
-    }
-
-    void checkForRunningMission(String location, String name, DownloadManagerService.DMChecker check) {
-        boolean listed;
-        boolean finished = false;
-
+    public MissionState checkForExistingMission(StoredFileHelper storage) {
         synchronized (this) {
-            DownloadMission mission = getPendingMission(location, name);
-            if (mission != null) {
-                listed = true;
+            DownloadMission pending = getPendingMission(storage);
+
+            if (pending == null) {
+                if (getFinishedMissionIndex(storage) >= 0) return MissionState.Finished;
             } else {
-                listed = getFinishedMissionIndex(location, name) >= 0;
-                finished = listed;
+                if (pending.isFinished()) {
+                    return MissionState.Finished;// this never should happen (race-condition)
+                } else {
+                    return pending.running ? MissionState.PendingRunning : MissionState.Pending;
+                }
             }
         }
 
-        check.callback(listed, finished);
+        return MissionState.None;
+    }
+
+    private static boolean isDirectoryAvailable(File directory) {
+        return directory != null && directory.canWrite() && directory.exists();
+    }
+
+    static File pickAvailableTemporalDir(@NonNull Context ctx) {
+        File dir = ctx.getExternalFilesDir(null);
+        if (isDirectoryAvailable(dir)) return dir;
+
+        dir = ctx.getFilesDir();
+        if (isDirectoryAvailable(dir)) return dir;
+
+        // this never should happen
+        dir = ctx.getDir("muxing_tmp", Context.MODE_PRIVATE);
+        if (isDirectoryAvailable(dir)) return dir;
+
+        // fallback to cache dir
+        dir = ctx.getCacheDir();
+        if (isDirectoryAvailable(dir)) return dir;
+
+        throw new RuntimeException("Not temporal directories are available");
+    }
+
+    @Nullable
+    private StoredDirectoryHelper getMainStorage(@NonNull String tag) {
+        if (tag.equals(TAG_AUDIO)) return mMainStorageAudio;
+        if (tag.equals(TAG_VIDEO)) return mMainStorageVideo;
+
+        Log.w(TAG, "Unknown download category, not [audio video]: " + tag);
+
+        return null;// this never should happen
     }
 
     public class MissionIterator extends DiffUtil.Callback {
@@ -527,6 +551,8 @@ public class DownloadManager {
         ArrayList<Object> snapshot;
         ArrayList<Object> current;
         ArrayList<Mission> hidden;
+
+        boolean hasFinished = false;
 
         private MissionIterator() {
             hidden = new ArrayList<>(2);
@@ -538,14 +564,10 @@ public class DownloadManager {
             synchronized (DownloadManager.this) {
                 ArrayList<Mission> pending = new ArrayList<>(mMissionsPending);
                 ArrayList<Mission> finished = new ArrayList<>(mMissionsFinished);
-                ArrayList<Mission> remove = new ArrayList<>(hidden);
+                List<Mission> remove = new ArrayList<>(hidden);
 
                 // hide missions (if required)
-                Iterator<Mission> iterator = remove.iterator();
-                while (iterator.hasNext()) {
-                    Mission mission = iterator.next();
-                    if (pending.remove(mission) || finished.remove(mission)) iterator.remove();
-                }
+                remove.removeIf(mission -> pending.remove(mission) || finished.remove(mission));
 
                 int fakeTotal = pending.size();
                 if (fakeTotal > 0) fakeTotal++;
@@ -563,6 +585,7 @@ public class DownloadManager {
                     list.addAll(finished);
                 }
 
+                hasFinished = finished.size() > 0;
 
                 return list;
             }
@@ -586,39 +609,6 @@ public class DownloadManager {
             return SPECIAL_NOTHING;
         }
 
-        public MissionItem getItemUnsafe(int position) {
-            synchronized (DownloadManager.this) {
-                int count = mMissionsPending.size();
-                int count2 = mMissionsFinished.size();
-
-                if (count > 0) {
-                    position--;
-                    if (position == -1)
-                        return new MissionItem(SPECIAL_PENDING);
-                    else if (position < count)
-                        return new MissionItem(SPECIAL_NOTHING, mMissionsPending.get(position));
-                    else if (position == count && count2 > 0)
-                        return new MissionItem(SPECIAL_FINISHED);
-                    else
-                        position -= count;
-                } else {
-                    if (count2 > 0 && position == 0) {
-                        return new MissionItem(SPECIAL_FINISHED);
-                    }
-                }
-
-                position--;
-
-                if (count2 < 1) {
-                    throw new RuntimeException(
-                            String.format("Out of range. pending_count=%s  finished_count=%s  position=%s", count, count2, position)
-                    );
-                }
-
-                return new MissionItem(SPECIAL_NOTHING, mMissionsFinished.get(position));
-            }
-        }
-
 
         public void start() {
             current = getSpecialItems();
@@ -635,6 +625,36 @@ public class DownloadManager {
 
         public void unHide(Mission mission) {
             hidden.remove(mission);
+        }
+
+        public boolean hasFinishedMissions() {
+            return hasFinished;
+        }
+
+        /**
+         * Check if exists missions running and paused. Corrupted and hidden missions are not counted
+         *
+         * @return two-dimensional array contains the current missions state.
+         * 1° entry: true if has at least one mission running
+         * 2° entry: true if has at least one mission paused
+         */
+        public boolean[] hasValidPendingMissions() {
+            boolean running = false;
+            boolean paused = false;
+
+            synchronized (DownloadManager.this) {
+                for (DownloadMission mission : mMissionsPending) {
+                    if (hidden.contains(mission) || mission.isCorrupt())
+                        continue;
+
+                    if (mission.running)
+                        running = true;
+                    else
+                        paused = true;
+                }
+            }
+
+            return new boolean[]{running, paused};
         }
 
 
@@ -655,7 +675,14 @@ public class DownloadManager {
 
         @Override
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return areItemsTheSame(oldItemPosition, newItemPosition);
+            Object x = snapshot.get(oldItemPosition);
+            Object y = current.get(newItemPosition);
+
+            if (x instanceof Mission && y instanceof Mission) {
+                return ((Mission) x).storage.equals(((Mission) y).storage);
+            }
+
+            return false;
         }
     }
 

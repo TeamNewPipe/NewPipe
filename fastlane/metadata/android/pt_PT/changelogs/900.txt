@@ -1,0 +1,14 @@
+Novo
+- Grupos de assinaturas e feeds ordenados
+- Botão de mudo nos reprodutores
+
+Melhorado
+- Permitir a abertura de ligações music.youtube.com e media.ccc.de em NewPipe
+- Mudar duas configurações do Appearance para o Content
+- Esconder 5, 15, 25 segundos de opções de busca se a busca inexata estiver ativada
+
+Fixo
+- alguns vídeos do WebM não são procurados
+- backup do banco de dados no Android P
+- falhar ao compartilhar um ficheiro descarregado
+- muitos problemas de extração no YouTube e mais ...

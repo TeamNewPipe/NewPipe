@@ -1,31 +1,39 @@
 package org.schabi.newpipe.player.playback;
 
-import android.support.annotation.NonNull;
+import android.content.Context;
 import android.text.TextUtils;
+import android.util.Pair;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.RendererCapabilities.Capabilities;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.FixedTrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.util.Assertions;
 
 /**
  * This class allows irregular text language labels for use when selecting text captions and
  * is mostly a copy-paste from {@link DefaultTrackSelector}.
- *
+ * <p>
  * This is a hack and should be removed once ExoPlayer fixes language normalization to accept
- * a broader set of languages. 
- * */
+ * a broader set of languages.
+ * </p>
+ */
 public class CustomTrackSelector extends DefaultTrackSelector {
-    private static final int WITHIN_RENDERER_CAPABILITIES_BONUS = 1000;
-
     private String preferredTextLanguage;
 
-    public CustomTrackSelector(TrackSelection.Factory adaptiveTrackSelectionFactory) {
-        super(adaptiveTrackSelectionFactory);
+    public CustomTrackSelector(final Context context,
+                               final TrackSelection.Factory adaptiveTrackSelectionFactory) {
+        super(context, adaptiveTrackSelectionFactory);
+    }
+
+    private static boolean formatHasLanguage(final Format format, final String language) {
+        return language != null && TextUtils.equals(language, format.language);
     }
 
     public String getPreferredTextLanguage() {
@@ -40,65 +48,36 @@ public class CustomTrackSelector extends DefaultTrackSelector {
         }
     }
 
-    /** @see DefaultTrackSelector#formatHasLanguage(Format, String)*/
-    protected static boolean formatHasLanguage(Format format, String language) {
-        return language != null && TextUtils.equals(language, format.language);
-    }
-
-    /** @see DefaultTrackSelector#formatHasNoLanguage(Format)*/
-    protected static boolean formatHasNoLanguage(Format format) {
-        return TextUtils.isEmpty(format.language) || formatHasLanguage(format, C.LANGUAGE_UNDETERMINED);
-    }
-
-    /** @see DefaultTrackSelector#selectTextTrack(TrackGroupArray, int[][], Parameters) */
     @Override
-    protected TrackSelection selectTextTrack(TrackGroupArray groups, int[][] formatSupport,
-                                             Parameters params) {
+    @Nullable
+    protected Pair<TrackSelection.Definition, TextTrackScore> selectTextTrack(
+            final TrackGroupArray groups,
+            @NonNull final int[][] formatSupport,
+            @NonNull final Parameters params,
+            @Nullable final String selectedAudioLanguage) {
         TrackGroup selectedGroup = null;
-        int selectedTrackIndex = 0;
-        int selectedTrackScore = 0;
+        int selectedTrackIndex = C.INDEX_UNSET;
+        TextTrackScore selectedTrackScore = null;
+
         for (int groupIndex = 0; groupIndex < groups.length; groupIndex++) {
-            TrackGroup trackGroup = groups.get(groupIndex);
-            int[] trackFormatSupport = formatSupport[groupIndex];
+            final TrackGroup trackGroup = groups.get(groupIndex);
+            @Capabilities final int[] trackFormatSupport = formatSupport[groupIndex];
+
             for (int trackIndex = 0; trackIndex < trackGroup.length; trackIndex++) {
                 if (isSupported(trackFormatSupport[trackIndex],
                         params.exceedRendererCapabilitiesIfNecessary)) {
-                    Format format = trackGroup.getFormat(trackIndex);
-                    int maskedSelectionFlags =
-                            format.selectionFlags & ~params.disabledTextTrackSelectionFlags;
-                    boolean isDefault = (maskedSelectionFlags & C.SELECTION_FLAG_DEFAULT) != 0;
-                    boolean isForced = (maskedSelectionFlags & C.SELECTION_FLAG_FORCED) != 0;
-                    int trackScore;
-                    boolean preferredLanguageFound = formatHasLanguage(format, preferredTextLanguage);
-                    if (preferredLanguageFound
-                            || (params.selectUndeterminedTextLanguage && formatHasNoLanguage(format))) {
-                        if (isDefault) {
-                            trackScore = 8;
-                        } else if (!isForced) {
-                            // Prefer non-forced to forced if a preferred text language has been specified. Where
-                            // both are provided the non-forced track will usually contain the forced subtitles as
-                            // a subset.
-                            trackScore = 6;
-                        } else {
-                            trackScore = 4;
-                        }
-                        trackScore += preferredLanguageFound ? 1 : 0;
-                    } else if (isDefault) {
-                        trackScore = 3;
-                    } else if (isForced) {
-                        if (formatHasLanguage(format, params.preferredAudioLanguage)) {
-                            trackScore = 2;
-                        } else {
-                            trackScore = 1;
-                        }
-                    } else {
-                        // Track should not be selected.
-                        continue;
-                    }
-                    if (isSupported(trackFormatSupport[trackIndex], false)) {
-                        trackScore += WITHIN_RENDERER_CAPABILITIES_BONUS;
-                    }
-                    if (trackScore > selectedTrackScore) {
+                    final Format format = trackGroup.getFormat(trackIndex);
+                    final TextTrackScore trackScore = new TextTrackScore(format, params,
+                            trackFormatSupport[trackIndex], selectedAudioLanguage);
+
+                    if (formatHasLanguage(format, preferredTextLanguage)) {
+                        selectedGroup = trackGroup;
+                        selectedTrackIndex = trackIndex;
+                        selectedTrackScore = trackScore;
+                        break; // found user selected match (perfect!)
+
+                    } else if (trackScore.isWithinConstraints && (selectedTrackScore == null
+                            || trackScore.compareTo(selectedTrackScore) > 0)) {
                         selectedGroup = trackGroup;
                         selectedTrackIndex = trackIndex;
                         selectedTrackScore = trackScore;
@@ -107,6 +86,7 @@ public class CustomTrackSelector extends DefaultTrackSelector {
             }
         }
         return selectedGroup == null ? null
-                : new FixedTrackSelection(selectedGroup, selectedTrackIndex);
+                : Pair.create(new TrackSelection.Definition(selectedGroup, selectedTrackIndex),
+                        Assertions.checkNotNull(selectedTrackScore));
     }
 }

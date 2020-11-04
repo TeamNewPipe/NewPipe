@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s просмотров</string>
     <string name="upload_date_text">Опубликовано %1$s</string>
@@ -10,52 +10,45 @@
     <string name="download">Скачать</string>
     <string name="search">Поиск</string>
     <string name="settings">Настройки</string>
-    <string name="did_you_mean">Возможно, вы имели в виду: %1$s?</string>
-    <string name="share_dialog_title">Поделиться с помощью</string>
-    <string name="choose_browser">Выбрать браузер</string>
+    <string name="did_you_mean">Возможно, вы имели в виду \"%1$s\"\?</string>
+    <string name="share_dialog_title">Поделиться</string>
+    <string name="choose_browser">Выбор браузера</string>
     <string name="screen_rotation">поворот</string>
-    <string name="download_path_title">Путь загрузки видео</string>
-    <string name="download_path_summary">Папка для хранения загруженных видео</string>
-    <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
+    <string name="download_path_title">Папка для скачанного видео</string>
+    <string name="download_path_summary">Папка для скачанного видео</string>
+    <string name="download_path_dialog_title">Введите путь к папке для скачивания видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
-    <string name="kore_not_found">Приложение Kore не найдено. Установить его?</string>
+    <string name="kore_not_found">Приложение Kore не найдено, установить\?</string>
     <string name="show_play_with_kodi_title">\"Воспроизвести в Kodi\"</string>
     <string name="show_play_with_kodi_summary">Показать опцию воспроизведения через медиацентр Kodi</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
-    <string name="webm_description">WebM — свободный</string>
-    <string name="m4a_description">M4A — выше качество</string>
     <string name="download_dialog_title">Скачать</string>
-    <string name="next_video_title">Следующее видео</string>
-    <string name="url_not_supported_toast">URL не поддерживается</string>
-    <string name="show_next_and_similar_title">\"Следующее\" и \"Похожие\" видео</string>
+    <string name="unsupported_url">URL не поддерживается</string>
+    <string name="show_next_and_similar_title">\"Следующее\" и похожие видео</string>
     <string name="content_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
     <string name="settings_category_other_title">Другое</string>
-
     <string name="list_thumbnail_view_description">Миниатюра видео-превью</string>
-    <string name="detail_thumbnail_view_description">Миниатюра видео-превью</string>
+    <string name="detail_thumbnail_view_description">Воспроизвести видео, длительность:</string>
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователя</string>
     <string name="detail_dislikes_img_view_description">Не понравилось</string>
     <string name="detail_likes_img_view_description">Понравилось</string>
     <string name="use_external_video_player_title">Внешний видеоплеер</string>
     <string name="use_external_audio_player_title">Внешний аудиоплеер</string>
-    <string name="background_player_playing_toast">Воспроизведение в фоновом режиме</string>
+    <string name="background_player_playing_toast">Фоновое воспроизведение</string>
     <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тёмная</string>
     <string name="light_theme_title">Светлая</string>
-
-    <string name="play_btn_text">Воспроизвести</string>
     <string name="network_error">Ошибка сети</string>
-
     <string name="use_tor_title">Использовать Tor</string>
-    <string name="download_path_audio_title">Путь загрузки аудио</string>
-    <string name="download_path_audio_summary">Папка для хранения загруженных аудио</string>
-    <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио</string>
-
-    <string name="main_bg_subtitle">Начните с поиска</string>
+    <string name="download_path_audio_title">Папка для скачанного аудио</string>
+    <string name="download_path_audio_summary">Папка для скачанного аудио</string>
+    <string name="download_path_audio_dialog_title">Введите путь к папке для скачивания аудио</string>
+    <string name="main_bg_subtitle">Нажмите \"Поиск\", чтобы начать
+\n</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
@@ -64,17 +57,14 @@
     <string name="pause">Пауза</string>
     <string name="delete">Удалить</string>
     <string name="checksum">Контрольная сумма</string>
-
     <string name="msg_name">Имя файла</string>
     <string name="msg_error">Ошибка</string>
     <string name="msg_server_unsupported">Сервер не поддерживается</string>
-    <string name="msg_running">NewPipe скачивает</string>
+    <string name="msg_running">NewPipe загружает</string>
     <string name="msg_url_malform">Неверный URL или нет доступа к интернету</string>
     <string name="msg_running_detail">Подробнее</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
-    <string name="no_available_dir">Выберите доступную папку для загрузки</string>
-
-
+    <string name="no_available_dir">Выберите папку для загрузки позже в настройках</string>
     <string name="show_age_restricted_content_title">Контент 18+</string>
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (English):</string>
@@ -82,53 +72,42 @@
     <string name="autoplay_by_calling_app_title">Автовоспроизведение</string>
     <string name="autoplay_by_calling_app_summary">Воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
-    <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках.</string>
-    <string name="duration_live">вживую</string>
+    <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в \"Настройках\"</string>
+    <string name="duration_live">Трансляция</string>
     <string name="downloads">Загрузки</string>
     <string name="downloads_title">Загрузки</string>
     <string name="error_report_title">Отчёт об ошибке</string>
-
     <string name="parsing_error">Не удалось разобрать веб-сайт</string>
     <string name="light_parsing_error">Не удалось полностью разобрать веб-сайт</string>
     <string name="content_not_available">Контент недоступен</string>
-    <string name="blocked_by_gema">Заблокировано GEMA</string>
     <string name="could_not_setup_download_menu">Не удалось создать меню загрузки</string>
-    <string name="live_streams_not_supported">Это прямая трансляция, они пока не поддерживаются.</string>
+    <string name="live_streams_not_supported">Трансляции пока не поддерживаются</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
-    <string name="app_ui_crash">Падение приложения/UI</string>
+    <string name="app_ui_crash">Приложение/UI завершило работу</string>
     <string name="sorry_string">Простите, это не должно было произойти.</string>
     <string name="error_report_button_text">Отправить отчёт по e-mail</string>
-    <string name="error_snackbar_message">Простите, произошли ошибки.</string>
-    <string name="error_snackbar_action">ОТЧЁТ</string>
+    <string name="error_snackbar_message">Извините, что-то пошло не так.</string>
+    <string name="error_snackbar_action">Отчёт</string>
     <string name="what_device_headline">Информация:</string>
     <string name="what_happened_headline">Что произошло:</string>
     <string name="error_details_headline">Подробности:</string>
-
-
-    <string name="use_tor_summary">(Экспериментально) Загружать через Tor для повышения конфиденциальности (прямые трансляции пока не поддерживаются).</string>
+    <string name="use_tor_summary">Загружать через Tor для повышения конфиденциальности (прямые трансляции пока не поддерживаются)</string>
     <string name="report_error">Сообщить об ошибке</string>
     <string name="user_report">Сообщить о нарушении</string>
-
     <string name="info_dir_created">Создана папка для загрузок \"%1$s\"</string>
-
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
     <string name="retry">Повторить попытку</string>
     <string name="storage_permission_denied">Нет доступа к накопителю</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
-    <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись URL у видео</string>
+    <string name="youtube_signature_deobfuscation_error">Не удалось расшифровать подпись URL у видео</string>
     <string name="could_not_get_stream">Не удалось найти ни одного потока</string>
-
     <string name="view">Воспроизвести</string>
-
-
     <string name="controls_background_title">В фоне</string>
     <string name="controls_popup_title">В окне</string>
-
-    <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
-    <string name="popup_remember_size_pos_title">Восстановить окно</string>
     <string name="player_gesture_controls_summary">Изменять яркость и громкость жестами</string>
     <string name="settings_category_popup_title">Всплывающее окно</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
@@ -136,41 +115,29 @@
     <string name="yes">Да</string>
     <string name="refresh">Обновить</string>
     <string name="clear">Очистить</string>
-    <string name="use_old_player_title">Старый плеер</string>
     <string name="player_gesture_controls_title">Управление жестами</string>
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
-
-
     <string name="add">Новая цель</string>
-    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
-    <string name="msg_popup_permission">Это разрешение нужно для 
+    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
+    <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
-
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="open_in_popup_mode">Открыть в отдельном окне</string>
-    <string name="show_search_suggestions_summary">Отображать подсказки при поиске</string>
-
+    <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
+    <string name="show_search_suggestions_summary">Предлагать варианты при поиске</string>
     <string name="later">Позже</string>
     <string name="disabled">Отключено</string>
     <string name="popup_resizing_indicator_title">Изменение размера</string>
-
-    <string name="use_external_video_player_summary">В некоторых разрешениях НЕ будет звука, если включено</string>
-    <string name="short_million"> млн.</string>
-    <string name="short_billion"> млрд.</string>
-
-    <string name="short_thousand"> тыс.</string>
-    <string name="default_popup_resolution_title">Разрешение очереди \"В окне\"</string>
-    <string name="popup_remember_size_pos_summary">Запоминать размер и положение всплывающего окна</string>
-    <string name="show_search_suggestions_title">Варианты поиска</string>
-<string name="best_resolution">Лучшее разрешение</string>
-
-    <string name="use_old_player_summary">Использовать старый встроенный плеер на Mediaframework</string>
-    <string name="reCaptcha_title">Запрос reCAPTCHA</string>
+    <string name="use_external_video_player_summary">Убирает звук в некоторых разрешениях</string>
+    <string name="short_million">" млн"</string>
+    <string name="short_billion">" млрд"</string>
+    <string name="short_thousand">" тыс."</string>
+    <string name="default_popup_resolution_title">Разрешение всплывающего окна</string>
+    <string name="show_search_suggestions_title">Поисковые предложения</string>
+    <string name="best_resolution">Лучшее разрешение</string>
+    <string name="title_activity_recaptcha">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
-
     <string name="show_higher_resolutions_title">Высокие разрешения</string>
-    <string name="popup_mode_share_menu_title">NewPipe в окне</string>
+    <string name="popup_mode_share_menu_title">NewPipe во всплывающем окне</string>
     <string name="title_activity_about">О NewPipe</string>
     <string name="action_settings">Настройки</string>
     <string name="app_license_title">Лицензия NewPipe</string>
@@ -182,40 +149,36 @@
     <string name="tab_about">О приложении</string>
     <string name="tab_contributors">Участники</string>
     <string name="read_full_license">Прочитать лицензию</string>
-    <string name="app_description">Свободное легковесное потоковое воспроизведение на Android.</string>
+    <string name="app_description">Свободное и легковесное потоковое воспроизведение для Android.</string>
     <string name="view_on_github">Открыть на GitHub</string>
     <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
     <string name="copyright" formatted="true">© %1$s %2$s под лицензией %3$s</string>
     <string name="contribution_title">Помощь проекту</string>
-<string name="subscribe_button_title">Подписаться</string>
+    <string name="subscribe_button_title">Подписаться</string>
     <string name="subscription_change_failed">Не удалось изменить подписку</string>
     <string name="subscription_update_failed">Не удалось обновить подписку</string>
-
     <string name="tab_main">Главная</string>
     <string name="tab_subscriptions">Подписки</string>
-
-    <string name="fragment_whats_new">Что нового</string>
-
+    <string name="fragment_feed_title">Что нового</string>
     <string name="enable_search_history_title">История поиска</string>
     <string name="enable_search_history_summary">Хранить запросы поиска локально</string>
-    <string name="enable_watch_history_title">История и кэш</string>
+    <string name="enable_watch_history_title">История просмотров</string>
+    <string name="enable_playback_resume_title">Продолжать воспроизведение</string>
+    <string name="enable_playback_resume_summary">Восстанавливать последнюю позицию</string>
+    <string name="enable_playback_state_lists_title">Позиции в списках</string>
+    <string name="enable_playback_state_lists_summary">Показать индикаторы позиций просмотра в списках</string>
+    <string name="settings_category_clear_data_title">Очистка данных</string>
     <string name="enable_watch_history_summary">Запоминать воспроизведённые потоки</string>
     <string name="resume_on_audio_focus_gain_title">Возобновить при фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
-
-
     <string name="notification_channel_name">Уведомление NewPipe</string>
-    <string name="notification_channel_description">Уведомления для NewPipe в фоне и во всплывающем окне</string>
-
+    <string name="notification_channel_description">Уведомление для NewPipe в фоне и во всплывающем окне</string>
     <string name="settings_category_downloads_title">Загрузки</string>
     <string name="settings_file_charset_title">Допустимые символы имён файлов</string>
-
-    <string name="settings_file_replacement_character_summary">Заменяет недопустимые символы</string>>
+    <string name="settings_file_replacement_character_summary">Заменяет недопустимые символы</string>&gt;
     <string name="settings_file_replacement_character_title">Символ для замены</string>
-
     <string name="charset_letters_and_digits">Буквы и цифры</string>
     <string name="charset_most_special_characters">Большинство спецсимволов</string>
-
     <string name="title_activity_history">История</string>
     <string name="title_history_search">История поиска</string>
     <string name="title_history_view">Просмотрено</string>
@@ -223,40 +186,34 @@
     <string name="action_history">История</string>
     <string name="history_empty">История пуста</string>
     <string name="history_cleared">История очищена</string>
-
-<string name="settings_category_player_title">Плеер</string>
+    <string name="settings_category_player_title">Плеер</string>
     <string name="settings_category_player_behavior_title">Поведение</string>
     <string name="settings_category_history_title">История и кэш</string>
     <string name="playlist">Плейлист</string>
     <string name="undo">Отмена</string>
-
     <string name="search_no_results">Нет результатов</string>
     <string name="empty_subscription_feed_subtitle">Ничего нет</string>
-
     <string name="no_subscribers">Нет подписчиков</string>
     <plurals name="subscribers">
-	<item quantity="one">%s подписчик</item>
-	<item quantity="few">%s подписчика</item>
-	<item quantity="other">%s подписчиков</item>
-</plurals>
-
+        <item quantity="one">%s подписчик</item>
+        <item quantity="few">%s подписчика</item>
+        <item quantity="many">%s подписчиков</item>
+    </plurals>
     <string name="no_views">Нет просмотров</string>
     <plurals name="views">
-	<item quantity="one">%s просмотр</item>
-	<item quantity="few">%s просмотра</item>
-	<item quantity="other">%s просмотров</item>
-</plurals>
-
+        <item quantity="one">%s просмотр</item>
+        <item quantity="few">%s просмотра</item>
+        <item quantity="many">%s просмотров</item>
+    </plurals>
     <string name="no_videos">Нет видео</string>
     <plurals name="videos">
-	<item quantity="one">%s видео</item>
-	<item quantity="few">%s видео</item>
-	<item quantity="many">%s видео</item>
-</plurals>
-
+        <item quantity="one">%s видео</item>
+        <item quantity="few">%s видео</item>
+        <item quantity="many">%s видео</item>
+    </plurals>
     <string name="item_deleted">Элемент удалён</string>
-<string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
-<string name="main_page_content">Контент главной страницы</string>
+    <string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
+    <string name="main_page_content">Главная страница</string>
     <string name="blank_page_summary">Пустая страница</string>
     <string name="kiosk_page_summary">Киоск</string>
     <string name="subscription_page_summary">Подписки</string>
@@ -264,7 +221,6 @@
     <string name="channel_page_summary">Канал</string>
     <string name="select_a_channel">Выберите канал</string>
     <string name="select_a_kiosk">Выберите киоск</string>
-
     <string name="kiosk">Киоск</string>
     <string name="trending">Тренды</string>
     <string name="top_50">Топ 50</string>
@@ -272,212 +228,157 @@
     <string name="background_player_append">Добавлено в очередь в фоне</string>
     <string name="popup_playing_append">Добавлено в очередь в окне</string>
     <string name="play_all">Играть всё</string>
-
     <string name="player_stream_failure">Не удалось воспроизвести этот поток</string>
     <string name="play_queue_stream_detail">Сведения</string>
     <string name="play_queue_audio_settings">Настройки звука</string>
-    <string name="no_channel_subscribed_yet">Пока нет подписок на каналы</string>
+    <string name="no_channel_subscribed_yet">Подписок на каналы пока нет</string>
     <string name="play_queue_remove">Удалить</string>
     <string name="subscribed_button_title">Вы подписаны</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
     <string name="show_hold_to_append_title">\"Зажмите, чтобы добавить\"</string>
     <string name="show_hold_to_append_summary">Показать подсказку при нажатии \"В окне\" или \"В фоне\" на странице сведений о видео</string>
     <string name="unknown_content">[Неизвестно]</string>
-
     <string name="player_recoverable_failure">Восстановление после ошибки плеера</string>
-
-    <string name="title_activity_background_player">В фоне</string>
-    <string name="title_activity_popup_player">В окне</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
-    <string name="enqueue_on_background">Добавить в очередь \"В фоне\"</string>
-    <string name="enqueue_on_popup">Добавить в очередь \"В окне\"</string>
-    <string name="start_here_on_main">Начать отсюда в плеере</string>
-    <string name="start_here_on_background">Начать отсюда в фоне</string>
-    <string name="start_here_on_popup">Начать отсюда в окне</string>
-<string name="no_player_found_toast">Потоковый плеер не найден (вы можете установить VLC)</string>
+    <string name="start_here_on_main">Играть отсюда в плеере</string>
+    <string name="start_here_on_background">Играть отсюда в фоне</string>
+    <string name="start_here_on_popup">Играть отсюда в окне</string>
+    <string name="no_player_found_toast">Потоковый плеер не найден (можно установить VLC)</string>
     <string name="default_content_country_title">Страна контента по умолчанию</string>
     <string name="service_title">Сервис</string>
     <string name="always">Всегда</string>
     <string name="just_once">Только сейчас</string>
-
     <string name="toggle_orientation">Переключить ориентацию</string>
     <string name="switch_to_background">Перейти в фон</string>
     <string name="switch_to_popup">Перейти в окно</string>
     <string name="switch_to_main">Перейти в плеер</string>
-
-    <string name="player_unrecoverable_failure">Ошибка плеера без возможности восстановления</string>
-    <string name="external_player_unsupported_link_type">Внешние плееры не поддерживают ссылки этих типов</string>
+    <string name="player_unrecoverable_failure">Неустранимая ошибка плеера</string>
+    <string name="external_player_unsupported_link_type">Внешние плееры не поддерживают эти типы ссылок</string>
     <string name="invalid_url_toast">Неверная ссылка</string>
-    <string name="video_streams_empty">Потоки видео не найдены</string>
-    <string name="audio_streams_empty">Потоки аудио не найдены</string>
-
-    <string name="donation_title">Пожертвовать</string>
-    <string name="donation_encouragement">Разработчики NewPipe ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать NewPipe ещё лучше.</string>
+    <string name="video_streams_empty">Видеопотоки не найдены</string>
+    <string name="audio_streams_empty">Аудиопотоки не найдены</string>
+    <string name="donation_title">Пожертвование</string>
+    <string name="donation_encouragement">Разработчики NewPipe ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать NewPipe ещё круче.</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
     <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
     <string name="drawer_open">Открыть боковую панель</string>
     <string name="drawer_close">Закрыть боковую панель</string>
-
     <string name="video_player">Видеоплеер</string>
     <string name="background_player">Фоновый плеер</string>
     <string name="popup_player">Плеер в окне</string>
-    <string name="always_ask_player">Всегда спрашивать</string>
-    
     <string name="preferred_player_fetcher_notification_title">Получение сведений…</string>
     <string name="preferred_player_fetcher_notification_message">Загрузка запрошенного контента</string>
-<string name="controls_download_desc">Загрузка файла прямой трансляции.</string>
+    <string name="controls_download_desc">Скачать файл трансляции</string>
     <string name="show_info">Показать сведения</string>
-
-    <string name="tab_bookmarks">Закладки</string>
-
-    <string name="controls_add_to_playlist_title">Добавить к</string>
-
+    <string name="tab_bookmarks">Плейлисты</string>
+    <string name="controls_add_to_playlist_title">В плейлист</string>
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
-    <string name="use_inexact_seek_summary">Неточный поиск позволяет плееру искать позицию быстрее, но менее точно</string>
+    <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно. Не работает для перемотки на 5, 15 или 25 секунд</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
-
     <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
-
     <string name="settings_category_debug_title">Отладка</string>
     <string name="file">Файл</string>
-
     <string name="import_data_title">Импорт данных</string>
     <string name="export_data_title">Экспорт данных</string>
     <string name="import_data_summary">Текущие подписки, плейлисты и история будут заменены</string>
     <string name="export_data_summary">Экспорт подписок, плейлистов и истории</string>
-    <string name="invalid_directory">Неверная папка</string>
-    <string name="invalid_source">Неверный файл или источник контента</string>
+    <string name="invalid_directory">Папка не существует</string>
+    <string name="invalid_source">Папка или источник контента не существуют</string>
     <string name="invalid_file">Файл не существует или нет разрешения на его чтение или запись</string>
     <string name="file_name_empty_error">Имя файла не может быть пустым</string>
     <string name="error_occurred_detail">Произошла ошибка: %1$s</string>
-
     <string name="detail_drag_description">Перетащите, чтобы изменить порядок</string>
-
     <string name="create">Создать</string>
     <string name="delete_one">Удалить одно</string>
     <string name="delete_all">Удалить всё</string>
     <string name="dismiss">Отклонить</string>
     <string name="rename">Переименовать</string>
-
     <string name="delete_stream_history_prompt">Удалить этот элемент из истории поиска?</string>
     <string name="delete_all_history_prompt">Удалить все элементы из истории?</string>
     <string name="title_last_played">Недавно проигранные</string>
     <string name="title_most_played">Часто проигрываемые</string>
-
     <string name="export_complete_toast">Экспорт завершён</string>
     <string name="import_complete_toast">Импорт завершён</string>
     <string name="no_valid_zip_file">Нет верного Zip-файла</string>
-    <string name="could_not_import_all_files">Внимание: не все файлы были импортированы.</string>
-    <string name="override_current_data">Текущие данные будут заменены.</string>
-
+    <string name="could_not_import_all_files">Внимание: не все файлы были импортированы</string>
+    <string name="override_current_data">Текущие данные будут заменены</string>
     <string name="drawer_header_action_paceholder_text">Скоро здесь кое-что появится ;D</string>
-
-
     <string name="always_ask_open_action">Всегда спрашивать</string>
-    
-    <string name="create_playlist">Создать плейлист</string>
-    <string name="delete_playlist">Удалить плейлист</string>
-    <string name="rename_playlist">Переименовать плейлист</string>
-    <string name="playlist_name_input">Имя</string>
-    <string name="append_playlist">Добавить в плейлист</string>
+    <string name="create_playlist">Новый плейлист</string>
+    <string name="delete_playlist">Удалить</string>
+    <string name="rename_playlist">Переименовать</string>
+    <string name="name">Имя</string>
+    <string name="append_playlist">В плейлист</string>
     <string name="set_as_playlist_thumbnail">На миниатюру плейлиста</string>
-
-    <string name="bookmark_playlist">Добавить закладку</string>
-    <string name="unbookmark_playlist">Удалить закладку</string>
-
-    <string name="delete_playlist_prompt">Удалить этот плейлист?</string>
+    <string name="bookmark_playlist">Сохранить плейлист</string>
+    <string name="unbookmark_playlist">Удалить плейлист</string>
+    <string name="delete_playlist_prompt">Удалить плейлист\?</string>
     <string name="playlist_creation_success">Плейлист создан</string>
     <string name="playlist_add_stream_success">Добавлено в плейлист</string>
     <string name="playlist_thumbnail_change_success">Миниатюра плейлиста изменена</string>
     <string name="playlist_delete_failure">Не удалось удалить плейлист</string>
-
-    <string name="caption_none">Без титров</string>
-
+    <string name="caption_none">Без субтитров</string>
     <string name="resize_fit">Подогнать</string>
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
-
-    <string name="caption_auto_generated">Созданы автоматически</string>
-    <string name="caption_font_size_settings_title">Размер шрифта субтитров</string>
-    <string name="smaller_caption_font_size">Маленький шрифт</string>
-    <string name="normal_caption_font_size">Обычный шрифт</string>
-    <string name="larger_caption_font_size">Большой шрифт</string>
-
-    <string name="live_sync">Синхронизировать</string>
-
-    <string name="enable_leak_canary_title">Включить LeakCanary</string>
+    <string name="caption_auto_generated">Создано автоматически</string>
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
-
     <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
     <string name="enable_disposed_exceptions_summary">Принудительно сообщать о недоставляемых Rx-исключениях вне фрагмента или жизненного цикла после удаления</string>
-
     <string name="import_export_title">Импорт и экспорт</string>
     <string name="import_title">Импорт</string>
     <string name="import_from">Импорт из</string>
     <string name="export_to">Экспорт в</string>
-
     <string name="import_ongoing">Импорт…</string>
     <string name="export_ongoing">Экспорт…</string>
-
     <string name="import_file_title">Импорт файла</string>
     <string name="previous_export">Предыдущий экспорт</string>
-
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
-
-    <string name="import_youtube_instructions">Импорт подписок из YouTube загрузкой файла экспорта: 
+    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта: 
 \n 
-\n1. Перейдите на: %1$s 
-\n2. Войдите, если необходимо 
-\n3. Должна начаться загрузка (это будет файл экспорта)</string>
-    <string name="import_soundcloud_instructions">Импорт подписок из SoundCloud набрав либо URL, либо ваш ID: 
+\n1. Перейдите по ссылке %1$s 
+\n2. Авторизуйтесь, если требуется
+\n3. Загрузка (файла экспорта) должна начаться автоматически</string>
+    <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: 
 \n 
-\n1. Включите \"режим рабочего стола\" в браузере (сайт недоступен на телефоне) 
-\n2. Пройдите на: %1$s 
-\n3. Войдите, если надо 
-\n4. Скопируйте адрес из адресной строки.</string>
+\n1. Включите режим \"Полная версия сайта\" в браузере.
+\n2. Перейдите по ссылке %1$s
+\n3. Выполните вход.
+\n4. Скопируйте URL профиля из адресной строки.</string>
     <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
-
     <string name="import_network_expensive_warning">Это действие может вызвать большой расход трафика.
 \n 
 \nПродолжить?</string>
-<string name="download_thumbnail_title">Загружать миниатюры</string>
+    <string name="download_thumbnail_title">Загружать миниатюры</string>
     <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
-    <string name="playback_speed_control">Управление скоростью воспроизведения</string>
+    <string name="playback_speed_control">Скорость воспроизведения</string>
     <string name="playback_tempo">Темп</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Независимо (искажения)</string>
-    <string name="playback_nightcore">Nightcore</string>
-    <string name="playback_default">По умолчанию</string>
-<string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
+    <string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
     <string name="preferred_open_action_settings_summary">При открытии ссылки на контент — %s</string>
-
-    <string name="no_streams_available_download">Нет потоков, доступных для загрузки</string>
-
-    <string name="caption_setting_title">Титры</string>
+    <string name="no_streams_available_download">Нет потоков для загрузки</string>
+    <string name="caption_setting_title">Субтитры</string>
     <string name="toast_no_player">Приложение для воспроизведения этого файла не установлено</string>
-
-    <string name="caption_setting_description">Изменить размер текста и стиль титров. Нужен перезапуск</string>
-
-    <string name="clear_views_history_title">Очистить историю просмотров</string>
-    <string name="delete_view_history_alert">Вся история просмотров будет удалена.</string>
-    <string name="view_history_deleted">История просмотров удалена</string>
-    <string name="clear_search_history_title">Очистить историю поиска</string>
-    <string name="clear_search_history_summary">Удалить историю запросов поиска</string>
-    <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков</string>
-    <string name="delete_search_history_alert">Вся история поиска будет удалена.</string>
-    <string name="search_history_deleted">История поиска удалена.</string>
-    <string name="one_item_deleted">1 элемент удалён.</string>
-
+    <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск</string>
+    <string name="clear_views_history_title">Очистить историю</string>
+    <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
+    <string name="watch_history_deleted">История просмотров удалена</string>
+    <string name="clear_search_history_title">Очистить запросы поиска</string>
+    <string name="clear_search_history_summary">Удалить все запросы поиска</string>
+    <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков и позиции воспроизведения</string>
+    <string name="delete_search_history_alert">Удалить всю историю поиска\?</string>
+    <string name="search_history_deleted">История поиска удалена</string>
+    <string name="one_item_deleted">1 элемент удалён</string>
     <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
-
-    <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
+    <string name="privacy_policy_title">Конфиденциальность</string>
     <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Поэтому приложение не собирает никаких данных без вашего согласия.
 \nПолитика конфиденциальности NewPipe подробно объясняет, какие данные отправляются и хранятся при отправке отчёта о сбоях.</string>
     <string name="read_privacy_policy">Прочитать политику</string>
@@ -485,36 +386,31 @@
 \nВам необходимо принять её условия, чтобы отправить нам отчёт об ошибке.</string>
     <string name="accept">Принять</string>
     <string name="decline">Отклонить</string>
-
     <string name="limit_data_usage_none_description">Без ограничений</string>
     <string name="limit_mobile_data_usage_title">Предел разрешения в мобильной сети</string>
     <string name="channels">Каналы</string>
     <string name="playlists">Плейлисты</string>
-    <string name="videos">Видео</string>
-    <string name="tracks">Дорожки</string>
+    <string name="tracks">Треки</string>
     <string name="users">Пользователи</string>
     <string name="skip_silence_checkbox">Проматывать тишину</string>
     <string name="playback_step">Шаг</string>
     <string name="playback_reset">Сброс</string>
-
     <string name="minimize_on_exit_title">При сворачивании плеера</string>
     <string name="minimize_on_exit_summary">При переключении со встроенного плеера на другое приложение — %s</string>
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
     <string name="minimize_on_exit_background_description">Фоновый плеер</string>
     <string name="minimize_on_exit_popup_description">Плеер в окне</string>
-
     <string name="list_view_mode">Вид списка</string>
     <string name="list">Список</string>
     <string name="grid">Сетка</string>
-	<string name="auto">Автоматически</string>
-
+    <string name="auto">Автоматически</string>
     <string name="brightness_gesture_control_summary">Менять яркость плеера жестом</string>
     <string name="brightness_gesture_control_title">Жест яркости</string>
-    <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель невозможна. Сбросить расположение папки загрузки?</string>
-    <string name="download_to_sdcard_error_title">Внешний накопитель недоступен</string>
+    <string name="download_to_sdcard_error_message">Загрузка на SD-карту невозможна. Сбросить расположение папки загрузки\?</string>
+    <string name="download_to_sdcard_error_title">SD-карта недоступна</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
-    <string name="restore_defaults">По умолчанию</string>
-    <string name="restore_defaults_confirmation">Хотите восстановить умолчания?</string>
+    <string name="restore_defaults">Значения по умолчанию</string>
+    <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
     <string name="saved_tabs_invalid_json">Ошибка чтения сохранённых вкладок. Используются вкладки по умолчанию</string>
     <string name="selection">Выбор</string>
     <string name="subscribers_count_not_available">Количество подписчиков недоступно</string>
@@ -524,5 +420,228 @@
     <string name="unsubscribe">Отписаться</string>
     <string name="volume_gesture_control_summary">Менять громкость плеера жестом</string>
     <string name="volume_gesture_control_title">Жест громкости</string>
-
+    <string name="settings_category_updates_title">Обновления</string>
+    <string name="file_deleted">Файл удалён</string>
+    <string name="app_update_notification_channel_name">Уведомление об обновлении</string>
+    <string name="app_update_notification_channel_description">Уведомления о новой версии NewPipe</string>
+    <string name="updates_setting_title">Обновления</string>
+    <string name="updates_setting_description">Показать уведомление при наличии новой версии</string>
+    <string name="app_update_notification_content_title">Доступно обновление NewPipe!</string>
+    <string name="app_update_notification_content_text">Нажмите для загрузки</string>
+    <string name="missions_header_finished">Завершено</string>
+    <string name="paused">приостановлено</string>
+    <string name="queued">в очереди</string>
+    <string name="enqueue">Очередь</string>
+    <string name="permission_denied">Действие запрещено системой</string>
+    <string name="download_failed">Ошибка загрузки</string>
+    <string name="overwrite">Перезаписать</string>
+    <string name="overwrite_finished_warning">Файл с таким именем уже существует</string>
+    <string name="download_already_running">Загрузка с таким именем уже выполняется</string>
+    <string name="show_error">Показать текст ошибки</string>
+    <string name="label_code">Код</string>
+    <string name="error_path_creation">Папка назначения не может быть создана</string>
+    <string name="error_file_creation">Файл не может быть создан</string>
+    <string name="error_permission_denied">Доступ запрещён системой</string>
+    <string name="error_unknown_host">Сервер не найден</string>
+    <string name="error_http_unsupported_range">Сервер не принимает многопоточные загрузки, повторная попытка с @string/msg_threads = 1</string>
+    <string name="error_http_not_found">Не найдено</string>
+    <string name="stop">Остановить</string>
+    <string name="events">События</string>
+    <string name="conferences">Конференции</string>
+    <string name="post_processing">пост-обработка</string>
+    <string name="missions_header_pending">В очереди</string>
+    <string name="download_finished">Загрузка завершена</string>
+    <string name="download_finished_more">%s загрузок завершено</string>
+    <string name="generate_unique_name">Создать уникальное имя</string>
+    <string name="max_retry_msg">Максимум попыток</string>
+    <string name="max_retry_desc">Количество попыток перед отменой загрузки</string>
+    <string name="pause_downloads_on_mobile_desc">Некоторые загрузки не поддерживают докачку и начнутся сначала</string>
+    <string name="error_ssl_exception">Не удалось установить защищённое соединение</string>
+    <string name="error_connect_host">Не удалось соединиться с сервером</string>
+    <string name="error_http_no_content">Не удалось получить данные с сервера</string>
+    <string name="error_postprocessing_failed">Пост-обработка не удалась</string>
+    <string name="pause_downloads_on_mobile">Прервать в мобильной сети</string>
+    <string name="close">Закрыть</string>
+    <string name="error_timeout">Время соединения истекло</string>
+    <string name="show_comments_title">Показать комментарии</string>
+    <string name="show_comments_summary">Отключите, чтобы скрыть комментарии</string>
+    <string name="autoplay_title">Автовоспроизведение</string>
+    <string name="no_comments">Нет комментариев</string>
+    <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
+    <string name="watch_history_states_deleted">Позиции воспроизведения удалены</string>
+    <string name="missing_file">Файл перемещён или удалён</string>
+    <string name="overwrite_unrelated_warning">Файл с таким именем уже существует</string>
+    <string name="overwrite_failed">не удаётся перезаписать файл</string>
+    <string name="download_already_pending">В очереди уже есть загрузка с таким именем</string>
+    <string name="error_postprocessing_stopped">NewPipe была закрыта во время работы над файлом</string>
+    <string name="error_insufficient_storage">Закончилось свободное место на устройстве</string>
+    <string name="error_progress_lost">Прогресс потерян, так как файл был удалён</string>
+    <string name="confirm_prompt">Действительно удалить историю загрузок и загруженные файлы\?</string>
+    <string name="enable_queue_limit">Ограничить очередь загрузки</string>
+    <string name="enable_queue_limit_desc">Только одна одновременная загрузка</string>
+    <string name="start_downloads">Начать загрузку</string>
+    <string name="pause_downloads">Приостановить загрузку</string>
+    <string name="downloads_storage_ask_title">Запрашивать папку загрузки</string>
+    <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения</string>
+    <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения. 
+\nИспользуйте SAF для загрузки на SD-карту</string>
+    <string name="downloads_storage_use_saf_title">Использовать SAF</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на SD-карте. Поддерживается не всеми устройствами</string>
+    <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
+    <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
+    <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
+    <string name="download_choose_new_path">Измените папки загрузки для вступления настроек в силу</string>
+    <string name="drawer_header_description">Переключение сервисов, сейчас выбрано:</string>
+    <string name="default_kiosk_page_summary">Киоск по умолчанию</string>
+    <string name="no_one_watching">Никто не смотрел</string>
+    <plurals name="watching">
+        <item quantity="one">%s зритель</item>
+        <item quantity="few">%s зрителя</item>
+        <item quantity="many">%s зрителей</item>
+    </plurals>
+    <string name="no_one_listening">Нет слушателей</string>
+    <plurals name="listening">
+        <item quantity="one">%s слушатель</item>
+        <item quantity="few">%s слушателя</item>
+        <item quantity="many">%s слушателей</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
+    <string name="seek_duration_title">Шаг перемотки</string>
+    <string name="peertube_instance_url_title">Серверы PeerTube</string>
+    <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
+    <string name="peertube_instance_url_help">Каталог серверов: %s</string>
+    <string name="peertube_instance_add_title">Новый сервер</string>
+    <string name="peertube_instance_add_help">URL сервера</string>
+    <string name="peertube_instance_add_fail">Не удалось проверить сервер</string>
+    <string name="peertube_instance_add_https_only">Поддерживается только HTTPS</string>
+    <string name="peertube_instance_add_exists">Сервер уже существует</string>
+    <string name="local">Локальное</string>
+    <string name="recently_added">Новое</string>
+    <string name="most_liked">Популярное</string>
+    <string name="playlist_no_uploader">Создано автоматически (автор не найден)</string>
+    <string name="recovering">восстановление</string>
+    <string name="error_download_resource_gone">Не удалось восстановить загрузку</string>
+    <string name="choose_instance_prompt">Выберите сервер</string>
+    <string name="clear_download_history">Очистить историю загрузок</string>
+    <string name="delete_downloaded_files">Удаление загруженных файлов</string>
+    <string name="deleted_downloads">Удалено загрузок: %1$d</string>
+    <string name="permission_display_over_apps">Разрешите отображение поверх приложений</string>
+    <string name="app_language_title">Язык интерфейса</string>
+    <string name="systems_language">Как в системе</string>
+    <string name="subtitle_activity_recaptcha">По завершении нажмите Готово</string>
+    <string name="recaptcha_done_button">Готово</string>
+    <string name="videos_string">Видео</string>
+    <plurals name="seconds">
+        <item quantity="one">%d секунда</item>
+        <item quantity="few">%d секунды</item>
+        <item quantity="many">%d секунд</item>
+    </plurals>
+    <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность перемотки составляет %d секунд</string>
+    <string name="mute">Отключить звук</string>
+    <string name="unmute">Включить звук</string>
+    <string name="help">Помощь</string>
+    <string name="feed_group_dialog_empty_name">Введите имя группы</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d выбрана</item>
+        <item quantity="few">%d выбрано</item>
+        <item quantity="many">%d выбрано</item>
+        <item quantity="other">%d выбрано</item>
+    </plurals>
+    <string name="feed_group_dialog_select_subscriptions">Выберите подписки</string>
+    <string name="feed_oldest_subscription_update">Обновлено: %s</string>
+    <plurals name="days">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дней</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d час</item>
+        <item quantity="few">%d часа</item>
+        <item quantity="many">%d часов</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d минута</item>
+        <item quantity="few">%d минуты</item>
+        <item quantity="many">%d минут</item>
+    </plurals>
+    <string name="feed_group_dialog_delete_message">Удалить эту группу\?</string>
+    <string name="feed_subscription_not_loaded_count">Не загружено: %d</string>
+    <string name="feed_create_new_group_button_title">Создать</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Обычный режим</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Быстрый режим</string>
+    <string name="feed_update_threshold_title">Интервал обновления подписок</string>
+    <string name="settings_category_feed_title">Подписки</string>
+    <string name="feed_processing_message">Обработка канала…</string>
+    <string name="feed_notification_loading">Загрузка канала…</string>
+    <string name="feed_update_threshold_option_always_update">Обновлять всегда</string>
+    <string name="feed_group_dialog_empty_selection">Подписки не выбраны</string>
+    <string name="feed_groups_header_title">Группы каналов</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте быстрый режим (включите в настройках или кнопкой внизу).
+\n
+\nNewPipe позволяет обновлять подписки двумя способами:
+\n• получение канала целиком, медленное, но с полными сведениями;
+\n• обновление по RSS, быстрое, но с потерей сведений.
+\n
+\nПри быстром обновлении теряются длительность элемента и его тип (нельзя определить, трансляция это или обычное видео), могут быть получены не все элементы канала.
+\n
+\nYouTube является примером такого сервиса, допуская быстрое обновление по RSS.
+\n
+\nВыбор за вами: скорость или точность.</string>
+    <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, но может возвращать не всё содержимое канала и не содержать часть сведений (длительность, тип элемента, статус трансляции)</string>
+    <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
+    <string name="restricted_video">Это видео имеет возрастное ограничение.
+\n
+\nВключите \"Контент с возрастным ограничением\" в настройках, если хотите его видеть.</string>
+    <string name="content_not_supported">NewPipe не поддерживает этот контент. 
+\n 
+\nВозможно, поддержка появится в следующих версиях.</string>
+    <string name="infinite_videos">∞ видео</string>
+    <string name="more_than_100_videos">100+ видео</string>
+    <string name="songs">Треки</string>
+    <string name="artists">Исполнители</string>
+    <string name="albums">Альбомы</string>
+    <string name="remove_watched">Удалить просмотренные</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, и частично просмотренные</string>
+    <string name="remove_watched_popup_warning">Видео, просмотренные до или после добавления в плейлист, будут удалены.
+\n
+\nПродолжить\?</string>
+    <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
+    <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
+    <string name="show_original_time_ago_title">Исходное время публикации</string>
+    <string name="youtube_restricted_mode_enabled_title">Безопасный режим YouTube</string>
+    <string name="video_detail_by">От %s</string>
+    <string name="channel_created_by">Создано %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Только несгруппированные</string>
+    <string name="no_playlist_bookmarked_yet">Плейлистов ещё нет</string>
+    <string name="error_report_open_github_notice">Пожалуйста, проверьте, существует ли вопрос по вашей ошибке. Создавая дубликаты, вы отнимаете у нас время, которое мы могли бы использовать на решение проблемы.</string>
+    <string name="search_showing_result_for">Результаты для: %s</string>
+    <string name="playlist_page_summary">Страница плейлиста</string>
+    <string name="select_a_playlist">Выберите плейлист</string>
+    <string name="error_report_open_issue_button_text">Сообщить на GitHub</string>
+    <string name="copy_for_github">Копировать отформатированный отчет</string>
+    <string name="never">Никогда</string>
+    <string name="wifi_only">Только по Wi-Fi</string>
+    <string name="autoplay_summary">Автоматический запуск воспроизведения — %s</string>
+    <string name="title_activity_play_queue">Очередь воспроизведения</string>
+    <string name="unsupported_url_dialog_message">Не удалось распознать URL. Открыть в другом приложении\?</string>
+    <string name="auto_queue_toggle">Авто-очередь</string>
+    <string name="clear_queue_confirmation_description">Очередь активного плеера будет заменена</string>
+    <string name="clear_queue_confirmation_title">Запросить подтверждение перед очисткой очереди</string>
+    <string name="clear_queue_confirmation_summary">Переход от одного плеера к другому может заменить вашу очередь</string>
+    <string name="settings_category_notification_title">Уведомление</string>
+    <string name="notification_action_nothing">Ничего</string>
+    <string name="notification_action_buffering">Буферизация</string>
+    <string name="notification_action_shuffle">Перемешивать</string>
+    <string name="notification_action_repeat">Повторение</string>
+    <string name="notification_actions_at_most_three">Вы можете выбрать не более трёх действий для отображения в компактном уведомлении!</string>
+    <string name="notification_actions_summary">Отредактируйте каждое действие уведомления ниже, нажав на него. Выберите до трёх из них, которые будут отображаться в компактном уведомлении, с помощью флажков справа.</string>
+    <string name="notification_action_4_title">Кнопка пятого действия</string>
+    <string name="notification_action_3_title">Кнопка четвёртого действия</string>
+    <string name="notification_action_2_title">Кнопка третьего действия</string>
+    <string name="notification_action_1_title">Кнопка второго действия</string>
+    <string name="notification_action_0_title">Кнопка первого действия</string>
+    <string name="notification_scale_to_square_image_summary">Масштабировать эскиз видео, отображаемый в уведомлении, с соотношением сторон 16:9 до 1:1 (может привести к искажениям)</string>
+    <string name="notification_scale_to_square_image_title">Масштабировать эскиз до соотношения сторон 1: 1</string>
 </resources>

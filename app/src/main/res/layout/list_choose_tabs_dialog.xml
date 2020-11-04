@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?listPreferredItemHeightSmall"
     android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tabIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -15,7 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="?dialogPreferredPadding"
         tools:ignore="ContentDescription,RtlHardcoded"
-        tools:src="?attr/ic_hot"/>
+        tools:src="?attr/ic_kiosk_hot" />
 
     <TextView
         android:id="@+id/tabName"
@@ -29,5 +28,5 @@
         android:maxLines="2"
         android:textAppearance="?textAppearanceListItem"
         tools:ignore="RtlHardcoded"
-        tools:text="Lorem ipsum dolor sit amet"/>
+        tools:text="Lorem ipsum dolor sit amet" />
 </RelativeLayout>

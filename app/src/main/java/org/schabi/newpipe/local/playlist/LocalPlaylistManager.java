@@ -1,6 +1,6 @@
 package org.schabi.newpipe.local.playlist;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
@@ -22,7 +22,6 @@ import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 public class LocalPlaylistManager {
-
     private final AppDatabase database;
     private final StreamDAO streamTable;
     private final PlaylistDAO playlistTable;
@@ -37,7 +36,9 @@ public class LocalPlaylistManager {
 
     public Maybe<List<Long>> createPlaylist(final String name, final List<StreamEntity> streams) {
         // Disallow creation of empty playlists
-        if (streams.isEmpty()) return Maybe.empty();
+        if (streams.isEmpty()) {
+            return Maybe.empty();
+        }
         final StreamEntity defaultStream = streams.get(0);
         final PlaylistEntity newPlaylist =
                 new PlaylistEntity(name, defaultStream.getThumbnailUrl());
@@ -60,7 +61,7 @@ public class LocalPlaylistManager {
                                      final List<StreamEntity> streams,
                                      final int indexOffset) {
 
-        List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streams.size());
+        final List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streams.size());
         final List<Long> streamIds = streamTable.upsertAll(streams);
         for (int index = 0; index < streamIds.size(); index++) {
             joinEntities.add(new PlaylistStreamEntity(playlistId, streamIds.get(index),
@@ -70,7 +71,7 @@ public class LocalPlaylistManager {
     }
 
     public Completable updateJoin(final long playlistId, final List<Long> streamIds) {
-        List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streamIds.size());
+        final List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streamIds.size());
         for (int i = 0; i < streamIds.size(); i++) {
             joinEntities.add(new PlaylistStreamEntity(playlistId, streamIds.get(i), i));
         }
@@ -103,6 +104,10 @@ public class LocalPlaylistManager {
         return modifyPlaylist(playlistId, null, thumbnailUrl);
     }
 
+    public String getPlaylistThumbnail(final long playlistId) {
+        return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getThumbnailUrl();
+    }
+
     private Maybe<Integer> modifyPlaylist(final long playlistId,
                                           @Nullable final String name,
                                           @Nullable final String thumbnailUrl) {
@@ -110,11 +115,21 @@ public class LocalPlaylistManager {
                 .firstElement()
                 .filter(playlistEntities -> !playlistEntities.isEmpty())
                 .map(playlistEntities -> {
-                    PlaylistEntity playlist = playlistEntities.get(0);
-                    if (name != null) playlist.setName(name);
-                    if (thumbnailUrl != null) playlist.setThumbnailUrl(thumbnailUrl);
+                    final PlaylistEntity playlist = playlistEntities.get(0);
+                    if (name != null) {
+                        playlist.setName(name);
+                    }
+                    if (thumbnailUrl != null) {
+                        playlist.setThumbnailUrl(thumbnailUrl);
+                    }
                     return playlistTable.update(playlist);
                 }).subscribeOn(Schedulers.io());
     }
 
+    public Maybe<Boolean> hasPlaylists() {
+        return playlistTable.getCount()
+                .firstElement()
+                .map(count -> count > 0)
+                .subscribeOn(Schedulers.io());
+    }
 }
