@@ -359,4 +359,5 @@
     <string name="notification_action_repeat">পুনরায়</string>
     <string name="notification_action_0_title">প্রথম ক্রিয়া বোতাম</string>
     <string name="notification_scale_to_square_image_title">থাম্বনেলে ১:১ অনুপাতে করো</string>
+    <string name="import_export_title">আমদানি/রপ্তানি</string>
 </resources>
