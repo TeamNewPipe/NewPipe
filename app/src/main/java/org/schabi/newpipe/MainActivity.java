@@ -31,9 +31,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
-
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -47,6 +45,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -56,10 +55,14 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 
 import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.AppUpdaterUtils;
+import com.github.javiersantos.appupdater.enums.AppUpdaterError;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
+import com.github.javiersantos.appupdater.objects.Update;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 
@@ -76,8 +79,8 @@ import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Ads;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -146,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
 
-        setContentView( R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
         if (getSupportFragmentManager() != null
                 && getSupportFragmentManager().getBackStackEntryCount() == 0) {
@@ -172,18 +175,9 @@ public class MainActivity extends AppCompatActivity {
             Ads.getInstance(this).loadRewardedVideoAd();
         }
 
-        AppUpdater appUpdater = new AppUpdater(this);
-        appUpdater.start();
 
-        new AppUpdater(this)
-                //.setUpdateFrom(UpdateFrom.GITHUB)
-                //.setGitHubUserAndRepo("javiersantos", "AppUpdater")
-                .setUpdateFrom(UpdateFrom.JSON)
-                .setUpdateJSON("https://github.com/SArsalanK/NewPipe/blob/dev/app/update-changelog.json")
-                .setDisplay(Display.DIALOG)
-                .showAppUpdated(true)
-                .start();
     }
+
 
     private void getMySharedPrefs() {
         SharedPreferences prefs = getSharedPreferences(MY_INAPP_PURCHASE_PREFERENCE, MODE_PRIVATE);
@@ -540,6 +534,43 @@ public class MainActivity extends AppCompatActivity {
         final boolean isHistoryEnabled = sharedPreferences.getBoolean(
                 getString(R.string.enable_watch_history_key), true);
         drawerItems.getMenu().findItem(ITEM_ID_HISTORY).setVisible(isHistoryEnabled);
+
+        checkForUpdate();
+    }
+
+    private void checkForUpdate() {
+
+        AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
+                //.setUpdateFrom(UpdateFrom.AMAZON)
+                //.setUpdateFrom(UpdateFrom.GITHUB)
+                //.setGitHubUserAndRepo("javiersantos", "AppUpdater")
+                //...
+                .withListener(new AppUpdaterUtils.UpdateListener() {
+                    @Override
+                    public void onSuccess(Update update, Boolean isUpdateAvailable) {
+                        Log.d("AppUpdater LVersion", update.getLatestVersion());
+                        Log.d("AppUpdater LVCode", String.valueOf(update.getLatestVersionCode()));
+                        Log.d("AppUpdater RNotes", update.getReleaseNotes());
+                        Log.d("AppUpdater URL", String.valueOf(update.getUrlToDownload()));
+                        Log.d("AppUpdater available?", Boolean.toString(isUpdateAvailable));
+                    }
+
+                    @Override
+                    public void onFailed(AppUpdaterError error) {
+                        Log.d("AppUpdater Error", error.toString());
+                    }
+                });
+        appUpdaterUtils.start();
+
+        new AppUpdater(this)
+                //.setUpdateFrom(UpdateFrom.GITHUB)
+                //.setGitHubUserAndRepo("javiersantos", "AppUpdater")
+                .setUpdateFrom(UpdateFrom.JSON)
+                .setUpdateJSON("https://raw.githubusercontent.com/SArsalanK/NewPipe/dev/app/update-changelog.json")
+                .setDisplay(Display.DIALOG)
+                .showAppUpdated(true)
+                .start();
+
     }
 
     @Override
@@ -849,8 +880,8 @@ public class MainActivity extends AppCompatActivity {
                         NavigationHelper.showMiniPlayer(getSupportFragmentManager());
                     }
                     /*
-                    * At this point the player is added 100%, we can unregister.
-                    * Other actions are useless since the fragment will not be removed after that
+                     * At this point the player is added 100%, we can unregister.
+                     * Other actions are useless since the fragment will not be removed after that
                      * */
                     unregisterReceiver(broadcastReceiver);
                     broadcastReceiver = null;
