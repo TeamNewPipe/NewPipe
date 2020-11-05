@@ -57,6 +57,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 
@@ -142,7 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        setContentView( R.layout.activity_main);
 
         if (getSupportFragmentManager() != null
                 && getSupportFragmentManager().getBackStackEntryCount() == 0) {
@@ -167,6 +171,18 @@ public class MainActivity extends AppCompatActivity {
             Ads.getInstance(this).loadInterstitialAd();
             Ads.getInstance(this).loadRewardedVideoAd();
         }
+
+        AppUpdater appUpdater = new AppUpdater(this);
+        appUpdater.start();
+
+        new AppUpdater(this)
+                //.setUpdateFrom(UpdateFrom.GITHUB)
+                //.setGitHubUserAndRepo("javiersantos", "AppUpdater")
+                .setUpdateFrom(UpdateFrom.JSON)
+                .setUpdateJSON("https://github.com/SArsalanK/NewPipe/blob/dev/app/update-changelog.json")
+                .setDisplay(Display.DIALOG)
+                .showAppUpdated(true)
+                .start();
     }
 
     private void getMySharedPrefs() {

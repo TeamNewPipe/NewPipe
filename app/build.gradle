@@ -215,4 +215,7 @@ dependencies {
     implementation 'com.unity3d.ads:unity-ads:3.4.8'
     //UNITYADS
 
+    //APP_UPDATER
+    implementation 'com.github.javiersantos:AppUpdater:2.7'
+
 }
