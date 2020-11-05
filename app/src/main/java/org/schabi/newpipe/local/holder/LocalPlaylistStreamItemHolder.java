@@ -20,7 +20,7 @@ import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
-import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -52,7 +52,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     @Override
     public void updateFromItem(final LocalItem localItem,
                                final HistoryRecordManager historyRecordManager,
-                               final DateFormat dateFormat) {
+                               final DateTimeFormatter dateTimeFormatter) {
         if (!(localItem instanceof PlaylistStreamEntry)) {
             return;
         }

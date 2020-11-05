@@ -6,8 +6,7 @@ import androidx.room.Ignore
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.io.Serializable
-import java.util.Calendar
-import java.util.Date
+import java.time.OffsetDateTime
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_SERVICE_ID
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_TABLE
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_URL
@@ -55,18 +54,17 @@ data class StreamEntity(
     var textualUploadDate: String? = null,
 
     @ColumnInfo(name = STREAM_UPLOAD_DATE)
-    var uploadDate: Date? = null,
+    var uploadDate: OffsetDateTime? = null,
 
     @ColumnInfo(name = STREAM_IS_UPLOAD_DATE_APPROXIMATION)
     var isUploadDateApproximation: Boolean? = null
 ) : Serializable {
-
     @Ignore
     constructor(item: StreamInfoItem) : this(
             serviceId = item.serviceId, url = item.url, title = item.name,
             streamType = item.streamType, duration = item.duration, uploader = item.uploaderName,
             thumbnailUrl = item.thumbnailUrl, viewCount = item.viewCount,
-            textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.date()?.time,
+            textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.offsetDateTime(),
             isUploadDateApproximation = item.uploadDate?.isApproximation
     )
 
@@ -75,7 +73,7 @@ data class StreamEntity(
             serviceId = info.serviceId, url = info.url, title = info.name,
             streamType = info.streamType, duration = info.duration, uploader = info.uploaderName,
             thumbnailUrl = info.thumbnailUrl, viewCount = info.viewCount,
-            textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.date()?.time,
+            textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.offsetDateTime(),
             isUploadDateApproximation = info.uploadDate?.isApproximation
     )
 
@@ -95,8 +93,7 @@ data class StreamEntity(
         if (viewCount != null) item.viewCount = viewCount as Long
         item.textualUploadDate = textualUploadDate
         item.uploadDate = uploadDate?.let {
-            DateWrapper(Calendar.getInstance().apply { time = it }, isUploadDateApproximation
-                    ?: false)
+            DateWrapper(it, isUploadDateApproximation ?: false)
         }
 
         return item

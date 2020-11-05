@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import io.reactivex.Flowable
-import java.util.Date
+import java.time.OffsetDateTime
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
@@ -129,7 +129,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         var textualUploadDate: String? = null,
 
         @ColumnInfo(name = StreamEntity.STREAM_UPLOAD_DATE)
-        var uploadDate: Date? = null,
+        var uploadDate: OffsetDateTime? = null,
 
         @ColumnInfo(name = StreamEntity.STREAM_IS_UPLOAD_DATE_APPROXIMATION)
         var isUploadDateApproximation: Boolean? = null,

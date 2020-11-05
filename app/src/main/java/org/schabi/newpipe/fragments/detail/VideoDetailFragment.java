@@ -1527,7 +1527,7 @@ public class VideoDetailFragment
 
         if (info.getUploadDate() != null) {
             videoUploadDateView.setText(Localization
-                    .localizeUploadDate(activity, info.getUploadDate().date().getTime()));
+                    .localizeUploadDate(activity, info.getUploadDate().offsetDateTime()));
             videoUploadDateView.setVisibility(View.VISIBLE);
         } else {
             videoUploadDateView.setText(null);

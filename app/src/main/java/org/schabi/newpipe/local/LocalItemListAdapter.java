@@ -26,7 +26,8 @@ import org.schabi.newpipe.util.FallbackViewHolder;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.OnClickGesture;
 
-import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
     private final HistoryRecordManager recordManager;
-    private final DateFormat dateFormat;
+    private final DateTimeFormatter dateTimeFormatter;
 
     private boolean showFooter = false;
     private boolean useGridVariant = false;
@@ -80,8 +81,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         recordManager = new HistoryRecordManager(context);
         localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
-        dateFormat = DateFormat.getDateInstance(DateFormat.SHORT,
-                Localization.getPreferredLocale(context));
+        dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+                .withLocale(Localization.getPreferredLocale(context));
     }
 
     public void setSelectedListener(final OnClickGesture<LocalItem> listener) {
@@ -303,7 +304,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
 
             ((LocalItemHolder) holder)
-                    .updateFromItem(localItems.get(position), recordManager, dateFormat);
+                    .updateFromItem(localItems.get(position), recordManager, dateTimeFormatter);
         } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
             ((HeaderFooterHolder) holder).view = header;
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
