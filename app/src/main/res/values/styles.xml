@@ -5,7 +5,7 @@
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="colorAccent">@android:color/transparent</item>
 
-        <item name="android:windowBackground">@drawable/splash_background</item>
+<!--        <item name="android:windowBackground">@drawable/splash_background</item>-->
     </style>
 
     <!-- Base themes -->
@@ -18,6 +18,9 @@
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="windowBackground">@color/light_background_color</item>
 
+        <item name="ic_remove_ads">@drawable/ic_remove_ads_black_24dp</item>
+        <item name="ic_coffee_cup">@drawable/ic_coffee_cup_black_24dp</item>
+        <item name="ic_padlock">@drawable/ic_padlock_black_24dp</item>
         <item name="ic_thumb_up">@drawable/ic_thumb_up_black_24dp</item>
         <item name="ic_thumb_down">@drawable/ic_thumb_down_black_24dp</item>
         <item name="ic_info_outline">@drawable/ic_info_outline_black_24dp</item>
@@ -127,6 +130,9 @@
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="windowBackground">@color/dark_background_color</item>
 
+        <item name="ic_remove_ads">@drawable/ic_remove_ads_white_24dp</item>
+        <item name="ic_coffee_cup">@drawable/ic_coffee_cup_white_24dp</item>
+        <item name="ic_padlock">@drawable/ic_padlock_white_24dp</item>
         <item name="ic_thumb_up">@drawable/ic_thumb_up_white_24dp</item>
         <item name="ic_thumb_down">@drawable/ic_thumb_down_white_24dp</item>
         <item name="ic_headset">@drawable/ic_headset_white_24dp</item>

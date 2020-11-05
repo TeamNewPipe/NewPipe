@@ -94,6 +94,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Ads;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -121,6 +122,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static org.schabi.newpipe.MainActivity.appContainsAds;
+import static org.schabi.newpipe.MainActivity.hasUnlockedDownloadFeature;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
@@ -209,6 +212,8 @@ public class VideoDetailFragment
     private TextView detailControlsPopup;
     private TextView detailControlsAddToPlaylist;
     private TextView detailControlsDownload;
+    private TextView detailRemoveAds;
+    private TextView detailBuyUsACoffee;
     private TextView appendControlsDetail;
     private TextView detailDurationView;
     private TextView detailPositionView;
@@ -248,6 +253,9 @@ public class VideoDetailFragment
     private MainPlayer playerService;
     private VideoPlayerImpl player;
 
+    private static final int onBuyRemovedAdsPressedCode = 999;
+    private static final int onhasUnlockedDownloadFeatureCode = 998;
+    private static final int onBuyCoffeePressedCode = 997;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
@@ -392,6 +400,11 @@ public class VideoDetailFragment
         if (wasLoading.getAndSet(false) && !wasCleared()) {
             startLoading(false);
         }
+
+        if (appContainsAds) {
+            Ads.getInstance(getActivity()).loadRewardedVideoAd();
+            Ads.getInstance(getActivity()).loadInterstitialAd();
+        }
     }
 
     @Override
@@ -450,6 +463,15 @@ public class VideoDetailFragment
                     Log.e(TAG, "ReCaptcha failed");
                 }
                 break;
+            case onBuyRemovedAdsPressedCode:
+
+                break;
+            case onBuyCoffeePressedCode:
+
+                break;
+            case onhasUnlockedDownloadFeatureCode:
+
+                break;
             default:
                 Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
                 break;
@@ -494,10 +516,20 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_controls_download:
-                if (PermissionHelper.checkStoragePermissions(activity,
-                        PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-                    this.openDownloadDialog();
+                if (hasUnlockedDownloadFeature) {
+                    if (PermissionHelper.checkStoragePermissions(activity,
+                            PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+                        this.openDownloadDialog();
+                    }
+                }else {
+//                    onBuyDownloadOption();
                 }
+                break;
+            case R.id.detail_controls_remove_ads:
+//                onBuyRemovedAdsPressed();
+                break;
+            case R.id.detail_controls_buy_coffee:
+//                onBuyCoffeePressed();
                 break;
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
@@ -630,6 +662,8 @@ public class VideoDetailFragment
         detailControlsPopup = rootView.findViewById(R.id.detail_controls_popup);
         detailControlsAddToPlaylist = rootView.findViewById(R.id.detail_controls_playlist_append);
         detailControlsDownload = rootView.findViewById(R.id.detail_controls_download);
+        detailRemoveAds = rootView.findViewById(R.id.detail_controls_remove_ads);
+        detailBuyUsACoffee = rootView.findViewById(R.id.detail_controls_buy_coffee);
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
         detailDurationView = rootView.findViewById(R.id.detail_duration_view);
         detailPositionView = rootView.findViewById(R.id.detail_position_view);
@@ -670,6 +704,23 @@ public class VideoDetailFragment
 
         thumbnailBackgroundButton.requestFocus();
 
+        if (!appContainsAds) {
+            detailRemoveAds.setVisibility(View.GONE);
+        }
+        if (hasUnlockedDownloadFeature) {
+            if (ThemeHelper.isLightThemeSelected(getContext())) {
+                detailControlsDownload.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.ic_file_download_black_24dp), null, null);
+            } else {
+                detailControlsDownload.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.ic_file_download_white_24dp), null, null);
+            }
+        }else{
+            if (ThemeHelper.isLightThemeSelected(getContext())) {
+                detailControlsDownload.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.ic_padlock_black_24dp), null, null);
+            } else {
+                detailControlsDownload.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.ic_padlock_white_24dp), null, null);
+            }
+        }
+
         if (DeviceUtils.isTv(getContext())) {
             // remove ripple effects from detail controls
             final int transparent = getResources().getColor(R.color.transparent_background_color);
@@ -677,6 +728,8 @@ public class VideoDetailFragment
             detailControlsBackground.setBackgroundColor(transparent);
             detailControlsPopup.setBackgroundColor(transparent);
             detailControlsDownload.setBackgroundColor(transparent);
+            detailRemoveAds.setBackgroundColor(transparent);
+            detailBuyUsACoffee.setBackgroundColor(transparent);
         }
 
     }
@@ -695,6 +748,8 @@ public class VideoDetailFragment
         detailControlsAddToPlaylist.setOnClickListener(this);
         detailControlsDownload.setOnClickListener(this);
         detailControlsDownload.setOnLongClickListener(this);
+        detailBuyUsACoffee.setOnClickListener(this);
+        detailRemoveAds.setOnClickListener(this);
 
         detailControlsBackground.setLongClickable(true);
         detailControlsPopup.setLongClickable(true);
@@ -2327,5 +2382,9 @@ public class VideoDetailFragment
         overlayButtons.setClickable(enable);
         overlayPlayPauseButton.setClickable(enable);
         overlayCloseButton.setClickable(enable);
+    }
+
+    public VideoPlayerImpl getPlayer() {
+        return player;
     }
 }

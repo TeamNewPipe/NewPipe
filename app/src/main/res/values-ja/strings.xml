@@ -75,7 +75,7 @@
     <string name="retry">再試行</string>
     <string name="storage_permission_denied">初めにストレージへのアクセスを許可する</string>
     <string name="autoplay_by_calling_app_title">自動再生</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe が他のアプリから呼び出された時､動画を再生します｡</string>
+    <string name="autoplay_by_calling_app_summary">YouTube Video Downloader が他のアプリから呼び出された時､動画を再生します｡</string>
     <string name="report_error">不具合を報告</string>
     <string name="user_report">利用者レポートを送る</string>
     <string name="duration_live">生放送</string>
@@ -93,7 +93,7 @@
     <string name="msg_server_unsupported">このサーバーには対応していません</string>
     <string name="msg_exists">ファイルが既に存在します</string>
     <string name="msg_url_malform">URL の形式が正しくないか､通信が利用できません</string>
-    <string name="msg_running">NewPipeで保存中</string>
+    <string name="msg_running">YouTube Video Downloaderで保存中</string>
     <string name="msg_running_detail">タップして詳細を表示</string>
     <string name="msg_wait">お待ちください…</string>
     <string name="msg_copied">クリップボードにコピーしました</string>
@@ -137,7 +137,7 @@
     <string name="show_search_suggestions_title">検索候補の表示</string>
     <string name="show_search_suggestions_summary">検索時に候補を表示します</string>
     <string name="best_resolution">最高の解像度</string>
-    <string name="title_activity_about">NewPipe について</string>
+    <string name="title_activity_about">YouTube Video Downloader について</string>
     <string name="action_settings">設定</string>
     <string name="action_about">このアプリについて</string>
     <string name="title_licenses">サードパーティー ライセンス</string>
@@ -149,7 +149,7 @@
     <string name="tab_licenses">ライセンス</string>
     <string name="app_description">Android 向けの自由で軽量なストリーミング。</string>
     <string name="view_on_github">GitHub で表示</string>
-    <string name="app_license_title">NewPipe のライセンス</string>
+    <string name="app_license_title">YouTube Video Downloader のライセンス</string>
     <string name="contribution_encouragement">翻訳、デザインの変更、コードの整理、動作の重いコードの変更など、アイデアをお持ちではありませんか？ヘルプはいつでも歓迎します。より良いものを一緒に作り上げましょう！</string>
     <string name="read_full_license">ライセンスを読む</string>
     <string name="contribution_title">貢献する</string>
@@ -188,9 +188,9 @@
     <string name="charset_letters_and_digits">文字と数字</string>
     <string name="charset_most_special_characters">文字と数字と、多くの特殊文字</string>
     <string name="donation_title">寄付</string>
-    <string name="donation_encouragement">NewPipe は、あなたに最高の体験を味わってもらうために、ボランティアが自分たちの時間を使って開発しています。開発者たちがコーヒーを飲みながら NewPipe を継続的に改良できるよう、あなたのご支援をお願いします。</string>
+    <string name="donation_encouragement">YouTube Video Downloader は、あなたに最高の体験を味わってもらうために、ボランティアが自分たちの時間を使って開発しています。開発者たちがコーヒーを飲みながら YouTube Video Downloader を継続的に改良できるよう、あなたのご支援をお願いします。</string>
     <string name="website_title">Webサイト</string>
-    <string name="website_encouragement">NewPipe の詳しい情報や最新情報については、ウェブサイトをご覧ください。</string>
+    <string name="website_encouragement">YouTube Video Downloader の詳しい情報や最新情報については、ウェブサイトをご覧ください。</string>
     <string name="title_activity_history">履歴</string>
     <string name="title_history_search">検索履歴</string>
     <string name="title_history_view">再生履歴</string>
@@ -312,7 +312,7 @@
     <string name="channels">チャンネル</string>
     <string name="playlists">プレイリスト</string>
     <string name="users">ユーザー</string>
-    <string name="privacy_policy_title">NewPipe プライバシーポリシー</string>
+    <string name="privacy_policy_title">YouTube Video Downloader プライバシーポリシー</string>
     <string name="read_privacy_policy">プライバシーポリシーを確認</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
     <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません。</string>
@@ -330,16 +330,16 @@
     </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
-    <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。
-\nNewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
-    <string name="app_license">NewPipe はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。
+\nYouTube Video Downloader のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
+    <string name="app_license">YouTube Video Downloader はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
     <string name="title_last_played">最終再生日時</string>
     <string name="title_most_played">最も再生した動画</string>
     <string name="resize_zoom">ズーム</string>
     <string name="controls_add_to_playlist_title">プレイリスト</string>
     <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示</string>
     <string name="tracks">トラック</string>
-    <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレイヤーの通知</string>
+    <string name="notification_channel_description">YouTube Video Downloader バックグラウンドおよびポップアップのプレイヤーの通知</string>
     <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押ししてキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
@@ -388,7 +388,7 @@
     <string name="tab_choose">タブを選択</string>
     <string name="settings_category_updates_title">アプリの更新</string>
     <string name="events">催し物</string>
-    <string name="app_update_notification_channel_description">新しい NewPipe バージョンの通知</string>
+    <string name="app_update_notification_channel_description">新しい YouTube Video Downloader バージョンの通知</string>
     <string name="download_to_sdcard_error_title">外部記憶装置は利用できません</string>
     <string name="restore_defaults">既定値に戻す</string>
     <string name="restore_defaults_confirmation">既定の設定を復元しますか\?</string>
@@ -403,7 +403,7 @@
     <string name="grid">グリッド</string>
     <string name="auto">自動</string>
     <string name="switch_view">スイッチビュー</string>
-    <string name="app_update_notification_content_title">NewPipe のアップデートがあります！</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader のアップデートがあります！</string>
     <string name="app_update_notification_content_text">タップでダウンロード</string>
     <string name="missions_header_finished">完了</string>
     <string name="missions_header_pending">保留中</string>
@@ -463,7 +463,7 @@
     <string name="missing_file">ファイルが移動または削除されました</string>
     <string name="overwrite_failed">ファイルを上書きできません</string>
     <string name="download_already_pending">この名前の保留中のダウンロードがあります</string>
-    <string name="error_postprocessing_stopped">ファイルの作業中に NewPipe が閉じられました</string>
+    <string name="error_postprocessing_stopped">ファイルの作業中に YouTube Video Downloader が閉じられました</string>
     <string name="error_insufficient_storage">デバイスに空き容量がありません</string>
     <string name="error_progress_lost">ファイルが削除されたため、進行状況が失われました</string>
     <string name="confirm_prompt">ダウンロード履歴、またはダウンロードしたファイルを消去しますか\?</string>
@@ -560,7 +560,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">高速モードを無効化</string>
     <string name="feed_use_dedicated_fetch_method_help_text">フィードの読み込みが遅すぎると思いますか？ その場合、高速読み込みを有効化してみてください (設定、もしくは下のボタンを押して変更することができます)。
 \n
-\nNewPipe は2つの読み込み方法を提供します:
+\nYouTube Video Downloader は2つの読み込み方法を提供します:
 \n・登録チャンネル全体を取得します。これは低速ですが完全です。
 \n・専用のサービス エンドポイントを使用します。これは高速ですが、たいていの場合不完全です。
 \n
@@ -571,7 +571,7 @@
 \nつまり、読み込み方法の選択は速度または正確さのどちらを優先するか、あなたの好みによります。</string>
     <string name="infinite_videos">∞ の動画</string>
     <string name="more_than_100_videos">100 以上の動画</string>
-    <string name="content_not_supported">このコンテンツはまだ NewPipe でサポートされていません。
+    <string name="content_not_supported">このコンテンツはまだ YouTube Video Downloader でサポートされていません。
 \n
 \n今後のバージョンでサポートされるかもしれません。</string>
     <string name="songs">曲</string>

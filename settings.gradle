@@ -1,7 +1,7 @@
 include ':app'
 
-// Use a local copy of NewPipe Extractor by uncommenting the lines below.
-// We assume, that NewPipe and NewPipe Extractor have the same parent directory.
+// Use a local copy of YouTube Video Downloader Extractor by uncommenting the lines below.
+// We assume, that YouTube Video Downloader and YouTube Video Downloader Extractor have the same parent directory.
 // If this is not the case, please change the path in includeBuild().
 
 //includeBuild('../NewPipeExtractor') {

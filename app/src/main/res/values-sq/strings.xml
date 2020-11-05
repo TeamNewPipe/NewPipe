@@ -96,7 +96,7 @@
     <string name="error_timeout">Koha e lidhjes skadoi</string>
     <string name="error_progress_lost">Progresi humbi, pasi skedari është fshirë</string>
     <string name="error_insufficient_storage">Nuk ka vend bosh në pajisje</string>
-    <string name="error_postprocessing_stopped">NewPipe u mbyll ndërkohë që po punohej mbi skedarin</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader u mbyll ndërkohë që po punohej mbi skedarin</string>
     <string name="error_postprocessing_failed">Procesimi dështoi</string>
     <string name="error_http_not_found">Nuk u gjet</string>
     <string name="error_http_unsupported_range">Serveri nuk pranon shkarkime paralele, riprovoni me @string/msg_threads = 1</string>
@@ -127,7 +127,7 @@
     <string name="paused">ndalur</string>
     <string name="missions_header_finished">Përfunduar</string>
     <string name="app_update_notification_content_text">Shtyp për të shkarkuar</string>
-    <string name="app_update_notification_content_title">Përditësim i ri i NewPipe është i disponueshëm!</string>
+    <string name="app_update_notification_content_title">Përditësim i ri i YouTube Video Downloader është i disponueshëm!</string>
     <string name="switch_view">Ndrysho Pamjen</string>
     <string name="auto">Automatike</string>
     <string name="list">Listë</string>
@@ -144,7 +144,7 @@
     <string name="limit_data_usage_none_description">Pa limit</string>
     <string name="decline">Refuzo</string>
     <string name="accept">Prano</string>
-    <string name="start_accept_privacy_policy">Për të qenë në përputhje me Rregulloren e Përgjithshme Evropiane për Mbrojtjen e të Dhënave (GDPR), ne ju tërheqim vëmendjen tek politika e privatësisë së NewPipe. Ju lutemi lexojeni me kujdes.
+    <string name="start_accept_privacy_policy">Për të qenë në përputhje me Rregulloren e Përgjithshme Evropiane për Mbrojtjen e të Dhënave (GDPR), ne ju tërheqim vëmendjen tek politika e privatësisë së YouTube Video Downloader. Ju lutemi lexojeni me kujdes.
 \nJu duhet ta pranoni atë për të na dërguar raportin e problemit.</string>
     <string name="playback_reset">Rikthe</string>
     <string name="playback_step">Shkallë</string>
@@ -263,15 +263,15 @@
     <string name="title_history_view">Parë</string>
     <string name="title_history_search">Kërkuar</string>
     <string name="read_full_license">Lexo licensën</string>
-    <string name="app_license_title">Licensa e NewPipe</string>
+    <string name="app_license_title">Licensa e YouTube Video Downloader</string>
     <string name="read_privacy_policy">Lexoni politikën e privatësisë</string>
-    <string name="privacy_policy_encouragement">Projekti NewPipe e merr privatësinë tuaj seriozisht. Kështu, aplikacioni nuk mbledh të dhëna pa dijeninë tuaj.
-\nPolitika e privatësisë së NewPipe shpjegon në detaje se çfarë të dhënat dërgohen dhe ruhen kur ju dërgoni një raport dështimi/crash.</string>
-    <string name="privacy_policy_title">Politika e Privatësisë së NewPipe</string>
-    <string name="website_encouragement">Shfletoni faqen e internetit të NewPipe për më tepër informacion dhe lajme.</string>
+    <string name="privacy_policy_encouragement">Projekti YouTube Video Downloader e merr privatësinë tuaj seriozisht. Kështu, aplikacioni nuk mbledh të dhëna pa dijeninë tuaj.
+\nPolitika e privatësisë së YouTube Video Downloader shpjegon në detaje se çfarë të dhënat dërgohen dhe ruhen kur ju dërgoni një raport dështimi/crash.</string>
+    <string name="privacy_policy_title">Politika e Privatësisë së YouTube Video Downloader</string>
+    <string name="website_encouragement">Shfletoni faqen e internetit të YouTube Video Downloader për më tepër informacion dhe lajme.</string>
     <string name="website_title">Faqja e internetit</string>
     <string name="give_back">Jep</string>
-    <string name="donation_encouragement">NewPipe zhvillohet nga zhvillues të cilët shpenzojnë kohën e tyre të lirë për t\'u prurë juve eksperiencën më të mirë për përdoruesin. Ktheni nderin duke ndihmuar zhvilluesit që ta bëjnë NewPipe akoma edhe më të mirë ndërkohë që ata pijnë një filxhan kafe.</string>
+    <string name="donation_encouragement">YouTube Video Downloader zhvillohet nga zhvillues të cilët shpenzojnë kohën e tyre të lirë për t\'u prurë juve eksperiencën më të mirë për përdoruesin. Ktheni nderin duke ndihmuar zhvilluesit që ta bëjnë YouTube Video Downloader akoma edhe më të mirë ndërkohë që ata pijnë një filxhan kafe.</string>
     <string name="donation_title">Dhuro</string>
     <string name="view_on_github">Shikoje në GitHub</string>
     <string name="contribution_encouragement">Nëse keni ide rreth; përkthimeve, ndryshimeve në dizajn, pastrimit të kodit, apo ndryshime rrënjësore të kodit—ndihma është gjithnjë e mirëpritur. Sa më shumë të bëhet aq më mirë do jetë!</string>
@@ -286,7 +286,7 @@
     <string name="title_licenses">Licensat e palëve të treta</string>
     <string name="action_about">Rreth</string>
     <string name="action_settings">Aranzhimet</string>
-    <string name="title_activity_about">Rreth NewPipe</string>
+    <string name="title_activity_about">Rreth YouTube Video Downloader</string>
     <string name="toast_no_player">Nuk ka aplikacion të instaluar që mund ta luajë këtë skedar</string>
     <string name="charset_most_special_characters">Shumica e karaktereve speciale</string>
     <string name="charset_letters_and_digits">Shkronjat dhe numrat</string>
@@ -305,7 +305,7 @@
     <string name="msg_copied">U kopjua në tabelën e kopjeve</string>
     <string name="msg_wait">Ju lutem prisni…</string>
     <string name="msg_running_detail">Shtyp për detajet</string>
-    <string name="msg_running">NewPipe duke shkarkuar</string>
+    <string name="msg_running">YouTube Video Downloader duke shkarkuar</string>
     <string name="msg_url_malform">URL e keqformuar ose nuk ka Internet</string>
     <string name="msg_exists">Skedari ekziston tashmë</string>
     <string name="msg_server_unsupported">Server i pambështetur</string>
@@ -426,7 +426,7 @@
     <string name="tracks">Pistë</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Mendoni se lista po ngarkohet shumë ngadalë\? Nëse po, provoni të aktivizoni ngarkimin e shpejtë (ju mund ta ndryshoni tek aranzhimet ose duke shtypur butonin më poshtë). 
 \n 
-\nNewPipe ofron dy strategji të ndryshme të ngarkimit: 
+\nYouTube Video Downloader ofron dy strategji të ndryshme të ngarkimit:
 \n• Të merret i gjithë kanali i abonuar, më e ngadaltë por e plotë 
 \n• Të përdoret një shërbim i dedikuar, i cili është i shpejtë por jo i plotë. 
 \n 
@@ -436,8 +436,8 @@
 \n 
 \nSi përfundim, zgjedhja mbetet në dorën tuaj dhe se çfarë ju preferoni: shpejtësi apo informacion të saktë.</string>
     <string name="enable_disposed_exceptions_summary">Detyroni raportimin e përjashtimeve Rx të padërgueshme jashtë fragmentit apo ciklit jetësor të aktivitetit pas hedhjes</string>
-    <string name="app_license">NewPipe është program i lirë copyleft: Ju mund ta përdorni, ta studioni, ta ndani me të tjerët dhe ta përmirësoni sipas dëshirës. Specifikisht ju mund ta rishpërndani dhe/ose ta modifikoni sipas kushteve të Licensës GNU General Public siç është publikuar nga Fondacioni për Softuerin e Lirë (FSF), sipas versionit 3 të Licensës, ose (sipas mundësive tuaja) në një version më të ri.</string>
-    <string name="content_not_supported">Kjo përmbajtje nuk është ende e mbështetur nga NewPipe.
+    <string name="app_license">YouTube Video Downloader është program i lirë copyleft: Ju mund ta përdorni, ta studioni, ta ndani me të tjerët dhe ta përmirësoni sipas dëshirës. Specifikisht ju mund ta rishpërndani dhe/ose ta modifikoni sipas kushteve të Licensës GNU General Public siç është publikuar nga Fondacioni për Softuerin e Lirë (FSF), sipas versionit 3 të Licensës, ose (sipas mundësive tuaja) në një version më të ri.</string>
+    <string name="content_not_supported">Kjo përmbajtje nuk është ende e mbështetur nga YouTube Video Downloader.
 \n
 \nShpresojmë se do të mbështetet në një version të ardhshëm.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Çaktivizo</string>
@@ -493,10 +493,10 @@
     <string name="switch_to_background">Kaloje në Sfond</string>
     <string name="toggle_orientation">Ndrysho Orientimin</string>
     <string name="unknown_content">[E panjohur]</string>
-    <string name="app_update_notification_channel_description">Njoftimet për versionet e reja të NewPipe</string>
+    <string name="app_update_notification_channel_description">Njoftimet për versionet e reja të YouTube Video Downloader</string>
     <string name="app_update_notification_channel_name">Njoftimi për Përditësime të Aplikacionit</string>
-    <string name="notification_channel_description">Njoftimet për luajtësit në sfond dhe popup të NewPipe</string>
-    <string name="notification_channel_name">Njoftim nga NewPipe</string>
+    <string name="notification_channel_description">Njoftimet për luajtësit në sfond dhe popup të YouTube Video Downloader</string>
+    <string name="notification_channel_name">Njoftim nga YouTube Video Downloader</string>
     <string name="file">Skedar</string>
     <string name="just_once">Vetëm një Herë</string>
     <string name="always">Gjithmonë</string>
@@ -582,7 +582,7 @@
     <string name="show_higher_resolutions_summary">Vetëm disa pajisje mund të luajnë video 2K/4K</string>
     <string name="show_higher_resolutions_title">Shfaq rezolucione më të larta</string>
     <string name="default_popup_resolution_title">Rezolucioni i parazgjedhur i popup</string>
-    <string name="autoplay_by_calling_app_summary">Luan një video kur NewPipe thirret nga një aplikacion tjetër</string>
+    <string name="autoplay_by_calling_app_summary">Luan një video kur YouTube Video Downloader thirret nga një aplikacion tjetër</string>
     <string name="download_choose_new_path">Ndryshoni dosjet e shkarkimeve për të patur efekt</string>
     <string name="download_path_audio_dialog_title">Zgjidhni dosjen e shkarkimit për skedarët audio</string>
     <string name="download_path_audio_summary">Skedarët audio të shkarkuara ruhen lëtu</string>
@@ -597,7 +597,7 @@
     <string name="remove_watched">Hiq të parat</string>
     <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do shihen në produktet e luajtshme</string>
     <string name="show_original_time_ago_title">Shfaq titullin origjinal \"kohë më parë\" në objekte</string>
-    <string name="youtube_restricted_mode_enabled_title">Modaliteti i censuruar i NewPipe</string>
+    <string name="youtube_restricted_mode_enabled_title">Modaliteti i censuruar i YouTube Video Downloader</string>
     <string name="detail_sub_channel_thumbnail_view_description">Pamja statike e avatarit të kanalit</string>
     <string name="video_detail_by">Nga %s</string>
     <string name="channel_created_by">Krijuar nga %s</string>

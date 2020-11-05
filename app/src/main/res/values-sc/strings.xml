@@ -102,16 +102,16 @@
     <string name="title_history_search">Chircas fatas</string>
     <string name="title_activity_history">Cronologia</string>
     <string name="read_full_license">Leghe sa litzèntzia</string>
-    <string name="app_license">NewPipe est unu programma lìberu cun litzèntzia copyleft: lu podes impreare, cumpartzire e megiorare comente cheres. Pro èssere prus craros, lu podes torrare a intregare in suta de sos tèrmines de sa Litzèntzia Generale Pùblica GNU publicada dae sa Free Software Foundation, sa versione 3 de sa litzèntzia o, si preferis, una prus noa.</string>
-    <string name="app_license_title">Litzèntzia de NewPipe</string>
+    <string name="app_license">YouTube Video Downloader est unu programma lìberu cun litzèntzia copyleft: lu podes impreare, cumpartzire e megiorare comente cheres. Pro èssere prus craros, lu podes torrare a intregare in suta de sos tèrmines de sa Litzèntzia Generale Pùblica GNU publicada dae sa Free Software Foundation, sa versione 3 de sa litzèntzia o, si preferis, una prus noa.</string>
+    <string name="app_license_title">Litzèntzia de YouTube Video Downloader</string>
     <string name="read_privacy_policy">Leghe sa polìtica de riservadesa</string>
-    <string name="privacy_policy_encouragement">Su progetu NewPipe pigat sa riservadesa tua in manera sèria a beru. Pro custa resone s\'aplicatzione non collit perunu datu chene su cunsensu tuo.
-\n Sa polìtica de riservadesa de NewPipe ispiegat a sa minuda ite genia de datos benint imbiados cando imbias unu raportu de errore.</string>
-    <string name="privacy_policy_title">Polìtica de riservadesa de NewPipe</string>
-    <string name="website_encouragement">Bìsita su situ web de NewPipe pro àteras informatziones e noas.</string>
+    <string name="privacy_policy_encouragement">Su progetu YouTube Video Downloader pigat sa riservadesa tua in manera sèria a beru. Pro custa resone s\'aplicatzione non collit perunu datu chene su cunsensu tuo.
+\n Sa polìtica de riservadesa de YouTube Video Downloader ispiegat a sa minuda ite genia de datos benint imbiados cando imbias unu raportu de errore.</string>
+    <string name="privacy_policy_title">Polìtica de riservadesa de YouTube Video Downloader</string>
+    <string name="website_encouragement">Bìsita su situ web de YouTube Video Downloader pro àteras informatziones e noas.</string>
     <string name="website_title">Situ web</string>
     <string name="give_back">Retribui</string>
-    <string name="donation_encouragement">NewPipe benit isvilupadu dae voluntàrios chi impreant su tempus lìberu issoro batende·ti sa mègius esperièntzia de impreadore. Torra·li su favore pro agiudare sos isvilupadores a megiorare NewPipe galu de prus, in su mentres chi si gosant una tzìchera de cafè.</string>
+    <string name="donation_encouragement">YouTube Video Downloader benit isvilupadu dae voluntàrios chi impreant su tempus lìberu issoro batende·ti sa mègius esperièntzia de impreadore. Torra·li su favore pro agiudare sos isvilupadores a megiorare YouTube Video Downloader galu de prus, in su mentres chi si gosant una tzìchera de cafè.</string>
     <string name="donation_title">Dona</string>
     <string name="view_on_github">Pòmpia in GitHub</string>
     <string name="contribution_encouragement">Si tenes ideas pro sa tradutzione, modìficas de su progetu, pro s\'innetadura de su còdighe o pro modìficas de su còdighe mannas, s\'agiudu est semper benebènnidu. Prus si faghet e mègius est!</string>
@@ -126,7 +126,7 @@
     <string name="title_licenses">Litzèntzias de tertzas partes</string>
     <string name="action_about">Informatziones</string>
     <string name="action_settings">Impostatziones</string>
-    <string name="title_activity_about">In subra de NewPipe</string>
+    <string name="title_activity_about">In subra de YouTube Video Downloader</string>
     <string name="toast_no_player">Peruna aplicatzione installada pro pòdere riproduire custu documentu</string>
     <string name="charset_most_special_characters">Majoria de sos caràteres ispetziales</string>
     <string name="charset_letters_and_digits">Lìteras e tzifras</string>
@@ -143,7 +143,7 @@
     <string name="msg_copied">Copiadu in punta de billete</string>
     <string name="msg_wait">Iseta…</string>
     <string name="msg_running_detail">Toca pro detàllios</string>
-    <string name="msg_running">NewPipe est iscarrighende</string>
+    <string name="msg_running">YouTube Video Downloader est iscarrighende</string>
     <string name="msg_url_malform">S\'URL non tenet unu formadu vàlidu o ìnternet no est a disponimentu</string>
     <string name="msg_exists">Su documentu esistit giai</string>
     <string name="msg_server_unsupported">Serbidore non suportadu</string>
@@ -242,7 +242,7 @@
     <string name="no_playlist_bookmarked_yet">Galu perunu sinnalibru de iscalitas</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Pensas chi su carrigamentu de sa fonte de cuntenutos (su feed) siat tropu lentu\? Si est gasi, proa a abilitare su carrigamentu lestru (lu podes mudare in sas impostatziones o incarchende su butone inoghe in suta).
 \n
-\nNewPipe oferit duas istrategias de carrigamentu de sas fontes de cuntenutos:
+\nYouTube Video Downloader oferit duas istrategias de carrigamentu de sas fontes de cuntenutos:
 \n • Recuperende totu su canale de iscritzione, cosa chi est lenta ma prus cumprida.
 \n • Impreende unu puntu de essida de unu servìtziu dedicadu, cosa chi est lestra ma, de sòlitu, non cumprida.
 \n
@@ -281,7 +281,7 @@
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Creadu dae %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniadura de avatar de su canale</string>
-    <string name="content_not_supported">Custu cuntenutu no est galu suportadu dae NewPipe.
+    <string name="content_not_supported">Custu cuntenutu no est galu suportadu dae YouTube Video Downloader.
 \n
 \n Isperamus chi at a èssere suportadu in una versione benidora.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disabìlita sa modalidade lestra</string>
@@ -355,7 +355,7 @@
     <string name="error_timeout">Connessione iscadida</string>
     <string name="error_progress_lost">Su progressu s\'est pèrdidu, ca su documentu est istadu iscantzelladu</string>
     <string name="error_insufficient_storage">Perunu ispàtziu abarradu in su dispositivu</string>
-    <string name="error_postprocessing_stopped">NewPipe est istadu serradu in su mentres chi fiat traballende a su documentu</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader est istadu serradu in su mentres chi fiat traballende a su documentu</string>
     <string name="error_postprocessing_failed">Post-protzessamentu fallidu</string>
     <string name="error_http_not_found">No agatadu</string>
     <string name="error_http_unsupported_range">Custu serbidore no atzetat iscarrigamentos a filos mùltiplos, torra a proare cun @string/msg_threads = 1</string>
@@ -386,7 +386,7 @@
     <string name="missions_header_pending">In isetu</string>
     <string name="missions_header_finished">Acabadu</string>
     <string name="app_update_notification_content_text">Toca pro iscarrigare</string>
-    <string name="app_update_notification_content_title">B\'est un\'agiornamentu de NewPipe disponìbile!</string>
+    <string name="app_update_notification_content_title">B\'est un\'agiornamentu de YouTube Video Downloader disponìbile!</string>
     <string name="switch_view">Càmbia sa vista</string>
     <string name="auto">Automàtica</string>
     <string name="grid">Grìllia</string>
@@ -402,7 +402,7 @@
     <string name="limit_data_usage_none_description">Perunu lìmite</string>
     <string name="decline">Refuda</string>
     <string name="accept">Atzeto</string>
-    <string name="start_accept_privacy_policy">Pro pòdere rispetare su Regulamentu Europeu Generale de Amparu de sos Datos (GDPR) ti pedimus de dare cara a sa polìtica de riservadesa de NewPipe.
+    <string name="start_accept_privacy_policy">Pro pòdere rispetare su Regulamentu Europeu Generale de Amparu de sos Datos (GDPR) ti pedimus de dare cara a sa polìtica de riservadesa de YouTube Video Downloader.
 \n La depes atzetare pro nos pòdere imbiare sa sinnalatzione de errore.</string>
     <string name="playback_reset">Reseta</string>
     <string name="playback_step">Passu</string>
@@ -449,10 +449,10 @@
     <string name="switch_to_background">Cola a s\'isfundu</string>
     <string name="toggle_orientation">Càmbia s\'orientamentu</string>
     <string name="unknown_content">[Disconnotu]</string>
-    <string name="app_update_notification_channel_description">Notìficas pro una versione noa de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notìficas pro una versione noa de YouTube Video Downloader</string>
     <string name="app_update_notification_channel_name">Notìfica de agiornamentu de s\'aplicatzione</string>
-    <string name="notification_channel_description">Notìficas pro sos riproduidores in s\'isfundu e a ventanedda de NewPipe</string>
-    <string name="notification_channel_name">Notìficas de NewPipe</string>
+    <string name="notification_channel_description">Notìficas pro sos riproduidores in s\'isfundu e a ventanedda de YouTube Video Downloader</string>
+    <string name="notification_channel_name">Notìficas de YouTube Video Downloader</string>
     <string name="file">Documentu</string>
     <string name="just_once">Una borta ebbia</string>
     <string name="always">Semper</string>
@@ -564,7 +564,7 @@
     <string name="show_higher_resolutions_title">Ammustra sas risolutziones prus artas</string>
     <string name="default_popup_resolution_title">Risolutzione predefinida de sa ventanedda</string>
     <string name="default_resolution_title">Risolutzione predefinida</string>
-    <string name="autoplay_by_calling_app_summary">Riproduet unu vìdeu cando NewPipe benit abertu dae un\'àtera aplicatzione</string>
+    <string name="autoplay_by_calling_app_summary">Riproduet unu vìdeu cando YouTube Video Downloader benit abertu dae un\'àtera aplicatzione</string>
     <string name="autoplay_by_calling_app_title">Riprodutzione automàtica</string>
     <string name="download_choose_new_path">Càmbia sa cartella de iscarrigamentu pro chi tèngiat efetu</string>
     <string name="download_path_audio_dialog_title">Issèbera sa cartella de iscarrigamentu pro sos documentos àudio</string>

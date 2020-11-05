@@ -11,7 +11,7 @@
 • [YouTube] 新增對 /c/shortened_url 頻道連結的支援
 
 修復
-• 修復多個分享影片到 NewPipe 與直接下載串流的問題
+• 修復多個分享影片到 YouTube Video Downloader 與直接下載串流的問題
 • 修復播放器無法存取其建立的執行緒的問題
 • 修復搜尋結果分頁
 • [YouTube] 修復導致 NPE 的 null 開關

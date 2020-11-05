@@ -42,7 +42,7 @@
     <string name="download_path_audio_summary">ਡਾਊਨਲੋਡ ਕੀਤੇ ਆਡੀਓ ਇੱਥੇ ਸਟੋਰ ਹਨ</string>
     <string name="download_path_audio_dialog_title">ਆਡੀਓ ਫਾਈਲਾਂ ਲਈ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਚੁਣੋ</string>
     <string name="autoplay_by_calling_app_title">ਆਟੋ ਪਲੇ</string>
-    <string name="autoplay_by_calling_app_summary">ਜਦੋਂ ਕਿਸੇ ਹੋਰ ਐਪ ਜਰੀਏ NewPipe ਨੂੰ ਖੋਲਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਇਹ ਵੀਡੀਓ ਚਲਾਉਂਦਾ ਹੈ</string>
+    <string name="autoplay_by_calling_app_summary">ਜਦੋਂ ਕਿਸੇ ਹੋਰ ਐਪ ਜਰੀਏ YouTube Video Downloader ਨੂੰ ਖੋਲਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਇਹ ਵੀਡੀਓ ਚਲਾਉਂਦਾ ਹੈ</string>
     <string name="default_resolution_title">Default Resolution</string>
     <string name="default_popup_resolution_title">Default ਪੌਪ-ਅਪ Resolution</string>
     <string name="show_higher_resolutions_title">ਉੱਚ ਰੇਸੋਲਿਯੁਸ਼ਨਾਂ ਵੀ ਦਿਖਾਓ</string>
@@ -120,8 +120,8 @@
     <string name="always">ਹਮੇਸ਼ਾ</string>
     <string name="just_once">ਸਿਰਫ਼ ਇਸ ਬਾਰ</string>
     <string name="file">ਫਾਈਲ</string>
-    <string name="notification_channel_name">NewPipe ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
-    <string name="notification_channel_description">NewPipe ਬੈਕਗ੍ਰਾਉਂਡ ਅਤੇ ਪੌਪ-ਅਪ ਪਲੇਅਰਾਂ ਲਈ ਸੂਚਨਾਵਾਂ</string>
+    <string name="notification_channel_name">YouTube Video Downloader ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
+    <string name="notification_channel_description">YouTube Video Downloader ਬੈਕਗ੍ਰਾਉਂਡ ਅਤੇ ਪੌਪ-ਅਪ ਪਲੇਅਰਾਂ ਲਈ ਸੂਚਨਾਵਾਂ</string>
     <string name="unknown_content">ਅਣਜਾਣ</string>
     <string name="toggle_orientation">Orientation ਬਦਲੋ</string>
     <string name="switch_to_background">ਬੈਕਗਰਾਊਂਡ ਵਿੱਚ ਬਦਲੋ</string>
@@ -226,7 +226,7 @@
     <string name="msg_server_unsupported">Unsupported ਸਰਵਰ</string>
     <string name="msg_exists">ਫਾਈਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ</string>
     <string name="msg_url_malform">ਖਰਾਬ URL ਜਾਂ ਇੰਟਰਨੈਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
-    <string name="msg_running">NewPipe ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ</string>
+    <string name="msg_running">YouTube Video Downloader ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ</string>
     <string name="msg_running_detail">ਵੇਰਵਿਆਂ ਲਈ ਖੋਲੋ</string>
     <string name="msg_wait">ਕ੍ਰਿਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ…</string>
     <string name="msg_copied">ਕਲਿਪ-ਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ</string>
@@ -242,7 +242,7 @@
     <string name="charset_letters_and_digits">ਅੱਖਰ ਅਤੇ ਅੰਕ</string>
     <string name="charset_most_special_characters">ਬਹੁਤੇ ਖ਼ਾਸ ਅੱਖਰ</string>
     <string name="toast_no_player">ਇਸ ਫਾਈਲ ਨੂੰ ਚਲਾਉਣ ਲਈ ਕੋਈ ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ</string>
-    <string name="title_activity_about">NewPipe ਬਾਰੇ</string>
+    <string name="title_activity_about">YouTube Video Downloader ਬਾਰੇ</string>
     <string name="action_settings">ਸੈਟਿੰਗਾਂ</string>
     <string name="action_about">ਐਪ ਬਾਰੇ</string>
     <string name="title_licenses">ਥਰਡ-ਪਾਰਟੀ ਲਾਇਸੈਂਸ</string>
@@ -257,12 +257,12 @@
     <string name="contribution_encouragement">ਭਾਵੇਂ ਤੁਹਾਡੇ ਕੋਲ ਵਿਚਾਰ ਹਨ; ਅਨੁਵਾਦ, ਡਿਜ਼ਾਈਨ ਬਦਲਾਵ, ਕੋਡ ਦੀ ਸਫਾਈ, ਜਾਂ ਅਸਲ ਭਾਰੀ ਕੋਡ ਬਦਲਾਵ — ਹਰ ਮਦਦ ਦਾ ਸਦਾ ਸਵਾਗਤ ਹੈ. ਜਿੰਨਾ ਇਸ ਨੂੰ ਜ਼ਿਆਦਾ ਕੀਤਾ ਜਾਂਦਾ ਹੈ ਉੱਨਾ ਹੀ ਇਹ ਬਿਹਤਰ ਹੁੰਦਾ ਹੈ!</string>
     <string name="view_on_github">GitHub ਤੇ ਵੇਖੋ</string>
     <string name="donation_title">ਦਾਨ ਕਰੋ</string>
-    <string name="donation_encouragement">NewPipe ਵਲੰਟੀਅਰਾਂ ਦੁਆਰਾ ਵਿਕਸਤ ਕੀਤੀ ਗਈ ਹੈ ਜੋ ਤੁਹਾਡੇ ਲਈ ਬਿਹਤਰ ਅਨੁਭਵ ਲਿਆਉਣ ਲਈ ਸਮਾਂ ਬਿਤਾਉਂਦੇ ਹਨ. ਇੱਕ ਕੱਪ ਕਾਫੀ ਦਾ ਆਨੰਦ ਲੈਂਦੇ ਹੋਏ ਡਿਵੈਲਪਰਾਂ ਨੂੰ NewPipe ਨੂੰ ਹੋਰ ਵਧੀਆ ਬਣਾਉਣ ਵਿੱਚ ਸਹਾਇਤਾ ਲਈ ਵਾਪਸ ਦਿਓ.</string>
+    <string name="donation_encouragement">YouTube Video Downloader ਵਲੰਟੀਅਰਾਂ ਦੁਆਰਾ ਵਿਕਸਤ ਕੀਤੀ ਗਈ ਹੈ ਜੋ ਤੁਹਾਡੇ ਲਈ ਬਿਹਤਰ ਅਨੁਭਵ ਲਿਆਉਣ ਲਈ ਸਮਾਂ ਬਿਤਾਉਂਦੇ ਹਨ. ਇੱਕ ਕੱਪ ਕਾਫੀ ਦਾ ਆਨੰਦ ਲੈਂਦੇ ਹੋਏ ਡਿਵੈਲਪਰਾਂ ਨੂੰ YouTube Video Downloader ਨੂੰ ਹੋਰ ਵਧੀਆ ਬਣਾਉਣ ਵਿੱਚ ਸਹਾਇਤਾ ਲਈ ਵਾਪਸ ਦਿਓ.</string>
     <string name="give_back">ਵਾਪਸ ਦਿਓ</string>
     <string name="website_title">ਵੈਬਸਾਈਟ</string>
-    <string name="website_encouragement">ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਅਤੇ ਖ਼ਬਰਾਂ ਲਈ NewPipe ਵੈਬਸਾਈਟ ਵੇਖੋ.</string>
-    <string name="app_license_title">NewPipe\'s ਲਾਇਸੈਂਸ</string>
-    <string name="app_license">NewPipe ਇੱਕ ਕਾੱਪੀਲਿਫਟ ਮੁਫ਼ਤ ਸਾੱਫਟਵੇਅਰ ਹੈ: ਤੁਸੀਂ ਇਸ ਦੀ ਵਰਤੋਂ, ਅਧਿਐਨ ਅਤੇ ਇਸ ਨੂੰ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸ ਵਿੱਚ ਆਪਣੀ ਮਰਜ਼ੀ ਅਨੁਸਾਰ ਸੁਧਾਰ ਸਕਦੇ ਹੋ. ਖਾਸ ਤੌਰ \'ਤੇ ਤੁਸੀਂ ਇਸ ਨੂੰ GNU ਜਨਰਲ ਪਬਲਿਕ ਲਾਇਸੈਂਸ ਦੀਆਂ ਸ਼ਰਤਾਂ ਦੇ ਅਧੀਨ ਵੰਡ ਸਕਦੇ ਹੋ / ਜਾਂ ਸੰਸ਼ੋਧਿਤ ਕਰ ਸਕਦੇ ਹੋ ਜਿਵੇਂ ਕਿ ਮੁਫਤ ਸਾੱਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਦੁਆਰਾ ਪ੍ਰਕਾਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਾਂ ਤਾਂ ਲਾਇਸੈਂਸ ਦਾ ਵਰਜ਼ਨ 3, ਜਾਂ (ਤੁਹਾਡੇ ਵਿਕਲਪ\' ਤੇ) ਬਾਅਦ ਦਾ ਕੋਈ ਸੰਸਕਰਣ.</string>
+    <string name="website_encouragement">ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਅਤੇ ਖ਼ਬਰਾਂ ਲਈ YouTube Video Downloader ਵੈਬਸਾਈਟ ਵੇਖੋ.</string>
+    <string name="app_license_title">YouTube Video Downloader\'s ਲਾਇਸੈਂਸ</string>
+    <string name="app_license">YouTube Video Downloader ਇੱਕ ਕਾੱਪੀਲਿਫਟ ਮੁਫ਼ਤ ਸਾੱਫਟਵੇਅਰ ਹੈ: ਤੁਸੀਂ ਇਸ ਦੀ ਵਰਤੋਂ, ਅਧਿਐਨ ਅਤੇ ਇਸ ਨੂੰ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸ ਵਿੱਚ ਆਪਣੀ ਮਰਜ਼ੀ ਅਨੁਸਾਰ ਸੁਧਾਰ ਸਕਦੇ ਹੋ. ਖਾਸ ਤੌਰ \'ਤੇ ਤੁਸੀਂ ਇਸ ਨੂੰ GNU ਜਨਰਲ ਪਬਲਿਕ ਲਾਇਸੈਂਸ ਦੀਆਂ ਸ਼ਰਤਾਂ ਦੇ ਅਧੀਨ ਵੰਡ ਸਕਦੇ ਹੋ / ਜਾਂ ਸੰਸ਼ੋਧਿਤ ਕਰ ਸਕਦੇ ਹੋ ਜਿਵੇਂ ਕਿ ਮੁਫਤ ਸਾੱਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਦੁਆਰਾ ਪ੍ਰਕਾਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਾਂ ਤਾਂ ਲਾਇਸੈਂਸ ਦਾ ਵਰਜ਼ਨ 3, ਜਾਂ (ਤੁਹਾਡੇ ਵਿਕਲਪ\' ਤੇ) ਬਾਅਦ ਦਾ ਕੋਈ ਸੰਸਕਰਣ.</string>
     <string name="read_full_license">ਲਾਇਸੈਂਸ ਪੜ੍ਹੋ</string>
     <string name="title_activity_history">ਹਿਸਟਰੀ</string>
     <string name="title_history_search">ਖੋਜਿਆ ਗਿਆ</string>
@@ -366,11 +366,11 @@
     <string name="playback_pitch">pitch</string>
     <string name="unhook_checkbox">ਅਨਲਿੰਕ (distortion ਪੈਦਾ ਹੋ ਸਕਦੀ ਹੈ)</string>
     <string name="import_settings">ਕੀ ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਵੀ ਇੰਪੋਰਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
-    <string name="privacy_policy_title">NewPipe\'s ਗੋਪਨੀਯਤਾ ਨੀਤੀ</string>
-    <string name="privacy_policy_encouragement">NewPipe ਪ੍ਰੋਜੈਕਟ ਤੁਹਾਡੀ ਗੋਪਨੀਯਤਾ ਨੂੰ ਬਹੁਤ ਗੰਭੀਰਤਾ ਨਾਲ ਲੈਂਦਾ ਹੈ. ਇਸ ਲਈ ਐਪ ਤੁਹਾਡੀ ਸਹਿਮਤੀ ਤੋਂ ਬਿਨਾਂ ਕੋਈ ਵੀ ਡਾਟਾ ਇੱਕਠਾ ਨਹੀਂ ਕਰਦਾ.
-\nNewPipe ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵਿਸਥਾਰ ਵਿੱਚ ਦੱਸਦੀ ਹੈ ਕਿ ਜਦੋਂ ਤੁਸੀਂ ਕਰੈਸ਼ ਰਿਪੋਰਟ ਭੇਜਦੇ ਹੋ ਤਾਂ ਕਿਹੜਾ ਡੇਟਾ ਭੇਜਿਆ ਜਾਂ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ.</string>
+    <string name="privacy_policy_title">YouTube Video Downloader\'s ਗੋਪਨੀਯਤਾ ਨੀਤੀ</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader ਪ੍ਰੋਜੈਕਟ ਤੁਹਾਡੀ ਗੋਪਨੀਯਤਾ ਨੂੰ ਬਹੁਤ ਗੰਭੀਰਤਾ ਨਾਲ ਲੈਂਦਾ ਹੈ. ਇਸ ਲਈ ਐਪ ਤੁਹਾਡੀ ਸਹਿਮਤੀ ਤੋਂ ਬਿਨਾਂ ਕੋਈ ਵੀ ਡਾਟਾ ਇੱਕਠਾ ਨਹੀਂ ਕਰਦਾ.
+\nYouTube Video Downloader ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵਿਸਥਾਰ ਵਿੱਚ ਦੱਸਦੀ ਹੈ ਕਿ ਜਦੋਂ ਤੁਸੀਂ ਕਰੈਸ਼ ਰਿਪੋਰਟ ਭੇਜਦੇ ਹੋ ਤਾਂ ਕਿਹੜਾ ਡੇਟਾ ਭੇਜਿਆ ਜਾਂ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ.</string>
     <string name="read_privacy_policy">ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਪੜ੍ਹੋ</string>
-    <string name="start_accept_privacy_policy">ਯੂਰਪੀਅਨ ਜਨਰਲ ਡੇਟਾ ਪ੍ਰੋਟੈਕਸ਼ਨ ਰੈਗੂਲੇਸ਼ਨ (ਜੀਡੀਪੀਆਰ) ਦੀ ਪਾਲਣਾ ਕਰਨ ਲਈ, ਅਸੀਂ ਤੁਹਾਡਾ ਧਿਆਨ NewPipe ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵੱਲ ਖਿੱਚਦੇ ਹਾਂ. ਕਿਰਪਾ ਕਰਕੇ ਇਸਨੂੰ ਧਿਆਨ ਨਾਲ ਪੜ੍ਹੋ.
+    <string name="start_accept_privacy_policy">ਯੂਰਪੀਅਨ ਜਨਰਲ ਡੇਟਾ ਪ੍ਰੋਟੈਕਸ਼ਨ ਰੈਗੂਲੇਸ਼ਨ (ਜੀਡੀਪੀਆਰ) ਦੀ ਪਾਲਣਾ ਕਰਨ ਲਈ, ਅਸੀਂ ਤੁਹਾਡਾ ਧਿਆਨ YouTube Video Downloader ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵੱਲ ਖਿੱਚਦੇ ਹਾਂ. ਕਿਰਪਾ ਕਰਕੇ ਇਸਨੂੰ ਧਿਆਨ ਨਾਲ ਪੜ੍ਹੋ.
 \nਸਾਨੂੰ BUG ਰਿਪੋਰਟ ਭੇਜਣ ਲਈ ਤੁਹਾਨੂੰ ਇਸ ਨੂੰ ਸਵੀਕਾਰ ਕਰਨਾ ਪਵੇਗਾ.</string>
     <string name="accept">ਸਵੀਕਾਰ ਕਰੋ</string>
     <string name="decline">ਅਸਵੀਕਾਰ</string>
@@ -399,7 +399,7 @@
     <string name="settings_category_updates_title">ਅਪਡੇਟਾਂ</string>
     <string name="file_deleted">ਫਾਈਲ ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
     <string name="app_update_notification_channel_name">ਐਪ ਅੱਪਡੇਟ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
-    <string name="app_update_notification_channel_description">ਨਵੇਂ NewPipe ਸੰਸਕਰਣ ਲਈ ਸੂਚਨਾਵਾਂ</string>
+    <string name="app_update_notification_channel_description">ਨਵੇਂ YouTube Video Downloader ਸੰਸਕਰਣ ਲਈ ਸੂਚਨਾਵਾਂ</string>
     <string name="download_to_sdcard_error_title">ਬਾਹਰੀ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="download_to_sdcard_error_message">ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ. ਕੀ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਦੀ ਸਥਿਤੀ ਨੂੰ ਰੀਸੈਟ ਕੀਤਾ ਜਾਵੇ \?</string>
     <string name="saved_tabs_invalid_json">Default ਟੈਬ ਦੀ ਵਰਤੋਂ ਕਰਦਿਆਂ, save ਕੀਤੇ ਟੈਬਾਂ ਨੂੰ ਪੜ੍ਹਨ ਵੇਲੇ ERROR</string>
@@ -415,7 +415,7 @@
     <string name="grid">ਗਰਿੱਡ</string>
     <string name="auto">ਆਟੋ</string>
     <string name="switch_view">ਸਵਿੱਚ view</string>
-    <string name="app_update_notification_content_title">NewPipe ਅੱਪਡੇਟ ਉਪਲਬੱਧ!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader ਅੱਪਡੇਟ ਉਪਲਬੱਧ!</string>
     <string name="app_update_notification_content_text">ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਦਬਾਓ</string>
     <string name="missions_header_finished">ਮੁਕੰਮਲ ਹੋਇਆ</string>
     <string name="missions_header_pending">ਬਕਾਇਆ</string>
@@ -467,7 +467,7 @@
     <string name="overwrite_finished_warning">ਇਸ ਨਾਮ ਨਾਲ ਡਾਉਨਲੋਡ ਕੀਤੀ ਫਾਈਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ</string>
     <string name="overwrite_failed">ਫਾਈਲ Overwrite ਨਹੀਂ ਹੋ ਸਕਦੀ</string>
     <string name="download_already_pending">ਇਸ ਨਾਮ ਦੇ ਨਾਲ ਇੱਥੇ ਇੱਕ ਬਕਾਇਆ ਡਾਊਨਲੋਡ ਹੈ</string>
-    <string name="error_postprocessing_stopped">ਫਾਈਲ ਤੇ ਕੰਮ ਕਰਦੇ ਸਮੇਂ NewPipe ਬੰਦ ਕੀਤੀ ਗਈ ਸੀ</string>
+    <string name="error_postprocessing_stopped">ਫਾਈਲ ਤੇ ਕੰਮ ਕਰਦੇ ਸਮੇਂ YouTube Video Downloader ਬੰਦ ਕੀਤੀ ਗਈ ਸੀ</string>
     <string name="error_insufficient_storage">ਡਿਵਾਈਸ ਤੇ ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਬਚੀ ਹੈ</string>
     <string name="error_progress_lost">Progress lost, ਕਿਉਂਕਿ ਫਾਈਲ ਮਿਟ ਗਈ ਸੀ</string>
     <string name="error_timeout">ਕੁਨੈਕਸ਼ਨ timeout</string>

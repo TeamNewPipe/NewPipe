@@ -27,7 +27,7 @@
     <string name="download_path_audio_title">Sökväg för nerladdning av ljud</string>
     <string name="download_path_audio_summary">Nedladdade ljudfiler lagras här</string>
     <string name="download_path_audio_dialog_title">Välj nedladdningsmapp för ljudfiler</string>
-    <string name="autoplay_by_calling_app_summary">Spelar automatiskt upp videon när NewPipe öppnas av en annan app</string>
+    <string name="autoplay_by_calling_app_summary">Spelar automatiskt upp videon när YouTube Video Downloader öppnas av en annan app</string>
     <string name="default_resolution_title">Standardupplösning</string>
     <string name="default_popup_resolution_title">Standardupplösning för popup</string>
     <string name="show_higher_resolutions_title">Visa högre upplösningar</string>
@@ -121,8 +121,8 @@
     <string name="popup_resizing_indicator_title">Storleksändring</string>
     <string name="undo">Ångra</string>
     <string name="play_all">Spela Alla</string>
-    <string name="notification_channel_name">NewPipe Avisering</string>
-    <string name="notification_channel_description">Aviseringar för NewPipe bakgrunds och popup-spelare</string>
+    <string name="notification_channel_name">YouTube Video Downloader Avisering</string>
+    <string name="notification_channel_description">Aviseringar för YouTube Video Downloader bakgrunds och popup-spelare</string>
     <string name="unknown_content">[Okänd]</string>
     <string name="youtube_signature_deobfuscation_error">Kunde inte dekryptera video URL signatur</string>
     <string name="could_not_get_stream">Kunde inte hitta någon ström</string>
@@ -175,7 +175,7 @@
     <string name="msg_server_unsupported">Servern stöds inte</string>
     <string name="msg_exists">Filen finns redan</string>
     <string name="msg_url_malform">Felaktig webbadress eller Internet inte tillgängligt</string>
-    <string name="msg_running">NewPipe nedladdning</string>
+    <string name="msg_running">YouTube Video Downloader nedladdning</string>
     <string name="msg_running_detail">Tryck för detaljer</string>
     <string name="msg_wait">Vänta…</string>
     <string name="msg_copied">Kopierat till urklipp</string>
@@ -190,7 +190,7 @@
     <string name="settings_file_replacement_character_title">Ersättningstecknet</string>
     <string name="charset_letters_and_digits">Bokstäver och siffror</string>
     <string name="charset_most_special_characters">De flesta specialtecken</string>
-    <string name="title_activity_about">Om NewPipe</string>
+    <string name="title_activity_about">Om YouTube Video Downloader</string>
     <string name="action_settings">Inställningar</string>
     <string name="action_about">Om</string>
     <string name="title_licenses">Tredjepartslicenser</string>
@@ -202,7 +202,7 @@
     <string name="tab_licenses">Licenser</string>
     <string name="app_description">Öppen och enkel Android app för mediastreaming.</string>
     <string name="view_on_github">Visa på GitHub</string>
-    <string name="app_license_title">NewPipes licens</string>
+    <string name="app_license_title">YouTube Video Downloaders licens</string>
     <string name="contribution_encouragement">Vad du än har för idéer; översättningar, designändringar, kodstädning eller riktiga stora kodändringar—hjälp är alltid välkommen. Ju mer som görs desto bättre blir det!</string>
     <string name="read_full_license">Läs hela licensen</string>
     <string name="contribution_title">Bidra</string>
@@ -236,10 +236,10 @@
     <string name="start_here_on_background">Börja spela i bakgrunden</string>
     <string name="start_here_on_popup">Börja spela i en popup</string>
     <string name="donation_title">Donera</string>
-    <string name="donation_encouragement">NewPipe utvecklas av frivilliga som spenderar sin fritid på att ge dig den bästa användarupplevelsen. Nu är det tid att ge tillbaka för att säkerställa att utvecklarna kan göra NewPipe ännu bättre medan de njuter av en kopp kaffe.</string>
+    <string name="donation_encouragement">YouTube Video Downloader utvecklas av frivilliga som spenderar sin fritid på att ge dig den bästa användarupplevelsen. Nu är det tid att ge tillbaka för att säkerställa att utvecklarna kan göra YouTube Video Downloader ännu bättre medan de njuter av en kopp kaffe.</string>
     <string name="give_back">Ge tillbaka</string>
     <string name="website_title">Webbplats</string>
-    <string name="website_encouragement">För att få mer information och de senaste nyheterna om NewPipe, besök vår webbplats.</string>
+    <string name="website_encouragement">För att få mer information och de senaste nyheterna om YouTube Video Downloader, besök vår webbplats.</string>
     <string name="show_info">Visa info</string>
     <string name="tab_bookmarks">Bokmärkta Spellistor</string>
     <string name="controls_add_to_playlist_title">Lägg till i</string>
@@ -299,10 +299,10 @@
     <string name="rename">Byt namn</string>
     <string name="one_item_deleted">1 objekt borttaget.</string>
     <string name="toast_no_player">Ingen app installerad för att spela upp filen</string>
-    <string name="privacy_policy_title">NewPipes Sekretesspolicy</string>
-    <string name="privacy_policy_encouragement">NewPipe projektet tar din integritet på största allvar. Appen samlar därför inte in några uppgifter utan ditt medgivande. NewPipes Sekretesspolicy förklarar i detalj vad för data som skickas och lagras när du skickar en kraschrapport.</string>
+    <string name="privacy_policy_title">YouTube Video Downloaders Sekretesspolicy</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader projektet tar din integritet på största allvar. Appen samlar därför inte in några uppgifter utan ditt medgivande. YouTube Video Downloaders Sekretesspolicy förklarar i detalj vad för data som skickas och lagras när du skickar en kraschrapport.</string>
     <string name="read_privacy_policy">Läs sekretesspolicy</string>
-    <string name="app_license">NewPipe är copyleft fri programvara: Du kan använda, studera, dela och förbättra den som du vill. Specifikt kan du distribuera och/eller modifiera det under villkoren för GNU General Public License som publicerats av Free Software Foundation, antingen version 3 av licensen, eller (om du så önskar) en senare version.</string>
+    <string name="app_license">YouTube Video Downloader är copyleft fri programvara: Du kan använda, studera, dela och förbättra den som du vill. Specifikt kan du distribuera och/eller modifiera det under villkoren för GNU General Public License som publicerats av Free Software Foundation, antingen version 3 av licensen, eller (om du så önskar) en senare version.</string>
     <string name="delete_stream_history_prompt">Vill du ta bort det här föremålet från visningshistoriken?</string>
     <string name="delete_all_history_prompt">Är du säker du vill ta bort alla föremål från historiken?</string>
     <string name="title_last_played">Senast spelade</string>
@@ -379,7 +379,7 @@
     <string name="skip_silence_checkbox">Snabbspola vid frånvaro av ljud</string>
     <string name="playback_step">Steg</string>
     <string name="playback_reset">Återställ</string>
-    <string name="start_accept_privacy_policy">För att uppfylla den Europeiska dataskyddsförordningen (GDPR), uppmärksammar vi NewPipes sekretesspolicy. Läs den noggrant. Du måste acceptera det om du vill skicka felrapporten.</string>
+    <string name="start_accept_privacy_policy">För att uppfylla den Europeiska dataskyddsförordningen (GDPR), uppmärksammar vi YouTube Video Downloaders sekretesspolicy. Läs den noggrant. Du måste acceptera det om du vill skicka felrapporten.</string>
     <string name="accept">Acceptera</string>
     <string name="decline">Avböj</string>
     <string name="limit_data_usage_none_description">Ingen gräns</string>
@@ -399,7 +399,7 @@
     <string name="settings_category_updates_title">Uppdateringar</string>
     <string name="file_deleted">Fil raderad</string>
     <string name="app_update_notification_channel_name">Appuppdateringsnotifikation</string>
-    <string name="app_update_notification_channel_description">Notifikationer för nya NewPipe versioner</string>
+    <string name="app_update_notification_channel_description">Notifikationer för nya YouTube Video Downloader versioner</string>
     <string name="download_to_sdcard_error_title">Extern lagring otillgänglig</string>
     <string name="saved_tabs_invalid_json">Fel vid läsning av sparade flikar, använder standard flikar</string>
     <string name="restore_defaults">Återställ default</string>
@@ -414,7 +414,7 @@
     <string name="grid">Rutnät</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Växla vy</string>
-    <string name="app_update_notification_content_title">NewPipe uppdatering tillgänglig!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader uppdatering tillgänglig!</string>
     <string name="app_update_notification_content_text">Tryck för att ladda ned</string>
     <string name="missions_header_finished">Färdig</string>
     <string name="paused">pausad</string>
@@ -580,7 +580,7 @@
     <string name="error_timeout">Anslutnings avbrott</string>
     <string name="error_progress_lost">Framsteg förlorat, För att filen blev borttagen</string>
     <string name="error_insufficient_storage">Inget utrymme kvar på enhet</string>
-    <string name="error_postprocessing_stopped">NewPipe stängdes under arbete med en fil</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader stängdes under arbete med en fil</string>
     <string name="error_permission_denied">Tillåtelse nekat av systemet</string>
     <string name="error_report_open_github_notice">Vänligen kontrollera om en felrapport som tar upp din krasch redan finns. Att skapa ärenden när en felrapport redan finns, tar av den tid som vi annars kunde ha ägnat åt att fixa den faktiska buggen.</string>
     <string name="error_report_open_issue_button_text">Rapportera fel på GitHub</string>
@@ -609,7 +609,7 @@
     <string name="notification_action_2_title">Tredje handlingstangent</string>
     <string name="notification_action_1_title">Andra handlingstangent</string>
     <string name="notification_action_0_title">Första handlingstangent</string>
-    <string name="content_not_supported">Detta inhaltande stöds inte enda av NewPipe.
+    <string name="content_not_supported">Detta inhaltande stöds inte enda av YouTube Video Downloader.
 \n
 \nDet vill förhoppningsvis ändras i en kommande version.</string>
     <string name="playlist_page_summary">Spellista-sida</string>

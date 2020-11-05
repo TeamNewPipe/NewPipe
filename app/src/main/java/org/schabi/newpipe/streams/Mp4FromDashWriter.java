@@ -20,7 +20,7 @@ public class Mp4FromDashWriter {
     private static final int EPOCH_OFFSET = 2082844800;
     private static final short DEFAULT_TIMESCALE = 1000;
     private static final byte SAMPLES_PER_CHUNK_INIT = 2;
-    // ffmpeg uses 2, basic uses 1 (with 60fps uses 21 or 22). NewPipe will use 6
+    // ffmpeg uses 2, basic uses 1 (with 60fps uses 21 or 22). YouTube Video Downloader will use 6
     private static final byte SAMPLES_PER_CHUNK = 6;
     // near 3.999 GiB
     private static final long THRESHOLD_FOR_CO64 = 0xFFFEFFFFL;

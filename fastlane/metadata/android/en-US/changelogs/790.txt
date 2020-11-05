@@ -9,6 +9,6 @@ Fixed
 • [SoundCloud] Fix client_id extraction #2745
 
 Development
-• Add missing dependencies inherited from NewPipeExtractor into NewPipe #2535
+• Add missing dependencies inherited from NewPipeExtractor into YouTube Video Downloader #2535
 • Migrate to AndroidX #2685
 • Update to ExoPlayer 2.10.6 #2697, #2736

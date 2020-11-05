@@ -1,6 +1,6 @@
 • nouv. fonctionnement de l'appli : lire une vidéo sur sa page, glisser vers le bas pour minimiser
 • notifications MediaStyle : actions customisables dans les notifications, amélioration des performances
-• NewPipe mode bureau : redimensionnement possible
+• YouTube Video Downloader mode bureau : redimensionnement possible
 
 • Affichage d'un dialogue avec options si URL pas supportée
 • Amélioration expérience des suggestions de recherche

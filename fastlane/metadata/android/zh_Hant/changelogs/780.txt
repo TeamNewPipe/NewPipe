@@ -3,7 +3,7 @@
 改善
 • 新增選項以清除播放狀態 #2550
 • 在檔案挑選器中顯示隱藏的目錄 #2591
-• 支援使用 NewPipe 開啟 `invidio.us` 站臺相關的 URL  #2488 
+• 支援使用 YouTube Video Downloader 開啟 `invidio.us` 站臺相關的 URL  #2488
 • 新增對 `music.youtube.com` URL 的支援 TeamNewPipe/NewPipeExtractor#194
 
 修復

@@ -9,6 +9,6 @@
 • [SoundCloud] 修復 client_id 擷取 #2745
 
 開發
-• 將從 NewPipeExtractor 繼承遺失的依賴關係新增到 NewPipe 中 #2535
+• 將從 NewPipeExtractor 繼承遺失的依賴關係新增到 YouTube Video Downloader 中 #2535
 • 遷移至 AndroidX #2685
 • 將 ExoPlayer 更新到 2.10.6 #2697, #2736

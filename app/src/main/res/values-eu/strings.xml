@@ -44,7 +44,7 @@
     <string name="download_path_audio_dialog_title">Aukeratu audio fitxategiak deskargatzeko karpeta</string>
     <string name="download_path_audio_summary">Deskargatutako audio fitxategiak hemen gordetzen dira</string>
     <string name="autoplay_by_calling_app_title">Erreprodukzio automatikoa</string>
-    <string name="autoplay_by_calling_app_summary">Bideoa abiatzen du NewPipe beste aplikazio batek deitu badu</string>
+    <string name="autoplay_by_calling_app_summary">Bideoa abiatzen du YouTube Video Downloader beste aplikazio batek deitu badu</string>
     <string name="dark_theme_title">Iluna</string>
     <string name="light_theme_title">Argia</string>
     <string name="settings_category_appearance_title">Itxura</string>
@@ -128,7 +128,7 @@
     <string name="msg_server_unsupported">Euskarririk gabeko zerbitzaria</string>
     <string name="msg_exists">Fitxategia badago aurretik</string>
     <string name="msg_url_malform">Eragabeko URLa edo Internet ez dago eskuragarri</string>
-    <string name="msg_running">NewPipe deskargatzen</string>
+    <string name="msg_running">YouTube Video Downloader deskargatzen</string>
     <string name="msg_running_detail">Ukitu xehetasunetarako</string>
     <string name="msg_wait">Itxaron mesedez…</string>
     <string name="msg_copied">Arbelera kopiatuta</string>
@@ -137,7 +137,7 @@
 \nlaster-leiho moduan irekitzeko</string>
     <string name="title_activity_recaptcha">reCAPTCHA erronka</string>
     <string name="recaptcha_request_toast">reCAPTCHA erronka eskatu da</string>
-    <string name="title_activity_about">NewPipe aplikazioari buruz</string>
+    <string name="title_activity_about">YouTube Video Downloader aplikazioari buruz</string>
     <string name="action_settings">Ezarpenak</string>
     <string name="action_about">Honi buruz</string>
     <string name="title_licenses">Hirugarrengoen lizentziak</string>
@@ -149,7 +149,7 @@
     <string name="tab_licenses">Lizentziak</string>
     <string name="app_description">Androiderako streaming libre eta arina.</string>
     <string name="view_on_github">Ikusi GitHub zerbitzarian</string>
-    <string name="app_license_title">NewPipe Lizentzia</string>
+    <string name="app_license_title">YouTube Video Downloader Lizentzia</string>
     <string name="contribution_encouragement">Ideiak, itzulpenak, diseinu aldaketak, kode garbiketak, kode aldaketa sakonak badituzu, laguntza beti da ongi etorria. Eginaz hobetzen da!</string>
     <string name="read_full_license">Irakurri lizentzia</string>
     <string name="contribution_title">Hartu parte</string>
@@ -173,13 +173,13 @@
     <string name="enable_search_history_summary">Gorde bilaketak lokalki</string>
     <string name="enable_watch_history_title">Ikustaldien historiala</string>
     <string name="enable_watch_history_summary">Gorde ikusitako bideoen historiala</string>
-    <string name="notification_channel_name">NewPipe jakinarazpena</string>
+    <string name="notification_channel_name">YouTube Video Downloader jakinarazpena</string>
     <string name="settings_category_player_title">Erreproduzigailua</string>
     <string name="settings_category_player_behavior_title">Portaera</string>
     <string name="settings_category_history_title">Historia eta cachea</string>
     <string name="playlist">Erreprodukzio-zerrenda</string>
     <string name="undo">Desegin</string>
-    <string name="notification_channel_description">Atzeko planoko eta laster-leihoko NewPipe erreproduzigailuen jakinarazpenak</string>
+    <string name="notification_channel_description">Atzeko planoko eta laster-leihoko YouTube Video Downloader erreproduzigailuen jakinarazpenak</string>
     <string name="search_no_results">Emaitzarik ez</string>
     <string name="empty_subscription_feed_subtitle">Kilkerrak besterik ez daude hemen</string>
     <string name="no_subscribers">Harpidedunik ez</string>
@@ -221,10 +221,10 @@
     <string name="player_unrecoverable_failure">Erreproduzigailuaren errore berreskuraezina gertatu da</string>
     <string name="player_recoverable_failure">Erreproduzigailuaren erroretik berreskuratzen</string>
     <string name="donation_title">Dohaintza</string>
-    <string name="donation_encouragement">NewPipe zuri erabiltzaile esperientziarik onena ekartzeko haien denbora librea ematen duten boluntarioek garatzen dute. Emaiezu zerbait garatzaileei NewPipe kafe bat hartzen duten bitartean hobetu ahal izan dezaten.</string>
+    <string name="donation_encouragement">YouTube Video Downloader zuri erabiltzaile esperientziarik onena ekartzeko haien denbora librea ematen duten boluntarioek garatzen dute. Emaiezu zerbait garatzaileei YouTube Video Downloader kafe bat hartzen duten bitartean hobetu ahal izan dezaten.</string>
     <string name="give_back">Egin dohaintza</string>
     <string name="website_title">Webgunea</string>
-    <string name="website_encouragement">Bisitatu NewPipe webgunea informazio gehiagorako eta berriak irakurtzeko.</string>
+    <string name="website_encouragement">Bisitatu YouTube Video Downloader webgunea informazio gehiagorako eta berriak irakurtzeko.</string>
     <string name="delete_item_search_history">Elementu hau bilaketen historialetik ezabatu nahi duzu?</string>
     <string name="main_page_content">Orri nagusiko edukia</string>
     <string name="blank_page_summary">Orri hutsa</string>
@@ -367,13 +367,13 @@
     <string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
     <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du. 5, 15 edo 25 segundo bilatzea ez du honekin funtzionatzen.</string>
     <string name="download_thumbnail_summary">Desgaitu koadro txikiak ez kargatzeko, datuak eta memoria aurreztuz. Aldaketak memoria eta diskoko irudien cacheak garbituko ditu.</string>
-    <string name="app_license">NewPipe Software Librea eta Copyleft da: Erabili, ikertu, partekatu eta hobetu dezakezu. Zehazki, elkarbanatzea eta aldatzea Free Software Foundation-ek argitaratutako GNU General Public License-ren 3. bertsioa edo berriagoren baten terminoen arabera egiteko baimena duzu.</string>
+    <string name="app_license">YouTube Video Downloader Software Librea eta Copyleft da: Erabili, ikertu, partekatu eta hobetu dezakezu. Zehazki, elkarbanatzea eta aldatzea Free Software Foundation-ek argitaratutako GNU General Public License-ren 3. bertsioa edo berriagoren baten terminoen arabera egiteko baimena duzu.</string>
     <string name="enable_disposed_exceptions_summary">Behartu aktibitatearen bizitza ziklotik kanpo baztertu eta gero entregatu ezin diren Rx salbuespenen inguruko txostena</string>
-    <string name="privacy_policy_title">NewPipe pribatutasun politika</string>
-    <string name="privacy_policy_encouragement">NewPipe proiektuak aintzat hartzen du zure pribatutasuna. Aplikazioak ez du zure baimenik gabe daturik jasotzen.
-\nNewPipe pribatutasun politikak azaltzen du zehazki bidali eta gordetako informazioa zein den kraskatze txosten bat bidaltzen duzunean.</string>
+    <string name="privacy_policy_title">YouTube Video Downloader pribatutasun politika</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader proiektuak aintzat hartzen du zure pribatutasuna. Aplikazioak ez du zure baimenik gabe daturik jasotzen.
+\nYouTube Video Downloader pribatutasun politikak azaltzen du zehazki bidali eta gordetako informazioa zein den kraskatze txosten bat bidaltzen duzunean.</string>
     <string name="read_privacy_policy">Irakurri pribatutasun politika</string>
-    <string name="start_accept_privacy_policy">European General Data Protection Regulation (GDPR) legea betetzeko, NewPipe pribatutasun politika irakurtzera gonbidaatzen zaitugu.
+    <string name="start_accept_privacy_policy">European General Data Protection Regulation (GDPR) legea betetzeko, YouTube Video Downloader pribatutasun politika irakurtzera gonbidaatzen zaitugu.
 \nAkats txosten bat bidali ahal izateko onartu behar duzu.</string>
     <string name="accept">Onartu</string>
     <string name="decline">Ukatu</string>
@@ -402,7 +402,7 @@
     <string name="events">Gertaerak</string>
     <string name="file_deleted">Fitxategia ezabatu da</string>
     <string name="app_update_notification_channel_name">Aplikazioaren eguneraketaren jakinarazpena</string>
-    <string name="app_update_notification_channel_description">NewPipe aplikazioaren bertsio berrien jakinarazpena</string>
+    <string name="app_update_notification_channel_description">YouTube Video Downloader aplikazioaren bertsio berrien jakinarazpena</string>
     <string name="download_to_sdcard_error_title">Kanpo biltegiratzea ez dago eskuragarri</string>
     <string name="download_to_sdcard_error_message">Ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri nahi duzu\?</string>
     <string name="saved_tabs_invalid_json">Ezin izan dira gordetako fitxak irakurri, lehenetsitako fitxak erabiltzen</string>
@@ -419,7 +419,7 @@
     <string name="grid">Sareta</string>
     <string name="auto">Automatikoa</string>
     <string name="switch_view">Aldatu ikuspegia</string>
-    <string name="app_update_notification_content_title">NewPipe eguneraketa eskuragarri!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader eguneraketa eskuragarri!</string>
     <string name="app_update_notification_content_text">Sakatu deskargatzeko</string>
     <string name="missions_header_finished">Amaituta</string>
     <string name="missions_header_pending">Zain</string>
@@ -469,7 +469,7 @@
     <string name="overwrite_unrelated_warning">Badago izen bereko fitxategi bat</string>
     <string name="overwrite_failed">Ezin da fitxategia gainidatzi</string>
     <string name="download_already_pending">Badago izen bereko deskarga bat burutzeke</string>
-    <string name="error_postprocessing_stopped">NewPipe itxi egin da fitxategian lanean zegoela</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader itxi egin da fitxategian lanean zegoela</string>
     <string name="error_insufficient_storage">Ez dago lekurik gailuan</string>
     <string name="error_progress_lost">Progresioa galdu da, fitxategia ezabatu delako</string>
     <string name="confirm_prompt">Zure deskargen historiala garbitu nahi duzu ala deskargatutako fitxategi guztiak ezabatu\?</string>
@@ -533,7 +533,7 @@
     <string name="new_seek_duration_toast">ExoPlayer-en mugak direla eta bilaketaren iraupena %d segundotan ezarri da</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Jarioaren karga motelegia dela uste duzu\? Hala bada, saiatu karga azkarra gaitzen (ezarpenetan edo beheko botoia sakatzen aldatu dezakezu).
 \n
-\nNewPipe jarioak kargatzeko bi estrategia eskaintzen ditu:
+\nYouTube Video Downloader jarioak kargatzeko bi estrategia eskaintzen ditu:
 \n• Harpidetza kanal osoa eskuratu, motela baina osoa.
 \n• Amaiera-puntu dedikatua erabiliz, arina baina ez osatua.
 \n
@@ -579,7 +579,7 @@
     <string name="unmute">Aktibatu audioa</string>
     <string name="mute">Isilarazi</string>
     <string name="help">Laguntza</string>
-    <string name="content_not_supported">Eduki hau ez dago oraindik NewPipengatik onatuta.
+    <string name="content_not_supported">Eduki hau ez dago oraindik YouTube Video Downloaderngatik onatuta.
 \n
 \nEtorkizuneko bertsio batean onartua izatea espero da.</string>
     <string name="infinite_videos">∞ bideo</string>

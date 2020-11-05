@@ -11,7 +11,7 @@ Improved
 • [YouTube] Add support to /c/shortened_url channel links
 
 Fixed
-• Fixed multiple issues when sharing a video to NewPipe and downloading its streams directly
+• Fixed multiple issues when sharing a video to YouTube Video Downloader and downloading its streams directly
 • Fixed player access out of its creation thread
 • Fixed search result paging
 • [YouTube] Fixed switching on null causing NPE

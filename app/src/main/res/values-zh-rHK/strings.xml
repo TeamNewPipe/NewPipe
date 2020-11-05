@@ -52,7 +52,7 @@
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
     <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用</string>
     <string name="autoplay_by_calling_app_title">自動撥放</string>
-    <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他程式調用時播放視頻</string>
+    <string name="autoplay_by_calling_app_summary">當 YouTube Video Downloader 被其他程式調用時播放視頻</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示已設年齡限制的影片</string>
     <string name="video_is_age_restricted">此影片設有年齡限制。若要觀看，請先在設定中解除年齡限制。</string>
@@ -96,7 +96,7 @@
     <string name="msg_server_unsupported">不支援伺服器</string>
     <string name="msg_exists">檔案已經存在</string>
     <string name="msg_url_malform">網址有問題或沒有網絡連線</string>
-    <string name="msg_running">NewPipe 正在下載</string>
+    <string name="msg_running">YouTube Video Downloader 正在下載</string>
     <string name="msg_running_detail">按一下以查看詳情</string>
     <string name="msg_wait">請稍候…</string>
     <string name="msg_copied">已複製至剪貼板</string>
@@ -136,7 +136,7 @@
     <string name="best_resolution">最佳解像度</string>
     <string name="popup_resizing_indicator_title">調整大小</string>
     <string name="short_billion">B</string>
-    <string name="title_activity_about">關於 NewPipe</string>
+    <string name="title_activity_about">關於 YouTube Video Downloader</string>
     <string name="action_settings">設定</string>
     <string name="action_about">關於</string>
     <string name="title_licenses">第三方版權特許</string>
@@ -148,8 +148,8 @@
     <string name="tab_licenses">特許</string>
     <string name="app_description">在 Android 上運作自由輕便的 Youtube 前端。</string>
     <string name="view_on_github">檢視我們的 GitHub</string>
-    <string name="app_license_title">NewPipe 的特許</string>
-    <string name="contribution_encouragement">無論您僅想分享您對 NewPipe 的一些構思，還是願意設計和翻譯程式介面，甚至想幫我們整理或重新編寫原始碼，我們都無任歡迎。貢獻更多，應用程式便會變得更好！</string>
+    <string name="app_license_title">YouTube Video Downloader 的特許</string>
+    <string name="contribution_encouragement">無論您僅想分享您對 YouTube Video Downloader 的一些構思，還是願意設計和翻譯程式介面，甚至想幫我們整理或重新編寫原始碼，我們都無任歡迎。貢獻更多，應用程式便會變得更好！</string>
     <string name="read_full_license">檢閱特許</string>
     <string name="contribution_title">貢獻</string>
     <string name="clear_views_history_title">清除觀看歷史</string>

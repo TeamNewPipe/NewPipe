@@ -104,7 +104,7 @@
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
     <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
-    <string name="msg_running">NewPipe ডাউনলোড হচ্ছে</string>
+    <string name="msg_running">YouTube Video Downloader ডাউনলোড হচ্ছে</string>
     <string name="msg_url_malform">বিকৃত URL অথবা ইন্টারনেট নেই</string>
     <string name="msg_exists">ফাইল ইতিমধ্যেই বিদ্যমান</string>
     <string name="msg_server_unsupported">সার্ভার অসমর্থিত</string>
@@ -306,7 +306,7 @@
     <string name="show_higher_resolutions_title">উচ্চ রেজোল্যুশন দেখাও</string>
     <string name="default_popup_resolution_title">ডিফল্ট পপআপ রেজোল্যুশন</string>
     <string name="default_resolution_title">ডিফল্ট রেজোল্যুশন</string>
-    <string name="autoplay_by_calling_app_summary">স্বয়ংক্রিয়ভাবে একটি ভিডিও প্লে করো যখন NewPipe অন্য অ্যাপ্লিকেশন থেকে চালু করা হয়</string>
+    <string name="autoplay_by_calling_app_summary">স্বয়ংক্রিয়ভাবে একটি ভিডিও প্লে করো যখন YouTube Video Downloader অন্য অ্যাপ্লিকেশন থেকে চালু করা হয়</string>
     <string name="autoplay_by_calling_app_title">স্বয়ংক্রিয়ভাবে প্লে করো যখন অন্য অ্যাপ্লিকেশন থেকে চালু করা হয়</string>
     <string name="download_choose_new_path">প্রভাব দৃশ্যমান করার জন্য ডাউনলোড ফোল্ডার পরিবর্তন করুন</string>
     <string name="download_path_audio_dialog_title">অডিও ফাইলগুলির জন্য ডাউনলোডের ফোল্ডার নির্বাচন করুন</string>

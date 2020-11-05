@@ -85,7 +85,7 @@
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
     <string name="controls_popup_title">نافذة المنبثقة</string>
-    <string name="autoplay_by_calling_app_summary">تشغيل مقطع الفيديو عند إستدعاء NewPipe من تطبيق آخر</string>
+    <string name="autoplay_by_calling_app_summary">تشغيل مقطع الفيديو عند إستدعاء YouTube Video Downloader من تطبيق آخر</string>
     <string name="default_popup_resolution_title">الدقة الافتراضية لنوافذ المنبثقة</string>
     <string name="show_higher_resolutions_title">عرض أعلى جودة</string>
     <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل مقاطع الفيديو 2K/4K</string>
@@ -122,8 +122,8 @@
     <string name="best_resolution">أفضل دقة</string>
     <string name="undo">تراجع</string>
     <string name="play_all">تشغيل الكل</string>
-    <string name="notification_channel_name">تنبيهات NewPipe</string>
-    <string name="notification_channel_description">تنبيهات مشغل NewPipe للخلفية والنوافذ المنبثقة</string>
+    <string name="notification_channel_name">تنبيهات YouTube Video Downloader</string>
+    <string name="notification_channel_description">تنبيهات مشغل YouTube Video Downloader للخلفية والنوافذ المنبثقة</string>
     <string name="unknown_content">[غير معروف]</string>
     <string name="light_parsing_error">لا يمكن تحليل الموقع بشكل كلي</string>
     <string name="could_not_setup_download_menu">تعذرت عملية إعداد قائمة التنزيل</string>
@@ -201,11 +201,11 @@
     <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية ، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل !</string>
     <string name="view_on_github">عرض على GitHub</string>
     <string name="donation_title">تبرع</string>
-    <string name="donation_encouragement">يتم تطوير NewPipe من قبل متطوعين يقضون وقت فراغهم لتقديم أفضل تجربة لك. حان الوقت لرد المساعدة مع المطورين وجعل NewPipe أكثر و أفضل بينما يستمتعون بفنجان من القهوة.</string>
+    <string name="donation_encouragement">يتم تطوير YouTube Video Downloader من قبل متطوعين يقضون وقت فراغهم لتقديم أفضل تجربة لك. حان الوقت لرد المساعدة مع المطورين وجعل YouTube Video Downloader أكثر و أفضل بينما يستمتعون بفنجان من القهوة.</string>
     <string name="give_back">تبرع</string>
     <string name="website_title">موقع الويب</string>
-    <string name="website_encouragement">قم بزيارة موقع NewPipe لمزيد من المعلومات والمستجدات.</string>
-    <string name="app_license_title">تراخيص NewPipe</string>
+    <string name="website_encouragement">قم بزيارة موقع YouTube Video Downloader لمزيد من المعلومات والمستجدات.</string>
+    <string name="app_license_title">تراخيص YouTube Video Downloader</string>
     <string name="read_full_license">قراءة الرخصة</string>
     <string name="title_history_search">التي تم البحث عنها</string>
     <string name="title_history_view">تمت مشاهدتها</string>
@@ -350,7 +350,7 @@
     <string name="no_streams_available_download">لا يوجد بث متاح للتنزيل</string>
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
     <string name="toast_no_player">لم يتم تثبيت أي تطبيق لتشغيل هذا الملف</string>
-    <string name="app_license">NewPipe هو برنامج مفتوح المصدر و بحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. و على وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار جديد.</string>
+    <string name="app_license">YouTube Video Downloader هو برنامج مفتوح المصدر و بحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. و على وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار جديد.</string>
     <string name="delete_stream_history_prompt">هل تريد حذف هذا العنصر من سجل المشاهدة؟</string>
     <string name="delete_all_history_prompt">هل أنت متأكد من أنك تريد حذف كل العناصر من السجل؟</string>
     <string name="title_last_played">آخر ما تم تشغيله</string>
@@ -382,11 +382,11 @@
     <string name="playback_pitch">تردد الصوت</string>
     <string name="unhook_checkbox">حل (قد يسبب تشويه)</string>
     <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
-    <string name="privacy_policy_title">سياسة خصوصية NewPipe</string>
-    <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك ، لا يجمع التطبيق أي بيانات دون موافقتك.
-\nتوضح سياسة خصوصية NewPipe بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير الأعطال.</string>
+    <string name="privacy_policy_title">سياسة خصوصية YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">يأخذ مشروع YouTube Video Downloader خصوصيتك على محمل الجد. لذلك ، لا يجمع التطبيق أي بيانات دون موافقتك.
+\nتوضح سياسة خصوصية YouTube Video Downloader بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير الأعطال.</string>
     <string name="read_privacy_policy">الإطلاع على سياسة الخصوصية</string>
-    <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR) ، فإننا نلفت انتباهك إلى سياسة خصوصية NewPipe. يرجى قراءتها بعناية.
+    <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR) ، فإننا نلفت انتباهك إلى سياسة خصوصية YouTube Video Downloader. يرجى قراءتها بعناية.
 \nو يجب عليك قبولها لإرسال تقرير الأخطاء إلينا.</string>
     <string name="accept">قبول</string>
     <string name="decline">رفض</string>
@@ -415,7 +415,7 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">الإخطارات لإصدار NewPipe الجديد</string>
+    <string name="app_update_notification_channel_description">الإخطارات لإصدار YouTube Video Downloader الجديد</string>
     <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">لا يمكن التنزيل على بطاقة SD الخارجية. هل تريد إعادة تعيين موقع مجلد التنزيل؟</string>
     <string name="saved_tabs_invalid_json">تعذرت قراءة علامات التبويب المحفوظة, لذا استخدم علامات التبويب الافتراضية</string>
@@ -432,7 +432,7 @@
     <string name="grid">الشبكة</string>
     <string name="auto">تلقائي</string>
     <string name="switch_view">تبديل طريقة العرض</string>
-    <string name="app_update_notification_content_title">تحديث NewPipe متاح!</string>
+    <string name="app_update_notification_content_title">تحديث YouTube Video Downloader متاح!</string>
     <string name="app_update_notification_content_text">اضغط لتنزيل</string>
     <string name="missions_header_finished">انتهى</string>
     <string name="missions_header_pending">ريثما</string>
@@ -481,7 +481,7 @@
     <string name="overwrite_unrelated_warning">يوجد ملف بهذا الاسم مسبقاً</string>
     <string name="overwrite_failed">لا يمكن الكتابة فوق الملف</string>
     <string name="download_already_pending">هناك تنزيل معلق بهذا الاسم</string>
-    <string name="error_postprocessing_stopped">تم إغلاق NewPipe أثناء العمل على الملف</string>
+    <string name="error_postprocessing_stopped">تم إغلاق YouTube Video Downloader أثناء العمل على الملف</string>
     <string name="error_insufficient_storage">لم يتبقى مساحة في الجهاز</string>
     <string name="error_progress_lost">تم فقد التقدم بسبب حذف الملف</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
@@ -557,7 +557,7 @@
     </plurals>
     <string name="feed_use_dedicated_fetch_method_help_text">هل تعتقد تحميل تغذية بطيء جدا؟ إذا كان الأمر كذلك ، فحاول تمكين التحميل السريع (يمكنك تغييره في الإعدادات أو بالضغط على الزر أدناه).
 \n
-\nيقدم NewPipe استراتيجيتين لتحميل الخلاصة:
+\nيقدم YouTube Video Downloader استراتيجيتين لتحميل الخلاصة:
 \n• جلب قناة الاشتراك بأكملها ، وهي بطيئة ولكنها كاملة.
 \n• استخدام نقطة نهاية خدمة مخصصة ، وهي سريعة ولكنها عادة لا تكتمل.
 \n
@@ -620,7 +620,7 @@
     <string name="unmute">إلغاء كتم الصوت</string>
     <string name="mute">كتم الصوت</string>
     <string name="help">مساعدة</string>
-    <string name="content_not_supported">هذا المحتوى ليس مدعوم من قبل NewPipe.
+    <string name="content_not_supported">هذا المحتوى ليس مدعوم من قبل YouTube Video Downloader.
 \n
 \nنامل ان يكون مدعوما في التحديثات القادمة.</string>
     <string name="infinite_videos">∞ فيديو</string>

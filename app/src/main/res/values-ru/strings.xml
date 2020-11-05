@@ -60,7 +60,7 @@
     <string name="msg_name">Имя файла</string>
     <string name="msg_error">Ошибка</string>
     <string name="msg_server_unsupported">Сервер не поддерживается</string>
-    <string name="msg_running">NewPipe загружает</string>
+    <string name="msg_running">YouTube Video Downloader загружает</string>
     <string name="msg_url_malform">Неверный URL или нет доступа к интернету</string>
     <string name="msg_running_detail">Подробнее</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
@@ -70,7 +70,7 @@
     <string name="your_comment">Ваш комментарий (English):</string>
     <string name="err_dir_create">Не удалось создать папку для загрузки \"%1$s\"</string>
     <string name="autoplay_by_calling_app_title">Автовоспроизведение</string>
-    <string name="autoplay_by_calling_app_summary">Воспроизводить видео при вызове NewPipe из другого приложения</string>
+    <string name="autoplay_by_calling_app_summary">Воспроизводить видео при вызове YouTube Video Downloader из другого приложения</string>
     <string name="content">Контент</string>
     <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в \"Настройках\"</string>
     <string name="duration_live">Трансляция</string>
@@ -137,10 +137,10 @@
     <string name="title_activity_recaptcha">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
     <string name="show_higher_resolutions_title">Высокие разрешения</string>
-    <string name="popup_mode_share_menu_title">NewPipe во всплывающем окне</string>
-    <string name="title_activity_about">О NewPipe</string>
+    <string name="popup_mode_share_menu_title">YouTube Video Downloader во всплывающем окне</string>
+    <string name="title_activity_about">О YouTube Video Downloader</string>
     <string name="action_settings">Настройки</string>
-    <string name="app_license_title">Лицензия NewPipe</string>
+    <string name="app_license_title">Лицензия YouTube Video Downloader</string>
     <string name="tab_licenses">Лицензии</string>
     <string name="title_licenses">Сторонние лицензии</string>
     <string name="action_open_website">Открыть веб-сайт</string>
@@ -171,8 +171,8 @@
     <string name="enable_watch_history_summary">Запоминать воспроизведённые потоки</string>
     <string name="resume_on_audio_focus_gain_title">Возобновить при фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
-    <string name="notification_channel_name">Уведомление NewPipe</string>
-    <string name="notification_channel_description">Уведомление для NewPipe в фоне и во всплывающем окне</string>
+    <string name="notification_channel_name">Уведомление YouTube Video Downloader</string>
+    <string name="notification_channel_description">Уведомление для YouTube Video Downloader в фоне и во всплывающем окне</string>
     <string name="settings_category_downloads_title">Загрузки</string>
     <string name="settings_file_charset_title">Допустимые символы имён файлов</string>
     <string name="settings_file_replacement_character_summary">Заменяет недопустимые символы</string>&gt;
@@ -258,10 +258,10 @@
     <string name="video_streams_empty">Видеопотоки не найдены</string>
     <string name="audio_streams_empty">Аудиопотоки не найдены</string>
     <string name="donation_title">Пожертвование</string>
-    <string name="donation_encouragement">Разработчики NewPipe ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать NewPipe ещё круче.</string>
+    <string name="donation_encouragement">Разработчики YouTube Video Downloader ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать YouTube Video Downloader ещё круче.</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
-    <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
+    <string name="website_encouragement">Для получения более подробной информации и последних новостей о YouTube Video Downloader посетите наш веб-сайт.</string>
     <string name="drawer_open">Открыть боковую панель</string>
     <string name="drawer_close">Закрыть боковую панель</string>
     <string name="video_player">Видеоплеер</string>
@@ -375,14 +375,14 @@
     <string name="delete_search_history_alert">Удалить всю историю поиска\?</string>
     <string name="search_history_deleted">История поиска удалена</string>
     <string name="one_item_deleted">1 элемент удалён</string>
-    <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
+    <string name="app_license">YouTube Video Downloader — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
     <string name="privacy_policy_title">Конфиденциальность</string>
-    <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Поэтому приложение не собирает никаких данных без вашего согласия.
-\nПолитика конфиденциальности NewPipe подробно объясняет, какие данные отправляются и хранятся при отправке отчёта о сбоях.</string>
+    <string name="privacy_policy_encouragement">Проект YouTube Video Downloader очень серьёзно относится к вашей конфиденциальности. Поэтому приложение не собирает никаких данных без вашего согласия.
+\nПолитика конфиденциальности YouTube Video Downloader подробно объясняет, какие данные отправляются и хранятся при отправке отчёта о сбоях.</string>
     <string name="read_privacy_policy">Прочитать политику</string>
-    <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности NewPipe. Пожалуйста, внимательно ознакомьтесь с ней.
+    <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности YouTube Video Downloader. Пожалуйста, внимательно ознакомьтесь с ней.
 \nВам необходимо принять её условия, чтобы отправить нам отчёт об ошибке.</string>
     <string name="accept">Принять</string>
     <string name="decline">Отклонить</string>
@@ -423,10 +423,10 @@
     <string name="settings_category_updates_title">Обновления</string>
     <string name="file_deleted">Файл удалён</string>
     <string name="app_update_notification_channel_name">Уведомление об обновлении</string>
-    <string name="app_update_notification_channel_description">Уведомления о новой версии NewPipe</string>
+    <string name="app_update_notification_channel_description">Уведомления о новой версии YouTube Video Downloader</string>
     <string name="updates_setting_title">Обновления</string>
     <string name="updates_setting_description">Показать уведомление при наличии новой версии</string>
-    <string name="app_update_notification_content_title">Доступно обновление NewPipe!</string>
+    <string name="app_update_notification_content_title">Доступно обновление YouTube Video Downloader!</string>
     <string name="app_update_notification_content_text">Нажмите для загрузки</string>
     <string name="missions_header_finished">Завершено</string>
     <string name="paused">приостановлено</string>
@@ -473,7 +473,7 @@
     <string name="overwrite_unrelated_warning">Файл с таким именем уже существует</string>
     <string name="overwrite_failed">не удаётся перезаписать файл</string>
     <string name="download_already_pending">В очереди уже есть загрузка с таким именем</string>
-    <string name="error_postprocessing_stopped">NewPipe была закрыта во время работы над файлом</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader была закрыта во время работы над файлом</string>
     <string name="error_insufficient_storage">Закончилось свободное место на устройстве</string>
     <string name="error_progress_lost">Прогресс потерян, так как файл был удалён</string>
     <string name="confirm_prompt">Действительно удалить историю загрузок и загруженные файлы\?</string>
@@ -578,7 +578,7 @@
     <string name="feed_groups_header_title">Группы каналов</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте быстрый режим (включите в настройках или кнопкой внизу).
 \n
-\nNewPipe позволяет обновлять подписки двумя способами:
+\nYouTube Video Downloader позволяет обновлять подписки двумя способами:
 \n• получение канала целиком, медленное, но с полными сведениями;
 \n• обновление по RSS, быстрое, но с потерей сведений.
 \n
@@ -593,7 +593,7 @@
     <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
 \nВключите \"Контент с возрастным ограничением\" в настройках, если хотите его видеть.</string>
-    <string name="content_not_supported">NewPipe не поддерживает этот контент. 
+    <string name="content_not_supported">YouTube Video Downloader не поддерживает этот контент.
 \n 
 \nВозможно, поддержка появится в следующих версиях.</string>
     <string name="infinite_videos">∞ видео</string>

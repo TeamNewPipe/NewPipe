@@ -58,12 +58,12 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * ErrorActivity.java is part of NewPipe.
  *
- * NewPipe is free software: you can redistribute it and/or modify
+ * YouTube Video Downloader is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * <
- * NewPipe is distributed in the hope that it will be useful,
+ * YouTube Video Downloader is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -81,7 +81,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT
-            = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
+            = "Exception in YouTube Video Downloader " + BuildConfig.VERSION_NAME;
 
     public static final String ERROR_GITHUB_ISSUE_URL
             = "https://github.com/TeamNewPipe/NewPipe/issues";
@@ -289,7 +289,7 @@ public class ErrorActivity extends AppCompatActivity {
                         if (i.resolveActivity(getPackageManager()) != null) {
                             startActivity(i);
                         }
-                    } else if (action.equals("GITHUB")) { // open the NewPipe issue page on GitHub
+                    } else if (action.equals("GITHUB")) { // open the YouTube Video Downloader issue page on GitHub
                         ShareUtils.openUrlInBrowser(this, ERROR_GITHUB_ISSUE_URL);
                     }
 

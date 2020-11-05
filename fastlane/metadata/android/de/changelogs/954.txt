@@ -1,6 +1,6 @@
 • Neuer Anwendungsworkflow: Videos auf der Detailseite abspielen und nach unten wischen, um den Player zu minimieren
 • MediaStyle-Benachrichtigungen: Anpassbare Aktionen in Benachrichtigungen
-• Grundlegende Größenänderung für NewPipe als Desktop-App
+• Grundlegende Größenänderung für YouTube Video Downloader als Desktop-App
 
 • Dialog mit geöffneten Optionen anzeigen für nicht unterstützte URL-Toasts
 • Verbesserte Suchvorschläge, wenn Remote-Vorschläge nicht abgerufen werden können

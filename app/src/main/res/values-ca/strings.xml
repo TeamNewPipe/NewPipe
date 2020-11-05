@@ -78,7 +78,7 @@
     <string name="tab_licenses">Llicències</string>
     <string name="contribution_title">Col·labora-hi</string>
     <string name="website_title">Lloc web</string>
-    <string name="app_license_title">Llicència del NewPipe</string>
+    <string name="app_license_title">Llicència del YouTube Video Downloader</string>
     <string name="read_full_license">Llegiu la llicència</string>
     <string name="title_activity_history">Historial</string>
     <string name="history_disabled">L\'historial està desactivat</string>
@@ -135,7 +135,7 @@
     <string name="download_path_dialog_title">Trieu la carpeta de baixades per als fitxers de vídeo</string>
     <string name="download_path_audio_summary">Els fitxers d\'àudio baixats es desen aquí</string>
     <string name="download_path_audio_dialog_title">Trieu la carpeta de baixada per als fitxers d\'àudio</string>
-    <string name="autoplay_by_calling_app_summary">Reprodueix un vídeo quan el NewPipe s\'executa des d\'altra aplicació</string>
+    <string name="autoplay_by_calling_app_summary">Reprodueix un vídeo quan el YouTube Video Downloader s\'executa des d\'altra aplicació</string>
     <string name="default_popup_resolution_title">Resolució per defecte del mode emergent</string>
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
     <string name="show_higher_resolutions_summary">No tots els dispositius són compatibles amb la reproducció de vídeos en 2K/4K</string>
@@ -164,8 +164,8 @@
     <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>
     <string name="background_player_append">S\'ha afegit a la cua del reproductor en rerefons</string>
     <string name="popup_playing_append">S\'ha afegit a la cua del reproductor emergent</string>
-    <string name="notification_channel_name">Notificació del NewPipe</string>
-    <string name="notification_channel_description">Notificacions dels reproductors en rerefons o emergents del NewPipe</string>
+    <string name="notification_channel_name">Notificació del YouTube Video Downloader</string>
+    <string name="notification_channel_description">Notificacions dels reproductors en rerefons o emergents del YouTube Video Downloader</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">No s\'ha pogut desxifrar la signatura de l\'URL del vídeo</string>
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
@@ -232,12 +232,12 @@
     <string name="msg_threads">Fils</string>
     <string name="msg_server_unsupported">Servidor no compatible</string>
     <string name="msg_exists">El fitxer ja existeix</string>
-    <string name="msg_running">Baixada del NewPipe activa</string>
+    <string name="msg_running">Baixada del YouTube Video Downloader activa</string>
     <string name="msg_wait">Un moment…</string>
     <string name="msg_copied">S\'ha copiat al porta-retalls</string>
     <string name="settings_file_charset_title">Caràcters permesos als noms de fitxer</string>
     <string name="charset_letters_and_digits">Lletres i dígits</string>
-    <string name="title_activity_about">Quant al NewPipe</string>
+    <string name="title_activity_about">Quant al YouTube Video Downloader</string>
     <string name="copyright" formatted="true">© %1$s per %2$s sota %3$s</string>
     <string name="app_description">Reprodueix transmissions de manera lliure i lleugera a l\'Android.</string>
     <string name="view_on_github">Visualitza a GitHub</string>
@@ -303,7 +303,7 @@
     <string name="settings_file_replacement_character_title">Caràcter de substitució</string>
     <string name="charset_most_special_characters">Principals caràcters especials</string>
     <string name="contribution_encouragement">Idees, traduccions, canvis en el disseny, neteja del codi, canvis importants de programació… La vostra ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
-    <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per oferir-vos la millor experiència possible. Feu una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè.</string>
+    <string name="donation_encouragement">El YouTube Video Downloader està desenvolupat per voluntaris que fan servir el seu temps lliure per oferir-vos la millor experiència possible. Feu una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el YouTube Video Downloader mentre fan un cafè.</string>
     <string name="give_back">Feu la vostra aportació</string>
     <string name="title_history_search">Cerques</string>
     <string name="title_history_view">Reproduccions</string>
@@ -366,13 +366,13 @@
     <string name="delete_search_history_alert">Voleu suprimir tot l\'historial de cerca\?</string>
     <string name="search_history_deleted">S\'ha netejat l\'historial de cerca.</string>
     <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
-    <string name="app_license">El NewPipe és programari lliure sota llicència copyleft: el podeu fer servir, estudiar, compartir i millorar com vulgueu. Concretament, el podeu redistribuir i/o modificar d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, versió 3 o qualsevol altra versió posterior.</string>
+    <string name="app_license">El YouTube Video Downloader és programari lliure sota llicència copyleft: el podeu fer servir, estudiar, compartir i millorar com vulgueu. Concretament, el podeu redistribuir i/o modificar d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, versió 3 o qualsevol altra versió posterior.</string>
     <string name="import_settings">Voleu importar també els paràmetres\?</string>
-    <string name="privacy_policy_title">Política de privadesa del NewPipe</string>
-    <string name="privacy_policy_encouragement">El projecte NewPipe es pren molt seriosament la vostra privadesa. Per aquesta raó, l\'aplicació no emmagatzema cap dada sense el vostre consentiment. 
-\nLa política de privadesa del NewPipe descriu detalladament quines dades s\'envien i s\'emmagatzemen quan envieu un informe d\'error.</string>
+    <string name="privacy_policy_title">Política de privadesa del YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">El projecte YouTube Video Downloader es pren molt seriosament la vostra privadesa. Per aquesta raó, l\'aplicació no emmagatzema cap dada sense el vostre consentiment.
+\nLa política de privadesa del YouTube Video Downloader descriu detalladament quines dades s\'envien i s\'emmagatzemen quan envieu un informe d\'error.</string>
     <string name="read_privacy_policy">Llegiu la política de privadesa</string>
-    <string name="start_accept_privacy_policy">Per complir amb el Reglament General de Protecció de Dades europeu (GDPR), us demanem que pareu atenció a la política de privadesa del NewPipe. Llegiu-la detingudament. 
+    <string name="start_accept_privacy_policy">Per complir amb el Reglament General de Protecció de Dades europeu (GDPR), us demanem que pareu atenció a la política de privadesa del YouTube Video Downloader. Llegiu-la detingudament.
 \nSi voleu informar d\'un error, l\'haureu d\'acceptar.</string>
     <string name="accept">Accepta</string>
     <string name="decline">Rebutja</string>
@@ -407,7 +407,7 @@
     <string name="grid">Quadrícula</string>
     <string name="auto">Automàtic</string>
     <string name="switch_view">Canvia la vista</string>
-    <string name="app_update_notification_content_title">Està disponible una actualització del NewPipe!</string>
+    <string name="app_update_notification_content_title">Està disponible una actualització del YouTube Video Downloader!</string>
     <string name="missions_header_pending">Pendent</string>
     <string name="paused">en pausa</string>
     <string name="queued">a la cua</string>
@@ -419,7 +419,7 @@
     <string name="error_path_creation">No es pot crear la carpeta de destinació</string>
     <string name="stop">Atura</string>
     <string name="events">Esdeveniments</string>
-    <string name="app_update_notification_channel_description">Notificacions de noves versions del NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificacions de noves versions del YouTube Video Downloader</string>
     <string name="subscribers_count_not_available">El nombre de subscriptors no està disponible</string>
     <string name="main_page_content_summary">Quines pestanyes es mostren a la pàgina principal</string>
     <string name="conferences">Conferències</string>
@@ -469,7 +469,7 @@
     <string name="enable_playback_state_lists_summary">Mostra els indicadors de posició de reproducció a les llistes</string>
     <string name="settings_category_clear_data_title">Neteja les dades</string>
     <string name="permission_denied">El sistema ha denegat l\'acció</string>
-    <string name="error_postprocessing_stopped">S\'ha tancat el NewPipe mentre es treballava en el fitxer</string>
+    <string name="error_postprocessing_stopped">S\'ha tancat el YouTube Video Downloader mentre es treballava en el fitxer</string>
     <string name="downloads_storage_ask_title">Demana on baixar</string>
     <string name="download_choose_new_path">Canvia les carpetes de baixada perquè tingui efecte</string>
     <string name="download_to_sdcard_error_message">No es pot desar a la targeta externa. Voleu restablir la carpeta de baixades\?</string>

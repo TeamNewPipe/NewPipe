@@ -36,7 +36,7 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
 /**
- * AsyncTask to check if there is a newer version of the NewPipe github apk available or not.
+ * AsyncTask to check if there is a newer version of the YouTube Video Downloader github apk available or not.
  * If there is a newer version we show a notification, informing the user. On tapping
  * the notification, the user will be directed to the download link.
  */
@@ -139,7 +139,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             return null;
         }
 
-        // Make a network request to get latest NewPipe data.
+        // Make a network request to get latest YouTube Video Downloader data.
         try {
             return DownloaderImpl.getInstance().get(NEWPIPE_API_URL).responseBody();
         } catch (IOException | ReCaptchaException e) {

@@ -52,7 +52,7 @@
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
     <string name="main_bg_subtitle">Trykk «Søk» for å komme i gang</string>
     <string name="autoplay_by_calling_app_title">Automatisk avspilling</string>
-    <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
+    <string name="autoplay_by_calling_app_summary">Spiller en video når YouTube Video Downloader blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrenset innhold</string>
     <string name="video_is_age_restricted">Vis aldersbegrenset video. Å tillate slikt materiale kan gjøres fra innstillingene.</string>
@@ -95,7 +95,7 @@
     <string name="msg_error">Feil</string>
     <string name="msg_server_unsupported">Ustøttet tjener</string>
     <string name="msg_exists">Fila finnes allerede</string>
-    <string name="msg_running">NewPipe laster ned</string>
+    <string name="msg_running">YouTube Video Downloader laster ned</string>
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle</string>
@@ -146,15 +146,15 @@
     <string name="clear">Tøm</string>
     <string name="popup_resizing_indicator_title">Endrer størrelse</string>
     <string name="best_resolution">Beste oppløsning</string>
-    <string name="notification_channel_name">NewPipe-merknad</string>
-    <string name="notification_channel_description">Merknad for NewPipe-bakgrunn og oppsprettsspillere</string>
+    <string name="notification_channel_name">YouTube Video Downloader-merknad</string>
+    <string name="notification_channel_description">Merknad for YouTube Video Downloader-bakgrunn og oppsprettsspillere</string>
     <string name="settings_category_downloads_title">Last ned</string>
     <string name="settings_file_charset_title">Tillate tegn i filnavn</string>
     <string name="settings_file_replacement_character_summary">Ugyldige tegn erstattes av denne verdien</string>
     <string name="settings_file_replacement_character_title">Erstatningstegn</string>
     <string name="charset_letters_and_digits">Bokstaver og tall</string>
     <string name="charset_most_special_characters">De fleste spesialtegn</string>
-    <string name="title_activity_about">Om NewPipe</string>
+    <string name="title_activity_about">Om YouTube Video Downloader</string>
     <string name="action_settings">Innstillinger</string>
     <string name="action_about">Om</string>
     <string name="title_licenses">Tredjepartslisenser</string>
@@ -193,7 +193,7 @@
         <item quantity="other">%s videoer</item>
     </plurals>
     <string name="view_on_github">Vis på GitHub</string>
-    <string name="app_license_title">NewPipe sin lisens</string>
+    <string name="app_license_title">YouTube Video Downloader sin lisens</string>
     <string name="contribution_encouragement">Hvorvidt du har idéer vedrørende oversettelser, designendringer, koderenskning, eller tunge kodeendringer—hjelp er alltids kjærkommen. Desto mer som gjøres, desto bedre blir det!</string>
     <string name="read_full_license">Les lisensen</string>
     <string name="contribution_title">Bidra</string>
@@ -236,10 +236,10 @@
     <string name="start_here_on_background">Start avspilling i bakgrunnen</string>
     <string name="start_here_on_popup">Start avspilling i et oppsprett</string>
     <string name="donation_title">Doner</string>
-    <string name="donation_encouragement">NewPipe utvikles av frivillige som bruker sin fritid til å gi deg den beste brukeropplevelsen. Gi tilbake for å hjelpe utviklere å gjøre NewPipe enda bedre, mens de nyter en varm kopp kaffe.</string>
+    <string name="donation_encouragement">YouTube Video Downloader utvikles av frivillige som bruker sin fritid til å gi deg den beste brukeropplevelsen. Gi tilbake for å hjelpe utviklere å gjøre YouTube Video Downloader enda bedre, mens de nyter en varm kopp kaffe.</string>
     <string name="give_back">Bidra</string>
     <string name="website_title">Nettside</string>
-    <string name="website_encouragement">Besøk NewPipe-nettsiden for mer info og nyheter.</string>
+    <string name="website_encouragement">Besøk YouTube Video Downloader-nettsiden for mer info og nyheter.</string>
     <string name="default_content_country_title">Forvalgt innholdsland</string>
     <string name="service_title">Tjeneste</string>
     <string name="toggle_orientation">Veksle skjermretning</string>
@@ -347,7 +347,7 @@
     <string name="toast_no_player">Inget program installert for avspilling av denne filen</string>
     <string name="caption_setting_title">Undertekster</string>
     <string name="caption_setting_description">Endre undertekststørrelse og bakgrunnsstiler. Krever omstart av programmet for å tre i effekt.</string>
-    <string name="app_license">NewPipe er copyleft, fri programvare: Du kan bruke, studere og forbedre etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere det i henhold til vilkårene gitt i GNU General Public-lisensen, som publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
+    <string name="app_license">YouTube Video Downloader er copyleft, fri programvare: Du kan bruke, studere og forbedre etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere det i henhold til vilkårene gitt i GNU General Public-lisensen, som publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
     <string name="import_settings">Ønsker du også å importere innstillinger?</string>
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
@@ -369,11 +369,11 @@
     <string name="enable_disposed_exceptions_title">Rapporter feil utenfor livssyklusen</string>
     <string name="enable_disposed_exceptions_summary">Tving rapportering av uleverbare Rx-unntak utenom fragment eller aktivitetslevetid etter forkastelse</string>
     <string name="unhook_checkbox">Avhekt (kan forårsake forvrenging)</string>
-    <string name="privacy_policy_title">NewPipes personvernspraksis</string>
-    <string name="privacy_policy_encouragement">NewPipe-prosjektet tar ditt personvern veldig alvorlig. Derfor samler ikke programmet inn data uten ditt samtykke.
-\nNewPipes personvernspraksis forklarer i detalj hvilken deta som sendes og lagres når du sender en kræsjrapport.</string>
+    <string name="privacy_policy_title">YouTube Video Downloaders personvernspraksis</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader-prosjektet tar ditt personvern veldig alvorlig. Derfor samler ikke programmet inn data uten ditt samtykke.
+\nYouTube Video Downloaders personvernspraksis forklarer i detalj hvilken deta som sendes og lagres når du sender en kræsjrapport.</string>
     <string name="read_privacy_policy">Les personvernspraksis</string>
-    <string name="start_accept_privacy_policy">For å overholde Europeisk Generell Data Proteksjons-Regularing (GDPR), vil vi rette oppmerksomheten din mot NewPipes personvernspraksis. Les den nøye.
+    <string name="start_accept_privacy_policy">For å overholde Europeisk Generell Data Proteksjons-Regularing (GDPR), vil vi rette oppmerksomheten din mot YouTube Video Downloaders personvernspraksis. Les den nøye.
 \nDu må godta den for å sende oss feilrapporten.</string>
     <string name="accept">Godta</string>
     <string name="decline">Avslå</string>
@@ -402,7 +402,7 @@
     <string name="events">Hendelser</string>
     <string name="file_deleted">Fil slettet</string>
     <string name="app_update_notification_channel_name">Programoppgraderingsmerknad</string>
-    <string name="app_update_notification_channel_description">Merknader for nye NewPipe-versjoner</string>
+    <string name="app_update_notification_channel_description">Merknader for nye YouTube Video Downloader-versjoner</string>
     <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
     <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe\?</string>
     <string name="saved_tabs_invalid_json">Kunne ikke leste lagrede faner, så bruker forvalgte</string>
@@ -419,7 +419,7 @@
     <string name="grid">Rutenett</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Veksle visning</string>
-    <string name="app_update_notification_content_title">Ny NewPipe-versjon tilgjengelig.</string>
+    <string name="app_update_notification_content_title">Ny YouTube Video Downloader-versjon tilgjengelig.</string>
     <string name="app_update_notification_content_text">Trykk for å laste ned</string>
     <string name="missions_header_finished">Fullført</string>
     <string name="paused">pauset</string>
@@ -468,7 +468,7 @@
     <string name="overwrite_unrelated_warning">En fil ved dette navnet finnes allerede</string>
     <string name="overwrite_failed">Kan ikke overskrive filen</string>
     <string name="download_already_pending">Det finnes en ventende nedlasting ved dette navnet</string>
-    <string name="error_postprocessing_stopped">NewPipe ble lukket under arbeid med filen</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader ble lukket under arbeid med filen</string>
     <string name="error_insufficient_storage">Ingen ledig plass på enheten</string>
     <string name="error_progress_lost">Framdrift gikk tapt, fordi filen ble slettet</string>
     <string name="error_timeout">Tilkoblingsavbrudd</string>
@@ -593,7 +593,7 @@
     <string name="notification_action_shuffle">Veksle</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Synes du at strøminnlastingen er for treg\? Prøv å skru på rask innlasting (du kan endre det i innstillingene, eller ved å trykke på knappen nedenfor).
 \n
-\nNewPipe tilbyr to strøminnlastingsstrategier:
+\nYouTube Video Downloader tilbyr to strøminnlastingsstrategier:
 \n• Henting av hele abonnementskanalen, som er tregt, men fullstendig.
 \n• Bruk av et dedikert tjenesteendepunkt, som er raskt men vanligvis ikke fullstendig.
 \n
@@ -615,7 +615,7 @@
 \nEr du sikker\? Dette kan ikke angres!</string>
     <string name="autoplay_summary">Start avspilling automatisk — %s</string>
     <string name="unsupported_url_dialog_message">Kunne ikke gjenkjenne angitt nettadresse. Åpne den med annet program\?</string>
-    <string name="content_not_supported">Innholdet støttes ikke enda av NewPipe.
+    <string name="content_not_supported">Innholdet støttes ikke enda av YouTube Video Downloader.
 \n
 \nStøtte vil forhåpentligvis komme til i en senere versjon.</string>
     <string name="playlist_page_summary">Spillelisteside</string>

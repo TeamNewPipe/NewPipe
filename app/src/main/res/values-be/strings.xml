@@ -21,7 +21,7 @@
     <string name="use_external_video_player_title">Знешні відэаплэер</string>
     <string name="use_external_video_player_summary">Прыбірае гук у некаторых разрозненнях</string>
     <string name="use_external_audio_player_title">Знешні аўдыяплэер</string>
-    <string name="popup_mode_share_menu_title">NewPipe ва ўсплывальным акне</string>
+    <string name="popup_mode_share_menu_title">YouTube Video Downloader ва ўсплывальным акне</string>
     <string name="subscribe_button_title">Падпісацца</string>
     <string name="subscribed_button_title">Вы падпісаныя</string>
     <string name="channel_unsubscribed">Падпіска адменена</string>
@@ -42,7 +42,7 @@
     <string name="download_path_audio_summary">Сюды захоўваецца загружанае аўдыё</string>
     <string name="download_path_audio_dialog_title">Увядзіце шлях да папкі для загрузкі аўдыё</string>
     <string name="autoplay_by_calling_app_title">Аўтапрайграванне</string>
-    <string name="autoplay_by_calling_app_summary">Прайграваць відэа пры выкліку NewPipe з іншага прыкладання</string>
+    <string name="autoplay_by_calling_app_summary">Прайграваць відэа пры выкліку YouTube Video Downloader з іншага прыкладання</string>
     <string name="default_resolution_title">Разрознянне па змаўчанні</string>
     <string name="default_popup_resolution_title">Разрозненне усплываючага акна</string>
     <string name="show_higher_resolutions_title">Высокія разрозненні</string>
@@ -125,8 +125,8 @@
     <string name="always">Заўсёды</string>
     <string name="just_once">Толькі цяпер</string>
     <string name="file">Файл</string>
-    <string name="notification_channel_name">Апавяшчэнне NewPipe</string>
-    <string name="notification_channel_description">Апавяшчэнні для NewPipe ў фоне і ва ўсплываючым акне</string>
+    <string name="notification_channel_name">Апавяшчэнне YouTube Video Downloader</string>
+    <string name="notification_channel_description">Апавяшчэнні для YouTube Video Downloader ў фоне і ва ўсплываючым акне</string>
     <string name="unknown_content">[Невядома]</string>
     <string name="toggle_orientation">Пераключыць арыентацыю</string>
     <string name="switch_to_background">Перайсці ў фон</string>
@@ -235,7 +235,7 @@
     <string name="msg_server_unsupported">Сервер не падтрымліваецца</string>
     <string name="msg_exists">Файл ужо існуе</string>
     <string name="msg_url_malform">Няправільны URL або няма доступу да інтэрнэту</string>
-    <string name="msg_running">NewPipe спампоўвае</string>
+    <string name="msg_running">YouTube Video Downloader спампоўвае</string>
     <string name="msg_running_detail">Падрабязнасці</string>
     <string name="msg_wait">Пачакайце…</string>
     <string name="msg_copied">Скапіявана ў буфер абмену</string>
@@ -252,7 +252,7 @@
     <string name="charset_letters_and_digits">Літары і лічбы</string>
     <string name="charset_most_special_characters">Большасць спецзнакаў</string>
     <string name="toast_no_player">Прыкладанне для прайгравання гэтага файла не ўстаноўлена</string>
-    <string name="title_activity_about">Аб NewPipe</string>
+    <string name="title_activity_about">Аб YouTube Video Downloader</string>
     <string name="action_settings">Налады</string>
     <string name="action_about">Аб дадатку</string>
     <string name="title_licenses">Іншыя ліцэнзіі</string>
@@ -267,16 +267,16 @@
     <string name="contribution_encouragement">Вітаецца ўсё - ідэі, пераклад, змены дызайну, чыстка кода або велізарныя змены ў кодзе. Чым больш зроблена, тым лепш!</string>
     <string name="view_on_github">Адкрыць на GitHub</string>
     <string name="donation_title">Ахвяраваць</string>
-    <string name="donation_encouragement">Распрацоўшчыкі NewPipe цаной свайго вольнага часу робяць ваша жыццё крышачку зручней. Адплаціце ім тым жа - атрымліваючы асалоду ад кубачка кавы, яны змогуць зрабіць NewPipe яшчэ лепей.</string>
+    <string name="donation_encouragement">Распрацоўшчыкі YouTube Video Downloader цаной свайго вольнага часу робяць ваша жыццё крышачку зручней. Адплаціце ім тым жа - атрымліваючы асалоду ад кубачка кавы, яны змогуць зрабіць YouTube Video Downloader яшчэ лепей.</string>
     <string name="give_back">Аддаць належнае</string>
     <string name="website_title">Вэб-сайт</string>
-    <string name="website_encouragement">Дзеля атрымання больш падрабязнай інфармацыі і апошніх навін аб NewPipe наведайце наш вэб-сайт.</string>
-    <string name="privacy_policy_title">Палітыка прыватнасці NewPipe</string>
-    <string name="privacy_policy_encouragement">Праект NewPipe вельмі сур\'ёзна ставіцца да вашай прыватнасці. Таму прыкладанне не збірае ніякіх дадзеных без вашай згоды. 
-\nПалітыка прыватнасці NewPipe падрабязна тлумачыць, якія дадзеныя адпраўляюцца і захоўваюцца пры адпраўцы справаздачы аб збоях.</string>
+    <string name="website_encouragement">Дзеля атрымання больш падрабязнай інфармацыі і апошніх навін аб YouTube Video Downloader наведайце наш вэб-сайт.</string>
+    <string name="privacy_policy_title">Палітыка прыватнасці YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">Праект YouTube Video Downloader вельмі сур\'ёзна ставіцца да вашай прыватнасці. Таму прыкладанне не збірае ніякіх дадзеных без вашай згоды.
+\nПалітыка прыватнасці YouTube Video Downloader падрабязна тлумачыць, якія дадзеныя адпраўляюцца і захоўваюцца пры адпраўцы справаздачы аб збоях.</string>
     <string name="read_privacy_policy">Прачытаць палітыку</string>
-    <string name="app_license_title">Ліцэнзія NewPipe</string>
-    <string name="app_license">NewPipe - свабоднае праграмнае забеспячэнне: вы можаце выкарыстоўваць, вывучаць і паляпшаць яго па сваім меркаванні. У прыватнасці, вы можаце распаўсюджваць і / або змяняць яго ў адпаведнасці з умовамі GNU General Public License, апублікаванай Free Software Foundation, альбо версіі 3, альбо (па вашаму выбару) любой больш позняй версіі.</string>
+    <string name="app_license_title">Ліцэнзія YouTube Video Downloader</string>
+    <string name="app_license">YouTube Video Downloader - свабоднае праграмнае забеспячэнне: вы можаце выкарыстоўваць, вывучаць і паляпшаць яго па сваім меркаванні. У прыватнасці, вы можаце распаўсюджваць і / або змяняць яго ў адпаведнасці з умовамі GNU General Public License, апублікаванай Free Software Foundation, альбо версіі 3, альбо (па вашаму выбару) любой больш позняй версіі.</string>
     <string name="read_full_license">Прачытаць ліцэнзію</string>
     <string name="title_activity_history">Гісторыя</string>
     <string name="title_history_search">Гісторыя пошуку</string>
@@ -383,7 +383,7 @@
     <string name="skip_silence_checkbox">Прапускаць цішыню</string>
     <string name="playback_step">Крок</string>
     <string name="playback_reset">Скід</string>
-    <string name="start_accept_privacy_policy">У адпаведнасці з Агульным рэгламентам па абароне дадзеных ЕС (GDPR), звяртаем вашу ўвагу на палітыку прыватнасці NewPipe. Калі ласка, уважліва азнаёмцеся з ёй. 
+    <string name="start_accept_privacy_policy">У адпаведнасці з Агульным рэгламентам па абароне дадзеных ЕС (GDPR), звяртаем вашу ўвагу на палітыку прыватнасці YouTube Video Downloader. Калі ласка, уважліва азнаёмцеся з ёй.
 \nВам неабходна прыняць яе ўмовы, каб адправіць нам справаздачу пра памылку.</string>
     <string name="accept">Прыняць</string>
     <string name="decline">Адмовіцца</string>
@@ -404,7 +404,7 @@
     <string name="settings_category_updates_title">Абнаўлення</string>
     <string name="file_deleted">Файл выдалены</string>
     <string name="app_update_notification_channel_name">Апавяшчэнне аб абнаўленні</string>
-    <string name="app_update_notification_channel_description">Апавяшчэння аб новай версіі NewPipe</string>
+    <string name="app_update_notification_channel_description">Апавяшчэння аб новай версіі YouTube Video Downloader</string>
     <string name="download_to_sdcard_error_title">Знешняе сховішча недаступна</string>
     <string name="download_to_sdcard_error_message">Загрузка на знешнюю SD-карту немагчымая. Скінуць размяшчэнне тэчкі загрузкі\?</string>
     <string name="saved_tabs_invalid_json">Памылка чытання захаваных укладак. Выкарыстоўваюцца ўкладкі па змаўчанні</string>
@@ -420,7 +420,7 @@
     <string name="grid">Сетка</string>
     <string name="auto">Аўтаматычна</string>
     <string name="switch_view">Пераключыць выгляд</string>
-    <string name="app_update_notification_content_title">Даступна абнаўленне NewPipe!</string>
+    <string name="app_update_notification_content_title">Даступна абнаўленне YouTube Video Downloader!</string>
     <string name="app_update_notification_content_text">Націсніце для загрузкі</string>
     <string name="missions_header_finished">Скончана</string>
     <string name="missions_header_pending">У чарзе</string>
@@ -471,7 +471,7 @@
     <string name="overwrite_finished_warning">Файл з такім імем ужо існуе</string>
     <string name="overwrite_failed">немагчыма перазапісаць файл</string>
     <string name="download_already_pending">У чарзе ўжо ёсць загрузка з такім імем</string>
-    <string name="error_postprocessing_stopped">NewPipe была зачынена падчас працы над файлам</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader была зачынена падчас працы над файлам</string>
     <string name="error_insufficient_storage">Скончылася вольнае месца на прыладзе</string>
     <string name="error_progress_lost">Прагрэс страчаны, так як файл быў выдалены</string>
     <string name="error_timeout">Час злучэння выйшла</string>

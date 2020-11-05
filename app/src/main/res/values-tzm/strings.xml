@@ -23,7 +23,7 @@
     <string name="search_showing_result_for">Asmal n tyufa i: %s</string>
     <string name="upload_date_text">ittufser g %1$s</string>
     <string name="no_comments">Walu ixfawalen</string>
-    <string name="notification_channel_name">Tineɣmisin n NewPipe</string>
+    <string name="notification_channel_name">Tineɣmisin n YouTube Video Downloader</string>
     <string name="download_path_title">Asedaw n ividyuten yugem</string>
     <string name="delete_downloaded_files">Kkes ifuyla yugmen</string>
     <string name="downloads_storage_use_saf_title">Semres SAF</string>
@@ -98,7 +98,7 @@
     <string name="delete_search_history_alert">Kkes amzruy n urezzu maṛṛa\?</string>
     <string name="clear_search_history_title">Sfeḍ amzruy n urezzu</string>
     <string name="delete_view_history_alert">Kkes amzruy n wannay maṛṛa\?</string>
-    <string name="app_update_notification_channel_description">Tineɣmisin i tleqqimt tamaynut n NewPipe</string>
+    <string name="app_update_notification_channel_description">Tineɣmisin i tleqqimt tamaynut n YouTube Video Downloader</string>
     <string name="play_all">Γer maṛṛa</string>
     <string name="file_deleted">Ittwakkes ufaylu</string>
     <string name="content">Akettur</string>

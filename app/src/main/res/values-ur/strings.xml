@@ -21,7 +21,7 @@
     <string name="use_external_video_player_title">خارجی ویڈیو پلئیر استعمال کریں</string>
     <string name="use_external_video_player_summary">کچھ ریزولوشن پر آڈیو ہٹاتا ہے</string>
     <string name="use_external_audio_player_title">خارجی آڈیو پلیر استعمال کریں</string>
-    <string name="popup_mode_share_menu_title">NewPipe پاپ اپ اسلوب</string>
+    <string name="popup_mode_share_menu_title">YouTube Video Downloader پاپ اپ اسلوب</string>
     <string name="subscribe_button_title">رکنیت اختیار کریں</string>
     <string name="subscribed_button_title">رکنیت شدہ</string>
     <string name="channel_unsubscribed">چینل کی رکنیت ختم کردی گئی</string>

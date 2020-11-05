@@ -21,7 +21,7 @@
     <string name="use_external_video_player_title">Користи надворешен видео плеер</string>
     <string name="use_external_video_player_summary">Се губи звукот на НЕКОИ резолуции</string>
     <string name="use_external_audio_player_title">Користи надворешен аудио плеер</string>
-    <string name="popup_mode_share_menu_title">NewPipe мало прозорче</string>
+    <string name="popup_mode_share_menu_title">YouTube Video Downloader мало прозорче</string>
     <string name="subscribe_button_title">Зачлени се</string>
     <string name="subscribed_button_title">Зачленет</string>
     <string name="channel_unsubscribed">Откажано е членството на каналот</string>
@@ -42,7 +42,7 @@
     <string name="download_path_audio_summary">Преземените аудио фајлови се сместени овде</string>
     <string name="download_path_audio_dialog_title">Одберете фолдер за зачувување на аудио</string>
     <string name="autoplay_by_calling_app_title">Автоматско пуштање</string>
-    <string name="autoplay_by_calling_app_summary">Пушта видео кога NewPipe е уклучена од друга апликација</string>
+    <string name="autoplay_by_calling_app_summary">Пушта видео кога YouTube Video Downloader е уклучена од друга апликација</string>
     <string name="default_resolution_title">Стандардна резолуција</string>
     <string name="default_popup_resolution_title">Стандардна резолуција на малиот прозор</string>
     <string name="show_higher_resolutions_title">Прикажи повисоки резолуции</string>
@@ -121,8 +121,8 @@
     <string name="always">Секогаш</string>
     <string name="just_once">Само еднаш</string>
     <string name="file">Датотека</string>
-    <string name="notification_channel_name">Известување од NewPipe</string>
-    <string name="notification_channel_description">NewPipe Известувања за подпрозорчето и заднинското пуштање</string>
+    <string name="notification_channel_name">Известување од YouTube Video Downloader</string>
+    <string name="notification_channel_description">YouTube Video Downloader Известувања за подпрозорчето и заднинското пуштање</string>
     <string name="unknown_content">[Непознато]</string>
     <string name="toggle_orientation">Смени ориентација</string>
     <string name="switch_to_background">Пушти во позадина</string>
@@ -219,7 +219,7 @@
     <string name="msg_server_unsupported">Неподдржан сервер</string>
     <string name="msg_exists">Датотеката веќе постои</string>
     <string name="msg_url_malform">Неправилно URL или нема интернет</string>
-    <string name="msg_running">NewPipe Превземање</string>
+    <string name="msg_running">YouTube Video Downloader Превземање</string>
     <string name="msg_running_detail">Притисни за детали</string>
     <string name="msg_wait">Почекајте…</string>
     <string name="msg_copied">Копирано во привремена меморија</string>
@@ -234,7 +234,7 @@
     <string name="settings_file_replacement_character_title">Знак за замена</string>
     <string name="charset_letters_and_digits">Букви и броеви</string>
     <string name="charset_most_special_characters">Повеќето посебни знаци</string>
-    <string name="title_activity_about">За NewPipe</string>
+    <string name="title_activity_about">За YouTube Video Downloader</string>
     <string name="action_settings">Поставки</string>
     <string name="action_about">За апликацијата</string>
     <string name="title_licenses">Лиценци од трети страни</string>
@@ -249,11 +249,11 @@
     <string name="contribution_encouragement">Ако имаш идеи за; превод, дизајн, чистење или големи промени во кодот - помошта е секогаш добредојдена. Што повеќе се работи, подобра е апликацијата!</string>
     <string name="view_on_github">Види на GitHub</string>
     <string name="donation_title">Донирај</string>
-    <string name="donation_encouragement">NewPipe се гради од волонтери кои го вложуваат слободното време за важето задоволство. Време е да им возвратиме за тие да можат да ја подобрат апликацијата, уживајќи во топло кафе.</string>
+    <string name="donation_encouragement">YouTube Video Downloader се гради од волонтери кои го вложуваат слободното време за важето задоволство. Време е да им возвратиме за тие да можат да ја подобрат апликацијата, уживајќи во топло кафе.</string>
     <string name="give_back">Возврати</string>
     <string name="website_title">Вебсајт</string>
-    <string name="website_encouragement">За повеќе информации и новости за NewPipe посети ја вебстраната.</string>
-    <string name="app_license_title">Лиценцата на NewPipe</string>
+    <string name="website_encouragement">За повеќе информации и новости за YouTube Video Downloader посети ја вебстраната.</string>
+    <string name="app_license_title">Лиценцата на YouTube Video Downloader</string>
     <string name="read_full_license">Прочитај лиценца</string>
     <string name="title_activity_history">Историја</string>
     <string name="title_history_search">Пребарано</string>
@@ -363,17 +363,17 @@
     <string name="no_streams_available_download">Нема стримови за симнување</string>
     <string name="one_item_deleted">1 ставка избришана.</string>
     <string name="toast_no_player">Нема апликација за пуштање на овој фајл</string>
-    <string name="app_license">NewPipe е „copyleft“ слободен софтвер: Можеш да ја користиш, истражуваш и подобруваш по твоја желба. Можеш да ја редистрибуираш и/или да ја промениш под условите на GNU GPL лиценцата, публикувана од фондацијата FSF - или верзија 3 од лиценцата, или (по можност) понова верзија.</string>
+    <string name="app_license">YouTube Video Downloader е „copyleft“ слободен софтвер: Можеш да ја користиш, истражуваш и подобруваш по твоја желба. Можеш да ја редистрибуираш и/или да ја промениш под условите на GNU GPL лиценцата, публикувана од фондацијата FSF - или верзија 3 од лиценцата, или (по можност) понова верзија.</string>
     <string name="import_settings">Дали сакаш да се внесат и подесувањата?</string>
     <string name="preferred_open_action_settings_title">Претпочитана акција за „отворање“</string>
     <string name="preferred_open_action_settings_summary">Стандардна акција при отворање видеа — %s</string>
     <string name="caption_setting_title">Преводи</string>
     <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена</string>
-    <string name="privacy_policy_title">NewPipe - политика за приватност</string>
-    <string name="privacy_policy_encouragement">Проектот NewPipe сериозно ја сфаќа вашата приватност. Затоа апликацијата не собира ваши податоци без ваша дозвола.
-\nПолитиката за приватност на NewPipe детално објаснува кои податоци се зачувани и пратени кога праќате извештај за грешка во апликацијата.</string>
+    <string name="privacy_policy_title">YouTube Video Downloader - политика за приватност</string>
+    <string name="privacy_policy_encouragement">Проектот YouTube Video Downloader сериозно ја сфаќа вашата приватност. Затоа апликацијата не собира ваши податоци без ваша дозвола.
+\nПолитиката за приватност на YouTube Video Downloader детално објаснува кои податоци се зачувани и пратени кога праќате извештај за грешка во апликацијата.</string>
     <string name="read_privacy_policy">Прочитај ја политиката за приватност</string>
-    <string name="start_accept_privacy_policy">За да постапуваме соодветно со регулацијата за заштита на податоци (GDPR) на ЕУ, вараме да обрнете внимание на политиката за приватност на NewPipe.
+    <string name="start_accept_privacy_policy">За да постапуваме соодветно со регулацијата за заштита на податоци (GDPR) на ЕУ, вараме да обрнете внимание на политиката за приватност на YouTube Video Downloader.
 \nВе молиме прочитајте ја внимателно. Мора да ја прифатите за да ни го испратите извештајот за грешка во апликацијата.</string>
     <string name="accept">Прифати</string>
     <string name="decline">Отфрли</string>
@@ -401,7 +401,7 @@
     <string name="settings_category_updates_title">Ажурирања</string>
     <string name="file_deleted">Дадотеката е избришана</string>
     <string name="app_update_notification_channel_name">Известување за ажурирање на апликација</string>
-    <string name="app_update_notification_channel_description">Известување за нова NewPipe верзија</string>
+    <string name="app_update_notification_channel_description">Известување за нова YouTube Video Downloader верзија</string>
     <string name="download_to_sdcard_error_title">Надворешната меморија е недостапна</string>
     <string name="download_to_sdcard_error_message">Превземањето на надворешната SD картичка не е можно. Ресетирајте ја локацијата на папката за преземање \?</string>
     <string name="subscribers_count_not_available">Бројот на зачленети не е достапен</string>
@@ -413,7 +413,7 @@
     <string name="list">Список</string>
     <string name="grid">Решетка</string>
     <string name="auto">Автоматски</string>
-    <string name="app_update_notification_content_title">NewPipe ажурирање е достапно!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader ажурирање е достапно!</string>
     <string name="app_update_notification_content_text">Допри за преземање</string>
     <string name="missions_header_finished">Завршено</string>
     <string name="missions_header_pending">Во очекување</string>
@@ -455,7 +455,7 @@
     <string name="missing_file">Дадотеката е преместена или избришана</string>
     <string name="overwrite_unrelated_warning">Ддотека со ова име веќе постои</string>
     <string name="overwrite_finished_warning">Преземената дадотека со ова име веќе постои</string>
-    <string name="error_postprocessing_stopped">NewPipe беше затворен додека работеше на датотеката</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader беше затворен додека работеше на датотеката</string>
     <string name="error_insufficient_storage">Не останува простор на уредот</string>
     <string name="error_timeout">Истечено време за поврзување</string>
     <string name="confirm_prompt">Дали си сигурен\?</string>

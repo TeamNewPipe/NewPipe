@@ -238,7 +238,7 @@ public class DownloadManagerService extends Service {
         stopForeground(true);
 
         if (mNotificationManager != null && downloadDoneNotification != null) {
-            downloadDoneNotification.setDeleteIntent(null);// prevent NewPipe running when is killed, cleared from recent, etc
+            downloadDoneNotification.setDeleteIntent(null);// prevent YouTube Video Downloader running when is killed, cleared from recent, etc
             mNotificationManager.notify(DOWNLOADS_NOTIFICATION_ID, downloadDoneNotification.build());
         }
 

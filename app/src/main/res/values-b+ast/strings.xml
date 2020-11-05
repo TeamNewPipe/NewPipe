@@ -80,7 +80,7 @@
     <string name="settings_category_player_behavior_title">Comportamientu</string>
     <string name="settings_category_history_title">Historial y caché</string>
     <string name="best_resolution">La meyor resolución</string>
-    <string name="notification_channel_name">Avisu de NewPipe</string>
+    <string name="notification_channel_name">Avisu de YouTube Video Downloader</string>
     <string name="search_no_results">Nun hai resultaos</string>
     <string name="empty_subscription_feed_subtitle">Equí nun hai más que grillos</string>
     <plurals name="subscribers">
@@ -96,7 +96,7 @@
     <string name="settings_file_charset_title">Caráuteres almitíos nos nomes de ficheros</string>
     <string name="charset_letters_and_digits">Lletres y díxitos</string>
     <string name="charset_most_special_characters">La mayoría de caráuteres especiales</string>
-    <string name="title_activity_about">Tocante a NewPipe</string>
+    <string name="title_activity_about">Tocante a YouTube Video Downloader</string>
     <string name="action_settings">Axustes</string>
     <string name="action_about">Tocante a</string>
     <string name="title_licenses">Llicencies de terceros</string>
@@ -106,7 +106,7 @@
     <string name="tab_contributors">Collaboradores</string>
     <string name="tab_licenses">Llicencies</string>
     <string name="view_on_github">Ver en GitHub</string>
-    <string name="app_license_title">Llicencia de NewPipe</string>
+    <string name="app_license_title">Llicencia de YouTube Video Downloader</string>
     <string name="contribution_encouragement">Si sabes traducir, quies encuriosar el códigu, amestar carauteríques o proponer cambeos nel diseñu, vamos agradecételo siempres. ¡Cuánto más, meyor!</string>
     <string name="read_full_license">Lleer la llicencia</string>
     <string name="contribution_title">Collaboración</string>
@@ -133,7 +133,7 @@
     <string name="donation_encouragement"/>
     <string name="give_back">Donar</string>
     <string name="website_title">Sitiu web</string>
-    <string name="website_encouragement">Visita\'l sitiu web de NewPipe pa más información y noticies.</string>
+    <string name="website_encouragement">Visita\'l sitiu web de YouTube Video Downloader pa más información y noticies.</string>
     <string name="default_content_country_title">País predetermináu del conteníu</string>
     <string name="always">Siempres</string>
     <string name="import_data_title">Importar una base de datos</string>
@@ -209,7 +209,7 @@
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
     <string name="show_comments_title">Amosar comentarios</string>
     <string name="show_comments_summary">Desactiva esta opción p\'anubrir los comentarios</string>
-    <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de NewPipe. Lléila con procuru. 
+    <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de YouTube Video Downloader. Lléila con procuru.
 \nHas aceutala unviándonos un informe de fallos.
     </string>
     <string name="minimize_on_exit_summary">Aición al cambiar a otra aplicación dende\'l reproductor de vídeos principal — %s</string>
@@ -247,7 +247,7 @@
     </plurals>
     <string name="player_gesture_controls_title">Control per xestos del reproductor</string>
     <string name="preferred_player_fetcher_notification_message">Cargando\'l conteníu solicitáu</string>
-    <string name="privacy_policy_title">Política de Privacidá de NewPipe</string>
+    <string name="privacy_policy_title">Política de Privacidá de YouTube Video Downloader</string>
     <string name="volume_gesture_control_title">Control per xestos del volume</string>
     <string name="brightness_gesture_control_title">Control per xestos del brilléu</string>
     <string name="error_file_creation">El ficheru nun pue crease</string>
@@ -260,7 +260,7 @@
     <string name="history_disabled">L\'historial ta desactiváu</string>
     <string name="no_videos">Nun hai vídeos</string>
     <string name="delete_search_history_alert">¿Desaniciar tol historial de guetes\?</string>
-    <string name="app_update_notification_content_title">¡Hai un anovamientu disponible pa NewPipe!</string>
+    <string name="app_update_notification_content_title">¡Hai un anovamientu disponible pa YouTube Video Downloader!</string>
     <string name="app_update_notification_content_text">Toca pa baxar la versión</string>
     <string name="error_progress_lost">Perdióse\'l progresu porque se desanició\'l ficheru</string>
     <string name="peertube_instance_url_title">Instancies de PeerTube</string>
@@ -304,5 +304,5 @@
     <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
     <string name="thumbnail_cache_wipe_complete_notice">Llimpióse la caché d\'imáxenes</string>
     <string name="kore_not_found">¿Instalar l\'aplicación Kore\?</string>
-    <string name="autoplay_by_calling_app_summary">Reproduz un videu cuando s\'invoca a NewPipe dende otra aplicación</string>
+    <string name="autoplay_by_calling_app_summary">Reproduz un videu cuando s\'invoca a YouTube Video Downloader dende otra aplicación</string>
 </resources>

@@ -49,7 +49,7 @@
     <string name="msg_error">هەڵە</string>
     <string name="override_current_data">ئەمە لەسەر ڕێکخستنەکانی ئێستات جێگیردەبێت.</string>
     <string name="notification_channel_name">ئاگانامەکانی داوانامە</string>
-    <string name="donation_encouragement">ئەم ئەپە لەلایەن چەند خۆبەخشێکەوە دروستکراوە کەکاتی خۆیان پێ بەخشیووە تاکو باشترین خزمەتگوزاریت پێشکەش بکەن. هیچ نەبێت بە کڕینی کوپێک قاوە یارمەتی گەشەپێدەرەکانمان بدە بۆ ئەوەی کاتی زیاتر تەرخان بکەین بۆ بەرەوپێشبردنی NewPipe.</string>
+    <string name="donation_encouragement">ئەم ئەپە لەلایەن چەند خۆبەخشێکەوە دروستکراوە کەکاتی خۆیان پێ بەخشیووە تاکو باشترین خزمەتگوزاریت پێشکەش بکەن. هیچ نەبێت بە کڕینی کوپێک قاوە یارمەتی گەشەپێدەرەکانمان بدە بۆ ئەوەی کاتی زیاتر تەرخان بکەین بۆ بەرەوپێشبردنی YouTube Video Downloader.</string>
     <string name="short_billion">بلیۆن</string>
     <string name="show_search_suggestions_title">گەڕانی پێشنیارکراوەکان</string>
     <string name="playback_tempo">خێراییەکان</string>
@@ -613,7 +613,7 @@
     <string name="error_report_open_issue_button_text">هەڵەی ڕاپۆرت لەسەر گیت هاوب</string>
     <string name="copy_for_github">کۆپیکردنی ڕاپۆرتی چوارچێوەبەندیکراو</string>
     <string name="settings_category_notification_title">ئاگانامە</string>
-    <string name="unsupported_url_dialog_message">NewPipe نەیتوانی URL ی دابینکراو بناسێتەوە. بە میتۆدێکی تر بیکەیتەوە؟</string>
+    <string name="unsupported_url_dialog_message">YouTube Video Downloader نەیتوانی URL ی دابینکراو بناسێتەوە. بە میتۆدێکی تر بیکەیتەوە؟</string>
     <string name="auto_queue_toggle">ڕیزکردنی-خۆیی</string>
     <string name="clear_queue_confirmation_description">ڕیز لە لێدەرێکی چالاک ەوە جێگۆڕکێی بۆ دەکرێت</string>
     <string name="clear_queue_confirmation_summary">دوای گۆڕین لە یاریزانێک بۆ ڕیزێکی تر لەوانەیە جێگۆڕکێی پێ بکرێت</string>

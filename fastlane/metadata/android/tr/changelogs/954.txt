@@ -1,6 +1,6 @@
 • yeni uygulama iş akışı: videoları ayrıntı sayfasında oynat, oynatıcıyı küçültmek için aşağı kaydır
 • MediaStyle bildirimleri: bildirimlerde özelleştirilebilir eylemler, performans iyileştirmeleri
-• NewPipe masaüstü uygulaması olarak kullanılırken temel yeniden boyutlandırma
+• YouTube Video Downloader masaüstü uygulaması olarak kullanılırken temel yeniden boyutlandırma
 
 • desteklenmeyen URL durumunda açma seçeneklerini içeren iletişim kutusu göster
 • Uzak olan alınamadığında arama önerisi deneyimini iyileştir

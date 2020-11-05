@@ -14,6 +14,7 @@ import androidx.preference.PreferenceManager;
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.onesignal.OneSignal;
 
 import org.acra.ACRA;
 import org.acra.config.ACRAConfigurationException;
@@ -47,12 +48,12 @@ import io.reactivex.plugins.RxJavaPlugins;
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
  * App.java is part of NewPipe.
  *
- * NewPipe is free software: you can redistribute it and/or modify
+ * YouTube Video Downloader is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * NewPipe is distributed in the hope that it will be useful,
+ * YouTube Video Downloader is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -80,6 +81,13 @@ public class App extends MultiDexApplication {
         super.onCreate();
 
         app = this;
+
+        // OneSignal Initialization
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
+        //ONES_SIGNAL
 
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);

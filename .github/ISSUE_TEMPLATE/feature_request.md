@@ -40,7 +40,7 @@ Example: *Here's a photo of my cat!* -->
 
 
 #### How will you/everyone benefit from this feature?
-<!-- Convince us! How does it change your NewPipe experience and/or your life?
+<!-- Convince us! How does it change your YouTube Video Downloader experience and/or your life?
 The better this paragraph is, the more likely a developer will think about working on it.
 Example: *This feature will help us colonize the galaxy! -->
 

@@ -75,7 +75,7 @@
     <string name="retry">Opnieuw proberen</string>
     <string name="main_bg_subtitle">Druk op \"zoeken\" om te beginnen</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
-    <string name="autoplay_by_calling_app_summary">Speelt video’s af als NewPipe vanuit een andere app wordt geopend</string>
+    <string name="autoplay_by_calling_app_summary">Speelt video’s af als YouTube Video Downloader vanuit een andere app wordt geopend</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -99,7 +99,7 @@
     <string name="msg_server_unsupported">Server wordt niet ondersteund</string>
     <string name="msg_exists">Bestand bestaat al</string>
     <string name="msg_url_malform">Onjuiste URL of geen internetverbinding</string>
-    <string name="msg_running">NewPipe is aan het downloaden</string>
+    <string name="msg_running">YouTube Video Downloader is aan het downloaden</string>
     <string name="msg_running_detail">Druk voor meer informatie</string>
     <string name="msg_wait">Even geduld…</string>
     <string name="msg_copied">Gekopieerd naar klembord</string>
@@ -137,7 +137,7 @@
     <string name="player_gesture_controls_title">Gebaarbesturing</string>
     <string name="player_gesture_controls_summary">Gebruik gebaren om de helderheid en het volume van de speler aan te passen</string>
     <string name="best_resolution">Beste resolutie</string>
-    <string name="title_activity_about">Over NewPipe</string>
+    <string name="title_activity_about">Over YouTube Video Downloader</string>
     <string name="action_settings">Instellingen</string>
     <string name="action_about">Over</string>
     <string name="title_licenses">Licenties van derde partijen</string>
@@ -149,7 +149,7 @@
     <string name="tab_licenses">Licenties</string>
     <string name="app_description">Open source en lichtgewicht streaming voor Android.</string>
     <string name="view_on_github">Bekijken op GitHub</string>
-    <string name="app_license_title">Licentie van NewPipe</string>
+    <string name="app_license_title">Licentie van YouTube Video Downloader</string>
     <string name="contribution_encouragement">Hulp is altijd welkom. Of je nu nieuwe ideeën hebt, vertalingen kan aanleveren, wijzigingen in het ontwerp kan verrichten, code kan opschonen of van grote wijzigingen voorzien. Hoe meer hulp, hoe beter het wordt!</string>
     <string name="read_full_license">Licentie lezen</string>
     <string name="contribution_title">Bijdragen</string>
@@ -173,8 +173,8 @@
     <string name="enable_watch_history_summary">Kijkgeschiedenis bijhouden</string>
     <string name="resume_on_audio_focus_gain_title">Hervat afspelen</string>
     <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (b.v. telefoongesprekken)</string>
-    <string name="notification_channel_name">NewPipe-melding</string>
-    <string name="notification_channel_description">Meldingen voor NewPipe-achtergrond- en pop-upspelers</string>
+    <string name="notification_channel_name">YouTube Video Downloader-melding</string>
+    <string name="notification_channel_description">Meldingen voor YouTube Video Downloader-achtergrond- en pop-upspelers</string>
     <string name="title_activity_history">Geschiedenis</string>
     <string name="title_history_search">Gezocht</string>
     <string name="title_history_view">Bekeken</string>
@@ -236,10 +236,10 @@
     <string name="start_here_on_background">Begin hier met afspelen in de achtergrond</string>
     <string name="start_here_on_popup">Begin met afspelen in pop-up</string>
     <string name="donation_title">Doneren</string>
-    <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Geef wat terug zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun kopje koffie genieten.</string>
+    <string name="donation_encouragement">YouTube Video Downloader wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Geef wat terug zodat onze ontwikkelaars YouTube Video Downloader nóg beter kunnen maken terwijl ze van hun kopje koffie genieten.</string>
     <string name="give_back">Teruggeven</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Bezoek de website van NewPipe voor meer informatie en het laatste nieuws.</string>
+    <string name="website_encouragement">Bezoek de website van YouTube Video Downloader voor meer informatie en het laatste nieuws.</string>
     <string name="default_content_country_title">Standaard inhoudsland</string>
     <string name="service_title">Dienst</string>
     <string name="toggle_orientation">Oriëntatie wijzigen</string>
@@ -367,13 +367,13 @@
     <string name="delete_search_history_alert">De gehele zoekgeschiedenis wissen\?</string>
     <string name="search_history_deleted">Zoekgeschiedenis gewist.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
-    <string name="app_license">NewPipe is vrije software: je kan het gebruiken, bestuderen, delen en verbeteren zoveel je maar wil. Je kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
+    <string name="app_license">YouTube Video Downloader is vrije software: je kan het gebruiken, bestuderen, delen en verbeteren zoveel je maar wil. Je kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
     <string name="import_settings">Wil je ook de instellingen importeren?</string>
-    <string name="privacy_policy_title">NewPipe\'s privacybeleid</string>
-    <string name="privacy_policy_encouragement">Het NewPipe-project neemt privacy serieus. Daarom verzamelt de app geen gegevens zonder jouw toestemming. 
-\nNewPipe\'s privacybeleid legt gedetailleerd uit welke gegevens verstuurd en opgeslagen worden als je een crashrapport verstuurt.</string>
+    <string name="privacy_policy_title">YouTube Video Downloader\'s privacybeleid</string>
+    <string name="privacy_policy_encouragement">Het YouTube Video Downloader-project neemt privacy serieus. Daarom verzamelt de app geen gegevens zonder jouw toestemming.
+\nYouTube Video Downloader\'s privacybeleid legt gedetailleerd uit welke gegevens verstuurd en opgeslagen worden als je een crashrapport verstuurt.</string>
     <string name="read_privacy_policy">Privacybeleid lezen</string>
-    <string name="start_accept_privacy_policy">Om de Europese Algemene Verordening Gegevensbescherming (ook wel: AVG of GDPR) na te leven, wijzen we je op het nieuwe privacybeleid van NewPipe. Lees dit zorgvuldig. 
+    <string name="start_accept_privacy_policy">Om de Europese Algemene Verordening Gegevensbescherming (ook wel: AVG of GDPR) na te leven, wijzen we je op het nieuwe privacybeleid van YouTube Video Downloader. Lees dit zorgvuldig.
 \nJe moet het beleid accepteren om ons het foutrapport te kunnen sturen.</string>
     <string name="accept">Accepteren</string>
     <string name="decline">Weigeren</string>
@@ -401,7 +401,7 @@
     <string name="settings_category_updates_title">Updates</string>
     <string name="file_deleted">Bestand verwijderd</string>
     <string name="app_update_notification_channel_name">Appupdatemelding</string>
-    <string name="app_update_notification_channel_description">Meldingen voor nieuwe versies van NewPipe</string>
+    <string name="app_update_notification_channel_description">Meldingen voor nieuwe versies van YouTube Video Downloader</string>
     <string name="download_to_sdcard_error_title">Externe opslag niet beschikbaar</string>
     <string name="download_to_sdcard_error_message">Downloaden naar externe SD-kaart is niet mogelijk. Downloadmap opnieuw instellen\?</string>
     <string name="saved_tabs_invalid_json">Fout bij het lezen van de opgeslagen tabbladen, waardoor standaardtabbladen worden gebruikt</string>
@@ -417,7 +417,7 @@
     <string name="grid">Raster</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Wissel van weergave</string>
-    <string name="app_update_notification_content_title">NewPipe-update is beschikbaar!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader-update is beschikbaar!</string>
     <string name="app_update_notification_content_text">Tik om te downloaden</string>
     <string name="missions_header_finished">Voltooid</string>
     <string name="missions_header_pending">In afwachting van</string>
@@ -567,7 +567,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Snelle modus uitschakelen</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Denk je dat het laden van de feed te sloom is\? Zo ja, probeer snel laden in te schakelen (in de instellingen of door op onderstaande knop te drukken).
 \n
-\nNewPipe biedt twee strategieën aan voor het laden van de feed:
+\nYouTube Video Downloader biedt twee strategieën aan voor het laden van de feed:
 \n• Het hele abonnementskanaal ophalen, wat sloom maar compleet is.
 \n• Een speciale feed ophalen, wat snel maar meestal incompleet is.
 \n
@@ -578,11 +578,11 @@
 \nDe keuze komt dus neer op wat je liever hebt: snelheid of precieze informatie.</string>
     <string name="drawer_header_description">Toggle service, momenteel geselecteerd:</string>
     <string name="most_liked">Meest geliked</string>
-    <string name="error_postprocessing_stopped">NewPipe werd gesloten terwijl het bezig was met het bestand</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader werd gesloten terwijl het bezig was met het bestand</string>
     <string name="songs">Nummers</string>
     <string name="albums">Albums</string>
     <string name="artists">Artiesten</string>
-    <string name="content_not_supported">Deze inhoud wordt nog niet ondersteund door NewPipe.
+    <string name="content_not_supported">Deze inhoud wordt nog niet ondersteund door YouTube Video Downloader.
 \n
 \nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, en deels bekeken video\'s</string>

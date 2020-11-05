@@ -18,8 +18,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/drawer_header_padding_top"
+        android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:gravity="bottom"
         android:minHeight="@dimen/drawer_header_content_min_height"
@@ -28,10 +27,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:padding="20dp"
             android:gravity="center"
+            android:background="@drawable/splash_background"
             android:orientation="horizontal"
             tools:ignore="UseCompoundDrawables">
 
@@ -39,15 +38,14 @@
                 android:id="@+id/drawer_header_newpipe_icon"
                 android:layout_width="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_height="@dimen/drawer_header_newpipe_icon_size"
-                android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
-                app:srcCompat="@drawable/splash_foreground"
+                app:srcCompat="@mipmap/ic_launcher"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/drawer_header_newpipe_title"
-                android:layout_width="@dimen/drawer_header_newpipe_title_default_width"
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
                 android:ellipsize="end"
                 android:gravity="start|center_vertical"
                 android:hyphenationFrequency="full"
@@ -59,13 +57,14 @@
                 app:autoSizeMinTextSize="@dimen/drawer_header_newpipe_title_min_text_size"
                 app:autoSizeTextType="uniform"
                 tools:ignore="UnusedAttribute"
-                tools:text="NewPipe" />
+                tools:text="Videos Downloader for YouTube" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:visibility="gone"
             android:background="@drawable/drawer_header_bottom_background"
             android:gravity="center"
             android:orientation="horizontal"
@@ -114,6 +113,7 @@
     <Button
         android:id="@+id/drawer_header_action_button"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="0dp"
         android:background="?selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"

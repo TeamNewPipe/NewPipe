@@ -62,7 +62,7 @@
     <string name="err_dir_create">Nu s-a putut crea directorul de descărcare \'%1$s\'</string>
     <string name="main_bg_subtitle">Apăsați căutare pentru a începe</string>
     <string name="autoplay_by_calling_app_title">Redare automată</string>
-    <string name="autoplay_by_calling_app_summary">Redă un videoclip atunci când NewPipe este deschis din altă aplicație</string>
+    <string name="autoplay_by_calling_app_summary">Redă un videoclip atunci când YouTube Video Downloader este deschis din altă aplicație</string>
     <string name="duration_live">Direct</string>
     <string name="downloads">Descărcări</string>
     <string name="downloads_title">Descărcări</string>
@@ -96,7 +96,7 @@
     <string name="msg_server_unsupported">Server nesuportat</string>
     <string name="msg_exists">Fișierul există deja</string>
     <string name="msg_url_malform">URL malformat sau Internet indisponibil</string>
-    <string name="msg_running">NewPipe Descarcă</string>
+    <string name="msg_running">YouTube Video Downloader Descarcă</string>
     <string name="msg_running_detail">Apasă pentru detalii</string>
     <string name="msg_wait">Vă rugăm așteptați…</string>
     <string name="msg_copied">Copiat în clipboard</string>
@@ -156,7 +156,7 @@ pentru a deschide în mod pop-up</string>
     <string name="settings_category_history_title">Istoric și cache</string>
     <string name="playlist">Playlist</string>
     <string name="undo">Anulează</string>
-    <string name="notification_channel_name">Notificare NewPipe</string>
+    <string name="notification_channel_name">Notificare YouTube Video Downloader</string>
     <string name="notification_channel_description">Notificări pentru playere de fundal și pop-up</string>
     <string name="search_no_results">Fără rezultate</string>
     <string name="empty_subscription_feed_subtitle">Nimic aici în afară de sunetul greierilor</string>
@@ -184,7 +184,7 @@ pentru a deschide în mod pop-up</string>
     <string name="settings_file_replacement_character_title">Caracter înlocuitor</string>
     <string name="charset_letters_and_digits">Litere și cifre</string>
     <string name="charset_most_special_characters">Caracterele cele mai speciale</string>
-    <string name="title_activity_about">Despre NewPipe</string>
+    <string name="title_activity_about">Despre YouTube Video Downloader</string>
     <string name="action_settings">Setări</string>
     <string name="action_about">Despre</string>
     <string name="title_licenses">Licențe terță-parte</string>
@@ -196,7 +196,7 @@ pentru a deschide în mod pop-up</string>
     <string name="tab_licenses">Licențe</string>
     <string name="app_description">Un player de streaming „uşor” liber, pentru Android.</string>
     <string name="view_on_github">Vedeți pe GitHub</string>
-    <string name="app_license_title">Licența NewPipe</string>
+    <string name="app_license_title">Licența YouTube Video Downloader</string>
     <string name="contribution_encouragement">Dacă aveți idei, doriți să traduceți, să schimbați design-ul, să curățați codul sau să schimbați codul, ajutorul este mereu bine primit. Cu cât mai mult, cu atât mai bine!</string>
     <string name="read_full_license">Citiți licența</string>
     <string name="contribution_title">Contribuie</string>
@@ -269,10 +269,10 @@ pentru a deschide în mod pop-up</string>
     <string name="invalid_file">Fișierul nu există, sau nu dețineți suficiente permisiuni pentru a îl citi sau scrie</string>
     <string name="file_name_empty_error">Numele fișierului nu poate fi gol</string>
     <string name="error_occurred_detail">O eroare a apărut: %1$s</string>
-    <string name="donation_encouragement">NewPipe este creat de dezvoltatori şi voluntari care îşi petrec timpul liber să vă aducă cea mai buna experienţă. Dați ceva înapoi pentru a ajuta dezvolatorii noştri în a pot face NewPipe şi mai bun în timp ce se bucură de o cană de cafea.</string>
+    <string name="donation_encouragement">YouTube Video Downloader este creat de dezvoltatori şi voluntari care îşi petrec timpul liber să vă aducă cea mai buna experienţă. Dați ceva înapoi pentru a ajuta dezvolatorii noştri în a pot face YouTube Video Downloader şi mai bun în timp ce se bucură de o cană de cafea.</string>
     <string name="give_back">A da înapoi</string>
     <string name="website_title">Site-ul</string>
-    <string name="website_encouragement">Vizitaţi site-ul nostru pentru mai multe informaţi şi ultimele ştiri despre NewPipe.</string>
+    <string name="website_encouragement">Vizitaţi site-ul nostru pentru mai multe informaţi şi ultimele ştiri despre YouTube Video Downloader.</string>
     <string name="delete_stream_history_prompt">Doriţi să ştergeţi acest element din istoricul de vizionare ?</string>
     <string name="delete_all_history_prompt">Sunteţi sigur că vreţi să ştergeţi toate elementele din istoric ?</string>
     <string name="title_last_played">Ultimele vizionări</string>
@@ -347,7 +347,7 @@ pentru a deschide în mod pop-up</string>
     <string name="events">Evenimente</string>
     <string name="file_deleted">Fișier șters</string>
     <string name="app_update_notification_channel_name">Notificare actualizare aplicație</string>
-    <string name="app_update_notification_channel_description">Notificări pentru noi versiuni NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificări pentru noi versiuni YouTube Video Downloader</string>
     <string name="watch_history_deleted">Afișare istoric șters.</string>
     <string name="clear_search_history_title">Șterge istoric căutare</string>
     <string name="clear_search_history_summary">Ștergere istoric căutare cuvinte cheie</string>
@@ -369,10 +369,10 @@ pentru a deschide în mod pop-up</string>
     <string name="import_export_title">Import/export</string>
     <string name="caption_setting_title">Subtitrări</string>
     <string name="caption_setting_description">Modificați mărimea textului și stilurile de fundal. Necesită repornirea aplicației.</string>
-    <string name="app_license">NewPipe este un software copyleft gratuit: îl puteți utiliza, studia, distribui și îl puteți îmbunătăți după bunul plac. În mod special, îl puteți redistribui și/sau modifica în condițiile Licenței publice generale GNU, publicată de Free Software Foundation, fie versiunea 3 a Licenței, fie (la opțiunea dvs.) orice versiune ulterioară.</string>
-    <string name="privacy_policy_title">Politica de confidențialitate a NewPipe</string>
-    <string name="privacy_policy_encouragement">Proiectul NewPipe ia confidențialitatea în serios. Prin urmare, aplicația nu colectează date fără consimțământul dumneavoastră.
-\nPolitica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de avarie.</string>
+    <string name="app_license">YouTube Video Downloader este un software copyleft gratuit: îl puteți utiliza, studia, distribui și îl puteți îmbunătăți după bunul plac. În mod special, îl puteți redistribui și/sau modifica în condițiile Licenței publice generale GNU, publicată de Free Software Foundation, fie versiunea 3 a Licenței, fie (la opțiunea dvs.) orice versiune ulterioară.</string>
+    <string name="privacy_policy_title">Politica de confidențialitate a YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">Proiectul YouTube Video Downloader ia confidențialitatea în serios. Prin urmare, aplicația nu colectează date fără consimțământul dumneavoastră.
+\nPolitica de confidențialitate a YouTube Video Downloader explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de avarie.</string>
     <string name="read_privacy_policy">Citiți politica de confidențialitate</string>
     <string name="saved_tabs_invalid_json">Nu se pot citi filele salvate, se folosesc filele implicite</string>
     <string name="restore_defaults">Restabilire valori implicite</string>

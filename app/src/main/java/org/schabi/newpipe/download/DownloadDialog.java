@@ -35,6 +35,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.DialogFragment;
 
+import com.ironsource.mediationsdk.IronSource;
 import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.MainActivity;
@@ -51,6 +52,7 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.Ads;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
@@ -79,6 +81,7 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
 
+import static org.schabi.newpipe.MainActivity.appContainsAds;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadDialog extends DialogFragment
@@ -407,16 +410,46 @@ public class DownloadDialog extends DialogFragment
         okButton = toolbar.findViewById(R.id.okay);
         okButton.setEnabled(false); // disable until the download service connection is done
 
+        if (IronSource.isRewardedVideoAvailable() && appContainsAds) {
+            okButton.setText("Watch an Ad to\nBegin Downloading");
+        } else {
+            okButton.setText(getResources().getString(R.string.finish));
+        }
+
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
-                prepareSelectedDownload();
-                if (getActivity() instanceof RouterActivity) {
-                    getActivity().finish();
+                if (IronSource.isRewardedVideoAvailable() && appContainsAds) {
+                    Log.d("IronSource Ads:", "rwd Available - " + "true");
+                    Ads.getInstance(getActivity()).showRewardedVideoAd(new Ads.OnEventListener() {
+                        @Override
+                        public void onAdClosed() {
+                            continueDownload();
+                        }
+
+                        @Override
+                        public void onAdShowFailed() {
+                            continueDownload();
+                        }
+
+                        @Override
+                        public void onAdOpened() {
+                        }
+                    });
+                } else {
+                    Log.d("IronSource Ads:", "rwd Available - " + "false");
+                    continueDownload();
+                    return true;
                 }
-                return true;
             }
             return false;
         });
+    }
+
+    private void continueDownload() {
+        prepareSelectedDownload();
+        if (getActivity() instanceof RouterActivity) {
+            getActivity().finish();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -943,6 +976,7 @@ public class DownloadDialog extends DialogFragment
         DownloadManagerService.startMission(context, urls, storage, kind, threads,
                 currentInfo.getUrl(), psName, psArgs, nearLength, recoveryInfo);
 
-        dismiss();
+        Toast.makeText(getActivity(), "Downloading File..", Toast.LENGTH_LONG).show();
+        dismissAllowingStateLoss();
     }
 }

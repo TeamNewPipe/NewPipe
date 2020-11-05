@@ -30,7 +30,7 @@
     <string name="download_path_audio_summary">קובצי שמע שהורדת מאוחסנים כאן</string>
     <string name="download_path_audio_dialog_title">נא לבחור תיקייה לשמירת קובצי שמע</string>
     <string name="autoplay_by_calling_app_title">ניגון אוטומטי</string>
-    <string name="autoplay_by_calling_app_summary">מנגן סרטון כאשר NewPipe נפתח דרך יישומון אחר</string>
+    <string name="autoplay_by_calling_app_summary">מנגן סרטון כאשר YouTube Video Downloader נפתח דרך יישומון אחר</string>
     <string name="default_resolution_title">רזולוציית בררת המחדל</string>
     <string name="default_popup_resolution_title">רזולוציית בררת המחדל לחלון צף</string>
     <string name="show_higher_resolutions_title">הצגת רזולוציות גבוהות יותר</string>
@@ -121,7 +121,7 @@
     <string name="undo">ביטול</string>
     <string name="play_all">לנגן הכול</string>
     <string name="notification_channel_name">התראה מ־NewPipe</string>
-    <string name="notification_channel_description">התראות עבור נגן הרקע והנגן הצף של NewPipe</string>
+    <string name="notification_channel_description">התראות עבור נגן הרקע והנגן הצף של YouTube Video Downloader</string>
     <string name="unknown_content">[לא ידוע]</string>
     <string name="player_stream_failure">נגינת התזרים לא הצליחה</string>
     <string name="player_unrecoverable_failure">אירעה תקלה בנגן ממנה לא ניתן להשתקם</string>
@@ -182,7 +182,7 @@
     <string name="msg_server_unsupported">שרת בלתי נתמך</string>
     <string name="msg_exists">קובץ כבר קיים</string>
     <string name="msg_url_malform">כתובת שגויה או שהאינטרנט לא זמין</string>
-    <string name="msg_running">NewPipe בהורדה</string>
+    <string name="msg_running">YouTube Video Downloader בהורדה</string>
     <string name="msg_running_detail">יש לגעת לפרטים נוספים</string>
     <string name="msg_wait">נא להמתין…</string>
     <string name="msg_copied">הועתק ללוח</string>
@@ -197,7 +197,7 @@
     <string name="settings_file_replacement_character_title">תו חלופי</string>
     <string name="charset_letters_and_digits">אותיות וספרות</string>
     <string name="charset_most_special_characters">רוב התווים המיוחדים</string>
-    <string name="title_activity_about">על אודות NewPipe</string>
+    <string name="title_activity_about">על אודות YouTube Video Downloader</string>
     <string name="action_settings">הגדרות</string>
     <string name="action_about">על אודות</string>
     <string name="title_licenses">רישיונות צד שלישי</string>
@@ -212,11 +212,11 @@
     <string name="contribution_encouragement">אם יש לך רעיון כלשהו בנוגע לתרגום, שינויי עיצוב, ניקוי הקוד או שינויים מהותיים בקוד - אנו תמיד שמחים לקבל עזרה. ככל שיותר דברים מתבצעים כך היישומון משתפר!</string>
     <string name="view_on_github">הצגה ב־GitHub</string>
     <string name="donation_title">תרומה</string>
-    <string name="donation_encouragement">הפיתוח של NewPipe נערך ע״י מתנדבים שמשקיעים את זמנם הפנוי כדי להגיש לך את חווית השימוש הטובה ביותר. באפשרותך להעניק בחזרה כדי לסייע למפתחים לשפר את NewPipe בעודם נהנים מכוס קפה.</string>
+    <string name="donation_encouragement">הפיתוח של YouTube Video Downloader נערך ע״י מתנדבים שמשקיעים את זמנם הפנוי כדי להגיש לך את חווית השימוש הטובה ביותר. באפשרותך להעניק בחזרה כדי לסייע למפתחים לשפר את YouTube Video Downloader בעודם נהנים מכוס קפה.</string>
     <string name="give_back">לתרום בחזרה</string>
     <string name="website_title">אתר הבית</string>
-    <string name="website_encouragement">מומלץ לבקר באתר של NewPipe לפרטים נוספים ולחדשות.</string>
-    <string name="app_license_title">הרישיון של NewPipe</string>
+    <string name="website_encouragement">מומלץ לבקר באתר של YouTube Video Downloader לפרטים נוספים ולחדשות.</string>
+    <string name="app_license_title">הרישיון של YouTube Video Downloader</string>
     <string name="read_full_license">הצגת הרישיון</string>
     <string name="title_activity_history">היסטוריה</string>
     <string name="title_history_search">נשלח כחיפוש</string>
@@ -347,11 +347,11 @@
     <string name="invalid_source">אין מקור תיקייה/תוכן</string>
     <string name="error_occurred_detail">אירעה שגיאה: %1$s</string>
     <string name="no_streams_available_download">אין תזרימים זמינים להורדה</string>
-    <string name="privacy_policy_title">מדיניות הפרטיות של NewPipe</string>
-    <string name="privacy_policy_encouragement">מיזם NewPipe שומר על הפרטיות שלך בצורה מאוד קפדנית. לפיכך, היישומון אינו אוסף נתונים ללא הסכמתך.
-\nמדיניות הפרטיות של NewPipe מסבירה בפרטי פרטים אילו נתונים נשלחים ומאוחסנים בעת שליחת דיווח על תקלה.</string>
+    <string name="privacy_policy_title">מדיניות הפרטיות של YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">מיזם YouTube Video Downloader שומר על הפרטיות שלך בצורה מאוד קפדנית. לפיכך, היישומון אינו אוסף נתונים ללא הסכמתך.
+\nמדיניות הפרטיות של YouTube Video Downloader מסבירה בפרטי פרטים אילו נתונים נשלחים ומאוחסנים בעת שליחת דיווח על תקלה.</string>
     <string name="read_privacy_policy">הצגת מדיניות הפרטיות</string>
-    <string name="app_license">NewPipe הוא יישומון חופשי בהתאם לרישיון קופילפט: מותר לך להשתמש, לחקור, לשתף ולשפר בכל דרך שנראית לך. במיוחד מותר לך להפיץ מחדש ו/או לשנות תחת תנאי הרישיון הציבורי הכללי של GNU כפי שמופץ על ידי קרן התכנה החופשית, בין אם גרסה 3 של הרישיון או (לשיקולך) כל גרסה עדכנית יותר שלו.</string>
+    <string name="app_license">YouTube Video Downloader הוא יישומון חופשי בהתאם לרישיון קופילפט: מותר לך להשתמש, לחקור, לשתף ולשפר בכל דרך שנראית לך. במיוחד מותר לך להפיץ מחדש ו/או לשנות תחת תנאי הרישיון הציבורי הכללי של GNU כפי שמופץ על ידי קרן התכנה החופשית, בין אם גרסה 3 של הרישיון או (לשיקולך) כל גרסה עדכנית יותר שלו.</string>
     <string name="title_last_played">התנגנו אחרונים</string>
     <string name="title_most_played">הכי נצפים</string>
     <string name="could_not_import_all_files">אזהרה: ייבוא חלק מהקבצים נכשל.</string>
@@ -395,7 +395,7 @@
     <string name="settings_category_updates_title">עדכונים</string>
     <string name="file_deleted">נמחק קובץ</string>
     <string name="app_update_notification_channel_name">התראת עדכון יישומון</string>
-    <string name="app_update_notification_channel_description">התראות על גרסה חדשה של NewPipe</string>
+    <string name="app_update_notification_channel_description">התראות על גרסה חדשה של YouTube Video Downloader</string>
     <string name="download_to_sdcard_error_title">האחסון החיצוני אינו זמין</string>
     <string name="download_to_sdcard_error_message">אין אפשרות להוריד לכרטיס SD. לאפס את מיקום תיקיית ההורדה\?</string>
     <string name="saved_tabs_invalid_json">לא ניתן לקרוא לשוניות שמורות, לכן נעשה שימוש באלו של בררת המחדל</string>
@@ -417,7 +417,7 @@
     <string name="playback_speed_control">בקרי מהירות נגינה</string>
     <string name="playback_pitch">גובה צליל</string>
     <string name="limit_mobile_data_usage_title">הגבלת הרזולוציה בעת שימוש בנתונים סלולריים</string>
-    <string name="start_accept_privacy_policy">כדי לעמוד בדרישות האסדרה הכללית להגנה על מידע (GDPR), אנו מפנים את תשומת לבך למדיניות הפרטיות של NewPipe. נא לקרוא אותה בעיון רב.
+    <string name="start_accept_privacy_policy">כדי לעמוד בדרישות האסדרה הכללית להגנה על מידע (GDPR), אנו מפנים את תשומת לבך למדיניות הפרטיות של YouTube Video Downloader. נא לקרוא אותה בעיון רב.
 \nעליך לאשר את הסכמתך למדיניות כדי לשלוח לנו דיווחים על תקלות.</string>
     <string name="updates_setting_title">עדכונים</string>
     <string name="updates_setting_description">הצגת התראה כדי להודיע על עדכון ליישומון כשיוצאת גרסה חדשה לאור</string>
@@ -475,7 +475,7 @@
     <string name="overwrite_unrelated_warning">כבר קיים קובץ בשם הזה</string>
     <string name="overwrite_failed">לא ניתן לשכתב את הקובץ</string>
     <string name="download_already_pending">כבר יש הורדה ממתינה בשם הזה</string>
-    <string name="error_postprocessing_stopped">NewPipe נסגר בזמן העבודה על הקובץ</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader נסגר בזמן העבודה על הקובץ</string>
     <string name="error_insufficient_storage">לא נשאר מקום במכשיר</string>
     <string name="error_progress_lost">התהליך אבד כיוון שהקובץ נמחק</string>
     <string name="error_timeout">החיבור המתין זמן רב מדי</string>
@@ -591,7 +591,7 @@
     <string name="feed_use_dedicated_fetch_method_summary">זמין בחלק מהשירותים, האפשרות הזאת בדרך כלל מהירה יותר אך עשויה להחזיר כמות מוגבלת של פריטים ולעתים פרטים חלקיים (למשל: חסר משך הפרק, סוג הפריט, אין מצב חי).</string>
     <string name="feed_use_dedicated_fetch_method_help_text">לדעתך הטעינה אטית מדי\? אם זה המצב אצלך, כדאי לנסות להפעיל טעינה מהירה (ניתן לשנות בהגדרות או על ידי לחיצה על הכפתור שלהלן).
 \n
-\nהיישומון NewPipe מציע שתי אסטרטגיות לטעינת הזנה:
+\nהיישומון YouTube Video Downloader מציע שתי אסטרטגיות לטעינת הזנה:
 \n• הורדת כל ערוץ המינוי, אטי אבל שלם.
 \n• באמצעות נקודת קצה ייעודית, מהיר אבל חלקי.
 \n
@@ -600,7 +600,7 @@
 \nYouTube זאת דוגמה לשירות שמציע את השיטה המהירה הזאת עם הזנת ה־RSS שלו.
 \n
 \nלכן עומדת בפניך הבחירה: מהירות או דיוק בפרטים.</string>
-    <string name="content_not_supported">תוכן זה לא נתמך עדיין על ידי NewPipe.
+    <string name="content_not_supported">תוכן זה לא נתמך עדיין על ידי YouTube Video Downloader.
 \n
 \nאנו מקווים שתתווסף תמיכה בגרסאות עתידיות.</string>
     <string name="infinite_videos">∞ סרטונים</string>

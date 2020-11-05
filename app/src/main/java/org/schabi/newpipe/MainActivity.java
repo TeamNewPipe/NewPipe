@@ -4,12 +4,12 @@
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * DownloadActivity.java is part of NewPipe.
  * <p>
- * NewPipe is free software: you can redistribute it and/or modify
+ * YouTube Video Downloader is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * <p>
- * NewPipe is distributed in the hope that it will be useful,
+ * YouTube Video Downloader is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -20,6 +20,7 @@
 
 package org.schabi.newpipe;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -71,6 +72,7 @@ import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.Ads;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -116,6 +118,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int ORDER = 0;
 
+    public static Activity activity;
+    public static Boolean appContainsAds;
+    public static Boolean hasUnlockedDownloadFeature;
+    public static final String MY_INAPP_PURCHASE_PREFERENCE = "MY_INAPP_PURCHASE_PREFERENCE";
+
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -126,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate() called with: "
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
-
+        activity = this;
         // enable TLS1.1/1.2 for kitkat devices, to fix download and play for mediaCCC sources
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             TLSSocketFactoryCompat.setAsDefault();
@@ -153,6 +160,19 @@ public class MainActivity extends AppCompatActivity {
             FocusOverlayView.setupFocusObserver(this);
         }
         setupBroadcastReceiver();
+        getMySharedPrefs();
+
+        if (appContainsAds) {
+            Ads.getInstance(this).loadBannerAd(findViewById(R.id.banner_ad_fl));
+            Ads.getInstance(this).loadInterstitialAd();
+            Ads.getInstance(this).loadRewardedVideoAd();
+        }
+    }
+
+    private void getMySharedPrefs() {
+        SharedPreferences prefs = getSharedPreferences(MY_INAPP_PURCHASE_PREFERENCE, MODE_PRIVATE);
+        appContainsAds = prefs.getBoolean("appContainsAds", true);
+        hasUnlockedDownloadFeature = prefs.getBoolean("hasUnlockedDownloadFeature", true);
     }
 
     private void setupDrawer() throws Exception {
@@ -195,9 +215,6 @@ public class MainActivity extends AppCompatActivity {
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_settings));
-        drawerItems.getMenu()
-                .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_info_outline));
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open,
                 R.string.drawer_close);
@@ -297,9 +314,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case ITEM_ID_SETTINGS:
                 NavigationHelper.openSettings(this);
-                break;
-            case ITEM_ID_ABOUT:
-                NavigationHelper.openAbout(this);
                 break;
         }
     }
@@ -449,9 +463,6 @@ public class MainActivity extends AppCompatActivity {
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_settings));
-        drawerItems.getMenu()
-                .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_info_outline));
     }
 
     @Override

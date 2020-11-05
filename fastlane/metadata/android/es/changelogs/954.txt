@@ -1,6 +1,6 @@
 • nueva función: mira videos en la página de detalles, desliza hacia abajo para minimizar el reproductor
 • notificaciones MediaStyle: acciones personalizables, mejoras de rendimiento
-• cambiar tamaño de videos al usar NewPipe como app de escritorio
+• cambiar tamaño de videos al usar YouTube Video Downloader como app de escritorio
 
 • diálogo con opciones en caso de una URL no soportada
 • se mejoraron las sugerencias de búsqueda cuando no se pueden obtener remotamente

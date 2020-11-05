@@ -1,6 +1,6 @@
 • new application workflow: play videos on detail page, swipe down to minimize player
 • MediaStyle notifications: customizable actions in notifications, performance improvements
-• basic resizing when using NewPipe as desktop app
+• basic resizing when using YouTube Video Downloader as desktop app
 
 • show dialog with open options in case of an unsupported URL toast
 • Improve search suggestion experience when remote ones can't be fetched

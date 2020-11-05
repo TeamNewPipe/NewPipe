@@ -19,7 +19,7 @@
     <string name="use_external_video_player_title">Използвай външен видео плейър</string>
     <string name="use_external_video_player_summary">Премахва аудио при НЯКОИ резолюции</string>
     <string name="use_external_audio_player_title">Използвай външен аудио плейър</string>
-    <string name="popup_mode_share_menu_title">NewPipe в прозорец</string>
+    <string name="popup_mode_share_menu_title">YouTube Video Downloader в прозорец</string>
     <string name="subscribe_button_title">Абониране</string>
     <string name="subscribed_button_title">Абониран</string>
     <string name="channel_unsubscribed">Премахнат абонамент за канала</string>
@@ -36,7 +36,7 @@
     <string name="download_path_audio_summary">Папка за съхранение на изтеглено аудио</string>
     <string name="download_path_audio_dialog_title">Въведете път за съхранение на изтеглено аудио</string>
     <string name="autoplay_by_calling_app_title">Автоматично възпроизвеждане</string>
-    <string name="autoplay_by_calling_app_summary">Въпроизвежда видео, когато NewPipe е повикан от друго приложение</string>
+    <string name="autoplay_by_calling_app_summary">Въпроизвежда видео, когато YouTube Video Downloader е повикан от друго приложение</string>
     <string name="default_resolution_title">Резолюция по подразбиране</string>
     <string name="default_popup_resolution_title">Резолюция по подразбиране на прозореца</string>
     <string name="show_higher_resolutions_title">Покажи по-високи резолюции</string>
@@ -98,8 +98,8 @@
     <string name="best_resolution">Най-добра резолюция</string>
     <string name="undo">Отмени</string>
     <string name="play_all">Възпроизведи всички</string>
-    <string name="notification_channel_name">Известия от NewPipe</string>
-    <string name="notification_channel_description">Известия за Фонов плейър и плейъра в Отделен прозорец на NewPipe</string>
+    <string name="notification_channel_name">Известия от YouTube Video Downloader</string>
+    <string name="notification_channel_description">Известия за Фонов плейър и плейъра в Отделен прозорец на YouTube Video Downloader</string>
     <string name="unknown_content">[Неизвестен]</string>
     <string name="general_error">Грешка</string>
     <string name="network_error">Проблем с мрежата</string>
@@ -163,7 +163,7 @@
     <string name="msg_server_unsupported">Сървърът не се поддържа</string>
     <string name="msg_exists">Файлът вече съществува</string>
     <string name="msg_url_malform">Неправилен хиперлинк или няма връзка с Интернет</string>
-    <string name="msg_running">NewPipe Изтегляне</string>
+    <string name="msg_running">YouTube Video Downloader Изтегляне</string>
     <string name="msg_running_detail">Докосни за подробности</string>
     <string name="msg_wait">Моля, изчакайте…</string>
     <string name="msg_copied">Копирано в клипборда</string>
@@ -171,7 +171,7 @@
     <string name="settings_file_replacement_character_summary">Невалидните символи се заменят с тази стойност</string>
     <string name="settings_file_replacement_character_title">Символ за замяна</string>
     <string name="charset_letters_and_digits">Букви и цифри</string>
-    <string name="title_activity_about">За NewPipe</string>
+    <string name="title_activity_about">За YouTube Video Downloader</string>
     <string name="action_settings">Настройки</string>
     <string name="action_about">Относно приложението</string>
     <string name="title_licenses">Лицензи от трети страни</string>
@@ -238,15 +238,15 @@
     <string name="contribution_title">Съдействайте</string>
     <string name="contribution_encouragement">За всичко, което се сетите: превод, промени по дизайна, изчистване на кода или много сериозни промени по кода – помощта е винаги добре дошла. Колкото повече развитие, толкова по-добре!</string>
     <string name="donation_title">Направете дарение</string>
-    <string name="donation_encouragement">NewPipe се разработва от доброволци, които отделят от своето време, за да ви доставят най-доброто преживяване. Дайте от себе си в замяна, за да помогнете на разработчиците да направят NewPipe още по-добро приложение, докато се наслаждават на едно кафе от вас.</string>
+    <string name="donation_encouragement">YouTube Video Downloader се разработва от доброволци, които отделят от своето време, за да ви доставят най-доброто преживяване. Дайте от себе си в замяна, за да помогнете на разработчиците да направят YouTube Video Downloader още по-добро приложение, докато се наслаждават на едно кафе от вас.</string>
     <string name="give_back">Дари</string>
     <string name="website_title">Уебсайт</string>
-    <string name="website_encouragement">Посетете сайта на NewPipe за повече информация и новини.</string>
-    <string name="privacy_policy_title">Политиката на NewPipe за личните данни</string>
-    <string name="privacy_policy_encouragement">Проектът NewPipe се отнася много сериозно към вашата поверителност. За това, приложението не събира никакви данни без вашето съгласие.
+    <string name="website_encouragement">Посетете сайта на YouTube Video Downloader за повече информация и новини.</string>
+    <string name="privacy_policy_title">Политиката на YouTube Video Downloader за личните данни</string>
+    <string name="privacy_policy_encouragement">Проектът YouTube Video Downloader се отнася много сериозно към вашата поверителност. За това, приложението не събира никакви данни без вашето съгласие.
 \nНашата политика за личните данни обяснява подробно какви данни изпращате и къде се съхраняват, когато изпращате съобщения за грешки.</string>
     <string name="read_privacy_policy">Прочетете нашата политика за поверителност</string>
-    <string name="app_license_title">Лицензът на NewPipe</string>
+    <string name="app_license_title">Лицензът на YouTube Video Downloader</string>
     <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма).</string>
     <string name="download_thumbnail_summary">Изключете, за да спрете зареждането на всички миниатюри, спестявайки трафик и памет. При промяна на тази настройка, текущата кеш-памет на изображенията ще бъде изтрита.</string>
     <string name="show_hold_to_append_summary">Показвай подсказка, когато е избран фонов режим или режим в прозорец на страницата с детайли на съответния клип</string>
@@ -269,7 +269,7 @@
     <string name="recaptcha_request_toast">Изисква се въвеждане на reCAPTCHA</string>
     <string name="settings_category_downloads_title">Изтегляне</string>
     <string name="charset_most_special_characters">Повечето специални символи</string>
-    <string name="app_license">NewPipe е безплатен „copyleft“ софтуер: Можете да го използвате, изучавате, споделяте и подобрявате по желание. В частност, Вие можете да препубликувате и/или модифицирате приложението според правилата на Главния обществен лиценз на ГНУ, издаден от Фондацията за свободен софтуер – версия 3 на лиценза или по-нова.</string>
+    <string name="app_license">YouTube Video Downloader е безплатен „copyleft“ софтуер: Можете да го използвате, изучавате, споделяте и подобрявате по желание. В частност, Вие можете да препубликувате и/или модифицирате приложението според правилата на Главния обществен лиценз на ГНУ, издаден от Фондацията за свободен софтуер – версия 3 на лиценза или по-нова.</string>
     <string name="read_full_license">Прочетете лиценза</string>
     <string name="title_activity_history">История</string>
     <string name="title_history_search">Търсения</string>
@@ -372,7 +372,7 @@
     <string name="playback_tempo">Темпо</string>
     <string name="playback_pitch">Височина</string>
     <string name="skip_silence_checkbox">Бързо превъртане при тишина</string>
-    <string name="start_accept_privacy_policy">От съображения към Общия европейски регламент относно защитата на данните, Ви привличаме вниманието към политиката за поверителност на NewPipe. Моля, прочетете я внимателно.
+    <string name="start_accept_privacy_policy">От съображения към Общия европейски регламент относно защитата на данните, Ви привличаме вниманието към политиката за поверителност на YouTube Video Downloader. Моля, прочетете я внимателно.
 \nТрябва да сте съгласни с условията, за да ни изпратите доклада за грешката.</string>
     <string name="accept">Приеми</string>
     <string name="decline">Откажи</string>

@@ -63,7 +63,7 @@
     <string name="main_bg_subtitle">Tocca \"Cerca\" per iniziare
 \n</string>
     <string name="autoplay_by_calling_app_title">Riproduzione Automatica</string>
-    <string name="autoplay_by_calling_app_summary">Riproduci i video quando NewPipe viene aperto da un\'altra app</string>
+    <string name="autoplay_by_calling_app_summary">Riproduci i video quando YouTube Video Downloader viene aperto da un\'altra app</string>
     <string name="duration_live">Diretta</string>
     <string name="light_parsing_error">Impossibile analizzare completamente il sito web</string>
     <string name="could_not_get_stream">Impossibile ottenere alcun flusso</string>
@@ -97,7 +97,7 @@
     <string name="msg_server_unsupported">Server non supportato</string>
     <string name="msg_exists">File già esistente</string>
     <string name="msg_url_malform">URL errato o errore di connessione</string>
-    <string name="msg_running">Download di NewPipe</string>
+    <string name="msg_running">Download di YouTube Video Downloader</string>
     <string name="msg_running_detail">Tocca per maggiori dettagli</string>
     <string name="msg_wait">Attendi…</string>
     <string name="msg_copied">Copiato negli appunti</string>
@@ -149,11 +149,11 @@
     <string name="tab_licenses">Licenze</string>
     <string name="app_description">Streaming libero e leggero su Android.</string>
     <string name="view_on_github">Mostra su GitHub</string>
-    <string name="app_license_title">Licenza di NewPipe</string>
+    <string name="app_license_title">Licenza di YouTube Video Downloader</string>
     <string name="contribution_encouragement">Un aiuto è sempre gradito: traduzioni, modifiche al design, pulizia del codice, cambiamenti radicali. Più si fa, meglio è!</string>
     <string name="read_full_license">Leggi la Licenza</string>
     <string name="contribution_title">Contribuisci</string>
-    <string name="title_activity_about">Informazioni su NewPipe</string>
+    <string name="title_activity_about">Informazioni su YouTube Video Downloader</string>
     <string name="subscribe_button_title">Iscriviti</string>
     <string name="subscribed_button_title">Iscritto</string>
     <string name="channel_unsubscribed">Disiscritto dal canale</string>
@@ -186,7 +186,7 @@
     <string name="settings_category_history_title">Cronologia e Cache</string>
     <string name="playlist">Playlist</string>
     <string name="undo">Annulla</string>
-    <string name="notification_channel_name">Notifiche NewPipe</string>
+    <string name="notification_channel_name">Notifiche YouTube Video Downloader</string>
     <string name="notification_channel_description">Notifiche per lettore in Sottofondo e Popup</string>
     <string name="search_no_results">Nessun risultato</string>
     <string name="no_subscribers">Nessun iscritto</string>
@@ -238,8 +238,8 @@
     <string name="start_here_on_popup">Avvia in Popup</string>
     <string name="donation_title">Dona</string>
     <string name="website_title">Sito</string>
-    <string name="website_encouragement">Visita il sito di NewPipe per informazioni e novità.</string>
-    <string name="donation_encouragement">NewPipe è sviluppato da volontari che impiegano il loro tempo libero per offrire agli utenti un\'esperienza migliore. Restituisci il favore, aiutandoli a rendere NewPipe ancora più piacevole, mentre si gustano una tazza di caffè.</string>
+    <string name="website_encouragement">Visita il sito di YouTube Video Downloader per informazioni e novità.</string>
+    <string name="donation_encouragement">YouTube Video Downloader è sviluppato da volontari che impiegano il loro tempo libero per offrire agli utenti un\'esperienza migliore. Restituisci il favore, aiutandoli a rendere YouTube Video Downloader ancora più piacevole, mentre si gustano una tazza di caffè.</string>
     <string name="give_back">Restituisci</string>
     <string name="default_content_country_title">Paese Predefinito per Contenuti</string>
     <string name="toggle_orientation">Cambia orientamento</string>
@@ -368,13 +368,13 @@
     <string name="delete_search_history_alert">Eliminare la cronologia delle ricerche\?</string>
     <string name="search_history_deleted">Cronologia ricerche eliminata.</string>
     <string name="one_item_deleted">1 elemento eliminato.</string>
-    <string name="app_license">NewPipe è un software libero con licenza copyleft: si può utilizzare, studiare, condividere e migliorare a proprio piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License (Free Software Foundation), nella versione 3 o successiva, a propria discrezione.</string>
+    <string name="app_license">YouTube Video Downloader è un software libero con licenza copyleft: si può utilizzare, studiare, condividere e migliorare a proprio piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License (Free Software Foundation), nella versione 3 o successiva, a propria discrezione.</string>
     <string name="import_settings">Vuoi anche importare le impostazioni?</string>
     <string name="privacy_policy_title">Informativa sulla Privacy</string>
-    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso.
+    <string name="privacy_policy_encouragement">Il progetto YouTube Video Downloader tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso.
 \nL\'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l\'invio di segnalazioni per arresti anomali.</string>
     <string name="read_privacy_policy">Leggi l\'informativa sulla privacy</string>
-    <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), attiriamo la vostra attenzione riguardo l\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
+    <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), attiriamo la vostra attenzione riguardo l\'informativa sulla privacy di YouTube Video Downloader. Si prega di leggerla attentamente.
 \nDevi accettarla per inviarci il bug report.</string>
     <string name="accept">Accetto</string>
     <string name="decline">Rifiuto</string>
@@ -402,7 +402,7 @@
     <string name="settings_category_updates_title">Aggiornamenti</string>
     <string name="file_deleted">File eliminato</string>
     <string name="app_update_notification_channel_name">Notifiche di aggiornamenti dell\'applicazione</string>
-    <string name="app_update_notification_channel_description">Notifiche per una nuova versione di NewPipe</string>
+    <string name="app_update_notification_channel_description">Notifiche per una nuova versione di YouTube Video Downloader</string>
     <string name="download_to_sdcard_error_title">Archiviazione esterna non disponibile</string>
     <string name="download_to_sdcard_error_message">Impossibile scaricare sulla scheda SD esterna. Ripristinare la posizione della cartella dei download\?</string>
     <string name="saved_tabs_invalid_json">Impossibile leggere le schede salvate, verranno usate quelle predefinite</string>
@@ -418,7 +418,7 @@
     <string name="grid">Griglia</string>
     <string name="auto">Automatica</string>
     <string name="switch_view">Cambia Visualizzazione</string>
-    <string name="app_update_notification_content_title">Aggiornamento di NewPipe disponibile!</string>
+    <string name="app_update_notification_content_title">Aggiornamento di YouTube Video Downloader disponibile!</string>
     <string name="app_update_notification_content_text">Premi per scaricare</string>
     <string name="missions_header_finished">Finito</string>
     <string name="missions_header_pending">In attesa</string>
@@ -470,7 +470,7 @@
     <string name="overwrite_unrelated_warning">Esiste già un file con questo nome</string>
     <string name="overwrite_failed">impossibile sovrascrivere il file</string>
     <string name="download_already_pending">C\'è un download in attesa con questo nome</string>
-    <string name="error_postprocessing_stopped">NewPipe è stato chiuso mentre lavorava sul file</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader è stato chiuso mentre lavorava sul file</string>
     <string name="error_insufficient_storage">Spazio insufficiente sul dispositivo</string>
     <string name="error_progress_lost">Progresso perso poiché il file è stato eliminato</string>
     <string name="confirm_prompt">Pulire la cronologia dei download o eliminare tutti i file scaricati\?</string>
@@ -570,7 +570,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Disattiva Recupero Veloce</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Il caricamento dei feed è troppo lento\? Prova ad abilitare il caricamento veloce (nelle impostazioni o premendo il pulsante qui sotto).
 \n
-\nNewPipe dispone di due metodi per il caricamento dei feed:
+\nYouTube Video Downloader dispone di due metodi per il caricamento dei feed:
 \n• Recuperando l\'intero canale, lento ma completo.
 \n• Utilizzando un endpoint dedicato, veloce ma solitamente incompleto.
 \n
@@ -580,7 +580,7 @@
 \n
 \nLa scelta va fatta in base alle proprie preferenze: velocità o informazioni precise.</string>
     <string name="feed_group_dialog_empty_name">Gruppo senza nome</string>
-    <string name="content_not_supported">Questo contenuto non è supportato da NewPipe. 
+    <string name="content_not_supported">Questo contenuto non è supportato da YouTube Video Downloader.
 \n 
 \nSi spera che possa essere supportato in una versione futura.</string>
     <string name="infinite_videos">∞ video</string>

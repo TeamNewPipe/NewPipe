@@ -117,7 +117,7 @@
     <string name="open_in_popup_mode">Odpri v pojavnem načinu</string>
     <string name="msg_popup_permission">Dovoljenje je zahtevano za
 odpiranje v pojavnem načinu</string>
-    <string name="popup_mode_share_menu_title">Pojavni način NewPipe</string>
+    <string name="popup_mode_share_menu_title">Pojavni način YouTube Video Downloader</string>
     <string name="popup_playing_toast">Predvajanje v pojavnem načinu</string>
     <string name="disabled">Onemogočeno</string>
     <string name="default_video_format_title">Prednostni zapis video datoteke</string>
@@ -148,7 +148,7 @@ odpiranje v pojavnem načinu</string>
     <string name="tab_contributors">Sodelavci</string>
     <string name="tab_licenses">Dovoljenja</string>
     <string name="view_on_github">Pokaži na Github</string>
-    <string name="app_license_title">Dovoljenje NewPipe</string>
+    <string name="app_license_title">Dovoljenje YouTube Video Downloader</string>
     <string name="read_full_license">Preberi določila dovoljenja</string>
     <string name="app_description">Odprtokodni predvajalnik Youtube za Android.</string>
     <string name="subscribe_button_title">Naroči</string>
@@ -171,8 +171,8 @@ odpiranje v pojavnem načinu</string>
     <string name="enable_watch_history_summary">Sledi zgodovini predvajanih posnetkov</string>
     <string name="resume_on_audio_focus_gain_title">Nadaljuj po prekinitvi</string>
     <string name="resume_on_audio_focus_gain_summary">Nadaljuj s predvajanjem po prekinitvi (na primer zaradi telefonskega klica)</string>
-    <string name="notification_channel_name">Obvestila NewPipe</string>
-    <string name="notification_channel_description">Obvestila predvajalnika NewPipe</string>
+    <string name="notification_channel_name">Obvestila YouTube Video Downloader</string>
+    <string name="notification_channel_description">Obvestila predvajalnika YouTube Video Downloader</string>
     <string name="contribution_title">Doprinos k projektu</string>
     <string name="title_activity_history">Zgodovina</string>
     <string name="title_history_search">Preiskano</string>
@@ -266,7 +266,7 @@ odpiranje v pojavnem načinu</string>
     <string name="error_download_resource_gone">Ni mogoče povrniti prenos</string>
     <string name="error_progress_lost">Napredek je izgubljen, ker je bila datoteka izbrisana</string>
     <string name="error_insufficient_storage">Ni več prostora v vaši napravi</string>
-    <string name="error_postprocessing_stopped">NewPipe se je zaprl medtem ko je delal z datoteko</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader se je zaprl medtem ko je delal z datoteko</string>
     <string name="error_http_not_found">Ni najden</string>
     <string name="error_http_no_content">Strežnik ne pošilja informacij</string>
     <string name="error_connect_host">Ni mogoče vspostaviti povezavo s strežnikom</string>
@@ -326,8 +326,8 @@ odpiranje v pojavnem načinu</string>
     <string name="title_most_played">Najbolj igrano</string>
     <string name="title_last_played">Nazadnje igrano</string>
     <string name="read_privacy_policy">Preberi pravilnik zasebnosti</string>
-    <string name="privacy_policy_title">NewPipe-ovi pravilnik zasebnosti</string>
-    <string name="website_encouragement">Obiščite spletno mesto od NewPipe za več informacij in novic.</string>
+    <string name="privacy_policy_title">YouTube Video Downloader-ovi pravilnik zasebnosti</string>
+    <string name="website_encouragement">Obiščite spletno mesto od YouTube Video Downloader za več informacij in novic.</string>
     <string name="recaptcha_done_button">Končano</string>
     <string name="no_comments">Ni komantarjev</string>
     <string name="no_one_listening">Nobeden ne posluša</string>

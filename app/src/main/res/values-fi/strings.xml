@@ -37,7 +37,7 @@
     <string name="download_path_audio_summary">Ladatut äänitiedostot tallennetaan tänne</string>
     <string name="download_path_audio_dialog_title">Valitse äänitiedostojen latauskansio</string>
     <string name="autoplay_by_calling_app_title">Automaattitoisto</string>
-    <string name="autoplay_by_calling_app_summary">Toistaa videon automaattisesti, kun NewPipe avataan toisesta ohjelmasta</string>
+    <string name="autoplay_by_calling_app_summary">Toistaa videon automaattisesti, kun YouTube Video Downloader avataan toisesta ohjelmasta</string>
     <string name="default_resolution_title">Oletusresoluutio</string>
     <string name="default_popup_resolution_title">Ponnahdusikkunan oletusresoluutio</string>
     <string name="show_higher_resolutions_title">Näytä korkeammat resoluutiot</string>
@@ -94,8 +94,8 @@
     <string name="popup_resizing_indicator_title">Muutetaan kokoa</string>
     <string name="best_resolution">Paras resoluutio</string>
     <string name="undo">Peru</string>
-    <string name="notification_channel_name">NewPipe Ilmoitus</string>
-    <string name="notification_channel_description">Ilmoitukset NewPipen tausta- ja ponnahdusikkunasoittimille</string>
+    <string name="notification_channel_name">YouTube Video Downloader Ilmoitus</string>
+    <string name="notification_channel_description">Ilmoitukset YouTube Video Downloadern tausta- ja ponnahdusikkunasoittimille</string>
     <string name="general_error">Virhe</string>
     <string name="network_error">Verkkovirhe</string>
     <string name="could_not_load_thumbnails">Kaikkia esikatselukuvia ei voitu ladata</string>
@@ -163,7 +163,7 @@
     <string name="msg_server_unsupported">Palvelinta ei tueta</string>
     <string name="msg_exists">Tiedosto on jo olemassa</string>
     <string name="msg_url_malform">Epämuodostunut URL tai Internet-yhteys ei ole saatavilla</string>
-    <string name="msg_running">NewPipe Lataus käynnissä</string>
+    <string name="msg_running">YouTube Video Downloader Lataus käynnissä</string>
     <string name="msg_running_detail">Napauta nähdäksesi lisää</string>
     <string name="msg_wait">Odota…</string>
     <string name="msg_copied">Kopioitu leikepöydälle</string>
@@ -178,7 +178,7 @@
     <string name="settings_file_replacement_character_title">Korvaava merkki</string>
     <string name="charset_letters_and_digits">Kirjaimet ja numerot</string>
     <string name="charset_most_special_characters">Suurin osa erikoismerkeistä</string>
-    <string name="title_activity_about">Tietoja NewPipe</string>
+    <string name="title_activity_about">Tietoja YouTube Video Downloader</string>
     <string name="action_settings">Asetukset</string>
     <string name="action_about">Tietoja</string>
     <string name="title_licenses">Kolmannen osapuolen Lisenssit</string>
@@ -189,7 +189,7 @@
     <string name="tab_licenses">Lisenssit</string>
     <string name="app_description">Vapaata ja kevyttä suoratoistoa Androidilla.</string>
     <string name="view_on_github">Näytä GitHub:ssa</string>
-    <string name="app_license_title">NewPipe:n Lisenssi</string>
+    <string name="app_license_title">YouTube Video Downloader:n Lisenssi</string>
     <string name="contribution_encouragement">Olkoon sinulla ideoita; käännöksistä, designmuutoksista, koodin siivoamisesta tai raskaista koodimuutoksista—apu on aina tervetullutta. Mitä enemmän saadaan tehtyä, sen paremmaksi sovellus tulee!</string>
     <string name="read_full_license">Lue lisenssi</string>
     <string name="contribution_title">Osallistu</string>
@@ -236,10 +236,10 @@
     <string name="start_here_on_background">Aloita toisto taustalla</string>
     <string name="start_here_on_popup">Aloita toisto ponnahdusikkunassa</string>
     <string name="donation_title">Lahjoita</string>
-    <string name="donation_encouragement">NewPipe on vapaaehtoisten vapaa-ajallaan kehittämä tuoden sinulle parhaan mahdollisen käyttäjäkokemuksen. Nyt on aika auttaa kehittäjiä tekemään NewPipesta vielä parempi heidän nauttiessaan kupin kahvia.</string>
+    <string name="donation_encouragement">YouTube Video Downloader on vapaaehtoisten vapaa-ajallaan kehittämä tuoden sinulle parhaan mahdollisen käyttäjäkokemuksen. Nyt on aika auttaa kehittäjiä tekemään YouTube Video Downloadersta vielä parempi heidän nauttiessaan kupin kahvia.</string>
     <string name="give_back">Anna takaisin</string>
     <string name="website_title">Websivu</string>
-    <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset NewPipe:stä.</string>
+    <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset YouTube Video Downloader:stä.</string>
     <string name="no_player_found_toast">Suoratoistosoitinta ei löytynyt (voit asentaa VLC:n toistaaksesi).</string>
     <string name="controls_download_desc">Lataa suoratoistotiedosto</string>
     <string name="show_info">Näytä lisätietoja</string>
@@ -297,13 +297,13 @@
     <string name="rename">Nimeä uudelleen</string>
     <string name="one_item_deleted">1 poistettu.</string>
     <string name="toast_no_player">Ohjelmaa tämän toistamiseen ei ole asennettu</string>
-    <string name="privacy_policy_title">NewPipen tietosuojakäytäntö</string>
-    <string name="privacy_policy_encouragement">NewPipe ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi.
-\nNewPipen tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>
+    <string name="privacy_policy_title">YouTube Video Downloadern tietosuojakäytäntö</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi.
+\nYouTube Video Downloadern tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>
     <string name="read_privacy_policy">Lue tietosuojakäytäntö</string>
     <string name="auto_queue_title">Lisää ehdotettu suoratoistosisältö automaattisesti soittolistaan</string>
     <string name="no_streams_available_download">Suoratoistosisältöä ei saatavilla ladattavaksi</string>
-    <string name="app_license">NewPipe on vapaata ohjelmistoa. Voit käyttää, opiskella, jakaa ja parantaa sitä mielesi mukaan. Tarkemmin sanottuna voit jakaa sitä edelleen ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public Licensen, version 3 tai uudemman, ehdoilla.</string>
+    <string name="app_license">YouTube Video Downloader on vapaata ohjelmistoa. Voit käyttää, opiskella, jakaa ja parantaa sitä mielesi mukaan. Tarkemmin sanottuna voit jakaa sitä edelleen ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public Licensen, version 3 tai uudemman, ehdoilla.</string>
     <string name="delete_stream_history_prompt">Haluatko poistaa tämän katseluhistoriasta?</string>
     <string name="delete_all_history_prompt">Oletko varma että haluat poistaa kaiken katseluhistoriasta?</string>
     <string name="title_last_played">Viimeksi toistettu</string>
@@ -380,7 +380,7 @@
     <string name="skip_silence_checkbox">Kelaa eteenpäin hiljaisissa kohdissa</string>
     <string name="playback_step">Askel</string>
     <string name="playback_reset">Nollaa</string>
-    <string name="start_accept_privacy_policy">Noudattaaksemme EU:n yleistä tietosuoja-asetusta (GDPR), meidän pitää muistuttaa sinua lukemaan NewPipen tietosuojakäytäntö. Lue se tarkkaan.
+    <string name="start_accept_privacy_policy">Noudattaaksemme EU:n yleistä tietosuoja-asetusta (GDPR), meidän pitää muistuttaa sinua lukemaan YouTube Video Downloadern tietosuojakäytäntö. Lue se tarkkaan.
 \nSinun pitää myös hyväksyä se, jotta voit lähettää virheraportin.</string>
     <string name="accept">Hyväksy</string>
     <string name="decline">Hylkää</string>
@@ -428,7 +428,7 @@
     <string name="download_to_sdcard_error_message">Lataaminen ulkoiselle SD-kortille ei ole mahdollista. Nollataanko latauskansion sijainti\?</string>
     <string name="download_to_sdcard_error_title">Ulkoinen tallennustila ei käytettävissä</string>
     <string name="help">Ohje</string>
-    <string name="app_update_notification_channel_description">Ilmoitukset uudesta NewPipe-versiosta</string>
+    <string name="app_update_notification_channel_description">Ilmoitukset uudesta YouTube Video Downloader-versiosta</string>
     <string name="app_update_notification_channel_name">Sovelluspäivitysilmoitus</string>
     <string name="file_deleted">Tiedosto poistettu</string>
     <string name="artists">Esittäjät</string>
@@ -481,7 +481,7 @@
     <string name="video_detail_by">Kenen toimesta: %s</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Onko syötteen lataaminen mielestäsi liian hidas\? Voit koittaa ottaa käyttöön nopean lataamisen (voit vaihtaa sen asetuksista tai painamalla alla olevaa painiketta).
 \n
-\nNewPipe tarjoaa kaksi tapaa ladata syöte:
+\nYouTube Video Downloader tarjoaa kaksi tapaa ladata syöte:
 \n• Koko tilatun kanavan lataaminen, mikä on hidasta, mutta lataa syötteen kokonaisuudessaan.
 \n• Erityisen palvelu-endpointin käyttö, mikä on nopeaa, mutta yleensä ei lataa syötettä kokonaisuudessaan.
 \n
@@ -492,7 +492,7 @@
 \nValinta riippuu siitä, mitä halutaan: nopeutta vai tarkkoja tietoja.</string>
     <string name="default_kiosk_page_summary">Oletuskioski</string>
     <string name="channel_created_by">%s:n luoma</string>
-    <string name="content_not_supported">NewPipe ei vielä tue tätä sisältöä.
+    <string name="content_not_supported">YouTube Video Downloader ei vielä tue tätä sisältöä.
 \n
 \nToivottavasti sitä tuetaan myöhemmässä versiossa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Poista nopea tila käytöstä</string>
@@ -555,7 +555,7 @@
     <string name="error_timeout">Yhteys aikakatkaistiin</string>
     <string name="error_progress_lost">Eteneminen menetettiin, koska tiedosto poistettiin</string>
     <string name="error_insufficient_storage">Laitteella ei ole tilaa</string>
-    <string name="error_postprocessing_stopped">NewPipe suljettiin, kun se käsitteli tiedostoa</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader suljettiin, kun se käsitteli tiedostoa</string>
     <string name="error_postprocessing_failed">Jälkikäsittely epäonnistui</string>
     <string name="error_http_not_found">Ei löytynyt</string>
     <string name="error_http_unsupported_range">Palvelin ei hyväksy monisäikeisiä latauksia, yritä uudelleen asetuksella @string/msg_threads = 1</string>
@@ -589,7 +589,7 @@
     <string name="pause_downloads_on_mobile">Keskeytä, kun yhteys on käytön mukaan laskutettava</string>
     <string name="paused">tauotettu</string>
     <string name="app_update_notification_content_text">Napauta ladataksesi</string>
-    <string name="app_update_notification_content_title">NewPipe-päivitys on saatavilla!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader-päivitys on saatavilla!</string>
     <string name="switch_view">Vaihda näkymää</string>
     <string name="list_view_mode">Listanäkymän ulkoasu</string>
     <string name="auto">Automaattinen</string>

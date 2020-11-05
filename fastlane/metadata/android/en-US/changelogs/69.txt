@@ -11,7 +11,7 @@
 - Add support for Localization #1792
 
 ### Fixes
-- Fix time parsing for . format, so NewPipe can be used in Finland
+- Fix time parsing for . format, so YouTube Video Downloader can be used in Finland
 - Fix subscription count
 - Add foreground service permission for API 28+ devices #1830
 

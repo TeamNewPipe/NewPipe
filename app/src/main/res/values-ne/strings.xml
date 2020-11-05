@@ -44,7 +44,7 @@
     <string name="download_path_audio_summary">डाउनलोड अडियो फाइलहरू यहाँ भण्डारण छन्</string>
     <string name="download_path_audio_dialog_title">अडियो फाइलहरू लागि डाउनलोड फोल्डर चयन गर्नुहोस्</string>
     <string name="autoplay_by_calling_app_title">अटोप्ले</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe अर्को अनुप्रयोगबाट भनिन्छ जब एउटा भिडियो खेल्छ</string>
+    <string name="autoplay_by_calling_app_summary">YouTube Video Downloader अर्को अनुप्रयोगबाट भनिन्छ जब एउटा भिडियो खेल्छ</string>
     <string name="default_resolution_title">पूर्वनिर्धारित संकल्प</string>
     <string name="default_popup_resolution_title">पूर्वनिर्धारित पपअप संकल्प</string>
     <string name="show_higher_resolutions_title">उच्च रिजोल्युसन देखाउ</string>
@@ -141,10 +141,10 @@
     <string name="always">सधैं</string>
     <string name="just_once">केवल एकपटक</string>
     <string name="file">फाइल</string>
-    <string name="notification_channel_name">NewPipe सूचना</string>
-    <string name="notification_channel_description">NewPipe पृष्ठभूमि र पपअप प्लेयरहरू लागि सूचनाहरू</string>
+    <string name="notification_channel_name">YouTube Video Downloader सूचना</string>
+    <string name="notification_channel_description">YouTube Video Downloader पृष्ठभूमि र पपअप प्लेयरहरू लागि सूचनाहरू</string>
     <string name="app_update_notification_channel_name">एप अपडेट सूचना</string>
-    <string name="app_update_notification_channel_description">नयाँ NewPipe संस्करण लागि सूचनाहरू</string>
+    <string name="app_update_notification_channel_description">नयाँ YouTube Video Downloader संस्करण लागि सूचनाहरू</string>
     <string name="unknown_content">[अज्ञात]</string>
     <string name="toggle_orientation">अभिमुखीकरण टगल गर्नुहोस्</string>
     <string name="switch_to_background">पृष्ठभूमि स्विच गर्नुहोस्</string>
@@ -252,7 +252,7 @@
     <string name="msg_server_unsupported">असमर्थित सर्भर</string>
     <string name="msg_exists">फाइल पहिले नै अवस्थित</string>
     <string name="msg_url_malform">विकृत URL वा इन्टरनेट उपलब्ध छैन</string>
-    <string name="msg_running">NewPipe डाउनलोड गर्दै</string>
+    <string name="msg_running">YouTube Video Downloader डाउनलोड गर्दै</string>
     <string name="msg_running_detail">विवरण लागि ट्याप गर्नुहोस्</string>
     <string name="msg_wait">कृपया पर्खनुहोस्…</string>
     <string name="msg_copied">क्लिपबोर्डमा प्रतिलिपि</string>
@@ -283,16 +283,16 @@
     <string name="contribution_encouragement">तपाईं को विचार छ कि छैन; अनुवाद, डिजाइन परिवर्तन, कोड सफाई, वा वास्तविक भारी कोड परिवर्तन-मद्दत सधैं छ स्वागत गर्दछौं। अधिक राम्रो यो हुन्छ गरिन्छ!</string>
     <string name="view_on_github">(GitHub)गिटहबमा हेर्नुहोस्</string>
     <string name="donation_title">दान</string>
-    <string name="donation_encouragement">(NewPipe)न्यु पाइप तपाईं ल्याउन सबै भन्दा राम्रो प्रयोगकर्ता अनुभव आफ्नो स्वतन्त्र समय खर्च स्वयंसेवकहरु विकास गरिएको छ। NewPipe अझ राम्रो तिनीहरू एक कप कफी आनन्द गर्दा बनाउन मद्दत विकासकर्ताहरूले फिर्ता दिनुहोस्।</string>
+    <string name="donation_encouragement">(NewPipe)न्यु पाइप तपाईं ल्याउन सबै भन्दा राम्रो प्रयोगकर्ता अनुभव आफ्नो स्वतन्त्र समय खर्च स्वयंसेवकहरु विकास गरिएको छ। YouTube Video Downloader अझ राम्रो तिनीहरू एक कप कफी आनन्द गर्दा बनाउन मद्दत विकासकर्ताहरूले फिर्ता दिनुहोस्।</string>
     <string name="give_back">फिर्ता दिनुहोस</string>
     <string name="website_title">वेबसाइट</string>
-    <string name="website_encouragement">थप जानकारी र समाचार लागि NewPipe वेबसाइट मा जानुहोस्।</string>
-    <string name="privacy_policy_title">NewPipe गोपनीयता नीति</string>
+    <string name="website_encouragement">थप जानकारी र समाचार लागि YouTube Video Downloader वेबसाइट मा जानुहोस्।</string>
+    <string name="privacy_policy_title">YouTube Video Downloader गोपनीयता नीति</string>
     <string name="privacy_policy_encouragement">न्यू पाइप परियोजना आफ्नो गोपनीयता धेरै गम्भीरतापूर्वक लिन्छ। तसर्थ, तपाईँको सहमति बिना कुनै पनि डाटा संकलन गर्दैन।
 \nन्यू पाइपको गोपनीयता नीतिले क्र्यास रिपोर्ट पठाउने बित्तिकै कुन डाटा पठाइएको र भण्डारण गरिएको छ भनेर विस्तृत वर्णन गर्दछ।</string>
     <string name="read_privacy_policy">गोपनीयता नीति पढ्नुहोस्</string>
-    <string name="app_license_title">NewPipe इजाजत पत्र</string>
-    <string name="app_license">NewPipe copyleft छ मुफ्त सफ्टवेयर: तपाईं प्रयोग गर्न सक्नुहुन्छ, अध्ययन शेयर र इच्छामा सुधार। विशेष तपाईं redistribute गर्न सक्नुहुन्छ र / वा रूपमा फ्री सफ्टवेयर फाउंडेशन द्वारा प्रकाशित GNU जनरल सार्वजनिक लाइसेन्स सर्तहरू अन्तर्गत यो परिमार्जन, कि त लाइसेन्स को संस्करण 3, वा (तपाईँको विकल्प मा) कुनै पनि पछि संस्करण।</string>
+    <string name="app_license_title">YouTube Video Downloader इजाजत पत्र</string>
+    <string name="app_license">YouTube Video Downloader copyleft छ मुफ्त सफ्टवेयर: तपाईं प्रयोग गर्न सक्नुहुन्छ, अध्ययन शेयर र इच्छामा सुधार। विशेष तपाईं redistribute गर्न सक्नुहुन्छ र / वा रूपमा फ्री सफ्टवेयर फाउंडेशन द्वारा प्रकाशित GNU जनरल सार्वजनिक लाइसेन्स सर्तहरू अन्तर्गत यो परिमार्जन, कि त लाइसेन्स को संस्करण 3, वा (तपाईँको विकल्प मा) कुनै पनि पछि संस्करण।</string>
     <string name="read_full_license">लाइसेन्स पढ्नुहोस्</string>
     <string name="title_activity_history">इतिहास</string>
     <string name="title_history_search">खोजी</string>
@@ -421,7 +421,7 @@
     <string name="grid">ग्रिड</string>
     <string name="auto">स्वतः</string>
     <string name="switch_view">स्विच दृश्य</string>
-    <string name="app_update_notification_content_title">NewPipe अपडेट उपलब्ध छ!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader अपडेट उपलब्ध छ!</string>
     <string name="app_update_notification_content_text">डाउनलोड गर्न ट्याप गर्नुहोस्</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">रोकिएको</string>
@@ -466,7 +466,7 @@
     <string name="overwrite_finished_warning">यो नाम सितको डाउनलोड गरिएको फाइल पहिले नै अवस्थित छ</string>
     <string name="overwrite_failed">फाइल अधिलेखन गर्न सकिएन</string>
     <string name="download_already_pending">यसै नाम सितको एक फाइल डाउनलोड हुने प्रक्रियामा छ</string>
-    <string name="error_postprocessing_stopped">फाइल मा काम गर्दा NewPipe बन्द भएको थियो</string>
+    <string name="error_postprocessing_stopped">फाइल मा काम गर्दा YouTube Video Downloader बन्द भएको थियो</string>
     <string name="error_insufficient_storage">उपकरणमा कुनै ठाउँ बाकी छैन</string>
     <string name="error_progress_lost">प्रगति हरायो, किनभने फाइल मेटिएको थियो</string>
     <string name="error_timeout">जडान समय सकियो</string>
@@ -598,7 +598,7 @@
     <string name="youtube_restricted_mode_enabled_title">यूट्यूब प्रतिबन्धित मोड</string>
     <string name="video_detail_by">%s द्वारा</string>
     <string name="channel_created_by">%s द्वारा सिर्जना गरिएको</string>
-    <string name="content_not_supported">यो सामग्री अझै NewPipeमा समर्थित छैन। 
+    <string name="content_not_supported">यो सामग्री अझै YouTube Video Downloaderमा समर्थित छैन।
 \n… 
 \nआशा छ कि भविष्यको संस्करणमा समर्थित हुनेछ।</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">हो र आंशिक रूपमा हेरिएको भिडियोहरू</string>

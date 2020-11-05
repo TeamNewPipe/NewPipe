@@ -3,7 +3,7 @@
 • 播放器內的靜音按鈕
 
 改善
-• 允許在 NewPipe 中開啟 music.youtube.com 與 media.ccc.de 連結
+• 允許在 YouTube Video Downloader 中開啟 music.youtube.com 與 media.ccc.de 連結
 • 把兩個設定從外觀移動到內容
 • 如果啟用不精確的搜索，則隱藏 5, 15, 25 的搜索選項
 

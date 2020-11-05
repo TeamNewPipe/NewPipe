@@ -49,7 +49,7 @@
     <string name="download_path_audio_dialog_title">Choose download folder for audio files</string>
     <string name="download_choose_new_path">Change the download folders to take effect</string>
     <string name="autoplay_by_calling_app_title">Autoplay</string>
-    <string name="autoplay_by_calling_app_summary">Plays a video when NewPipe is called from another app</string>
+    <string name="autoplay_by_calling_app_summary">Plays a video when YouTube Video Downloader is called from another app</string>
     <string name="default_resolution_title">Default resolution</string>
     <string name="default_popup_resolution_title">Default popup resolution</string>
     <string name="show_higher_resolutions_title">Show higher resolutions</string>
@@ -187,12 +187,12 @@
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
-    <string name="notification_channel_id" translatable="false">newpipe</string>
-    <string name="notification_channel_name">NewPipe Notification</string>
-    <string name="notification_channel_description">Notifications for NewPipe background and popup players</string>
-    <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
+    <string name="notification_channel_id" translatable="false">YouTube Video Downloader</string>
+    <string name="notification_channel_name">YouTube Video Downloader Notification</string>
+    <string name="notification_channel_description">Notifications for YouTube Video Downloader background and popup players</string>
+    <string name="app_update_notification_channel_id" translatable="false">YouTube Video DownloaderAppUpdate</string>
     <string name="app_update_notification_channel_name">App Update Notification</string>
-    <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
+    <string name="app_update_notification_channel_description">Notifications for new YouTube Video Downloader version</string>
     <string name="unknown_content">[Unknown]</string>
     <string name="toggle_orientation">Toggle Orientation</string>
     <string name="switch_to_background">Switch to Background</string>
@@ -204,7 +204,7 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies have been cleared</string>
     <string name="import_data_summary">Overrides your current history and subscriptions</string>
     <string name="export_data_summary">Export history, subscriptions and playlists</string>
-    <string name="clear_cookie_summary">Clear cookies that NewPipe stores when you solve a reCAPTCHA</string>
+    <string name="clear_cookie_summary">Clear cookies that YouTube Video Downloader stores when you solve a reCAPTCHA</string>
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
@@ -343,7 +343,7 @@
     <string name="msg_server_unsupported">Unsupported server</string>
     <string name="msg_exists">File already exists</string>
     <string name="msg_url_malform">Malformed URL or Internet not available</string>
-    <string name="msg_running">NewPipe Downloading</string>
+    <string name="msg_running">YouTube Video Downloader Downloading</string>
     <string name="msg_running_detail">Tap for details</string>
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
@@ -368,7 +368,7 @@
     <string name="charset_most_special_characters">Most special characters</string>
     <string name="toast_no_player">No app installed to play this file</string>
     <!-- About -->
-    <string name="title_activity_about">About NewPipe</string>
+    <string name="title_activity_about">About YouTube Video Downloader</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
     <string name="title_licenses">Third-party Licenses</string>
@@ -384,18 +384,18 @@
     <string name="github_url" translatable="false">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="view_on_github">View on GitHub</string>
     <string name="donation_title">Donate</string>
-    <string name="donation_encouragement">NewPipe is developed by volunteers spending their free time bringing you the best user experience. Give back to help developers make NewPipe even better while they enjoy a cup of coffee.</string>
+    <string name="donation_encouragement">YouTube Video Downloader is developed by volunteers spending their free time bringing you the best user experience. Give back to help developers make YouTube Video Downloader even better while they enjoy a cup of coffee.</string>
     <string name="donation_url" translatable="false">https://newpipe.schabi.org/donate</string>
     <string name="give_back">Give back</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
+    <string name="website_encouragement">Visit the YouTube Video Downloader Website for more info and news.</string>
     <string name="website_url" translatable="false">https://newpipe.schabi.org/</string>
-    <string name="privacy_policy_title">NewPipe\'s Privacy Policy</string>
-    <string name="privacy_policy_encouragement">The NewPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nNewPipe\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
+    <string name="privacy_policy_title">YouTube Video Downloader\'s Privacy Policy</string>
+    <string name="privacy_policy_encouragement">The YouTube Video Downloader project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nYouTube Video Downloader\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
     <string name="privacy_policy_url" translatable="false">https://newpipe.schabi.org/legal/privacy/</string>
     <string name="read_privacy_policy">Read privacy policy</string>
-    <string name="app_license_title">NewPipe\'s License</string>
-    <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
+    <string name="app_license_title">YouTube Video Downloader\'s License</string>
+    <string name="app_license">YouTube Video Downloader is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
     <!-- History -->
     <string name="title_activity_history">History</string>
@@ -529,7 +529,7 @@
     <string name="playback_step">Step</string>
     <string name="playback_reset">Reset</string>
     <!-- GDPR dialog -->
-    <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
+    <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to YouTube Video Downloader\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
     <!-- Limit mobile data usage  -->
@@ -566,7 +566,7 @@
     <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
     <!-- App update notification -->
-    <string name="app_update_notification_content_title">NewPipe update is available!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader update is available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
     <string name="missions_header_finished">Finished</string>
     <string name="missions_header_pending">Pending</string>
@@ -601,7 +601,7 @@
     <string name="error_http_unsupported_range">The server does not accept multi-threaded downloads, retry with @string/msg_threads = 1</string>
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
-    <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader was closed while working on the file</string>
     <string name="error_insufficient_storage">No space left on device</string>
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
     <string name="error_timeout">Connection timeout</string>
@@ -675,10 +675,12 @@
     <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Enable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
-    <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below).\n\nYouTube Video Downloader offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
+    <string name="content_not_supported">This content is not yet supported by YouTube Video Downloader.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
     <string name="video_detail_by">By %s</string>
     <string name="playlist_page_summary">Playlist page</string>
+    <string name="remove_ads">Remove Ads</string>
+    <string name="buy_coffee">Buy Us Coffee</string>
 </resources>

@@ -590,7 +590,7 @@ public class RouterActivity extends AppCompatActivity {
 
     /**
      * Retrieves all Strings which look remotely like URLs from a text.
-     * Used if NewPipe was called through share menu.
+     * Used if YouTube Video Downloader was called through share menu.
      *
      * @param sharedText text to scan for URLs.
      * @return potential URLs

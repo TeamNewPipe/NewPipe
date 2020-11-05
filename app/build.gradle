@@ -1,21 +1,22 @@
+//ONES_SIGNAL
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+//ONES_SIGNAL
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 29
     buildToolsVersion '29.0.3'
 
     defaultConfig {
-        applicationId "org.schabi.newpipe"
-        resValue "string", "app_name", "NewPipe"
+        applicationId "com.verox.skytube.extra"
+        resValue "string", "app_name", "Videos Downloader for YouTube"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 956
-        versionName "0.20.2"
-
+        versionCode 1044
+        versionName "18.04"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -26,24 +27,32 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+
+        //ONES_SIGNAL
+        manifestPlaceholders = [
+                onesignal_app_id               : '525cd84b-b2c0-46c2-9795-455abb63b92e',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
+        //ONES_SIGNAL
     }
 
     buildTypes {
         debug {
             debuggable true
 
-            // suffix the app id and the app name with git branch name
-            def workingBranch = getGitWorkingBranch()
-            def normalizedWorkingBranch = workingBranch.replaceFirst("^[^A-Za-z]+", "").replaceAll("[^0-9A-Za-z]+", "")
-            if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
-                // default values when branch name could not be determined or is master or dev
-                applicationIdSuffix ".debug"
-                resValue "string", "app_name", "NewPipe Debug"
-            } else {
-                applicationIdSuffix ".debug." + normalizedWorkingBranch
-                resValue "string", "app_name", "NewPipe " + workingBranch
-                archivesBaseName = 'NewPipe_' + normalizedWorkingBranch
-            }
+//            // suffix the app id and the app name with git branch name
+//            def workingBranch = getGitWorkingBranch()
+//            def normalizedWorkingBranch = workingBranch.replaceFirst("^[^A-Za-z]+", "").replaceAll("[^0-9A-Za-z]+", "")
+//            if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
+//                // default values when branch name could not be determined or is master or dev
+//                applicationIdSuffix ".debug"
+//                resValue "string", "app_name", "All Videos Downloader for YouTube"
+//            } else {
+//                applicationIdSuffix ".debug." + normalizedWorkingBranch
+//                resValue "string", "app_name", "Videos Downloader for YouTube"
+//                archivesBaseName = 'Videos Downloader for YouTube' + normalizedWorkingBranch
+//            }
         }
 
         // Keep the release build type at the end of the list to override 'archivesBaseName' of
@@ -89,7 +98,6 @@ android {
 
 ext {
     icepickVersion = '3.2.0'
-    checkstyleVersion = '8.36.2'
     stethoVersion = '1.5.1'
     leakCanaryVersion = '2.2'
     exoPlayerVersion = '2.11.8'
@@ -100,52 +108,6 @@ ext {
     googleAutoServiceVersion = '1.0-rc7'
 }
 
-configurations {
-    checkstyle
-//    ktlint
-}
-
-checkstyle {
-    configFile rootProject.file('checkstyle.xml')
-    ignoreFailures false
-    showViolations true
-    toolVersion = checkstyleVersion
-}
-
-task runCheckstyle(type: Checkstyle) {
-    source 'src'
-    include '**/*.java'
-    exclude '**/gen/**'
-    exclude '**/R.java'
-    exclude '**/BuildConfig.java'
-    exclude 'main/java/us/shandian/giga/**'
-
-    classpath = configurations.checkstyle
-
-    showViolations true
-
-    reports {
-        xml.enabled true
-        html.enabled true
-    }
-}
-
-//task runKtlint(type: JavaExec) {
-//    main = "com.pinterest.ktlint.Main"
-//    classpath = configurations.ktlint
-//    args "src/**/*.kt"
-//}
-//
-//task formatKtlint(type: JavaExec) {
-//    main = "com.pinterest.ktlint.Main"
-//    classpath = configurations.ktlint
-//    args "-F", "src/**/*.kt"
-//}
-
-afterEvaluate {
-    preDebugBuild.dependsOn runCheckstyle //, runKtlint
-}
-
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
 
@@ -153,9 +115,6 @@ dependencies {
 
     implementation "frankiesardo:icepick:${icepickVersion}"
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
-
-    checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
-//    ktlint "com.pinterest:ktlint:0.35.0"
 
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
@@ -174,7 +133,6 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    // NewPipe dependencies
     // You can use a local version by uncommenting a few lines in settings.gradle
     implementation 'com.github.TeamNewPipe:NewPipeExtractor:62912ee8349f5d26617c039f337297628ff52ead'
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
@@ -223,20 +181,38 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
     implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
-}
 
-static String getGitWorkingBranch() {
-    try {
-        def gitProcess = "git rev-parse --abbrev-ref HEAD".execute()
-        gitProcess.waitFor()
-        if (gitProcess.exitValue() == 0) {
-            return gitProcess.text.trim()
-        } else {
-            // not a git repository
-            return ""
-        }
-    } catch (IOException ignored) {
-        // git was not found
-        return ""
-    }
+    implementation "androidx.multidex:multidex:2.0.1"
+
+    //ONES_SIGNAL
+    implementation 'com.onesignal:OneSignal:3.12.7'
+    //ONES_SIGNAL
+
+    //START_APP
+    implementation 'com.startapp:inapp-sdk:4.6.+'
+    //START_APP
+
+    //IRONSOURCE
+    implementation 'com.ironsource.sdk:mediationsdk:7.0.2'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.google.android.gms:play-services-basement:17.5.0'
+    //IRONSOURCE
+
+    //ADMOB
+    implementation 'com.google.android.gms:play-services-ads:19.5.0'
+    implementation 'com.google.ads.mediation:facebook:6.1.0.0'
+    implementation 'com.ironsource.adapters:admobadapter:4.3.11'
+    //ADMOB
+
+    //FACEBOOK
+    implementation 'com.ironsource.adapters:facebookadapter:4.3.21'
+    implementation 'com.facebook.android:audience-network-sdk:6.1.0'
+    //FACEBOOK
+
+    //UNITYADS
+    implementation 'com.ironsource.adapters:unityadsadapter:4.3.6'
+    implementation 'com.unity3d.ads:unity-ads:3.4.8'
+    //UNITYADS
+
 }

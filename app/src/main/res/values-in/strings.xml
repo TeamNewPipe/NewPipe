@@ -22,7 +22,7 @@
     <string name="download_path_audio_summary">Berkas audio yang diunduh akan disimpan di sini</string>
     <string name="download_path_audio_dialog_title">Pilih folder unduhan untuk berkas audio</string>
     <string name="autoplay_by_calling_app_title">Putar otomatis</string>
-    <string name="autoplay_by_calling_app_summary">Putar video ketika NewPipe dijalankan dari aplikasi lain</string>
+    <string name="autoplay_by_calling_app_summary">Putar video ketika YouTube Video Downloader dijalankan dari aplikasi lain</string>
     <string name="default_resolution_title">Pilih kualitas</string>
     <string name="play_with_kodi_title">Putar dengan Kodi</string>
     <string name="kore_not_found">Instal aplikasi Kore yang hilang\?</string>
@@ -92,7 +92,7 @@
     <string name="msg_server_unsupported">Server tidak didukung</string>
     <string name="msg_exists">Berkas sudah ada</string>
     <string name="msg_url_malform">URL salah atau tidak tersedia layanan internet</string>
-    <string name="msg_running">NewPipe Sedang Mengunduh</string>
+    <string name="msg_running">YouTube Video Downloader Sedang Mengunduh</string>
     <string name="msg_running_detail">Sentuh untuk detail</string>
     <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
@@ -143,7 +143,7 @@
     <string name="settings_file_replacement_character_title">Karakter pengganti</string>
     <string name="charset_letters_and_digits">Huruf dan angka</string>
     <string name="charset_most_special_characters">Karakter spesial umum</string>
-    <string name="title_activity_about">Tentang NewPipe</string>
+    <string name="title_activity_about">Tentang YouTube Video Downloader</string>
     <string name="action_settings">Pengaturan</string>
     <string name="action_about">Tentang</string>
     <string name="title_licenses">Lisensi pihak ketiga</string>
@@ -155,7 +155,7 @@
     <string name="tab_licenses">Lisensi</string>
     <string name="app_description">Aplikasi streaming bebas dan ringan untuk Android.</string>
     <string name="view_on_github">Lihat di GitHub</string>
-    <string name="app_license_title">Lisensi NewPipe</string>
+    <string name="app_license_title">Lisensi YouTube Video Downloader</string>
     <string name="contribution_encouragement">Terlepas apakah anda memiliki ide untuk; terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
@@ -168,7 +168,7 @@
     <string name="enable_search_history_title">Riwayat pencarian</string>
     <string name="enable_search_history_summary">Simpan pencarian secara lokal</string>
     <string name="enable_watch_history_title">Riwayat tontonan</string>
-    <string name="notification_channel_name">Notifikasi NewPipe</string>
+    <string name="notification_channel_name">Notifikasi YouTube Video Downloader</string>
     <string name="title_activity_history">Riwayat</string>
     <string name="history_disabled">Riwayat dinonaktifkan</string>
     <string name="action_history">Riwayat</string>
@@ -197,7 +197,7 @@
     <string name="always">Selalu</string>
     <string name="just_once">Hanya Sekali</string>
     <string name="file">Berkas</string>
-    <string name="notification_channel_description">Notifikasi untuk pemutar latar belakang dan popup NewPipe</string>
+    <string name="notification_channel_description">Notifikasi untuk pemutar latar belakang dan popup YouTube Video Downloader</string>
     <string name="unknown_content">[Tidak diketahui]</string>
     <string name="toggle_orientation">Ubah Orientasi</string>
     <string name="switch_to_background">Alihkan ke Latar Belakang</string>
@@ -237,10 +237,10 @@
     <string name="dismiss">Abaikan</string>
     <string name="rename">Ubah nama</string>
     <string name="donation_title">Donasi</string>
-    <string name="donation_encouragement">NewPipe dikembangkan oleh relawan yang menyisihkan waktu untuk memberi anda pengalaman terbaik. Segala dukungan kepada pengembang akan membuat NewPipe menjadi lebih baik sambil menikmati secangkir kopi.</string>
+    <string name="donation_encouragement">YouTube Video Downloader dikembangkan oleh relawan yang menyisihkan waktu untuk memberi anda pengalaman terbaik. Segala dukungan kepada pengembang akan membuat YouTube Video Downloader menjadi lebih baik sambil menikmati secangkir kopi.</string>
     <string name="give_back">Beri dukungan</string>
     <string name="website_title">Situs Web</string>
-    <string name="website_encouragement">Kunjungi situs web NewPipe untuk info dan berita.</string>
+    <string name="website_encouragement">Kunjungi situs web YouTube Video Downloader untuk info dan berita.</string>
     <string name="title_history_search">Dicari</string>
     <string name="history_cleared">Riwayat dihapus</string>
     <string name="item_deleted">Item dihapus</string>
@@ -325,7 +325,7 @@
     <string name="tab_subscriptions">Langganan</string>
     <string name="use_inexact_seek_title">Gunakan tinjau cepat tak pasti</string>
     <string name="use_inexact_seek_summary">Memungkinkan pengguna memilih posisi waktu video dengan cepat tetapi dengan tingkat presisi yang rendah. Mencari 5, 15 atau 25 detik tidak berhasil dengan ini.</string>
-    <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan anda) versi yang lebih baru.</string>
+    <string name="app_license">YouTube Video Downloader adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan anda) versi yang lebih baru.</string>
     <string name="import_settings">Apakah anda juga ingin mengimpor pengaturan\?</string>
     <string name="preferred_open_action_settings_title">Tindakan \'buka\' yang diinginkan</string>
     <string name="preferred_open_action_settings_summary">Tindakan baku ketika membuka konten — %s</string>
@@ -367,14 +367,14 @@
     <string name="playlists">Daftar Putar</string>
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
-    <string name="privacy_policy_title">Kebijakan Privasi NewPipe</string>
-    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi anda. Karena itu, apl tidak mengumpulkan data apapun tanpa sepengetahuan anda.
-\nKebijakan privasi NewPipe menjelaskan secara detail data apa saja yang dikirim dan disimpan ketika anda mengirimkan laporan kerusakan.</string>
+    <string name="privacy_policy_title">Kebijakan Privasi YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">Proyek YouTube Video Downloader sangat memperhatikan privasi anda. Karena itu, apl tidak mengumpulkan data apapun tanpa sepengetahuan anda.
+\nKebijakan privasi YouTube Video Downloader menjelaskan secara detail data apa saja yang dikirim dan disimpan ketika anda mengirimkan laporan kerusakan.</string>
     <string name="read_privacy_policy">Baca kebijakan privasi</string>
     <string name="skip_silence_checkbox">Percepat saat diam</string>
     <string name="playback_step">Langkah</string>
     <string name="playback_reset">Atur ulang</string>
-    <string name="start_accept_privacy_policy">Agar sesuai dengan Regulasi Perlindungan Data Umum Eropa (GDPR), dengan ini kami tarik perhatian anda ke kebijakan privasi NewPipe. Silakan baca dengan seksama.
+    <string name="start_accept_privacy_policy">Agar sesuai dengan Regulasi Perlindungan Data Umum Eropa (GDPR), dengan ini kami tarik perhatian anda ke kebijakan privasi YouTube Video Downloader. Silakan baca dengan seksama.
 \nAnda harus menerimanya untuk mengirimkan laporan bug kepada kami.</string>
     <string name="accept">Setuju</string>
     <string name="decline">Tolak</string>
@@ -397,7 +397,7 @@
     <string name="events">Acara</string>
     <string name="file_deleted">Berkas dihapus</string>
     <string name="app_update_notification_channel_name">Notifikasi Pembaruan Apl</string>
-    <string name="app_update_notification_channel_description">Notifikasi untuk versi NewPipe baru</string>
+    <string name="app_update_notification_channel_description">Notifikasi untuk versi YouTube Video Downloader baru</string>
     <string name="download_to_sdcard_error_title">Penyimpanan eksternal tidak tersedia</string>
     <string name="download_to_sdcard_error_message">Tidak bisa mengunduh ke kartu SD eksternal. Atur ulang lokasi folder unduhan\?</string>
     <string name="saved_tabs_invalid_json">Tidak bisa membaca tab yang disimpan, beralih menggunakan tab bawaan</string>
@@ -414,7 +414,7 @@
     <string name="grid">Kisi</string>
     <string name="auto">Otomatis</string>
     <string name="switch_view">Alihkan Tampilan</string>
-    <string name="app_update_notification_content_title">Pembaruan NewPipe telah tersedia!</string>
+    <string name="app_update_notification_content_title">Pembaruan YouTube Video Downloader telah tersedia!</string>
     <string name="app_update_notification_content_text">Ketuk untuk mengunduh</string>
     <string name="missions_header_finished">Selesai</string>
     <string name="missions_header_pending">Tertunda</string>
@@ -463,7 +463,7 @@
     <string name="overwrite_unrelated_warning">Berkas dengan nama yang sama sudah ada</string>
     <string name="overwrite_failed">tidak bisa menimpa ulang berkas</string>
     <string name="download_already_pending">Ada unduhan yang dijeda dengan nama ini</string>
-    <string name="error_postprocessing_stopped">NewPipe telah ditutup saat sedang memproses berkas</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader telah ditutup saat sedang memproses berkas</string>
     <string name="error_insufficient_storage">Tidak ada ruang kosong tersisa pada perangkat</string>
     <string name="error_progress_lost">Kehilangan laju, karena berkas telah dihapus</string>
     <string name="confirm_prompt">Apakah anda yakin ingin menghapus semua riwayat unduhan dan berkas yang telah diunduh\?</string>
@@ -567,7 +567,7 @@
     <string name="restricted_video">Video ini dibatasi usia.
 \n
 \nAktifkan \"Konten yang dibatasi usia\" di dalam pengaturan jika anda ingin melihatnya.</string>
-    <string name="content_not_supported">Konten ini belum didukung oleh NewPipe.
+    <string name="content_not_supported">Konten ini belum didukung oleh YouTube Video Downloader.
 \n
 \nSemoga akan didukung pada versi berikutnya.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Iya, dan video yang ditonton sebagian</string>
@@ -577,7 +577,7 @@
     <string name="mute">Bisukan</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Apakah kamu berpikir umpan memuat sangat lambat\? Jika iya, coba nyalakan memuat cepat (kamu dapat mengubahnya pada pengaturan atau dengan menekan tombol di bawah)
 \n
-\nNewPipe menyediakan dua strategi memuat umpan:
+\nYouTube Video Downloader menyediakan dua strategi memuat umpan:
 \n• Mengambil semua kanal langganan, yang lebih lambat tapi lengkap.
 \n• Menggunakan layanan endpoint khusus, yang lebih cepat namun terkadang tidak lengkap.
 \n

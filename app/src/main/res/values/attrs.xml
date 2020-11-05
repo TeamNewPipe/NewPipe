@@ -10,6 +10,9 @@
     <attr name="ic_rss" format="reference" />
     <attr name="ic_search" format="reference" />
     <attr name="ic_close" format="reference" />
+    <attr name="ic_remove_ads" format="reference" />
+    <attr name="ic_padlock" format="reference" />
+    <attr name="ic_coffee_cup" format="reference" />
     <attr name="ic_filter_list" format="reference" />
     <attr name="ic_popup" format="reference" />
     <attr name="ic_expand_more" format="reference" />

@@ -1,1 +1,1 @@
-Fixed database migration which prevented NewPipe from starting in some rare cases.
+Fixed database migration which prevented YouTube Video Downloader from starting in some rare cases.

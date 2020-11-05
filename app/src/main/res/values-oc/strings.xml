@@ -18,7 +18,7 @@
     <string name="choose_browser">Causir un navegador</string>
     <string name="screen_rotation">rotacion</string>
     <string name="use_external_video_player_title">Utilizar un legidor de vidèo extèrne</string>
-    <string name="popup_mode_share_menu_title">Mòde fenestron de NewPipe</string>
+    <string name="popup_mode_share_menu_title">Mòde fenestron de YouTube Video Downloader</string>
     <string name="subscribe_button_title">S\'abonar</string>
     <string name="subscribed_button_title">Abonat</string>
     <string name="unsubscribe">Anullar abonament</string>
@@ -46,7 +46,7 @@
     <string name="download_path_audio_dialog_title">Causissètz lo dorsièr de telecargament pels àudios</string>
     <string name="download_choose_new_path">Cambiatz los dorsièrs de telecargament per venga efectiu</string>
     <string name="autoplay_by_calling_app_title">Lectura automatica</string>
-    <string name="autoplay_by_calling_app_summary">Legís una vidèo quand NewPIpe es apelat dempuèi una autra aplicacion</string>
+    <string name="autoplay_by_calling_app_summary">Legís una vidèo quand YouTube Video Downloader es apelat dempuèi una autra aplicacion</string>
     <string name="default_resolution_title">Resolucion per defaut</string>
     <string name="default_popup_resolution_title">Resolucion per defaut dels fenestrons</string>
     <string name="show_higher_resolutions_title">Afichar de resolucions mai nautas</string>

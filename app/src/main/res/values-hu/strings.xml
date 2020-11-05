@@ -56,7 +56,7 @@
     <string name="content_not_available">A tartalom nem elérhető</string>
     <string name="live_streams_not_supported">Ez egy élő közvetítés, amely még nem támogatott.</string>
     <string name="autoplay_by_calling_app_title">Automatikus lejátszás</string>
-    <string name="autoplay_by_calling_app_summary">Videók automatikus lejátszása, ha a NewPipe egy másik alkalmazásból lett indítva</string>
+    <string name="autoplay_by_calling_app_summary">Videók automatikus lejátszása, ha a YouTube Video Downloader egy másik alkalmazásból lett indítva</string>
     <string name="video_is_age_restricted">Korhatáros videó mutatása. Ennek a tartalomnak az engedélyezése a \"Beállítások\"-ban lehetséges.</string>
     <string name="duration_live">ÉLŐ</string>
     <string name="error_snackbar_action">JELENTÉS</string>
@@ -94,7 +94,7 @@
     <string name="msg_error">Hiba</string>
     <string name="msg_exists">A file már létezik</string>
     <string name="msg_url_malform">Hibás URL vagy nincs internet</string>
-    <string name="msg_running">NewPipe letöltés folyamatban</string>
+    <string name="msg_running">YouTube Video Downloader letöltés folyamatban</string>
     <string name="msg_running_detail">Katt a részletekért</string>
     <string name="msg_wait">Kérlek várj…</string>
     <string name="msg_copied">Vágólapra másolva</string>
@@ -150,8 +150,8 @@
     <string name="play_all">Összes lejátszása</string>
     <string name="always">Mindig</string>
     <string name="just_once">Csak egyszer</string>
-    <string name="notification_channel_name">NewPipe Értesítés</string>
-    <string name="notification_channel_description">Értesítések a NewPipe háttér- és felugró ablak lejátszójához</string>
+    <string name="notification_channel_name">YouTube Video Downloader Értesítés</string>
+    <string name="notification_channel_description">Értesítések a YouTube Video Downloader háttér- és felugró ablak lejátszójához</string>
     <string name="unknown_content">[Ismeretlen]</string>
     <string name="import_data_title">Adatbázis importálása</string>
     <string name="export_data_title">Adatbázis exportálása</string>
@@ -237,7 +237,7 @@
     <string name="charset_letters_and_digits">Betűk és számok</string>
     <string name="charset_most_special_characters">Legtöbb speciális karakter</string>
     <string name="toast_no_player">Nincs a fájl lejátszásához szükséges alkalmazás telepítve</string>
-    <string name="title_activity_about">A NewPipe alkalmazásról</string>
+    <string name="title_activity_about">A YouTube Video Downloader alkalmazásról</string>
     <string name="action_settings">Beállítások</string>
     <string name="action_about">Az alkalmazásról</string>
     <string name="error_unable_to_load_license">Engedély betöltése sikertelen</string>
@@ -250,15 +250,15 @@
     <string name="contribution_encouragement">Legyen ötleted a fordítással, a megjelenéssel, a forrás kód tisztításával vagy komolyabb átszervezésével kapcsolatban, bármilyen segítséget szívesen fogadunk. Járulj hozzá az alkalmazás fejlesztéséhez!</string>
     <string name="view_on_github">Megtekintés GitHubon</string>
     <string name="donation_title">Adományozás</string>
-    <string name="donation_encouragement">A NewPipe alkalmazást önkéntesek fejlesztik szabadidejükben, hogy a lehető legjobb élményt hozzák el neked. Járulj hozzá a fejlesztők kávéjához, hogy tovább dolgozhassanak az alkalmazáson!</string>
+    <string name="donation_encouragement">A YouTube Video Downloader alkalmazást önkéntesek fejlesztik szabadidejükben, hogy a lehető legjobb élményt hozzák el neked. Járulj hozzá a fejlesztők kávéjához, hogy tovább dolgozhassanak az alkalmazáson!</string>
     <string name="give_back">Hozzájárulás</string>
     <string name="website_title">Honlap</string>
-    <string name="website_encouragement">Látogasd meg a NewPipe honlapját további információkért és hírekért!</string>
-    <string name="privacy_policy_title">A NewPipe adatvédelmi irányelvei</string>
-    <string name="privacy_policy_encouragement">A NewPipe projekt komolyan veszi az adataid védelmét. Az alkalmazás nem gyűjt semmilyen adatot a beleegyezésed nélkül.
-\nA NewPipe adatvédelmi irányelve részletesen elmagyarázza, mely adatok kerülnek elküldésre és tárolásra az alkalmazás összeomlásának jelentésekor.</string>
+    <string name="website_encouragement">Látogasd meg a YouTube Video Downloader honlapját további információkért és hírekért!</string>
+    <string name="privacy_policy_title">A YouTube Video Downloader adatvédelmi irányelvei</string>
+    <string name="privacy_policy_encouragement">A YouTube Video Downloader projekt komolyan veszi az adataid védelmét. Az alkalmazás nem gyűjt semmilyen adatot a beleegyezésed nélkül.
+\nA YouTube Video Downloader adatvédelmi irányelve részletesen elmagyarázza, mely adatok kerülnek elküldésre és tárolásra az alkalmazás összeomlásának jelentésekor.</string>
     <string name="read_privacy_policy">Az adatvédelmi irányelvek elolvasása</string>
-    <string name="app_license_title">A NewPipe engedélye</string>
+    <string name="app_license_title">A YouTube Video Downloader engedélye</string>
     <string name="read_full_license">Engedély elolvasása</string>
     <string name="title_activity_history">Előzmények</string>
     <string name="title_history_search">Keresési előzmények</string>
@@ -380,7 +380,7 @@
     <string name="enable_playback_resume_summary">Legutóbbi lejátszási pozíció visszaállítása</string>
     <string name="enable_playback_resume_title">Lejátszás folytatása</string>
     <string name="download_choose_new_path">Változtasd meg a letöltési helyet, hogy érvénybe lépjen</string>
-    <string name="app_update_notification_channel_description">Jelentés új NewPipe verzióról</string>
+    <string name="app_update_notification_channel_description">Jelentés új YouTube Video Downloader verzióról</string>
     <string name="app_update_notification_channel_name">Alkalmazás-frissítés jelzése</string>
     <string name="file_deleted">File törölve</string>
     <string name="settings_category_updates_title">Frissítések</string>
@@ -414,7 +414,7 @@
     <string name="error_timeout">Kapcsolat időtúllépés</string>
     <string name="error_progress_lost">A folyamat elveszett, mert a fájlt törölték</string>
     <string name="error_insufficient_storage">Nincs hely az eszközön</string>
-    <string name="error_postprocessing_stopped">NewPipe leállt a fájl feldolgozása közben</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader leállt a fájl feldolgozása közben</string>
     <string name="error_postprocessing_failed">Utófeldolgozás sikertelen</string>
     <string name="error_http_not_found">Nincs talalat</string>
     <string name="error_http_unsupported_range">A szerver nem fogad többszálú letöltést, próbálkozzon újra @ string / msg_threads = 1</string>
@@ -443,7 +443,7 @@
     <string name="missions_header_pending">Függőben lévő</string>
     <string name="missions_header_finished">Befejezett</string>
     <string name="app_update_notification_content_text">Kattints a letöltéshez</string>
-    <string name="app_update_notification_content_title">NewPipe frissítés elérhető!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader frissítés elérhető!</string>
     <string name="switch_view">Nézet váltás</string>
     <string name="auto">Auto</string>
     <string name="grid">Rács</string>

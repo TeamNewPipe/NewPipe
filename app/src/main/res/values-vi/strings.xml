@@ -27,7 +27,7 @@
     <string name="download_path_audio_summary">Audio đã tải về được lưu ở đây</string>
     <string name="download_path_audio_dialog_title">Chọn vị trí lưu audio tải về</string>
     <string name="autoplay_by_calling_app_title">Tự động phát</string>
-    <string name="autoplay_by_calling_app_summary">Phát video khi NewPipe được gọi từ một ứng dụng khác</string>
+    <string name="autoplay_by_calling_app_summary">Phát video khi YouTube Video Downloader được gọi từ một ứng dụng khác</string>
     <string name="default_resolution_title">Độ phân giải mặc định</string>
     <string name="default_popup_resolution_title">Độ phân giải popup mặc định</string>
     <string name="show_higher_resolutions_title">Hiển thị độ phân giải cao hơn</string>
@@ -124,7 +124,7 @@
     <string name="msg_server_unsupported">Server không được hỗ trợ</string>
     <string name="msg_exists">Tập tin đã tồn tại</string>
     <string name="msg_url_malform">URL không hợp lệ hoặc Internet không khả dụng</string>
-    <string name="msg_running">NewPipe đang tải xuống</string>
+    <string name="msg_running">YouTube Video Downloader đang tải xuống</string>
     <string name="msg_running_detail">Chạm để biết chi tiết</string>
     <string name="msg_wait">Vui lòng đợi …</string>
     <string name="msg_copied">Sao chép vào clipboard</string>
@@ -133,7 +133,7 @@
 \nmở trong chế độ popup</string>
     <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
-    <string name="title_activity_about">Giới thiệu về NewPipe</string>
+    <string name="title_activity_about">Giới thiệu về YouTube Video Downloader</string>
     <string name="action_settings">Cài đặt</string>
     <string name="action_about">Thông tin</string>
     <string name="title_licenses">Giấy phép của bên thứ ba</string>
@@ -145,7 +145,7 @@
     <string name="tab_licenses">Giấy phép</string>
     <string name="app_description">Trình phát nội dung nhẹ và mã nguồn mở cho Android.</string>
     <string name="view_on_github">Xem trên GitHub</string>
-    <string name="app_license_title">Giấy phép của NewPipe</string>
+    <string name="app_license_title">Giấy phép của YouTube Video Downloader</string>
     <string name="contribution_encouragement">Sự đóng góp luôn được hoan nghênh – cho dù bạn dịch, có ý tưởng thiết kế, dọn code, hay thay đổi rất nhiều phần code. Càng làm nhiều thì ứng dụng này sẽ càng tốt!</string>
     <string name="read_full_license">Đọc giấy phép</string>
     <string name="contribution_title">Đóng góp</string>
@@ -203,7 +203,7 @@
     <string name="always">Luôn luôn</string>
     <string name="just_once">Chỉ một lần</string>
     <string name="file">Tập tin</string>
-    <string name="notification_channel_name">Thông báo NewPipe</string>
+    <string name="notification_channel_name">Thông báo YouTube Video Downloader</string>
     <string name="notification_channel_description">Thông báo cho trình phát popup và trình phát nền</string>
     <string name="unknown_content">[Không xác định]</string>
     <string name="toggle_orientation">Chuyển đổi hướng màn hình</string>
@@ -263,15 +263,15 @@
     <string name="charset_most_special_characters">Hầu hết các ký tự đặc biệt</string>
     <string name="toast_no_player">Không có ứng dụng nào được cài đặt để phát tệp này</string>
     <string name="donation_title">Đóng góp</string>
-    <string name="donation_encouragement">NewPipe được phát triển bởi các tình nguyện viên dành thời gian mang lại cho bạn trải nghiệm tốt nhất. Đóng góp một tách cà phê để giúp các nhà phát triển làm NewPipe tốt hơn nữa.</string>
+    <string name="donation_encouragement">YouTube Video Downloader được phát triển bởi các tình nguyện viên dành thời gian mang lại cho bạn trải nghiệm tốt nhất. Đóng góp một tách cà phê để giúp các nhà phát triển làm YouTube Video Downloader tốt hơn nữa.</string>
     <string name="give_back">Trả lại</string>
     <string name="website_title">Trang mạng</string>
-    <string name="website_encouragement">Truy cập trang web NewPipe để biết thêm thông tin và tin tức.</string>
-    <string name="privacy_policy_title">Chính sách bảo mật của NewPipe</string>
-    <string name="privacy_policy_encouragement">Dự án NewPipe rất coi trọng quyền riêng tư của bạn. Do đó, ứng dụng không thu thập bất kỳ dữ liệu nào mà không có sự đồng ý của bạn.
-\nChính sách bảo mật của NewPipe giải thích chi tiết dữ liệu nào được gửi và lưu trữ khi bạn gửi báo cáo sự cố.</string>
+    <string name="website_encouragement">Truy cập trang web YouTube Video Downloader để biết thêm thông tin và tin tức.</string>
+    <string name="privacy_policy_title">Chính sách bảo mật của YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">Dự án YouTube Video Downloader rất coi trọng quyền riêng tư của bạn. Do đó, ứng dụng không thu thập bất kỳ dữ liệu nào mà không có sự đồng ý của bạn.
+\nChính sách bảo mật của YouTube Video Downloader giải thích chi tiết dữ liệu nào được gửi và lưu trữ khi bạn gửi báo cáo sự cố.</string>
     <string name="read_privacy_policy">Đọc chính sách bảo mật</string>
-    <string name="app_license">NewPipe là phần mềm miễn phí copyleft: Bạn có thể sử dụng, nghiên cứu, chia sẻ và cải thiện nó theo ý của bạn. Nói cụ thể hơn, bạn có thể phân phối lại và/hoặc sửa đổi nó theo các điều khoản trong Giấy phép Công cộng GNU (GPL) được xuất bản bởi Quỹ Phần mềm Tự do (FSF), theo phiên bản 3 hoặc bất kì phiên bản nào sau này của Giấy phép (tùy ý bạn).</string>
+    <string name="app_license">YouTube Video Downloader là phần mềm miễn phí copyleft: Bạn có thể sử dụng, nghiên cứu, chia sẻ và cải thiện nó theo ý của bạn. Nói cụ thể hơn, bạn có thể phân phối lại và/hoặc sửa đổi nó theo các điều khoản trong Giấy phép Công cộng GNU (GPL) được xuất bản bởi Quỹ Phần mềm Tự do (FSF), theo phiên bản 3 hoặc bất kì phiên bản nào sau này của Giấy phép (tùy ý bạn).</string>
     <string name="title_activity_history">Lịch sử</string>
     <string name="title_history_search">Đã tìm kiếm</string>
     <string name="title_history_view">Đã xem</string>
@@ -375,7 +375,7 @@
     <string name="skip_silence_checkbox">Tua đi nhanh trong khi im lặng</string>
     <string name="playback_step">Tiếp theo</string>
     <string name="playback_reset">Cài lại</string>
-    <string name="start_accept_privacy_policy">Để tuân thủ Quy định bảo vệ dữ liệu chung của châu Âu (GDPR), chúng tôi sẽ thu hút sự chú ý của bạn đến chính sách bảo mật của NewPipe. Vui lòng đọc kỹ.
+    <string name="start_accept_privacy_policy">Để tuân thủ Quy định bảo vệ dữ liệu chung của châu Âu (GDPR), chúng tôi sẽ thu hút sự chú ý của bạn đến chính sách bảo mật của YouTube Video Downloader. Vui lòng đọc kỹ.
 \nBạn phải chấp nhận nó để gửi cho chúng tôi báo cáo lỗi.</string>
     <string name="accept">Chấp nhận</string>
     <string name="decline">Từ chối</string>
@@ -397,7 +397,7 @@
     <string name="events">Sự kiện</string>
     <string name="file_deleted">Đã xóa tập tin</string>
     <string name="app_update_notification_channel_name">Thông báo cập nhật ứng dụng</string>
-    <string name="app_update_notification_channel_description">Thông báo phiên bản NewPipe mới</string>
+    <string name="app_update_notification_channel_description">Thông báo phiên bản YouTube Video Downloader mới</string>
     <string name="download_to_sdcard_error_title">Bộ nhớ ngoài không khả dụng</string>
     <string name="download_to_sdcard_error_message">Không thể tải vào thẻ SD ngoài. Đặt lại vị trí tải về\?</string>
     <string name="saved_tabs_invalid_json">Không thể đọc tab đã lưu, sử dụng tab mặc định</string>
@@ -415,7 +415,7 @@
     <string name="grid">Lưới</string>
     <string name="auto">Tự động</string>
     <string name="switch_view">Đổi chế độ hiển thị</string>
-    <string name="app_update_notification_content_title">Đã có bản cập nhật NewPipe!</string>
+    <string name="app_update_notification_content_title">Đã có bản cập nhật YouTube Video Downloader!</string>
     <string name="app_update_notification_content_text">Nhấn để tải về</string>
     <string name="missions_header_finished">Xong</string>
     <string name="paused">đã tạm dừng</string>
@@ -465,7 +465,7 @@
     <string name="overwrite_unrelated_warning">Tên file này đã tồn tại</string>
     <string name="overwrite_failed">Không thể ghi đè lên tệp</string>
     <string name="download_already_pending">Có một bản tải xuống đang chờ xử lí với tên này</string>
-    <string name="error_postprocessing_stopped">Newpipe đã bị đóng khi đang xử lí tệp</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader đã bị đóng khi đang xử lí tệp</string>
     <string name="error_insufficient_storage">Không đủ dung lượng trên máy</string>
     <string name="error_progress_lost">Quá trình mất, vì tập tin đã bị xoá</string>
     <string name="error_timeout">Kết nối hết thời gian</string>
@@ -552,12 +552,12 @@
     <string name="video_detail_by">Bởi %s</string>
     <string name="channel_created_by">Được tạo bởi %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Ảnh đại diện của kênh</string>
-    <string name="content_not_supported">Nội dung này hiện chưa được hỗ trợ bởi NewPipe.
+    <string name="content_not_supported">Nội dung này hiện chưa được hỗ trợ bởi YouTube Video Downloader.
 \n
 \nCó thể nó sẽ được hỗ trợ bởi một phiên bản mới hơn trong tương lai.</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Bạn có thấy feed của mình cập nhật chậm không\? Nếu có thì bạn có thể thử chế độ tăng tốc (bạn có thể bật/tắt chế độ này trong cài đặt hoặc bằng cách nhấn nút bên dưới).
 \n
-\nNewPipe hỗ trợ 2 cách cập nhật feed:
+\nYouTube Video Downloader hỗ trợ 2 cách cập nhật feed:
 \n• Tải thông tin cả kênh cho từng kênh một; chậm nhưng chắc.
 \n• Tải từ các nguồn chuyên dụng; nhanh nhưng thường không đầy đủ.
 \n

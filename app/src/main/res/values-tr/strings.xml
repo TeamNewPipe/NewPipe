@@ -25,7 +25,7 @@
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme dizinini seçin</string>
     <string name="autoplay_by_calling_app_title">Kendiliğinden oynat</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe başka uygulamadan çağrıldığında video oynatır</string>
+    <string name="autoplay_by_calling_app_summary">YouTube Video Downloader başka uygulamadan çağrıldığında video oynatır</string>
     <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
@@ -96,7 +96,7 @@
     <string name="msg_server_unsupported">Desteklenmeyen sunucu</string>
     <string name="msg_exists">Dosya zaten var</string>
     <string name="msg_url_malform">Hatalı biçimlendirilmiş URL veya İnternet mevcut değil</string>
-    <string name="msg_running">NewPipe İndiriliyor</string>
+    <string name="msg_running">YouTube Video Downloader İndiriliyor</string>
     <string name="msg_running_detail">Ayrıntılar için dokunun</string>
     <string name="msg_wait">Lütfen bekleyin…</string>
     <string name="msg_copied">Panoya kopyalandı</string>
@@ -138,7 +138,7 @@
     <string name="show_search_suggestions_title">Arama önerileri</string>
     <string name="show_search_suggestions_summary">Arama yaparken önerileri göster</string>
     <string name="best_resolution">En iyi çözünürlük</string>
-    <string name="title_activity_about">NewPipe Hakkında</string>
+    <string name="title_activity_about">YouTube Video Downloader Hakkında</string>
     <string name="action_settings">Ayarlar</string>
     <string name="action_about">Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
@@ -150,7 +150,7 @@
     <string name="tab_licenses">Lisanslar</string>
     <string name="app_description">Android\'de özgür ve hafif bir oynatıcı.</string>
     <string name="view_on_github">GitHub\'da görüntüle</string>
-    <string name="app_license_title">NewPipe\'ın Lisansı</string>
+    <string name="app_license_title">YouTube Video Downloader\'ın Lisansı</string>
     <string name="contribution_encouragement">Fikirleriniz; çeviri, tasarım değişiklikleri, kod temizliği ya da gerçek köklü kod değişikleri olsun yardımınıza her zaman açığız. Ne kadar çok yapılırsa o kadar iyi olur!</string>
     <string name="read_full_license">Lisansı oku</string>
     <string name="contribution_title">Katkıda bulunun</string>
@@ -179,8 +179,8 @@
     <string name="settings_category_history_title">Geçmiş ve önbellek</string>
     <string name="playlist">Oynatma Listesi</string>
     <string name="undo">Geri al</string>
-    <string name="notification_channel_name">NewPipe Bildirimi</string>
-    <string name="notification_channel_description">NewPipe arka plan ve açılır pencere oynatıcıları için bildirimler</string>
+    <string name="notification_channel_name">YouTube Video Downloader Bildirimi</string>
+    <string name="notification_channel_description">YouTube Video Downloader arka plan ve açılır pencere oynatıcıları için bildirimler</string>
     <string name="search_no_results">Sonuç yok</string>
     <string name="empty_subscription_feed_subtitle">Burada cırcır böceklerinden başka bir şey yok</string>
     <string name="no_subscribers">Abone yok</string>
@@ -233,10 +233,10 @@
     <string name="start_here_on_background">Arka planda oynatmayı başlat</string>
     <string name="start_here_on_popup">Açılır pencerede oynatmayı başlat</string>
     <string name="donation_title">Bağışta bulunun</string>
-    <string name="donation_encouragement">NewPipe, boş zamanlarını size en iyi kullanıcı deneyimi sunmak için harcayan gönüllüler tarafından geliştirilmiştir. Geliştiricilerin bir fincan kahvenin tadını çıkarırken NewPipe\'ı daha iyi hale getirmelerine yardımcı olun.</string>
+    <string name="donation_encouragement">YouTube Video Downloader, boş zamanlarını size en iyi kullanıcı deneyimi sunmak için harcayan gönüllüler tarafından geliştirilmiştir. Geliştiricilerin bir fincan kahvenin tadını çıkarırken YouTube Video Downloader\'ı daha iyi hale getirmelerine yardımcı olun.</string>
     <string name="give_back">Bağışta bulunun</string>
     <string name="website_title">Web sitesi</string>
-    <string name="website_encouragement">Daha çok bilgi ve haber için NewPipe web sitesini ziyaret edin.</string>
+    <string name="website_encouragement">Daha çok bilgi ve haber için YouTube Video Downloader web sitesini ziyaret edin.</string>
     <string name="default_content_country_title">Öntanımlı içerik ülkesi</string>
     <string name="service_title">Hizmet</string>
     <string name="toggle_orientation">Yönlendirmeyi Değiştir</string>
@@ -364,13 +364,13 @@
     <string name="delete_search_history_alert">Tüm arama geçmişi silinsin mi\?</string>
     <string name="search_history_deleted">Arama geçmişi silindi.</string>
     <string name="one_item_deleted">1 öge silindi.</string>
-    <string name="app_license">NewPipe, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir ve geliştirebilirsiniz. Özellikle, Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı 3. sürümü veya (isterseniz) daha sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.</string>
+    <string name="app_license">YouTube Video Downloader, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir ve geliştirebilirsiniz. Özellikle, Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı 3. sürümü veya (isterseniz) daha sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.</string>
     <string name="import_settings">Ayarları da içe aktarmak istiyor musunuz?</string>
-    <string name="privacy_policy_title">NewPipe\'ın Gizlilik İlkesi</string>
-    <string name="privacy_policy_encouragement">NewPipe projesi, gizliliğinizi çok ciddiye alıyor. Bu nedenle, uygulama sizin izniniz olmadan herhangi bir veri toplamaz.
-\nNewPipe\'ın gizlilik ilkesi, çökme raporu gönderdiğinizde hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar.</string>
+    <string name="privacy_policy_title">YouTube Video Downloader\'ın Gizlilik İlkesi</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader projesi, gizliliğinizi çok ciddiye alıyor. Bu nedenle, uygulama sizin izniniz olmadan herhangi bir veri toplamaz.
+\nYouTube Video Downloader\'ın gizlilik ilkesi, çökme raporu gönderdiğinizde hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar.</string>
     <string name="read_privacy_policy">Gizlilik ilkesini oku</string>
-    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun. 
+    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi YouTube Video Downloader\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun.
 \nBize hata bildirimini göndermek için kabul etmelisiniz.</string>
     <string name="accept">Kabul et</string>
     <string name="decline">Reddet</string>
@@ -398,7 +398,7 @@
     <string name="settings_category_updates_title">Güncellemeler</string>
     <string name="file_deleted">Dosya silindi</string>
     <string name="app_update_notification_channel_name">Uygulama Güncelleme Bildirimi</string>
-    <string name="app_update_notification_channel_description">Yeni NewPipe sürümü için bildirimler</string>
+    <string name="app_update_notification_channel_description">Yeni YouTube Video Downloader sürümü için bildirimler</string>
     <string name="download_to_sdcard_error_title">Harici depolama kullanılamıyor</string>
     <string name="download_to_sdcard_error_message">Harici SD karta indirmek mümkün değil. İndirme dizini konumu sıfırlansın mı\?</string>
     <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle öntanımlılar kullanılıyor</string>
@@ -414,7 +414,7 @@
     <string name="grid">Izgara</string>
     <string name="auto">Otomatik</string>
     <string name="switch_view">Görünümü Değiştir</string>
-    <string name="app_update_notification_content_title">NewPipe güncellemesi var!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader güncellemesi var!</string>
     <string name="app_update_notification_content_text">İndirmek için dokunun</string>
     <string name="missions_header_finished">Tamamlandı</string>
     <string name="paused">durduruldu</string>
@@ -465,7 +465,7 @@
     <string name="overwrite_unrelated_warning">Bu isimde bir dosya zaten bulunuyor</string>
     <string name="overwrite_failed">dosyanın üzerine yazılamaz</string>
     <string name="download_already_pending">Bu isim ile bekleyen bir indirme var</string>
-    <string name="error_postprocessing_stopped">NewPipe bu dosya üzerinde çalışırken kapandı</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader bu dosya üzerinde çalışırken kapandı</string>
     <string name="error_insufficient_storage">Aygıt üzerinde yer yok</string>
     <string name="error_progress_lost">İlerleme kaybedildi, çünkü dosya silinmiş</string>
     <string name="error_timeout">Bağlantı zaman aşımı</string>
@@ -571,7 +571,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Hızlı kipi devre dışı bırak</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Beslemenin çok yavaş yüklendiğini mi düşünüyorsunuz\? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz).
 \n
-\nNewPipe iki besleme yükleme yordamı sunar:
+\nYouTube Video Downloader iki besleme yükleme yordamı sunar:
 \n• Tüm abonelik kanalını edinme, bu yavaş ancak tamdır.
 \n• Adanmış hizmet son noktası kullanır, bu hızlıdır ancak genellikle tam değildir.
 \n
@@ -580,7 +580,7 @@
 \nYouTube, RSS beslemesiyle bu hızlı yöntemi sunan servislerden biridir.
 \n
 \nSeçim, sizin neyi yeğlediğinize kalmış: hız veya kusursuz bilgi.</string>
-    <string name="content_not_supported">Bu içerik henüz NewPipe tarafından desteklenmiyor.
+    <string name="content_not_supported">Bu içerik henüz YouTube Video Downloader tarafından desteklenmiyor.
 \n
 \nUmarım gelecekteki bir sürümde desteklenir.</string>
     <string name="infinite_videos">∞ video</string>

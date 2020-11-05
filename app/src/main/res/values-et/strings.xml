@@ -21,7 +21,7 @@
     <string name="use_external_video_player_title">Kasuta välist videopleierit</string>
     <string name="use_external_video_player_summary">Eemaldab audio SOME lahutustel</string>
     <string name="use_external_audio_player_title">Kasuta välist audiopleierit</string>
-    <string name="popup_mode_share_menu_title">NewPipe hüpikaknarežiim</string>
+    <string name="popup_mode_share_menu_title">YouTube Video Downloader hüpikaknarežiim</string>
     <string name="subscribe_button_title">Telli</string>
     <string name="subscribed_button_title">Tellitud</string>
     <string name="channel_unsubscribed">Kanali tellimus tühistatud</string>
@@ -41,7 +41,7 @@
     <string name="download_path_audio_summary">Siia salvestatakse alla laaditud audio</string>
     <string name="download_path_audio_dialog_title">Sisesta audio allalaadimise rada</string>
     <string name="autoplay_by_calling_app_title">Automaatesitus</string>
-    <string name="autoplay_by_calling_app_summary">Esita video, kui NewPipe käivitub teise rakenduse kaudu</string>
+    <string name="autoplay_by_calling_app_summary">Esita video, kui YouTube Video Downloader käivitub teise rakenduse kaudu</string>
     <string name="default_resolution_title">Vaikelahutus</string>
     <string name="default_popup_resolution_title">Hüpikakna vaikelahutus</string>
     <string name="show_higher_resolutions_title">Kuva kõrgemaid lahutusi</string>
@@ -120,8 +120,8 @@
     <string name="always">Alati</string>
     <string name="just_once">Üks kord</string>
     <string name="file">Fail</string>
-    <string name="notification_channel_name">NewPipe teavitus</string>
-    <string name="notification_channel_description">Teavitused NewPipe tausta- ja hüpikpleierile</string>
+    <string name="notification_channel_name">YouTube Video Downloader teavitus</string>
+    <string name="notification_channel_description">Teavitused YouTube Video Downloader tausta- ja hüpikpleierile</string>
     <string name="unknown_content">[Tundmatu]</string>
     <string name="toggle_orientation">Vaheta suunda</string>
     <string name="switch_to_background">Lülita taustale</string>
@@ -226,7 +226,7 @@
     <string name="msg_server_unsupported">Server pole toetatud</string>
     <string name="msg_exists">Fail on juba olemas</string>
     <string name="msg_url_malform">Vigane URL või internet pole saadaval</string>
-    <string name="msg_running">NewPipe allalaadimine</string>
+    <string name="msg_running">YouTube Video Downloader allalaadimine</string>
     <string name="msg_running_detail">Puuduta üksikasjade nägemiseks</string>
     <string name="msg_wait">Palun oota…</string>
     <string name="msg_copied">Kopeeriti lõikepuhvrisse</string>
@@ -241,7 +241,7 @@
     <string name="charset_letters_and_digits">Tähed ja numbrid</string>
     <string name="charset_most_special_characters">Erimärgid</string>
     <string name="toast_no_player">Selle faili esitamiseks puudub rakendus</string>
-    <string name="title_activity_about">NewPipe rakendusest</string>
+    <string name="title_activity_about">YouTube Video Downloader rakendusest</string>
     <string name="action_settings">Seaded</string>
     <string name="action_about">Programmist</string>
     <string name="title_licenses">Kolmanda osapoole litsentsid</string>
@@ -254,10 +254,10 @@
     <string name="view_on_github">Vaata GitHubis</string>
     <string name="donation_title">Anneta</string>
     <string name="website_title">Veebileht</string>
-    <string name="website_encouragement">Enama info saamiseks külasta NewPipe veebilehte.</string>
-    <string name="privacy_policy_title">NewPipe privaatsuspoliitika</string>
+    <string name="website_encouragement">Enama info saamiseks külasta YouTube Video Downloader veebilehte.</string>
+    <string name="privacy_policy_title">YouTube Video Downloader privaatsuspoliitika</string>
     <string name="read_privacy_policy">Loe privaatsuspoliitikat</string>
-    <string name="app_license_title">NewPipe litsents</string>
+    <string name="app_license_title">YouTube Video Downloader litsents</string>
     <string name="read_full_license">Loe litsentsi</string>
     <string name="title_activity_history">Ajalugu</string>
     <string name="title_history_search">Otsitud</string>
@@ -365,11 +365,11 @@
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
     <string name="app_description">Vaba kergekaaluline Androidi voogesitus.</string>
     <string name="contribution_encouragement">Kui sul on ideid kujunduse muutmisest, koodi puhastamisest või suurtest koodi muudatustest - abi on alati teretulnud. Mida rohkem tehtud, seda paremaks läheb!</string>
-    <string name="donation_encouragement">NewPipe arendajad on vabatahtlikud, kes kulutavad oma vaba aega, toomaks sulle parimat kogemust. On aeg anda tagasi aidates arendajaid ja muuta NewPipe veel paremaks, nautides ise tassi kohvi.</string>
+    <string name="donation_encouragement">YouTube Video Downloader arendajad on vabatahtlikud, kes kulutavad oma vaba aega, toomaks sulle parimat kogemust. On aeg anda tagasi aidates arendajaid ja muuta YouTube Video Downloader veel paremaks, nautides ise tassi kohvi.</string>
     <string name="give_back">Anneta</string>
-    <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid.
-\nNewPipe privaatsuspoliitika selgitab üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
-    <string name="app_license">NewPipe vaba avatud koodiga tarkvara. Seada võib kasutada, uurida, jagada ja parandada. Täpsemalt - seda võib levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või hilisem) tingimustele.</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid.
+\nYouTube Video Downloader privaatsuspoliitika selgitab üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
+    <string name="app_license">YouTube Video Downloader vaba avatud koodiga tarkvara. Seada võib kasutada, uurida, jagada ja parandada. Täpsemalt - seda võib levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või hilisem) tingimustele.</string>
     <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
     <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID:
 \n
@@ -383,7 +383,7 @@
     <string name="skip_silence_checkbox">Keri helitu koht edasi</string>
     <string name="playback_step">Samm</string>
     <string name="playback_reset">Lähtesta</string>
-    <string name="start_accept_privacy_policy">Selleks, et täita Euroopa Üldist Andmekaitse Määrust (GDPR), juhime tähelepanu NewPipe\'i privaatsuspoliitikale. Palun lugege seda hoolikalt.
+    <string name="start_accept_privacy_policy">Selleks, et täita Euroopa Üldist Andmekaitse Määrust (GDPR), juhime tähelepanu YouTube Video Downloader\'i privaatsuspoliitikale. Palun lugege seda hoolikalt.
 \nMeile veateate saatmiseks tuleb sellega nõustuda.</string>
     <string name="minimize_on_exit_title">Minimeeri, kui kasutad teisi rakendusi</string>
     <string name="minimize_on_exit_summary">Tegevus lülitusel peamiselt videopleierilt teisele rakendusele — %s</string>
@@ -402,7 +402,7 @@
     <string name="events">Sündmused</string>
     <string name="file_deleted">Fail kustutati</string>
     <string name="app_update_notification_channel_name">Rakenduse värskenduse teatis</string>
-    <string name="app_update_notification_channel_description">NewPipe uuest versioonist teavitamine</string>
+    <string name="app_update_notification_channel_description">YouTube Video Downloader uuest versioonist teavitamine</string>
     <string name="download_to_sdcard_error_title">Väline andmekandja pole saadaval</string>
     <string name="download_to_sdcard_error_message">Allalaadimine välisele SD-kaardile ei ole veel võimalik. Kas lähtestada allalaadimiste kataloogi asukoht\?</string>
     <string name="saved_tabs_invalid_json">Tõrge salvestatud vahekaaride lugemisel. Kasutatakse vaikeväärtusi</string>
@@ -419,7 +419,7 @@
     <string name="grid">Võrgustik</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Vaheta vaadet</string>
-    <string name="app_update_notification_content_title">NewPipe värskendus on saadaval!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader värskendus on saadaval!</string>
     <string name="app_update_notification_content_text">Allalaadimiseks puuduta</string>
     <string name="missions_header_finished">Lõpetatud</string>
     <string name="missions_header_pending">Järjekorras</string>

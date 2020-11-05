@@ -21,7 +21,7 @@
     <string name="use_external_video_player_title">Gumamit ng panlabas na video player</string>
     <string name="use_external_video_player_summary">Tinatanggal ang audio sa ilang mga resolusyon</string>
     <string name="use_external_audio_player_title">Gumamit ng panlabas na audio player</string>
-    <string name="popup_mode_share_menu_title">NewPipe popup mode</string>
+    <string name="popup_mode_share_menu_title">YouTube Video Downloader popup mode</string>
     <string name="subscribe_button_title">Mag-subscribe</string>
     <string name="subscribed_button_title">Naka-subscribe</string>
     <string name="unsubscribe">Huwag mag-subscribe</string>

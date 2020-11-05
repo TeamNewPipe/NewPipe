@@ -56,7 +56,7 @@
     <string name="err_dir_create">Nebylo možné vytvořit složku pro stažené soubory \'%1$s\'</string>
     <string name="info_dir_created">Vytvořena složka pro stažené soubory \'%1$s\'</string>
     <string name="autoplay_by_calling_app_title">Automaticky přehrávat</string>
-    <string name="autoplay_by_calling_app_summary">Přehrává video, když je NewPipe otevřen z jiné aplikace</string>
+    <string name="autoplay_by_calling_app_summary">Přehrává video, když je YouTube Video Downloader otevřen z jiné aplikace</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Věkově omezený obsah</string>
     <string name="video_is_age_restricted">Zobrazit video s věkovým omezením. Změnit tuto volbu v budoucnu lze v \"Nastavení\".</string>
@@ -66,7 +66,7 @@
 \n</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
-    <string name="msg_running">NewPipe stahuje</string>
+    <string name="msg_running">YouTube Video Downloader stahuje</string>
     <string name="msg_running_detail">Stiskni pro detaily</string>
     <string name="msg_server_unsupported">Server není podporován</string>
     <string name="msg_exists">Soubor již existuje</string>
@@ -156,8 +156,8 @@
     <string name="popup_resizing_indicator_title">Změna velikosti</string>
     <string name="best_resolution">Nejlepší rozlišení</string>
     <string name="undo">Vrátit</string>
-    <string name="notification_channel_name">NewPipe notifikace</string>
-    <string name="notification_channel_description">Notifikace pro NewPipe přehrávače v pozadí a v okně</string>
+    <string name="notification_channel_name">YouTube Video Downloader notifikace</string>
+    <string name="notification_channel_description">Notifikace pro YouTube Video Downloader přehrávače v pozadí a v okně</string>
     <string name="search_no_results">Žádné výsledky</string>
     <string name="empty_subscription_feed_subtitle">Je tu sranda jak v márnici</string>
     <string name="short_billion">mld.</string>
@@ -185,7 +185,7 @@
     <string name="settings_file_replacement_character_title">Náhradní znak</string>
     <string name="charset_letters_and_digits">Písmena a číslice</string>
     <string name="charset_most_special_characters">Většina speciálních znaků</string>
-    <string name="title_activity_about">O NewPipe</string>
+    <string name="title_activity_about">O YouTube Video Downloader</string>
     <string name="action_settings">Nastavení</string>
     <string name="action_about">O aplikaci</string>
     <string name="title_licenses">Licence třetích stran</string>
@@ -197,7 +197,7 @@
     <string name="tab_licenses">Licence</string>
     <string name="app_description">Svobodné a nenáročné streamování v Androidu.</string>
     <string name="view_on_github">Zobraz na GitHubu</string>
-    <string name="app_license_title">Licence NewPipe</string>
+    <string name="app_license_title">Licence YouTube Video Downloader</string>
     <string name="contribution_encouragement">Pokud máte nápady na zlepšení jako; překlad, změny designu, vylepšování kódu nebo opravdu velké změny kódu - pomoc je vždy vítána. Čím více se udělá, tím lepší to bude!</string>
     <string name="read_full_license">Přečíst licenci</string>
     <string name="contribution_title">Podílet se</string>
@@ -240,10 +240,10 @@
     <string name="start_here_on_background">Začít přehrávat na pozadí</string>
     <string name="start_here_on_popup">Začít přehrávat v pop-upu</string>
     <string name="donation_title">Donate</string>
-    <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj volný čas, aby vaše zkušenost s aplikací byla co nejlepší. Vraťte vývojářům něco zpět, aby mohli NewPipe dále zlepšovat a zároveň si vychutnat šálek kávy.</string>
+    <string name="donation_encouragement">YouTube Video Downloader je vyvíjen dobrovolníky, kteří tráví svůj volný čas, aby vaše zkušenost s aplikací byla co nejlepší. Vraťte vývojářům něco zpět, aby mohli YouTube Video Downloader dále zlepšovat a zároveň si vychutnat šálek kávy.</string>
     <string name="give_back">Daruj</string>
     <string name="website_title">Webová stránka</string>
-    <string name="website_encouragement">Pro další informace a novinky navštivte webovou stránku NewPipe.</string>
+    <string name="website_encouragement">Pro další informace a novinky navštivte webovou stránku YouTube Video Downloader.</string>
     <string name="default_content_country_title">Země výchozího obsahu</string>
     <string name="service_title">Služba</string>
     <string name="toggle_orientation">Změna orientaci</string>
@@ -371,20 +371,20 @@
     <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání\?</string>
     <string name="search_history_deleted">Historie vyhledávání smazána.</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>
-    <string name="app_license">NewPipe je copyleft libre software: Můžete jej používat, sdílet a vylepšovat dle vaší vůle. Redistribuovat a/nebo upravovat lze za podmínek GNU General Public Licence zveřejňované nadací Free Software Foundation, a to buď za podmínek licence verze 3 nebo (dle vaší volby) jakékoli pozdější verze.</string>
+    <string name="app_license">YouTube Video Downloader je copyleft libre software: Můžete jej používat, sdílet a vylepšovat dle vaší vůle. Redistribuovat a/nebo upravovat lze za podmínek GNU General Public Licence zveřejňované nadací Free Software Foundation, a to buď za podmínek licence verze 3 nebo (dle vaší volby) jakékoli pozdější verze.</string>
     <string name="channels">kanály</string>
     <string name="playlists">Playlisty</string>
     <string name="tracks">Stopy</string>
     <string name="users">Uživatelé</string>
-    <string name="privacy_policy_title">Zásady ochrany soukromí v NewPipe</string>
-    <string name="privacy_policy_encouragement">Projekt NewPipe bere vaše soukromí velice vážně. Proto aplikace neshromažďuje žádné údaje bez vašeho souhlasu.
-\nZásady ochrany soukromí NewPipe podrobně vysvětlují, jaké údaje jsou odesílány a ukládány, když odešlete zprávu o pádu aplikace.</string>
+    <string name="privacy_policy_title">Zásady ochrany soukromí v YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">Projekt YouTube Video Downloader bere vaše soukromí velice vážně. Proto aplikace neshromažďuje žádné údaje bez vašeho souhlasu.
+\nZásady ochrany soukromí YouTube Video Downloader podrobně vysvětlují, jaké údaje jsou odesílány a ukládány, když odešlete zprávu o pádu aplikace.</string>
     <string name="read_privacy_policy">Přečíst zásady ochrany soukromí</string>
     <string name="import_settings">Chcete také přenést nastavení?</string>
     <string name="skip_silence_checkbox">Zrychleně vpřed během ticha</string>
     <string name="playback_step">Krok</string>
     <string name="playback_reset">Reset</string>
-    <string name="start_accept_privacy_policy">Abychom vyhověli Obecnému nařízení o ochraně osobních údajů (GDPR), upozorňujeme vás na zásady ochrany soukromí v NewPipe. Přečtěte si je prosím pozorně.
+    <string name="start_accept_privacy_policy">Abychom vyhověli Obecnému nařízení o ochraně osobních údajů (GDPR), upozorňujeme vás na zásady ochrany soukromí v YouTube Video Downloader. Přečtěte si je prosím pozorně.
 \nJe potřeba je odsouhlasit, abyste nám mohli odeslat hlášení chyb.</string>
     <string name="accept">Přijmout</string>
     <string name="decline">Odmítnout</string>
@@ -405,7 +405,7 @@
     <string name="settings_category_updates_title">Aktualizace</string>
     <string name="file_deleted">Soubor smazán</string>
     <string name="app_update_notification_channel_name">Notifikace aktualizace aplikace</string>
-    <string name="app_update_notification_channel_description">Notifikace pro novou verzi NewPipe</string>
+    <string name="app_update_notification_channel_description">Notifikace pro novou verzi YouTube Video Downloader</string>
     <string name="download_to_sdcard_error_title">Externí úložiště není k dispozici</string>
     <string name="saved_tabs_invalid_json">Nelze načíst uložené karty, takže se použijí výchozí karty</string>
     <string name="restore_defaults">Obnovit do výchozího nastavení</string>
@@ -422,7 +422,7 @@
     <string name="grid">Mřížka</string>
     <string name="auto">Automaticky</string>
     <string name="switch_view">Přepnout zobrazení</string>
-    <string name="app_update_notification_content_title">Aktualizace NewPipe je k dispozici!</string>
+    <string name="app_update_notification_content_title">Aktualizace YouTube Video Downloader je k dispozici!</string>
     <string name="app_update_notification_content_text">Klepněte pro stažení</string>
     <string name="missions_header_finished">Hotovo</string>
     <string name="missions_header_pending">Vyčkávání</string>
@@ -470,7 +470,7 @@
     <string name="missing_file">Soubor přemístěn nebo smazán</string>
     <string name="overwrite_failed">soubor nelze přepsat</string>
     <string name="download_already_pending">Soubor s tímto názvem již čeká na stažení</string>
-    <string name="error_postprocessing_stopped">NewPipe byl ukončen v průběhu zpracovávání souboru</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader byl ukončen v průběhu zpracovávání souboru</string>
     <string name="error_insufficient_storage">V zařízení nezbývá žádné místo</string>
     <string name="error_progress_lost">Postup ztracen, protože soubor byl smazán</string>
     <string name="confirm_prompt">Jste si jisti smazáním své historie stahování nebo smazáním všech stažených souborů\?</string>
@@ -581,7 +581,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Vypnout rychlý režim</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé\? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže). 
 \n 
-\nNewPipe nabízí dvě strategie načítání seznamu novinek
+\nYouTube Video Downloader nabízí dvě strategie načítání seznamu novinek
 \n• Stažení celého kanálu vašich odběrů, což je pomalé, ale spolehlivé.
 \n• Použití služby k tomu určené, což je rychlé, ale obvykle neobsahuje všechny potřebné informace. 
 \n 
@@ -590,7 +590,7 @@
 \nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu. 
 \n 
 \nVýběr je vposledku určen tím, čemu dáte přednost: rychlosti nebo přesnosti informací.</string>
-    <string name="content_not_supported">Tento obsah ještě není podporován NewPipe.
+    <string name="content_not_supported">Tento obsah ještě není podporován YouTube Video Downloader.
 \n
 \nSnad bude podporován v budoucnu.</string>
     <string name="infinite_videos">∞ videí</string>

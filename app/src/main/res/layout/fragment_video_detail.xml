@@ -418,6 +418,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
                         android:padding="6dp">
 
                         <!-- CONTROLS -->
@@ -487,7 +489,39 @@
                             android:paddingBottom="6dp"
                             android:text="@string/download"
                             android:textSize="12sp"
-                            app:drawableTopCompat="?attr/ic_file_download" />
+                            />
+
+                        <TextView
+                            android:id="@+id/detail_controls_remove_ads"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/controls_download_desc"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:text="@string/remove_ads"
+                            android:visibility="gone"
+                            android:textSize="12sp"
+                            app:drawableTopCompat="?attr/ic_remove_ads" />
+
+                        <TextView
+                            android:id="@+id/detail_controls_buy_coffee"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:visibility="gone"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/controls_download_desc"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:text="@string/buy_coffee"
+                            android:textSize="12sp"
+                            app:drawableTopCompat="?attr/ic_coffee_cup" />
 
                     </LinearLayout>
 

@@ -12,7 +12,7 @@ Improved
 • Improved several English source strings
 
 Fixed
-• Fixed player starting again although it is paused when option "minimize on app switch" enabled and NewPipe is minimized
+• Fixed player starting again although it is paused when option "minimize on app switch" enabled and YouTube Video Downloader is minimized
 • Fix initial brightness value for gesture
 • Fixed .srt subtitle downloads containing not all line breaks
 • Fixed download to SD card failing because some Android 5 devices are not CTF compliant

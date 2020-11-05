@@ -35,7 +35,7 @@
     <string name="show_higher_resolutions_title">Duduhke resolusi luwih gedhe</string>
     <string name="default_popup_resolution_title">Resolusi ngambang standar</string>
     <string name="default_resolution_title">Resolusi standar</string>
-    <string name="autoplay_by_calling_app_summary">Puter video nalika NewPipe diarani seko aplikasi liyane</string>
+    <string name="autoplay_by_calling_app_summary">Puter video nalika YouTube Video Downloader diarani seko aplikasi liyane</string>
     <string name="autoplay_by_calling_app_title">Puter otomatis</string>
     <string name="download_choose_new_path">Ganti tempat unduhan ben ngefek</string>
     <string name="download_path_audio_dialog_title">Pilih tempat kanggo nyimpen suara</string>

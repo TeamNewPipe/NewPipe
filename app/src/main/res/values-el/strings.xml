@@ -103,7 +103,7 @@
     <string name="controls_popup_title">Αναδυόμενο παράθυρο</string>
     <string name="controls_add_to_playlist_title">Προσθήκη σε</string>
     <string name="autoplay_by_calling_app_title">Αυτόματη αναπαραγωγή</string>
-    <string name="autoplay_by_calling_app_summary">Αναπαραγωγή του βίντεο όταν το NewPipe καλείται από άλλη εφαρμογή</string>
+    <string name="autoplay_by_calling_app_summary">Αναπαραγωγή του βίντεο όταν το YouTube Video Downloader καλείται από άλλη εφαρμογή</string>
     <string name="default_popup_resolution_title">Προεπιλεγμένη ανάλυση αναδυόμενου παραθύρου</string>
     <string name="show_higher_resolutions_title">Εμφάνιση υψηλότερων αναλύσεων</string>
     <string name="default_video_format_title">Προεπιλεγμένη μορφή βίντεο</string>
@@ -157,7 +157,7 @@
     <string name="always">Πάντα</string>
     <string name="just_once">Μόνο μία φορά</string>
     <string name="file">Αρχείο</string>
-    <string name="notification_channel_name">Ειδοποίηση NewPipe</string>
+    <string name="notification_channel_name">Ειδοποίηση YouTube Video Downloader</string>
     <string name="notification_channel_description">Ειδοποιήσεις για την αναπαραγωγή Παρασκηνίου και Αναδυόμενου Παραθύρου</string>
     <string name="unknown_content">[Άγνωστο]</string>
     <string name="toggle_orientation">Αλλαγή προσανατολισμού</string>
@@ -240,7 +240,7 @@
     <string name="msg_threads">Νήματα</string>
     <string name="msg_server_unsupported">Ο εξυπηρετητής δεν υποστηρίζεται</string>
     <string name="msg_url_malform">Λάθος μορφή URL ή δεν υπάρχει σύνδεση στο διαδίκτυο</string>
-    <string name="msg_running">Λήψη NewPipe</string>
+    <string name="msg_running">Λήψη YouTube Video Downloader</string>
     <string name="msg_wait">Παρακαλώ περιμένετε…</string>
     <string name="msg_copied">Αντιγράφηκε στο πρόχειρο</string>
     <string name="no_available_dir">Παρακαλώ ορίστε έναν διαθέσιμο φάκελο λήψεων αργότερα στις ρυθμίσεις</string>
@@ -254,7 +254,7 @@
     <string name="settings_file_replacement_character_title">Αντικαταστάτης χαρακτήρας</string>
     <string name="charset_most_special_characters">Οι περισσότεροι ειδικοί χαρακτήρες</string>
     <string name="toast_no_player">Δεν υπάρχει εφαρμογή εγκατεστημένη για την αναπαραγωγή αυτού του αρχείου</string>
-    <string name="title_activity_about">Σχετικά με το NewPipe</string>
+    <string name="title_activity_about">Σχετικά με το YouTube Video Downloader</string>
     <string name="action_about">Περί</string>
     <string name="title_licenses">Άδειες Τρίτων</string>
     <string name="copyright" formatted="true">© %1$s από %2$s υπό %3$s</string>
@@ -266,16 +266,16 @@
     <string name="contribution_encouragement">Αν έχετε ιδέες για μετάφραση, αλλαγή σχεδιασμού, εκκαθάριση ή ριζικές αλλαγές κώδικα της εφαρμογής—η βοήθεια σας είναι πάντα ευπρόσδεκτη. Όσο περισσότερη έχουμε, τόσο καλύτεροι γινόμαστε!</string>
     <string name="view_on_github">Δείτε το στο GitHub</string>
     <string name="donation_title">Κάντε μια δωρεά</string>
-    <string name="donation_encouragement">Το NewPipe αναπτύσσεται από εθελοντές που δαπανούν τον ελεύθερο χρόνο τους για να σας προσφέρουν τη βέλτιστη δυνατή εμπειρία χρήστη. Δώστε πίσω για να βοηθήσετε τους προγραμματιστές του NewPipe να το κάνουν ακόμα καλύτερο, όσο απολαμβάνουν ένα φλιτζάνι καφέ.</string>
+    <string name="donation_encouragement">Το YouTube Video Downloader αναπτύσσεται από εθελοντές που δαπανούν τον ελεύθερο χρόνο τους για να σας προσφέρουν τη βέλτιστη δυνατή εμπειρία χρήστη. Δώστε πίσω για να βοηθήσετε τους προγραμματιστές του YouTube Video Downloader να το κάνουν ακόμα καλύτερο, όσο απολαμβάνουν ένα φλιτζάνι καφέ.</string>
     <string name="give_back">Προσφέρτε</string>
     <string name="website_title">Ιστότοπος</string>
-    <string name="website_encouragement">Επισκευτείτε τον ιστότοπο του NewPipe για περισσότερες πληροφορίες και νέα.</string>
-    <string name="privacy_policy_title">Η πολιτική ιδιωτικού απόρρητου του NewPipe</string>
-    <string name="privacy_policy_encouragement">Το NewPipe παίρνει πολύ σοβαρά το ιδιωτικό σας απόρρητο. Έτσι, η εφαρμογή αυτή δεν συλλέγει δεδομένα από εσάς χωρίς τη συγκατάθεσή σας.
-\nΗ πολιτική ιδιωτικού απόρρητου του NewPipe εξηγεί λεπτομερώς ποια δεδομένα αποστέλλονται και αποθηκεύονται όταν επιλέγετε να στείλετε μια αναφορά σφαλμάτων.</string>
+    <string name="website_encouragement">Επισκευτείτε τον ιστότοπο του YouTube Video Downloader για περισσότερες πληροφορίες και νέα.</string>
+    <string name="privacy_policy_title">Η πολιτική ιδιωτικού απόρρητου του YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">Το YouTube Video Downloader παίρνει πολύ σοβαρά το ιδιωτικό σας απόρρητο. Έτσι, η εφαρμογή αυτή δεν συλλέγει δεδομένα από εσάς χωρίς τη συγκατάθεσή σας.
+\nΗ πολιτική ιδιωτικού απόρρητου του YouTube Video Downloader εξηγεί λεπτομερώς ποια δεδομένα αποστέλλονται και αποθηκεύονται όταν επιλέγετε να στείλετε μια αναφορά σφαλμάτων.</string>
     <string name="read_privacy_policy">Διαβάστε την πολιτική ιδιωτικού απόρρητου</string>
-    <string name="app_license_title">Η άδεια του NewPipe</string>
-    <string name="app_license">Το NewPipe είναι copylelft ελεύθερο λογισμικό: Μπορείτε να το χρησιμοποιήσετε, να το μελετήσετε, να το μοιραστείτε και να το βελτιώσετε κατά βούληση. Ειδικότερα, μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό την άδεια GNU General Public Licence όπως αυτή εκδόθηκε από το Free Software Foundation, είτε υπό την έκδοση 3 της Άδειας είτε (προεραιτικά) υπό οποιαδήποτε μεταγενέστερη άδεια.</string>
+    <string name="app_license_title">Η άδεια του YouTube Video Downloader</string>
+    <string name="app_license">Το YouTube Video Downloader είναι copylelft ελεύθερο λογισμικό: Μπορείτε να το χρησιμοποιήσετε, να το μελετήσετε, να το μοιραστείτε και να το βελτιώσετε κατά βούληση. Ειδικότερα, μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό την άδεια GNU General Public Licence όπως αυτή εκδόθηκε από το Free Software Foundation, είτε υπό την έκδοση 3 της Άδειας είτε (προεραιτικά) υπό οποιαδήποτε μεταγενέστερη άδεια.</string>
     <string name="read_full_license">Διαβάστε την άδεια</string>
     <string name="title_history_search">Αναζητήθηκαν</string>
     <string name="title_history_view">Προβλήθηκαν</string>
@@ -381,7 +381,7 @@
     <string name="skip_silence_checkbox">Επιτάχυνση αναπαραγωγής κατά τη διάρκεια σιωπής</string>
     <string name="playback_step">Βήμα</string>
     <string name="playback_reset">Επαναφορά</string>
-    <string name="start_accept_privacy_policy">Προς συμμόρφωση με τον Ευρωπαϊκό Γενικό Κανονισμό για την Προστασία Δεδομένων (GDPR), σας επιστούμε την προσοχή στην πολιτική προστασίας προσωπικών δεδομένων του NewPipe. Παραλούμε, διαβάστε την προσεκτικά.
+    <string name="start_accept_privacy_policy">Προς συμμόρφωση με τον Ευρωπαϊκό Γενικό Κανονισμό για την Προστασία Δεδομένων (GDPR), σας επιστούμε την προσοχή στην πολιτική προστασίας προσωπικών δεδομένων του YouTube Video Downloader. Παραλούμε, διαβάστε την προσεκτικά.
 \nΘα πρέπει να την αποδεχτέιτε προκειμένου να μας αποστείλετε την αναφορά σφάλματος.</string>
     <string name="accept">Αποδοχή</string>
     <string name="decline">Απόρριψη</string>
@@ -402,7 +402,7 @@
     <string name="events">Συμβάντα</string>
     <string name="file_deleted">Το αρχείο διαγράφηκε</string>
     <string name="app_update_notification_channel_name">Ειδοποίηση Ενημέρωσης Εφαρμογής</string>
-    <string name="app_update_notification_channel_description">Ειδοποίηση για νεότερη έκδοση του NewPipe</string>
+    <string name="app_update_notification_channel_description">Ειδοποίηση για νεότερη έκδοση του YouTube Video Downloader</string>
     <string name="download_to_sdcard_error_title">Εξωτερική μνήμη αποθήκευσης μη διαθέσιμη</string>
     <string name="download_to_sdcard_error_message">Η αποθήκευση στην SD κάρτα δεν είναι δυνατή. Επαναφορά στην αρχική τοποθεσία λήψης;</string>
     <string name="saved_tabs_invalid_json">Δεν ήταν δυνατή η ανάγνωση αποθηκευμένων καρτελών, επομένως χρήση προεπιλεγμένων καρτελών</string>
@@ -419,7 +419,7 @@
     <string name="grid">Πλέγμα</string>
     <string name="auto">Αυτόματα</string>
     <string name="switch_view">Αλλαγή τρόπου προβολής</string>
-    <string name="app_update_notification_content_title">Νέα έκδοση του NewPipe είναι διαθέσιμη!</string>
+    <string name="app_update_notification_content_title">Νέα έκδοση του YouTube Video Downloader είναι διαθέσιμη!</string>
     <string name="app_update_notification_content_text">Πατήστε για λήψη</string>
     <string name="missions_header_finished">Ολοκληρώθηκε</string>
     <string name="missions_header_pending">Εκκρεμεί</string>
@@ -468,7 +468,7 @@
     <string name="missing_file">Το αρχείο μετακινήθηκε ή διαγράφηκε</string>
     <string name="overwrite_failed">δεν είναι δυνατή η αντικατάσταση του αρχείου</string>
     <string name="download_already_pending">Υπάρχει μια εκκρεμή λήψη με αυτό το όνομα</string>
-    <string name="error_postprocessing_stopped">Το NewPipe έκλεισε, ενώ εργάζονται στο αρχείο</string>
+    <string name="error_postprocessing_stopped">Το YouTube Video Downloader έκλεισε, ενώ εργάζονται στο αρχείο</string>
     <string name="error_insufficient_storage">Δεν είναι αρκετός ο χώρος στη συσκευή</string>
     <string name="error_progress_lost">Η πρόοδος χάθηκε, επειδή το αρχείο διαγράφηκε</string>
     <string name="error_timeout">Λήξη χρονικού ορίου σύνδεσης</string>
@@ -513,7 +513,7 @@
     <string name="search_showing_result_for">Εμφάνιση αποτελεσμάτων για: %s</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ενεργοποίηση γρήγορης λειτουργίας</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Απενεργοποίηση γρήγορης λειτουργίας</string>
-    <string name="content_not_supported">Αυτό το περιεχόμενο δεν υποστηρίζεται ακόμη από το NewPipe.
+    <string name="content_not_supported">Αυτό το περιεχόμενο δεν υποστηρίζεται ακόμη από το YouTube Video Downloader.
 \n
 \nΕλπίζουμε ότι θα υποστηριχθεί σε μια μελλοντική έκδοση.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Μικρογραφία avatar του καναλιού</string>

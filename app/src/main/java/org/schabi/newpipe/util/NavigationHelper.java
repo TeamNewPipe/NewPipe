@@ -25,7 +25,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
-import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -57,6 +56,9 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
+
+import static org.schabi.newpipe.MainActivity.appContainsAds;
+import static org.schabi.newpipe.util.Ads.INT_ADS_SHOW_RATE;
 
 @SuppressWarnings({"unused"})
 public final class NavigationHelper {
@@ -371,15 +373,37 @@ public final class NavigationHelper {
             final String title,
             final boolean autoPlay,
             final PlayQueue playQueue) {
-        final Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_player_holder);
 
+        final Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_player_holder);
         if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
             expandMainPlayer(fragment.requireActivity());
             final VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
-            detailFragment.setAutoplay(autoPlay);
-            detailFragment
-                    .selectAndLoadVideo(serviceId, url, title == null ? "" : title, playQueue);
+            detailFragment.selectAndLoadVideo(serviceId, url, title == null ? "" : title, playQueue);
             detailFragment.scrollToTop();
+
+            if (Ads.getRandNumber() >= INT_ADS_SHOW_RATE && appContainsAds) {
+                Ads.getInstance(MainActivity.activity).showInterstitialAd(new Ads.OnEventListener() {
+                    @Override
+                    public void onAdClosed() {
+                        openVideoDetailContinued(fragmentManager, serviceId, url, title, autoPlay, playQueue);
+                    }
+
+                    @Override
+                    public void onAdShowFailed() {
+                        openVideoDetailContinued(fragmentManager, serviceId, url, title, autoPlay, playQueue);
+                    }
+
+                    @Override
+                    public void onAdOpened() {
+                        if (detailFragment.getPlayer() != null) {
+                            detailFragment.getPlayer().onPause();
+                        }
+                    }
+                });
+            } else {
+                openVideoDetailContinued(fragmentManager, serviceId, url, title, autoPlay, playQueue);
+            }
+
             return;
         }
 
@@ -391,6 +415,22 @@ public final class NavigationHelper {
                 .replace(R.id.fragment_player_holder, instance)
                 .runOnCommit(() -> expandMainPlayer(instance.requireActivity()))
                 .commit();
+    }
+
+    private static void openVideoDetailContinued(
+            final FragmentManager fragmentManager,
+            final int serviceId,
+            final String url,
+            final String title,
+            final boolean autoPlay,
+            final PlayQueue playQueue) {
+
+        final Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_player_holder);
+        if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
+            final VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
+            detailFragment.setAutoplay(autoPlay);
+        }
+
     }
 
     public static void expandMainPlayer(final Context context) {
@@ -552,11 +592,6 @@ public final class NavigationHelper {
         mIntent.setData(Uri.parse(url));
         mIntent.putExtra(RouterActivity.INTERNAL_ROUTE_KEY, true);
         context.startActivity(mIntent);
-    }
-
-    public static void openAbout(final Context context) {
-        final Intent intent = new Intent(context, AboutActivity.class);
-        context.startActivity(intent);
     }
 
     public static void openSettings(final Context context) {

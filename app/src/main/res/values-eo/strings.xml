@@ -84,7 +84,7 @@
     <string name="controls_popup_title">Ŝprucfenestro</string>
     <string name="controls_add_to_playlist_title">Aldonu al</string>
     <string name="autoplay_by_calling_app_title">Aŭtomata play</string>
-    <string name="autoplay_by_calling_app_summary">Ludas filmeton kiam NewPipe vokas el alia programo</string>
+    <string name="autoplay_by_calling_app_summary">Ludas filmeton kiam YouTube Video Downloader vokas el alia programo</string>
     <string name="default_popup_resolution_title">Defaŭlta rezolucio de la ŝprucfenestra ludilo</string>
     <string name="show_higher_resolutions_title">Montri pli altajn rezoluciojn</string>
     <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj povas ludi 2K / 4K filmetojn</string>
@@ -139,8 +139,8 @@
     <string name="enable_search_history_summary">Konservi la historio de serĉo lokale</string>
     <string name="enable_watch_history_title">Rigardu historion</string>
     <string name="enable_watch_history_summary">Spuri la viditajn filmetojn</string>
-    <string name="notification_channel_name">NewPipe Sciigo</string>
-    <string name="notification_channel_description">Sciigoj por NewPipe fonaj kaj ŝprucfenestraj ludiloj</string>
+    <string name="notification_channel_name">YouTube Video Downloader Sciigo</string>
+    <string name="notification_channel_description">Sciigoj por YouTube Video Downloader fonaj kaj ŝprucfenestraj ludiloj</string>
     <string name="settings_category_player_title">Ludilo</string>
     <string name="settings_category_player_behavior_title">Konduto</string>
     <string name="settings_category_history_title">Historio kaj kaŝmemoro</string>
@@ -243,7 +243,7 @@
     <string name="settings_category_updates_title">Ĝisdatigoj</string>
     <string name="file_deleted">Dosiero forviŝita</string>
     <string name="app_update_notification_channel_name">Sciigo por ĝisdatigi apon</string>
-    <string name="app_update_notification_channel_description">Sciigo por nova versio de NewPipe</string>
+    <string name="app_update_notification_channel_description">Sciigo por nova versio de YouTube Video Downloader</string>
     <string name="download_to_sdcard_error_title">Ekstera konservejo malhavebla</string>
     <string name="download_to_sdcard_error_message">Elŝuti al ekstera SD-karto ne eblas. Ĉu vi volas restarigi la elŝutan dosierujon \?</string>
     <string name="queued">viciĝita</string>
@@ -304,7 +304,7 @@
     <string name="msg_server_unsupported">Nesubtenata servilo</string>
     <string name="msg_exists">Dosiero jam ekzistas</string>
     <string name="msg_url_malform">Malformita ligilo aŭ interreto malhavebla</string>
-    <string name="msg_running">NewPipe estas elŝutanta</string>
+    <string name="msg_running">YouTube Video Downloader estas elŝutanta</string>
     <string name="msg_running_detail">Premu por detaladoj</string>
     <string name="msg_wait">Bonvolu atendi…</string>
     <string name="msg_copied">Enpoŝigita</string>
@@ -316,7 +316,7 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">Mrd</string>
-    <string name="title_activity_about">Pri NewPipe</string>
+    <string name="title_activity_about">Pri YouTube Video Downloader</string>
     <string name="action_settings">Agordoj</string>
     <string name="action_about">Pri</string>
     <string name="title_licenses">Eksteraj permesiloj</string>
@@ -327,7 +327,7 @@
     <string name="tab_contributors">Kontribuintoj</string>
     <string name="tab_licenses">Permesiloj</string>
     <string name="view_on_github">Rigardu ĉe GitHub</string>
-    <string name="app_license_title">Permesilo de NewPipe</string>
+    <string name="app_license_title">Permesilo de YouTube Video Downloader</string>
     <string name="contribution_encouragement">Ĉu vi havas ideojn pri; traduko, desegnaĵoj ŝanĝoj, purigado de kodo, aŭ realaj masivaj ŝanĝoj—helpo ĉiam estas bonvena. Ju pli oni faras, des pli bonas!</string>
     <string name="read_full_license">Legi permesilon</string>
     <string name="contribution_title">Kontribui</string>
@@ -364,10 +364,10 @@
     <string name="start_here_on_main">Komenci ludi ĉi tie</string>
     <string name="start_here_on_background">Komenci ludi fone</string>
     <string name="donation_title">Donaci</string>
-    <string name="donation_encouragement">NewPipe estas programadita par volontuoj, elspezante lia tempo por alporti vin la plej bona uzanta sperto. Redoni por helpi programistojn plibonigi NewPipe dum ili ĝuas tason da kafo.</string>
+    <string name="donation_encouragement">YouTube Video Downloader estas programadita par volontuoj, elspezante lia tempo por alporti vin la plej bona uzanta sperto. Redoni por helpi programistojn plibonigi YouTube Video Downloader dum ili ĝuas tason da kafo.</string>
     <string name="give_back">Redoni</string>
     <string name="website_title">Retejo</string>
-    <string name="website_encouragement">Viziti la retejon de NewPipe por pli da informoj kaj novaĵoj.</string>
+    <string name="website_encouragement">Viziti la retejon de YouTube Video Downloader por pli da informoj kaj novaĵoj.</string>
     <string name="drawer_open">Malfermi la tirkeston</string>
     <string name="drawer_close">Fermi la tirtekston</string>
     <string name="external_player_unsupported_link_type">Ekstaraj ludantoj ne suportas tiajn ligilojn</string>
@@ -423,13 +423,13 @@
     <string name="caption_setting_title">Subtitoloj</string>
     <string name="caption_setting_description">Modifi la dimension de la teksto kaj la fonajn stilojn de la subtitoloj de la ludilo. Ĝi bezonas restarto de la apo por efektiviĝi.</string>
     <string name="one_item_deleted">1 ero forviŝita.</string>
-    <string name="app_license">NewPipe estas programaro sub rajtoceda permesilo: Vi povas uzi, studi, komuniki kaj plibonigi ĝin kiel vi volas. Precize, vi povas redistribui kaj/aŭ modifi ĝin sub la kondiĉoj de la Ĝenerala Publika Permesilo de GNU, kiel publikigita per la Free Software Foundation, ĉu en la versio 3, ĉu (se vi volas) ajna posta versio.</string>
+    <string name="app_license">YouTube Video Downloader estas programaro sub rajtoceda permesilo: Vi povas uzi, studi, komuniki kaj plibonigi ĝin kiel vi volas. Precize, vi povas redistribui kaj/aŭ modifi ĝin sub la kondiĉoj de la Ĝenerala Publika Permesilo de GNU, kiel publikigita per la Free Software Foundation, ĉu en la versio 3, ĉu (se vi volas) ajna posta versio.</string>
     <string name="import_settings">Ĉu vi volas ankaŭ importi agordojn\?</string>
-    <string name="privacy_policy_title">Privateca politiko de NewPipe</string>
-    <string name="privacy_policy_encouragement">La NewPipe projekto serioze respektas vian privatecon. Konsekvence, la apo ne kolektas ajnan datumon sen via konsento.
-\nLa privateco politiko de NewPipe detale eksplikas kion datumon estas sendita kaj stokita kiam vi sendas falegosignalon.</string>
+    <string name="privacy_policy_title">Privateca politiko de YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">La YouTube Video Downloader projekto serioze respektas vian privatecon. Konsekvence, la apo ne kolektas ajnan datumon sen via konsento.
+\nLa privateco politiko de YouTube Video Downloader detale eksplikas kion datumon estas sendita kaj stokita kiam vi sendas falegosignalon.</string>
     <string name="read_privacy_policy">Legi la privatecan politikon</string>
-    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atenton al la privateca politiko de NewPipe. Bonvolu atentive legi ĝin.
+    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atenton al la privateca politiko de YouTube Video Downloader. Bonvolu atentive legi ĝin.
 \nVi devas akcepti ĝin por sendi la cimsignalon al ni.</string>
     <string name="accept">Akcepti</string>
     <string name="decline">Rifuzi</string>
@@ -454,7 +454,7 @@
     <string name="grid">Krado</string>
     <string name="auto">Aŭto</string>
     <string name="switch_view">Ŝanĝi vidon</string>
-    <string name="app_update_notification_content_title">Ĝisdatigo de NewPipe havebla!</string>
+    <string name="app_update_notification_content_title">Ĝisdatigo de YouTube Video Downloader havebla!</string>
     <string name="app_update_notification_content_text">Premi por elŝuti</string>
     <string name="missions_header_finished">Finita</string>
     <string name="missions_header_pending">Pritraktata</string>
@@ -484,7 +484,7 @@
     <string name="overwrite_unrelated_warning">Dosiero kun ĉi tiu nomo jam ekzistas</string>
     <string name="overwrite_finished_warning">Elŝutita dosieron kun ĉi tiu nomo jam ekzistas</string>
     <string name="download_already_pending">Estas pritraktata elŝuto kun ĉi tiu nomo</string>
-    <string name="error_postprocessing_stopped">NewPipe estis fermita dum laborante sur la dosiero</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader estis fermita dum laborante sur la dosiero</string>
     <string name="error_insufficient_storage">Neniu spaco havebla sur la aparato</string>
     <string name="error_progress_lost">Progreso perdita, ĉar la dosiero estis forviŝita</string>
     <string name="error_timeout">Eltempiĝo de Konekto</string>
@@ -569,7 +569,7 @@
     <string name="mute">Mutigi</string>
     <string name="unmute">Malmutigi</string>
     <string name="help">Helpo</string>
-    <string name="content_not_supported">Tio enhavo ne estas ankoraŭ subtenata per NewPipe.\n\nĜi espereble estos en sekvanta versio.</string>
+    <string name="content_not_supported">Tio enhavo ne estas ankoraŭ subtenata per YouTube Video Downloader.\n\nĜi espereble estos en sekvanta versio.</string>
     <string name="infinite_videos">∞ filmetoj</string>
     <string name="more_than_100_videos">100+ filmetoj</string>
     <string name="artists">Artistoj</string>

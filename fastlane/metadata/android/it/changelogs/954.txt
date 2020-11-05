@@ -1,6 +1,6 @@
 • Nuovo funzionamento dell'app: riproduci i video coi dettagli e trascina verso il basso per minimizzare
 • Notifiche MediaStyle: bottoni personalizzabili e prestazioni migliori
-• NewPipe può ora essere ridimensionata se usata su desktop
+• YouTube Video Downloader può ora essere ridimensionata se usata su desktop
 
 • Finestra con opzioni di condivisione per URL non supportati
 • Esperienza di ricerca più fluida in caso di problemi di connessione

@@ -109,9 +109,9 @@
     <string name="always">Sempre</string>
     <string name="just_once">Solo un vice</string>
     <string name="file">File</string>
-    <string name="notification_channel_name">Notification de NewPipe</string>
+    <string name="notification_channel_name">Notification de YouTube Video Downloader</string>
     <string name="app_update_notification_channel_name">Notification de actualisation del application</string>
-    <string name="app_update_notification_channel_description">Notificationes de nove versiones de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificationes de nove versiones de YouTube Video Downloader</string>
     <string name="unknown_content">[Incognite]</string>
     <string name="switch_to_background">Cambiar a modo fundo</string>
     <string name="switch_to_popup">Cambiar a modo emergente</string>
@@ -146,8 +146,8 @@
     <string name="msg_name">Nomine de file</string>
     <string name="msg_server_unsupported">Servitor non supportate</string>
     <string name="msg_exists">Le file jam existe</string>
-    <string name="msg_running">NewPipe discargante</string>
-    <string name="title_activity_about">A proposito de NewPipe</string>
+    <string name="msg_running">YouTube Video Downloader discargante</string>
+    <string name="title_activity_about">A proposito de YouTube Video Downloader</string>
     <string name="action_settings">Configurationes</string>
     <string name="action_about">A proposito de</string>
     <string name="copyright" formatted="true">© %1$s per %2$s sub %3$s</string>
@@ -157,8 +157,8 @@
     <string name="contribution_title">Contribuer</string>
     <string name="view_on_github">Vider in GitHub</string>
     <string name="website_title">Sito web</string>
-    <string name="website_encouragement">Visita le sito web de NewPipe pro plus de informationes e novitates.</string>
-    <string name="app_license_title">Licentia de NewPipe</string>
+    <string name="website_encouragement">Visita le sito web de YouTube Video Downloader pro plus de informationes e novitates.</string>
+    <string name="app_license_title">Licentia de YouTube Video Downloader</string>
     <string name="read_full_license">Leger le licentia</string>
     <string name="title_history_search">Recercas</string>
     <string name="title_history_view">Reproductiones</string>
@@ -178,7 +178,7 @@
     <string name="systems_language">Predefinite del systema</string>
     <string name="app_language_title">Lingua del application</string>
     <string name="feed_update_threshold_option_always_update">Actualisar sempre</string>
-    <string name="app_update_notification_content_title">Il ha un actualisation de NewPipe disponibile!</string>
+    <string name="app_update_notification_content_title">Il ha un actualisation de YouTube Video Downloader disponibile!</string>
     <string name="updates_setting_description">Monstrar un notification pro requestar le actualisation del application quando un nove version es disponibile</string>
     <string name="updates_setting_title">Actualisationes</string>
     <string name="open_in_popup_mode">Aperir in modo emergente</string>

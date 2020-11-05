@@ -52,7 +52,7 @@
     <string name="info_dir_created">다운로드 디렉토리를 만들었습니다 \'%1$s\'</string>
     <string name="main_bg_subtitle">검색 버튼을 눌러서 시작하세요</string>
     <string name="autoplay_by_calling_app_title">자동재생</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱에서 호출되었을 때 동영상을 재생합니다</string>
+    <string name="autoplay_by_calling_app_summary">YouTube Video Downloader가 다른 앱에서 호출되었을 때 동영상을 재생합니다</string>
     <string name="content">컨텐츠</string>
     <string name="show_age_restricted_content_title">연령 제한 컨텐츠</string>
     <string name="video_is_age_restricted">연령 제한 비디오입니다. 설정 메뉴에서 시청 허용 여부를 변경하실 수 있습니다.</string>
@@ -137,8 +137,8 @@
     <string name="best_resolution">최대 해상도</string>
     <string name="undo">되돌리기</string>
     <string name="play_all">전부 재생</string>
-    <string name="notification_channel_name">NewPipe 알림</string>
-    <string name="notification_channel_description">NewPipe 백그라운드 및 팝업 플레이어 알림</string>
+    <string name="notification_channel_name">YouTube Video Downloader 알림</string>
+    <string name="notification_channel_description">YouTube Video Downloader 백그라운드 및 팝업 플레이어 알림</string>
     <string name="unknown_content">[알 수 없음]</string>
     <string name="could_not_load_image">이미지를 불러올 수 없습니다</string>
     <string name="app_ui_crash">앱/UI 충돌</string>
@@ -169,7 +169,7 @@
     <string name="msg_server_unsupported">지원하지 않는 서버</string>
     <string name="msg_exists">파일이 이미 존재합니다</string>
     <string name="msg_url_malform">올바르지 않은 URL이거나 인터넷에 접속할 수 없음</string>
-    <string name="msg_running">NewPipe 다운로드 중</string>
+    <string name="msg_running">YouTube Video Downloader 다운로드 중</string>
     <string name="msg_running_detail">터치해서 상세 정보 확인</string>
     <string name="msg_wait">잠시만 기다리세요…</string>
     <string name="msg_copied">클립보드에 복사됨</string>
@@ -183,14 +183,14 @@
     <string name="settings_file_replacement_character_title">대체 문자</string>
     <string name="charset_letters_and_digits">문자 및 숫자</string>
     <string name="charset_most_special_characters">가장 특수한 문자</string>
-    <string name="title_activity_about">NewPipe에 대해서</string>
+    <string name="title_activity_about">YouTube Video Downloader에 대해서</string>
     <string name="action_settings">설정</string>
-    <string name="action_about">NewPipe 정보</string>
+    <string name="action_about">YouTube Video Downloader 정보</string>
     <string name="title_licenses">제3자 라이센스</string>
     <string name="copyright" formatted="true">© %3$s 하에서 %2$s 에 의한 %1$s</string>
     <string name="error_unable_to_load_license">라이센스 불러올 수 없음</string>
     <string name="action_open_website">웹사이트 열기</string>
-    <string name="tab_about">NewPipe 정보</string>
+    <string name="tab_about">YouTube Video Downloader 정보</string>
     <string name="tab_contributors">기여자</string>
     <string name="tab_licenses">라이센스</string>
     <string name="app_description">가볍고 빠른 자유 안드로이드 스트리밍 앱입니다.</string>
@@ -198,11 +198,11 @@
     <string name="contribution_encouragement">번역, 디자인, 코딩 등 다양한 기여를 언제나 환영합니다. 더 나아지도록 도와주세요!</string>
     <string name="view_on_github">GitHub에서 보기</string>
     <string name="donation_title">기부</string>
-    <string name="donation_encouragement">여러분들의 더 나은 경험을 위해 많은 사람들이 NewPipe를 개발하는데 노력을 기울이고 있습니다. NewPipe에 참여하는 개발자들이 커피 한 잔을 즐길 수 있도록 기부해주세요.</string>
+    <string name="donation_encouragement">여러분들의 더 나은 경험을 위해 많은 사람들이 YouTube Video Downloader를 개발하는데 노력을 기울이고 있습니다. YouTube Video Downloader에 참여하는 개발자들이 커피 한 잔을 즐길 수 있도록 기부해주세요.</string>
     <string name="give_back">보답하기</string>
     <string name="website_title">웹사이트</string>
-    <string name="website_encouragement">NewPipe에 관한 더 많은 정보를 얻으려면 웹사이트를 방문하세요.</string>
-    <string name="app_license_title">NewPipe가 채택한 라이센스</string>
+    <string name="website_encouragement">YouTube Video Downloader에 관한 더 많은 정보를 얻으려면 웹사이트를 방문하세요.</string>
+    <string name="app_license_title">YouTube Video Downloader가 채택한 라이센스</string>
     <string name="read_full_license">라이센스 읽기</string>
     <string name="title_activity_history">기록</string>
     <string name="title_history_search">검색함</string>
@@ -364,14 +364,14 @@
     <string name="clear_search_history_summary">검색 기록을 모두 삭제합니다</string>
     <string name="delete_search_history_alert">모든 검색 기록을 삭제하시겠습니까\?</string>
     <string name="search_history_deleted">검색 기록이 삭제되었습니다.</string>
-    <string name="privacy_policy_title">NewPipe 개인정보 보호 정책</string>
-    <string name="privacy_policy_encouragement">NewPipe 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다. 
-\nNewPipe 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
+    <string name="privacy_policy_title">YouTube Video Downloader 개인정보 보호 정책</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다.
+\nYouTube Video Downloader 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
     <string name="read_privacy_policy">개인정보 보호 정책 읽기</string>
-    <string name="app_license">NewPipe는 카피레프트 자유 소프트웨어입니다. 사용자는 이 앱을 사용, 공유, 또는 수정할 수 있고, 수정 후 재배포 시 자유 소프트웨어 재단의 GNU 라이센스 버전 3 또는 그 이상의 버전을 포함해야 합니다.</string>
+    <string name="app_license">YouTube Video Downloader는 카피레프트 자유 소프트웨어입니다. 사용자는 이 앱을 사용, 공유, 또는 수정할 수 있고, 수정 후 재배포 시 자유 소프트웨어 재단의 GNU 라이센스 버전 3 또는 그 이상의 버전을 포함해야 합니다.</string>
     <string name="import_settings">설정도 가져오시겠습니까\?</string>
     <string name="skip_silence_checkbox">무음 구간 빨리 감기</string>
-    <string name="start_accept_privacy_policy">유럽 연합 일반 데이터 보호 규정 (GDPR) 에 따라, 사용자는 NewPipe 개인정보 보호 정책을 읽고 꼼꼼히 확인해야 합니다. 버그 리포트를 보내시려면 개인정보 보호 정책에 동의해주세요.</string>
+    <string name="start_accept_privacy_policy">유럽 연합 일반 데이터 보호 규정 (GDPR) 에 따라, 사용자는 YouTube Video Downloader 개인정보 보호 정책을 읽고 꼼꼼히 확인해야 합니다. 버그 리포트를 보내시려면 개인정보 보호 정책에 동의해주세요.</string>
     <string name="accept">동의</string>
     <string name="decline">동의하지 않음</string>
     <string name="limit_data_usage_none_description">데이터 제한 없음</string>
@@ -389,7 +389,7 @@
     <string name="events">이벤트</string>
     <string name="file_deleted">파일 삭제됨</string>
     <string name="app_update_notification_channel_name">앱 업데이트 알림</string>
-    <string name="app_update_notification_channel_description">새 NewPipe 버전 알림</string>
+    <string name="app_update_notification_channel_description">새 YouTube Video Downloader 버전 알림</string>
     <string name="download_to_sdcard_error_title">외부 저장소 없음</string>
     <string name="download_to_sdcard_error_message">SD 카드로 다운로드 할 수 없습니다. 다운로드 폴더 경로를 초기화 하시겠습니까\?</string>
     <string name="one_item_deleted">1개의 항목이 삭제되었습니다.</string>
@@ -413,7 +413,7 @@
     <string name="grid">격자</string>
     <string name="auto">자동</string>
     <string name="switch_view">보기 방식 전환</string>
-    <string name="app_update_notification_content_title">NewPipe 업데이트가 있습니다!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader 업데이트가 있습니다!</string>
     <string name="app_update_notification_content_text">여기를 눌러서 다운로드</string>
     <string name="missions_header_finished">완료됨</string>
     <string name="missions_header_pending">대기열에 있음</string>
@@ -463,7 +463,7 @@
     <string name="missing_file">파일이 이동되거나 삭제되었습니다</string>
     <string name="overwrite_failed">파일을 덮어쓰기할 수 없습니다</string>
     <string name="download_already_pending">해당 이름으로 대기된 다운로드가 있습니다</string>
-    <string name="error_postprocessing_stopped">파일 작업 중에 Newpipe가 종료되었습니다</string>
+    <string name="error_postprocessing_stopped">파일 작업 중에 YouTube Video Downloader가 종료되었습니다</string>
     <string name="error_insufficient_storage">남은 저장공간이 없습니다</string>
     <string name="error_progress_lost">파일이 삭제되어 진행이 중지되었습니다</string>
     <string name="error_timeout">연결시간 초과</string>

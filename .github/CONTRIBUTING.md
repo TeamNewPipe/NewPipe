@@ -1,11 +1,11 @@
-NewPipe contribution guidelines
+YouTube Video Downloader contribution guidelines
 ===============================
 
 PLEASE READ THESE GUIDELINES CAREFULLY BEFORE ANY CONTRIBUTION!
 
 ## Crash reporting
 
-Do not report crashes in the GitHub issue tracker. NewPipe has an automated crash report system that will ask you to
+Do not report crashes in the GitHub issue tracker. YouTube Video Downloader has an automated crash report system that will ask you to
 send a report via e-mail when a crash occurs. This contains all the data we need for debugging, and allows you to even
 add a comment to it. You'll see exactly what is sent, the system is 100% transparent.
 
@@ -21,13 +21,13 @@ hasn't been reported/requested before.
 * Follow the template! Issues or feature requests not matching the template might be closed.
 
 ## Bug Fixing
-* If you want to help NewPipe to become free of bugs (this is our utopic goal for NewPipe), you can send us an email to
+* If you want to help YouTube Video Downloader to become free of bugs (this is our utopic goal for NewPipe), you can send us an email to
 <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a> to let us know that you intend to help. We'll send you further instructions. You may, on request,
 register at our [Sentry](https://sentry.schabi.org) instance (see section "Crash reporting" for more information).
 
 ## Translation
 
-* NewPipe is translated via [Weblate](https://hosted.weblate.org/projects/newpipe/strings/). You can log in there
+* YouTube Video Downloader is translated via [Weblate](https://hosted.weblate.org/projects/newpipe/strings/). You can log in there
 with your GitHub account.
 * If the language you want to translate is not on Weblate, you can add it: see [How to add a new language](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-add-a-new-language-to-NewPipe) in the wiki.
 

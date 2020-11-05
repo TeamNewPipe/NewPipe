@@ -16,12 +16,12 @@ import org.schabi.newpipe.util.Localization;
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * ChannelInfoItemHolder .java is part of NewPipe.
  *
- * NewPipe is free software: you can redistribute it and/or modify
+ * YouTube Video Downloader is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * NewPipe is distributed in the hope that it will be useful,
+ * YouTube Video Downloader is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.

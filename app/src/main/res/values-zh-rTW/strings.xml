@@ -57,7 +57,7 @@
     <string name="popup_mode_share_menu_title">懸浮視窗模式</string>
     <string name="controls_background_title">背景播放</string>
     <string name="autoplay_by_calling_app_title">自動播放</string>
-    <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他應用程式呼叫時播放影片</string>
+    <string name="autoplay_by_calling_app_summary">當 YouTube Video Downloader 被其他應用程式呼叫時播放影片</string>
     <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
     <string name="show_higher_resolutions_summary">僅部份裝置可播放 2K/4K 影片</string>
@@ -127,7 +127,7 @@
     <string name="msg_server_unsupported">不支援的伺服器</string>
     <string name="msg_exists">檔案已存在</string>
     <string name="msg_url_malform">錯誤的網址或網路無法使用</string>
-    <string name="msg_running">NewPipe 下載中</string>
+    <string name="msg_running">YouTube Video Downloader 下載中</string>
     <string name="msg_running_detail">輕觸以顯示詳細資訊</string>
     <string name="msg_wait">請稍候…</string>
     <string name="msg_copied">已複製至剪貼簿</string>
@@ -157,8 +157,8 @@
     <string name="settings_category_history_title">歷史記錄與快取</string>
     <string name="playlist">播放清單</string>
     <string name="undo">復原</string>
-    <string name="notification_channel_name">NewPipe 通知</string>
-    <string name="notification_channel_description">NewPipe 背景播放與懸浮模式播放器的通知</string>
+    <string name="notification_channel_name">YouTube Video Downloader 通知</string>
+    <string name="notification_channel_description">YouTube Video Downloader 背景播放與懸浮模式播放器的通知</string>
     <string name="search_no_results">沒有結果</string>
     <string name="empty_subscription_feed_subtitle">這裡空空如也</string>
     <string name="no_subscribers">無訂閱者</string>
@@ -176,7 +176,7 @@
     <string name="settings_file_replacement_character_title">替換為</string>
     <string name="charset_letters_and_digits">字母與數字</string>
     <string name="charset_most_special_characters">大部分的特殊字元</string>
-    <string name="title_activity_about">關於 NewPipe</string>
+    <string name="title_activity_about">關於 YouTube Video Downloader</string>
     <string name="action_settings">設定</string>
     <string name="action_about">關於</string>
     <string name="title_licenses">第三方授權</string>
@@ -188,8 +188,8 @@
     <string name="tab_licenses">授權條款</string>
     <string name="app_description">Android 上自由且輕巧的 YouTube 串流播放器。</string>
     <string name="view_on_github">在 GitHub 上檢視</string>
-    <string name="app_license_title">NewPipe 使用的授權條款</string>
-    <string name="contribution_encouragement">不管你有什麼點子——翻譯、設計、程式碼整理，或者程式碼撰寫——我們永遠歡迎你來幫忙。完成的越多，NewPipe 也會更好！</string>
+    <string name="app_license_title">YouTube Video Downloader 使用的授權條款</string>
+    <string name="contribution_encouragement">不管你有什麼點子——翻譯、設計、程式碼整理，或者程式碼撰寫——我們永遠歡迎你來幫忙。完成的越多，YouTube Video Downloader 也會更好！</string>
     <string name="read_full_license">閱讀授權條款</string>
     <string name="contribution_title">貢獻</string>
     <string name="title_activity_history">歷史紀錄</string>
@@ -230,7 +230,7 @@
     <string name="import_data_summary">覆蓋您目前的歷史記錄和訂閱</string>
     <string name="export_data_summary">匯出歷史記錄、訂閱和播放清單</string>
     <string name="give_back">回饋</string>
-    <string name="website_encouragement">如欲了解更多有關 NewPipe 的資訊和新聞，請造訪我們的網站。</string>
+    <string name="website_encouragement">如欲了解更多有關 YouTube Video Downloader 的資訊和新聞，請造訪我們的網站。</string>
     <string name="main_page_content">首頁內容</string>
     <string name="blank_page_summary">空白頁面</string>
     <string name="kiosk_page_summary">互動導覽頁面</string>
@@ -256,7 +256,7 @@
     <string name="start_here_on_background">在背景開始播放</string>
     <string name="start_here_on_popup">在彈出式視窗中開始播放</string>
     <string name="hold_to_append">長按以新增至佇列</string>
-    <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費他們的空閒時間務求為您帶來最佳的使用體驗。現在是時候回過頭來，讓我們的開發人員能夠在使 NewPipe 更臻完美的同時，享受一杯咖啡。</string>
+    <string name="donation_encouragement">YouTube Video Downloader 由志願者所開發，他們花費他們的空閒時間務求為您帶來最佳的使用體驗。現在是時候回過頭來，讓我們的開發人員能夠在使 YouTube Video Downloader 更臻完美的同時，享受一杯咖啡。</string>
     <string name="drawer_open">打開抽屜</string>
     <string name="drawer_close">關閉抽屜</string>
     <string name="video_player">影片播放器</string>
@@ -362,13 +362,13 @@
     <string name="delete_search_history_alert">刪除所有搜尋歷史記錄？</string>
     <string name="search_history_deleted">搜尋歷史已刪除。</string>
     <string name="one_item_deleted">已刪除 1 個項目。</string>
-    <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
+    <string name="app_license">YouTube Video Downloader 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     <string name="import_settings">您是否要同時匯入設定？</string>
-    <string name="privacy_policy_title">NewPipe 的隱私政策</string>
-    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。 
-\nNewPipe 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
+    <string name="privacy_policy_title">YouTube Video Downloader 的隱私政策</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。
+\nYouTube Video Downloader 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
     <string name="read_privacy_policy">閱讀隱私政策</string>
-    <string name="start_accept_privacy_policy">為配合歐洲通用資料保護條例 ( GDPR ) ，我們在此請您注意 NewPipe 的隱私政策。請務必仔細閱讀。 
+    <string name="start_accept_privacy_policy">為配合歐洲通用資料保護條例 ( GDPR ) ，我們在此請您注意 YouTube Video Downloader 的隱私政策。請務必仔細閱讀。
 \n您必須接受它才能向我們發送錯誤報告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒絕</string>
@@ -396,7 +396,7 @@
     <string name="settings_category_updates_title">更新</string>
     <string name="file_deleted">已刪除檔案</string>
     <string name="app_update_notification_channel_name">應用程式更新通知</string>
-    <string name="app_update_notification_channel_description">新 NewPipe 版本通知</string>
+    <string name="app_update_notification_channel_description">新 YouTube Video Downloader 版本通知</string>
     <string name="download_to_sdcard_error_title">外部儲存不可用</string>
     <string name="download_to_sdcard_error_message">無法下載到外部 SD 卡。重設下載資料夾位置？</string>
     <string name="saved_tabs_invalid_json">無法讀取已儲存的分頁，因此使用預設分頁</string>
@@ -412,7 +412,7 @@
     <string name="grid">網格</string>
     <string name="auto">自動</string>
     <string name="switch_view">切換檢視</string>
-    <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
+    <string name="app_update_notification_content_title">有可用的 YouTube Video Downloader 更新！</string>
     <string name="app_update_notification_content_text">輕觸以下載</string>
     <string name="missions_header_finished">結束</string>
     <string name="missions_header_pending">有待</string>
@@ -464,7 +464,7 @@
     <string name="overwrite_unrelated_warning">與此同名的檔案已存在</string>
     <string name="overwrite_failed">無法覆寫檔案</string>
     <string name="download_already_pending">有同名的擱置中下載</string>
-    <string name="error_postprocessing_stopped">NewPipe 在處理檔案時被關閉</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader 在處理檔案時被關閉</string>
     <string name="error_insufficient_storage">裝置上沒有剩餘的空間</string>
     <string name="error_progress_lost">進度遺失，因為檔案已被刪除</string>
     <string name="confirm_prompt">您想要清除您的下載歷史紀錄或刪除所有已下載的檔案嗎？</string>
@@ -561,7 +561,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_help_text">您覺得 feed 載入太慢了嗎？如果是的話，試著啟用快速載入（您可以在設定中變更或按下下方的按鈕）。
 \n
-\nNewPipe 提供兩個 feed 載入策略：
+\nYouTube Video Downloader 提供兩個 feed 載入策略：
 \n• 擷取整個訂閱頻道，慢但是完整。
 \n• 使用專用的伺服器端點，較快速但是通常不完整。
 \n
@@ -570,7 +570,7 @@
 \nYouTube 是一種透過其 RSS feed 提供這種快速方式的例子。
 \n
 \n因此，請選取您較偏好的：速度或準確的資訊。</string>
-    <string name="content_not_supported">NewPipe 尚未支援此內容。
+    <string name="content_not_supported">YouTube Video Downloader 尚未支援此內容。
 \n
 \n希望它會在未來的版本中支援。</string>
     <string name="infinite_videos">∞ 部影片</string>

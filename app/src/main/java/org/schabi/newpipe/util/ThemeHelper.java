@@ -42,7 +42,7 @@ public final class ThemeHelper {
     private ThemeHelper() { }
 
     /**
-     * Apply the selected theme (on NewPipe settings) in the context
+     * Apply the selected theme (on YouTube Video Downloader settings) in the context
      * with the default style (see {@link #setTheme(Context, int)}).
      *
      * @param context context that the theme will be applied
@@ -52,7 +52,7 @@ public final class ThemeHelper {
     }
 
     /**
-     * Apply the selected theme (on NewPipe settings) in the context,
+     * Apply the selected theme (on YouTube Video Downloader settings) in the context,
      * themed according with the styles defined for the service .
      *
      * @param context   context that the theme will be applied
@@ -64,7 +64,7 @@ public final class ThemeHelper {
     }
 
     /**
-     * Return true if the selected theme (on NewPipe settings) is the Light theme.
+     * Return true if the selected theme (on YouTube Video Downloader settings) is the Light theme.
      *
      * @param context context to get the preference
      * @return whether the light theme is selected

@@ -4,9 +4,4 @@
     <item
         android:drawable="@color/light_youtube_primary_color"/>
 
-    <item
-        android:width="80dp"
-        android:height="80dp"
-        android:gravity="center"
-        android:drawable="@drawable/splash_foreground"/>
 </layer-list>

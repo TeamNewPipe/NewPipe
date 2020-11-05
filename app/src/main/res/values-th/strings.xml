@@ -45,7 +45,7 @@
     <string name="download_path_audio_summary">เสียงที่ดาวน์โหลดจะถูกเก็บไว้ที่นี่</string>
     <string name="download_path_audio_dialog_title">ป้อนเส้นทางการดาวน์โหลดสำหรับไฟล์เสียง</string>
     <string name="autoplay_by_calling_app_title">เล่นอัตโนมัติ</string>
-    <string name="autoplay_by_calling_app_summary">เล่นวิดีโอเมื่อ NewPipe ถูกเรียกจากแอปอื่น</string>
+    <string name="autoplay_by_calling_app_summary">เล่นวิดีโอเมื่อ YouTube Video Downloader ถูกเรียกจากแอปอื่น</string>
     <string name="default_resolution_title">ความละเอียดเริ่มต้น</string>
     <string name="default_popup_resolution_title">ความละเอียดเริ่มต้นในโหมดป๊อปอัพ</string>
     <string name="show_higher_resolutions_title">แสดงความละเอียดที่สูงขึ้น</string>
@@ -135,10 +135,10 @@
     <string name="always">ตลอดเวลา</string>
     <string name="just_once">เพียงครั้งเดียว</string>
     <string name="file">ไฟล์</string>
-    <string name="notification_channel_name">การแจ้งเตือน NewPipe</string>
-    <string name="notification_channel_description">การแจ้งเตือนของแอป NewPipe เมื่อเล่นสื่อในโหมดพื้นหลังและป๊อปอัพ</string>
+    <string name="notification_channel_name">การแจ้งเตือน YouTube Video Downloader</string>
+    <string name="notification_channel_description">การแจ้งเตือนของแอป YouTube Video Downloader เมื่อเล่นสื่อในโหมดพื้นหลังและป๊อปอัพ</string>
     <string name="app_update_notification_channel_name">การแจ้งเตือนการอัปเดตแอป</string>
-    <string name="app_update_notification_channel_description">การแจ้งเตือนสำหรับ NewPipe เวอร์ชั่นใหม่</string>
+    <string name="app_update_notification_channel_description">การแจ้งเตือนสำหรับ YouTube Video Downloader เวอร์ชั่นใหม่</string>
     <string name="unknown_content">[ไม่ทราบ]</string>
     <string name="toggle_orientation">เปลี่ยนการวางแนว</string>
     <string name="switch_to_background">สลับไปยังโหมดพื้นหลัง</string>
@@ -234,7 +234,7 @@
     <string name="msg_name">ชื่อไฟล์</string>
     <string name="msg_server_unsupported">เซิร์ฟเวอร์ที่ไม่รองรับ</string>
     <string name="msg_exists">ไฟล์มีอยู่แล้ว</string>
-    <string name="msg_running">NewPipe กำลังดาวน์โหลด</string>
+    <string name="msg_running">YouTube Video Downloader กำลังดาวน์โหลด</string>
     <string name="msg_running_detail">แตะเพื่อดูรายละเอียด</string>
     <string name="msg_wait">โปรดรอ…</string>
     <string name="msg_copied">คัดลอกไปที่คลิปบอร์ดแล้ว</string>
@@ -249,7 +249,7 @@
     <string name="charset_letters_and_digits">ตัวอักษรและตัวเลข</string>
     <string name="charset_most_special_characters">อักขระพิเศษส่วนใหญ่</string>
     <string name="toast_no_player">ไม่มีแอพที่ติดตั้งเพื่อให้เล่นไฟล์นี้ได้</string>
-    <string name="title_activity_about">เกี่ยวกับ NewPipe</string>
+    <string name="title_activity_about">เกี่ยวกับ YouTube Video Downloader</string>
     <string name="action_settings">การตั้งค่า</string>
     <string name="action_about">เกี่ยวกับ</string>
     <string name="title_licenses">สัญญาอนุญาตของบุคคลที่สาม</string>
@@ -266,12 +266,12 @@
     <string name="donation_title">บริจาค</string>
     <string name="give_back">คืนให้</string>
     <string name="website_title">เว็บไซต์</string>
-    <string name="website_encouragement">เยี่ยมชมเว็บไซต์ NewPipe สำหรับข้อมูลเพิ่มเติมและข่าวสาร</string>
-    <string name="privacy_policy_title">นโยบายความเป็นส่วนตัวของ NewPipe</string>
-    <string name="privacy_policy_encouragement">โครงการ NewPipe คำนึงถึงความเป็นส่วนตัวของคุณอย่างจริงจัง ดังนั้นแอปจะไม่เก็บรวบรวมข้อมูลใดๆ โดยไม่ได้รับความยินยอมจากคุณ
-\nนโยบายความเป็นส่วนตัวของ NewPipe มีการอธิบายในรายละเอียดเกี่ยวกับข้อมูลที่จะถูกส่งออกไปและเก็บไว้เมื่อคุณรายงานความผิดพลาดของแอป</string>
+    <string name="website_encouragement">เยี่ยมชมเว็บไซต์ YouTube Video Downloader สำหรับข้อมูลเพิ่มเติมและข่าวสาร</string>
+    <string name="privacy_policy_title">นโยบายความเป็นส่วนตัวของ YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">โครงการ YouTube Video Downloader คำนึงถึงความเป็นส่วนตัวของคุณอย่างจริงจัง ดังนั้นแอปจะไม่เก็บรวบรวมข้อมูลใดๆ โดยไม่ได้รับความยินยอมจากคุณ
+\nนโยบายความเป็นส่วนตัวของ YouTube Video Downloader มีการอธิบายในรายละเอียดเกี่ยวกับข้อมูลที่จะถูกส่งออกไปและเก็บไว้เมื่อคุณรายงานความผิดพลาดของแอป</string>
     <string name="read_privacy_policy">อ่านนโยบายความเป็นส่วนตัว</string>
-    <string name="app_license_title">สัญญาอนุญาตของ NewPipe</string>
+    <string name="app_license_title">สัญญาอนุญาตของ YouTube Video Downloader</string>
     <string name="read_full_license">อ่านสัญญาอนุญาต</string>
     <string name="title_activity_history">ประวัติ</string>
     <string name="title_history_search">สืบค้นแล้ว</string>
@@ -376,7 +376,7 @@
     <string name="skip_silence_checkbox">กรอไปข้างหน้าระหว่างความเงียบ</string>
     <string name="playback_step">ทีละ</string>
     <string name="playback_reset">รีเซ็ต</string>
-    <string name="start_accept_privacy_policy">เพื่อให้สอดคล้องกับระเบียบข้อบังคับว่าด้วยการป้องกันข้อมูลทั่วไปของยุโรป (GDPR) เราขอแนะนำให้คุณอ่านนโยบายความเป็นส่วนตัวของ NewPipe อย่างระมัดระวังและถี่ถ้วน
+    <string name="start_accept_privacy_policy">เพื่อให้สอดคล้องกับระเบียบข้อบังคับว่าด้วยการป้องกันข้อมูลทั่วไปของยุโรป (GDPR) เราขอแนะนำให้คุณอ่านนโยบายความเป็นส่วนตัวของ YouTube Video Downloader อย่างระมัดระวังและถี่ถ้วน
 \nคุณต้องยอมรับข้อตกลงเพื่ออนุญาตให้ส่งรายงานข้อผิดพลาดถึงเรา</string>
     <string name="accept">ยอมรับ</string>
     <string name="decline">ปฏิเสธ</string>
@@ -394,7 +394,7 @@
     <string name="grid">ตาราง</string>
     <string name="auto">อัตโนมัติ</string>
     <string name="switch_view">สลับมุมมอง</string>
-    <string name="app_update_notification_content_title">NewPipe พร้อมให้อัพเดทแล้ว!</string>
+    <string name="app_update_notification_content_title">YouTube Video Downloader พร้อมให้อัพเดทแล้ว!</string>
     <string name="app_update_notification_content_text">แตะเพื่อดาวน์โหลด</string>
     <string name="missions_header_finished">เสร็จแล้ว</string>
     <string name="missions_header_pending">อยู่ในคิว</string>

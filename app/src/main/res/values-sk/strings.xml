@@ -57,7 +57,7 @@
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
     <string name="main_bg_subtitle">Ťuknite na \"Vyhľadávanie\" pre začatie</string>
     <string name="autoplay_by_calling_app_title">Automatické prehrávanie</string>
-    <string name="autoplay_by_calling_app_summary">Prehrá video pri zavolaní NewPipe inou aplikáciou</string>
+    <string name="autoplay_by_calling_app_summary">Prehrá video pri zavolaní YouTube Video Downloader inou aplikáciou</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Vekovo obmedzený obsah</string>
     <string name="video_is_age_restricted">Zobrazit video s vekovým obmezením. Zmenit túto voľbu môžete v nastaveniach.</string>
@@ -93,7 +93,7 @@
     <string name="msg_server_unsupported">Nepodporovaný server</string>
     <string name="msg_exists">Súbor už existuje</string>
     <string name="msg_url_malform">Neplatná URL alebo bez pripojenia na Internet</string>
-    <string name="msg_running">NewPipe Preberanie</string>
+    <string name="msg_running">YouTube Video Downloader Preberanie</string>
     <string name="msg_running_detail">Dotykom zobraziť detaily</string>
     <string name="msg_wait">Čakajte prosím…</string>
     <string name="msg_copied">Skopírované do schránky</string>
@@ -151,15 +151,15 @@
     <string name="enable_watch_history_summary">Ukladať históriu pozretých videí</string>
     <string name="resume_on_audio_focus_gain_title">Pokračovať v prehrávaní</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračovať po prerušeniach (napr. hlasový hovor)</string>
-    <string name="notification_channel_name">NewPipe notifikácie</string>
-    <string name="notification_channel_description">Notifikácie pre NewPipe na pozadí a v mini okne</string>
+    <string name="notification_channel_name">YouTube Video Downloader notifikácie</string>
+    <string name="notification_channel_description">Notifikácie pre YouTube Video Downloader na pozadí a v mini okne</string>
     <string name="settings_category_downloads_title">Preberanie</string>
     <string name="settings_file_charset_title">Povolené znaky v názvoch súborov</string>
     <string name="settings_file_replacement_character_summary">Neplatné znaky budú nahradené týmito znakmi</string>
     <string name="settings_file_replacement_character_title">Náhradný znak</string>
     <string name="charset_letters_and_digits">Písmená a číslice</string>
     <string name="charset_most_special_characters">Väčšina špeciálnych znakov</string>
-    <string name="title_activity_about">O NewPipe</string>
+    <string name="title_activity_about">O YouTube Video Downloader</string>
     <string name="action_settings">Nastavenia</string>
     <string name="action_about">O</string>
     <string name="title_licenses">Licencie tretích strán</string>
@@ -171,7 +171,7 @@
     <string name="tab_licenses">Licencie</string>
     <string name="app_description">Ľahké streamovanie v systéme Android.</string>
     <string name="view_on_github">Pozrieť na GitHube</string>
-    <string name="app_license_title">Licencia NewPipe</string>
+    <string name="app_license_title">Licencia YouTube Video Downloader</string>
     <string name="contribution_encouragement">Či už máte nápady, prekladáte, spravíte zmenu dizajnu, čistenie kódu alebo skutočné ťažké zmeny v kóde, pomoc je vždy vítaná. Čím viac, tým lepšie!</string>
     <string name="read_full_license">Prečítať licencie</string>
     <string name="contribution_title">Zapojiť sa</string>
@@ -245,10 +245,10 @@
     <string name="dismiss">Zrušiť</string>
     <string name="rename">Premenovať</string>
     <string name="donation_title">Prispieť</string>
-    <string name="donation_encouragement">Aplikácia NewPipe je vyvíjaná dobrovoľníkmi. Ak sa vám aplikácia páči, odmeňte vývojárov aby mohli NewPipe naďalej vylepšovať. Určite ich poteší napríklad šálka dobrej kávy.</string>
+    <string name="donation_encouragement">Aplikácia YouTube Video Downloader je vyvíjaná dobrovoľníkmi. Ak sa vám aplikácia páči, odmeňte vývojárov aby mohli YouTube Video Downloader naďalej vylepšovať. Určite ich poteší napríklad šálka dobrej kávy.</string>
     <string name="give_back">Daruj</string>
     <string name="website_title">Webstránka</string>
-    <string name="website_encouragement">Pre viac informácií a noviniek navštívte webstránku NewPipe.</string>
+    <string name="website_encouragement">Pre viac informácií a noviniek navštívte webstránku YouTube Video Downloader.</string>
     <string name="delete_item_search_history">Chcete odstrániť túto položku z histórie vyhľadávania?</string>
     <string name="delete_stream_history_prompt">Chcete odstrániť túto položku z histórie pozretých videí?</string>
     <string name="delete_all_history_prompt">Ste si istý, že chcete vymazať všetky položky z histórie?</string>
@@ -370,13 +370,13 @@
     <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania\?</string>
     <string name="search_history_deleted">História vyhľadávaní bola vymazaná.</string>
     <string name="one_item_deleted">1 položka bola vymazaná.</string>
-    <string name="app_license">NewPipe je slobodný softvér pod licenciou copyleft. Môžete ho používať, študovať a vylepšovať ako len chcete. Konkrétne ho môžete šíriť a/alebo upravovať pod podmienkami Všeobecnej verejnej licencie GNU, ako ju publikuje Free Software Foundation, buď verzia 3 licencie, alebo (podľa vašej voľby) ktorákoľvek neskoršia verzia.</string>
-    <string name="privacy_policy_title">Ochrana osobných údajov v NewPipe</string>
-    <string name="privacy_policy_encouragement">NewPipe projekt berie vaše súkromie vážne. Preto aplikácia nezhromažďuje žiadne údaje bez vášho súhlasu.
-\nNewPipe v ochrane súkromia podrobne vysvetľuje, aké údaje budú odoslané a uložené pri hlásení o páde.</string>
+    <string name="app_license">YouTube Video Downloader je slobodný softvér pod licenciou copyleft. Môžete ho používať, študovať a vylepšovať ako len chcete. Konkrétne ho môžete šíriť a/alebo upravovať pod podmienkami Všeobecnej verejnej licencie GNU, ako ju publikuje Free Software Foundation, buď verzia 3 licencie, alebo (podľa vašej voľby) ktorákoľvek neskoršia verzia.</string>
+    <string name="privacy_policy_title">Ochrana osobných údajov v YouTube Video Downloader</string>
+    <string name="privacy_policy_encouragement">YouTube Video Downloader projekt berie vaše súkromie vážne. Preto aplikácia nezhromažďuje žiadne údaje bez vášho súhlasu.
+\nYouTube Video Downloader v ochrane súkromia podrobne vysvetľuje, aké údaje budú odoslané a uložené pri hlásení o páde.</string>
     <string name="read_privacy_policy">Prečítajte si pravidlá ochrany osobných údajov</string>
     <string name="import_settings">Chcete zároveň importovať aj nastavenia?</string>
-    <string name="start_accept_privacy_policy">V súlade s Európskym Všeobecným Nariadením o Ochrane Údajov (GDPR), chceme upriamiť vašu pozornosť na ochranu osobných údajov v NewPipe. Starostlivo si ich prečítajte.
+    <string name="start_accept_privacy_policy">V súlade s Európskym Všeobecným Nariadením o Ochrane Údajov (GDPR), chceme upriamiť vašu pozornosť na ochranu osobných údajov v YouTube Video Downloader. Starostlivo si ich prečítajte.
 \nMusíte ich prijať pred nahlásením chyby.</string>
     <string name="accept">Prijať</string>
     <string name="decline">Odmietnuť</string>
@@ -405,7 +405,7 @@
     <string name="events">Udalosti</string>
     <string name="file_deleted">Súbor vymazaný</string>
     <string name="app_update_notification_channel_name">Oznámenie o aktualizácii aplikácie</string>
-    <string name="app_update_notification_channel_description">Upozornenia na novú verziu NewPipe</string>
+    <string name="app_update_notification_channel_description">Upozornenia na novú verziu YouTube Video Downloader</string>
     <string name="download_to_sdcard_error_title">Externé úložisko je nedostupné</string>
     <string name="download_to_sdcard_error_message">Sťahovanie na externú SD kartu nie je možné. Obnoviť umiestnenie priečinka na sťahovanie\?</string>
     <string name="saved_tabs_invalid_json">Nemožno načítať uložené karty, použijú sa predvolené</string>
@@ -422,7 +422,7 @@
     <string name="grid">Mriežka</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Prepnúť zobrazenie</string>
-    <string name="app_update_notification_content_title">Aktualizácia NewPipe je k dispozícii!</string>
+    <string name="app_update_notification_content_title">Aktualizácia YouTube Video Downloader je k dispozícii!</string>
     <string name="app_update_notification_content_text">Ťuknite a stiahnite</string>
     <string name="missions_header_finished">Ukončené</string>
     <string name="missions_header_pending">Vo fronte</string>
@@ -471,7 +471,7 @@
     <string name="missing_file">Súbor bol presunutý alebo odstránený</string>
     <string name="overwrite_failed">súbor nemožno prepísať</string>
     <string name="download_already_pending">Súbor s rovnakým názvom už čaká na stiahnutie</string>
-    <string name="error_postprocessing_stopped">NewPipe bol ukončený počas spracovávania súboru</string>
+    <string name="error_postprocessing_stopped">YouTube Video Downloader bol ukončený počas spracovávania súboru</string>
     <string name="error_insufficient_storage">Máš plnú pamäť</string>
     <string name="error_progress_lost">Nemožno pokračovať, súbor bol vymazaný</string>
     <string name="error_timeout">Spojenie vypršalo</string>
@@ -580,7 +580,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Zakázať rýchly režim</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že načítavanie informačného kanála je príliš pomalé\? Ak áno, skúste povoliť rýchle načítanie (môžete ho zmeniť v nastaveniach alebo stlačením tlačidla nižšie). 
 \n 
-\nNewPipe ponúka dve stratégie načítania informačného kanála: 
+\nYouTube Video Downloader ponúka dve stratégie načítania informačného kanála:
 \n• Načítava sa celý kanál prihlásenia na odber, ktorý je pomalý, ale úplný. 
 \n• Používanie vyhradeného koncového bodu služby, ktorý je rýchly, ale zvyčajne nie je kompletný. 
 \n 
