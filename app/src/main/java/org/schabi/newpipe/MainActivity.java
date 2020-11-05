@@ -170,9 +170,9 @@ public class MainActivity extends AppCompatActivity {
         getMySharedPrefs();
 
         if (appContainsAds) {
-            Ads.getInstance(this).loadBannerAd(findViewById(R.id.banner_ad_fl));
-            Ads.getInstance(this).loadInterstitialAd();
-            Ads.getInstance(this).loadRewardedVideoAd();
+//            Ads.getInstance(this).loadBannerAd(findViewById(R.id.banner_ad_fl));
+//            Ads.getInstance(this).loadInterstitialAd();
+//            Ads.getInstance(this).loadRewardedVideoAd();
         }
 
 
