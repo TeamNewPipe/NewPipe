@@ -53,15 +53,15 @@
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Svijetla</string>
     <string name="dark_theme_title">Tamna</string>
-    <string name="black_theme_title">Crno</string>
+    <string name="black_theme_title">Crna</string>
     <string name="player_gesture_controls_title">Kontroliranje reproduktora gestama</string>
     <string name="player_gesture_controls_summary">Koristi geste za kontrolu svjetline i glasnoće reproduktora</string>
-    <string name="show_search_suggestions_title">Sugestije pri traženju</string>
+    <string name="show_search_suggestions_title">Prijedlozi pri traženju</string>
     <string name="show_search_suggestions_summary">Prikaži prijedloge pri traženju</string>
     <string name="enable_search_history_title">Povijest pretraživanja</string>
     <string name="enable_search_history_summary">Svaku pretragu spremi lokalno</string>
     <string name="enable_watch_history_title">Prati povijest</string>
-    <string name="enable_watch_history_summary">Pratite pogledane videozapise</string>
+    <string name="enable_watch_history_summary">Spremaj povijest gledanja</string>
     <string name="resume_on_audio_focus_gain_title">Nastavi reprodukciju</string>
     <string name="resume_on_audio_focus_gain_summary">Nastavi reproducirati nakon prekidanja (npr. telefonski pozivi)</string>
     <string name="download_dialog_title">Preuzmi</string>
@@ -73,7 +73,7 @@
     <string name="settings_category_appearance_title">Izgled</string>
     <string name="settings_category_other_title">Drugo</string>
     <string name="background_player_playing_toast">Reprodukcija u pozadini</string>
-    <string name="popup_playing_toast">Reproduciram u skočnom prozoru</string>
+    <string name="popup_playing_toast">Reprodukcija u skočnom prozoru</string>
     <string name="content">Sadržaj</string>
     <string name="show_age_restricted_content_title">Prikaži dobno ograničeni sadržaj</string>
     <string name="video_is_age_restricted">Prikaži dobno ograničeni videozapis. Buduće promjene moguće je postaviti u postavkama.</string>
@@ -275,7 +275,7 @@
     <string name="controls_add_to_playlist_title">Dodaj u</string>
     <string name="download_thumbnail_title">Učitaj slike</string>
     <string name="thumbnail_cache_wipe_complete_notice">Slikovna predmemorija obrisana</string>
-    <string name="metadata_cache_wipe_title">Obriši predmemorijsku metupodataka</string>
+    <string name="metadata_cache_wipe_title">Izbriši metapodatke iz predmemorije</string>
     <string name="service_title">Usluga</string>
     <string name="channels">Kanali</string>
     <string name="playlists">Playliste</string>
@@ -375,13 +375,13 @@
     <string name="download_failed">Preuzimanje nije uspjelo</string>
     <string name="download_finished">Preuzimanje je gotovo</string>
     <string name="show_error">Prikaži pogrešku</string>
-    <string name="download_thumbnail_summary">Isključite kako biste spriječili učitavanje sličica, spremanje podataka i korištenja memorije. Promjene čiste radnu i trajnu predmemoriju slika.</string>
-    <string name="metadata_cache_wipe_summary">Uklonite sve podatke iz privremenih web-stranica</string>
+    <string name="download_thumbnail_summary">Isključi, kako bi se spriječilo učitavanje sličica, spremanje podataka i korištenje memorije. Promjene prazne radnu i trajnu predmemoriju slika.</string>
+    <string name="metadata_cache_wipe_summary">Izbriši sve podatke web-stranica iz predmemorije</string>
     <string name="metadata_cache_wipe_complete_notice">Metapodaci su izbrisani</string>
     <string name="auto_queue_title">Automatski dodaj sljedeći stream u popisa izvođenja</string>
     <string name="auto_queue_summary">Nastavi završavati (ne ponavljajući) popis izvođenja dodavanjem povezanog streama</string>
     <string name="volume_gesture_control_title">Kontrola glasnoće pomoću gesti</string>
-    <string name="volume_gesture_control_summary">Koristi gesture za kontrolu glasnoće</string>
+    <string name="volume_gesture_control_summary">Koristi geste za kontrolu glasnoće</string>
     <string name="brightness_gesture_control_title">Kontrola svjetline pomoću gesti</string>
     <string name="brightness_gesture_control_summary">Koristi gesture za kontrolu svjetline</string>
     <string name="default_content_country_title">Zadana zemlja sadržaja</string>
@@ -453,7 +453,7 @@
     <string name="pause_downloads_on_mobile">Prekini na mrežama s ograničenim prometom</string>
     <string name="pause_downloads_on_mobile_desc">Korisno pri prelasku na mobilne podatke, iako se neka preuzimanja ne mogu obustaviti</string>
     <string name="show_comments_title">Prikaži komentare</string>
-    <string name="show_comments_summary">Onemogućite da biste prestali prikazivati komentare</string>
+    <string name="show_comments_summary">Isključi, kako bi se komentari sakrili</string>
     <string name="autoplay_title">Automatska reprodukcija</string>
     <string name="no_comments">Nema komentara</string>
     <string name="error_unable_to_load_comments">Komentare nije moguće učitati</string>
@@ -543,11 +543,11 @@
     <string name="feed_subscription_not_loaded_count">Nije učitano: %d</string>
     <string name="feed_group_dialog_empty_selection">Nije odabrana nijedna pretplata</string>
     <string name="feed_group_dialog_select_subscriptions">Odaberi pretplate</string>
-    <string name="notification_action_4_title">Peti akcijski gumb</string>
-    <string name="notification_action_3_title">Četvrti akcijski gumb</string>
-    <string name="notification_action_2_title">Treći akcijski gumb</string>
-    <string name="notification_action_1_title">Drugi akcijski gumb</string>
-    <string name="notification_action_0_title">Prvi akcijski gumb</string>
+    <string name="notification_action_4_title">Gumb pete radnje</string>
+    <string name="notification_action_3_title">Gumb četvrte radnje</string>
+    <string name="notification_action_2_title">Gumb treće radnje</string>
+    <string name="notification_action_1_title">Gumb druge radnje</string>
+    <string name="notification_action_0_title">Gumb prve radnje</string>
     <string name="download_choose_new_path">Promijenite mape za preuzimanje kako bi stupile na snagu</string>
     <string name="search_showing_result_for">Prikazuju se rezultati za: %s</string>
     <string name="unsupported_url_dialog_message">Nije moguće prepoznati URL. Želite li otvoriti u drugoj aplikaciji\?</string>
@@ -629,4 +629,7 @@
     <string name="notification_action_nothing">Ništa</string>
     <string name="notification_action_shuffle">Promiješaj</string>
     <string name="notification_action_repeat">Ponovi</string>
+    <string name="error_report_open_github_notice">Provjeri je li tvoj problem već postoji. Dupla pojava problema krade nam vrijeme koje bismo mogli utrošiti na ispravljanje same greške.</string>
+    <string name="notification_actions_summary">Za uređivanje obavijesti radnji, dodirni ih. Označi do tri radnje za kompaktni prikaz obavijesti.</string>
+    <string name="new_seek_duration_toast">Zbog ograničenja ExoPlayera, trajanje traženja postavljeno je na %d s</string>
 </resources>
