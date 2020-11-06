@@ -15,8 +15,8 @@ android {
         resValue "string", "app_name", "Videos Downloader for YouTube"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 1044
-        versionName "18.04"
+        versionCode 1045
+        versionName "18.05"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

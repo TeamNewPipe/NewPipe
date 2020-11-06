@@ -170,12 +170,12 @@ public class MainActivity extends AppCompatActivity {
         getMySharedPrefs();
 
         if (appContainsAds) {
-//            Ads.getInstance(this).loadBannerAd(findViewById(R.id.banner_ad_fl));
-//            Ads.getInstance(this).loadInterstitialAd();
-//            Ads.getInstance(this).loadRewardedVideoAd();
+            Ads.getInstance(this).loadBannerAd(findViewById(R.id.banner_ad_fl));
+            Ads.getInstance(this).loadInterstitialAd();
+            Ads.getInstance(this).loadRewardedVideoAd();
         }
 
-
+        checkForUpdate();
     }
 
 
@@ -534,8 +534,6 @@ public class MainActivity extends AppCompatActivity {
         final boolean isHistoryEnabled = sharedPreferences.getBoolean(
                 getString(R.string.enable_watch_history_key), true);
         drawerItems.getMenu().findItem(ITEM_ID_HISTORY).setVisible(isHistoryEnabled);
-
-        checkForUpdate();
     }
 
     private void checkForUpdate() {
