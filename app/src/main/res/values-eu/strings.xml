@@ -597,7 +597,7 @@
     <string name="detail_sub_channel_thumbnail_view_description">Kanalaren avatar-earen miniatura</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Erakutsi agrupatuta ez dauden harpidetzak bakarrik</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Bai, partzialki ikusitako bideoak ere bai</string>
-    <string name="remove_watched_popup_warning">Erreprodukzio zerrendara gehitu baino lehen eta gero ikusten diren bideoak ezabatuak izango dira.
+    <string name="remove_watched_popup_warning">Jada ikusi eta gero erreprodukzio zerrendara gehitu diren bideoak ezabatuak izango dira.
 \nJarraitu nahi duzu\? Ekintza hau ezin da desegin!</string>
     <string name="remove_watched_popup_title">Ikusitako bideoak ezabatu\?</string>
     <string name="remove_watched">Ikusitako bideoak ezabatu</string>
@@ -638,4 +638,7 @@
     <string name="search_showing_result_for">%s bilaketaren erantzunak erakusten</string>
     <string name="enqueued">Ilaran jarri da</string>
     <string name="enqueue_stream">Jarri ilaran</string>
+    <string name="show_original_time_ago_summary">Zerbitzuen jatorrizko testuak transmisioko elementuetan ikusgai egongo dira</string>
+    <string name="show_original_time_ago_title">Erakutsi «orain dela» jatorrizko denbora elementuetan</string>
+    <string name="notification_actions_summary">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Hautatu horietako hiru gehienez jakinarazpen trinkoan erakusteko eskuineko kontrol laukiak erabiliz.</string>
 </resources>
