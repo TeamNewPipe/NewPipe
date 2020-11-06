@@ -609,7 +609,7 @@
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
-    <string name="youtube_restricted_mode_enabled_title">Безопасный режим YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Включить \"Безопасный режим\" YouTube</string>
     <string name="video_detail_by">От %s</string>
     <string name="channel_created_by">Создано %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
@@ -649,4 +649,7 @@
     <string name="clear_cookie_title">Очистить файлы cookie reCAPTCHA</string>
     <string name="show_age_restricted_content_summary">Показывать контент, который, возможно, не подходит для детей, потому что он имеет возрастное ограничение (например, 18+).</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube предоставляет \"Ограниченный режим\", который скрывает потенциально взрослый контент.</string>
+    <string name="enqueued">Добавлено в очередь</string>
+    <string name="enqueue_stream">Добавить в очередь</string>
+    <string name="clear_cookie_summary">Очистить cookie, которые NewPipe сохраняет при решении reCAPTCHA</string>
 </resources>
