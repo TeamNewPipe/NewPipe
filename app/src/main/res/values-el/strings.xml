@@ -87,10 +87,11 @@
     <string name="title_activity_history">Ιστορικό</string>
     <string name="action_history">Ιστορικό</string>
     <string name="show_info">Εμφάνιση πληροφοριών</string>
-    <string name="main_bg_subtitle">Πατήστε \"Αναζήτηση\" για να ξεκινήσετε</string>
+    <string name="main_bg_subtitle">Πατήστε \"Αναζήτηση\" για να ξεκινήσετε
+\n</string>
     <string name="no_player_found_toast">Δε βρέθηκε πρόγραμμα αναπαραγωγής ροής δεδομένων (μπορείτε να εγκαταστήσετε το VLC για να κάνετε αναπαραγωγή).</string>
     <string name="controls_download_desc">Λήψη του αρχείου ροής</string>
-    <string name="use_external_video_player_summary">Αφαίρεση του ήχου από κάποιες αναλύσεις</string>
+    <string name="use_external_video_player_summary">Αφαιρείται ο ήχος από κάποιες αναλύσεις</string>
     <string name="popup_mode_share_menu_title">Λειτουργία αναδυόμενου παραθύρου</string>
     <string name="channel_unsubscribed">Κανάλι διαγράφηκε</string>
     <string name="subscription_change_failed">Αδύνατη η αλλαγή της εγγραφής</string>
