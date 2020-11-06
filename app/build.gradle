@@ -217,5 +217,5 @@ dependencies {
 
     //APP_UPDATER
     implementation 'com.github.javiersantos:AppUpdater:2.7'
-
+    //APP_UPDATER
 }
