@@ -147,10 +147,10 @@ public class DownloadInitializer extends Thread {
                     if (!mMission.running || Thread.interrupted()) return;
                 }
 
-                SharpStream fs = mMission.storage.getStream();
-                fs.setLength(mMission.offsets[mMission.current] + mMission.length);
-                fs.seek(mMission.offsets[mMission.current]);
-                fs.close();
+                try (SharpStream fs = mMission.storage.getStream()) {
+                    fs.setLength(mMission.offsets[mMission.current] + mMission.length);
+                    fs.seek(mMission.offsets[mMission.current]);
+                }
 
                 if (!mMission.running || Thread.interrupted()) return;
 

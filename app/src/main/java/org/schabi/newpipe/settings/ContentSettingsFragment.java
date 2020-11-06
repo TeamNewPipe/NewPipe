@@ -212,15 +212,14 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             //checkpoint before export
             NewPipeDatabase.checkpoint();
 
-            final ZipOutputStream outZip = new ZipOutputStream(
-                    new BufferedOutputStream(
-                            new FileOutputStream(path)));
-            ZipHelper.addFileToZip(outZip, newpipeDb.getPath(), "newpipe.db");
+            try (ZipOutputStream outZip = new ZipOutputStream(new BufferedOutputStream(
+                            new FileOutputStream(path)))) {
+                ZipHelper.addFileToZip(outZip, newpipeDb.getPath(), "newpipe.db");
 
-            saveSharedPreferencesToFile(newpipeSettings);
-            ZipHelper.addFileToZip(outZip, newpipeSettings.getPath(), "newpipe.settings");
-
-            outZip.close();
+                saveSharedPreferencesToFile(newpipeSettings);
+                ZipHelper.addFileToZip(outZip, newpipeSettings.getPath(),
+                        "newpipe.settings");
+            }
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT)
                     .show();
@@ -230,41 +229,23 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     private void saveSharedPreferencesToFile(final File dst) {
-        ObjectOutputStream output = null;
-        try {
-            output = new ObjectOutputStream(new FileOutputStream(dst));
+        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(dst))) {
             final SharedPreferences pref
                     = PreferenceManager.getDefaultSharedPreferences(requireContext());
             output.writeObject(pref.getAll());
-
+            output.flush();
         } catch (final IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (output != null) {
-                    output.flush();
-                    output.close();
-                }
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
         }
     }
 
     private void importDatabase(final String filePath) {
         // check if file is supported
-        ZipFile zipFile = null;
-        try {
-            zipFile = new ZipFile(filePath);
+        try (ZipFile zipFile = new ZipFile(filePath)) {
         } catch (final IOException ioe) {
             Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
                     .show();
             return;
-        } finally {
-            try {
-                zipFile.close();
-            } catch (final Exception ignored) {
-            }
         }
 
         try {
@@ -312,9 +293,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     private void loadSharedPreferences(final File src) {
-        ObjectInputStream input = null;
-        try {
-            input = new ObjectInputStream(new FileInputStream(src));
+        try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(src))) {
             final SharedPreferences.Editor prefEdit = PreferenceManager
                     .getDefaultSharedPreferences(requireContext()).edit();
             prefEdit.clear();
@@ -338,14 +317,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             prefEdit.commit();
         } catch (final IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (input != null) {
-                    input.close();
-                }
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
         }
     }
 
