@@ -568,7 +568,6 @@ public class MainActivity extends AppCompatActivity {
                 .setUpdateFrom(UpdateFrom.JSON)
                 .setUpdateJSON("https://raw.githubusercontent.com/SArsalanK/NewPipe/dev/app/update-changelog.json")
                 .setDisplay(Display.DIALOG)
-                .showAppUpdated(true)
                 .start();
 
     }
