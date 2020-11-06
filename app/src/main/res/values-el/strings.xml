@@ -92,7 +92,7 @@
     <string name="controls_download_desc">Λήψη του αρχείου ροής</string>
     <string name="use_external_video_player_summary">Αφαίρεση του ήχου από κάποιες αναλύσεις</string>
     <string name="popup_mode_share_menu_title">Λειτουργία αναδυόμενου παραθύρου</string>
-    <string name="channel_unsubscribed">Απεγγραφή από το κανάλι</string>
+    <string name="channel_unsubscribed">Κανάλι διαγράφηκε</string>
     <string name="subscription_change_failed">Αδύνατη η αλλαγή της εγγραφής</string>
     <string name="subscription_update_failed">Αδύνατη η ενημέρωση της εγγραφής</string>
     <string name="tab_main">Κύριο</string>
