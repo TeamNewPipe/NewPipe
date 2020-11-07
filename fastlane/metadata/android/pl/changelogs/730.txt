@@ -1,2 +1,2 @@
-# Naprawiony
-- Ponownie błąd funkcji odszyfrowywania poprawki hot fix.
+# Naprawiono
+- Ponownie naprawiono błąd funkcji odszyfrowywania.

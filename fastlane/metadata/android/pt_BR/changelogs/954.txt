@@ -1,0 +1,7 @@
+fluxo de trabalho do novo aplicativo: reproduza vídeos na página de detalhes, deslize para baixo para minimizar o player 
+• Notificações MediaStyle: ações personalizáveis em notificações, melhorias de desempenho 
+• redimensionamento básico ao usar NewPipe como app de desktop 
+• mostrar diálogo com opções abertas em caso de URL não suportado 
+• Melhorada a experiência de sugestão de pesquisa
+• Qualidade de vídeo padrão aumentada para 720p60 (player do app) e 480p (pop-up)
+• correções de bugs

@@ -1,0 +1,7 @@
+Migliorato
+• Riproduzione automatica disponibile per tutte le piattaforme (invece che solo per YouTube)
+
+Aggiustato
+• Contenuti consigliati per supportare le continuazioni di YouTube
+• Restrizioni d'età per i video di YouTube
+• [Android TV] Focus prolungato overlay

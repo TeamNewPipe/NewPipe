@@ -51,7 +51,8 @@
     <string name="item_deleted">Item हटा दिया गया है</string>
     <string name="trending">फ़िलहाल चर्चा में है</string>
     <string name="play_queue_audio_settings">ऑडियो सेटिंग</string>
-    <string name="main_bg_subtitle">शुरू करने के लिए खोज चिह्न दबाएं</string>
+    <string name="main_bg_subtitle">शुरू करने के लिए \"खोज\" चिह्न दबाएं
+\n</string>
     <string name="cancel">रद्द करें</string>
     <string name="did_you_mean">क्या आप का मतलब %1$s है?</string>
     <string name="share_dialog_title">शेयर करें</string>

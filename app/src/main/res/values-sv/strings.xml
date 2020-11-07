@@ -144,9 +144,9 @@
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>
     <string name="storage_permission_denied">Bevilja åtkomst till lagringsutrymme först</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">T.</string>
     <string name="short_million">mn</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd.</string>
     <string name="no_subscribers">Inga prenumeranter</string>
     <plurals name="subscribers">
         <item quantity="one">%s prenumerant</item>

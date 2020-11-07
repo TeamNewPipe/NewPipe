@@ -41,7 +41,7 @@
     <string name="settings_category_other_title">Lainnya</string>
     <string name="background_player_playing_toast">Memutar di latar belakang</string>
     <string name="content">Konten</string>
-    <string name="show_age_restricted_content_title">Konten yang dibatasi usia</string>
+    <string name="show_age_restricted_content_title">Tampilkan konten yang dibatasi usia</string>
     <string name="video_is_age_restricted">Tampilkan video yang dibatasi usia. Bisa diubah nanti dari pengaturan.</string>
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua thumbnail</string>
@@ -566,7 +566,7 @@
     <string name="remove_watched">Buang ditonton</string>
     <string name="restricted_video">Video ini dibatasi usia.
 \n
-\nAktifkan \"Konten yang dibatasi usia\" di dalam pengaturan jika anda ingin melihatnya.</string>
+\nAktifkan \"%1$s\" di dalam pengaturan jika anda ingin melihatnya.</string>
     <string name="content_not_supported">Konten ini belum didukung oleh NewPipe.
 \n
 \nSemoga akan didukung pada versi berikutnya.</string>
@@ -588,7 +588,7 @@
 \nJadi pilihlah yang sesuai yang kamu inginkan: kecepatan atau kelengkapan informasi.</string>
     <string name="show_original_time_ago_summary">Teks asli dari layanan akan tampil pada item stream</string>
     <string name="show_original_time_ago_title">Tampilkan waktu yang lalu sebenarnya pada item</string>
-    <string name="youtube_restricted_mode_enabled_title">Mode terbatas Youtube</string>
+    <string name="youtube_restricted_mode_enabled_title">Tampilkan \"Mode Terbatas\" Youtube</string>
     <string name="video_detail_by">Oleh %s</string>
     <string name="channel_created_by">Dibuat oleh %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar kanal</string>
@@ -623,4 +623,12 @@
     <string name="notification_action_0_title">Tombol tindakan pertama</string>
     <string name="notification_scale_to_square_image_summary">Ubah ukuran thumbnail yang ditampilkan di notifikasi dari rasio aspek 16:9 ke 1:1 (mungkin terdistorsi)</string>
     <string name="notification_scale_to_square_image_title">Ubah ukuran thumbnail ke rasio aspek 1:1</string>
+    <string name="show_memory_leaks">Tampilkan kebocoran memori</string>
+    <string name="enqueued">Ditambahkan</string>
+    <string name="enqueue_stream">Tambahkan</string>
+    <string name="clear_cookie_summary">Hapus kuki yang disimpan oleh NewPipe saat anda memecahkan reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Kuki reCAPTCHA telah dihapus</string>
+    <string name="clear_cookie_title">Hapus kuki reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube menyediakan \"Mode Terbatas\" yang menyembunyikan video konten dewasa.</string>
+    <string name="show_age_restricted_content_summary">Menampilkan konten yang mungkin tidak cocok untuk anak-anak karena memiliki batasan umur (seperti 18+).</string>
 </resources>

@@ -70,7 +70,7 @@
     <string name="settings_category_popup_title">懸浮視窗</string>
     <string name="popup_playing_toast">以懸浮視窗播放中</string>
     <string name="content">內容</string>
-    <string name="show_age_restricted_content_title">年齡限制內容</string>
+    <string name="show_age_restricted_content_title">顯示年齡限制內容</string>
     <string name="video_is_age_restricted">顯示有年齡限制的影片。未來仍可從設定中變更。</string>
     <string name="downloads">下載</string>
     <string name="downloads_title">下載</string>
@@ -580,7 +580,7 @@
     <string name="songs">歌曲</string>
     <string name="restricted_video">此影片有年鈴限制。
 \n
-\n如果您想要觀看，請在設定中開啟「年齡限制的內容」。</string>
+\n如果您想要觀看，請在設定中開啟「%1$s」。</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">是的，以及部份觀看的影片</string>
     <string name="remove_watched_popup_warning">在新增到播放清單前後的影片將被移除。
 \n您確定嗎？此動作無法復原！</string>
@@ -588,7 +588,7 @@
     <string name="remove_watched">移除已觀看</string>
     <string name="show_original_time_ago_summary">來自服務的原始文字將在串流項目中可見</string>
     <string name="show_original_time_ago_title">在項目上顯示原始時間</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube 受限模式</string>
+    <string name="youtube_restricted_mode_enabled_title">開啟 YouTube 的「受限模式」</string>
     <string name="video_detail_by">由 %s</string>
     <string name="channel_created_by">由 %s 建立</string>
     <string name="detail_sub_channel_thumbnail_view_description">頻道大頭貼縮圖</string>
@@ -623,4 +623,12 @@
     <string name="notification_action_0_title">第一動作按鈕</string>
     <string name="notification_scale_to_square_image_summary">將通知中顯示的影片縮圖從 16:9 縮放到 1:1（可能會導致失真）</string>
     <string name="notification_scale_to_square_image_title">把縮圖縮放到 1:1 的長寬比</string>
+    <string name="show_memory_leaks">顯示記憶體洩漏</string>
+    <string name="enqueued">已加入佇列</string>
+    <string name="enqueue_stream">加入佇列</string>
+    <string name="clear_cookie_summary">清除 NewPipe 在您解決 reCAPTCHA 時儲存的 cookie</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA cookies 已被清除</string>
+    <string name="clear_cookie_title">清除 reCAPTCHA cookies</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube 提供了「受限模式」，可以隱藏潛在的成人內容。</string>
+    <string name="show_age_restricted_content_summary">顯示可能不適於兒童的內容（因為其有年齡限制，如18歲以上等）。</string>
 </resources>

@@ -61,7 +61,7 @@
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
     <string name="share">Compartilhar</string>
     <string name="share_dialog_title">Compartilhar com</string>
-    <string name="show_age_restricted_content_title">Conteúdo com restrição de idade</string>
+    <string name="show_age_restricted_content_title">Mostrar conteúdo com restrição de idade</string>
     <string name="show_next_and_similar_title">Mostrar \'Próximo\' e \'Similares\'</string>
     <string name="sorry_string">Desculpe, isto não devia ter ocorrido.</string>
     <string name="start">Iniciar</string>
@@ -89,7 +89,8 @@
     <string name="light_parsing_error">O site não pôde ser analisado totalmente</string>
     <string name="list_thumbnail_view_description">Capa de visualização do vídeo</string>
     <string name="live_streams_not_supported">Transmissões ao vivo ainda não são suportadas</string>
-    <string name="main_bg_subtitle">Toque em \"Buscar\" para iniciar</string>
+    <string name="main_bg_subtitle">Toque em \"Buscar\" para iniciar
+\n</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">Link inválido ou internet indisponível</string>
@@ -587,9 +588,9 @@
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>
-    <string name="restricted_video">Este vídeo tem restrisão de idade.
+    <string name="restricted_video">Este vídeo tem restrição de idade.
 \n
-\nAtive o \"Conteúdo com restrição de idade\" nas configurações se quiser vê-lo.</string>
+\nAtive \"%1$s\" nas configurações se quiser vê-lo.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_warning">Vídeos vistos antes e depois de adicionar à lista de reprodução serão removidos. 
 \nTem certeza\? Isto não pode ser desfeito!</string>
@@ -597,7 +598,7 @@
     <string name="remove_watched">Remover vistos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de transmissão</string>
     <string name="show_original_time_ago_title">Mostrar tempo original nos itens</string>
-    <string name="youtube_restricted_mode_enabled_title">Modo restrito do YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Ativar o \"Modo Restrito\" do YouTube</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Capa do avatar do canal</string>
@@ -632,4 +633,12 @@
     <string name="notification_action_0_title">Primeiro botão de ação</string>
     <string name="notification_scale_to_square_image_summary">Dimensione a miniatura do vídeo mostrada na notificação de proporção 16:9 para 1:1 (pode apresentar distorções)</string>
     <string name="notification_scale_to_square_image_title">Dimensione a miniatura para a proporção de 1:1</string>
+    <string name="show_memory_leaks">Mostrar vazamentos de memória</string>
+    <string name="enqueued">Na fila</string>
+    <string name="enqueue_stream">Pôr na fila</string>
+    <string name="clear_cookie_summary">Apaga os cookies que o NewPipe armazena quando você resolve um reCAPTCHA</string>
+    <string name="clear_cookie_title">Apagar cookies de reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Os cookies de reCAPTCHA foram apagados</string>
+    <string name="youtube_restricted_mode_enabled_summary">O YouTube oferece um \"Modo Restrito\" que oculta conteúdo potencialmente adulto.</string>
+    <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente inadequado para crianças porque tem um limite de idade (como +18).</string>
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="use_external_video_player_title">Tashqi video pleerdan foydalanish</string>
+    <string name="screen_rotation">aylantirish</string>
+    <string name="choose_browser">Brauzer tanlang</string>
+    <string name="share_dialog_title">Bilan baham ko\'rish</string>
+    <string name="search_showing_result_for">%s uchun natijalar ko\'rsatilmoqda</string>
+    <string name="did_you_mean">\"%1$s\" demoqchimisiz\?</string>
+    <string name="settings">Sozlashlar</string>
+    <string name="search">Qidirish</string>
+    <string name="controls_download_desc">stream file yuklab olish</string>
+    <string name="download">Yuklab olish</string>
+    <string name="share">Baham ko\'rish</string>
+    <string name="install">O\'rnatish</string>
+    <string name="open_in_browser">Brauzerda ochish</string>
+    <string name="open_in_popup_mode">Qalqib chiqadigan rejimda ochish</string>
+    <string name="cancel">Bekor qilish</string>
+    <string name="no_player_found_toast">Stream pleer topilmadi (uni ijro etish uchun VLC o\'rnatishingiz mumkin).</string>
+    <string name="no_player_found">Hech qanday translatsiya pleyeri topilmadi. VLC o\'rnatilsinmi\?</string>
+    <string name="upload_date_text">%1$s tomonidan e‘lon qilingan</string>
+    <string name="view_count_text">%1$s marta ko‘rilgan</string>
+    <string name="main_bg_subtitle">Boshlash uchun \"Izlash\" tugmasini bosing
+\n</string>
+</resources>

@@ -42,7 +42,7 @@
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">（測試中）為加強私隱，要求通過 Tor 傳送下載流量（暫時不支援串流影片）。</string>
     <string name="view_count_text">觀看次數：%1$s</string>
-    <string name="no_player_found">找不到任何串流播放器，您要安裝 VLC 嗎？</string>
+    <string name="no_player_found">找不到任何串流播放器，要安裝 VLC 嗎？</string>
     <string name="open_in_browser">使用瀏覽器開啟</string>
     <string name="share_dialog_title">分享影片</string>
     <string name="download_path_audio_title">聲音下載路徑</string>
@@ -50,7 +50,8 @@
     <string name="download_path_audio_dialog_title">選擇聲音檔案的下載路徑</string>
     <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
-    <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用</string>
+    <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用
+\n</string>
     <string name="autoplay_by_calling_app_title">自動撥放</string>
     <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他程式調用時播放視頻</string>
     <string name="content">內容</string>

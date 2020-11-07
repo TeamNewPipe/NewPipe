@@ -1,2 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="screen_rotation">ᱟᱹᱪᱩᱨ</string>
+    <string name="choose_browser">ᱵᱨᱟᱣᱡᱚᱨ ᱪᱚᱭᱚᱱ ᱢᱮ</string>
+    <string name="share_dialog_title">ᱥᱟᱞᱟᱜ ᱦᱟᱹᱴᱤᱧ ᱢᱮ</string>
+    <string name="settings">ᱥᱟᱡᱟᱣᱠᱚ</string>
+    <string name="search">ᱥᱮᱸᱫᱽᱨᱟ</string>
+    <string name="download">ᱰᱟᱩᱱᱞᱚᱰ</string>
+    <string name="share">ᱦᱟᱹᱴᱤᱧ</string>
+    <string name="open_in_browser">ᱵᱨᱟᱣᱡᱟᱚᱨ ᱨᱮ ᱠᱷᱩᱞᱟᱹᱭ ᱢᱮ</string>
+    <string name="cancel">ᱵᱟᱹᱰᱨᱟᱹ</string>
+    <string name="install">ᱵᱚᱦᱟᱞ</string>
+    <string name="view_count_text">%1$s ᱧᱮᱞᱠᱚ</string>
+    <string name="main_bg_subtitle">ᱮᱦᱲᱵ ᱞᱟᱹᱜᱤᱫ \"ᱥᱮᱸᱫᱽᱨᱟ\" ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ
+\n</string>
+    <string name="use_external_video_player_title">ᱵᱟᱦᱨᱮ ᱣᱤᱰᱤᱭᱚ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱮᱵᱷᱟᱨ ᱢᱮᱸ</string>
+    <string name="search_showing_result_for">ᱛᱮᱞᱟ ᱫᱮᱠᱷᱟᱣᱜᱽ ᱠᱟᱱᱟᱺ%s</string>
+    <string name="did_you_mean">ᱟᱢᱟᱜ ᱚᱨᱛᱷᱚ \"%1$s\" ᱥᱮ\?</string>
+    <string name="controls_download_desc">ᱥᱴᱨᱤᱢ ᱨᱮᱫ ᱰᱟᱩᱱᱞᱳᱰ ᱢᱮᱸ</string>
+    <string name="open_in_popup_mode">ᱯᱚᱯᱚᱯ ᱢᱳᱰ ᱨᱮ ᱠᱷᱩᱞᱟᱹᱭ ᱢᱮᱸ</string>
+    <string name="no_player_found_toast">ᱚᱠᱟ ᱥᱴᱨᱤᱢ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ (ᱟᱢ VLC ᱯᱞᱮᱭᱟᱹᱨ ᱵᱚᱦᱟᱞ ᱠᱟᱛᱮ ᱚᱱᱟ ᱨᱮ ᱯᱞᱮ ᱫᱟᱲᱮᱭᱟᱜᱼᱟᱢ)᱾</string>
+    <string name="no_player_found">ᱚᱠᱟ ᱥᱴᱨᱤᱢ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ ᱾ VLC ᱵᱚᱦᱟᱞ ᱟᱢ ᱥᱮ\?</string>
+    <string name="upload_date_text">%1$s ᱨᱮ ᱩᱪᱷᱟᱹᱱ ᱮᱱᱟ</string>
+    <string name="subscribe_button_title">ᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ</string>
+    <string name="unsubscribe">ᱟᱹᱱᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ</string>
+    <string name="subscribed_button_title">ᱥᱟᱹᱵᱥᱠᱨᱭᱤᱵᱽ ᱮᱱᱟ</string>
+</resources>

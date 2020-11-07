@@ -26,26 +26,26 @@
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme dizinini seçin</string>
     <string name="autoplay_by_calling_app_title">Kendiliğinden oynat</string>
     <string name="autoplay_by_calling_app_summary">NewPipe başka uygulamadan çağrıldığında video oynatır</string>
-    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
+    <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
     <string name="show_play_with_kodi_summary">Kodi ortam merkezi üzerinden video oynatmak için bir seçenek göster</string>
-    <string name="default_audio_format_title">Öntanımlı ses biçimi</string>
+    <string name="default_audio_format_title">Varsayılan ses biçimi</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>
     <string name="download_dialog_title">İndir</string>
     <string name="show_next_and_similar_title">\'Sonraki\' ve \'Benzer\' videoları göster</string>
     <string name="unsupported_url">Desteklenmeyen URL</string>
-    <string name="content_language_title">Öntanımlı içerik dili</string>
+    <string name="content_language_title">Varsayılan içerik dili</string>
     <string name="play_audio">Ses</string>
     <string name="settings_category_video_audio_title">Video ve ses</string>
     <string name="settings_category_appearance_title">Görünüm</string>
     <string name="settings_category_other_title">Diğer</string>
     <string name="background_player_playing_toast">Arka planda oynatılıyor</string>
     <string name="content">İçerik</string>
-    <string name="show_age_restricted_content_title">Yaş kısıtlamalı içerik</string>
+    <string name="show_age_restricted_content_title">Yaş kısıtlı içeriği göster</string>
     <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Daha sonra ayarlardan değiştirilebilir.</string>
     <string name="duration_live">Canlı</string>
     <string name="downloads">İndirilenler</string>
@@ -87,7 +87,7 @@
     <string name="pause">Duraklat</string>
     <string name="view">Oynat</string>
     <string name="delete">Sil</string>
-    <string name="checksum">Sağlama</string>
+    <string name="checksum">Doğrulama</string>
     <string name="add">Yeni görev</string>
     <string name="finish">Tamam</string>
     <string name="msg_name">Dosya adı</string>
@@ -102,14 +102,14 @@
     <string name="msg_copied">Panoya kopyalandı</string>
     <string name="no_available_dir">Lütfen daha sonra ayarlardan uygun bir indirme dizini belirleyin</string>
     <string name="could_not_setup_download_menu">İndirme menüsü ayarlanamadı</string>
-    <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
+    <string name="open_in_popup_mode">Açılır pencere modunda aç</string>
     <string name="popup_mode_share_menu_title">Açılır pencere modu</string>
-    <string name="default_popup_resolution_title">Öntanımlı açılır pencere çözünürlüğü</string>
+    <string name="default_popup_resolution_title">Varsayılan açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Yüksek çözünürlükleri göster</string>
     <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K videoları oynatabilir</string>
-    <string name="default_video_format_title">Öntanımlı video biçimi</string>
+    <string name="default_video_format_title">Varsayılan video biçimi</string>
     <string name="black_theme_title">Siyah</string>
-    <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
+    <string name="popup_playing_toast">Açılır pencere modunda oynatılıyor</string>
     <string name="all">Tümü</string>
     <string name="channel">Kanal</string>
     <string name="yes">Evet</string>
@@ -121,7 +121,7 @@
     <string name="short_thousand">b</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
+    <string name="msg_popup_permission">Bu izin, açılır pencere modunda
 \naçmak için gereklidir</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
     <string name="recaptcha_request_toast">reCAPTCHA formu istendi</string>
@@ -133,8 +133,8 @@
     <string name="settings_category_popup_title">Açılır pencere</string>
     <string name="popup_resizing_indicator_title">Yeniden boyutlandırılıyor</string>
     <string name="use_external_video_player_summary">Bazı çözünürlüklerde sesi kaldırır</string>
-    <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini kontrol etmek için hareketleri kullanın</string>
-    <string name="player_gesture_controls_title">Hareketli oynatıcı kontrolü</string>
+    <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini denetlemek için hareketleri kullan</string>
+    <string name="player_gesture_controls_title">Hareketli oynatıcı denetimi</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
     <string name="show_search_suggestions_summary">Arama yaparken önerileri göster</string>
     <string name="best_resolution">En iyi çözünürlük</string>
@@ -175,7 +175,7 @@
     <string name="resume_on_audio_focus_gain_title">Oynatmaya devam et</string>
     <string name="resume_on_audio_focus_gain_summary">Kesintilerden sonra (örneğin telefon çağrısı) oynatmaya devam et</string>
     <string name="settings_category_player_title">Oynatıcı</string>
-    <string name="settings_category_player_behavior_title">Davranış</string>
+    <string name="settings_category_player_behavior_title">Tercihler</string>
     <string name="settings_category_history_title">Geçmiş ve önbellek</string>
     <string name="playlist">Oynatma Listesi</string>
     <string name="undo">Geri al</string>
@@ -237,7 +237,7 @@
     <string name="give_back">Bağışta bulunun</string>
     <string name="website_title">Web sitesi</string>
     <string name="website_encouragement">Daha çok bilgi ve haber için NewPipe web sitesini ziyaret edin.</string>
-    <string name="default_content_country_title">Öntanımlı içerik ülkesi</string>
+    <string name="default_content_country_title">Varsayılan içerik ülkesi</string>
     <string name="service_title">Hizmet</string>
     <string name="toggle_orientation">Yönlendirmeyi Değiştir</string>
     <string name="switch_to_background">Arka Plana Geç</string>
@@ -285,7 +285,7 @@
     <string name="delete_playlist">Sil</string>
     <string name="rename_playlist">Yeniden adlandır</string>
     <string name="name">Ad</string>
-    <string name="append_playlist">Oynatma Listesine Ekle</string>
+    <string name="append_playlist">Oynatma listesine ekle</string>
     <string name="set_as_playlist_thumbnail">Oynatma listesi küçük resmi olarak ayarla</string>
     <string name="bookmark_playlist">Oynatma listesini yer imlerine ekle</string>
     <string name="unbookmark_playlist">Yer imini kaldır</string>
@@ -294,7 +294,7 @@
     <string name="playlist_add_stream_success">Oynatma listesine eklendi</string>
     <string name="playlist_thumbnail_change_success">Oynatma listesinin küçük resmi değiştirildi.</string>
     <string name="playlist_delete_failure">Oynatma listesi silinemedi.</string>
-    <string name="caption_none">Altyazı yok</string>
+    <string name="caption_none">Alt yazı yok</string>
     <string name="resize_fit">Sığdır</string>
     <string name="resize_fill">Doldur</string>
     <string name="resize_zoom">Yakınlaştır</string>
@@ -329,11 +329,11 @@
 \n1. Şu adrese gidin: %1$s 
 \n2. Sorulduğunda hesabınıza giriş yapın 
 \n3. İndirme başlamalı (bu, dışa aktarma dosyasıdır)</string>
-    <string name="import_soundcloud_instructions">URL\'yi veya ID\'nizi yazarak SoundCloud profilini içe aktarın: 
-\n 
-\n1. Web tarayıcısında \"masaüstü kipi\" etkinleştirin (site, mobil aygıtlar için uygun değildir) 
-\n2. Şu adrese gidin: %1$s 
-\n3. Sorulduğunda giriş yapın 
+    <string name="import_soundcloud_instructions">URL\'yi veya ID\'nizi yazarak SoundCloud profilini içe aktarın:
+\n
+\n1. Web tarayıcısında \"masaüstü modu\" etkinleştirin (site, mobil aygıtlar için uygun değildir)
+\n2. Şu adrese gidin: %1$s
+\n3. Sorulduğunda giriş yapın
 \n4. Yönlendirildiğiniz profil URL\'sini kopyalayın.</string>
     <string name="import_soundcloud_instructions_hint">kimliginiz, soundcloud.com/kimliginiz</string>
     <string name="import_network_expensive_warning">Bu sürecin ağa yük olabileceğini unutmayın. 
@@ -350,10 +350,10 @@
     <string name="playback_pitch">Ses yüksekliği</string>
     <string name="unhook_checkbox">Ayır (bozulmaya neden olabilir)</string>
     <string name="no_streams_available_download">İndirilebilecek akış yok</string>
-    <string name="preferred_open_action_settings_title">Yeğlenen \'aç\' eylemi</string>
-    <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
-    <string name="caption_setting_title">Altyazılar</string>
-    <string name="caption_setting_description">Oynatıcı altyazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir.</string>
+    <string name="preferred_open_action_settings_title">Tercih edilen \'aç\' eylemi</string>
+    <string name="preferred_open_action_settings_summary">İçerik açılırken varsayılan eylem — %s</string>
+    <string name="caption_setting_title">Alt yazılar</string>
+    <string name="caption_setting_description">Oynatıcı alt yazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir.</string>
     <string name="toast_no_player">Bu dosyayı oynatmak için herhangi bir uygulama yüklü değil</string>
     <string name="clear_views_history_title">İzleme geçmişini temizle</string>
     <string name="clear_views_history_summary">Oynatılan akışların geçmişini ve kalınan oynatım konumlarını siler</string>
@@ -380,7 +380,7 @@
     <string name="minimize_on_exit_summary">Ana video oynatıcıdan diğer uygulamaya geçiş yaparken eylem — %s</string>
     <string name="minimize_on_exit_none_description">Yok</string>
     <string name="minimize_on_exit_background_description">Arka plan oynatıcısını küçült</string>
-    <string name="minimize_on_exit_popup_description">Açılır pencere oynatıcına küçült</string>
+    <string name="minimize_on_exit_popup_description">Açılır pencere oynatıcısına küçült</string>
     <string name="skip_silence_checkbox">Sessizlik sırasında hızlı ileri</string>
     <string name="playback_step">Adım</string>
     <string name="playback_reset">Sıfırla</string>
@@ -391,25 +391,25 @@
     <string name="unsubscribe">Abonelikten çık</string>
     <string name="tab_new">Yeni Sekme</string>
     <string name="tab_choose">Sekmeyi Seçin</string>
-    <string name="volume_gesture_control_title">Hareketli ses kontrolü</string>
-    <string name="volume_gesture_control_summary">Oynatıcının sesini kontrol etmek için hareketleri kullanın</string>
-    <string name="brightness_gesture_control_title">Hareketli parlaklık kontrolü</string>
-    <string name="brightness_gesture_control_summary">Oynatıcının parlaklığını kontrol etmek için hareketleri kullanın</string>
+    <string name="volume_gesture_control_title">Hareketli ses denetimi</string>
+    <string name="volume_gesture_control_summary">Oynatıcının sesini denetlemek için hareketleri kullan</string>
+    <string name="brightness_gesture_control_title">Hareketli parlaklık denetimi</string>
+    <string name="brightness_gesture_control_summary">Oynatıcının parlaklığını denetlemek için hareketleri kullan</string>
     <string name="settings_category_updates_title">Güncellemeler</string>
     <string name="file_deleted">Dosya silindi</string>
     <string name="app_update_notification_channel_name">Uygulama Güncelleme Bildirimi</string>
     <string name="app_update_notification_channel_description">Yeni NewPipe sürümü için bildirimler</string>
     <string name="download_to_sdcard_error_title">Harici depolama kullanılamıyor</string>
     <string name="download_to_sdcard_error_message">Harici SD karta indirmek mümkün değil. İndirme dizini konumu sıfırlansın mı\?</string>
-    <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle öntanımlılar kullanılıyor</string>
-    <string name="restore_defaults">Öntanımlıları geri yükle</string>
-    <string name="restore_defaults_confirmation">Öntanımlıları geri yüklemek istiyor musunuz\?</string>
+    <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle varsayılanlar kullanılıyor</string>
+    <string name="restore_defaults">Varsayılanları geri yükle</string>
+    <string name="restore_defaults_confirmation">Varsayılanları geri yüklemek istiyor musunuz\?</string>
     <string name="subscribers_count_not_available">Abone sayısı mevcut değil</string>
     <string name="main_page_content_summary">Ana sayfada hangi sekmeler gösterilir</string>
     <string name="selection">Seçim</string>
     <string name="updates_setting_title">Güncellemeler</string>
     <string name="updates_setting_description">Yeni bir sürüm mevcut olduğunda uygulama güncellemesi için bir bildirim göster</string>
-    <string name="list_view_mode">Liste görünümü kipi</string>
+    <string name="list_view_mode">Liste görünümü modu</string>
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
     <string name="auto">Otomatik</string>
@@ -490,7 +490,7 @@
         <item quantity="one">%s video</item>
         <item quantity="other">%s video</item>
     </plurals>
-    <string name="default_kiosk_page_summary">Öntanımlı Kiosk</string>
+    <string name="default_kiosk_page_summary">Varsayılan Kiosk</string>
     <string name="no_one_watching">Kimse izlemiyor</string>
     <plurals name="watching">
         <item quantity="one">%s izliyor</item>
@@ -523,7 +523,7 @@
     <string name="deleted_downloads">%1$d indirme silindi</string>
     <string name="permission_display_over_apps">Diğer uygulamaların üzerinde görüntüleme izni ver</string>
     <string name="app_language_title">Uygulama dili</string>
-    <string name="systems_language">Sistem öntanımlısı</string>
+    <string name="systems_language">Sistem varsayılanı</string>
     <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" düğmesine basın</string>
     <string name="recaptcha_done_button">Bitti</string>
     <string name="videos_string">Videolar</string>
@@ -547,37 +547,37 @@
         <item quantity="one">%d gün</item>
         <item quantity="other">%d gün</item>
     </plurals>
-    <string name="feed_groups_header_title">Kanal kümeleri</string>
-    <string name="feed_oldest_subscription_update">Besleme en son güncellendi: %s</string>
+    <string name="feed_groups_header_title">Kanal grupları</string>
+    <string name="feed_oldest_subscription_update">Akış en son güncellendi: %s</string>
     <string name="feed_subscription_not_loaded_count">Yüklenmedi: %d</string>
-    <string name="feed_notification_loading">Besleme yükleniyor…</string>
-    <string name="feed_processing_message">Besleme işleniyor…</string>
+    <string name="feed_notification_loading">Akış yükleniyor…</string>
+    <string name="feed_processing_message">Akış işleniyor…</string>
     <string name="feed_group_dialog_select_subscriptions">Abonelikleri seç</string>
     <string name="feed_group_dialog_empty_selection">Abonelik seçilmedi</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d seçildi</item>
         <item quantity="other">%d seçildi</item>
     </plurals>
-    <string name="feed_group_dialog_empty_name">Boş küme adı</string>
-    <string name="feed_group_dialog_delete_message">Bu kümeyi silmek istiyor musunuz\?</string>
+    <string name="feed_group_dialog_empty_name">Boş grup adı</string>
+    <string name="feed_group_dialog_delete_message">Bu grubu silmek istiyor musunuz\?</string>
     <string name="feed_create_new_group_button_title">Yeni</string>
-    <string name="settings_category_feed_title">Besleme</string>
-    <string name="feed_update_threshold_title">Besleme güncelleme eşiği</string>
+    <string name="settings_category_feed_title">Akış</string>
+    <string name="feed_update_threshold_title">Akış güncelleme eşiği</string>
     <string name="feed_update_threshold_summary">Bir aboneliğin eski sayılmadan önce son güncellemeden sonra geçen zaman — %s</string>
     <string name="feed_update_threshold_option_always_update">Her zaman güncelle</string>
-    <string name="feed_use_dedicated_fetch_method_title">Uygunken adanmış beslemeden edin</string>
+    <string name="feed_use_dedicated_fetch_method_title">Uygunken özel akıştan edinin</string>
     <string name="feed_use_dedicated_fetch_method_summary">Bazı servislerde kullanılabilir, genellikle daha hızlıdır ancak kısıtlı sayıda öge ve eksik bilgi (örn. süre, öge türü, canlı durumu olmaksızın) getirilebilir.</string>
-    <string name="feed_use_dedicated_fetch_method_enable_button">Hızlı kipi etkinleştir</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">Hızlı kipi devre dışı bırak</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Beslemenin çok yavaş yüklendiğini mi düşünüyorsunuz\? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz).
+    <string name="feed_use_dedicated_fetch_method_enable_button">Hızlı modu etkinleştir</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Hızlı modu devre dışı bırak</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Akışın çok yavaş yüklendiğini mi düşünüyorsunuz\? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz).
 \n
-\nNewPipe iki besleme yükleme yordamı sunar:
+\nNewPipe iki akış yükleme yordamı sunar:
 \n• Tüm abonelik kanalını edinme, bu yavaş ancak tamdır.
 \n• Adanmış hizmet son noktası kullanır, bu hızlıdır ancak genellikle tam değildir.
 \n
 \nİkisinin arasındaki fark, hızlı olanın genellikle ögenin süresi veya türü (canlı ve sıradan videoları ayrımsayamaz) gibi bazı bilgilerden yoksunluğu ve daha az öge getirmesidir.
 \n
-\nYouTube, RSS beslemesiyle bu hızlı yöntemi sunan servislerden biridir.
+\nYouTube, RSS akışıyla bu hızlı yöntemi sunan servislerden biridir.
 \n
 \nSeçim, sizin neyi yeğlediğinize kalmış: hız veya kusursuz bilgi.</string>
     <string name="content_not_supported">Bu içerik henüz NewPipe tarafından desteklenmiyor.
@@ -588,9 +588,9 @@
     <string name="artists">Sanatçılar</string>
     <string name="albums">Albümler</string>
     <string name="songs">Şarkılar</string>
-    <string name="restricted_video">Bu video yaş kısıtlamalı.
+    <string name="restricted_video">Bu video yaş kısıtlıdır.
 \n
-\nGörmek istiyorsanız ayarlarda \"Yaş kısıtlamalı içerik\" seçeneğini açın.</string>
+\nGörmek istiyorsanız ayarlarda \"%1$s\" seçeneğini açın.</string>
     <string name="remove_watched_popup_warning">Oynatma listesine eklendikten önce ve sonra izlenen videolar kaldırılacak.
 \nEmin misiniz\? Bu geri döndürülemez!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Evet ve kısmen izlenmiş videolar</string>
@@ -598,17 +598,17 @@
     <string name="remove_watched">İzleneni kaldır</string>
     <string name="show_original_time_ago_summary">Akış ögelerinde hizmetlerden alınan özgün metinler görünecektir</string>
     <string name="show_original_time_ago_title">Ögelerde özgün \'… önce\'yi göster</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube kısıtlı kip</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube\'un \"Kısıtlı Mod\"unu aç</string>
     <string name="video_detail_by">%s tarafından</string>
     <string name="channel_created_by">%s tarafından oluşturuldu</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar küçük resmi</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Yalnızca kümelenmemiş abonelikleri göster</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Yalnızca gruplanmamış abonelikleri göster</string>
     <string name="playlist_page_summary">Oynatma listesi sayfası</string>
     <string name="select_a_playlist">Oynatma listesi seç</string>
     <string name="error_report_open_issue_button_text">GitHub\'da bildir</string>
     <string name="copy_for_github">Biçimlendirilmiş raporu kopyala</string>
     <string name="search_showing_result_for">Sonuçlar gösteriliyor: %s</string>
-    <string name="error_report_open_github_notice">Lütfen kilitlenmenizi tartışan bir sorunun zaten var olup olmadığını kontrol edin. Yinelenen talepler oluştururken, bizden asıl hatayı düzeltmek için harcayabileceğimiz zamanı alırsınız.</string>
+    <string name="error_report_open_github_notice">Lütfen hatanızı tartışan sorunun var olup olmadığını kontrol edin. Yinelenen istekler oluştururken, bizden asıl hatayı düzeltmek için harcayabileceğimiz zamanı alırsınız.</string>
     <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
     <string name="never">Asla</string>
     <string name="wifi_only">Yalnızca Wi-Fi\'de</string>
@@ -624,8 +624,8 @@
     <string name="notification_action_buffering">Ara belleğe alınıyor</string>
     <string name="notification_action_shuffle">Karıştır</string>
     <string name="notification_action_repeat">Tekrarla</string>
-    <string name="notification_actions_at_most_three">Sıkı bildirimde gösterilecek en fazla üç eylem seçebilirsiniz!</string>
-    <string name="notification_actions_summary">Aşağıdaki her bildirim eylemini üzerine dokunarak düzenleyin. Sağdaki onay kutularını kullanarak sıkı bildirimde gösterilmek üzere en fazla üç tanesini seçin.</string>
+    <string name="notification_actions_at_most_three">Bildirim sekmesinde gösterilecek en fazla üç eylem seçebilirsiniz!</string>
+    <string name="notification_actions_summary">Aşağıdaki her bildirim eylemini üzerine dokunarak düzenleyin. Sağdaki onay kutularını kullanarak bildirim sekmesinde gösterilmek üzere en fazla üç tanesini seçin.</string>
     <string name="notification_action_4_title">Beşinci eylem düğmesi</string>
     <string name="notification_action_3_title">Dördüncü eylem düğmesi</string>
     <string name="notification_action_2_title">Üçüncü eylem düğmesi</string>
@@ -633,4 +633,12 @@
     <string name="notification_action_0_title">Birinci eylem düğmesi</string>
     <string name="notification_scale_to_square_image_summary">Bildirimde gösterilen video küçük resmini 16:9\'dan 1:1 en/boy oranına ölçeklendir (bozulmalara neden olabilir)</string>
     <string name="notification_scale_to_square_image_title">Küçük resmi 1:1 en/boy oranına ölçeklendir</string>
+    <string name="show_memory_leaks">Bellek sızıntılarını göster</string>
+    <string name="enqueued">Sıraya eklendi</string>
+    <string name="enqueue_stream">Kuyruğa ekle</string>
+    <string name="clear_cookie_summary">reCAPTCHA çözdüğünüzde NewPipe\'ın sakladığı çerezleri temizle</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA çerezleri temizlendi</string>
+    <string name="clear_cookie_title">reCAPTCHA çerezlerini temizle</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube, olası yetişkin içeriği gizleyen \"Kısıtlı Mod\" sağlamaktadır.</string>
+    <string name="show_age_restricted_content_summary">Yaş kısıtı (18+ gibi) nedeniyle çocuklara uygun olmayabilecek içeriği göster.</string>
 </resources>

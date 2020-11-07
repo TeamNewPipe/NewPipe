@@ -1,0 +1,3 @@
+[YouTube] Wyszukiwanie zostało naprawione dla niektórych użytkowników
+[YouTube] Naprawiono losowe wyjątki deszyfrowania
+[SoundCloud] Adresy URL kończące się ukośnikiem są teraz parsowane poprawnie

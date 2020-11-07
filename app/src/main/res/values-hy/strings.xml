@@ -54,4 +54,44 @@
     <string name="use_external_audio_player_title">Օգտագործել արտաքին աուդիո նվագարկիչ</string>
     <string name="use_external_video_player_title">Օգտագործել արտաքին դերակատար</string>
     <string name="popup_mode_share_menu_title">Լողացող ռեժիմ NewPipe</string>
+    <string name="updates_setting_title">Թարմացումներ</string>
+    <string name="feed_update_threshold_option_always_update">Միշտ թարմացնել</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d նշված</item>
+        <item quantity="other">%d նշված</item>
+    </plurals>
+    <string name="feed_create_new_group_button_title">Նոր</string>
+    <string name="website_title">Կայք</string>
+    <string name="tab_about">Մասին</string>
+    <string name="action_about">Մասին</string>
+    <string name="channels">Ալիքներ</string>
+    <string name="channel">Ալիք</string>
+    <string name="all">Ամենը</string>
+    <string name="settings_category_notification_title">Ծանուցում</string>
+    <string name="settings_category_appearance_title">Տեսք</string>
+    <string name="settings_category_updates_title">Թարմացումներ</string>
+    <string name="settings_category_other_title">Այլ</string>
+    <string name="enable_watch_history_title">Դիտման պատմություն</string>
+    <string name="file_deleted">Ֆայլը ջնջվեց</string>
+    <string name="file">Ֆայլ</string>
+    <string name="songs">Երգեր</string>
+    <string name="yes">Այո</string>
+    <string name="enable_search_history_title">Որոնման պատմություն</string>
+    <string name="close">Փակել</string>
+    <plurals name="days">
+        <item quantity="one">%d օր</item>
+        <item quantity="other">%d օր</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d ժամ</item>
+        <item quantity="other">%d ժամ</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d վրկ</item>
+        <item quantity="other">%d վրկ</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d րոպե</item>
+        <item quantity="other">%d րոպե</item>
+    </plurals>
 </resources>
