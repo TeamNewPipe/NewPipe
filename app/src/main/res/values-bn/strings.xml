@@ -427,4 +427,43 @@
     <string name="selection">নির্বাচন</string>
     <string name="enable_playback_state_lists_summary">তালিকায় প্লেব্যাক অবস্থান সূচক দেখাও</string>
     <string name="auto_queue_toggle">স্বত-সারি</string>
+    <string name="error_timeout">সংযোগের সময় শেষ</string>
+    <string name="error_postprocessing_failed">পোস্ট-প্রক্রিয়াকরণ ব্যর্থ হয়েছে</string>
+    <string name="switch_view">প্রদর্শন পরিবর্তন করো</string>
+    <string name="import_soundcloud_instructions_hint">তোমার আইডি, soundcloud.com/আইডি</string>
+    <string name="previous_export">আগের রপ্তানি</string>
+    <string name="import_file_title">ফাইল আমদানি করো</string>
+    <string name="export_to">রপ্তানি করো</string>
+    <string name="import_from">আমদানি করো</string>
+    <string name="bookmark_playlist">বুকমার্ক প্লেলিস্ট</string>
+    <string name="preferred_player_fetcher_notification_title">তথ্য আনা হচ্ছে…</string>
+    <string name="popup_player">পপআপ প্লেয়ার</string>
+    <string name="background_player">পটভূমি প্লেয়ার</string>
+    <string name="title_activity_play_queue">প্লে সারি</string>
+    <string name="most_liked">সর্বোচ্চ পছন্দ</string>
+    <string name="feed_page_summary">ফিড পৃষ্ঠা</string>
+    <string name="subscription_page_summary">সদস্যতা পৃষ্ঠা</string>
+    <string name="default_kiosk_page_summary">ডিফল্ট কিয়স্ক</string>
+    <string name="kiosk_page_summary">কিয়স্ক পৃষ্ঠা</string>
+    <string name="settings_file_replacement_character_title">প্রতিস্থাপক অক্ষর</string>
+    <plurals name="videos">
+        <item quantity="one">%sটি ভিডিও</item>
+        <item quantity="other">%sটি ভিডিও</item>
+    </plurals>
+    <string name="infinite_videos">∞ ভিডিও</string>
+    <string name="more_than_100_videos">১০০+ ভিডিও</string>
+    <plurals name="listening">
+        <item quantity="one">%s জন শ্রোতা</item>
+        <item quantity="other">%s জন শ্রোতা</item>
+    </plurals>
+    <plurals name="watching">
+        <item quantity="one">%s জন দেখছে</item>
+        <item quantity="other">%s জন দেখছে</item>
+    </plurals>
+    <plurals name="views">
+        <item quantity="one">%s বার দেখা</item>
+        <item quantity="other">%s বার দেখা</item>
+    </plurals>
+    <string name="enqueued">সারিবদ্ধ করা হয়েছে</string>
+    <string name="enqueue_stream">এনকুই</string>
 </resources>
