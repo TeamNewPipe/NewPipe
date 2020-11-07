@@ -46,7 +46,6 @@
     <string name="background_player_playing_toast">Speelt af op achtergrond</string>
     <string name="content">Inhoud</string>
     <string name="show_age_restricted_content_title">Toon inhoud met leeftijdsbeperking</string>
-    <string name="video_is_age_restricted">Toon video met leeftijdsbeperking. Toestaan van dit soort video’s kan worden ingeschakeld in de Instellingen.</string>
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
     <string name="could_not_load_thumbnails">Kan niet alle miniatuurvoorbeelden laden</string>

@@ -71,7 +71,6 @@
     <string name="popup_playing_toast">以懸浮視窗播放中</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示年齡限制內容</string>
-    <string name="video_is_age_restricted">顯示有年齡限制的影片。未來仍可從設定中變更。</string>
     <string name="downloads">下載</string>
     <string name="downloads_title">下載</string>
     <string name="error_report_title">錯誤回報</string>

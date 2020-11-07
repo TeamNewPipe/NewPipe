@@ -42,7 +42,6 @@
     <string name="background_player_playing_toast">Memutar di latar belakang</string>
     <string name="content">Konten</string>
     <string name="show_age_restricted_content_title">Tampilkan konten yang dibatasi usia</string>
-    <string name="video_is_age_restricted">Tampilkan video yang dibatasi usia. Bisa diubah nanti dari pengaturan.</string>
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua thumbnail</string>
     <string name="did_you_mean">Apakah maksud anda \"%1$s\"\?</string>

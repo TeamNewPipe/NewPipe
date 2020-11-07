@@ -55,7 +55,6 @@
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrenset innhold</string>
-    <string name="video_is_age_restricted">Vis aldersbegrenset video. Å tillate slikt materiale kan gjøres fra innstillingene.</string>
     <string name="general_error">Feil</string>
     <string name="could_not_load_thumbnails">Kunne ikke laste inn alle miniatyrbilder</string>
     <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>

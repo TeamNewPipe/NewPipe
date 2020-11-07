@@ -96,7 +96,6 @@
     <string name="could_not_setup_download_menu">Ne povis konstrui la dosierujon de elŝuto</string>
     <string name="live_streams_not_supported">Nunaj filmetoj ne estas ankoraŭ subtenataj</string>
     <string name="show_age_restricted_content_title">Enhavo limigita al aĝo</string>
-    <string name="video_is_age_restricted">Montri limigitan al aĝo filmeto. Postaj ŝanĝoj eblas ĉe la agordoj.</string>
     <string name="light_parsing_error">Ne povis tute analizi la retejon</string>
     <string name="could_not_get_stream">Ne povis akiri ajnan torenton</string>
     <string name="duration_live">Nuna</string>

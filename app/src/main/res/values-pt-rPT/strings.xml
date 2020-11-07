@@ -103,7 +103,6 @@
     <string name="controls_add_to_playlist_title">Adicionar a</string>
     <string name="clear_playback_states_summary">Remove todas as posições de reprodução</string>
     <string name="create">Criar</string>
-    <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. Alterações serão possíveis nas definições.</string>
     <string name="toggle_orientation">Alternar orientação</string>
     <string name="subscribe_button_title">Subscrever</string>
     <string name="artists">Artistas</string>

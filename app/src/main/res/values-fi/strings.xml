@@ -78,7 +78,6 @@
     <string name="popup_playing_toast">Toistetaan ponnahdusikkunatilassa</string>
     <string name="content">Sisältö</string>
     <string name="show_age_restricted_content_title">Näytä ikärajoitettu sisältö</string>
-    <string name="video_is_age_restricted">Ikärajoitettu video. Muuttaminen on mahdollista asetuksissa.</string>
     <string name="duration_live">Suora</string>
     <string name="downloads">Lataukset</string>
     <string name="downloads_title">Lataukset</string>

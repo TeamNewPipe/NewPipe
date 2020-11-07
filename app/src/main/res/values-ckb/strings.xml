@@ -585,7 +585,6 @@
     <string name="cancel">پاشگه‌زبوونه‌وه‌</string>
     <string name="tracks">تراکەکان</string>
     <string name="play_queue_audio_settings">ڕێکخستنەکانی دەنگ</string>
-    <string name="video_is_age_restricted">پیشاندانی ئەو ڤیدیۆیانەی سنوری تەمەنیان بۆ دانراوە. لە ڕێکخستنەکانەوە ڕێگەی پێدەدرێت.</string>
     <string name="downloads_storage_ask_summary">پرسیارت لێ دەکرێت بۆ شوێنی داگرتنی هەر پەڕگەیەک</string>
     <string name="title_last_played">دواین کارپێکراو</string>
     <string name="could_not_setup_download_menu">ناتوانرێ لیستی داگرتن دابنرێ</string>

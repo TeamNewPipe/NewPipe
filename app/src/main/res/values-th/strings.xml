@@ -108,7 +108,6 @@
     <string name="popup_playing_append">จัดคิวลงในการเล่นโหมดป๊อปอัพแล้ว</string>
     <string name="content">เนื้อหา</string>
     <string name="show_age_restricted_content_title">เนื้อหาที่จำกัดอายุ</string>
-    <string name="video_is_age_restricted">แสดงวิดีโอที่จำกัดอายุ การอนุญาตดังกล่าวเป็นไปได้จากการตั้งค่า</string>
     <string name="duration_live">สด</string>
     <string name="downloads">ดาวน์โหลด</string>
     <string name="downloads_title">ดาวน์โหลด</string>

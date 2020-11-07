@@ -167,7 +167,6 @@
     <string name="background_player_playing_toast">在后台播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">受年龄限制的内容</string>
-    <string name="video_is_age_restricted">显示受年龄限制的视频。可从设置允许此类内容。</string>
     <string name="duration_live">直播</string>
     <string name="downloads">下载</string>
     <string name="downloads_title">下载</string>

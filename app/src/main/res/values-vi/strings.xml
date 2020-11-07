@@ -57,7 +57,6 @@
     <string name="popup_playing_toast">Phát ở chế độ popup</string>
     <string name="content">Nội dung</string>
     <string name="show_age_restricted_content_title">Cho phép nội dung có giới hạn độ tuổi</string>
-    <string name="video_is_age_restricted">Hiện video có giới hạn độ tuổi. Có thể thay đổi trong phần Cài đặt.</string>
     <string name="duration_live">Trực tiếp</string>
     <string name="downloads">Tải xuống</string>
     <string name="downloads_title">Tải xuống</string>

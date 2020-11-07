@@ -76,7 +76,6 @@
     <string name="main_bg_subtitle">Appuyez sur la loupe pour commencer
 \n</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
-    <string name="video_is_age_restricted">Affiche les vidéos soumises à une limite d’âge. Modifier cette option est possible depuis les paramètres.</string>
     <string name="user_report">Rapport utilisateur</string>
     <string name="error_snackbar_action">Signaler</string>
     <string name="could_not_setup_download_menu">Impossible de configurer le menu de téléchargement</string>

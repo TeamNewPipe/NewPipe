@@ -69,7 +69,6 @@
     <string name="popup_playing_toast">Laster-leiho moduan erreproduzitzen</string>
     <string name="content">Edukia</string>
     <string name="show_age_restricted_content_title">Adinez mugatutako edukia erakutsi</string>
-    <string name="video_is_age_restricted">Erakutsi adinez mugatutako bideoa. Ezarpenetan aldaketak egin daitezke gero.</string>
     <string name="duration_live">Zuzenean</string>
     <string name="downloads">Deskargak</string>
     <string name="downloads_title">Deskargak</string>

@@ -101,7 +101,6 @@
     <string name="popup_playing_append">Toegevoegd aan wachtrij voor pop-upspeler</string>
     <string name="content">Inhoud</string>
     <string name="show_age_restricted_content_title">Toon inhoud met leeftijdsbeperking</string>
-    <string name="video_is_age_restricted">Toont video met leeftijdsbeperking. Toelaten van deze soort video’s kan ingeschakeld worden in de Instellingen.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>

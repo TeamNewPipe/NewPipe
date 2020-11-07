@@ -521,7 +521,6 @@
     <string name="restricted_video">Kjo video ka kufizime moshe.
 \n
 \nAktivizoni \"Përmbajtje me moshë të kufizuar\" tek aranzhimet nëse doni ta shihni.</string>
-    <string name="video_is_age_restricted">Shfaq videot me moshë të kufizuar. Ndryshime të tjera janë të mundura nga aranzhimet.</string>
     <string name="show_age_restricted_content_title">Përmbajtje me moshë të kufizuar</string>
     <string name="popup_playing_append">U radhit në luajtësin popup</string>
     <string name="background_player_append">U radhit në luajtësin në sfond</string>

@@ -140,7 +140,6 @@
     <string name="popup_playing_append">Προστέθηκε στη λίστα αναπαραγωγής αναδυόμενου παραθύρου</string>
     <string name="content">Περιεχόμενο</string>
     <string name="show_age_restricted_content_title">Εμφάνιση περιεχομένου περιορισμένης ηλικίας</string>
-    <string name="video_is_age_restricted">Εμφάνιση βίντεο με περιορισμό ηλικίας. Μελλοντικές αλλαγές είναι δυνατές από τις ρυθμίσεις.</string>
     <string name="duration_live">Ζωντανά</string>
     <string name="error_report_title">Αναφορά σφαλμάτων</string>
     <string name="channels">Κανάλια</string>

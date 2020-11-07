@@ -59,7 +59,6 @@
     <string name="live_streams_not_supported">Las transmisiones en vivo no son soportadas aún</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
-    <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Se pueden realizar cambios futuros desde los ajustes.</string>
     <string name="main_bg_subtitle">Toque «Buscar» para empezar
 \n</string>
     <string name="autoplay_by_calling_app_title">Reproducción automática</string>

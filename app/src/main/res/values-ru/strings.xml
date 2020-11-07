@@ -72,7 +72,6 @@
     <string name="autoplay_by_calling_app_title">Автовоспроизведение</string>
     <string name="autoplay_by_calling_app_summary">Воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
-    <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в \"Настройках\"</string>
     <string name="duration_live">Трансляция</string>
     <string name="downloads">Загрузки</string>
     <string name="downloads_title">Загрузки</string>

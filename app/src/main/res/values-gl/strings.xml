@@ -99,7 +99,6 @@
     <string name="popup_playing_append">Na cola do reprodutor popup</string>
     <string name="content">Contido</string>
     <string name="show_age_restricted_content_title">Contido restrinxido para certa idade</string>
-    <string name="video_is_age_restricted">Mostrar vídeo restrinxido por idade. Os cambios futuros son posibles na configuración.</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>

@@ -163,7 +163,6 @@
     <string name="settings_category_history_title">Istorija ir laikmena</string>
     <string name="background_player_append">Foninio grotuvo eilėje</string>
     <string name="popup_playing_append">Įtraukta į langelio rėžimo grojimo eilę</string>
-    <string name="video_is_age_restricted">Apriboto amžiaus vaizdo įrašas. Kad leisti tokius vaizdo įrašus eikite į nustatymus.</string>
     <string name="playlist">Grojaraštis</string>
     <string name="undo">Atgal</string>
     <string name="play_all">Groti viską</string>

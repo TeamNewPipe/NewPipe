@@ -56,7 +56,6 @@
     <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他程式調用時播放視頻</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示已設年齡限制的影片</string>
-    <string name="video_is_age_restricted">此影片設有年齡限制。若要觀看，請先在設定中解除年齡限制。</string>
     <string name="duration_live">直播</string>
     <string name="general_error">問題</string>
     <string name="could_not_load_thumbnails">無法載入全部縮圖</string>

@@ -7,7 +7,6 @@
     <string name="what_device_headline">Informação:</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
-    <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. É possível alterar esta opção no menu de configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz um vídeo se NewPipe for chamado por outro app</string>
     <string name="autoplay_by_calling_app_title">Autoreprodução</string>

@@ -108,7 +108,6 @@
     <string name="popup_playing_append">Føjet til pop op-afspilningskøen</string>
     <string name="content">Indhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrænset indhold</string>
-    <string name="video_is_age_restricted">Vis aldersbegrænsede videoer. Du kan tillade denne type videoer under Indstillinger.</string>
     <string name="duration_live">LIVE</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>

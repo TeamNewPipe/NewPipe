@@ -57,7 +57,6 @@
     <string name="content_not_available">Conteúdo indisponível</string>
     <string name="content">Conteúdo</string>
     <string name="show_age_restricted_content_title">Mostrar conteúdo com restrição de idade</string>
-    <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. Alterações serão possíveis nas definições.</string>
     <string name="light_parsing_error">Não foi possível processar totalmente o site</string>
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de descargas</string>
     <string name="live_streams_not_supported">As emissões em direto ainda não são suportadas</string>

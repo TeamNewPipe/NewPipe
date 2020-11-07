@@ -99,7 +99,6 @@
     <string name="popup_playing_append">Lisati hüpikpleieri järjekorda</string>
     <string name="content">Sisu</string>
     <string name="show_age_restricted_content_title">Vanusepiiranguga sisu</string>
-    <string name="video_is_age_restricted">Kuva vanusepiiranguga video. Sellist sisu saab lubada seadetes.</string>
     <string name="duration_live">OTSE</string>
     <string name="downloads">Allalaadimised</string>
     <string name="downloads_title">Allalaadimised</string>

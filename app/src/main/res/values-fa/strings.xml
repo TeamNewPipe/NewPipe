@@ -45,7 +45,6 @@
     <string name="background_player_playing_toast">در حال پخش در پس‌زمینه</string>
     <string name="content">محتوا</string>
     <string name="show_age_restricted_content_title">محتوای محدود شده بر اساس سن</string>
-    <string name="video_is_age_restricted">نمایش ویدیوهای دارای محدودیت سنی. تغییرات آتی از طریق تنظیمات ممکن است.</string>
     <string name="duration_live">زنده</string>
     <string name="downloads">بارگیری‌ها</string>
     <string name="downloads_title">بارگیری‌ها</string>

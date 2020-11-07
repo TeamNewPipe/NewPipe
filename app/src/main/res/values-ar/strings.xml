@@ -108,7 +108,6 @@
     <string name="background_player_append">تم وضعه على قائمة الانتظار في مشغل الخلفية</string>
     <string name="popup_playing_append">تم وضعه على قائمة الانتظار في مشغل النافذة المنبثقة</string>
     <string name="show_age_restricted_content_title">إظهار محتوى مقيد حسب العمر</string>
-    <string name="video_is_age_restricted">إظهار الفيديو المقيد بحسب العمر. التغييرات المستقبلية ممكنة من \"الإعدادات\".</string>
     <string name="duration_live">بث مباشر</string>
     <string name="error_report_title">تقرير خطأ</string>
     <string name="playlist">قائمة التشغيل</string>

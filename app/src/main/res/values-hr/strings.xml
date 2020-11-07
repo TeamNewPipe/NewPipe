@@ -76,7 +76,6 @@
     <string name="popup_playing_toast">Reprodukcija u skočnom prozoru</string>
     <string name="content">Sadržaj</string>
     <string name="show_age_restricted_content_title">Prikaži dobno ograničeni sadržaj</string>
-    <string name="video_is_age_restricted">Prikaži dobno ograničeni videozapis. Buduće promjene moguće je postaviti u postavkama.</string>
     <string name="duration_live">Uživo</string>
     <string name="downloads">Preuzimanja</string>
     <string name="downloads_title">Preuzimanja</string>

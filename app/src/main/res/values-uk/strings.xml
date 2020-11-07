@@ -45,7 +45,6 @@
     <string name="storage_permission_denied">Немає доступу до накопичувача</string>
     <string name="content">Контент</string>
     <string name="show_age_restricted_content_title">Контент з віковими обмеженнями</string>
-    <string name="video_is_age_restricted">Показувати відео з віковими обмеженнями. Надалі дозволити програвання таких відео можна у налаштуваннях.</string>
     <string name="duration_live">Наживо</string>
     <string name="general_error">Помилка</string>
     <string name="network_error">Помилка мережі</string>

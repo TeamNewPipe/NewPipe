@@ -46,7 +46,6 @@
     <string name="background_player_playing_toast">Arka planda oynatılıyor</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş kısıtlı içeriği göster</string>
-    <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Daha sonra ayarlardan değiştirilebilir.</string>
     <string name="duration_live">Canlı</string>
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>

@@ -80,7 +80,6 @@
     <string name="popup_playing_append">Включен в опашката в нов прозорец</string>
     <string name="content">Съдържание</string>
     <string name="show_age_restricted_content_title">Съдържание за възрастни</string>
-    <string name="video_is_age_restricted">Покажи съдържание за възрастни. Разрешаването на такова съдържание става от Настройки.</string>
     <string name="duration_live">НА ЖИВО</string>
     <string name="downloads">Изтегляния</string>
     <string name="downloads_title">Изтегляния</string>

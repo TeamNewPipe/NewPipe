@@ -110,7 +110,6 @@
     <string name="popup_playing_append">पपअप प्लेयरमा लामबद्ध</string>
     <string name="content">सामग्री</string>
     <string name="show_age_restricted_content_title">उमेर प्रतिबन्धित सामग्री</string>
-    <string name="video_is_age_restricted">उमेर प्रतिबन्धित भिडियोहरु देखाऊ। भविष्यमा यो सेटिङ परिवर्तन सम्भव छ।</string>
     <string name="duration_live">प्रत्यक्ष</string>
     <string name="downloads">डाउनलोडहरु</string>
     <string name="downloads_title">डाउनलोडहरु</string>

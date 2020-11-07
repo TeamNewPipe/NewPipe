@@ -61,7 +61,6 @@
     <string name="autoplay_by_calling_app_summary">Prehrá video pri zavolaní NewPipe inou aplikáciou</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
-    <string name="video_is_age_restricted">Zobrazit video s vekovým obmezením. Zmenit túto voľbu môžete v nastaveniach.</string>
     <string name="duration_live">Naživo</string>
     <string name="light_parsing_error">Nemožno kompletne zanalyzovať web</string>
     <string name="could_not_setup_download_menu">Nemožno nastaviť menu preberania</string>

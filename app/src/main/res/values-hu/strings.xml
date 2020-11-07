@@ -57,7 +57,6 @@
     <string name="live_streams_not_supported">Ez egy élő közvetítés, amely még nem támogatott.</string>
     <string name="autoplay_by_calling_app_title">Automatikus lejátszás</string>
     <string name="autoplay_by_calling_app_summary">Videók automatikus lejátszása, ha a NewPipe egy másik alkalmazásból lett indítva</string>
-    <string name="video_is_age_restricted">Korhatáros videó mutatása. Ennek a tartalomnak az engedélyezése a \"Beállítások\"-ban lehetséges.</string>
     <string name="duration_live">ÉLŐ</string>
     <string name="error_snackbar_action">JELENTÉS</string>
     <string name="what_device_headline">Információ:</string>

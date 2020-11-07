@@ -57,7 +57,6 @@
     <string name="content_not_available">Inhalt nicht verfügbar</string>
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
-    <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Spätere Änderungen sind in den Einstellungen möglich.</string>
     <string name="could_not_setup_download_menu">Konnte Download-Menü nicht einrichten</string>
     <string name="live_streams_not_supported">Live-Streams werden noch nicht unterstützt</string>
     <string name="light_parsing_error">Konnte Webseite nicht vollständig analysieren</string>

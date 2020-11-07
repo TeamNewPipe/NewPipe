@@ -82,7 +82,6 @@
     <string name="downloads_title">ডাউনলোডগুলি</string>
     <string name="downloads">ডাউনলোডগুলি</string>
     <string name="duration_live">লাইভ</string>
-    <string name="video_is_age_restricted">ভিডিওটিকে বয়স সীমিত করা হয়েছে। প্রথমে সেটিংসে বয়স সীমাবদ্ধ ভিডিওগুলি সক্ষম করো।</string>
     <string name="show_age_restricted_content_title">বয়স সীমাবদ্ধ কন্টেন্ট দেখাও</string>
     <string name="content">কন্টেন্ট</string>
     <string name="popup_playing_toast">পপআপ মোডে চলছে</string>

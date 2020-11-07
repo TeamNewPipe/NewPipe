@@ -395,7 +395,6 @@
     <string name="show_hold_to_append_title">پیشاندانی ڕێنمایی ”داگرتن تا پاشکۆ”</string>
     <string name="show_hold_to_append_summary">پیشاندانی ڕێنمایی کاتێ لە پاشبنەما یاخوود پەنجەرەدا گرتە دەکرێ لەسەر وردەکاری ڤیدیۆیەک</string>
     <string name="settings_category_player_behavior_title">پەرەسەندوو</string>
-    <string name="video_is_age_restricted">پیشاندانی ئەو ڤیدیۆیانەی سنوری تەمەنیان بۆ دانراوە. لە ڕێکخستنەکانەوە ڕێگەی پێدەدرێت.</string>
     <string name="youtube_signature_deobfuscation_error">ناتوانرێ واژووی بەستەری ڤیدیۆ بخوێنرێتەوە</string>
     <string name="player_unrecoverable_failure">نەگێڕانەوەی کارپێکەر بۆ پێش کێشە ڕوویدا</string>
     <string name="player_recoverable_failure">گێڕانەوەی کارپێکەر بۆکاتی پێش کێشە</string>

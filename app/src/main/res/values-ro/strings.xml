@@ -43,7 +43,6 @@
     <string name="background_player_playing_toast">Redare în fundal</string>
     <string name="content">Conținut</string>
     <string name="show_age_restricted_content_title">Conținut restricționat în funcție de vârstă</string>
-    <string name="video_is_age_restricted">Afișează videoclipuri restricționate în funcție de vârstă. Permiterea vizionării este posibilă din Setări.</string>
     <string name="general_error">Eroare</string>
     <string name="network_error">Eroare de rețea</string>
     <string name="could_not_load_thumbnails">Nu s-au putut încărca toate thumbnail-urile</string>

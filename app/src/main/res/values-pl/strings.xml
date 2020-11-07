@@ -46,7 +46,6 @@
     <string name="background_player_playing_toast">Odtwarzanie w tle</string>
     <string name="content">Zawartość</string>
     <string name="show_age_restricted_content_title">Pokaż treści z ograniczeniem wiekowym</string>
-    <string name="video_is_age_restricted">Pokaż wideo z ograniczeniami wiekowymi. Przyszłe zmiany są możliwe z poziomu ustawień.</string>
     <string name="duration_live">Na żywo</string>
     <string name="downloads">Pobrane</string>
     <string name="downloads_title">Pobrane</string>

@@ -55,7 +55,6 @@
     <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱에서 호출되었을 때 동영상을 재생합니다</string>
     <string name="content">컨텐츠</string>
     <string name="show_age_restricted_content_title">연령 제한 컨텐츠</string>
-    <string name="video_is_age_restricted">연령 제한 비디오입니다. 설정 메뉴에서 시청 허용 여부를 변경하실 수 있습니다.</string>
     <string name="duration_live">라이브</string>
     <string name="general_error">오류</string>
     <string name="could_not_load_thumbnails">모든 썸네일을 불러올 수 없습니다</string>

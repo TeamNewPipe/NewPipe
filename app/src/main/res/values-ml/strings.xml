@@ -333,7 +333,6 @@
     <string name="restricted_video">ഈ വീഡിയോ പ്രായപരിമിതി ഉള്ളതാണ്. 
 \n
 \nഇത് കാണണമെങ്കിൽ പ്രായനിയന്ത്രണ ക്രമീകരണങ്ങളിൽ മാറ്റം വരുത്തുക.</string>
-    <string name="video_is_age_restricted">പ്രായപരിമിതിയുള്ള വീഡിയോ കാണിക്കുന്നു. ഭാവിയിൽ മാറ്റങ്ങൾ വരുത്താനാകും.</string>
     <string name="show_age_restricted_content_title">പ്രായപരിമിതപ്പെടുത്തിയ കന്റെന്റ്</string>
     <string name="content">കന്റെന്റ്</string>
     <string name="popup_playing_append">പോപ്പപ്പ് പ്ലേയറിൽ ക്യൂ ചെയ്തിരിക്കുന്നു</string>

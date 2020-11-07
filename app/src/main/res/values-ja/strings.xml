@@ -59,7 +59,6 @@
     <string name="live_streams_not_supported">生放送にはまだ対応していません</string>
     <string name="content">コンテンツ</string>
     <string name="show_age_restricted_content_title">年齢制限のあるコンテンツを表示</string>
-    <string name="video_is_age_restricted">年齢制限された動画を表示しています。設定から許可することができます。</string>
     <string name="light_parsing_error">ウェブサイトを完全には解析できませんでした</string>
     <string name="could_not_get_stream">動画を取得できませんでした</string>
     <string name="sorry_string">申し訳ありません。発生すべきでものではありませんでした。</string>

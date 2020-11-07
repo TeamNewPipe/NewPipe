@@ -37,7 +37,6 @@
     <string name="settings_category_debug_title">Depuració</string>
     <string name="content">Contingut</string>
     <string name="show_age_restricted_content_title">Desactiva les restriccions per edat</string>
-    <string name="video_is_age_restricted">Mostra el vídeo restringit per edat. Podeu permetre aquesta mena de continguts des dels paràmetres.</string>
     <string name="duration_live">Directe</string>
     <string name="downloads">Baixades</string>
     <string name="downloads_title">Baixades</string>
