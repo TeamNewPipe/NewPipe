@@ -637,4 +637,6 @@
     <string name="peertube_instance_add_title">Προσθήκη instance</string>
     <string name="peertube_instance_url_help">Βρείτε τα instances που σας αρέσουν στο %s</string>
     <string name="peertube_instance_url_summary">Επιλογή των αγαπημένων σας PeerTube instances</string>
+    <string name="show_original_time_ago_title">Εμφάνιση αυθεντικού παρελθόντος χρόνου στα αντικείμενα</string>
+    <string name="peertube_instance_url_title">PeerTube instances</string>
 </resources>
