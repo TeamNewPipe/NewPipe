@@ -88,8 +88,6 @@
     <string name="use_inexact_seek_title">Qeyri-dəqiq axtarış (videonu irəli/geri çəkmə) istifadə edin</string>
     <string name="use_inexact_seek_summary">Qeyri-dəqiq axtarış pleyerə azaldılmış həssaslıqla mövqeləri daha sürətlə axtarmağa imkan verir. 5, 15 və ya 25 saniyəlik axtarış bununla işləmir.</string>
     <string name="seek_duration_title">Cəld irəli/geri çəkmə müddəti</string>
-    <string name="popup_remember_size_pos_summary">Ani pəncərənin sonuncu ölçü və mövqeyini xatırla</string>
-    <string name="popup_remember_size_pos_title">Ani pəncərə xüsusiyyətlərini xatırla</string>
     <string name="notification_action_nothing">Heç nə</string>
     <string name="notification_action_buffering">Buferizasiya olunur</string>
     <string name="notification_action_shuffle">Qarışdır</string>
