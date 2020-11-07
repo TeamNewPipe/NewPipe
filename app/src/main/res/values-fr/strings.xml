@@ -73,7 +73,7 @@
     <string name="audio">Audio</string>
     <string name="retry">Réessayer</string>
     <string name="storage_permission_denied">Veuillez d’abord accorder l’accès au stockage</string>
-    <string name="main_bg_subtitle">Appuyez sur « Rechercher » pour commencer
+    <string name="main_bg_subtitle">Appuyez sur la loupe pour commencer
 \n</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
     <string name="video_is_age_restricted">Affiche les vidéos soumises à une limite d’âge. Modifier cette option est possible depuis les paramètres.</string>
@@ -160,7 +160,7 @@
     <string name="charset_letters_and_digits">Lettres et chiffres</string>
     <string name="title_activity_about">À propos de NewPipe</string>
     <string name="copyright" formatted="true">© %1$s par %2$s sous %3$s</string>
-    <string name="contribution_encouragement">Que ce soit pour des idées de traductions, de changements de design, de nettoyage de code ou de gros changements de code, une aide est toujours la bienvenue. Plus on en fera, meilleur il deviendra !</string>
+    <string name="contribution_encouragement">Que ce soit pour des idées de traductions, de changements de design, de nettoyage de code ou de gros changements de code, une aide est toujours la bienvenue. Plus on en fera meilleur il sera !</string>
     <string name="subscription_change_failed">Impossible de modifier l’abonnement</string>
     <string name="subscription_update_failed">Impossible d’actualiser l’abonnement</string>
     <string name="resume_on_audio_focus_gain_summary">Continuer la lecture après les interruptions (ex. : appels téléphoniques)</string>
