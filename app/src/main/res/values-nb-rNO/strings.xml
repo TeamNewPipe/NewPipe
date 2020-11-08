@@ -641,4 +641,6 @@
     <string name="clear_cookie_summary">Tøm kaker som NewPipe lagrer når du løser en reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube tilbyr et «Begrenset modus» som skjuler mulig innhold kun for voksne.</string>
     <string name="show_age_restricted_content_summary">Vis innhold som muligens er upassende for barn, siden det har aldersgrense (som 18+).</string>
+    <string name="notification_colorize_summary">Få Android til å tilpasse merknadens farge i henhold til hovedfargen på miniatyrbildet (merk at dette ikke støttes på alle enheter)</string>
+    <string name="notification_colorize_title">Fargelegg merknad</string>
 </resources>
