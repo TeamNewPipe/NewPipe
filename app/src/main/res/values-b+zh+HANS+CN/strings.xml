@@ -357,11 +357,14 @@
     <string name="previous_export">以前的导出</string>
     <string name="subscriptions_import_unsuccessful">无法导入订阅</string>
     <string name="subscriptions_export_unsuccessful">无法导出订阅</string>
-    <string name="import_youtube_instructions">通过下载导出文件来导入 YouTube 订阅：
+    <string name="import_youtube_instructions">从 Google takeout 导入YouTube 订阅：
 \n
-\n1. 转到此网站： %1$s
-\n2. 登录（如果需要）
-\n3. 应该立即开始下载（即导出文件）</string>
+\n1. 转到这个URL：%1$s
+\n2. 登录谷歌账户
+\n3. 点击“所有包含的数据”，然后点击“取消选择全部”，然后只选择“订阅”，然后点击“确定”
+\n4. 点击“下一步”然后点击“创建导出”
+\n5. 在“下载”按钮出现后，点击它
+\n6. 从下载的takeout压缩包提取.json文件 （通常能够位于\"YouTube and YouTube Music/subscriptions/subscriptions.json\"）并在此导入它。</string>
     <string name="import_soundcloud_instructions">通过输入网址或你的 ID 导入 SoundCloud 配置文件： 
 \n 
 \n1. 在浏览器中启用\"电脑模式\"（该网站不适用于移动设备） 
@@ -631,4 +634,6 @@
     <string name="clear_cookie_title">清理 reCAPTCHA cookies</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube提供了一个“受限模式”，会隐藏潜在的成人内容。</string>
     <string name="show_age_restricted_content_summary">展示可能不适合儿童观看的内容，因为它有年龄限制(比如18岁以上)。</string>
+    <string name="notification_colorize_summary">让安卓系统根据视频缩略图的主色彩自定义通知的颜色（注意，该特性并非在所有设备上都可用）</string>
+    <string name="notification_colorize_title">对通知着色</string>
 </resources>
