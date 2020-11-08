@@ -332,11 +332,14 @@
     <string name="previous_export">Exportation précédente</string>
     <string name="subscriptions_import_unsuccessful">Impossible d’importer les abonnements</string>
     <string name="subscriptions_export_unsuccessful">Impossible d’exporter les abonnements</string>
-    <string name="import_youtube_instructions">Veuillez importer vos abonnements YouTube en téléchargeant le fichier d’exportation.
-\n 
-\n1. Suivez ce lien : %1$s.
-\n2. Connectez-vous à votre compte.
-\n3. Un téléchargement va démarrer (celui du fichier d’exportation).</string>
+    <string name="import_youtube_instructions">Importez vos abonnements YouTube depuis Google Takeout :
+\n
+\n1. Suivez ce lien : %1$s
+\n2. Connectez-vous à votre compte
+\n3. Cliquez sur \"Toutes les données Youtube sont incluses\", puis sur \"Tout désélectionner\", puis sélectionnez uniquement \"abonnements\" et cliquez sur \"OK\"
+\n4. Cliquez sur \"Étape suivante\" et ensuite sur \"Créer une exportation\"
+\n5. Cliquez sur le bouton \"Télécharger\" après qu\'il apparaisse et
+\n6. À partir du fichier zip téléchargé, extrayez le fichier .json (généralement sous \"YouTube et YouTube Music/subscriptions/subscriptions.json\") et importez-le ici.</string>
     <string name="import_soundcloud_instructions">Veuillez importer un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant.
 \n 
 \n1. Activez le « mode bureau » dans votre navigateur Web (le site n’est pas disponible pour les appareils mobiles).
@@ -640,4 +643,6 @@
     <string name="clear_cookie_title">Effacer les cookies reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube dispose d\'un « Mode restreint » qui cache le contenu potentiellement inapproprié.</string>
     <string name="show_age_restricted_content_summary">Le contenu de cette émission n\'est peut-être pas approprié pour les enfants à cause d\'une limite d\'âge (18 +).</string>
+    <string name="notification_colorize_title">Notification colorée</string>
+    <string name="notification_colorize_summary">Demander à Android de personnaliser la couleur de la notification en fonction de la couleur principale de la miniature (noter que cela n’est pas disponible sur tous les appareils)</string>
 </resources>
