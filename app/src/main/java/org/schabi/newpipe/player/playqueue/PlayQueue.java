@@ -167,19 +167,20 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * @return the current item that should be played
+     * @return the current item that should be played, or null if the queue is empty
      */
+    @Nullable
     public PlayQueueItem getItem() {
         return getItem(getIndex());
     }
 
     /**
      * @param index the index of the item to return
-     * @return the item at the given index
-     * @throws IndexOutOfBoundsException
+     * @return the item at the given index, or null if the index is out of bounds
      */
+    @Nullable
     public PlayQueueItem getItem(final int index) {
-        if (index < 0 || index >= streams.size() || streams.get(index) == null) {
+        if (index < 0 || index >= streams.size()) {
             return null;
         }
         return streams.get(index);

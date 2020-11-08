@@ -1735,31 +1735,33 @@ public class VideoDetailFragment
     @Override
     public void onQueueUpdate(final PlayQueue queue) {
         playQueue = queue;
-        // This should be the only place where we push data to stack.
-        // It will allow to have live instance of PlayQueue with actual information about
-        // deleted/added items inside Channel/Playlist queue and makes possible to have
-        // a history of played items
-        if ((stack.isEmpty() || !stack.peek().getPlayQueue().equals(queue)
-                && queue.getItem() != null)) {
-            stack.push(new StackItem(queue.getItem().getServiceId(),
-                    queue.getItem().getUrl(),
-                    queue.getItem().getTitle(),
-                    queue));
-        } else {
-            final StackItem stackWithQueue = findQueueInStack(queue);
-            if (stackWithQueue != null) {
-                // On every MainPlayer service's destroy() playQueue gets disposed and
-                // no longer able to track progress. That's why we update our cached disposed
-                // queue with the new one that is active and have the same history.
-                // Without that the cached playQueue will have an old recovery position
-                stackWithQueue.setPlayQueue(queue);
-            }
-        }
-
         if (DEBUG) {
             Log.d(TAG, "onQueueUpdate() called with: serviceId = ["
                     + serviceId + "], videoUrl = [" + url + "], name = ["
                     + name + "], playQueue = [" + playQueue + "]");
+        }
+
+        // This should be the only place where we push data to stack.
+        // It will allow to have live instance of PlayQueue with actual information about
+        // deleted/added items inside Channel/Playlist queue and makes possible to have
+        // a history of played items
+        @Nullable final StackItem stackPeek = stack.peek();
+        if (stackPeek != null && stackPeek.getPlayQueue().equals(queue)) {
+            @Nullable final PlayQueueItem playQueueItem = queue.getItem();
+            if (playQueueItem != null) {
+                stack.push(new StackItem(playQueueItem.getServiceId(), playQueueItem.getUrl(),
+                        playQueueItem.getTitle(), queue));
+                return;
+            } // else continue below
+        }
+
+        @Nullable final StackItem stackWithQueue = findQueueInStack(queue);
+        if (stackWithQueue != null) {
+            // On every MainPlayer service's destroy() playQueue gets disposed and
+            // no longer able to track progress. That's why we update our cached disposed
+            // queue with the new one that is active and have the same history.
+            // Without that the cached playQueue will have an old recovery position
+            stackWithQueue.setPlayQueue(queue);
         }
     }
 
@@ -2062,6 +2064,7 @@ public class VideoDetailFragment
         return url == null;
     }
 
+    @Nullable
     private StackItem findQueueInStack(final PlayQueue queue) {
         StackItem item = null;
         final Iterator<StackItem> iterator = stack.descendingIterator();
