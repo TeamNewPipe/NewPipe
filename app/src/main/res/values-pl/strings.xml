@@ -336,11 +336,14 @@
     <string name="previous_export">Poprzedni eksport</string>
     <string name="subscriptions_import_unsuccessful">Import subskrypcji nie powiódł się</string>
     <string name="subscriptions_export_unsuccessful">Eksport subskrypcji nie powiódł się</string>
-    <string name="import_youtube_instructions">Aby zaimportować subskrypcje YouTube, potrzebny jest plik eksportu subskrypcji. Możesz go wygenerować w następujący sposób:
+    <string name="import_youtube_instructions">Importowanie subskrypcji YouTube z google takeout:
 \n
-\n1. Odwiedź stronę: %1$s
-\n2. Zaloguj się na swoje konto
-\n3. Powinno rozpocząć się pobieranie (to jest twój plik eksportu)</string>
+\n1. Przejdź do tego adresu URL: %1$s
+\n2. Zaloguj się, gdy zostaniesz o to poproszony
+\n3. Kliknij na \"Wszystkie dane zawarte\", a następnie na \"Usuń zaznaczenie wszystkich\", a następnie wybierz tylko \"subskrypcje\" i kliknij \"OK\"
+\n4. Kliknij na \"Następny krok\", a następnie na \"Tworzenie eksportu\"
+\n5. Kliknij przycisk \"Pobierz\", gdy się pojawi i
+\n6. Z pobranego pliku zip na wynos wyodrębnij plik .json (zwykle w sekcji \"YouTube i YouTube Music/subscriptions/subscriptions.json\") i zaimportuj go tutaj.</string>
     <string name="import_network_expensive_warning">Ta operacja może wygenerować duże użycie danych.
 \n
 \nCzy chcesz kontynuować?</string>
@@ -650,4 +653,6 @@
     <string name="clear_cookie_title">Wyczyść ciasteczka reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube udostępnia \"Tryb ograniczonego dostępu\", który ukrywa treści potencjalnie dla dorosłych.</string>
     <string name="show_age_restricted_content_summary">Pokaż treści nieodpowiednie dla dzieci, ponieważ mają ograniczenia wiekowe (np. 18+).</string>
+    <string name="notification_colorize_summary">Niech Android dostosuje kolor powiadomienia zgodnie z głównym kolorem na miniaturze (nie jest to dostępne na wszystkich urządzeniach)</string>
+    <string name="notification_colorize_title">Pokolorowanie powiadomienia</string>
 </resources>
