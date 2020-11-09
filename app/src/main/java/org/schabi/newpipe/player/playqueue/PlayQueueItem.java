@@ -64,6 +64,20 @@ public class PlayQueueItem implements Serializable {
         this.recoveryPosition = RECOVERY_UNSET;
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (o instanceof PlayQueueItem) {
+            return url.equals(((PlayQueueItem) o).url);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return url.hashCode();
+    }
+
     @NonNull
     public String getTitle() {
         return title;

@@ -110,6 +110,7 @@ import org.schabi.newpipe.views.LargeTextMovementMethod;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
@@ -128,7 +129,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfi
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class VideoDetailFragment
+public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
         implements BackPressable,
         SharedPreferences.OnSharedPreferenceChangeListener,
@@ -136,7 +137,7 @@ public class VideoDetailFragment
         View.OnLongClickListener,
         PlayerServiceExtendedEventListener,
         OnKeyDownListener {
-    public static final String AUTO_PLAY = "auto_play";
+    public static final String KEY_SWITCHING_PLAYERS = "switching_players";
 
     private static final int RELATED_STREAMS_UPDATE_FLAG = 0x1;
     private static final int COMMENTS_UPDATE_FLAG = 0x2;
@@ -167,19 +168,23 @@ public class VideoDetailFragment
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
     @State
-    protected String name;
+    @NonNull
+    protected String title = "";
     @State
-    protected String url;
-    protected static PlayQueue playQueue;
+    @Nullable
+    protected String url = null;
+    @Nullable
+    protected PlayQueue playQueue = null;
     @State
     int bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
     @State
     protected boolean autoPlayEnabled = true;
 
-    private static StreamInfo currentInfo;
+    @Nullable
+    private StreamInfo currentInfo = null;
     private Disposable currentWorker;
     @NonNull
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
     @Nullable
     private Disposable positionSubscriber = null;
 
@@ -284,6 +289,7 @@ public class VideoDetailFragment
                 || (currentInfo != null
                 && isAutoplayEnabled()
                 && player.getParentActivity() == null)) {
+            autoPlayEnabled = true; // forcefully start playing
             openVideoPlayer();
         }
     }
@@ -298,8 +304,10 @@ public class VideoDetailFragment
 
     /*////////////////////////////////////////////////////////////////////////*/
 
-    public static VideoDetailFragment getInstance(final int serviceId, final String videoUrl,
-                                                  final String name, final PlayQueue queue) {
+    public static VideoDetailFragment getInstance(final int serviceId,
+                                                  @Nullable final String videoUrl,
+                                                  @NonNull final String name,
+                                                  @Nullable final PlayQueue queue) {
         final VideoDetailFragment instance = new VideoDetailFragment();
         instance.setInitialData(serviceId, videoUrl, name, queue);
         return instance;
@@ -444,8 +452,8 @@ public class VideoDetailFragment
         switch (requestCode) {
             case ReCaptchaActivity.RECAPTCHA_REQUEST:
                 if (resultCode == Activity.RESULT_OK) {
-                    NavigationHelper
-                            .openVideoDetailFragment(getFM(), serviceId, url, name);
+                    NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
+                            serviceId, url, title, null, false);
                 } else {
                     Log.e(TAG, "ReCaptcha failed");
                 }
@@ -514,6 +522,7 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
+                autoPlayEnabled = true; // forcefully start playing
                 openVideoPlayer();
                 break;
             case R.id.detail_title_root_layout:
@@ -530,6 +539,7 @@ public class VideoDetailFragment
                     player.hideControls(0, 0);
                     showSystemUi();
                 } else {
+                    autoPlayEnabled = true; // forcefully start playing
                     openVideoPlayer();
                 }
 
@@ -791,7 +801,7 @@ public class VideoDetailFragment
                 player.onPause();
             }
             restoreDefaultOrientation();
-            setAutoplay(false);
+            setAutoPlay(false);
             return true;
         }
 
@@ -819,14 +829,11 @@ public class VideoDetailFragment
     }
 
     private void setupFromHistoryItem(final StackItem item) {
-        setAutoplay(false);
+        setAutoPlay(false);
         hideMainPlayer();
 
-        setInitialData(
-                item.getServiceId(),
-                item.getUrl(),
-                !TextUtils.isEmpty(item.getTitle()) ? item.getTitle() : "",
-                item.getPlayQueue());
+        setInitialData(item.getServiceId(), item.getUrl(),
+                item.getTitle() == null ? "" : item.getTitle(), item.getPlayQueue());
         startLoading(false);
 
         // Maybe an item was deleted in background activity
@@ -860,18 +867,17 @@ public class VideoDetailFragment
         }
     }
 
-    public void selectAndLoadVideo(final int sid, final String videoUrl, final String title,
-                                   final PlayQueue queue) {
-        // Situation when user switches from players to main player.
-        // All needed data is here, we can start watching
-        if (this.playQueue != null && this.playQueue.equals(queue)) {
-            openVideoPlayer();
-            return;
-        }
-        setInitialData(sid, videoUrl, title, queue);
-        if (player != null) {
+    public void selectAndLoadVideo(final int newServiceId,
+                                   @Nullable final String newUrl,
+                                   @NonNull final String newTitle,
+                                   @Nullable final PlayQueue newQueue) {
+        if (player != null && newQueue != null && playQueue != null
+                && !Objects.equals(newQueue.getItem(), playQueue.getItem())) {
+            // Preloading can be disabled since playback is surely being replaced.
             player.disablePreloadingOfCurrentTrack();
         }
+
+        setInitialData(newServiceId, newUrl, newTitle, newQueue);
         startLoading(false, true);
     }
 
@@ -956,7 +962,7 @@ public class VideoDetailFragment
                                 playQueue = new SinglePlayQueue(result);
                             }
                             if (stack.isEmpty() || !stack.peek().getPlayQueue().equals(playQueue)) {
-                                stack.push(new StackItem(serviceId, url, name, playQueue));
+                                stack.push(new StackItem(serviceId, url, title, playQueue));
                             }
                         }
                         if (isAutoplayEnabled()) {
@@ -977,7 +983,7 @@ public class VideoDetailFragment
 
         if (shouldShowComments()) {
             pageAdapter.addFragment(
-                    CommentsFragment.getInstance(serviceId, url, name), COMMENTS_TAB_TAG);
+                    CommentsFragment.getInstance(serviceId, url, title), COMMENTS_TAB_TAG);
         }
 
         if (showRelatedStreams && null == relatedStreamsLayout) {
@@ -1068,7 +1074,7 @@ public class VideoDetailFragment
         }
     }
 
-    private void openVideoPlayer() {
+    public void openVideoPlayer() {
         if (PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             showExternalPlaybackDialog();
@@ -1094,7 +1100,7 @@ public class VideoDetailFragment
 
     private void openMainPlayer() {
         if (playerService == null) {
-            PlayerHolder.startService(App.getApp(), true, this);
+            PlayerHolder.startService(App.getApp(), autoPlayEnabled, this);
             return;
         }
         if (currentInfo == null) {
@@ -1105,11 +1111,13 @@ public class VideoDetailFragment
 
         // Video view can have elements visible from popup,
         // We hide it here but once it ready the view will be shown in handleIntent()
-        playerService.getView().setVisibility(View.GONE);
+        if (playerService.getView() != null) {
+            playerService.getView().setVisibility(View.GONE);
+        }
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper
-                .getPlayerIntent(requireContext(), MainPlayer.class, queue, null, true);
+                .getPlayerIntent(requireContext(), MainPlayer.class, queue, true, autoPlayEnabled);
         activity.startService(playerIntent);
     }
 
@@ -1143,8 +1151,8 @@ public class VideoDetailFragment
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void setAutoplay(final boolean autoplay) {
-        this.autoPlayEnabled = autoplay;
+    public void setAutoPlay(final boolean autoPlay) {
+        this.autoPlayEnabled = autoPlay;
     }
 
     private void startOnExternalPlayer(@NonNull final Context context,
@@ -1166,7 +1174,7 @@ public class VideoDetailFragment
                 .getBoolean(getString(R.string.use_external_video_player_key), false);
     }
 
-    // This method overrides default behaviour when setAutoplay() is called.
+    // This method overrides default behaviour when setAutoPlay() is called.
     // Don't auto play if the user selected an external player or disabled it in settings
     private boolean isAutoplayEnabled() {
         return autoPlayEnabled
@@ -1302,12 +1310,14 @@ public class VideoDetailFragment
         contentRootLayoutHiding.setVisibility(View.VISIBLE);
     }
 
-    protected void setInitialData(final int sid, final String u, final String title,
-                                  final PlayQueue queue) {
-        this.serviceId = sid;
-        this.url = u;
-        this.name = !TextUtils.isEmpty(title) ? title : "";
-        this.playQueue = queue;
+    protected void setInitialData(final int newServiceId,
+                                  @Nullable final String newUrl,
+                                  @NonNull final String newTitle,
+                                  @Nullable final PlayQueue newPlayQueue) {
+        this.serviceId = newServiceId;
+        this.url = newUrl;
+        this.title = newTitle;
+        this.playQueue = newPlayQueue;
     }
 
     private void setErrorImage(final int imageResource) {
@@ -1400,7 +1410,7 @@ public class VideoDetailFragment
         animateView(detailPositionView, false, 100);
         animateView(positionView, false, 50);
 
-        videoTitleTextView.setText(name != null ? name : "");
+        videoTitleTextView.setText(title);
         videoTitleTextView.setMaxLines(1);
         animateView(videoTitleTextView, true, 0);
 
@@ -1445,7 +1455,7 @@ public class VideoDetailFragment
             }
         }
         animateView(thumbnailPlayButton, true, 200);
-        videoTitleTextView.setText(name);
+        videoTitleTextView.setText(title);
 
         if (!TextUtils.isEmpty(info.getSubChannelName())) {
             displayBothUploaderAndSubChannel(info);
@@ -1738,7 +1748,7 @@ public class VideoDetailFragment
         if (DEBUG) {
             Log.d(TAG, "onQueueUpdate() called with: serviceId = ["
                     + serviceId + "], videoUrl = [" + url + "], name = ["
-                    + name + "], playQueue = [" + playQueue + "]");
+                    + title + "], playQueue = [" + playQueue + "]");
         }
 
         // This should be the only place where we push data to stack.
@@ -1823,7 +1833,7 @@ public class VideoDetailFragment
 
         currentInfo = info;
         setInitialData(info.getServiceId(), info.getUrl(), info.getName(), queue);
-        setAutoplay(false);
+        setAutoPlay(false);
         // Delay execution just because it freezes the main thread, and while playing
         // next/previous video you see visual glitches
         // (when non-vertical video goes after vertical video)
@@ -2037,7 +2047,7 @@ public class VideoDetailFragment
     private void checkLandscape() {
         if ((!player.isPlaying() && player.getPlayQueue() != playQueue)
                 || player.getPlayQueue() == null) {
-            setAutoplay(true);
+            setAutoPlay(true);
         }
 
         player.checkLandscape();
@@ -2287,10 +2297,10 @@ public class VideoDetailFragment
         });
     }
 
-    private void updateOverlayData(@Nullable final String title,
+    private void updateOverlayData(@Nullable final String overlayTitle,
                                    @Nullable final String uploader,
                                    @Nullable final String thumbnailUrl) {
-        overlayTitleTextView.setText(TextUtils.isEmpty(title) ? "" : title);
+        overlayTitleTextView.setText(TextUtils.isEmpty(overlayTitle) ? "" : overlayTitle);
         overlayChannelTextView.setText(TextUtils.isEmpty(uploader) ? "" : uploader);
         overlayThumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
         if (!TextUtils.isEmpty(thumbnailUrl)) {

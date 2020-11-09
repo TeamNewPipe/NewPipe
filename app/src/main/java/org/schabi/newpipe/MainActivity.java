@@ -30,9 +30,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
-
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,6 +44,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -55,6 +54,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
@@ -69,10 +69,11 @@ import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
+import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -87,6 +88,7 @@ import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -152,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
-        setupBroadcastReceiver();
+        openMiniPlayerUponPlayerStarted();
     }
 
     private void setupDrawer() throws Exception {
@@ -758,32 +760,36 @@ public class MainActivity extends AppCompatActivity {
             if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
                 final String url = intent.getStringExtra(Constants.KEY_URL);
                 final int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
-                final String title = intent.getStringExtra(Constants.KEY_TITLE);
-                switch (((StreamingService.LinkType) intent
-                        .getSerializableExtra(Constants.KEY_LINK_TYPE))) {
+                String title = intent.getStringExtra(Constants.KEY_TITLE);
+                if (title == null) {
+                    title = "";
+                }
+
+                final StreamingService.LinkType linkType = ((StreamingService.LinkType) intent
+                        .getSerializableExtra(Constants.KEY_LINK_TYPE));
+                assert linkType != null;
+                switch (linkType) {
                     case STREAM:
-                        final boolean autoPlay = intent
-                                .getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
-                        final String intentCacheKey = intent
-                                .getStringExtra(VideoPlayer.PLAY_QUEUE_KEY);
+                        final String intentCacheKey = intent.getStringExtra(
+                                VideoPlayer.PLAY_QUEUE_KEY);
                         final PlayQueue playQueue = intentCacheKey != null
                                 ? SerializedCache.getInstance()
                                 .take(intentCacheKey, PlayQueue.class)
                                 : null;
-                        NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(),
-                                serviceId, url, title, autoPlay, playQueue);
+
+                        final boolean switchingPlayers = intent.getBooleanExtra(
+                                VideoDetailFragment.KEY_SWITCHING_PLAYERS, false);
+                        NavigationHelper.openVideoDetailFragment(
+                                getApplicationContext(), getSupportFragmentManager(),
+                                serviceId, url, title, playQueue, switchingPlayers);
                         break;
                     case CHANNEL:
                         NavigationHelper.openChannelFragment(getSupportFragmentManager(),
-                                serviceId,
-                                url,
-                                title);
+                                serviceId, url, title);
                         break;
                     case PLAYLIST:
                         NavigationHelper.openPlaylistFragment(getSupportFragmentManager(),
-                                serviceId,
-                                url,
-                                title);
+                                serviceId, url, title);
                         break;
                 }
             } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
@@ -805,34 +811,47 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setupBroadcastReceiver() {
-        broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(final Context context, final Intent intent) {
-                if (intent.getAction().equals(VideoDetailFragment.ACTION_PLAYER_STARTED)) {
-                    final Fragment fragmentPlayer = getSupportFragmentManager()
-                            .findFragmentById(R.id.fragment_player_holder);
-                    if (fragmentPlayer == null) {
-                        /*
-                         * We still don't have a fragment attached to the activity.
-                         * It can happen when a user started popup or background players
-                         * without opening a stream inside the fragment.
-                         * Adding it in a collapsed state (only mini player will be visible)
-                         * */
-                        NavigationHelper.showMiniPlayer(getSupportFragmentManager());
+    private void openMiniPlayerIfMissing() {
+        final Fragment fragmentPlayer = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_player_holder);
+        if (fragmentPlayer == null) {
+            // We still don't have a fragment attached to the activity. It can happen when a user
+            // started popup or background players without opening a stream inside the fragment.
+            // Adding it in a collapsed state (only mini player will be visible).
+            NavigationHelper.showMiniPlayer(getSupportFragmentManager());
+        }
+    }
+
+    private void openMiniPlayerUponPlayerStarted() {
+        if (getIntent().getSerializableExtra(Constants.KEY_LINK_TYPE)
+                == StreamingService.LinkType.STREAM) {
+            // handleIntent() already takes care of opening video detail fragment
+            // due to an intent containing a STREAM link
+            return;
+        }
+
+        if (PlayerHolder.isPlayerOpen()) {
+            // if the player is already open, no need for a broadcast receiver
+            openMiniPlayerIfMissing();
+        } else {
+            // listen for player start intent being sent around
+            broadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(final Context context, final Intent intent) {
+                    if (Objects.equals(intent.getAction(),
+                            VideoDetailFragment.ACTION_PLAYER_STARTED)) {
+                        openMiniPlayerIfMissing();
+                        // At this point the player is added 100%, we can unregister. Other actions
+                        // are useless since the fragment will not be removed after that.
+                        unregisterReceiver(broadcastReceiver);
+                        broadcastReceiver = null;
                     }
-                    /*
-                    * At this point the player is added 100%, we can unregister.
-                    * Other actions are useless since the fragment will not be removed after that
-                     * */
-                    unregisterReceiver(broadcastReceiver);
-                    broadcastReceiver = null;
                 }
-            }
-        };
-        final IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
-        registerReceiver(broadcastReceiver, intentFilter);
+            };
+            final IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
+            registerReceiver(broadcastReceiver, intentFilter);
+        }
     }
 
     private boolean bottomSheetHiddenOrCollapsed() {

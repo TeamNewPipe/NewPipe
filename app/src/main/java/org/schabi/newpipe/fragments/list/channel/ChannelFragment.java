@@ -517,7 +517,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         monitorSubscription(result);
 
         headerPlayAllButton.setOnClickListener(view -> NavigationHelper
-                .playOnMainPlayer(activity, getPlayQueue(), true));
+                .playOnMainPlayer(activity, getPlayQueue()));
         headerPopupButton.setOnClickListener(view -> NavigationHelper
                 .playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view -> NavigationHelper

@@ -21,7 +21,6 @@
 
     <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
     <string name="use_external_audio_player_key" translatable="false">use_external_audio_player</string>
-    <string name="autoplay_through_intent_key" translatable="false">autoplay_through_intent</string>
     <string name="use_old_player_key" translatable="false">use_oldplayer</string>
 
     <string name="volume_gesture_control_key" translatable="false">volume_gesture_control</string>

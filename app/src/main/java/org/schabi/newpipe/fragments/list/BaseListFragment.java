@@ -321,8 +321,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
     private void onStreamSelected(final StreamInfoItem selectedItem) {
         onItemSelected(selectedItem);
-        NavigationHelper.openVideoDetailFragment(getFM(),
-                selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
+        NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
+                selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName(),
+                null, false);
     }
 
     protected void onScrollToBottom() {
