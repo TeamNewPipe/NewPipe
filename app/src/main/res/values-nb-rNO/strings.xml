@@ -50,7 +50,8 @@
     <string name="use_tor_summary">(Eksperimentelt) Tving nedlasting av trafikk gjennom Tor for forbedret personvern (strømming av videoer støttes ikke enda).</string>
     <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
-    <string name="main_bg_subtitle">Trykk «Søk» for å komme i gang</string>
+    <string name="main_bg_subtitle">Trykk «Søk» for å begynne
+\n</string>
     <string name="autoplay_by_calling_app_title">Automatisk avspilling</string>
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
@@ -564,9 +565,7 @@
     <string name="feed_oldest_subscription_update">Strøm sist oppdatert: %s</string>
     <string name="restricted_video">Denne videoen er aldersbegrenset.
 \n
-\nSkru på «Aldersbegrenset innhold» i innstillingene hvis du vil se den.
-\n
-\nHvis du ønsker å se den, skru på \"Aldersbegrenset innhold\" i innstillingene.</string>
+\nSkru på «%1$s» i innstillingene hvis du vil se den.</string>
     <string name="infinite_videos">∞ videoer</string>
     <string name="more_than_100_videos">100+ videoer</string>
     <string name="artists">Artister</string>
