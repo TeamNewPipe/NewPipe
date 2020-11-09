@@ -79,19 +79,24 @@ NewPipe는 여러가지 서비스를 지원합니다. 우리의 [문서](https:/
 * PeerTube instances \[beta\]
 
 ## Updates
-NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 인해), 결국 릴리즈가 발생할 것입니다. 이것들의 형식은 x.xx.x 입니다. 이 새로운 버전을 얻기 위해서, 당신은:
- 1. 직접 디버그한 APK를 생성할 수 있습니다. 이 방법은 당신의 기기에서 새로운 기능을 얻을 수 있는 가장 빠른 방법이지만, 꽤 많이 복잡합니다. 따라서 우리는 다른 방법들 중 하나를 사용하는 것을 추천합니다.
- 2. Add our custom repo to F-Droid and install it from there as soon as we publish a release. The instructions are here: https://newpipe.schabi.org/FAQ/tutorials/install-add-fdroid-repo/
- 3. Download the APK from [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases) and install it as soon as we publish a release.
- 4. Update via F-droid. This is the slowest method of getting updates, as F-Droid must recognize changes, build the APK itself, sign it, then push the update to users.
+NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 인해), 결국 릴리즈가 발생할 것입니다. 이것들의 형식은 x.xx.x 입니다. 
+이 새로운 버전을 얻기 위해서, 당신은:
+ 1. 직접 디버그 APK를 생성할 수 있습니다. 이 방법은 당신의 기기에서 새로운 기능을 얻을 수 있는 가장 빠른 방법이지만, 꽤 많이 복잡합니다.
+ 따라서 우리는 다른 방법들 중 하나를 사용하는 것을 추천합니다.
+ 2. 우리의 커스텀 저장소를 F-Droid에 추가하고 우리가 릴리즈를 게시하는 대로 저곳에서 릴리즈를 설치할 수 있습니다. 
+ 이에 대한 설명서는 이곳에서 확인할 수 있습니다: https://newpipe.schabi.org/FAQ/tutorials/install-add-fdroid-repo/
+ 3. 우리가 릴리즈를 게시하는 대로 [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases)에서 APK를 다운받고 이것을 설치할 수 있습니다.
+ 4. F-Droid를 통해 업데이트 할 수 있습니다. F-Droid는 변화를 인식하고, 스스로 APK를 생성하고, 이것에 서명하고, 사용자들에서 업데이트를 전달해야만 하기 때문에,
+ 이것은 업데이트를 받는 가장 느린 방법입니다.
 
-우리는 대부분의 사용자에게 2번쨰 방법을 추천합니다. APKs installed using method 2 or 3 are compatible with each other, but not with those installed using method 4. This is due to the same signing key (ours) being using for 2 and 3, but a different signing key (F-Droid's) being used for 4. Building a debug APK using method 1 excludes a key entirely. Signing keys help ensure that a user isn't tricked into installing a malicious update to an app.
+우리는 대부분의 사용자에게 2번쨰 방법을 추천합니다. 방법 2 또는 3을 사용하여 설치된 APK는 서로 호환되지만, 방법 4를 사용하여 설치된 것들과는 호환되지 않습니다. 이것은 방법 2 또는 3에서는 같은 (우리의)서명 키가 사용되지만, 방법 4에서는 다른 (F-Droid의)서명 키가 사용되기 때문입니다. 방법 1을 사용하여 디버그 APK를 생성하는 것에서는 키가 완전히 제외됩니다. 서명 키는 사용자가 앱에 악의적인 업데이트를 설치하는 것에 대해 속지 않도록 보장하는 것을 도와줍니다.
 
-In the meanwhile, if you want to switch sources for some reason (e.g. NewPipe's core functionality was broken and F-Droid doesn't have the update yet), we recommend following this procedure:
-1. 당신의 기록, 구독, 그리고 재생목록을 유지할 수 있도록 Settings > Content > Export Database 를 통해 당신의 데이터를 백업하십시오.
+한편, 만약 어떠한 이유(예. NewPipe의 핵심 기능이 손상되었고 F-Droid가 아직 업데이트를 가지지 않는 경우) 때문에 소스를 바꾸길 원한다면, 
+우리는 다음과 같은 절차를 따르는 것을 권장합니다:
+1. 당신의 기록, 구독, 그리고 재생목록을 유지할 수 있도록 Settings > Content > Export Database 를 통해 데이터를 백업하십시오.
 2. NewPipe를 삭제하십시오.
 3. 새로운 소스에서 APK를 다운로드하고 이것을 설치하십시오.
-4. Step 1의 Settings > Content > Export Database 에서 데이터를 불러오십시오.
+4. Step 1의 Settings > Content > Export Database 을 통해 데이터를 불러오십시오.
 
 ## Contribution
 당신이 아이디어, 번역, 디자인 변경, 코드 정리, 또는 정말 큰 코드 수정에 대한 의견이 있다면, 도움은 항상 환영합니다.
