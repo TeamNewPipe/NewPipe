@@ -336,14 +336,14 @@
     <string name="previous_export">Poprzedni eksport</string>
     <string name="subscriptions_import_unsuccessful">Import subskrypcji nie powiódł się</string>
     <string name="subscriptions_export_unsuccessful">Eksport subskrypcji nie powiódł się</string>
-    <string name="import_youtube_instructions">Importowanie subskrypcji YouTube z google takeout:
+    <string name="import_youtube_instructions">Importowanie subskrypcji YouTube z Google Takeout:
 \n
 \n1. Przejdź do tego adresu URL: %1$s
 \n2. Zaloguj się, gdy zostaniesz o to poproszony
-\n3. Kliknij na \"Wszystkie dane zawarte\", a następnie na \"Usuń zaznaczenie wszystkich\", a następnie wybierz tylko \"subskrypcje\" i kliknij \"OK\"
-\n4. Kliknij na \"Następny krok\", a następnie na \"Tworzenie eksportu\"
+\n3. Kliknij na \"Wybrałeś wszystkie dane z Youtube\", a następnie na \"Odznacz wszystkie\", potem wybierz tylko \"subskrypcje\" i kliknij \"OK\"
+\n4. Kliknij na \"Następny krok\", a następnie na \"Utwórz eksport\"
 \n5. Kliknij przycisk \"Pobierz\", gdy się pojawi i
-\n6. Z pobranego pliku zip na wynos wyodrębnij plik .json (zwykle w sekcji \"YouTube i YouTube Music/subscriptions/subscriptions.json\") i zaimportuj go tutaj.</string>
+\n6. Z pobranego archiwum zip wyodrębnij plik .json (zazwyczaj pod ścieżką \"YouTube i YouTube Music/subskrypcje/subskrypcje.json\") i zaimportuj go tutaj.</string>
     <string name="import_network_expensive_warning">Ta operacja może wygenerować duże użycie danych.
 \n
 \nCzy chcesz kontynuować?</string>
