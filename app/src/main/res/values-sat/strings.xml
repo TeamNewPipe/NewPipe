@@ -24,4 +24,8 @@
     <string name="subscribe_button_title">ᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ</string>
     <string name="unsubscribe">ᱟᱹᱱᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ</string>
     <string name="subscribed_button_title">ᱥᱟᱹᱵᱥᱠᱨᱭᱤᱵᱽ ᱮᱱᱟ</string>
+    <string name="subscription_change_failed">ᱥᱟᱹᱵᱥᱠᱨᱭᱤᱯᱥᱚᱱ ᱵᱚᱫᱚᱞ ᱵᱟᱭ ᱜᱟᱱᱟᱜᱽ ᱠᱟᱱᱟ</string>
+    <string name="channel_unsubscribed">ᱪᱟᱱᱱᱮᱹᱞ ᱟᱹᱱᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ ᱮᱱᱟ</string>
+    <string name="popup_mode_share_menu_title">ᱯᱚᱯᱟᱹᱯ ᱢᱳᱰ</string>
+    <string name="use_external_audio_player_title">ᱵᱟᱦᱨᱮ ᱟᱹᱰᱤᱭᱚ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱮᱵᱽᱦᱟᱨ ᱢᱮᱸ</string>
 </resources>
