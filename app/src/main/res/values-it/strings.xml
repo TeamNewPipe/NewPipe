@@ -327,11 +327,14 @@
     <string name="previous_export">Esportazione precedente</string>
     <string name="subscriptions_import_unsuccessful">Impossibile importare le iscrizioni</string>
     <string name="subscriptions_export_unsuccessful">Impossibile esportare le iscrizioni</string>
-    <string name="import_youtube_instructions">Importa le iscrizioni di YouTube scaricando il file d\'esportazione: 
-\n 
-\n1. Vai a questo URL: %1$s 
-\n2. Accedi quando richiesto 
-\n3. Il download del file d\'esportazione dovrebbe partire in automatico</string>
+    <string name="import_youtube_instructions">Importa le iscrizioni di YouTube scaricando il file d\'esportazione:
+\n
+\n1. Vai a questo URL: %1$s
+\n2. Accedi quando richiesto
+\n3. Premi \"Tutti i dati inclusi\", \"Deseleziona tutto\", seleziona solo \"iscrizioni\" e premi \"OK\"
+\n4. Premi \"Passaggio successivo\" e poi \"Crea esportazione\"
+\n5. Premi il pulsante \"Scarica\" quando compare
+\n6. Dall\'archivio ZIP scaricato, estrai il file JSON (solitamente in \"YouTube and YouTube Music/subscriptions/subscriptions.json\") e importalo qui.</string>
     <string name="import_soundcloud_instructions">Importa un profilo SoundCloud inserendo l\'URL o il tuo ID:
 \n
 \n1. Abilitare la «modalità desktop» del browser (il sito non è disponibile per i dispositivi mobili)
@@ -640,4 +643,6 @@
     <string name="clear_cookie_title">Pulisci Cookie reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">Consente di usufruire della «Modalità con restrizioni» di YouTube, che esclude contenuti potenzialmente inappropriati per i minori.</string>
     <string name="show_age_restricted_content_summary">Mostra contenuti che hanno un limite di età (es. 18+). Potrebbero essere inadatti ai bambini.</string>
+    <string name="notification_colorize_summary">Lascia che Android modifichi il colore della notifica, secondo il colore principale della copertina (funzione non disponibile per tutti i dispositivi)</string>
+    <string name="notification_colorize_title">Colora Notifica</string>
 </resources>
