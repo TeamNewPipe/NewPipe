@@ -1756,7 +1756,7 @@ public final class VideoDetailFragment
         // deleted/added items inside Channel/Playlist queue and makes possible to have
         // a history of played items
         @Nullable final StackItem stackPeek = stack.peek();
-        if (stackPeek != null && stackPeek.getPlayQueue().equals(queue)) {
+        if (stackPeek != null && !stackPeek.getPlayQueue().equals(queue)) {
             @Nullable final PlayQueueItem playQueueItem = queue.getItem();
             if (playQueueItem != null) {
                 stack.push(new StackItem(playQueueItem.getServiceId(), playQueueItem.getUrl(),
