@@ -4,4 +4,4 @@ Amélioration :
 Corrections :
 • Correction des flux suggérés par ajout du support de "YouTube's new continuations"
 • Correction de la gestion de l'âge minimum pour regarder les vidéos Youtube
-• [Android TV] correction de la persistance du soulignement sur l'overlay
+• [Android TV] correction de la persistance du focus sur l'overlay
