@@ -456,4 +456,5 @@
     <string name="clear_playback_states_summary">Összes lejátszási pozíció törlése</string>
     <string name="clear_playback_states_title">Lejátszási pozíciók törlése</string>
     <string name="search_showing_result_for">Találatok a következőre: %s</string>
+    <string name="notification_scale_to_square_image_title">Bélyegkép méretezése 1:1 arányra</string>
 </resources>
