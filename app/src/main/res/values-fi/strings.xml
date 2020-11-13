@@ -358,11 +358,14 @@
     <string name="previous_export">Edellinen vienti</string>
     <string name="subscriptions_import_unsuccessful">Tilauksia ei voitu tuoda</string>
     <string name="subscriptions_export_unsuccessful">Tilauksia ei voitu viedä</string>
-    <string name="import_youtube_instructions">Tuo youtube-tilaukset lataamalla ensin tilauslistatiedostosi:
+    <string name="import_youtube_instructions">Tuo YouTube-tilaukset Google Takeoutista:
 \n
 \n1. Mene osoitteeseen: %1$s
-\n2. Kirjaudu sisään kun niin vaaditaan
-\n3. Latauksen pitäisi alkaa (se on se tiedosto)</string>
+\n2. Kirjaudu sisään pyydettäessä
+\n3. Klikkaa \"Kaikki Youtube-data valittuna\", sitten \"Poista kaikki valinnat\", sitten ainoastaan \"tilaukset\" ja klikkaa \"OK\"
+\n4. Klikkaa \"Seuraava vaihe\" ja \"Luo vienti\"
+\n5. Klikkaa \"Lataa\" tämän ilmestyessä
+\n6. Ladatusta takeoutin zip-tiedostosta pura json-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.json\" ja tuo se tänne</string>
     <string name="import_soundcloud_instructions">Tuo SoundCloud-profiili kirjoittamalla joko osoite tai ID:si:
 \n
 \n1. Laita päälle työpöytämoodi selaimessasi (tai käytä tietokonetta, tämä sivu ei toimi mobiilisivuna)
@@ -485,9 +488,9 @@
 \n• Koko tilatun kanavan lataaminen, mikä on hidasta, mutta lataa syötteen kokonaisuudessaan.
 \n• Erityisen palvelu-endpointin käyttö, mikä on nopeaa, mutta yleensä ei lataa syötettä kokonaisuudessaan.
 \n
-\nNäiden kahden välinen ero on, että nopean lataamista tiedoista yleensä puuttuu esim. sisällön kesto tai tyyppi (ei voi erotella livevideoita ja tavallisia) tai se ei lataa kaikkea sisältöä.
+\nNäiden kahden välinen ero on, että nopean tavan lataamista tiedoista yleensä puuttuu esim. sisällön kesto tai tyyppi (ei voi erotella livevideoita ja tavallisia) tai se ei lataa kaikkea sisältöä.
 \n
-\nYouTuve on esimerkki palvelusta, joka tarjoaa nopean tavan RSS-syötteen avulla.
+\nYouTube on esimerkki palvelusta, joka tarjoaa nopean tavan RSS-syötteen avulla.
 \n
 \nValinta riippuu siitä, mitä halutaan: nopeutta vai tarkkoja tietoja.</string>
     <string name="default_kiosk_page_summary">Oletuskioski</string>
@@ -640,4 +643,6 @@
     <string name="clear_cookie_title">Poista reCAPTCHA-evästeet</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube tarjoaa ”Rajoitetun tilan”, joka piilottaa aikuisviihdesisällön.</string>
     <string name="show_age_restricted_content_summary">Näytä mahdollisesti lapsille sopimaton sisältö, jolla on ikäraja (esim. 18+).</string>
+    <string name="notification_colorize_summary">Anna Androidin muokata ilmoituksen väriä esikatselukuvan päävärin mukaan (tämä ei ole mahdollista kaikilla laitteilla)</string>
+    <string name="notification_colorize_title">Käytä värejä ilmoituksessa</string>
 </resources>
