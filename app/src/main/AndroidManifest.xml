@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Android Auto //-->
+    <uses-permission android:name="com.google.android.libraries.car.app.ACCESS_SURFACE"/>
+    <uses-permission android:name="com.google.android.libraries.car.app.NAVIGATION_TEMPLATES"/>
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -320,6 +323,20 @@
         <service
             android:name=".RouterActivity$FetcherService"
             android:exported="false" />
+
+        <!-- Android Auto -->
+        <service android:name=".car.NPCarAppService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:icon="@mipmap/ic_launcher">
+            <intent-filter>
+                <action android:name="com.google.android.car.action.CAR_APP"/>
+                <category android:name="com.google.android.car.category.NAVIGATION"/>
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc"/>
 
         <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
         <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->

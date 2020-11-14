@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "org.schabi.newpipe"
         resValue "string", "app_name", "NewPipe"
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 956
         versionName "0.20.2"
@@ -223,6 +223,9 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
     implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
+
+    //Android Auto
+    implementation 'com.google.android.libraries.car:car-app:1.0.0-beta.1'
 }
 
 static String getGitWorkingBranch() {

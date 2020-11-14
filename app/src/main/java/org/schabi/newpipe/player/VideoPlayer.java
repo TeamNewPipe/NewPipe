@@ -38,6 +38,7 @@ import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Surface;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -62,6 +63,7 @@ import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.exoplayer2.video.VideoListener;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.car.NPSurface;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -72,6 +74,7 @@ import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -247,7 +250,24 @@ public abstract class VideoPlayer extends BasePlayer
         super.initPlayer(playOnReady);
 
         // Setup video view
-        simpleExoPlayer.setVideoSurfaceView(surfaceView);
+        if (this instanceof VideoPlayerImpl) {
+            final Surface androidAutoSurface = NPSurface.Companion.getSurface();
+            if (androidAutoSurface != null) {
+                try {
+                    final Method m = simpleExoPlayer.getClass()
+                            .getDeclaredMethod("setVideoSurfaceInternal",
+                                    androidAutoSurface.getClass(), Boolean.TYPE);
+                    m.setAccessible(true);
+                    m.invoke(simpleExoPlayer, androidAutoSurface, false);
+                } catch (final Exception e) {
+                    Log.e(TAG, e.getMessage(), e);
+                }
+            } else {
+                simpleExoPlayer.setVideoSurfaceView(surfaceView);
+            }
+        } else {
+            simpleExoPlayer.setVideoSurfaceView(surfaceView);
+        }
         simpleExoPlayer.addVideoListener(this);
 
         // Setup subtitle view
