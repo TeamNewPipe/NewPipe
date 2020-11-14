@@ -671,9 +671,13 @@ public class VideoPlayerImpl extends VideoPlayer
         super.onUpdateProgress(currentProgress, duration, bufferPercent);
         updateProgress(currentProgress, duration, bufferPercent);
 
+        final boolean showThumbnail =
+                sharedPreferences.getBoolean(
+                        context.getString(R.string.show_thumbnail_key),
+                        true);
         // setMetadata only updates the metadata when any of the metadata keys are null
-        mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(), getThumbnail(),
-                duration);
+        mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(),
+                showThumbnail ? getThumbnail() : null, duration);
     }
 
     @Override

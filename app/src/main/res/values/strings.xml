@@ -681,4 +681,6 @@
     <string name="channel_created_by">Created by %s</string>
     <string name="video_detail_by">By %s</string>
     <string name="playlist_page_summary">Playlist page</string>
+    <string name="show_thumbnail_title">Show thumbnail</string>
+    <string name="show_thumbnail_summary">Show thumbnail on lock screen as background and inside notifications</string>
 </resources>

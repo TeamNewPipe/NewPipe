@@ -17,6 +17,13 @@
         android:title="@string/notification_colorize_title"
         app:iconSpaceReserved="false" />
 
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/show_thumbnail_key"
+        android:title="@string/show_thumbnail_title"
+        android:summary="@string/show_thumbnail_summary"
+        app:iconSpaceReserved="false" />
+
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         app:iconSpaceReserved="false">

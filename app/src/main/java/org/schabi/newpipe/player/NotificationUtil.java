@@ -146,7 +146,11 @@ public final class NotificationUtil {
         notificationBuilder.setContentText(player.getUploaderName());
         notificationBuilder.setTicker(player.getVideoTitle());
         updateActions(notificationBuilder, player);
-        setLargeIcon(notificationBuilder, player);
+        final boolean showThumbnail = player.sharedPreferences.getBoolean(
+                player.context.getString(R.string.show_thumbnail_key), true);
+        if (showThumbnail) {
+            setLargeIcon(notificationBuilder, player);
+        }
     }
 
 
