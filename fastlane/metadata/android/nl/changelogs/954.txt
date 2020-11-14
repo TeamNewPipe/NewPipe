@@ -1,0 +1,6 @@
+• Nieuwe app-workflow: speel video's af op de detailpagina, veeg omlaag om de speler te minimaliseren
+• MediaStyle-meldingen: aanpasbare acties in meldingen, prestatieverbeteringen
+• Basisformaat wijzigen bij gebruik van NewPipe als desktop-app
+• Toon dialoog met open opties in het geval van een niet-ondersteunde URL-toast
+• Verbeter de ervaring met zoeksuggesties wanneer externe suggesties niet kunnen worden opgehaald
+• Standaard videokwaliteit verhoogd naar 720p60 (in-app-speler) en 480p (pop-
