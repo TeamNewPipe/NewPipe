@@ -23,7 +23,7 @@
     <string name="show_play_with_kodi_title">Mostra «Riproduci con Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra l\'opzione per riprodurre video tramite Kodi</string>
     <string name="play_audio">Audio</string>
-    <string name="default_audio_format_title">Formato Audio Predefinito</string>
+    <string name="default_audio_format_title">Formato audio predefinito</string>
     <string name="download_dialog_title">Scarica</string>
     <string name="show_next_and_similar_title">Mostra video «Prossimo» e «Simili»</string>
     <string name="unsupported_url">URL non supportato</string>
@@ -124,7 +124,7 @@
     <string name="default_popup_resolution_title">Risoluzione predefinita popup</string>
     <string name="show_higher_resolutions_title">Mostra altre risoluzioni</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
-    <string name="default_video_format_title">Formato Video Predefinito</string>
+    <string name="default_video_format_title">Formato video predefinito</string>
     <string name="player_gesture_controls_title">Controllo gesti lettore multimediale</string>
     <string name="player_gesture_controls_summary">Usa i gesti per controllare la luminosità e il volume del lettore multimediale</string>
     <string name="show_search_suggestions_title">Suggerimenti di ricerca</string>
@@ -307,7 +307,7 @@
     <string name="enable_leak_canary_summary">Il monitoraggio di memory leak potrebbe causare la mancata risposta dell\'applicazione durante il dumping dell\'heap</string>
     <string name="enable_disposed_exceptions_title">Segnala errori «fuori del ciclo di vita»</string>
     <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
-    <string name="use_inexact_seek_title">Usa Ricerca Rapida (Imprecisa)</string>
+    <string name="use_inexact_seek_title">Usa ricerca rapida (imprecisa)</string>
     <string name="use_inexact_seek_summary">Consente al lettore multimediale di spostarsi più velocemente, ma con precisione ridotta. Spostamenti di 5, 15 o 25 secondi non funzionano con questo.</string>
     <string name="auto_queue_title">Accoda automaticamente l\'elemento successivo</string>
     <string name="auto_queue_summary">Accoda un contenuto consigliato al termine della riproduzione, in una coda non ripetitiva</string>
@@ -621,11 +621,11 @@
     <string name="clear_queue_confirmation_description">La coda del lettore attivo sarà sostituita</string>
     <string name="clear_queue_confirmation_title">Chiedi prima di svuotare la coda</string>
     <string name="clear_queue_confirmation_summary">Cambiare tipo di riproduzione potrebbe sostituire gli elementi in coda</string>
-    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a 3, utilizzando le caselle di controllo sulla destra. Verranno visualizzate nella notifica compatta.</string>
-    <string name="notification_action_4_title">Azione Pulsante 5</string>
-    <string name="notification_action_3_title">Azione Pulsante 4</string>
-    <string name="notification_action_2_title">Azione Pulsante 3</string>
-    <string name="notification_action_1_title">Azione Pulsante 2</string>
+    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a 3, utilizzando le caselle di controllo sulla destra, da visualizzare nella notifica compatta.</string>
+    <string name="notification_action_4_title">Azione quinto pulsante</string>
+    <string name="notification_action_3_title">Azione quarto pulsante</string>
+    <string name="notification_action_2_title">Azione terzo pulsante</string>
+    <string name="notification_action_1_title">Azione secondo pulsante</string>
     <string name="notification_action_0_title">Azione primo pulsante</string>
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_actions_at_most_three">Nella notifica compatta è possibile visualizzare al massimo 3 azioni!</string>
@@ -644,5 +644,5 @@
     <string name="youtube_restricted_mode_enabled_summary">Consente di usufruire della «Modalità con restrizioni» di YouTube, che esclude contenuti potenzialmente inappropriati per i minori.</string>
     <string name="show_age_restricted_content_summary">Mostra contenuti che hanno un limite di età (es. 18+). Potrebbero essere inadatti ai bambini.</string>
     <string name="notification_colorize_summary">Lascia che Android modifichi il colore della notifica, secondo il colore principale della copertina (funzione non disponibile per tutti i dispositivi)</string>
-    <string name="notification_colorize_title">Colora Notifica</string>
+    <string name="notification_colorize_title">Colora notifica</string>
 </resources>
