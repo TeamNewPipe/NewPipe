@@ -626,7 +626,7 @@
     <string name="notification_action_3_title">Azione Pulsante 4</string>
     <string name="notification_action_2_title">Azione Pulsante 3</string>
     <string name="notification_action_1_title">Azione Pulsante 2</string>
-    <string name="notification_action_0_title">Azione Pulsante 1</string>
+    <string name="notification_action_0_title">Azione primo pulsante</string>
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_actions_at_most_three">Nella notifica compatta è possibile visualizzare al massimo 3 azioni!</string>
     <string name="notification_action_shuffle">Casuale</string>
