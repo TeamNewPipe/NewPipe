@@ -1,0 +1,7 @@
+Améliorations
+- Sauvegarde et restauration, que la hauteur et le tempo soient détachés ou non
+- Coupure d'affichage dans le lecteur
+- Calcul de l'arrondi pour le nombre de vues et le nombre d'abonnés
+- Optimisation YouTube pour utiliser moins de données
+
+Plus de 15 bogues liés à YouTube ont été corrigés dans cette version.

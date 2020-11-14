@@ -465,4 +465,12 @@
     </plurals>
     <string name="enqueued">সারিবদ্ধ করা হয়েছে</string>
     <string name="enqueue_stream">এনকুই</string>
+    <plurals name="seconds">
+        <item quantity="one">%d সেকেন্ড</item>
+        <item quantity="other">%d সেকেন্ড</item>
+    </plurals>
+    <string name="remove_watched">দেখা থেকে অপসারণ করো</string>
+    <string name="systems_language">সিস্টেম ডিফল্ট</string>
+    <string name="downloads_storage_use_saf_title">সাফ ব্যবহার করো</string>
+    <string name="notification_colorize_title">বিজ্ঞপ্তি রঙিন করো</string>
 </resources>

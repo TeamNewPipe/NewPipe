@@ -71,7 +71,7 @@
     <string name="what_happened_headline">Τι συνέβη:</string>
     <string name="your_comment">Το σχόλιό σας (στα Αγγλικά):</string>
     <string name="error_details_headline">Λεπτομέρειες:</string>
-    <string name="report_error">Αναφορά σφάλματος</string>
+    <string name="report_error">Αναφορά Σφάλματος</string>
     <string name="video">Βίντεο</string>
     <string name="audio">Ήχος</string>
     <string name="pause">Παύση</string>
@@ -357,7 +357,7 @@
     <string name="subscriptions_export_unsuccessful">Δεν ήταν δυνατή η εξαγωγή των εγγραφών</string>
     <string name="import_youtube_instructions">Κάντε εισαγωγή των εγγραφών σας στο YouTube κατεβάζοντας το εξής αρχείο:
 \n
-\n1. Πλοηγηθήτε στο: %1$s
+\n1. Πλοηγηθείτε στο: %1$s
 \n2. Εισέλθετε στο λογαριασμό σας, όταν σας ζητηθεί
 \n3. Η λήψη του αρχείου των εγγραφών σας θα ξεκινήσει</string>
     <string name="import_soundcloud_instructions">Για να εισάγετε τον λογαριασμό SoundCloud σας, πληκτρολογήστε τον σύνδεσμο ή το ID σας:
@@ -408,7 +408,7 @@
     <string name="saved_tabs_invalid_json">Δεν ήταν δυνατή η ανάγνωση των αποθηκευμένων καρτελών. Θα γίνει χρήση των προεπιλεγμένων</string>
     <string name="restore_defaults">Επαναφορά προεπιλεγμένων ρυθμίσεων</string>
     <string name="restore_defaults_confirmation">Θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;</string>
-    <string name="subscribers_count_not_available">Ο αριθμός συνδρομητών δεν είναι διαθέσιμος</string>
+    <string name="subscribers_count_not_available">Το πλήθος των συνδρομητών δεν είναι διαθέσιμο</string>
     <string name="main_page_content_summary">Ποιές καρτέλες θα εμφανίζονται στην αρχική σελίδα</string>
     <string name="selection">Επιλογή</string>
     <string name="conferences">Συνέδρια</string>
@@ -638,4 +638,5 @@
     <string name="peertube_instance_url_summary">Επιλογή των αγαπημένων σας PeerTube instances</string>
     <string name="show_original_time_ago_title">Εμφάνιση αυθεντικού παρελθόντος χρόνου στα αντικείμενα</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
+    <string name="notification_colorize_title">Χρωματισμός ειδοποιήσεων</string>
 </resources>

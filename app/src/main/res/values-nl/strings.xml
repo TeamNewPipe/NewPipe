@@ -327,11 +327,14 @@
     <string name="previous_export">Vorige exportering</string>
     <string name="subscriptions_import_unsuccessful">De abonnementen kunnen niet worden geïmporteerd</string>
     <string name="subscriptions_export_unsuccessful">De abonnementen kunnen niet worden geëxporteerd</string>
-    <string name="import_youtube_instructions">Importeer je YouTube-abonnementen door het exportbestand te downloaden: 
-\n 
+    <string name="import_youtube_instructions">Importeer je YouTube-abonnementen vanaf Google Takeout:
+\n
 \n1. Ga naar dit adres: %1$s
 \n2. Log in op je account
-\n3. De download met het exportbestand zou nu moeten starten</string>
+\n3. Klik op \"Alle YouTube-gegevens inbegrepen\", dan op \"Selectie van alle items ongedaan maken\", dan selecteer alleen \"abonnementen\" en klik op \"OK\"
+\n4. Klik op \"Volgende stap\", dan op \"Export maken\"
+\n5. Klik op de knop \"Downloaden\" nadat deze verschijnt
+\n6. Uit de Takeout zipfile, pak de .json uit (gebruikelijk in de folder \"YouTube en YouTube Music/abonnementen/abonnementen.json\") en importeer deze hier.</string>
     <string name="import_soundcloud_instructions">Importeer een SoundCloud-profiel door de URL of het ID ervan in te voeren:
 \n
 \n1. Kies een webbrowser en schakel bureaubladmodus in (de website is niet beschikbaar voor mobiele apparaten)
@@ -640,4 +643,6 @@
     <string name="clear_cookie_title">Verwijder reCAPTCHA cookies</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"beperkte modes\" aan, dit verbergt mogelijk materiaal voor volwassenen.</string>
     <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+).</string>
+    <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
+    <string name="notification_colorize_title">Notificatie kleur aanpassen</string>
 </resources>

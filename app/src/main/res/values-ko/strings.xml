@@ -546,4 +546,6 @@
     <string name="notification_scale_to_square_image_summary">알림에 표시되는 비디오 썸네일을 16:9에서 1:1 비율로 바꿉니다. (왜곡이 생길 수도 있습니다.)</string>
     <string name="notification_scale_to_square_image_title">썸네일을 1:1 비율로 하기</string>
     <string name="search_showing_result_for">%s에 대한 검색 결과</string>
+    <string name="notification_action_shuffle">셔플</string>
+    <string name="notification_action_repeat">연속 재생</string>
 </resources>

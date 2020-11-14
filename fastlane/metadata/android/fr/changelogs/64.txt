@@ -1,0 +1,8 @@
+### Améliorations
+- Possibilité de limiter la qualité vidéo si utilisation de données mobiles #1339 
+- Mémoriser luminosité pour la session #1442 
+- Performances de téléchargement pour CPU peu performants #1431 
+- Support pour les sessions média #1433
+
+### Corrections
+- Plantage lors de l'ouverture des téléchargements (disponible pour les versions ultérieures) #1441

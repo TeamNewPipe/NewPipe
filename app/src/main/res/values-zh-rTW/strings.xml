@@ -321,11 +321,14 @@
     <string name="subscriptions_export_unsuccessful">無法匯出訂閱</string>
     <string name="previous_export">之前的匯出</string>
     <string name="invalid_file">檔案不存在或讀取或寫入權限不足</string>
-    <string name="import_youtube_instructions">透過下載匯出檔來匯入您的 YouTube 訂閱： 
-\n 
-\n1. 移至此網址：%1$s 
+    <string name="import_youtube_instructions">從 Google Takeout 匯入您的 YouTube 訂閱：
+\n
+\n1. 移至此網址：%1$s
 \n2. 當被提示時登入帳號
-\n3. 應該會開始下載（這就是匯出檔 ）</string>
+\n3. 點擊「包含所有資料」，然後「取消選取全部」，然後僅選取「訂閱」並點擊「確定」
+\n4. 點擊「下一步」然後「建立匯出」
+\n5. 在「下載」按鈕出現後點擊它，然後
+\n6. 從已下載的 takeout zip 解壓縮 .json 檔（通常會在「YouTube 與 YouTube Music/subscriptions/subscriptions.json」）然後匯入它。</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。 
 \n 
@@ -630,4 +633,6 @@
     <string name="clear_cookie_title">清除 reCAPTCHA cookies</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube 提供了「受限模式」，可以隱藏潛在的成人內容。</string>
     <string name="show_age_restricted_content_summary">顯示可能不適於兒童的內容（因為其有年齡限制，如18歲以上等）。</string>
+    <string name="notification_colorize_summary">讓 Android 根據縮圖中的主要色彩來自訂通知的顏色（請注意，此功能不是在所有裝置上都能正常運作）</string>
+    <string name="notification_colorize_title">彩色通知</string>
 </resources>

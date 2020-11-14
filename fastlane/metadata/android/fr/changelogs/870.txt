@@ -1,0 +1,2 @@
+Il s'agit d'un correctif qui met à jour NewPipe pour permettre d'utiliser à nouveau SoundCloud sans problèmes majeurs.
+L'API v2 de SoundCloud est maintenant utilisée dans l'extracteur et la détection des ID clients invalides a été améliorée.

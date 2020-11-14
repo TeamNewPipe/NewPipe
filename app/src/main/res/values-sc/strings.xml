@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="import_youtube_instructions">Importa sas iscritziones iscarrighende su documentu de esportatzione:
+    <string name="import_youtube_instructions">Importa sas iscritziones dae Google takeout:
 \n
 \n 1. Bae a custu URL: %1$s
 \n 2. Intra cando ti l\'ant a pedire
-\n 3. Diat dèpere incumintzare un\'iscarrigamentu (cussu est su documentu de esportatzione)</string>
+\n 3. Incarca in \"Totu sos datos incluidos\", a pustis in \"Boga sa seletzione a totus\" e a pustis galu ischerta petzi \"iscritziones\" e incarca \"AB\"
+\n4. Incarca in \"Passu imbeniente\" e a pustis in \"Crea un\'esportatzione\"
+\n5. Cando aparit, incarca in su butone \"Iscarrigamentu\" e
+\n6. Dae s\'archìviu zip iscarrigadu estrai su documentu .json (de sòlitu tenet su nùmene\"\"YouTube and YouTube Music/subscriptions/subscriptions.json\") e importa·lu inoghe.</string>
     <string name="subscriptions_export_unsuccessful">Esportatzione de s\'iscritzione fallida</string>
     <string name="subscriptions_import_unsuccessful">Importatzione de s\'iscritzione fallida</string>
     <string name="previous_export">Esportatzione anteposta</string>
@@ -640,4 +643,6 @@
     <string name="clear_cookie_title">Isbòida sos testimòngios reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube frunit una \"Modalidade cun restritziones\" chi cuat sos cuntenudos chi diant pòdere èssere pro adultos.</string>
     <string name="show_age_restricted_content_summary">Ammustra sos cuntenutos chi diant pòdere no èssere adatos pro sos pitzinnos ca tenent unu lìmite de edade (che a 18+).</string>
+    <string name="notification_colorize_summary">Pedi a Android de personalizare su colore de sa notìfica sighende su colore printzipale de sa miniadura (ammenta·ti chi custu no est a disponimentu pro totu sos dispositivos)</string>
+    <string name="notification_colorize_title">Colora sas notìficas</string>
 </resources>
