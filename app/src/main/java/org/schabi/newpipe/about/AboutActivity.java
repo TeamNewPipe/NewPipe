@@ -33,7 +33,7 @@ public class AboutActivity extends AppCompatActivity {
      */
     private static final SoftwareComponent[] SOFTWARE_COMPONENTS = new SoftwareComponent[]{
             new SoftwareComponent("Giga Get", "2014 - 2015", "Peter Cai",
-                    "https://github.com/PaperAirplane-Dev-Team/GigaGet", StandardLicenses.GPL2),
+                    "https://github.com/PaperAirplane-Dev-Team/GigaGet", StandardLicenses.GPL3),
             new SoftwareComponent("NewPipe Extractor", "2017 - 2020", "Christian Schabesberger",
                     "https://github.com/TeamNewPipe/NewPipeExtractor", StandardLicenses.GPL3),
             new SoftwareComponent("Jsoup", "2017", "Jonathan Hedley",
