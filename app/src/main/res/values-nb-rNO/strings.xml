@@ -84,7 +84,7 @@
     <string name="downloads_title">Nedlastinger</string>
     <string name="error_report_title">Feilrapport</string>
     <string name="could_not_load_image">Kunne ikke laste bilde</string>
-    <string name="app_ui_crash">Program/brukergrensesnitt kræsjet</string>
+    <string name="app_ui_crash">Program/brukergrensesnitt krasjet</string>
     <string name="pause">Pause</string>
     <string name="view">Spill</string>
     <string name="delete">Slett</string>
@@ -371,7 +371,7 @@
     <string name="unhook_checkbox">Avhekt (kan forårsake forvrenging)</string>
     <string name="privacy_policy_title">NewPipes personvernspraksis</string>
     <string name="privacy_policy_encouragement">NewPipe-prosjektet tar ditt personvern veldig alvorlig. Derfor samler ikke programmet inn data uten ditt samtykke.
-\nNewPipes personvernspraksis forklarer i detalj hvilken deta som sendes og lagres når du sender en kræsjrapport.</string>
+\nNewPipes personvernspraksis forklarer i detalj hvilken data som sendes og lagres når du sender en krasjrapport.</string>
     <string name="read_privacy_policy">Les personvernspraksis</string>
     <string name="start_accept_privacy_policy">For å overholde Europeisk Generell Data Proteksjons-Regularing (GDPR), vil vi rette oppmerksomheten din mot NewPipes personvernspraksis. Les den nøye.
 \nDu må godta den for å sende oss feilrapporten.</string>
