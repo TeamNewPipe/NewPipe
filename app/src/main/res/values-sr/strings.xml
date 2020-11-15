@@ -129,6 +129,8 @@
     <string name="controls_background_title">Позадина</string>
     <string name="controls_popup_title">Прозорче</string>
     <string name="use_external_video_player_summary">Уклања звук на неким резолуцијама</string>
+    <string name="popup_remember_size_pos_title">Упамти величину и позицију искачућег прозора</string>
+    <string name="popup_remember_size_pos_summary">Памти последњу величину и позицију искачућег прозорчета</string>
     <string name="player_gesture_controls_title">Контроле прејера потезом</string>
     <string name="player_gesture_controls_summary">Користите потезе за управљање осветљајем у јачином звука</string>
     <string name="show_search_suggestions_title">Предлози у претрази</string>

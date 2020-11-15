@@ -60,6 +60,8 @@
     <string name="default_video_format_title">Hobetsitako bideo-formatua</string>
     <string name="theme_title">Gaia</string>
     <string name="black_theme_title">Beltza</string>
+    <string name="popup_remember_size_pos_title">Gogoratu laster-leihoaren tamaina eta posizioa</string>
+    <string name="popup_remember_size_pos_summary">Gogoratu laster-leihoaren azken tamaina eta posizioa</string>
     <string name="player_gesture_controls_title">Erreproduzigailuaren keinu bidezko kontrola</string>
     <string name="player_gesture_controls_summary">Erabili keinuak erreproduzigailuaren distira eta bolumena kontrolatzeko</string>
     <string name="show_search_suggestions_title">Bilaketa-iradokizunak</string>

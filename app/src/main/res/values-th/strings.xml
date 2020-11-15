@@ -61,6 +61,8 @@
     <string name="light_theme_title">สว่าง</string>
     <string name="dark_theme_title">มืด</string>
     <string name="black_theme_title">สีดำ</string>
+    <string name="popup_remember_size_pos_title">จำขนาดและตำแหน่งของป๊อปอัพ</string>
+    <string name="popup_remember_size_pos_summary">จำขนาดและตำแหน่งสุดท้ายของป๊อปอัพ</string>
     <string name="use_inexact_seek_title">ใช้การข้ามที่ไม่แม่นยำ</string>
     <string name="use_inexact_seek_summary">การข้ามช่วงที่ไม่แม่นยำจะทำให้เลื่อนไปยังตำแหน่งเวลาที่ต้องการได้เร็วขึ้น แต่จะลดความแม่นยำในการลากตำแหน่งลง</string>
     <string name="download_thumbnail_title">โหลดภาพขนาดย่อ</string>

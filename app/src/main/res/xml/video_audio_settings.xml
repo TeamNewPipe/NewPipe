@@ -143,6 +143,13 @@
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="@string/popup_remember_size_pos_key"
+            android:summary="@string/popup_remember_size_pos_summary"
+            android:title="@string/popup_remember_size_pos_title"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="@string/use_inexact_seek_key"
             android:summary="@string/use_inexact_seek_summary"

@@ -130,6 +130,8 @@
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
     <string name="use_external_video_player_summary">Odoberie audio pri niektorých rozlíšeniach</string>
+    <string name="popup_remember_size_pos_title">Zapamätať si parametre mini okna</string>
+    <string name="popup_remember_size_pos_summary">Zapamätať si posledné nastavenie veľkosti a pozície mini okna</string>
     <string name="player_gesture_controls_title">Ovládanie prehrávača gestami</string>
     <string name="player_gesture_controls_summary">Používať gestá pre kontrolu jasu a hlasitosti prehrávača</string>
     <string name="show_search_suggestions_title">Hľadať návrhy</string>

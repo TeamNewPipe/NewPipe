@@ -134,6 +134,8 @@
     <string name="fragment_feed_title">Hva er nytt</string>
     <string name="controls_background_title">Bakgrunn</string>
     <string name="controls_popup_title">Oppsprett</string>
+    <string name="popup_remember_size_pos_title">Husk oppsprettsegenskaper</string>
+    <string name="popup_remember_size_pos_summary">Husk siste størrelse og posisjon for oppsprettsvinduet</string>
     <string name="show_search_suggestions_title">Søkeforslag</string>
     <string name="show_search_suggestions_summary">Vis søkeforslag ved søk</string>
     <string name="enable_search_history_title">Søkehistorikk</string>

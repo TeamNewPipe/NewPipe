@@ -125,6 +125,8 @@
     <string name="show_higher_resolutions_title">Afficher des définitions plus élevées</string>
     <string name="show_higher_resolutions_summary">Seuls certains appareils peuvent lire les vidéos 2K et 4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
+    <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
+    <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
     <string name="settings_category_popup_title">Flottant</string>
     <string name="filter">Filtre</string>
     <string name="refresh">Rafraîchir</string>

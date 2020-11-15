@@ -210,6 +210,10 @@ public final class PlayerHelper {
         return isBrightnessGestureEnabled(context, true);
     }
 
+    public static boolean isRememberingPopupDimensions(@NonNull final Context context) {
+        return isRememberingPopupDimensions(context, true);
+    }
+
     public static boolean isAutoQueueEnabled(@NonNull final Context context) {
         return isAutoQueueEnabled(context, false);
     }
@@ -388,6 +392,12 @@ public final class PlayerHelper {
                                                       final boolean b) {
         return getPreferences(context)
                 .getBoolean(context.getString(R.string.brightness_gesture_control_key), b);
+    }
+
+    private static boolean isRememberingPopupDimensions(@NonNull final Context context,
+                                                        final boolean b) {
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.popup_remember_size_pos_key), b);
     }
 
     private static boolean isUsingInexactSeek(@NonNull final Context context) {

@@ -54,6 +54,8 @@
     <string name="light_theme_title">Kirkas</string>
     <string name="dark_theme_title">Tumma</string>
     <string name="black_theme_title">Musta</string>
+    <string name="popup_remember_size_pos_title">Muista ponnahdusikkunan ominaisuudet</string>
+    <string name="popup_remember_size_pos_summary">Muista ponnahdusikkunan viimeisin koko ja sijainti</string>
     <string name="player_gesture_controls_title">Soittimen eleohjaus</string>
     <string name="player_gesture_controls_summary">Käytä eleitä ohjataksesi soittimen kirkkautta ja äänentasoa</string>
     <string name="show_search_suggestions_title">Hakuehdotukset</string>

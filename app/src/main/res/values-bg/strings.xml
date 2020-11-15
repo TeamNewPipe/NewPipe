@@ -52,6 +52,8 @@
     <string name="light_theme_title">Светла</string>
     <string name="dark_theme_title">Тъмна</string>
     <string name="black_theme_title">Черна</string>
+    <string name="popup_remember_size_pos_title">Помни размера и позицията на прозореца</string>
+    <string name="popup_remember_size_pos_summary">Използвай размера и позицията на прозореца от предишния път</string>
     <string name="player_gesture_controls_title">Контролиране на плейъра чрез жестове</string>
     <string name="player_gesture_controls_summary">Позволи използване на жестове за контрол на яркостта и силата на звука на плейъра</string>
     <string name="show_search_suggestions_title">Предложения за търсене</string>

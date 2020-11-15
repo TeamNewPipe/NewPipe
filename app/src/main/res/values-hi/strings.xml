@@ -82,6 +82,8 @@
     <string name="default_video_format_title">डिफ़ॉल्ट विडियो का फॉर्मेट</string>
     <string name="theme_title">एप्प का नया रूप</string>
     <string name="dark_theme_title">काला</string>
+    <string name="popup_remember_size_pos_title">विडियो पॉपअप की आकर और उसकी स्थति को याद रखे</string>
+    <string name="popup_remember_size_pos_summary">विडियो पॉपअप के पहले वाली आकर और उसकी स्थिति को याद रखे</string>
     <string name="player_gesture_controls_title">प्लेयर इशारा नियंत्रण</string>
     <string name="player_gesture_controls_summary">विडियो प्लेयर की ब्राइटनेस और ध्वनी को नियंत्रण के लिए फ़ोन में इशारो का प्रयोग करे</string>
     <string name="show_search_suggestions_title">खोज के सुझाव देखे</string>

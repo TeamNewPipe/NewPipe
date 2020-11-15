@@ -46,6 +46,8 @@
     <string name="light_theme_title">בהיר</string>
     <string name="dark_theme_title">כהה</string>
     <string name="black_theme_title">שחור</string>
+    <string name="popup_remember_size_pos_title">שמירת מאפייני החלון הצף</string>
+    <string name="popup_remember_size_pos_summary">שמירת המיקום והגודל האחרונים של החלון הצף</string>
     <string name="player_gesture_controls_title">מחוות מגע לשליטה בנגן</string>
     <string name="player_gesture_controls_summary">שימוש במחוות כדי לשלוט בבהירות ובעצמת השמע של הנגן</string>
     <string name="show_search_suggestions_title">הצעות חיפוש</string>
