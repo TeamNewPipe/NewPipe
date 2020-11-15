@@ -6,4 +6,4 @@
 • Verbeter zoeksuggestie-ervaring wanneer externe niet opgehaald kunnen worden
 • Verhoog standaard videokwaliteit speler naar 720p60 (in-app) en 480p (pop-up)
 
-• hoop bugs opgelost…
+• hoop bugs opgelost
