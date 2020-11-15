@@ -607,4 +607,5 @@
     <string name="copy_for_github">ഫോർമാറ്റുചെയ്‌ത റിപ്പോർട്ട് പകർത്തുക</string>
     <string name="playlist_page_summary">പ്ലേലിസ്റ്റ് പേജ്</string>
     <string name="error_report_open_issue_button_text">തെറ്റ് GitHub ല്‍ റിപ്പോര്‍ട്ട് ചെയ്യുക</string>
+    <string name="notification_scale_to_square_image_title">ലഘുചിത്രം 1: 1 വീക്ഷണാനുപാതത്തിലേക്ക് സ്കെയിൽ ചെയ്യുക</string>
 </resources>
