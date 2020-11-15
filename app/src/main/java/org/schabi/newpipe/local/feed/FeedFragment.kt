@@ -34,6 +34,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import icepick.State
 import java.util.Calendar
 import kotlinx.android.synthetic.main.error_retry.error_button_retry
@@ -56,6 +57,7 @@ import org.schabi.newpipe.util.Localization
 
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private lateinit var viewModel: FeedViewModel
+    private lateinit var  swipeRefreshLayout: SwipeRefreshLayout
     @State
     @JvmField
     var listState: Parcelable? = null
@@ -78,11 +80,16 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         return inflater.inflate(R.layout.fragment_feed, container, false)
     }
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)
+        swipeRefreshLayout = requireView().findViewById(R.id.swiperefresh)
+        swipeRefreshLayout.setOnRefreshListener {
+            reloadContent()
+        }
 
         viewModel = ViewModelProvider(this, FeedViewModel.Factory(requireContext(), groupId)).get(FeedViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { it?.let(::handleResult) })
@@ -189,6 +196,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
         empty_state_view?.let { animateView(it, false, 0) }
         animateView(error_panel, false, 0)
+        if (swipeRefreshLayout.isRefreshing){
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     override fun showEmptyState() {

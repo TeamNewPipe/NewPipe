@@ -167,6 +167,7 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.mockito:mockito-core:3.3.3'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     androidTestImplementation "androidx.test.ext:junit:1.1.1"
     androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
