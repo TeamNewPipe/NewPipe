@@ -1,1 +1,1 @@
-[YouTube] Fikset kræsj ved innlasting av vilkårlig video
+[YouTube] Fikset krasj ved innlasting av vilkårlig video
