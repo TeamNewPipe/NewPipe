@@ -335,11 +335,14 @@
     <string name="previous_export">Предыдущий экспорт</string>
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
-    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта: 
-\n 
-\n1. Перейдите по ссылке %1$s 
-\n2. Авторизуйтесь, если требуется
-\n3. Загрузка (файла экспорта) должна начаться автоматически</string>
+    <string name="import_youtube_instructions">Импортируйте подписки YouTube с помощью Google Takeout:
+\n
+\n1. Перейдите по ссылке: %1$s
+\n2. Авторизуйтесь, если потребуется
+\n3. Отметьте пункт \"YouTube и YouTube Music\", затем выберите тип \"подписки\"
+\n4. Нажмите \"Далее\" и \"Создать экспорт\"
+\n5. Нажмите кнопку \"Скачать\", когда она появится
+\n6. Из скачанного ZIP-архива распакуйте JSON-файл (обычно находится по пути \"YouTube и YouTube Music/подписки/подписки.json\") и импортируйте его здесь.</string>
     <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: 
 \n 
 \n1. Включите режим \"Полная версия сайта\" в браузере.
@@ -608,7 +611,7 @@
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
-    <string name="youtube_restricted_mode_enabled_title">Включить \"Безопасный режим\" YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">\"Безопасный режим\"</string>
     <string name="video_detail_by">От %s</string>
     <string name="channel_created_by">Создано %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
@@ -651,4 +654,6 @@
     <string name="enqueued">Добавлено в очередь</string>
     <string name="enqueue_stream">Добавить в очередь</string>
     <string name="clear_cookie_summary">Очистить cookie, которые NewPipe сохраняет при решении reCAPTCHA</string>
+    <string name="notification_colorize_summary">Позволить Android изменять цвет уведомления в соответствии с основным цветом миниатюры (доступно не на всех устройствах)</string>
+    <string name="notification_colorize_title">Цветное уведомление</string>
 </resources>
