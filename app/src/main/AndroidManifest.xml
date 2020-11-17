@@ -333,8 +333,5 @@
                 <data android:pathPrefix="/video-channels/" />
             </intent-filter>
         </activity>
-        <service
-            android:name=".RouterActivity$FetcherService"
-            android:exported="false" />
     </application>
 </manifest>

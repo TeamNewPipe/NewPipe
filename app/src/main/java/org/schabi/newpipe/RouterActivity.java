@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.Network;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -630,7 +631,7 @@ public class RouterActivity extends AppCompatActivity {
 
         @Override
         protected void onHandleIntent(@Nullable final Intent intent) {
-            if (hasActiveNetwork()) {
+            if (Build.VERSION.SDK_INT < 7 || hasActiveNetwork()) {
                 if (intent == null) {
                     return;
                 }
@@ -641,10 +642,11 @@ public class RouterActivity extends AppCompatActivity {
                 }
                 Choice playerChoice = (Choice) serializable;
                 handleChoice(playerChoice);
-            }
-            else {
-                NetworkStateReceiver networkStateReceiver = new NetworkStateReceiver();
-                ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            } else {
+                NetworkStateReceiver networkStateReceiver =
+                        new NetworkStateReceiver();
+                ConnectivityManager connectivityManager = (ConnectivityManager)
+                        getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
                 networkStateReceiver.enable(getApplicationContext());
                 networkStateReceiver.setService(this);
                 connectivityManager.registerDefaultNetworkCallback(networkStateReceiver);
@@ -761,7 +763,8 @@ public class RouterActivity extends AppCompatActivity {
 
         //The method hasActiveNetwork() checks whether the network connection is active
         protected boolean hasActiveNetwork() {
-            final ConnectivityManager connManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            final ConnectivityManager connManager = (ConnectivityManager)
+                    getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             Network activeNetwork = connManager.getActiveNetwork();
             return (activeNetwork != null);
         }
@@ -769,30 +772,37 @@ public class RouterActivity extends AppCompatActivity {
         public class NetworkStateReceiver extends ConnectivityManager.NetworkCallback {
             private FetcherService service;
 
-            public void setService(FetcherService newService) {
+            public void setService(final FetcherService newService) {
                 service = newService;
             }
 
             @Override
-            public void onAvailable(Network network) {
+            public void onAvailable(final Network network) {
 
-                // If there is an active network connection, this method will "turn off" this class and arrange to process the request
+                // If there is an active network connection,
+                // this method will "turn off" this class and arrange to process the request
                 if (service.hasActiveNetwork()) {
                     Context context = getApplicationContext();
                     disable(context);
-                    final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                    final AlarmManager alarmManager = (AlarmManager)
+                            context.getSystemService(Context.ALARM_SERVICE);
                     final Intent innerIntent = new Intent(context, FetcherService.class);
-                    final PendingIntent pendingIntent = PendingIntent.getService(context, 0, innerIntent, 0);
+                    final PendingIntent pendingIntent =
+                            PendingIntent.getService(context, 0, innerIntent, 0);
 
-                    SharedPreferences preferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+                    SharedPreferences preferences =
+                            context.getSharedPreferences(context.getPackageName(),
+                                    Context.MODE_PRIVATE);
                     preferences.edit();
-                    boolean autoRefreshEnabled = preferences.getBoolean("pref_auto_refresh_enabled", false);
+                    boolean autoRefreshEnabled =
+                            preferences.getBoolean("pref_auto_refresh_enabled", false);
 
                     final String hours = preferences.getString("pref_auto_refresh_enabled", "0");
                     long hoursLong = Long.parseLong(hours) * 60 * 60 * 1000;
 
                     if (autoRefreshEnabled && hoursLong != 0) {
-                        final long alarmTime = preferences.getLong("last_auto_refresh_time", 0) + hoursLong;
+                        final long alarmTime = preferences.getLong(
+                                "last_auto_refresh_time", 0) + hoursLong;
                         alarmManager.set(AlarmManager.RTC, alarmTime, pendingIntent);
                     } else {
                         alarmManager.cancel(pendingIntent);
@@ -801,14 +811,16 @@ public class RouterActivity extends AppCompatActivity {
             }
 
             // Method to  "turn on" this class
-            public void enable(Context context) {
-                ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            public void enable(final Context context) {
+                ConnectivityManager connectivityManager = (ConnectivityManager)
+                        context.getSystemService(Context.CONNECTIVITY_SERVICE);
                 connectivityManager.registerDefaultNetworkCallback(this);
             }
 
             // Method to  "turn off" this class
-            public void disable(Context context) {
-                ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            public void disable(final Context context) {
+                ConnectivityManager connectivityManager = (ConnectivityManager)
+                        context.getSystemService(Context.CONNECTIVITY_SERVICE);
                 connectivityManager.unregisterNetworkCallback(this);
             }
 
