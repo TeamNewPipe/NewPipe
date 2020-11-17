@@ -122,7 +122,7 @@
         <activity
             android:name=".ReCaptchaActivity"
             android:label="@string/recaptcha" />
-        
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
