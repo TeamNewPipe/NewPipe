@@ -123,8 +123,7 @@
             android:name=".ReCaptchaActivity"
             android:label="@string/recaptcha" />
 
-        <receiver android:name="org.schabi.newpipe.RouterActivity.FetcherService$NetworkStateReceiver"
-                  android:exported="true" android:enabled="false"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -333,5 +332,8 @@
                 <data android:pathPrefix="/video-channels/" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".RouterActivity$FetcherService"
+            android:exported="false" />
     </application>
 </manifest>
