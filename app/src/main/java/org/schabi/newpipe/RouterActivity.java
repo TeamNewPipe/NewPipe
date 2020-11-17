@@ -631,7 +631,7 @@ public class RouterActivity extends AppCompatActivity {
 
         @Override
         protected void onHandleIntent(@Nullable final Intent intent) {
-            if (Build.VERSION.SDK_INT < 7 || hasActiveNetwork()) {
+            if (Build.VERSION.SDK_INT < 24 || hasActiveNetwork()) {
                 if (intent == null) {
                     return;
                 }
