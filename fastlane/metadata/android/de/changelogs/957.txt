@@ -1,0 +1,10 @@
+• Vereinheitlichung der Einreih-Gesten
+• Zweifinger-Geste um Player zu schließen.
+• ReCAPTCHA cookies können gelöscht werden
+• Option um Benachrichtigung nicht einzufährben.
+• Verbesserung bei den Videodetails.
+• YouTube Videos beschleunigen und Fehlerbehebung bei Altersbeschränke Videos.
+• Fehlerbehebung bei vor- und zurückspulen.
+• Listen werden beim Verschieben von Miniaturansichten nicht mehr umsortiert.
+• Popup-Einstellungen werden immer gemerkt.
+• Hinzufügen der Santali Sprache
