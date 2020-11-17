@@ -167,7 +167,6 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.mockito:mockito-core:3.3.3'
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     androidTestImplementation "androidx.test.ext:junit:1.1.1"
     androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
@@ -205,6 +204,8 @@ dependencies {
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
     implementation "androidx.room:room-rxjava2:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     implementation "com.xwray:groupie:${groupieVersion}"
     implementation "com.xwray:groupie-kotlin-android-extensions:${groupieVersion}"
