@@ -81,7 +81,7 @@ public class TabsJsonHelperTest {
     private boolean isTabsArrayEmpty(final String returnedJson) throws JsonParserException {
         final JsonObject jsonObject = JsonParser.object().from(returnedJson);
         assertTrue(jsonObject.containsKey(JSON_TABS_ARRAY_KEY));
-        return jsonObject.getArray(JSON_TABS_ARRAY_KEY).size() == 0;
+        return jsonObject.getArray(JSON_TABS_ARRAY_KEY).isEmpty();
     }
 
     @Test

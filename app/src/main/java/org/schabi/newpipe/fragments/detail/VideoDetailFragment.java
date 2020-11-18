@@ -1140,7 +1140,7 @@ public final class VideoDetailFragment
 
         PlayQueue queue = playQueue;
         // Size can be 0 because queue removes bad stream automatically when error occurs
-        if (queue == null || queue.size() == 0) {
+        if (queue == null || queue.isEmpty()) {
             queue = new SinglePlayQueue(currentInfo);
         }
 
