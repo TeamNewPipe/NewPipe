@@ -976,7 +976,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
     }
 
-    class ViewHolderHeader extends RecyclerView.ViewHolder {
+    static class ViewHolderHeader extends RecyclerView.ViewHolder {
         TextView header;
 
         ViewHolderHeader(View view) {

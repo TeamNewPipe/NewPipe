@@ -743,24 +743,24 @@ public class Mp4DashReader {
         return readFullBox(b);
     }
 
-    class Box {
+    static class Box {
         int type;
         long offset;
         long size;
     }
 
-    public class Moof {
+    public static class Moof {
         int mfhdSequenceNumber;
         public Traf traf;
     }
 
-    public class Traf {
+    public static class Traf {
         public Tfhd tfhd;
         long tfdt;
         public Trun trun;
     }
 
-    public class Tfhd {
+    public static class Tfhd {
         int bFlags;
         public int trackId;
         int defaultSampleDuration;
@@ -768,7 +768,7 @@ public class Mp4DashReader {
         int defaultSampleFlags;
     }
 
-    class TrunEntry {
+    static class TrunEntry {
         int sampleDuration;
         int sampleSize;
         int sampleFlags;
@@ -779,7 +779,7 @@ public class Mp4DashReader {
 
     }
 
-    public class Trun {
+    public static class Trun {
         public int chunkDuration;
         public int chunkSize;
 
@@ -837,7 +837,7 @@ public class Mp4DashReader {
         }
     }
 
-    public class Tkhd {
+    public static class Tkhd {
         int trackId;
         long duration;
         short bVolume;
@@ -848,25 +848,25 @@ public class Mp4DashReader {
         short bAlternateGroup;
     }
 
-    public class Trak {
+    public static class Trak {
         public Tkhd tkhd;
         public Elst edstElst;
         public Mdia mdia;
 
     }
 
-    class Mvhd {
+    static class Mvhd {
         long timeScale;
         long nextTrackId;
     }
 
-    class Moov {
+    static class Moov {
         Mvhd mvhd;
         Trak[] trak;
         Trex[] mvexTrex;
     }
 
-    public class Trex {
+    public static class Trex {
         private int trackId;
         int defaultSampleDescriptionIndex;
         int defaultSampleDuration;
@@ -874,37 +874,37 @@ public class Mp4DashReader {
         int defaultSampleFlags;
     }
 
-    public class Elst {
+    public static class Elst {
         public long mediaTime;
         public int bMediaRate;
     }
 
-    public class Mdia {
+    public static class Mdia {
         public int mdhdTimeScale;
         public byte[] mdhd;
         public Hdlr hdlr;
         public Minf minf;
     }
 
-    public class Hdlr {
+    public static class Hdlr {
         public int type;
         public int subType;
         public byte[] bReserved;
     }
 
-    public class Minf {
+    public static class Minf {
         public byte[] dinf;
         public byte[] stblStsd;
         public byte[] mhd;
     }
 
-    public class Mp4Track {
+    public static class Mp4Track {
         public TrackKind kind;
         public Trak trak;
         public Trex trex;
     }
 
-    public class Mp4DashChunk {
+    public static class Mp4DashChunk {
         public InputStream data;
         public Moof moof;
         private int i = 0;
@@ -936,7 +936,7 @@ public class Mp4DashReader {
         }
     }
 
-    public class Mp4DashSample {
+    public static class Mp4DashSample {
         public TrunEntry info;
         public byte[] data;
     }
