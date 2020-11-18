@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">יש ללחוץ על „חיפוש” כדי להתחיל</string>
+    <string name="main_bg_subtitle">יש לגעת ב־„חיפוש” כדי להתחיל
+\n</string>
     <string name="view_count_text">%1$s צפיות</string>
     <string name="upload_date_text">פורסם ב־%1$s</string>
     <string name="no_player_found">לא נמצאו נגני צפייה ישירה, להתקין את VLC\?</string>
@@ -62,8 +63,7 @@
     <string name="background_player_playing_toast">מתנגן ברקע</string>
     <string name="popup_playing_toast">מתנגן בחלון צף</string>
     <string name="content">תוכן</string>
-    <string name="show_age_restricted_content_title">תוכן עם הגבלת גיל</string>
-    <string name="video_is_age_restricted">הצגת סרטונים עם הגבלת גיל. ניתן לשנות את זה בעתיד דרך ההגדרות.</string>
+    <string name="show_age_restricted_content_title">הצגת תוכן עם הגבלת גיל</string>
     <string name="duration_live">חי</string>
     <string name="downloads">הורדות</string>
     <string name="downloads_title">הורדות</string>
@@ -80,7 +80,7 @@
     <string name="general_error">שגיאה</string>
     <string name="network_error">שגיאת רשת</string>
     <string name="could_not_load_thumbnails">אין אפשרות לטעון את כל התמונות הממוזערות</string>
-    <string name="youtube_signature_decryption_error">לא ניתן לפענח את חתימת כתובת הסרטון</string>
+    <string name="youtube_signature_deobfuscation_error">לא ניתן לפענח את חתימת כתובת הסרטון</string>
     <string name="parsing_error">ניתוח האתר לא התאפשר</string>
     <string name="light_parsing_error">לא הייתה אפשרות לנתח את האתר לחלוטין</string>
     <string name="content_not_available">תוכן אינו זמין</string>
@@ -245,8 +245,6 @@
     <string name="play_queue_stream_detail">פרטים</string>
     <string name="play_queue_audio_settings">אפשרויות שמע</string>
     <string name="hold_to_append">להחזיק כדי להוסיף לרשימת נגינה</string>
-    <string name="enqueue_on_background">להוסיף לרשימת הנגינה ברקע</string>
-    <string name="enqueue_on_popup">הוספה לתור בנגן צף</string>
     <string name="start_here_on_main">להתחיל לנגן מכאן</string>
     <string name="start_here_on_background">להתחיל לנגן ברקע</string>
     <string name="start_here_on_popup">להתחיל לנגן בנגן צף</string>
@@ -321,10 +319,13 @@
     <string name="subscriptions_import_unsuccessful">לא ניתן לייבא את המינויים</string>
     <string name="subscriptions_export_unsuccessful">לא ניתן לייצא את המינויים</string>
     <string name="import_youtube_instructions">כדי לייבא את רשימת המינויים שלך מ־YouTube עליך להוריד את קובץ הייצוא:
-\n 
+\n
 \n1. לעבור לכתובת הזו: %1$s
 \n2. להיכנס אם נתבקשת
-\n3. ההורדה אמורה להתחיל (זה קובץ הייצוא)</string>
+\n3. ללחוץ על „All data included”, ואז על „Deselect all”, לאחר מכן לבחור רק את „subscriptions” וללחוץ על „OK”
+\n4. ללחוץ על „Next step” ואז על „Create export”
+\n5. ללחוץ על כפתור ה־„Download” כשהוא מופיע ואז
+\n6. לחלץ את קובץ ה־‎.json מתוך ה־zip (בדרך כלל תחת „YouTube and YouTube Music/subscriptions/subscriptions.json”) ולייבא אותו כאן.</string>
     <string name="playback_tempo">קצב</string>
     <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
     <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר. חיפוש של 5, 15 או 25 שניות לא עובד עם ההגדרה הזאת.</string>
@@ -613,7 +614,7 @@
     <string name="songs">שירים</string>
     <string name="restricted_video">סרטון זה מוגבל לצפייה מגיל מסוים.
 \n
-\nיש להפעיל את „תוכן עם הגבלת גיל” בהגדרות כדי לצפות בו.</string>
+\nיש להפעיל את „%1$s” בהגדרות כדי לצפות בו.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">כן, לרבות סרטונים שהפסקתי באמצע</string>
     <string name="remove_watched_popup_warning">סרטונים שלאחר שצפית בהם מופיע לרשימת הנגינה יוסרו.
 \nלהמשיך\? זאת פעולה בלתי הפיכה!</string>
@@ -621,7 +622,7 @@
     <string name="remove_watched_popup_title">להסיר סרטונים שנצפו\?</string>
     <string name="show_original_time_ago_summary">הטקסט המקורי משירותים יופיע בפריטי התזרים</string>
     <string name="show_original_time_ago_title">הצגת לפני כמה זמן מקורי על פריטים</string>
-    <string name="youtube_restricted_mode_enabled_title">מצב מוגבל של YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">הפעלת „מצב מוגבל” של YouTube</string>
     <string name="video_detail_by">מאת %s</string>
     <string name="channel_created_by">נוצר ע״י %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">תמונה ממוזערת של הערוץ</string>
@@ -656,4 +657,14 @@
     <string name="notification_action_1_title">כפתור פעולה שני</string>
     <string name="notification_scale_to_square_image_summary">לשנות את יחס התצוגה הממוזערת שמופיעה בהתראות מיחס תצוגה של 16:9 ל־1:1 (עשוי לעוות את התמונה)</string>
     <string name="notification_scale_to_square_image_title">שינוי גודל התצוגה הממוזערת ליחס תצוגה 1:1</string>
+    <string name="show_memory_leaks">הצגת דליפות זיכרון</string>
+    <string name="enqueued">נוסף לתור</string>
+    <string name="enqueue_stream">הוספה לתור</string>
+    <string name="clear_cookie_summary">לנקות עוגיות שנשמרות על ידי NewPipe בעת פתרון reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">העוגיות של ה־reCAPTCHA נמחקו</string>
+    <string name="clear_cookie_title">פינוי עוגיות reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">פלטפורמת YouTube מספקת „מצב מוגבל” שמסתיר תוכן שעשוי להתאים למבוגרים בלבד.</string>
+    <string name="show_age_restricted_content_summary">הצגת תוכן שעלול להיות בלתי הולם לילדים עקב מגבלת גיל (כגון 18+).</string>
+    <string name="notification_colorize_summary">לאפשר ל־Android להתאים את צבע ההתראה בהתאם לצבע העיקרי של התמונה הממוזערת (לא זמין בכל המכשירים)</string>
+    <string name="notification_colorize_title">צביעת ההתראה</string>
 </resources>

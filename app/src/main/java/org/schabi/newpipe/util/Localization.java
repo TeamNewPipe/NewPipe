@@ -5,13 +5,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import androidx.preference.PreferenceManager;
+import android.icu.text.CompactDecimalFormat;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
+import androidx.preference.PreferenceManager;
 
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
@@ -21,11 +23,13 @@ import org.schabi.newpipe.extractor.localization.ContentCountry;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -137,13 +141,16 @@ public final class Localization {
         return nf.format(number);
     }
 
-    public static String formatDate(final Date date, final Context context) {
-        return DateFormat.getDateInstance(DateFormat.MEDIUM, getAppLocale(context)).format(date);
+    public static String formatDate(final OffsetDateTime offsetDateTime, final Context context) {
+        return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+                .withLocale(getAppLocale(context)).format(offsetDateTime
+                        .atZoneSameInstant(ZoneId.systemDefault()));
     }
 
     @SuppressLint("StringFormatInvalid")
-    public static String localizeUploadDate(final Context context, final Date date) {
-        return context.getString(R.string.upload_date_text, formatDate(date, context));
+    public static String localizeUploadDate(final Context context,
+                                            final OffsetDateTime offsetDateTime) {
+        return context.getString(R.string.upload_date_text, formatDate(offsetDateTime, context));
     }
 
     public static String localizeViewCount(final Context context, final long viewCount) {
@@ -184,6 +191,11 @@ public final class Localization {
     }
 
     public static String shortCount(final Context context, final long count) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return CompactDecimalFormat.getInstance(getAppLocale(context),
+                    CompactDecimalFormat.CompactStyle.SHORT).format(count);
+        }
+
         final double value = (double) count;
         if (count >= 1000000000) {
             return localizeNumber(context, round(value / 1000000000, 1))

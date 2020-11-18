@@ -55,11 +55,10 @@
     <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱에서 호출되었을 때 동영상을 재생합니다</string>
     <string name="content">컨텐츠</string>
     <string name="show_age_restricted_content_title">연령 제한 컨텐츠</string>
-    <string name="video_is_age_restricted">연령 제한 비디오입니다. 설정 메뉴에서 시청 허용 여부를 변경하실 수 있습니다.</string>
     <string name="duration_live">라이브</string>
     <string name="general_error">오류</string>
     <string name="could_not_load_thumbnails">모든 썸네일을 불러올 수 없습니다</string>
-    <string name="youtube_signature_decryption_error">비디오 URL 서명을 복호화할 수 없습니다</string>
+    <string name="youtube_signature_deobfuscation_error">비디오 URL 서명을 복호화할 수 없습니다</string>
     <string name="parsing_error">웹사이트를 가져올 수 없습니다</string>
     <string name="light_parsing_error">웹사이트를 완전히 가져올 수 없습니다</string>
     <string name="content_not_available">컨텐츠를 사용할 수 없습니다</string>
@@ -88,7 +87,7 @@
     <string name="checksum">체크섬</string>
     <string name="open_in_popup_mode">팝업 모드로 열기</string>
     <string name="use_external_video_player_summary">일부 해상도에서 소리가 나지 않을 수 있습니다</string>
-    <string name="popup_mode_share_menu_title">NewPipe 팝업 모드</string>
+    <string name="popup_mode_share_menu_title">팝업 모드</string>
     <string name="subscribe_button_title">구독</string>
     <string name="subscribed_button_title">구독중</string>
     <string name="channel_unsubscribed">구독 취소됨</string>
@@ -232,8 +231,6 @@
     <string name="play_queue_stream_detail">상세 정보</string>
     <string name="play_queue_audio_settings">오디오 설정</string>
     <string name="hold_to_append">눌러서 대기열에 추가</string>
-    <string name="enqueue_on_background">백그라운드 대기열에 추가</string>
-    <string name="enqueue_on_popup">새 팝업으로 대기열에 추가</string>
     <string name="start_here_on_main">여기서부터 재생</string>
     <string name="start_here_on_background">백그라운드에서 재생</string>
     <string name="start_here_on_popup">새 팝업에서 재생</string>
@@ -547,4 +544,10 @@
     <string name="artists">아티스트</string>
     <string name="albums">앨범</string>
     <string name="videos_string">비디오</string>
+    <string name="notification_action_0_title">첫번째 버튼</string>
+    <string name="notification_scale_to_square_image_summary">알림에 표시되는 비디오 썸네일을 16:9에서 1:1 비율로 바꿉니다. (왜곡이 생길 수도 있습니다.)</string>
+    <string name="notification_scale_to_square_image_title">썸네일을 1:1 비율로 하기</string>
+    <string name="search_showing_result_for">%s에 대한 검색 결과</string>
+    <string name="notification_action_shuffle">셔플</string>
+    <string name="notification_action_repeat">연속 재생</string>
 </resources>

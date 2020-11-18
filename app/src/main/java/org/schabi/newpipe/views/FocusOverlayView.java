@@ -270,7 +270,7 @@ public final class FocusOverlayView extends Drawable implements
         clearFocusObstacles((ViewGroup) decor);
     }
 
-    @RequiresApi(api = 26)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private static void clearFocusObstacles(final ViewGroup viewGroup) {
         viewGroup.setTouchscreenBlocksFocus(false);
 

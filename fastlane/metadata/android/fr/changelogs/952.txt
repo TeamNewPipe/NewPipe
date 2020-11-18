@@ -1,0 +1,7 @@
+Amélioration :
+• La lecture automatique est maintenant disponible pour tous les services (et plus seulement pour YouTube)
+
+Corrections :
+• Correction des flux suggérés par ajout du support de "YouTube's new continuations"
+• Correction de la gestion de l'âge minimum pour regarder les vidéos Youtube
+• [Android TV] correction de la persistance du focus sur l'overlay

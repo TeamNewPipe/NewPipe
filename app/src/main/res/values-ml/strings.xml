@@ -72,8 +72,6 @@
     <string name="start_here_on_popup">ഒരു പുതിയ പോപ്പ്അപ്പിൽ പ്ലേ ചെയ്യാൻ ആരംഭിക്കുക</string>
     <string name="start_here_on_background">പശ്ചാത്തലത്തിൽ പ്ലേ ആരംഭിക്കുക</string>
     <string name="start_here_on_main">ഇവിടെ പ്ലേ ആരംഭിക്കുക</string>
-    <string name="enqueue_on_popup">ഒരു പുതിയ പോപ്പ്അപ്പിൽ എൻ‌ക്യൂ ചെയ്യുക</string>
-    <string name="enqueue_on_background">പശ്ചാത്തലത്തിൽ എൻക്യൂ ചെയ്യുക</string>
     <string name="hold_to_append">എൻക്യൂ ചെയ്യാൻ പിടിക്കുക</string>
     <string name="play_queue_audio_settings">ഓഡിയോ ക്രമീകരണങ്ങൾ</string>
     <string name="play_queue_stream_detail">വിശദാംശങ്ങൾ</string>
@@ -267,7 +265,7 @@
     <string name="content_not_available">കന്റെന്റ് ലഭ്യമല്ല</string>
     <string name="light_parsing_error">വെബ്സൈറ്റ് പൂർണമായി വ്യാപരിക്കാനായില്ല</string>
     <string name="parsing_error">വെബ്സൈറ്റ് വ്യാപരിക്കാനായില്ല</string>
-    <string name="youtube_signature_decryption_error">വീഡിയോ URL സിഗ്നേച്ചർ ഡീക്രിപ്റ്റ് ചെയ്യാൻ സാധിച്ചില്ല</string>
+    <string name="youtube_signature_deobfuscation_error">വീഡിയോ URL സിഗ്നേച്ചർ ഡീക്രിപ്റ്റ് ചെയ്യാൻ സാധിച്ചില്ല</string>
     <string name="could_not_load_thumbnails">ലഘുചിത്രങ്ങൾ ലോഡ് ചെയ്യാനായില്ല</string>
     <string name="network_error">നെറ്റ്‌വർക്ക് പിശക്</string>
     <string name="download_to_sdcard_error_message">എസ്ഡി കാർഡിലേക്ക്‌ ഡൗൺലോഡ് അസാധ്യം. ഡൗൺലോഡ് ഫോൾഡർ മാറ്റട്ടെ\?</string>
@@ -335,7 +333,6 @@
     <string name="restricted_video">ഈ വീഡിയോ പ്രായപരിമിതി ഉള്ളതാണ്. 
 \n
 \nഇത് കാണണമെങ്കിൽ പ്രായനിയന്ത്രണ ക്രമീകരണങ്ങളിൽ മാറ്റം വരുത്തുക.</string>
-    <string name="video_is_age_restricted">പ്രായപരിമിതിയുള്ള വീഡിയോ കാണിക്കുന്നു. ഭാവിയിൽ മാറ്റങ്ങൾ വരുത്താനാകും.</string>
     <string name="show_age_restricted_content_title">പ്രായപരിമിതപ്പെടുത്തിയ കന്റെന്റ്</string>
     <string name="content">കന്റെന്റ്</string>
     <string name="popup_playing_append">പോപ്പപ്പ് പ്ലേയറിൽ ക്യൂ ചെയ്തിരിക്കുന്നു</string>

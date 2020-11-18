@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.core.text.HtmlCompat;
-import androidx.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -30,6 +28,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.text.HtmlCompat;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,9 +50,9 @@ import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -60,7 +61,6 @@ import org.schabi.newpipe.util.ServiceHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -639,8 +639,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
 
         if (searchEditText.requestFocus()) {
-            final InputMethodManager imm = (InputMethodManager) activity.getSystemService(
-                    Context.INPUT_METHOD_SERVICE);
+            final InputMethodManager imm = ContextCompat.getSystemService(activity,
+                    InputMethodManager.class);
             imm.showSoftInput(searchEditText, InputMethodManager.SHOW_FORCED);
         }
     }
@@ -653,8 +653,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             return;
         }
 
-        final InputMethodManager imm = (InputMethodManager) activity
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        final InputMethodManager imm = ContextCompat.getSystemService(activity,
+                InputMethodManager.class);
         imm.hideSoftInputFromWindow(searchEditText.getWindowToken(),
                 InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
@@ -757,16 +757,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                         }
 
                         // Remove duplicates
-                        final Iterator<SuggestionItem> iterator = networkResult.iterator();
-                        while (iterator.hasNext() && localResult.size() > 0) {
-                            final SuggestionItem next = iterator.next();
-                            for (final SuggestionItem item : localResult) {
-                                if (item.query.equals(next.query)) {
-                                    iterator.remove();
-                                    break;
-                                }
-                            }
-                        }
+                        networkResult.removeIf(networkItem ->
+                                localResult.stream().anyMatch(localItem ->
+                                        localItem.query.equals(networkItem.query)));
 
                         if (networkResult.size() > 0) {
                             result.addAll(networkResult);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +11,7 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/list_playlist_mini_item"/>
+        tools:listitem="@layout/list_playlist_mini_item" />
 
     <!--ERROR PANEL-->
     <include
@@ -23,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <include
         android:id="@+id/empty_state_view"
@@ -33,12 +32,12 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:background="?attr/toolbar_shadow"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:background="?attr/toolbar_shadow" />
 
 </RelativeLayout>

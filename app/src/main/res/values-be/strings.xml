@@ -102,7 +102,6 @@
     <string name="popup_playing_append">Дададзена ў чаргу ў акне</string>
     <string name="content">Кантэнт</string>
     <string name="show_age_restricted_content_title">Кантэнт 18+</string>
-    <string name="video_is_age_restricted">Відэа з узроставымі абмежаваннямі. Дазволіць падобны кантэнт можна ў \"Наладах\".</string>
     <string name="duration_live">Трансляцыя</string>
     <string name="downloads">Загрузкі</string>
     <string name="downloads_title">Загрузкі</string>
@@ -149,7 +148,7 @@
     <string name="general_error">Памылка</string>
     <string name="network_error">Памылка сеткі</string>
     <string name="could_not_load_thumbnails">Не атрымалася загрузіць усе мініяцюры</string>
-    <string name="youtube_signature_decryption_error">Не атрымалася расшыфраваць подпіс URL у відэа</string>
+    <string name="youtube_signature_deobfuscation_error">Не атрымалася расшыфраваць подпіс URL у відэа</string>
     <string name="parsing_error">Не атрымалася разабраць вэб-сайт</string>
     <string name="light_parsing_error">Не атрымалася цалкам разабраць вэб-сайт</string>
     <string name="content_not_available">Кантэнт недаступны</string>
@@ -316,8 +315,6 @@
     <string name="play_queue_stream_detail">Падрабязнасці</string>
     <string name="play_queue_audio_settings">Налады аўдыё</string>
     <string name="hold_to_append">Зацісніце, каб дадаць у чаргу</string>
-    <string name="enqueue_on_background">Дадаць ў чаргу \"У фоне\"</string>
-    <string name="enqueue_on_popup">Дадаць ў чаргу \"У акне\"</string>
     <string name="start_here_on_main">Пачаць адсюль у плэеры</string>
     <string name="start_here_on_background">Пачаць адсюль у фоне</string>
     <string name="start_here_on_popup">Пачаць адсюль у акне</string>

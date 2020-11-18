@@ -43,11 +43,10 @@
     <string name="background_player_playing_toast">Redare în fundal</string>
     <string name="content">Conținut</string>
     <string name="show_age_restricted_content_title">Conținut restricționat în funcție de vârstă</string>
-    <string name="video_is_age_restricted">Afișează videoclipuri restricționate în funcție de vârstă. Permiterea vizionării este posibilă din Setări.</string>
     <string name="general_error">Eroare</string>
     <string name="network_error">Eroare de rețea</string>
     <string name="could_not_load_thumbnails">Nu s-au putut încărca toate thumbnail-urile</string>
-    <string name="youtube_signature_decryption_error">Nu s-a putut decripta semnătura URL a videoclipului</string>
+    <string name="youtube_signature_deobfuscation_error">Nu s-a putut decripta semnătura URL a videoclipului</string>
     <string name="parsing_error">Nu s-a putut analiza website-ul</string>
     <string name="content_not_available">Conținut indisponibil</string>
     <string name="could_not_setup_download_menu">Imposibil de inițializat meniul pentru descărcări</string>
@@ -288,8 +287,6 @@ pentru a deschide în mod pop-up</string>
     <string name="play_queue_stream_detail">Detalii</string>
     <string name="play_queue_audio_settings">Setări Audio</string>
     <string name="hold_to_append">Apăsaţi pentru a adăuga în lista de redare</string>
-    <string name="enqueue_on_background">Adăugaţi în fundal</string>
-    <string name="enqueue_on_popup">Adăugaţi în Popup</string>
     <string name="start_here_on_main">Începeţi să redaţi de aici</string>
     <string name="start_here_on_background">Începe redarea în fundal</string>
     <string name="start_here_on_popup">Începe redarea în popup</string>

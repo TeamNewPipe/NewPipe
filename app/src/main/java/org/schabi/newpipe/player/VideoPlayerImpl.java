@@ -32,8 +32,6 @@ import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.view.DisplayCutout;
-import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -60,8 +58,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.DisplayCutoutCompat;
+import androidx.core.view.ViewCompat;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -72,9 +75,8 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nostra13.universalimageloader.core.assist.FailReason;
-import org.schabi.newpipe.MainActivity;
+
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
@@ -92,9 +94,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.AnimationUtils;
-import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -102,7 +103,6 @@ import org.schabi.newpipe.util.ShareUtils;
 
 import java.util.List;
 
-import static android.content.Context.WINDOW_SERVICE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
@@ -257,7 +257,12 @@ public class VideoPlayerImpl extends VideoPlayer
             onQueueClosed();
             // Android TV: without it focus will frame the whole player
             playPauseButton.requestFocus();
-            onPlay();
+
+            if (simpleExoPlayer.getPlayWhenReady()) {
+                onPlay();
+            } else {
+                onPause();
+            }
         }
         NavigationHelper.sendPlayerStartedEvent(service);
     }
@@ -266,7 +271,7 @@ public class VideoPlayerImpl extends VideoPlayer
         super("MainPlayer" + TAG, service);
         this.service = service;
         this.shouldUpdateOnProgress = true;
-        this.windowManager = (WindowManager) service.getSystemService(WINDOW_SERVICE);
+        this.windowManager = ContextCompat.getSystemService(service, WindowManager.class);
         this.defaultPreferences = PreferenceManager.getDefaultSharedPreferences(service);
         this.resolver = new AudioPlaybackResolver(context, dataSource);
     }
@@ -475,16 +480,14 @@ public class VideoPlayerImpl extends VideoPlayer
                 settingsContentObserver);
         getRootView().addOnLayoutChangeListener(this);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            queueLayout.setOnApplyWindowInsetsListener((view, windowInsets) -> {
-                final DisplayCutout cutout = windowInsets.getDisplayCutout();
-                if (cutout != null) {
-                    view.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
-                            cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
-                }
-                return windowInsets;
-            });
-        }
+        ViewCompat.setOnApplyWindowInsetsListener(queueLayout, (view, windowInsets) -> {
+            final DisplayCutoutCompat cutout = windowInsets.getDisplayCutout();
+            if (cutout != null) {
+                view.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
+                        cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
+            }
+            return windowInsets;
+        });
 
         // PlaybackControlRoot already consumed window insets but we should pass them to
         // player_overlays too. Without it they will be off-centered
@@ -755,40 +758,6 @@ public class VideoPlayerImpl extends VideoPlayer
         setupScreenRotationButton();
     }
 
-    public void switchFromPopupToMain() {
-        if (DEBUG) {
-            Log.d(TAG, "switchFromPopupToMain() called");
-        }
-        if (!popupPlayerSelected() || simpleExoPlayer == null || getCurrentMetadata() == null) {
-            return;
-        }
-
-        setRecovery();
-        service.removeViewFromParent();
-        final Intent intent = NavigationHelper.getPlayerIntent(
-                service,
-                MainActivity.class,
-                this.getPlayQueue(),
-                this.getRepeatMode(),
-                this.getPlaybackSpeed(),
-                this.getPlaybackPitch(),
-                this.getPlaybackSkipSilence(),
-                null,
-                true,
-                !isPlaying(),
-                isMuted()
-        );
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(Constants.KEY_SERVICE_ID,
-                getCurrentMetadata().getMetadata().getServiceId());
-        intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
-        intent.putExtra(Constants.KEY_URL, getVideoUrl());
-        intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
-        intent.putExtra(VideoDetailFragment.AUTO_PLAY, true);
-        service.onDestroy();
-        context.startActivity(intent);
-    }
-
     @Override
     public void onClick(final View v) {
         super.onClick(v);
@@ -816,7 +785,9 @@ public class VideoPlayerImpl extends VideoPlayer
         } else if (v.getId() == openInBrowser.getId()) {
             onOpenInBrowserClicked();
         } else if (v.getId() == fullscreenButton.getId()) {
-            switchFromPopupToMain();
+            setRecovery();
+            NavigationHelper.playOnMainPlayer(context, getPlayQueue(), true);
+            return;
         } else if (v.getId() == screenRotationButton.getId()) {
             // Only if it's not a vertical video or vertical video but in landscape with locked
             // orientation a screen orientation can be changed automatically
@@ -2091,6 +2062,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public WindowManager.LayoutParams getPopupLayoutParams() {
         return popupLayoutParams;
+    }
+
+    public MainPlayer.PlayerType getPlayerType() {
+        return playerType;
     }
 
     public float getScreenWidth() {

@@ -57,7 +57,6 @@
     <string name="live_streams_not_supported">Ez egy élő közvetítés, amely még nem támogatott.</string>
     <string name="autoplay_by_calling_app_title">Automatikus lejátszás</string>
     <string name="autoplay_by_calling_app_summary">Videók automatikus lejátszása, ha a NewPipe egy másik alkalmazásból lett indítva</string>
-    <string name="video_is_age_restricted">Korhatáros videó mutatása. Ennek a tartalomnak az engedélyezése a \"Beállítások\"-ban lehetséges.</string>
     <string name="duration_live">ÉLŐ</string>
     <string name="error_snackbar_action">JELENTÉS</string>
     <string name="what_device_headline">Információ:</string>
@@ -69,7 +68,7 @@
     <string name="error_report_button_text">Hibajelentés e-mailben</string>
     <string name="could_not_get_stream">A stream nem elérhető</string>
     <string name="could_not_setup_download_menu">Nem sikerült a letöltés menü beállítása</string>
-    <string name="youtube_signature_decryption_error">Nem sikerült a videó URL aláírás azonosítása</string>
+    <string name="youtube_signature_deobfuscation_error">Nem sikerült a videó URL aláírás azonosítása</string>
     <string name="storage_permission_denied">Háttértárhoz való hozzáférés megtagadva</string>
     <string name="retry">Újra</string>
     <string name="report_error">Hibajelentés</string>
@@ -459,4 +458,5 @@
     <string name="clear_playback_states_summary">Összes lejátszási pozíció törlése</string>
     <string name="clear_playback_states_title">Lejátszási pozíciók törlése</string>
     <string name="search_showing_result_for">Találatok a következőre: %s</string>
+    <string name="notification_scale_to_square_image_title">Bélyegkép méretezése 1:1 arányra</string>
 </resources>

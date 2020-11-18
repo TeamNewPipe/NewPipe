@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.schabi.newpipe.views.FocusAwareDrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<org.schabi.newpipe.views.FocusAwareDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
@@ -25,11 +24,10 @@
             android:layout_gravity="center_horizontal"
             app:behavior_hideable="true"
             app:behavior_peekHeight="0dp"
-            app:layout_behavior="org.schabi.newpipe.player.event.CustomBottomSheetBehavior">
-        </FrameLayout>
+            app:layout_behavior="org.schabi.newpipe.player.event.CustomBottomSheetBehavior"></FrameLayout>
 
     </org.schabi.newpipe.views.FocusAwareCoordinator>
 
-    <include layout="@layout/drawer_layout"/>
+    <include layout="@layout/drawer_layout" />
 
 </org.schabi.newpipe.views.FocusAwareDrawerLayout>

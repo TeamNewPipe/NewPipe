@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
-    <string name="no_player_found">Keinen Stream-Player gefunden. VLC installieren\?</string>
+    <string name="no_player_found">Kein Stream-Player gefunden. VLC installieren\?</string>
     <string name="install">Installieren</string>
     <string name="cancel">Abbrechen</string>
     <string name="open_in_browser">Im Browser öffnen</string>
@@ -10,7 +10,7 @@
     <string name="download">Herunterladen</string>
     <string name="search">Suchen</string>
     <string name="settings">Einstellungen</string>
-    <string name="did_you_mean">Meintest du: \"%1$s\"\?</string>
+    <string name="did_you_mean">Meintest du „%1$s“\?</string>
     <string name="share_dialog_title">Teilen mit</string>
     <string name="choose_browser">Browser auswählen</string>
     <string name="screen_rotation">Bildschirm drehen</string>
@@ -52,12 +52,11 @@
     <string name="info_dir_created">Downloadverzeichnis „%1$s“ erstellt</string>
     <string name="general_error">Fehler</string>
     <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
-    <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln</string>
+    <string name="youtube_signature_deobfuscation_error">Konnte Video-URL-Signatur nicht entschlüsseln</string>
     <string name="parsing_error">Konnte Webseite nicht analysieren</string>
     <string name="content_not_available">Inhalt nicht verfügbar</string>
     <string name="content">Inhalt</string>
-    <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte</string>
-    <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Spätere Änderungen sind in den Einstellungen möglich.</string>
+    <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
     <string name="could_not_setup_download_menu">Konnte Download-Menü nicht einrichten</string>
     <string name="live_streams_not_supported">Live-Streams werden noch nicht unterstützt</string>
     <string name="light_parsing_error">Konnte Webseite nicht vollständig analysieren</string>
@@ -82,7 +81,8 @@
     <string name="report_error">Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">Live</string>
-    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen</string>
+    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen
+\n</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
@@ -230,14 +230,12 @@
     <string name="kiosk_page_summary">Kiosk-Seite</string>
     <string name="select_a_kiosk">Kiosk auswählen</string>
     <string name="kiosk">Kiosk</string>
-    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button „Details:“ im Video gedrückt wird</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Knopf „Details:“ im Video gedrückt wird</string>
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu und Heiß</string>
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
     <string name="show_hold_to_append_title">„Zum Anhängen gedrückt halten“ Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
-    <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
-    <string name="enqueue_on_popup">In Warteschlange in einem Pop-up</string>
     <string name="start_here_on_main">Ab hier wiedergeben</string>
     <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
     <string name="start_here_on_popup">Wiedergabe in einem Pop-up starten</string>
@@ -346,16 +344,19 @@
     <string name="enable_leak_canary_summary">Die Überwachung von Speicherlecks kann dazu führen, dass die App beim Heap-Dumping nicht mehr reagiert</string>
     <string name="enable_disposed_exceptions_title">Fehler außerhalb des Lebenszyklus melden</string>
     <string name="enable_disposed_exceptions_summary">Erzwingen der Meldung unzustellbarer Rx-Ausnahmen außerhalb des Lebenszyklus von Fragmenten oder Aktivitäten nach der Entsorgung</string>
-    <string name="import_youtube_instructions">Importiere YouTube-Abonnements, indem du die Exportdatei herunterlädst: 
-\n 
-\n1. Gehe zu dieser URL: %1$s 
-\n2. Melde dich an, falls du dazu aufgefordert wirst. 
-\n3. Der Ladevorgang sollte beginnen (das ist die Exportdatei)</string>
-    <string name="import_soundcloud_instructions">Importiere ein SoundCloud-Profil, indem du entweder die URL oder deine ID eingibst: 
-\n 
-\n1. Aktiviere den Desktop-Modus in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar) 
-\n2. Gehe zu dieser URL: %1$s 
-\n3. Melde dich an, falls du dazu aufgefordert wirst 
+    <string name="import_youtube_instructions">Importiere YouTube-Abonnements aus dem Google Takeout:
+\n
+\n1. Gehe zu dieser URL: %1$s
+\n2. Melde dich an, falls du dazu aufgefordert wirst
+\n3. Klicke auf \"Alle Daten enthalten\", dann auf \"Alle abwählen\", wähle dann nur \"Abonnements\" und klicke auf \"OK\"
+\n4. Klicke auf \"Nächster Schritt\" und dann auf \"Export erstellen\"
+\n5. Klicke auf die Schaltfläche \"Download\", nachdem sie erscheint und
+\n6. Entpacke aus dem heruntergeladenen Takeout-Zip die .json-Datei (normalerweise unter \"YouTube und YouTube Music/subscriptions/subscriptions.json\") und importiere sie hier.</string>
+    <string name="import_soundcloud_instructions">Importiere ein SoundCloud-Profil, indem die URL oder deine ID eingegeben wird:
+\n
+\n1. Aktiviere den Desktop-Modus in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar)
+\n2. Gehe zu dieser URL: %1$s
+\n3. Melde dich an, falls du dazu aufgefordert wirst
 \n4. Kopiere die Profil-URL, zu der du weitergeleitet wurdest.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
@@ -401,7 +402,7 @@
     <string name="tab_new">Neuer Tab</string>
     <string name="tab_choose">Tab wählen</string>
     <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
-    <string name="volume_gesture_control_summary">Player-Lautstärke über Gesten steuern</string>
+    <string name="volume_gesture_control_summary">Verwende Gesten um die Abspielerlautstärke einzustellen</string>
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
     <string name="brightness_gesture_control_summary">Player-Helligkeit über Gesten steuern</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
@@ -423,7 +424,7 @@
     <string name="grid">Gitter</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Ansicht wechseln</string>
-    <string name="app_update_notification_content_title">NewPipe-Update ist verfügbar!</string>
+    <string name="app_update_notification_content_title">Eine NewPipe-Aktualisierung ist verfügbar!</string>
     <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
     <string name="missions_header_finished">Fertig</string>
     <string name="missions_header_pending">Ausstehend</string>
@@ -484,7 +485,7 @@
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
     <string name="downloads_storage_ask_title">Download-Ziel abfragen</string>
-    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin du jeden Download speichern willst</string>
+    <string name="downloads_storage_ask_summary">Du wirst gefragt, wo jede heruntergeladene Datei gespeichert werden soll</string>
     <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jeden Download speichern willst.
 \nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
     <string name="downloads_storage_use_saf_title">SAF verwenden</string>
@@ -493,7 +494,7 @@
     <string name="clear_playback_states_title">Wiedergabepositionen löschen</string>
     <string name="clear_playback_states_summary">Alle Wiedergabepositionen löschen</string>
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
-    <string name="download_choose_new_path">Ändere die Downloadordner, damit sie wirksam werden</string>
+    <string name="download_choose_new_path">Wähle einen neuen Heruntergeladen-Ordner</string>
     <string name="drawer_header_description">Dienst umschalten, aktuell ausgewählt:</string>
     <string name="default_kiosk_page_summary">Standard-Kiosk</string>
     <string name="no_one_watching">Niemand schaut zu</string>
@@ -595,7 +596,7 @@
 \nEs wird hoffentlich in einer zukünftigen Version unterstützt.</string>
     <string name="restricted_video">Dieses Video ist altersbeschränkt.
 \n
-\nAktiviere in den Einstellungen „Altersbeschränkte Inhalte“, falls du diese sehen möchtest.</string>
+\nAktiviere in den Einstellungen „%1$s“, falls du diese sehen möchtest.</string>
     <string name="remove_watched_popup_warning">Videos, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt.
 \nBist du sicher\? Dies kann nicht rückgängig gemacht werden!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, und teilweise gesehene Videos</string>
@@ -603,7 +604,7 @@
     <string name="remove_watched_popup_title">Gesehene Videos entfernen\?</string>
     <string name="show_original_time_ago_title">Originalzeit vor Elementen anzeigen</string>
     <string name="show_original_time_ago_summary">Originaltexte von Diensten werden in Stream-Elementen sichtbar sein</string>
-    <string name="youtube_restricted_mode_enabled_title">Eingeschränkter YouTube-Modus</string>
+    <string name="youtube_restricted_mode_enabled_title">Aktivieren des „Eingeschränkten Modus“ von YouTube</string>
     <string name="detail_sub_channel_thumbnail_view_description">Avatarbild des Kanals</string>
     <string name="channel_created_by">Erstellt von %s</string>
     <string name="video_detail_by">Von %s</string>
@@ -636,4 +637,14 @@
     <string name="clear_queue_confirmation_summary">Den Player zu wechseln könnte deine Warteschlange überschreiben</string>
     <string name="clear_queue_confirmation_title">Bestätige das Leeren der Warteschlange</string>
     <string name="clear_queue_confirmation_description">Die aktive Wiedergabeliste wird ersetzt werden</string>
+    <string name="enqueued">Eingereiht</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube bietet einen „Eingeschränkten Modus“, der potenzielle Inhalte für Erwachsene ausblendet.</string>
+    <string name="show_memory_leaks">Speicherlecks anzeigen</string>
+    <string name="clear_cookie_summary">Lösche Cookies, die NewPipe speichert, wenn du ein reCAPTCHA löst</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA-Cookies wurden gelöscht</string>
+    <string name="clear_cookie_title">reCAPTCHA-Cookies löschen</string>
+    <string name="show_age_restricted_content_summary">Zeige Inhalt, der möglicherweise unpassend für Kinder ist, da er eine Altersbeschränkung (wie z.B. 18+) hat.</string>
+    <string name="enqueue_stream">Wiedergabe einreihen</string>
+    <string name="notification_colorize_summary">Android kann die Farbe der Benachrichtigung entsprechend der Hauptfarbe in der Miniaturansicht anpassen (beachte, dass dies nicht auf allen Geräten verfügbar ist)</string>
+    <string name="notification_colorize_title">Benachrichtigung farblich anpassen</string>
 </resources>

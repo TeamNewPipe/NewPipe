@@ -8,6 +8,7 @@ import android.view.accessibility.CaptioningManager;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.SeekParameters;
@@ -83,12 +84,12 @@ public final class PlayerHelper {
         final int days = (milliSeconds % (86400000 * 7)) / 86400000;
 
         STRING_BUILDER.setLength(0);
-        return days > 0
+        return (days > 0
                 ? STRING_FORMATTER.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds)
-                .toString()
                 : hours > 0
-                ? STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds).toString()
-                : STRING_FORMATTER.format("%02d:%02d", minutes, seconds).toString();
+                ? STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds)
+                : STRING_FORMATTER.format("%02d:%02d", minutes, seconds)
+        ).toString();
     }
 
     public static String formatSpeed(final double speed) {
@@ -298,7 +299,7 @@ public final class PlayerHelper {
         return 60000;
     }
 
-    public static TrackSelection.Factory getQualitySelector(@NonNull final Context context) {
+    public static TrackSelection.Factory getQualitySelector() {
         return new AdaptiveTrackSelection.Factory(
                 1000,
                 AdaptiveTrackSelection.DEFAULT_MAX_DURATION_FOR_QUALITY_DECREASE_MS,
@@ -306,18 +307,18 @@ public final class PlayerHelper {
                 AdaptiveTrackSelection.DEFAULT_BANDWIDTH_FRACTION);
     }
 
-    public static boolean isUsingDSP(@NonNull final Context context) {
+    public static boolean isUsingDSP() {
         return true;
     }
 
-    public static int getTossFlingVelocity(@NonNull final Context context) {
+    public static int getTossFlingVelocity() {
         return 2500;
     }
 
     @NonNull
     public static CaptionStyleCompat getCaptionStyle(@NonNull final Context context) {
-        final CaptioningManager captioningManager = (CaptioningManager)
-                context.getSystemService(Context.CAPTIONING_SERVICE);
+        final CaptioningManager captioningManager = ContextCompat.getSystemService(context,
+                CaptioningManager.class);
         if (captioningManager == null || !captioningManager.isEnabled()) {
             return CaptionStyleCompat.DEFAULT;
         }
@@ -340,8 +341,8 @@ public final class PlayerHelper {
      * @return caption scaling
      */
     public static float getCaptionScale(@NonNull final Context context) {
-        final CaptioningManager captioningManager
-                = (CaptioningManager) context.getSystemService(Context.CAPTIONING_SERVICE);
+        final CaptioningManager captioningManager = ContextCompat.getSystemService(context,
+                CaptioningManager.class);
         if (captioningManager == null || !captioningManager.isEnabled()) {
             return 1.0f;
         }

@@ -102,7 +102,6 @@
     <string name="popup_playing_append">Ставено на листа, за пуштање во прозорче</string>
     <string name="content">Содржина</string>
     <string name="show_age_restricted_content_title">Покажи видеа со граница на возрастта</string>
-    <string name="video_is_age_restricted">Видео за возрасни. Можете да дозволите вакви видеа преку Поставки.</string>
     <string name="duration_live">во живо</string>
     <string name="downloads">Превземања</string>
     <string name="downloads_title">Превземања</string>
@@ -137,7 +136,7 @@
     <string name="general_error">Грешка</string>
     <string name="network_error">Мрежна грешка</string>
     <string name="could_not_load_thumbnails">Не можеа да се прочитаат сите сликички</string>
-    <string name="youtube_signature_decryption_error">Невозможно децифрирање на URL потписот</string>
+    <string name="youtube_signature_deobfuscation_error">Невозможно децифрирање на URL потписот</string>
     <string name="parsing_error">Не може да се прочита страната</string>
     <string name="light_parsing_error">Не може целосно да се прочита страната</string>
     <string name="content_not_available">Содржината е недостапна</string>
@@ -292,8 +291,6 @@
     <string name="play_queue_stream_detail">Детали</string>
     <string name="play_queue_audio_settings">Звучни поставки</string>
     <string name="hold_to_append">Задржи за ставање во листа</string>
-    <string name="enqueue_on_background">Додај во листата за заднинско пуштање</string>
-    <string name="enqueue_on_popup">Додај во листата за пуштање во прозорче</string>
     <string name="start_here_on_main">Пушти тука</string>
     <string name="start_here_on_background">Пушти тука во позадина</string>
     <string name="start_here_on_popup">Пушти тука во прозорче</string>

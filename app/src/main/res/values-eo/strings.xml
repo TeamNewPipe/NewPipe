@@ -9,7 +9,7 @@
     <string name="download">Elŝuti</string>
     <string name="search">Serĉi</string>
     <string name="settings">Agordoj</string>
-    <string name="did_you_mean">Ĉu vi signifis: %1$s\?</string>
+    <string name="did_you_mean">Ĉu vi signifis \"%1$s\"\?</string>
     <string name="share_dialog_title">Konigi kun</string>
     <string name="choose_browser">Elekti retumilon</string>
     <string name="screen_rotation">turno</string>
@@ -40,7 +40,7 @@
     <string name="kore_not_found">Ĉu instali la mankan aplikaĵon Kore\?</string>
     <string name="show_next_and_similar_title">Montri la sekvan filmeton kaj similajn filmetojn</string>
     <string name="could_not_load_thumbnails">Ĉiuj bildetoj ne ŝargeblas</string>
-    <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la filmeto ne malĉifreblas</string>
+    <string name="youtube_signature_deobfuscation_error">La subskribo de la ligilo de la filmeto ne malĉifreblas</string>
     <string name="parsing_error">La retejo ne analizeblas</string>
     <string name="list_thumbnail_view_description">Bildeto de la antaŭrigardo de la filmeto</string>
     <string name="detail_thumbnail_view_description">Ludi filmeton, daŭro:</string>
@@ -64,7 +64,8 @@
     <string name="report_error">Signali eraron</string>
     <string name="video">Filmeto</string>
     <string name="retry">Reprovi</string>
-    <string name="main_bg_subtitle">Premi \"Serĉi\" por komenci</string>
+    <string name="main_bg_subtitle">Premi \"Serĉi\" por komenci
+\n</string>
     <string name="no_player_found_toast">Neniu elsendlflua ludilo trovita (instalu VLC por ludi ĝin).</string>
     <string name="open_in_popup_mode">Malfermi en ŝprucfenestran modon</string>
     <string name="use_external_video_player_summary">Forigas aŭdon ĉe kelkaj rezolucioj</string>
@@ -98,7 +99,6 @@
     <string name="could_not_setup_download_menu">Ne povis konstrui la dosierujon de elŝuto</string>
     <string name="live_streams_not_supported">Nunaj filmetoj ne estas ankoraŭ subtenataj</string>
     <string name="show_age_restricted_content_title">Enhavo limigita al aĝo</string>
-    <string name="video_is_age_restricted">Montri limigitan al aĝo filmeto. Postaj ŝanĝoj eblas ĉe la agordoj.</string>
     <string name="light_parsing_error">Ne povis tute analizi la retejon</string>
     <string name="could_not_get_stream">Ne povis akiri ajnan torenton</string>
     <string name="duration_live">Nuna</string>
@@ -151,7 +151,7 @@
     <string name="kiosk">Kiosko</string>
     <string name="trending">Tendencoj</string>
     <string name="top_50">Supro 50</string>
-    <string name="new_and_hot">Nova &amp; varma</string>
+    <string name="new_and_hot">Nova kaj varma</string>
     <string name="show_hold_to_append_title">Montri la indiko « Tenu por aldoni »</string>
     <string name="show_hold_to_append_summary">Montri indikon premante la fona aŭ la ŝprucfenestra butono en filmeta \"Detaloj:\"</string>
     <string name="background_player_append">Viciĝita en la fona ludilo</string>
@@ -165,8 +165,6 @@
     <string name="play_queue_audio_settings">Sonaj parametroj</string>
     <string name="hold_to_append">Teni por viciĝi</string>
     <string name="unknown_content">[Nekonata]</string>
-    <string name="enqueue_on_background">Viciĝi en la fona ludilo</string>
-    <string name="enqueue_on_popup">Viciĝi en ŝprucfenestro</string>
     <string name="start_here_on_popup">Komenci ludi en nova ŝprucfenestro</string>
     <string name="default_content_country_title">Preferata enhavlando</string>
     <string name="toggle_orientation">Ŝangi Orientiĝon</string>
@@ -210,7 +208,10 @@
 \n
 \n1. Iru ĉe tiu retpaĝo: %1$s
 \n2. Ensalutu kiam oni petas vin
-\n3. Elŝuto devus komenci (ĝi estas la dosiero de eksporto)</string>
+\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"
+\n4. Click on \"Next step\" and then on \"Create export\"
+\n5. Click on the \"Download\" button after it appears and
+\n6. From the downloaded takeout zip extract the .json file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.json\") and import it here.</string>
     <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon tajpante ĉu la ligilon, ĉu vian ID :
 \n 
 \n1. Ebligu komputilon modon en retumilon (la retejo malhaveblas por poŝtelefonoj)
@@ -289,9 +290,9 @@
     <string name="delete_playback_states_alert">Ĉu vi volas forviŝi ĉiujn ludajn poziciojn \?</string>
     <string name="download_choose_new_path">Ŝanĝu la elŝutojn dosierujojn por efekti</string>
     <string name="sorry_string">Pardonu, eraro okazis.</string>
-    <string name="error_snackbar_message">Pardonu, kelkaj eraroj okazis.</string>
+    <string name="error_snackbar_message">Pardonon, io mizokasis.</string>
     <string name="what_happened_headline">Kio okazis:</string>
-    <string name="info_labels">Kio:\\nPeto:\\nEnhavlingvo:\\nServo:\\nGMT Horo:\\nPako:\\nVersio:\\nOperaciumo versio:</string>
+    <string name="info_labels">Kio:\\nPeto:\\nEnhavlingvo:\\nEnhavlando:\\nAplingvo:\\nServo:\\nGMT Horo:\\nPako:\\nVersio:\\nOperaciumo versio:</string>
     <string name="audio">Aŭdio</string>
     <string name="storage_permission_denied">Permesi la konservadon unue</string>
     <string name="user_report">Uzantosignalo</string>
@@ -439,7 +440,7 @@
     <string name="decline">Rifuzi</string>
     <string name="limit_data_usage_none_description">Neniu limo</string>
     <string name="minimize_on_exit_title">Minimumigi dum la apo ŝanĝo</string>
-    <string name="minimize_on_exit_summary">Ago dum ŝanĝante al alia apo el la ĉefa filmetludilo—%s</string>
+    <string name="minimize_on_exit_summary">Ago dum ŝanĝante al alia apo el la ĉefa filmetludilo — %s</string>
     <string name="minimize_on_exit_none_description">Neniu</string>
     <string name="minimize_on_exit_background_description">Minimumigi por ludi fone</string>
     <string name="skip_silence_checkbox">Plirapidigi dum silentoj</string>

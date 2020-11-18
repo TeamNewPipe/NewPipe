@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai</string>
+    <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai
+\n</string>
     <string name="view_count_text">%1$s ditonton</string>
     <string name="upload_date_text">Dipublikasikan tanggal %1$s</string>
     <string name="install">Pasang</string>
@@ -40,8 +41,7 @@
     <string name="settings_category_other_title">Lainnya</string>
     <string name="background_player_playing_toast">Memutar di latar belakang</string>
     <string name="content">Konten</string>
-    <string name="show_age_restricted_content_title">Konten yang dibatasi usia</string>
-    <string name="video_is_age_restricted">Tampilkan video yang dibatasi usia. Bisa diubah nanti dari pengaturan.</string>
+    <string name="show_age_restricted_content_title">Tampilkan konten yang dibatasi usia</string>
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua thumbnail</string>
     <string name="did_you_mean">Apakah maksud anda \"%1$s\"\?</string>
@@ -97,7 +97,7 @@
     <string name="msg_copied">Disalin ke papan klip</string>
     <string name="no_available_dir">Silakan pilih folder unduhan di pengaturan</string>
     <string name="no_player_found">Pemutar stream tidak ditemukan. Pasang VLC\?</string>
-    <string name="youtube_signature_decryption_error">Tidak bisa dekripsi tanda tangan URL video</string>
+    <string name="youtube_signature_deobfuscation_error">Tidak bisa dekripsi tanda tangan URL video</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun</string>
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nNegara Konten:\\nBahasa Apl:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
@@ -107,7 +107,7 @@
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
     <string name="black_theme_title">Hitam</string>
     <string name="all">Semua</string>
-    <string name="channel">Channel</string>
+    <string name="channel">Kanal</string>
     <string name="short_thousand">r</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
@@ -160,8 +160,8 @@
     <string name="contribution_encouragement">Terlepas apakah anda memiliki ide untuk; terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
-    <string name="subscribe_button_title">Subscribe</string>
-    <string name="subscribed_button_title">Disubscribe</string>
+    <string name="subscribe_button_title">Melanggan</string>
+    <string name="subscribed_button_title">Berlanggan</string>
     <string name="fragment_feed_title">Apa Yang Baru</string>
     <string name="resume_on_audio_focus_gain_title">Lanjutkan pemutaran</string>
     <string name="resume_on_audio_focus_gain_summary">Melanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
@@ -192,7 +192,7 @@
     <string name="settings_category_debug_title">Debug</string>
     <string name="background_player_append">Diantrekan di pemutar latar belakang</string>
     <string name="popup_playing_append">Diantrekan di pemutar popup</string>
-    <string name="playlist">Koleksi</string>
+    <string name="playlist">Daftar Putar</string>
     <string name="undo">Urungkan</string>
     <string name="play_all">Putar Semua</string>
     <string name="always">Selalu</string>
@@ -206,8 +206,8 @@
     <string name="switch_to_main">Alihkan ke Utama</string>
     <string name="import_data_title">Impor basis data</string>
     <string name="export_data_title">Ekspor basis data</string>
-    <string name="import_data_summary">Timpa riwayat dan subscription anda saat ini</string>
-    <string name="export_data_summary">Ekspor riwayat, subscription dan playlist</string>
+    <string name="import_data_summary">Timpa riwayat dan langganan anda saat ini</string>
+    <string name="export_data_summary">Ekspor riwayat, langganan dan daftar putar</string>
     <string name="player_stream_failure">Tidak bisa memutar stream ini</string>
     <string name="player_unrecoverable_failure">Telah terjadi galat pemutar yang tidak bisa dipulihkan</string>
     <string name="player_recoverable_failure">Memulihkan dari galat pemutar</string>
@@ -223,9 +223,9 @@
     <string name="search_no_results">Tidak ada hasil</string>
     <string name="empty_subscription_feed_subtitle">Tidak ada apapun disini selain jangkrik</string>
     <string name="detail_drag_description">Geser untuk ubah urutan</string>
-    <string name="no_subscribers">Tidak ada subscriber</string>
+    <string name="no_subscribers">Tidak ada pelanggan</string>
     <plurals name="subscribers">
-        <item quantity="other">%s subscribers</item>
+        <item quantity="other">%s pelanggan</item>
     </plurals>
     <string name="no_views">Belum ditonton</string>
     <plurals name="views">
@@ -250,14 +250,14 @@
     <string name="delete_all_history_prompt">Apakah Anda yakin ingin menghapus semua item dari riwayat\?</string>
     <string name="title_last_played">Terakhir Diputar</string>
     <string name="title_most_played">Sering Diputar</string>
-    <string name="main_page_content">Konten laman utama</string>
-    <string name="blank_page_summary">Laman Kosong</string>
-    <string name="kiosk_page_summary">Laman Kiosk</string>
-    <string name="subscription_page_summary">Laman Subscription</string>
+    <string name="main_page_content">Konten halaman utama</string>
+    <string name="blank_page_summary">Halaman Kosong</string>
+    <string name="kiosk_page_summary">Halaman Kiosk</string>
+    <string name="subscription_page_summary">Halaman Langganan</string>
     <string name="feed_page_summary">Laman Umpan</string>
-    <string name="channel_page_summary">Laman Channel</string>
-    <string name="select_a_channel">Pilih channel</string>
-    <string name="no_channel_subscribed_yet">Belum ada subscription channel</string>
+    <string name="channel_page_summary">Halaman Kanal</string>
+    <string name="select_a_channel">Pilih kanal</string>
+    <string name="no_channel_subscribed_yet">Belum ada langganan kanal</string>
     <string name="select_a_kiosk">Pilih kiosk</string>
     <string name="export_complete_toast">Diekspor</string>
     <string name="import_complete_toast">Diimpor</string>
@@ -272,8 +272,6 @@
     <string name="play_queue_stream_detail">Detail</string>
     <string name="play_queue_audio_settings">Pengaturan Audio</string>
     <string name="hold_to_append">Tahan untuk mengantre</string>
-    <string name="enqueue_on_background">Antre di latar belakang</string>
-    <string name="enqueue_on_popup">Antrekan di popup</string>
     <string name="start_here_on_main">Mulai putar di sini</string>
     <string name="start_here_on_background">Mulai putar di latar belakang</string>
     <string name="start_here_on_popup">Mulai putar di popup</string>
@@ -286,19 +284,19 @@
     <string name="always_ask_open_action">Selalu bertanya</string>
     <string name="preferred_player_fetcher_notification_title">Mendapatkan info…</string>
     <string name="preferred_player_fetcher_notification_message">Memuat konten yang diminta</string>
-    <string name="create_playlist">Playlist Baru</string>
+    <string name="create_playlist">Daftar Putar Baru</string>
     <string name="delete_playlist">Hapus</string>
     <string name="rename_playlist">Ubah Nama</string>
     <string name="name">Nama</string>
-    <string name="append_playlist">Tambahkan Ke Playlist</string>
-    <string name="set_as_playlist_thumbnail">Atur sebagai Thumbnail Playlist</string>
-    <string name="bookmark_playlist">Markah Playlist</string>
+    <string name="append_playlist">Tambahkan Ke Daftar Putar</string>
+    <string name="set_as_playlist_thumbnail">Atur sebagai Thumbnail Daftar Putar</string>
+    <string name="bookmark_playlist">Markah Daftar Putar</string>
     <string name="unbookmark_playlist">Hapus Markah</string>
-    <string name="delete_playlist_prompt">Hapus playlist ini\?</string>
-    <string name="playlist_creation_success">Playlist dibuat</string>
-    <string name="playlist_add_stream_success">Diplaylist</string>
-    <string name="playlist_thumbnail_change_success">Thumbnail playlist diubah.</string>
-    <string name="playlist_delete_failure">Tidak bisa menghapus playlist.</string>
+    <string name="delete_playlist_prompt">Hapus daftar putar ini\?</string>
+    <string name="playlist_creation_success">Daftar putar dibuat</string>
+    <string name="playlist_add_stream_success">Terdaftar putar</string>
+    <string name="playlist_thumbnail_change_success">Thumbnail daftar putar diubah.</string>
+    <string name="playlist_delete_failure">Tidak bisa menghapus daftar putar.</string>
     <string name="caption_none">Tanpa Teks</string>
     <string name="resize_fit">Pas</string>
     <string name="resize_fill">Isi</string>
@@ -306,7 +304,7 @@
     <string name="caption_auto_generated">Otomatis dibuat</string>
     <string name="no_player_found_toast">Pemutar stream tidak ditemukan (anda bisa memasang VLC untuk memutarnya).</string>
     <string name="controls_download_desc">Unduh berkas stream</string>
-    <string name="subscription_change_failed">Tidak bisa merubah subscription</string>
+    <string name="subscription_change_failed">Tidak bisa mengubah langganan</string>
     <string name="show_info">Tampilkan info</string>
     <string name="controls_add_to_playlist_title">Tambahkan Ke</string>
     <string name="clear_views_history_title">Hapus riwayat tontonan</string>
@@ -321,11 +319,11 @@
     <string name="one_item_deleted">1 item dihapus.</string>
     <string name="toast_no_player">Tidak ada aplikasi terpasang untuk memutar berkas ini</string>
     <string name="title_history_view">Ditonton</string>
-    <string name="tab_bookmarks">Koleksi Playlist Anda</string>
+    <string name="tab_bookmarks">Daftar Putar</string>
     <string name="auto_queue_title">Putar otomatis streaming berikutnya</string>
-    <string name="channel_unsubscribed">Channel diunsubsrcribe</string>
-    <string name="subscription_update_failed">Tidak bisa memperbarui subscription</string>
-    <string name="tab_subscriptions">Subscription</string>
+    <string name="channel_unsubscribed">Berhenti berlanggan kanal</string>
+    <string name="subscription_update_failed">Tidak bisa memperbarui langganan</string>
+    <string name="tab_subscriptions">Langganan</string>
     <string name="use_inexact_seek_title">Gunakan tinjau cepat tak pasti</string>
     <string name="use_inexact_seek_summary">Memungkinkan pengguna memilih posisi waktu video dengan cepat tetapi dengan tingkat presisi yang rendah. Mencari 5, 15 atau 25 detik tidak berhasil dengan ini.</string>
     <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan anda) versi yang lebih baru.</string>
@@ -345,13 +343,16 @@
     <string name="export_ongoing">Mengekspor…</string>
     <string name="import_file_title">Impor berkas</string>
     <string name="previous_export">Ekspor sebelumnya</string>
-    <string name="subscriptions_import_unsuccessful">Tidak bisa mengimpor subscription</string>
-    <string name="subscriptions_export_unsuccessful">Tidak bisa mengekspor subscription</string>
-    <string name="import_youtube_instructions">Impor subscription YouTube dengan mengunduh berkas yang diekspor: 
-\n 
-\n1. Kunjungi URL ini: %1$s 
-\n2. Masuk ketika ditanya 
-\n3. Unduhan akan dimulai (itulah berkas ekspornya)</string>
+    <string name="subscriptions_import_unsuccessful">Tidak bisa mengimpor langganan</string>
+    <string name="subscriptions_export_unsuccessful">Tidak bisa mengekspor langganan</string>
+    <string name="import_youtube_instructions">Impor langganan YouTube dari Google takeout:
+\n
+\n1. Buka URL ini: %1$s
+\n2. Masuk ketika ditanya
+\n3. Klik \"Semua data termasuk\", lalu pada \"Batal pilih semua\", lalu pilih hanya \"langganan\" dan klik \"OK\"
+\n4. Klik \"Langkah berikutnya\" dan kemudian pada \"Buat ekspor\"
+\n5. Klik tombol \"Unduh\" setelah muncul dan
+\n6. Dari download takeout zip ekstrak file .json (biasanya di bawah \"YouTube dan YouTube Music / subscriptions /subscriptions.json\") dan impor di sini.</string>
     <string name="import_soundcloud_instructions">Impor profil SoundCloud dengan mengetik URL atau ID anda: 
 \n 
 \n1. Aktifkan \"mode desktop\" di peramban web (situs tidak tersedia untuk perangkat seluler)
@@ -366,8 +367,8 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Nada</string>
     <string name="unhook_checkbox">Batalkan tautan (dapat menyebabkan distorsi)</string>
-    <string name="channels">Channel</string>
-    <string name="playlists">Koleksi</string>
+    <string name="channels">Kanal</string>
+    <string name="playlists">Daftar Putar</string>
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
     <string name="privacy_policy_title">Kebijakan Privasi NewPipe</string>
@@ -382,13 +383,13 @@
     <string name="accept">Setuju</string>
     <string name="decline">Tolak</string>
     <string name="limit_data_usage_none_description">Tanpa batas</string>
-    <string name="limit_mobile_data_usage_title">Batasi resolusi saat menggunakan data seluler</string>
+    <string name="limit_mobile_data_usage_title">Resolusi saat menggunakan data seluler</string>
     <string name="minimize_on_exit_title">Minimalkan saat beralih apl</string>
     <string name="minimize_on_exit_summary">Tindakan ketika beralih ke apl lain dari pemutar video utama — %s</string>
     <string name="minimize_on_exit_none_description">Nihil</string>
     <string name="minimize_on_exit_background_description">Minimalkan ke pemutar latar belakang</string>
     <string name="minimize_on_exit_popup_description">Minimalkan ke pemutar popup</string>
-    <string name="unsubscribe">Berhenti Subscribe</string>
+    <string name="unsubscribe">Berhenti Berlanggan</string>
     <string name="tab_new">Tab Baru</string>
     <string name="tab_choose">Pilih Tab</string>
     <string name="theme_title">Tema</string>
@@ -406,7 +407,7 @@
     <string name="saved_tabs_invalid_json">Tidak bisa membaca tab yang disimpan, beralih menggunakan tab bawaan</string>
     <string name="restore_defaults">Kembali ke awal</string>
     <string name="restore_defaults_confirmation">Apakah anda ingin mengembalikan ke bawaan\?</string>
-    <string name="subscribers_count_not_available">Jumlah subscriber tidak tersedia</string>
+    <string name="subscribers_count_not_available">Jumlah pelanggan tidak tersedia</string>
     <string name="main_page_content_summary">Tab apa yang ditampilkan di halaman utama</string>
     <string name="selection">Pilihan</string>
     <string name="conferences">Konferensi</string>
@@ -508,7 +509,7 @@
     <string name="peertube_instance_add_https_only">Hanya mendukung URL HTTPS</string>
     <string name="peertube_instance_add_exists">Situs sudah ada</string>
     <string name="local">Lokal</string>
-    <string name="recently_added">Baru-baru ini ditambahkan</string>
+    <string name="recently_added">Baru ditambahkan</string>
     <string name="most_liked">Disukai terbanyak</string>
     <string name="playlist_no_uploader">Dibuat otomatis (pengunggah tidak ditemukan)</string>
     <string name="recovering">memulihkan</string>
@@ -539,13 +540,13 @@
     <plurals name="days">
         <item quantity="other">%d hari</item>
     </plurals>
-    <string name="feed_groups_header_title">Grup channel</string>
+    <string name="feed_groups_header_title">Grup kanal</string>
     <string name="feed_oldest_subscription_update">Feed terakhir diperbarui: %s</string>
     <string name="feed_subscription_not_loaded_count">Tidak dimuat: %d</string>
     <string name="feed_notification_loading">Memuat feed…</string>
     <string name="feed_processing_message">Memproses feed…</string>
-    <string name="feed_group_dialog_select_subscriptions">Pilih subscription</string>
-    <string name="feed_group_dialog_empty_selection">Tidak ada subscription yang dipilih</string>
+    <string name="feed_group_dialog_select_subscriptions">Pilih langganan</string>
+    <string name="feed_group_dialog_empty_selection">Tidak ada langganan yang dipilih</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="other">%d dipilih</item>
     </plurals>
@@ -553,9 +554,9 @@
     <string name="feed_group_dialog_delete_message">Apakah anda ingin menghapus grup ini\?</string>
     <string name="feed_create_new_group_button_title">Baru</string>
     <string name="settings_category_feed_title">Feed</string>
-    <string name="feed_update_threshold_title">Threshold pembaruan feed</string>
-    <string name="feed_update_threshold_summary">Waktu setelah pembaruan terakhir sebelum subscription dianggap kedaluwarsa — %s</string>
-    <string name="feed_update_threshold_option_always_update">Selalu diperbarui</string>
+    <string name="feed_update_threshold_title">Rentang pembaruan feed</string>
+    <string name="feed_update_threshold_summary">Waktu setelah pembaruan terakhir sebelum langganan dianggap kedaluwarsa — %s</string>
+    <string name="feed_update_threshold_option_always_update">Selalu perbarui</string>
     <string name="feed_use_dedicated_fetch_method_summary">Tersedia pada beberapa layanan, biasanya lebih cepat tetapi memperbarui lebih sedikit item dan sering kali dengan informasi yang tidak lengkap (mis. tanpa durasi, tanpa tipe item, tanpa status live).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Aktifkan mode cepat</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Nonaktifkan mode cepat</string>
@@ -569,7 +570,7 @@
     <string name="remove_watched">Buang ditonton</string>
     <string name="restricted_video">Video ini dibatasi usia.
 \n
-\nAktifkan \"Konten yang dibatasi usia\" di dalam pengaturan jika anda ingin melihatnya.</string>
+\nAktifkan \"%1$s\" di dalam pengaturan jika anda ingin melihatnya.</string>
     <string name="content_not_supported">Konten ini belum didukung oleh NewPipe.
 \n
 \nSemoga akan didukung pada versi berikutnya.</string>
@@ -591,10 +592,10 @@
 \nJadi pilihlah yang sesuai yang kamu inginkan: kecepatan atau kelengkapan informasi.</string>
     <string name="show_original_time_ago_summary">Teks asli dari layanan akan tampil pada item stream</string>
     <string name="show_original_time_ago_title">Tampilkan waktu yang lalu sebenarnya pada item</string>
-    <string name="youtube_restricted_mode_enabled_title">Mode terbatas Youtube</string>
+    <string name="youtube_restricted_mode_enabled_title">Tampilkan \"Mode Terbatas\" Youtube</string>
     <string name="video_detail_by">Oleh %s</string>
     <string name="channel_created_by">Dibuat oleh %s</string>
-    <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar channel</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar kanal</string>
     <string name="error_report_open_github_notice">Harap periksa apakah masalah yang sama sudah ada atau belum. Ketika laporan anda ternyata sudah ada, anda membuat kami menghabiskan waktu yang seharusnya bisa kami gunakan untuk meningkatkan aplikasi menjadi lebih baik.</string>
     <string name="error_report_open_issue_button_text">Laporkan di GitHub</string>
     <string name="copy_for_github">Salin laporan dengan format</string>
@@ -626,4 +627,14 @@
     <string name="notification_action_0_title">Tombol tindakan pertama</string>
     <string name="notification_scale_to_square_image_summary">Ubah ukuran thumbnail yang ditampilkan di notifikasi dari rasio aspek 16:9 ke 1:1 (mungkin terdistorsi)</string>
     <string name="notification_scale_to_square_image_title">Ubah ukuran thumbnail ke rasio aspek 1:1</string>
+    <string name="show_memory_leaks">Tampilkan kebocoran memori</string>
+    <string name="enqueued">Ditambahkan</string>
+    <string name="enqueue_stream">Tambahkan</string>
+    <string name="clear_cookie_summary">Hapus kuki yang disimpan oleh NewPipe saat anda memecahkan reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Kuki reCAPTCHA telah dihapus</string>
+    <string name="clear_cookie_title">Hapus kuki reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube menyediakan \"Mode Terbatas\" yang menyembunyikan video konten dewasa.</string>
+    <string name="show_age_restricted_content_summary">Menampilkan konten yang mungkin tidak cocok untuk anak-anak karena memiliki batasan umur (seperti 18+).</string>
+    <string name="notification_colorize_summary">Minta Android menyesuaikan warna notifikasi sesuai dengan warna utama di thumbnail (perhatikan bahwa ini tidak tersedia di semua perangkat)</string>
+    <string name="notification_colorize_title">Warnai notifikasi</string>
 </resources>

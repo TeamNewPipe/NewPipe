@@ -58,7 +58,6 @@
     <string name="popup_playing_toast">পপআপ মোডে চলছে</string>
     <string name="content">কন্টেন্ট</string>
     <string name="show_age_restricted_content_title">বয়স সীমাবদ্ধ কন্টেন্ট দেখাও</string>
-    <string name="video_is_age_restricted">ভিডিওটিকে বয়স সীমিত করা হয়েছে। প্রথমে সেটিংসে বয়স সীমাবদ্ধ ভিডিওগুলি সক্ষম করো।</string>
     <string name="duration_live">লাইভ</string>
     <string name="downloads">ডাউনলোডগুলি</string>
     <string name="downloads_title">ডাউনলোডগুলি</string>
@@ -76,7 +75,7 @@
     <string name="general_error">ত্রুটি</string>
     <string name="network_error">নেটওয়ার্ক ত্রুটি</string>
     <string name="could_not_load_thumbnails">সব থাম্বনেইল লোড করা যায়নি</string>
-    <string name="youtube_signature_decryption_error">ভিডিও URL স্বাক্ষর ডিক্রিপ্ট করা যায়নি</string>
+    <string name="youtube_signature_deobfuscation_error">ভিডিও URL স্বাক্ষর ডিক্রিপ্ট করা যায়নি</string>
     <string name="parsing_error">ওয়েবসাইট বিশ্লেষন করা যায়নি</string>
     <string name="light_parsing_error">ওয়েবসাইট সম্পুর্নভাবে বিশ্লেষন করা যায়নি</string>
     <string name="content_not_available">কন্টেন্ট উপলব্ধ নয়</string>
@@ -361,4 +360,5 @@
     <string name="notification_action_repeat">পুনরায়</string>
     <string name="notification_action_0_title">প্রথম ক্রিয়া বোতাম</string>
     <string name="notification_scale_to_square_image_title">থাম্বনেলে ১:১ অনুপাতে করো</string>
+    <string name="import_export_title">আমদানি/রপ্তানি</string>
 </resources>

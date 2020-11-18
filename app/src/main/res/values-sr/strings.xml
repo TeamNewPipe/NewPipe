@@ -52,12 +52,11 @@
     <string name="err_dir_create">Не могу да направим директоријум за преузимање„ %1$s“</string>
     <string name="general_error">Грешка</string>
     <string name="could_not_load_thumbnails">Не могох да учитам све сличице</string>
-    <string name="youtube_signature_decryption_error">Не могу да дешифрујем потпис видео урл-а</string>
+    <string name="youtube_signature_deobfuscation_error">Не могу да дешифрујем потпис видео урл-а</string>
     <string name="parsing_error">Не могу да рашчланим веб-сајт</string>
     <string name="content_not_available">Садржај није доступан</string>
     <string name="content">Садржај</string>
     <string name="show_age_restricted_content_title">Прикажи старосно-ограничени садржај</string>
-    <string name="video_is_age_restricted">Старосно-ограничени видео. Премошћавање је доступно у поставкама.</string>
     <string name="could_not_setup_download_menu">Не могу да поставим мени преузимања</string>
     <string name="live_streams_not_supported">Ово је ТОК УЖИВО, ово још није подржано.</string>
     <string name="light_parsing_error">Не могу да рашчланим веб-сајт у целости</string>

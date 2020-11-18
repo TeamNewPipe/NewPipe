@@ -167,14 +167,13 @@
     <string name="background_player_playing_toast">在后台播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">受年龄限制的内容</string>
-    <string name="video_is_age_restricted">显示受年龄限制的视频。可从设置允许此类内容。</string>
     <string name="duration_live">直播</string>
     <string name="downloads">下载</string>
     <string name="downloads_title">下载</string>
     <string name="error_report_title">错误报告</string>
     <string name="general_error">错误</string>
     <string name="could_not_load_thumbnails">无法加载所有缩略图</string>
-    <string name="youtube_signature_decryption_error">无法解密视频的 URL 签名</string>
+    <string name="youtube_signature_deobfuscation_error">无法解密视频的 URL 签名</string>
     <string name="parsing_error">无法解析网址</string>
     <string name="light_parsing_error">无法完全解析网址</string>
     <string name="content_not_available">内容不可用</string>
@@ -276,8 +275,6 @@
     <string name="play_queue_audio_settings">音频设置</string>
     <string name="hold_to_append">长按队列</string>
     <string name="unknown_content">[未知]</string>
-    <string name="enqueue_on_background">添加到后台部分队列</string>
-    <string name="enqueue_on_popup">添加至新悬浮窗列表</string>
     <string name="start_here_on_main">开始在此处开始播放</string>
     <string name="start_here_on_background">开始后台播放</string>
     <string name="start_here_on_popup">开始在新悬浮窗中播放</string>

@@ -18,8 +18,8 @@
 
     <item
         android:id="@+id/queue"
-        android:title="@string/enqueue"
-        android:checkable="true"/>
+        android:checkable="true"
+        android:title="@string/enqueue" />
 
     <item
         android:id="@+id/menu_item_share"

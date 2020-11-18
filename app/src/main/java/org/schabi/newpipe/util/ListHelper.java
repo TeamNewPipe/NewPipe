@@ -3,6 +3,8 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
@@ -16,6 +18,7 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -263,10 +266,8 @@ public final class ListHelper {
      */
     private static void sortStreamList(final List<VideoStream> videoStreams,
                                        final boolean ascendingOrder) {
-        Collections.sort(videoStreams, (o1, o2) -> {
-            final int result = compareVideoStreamResolution(o1, o2);
-            return result == 0 ? 0 : (ascendingOrder ? result : -result);
-        });
+        final Comparator<VideoStream> comparator = ListHelper::compareVideoStreamResolution;
+        Collections.sort(videoStreams, ascendingOrder ? comparator : comparator.reversed());
     }
 
     /**
@@ -543,7 +544,7 @@ public final class ListHelper {
      */
     public static boolean isMeteredNetwork(final Context context) {
         final ConnectivityManager manager
-                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                = ContextCompat.getSystemService(context, ConnectivityManager.class);
         if (manager == null || manager.getActiveNetworkInfo() == null) {
             return false;
         }

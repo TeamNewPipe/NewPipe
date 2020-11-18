@@ -125,7 +125,7 @@ public abstract class BasePlayer implements
     @NonNull
     public static final String RESUME_PLAYBACK = "resume_playback";
     @NonNull
-    public static final String START_PAUSED = "start_paused";
+    public static final String PLAY_WHEN_READY = "play_when_ready";
     @NonNull
     public static final String SELECT_ON_APPEND = "select_on_append";
     @NonNull
@@ -224,7 +224,7 @@ public abstract class BasePlayer implements
         this.dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
 
         final TrackSelection.Factory trackSelectionFactory = PlayerHelper
-                .getQualitySelector(context);
+                .getQualitySelector();
         this.trackSelector = new CustomTrackSelector(context, trackSelectionFactory);
 
         this.loadControl = new LoadController();
@@ -302,6 +302,7 @@ public abstract class BasePlayer implements
         final boolean samePlayQueue = playQueue != null && playQueue.equals(queue);
 
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
+        final boolean playWhenReady = intent.getBooleanExtra(PLAY_WHEN_READY, true);
         final boolean isMuted = intent
                 .getBooleanExtra(IS_MUTED, simpleExoPlayer != null && isMuted());
 
@@ -327,16 +328,20 @@ public abstract class BasePlayer implements
                 simpleExoPlayer.retry();
             }
             simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
-            return;
+            simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
-        } else if (samePlayQueue && !playQueue.isDisposed() && simpleExoPlayer != null) {
+        } else if (simpleExoPlayer != null
+                && samePlayQueue
+                && playQueue != null
+                && !playQueue.isDisposed()) {
             // Do not re-init the same PlayQueue. Save time
             // Player can have state = IDLE when playback is stopped or failed
             // and we should retry() in this case
             if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) {
                 simpleExoPlayer.retry();
             }
-            return;
+            simpleExoPlayer.setPlayWhenReady(playWhenReady);
+
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
                 && isPlaybackResumeEnabled()
                 && !samePlayQueue) {
@@ -351,7 +356,7 @@ public abstract class BasePlayer implements
                                 state -> {
                                     queue.setRecovery(queue.getIndex(), state.getProgressTime());
                                     initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
-                                            playbackSkipSilence, true, isMuted);
+                                            playbackSkipSilence, playWhenReady, isMuted);
                                 },
                                 error -> {
                                     if (DEBUG) {
@@ -359,24 +364,22 @@ public abstract class BasePlayer implements
                                     }
                                     // In case any error we can start playback without history
                                     initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
-                                            playbackSkipSilence, true, isMuted);
+                                            playbackSkipSilence, playWhenReady, isMuted);
                                 },
                                 () -> {
                                     // Completed but not found in history
                                     initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
-                                            playbackSkipSilence, true, isMuted);
+                                            playbackSkipSilence, playWhenReady, isMuted);
                                 }
                         );
                 databaseUpdateReactor.add(stateLoader);
-                return;
             }
+        } else {
+            // Good to go...
+            // In a case of equal PlayQueues we can re-init old one but only when it is disposed
+            initPlayback(samePlayQueue ? playQueue : queue, repeatMode, playbackSpeed,
+                    playbackPitch, playbackSkipSilence, playWhenReady, isMuted);
         }
-        // Good to go...
-        // In a case of equal PlayQueues we can re-init old one but only when it is disposed
-        initPlayback(samePlayQueue ? playQueue : queue, repeatMode,
-                playbackSpeed, playbackPitch, playbackSkipSilence,
-                !intent.getBooleanExtra(START_PAUSED, false),
-                isMuted);
     }
 
     private PlaybackParameters retrievePlaybackParametersFromPreferences() {

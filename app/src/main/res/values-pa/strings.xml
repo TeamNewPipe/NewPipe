@@ -101,7 +101,6 @@
     <string name="popup_playing_append">ਪੌਪ-ਅਪ ਪਲੇਯਰ ਵਿੱਚ ਕਤਾਰਬੱਧ</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">ਉਮਰ ਪ੍ਰਤੀਬੰਧਿਤ Content</string>
-    <string name="video_is_age_restricted">ਉਮਰ ਪ੍ਰਤੀਬੰਧਿਤ ਵੀਡੀਓ ਦਿਖਾਓ ਸੈਟਿੰਗਸ ਤੋਂ ਅਜਿਹੀ ਸਮੱਗਰੀ ਦੀ ਆਗਿਆ ਦੇਣੀ ਸੰਭਵ ਹੈ.</string>
     <string name="duration_live">ਲਾਈਵ</string>
     <string name="downloads">ਡਾਊਨਲੋਡਸ</string>
     <string name="downloads_title">ਡਾਊਨਲੋਡਸ</string>
@@ -143,7 +142,7 @@
     <string name="general_error">ERROR</string>
     <string name="network_error">ਨੈੱਟਵਰਕ ERROR</string>
     <string name="could_not_load_thumbnails">ਸਾਰੇ ਥੰਬਨੇਲ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ</string>
-    <string name="youtube_signature_decryption_error">ਵੀਡੀਓ URL ਦਸਤਖਤ ਡੀਕ੍ਰਿਪਟ ਨਹੀਂ ਹੋ ਸਕਿਆ</string>
+    <string name="youtube_signature_deobfuscation_error">ਵੀਡੀਓ URL ਦਸਤਖਤ ਡੀਕ੍ਰਿਪਟ ਨਹੀਂ ਹੋ ਸਕਿਆ</string>
     <string name="parsing_error">ਵੈਬਸਾਈਟ parse ਨਹੀਂ ਹੋ ਸਕੀ</string>
     <string name="light_parsing_error">ਵੈਬਸਾਈਟ ਪੂਰੀ ਤਰਾਂ Parse ਨਹੀਂ ਹੋ ਸਕੀ</string>
     <string name="content_not_available">Content ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
@@ -301,8 +300,6 @@
     <string name="play_queue_stream_detail">ਵੇਰਵੇ</string>
     <string name="play_queue_audio_settings">ਆਡੀਓ ਸੈਟਿੰਗਾਂ</string>
     <string name="hold_to_append">ਕਤਾਰਬੱਧ ਕਰਨ ਵਾਸਤੇ ਦਬਾ ਕੇ ਰੱਖੋ</string>
-    <string name="enqueue_on_background">ਬੈਕਗ੍ਰਆਊਂਡ ਵਿੱਚ ਕਤਾਰਬੱਧ ਕਰੋ</string>
-    <string name="enqueue_on_popup">ਨਵੇਂ ਪੌਪ-ਅਪ ਵਿੱਚ ਕਤਾਰਬੱਧ ਕਰੋ</string>
     <string name="start_here_on_main">ਇਥੇ ਚਲਾਉ</string>
     <string name="start_here_on_background">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਚਲਾਉ</string>
     <string name="start_here_on_popup">ਨਵੇਂ ਪੌਪ-ਅਪ ਵਿੱਚ ਚਲਾਓ</string>

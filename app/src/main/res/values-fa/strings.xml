@@ -45,7 +45,6 @@
     <string name="background_player_playing_toast">در حال پخش در پس‌زمینه</string>
     <string name="content">محتوا</string>
     <string name="show_age_restricted_content_title">محتوای محدود شده بر اساس سن</string>
-    <string name="video_is_age_restricted">نمایش ویدیوهای دارای محدودیت سنی. تغییرات آتی از طریق تنظیمات ممکن است.</string>
     <string name="duration_live">زنده</string>
     <string name="downloads">بارگیری‌ها</string>
     <string name="downloads_title">بارگیری‌ها</string>
@@ -53,7 +52,7 @@
     <string name="general_error">خطا</string>
     <string name="network_error">خطای شبکه</string>
     <string name="could_not_load_thumbnails">نمی‌توان تمام بندانگشتی‌ها را بار کرد</string>
-    <string name="youtube_signature_decryption_error">نمی‌توان امضای نشانی اینترنتی ویدیو را رمزگشایی کرد</string>
+    <string name="youtube_signature_deobfuscation_error">نمی‌توان امضای نشانی اینترنتی ویدیو را رمزگشایی کرد</string>
     <string name="parsing_error">نمی‌توان پایگاه وب را تجزیه کرد</string>
     <string name="light_parsing_error">نمی‌توان پایگاه وب را به صورت کامل تجزیه کرد</string>
     <string name="content_not_available">محتوا در دسترس نیست</string>
@@ -368,8 +367,6 @@
     <string name="popup_playing_append">قرار دادن در صف پخش به صورت تصویر در تصویر</string>
     <string name="player_unrecoverable_failure">خطای عدم احیای پخش‌کننده رخ داد</string>
     <string name="player_recoverable_failure">در حال احیا از خطای پخش‌کننده</string>
-    <string name="enqueue_on_background">در صف پخش پس‌زمینه قرار بده</string>
-    <string name="enqueue_on_popup">در صف پخش تصویر در تصویر قرار بده</string>
     <string name="start_here_on_main">شروع پخش در اینجا</string>
     <string name="start_here_on_background">شروع پخش در پس‌زمینه</string>
     <string name="start_here_on_popup">شروع پخش در حالت تصویر در تصویر</string>

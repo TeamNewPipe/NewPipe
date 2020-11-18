@@ -101,7 +101,6 @@
     <string name="popup_playing_append">پاپ اپ پلیئر میں شامل ہوئی</string>
     <string name="content">مشمول</string>
     <string name="show_age_restricted_content_title">نازیبا مشمولات</string>
-    <string name="video_is_age_restricted">نازیبا ویڈیو دکھائی دے گی۔ ترتیبات سے اس طرح کی مشمولات کی اجازت ممکن ہے۔</string>
     <string name="duration_live">براہ راست</string>
     <string name="downloads">ڈاؤن لوڈز</string>
     <string name="downloads_title">ڈاؤن لوڈز</string>
@@ -136,7 +135,7 @@
     <string name="general_error">خرابی</string>
     <string name="network_error">نیٹ ورک کی خرابی</string>
     <string name="could_not_load_thumbnails">تمام نظرِ انگشتی لوڈ نہیں کر سکے</string>
-    <string name="youtube_signature_decryption_error">ویڈیو یو آر ایل کے دستخط ڈکرپٹ نہیں ہو سکے</string>
+    <string name="youtube_signature_deobfuscation_error">ویڈیو یو آر ایل کے دستخط ڈکرپٹ نہیں ہو سکے</string>
     <string name="parsing_error">ویب سائٹ کو تجزیہ نہیں کیا جاسکا</string>
     <string name="light_parsing_error">ویب سائٹ کو مکمل طور پر تجزیہ نہیں کرسکے</string>
     <string name="content_not_available">مواد دستیاب نہیں ہے</string>
@@ -290,8 +289,6 @@
     <string name="play_queue_stream_detail">تفصیلات</string>
     <string name="play_queue_audio_settings">آڈیو کی ترتیبات</string>
     <string name="hold_to_append">انقطار کو پکڑو</string>
-    <string name="enqueue_on_background">پس منظر میں قطار</string>
-    <string name="enqueue_on_popup">ایک نئی پوپ اپ میں انقطار</string>
     <string name="start_here_on_main">یہاں چلانا شروع کریں</string>
     <string name="start_here_on_background">پس منظر میں چلانا شروع کریں</string>
     <string name="start_here_on_popup">نئے پاپ اپ میں چلانا شروع کریں</string>

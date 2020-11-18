@@ -201,7 +201,7 @@ public class Utility {
     }
 
     public static void copyToClipboard(Context context, String str) {
-        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager cm = ContextCompat.getSystemService(context, ClipboardManager.class);
 
         if (cm == null) {
             Toast.makeText(context, R.string.permission_denied, Toast.LENGTH_LONG).show();

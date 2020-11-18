@@ -112,7 +112,6 @@
     <string name="popup_playing_append">पपअप प्लेयरमा लामबद्ध</string>
     <string name="content">सामग्री</string>
     <string name="show_age_restricted_content_title">उमेर प्रतिबन्धित सामग्री</string>
-    <string name="video_is_age_restricted">उमेर प्रतिबन्धित भिडियोहरु देखाऊ। भविष्यमा यो सेटिङ परिवर्तन सम्भव छ।</string>
     <string name="duration_live">प्रत्यक्ष</string>
     <string name="downloads">डाउनलोडहरु</string>
     <string name="downloads_title">डाउनलोडहरु</string>
@@ -168,7 +167,7 @@
     <string name="download_to_sdcard_error_message">बाह्य एस डी कार्ड (SD card) छैन। डाउनलोड फोल्डर स्थान रिसेट गर्ने\?</string>
     <string name="network_error">नेटवर्क त्रुटि</string>
     <string name="could_not_load_thumbnails">सबै थम्बनेल लोड गर्न सकेन</string>
-    <string name="youtube_signature_decryption_error">भिडियो URL हस्ताक्षर डिक्रिप्टगर्न सकेन</string>
+    <string name="youtube_signature_deobfuscation_error">भिडियो URL हस्ताक्षर डिक्रिप्टगर्न सकेन</string>
     <string name="parsing_error">वेबसाइट पार्स गर्न सकिँएन</string>
     <string name="light_parsing_error">वेबसाइट पूर्ण तरिकाले पार्स गर्न सकिँएन</string>
     <string name="content_not_available">सामग्री अनउपलब्ध</string>
@@ -336,8 +335,6 @@
     <string name="play_queue_stream_detail">विवरण</string>
     <string name="play_queue_audio_settings">अडियो सेटिङहरू</string>
     <string name="hold_to_append">लामबद्ध गर्न पकड</string>
-    <string name="enqueue_on_background">पृष्ठभूमिमा लामबद्ध</string>
-    <string name="enqueue_on_popup">नयाँ पपअपमा लामबद्ध</string>
     <string name="start_here_on_main">यहाँ प्ले सुरु</string>
     <string name="start_here_on_background">पृष्ठभूमिमा बजाउन सुरु गर्नुहोस</string>
     <string name="start_here_on_popup">पपअपमा बजाउन सुरु गर्नुहोस</string>

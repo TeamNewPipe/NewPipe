@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Naciśnij „Szukaj”, aby zacząć</string>
+    <string name="main_bg_subtitle">Naciśnij „Szukaj”, aby zacząć
+\n</string>
     <string name="install">Zainstaluj</string>
     <string name="cancel">Anuluj</string>
     <string name="open_in_browser">Otwórz w przeglądarce</string>
@@ -44,8 +45,7 @@
     <string name="settings_category_other_title">Inne</string>
     <string name="background_player_playing_toast">Odtwarzanie w tle</string>
     <string name="content">Zawartość</string>
-    <string name="show_age_restricted_content_title">Treści z ograniczeniem wiekowym</string>
-    <string name="video_is_age_restricted">Pokaż wideo z ograniczeniami wiekowymi. Przyszłe zmiany są możliwe z poziomu ustawień.</string>
+    <string name="show_age_restricted_content_title">Pokaż treści z ograniczeniem wiekowym</string>
     <string name="duration_live">Na żywo</string>
     <string name="downloads">Pobrane</string>
     <string name="downloads_title">Pobrane</string>
@@ -53,7 +53,7 @@
     <string name="general_error">Błąd</string>
     <string name="network_error">Błąd sieci</string>
     <string name="could_not_load_thumbnails">Nie można załadować wszystkich miniatur</string>
-    <string name="youtube_signature_decryption_error">Nie można odszyfrować sygnatury URL filmu</string>
+    <string name="youtube_signature_deobfuscation_error">Nie można odszyfrować sygnatury URL filmu</string>
     <string name="parsing_error">Nie można przetworzyć strony</string>
     <string name="light_parsing_error">Nie można przetworzyć całości strony</string>
     <string name="content_not_available">Zawartość niedostępna</string>
@@ -242,8 +242,6 @@
     <string name="play_queue_stream_detail">Szczegóły</string>
     <string name="play_queue_audio_settings">Ustawienia dźwięku</string>
     <string name="hold_to_append">Przytrzymaj, aby zakolejkować</string>
-    <string name="enqueue_on_background">Kolejkuj w tle</string>
-    <string name="enqueue_on_popup">Kolejkuj w wyskakującym okienku</string>
     <string name="start_here_on_main">Zacznij odtwarzać tutaj</string>
     <string name="start_here_on_background">Zacznij odtwarzać w tle</string>
     <string name="start_here_on_popup">Zacznij odtwarzać w wyskakującym okienku</string>
@@ -340,11 +338,14 @@
     <string name="previous_export">Poprzedni eksport</string>
     <string name="subscriptions_import_unsuccessful">Import subskrypcji nie powiódł się</string>
     <string name="subscriptions_export_unsuccessful">Eksport subskrypcji nie powiódł się</string>
-    <string name="import_youtube_instructions">Aby zaimportować subskrypcje YouTube, potrzebny jest plik eksportu subskrypcji. Możesz go wygenerować w następujący sposób:
+    <string name="import_youtube_instructions">Importowanie subskrypcji YouTube z Google Takeout:
 \n
-\n1. Odwiedź stronę: %1$s
-\n2. Zaloguj się na swoje konto
-\n3. Powinno rozpocząć się pobieranie (to jest twój plik eksportu)</string>
+\n1. Przejdź do tego adresu URL: %1$s
+\n2. Zaloguj się, gdy zostaniesz o to poproszony
+\n3. Kliknij na \"Wybrałeś wszystkie dane z Youtube\", a następnie na \"Odznacz wszystkie\", potem wybierz tylko \"subskrypcje\" i kliknij \"OK\"
+\n4. Kliknij na \"Następny krok\", a następnie na \"Utwórz eksport\"
+\n5. Kliknij przycisk \"Pobierz\", gdy się pojawi i
+\n6. Z pobranego archiwum zip wyodrębnij plik .json (zazwyczaj pod ścieżką \"YouTube i YouTube Music/subskrypcje/subskrypcje.json\") i zaimportuj go tutaj.</string>
     <string name="import_network_expensive_warning">Ta operacja może wygenerować duże użycie danych.
 \n
 \nCzy chcesz kontynuować?</string>
@@ -603,7 +604,7 @@
     <string name="songs">Piosenki</string>
     <string name="restricted_video">Ten film ma ograniczenia wiekowe.
 \n
-\nWłącz „Treści z ograniczeniami wiekowymi” w ustawieniach, jeśli chcesz je zobaczyć.</string>
+\nWłącz „%1$s” w ustawieniach, jeśli chcesz je zobaczyć.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Tak, i częściowo oglądane filmy</string>
     <string name="remove_watched_popup_warning">Filmy, które zostały obejrzane przed i po dodaniu do playlisty, zostaną usunięte.
 \nJesteś pewien\? Tego nie da się cofnąć!</string>
@@ -611,7 +612,7 @@
     <string name="remove_watched">Usuń oglądane</string>
     <string name="show_original_time_ago_summary">Oryginalne teksty z usług będą widoczne w elementach strumienia</string>
     <string name="show_original_time_ago_title">Pokaż oryginalny czas</string>
-    <string name="youtube_restricted_mode_enabled_title">Tryb ograniczony YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Włącz tryb ograniczonego dostępu YouTube\'a</string>
     <string name="video_detail_by">Przez %s</string>
     <string name="channel_created_by">Utworzone przez %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura awatara kanału</string>
@@ -646,4 +647,14 @@
     <string name="notification_action_0_title">Przycisk pierwszej akcji</string>
     <string name="notification_scale_to_square_image_summary">Skaluj miniaturę wideo wyświetlaną w powiadomieniu z proporcji 16: 9 do 1: 1 (może powodować zniekształcenia)</string>
     <string name="notification_scale_to_square_image_title">Skaluj miniatury do proporcji 1:1</string>
+    <string name="enqueued">Dodane do kolejki</string>
+    <string name="enqueue_stream">Dodaj do kolejki</string>
+    <string name="show_memory_leaks">Pokaż wycieki pamięci</string>
+    <string name="clear_cookie_summary">Wyczyść ciasteczka, które NewPipe przechowuje po rozwiązaniu reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Ciasteczka reCAPTCHA zostały wyczyszczone</string>
+    <string name="clear_cookie_title">Wyczyść ciasteczka reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube udostępnia \"Tryb ograniczonego dostępu\", który ukrywa treści potencjalnie dla dorosłych.</string>
+    <string name="show_age_restricted_content_summary">Pokaż treści nieodpowiednie dla dzieci, ponieważ mają ograniczenia wiekowe (np. 18+).</string>
+    <string name="notification_colorize_summary">Niech Android dostosuje kolor powiadomienia zgodnie z głównym kolorem na miniaturze (nie jest to dostępne na wszystkich urządzeniach)</string>
+    <string name="notification_colorize_title">Pokolorowanie powiadomienia</string>
 </resources>

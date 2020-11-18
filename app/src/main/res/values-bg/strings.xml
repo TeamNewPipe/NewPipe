@@ -82,7 +82,6 @@
     <string name="popup_playing_append">Включен в опашката в нов прозорец</string>
     <string name="content">Съдържание</string>
     <string name="show_age_restricted_content_title">Съдържание за възрастни</string>
-    <string name="video_is_age_restricted">Покажи съдържание за възрастни. Разрешаването на такова съдържание става от Настройки.</string>
     <string name="duration_live">НА ЖИВО</string>
     <string name="downloads">Изтегляния</string>
     <string name="downloads_title">Изтегляния</string>
@@ -219,7 +218,7 @@
     <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи</string>
     <string name="delete_search_history_alert">Изтрий цялата история на търсенията\?</string>
     <string name="search_history_deleted">Историята на търсенията е изтрита.</string>
-    <string name="youtube_signature_decryption_error">URL подписът на клипа не можа да бъде дешифрован</string>
+    <string name="youtube_signature_deobfuscation_error">URL подписът на клипа не можа да бъде дешифрован</string>
     <string name="external_player_unsupported_link_type">Външните плейъри не поддържат този вид линкове</string>
     <string name="invalid_url_toast">Невалиден URL</string>
     <string name="invalid_directory">Невалидна директория</string>
@@ -309,8 +308,6 @@
     <string name="play_queue_stream_detail">Детайли</string>
     <string name="play_queue_audio_settings">Аудио настройки</string>
     <string name="hold_to_append">Задръжте, за да поставите на опашката</string>
-    <string name="enqueue_on_background">На опашката при „фонов режим“</string>
-    <string name="enqueue_on_popup">На опашката при „режим в прозорец“</string>
     <string name="start_here_on_main">Възпроизвеждане от тук</string>
     <string name="start_here_on_background">Възпроизвеждане от тук при фонов режим</string>
     <string name="start_here_on_popup">Възпроизвеждане от тук при прозорец</string>

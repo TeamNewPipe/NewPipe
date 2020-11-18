@@ -61,7 +61,7 @@
     <string name="content_not_available">কন্টেন্ট উপলব্ধ নয়</string>
     <string name="light_parsing_error">ওয়েবসাইট সম্পুর্নভাবে বিশ্লেষন করা যায়নি</string>
     <string name="parsing_error">ওয়েবসাইট বিশ্লেষন করা যায়নি</string>
-    <string name="youtube_signature_decryption_error">ভিডিও URL স্বাক্ষর ডিক্রিপ্ট করা যায়নি</string>
+    <string name="youtube_signature_deobfuscation_error">ভিডিও URL স্বাক্ষর ডিক্রিপ্ট করা যায়নি</string>
     <string name="could_not_load_thumbnails">সব থাম্বনেইল লোড করা যায়নি</string>
     <string name="network_error">নেটওয়ার্ক ত্রুটি</string>
     <string name="general_error">ত্রুটি</string>
@@ -82,7 +82,6 @@
     <string name="downloads_title">ডাউনলোডগুলি</string>
     <string name="downloads">ডাউনলোডগুলি</string>
     <string name="duration_live">লাইভ</string>
-    <string name="video_is_age_restricted">ভিডিওটিকে বয়স সীমিত করা হয়েছে। প্রথমে সেটিংসে বয়স সীমাবদ্ধ ভিডিওগুলি সক্ষম করো।</string>
     <string name="show_age_restricted_content_title">বয়স সীমাবদ্ধ কন্টেন্ট দেখাও</string>
     <string name="content">কন্টেন্ট</string>
     <string name="popup_playing_toast">পপআপ মোডে চলছে</string>
@@ -166,7 +165,7 @@
     <string name="screen_rotation">ঘূর্ণন</string>
     <string name="choose_browser">ব্রাউজার বাছাই করুন</string>
     <string name="share_dialog_title">শেয়ার করুন</string>
-    <string name="did_you_mean">আপনি কি বুঝিয়েছেনঃ %1$s\?</string>
+    <string name="did_you_mean">আপনি কি বুঝিয়েছেন \"%1$s\"\?</string>
     <string name="settings">সেটিংস</string>
     <string name="search">খুঁজুন</string>
     <string name="controls_download_desc">স্ট্রিম ফাইল ডাউনলোড করুন</string>
@@ -180,7 +179,8 @@
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চান\?</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="view_count_text">%1$s জন দেখেছে</string>
-    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
+    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন
+\n</string>
     <string name="feed_create_new_group_button_title">নতুন</string>
     <string name="fragment_feed_title">নতুন কি</string>
     <string name="app_language_title">অ্যাপ এর ভাষা</string>
@@ -333,4 +333,6 @@
     <string name="error_report_open_issue_button_text">গিটহাব এ এরর রিপোর্ট করুন</string>
     <string name="restore_defaults">ডিফল্ট এ ফিরে যান</string>
     <string name="search_showing_result_for">রেজাল্ট দেখান হচ্ছেঃ %s</string>
+    <string name="clear_queue_confirmation_title">কিউ মোছার আগে নিশ্চিত করুন</string>
+    <string name="notification_action_repeat">পুনরায়</string>
 </resources>

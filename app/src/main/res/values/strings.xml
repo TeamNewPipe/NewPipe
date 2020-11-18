@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Tap \"Search\" to get started</string>
+    <string name="main_bg_subtitle">Tap \"Search\" to get started
+\n</string>
     <string name="view_count_text">%1$s views</string>
     <string name="upload_date_text">Published on %1$s</string>
     <string name="no_player_found">No stream player found. Install VLC?</string>
@@ -71,6 +72,8 @@
     <string name="notification_action_shuffle">Shuffle</string>
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_action_nothing">Nothing</string>
+    <string name="notification_colorize_title">Colorize notification</string>
+    <string name="notification_colorize_summary">Have Android customize the notification\'s color according to the main color in the thumbnail (note that this is not available on all devices)</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
@@ -151,10 +154,11 @@
     <string name="popup_playing_append">Queued on popup player</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
     <string name="content">Content</string>
-    <string name="show_age_restricted_content_title">Age restricted content</string>
-    <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube restricted mode</string>
-    <string name="restricted_video">This video is age restricted.\n\nTurn on \"Age restricted content\" in the settings if you want to see it.</string>
+    <string name="show_age_restricted_content_title">Show age restricted content</string>
+    <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (like 18+).</string>
+    <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s \"Restricted Mode\"</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content.</string>
+    <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -198,8 +202,11 @@
     <string name="switch_to_main">Switch to Main</string>
     <string name="import_data_title">Import database</string>
     <string name="export_data_title">Export database</string>
+    <string name="clear_cookie_title">Clear reCAPTCHA cookies</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA cookies have been cleared</string>
     <string name="import_data_summary">Overrides your current history and subscriptions</string>
     <string name="export_data_summary">Export history, subscriptions and playlists</string>
+    <string name="clear_cookie_summary">Clear cookies that NewPipe stores when you solve a reCAPTCHA</string>
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
@@ -219,7 +226,7 @@
     <string name="download_to_sdcard_error_message">Downloading to external SD card not possible. Reset download folder location?</string>
     <string name="network_error">Network error</string>
     <string name="could_not_load_thumbnails">Could not load all thumbnails</string>
-    <string name="youtube_signature_decryption_error">Could not decrypt video URL signature</string>
+    <string name="youtube_signature_deobfuscation_error">Could not deobfuscate video URL signature</string>
     <string name="parsing_error">Could not parse website</string>
     <string name="light_parsing_error">Could not parse website completely</string>
     <string name="content_not_available">Content unavailable</string>
@@ -445,8 +452,8 @@
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
     <string name="hold_to_append">Hold to enqueue</string>
-    <string name="enqueue_on_background">Enqueue in the background</string>
-    <string name="enqueue_on_popup">Enqueue in a popup</string>
+    <string name="enqueue_stream">Enqueue</string>
+    <string name="enqueued">Enqueued</string>
     <string name="start_here_on_main">Start playing here</string>
     <string name="start_here_on_background">Start playing in the background</string>
     <string name="start_here_on_popup">Start playing in a popup</string>
@@ -495,6 +502,7 @@
     <!-- Debug Settings -->
     <string name="leakcanary" translatable="false">LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
+    <string name="show_memory_leaks">Show memory leaks</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
     <string name="show_original_time_ago_title">Show original time ago on items</string>
@@ -510,7 +518,7 @@
     <string name="previous_export">Previous export</string>
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
-    <string name="import_youtube_instructions">Import YouTube subscriptions by downloading the export file:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. A download should start (that\'s the export file) </string>
+    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"\n4. Click on \"Next step\" and then on \"Create export\"\n5. Click on the \"Download\" button after it appears and \n6. From the downloaded takeout zip extract the .json file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.json\") and import it here.</string>
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>

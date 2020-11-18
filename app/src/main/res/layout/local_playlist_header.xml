@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,17 +9,17 @@
         android:id="@+id/playlist_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:ellipsize="end"
+        android:focusable="true"
+        android:maxLines="2"
         android:paddingHorizontal="@dimen/video_item_search_padding"
         android:paddingTop="@dimen/video_item_search_padding"
         android:paddingBottom="6dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:ellipsize="end"
-        android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/playlist_detail_title_text_size"
-        tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"/>
+        tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
     <TextView
         android:id="@+id/playlist_stream_count"
@@ -28,13 +27,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/playlist_title_view"
         android:layout_alignParentLeft="true"
-        android:paddingHorizontal="@dimen/video_item_search_padding"
         android:ellipsize="end"
         android:gravity="right|center_vertical"
         android:maxLines="1"
+        android:paddingHorizontal="@dimen/video_item_search_padding"
         android:textSize="@dimen/playlist_detail_subtext_size"
         tools:ignore="RtlHardcoded"
-        tools:text="234 videos"/>
+        tools:text="234 videos" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -110,7 +110,6 @@
     <string name="popup_playing_append">Føjet til pop op-afspilningskøen</string>
     <string name="content">Indhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrænset indhold</string>
-    <string name="video_is_age_restricted">Vis aldersbegrænsede videoer. Du kan tillade denne type videoer under Indstillinger.</string>
     <string name="duration_live">LIVE</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -166,7 +165,7 @@
     <string name="download_to_sdcard_error_message">Download til eksternt SD-kort er endnu ikke muligt. Nulstil placering af download-mappe\?</string>
     <string name="network_error">Netværksfejl</string>
     <string name="could_not_load_thumbnails">Kunne ikke indlæse alle miniaturebilleder</string>
-    <string name="youtube_signature_decryption_error">Kunne ikke dekryptere URL-signatur for video</string>
+    <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere URL-signatur for video</string>
     <string name="parsing_error">Kunne ikke analysere websted</string>
     <string name="light_parsing_error">Kunne ikke analysere webstedet fuldstændig</string>
     <string name="content_not_available">Indhold ikke tilgængeligt</string>
@@ -317,7 +316,6 @@
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Lydindstillinger</string>
     <string name="hold_to_append">Hold for at føje til kø</string>
-    <string name="enqueue_on_background">Føj til kø når baggrundstilstand aktiveres</string>
     <string name="start_here_on_main">Start afspilning her</string>
     <string name="drawer_header_action_paceholder_text">Noget vil dukke op her snart ;D</string>
     <string name="preferred_open_action_settings_title">Foretrukket \'åbn\'-handling</string>
@@ -393,7 +391,6 @@
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
     <string name="user_report">Brugerrapport</string>
     <string name="conferences">Konferencer</string>
-    <string name="enqueue_on_popup">Føj til kø ved ny pop op</string>
     <string name="start_here_on_background">Start her når i baggrunden</string>
     <string name="start_here_on_popup">Start her ved ny pop op</string>
     <string name="drawer_open">Åbn skuffe</string>

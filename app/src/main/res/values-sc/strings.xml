@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="import_youtube_instructions">Importa sas iscritziones iscarrighende su documentu de esportatzione:
+    <string name="import_youtube_instructions">Importa sas iscritziones dae Google takeout:
 \n
 \n 1. Bae a custu URL: %1$s
 \n 2. Intra cando ti l\'ant a pedire
-\n 3. Diat dèpere incumintzare un\'iscarrigamentu (cussu est su documentu de esportatzione)</string>
+\n 3. Incarca in \"Totu sos datos incluidos\", a pustis in \"Boga sa seletzione a totus\" e a pustis galu ischerta petzi \"iscritziones\" e incarca \"AB\"
+\n4. Incarca in \"Passu imbeniente\" e a pustis in \"Crea un\'esportatzione\"
+\n5. Cando aparit, incarca in su butone \"Iscarrigamentu\" e
+\n6. Dae s\'archìviu zip iscarrigadu estrai su documentu .json (de sòlitu tenet su nùmene\"\"YouTube and YouTube Music/subscriptions/subscriptions.json\") e importa·lu inoghe.</string>
     <string name="subscriptions_export_unsuccessful">Esportatzione de s\'iscritzione fallida</string>
     <string name="subscriptions_import_unsuccessful">Importatzione de s\'iscritzione fallida</string>
     <string name="previous_export">Esportatzione anteposta</string>
@@ -56,8 +59,6 @@
     <string name="start_here_on_popup">Incumintza a riproduire in una ventanedda</string>
     <string name="start_here_on_background">Incumintza a riproduire in s\'isfundu</string>
     <string name="start_here_on_main">Incumintza a riproduire inoghe</string>
-    <string name="enqueue_on_popup">Pone in s\'elencu in una ventanedda</string>
-    <string name="enqueue_on_background">Pone in s\'elencu in s\'isfundu</string>
     <string name="hold_to_append">Mantene incarcadu pro pònnere in s\'elencu</string>
     <string name="play_queue_audio_settings">Impostatziones àudio</string>
     <string name="play_queue_stream_detail">Detàllios</string>
@@ -189,14 +190,14 @@
     <string name="no_views">Peruna visualizatzione</string>
     <string name="subscribers_count_not_available">Contadore de sos iscritos non disponìbile</string>
     <plurals name="subscribers">
-        <item quantity="one">%s iscritos</item>
-        <item quantity="other">%s iscritu</item>
+        <item quantity="one">%s iscritu</item>
+        <item quantity="other">%s iscritos</item>
     </plurals>
     <string name="no_subscribers">Perunu iscritu</string>
     <string name="drawer_header_description">Allughe/istuda su servìtziu. Ischertadu como:</string>
     <string name="short_billion">Mrd</string>
     <string name="short_million">Mlln</string>
-    <string name="short_thousand">mil</string>
+    <string name="short_thousand">mìg</string>
     <string name="storage_permission_denied">In antis fruni s\'atzessu a sa memòria</string>
     <string name="retry">Torra a proare</string>
     <string name="audio">Àudio</string>
@@ -271,7 +272,7 @@
     <string name="search_history_deleted">Cronologia de chirca iscantzellada.</string>
     <string name="restricted_video">Custu vìdeu tenet unu lìmite de edade.
 \n
-\nAllughe \"Cuntenutos limitados pro edade\" in sas impostatziones si lu cheres pompiare.</string>
+\nAllughe \"%1$s\" in sas impostatziones si lu cheres pompiare.</string>
     <string name="no_player_found_toast">Perunu riproduidore de flussos agatadu (pro lu riproduire podes installare VLC).</string>
     <string name="playlist_page_summary">Pàgina de s\'iscalita</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Ammustra petzi sas iscritziones no agrupadas</string>
@@ -424,7 +425,7 @@
     <string name="content_not_available">Cuntenutu no a disponimentu</string>
     <string name="light_parsing_error">No est istadu possìbile analizare de su totu su situ web</string>
     <string name="parsing_error">Anàlisi de su situ web fallida</string>
-    <string name="youtube_signature_decryption_error">Detziframentu de sa firma URL de su vìdeu fallida</string>
+    <string name="youtube_signature_deobfuscation_error">Detziframentu de sa firma URL de su vìdeu fallida</string>
     <string name="could_not_load_thumbnails">No est istadu possìbile carrigare totu sas miniaduras</string>
     <string name="network_error">Errore de retza</string>
     <string name="download_to_sdcard_error_message">Impossìbile iscarrigare in s\'ischeda SD esterna. Cheres resetare sa positzione de sa cartella de iscarrigamentu\?</string>
@@ -485,9 +486,8 @@
     <string name="downloads_title">Iscarrigamentos</string>
     <string name="downloads">Iscarrigamentos</string>
     <string name="duration_live">In direta</string>
-    <string name="youtube_restricted_mode_enabled_title">Modalidade limitada de YouTube</string>
-    <string name="video_is_age_restricted">Ammustra su vìdeu limitadu pro edade. Podes mudare custa optzione dae sas impostatziones.</string>
-    <string name="show_age_restricted_content_title">Cuntenutu limitadu pro edade</string>
+    <string name="youtube_restricted_mode_enabled_title">Allughe sa modalidade cun restritziones de YouTube</string>
+    <string name="show_age_restricted_content_title">Ammustra sos cuntenutos limitados pro edade</string>
     <string name="content">Cuntenutos</string>
     <string name="popup_playing_append">Postu in lista in su riproduidore a ventanedda</string>
     <string name="background_player_append">Pone in lista in s\'isfundu</string>
@@ -611,7 +611,8 @@
     <string name="no_player_found">Perunu riproduidore de flussos agatadu. Cheres installare VLC\?</string>
     <string name="upload_date_text">Publicadu su %1$s</string>
     <string name="view_count_text">%1$s visualizatziones</string>
-    <string name="main_bg_subtitle">Toca \"Chirca\" pro incumintzare</string>
+    <string name="main_bg_subtitle">Toca \"Chirca\" pro incumintzare
+\n</string>
     <string name="never">Mai</string>
     <string name="wifi_only">Cun su Wi-Fi ebbia</string>
     <string name="autoplay_summary">Incumintza cun sa riprodutzione automaticamente — %s</string>
@@ -635,5 +636,15 @@
     <string name="notification_action_1_title">Su de duos butones de atzione</string>
     <string name="notification_action_0_title">Su de unu butone de atzione</string>
     <string name="notification_scale_to_square_image_title">Pone in iscala sa miniadura in formadu 1:1</string>
+    <string name="show_memory_leaks">Ammustra sas pèrdidas de memòria</string>
+    <string name="enqueued">Annànghidu a sa lista</string>
+    <string name="enqueue_stream">Pone in lista</string>
+    <string name="clear_cookie_summary">Iscantzella sos testimòngios chi NewPipe sarvat cando risolves unu reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">As isboidadu sos testimòngios reCAPTCHA</string>
+    <string name="clear_cookie_title">Isbòida sos testimòngios reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube frunit una \"Modalidade cun restritziones\" chi cuat sos cuntenudos chi diant pòdere èssere pro adultos.</string>
+    <string name="show_age_restricted_content_summary">Ammustra sos cuntenutos chi diant pòdere no èssere adatos pro sos pitzinnos ca tenent unu lìmite de edade (che a 18+).</string>
+    <string name="notification_colorize_summary">Pedi a Android de personalizare su colore de sa notìfica sighende su colore printzipale de sa miniadura (ammenta·ti chi custu no est a disponimentu pro totu sos dispositivos)</string>
+    <string name="notification_colorize_title">Colora sas notìficas</string>
     <string name="popup_remember_size_pos_summary">Ammenta s\'ùrtima mannària e sa positzione in sa ventanedda</string>
 </resources>

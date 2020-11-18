@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="audio">Áudio</string>
-    <string name="youtube_signature_decryption_error">Não foi possível descriptografar assinatura do URL do vídeo</string>
+    <string name="youtube_signature_deobfuscation_error">Não foi possível descriptografar assinatura do URL do vídeo</string>
     <string name="your_comment">Seu comentário (em inglês):</string>
     <string name="what_happened_headline">O que ocorreu:</string>
     <string name="what_device_headline">Informação:</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
-    <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. É possível alterar esta opção no menu de configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz um vídeo se NewPipe for chamado por outro app</string>
     <string name="autoplay_by_calling_app_title">Autoreprodução</string>
@@ -61,7 +60,7 @@
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
     <string name="share">Compartilhar</string>
     <string name="share_dialog_title">Compartilhar com</string>
-    <string name="show_age_restricted_content_title">Conteúdo com restrição de idade</string>
+    <string name="show_age_restricted_content_title">Mostrar conteúdo com restrição de idade</string>
     <string name="show_next_and_similar_title">Mostrar \'Próximo\' e \'Similares\'</string>
     <string name="sorry_string">Desculpe, isto não devia ter ocorrido.</string>
     <string name="start">Iniciar</string>
@@ -89,7 +88,8 @@
     <string name="light_parsing_error">O site não pôde ser analisado totalmente</string>
     <string name="list_thumbnail_view_description">Capa de visualização do vídeo</string>
     <string name="live_streams_not_supported">Transmissões ao vivo ainda não são suportadas</string>
-    <string name="main_bg_subtitle">Toque em \"Buscar\" para iniciar</string>
+    <string name="main_bg_subtitle">Toque em \"Buscar\" para iniciar
+\n</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">Link inválido ou internet indisponível</string>
@@ -234,8 +234,6 @@
     <string name="play_queue_audio_settings">Configurações de áudio</string>
     <string name="hold_to_append">Segure para pôr na fila</string>
     <string name="unknown_content">[Desconhecido]</string>
-    <string name="enqueue_on_background">Pôr na fila em segundo plano</string>
-    <string name="enqueue_on_popup">Pôr na fila em um popup</string>
     <string name="start_here_on_main">Reproduzir daqui</string>
     <string name="start_here_on_background">Reproduzir em segundo plano</string>
     <string name="start_here_on_popup">Reproduzir em um popup</string>
@@ -328,11 +326,14 @@
     <string name="previous_export">Exportação anterior</string>
     <string name="subscriptions_import_unsuccessful">Não foi possível importar inscrições</string>
     <string name="subscriptions_export_unsuccessful">Não foi possível exportar inscrições</string>
-    <string name="import_youtube_instructions">Importe inscrições do YouTube baixando o arquivo de exportação:
+    <string name="import_youtube_instructions">Importe inscrições do YouTubedo pelo Google takeout:
 \n
 \n1. Acesse este link: %1$s
 \n2. Logue quando solicitado
-\n3. O download do arquivo de exportação iniciará</string>
+\n3. Clique em \"Todos os dados incluídos\", em seguida, em \"Desmarque todos\", em seguida, selecione apenas \"assinaturas\" e clique em \"OK\"
+\n4. Clique em \"Próximo passo\" e, em seguida, em \"Criar exportação\"
+\n5. Clique no botão \"Baixar\" depois de aparecer e
+\n6. A partir do arquivo zip baixado, retire o arquivo .json (geralmente em \"YouTube e YouTube Music/assinaturas/assinaturas.json\") e importe aqui.</string>
     <string name="import_soundcloud_instructions">Importe um perfil do SoundCloud digitando o URL ou seu ID:
 \n
 \n1. Ative o \"modo desktop\" no navegador (o site está indisponível em celulares) 
@@ -458,7 +459,7 @@
     <string name="missions_header_pending">Pendente</string>
     <string name="show_comments_title">Mostrar comentários</string>
     <string name="show_comments_summary">Desative para ocultar comentários</string>
-    <string name="autoplay_title">Autorreprodução</string>
+    <string name="autoplay_title">Reprodução Automática</string>
     <string name="no_comments">Sem comentários</string>
     <string name="error_unable_to_load_comments">Não foi possível carregar os comentários</string>
     <string name="close">Fechar</string>
@@ -591,9 +592,9 @@
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>
-    <string name="restricted_video">Este vídeo tem restrisão de idade.
+    <string name="restricted_video">Este vídeo tem restrição de idade.
 \n
-\nAtive o \"Conteúdo com restrição de idade\" nas configurações se quiser vê-lo.</string>
+\nAtive \"%1$s\" nas configurações se quiser vê-lo.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_warning">Vídeos vistos antes e depois de adicionar à lista de reprodução serão removidos. 
 \nTem certeza\? Isto não pode ser desfeito!</string>
@@ -601,7 +602,7 @@
     <string name="remove_watched">Remover vistos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de transmissão</string>
     <string name="show_original_time_ago_title">Mostrar tempo original nos itens</string>
-    <string name="youtube_restricted_mode_enabled_title">Modo restrito do YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Ativar o \"Modo Restrito\" do YouTube</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Capa do avatar do canal</string>
@@ -636,4 +637,14 @@
     <string name="notification_action_0_title">Primeiro botão de ação</string>
     <string name="notification_scale_to_square_image_summary">Dimensione a miniatura do vídeo mostrada na notificação de proporção 16:9 para 1:1 (pode apresentar distorções)</string>
     <string name="notification_scale_to_square_image_title">Dimensione a miniatura para a proporção de 1:1</string>
+    <string name="show_memory_leaks">Mostrar vazamentos de memória</string>
+    <string name="enqueued">Na fila</string>
+    <string name="enqueue_stream">Pôr na fila</string>
+    <string name="clear_cookie_summary">Apaga os cookies que o NewPipe armazena quando você resolve um reCAPTCHA</string>
+    <string name="clear_cookie_title">Apagar cookies de reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Os cookies de reCAPTCHA foram apagados</string>
+    <string name="youtube_restricted_mode_enabled_summary">O YouTube oferece um \"Modo Restrito\" que oculta conteúdo potencialmente adulto.</string>
+    <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente inadequado para crianças porque tem um limite de idade (como +18).</string>
+    <string name="notification_colorize_summary">Permite o Android personalizar a cor da notificação de acordo com a cor principal da miniatura (note que isso não está disponível em todos os dispositivos)</string>
+    <string name="notification_colorize_title">Colorir notificação</string>
 </resources>

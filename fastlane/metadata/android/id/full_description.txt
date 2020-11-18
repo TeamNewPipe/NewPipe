@@ -1,0 +1,1 @@
+NewPipe sama sekali tidak menggunakan pustaka kerangka Google, atau API YouTube. NewPipe mengurai situs YouTube untuk mendapatkan informasi yang dibutuhkan. Oleh karena itu, aplikasi ini bisa digunakan pada perangkat tanpa Layanan Google. Anda juga tidak membutuhkan akun YouTube untuk menggunakan NewPipe, dan sepenuhnya FOSS.

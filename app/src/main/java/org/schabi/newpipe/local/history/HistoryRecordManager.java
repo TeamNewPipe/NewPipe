@@ -20,9 +20,9 @@ package org.schabi.newpipe.local.history;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import androidx.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -44,9 +44,10 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Completable;
@@ -85,7 +86,7 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
 
-        final Date currentTime = new Date();
+        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
             final StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
@@ -101,9 +102,11 @@ public class HistoryRecordManager {
         })).subscribeOn(Schedulers.io());
     }
 
-    public Single<Integer> deleteStreamHistory(final long streamId) {
-        return Single.fromCallable(() -> streamHistoryTable.deleteStreamHistory(streamId))
-                .subscribeOn(Schedulers.io());
+    public Completable deleteStreamHistoryAndState(final long streamId) {
+        return Completable.fromAction(() -> {
+            streamStateTable.deleteState(streamId);
+            streamHistoryTable.deleteStreamHistory(streamId);
+        }).subscribeOn(Schedulers.io());
     }
 
     public Single<Integer> deleteWholeStreamHistory() {
@@ -111,7 +114,7 @@ public class HistoryRecordManager {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Single<Integer> deleteCompelteStreamStateHistory() {
+    public Single<Integer> deleteCompleteStreamStateHistory() {
         return Single.fromCallable(streamStateTable::deleteAll)
                 .subscribeOn(Schedulers.io());
     }
@@ -159,7 +162,7 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
 
-        final Date currentTime = new Date();
+        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         final SearchHistoryEntry newEntry = new SearchHistoryEntry(currentTime, serviceId, search);
 
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {

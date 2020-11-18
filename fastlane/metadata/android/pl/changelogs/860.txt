@@ -1,0 +1,7 @@
+Ulepszono
+• Zapisz i przywróć, czy wysokość i tempo są odłączone, czy nie
+• Obsługa wycięcia wyświetlacza w odtwarzaczu
+• Widok okrągły i liczba subskrybentów
+• YouTube został zoptymalizowany, aby zużywał mniej danych
+
+W tej wersji naprawiono ponad 15 błędów związanych z YouTube.

@@ -43,7 +43,7 @@
     <string name="general_error">Chyba</string>
     <string name="network_error">Chyba sítě</string>
     <string name="could_not_load_thumbnails">Nebylo možné nahrát všechny náhledy</string>
-    <string name="youtube_signature_decryption_error">Nebylo možné dekódovat URL videa</string>
+    <string name="youtube_signature_deobfuscation_error">Nebylo možné dekódovat URL videa</string>
     <string name="parsing_error">Nebylo možné analyzovat stránku</string>
     <string name="content_not_available">Obsah není k dispozici</string>
     <string name="list_thumbnail_view_description">Náhled videa</string>
@@ -58,11 +58,11 @@
     <string name="autoplay_by_calling_app_title">Automaticky přehrávat</string>
     <string name="autoplay_by_calling_app_summary">Přehrává video, když je NewPipe otevřen z jiné aplikace</string>
     <string name="content">Obsah</string>
-    <string name="show_age_restricted_content_title">Věkově omezený obsah</string>
-    <string name="video_is_age_restricted">Zobrazit video s věkovým omezením. Změnit tuto volbu v budoucnu lze v \"Nastavení\".</string>
+    <string name="show_age_restricted_content_title">Zobrazit věkově omezený obsah</string>
     <string name="duration_live">Živě</string>
     <string name="light_parsing_error">Nebylo možné kompletně analyzovat stránku</string>
-    <string name="main_bg_subtitle">Začít klepnutím na \"Hledat\"</string>
+    <string name="main_bg_subtitle">Začít klepnutím na \"Hledat\"
+\n</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">NewPipe stahuje</string>
@@ -237,8 +237,6 @@
     <string name="play_queue_audio_settings">Nastavení zvuku</string>
     <string name="hold_to_append">Podrž pro zařazení do fronty</string>
     <string name="unknown_content">[Neznámý]</string>
-    <string name="enqueue_on_background">Do fronty na pozadí</string>
-    <string name="enqueue_on_popup">Do fronty v pop-upu</string>
     <string name="start_here_on_main">Začne hrát zde</string>
     <string name="start_here_on_background">Začít přehrávat na pozadí</string>
     <string name="start_here_on_popup">Začít přehrávat v pop-upu</string>
@@ -603,7 +601,7 @@
     <string name="songs">Písně</string>
     <string name="restricted_video">Toto je video s věkovým omezením.
 \n
-\nPokud ho chcete vidět, povolte \"Věkově omezený obsah\" v Nastavení.</string>
+\nPokud ho chcete vidět, povolte \"%1$s\" v Nastavení.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Ano, i zčásti shlédnutá videa</string>
     <string name="remove_watched_popup_title">Odstranit shlédnutá videa\?</string>
     <string name="remove_watched">Odstranit shlédnutá</string>
@@ -611,7 +609,7 @@
 \nJste se jisti\? Nelze zvrátit!</string>
     <string name="show_original_time_ago_summary">Původní texty služeb budou viditelné u položek streamů</string>
     <string name="show_original_time_ago_title">U položek ukázat původní čas \"před\"</string>
-    <string name="youtube_restricted_mode_enabled_title">Omezený režim YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Zapnout \"Omezený režim YouTube\"</string>
     <string name="video_detail_by">Od %s</string>
     <string name="channel_created_by">Vytvořil %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura avatara kanálu</string>
@@ -646,4 +644,12 @@
     <string name="notification_action_0_title">První akční tlačítko</string>
     <string name="notification_scale_to_square_image_summary">Zmenšit miniaturu videa zobrazenou v oznámení z poměru stran 16: 9 na 1: 1 (může způsobit zkreslení)</string>
     <string name="notification_scale_to_square_image_title">Změnit poměr stran miniatury na 1:1</string>
+    <string name="show_memory_leaks">Ukázat memory leaks</string>
+    <string name="enqueued">Zařazeno do fronty</string>
+    <string name="enqueue_stream">Zařadit do fronty</string>
+    <string name="clear_cookie_summary">Vymazat cookies, které NewPipe uloží, po vyřešení reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Cookies reCAPTCHA byly vymazány</string>
+    <string name="clear_cookie_title">Vymazat cookies reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Omezený režim\", který skrývá potenciální obsahy pro dospělé.</string>
+    <string name="show_age_restricted_content_summary">Zobrazit obsah, i když je patrně nevhodný pro děti, protože odkazuje na věkové omezení (např. 18+).</string>
 </resources>

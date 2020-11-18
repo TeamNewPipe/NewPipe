@@ -61,7 +61,6 @@
     <string name="popup_playing_toast">Spelar upp i popup-läge</string>
     <string name="content">Innehåll</string>
     <string name="show_age_restricted_content_title">Åldersbegränsat innehåll</string>
-    <string name="video_is_age_restricted">Videon är åldersbegränsad. Du kan aktivera åldersbegränsade videor i inställningar.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Nedladdningar</string>
     <string name="downloads_title">Nedladdningar</string>
@@ -126,7 +125,7 @@
     <string name="notification_channel_name">NewPipe Avisering</string>
     <string name="notification_channel_description">Aviseringar för NewPipe bakgrunds och popup-spelare</string>
     <string name="unknown_content">[Okänd]</string>
-    <string name="youtube_signature_decryption_error">Kunde inte dekryptera video URL signatur</string>
+    <string name="youtube_signature_deobfuscation_error">Kunde inte dekryptera video URL signatur</string>
     <string name="could_not_get_stream">Kunde inte hitta någon ström</string>
     <string name="player_stream_failure">Misslyckades med att spela denna ström</string>
     <string name="player_unrecoverable_failure">Allvarligt spelarfel inträffade</string>
@@ -146,9 +145,9 @@
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>
     <string name="storage_permission_denied">Bevilja åtkomst till lagringsutrymme först</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">T.</string>
     <string name="short_million">mn</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd.</string>
     <string name="no_subscribers">Inga prenumeranter</string>
     <plurals name="subscribers">
         <item quantity="one">%s prenumerant</item>
@@ -234,8 +233,6 @@
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Ljudinställningar</string>
     <string name="hold_to_append">Håll för att placera i kön</string>
-    <string name="enqueue_on_background">Placera i bakgrunds-kön</string>
-    <string name="enqueue_on_popup">Bifoga i en popup</string>
     <string name="start_here_on_main">Börja spela här</string>
     <string name="start_here_on_background">Börja spela i bakgrunden</string>
     <string name="start_here_on_popup">Börja spela i en popup</string>

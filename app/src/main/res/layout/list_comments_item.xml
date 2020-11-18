@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,8 +14,8 @@
         android:id="@+id/itemThumbnailView"
         android:layout_width="48dp"
         android:layout_height="42dp"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
         android:contentDescription="@string/list_thumbnail_view_description"

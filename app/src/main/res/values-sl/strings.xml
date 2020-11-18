@@ -52,14 +52,13 @@
     <string name="info_dir_created">Ustvarjena je mapa za prejem \'%1$s\'</string>
     <string name="general_error">Napaka</string>
     <string name="could_not_load_thumbnails">Vseh sličic videov ni mogoče naložiti</string>
-    <string name="youtube_signature_decryption_error">Ni mogoče odšifrirati podpisa naslova URL videa</string>
+    <string name="youtube_signature_deobfuscation_error">Ni mogoče odšifrirati podpisa naslova URL videa</string>
     <string name="parsing_error">Ni mogoče razčleniti spletišča.</string>
     <string name="content_not_available">Vsebina ni na voljo.</string>
     <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek.</string>
     <string name="live_streams_not_supported">Posnetek je pretok v živo. Ta vrsta prenosa še ni podprta.</string>
     <string name="content">Vsebina</string>
     <string name="show_age_restricted_content_title">Pokaži starostno omejeno vsebino</string>
-    <string name="video_is_age_restricted">Starostna omejitev ogleda. Pred ogledom tovrstnih posnetkov, je treba ustrezno nastaviti omejitve.</string>
     <string name="light_parsing_error">Ni mogoče dokončno razčleniti spletišča.</string>
     <string name="could_not_get_stream">Ni mogoče pridobiti pretoka.</string>
     <string name="sorry_string">Do te napake naj ne bi prišlo.</string>

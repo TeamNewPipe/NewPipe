@@ -1,0 +1,2 @@
+# Naprawiono
+- Ponownie naprawiono błąd funkcji odszyfrowywania.

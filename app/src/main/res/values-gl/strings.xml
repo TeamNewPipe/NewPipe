@@ -101,7 +101,6 @@
     <string name="popup_playing_append">Na cola do reprodutor popup</string>
     <string name="content">Contido</string>
     <string name="show_age_restricted_content_title">Contido restrinxido para certa idade</string>
-    <string name="video_is_age_restricted">Mostrar vídeo restrinxido por idade. Os cambios futuros son posibles na configuración.</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
@@ -148,7 +147,7 @@
     <string name="general_error">Erro</string>
     <string name="network_error">Erro de rede</string>
     <string name="could_not_load_thumbnails">Non foi posíbel carregar todas as miniaturas</string>
-    <string name="youtube_signature_decryption_error">Non foi posíbel descifrar a asinatura do vídeo</string>
+    <string name="youtube_signature_deobfuscation_error">Non foi posíbel descifrar a asinatura do vídeo</string>
     <string name="parsing_error">Non foi posíbel procesar o sitio web</string>
     <string name="light_parsing_error">Non foi posíbel procesar o sitio web por completo</string>
     <string name="content_not_available">Contido non dispoñíbel</string>
@@ -312,8 +311,6 @@
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="play_queue_audio_settings">Opcións de audio</string>
     <string name="hold_to_append">Manteña para colocalo na cola</string>
-    <string name="enqueue_on_background">Colocar na cola en segundo plano</string>
-    <string name="enqueue_on_popup">Executa nunha xanela emerxente</string>
     <string name="start_here_on_main">Comezar a reprodución aquí</string>
     <string name="start_here_on_background">Comezar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Comezar reproducindo nunha xanela emerxente</string>

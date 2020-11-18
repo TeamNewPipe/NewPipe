@@ -50,15 +50,15 @@
     <string name="use_tor_summary">(Eksperimentelt) Tving nedlasting av trafikk gjennom Tor for forbedret personvern (strømming av videoer støttes ikke enda).</string>
     <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
-    <string name="main_bg_subtitle">Trykk «Søk» for å komme i gang</string>
+    <string name="main_bg_subtitle">Trykk «Søk» for å begynne
+\n</string>
     <string name="autoplay_by_calling_app_title">Automatisk avspilling</string>
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrenset innhold</string>
-    <string name="video_is_age_restricted">Vis aldersbegrenset video. Å tillate slikt materiale kan gjøres fra innstillingene.</string>
     <string name="general_error">Feil</string>
     <string name="could_not_load_thumbnails">Kunne ikke laste inn alle miniatyrbilder</string>
-    <string name="youtube_signature_decryption_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>
+    <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>
     <string name="parsing_error">Kunne ikke tolke nettside</string>
     <string name="light_parsing_error">Kunne ikke tolke nettside fullstendig</string>
     <string name="content_not_available">Innholdet er utilgjengelig</string>
@@ -234,8 +234,6 @@
     <string name="feed_page_summary">Strømside</string>
     <string name="no_channel_subscribed_yet">Abonnerer ikke på noen kanaler enda</string>
     <string name="trending">På vei opp</string>
-    <string name="enqueue_on_background">Legg i kø i bakgrunnen</string>
-    <string name="enqueue_on_popup">Legg i kø i et oppsprett</string>
     <string name="start_here_on_main">Start avspilling her</string>
     <string name="start_here_on_background">Start avspilling i bakgrunnen</string>
     <string name="start_here_on_popup">Start avspilling i et oppsprett</string>
@@ -569,9 +567,7 @@
     <string name="feed_oldest_subscription_update">Strøm sist oppdatert: %s</string>
     <string name="restricted_video">Denne videoen er aldersbegrenset.
 \n
-\nSkru på «Aldersbegrenset innhold» i innstillingene hvis du vil se den.
-\n
-\nHvis du ønsker å se den, skru på \"Aldersbegrenset innhold\" i innstillingene.</string>
+\nSkru på «%1$s» i innstillingene hvis du vil se den.</string>
     <string name="infinite_videos">∞ videoer</string>
     <string name="more_than_100_videos">100+ videoer</string>
     <string name="artists">Artister</string>
@@ -638,4 +634,14 @@
     <string name="notification_action_0_title">Første handlingstast</string>
     <string name="notification_scale_to_square_image_title">Skaler miniatyrbilde til 1:1-aspekt</string>
     <string name="notification_action_nothing">Ingenting</string>
+    <string name="show_memory_leaks">Vis minnelekkasjer</string>
+    <string name="enqueued">Satt i kø</string>
+    <string name="enqueue_stream">Sett i kø</string>
+    <string name="clear_cookie_title">Tøm reCAPTCHA-kaker</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA-kaker har blitt slettet</string>
+    <string name="clear_cookie_summary">Tøm kaker som NewPipe lagrer når du løser en reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube tilbyr et «Begrenset modus» som skjuler mulig innhold kun for voksne.</string>
+    <string name="show_age_restricted_content_summary">Vis innhold som muligens er upassende for barn, siden det har aldersgrense (som 18+).</string>
+    <string name="notification_colorize_summary">Få Android til å tilpasse merknadens farge i henhold til hovedfargen på miniatyrbildet (merk at dette ikke støttes på alle enheter)</string>
+    <string name="notification_colorize_title">Fargelegg merknad</string>
 </resources>

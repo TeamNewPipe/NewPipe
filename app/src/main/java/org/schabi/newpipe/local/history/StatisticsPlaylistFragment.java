@@ -25,10 +25,12 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
+import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -40,7 +42,9 @@ import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import icepick.State;
@@ -66,18 +70,19 @@ public class StatisticsPlaylistFragment
     private HistoryRecordManager recordManager;
 
     private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
+        final Comparator<StreamStatisticsEntry> comparator;
         switch (sortMode) {
             case LAST_PLAYED:
-                Collections.sort(results, (left, right) ->
-                        right.getLatestAccessDate().compareTo(left.getLatestAccessDate()));
-                return results;
+                comparator = Comparator.comparing(StreamStatisticsEntry::getLatestAccessDate);
+                break;
             case MOST_PLAYED:
-                Collections.sort(results, (left, right) ->
-                        Long.compare(right.getWatchCount(), left.getWatchCount()));
-                return results;
+                comparator = Comparator.comparingLong(StreamStatisticsEntry::getWatchCount);
+                break;
             default:
                 return null;
         }
+        Collections.sort(results, comparator.reversed());
+        return results;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -145,11 +150,10 @@ public class StatisticsPlaylistFragment
             @Override
             public void selected(final LocalItem selectedItem) {
                 if (selectedItem instanceof StreamStatisticsEntry) {
-                    final StreamStatisticsEntry item = (StreamStatisticsEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(getFM(),
-                            item.getStreamEntity().getServiceId(),
-                            item.getStreamEntity().getUrl(),
-                            item.getStreamEntity().getTitle());
+                    final StreamEntity item =
+                            ((StreamStatisticsEntry) selectedItem).getStreamEntity();
+                    NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
+                            item.getServiceId(), item.getUrl(), item.getTitle(), null, false);
                 }
             }
 
@@ -321,7 +325,7 @@ public class StatisticsPlaylistFragment
         }
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), true));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
         headerPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->
@@ -387,27 +391,28 @@ public class StatisticsPlaylistFragment
         }
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
+        final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
+
+        if (PlayerHolder.getType() != null) {
+            entries.add(StreamDialogEntry.enqueue);
+        }
         if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
+            entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.delete,
                     StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-        } else {
-            StreamDialogEntry.setEnabledEntries(
-                    StreamDialogEntry.enqueue_on_background,
-                    StreamDialogEntry.enqueue_on_popup,
+                    StreamDialogEntry.share
+            ));
+        } else  {
+            entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.start_here_on_popup,
                     StreamDialogEntry.delete,
                     StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share);
-
-            StreamDialogEntry.start_here_on_popup.setCustomAction((fragment, infoItemDuplicate) ->
-                    NavigationHelper
-                            .playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
+                    StreamDialogEntry.share
+            ));
         }
+        StreamDialogEntry.setEnabledEntries(entries);
 
         StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItemDuplicate) ->
                 NavigationHelper
@@ -420,14 +425,14 @@ public class StatisticsPlaylistFragment
     }
 
     private void deleteEntry(final int index) {
-        final LocalItem infoItem = itemListAdapter.getItemsList()
-                .get(index);
+        final LocalItem infoItem = itemListAdapter.getItemsList().get(index);
         if (infoItem instanceof StreamStatisticsEntry) {
             final StreamStatisticsEntry entry = (StreamStatisticsEntry) infoItem;
-            final Disposable onDelete = recordManager.deleteStreamHistory(entry.getStreamId())
+            final Disposable onDelete = recordManager
+                    .deleteStreamHistoryAndState(entry.getStreamId())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
-                            howManyDeleted -> {
+                            () -> {
                                 if (getView() != null) {
                                     Snackbar.make(getView(), R.string.one_item_deleted,
                                             Snackbar.LENGTH_SHORT).show();

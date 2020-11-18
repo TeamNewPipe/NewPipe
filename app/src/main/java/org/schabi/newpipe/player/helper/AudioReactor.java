@@ -12,6 +12,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
@@ -39,7 +40,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
                         @NonNull final SimpleExoPlayer player) {
         this.player = player;
         this.context = context;
-        this.audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        this.audioManager = ContextCompat.getSystemService(context, AudioManager.class);
         player.addAnalyticsListener(this);
 
         if (SHOULD_BUILD_FOCUS_REQUEST) {
@@ -163,7 +164,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
 
     @Override
     public void onAudioSessionId(final EventTime eventTime, final int audioSessionId) {
-        if (!PlayerHelper.isUsingDSP(context)) {
+        if (!PlayerHelper.isUsingDSP()) {
             return;
         }
 

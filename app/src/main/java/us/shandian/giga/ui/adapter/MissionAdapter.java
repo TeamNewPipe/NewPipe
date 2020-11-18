@@ -1,13 +1,11 @@
 package us.shandian.giga.ui.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -26,7 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
@@ -46,12 +43,15 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.io.File;
-import java.lang.ref.WeakReference;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
@@ -116,11 +116,13 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private final Runnable rUpdater = this::updater;
     private final Runnable rDelete = this::deleteFinishedDownloads;
 
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     public MissionAdapter(Context context, @NonNull DownloadManager downloadManager, View emptyMessage, View root) {
         mContext = context;
         mDownloadManager = downloadManager;
 
-        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = LayoutInflater.from(mContext);
         mLayout = R.layout.mission_item;
 
         mHandler = new Handler(context.getMainLooper());
@@ -675,7 +677,30 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 return true;
             case R.id.md5:
             case R.id.sha1:
-                new ChecksumTask(mContext).execute(h.item.mission.storage, ALGORITHMS.get(id));
+                ProgressDialog progressDialog = null;
+                if (mContext != null) {
+                    // Create dialog
+                    progressDialog = new ProgressDialog(mContext);
+                    progressDialog.setCancelable(false);
+                    progressDialog.setMessage(mContext.getString(R.string.msg_wait));
+                    progressDialog.show();
+                }
+                final ProgressDialog finalProgressDialog = progressDialog;
+                final StoredFileHelper storage = h.item.mission.storage;
+                compositeDisposable.add(
+                        Observable.fromCallable(() -> Utility.checksum(storage, ALGORITHMS.get(id)))
+                                .subscribeOn(Schedulers.computation())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(result -> {
+                                    if (finalProgressDialog != null) {
+                                        Utility.copyToClipboard(finalProgressDialog.getContext(),
+                                                result);
+                                        if (mContext != null) {
+                                            finalProgressDialog.dismiss();
+                                        }
+                                    }
+                                })
+                );
                 return true;
             case R.id.source:
                 /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(h.item.mission.source));
@@ -758,8 +783,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
     }
 
-
     public void onDestroy() {
+        compositeDisposable.dispose();
         mDeleter.dispose();
     }
 
@@ -960,60 +985,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
     }
 
-
-    static class ChecksumTask extends AsyncTask<Object, Void, String> {
-        ProgressDialog progressDialog;
-        WeakReference<Activity> weakReference;
-
-        ChecksumTask(@NonNull Context context) {
-            weakReference = new WeakReference<>((Activity) context);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            Activity activity = getActivity();
-            if (activity != null) {
-                // Create dialog
-                progressDialog = new ProgressDialog(activity);
-                progressDialog.setCancelable(false);
-                progressDialog.setMessage(activity.getString(R.string.msg_wait));
-                progressDialog.show();
-            }
-        }
-
-        @Override
-        protected String doInBackground(Object... params) {
-            return Utility.checksum((StoredFileHelper) params[0], (String) params[1]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            if (progressDialog != null) {
-                Utility.copyToClipboard(progressDialog.getContext(), result);
-                if (getActivity() != null) {
-                    progressDialog.dismiss();
-                }
-            }
-        }
-
-        @Nullable
-        private Activity getActivity() {
-            Activity activity = weakReference.get();
-
-            if (activity != null && activity.isFinishing()) {
-                return null;
-            } else {
-                return activity;
-            }
-        }
-    }
-
     public interface RecoverHelper {
         void tryRecover(DownloadMission mission);
     }
-
 }

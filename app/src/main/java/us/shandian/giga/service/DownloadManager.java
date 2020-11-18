@@ -12,7 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
+import java.util.Comparator;
+import java.util.List;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
@@ -198,7 +199,7 @@ public class DownloadManager {
         }
 
         if (mMissionsPending.size() > 1)
-            Collections.sort(mMissionsPending, (mission1, mission2) -> Long.compare(mission1.timestamp, mission2.timestamp));
+            Collections.sort(mMissionsPending, Comparator.comparingLong(Mission::getTimestamp));
     }
 
     /**
@@ -563,14 +564,10 @@ public class DownloadManager {
             synchronized (DownloadManager.this) {
                 ArrayList<Mission> pending = new ArrayList<>(mMissionsPending);
                 ArrayList<Mission> finished = new ArrayList<>(mMissionsFinished);
-                ArrayList<Mission> remove = new ArrayList<>(hidden);
+                List<Mission> remove = new ArrayList<>(hidden);
 
                 // hide missions (if required)
-                Iterator<Mission> iterator = remove.iterator();
-                while (iterator.hasNext()) {
-                    Mission mission = iterator.next();
-                    if (pending.remove(mission) || finished.remove(mission)) iterator.remove();
-                }
+                remove.removeIf(mission -> pending.remove(mission) || finished.remove(mission));
 
                 int fakeTotal = pending.size();
                 if (fakeTotal > 0) fakeTotal++;

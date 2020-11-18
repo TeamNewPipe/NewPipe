@@ -212,7 +212,7 @@ public class StoredDirectoryHelper {
     @NonNull
     @Override
     public String toString() {
-        return docTree == null ? Uri.fromFile(ioTree).toString() : docTree.getUri().toString();
+        return (docTree == null ? Uri.fromFile(ioTree) : docTree.getUri()).toString();
     }
 
 

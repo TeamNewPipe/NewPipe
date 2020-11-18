@@ -110,7 +110,6 @@
     <string name="popup_playing_append">Beratur pada pemain popup</string>
     <string name="content">Kandungan</string>
     <string name="show_age_restricted_content_title">Kandungan terhad umur</string>
-    <string name="video_is_age_restricted">Tunjukkan video terhad umur. Membenarkan bahan tersebut boleh dilakukan dari Tetapan.</string>
     <string name="duration_live">LANGSUNG</string>
     <string name="downloads">Muat turun</string>
     <string name="downloads_title">Muat turun</string>
@@ -163,7 +162,7 @@
     <string name="download_to_sdcard_error_message">Tidak mampu Memuat turun ke kad SD luar. Tetapkan semula lokasi folder muat turun\?</string>
     <string name="network_error">Ralat rangkaian</string>
     <string name="could_not_load_thumbnails">Tidak dapat memuat semua thumbnail</string>
-    <string name="youtube_signature_decryption_error">Tidak dapat menyahsulit tanda tangan URL video</string>
+    <string name="youtube_signature_deobfuscation_error">Tidak dapat menyahsulit tanda tangan URL video</string>
     <string name="parsing_error">Tidak dapat menghuraikan laman web</string>
     <string name="light_parsing_error">Tidak dapat menghuraikan laman web sepenuhnya</string>
     <string name="content_not_available">Kandungan tidak tersedia</string>
@@ -330,8 +329,6 @@
     <string name="play_queue_stream_detail">Butiran</string>
     <string name="play_queue_audio_settings">Tetapan Audio</string>
     <string name="hold_to_append">Pegang untuk beratur</string>
-    <string name="enqueue_on_background">Beratur apabila di latar belakang</string>
-    <string name="enqueue_on_popup">Beratur pada popup baru</string>
     <string name="start_here_on_main">Mula bermain di sini</string>
     <string name="start_here_on_background">Mula di sini apabila di latar belakang</string>
     <string name="start_here_on_popup">Mula di sini pada popup baru</string>

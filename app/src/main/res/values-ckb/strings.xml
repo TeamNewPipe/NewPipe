@@ -188,7 +188,6 @@
     <string name="download_dialog_title">داگرتن</string>
     <string name="caption_setting_title">ژێرنووسەکان</string>
     <string name="invalid_url_toast">بەستەر هەڵەیە</string>
-    <string name="enqueue_on_background">ڕیزنەبوون لە پاشبنەما</string>
     <string name="volume_gesture_control_title">کۆنترۆڵی دەنگ بەجوڵەی پەنجە</string>
     <string name="auto_queue_title">ڕیزکردنی خۆکاری کارپێکردنی دواتر</string>
     <string name="external_player_unsupported_link_type">کارپێکەرە ڤیدیۆییە دەرەکییەکان پشتگیری ئەم جۆرە بەستەرانە ناکەن</string>
@@ -370,7 +369,6 @@
     <string name="toast_no_player">هیچ داوانامەیەک دانەمەزراوە بۆ کارپێکردنی ئەم پەڕگەیە</string>
     <string name="open_in_popup_mode">كردنه‌وه‌ له‌ په‌نجه‌ره‌ی بچووک</string>
     <string name="limit_mobile_data_usage_title">سنووری قەبارە لەکاتی بەکارهێنانی داتای مۆبایل</string>
-    <string name="enqueue_on_popup">ڕیزنەبوون لە پەنجەرەی بچووک</string>
     <string name="drawer_close">داخستنی پلیکانە</string>
     <string name="channel">کەناڵ</string>
     <string name="label_code">کۆد</string>
@@ -453,7 +451,7 @@
     <string name="invalid_directory">هەمان فۆڵدەر بوونی نییە</string>
     <string name="bookmark_playlist">دڵخوازکردنی لیستی کارپێکردن</string>
     <string name="file_name_empty_error">ناوی پەڕگە ناکرێ بەتاڵ بێت</string>
-    <string name="youtube_signature_decryption_error">ناتوانرێ واژووی بەستەری ڤیدیۆ بخوێنرێتەوە</string>
+    <string name="youtube_signature_deobfuscation_error">ناتوانرێ واژووی بەستەری ڤیدیۆ بخوێنرێتەوە</string>
     <string name="updates_setting_description">پیشاندانی ئاگانامەیەک بۆ ئامادەبوونی داوانامە لەکاتی بەردەست بوونی وەشانی نوێ</string>
     <string name="tab_contributors">بەشداربووەکان</string>
     <string name="enable_watch_history_title">مێژووی تەماشاکردن</string>
@@ -589,7 +587,6 @@
     <string name="cancel">پاشگه‌زبوونه‌وه‌</string>
     <string name="tracks">تراکەکان</string>
     <string name="play_queue_audio_settings">ڕێکخستنەکانی دەنگ</string>
-    <string name="video_is_age_restricted">پیشاندانی ئەو ڤیدیۆیانەی سنوری تەمەنیان بۆ دانراوە. لە ڕێکخستنەکانەوە ڕێگەی پێدەدرێت.</string>
     <string name="downloads_storage_ask_summary">پرسیارت لێ دەکرێت بۆ شوێنی داگرتنی هەر پەڕگەیەک</string>
     <string name="title_last_played">دواین کارپێکراو</string>
     <string name="could_not_setup_download_menu">ناتوانرێ لیستی داگرتن دابنرێ</string>

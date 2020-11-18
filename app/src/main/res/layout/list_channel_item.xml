@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
@@ -14,13 +13,13 @@
         android:id="@+id/itemThumbnailView"
         android:layout_width="@dimen/video_item_search_thumbnail_image_width"
         android:layout_height="@dimen/video_item_search_thumbnail_image_height"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
         android:contentDescription="@string/list_thumbnail_view_description"
         android:src="@drawable/buddy"
-        tools:ignore="RtlHardcoded"/>
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/itemTitleView"
@@ -28,8 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="@dimen/video_item_search_image_right_margin"
-        android:layout_toRightOf="@+id/itemThumbnailView"
         android:layout_toEndOf="@+id/itemThumbnailView"
+        android:layout_toRightOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -42,8 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/itemAdditionalDetails"
         android:layout_marginBottom="@dimen/channel_item_description_to_details_margin"
-        android:layout_toRightOf="@+id/itemThumbnailView"
         android:layout_toEndOf="@+id/itemThumbnailView"
+        android:layout_toRightOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:lines="2"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -55,11 +54,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/itemThumbnailView"
         android:layout_toEndOf="@+id/itemThumbnailView"
+        android:layout_toRightOf="@+id/itemThumbnailView"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_upload_date_text_size"
-        tools:text="10M subscribers • 1000 videos"/>
+        tools:text="10M subscribers • 1000 videos" />
 
 </RelativeLayout>
