@@ -31,7 +31,7 @@ public class StoredDirectoryHelper {
 
     private Context context;
 
-    private String tag;
+    private final String tag;
 
     public StoredDirectoryHelper(@NonNull Context context, @NonNull Uri path, String tag) throws IOException {
         this.tag = tag;

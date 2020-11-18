@@ -33,8 +33,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NewPipeRecyclerView extends RecyclerView {
     private static final String TAG = "NewPipeRecyclerView";
 
-    private Rect focusRect = new Rect();
-    private Rect tempFocus = new Rect();
+    private final Rect focusRect = new Rect();
+    private final Rect tempFocus = new Rect();
 
     private boolean allowDpadScroll = true;
 

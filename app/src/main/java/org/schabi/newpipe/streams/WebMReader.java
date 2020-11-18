@@ -49,7 +49,7 @@ public class WebMReader {
         Audio/*2*/, Video/*1*/, Other
     }
 
-    private DataReader stream;
+    private final DataReader stream;
     private Segment segment;
     private WebMTrack[] tracks;
     private int selectedTrack;

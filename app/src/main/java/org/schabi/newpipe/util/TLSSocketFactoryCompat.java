@@ -24,7 +24,7 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
 
     private static TLSSocketFactoryCompat instance = null;
 
-    private SSLSocketFactory internalSSLSocketFactory;
+    private final SSLSocketFactory internalSSLSocketFactory;
 
     public TLSSocketFactoryCompat() throws KeyManagementException, NoSuchAlgorithmException {
         final SSLContext context = SSLContext.getInstance("TLS");

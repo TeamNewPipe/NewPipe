@@ -48,7 +48,7 @@ public final class NotificationUtil {
     @Nullable private static NotificationUtil instance = null;
 
     @NotificationConstants.Action
-    private int[] notificationSlots = NotificationConstants.SLOT_DEFAULTS.clone();
+    private final int[] notificationSlots = NotificationConstants.SLOT_DEFAULTS.clone();
 
     private NotificationManagerCompat notificationManager;
     private NotificationCompat.Builder notificationBuilder;

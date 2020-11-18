@@ -38,7 +38,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     private RecyclerView playlistRecyclerView;
     private LocalItemListAdapter playlistAdapter;
 
-    private CompositeDisposable playlistDisposables = new CompositeDisposable();
+    private final CompositeDisposable playlistDisposables = new CompositeDisposable();
 
     public static Disposable onPlaylistFound(
             final Context context, final Runnable onSuccess, final Runnable onFailed

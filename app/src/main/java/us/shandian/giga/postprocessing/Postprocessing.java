@@ -73,7 +73,7 @@ public abstract class Postprocessing implements Serializable {
     /**
      * Gets the given algorithm short name
      */
-    private String name;
+    private final String name;
 
 
     private String[] args;

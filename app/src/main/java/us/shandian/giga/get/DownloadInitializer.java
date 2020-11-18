@@ -23,7 +23,7 @@ public class DownloadInitializer extends Thread {
     private final static int RESERVE_SPACE_DEFAULT = 5 * 1024 * 1024;// 5 MiB
     private final static int RESERVE_SPACE_MAXIMUM = 150 * 1024 * 1024;// 150 MiB
 
-    private DownloadMission mMission;
+    private final DownloadMission mMission;
     private HttpURLConnection mConn;
 
     DownloadInitializer(@NonNull DownloadMission mission) {

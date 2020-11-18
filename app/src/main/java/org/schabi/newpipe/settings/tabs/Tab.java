@@ -156,7 +156,7 @@ public abstract class Tab {
         CHANNEL(new ChannelTab()),
         PLAYLIST(new PlaylistTab());
 
-        private Tab tab;
+        private final Tab tab;
 
         Type(final Tab tab) {
             this.tab = tab;
