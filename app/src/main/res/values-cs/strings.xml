@@ -336,11 +336,14 @@
     <string name="previous_export">Předchozí export</string>
     <string name="subscriptions_import_unsuccessful">Odběry nelze importovat</string>
     <string name="subscriptions_export_unsuccessful">Odběry nelze exportovat</string>
-    <string name="import_youtube_instructions">Importovat YouTube odběry stáhnutím exportního souboru: 
-\n 
-\n1. Přejděte na tuto URL adresu: %1$s 
+    <string name="import_youtube_instructions">"Importovat YouTube odběry stáhnutím exportního souboru:
+\n
+\n1. Přejděte na tuto URL adresu: %1$s
 \n2. Na vyžádání se přihlašte
-\n3. Mělo by začít stahování (onoho exportního souboru)</string>
+\n3. Klikněte na \"Jsou zahrnuta všechna data z YouTube\" pak na \"Zrušit výběr všech\" a pak vyberte jen \"odběry\" a klikněte na OK
+\n4. Klikněte na \"Další krok\" a pak na \"Vytvořit export\"
+\n5.  Vyčkejte než se objeví tlačítko \"Stáhnout\" a klikněte na něj
+\n6. Ze staženého zip archivu extrahujte .json soubor (nejčastěji na cestě \"Takeout/YouTube a YouTube Music/odběry/odběry.json\") a importujte jej."</string>
     <string name="import_soundcloud_instructions">Importovat SoundCloud profil zadáním URL adresy nebo vašeho ID: 
 \n 
 \n1. Ve svém prohlížeči povolte \"režim pro PC\" (pro mobilní zařízení není stránka dostupná) 
@@ -610,7 +613,7 @@
     <string name="youtube_restricted_mode_enabled_title">Zapnout \"Omezený režim YouTube\"</string>
     <string name="video_detail_by">Od %s</string>
     <string name="channel_created_by">Vytvořil %s</string>
-    <string name="detail_sub_channel_thumbnail_view_description">Miniatura avatara kanálu</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Ikona kanálu</string>
     <string name="playlist_page_summary">Strana playlistů</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Ukázat jen neseskupené objednávky</string>
     <string name="no_playlist_bookmarked_yet">Zatím žádné záložky playlistů</string>
@@ -650,4 +653,6 @@
     <string name="clear_cookie_title">Vymazat cookies reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Omezený režim\", který skrývá potenciální obsahy pro dospělé.</string>
     <string name="show_age_restricted_content_summary">Zobrazit obsah, i když je patrně nevhodný pro děti, protože odkazuje na věkové omezení (např. 18+).</string>
+    <string name="notification_colorize_summary">Nechte Android přizpůsobit barvu oznámení podle hlavní barvy v miniatuře (není k dispozici na všech zařízeních)</string>
+    <string name="notification_colorize_title">Barevné notifikace</string>
 </resources>
