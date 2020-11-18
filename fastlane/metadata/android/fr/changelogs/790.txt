@@ -1,0 +1,14 @@
+Améliorations
+- Titres plus accessibles aux personnes aveugles #2655
+- Réglage langue du dossier de téléchargement #2637
+
+Corrections
+- Vérification si le dernier octet est téléchargé #2646
+- Défilement dans le fragment vidéo #2672
+- Double animation de recherche #2695
+- [SoundCloud] Correction de l'extraction du client_id #2745
+
+Développement
+- Ajout dépendances manquantes de NewPipeExtractor dans NewPipe #2535
+- Migration AndroidX #2685
+- Mise à jour d'ExoPlayer 2.10.6 #2697, #2736
