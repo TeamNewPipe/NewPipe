@@ -3,7 +3,6 @@ package org.schabi.newpipe.local.subscription.dialog
 import android.app.Dialog
 import android.os.Bundle
 import android.os.Parcelable
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -225,7 +224,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         }
 
         toolbar_search_clear.setOnClickListener {
-            if (TextUtils.isEmpty(toolbar_search_edit_text.text)) {
+            if (toolbar_search_edit_text.text.isEmpty()) {
                 hideSearch()
                 return@setOnClickListener
             }
