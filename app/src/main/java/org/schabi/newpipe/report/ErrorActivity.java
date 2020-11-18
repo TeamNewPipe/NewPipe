@@ -154,7 +154,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     public static void reportError(final Context context, final CrashReportData report,
                                    final ErrorInfo errorInfo) {
-        final String[] el = new String[]{report.getString(ReportField.STACK_TRACE)};
+        final String[] el = {report.getString(ReportField.STACK_TRACE)};
 
         final Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);
