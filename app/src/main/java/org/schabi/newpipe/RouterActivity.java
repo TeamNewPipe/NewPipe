@@ -534,9 +534,8 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
                     downloadDialog.requireDialog().setOnDismissListener(dialog -> finish());
-                }, (@NonNull Throwable throwable) -> {
-                    showUnsupportedUrlDialog(currentUrl);
-                }));
+                }, (@NonNull Throwable throwable) ->
+                        showUnsupportedUrlDialog(currentUrl)));
     }
 
     @Override
