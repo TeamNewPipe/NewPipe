@@ -48,8 +48,7 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
             .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                val (event, listFromDB, notLoadedCount, oldestUpdate) = it
+            .subscribe { (event, listFromDB, notLoadedCount, oldestUpdate) ->
 
                 val oldestUpdateCalendar = oldestUpdate?.toCalendar()
 

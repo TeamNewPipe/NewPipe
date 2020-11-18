@@ -15,6 +15,7 @@ import org.schabi.newpipe.util.AnimationUtils
 import kotlin.math.abs
 import kotlin.math.hypot
 import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Base gesture handling for [VideoPlayerImpl]
@@ -117,7 +118,7 @@ abstract class BasePlayerGestureListener(
             initSecPointerX = event.getX(1)
             initSecPointerY = event.getY(1)
             // record distance between fingers
-            initPointerDistance = Math.hypot(initFirstPointerX - initSecPointerX.toDouble(),
+            initPointerDistance = hypot(initFirstPointerX - initSecPointerX.toDouble(),
                 initFirstPointerY - initSecPointerY.toDouble())
 
             isResizing = true
@@ -185,7 +186,7 @@ abstract class BasePlayerGestureListener(
                 playerImpl.updateScreenSize()
 
                 playerImpl.updatePopupSize(
-                    Math.min(playerImpl.screenWidth.toDouble(), newWidth).toInt(),
+                    min(playerImpl.screenWidth.toDouble(), newWidth).toInt(),
                     -1)
                 return true
             }
