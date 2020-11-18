@@ -45,7 +45,6 @@
     <string name="background_player_playing_toast">در حال پخش در پس‌زمینه</string>
     <string name="content">محتوا</string>
     <string name="show_age_restricted_content_title">محتوای محدود شده بر اساس سن</string>
-    <string name="video_is_age_restricted">نمایش ویدیوهای دارای محدودیت سنی. تغییرات آتی از طریق تنظیمات ممکن است.</string>
     <string name="duration_live">زنده</string>
     <string name="downloads">بارگیری‌ها</string>
     <string name="downloads_title">بارگیری‌ها</string>
@@ -288,6 +287,8 @@
     <string name="popup_mode_share_menu_title">حالت تصویر در تصویر</string>
     <string name="default_popup_resolution_title">اندازه پیش فرض پنجره جداگانه</string>
     <string name="controls_popup_title">تصویر در تصویر</string>
+    <string name="popup_remember_size_pos_title">به یاد نگه داشتن خصوصیات</string>
+    <string name="popup_remember_size_pos_summary">به یاد داشتن آخرین اندازه و موقعیت قبلی پنجره جداگانه</string>
     <string name="use_inexact_seek_title">زمان فعلی پخش کننده را به صورت تقریبی و سریع جلو ببر</string>
     <string name="use_inexact_seek_summary">این گزینه باعث می شود هنگام جلو/عقب کردن زمان تصویر، به جای زمان دقیق انتخاب شده، به زمان غیر دقیق و نزدیک به مکان انتخاب شده برود که این کار سریع تر انجام می شود.</string>
     <string name="app_ui_crash">کاره یا رابط کاربری با خطا مواجه شد</string>

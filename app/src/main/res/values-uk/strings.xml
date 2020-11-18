@@ -10,7 +10,7 @@
     <string name="download">Завантажити</string>
     <string name="search">Шукати</string>
     <string name="settings">Налаштування</string>
-    <string name="did_you_mean">Чи ви мали на увазі: %1$s\?</string>
+    <string name="did_you_mean">Чи ви мали на увазі: \"%1$s\"\?</string>
     <string name="share_dialog_title">Поширити через</string>
     <string name="choose_browser">Оберіть переглядач</string>
     <string name="screen_rotation">обертання</string>
@@ -45,7 +45,6 @@
     <string name="storage_permission_denied">Немає доступу до накопичувача</string>
     <string name="content">Контент</string>
     <string name="show_age_restricted_content_title">Контент з віковими обмеженнями</string>
-    <string name="video_is_age_restricted">Показувати відео з віковими обмеженнями. Надалі дозволити програвання таких відео можна у налаштуваннях.</string>
     <string name="duration_live">Наживо</string>
     <string name="general_error">Помилка</string>
     <string name="network_error">Помилка мережі</string>
@@ -63,7 +62,8 @@
     <string name="error_snackbar_action">Звіт</string>
     <string name="what_device_headline">Інформація:</string>
     <string name="what_happened_headline">Що сталося:</string>
-    <string name="main_bg_subtitle">Натисніть на «пошук» щоб почати</string>
+    <string name="main_bg_subtitle">Натисніть на «пошук», аби почати
+\n</string>
     <string name="black_theme_title">Чорна</string>
     <string name="downloads">Завантаження</string>
     <string name="downloads_title">Завантаження</string>
@@ -124,6 +124,8 @@
     <string name="show_higher_resolutions_summary">Лише деякі пристрої можуть відтворювати 2K/4K-відео</string>
     <string name="show_higher_resolutions_title">Показувати вищі роздільні здатності</string>
     <string name="default_video_format_title">Типовий формат відео</string>
+    <string name="popup_remember_size_pos_title">Пам\'ятати розмір і позицію вікна</string>
+    <string name="popup_remember_size_pos_summary">Пам\'ятати останній розмір і позицію вікна</string>
     <string name="player_gesture_controls_title">Жести керування програвачем</string>
     <string name="player_gesture_controls_summary">Контролювати яскравость та гучність програвача жестами</string>
     <string name="show_search_suggestions_title">Пошукові пропозиції</string>
@@ -619,4 +621,14 @@
     <string name="select_a_playlist">Вибрати плейліст</string>
     <string name="no_playlist_bookmarked_yet">Жоден плейліст ще не додано</string>
     <string name="playlist_page_summary">Сторінка плейлісту</string>
+    <string name="notification_action_nothing">Нічого</string>
+    <string name="notification_action_buffering">Буферизація</string>
+    <string name="notification_action_shuffle">Перемішати</string>
+    <string name="notification_action_repeat">Повтор</string>
+    <string name="notification_action_4_title">Кнопка п\'ятої дії</string>
+    <string name="notification_action_3_title">Кнопка четвертої дії</string>
+    <string name="notification_action_2_title">Кнопка третьої дії</string>
+    <string name="notification_action_1_title">Кнопка другої дії</string>
+    <string name="notification_action_0_title">Кнопка першої дії</string>
+    <string name="notification_scale_to_square_image_title">Збільшити мініатюру до масштабу 1:1</string>
 </resources>

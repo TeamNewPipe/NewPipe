@@ -41,7 +41,8 @@ import io.reactivex.functions.Function
 import io.reactivex.processors.PublishProcessor
 import io.reactivex.schedulers.Schedulers
 import java.io.IOException
-import java.util.Calendar
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
@@ -161,8 +162,8 @@ class FeedLoadService : Service() {
         companion object {
             fun wrapList(subscriptionId: Long, info: ListInfo<StreamInfoItem>): List<Throwable> {
                 val toReturn = ArrayList<Throwable>(info.errors.size)
-                for (error in info.errors) {
-                    toReturn.add(RequestException(subscriptionId, info.serviceId.toString() + ":" + info.url, error))
+                info.errors.mapTo(toReturn) {
+                    RequestException(subscriptionId, info.serviceId.toString() + ":" + info.url, it)
                 }
                 return toReturn
             }
@@ -172,9 +173,7 @@ class FeedLoadService : Service() {
     private fun startLoading(groupId: Long = FeedGroupEntity.GROUP_ALL_ID, useFeedExtractor: Boolean, thresholdOutdatedSeconds: Int) {
         feedResultsHolder = ResultsHolder()
 
-        val outdatedThreshold = Calendar.getInstance().apply {
-            add(Calendar.SECOND, -thresholdOutdatedSeconds)
-        }.time
+        val outdatedThreshold = OffsetDateTime.now(ZoneOffset.UTC).minusSeconds(thresholdOutdatedSeconds.toLong())
 
         val subscriptions = when (groupId) {
             FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)

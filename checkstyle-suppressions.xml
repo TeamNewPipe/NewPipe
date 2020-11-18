@@ -5,7 +5,7 @@
 <suppressions>
   <suppress checks="FinalParameters"
     files="LocalItemListAdapter.java"
-    lines="220,292"/>
+    lines="221,293"/>
 
   <suppress checks="FinalParameters"
     files="InfoListAdapter.java"
@@ -13,7 +13,7 @@
 
   <suppress checks="FinalParameters"
       files="ListHelper.java"
-      lines="282,314"/>
+      lines="281,313"/>
 
   <!-- org.schabi.newpipe.streams -->
   <suppress checks="LineLength"

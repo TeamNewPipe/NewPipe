@@ -1,0 +1,12 @@
+Changements 0.17.3
+
+Améliorations
+- Option pour effacer les états de lecture #2550
+- Affichage des répertoires cachés #2591
+- Support des URL des instances `invidio.us` #2488 
+- Support des URL de `music.youtube.com` TeamNewPipe/NewPipeExtractor#194
+
+Corrections
+- Exception "java.lang.IllegalArgumentException #192
+- Flux en direct ne fonctionnant pas TeamNewPipe/NewPipeExtractor#195
+- Performance sur Android Pie lors du téléchargement d'un flux #2592

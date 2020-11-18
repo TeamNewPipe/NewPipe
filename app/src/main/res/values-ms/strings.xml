@@ -61,6 +61,8 @@
     <string name="light_theme_title">Cerah</string>
     <string name="dark_theme_title">Gelap</string>
     <string name="black_theme_title">Hitam</string>
+    <string name="popup_remember_size_pos_title">Mengingat saiz dan posisi popup</string>
+    <string name="popup_remember_size_pos_summary">Mengingat saiz dan posisi popup terakhir</string>
     <string name="use_inexact_seek_title">Gunakan tinjau laju tidak tepat</string>
     <string name="use_inexact_seek_summary">Membolehkan pemain untuk meninjau ke posisi lebih laju dengan kurang ketepatan</string>
     <string name="download_thumbnail_title">Muatkan thumbnail</string>
@@ -108,7 +110,6 @@
     <string name="popup_playing_append">Beratur pada pemain popup</string>
     <string name="content">Kandungan</string>
     <string name="show_age_restricted_content_title">Kandungan terhad umur</string>
-    <string name="video_is_age_restricted">Tunjukkan video terhad umur. Membenarkan bahan tersebut boleh dilakukan dari Tetapan.</string>
     <string name="duration_live">LANGSUNG</string>
     <string name="downloads">Muat turun</string>
     <string name="downloads_title">Muat turun</string>

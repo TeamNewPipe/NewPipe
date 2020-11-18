@@ -57,6 +57,8 @@
     <string name="light_theme_title">ڕۆشن</string>
     <string name="dark_theme_title">تاریک</string>
     <string name="black_theme_title">ڕه‌ش</string>
+    <string name="popup_remember_size_pos_title">بیرهاتنه‌وه‌ی شوێن و قه‌باره‌ی په‌نجه‌ره‌</string>
+    <string name="popup_remember_size_pos_summary">بیرهاتنه‌وه‌ی كۆتا قه‌باره‌ و شوێنی په‌نجه‌ره‌ی بچووك</string>
     <string name="download_thumbnail_title">باركردنی وێنۆچكه‌كان</string>
     <string name="download_thumbnail_summary">ناچالاكی بكه‌ بۆ ڕاگرتنی وێنۆچكه‌كان له‌ باركردن و پاشه‌كه‌وتبوون له‌سه‌ر بیرگه‌ی ئامێره‌كه‌ت.
 \nگۆڕینی ئه‌مه‌ ده‌بێته‌ هۆی سڕینه‌وه‌یان له‌سه‌ر بیرگه‌ی مۆبایله‌كه‌ت.</string>
@@ -395,7 +397,6 @@
     <string name="show_hold_to_append_title">پیشاندانی ڕێنمایی ”داگرتن تا پاشکۆ”</string>
     <string name="show_hold_to_append_summary">پیشاندانی ڕێنمایی کاتێ لە پاشبنەما یاخوود پەنجەرەدا گرتە دەکرێ لەسەر وردەکاری ڤیدیۆیەک</string>
     <string name="settings_category_player_behavior_title">پەرەسەندوو</string>
-    <string name="video_is_age_restricted">پیشاندانی ئەو ڤیدیۆیانەی سنوری تەمەنیان بۆ دانراوە. لە ڕێکخستنەکانەوە ڕێگەی پێدەدرێت.</string>
     <string name="youtube_signature_deobfuscation_error">ناتوانرێ واژووی بەستەری ڤیدیۆ بخوێنرێتەوە</string>
     <string name="player_unrecoverable_failure">نەگێڕانەوەی کارپێکەر بۆ پێش کێشە ڕوویدا</string>
     <string name="player_recoverable_failure">گێڕانەوەی کارپێکەر بۆکاتی پێش کێشە</string>

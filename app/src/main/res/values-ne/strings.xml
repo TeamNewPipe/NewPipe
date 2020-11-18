@@ -60,6 +60,8 @@
     <string name="light_theme_title">प्रकाश</string>
     <string name="dark_theme_title">गाढा</string>
     <string name="black_theme_title">कालो</string>
+    <string name="popup_remember_size_pos_title">पपअप आकार र स्थिति सम्झना</string>
+    <string name="popup_remember_size_pos_summary">पछिल्लो आकार र पपअप को स्थिति सम्झना</string>
     <string name="use_inexact_seek_title">तेज \'inexact\' खोज्न प्रयोग गर्नुहोस</string>
     <string name="use_inexact_seek_summary">\'Inexact\' प्लेयर कम सटीक छिटो स्थितिहरू गर्न खोज्न अनुमति दिन्छ खोज्छन्। 5, 15 वा 25 सेकेन्ड को लागि खोजी यो काम गर्दैन।</string>
     <string name="download_thumbnail_title">थम्बनेल लोड</string>
@@ -110,7 +112,6 @@
     <string name="popup_playing_append">पपअप प्लेयरमा लामबद्ध</string>
     <string name="content">सामग्री</string>
     <string name="show_age_restricted_content_title">उमेर प्रतिबन्धित सामग्री</string>
-    <string name="video_is_age_restricted">उमेर प्रतिबन्धित भिडियोहरु देखाऊ। भविष्यमा यो सेटिङ परिवर्तन सम्भव छ।</string>
     <string name="duration_live">प्रत्यक्ष</string>
     <string name="downloads">डाउनलोडहरु</string>
     <string name="downloads_title">डाउनलोडहरु</string>

@@ -1,0 +1,4 @@
+Bertsio honek hiru konponketa txiki dakartza:
+• Biltegirako sarbidea konpondu da Android 10+ bertsioan
+• Kioskoen irekitzea konpondu dira
+• Bideo luzeen iraupenaren analisia konpondu da

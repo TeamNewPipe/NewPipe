@@ -42,7 +42,7 @@
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">（測試中）為加強私隱，要求通過 Tor 傳送下載流量（暫時不支援串流影片）。</string>
     <string name="view_count_text">觀看次數：%1$s</string>
-    <string name="no_player_found">找不到任何串流播放器，您要安裝 VLC 嗎？</string>
+    <string name="no_player_found">找不到任何串流播放器，要安裝 VLC 嗎？</string>
     <string name="open_in_browser">使用瀏覽器開啟</string>
     <string name="share_dialog_title">分享影片</string>
     <string name="download_path_audio_title">聲音下載路徑</string>
@@ -50,12 +50,12 @@
     <string name="download_path_audio_dialog_title">選擇聲音檔案的下載路徑</string>
     <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
-    <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用</string>
+    <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用
+\n</string>
     <string name="autoplay_by_calling_app_title">自動撥放</string>
     <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他程式調用時播放視頻</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示已設年齡限制的影片</string>
-    <string name="video_is_age_restricted">此影片設有年齡限制。若要觀看，請先在設定中解除年齡限制。</string>
     <string name="duration_live">直播</string>
     <string name="general_error">問題</string>
     <string name="could_not_load_thumbnails">無法載入全部縮圖</string>
@@ -124,6 +124,8 @@
     <string name="use_external_video_player_summary">移除某些解像度的影片的聲音</string>
     <string name="controls_background_title">背景播放</string>
     <string name="controls_popup_title">畫中畫播放</string>
+    <string name="popup_remember_size_pos_title">記住畫中畫大小及位置</string>
+    <string name="popup_remember_size_pos_summary">記住最近設定的畫中畫大小及位置</string>
     <string name="player_gesture_controls_title">以動作控制播放器</string>
     <string name="player_gesture_controls_summary">使用動作以控制播放器的亮度及音量</string>
     <string name="show_search_suggestions_title">搜尋建議</string>

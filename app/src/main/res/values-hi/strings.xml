@@ -51,7 +51,8 @@
     <string name="item_deleted">Item हटा दिया गया है</string>
     <string name="trending">फ़िलहाल चर्चा में है</string>
     <string name="play_queue_audio_settings">ऑडियो सेटिंग</string>
-    <string name="main_bg_subtitle">शुरू करने के लिए खोज चिह्न दबाएं</string>
+    <string name="main_bg_subtitle">शुरू करने के लिए \"खोज\" चिह्न दबाएं
+\n</string>
     <string name="cancel">रद्द करें</string>
     <string name="did_you_mean">क्या आप का मतलब %1$s है?</string>
     <string name="share_dialog_title">शेयर करें</string>
@@ -81,6 +82,8 @@
     <string name="default_video_format_title">डिफ़ॉल्ट विडियो का फॉर्मेट</string>
     <string name="theme_title">एप्प का नया रूप</string>
     <string name="dark_theme_title">काला</string>
+    <string name="popup_remember_size_pos_title">विडियो पॉपअप की आकर और उसकी स्थति को याद रखे</string>
+    <string name="popup_remember_size_pos_summary">विडियो पॉपअप के पहले वाली आकर और उसकी स्थिति को याद रखे</string>
     <string name="player_gesture_controls_title">प्लेयर इशारा नियंत्रण</string>
     <string name="player_gesture_controls_summary">विडियो प्लेयर की ब्राइटनेस और ध्वनी को नियंत्रण के लिए फ़ोन में इशारो का प्रयोग करे</string>
     <string name="show_search_suggestions_title">खोज के सुझाव देखे</string>
@@ -105,7 +108,6 @@
     <string name="popup_playing_append">पॉपअप प्लेयर की कतार पर</string>
     <string name="content">विषयवस्तु</string>
     <string name="show_age_restricted_content_title">उम्र प्रतिबंधित विषय वस्तु</string>
-    <string name="video_is_age_restricted">उम्र प्रतिबंदित विडियो है .इस प्रकार की विषयवस्तु को अनुमति देने के लिए सेटिंग से संभव है |</string>
     <string name="duration_live">लाइव</string>
     <string name="downloads">डाउनलोड</string>
     <string name="downloads_title">डाउनलोड</string>

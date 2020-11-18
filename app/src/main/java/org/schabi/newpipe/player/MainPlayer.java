@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
@@ -225,12 +226,13 @@ public final class MainPlayer extends Service {
         // DisplayMetrics from activity context knows about MultiWindow feature
         // while DisplayMetrics from app context doesn't
         final DisplayMetrics metrics = (playerImpl != null
-                && playerImpl.getParentActivity() != null)
-                ? playerImpl.getParentActivity().getResources().getDisplayMetrics()
-                : getResources().getDisplayMetrics();
+                && playerImpl.getParentActivity() != null
+                ? playerImpl.getParentActivity().getResources()
+                : getResources()).getDisplayMetrics();
         return metrics.heightPixels < metrics.widthPixels;
     }
 
+    @Nullable
     public View getView() {
         if (playerImpl == null) {
             return null;
@@ -240,7 +242,7 @@ public final class MainPlayer extends Service {
     }
 
     public void removeViewFromParent() {
-        if (getView().getParent() != null) {
+        if (getView() != null && getView().getParent() != null) {
             if (playerImpl.getParentActivity() != null) {
                 // This means view was added to fragment
                 final ViewGroup parent = (ViewGroup) getView().getParent();

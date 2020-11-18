@@ -1,12 +1,8 @@
 package org.schabi.newpipe.player.playqueue;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.player.playqueue.events.AppendEvent;
 import org.schabi.newpipe.player.playqueue.events.ErrorEvent;
@@ -43,7 +39,6 @@ import io.reactivex.subjects.BehaviorSubject;
  * </p>
  */
 public abstract class PlayQueue implements Serializable {
-    private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
     public static final boolean DEBUG = MainActivity.DEBUG;
 
     private ArrayList<PlayQueueItem> backup;
@@ -55,7 +50,6 @@ public abstract class PlayQueue implements Serializable {
 
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
     private transient Flowable<PlayQueueEvent> broadcastReceiver;
-    private transient Subscription reportingReactor;
 
     private transient boolean disposed;
 
@@ -87,10 +81,6 @@ public abstract class PlayQueue implements Serializable {
         broadcastReceiver = eventBroadcast.toFlowable(BackpressureStrategy.BUFFER)
                 .observeOn(AndroidSchedulers.mainThread())
                 .startWith(new InitEvent());
-
-        if (DEBUG) {
-            broadcastReceiver.subscribe(getSelfReporter());
-        }
     }
 
     /**
@@ -100,13 +90,9 @@ public abstract class PlayQueue implements Serializable {
         if (eventBroadcast != null) {
             eventBroadcast.onComplete();
         }
-        if (reportingReactor != null) {
-            reportingReactor.cancel();
-        }
 
         eventBroadcast = null;
         broadcastReceiver = null;
-        reportingReactor = null;
         disposed = true;
     }
 
@@ -167,19 +153,20 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * @return the current item that should be played
+     * @return the current item that should be played, or null if the queue is empty
      */
+    @Nullable
     public PlayQueueItem getItem() {
         return getItem(getIndex());
     }
 
     /**
      * @param index the index of the item to return
-     * @return the item at the given index
-     * @throws IndexOutOfBoundsException
+     * @return the item at the given index, or null if the index is out of bounds
      */
+    @Nullable
     public PlayQueueItem getItem(final int index) {
-        if (index < 0 || index >= streams.size() || streams.get(index) == null) {
+        if (index < 0 || index >= streams.size()) {
             return null;
         }
         return streams.get(index);
@@ -542,36 +529,6 @@ public abstract class PlayQueue implements Serializable {
         if (eventBroadcast != null) {
             eventBroadcast.onNext(event);
         }
-    }
-
-    private Subscriber<PlayQueueEvent> getSelfReporter() {
-        return new Subscriber<PlayQueueEvent>() {
-            @Override
-            public void onSubscribe(final Subscription s) {
-                if (reportingReactor != null) {
-                    reportingReactor.cancel();
-                }
-                reportingReactor = s;
-                reportingReactor.request(1);
-            }
-
-            @Override
-            public void onNext(final PlayQueueEvent event) {
-                Log.d(TAG, "Received broadcast: " + event.type().name() + ". "
-                        + "Current index: " + getIndex() + ", play queue length: " + size() + ".");
-                reportingReactor.request(1);
-            }
-
-            @Override
-            public void onError(final Throwable t) {
-                Log.e(TAG, "Received broadcast error", t);
-            }
-
-            @Override
-            public void onComplete() {
-                Log.d(TAG, "Broadcast is shutting down.");
-            }
-        };
     }
 }
 

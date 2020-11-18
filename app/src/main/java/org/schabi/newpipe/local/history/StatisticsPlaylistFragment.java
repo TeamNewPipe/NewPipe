@@ -25,6 +25,7 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
@@ -43,6 +44,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import icepick.State;
@@ -68,18 +70,19 @@ public class StatisticsPlaylistFragment
     private HistoryRecordManager recordManager;
 
     private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
+        final Comparator<StreamStatisticsEntry> comparator;
         switch (sortMode) {
             case LAST_PLAYED:
-                Collections.sort(results, (left, right) ->
-                        right.getLatestAccessDate().compareTo(left.getLatestAccessDate()));
-                return results;
+                comparator = Comparator.comparing(StreamStatisticsEntry::getLatestAccessDate);
+                break;
             case MOST_PLAYED:
-                Collections.sort(results, (left, right) ->
-                        Long.compare(right.getWatchCount(), left.getWatchCount()));
-                return results;
+                comparator = Comparator.comparingLong(StreamStatisticsEntry::getWatchCount);
+                break;
             default:
                 return null;
         }
+        Collections.sort(results, comparator.reversed());
+        return results;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -147,11 +150,10 @@ public class StatisticsPlaylistFragment
             @Override
             public void selected(final LocalItem selectedItem) {
                 if (selectedItem instanceof StreamStatisticsEntry) {
-                    final StreamStatisticsEntry item = (StreamStatisticsEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(getFM(),
-                            item.getStreamEntity().getServiceId(),
-                            item.getStreamEntity().getUrl(),
-                            item.getStreamEntity().getTitle());
+                    final StreamEntity item =
+                            ((StreamStatisticsEntry) selectedItem).getStreamEntity();
+                    NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
+                            item.getServiceId(), item.getUrl(), item.getTitle(), null, false);
                 }
             }
 
@@ -323,7 +325,7 @@ public class StatisticsPlaylistFragment
         }
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), true));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
         headerPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->

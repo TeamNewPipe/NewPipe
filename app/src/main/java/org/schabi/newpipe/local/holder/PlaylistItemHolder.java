@@ -9,7 +9,7 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
-import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
 
 public abstract class PlaylistItemHolder extends LocalItemHolder {
     public final ImageView itemThumbnailView;
@@ -34,7 +34,7 @@ public abstract class PlaylistItemHolder extends LocalItemHolder {
     @Override
     public void updateFromItem(final LocalItem localItem,
                                final HistoryRecordManager historyRecordManager,
-                               final DateFormat dateFormat) {
+                               final DateTimeFormatter dateTimeFormatter) {
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
                 itemBuilder.getOnItemSelectedListener().selected(localItem);

@@ -52,6 +52,8 @@
     <string name="light_theme_title">Светла</string>
     <string name="dark_theme_title">Тъмна</string>
     <string name="black_theme_title">Черна</string>
+    <string name="popup_remember_size_pos_title">Помни размера и позицията на прозореца</string>
+    <string name="popup_remember_size_pos_summary">Използвай размера и позицията на прозореца от предишния път</string>
     <string name="player_gesture_controls_title">Контролиране на плейъра чрез жестове</string>
     <string name="player_gesture_controls_summary">Позволи използване на жестове за контрол на яркостта и силата на звука на плейъра</string>
     <string name="show_search_suggestions_title">Предложения за търсене</string>
@@ -80,7 +82,6 @@
     <string name="popup_playing_append">Включен в опашката в нов прозорец</string>
     <string name="content">Съдържание</string>
     <string name="show_age_restricted_content_title">Съдържание за възрастни</string>
-    <string name="video_is_age_restricted">Покажи съдържание за възрастни. Разрешаването на такова съдържание става от Настройки.</string>
     <string name="duration_live">НА ЖИВО</string>
     <string name="downloads">Изтегляния</string>
     <string name="downloads_title">Изтегляния</string>

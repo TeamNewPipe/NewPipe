@@ -167,7 +167,6 @@
     <string name="background_player_playing_toast">在后台播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">受年龄限制的内容</string>
-    <string name="video_is_age_restricted">显示受年龄限制的视频。可从设置允许此类内容。</string>
     <string name="duration_live">直播</string>
     <string name="downloads">下载</string>
     <string name="downloads_title">下载</string>
@@ -209,6 +208,8 @@
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
     <string name="show_higher_resolutions_summary">仅某些设备支持播放2K / 4K视频</string>
     <string name="clear">清除</string>
+    <string name="popup_remember_size_pos_title">记住悬浮窗的尺寸与位置</string>
+    <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
     <string name="use_external_video_player_summary">隐藏部分没有音频的分辨率</string>

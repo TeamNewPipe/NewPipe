@@ -76,9 +76,7 @@ import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
@@ -97,7 +95,6 @@ import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
@@ -264,7 +261,12 @@ public class VideoPlayerImpl extends VideoPlayer
             onQueueClosed();
             // Android TV: without it focus will frame the whole player
             playPauseButton.requestFocus();
-            onPlay();
+
+            if (simpleExoPlayer.getPlayWhenReady()) {
+                onPlay();
+            } else {
+                onPause();
+            }
         }
         NavigationHelper.sendPlayerStartedEvent(service);
     }
@@ -800,40 +802,6 @@ public class VideoPlayerImpl extends VideoPlayer
         setupScreenRotationButton();
     }
 
-    public void switchFromPopupToMain() {
-        if (DEBUG) {
-            Log.d(TAG, "switchFromPopupToMain() called");
-        }
-        if (!popupPlayerSelected() || simpleExoPlayer == null || getCurrentMetadata() == null) {
-            return;
-        }
-
-        setRecovery();
-        service.removeViewFromParent();
-        final Intent intent = NavigationHelper.getPlayerIntent(
-                service,
-                MainActivity.class,
-                this.getPlayQueue(),
-                this.getRepeatMode(),
-                this.getPlaybackSpeed(),
-                this.getPlaybackPitch(),
-                this.getPlaybackSkipSilence(),
-                null,
-                true,
-                !isPlaying(),
-                isMuted()
-        );
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(Constants.KEY_SERVICE_ID,
-                getCurrentMetadata().getMetadata().getServiceId());
-        intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
-        intent.putExtra(Constants.KEY_URL, getVideoUrl());
-        intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
-        intent.putExtra(VideoDetailFragment.AUTO_PLAY, true);
-        service.onDestroy();
-        context.startActivity(intent);
-    }
-
     @Override
     public void onClick(final View v) {
         super.onClick(v);
@@ -861,7 +829,9 @@ public class VideoPlayerImpl extends VideoPlayer
         } else if (v.getId() == openInBrowser.getId()) {
             onOpenInBrowserClicked();
         } else if (v.getId() == fullscreenButton.getId()) {
-            switchFromPopupToMain();
+            setRecovery();
+            NavigationHelper.playOnMainPlayer(context, getPlayQueue(), true);
+            return;
         } else if (v.getId() == screenRotationButton.getId()) {
             // Only if it's not a vertical video or vertical video but in landscape with locked
             // orientation a screen orientation can be changed automatically
@@ -1766,10 +1736,13 @@ public class VideoPlayerImpl extends VideoPlayer
 
         updateScreenSize();
 
+        final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(service);
         final float defaultSize = service.getResources().getDimension(R.dimen.popup_default_width);
         final SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(service);
-        popupWidth = sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize);
+        popupWidth = popupRememberSizeAndPos
+                ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize)
+                : defaultSize;
         popupHeight = getMinimumVideoHeight(popupWidth);
 
         popupLayoutParams = new WindowManager.LayoutParams(
@@ -1783,8 +1756,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
         final int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
         final int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
-        popupLayoutParams.x = sharedPreferences.getInt(POPUP_SAVED_X, centerX);
-        popupLayoutParams.y = sharedPreferences.getInt(POPUP_SAVED_Y, centerY);
+        popupLayoutParams.x = popupRememberSizeAndPos
+                ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
+        popupLayoutParams.y = popupRememberSizeAndPos
+                ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
 
         checkPopupPositionBounds();
 

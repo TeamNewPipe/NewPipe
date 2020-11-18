@@ -105,7 +105,8 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_feed_title">
+        android:title="@string/settings_category_feed_title"
+        app:iconSpaceReserved="false">
 
         <org.schabi.newpipe.settings.custom.DurationListPreference
             android:defaultValue="@string/feed_update_threshold_default_value"

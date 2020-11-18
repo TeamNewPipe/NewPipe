@@ -521,7 +521,6 @@
     <string name="restricted_video">Kjo video ka kufizime moshe.
 \n
 \nAktivizoni \"Përmbajtje me moshë të kufizuar\" tek aranzhimet nëse doni ta shihni.</string>
-    <string name="video_is_age_restricted">Shfaq videot me moshë të kufizuar. Ndryshime të tjera janë të mundura nga aranzhimet.</string>
     <string name="show_age_restricted_content_title">Përmbajtje me moshë të kufizuar</string>
     <string name="popup_playing_append">U radhit në luajtësin popup</string>
     <string name="background_player_append">U radhit në luajtësin në sfond</string>
@@ -571,6 +570,8 @@
     <string name="seek_duration_title">Kohëzgjatja e kërkimit me shtytje-përpara/-pas</string>
     <string name="use_inexact_seek_summary">Kërkuesi i pasaktë e lejon luajtësin që të kërkojë pozicionet më shpejt më saktësi të reduktuar. Kërkimi për 5, 15 ose 25 sekonda nuk punon me këtë.</string>
     <string name="use_inexact_seek_title">Përdor kërkuesin e pasaktë por të shpejtë</string>
+    <string name="popup_remember_size_pos_summary">Mbaj mend madhësinë e fundit dhe pozicionin e popup</string>
+    <string name="popup_remember_size_pos_title">Mbaj mend popup</string>
     <string name="dark_theme_title">E errët</string>
     <string name="light_theme_title">E bardhë</string>
     <string name="theme_title">Tema</string>

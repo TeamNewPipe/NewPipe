@@ -61,6 +61,8 @@
     <string name="light_theme_title">สว่าง</string>
     <string name="dark_theme_title">มืด</string>
     <string name="black_theme_title">สีดำ</string>
+    <string name="popup_remember_size_pos_title">จำขนาดและตำแหน่งของป๊อปอัพ</string>
+    <string name="popup_remember_size_pos_summary">จำขนาดและตำแหน่งสุดท้ายของป๊อปอัพ</string>
     <string name="use_inexact_seek_title">ใช้การข้ามที่ไม่แม่นยำ</string>
     <string name="use_inexact_seek_summary">การข้ามช่วงที่ไม่แม่นยำจะทำให้เลื่อนไปยังตำแหน่งเวลาที่ต้องการได้เร็วขึ้น แต่จะลดความแม่นยำในการลากตำแหน่งลง</string>
     <string name="download_thumbnail_title">โหลดภาพขนาดย่อ</string>
@@ -108,7 +110,6 @@
     <string name="popup_playing_append">จัดคิวลงในการเล่นโหมดป๊อปอัพแล้ว</string>
     <string name="content">เนื้อหา</string>
     <string name="show_age_restricted_content_title">เนื้อหาที่จำกัดอายุ</string>
-    <string name="video_is_age_restricted">แสดงวิดีโอที่จำกัดอายุ การอนุญาตดังกล่าวเป็นไปได้จากการตั้งค่า</string>
     <string name="duration_live">สด</string>
     <string name="downloads">ดาวน์โหลด</string>
     <string name="downloads_title">ดาวน์โหลด</string>

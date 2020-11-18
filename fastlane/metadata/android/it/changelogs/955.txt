@@ -1,0 +1,3 @@
+[YouTube] Aggiustata la ricerca per alcuni utenti
+[YouTube] Aggiustate eccezioni casuali di decodifica
+[SoundCloud] Gli URL che finiscono con uno slash sono analizzati correttamente

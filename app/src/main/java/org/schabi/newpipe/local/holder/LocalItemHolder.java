@@ -9,7 +9,7 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
-import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
 
 /*
  * Created by Christian Schabesberger on 12.02.17.
@@ -41,7 +41,7 @@ public abstract class LocalItemHolder extends RecyclerView.ViewHolder {
     }
 
     public abstract void updateFromItem(LocalItem item, HistoryRecordManager historyRecordManager,
-                                        DateFormat dateFormat);
+                                        DateTimeFormatter dateTimeFormatter);
 
     public void updateState(final LocalItem localItem,
                             final HistoryRecordManager historyRecordManager) { }

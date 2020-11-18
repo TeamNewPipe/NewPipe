@@ -171,6 +171,8 @@
     <string name="main_page_content">Contento del pagina principal</string>
     <string name="select_a_channel">Selige un canal</string>
     <string name="recaptcha_done_button">Preste</string>
+    <string name="popup_remember_size_pos_summary">Rememorar ultime grandor e position del reproductor emergente</string>
+    <string name="popup_remember_size_pos_title">Rememorar grandor e position del fenestra emergente</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
         <item quantity="other">%s videos</item>

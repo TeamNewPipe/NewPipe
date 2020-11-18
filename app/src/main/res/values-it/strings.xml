@@ -10,22 +10,22 @@
     <string name="download">Scarica</string>
     <string name="search">Cerca</string>
     <string name="settings">Impostazioni</string>
-    <string name="did_you_mean">Forse cercavi \"%1$s\"\?</string>
+    <string name="did_you_mean">Forse cercavi «%1$s»\?</string>
     <string name="share_dialog_title">Condividi con</string>
-    <string name="choose_browser">Scegli Browser</string>
+    <string name="choose_browser">Scegli browser</string>
     <string name="screen_rotation">rotazione</string>
-    <string name="download_path_title">Cartella Video Scaricati</string>
+    <string name="download_path_title">Cartella video scaricati</string>
     <string name="download_path_summary">I video scaricati saranno salvati qui</string>
     <string name="download_path_dialog_title">Scegli la cartella per i video scaricati</string>
-    <string name="default_resolution_title">Risoluzione Predefinita</string>
+    <string name="default_resolution_title">Risoluzione predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
     <string name="kore_not_found">Installare l\'app Kore\?</string>
-    <string name="show_play_with_kodi_title">Mostra \"Riproduci con Kodi\"</string>
+    <string name="show_play_with_kodi_title">Mostra «Riproduci con Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra l\'opzione per riprodurre video tramite Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato Audio Predefinito</string>
     <string name="download_dialog_title">Scarica</string>
-    <string name="show_next_and_similar_title">Mostra video \"Prossimo\" e \"Simili\"</string>
+    <string name="show_next_and_similar_title">Mostra video «Prossimo» e «Simili»</string>
     <string name="unsupported_url">URL non supportato</string>
     <string name="content_language_title">Lingua Predefinita per Contenuti</string>
     <string name="settings_category_video_audio_title">Video e Audio</string>
@@ -36,9 +36,9 @@
     <string name="detail_likes_img_view_description">Mi piace</string>
     <string name="err_dir_create">Impossibile creare la cartella di download \'%1$s\'</string>
     <string name="info_dir_created">Creata la cartella per i download \'%1$s\'</string>
-    <string name="use_external_video_player_title">Usa Lettore Video Esterno</string>
-    <string name="use_external_audio_player_title">Usa Lettore Audio Esterno</string>
-    <string name="download_path_audio_title">Cartella Audio Scaricati</string>
+    <string name="use_external_video_player_title">Usa lettore video esterno</string>
+    <string name="use_external_audio_player_title">Usa lettore audio esterno</string>
+    <string name="download_path_audio_title">Cartella audio scaricati</string>
     <string name="download_path_audio_summary">Gli audio scaricati saranno salvati qui</string>
     <string name="download_path_audio_dialog_title">Scegli la cartella per gli audio scaricati</string>
     <string name="theme_title">Tema</string>
@@ -58,11 +58,10 @@
     <string name="could_not_setup_download_menu">Impossibile impostare il menu di download</string>
     <string name="live_streams_not_supported">I contenuti in diretta non sono ancora supportati</string>
     <string name="content">Contenuti</string>
-    <string name="show_age_restricted_content_title">Contenuti con Restrizioni di Età</string>
-    <string name="video_is_age_restricted">Mostra video con restrizioni di età. È possibile modificare questa opzione nelle Impostazioni.</string>
-    <string name="main_bg_subtitle">Tocca \"Cerca\" per iniziare
+    <string name="show_age_restricted_content_title">Mostra Contenuti con Restrizioni di Età</string>
+    <string name="main_bg_subtitle">Tocca «Cerca» per iniziare
 \n</string>
-    <string name="autoplay_by_calling_app_title">Riproduzione Automatica</string>
+    <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video quando NewPipe viene aperto da un\'altra app</string>
     <string name="duration_live">Diretta</string>
     <string name="light_parsing_error">Impossibile analizzare completamente il sito web</string>
@@ -116,16 +115,18 @@
     <string name="yes">Sì</string>
     <string name="later">Più tardi</string>
     <string name="open_in_popup_mode">Apri in modalità Popup</string>
-    <string name="popup_mode_share_menu_title">Modalità Popup</string>
+    <string name="popup_mode_share_menu_title">Modalità popup</string>
     <string name="popup_playing_toast">Riproduzione in modalità Popup</string>
     <string name="disabled">Disattivato</string>
     <string name="use_external_video_player_summary">L\'audio potrebbe non essere disponibile per alcune risoluzioni</string>
-    <string name="controls_background_title">In Sottofondo</string>
+    <string name="controls_background_title">In sottofondo</string>
     <string name="controls_popup_title">Popup</string>
-    <string name="default_popup_resolution_title">Risoluzione Predefinita Popup</string>
-    <string name="show_higher_resolutions_title">Mostra Altre Risoluzioni</string>
+    <string name="default_popup_resolution_title">Risoluzione predefinita popup</string>
+    <string name="show_higher_resolutions_title">Mostra altre risoluzioni</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato Video Predefinito</string>
+    <string name="popup_remember_size_pos_title">Ricorda Poprietà Popup</string>
+    <string name="popup_remember_size_pos_summary">Ricorda dimensione e posizione della finestra Popup</string>
     <string name="player_gesture_controls_title">Controllo Gesti Lettore Multimediale</string>
     <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume del lettore multimediale</string>
     <string name="show_search_suggestions_title">Suggerimenti Ricerca</string>
@@ -220,8 +221,8 @@
     <string name="trending">Tendenze</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nuovi e Popolari</string>
-    <string name="show_hold_to_append_title">Mostra suggerimento \"Tieni premuto per accodare\"</string>
-    <string name="show_hold_to_append_summary">Nei \"Dettagli\" dei video, mostra suggerimento alla pressione dei pulsanti per la riproduzione Popup o in Sottofondo</string>
+    <string name="show_hold_to_append_title">Mostra suggerimento «Tieni premuto per accodare»</string>
+    <string name="show_hold_to_append_summary">Nei «Dettagli» dei video, mostra suggerimento alla pressione dei pulsanti per la riproduzione Popup o in Sottofondo</string>
     <string name="background_player_append">Accoda in Sottofondo</string>
     <string name="popup_playing_append">Accodato in Popup</string>
     <string name="play_all">Riproduci Tutto</string>
@@ -271,8 +272,8 @@
     <string name="could_not_import_all_files">Attenzione: Impossibile importare tutti i file.</string>
     <string name="override_current_data">Questa operazione sostituirà le tue impostazioni attuali.</string>
     <string name="controls_download_desc">Scarica il video</string>
-    <string name="show_info">Mostra Informazioni</string>
-    <string name="tab_bookmarks">Playlist Salvate</string>
+    <string name="show_info">Mostra informazioni</string>
+    <string name="tab_bookmarks">Playlist salvate</string>
     <string name="controls_add_to_playlist_title">Aggiungi a</string>
     <string name="detail_drag_description">Trascina per riordinare</string>
     <string name="create">Crea</string>
@@ -305,8 +306,8 @@
     <string name="drawer_header_action_paceholder_text">A breve qualcosa apparirà qui ;D</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="caption_auto_generated">Generato automaticamente</string>
-    <string name="enable_leak_canary_summary">Il monitoraggio delle perdite di memoria potrebbe causare la mancata risposta dell\'applicazione durante il dumping dell\'heap</string>
-    <string name="enable_disposed_exceptions_title">Segnala Errori \"Out-of-lifecycle\"</string>
+    <string name="enable_leak_canary_summary">Il monitoraggio di memory leak potrebbe causare la mancata risposta dell\'applicazione durante il dumping dell\'heap</string>
+    <string name="enable_disposed_exceptions_title">Segnala errori «fuori del ciclo di vita»</string>
     <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
     <string name="use_inexact_seek_title">Usa Ricerca Rapida (Imprecisa)</string>
     <string name="use_inexact_seek_summary">Consente al lettore multimediale di spostarsi più velocemente, ma con precisione ridotta. Spostamenti di 5, 15 o 25 secondi non funzionano con questo.</string>
@@ -328,16 +329,19 @@
     <string name="previous_export">Esportazione precedente</string>
     <string name="subscriptions_import_unsuccessful">Impossibile importare le iscrizioni</string>
     <string name="subscriptions_export_unsuccessful">Impossibile esportare le iscrizioni</string>
-    <string name="import_youtube_instructions">Importa le iscrizioni di YouTube scaricando il file d\'esportazione: 
-\n 
-\n1. Vai a questo URL: %1$s 
-\n2. Accedi quando richiesto 
-\n3. Il download del file d\'esportazione dovrebbe partire in automatico</string>
-    <string name="import_soundcloud_instructions">Importa un profilo SoundCloud inserendo l\'URL o il tuo ID: 
-\n 
-\n1. Abilitare la \"modalità desktop\" del browser (il sito non è disponibile per i dispositivi mobili) 
-\n2. Aprire questo URL: %1$s 
-\n3. Accedere quando richiesto 
+    <string name="import_youtube_instructions">Importa le iscrizioni di YouTube scaricando il file d\'esportazione:
+\n
+\n1. Vai a questo URL: %1$s
+\n2. Accedi quando richiesto
+\n3. Premi \"Tutti i dati inclusi\", \"Deseleziona tutto\", seleziona solo \"iscrizioni\" e premi \"OK\"
+\n4. Premi \"Passaggio successivo\" e poi \"Crea esportazione\"
+\n5. Premi il pulsante \"Scarica\" quando compare
+\n6. Dall\'archivio ZIP scaricato, estrai il file JSON (solitamente in \"YouTube and YouTube Music/subscriptions/subscriptions.json\") e importalo qui.</string>
+    <string name="import_soundcloud_instructions">Importa un profilo SoundCloud inserendo l\'URL o il tuo ID:
+\n
+\n1. Abilitare la «modalità desktop» del browser (il sito non è disponibile per i dispositivi mobili)
+\n2. Aprire questo URL: %1$s
+\n3. Accedere quando richiesto
 \n4. Copiare l\'URL del profilo a cui si viene indirizzati.</string>
     <string name="import_soundcloud_instructions_hint">iltuoID, soundcloud.com/iltuoid</string>
     <string name="import_network_expensive_warning">Tieni presente che questa operazione può consumare una grande quantità di traffico dati.
@@ -483,7 +487,7 @@
     <string name="enable_queue_limit">Limita Coda Download</string>
     <string name="downloads_storage_ask_summary_kitkat">Ogni volta verrà chiesta la destinazione dei file.
 \nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" consente di salvare file su una memoria esterna.
+    <string name="downloads_storage_use_saf_summary">Lo Storage Access Framework consente di salvare file su una memoria esterna.
 \nAlcuni dispositivi non sono compatibili</string>
     <string name="clear_playback_states_title">Elimina posizioni di riproduzione</string>
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
@@ -524,7 +528,7 @@
     <string name="permission_display_over_apps">Consentire la visualizzazione sopra altre applicazioni</string>
     <string name="app_language_title">Lingua Applicazione</string>
     <string name="systems_language">Predefinita di Sistema</string>
-    <string name="subtitle_activity_recaptcha">Premere \"Fatto\" quando risolto</string>
+    <string name="subtitle_activity_recaptcha">Premere «Fatto» quando risolto</string>
     <string name="recaptcha_done_button">Fatto</string>
     <string name="videos_string">Video</string>
     <plurals name="seconds">
@@ -590,13 +594,13 @@
     <string name="songs">Canzoni</string>
     <string name="restricted_video">Questo video ha restrizioni di età.
 \n
-\nAttivare \"Contenuti con Restrizioni di Età\" nelle Impostazioni per poterlo vedere.</string>
+\nAttivare «%1$s» nelle Impostazioni per poterlo vedere.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visaualizzati parzialmente</string>
     <string name="remove_watched_popup_warning">Saranno rimossi gli elementi della playlist già visualizzati, sia precedenti che successivi.
 \nSei sicuro\? L\'azione è irreversibile!</string>
     <string name="remove_watched_popup_title">Rimuovere i gli elementi già visti\?</string>
     <string name="remove_watched">Rimuovi Elementi Visti</string>
-    <string name="youtube_restricted_mode_enabled_title">Modalità con Restrizioni (YouTube)</string>
+    <string name="youtube_restricted_mode_enabled_title">Attiva la «Modalità con restrizioni» di YouTube</string>
     <string name="show_original_time_ago_summary">I testi originali dei servizi saranno visibili negli elementi video</string>
     <string name="show_original_time_ago_title">Mostra i tempi originali degli elementi</string>
     <string name="detail_sub_channel_thumbnail_view_description">Immagine del Canale</string>
@@ -624,13 +628,23 @@
     <string name="notification_action_3_title">Azione Pulsante 4</string>
     <string name="notification_action_2_title">Azione Pulsante 3</string>
     <string name="notification_action_1_title">Azione Pulsante 2</string>
-    <string name="notification_action_0_title">Azione Pulsante 1</string>
+    <string name="notification_action_0_title">Azione primo pulsante</string>
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_actions_at_most_three">Nella notifica compatta è possibile visualizzare al massimo 3 azioni!</string>
     <string name="notification_action_shuffle">Casuale</string>
     <string name="settings_category_notification_title">Notifica</string>
     <string name="notification_action_nothing">Niente</string>
     <string name="notification_action_repeat">Ripeti</string>
-    <string name="notification_scale_to_square_image_title">Ridimensiona Copertina alla Proporzione 1:1</string>
+    <string name="notification_scale_to_square_image_title">Ridimensiona copertina alla proporzione 1:1</string>
     <string name="notification_scale_to_square_image_summary">Modifica la proporzione della copertina del video mostrata nella notifica da 16:9 a 1:1 (può introdurre distorsioni)</string>
+    <string name="show_memory_leaks">Mostra Memory Leak</string>
+    <string name="enqueued">Aggiunto alla coda</string>
+    <string name="enqueue_stream">Accoda</string>
+    <string name="clear_cookie_summary">Cancella i cookie che NewPipe memorizza quando si risolve un reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Cookie reCAPTCHA puliti</string>
+    <string name="clear_cookie_title">Pulisci Cookie reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">Consente di usufruire della «Modalità con restrizioni» di YouTube, che esclude contenuti potenzialmente inappropriati per i minori.</string>
+    <string name="show_age_restricted_content_summary">Mostra contenuti che hanno un limite di età (es. 18+). Potrebbero essere inadatti ai bambini.</string>
+    <string name="notification_colorize_summary">Lascia che Android modifichi il colore della notifica, secondo il colore principale della copertina (funzione non disponibile per tutti i dispositivi)</string>
+    <string name="notification_colorize_title">Colora Notifica</string>
 </resources>

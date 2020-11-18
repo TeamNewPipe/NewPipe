@@ -56,8 +56,7 @@
     <string name="parsing_error">Não foi possível processar o site</string>
     <string name="content_not_available">Conteúdo indisponível</string>
     <string name="content">Conteúdo</string>
-    <string name="show_age_restricted_content_title">Conteúdo com restrição de idade</string>
-    <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. Alterações serão possíveis nas definições.</string>
+    <string name="show_age_restricted_content_title">Mostrar conteúdo com restrição de idade</string>
     <string name="light_parsing_error">Não foi possível processar totalmente o site</string>
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de descargas</string>
     <string name="live_streams_not_supported">As emissões em direto ainda não são suportadas</string>
@@ -126,12 +125,14 @@
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 2K/4K</string>
     <string name="controls_popup_title">Popup</string>
+    <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filtrar</string>
     <string name="refresh">Recarregar</string>
     <string name="clear">Limpar</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="use_external_video_player_summary">Remove o áudio em algumas resoluções</string>
+    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do popup</string>
     <string name="popup_resizing_indicator_title">Redimensionar</string>
     <string name="player_gesture_controls_title">Controlo de reprodução por gestos</string>
     <string name="player_gesture_controls_summary">Utilizar gestos para controlar o brilho e o volume do reprodutor</string>
@@ -322,11 +323,14 @@
     <string name="previous_export">Exportação anterior</string>
     <string name="subscriptions_import_unsuccessful">Não foi possível importar as subscrições</string>
     <string name="subscriptions_export_unsuccessful">Não foi possível exportar as subscrições</string>
-    <string name="import_youtube_instructions">Importe subscrições do YouTube descarregando o ficheiro de exportação:
+    <string name="import_youtube_instructions">Importar subscrições do YouTube do Google Takeout:
 \n
-\n1. Aceda a este URL: %1$s
-\n2. Inicie a sessão
-\n3. A descarga será iniciada (esse é o ficheiro de exportação)</string>
+\n1. Vá para este URL: %1$s
+\n2. Faça o login quando solicitado
+\n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", depois selecione apenas \"subscrições\" e clique em \"OK\".
+\n4. Clique em \"Próximo passo\" e depois em \"Criar exportação\".
+\n5. Clique no botão \"Descarregar\" após aparecer e
+\n6. A partir do zip do takeout descarregado extraia o ficheiro .json (normalmente em \"YouTube e YouTube Music/subscriptions/subscriptions.json\") e importe-o aqui.</string>
     <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.:
 \n
 \n1. Ative o modo desktop do seu navegador web (o site não está disponível para aparelhos móveis)
@@ -588,9 +592,9 @@
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>
-    <string name="restricted_video">Este vídeo é de idade restrita.
+    <string name="restricted_video">Este vídeo é de restrita à idade.
 \n
-\nPara o poder ver, tem que ativar \"Conteúdo com restrição de idade\" nas definições.</string>
+\nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
 \nTem a certeza\? Esta ação não pode ser revertida!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim e também os vídeos parcialmente vistos</string>
@@ -598,7 +602,7 @@
     <string name="remove_watched">Remover visualizados</string>
     <string name="show_original_time_ago_summary">Os textos originais dos serviços serão visíveis nos itens de fluxo</string>
     <string name="show_original_time_ago_title">Mostrar antiguidade nos itens</string>
-    <string name="youtube_restricted_mode_enabled_title">Modo restrito do YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Ligar o \"Modo Restringido\" do YouTube</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar do canal</string>
@@ -633,4 +637,14 @@
     <string name="notification_actions_at_most_three">Pode selecionar, no máximo, três ações para mostrar na notificação compacta!</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
+    <string name="show_memory_leaks">Mostrar vazamentos de memória</string>
+    <string name="enqueued">Enfileirado</string>
+    <string name="enqueue_stream">Pôr na fila</string>
+    <string name="clear_cookie_summary">Limpar cookies que NewPipe armazena quando resolve um reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Os cookies reCAPTCHA foram limpos</string>
+    <string name="clear_cookie_title">Limpar cookies reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">O YouTube fornece um \"Modo Restrito\" que oculta conteúdo potencialmente para adultos.</string>
+    <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente impróprio para crianças porque tem um limite de idade (como 18+).</string>
+    <string name="notification_colorize_summary">Fazer com que o Android personalize a cor da notificação de acordo com a cor principal na miniatura (note que esta não está disponível em todos os aparelhos)</string>
+    <string name="notification_colorize_title">Colorir a notificação</string>
 </resources>

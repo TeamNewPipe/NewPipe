@@ -44,6 +44,8 @@
     <string name="light_theme_title">Sáng</string>
     <string name="dark_theme_title">Tối</string>
     <string name="black_theme_title">Đen</string>
+    <string name="popup_remember_size_pos_title">Nhớ kích thước và vị trí của popup</string>
+    <string name="popup_remember_size_pos_summary">Nhớ kích thước và vị trí lần trước của popup</string>
     <string name="player_gesture_controls_title">Điều khiển cử chỉ trình phát</string>
     <string name="player_gesture_controls_summary">Sử dụng cử chỉ để điều chỉnh độ sáng và âm lượng</string>
     <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
@@ -57,7 +59,6 @@
     <string name="popup_playing_toast">Phát ở chế độ popup</string>
     <string name="content">Nội dung</string>
     <string name="show_age_restricted_content_title">Cho phép nội dung có giới hạn độ tuổi</string>
-    <string name="video_is_age_restricted">Hiện video có giới hạn độ tuổi. Có thể thay đổi trong phần Cài đặt.</string>
     <string name="duration_live">Trực tiếp</string>
     <string name="downloads">Tải xuống</string>
     <string name="downloads_title">Tải xuống</string>

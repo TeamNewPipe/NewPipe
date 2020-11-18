@@ -44,6 +44,8 @@
     <string name="light_theme_title">উজ্জ্বল</string>
     <string name="dark_theme_title">অন্ধকার</string>
     <string name="black_theme_title">কালো</string>
+    <string name="popup_remember_size_pos_title">পপআপ আকার এবং অবস্থান মনে রাখো</string>
+    <string name="popup_remember_size_pos_summary">শেষ আকার এবং পপআপ সেট অবস্থান মনে রাখো</string>
     <string name="download_dialog_title">ডাউনলোড</string>
     <string name="show_next_and_similar_title">পরবর্তী এবং অনুরূপ ভিডিওগুলি দেখাও</string>
     <string name="unsupported_url">URL সমর্থিত নয়</string>
@@ -56,7 +58,6 @@
     <string name="popup_playing_toast">পপআপ মোডে চলছে</string>
     <string name="content">কন্টেন্ট</string>
     <string name="show_age_restricted_content_title">বয়স সীমাবদ্ধ কন্টেন্ট দেখাও</string>
-    <string name="video_is_age_restricted">ভিডিওটিকে বয়স সীমিত করা হয়েছে। প্রথমে সেটিংসে বয়স সীমাবদ্ধ ভিডিওগুলি সক্ষম করো।</string>
     <string name="duration_live">লাইভ</string>
     <string name="downloads">ডাউনলোডগুলি</string>
     <string name="downloads_title">ডাউনলোডগুলি</string>
@@ -359,4 +360,5 @@
     <string name="notification_action_repeat">পুনরায়</string>
     <string name="notification_action_0_title">প্রথম ক্রিয়া বোতাম</string>
     <string name="notification_scale_to_square_image_title">থাম্বনেলে ১:১ অনুপাতে করো</string>
+    <string name="import_export_title">আমদানি/রপ্তানি</string>
 </resources>

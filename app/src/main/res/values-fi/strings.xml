@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Napauta hakua aloittaaksesi</string>
+    <string name="main_bg_subtitle">Napauta hakua aloittaaksesi
+\n</string>
     <string name="view_count_text">%1$s näyttökertaa</string>
     <string name="upload_date_text">Julkaistu %1$s</string>
     <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Asennetaanko VLC\?</string>
@@ -12,7 +13,7 @@
     <string name="download">Lataus</string>
     <string name="search">Haku</string>
     <string name="settings">Asetukset</string>
-    <string name="did_you_mean">Tarkoititko \"%1$s\"\?</string>
+    <string name="did_you_mean">Tarkoititko ”%1$s”\?</string>
     <string name="share_dialog_title">Jaa</string>
     <string name="choose_browser">Valitse selain</string>
     <string name="screen_rotation">kierto</string>
@@ -44,7 +45,7 @@
     <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videota</string>
     <string name="play_with_kodi_title">Toista Kodissa</string>
     <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus\?</string>
-    <string name="show_play_with_kodi_title">Näytä \"Toista Kodissa\"-vaihtoehto</string>
+    <string name="show_play_with_kodi_title">Näytä ”Toista Kodissa”-vaihtoehto</string>
     <string name="show_play_with_kodi_summary">Näyttää vaihtoehdon videon toistamiseen Kodi-mediasoittimessa</string>
     <string name="play_audio">Ääni</string>
     <string name="default_audio_format_title">Oletusääniformaatti</string>
@@ -53,6 +54,8 @@
     <string name="light_theme_title">Kirkas</string>
     <string name="dark_theme_title">Tumma</string>
     <string name="black_theme_title">Musta</string>
+    <string name="popup_remember_size_pos_title">Muista ponnahdusikkunan ominaisuudet</string>
+    <string name="popup_remember_size_pos_summary">Muista ponnahdusikkunan viimeisin koko ja sijainti</string>
     <string name="player_gesture_controls_title">Soittimen eleohjaus</string>
     <string name="player_gesture_controls_summary">Käytä eleitä ohjataksesi soittimen kirkkautta ja äänentasoa</string>
     <string name="show_search_suggestions_title">Hakuehdotukset</string>
@@ -76,8 +79,7 @@
     <string name="background_player_playing_toast">Toistaa taustalla</string>
     <string name="popup_playing_toast">Toistetaan ponnahdusikkunatilassa</string>
     <string name="content">Sisältö</string>
-    <string name="show_age_restricted_content_title">Ikärajoitettu sisältö</string>
-    <string name="video_is_age_restricted">Ikärajoitettu video. Muuttaminen on mahdollista asetuksissa.</string>
+    <string name="show_age_restricted_content_title">Näytä ikärajoitettu sisältö</string>
     <string name="duration_live">Suora</string>
     <string name="downloads">Lataukset</string>
     <string name="downloads_title">Lataukset</string>
@@ -358,11 +360,14 @@
     <string name="previous_export">Edellinen vienti</string>
     <string name="subscriptions_import_unsuccessful">Tilauksia ei voitu tuoda</string>
     <string name="subscriptions_export_unsuccessful">Tilauksia ei voitu viedä</string>
-    <string name="import_youtube_instructions">Tuo youtube-tilaukset lataamalla ensin tilauslistatiedostosi:
+    <string name="import_youtube_instructions">Tuo YouTube-tilaukset Google Takeoutista:
 \n
 \n1. Mene osoitteeseen: %1$s
-\n2. Kirjaudu sisään kun niin vaaditaan
-\n3. Latauksen pitäisi alkaa (se on se tiedosto)</string>
+\n2. Kirjaudu sisään pyydettäessä
+\n3. Klikkaa \"Kaikki Youtube-data valittuna\", sitten \"Poista kaikki valinnat\", sitten ainoastaan \"tilaukset\" ja klikkaa \"OK\"
+\n4. Klikkaa \"Seuraava vaihe\" ja \"Luo vienti\"
+\n5. Klikkaa \"Lataa\" tämän ilmestyessä
+\n6. Ladatusta takeoutin zip-tiedostosta pura json-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.json\" ja tuo se tänne</string>
     <string name="import_soundcloud_instructions">Tuo SoundCloud-profiili kirjoittamalla joko osoite tai ID:si:
 \n
 \n1. Laita päälle työpöytämoodi selaimessasi (tai käytä tietokonetta, tämä sivu ei toimi mobiilisivuna)
@@ -405,7 +410,7 @@
     <string name="selection">Valinta</string>
     <string name="main_page_content_summary">Mitkä välilehdet näytetään pääsivulla</string>
     <string name="recaptcha_done_button">Valmis</string>
-    <string name="subtitle_activity_recaptcha">Paina \"Valmis\", kun ratkaistu</string>
+    <string name="subtitle_activity_recaptcha">Paina ”Valmis”, kun ratkaistu</string>
     <string name="infinite_videos">∞ videota</string>
     <string name="more_than_100_videos">100+ videota</string>
     <plurals name="watching">
@@ -438,8 +443,8 @@
     <string name="videos_string">Videot</string>
     <string name="restricted_video">Tämä video on ikärajoitettu.
 \n
-\nSalli ikärajoitettu sisältö asetuksissa katsoaksesi.</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTuben rajoitettu tila</string>
+\nSalli ”%1$s” asetuksissa katsoaksesi.</string>
+    <string name="youtube_restricted_mode_enabled_title">Ota käyttöön YouTuben ”Rajoitettu tila”</string>
     <string name="settings_category_updates_title">Päivitykset</string>
     <string name="peertube_instance_add_exists">Instanssi on jo olemassa</string>
     <string name="peertube_instance_add_https_only">Vain HTTPS-URL:t ovat tuettuja</string>
@@ -485,9 +490,9 @@
 \n• Koko tilatun kanavan lataaminen, mikä on hidasta, mutta lataa syötteen kokonaisuudessaan.
 \n• Erityisen palvelu-endpointin käyttö, mikä on nopeaa, mutta yleensä ei lataa syötettä kokonaisuudessaan.
 \n
-\nNäiden kahden välinen ero on, että nopean lataamista tiedoista yleensä puuttuu esim. sisällön kesto tai tyyppi (ei voi erotella livevideoita ja tavallisia) tai se ei lataa kaikkea sisältöä.
+\nNäiden kahden välinen ero on, että nopean tavan lataamista tiedoista yleensä puuttuu esim. sisällön kesto tai tyyppi (ei voi erotella livevideoita ja tavallisia) tai se ei lataa kaikkea sisältöä.
 \n
-\nYouTuve on esimerkki palvelusta, joka tarjoaa nopean tavan RSS-syötteen avulla.
+\nYouTube on esimerkki palvelusta, joka tarjoaa nopean tavan RSS-syötteen avulla.
 \n
 \nValinta riippuu siitä, mitä halutaan: nopeutta vai tarkkoja tietoja.</string>
     <string name="default_kiosk_page_summary">Oletuskioski</string>
@@ -632,4 +637,14 @@
     <string name="notification_action_0_title">Ensimmäinen toimintopainike</string>
     <string name="notification_scale_to_square_image_summary">Skaalaa ilmoituksessa näytettävä videon esikatselukuva kuvasuhteesta 16:9 kuvasuhteeseen 1:1 (saattaa aiheuttaa vääristymiä)</string>
     <string name="notification_scale_to_square_image_title">Skaalaa esikatselukuva 1:1-kuvasuhteeseen</string>
+    <string name="show_memory_leaks">Näytä muistivuodot</string>
+    <string name="enqueued">Lisätty jonoon</string>
+    <string name="enqueue_stream">Lisää jonoon</string>
+    <string name="clear_cookie_summary">Poista evästeet, jotka NewPipe tallentaa, kun ratkaiset reCAPTCHA:n</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA-evästeet on poistettu</string>
+    <string name="clear_cookie_title">Poista reCAPTCHA-evästeet</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube tarjoaa ”Rajoitetun tilan”, joka piilottaa aikuisviihdesisällön.</string>
+    <string name="show_age_restricted_content_summary">Näytä mahdollisesti lapsille sopimaton sisältö, jolla on ikäraja (esim. 18+).</string>
+    <string name="notification_colorize_summary">Anna Androidin muokata ilmoituksen väriä esikatselukuvan päävärin mukaan (tämä ei ole mahdollista kaikilla laitteilla)</string>
+    <string name="notification_colorize_title">Käytä värejä ilmoituksessa</string>
 </resources>

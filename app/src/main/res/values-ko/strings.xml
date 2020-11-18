@@ -55,7 +55,6 @@
     <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱에서 호출되었을 때 동영상을 재생합니다</string>
     <string name="content">컨텐츠</string>
     <string name="show_age_restricted_content_title">연령 제한 컨텐츠</string>
-    <string name="video_is_age_restricted">연령 제한 비디오입니다. 설정 메뉴에서 시청 허용 여부를 변경하실 수 있습니다.</string>
     <string name="duration_live">라이브</string>
     <string name="general_error">오류</string>
     <string name="could_not_load_thumbnails">모든 썸네일을 불러올 수 없습니다</string>
@@ -104,6 +103,8 @@
     <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 해상도 재생이 지원됩니다</string>
     <string name="default_video_format_title">기본 비디오 형식</string>
     <string name="black_theme_title">검은 테마</string>
+    <string name="popup_remember_size_pos_title">팝업 크기 및 위치 기억</string>
+    <string name="popup_remember_size_pos_summary">마지막으로 사용한 팝업 위치 및 크기를 기억합니다</string>
     <string name="player_gesture_controls_title">제스처 재생 조작</string>
     <string name="player_gesture_controls_summary">제스처를 사용해 화면 밝기와 음량을 조절합니다</string>
     <string name="show_search_suggestions_title">검색 제안</string>
@@ -547,4 +548,6 @@
     <string name="notification_scale_to_square_image_summary">알림에 표시되는 비디오 썸네일을 16:9에서 1:1 비율로 바꿉니다. (왜곡이 생길 수도 있습니다.)</string>
     <string name="notification_scale_to_square_image_title">썸네일을 1:1 비율로 하기</string>
     <string name="search_showing_result_for">%s에 대한 검색 결과</string>
+    <string name="notification_action_shuffle">셔플</string>
+    <string name="notification_action_repeat">연속 재생</string>
 </resources>

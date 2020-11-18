@@ -58,6 +58,8 @@
     <string name="light_theme_title">Claro</string>
     <string name="dark_theme_title">Escuro</string>
     <string name="black_theme_title">Negro</string>
+    <string name="popup_remember_size_pos_title">Lembrar o tamaño e a posición do «popup»</string>
+    <string name="popup_remember_size_pos_summary">Lembrar o tamaño e a posición anteriores do «popup»</string>
     <string name="use_inexact_seek_title">Usar un salto inexacto mais inexacto</string>
     <string name="use_inexact_seek_summary">Busca incorrecta permite ao xogador buscar posicións máis rápidas con precisión reducida. A busca de 5, 15 ou 25 segundos non funciona con isto.</string>
     <string name="download_thumbnail_title">Carregar miniaturas</string>
@@ -99,7 +101,6 @@
     <string name="popup_playing_append">Na cola do reprodutor popup</string>
     <string name="content">Contido</string>
     <string name="show_age_restricted_content_title">Contido restrinxido para certa idade</string>
-    <string name="video_is_age_restricted">Mostrar vídeo restrinxido por idade. Os cambios futuros son posibles na configuración.</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>

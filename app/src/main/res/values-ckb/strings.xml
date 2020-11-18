@@ -91,6 +91,7 @@
     <string name="live_streams_not_supported">پەخشی ڕاستەوخۆ پشتگیری ناکرێ لەئێستادا</string>
     <string name="channel_unsubscribed">به‌شداریت نەما له‌ كه‌ناڵ</string>
     <string name="player_stream_failure">ناتوانرێ ئەم پەخشە کارپێبکرێ</string>
+    <string name="popup_remember_size_pos_title">بیرهاتنه‌وه‌ی شوێن و قه‌باره‌ی په‌نجه‌ره‌ی بچووک</string>
     <string name="player_recoverable_failure">گێڕانەوەی کارپێکەر بۆکاتی پێش کێشە</string>
     <string name="minimize_on_exit_none_description">هیچیان</string>
     <string name="pause_downloads_on_mobile_desc">بەسوودە بۆ کاتی گۆڕینی هێڵ بۆ داتای مۆبایل, لەگەڵ ئەوەشدا زۆربەی داگرتنەکان ڕاناگرێت</string>
@@ -341,6 +342,7 @@
     <string name="recaptcha_done_button">تەواو</string>
     <string name="detail_likes_img_view_description">بەدڵبوون</string>
     <string name="error_unable_to_load_license">ناتوانرێ مۆڵەت باربکرێ</string>
+    <string name="popup_remember_size_pos_summary">بیرهاتنه‌وه‌ی كۆتا قه‌باره‌ و شوێنی په‌نجه‌ره‌ی بچووك</string>
     <string name="create">دروستکردن</string>
     <string name="import_network_expensive_warning">ئەوە بزانە ئەم کردارە پێویستی بە هێڵێکی گران هەیە. 
 \n 
@@ -585,7 +587,6 @@
     <string name="cancel">پاشگه‌زبوونه‌وه‌</string>
     <string name="tracks">تراکەکان</string>
     <string name="play_queue_audio_settings">ڕێکخستنەکانی دەنگ</string>
-    <string name="video_is_age_restricted">پیشاندانی ئەو ڤیدیۆیانەی سنوری تەمەنیان بۆ دانراوە. لە ڕێکخستنەکانەوە ڕێگەی پێدەدرێت.</string>
     <string name="downloads_storage_ask_summary">پرسیارت لێ دەکرێت بۆ شوێنی داگرتنی هەر پەڕگەیەک</string>
     <string name="title_last_played">دواین کارپێکراو</string>
     <string name="could_not_setup_download_menu">ناتوانرێ لیستی داگرتن دابنرێ</string>

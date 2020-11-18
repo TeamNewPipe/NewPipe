@@ -55,12 +55,12 @@
     <string name="use_tor_summary">(Experimentálne) Vyžadovať preberanie cez Tor pre väčšie súkromie (streamovanie videa momentálne nie je podporované).</string>
     <string name="err_dir_create">Nemožno vytvoriť adresár na preberanie \'%1$s\'</string>
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
-    <string name="main_bg_subtitle">Ťuknite na \"Vyhľadávanie\" pre začatie</string>
+    <string name="main_bg_subtitle">Ťuknite na \"Vyhľadávanie\"
+\n</string>
     <string name="autoplay_by_calling_app_title">Automatické prehrávanie</string>
     <string name="autoplay_by_calling_app_summary">Prehrá video pri zavolaní NewPipe inou aplikáciou</string>
     <string name="content">Obsah</string>
-    <string name="show_age_restricted_content_title">Vekovo obmedzený obsah</string>
-    <string name="video_is_age_restricted">Zobrazit video s vekovým obmezením. Zmenit túto voľbu môžete v nastaveniach.</string>
+    <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
     <string name="duration_live">Naživo</string>
     <string name="light_parsing_error">Nemožno kompletne zanalyzovať web</string>
     <string name="could_not_setup_download_menu">Nemožno nastaviť menu preberania</string>
@@ -130,6 +130,8 @@
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
     <string name="use_external_video_player_summary">Odoberie audio pri niektorých rozlíšeniach</string>
+    <string name="popup_remember_size_pos_title">Zapamätať si parametre mini okna</string>
+    <string name="popup_remember_size_pos_summary">Zapamätať si posledné nastavenie veľkosti a pozície mini okna</string>
     <string name="player_gesture_controls_title">Ovládanie prehrávača gestami</string>
     <string name="player_gesture_controls_summary">Používať gestá pre kontrolu jasu a hlasitosti prehrávača</string>
     <string name="show_search_suggestions_title">Hľadať návrhy</string>
@@ -342,11 +344,14 @@
     <string name="previous_export">Predchádzajúci export</string>
     <string name="subscriptions_import_unsuccessful">Nemožno importovať odbery</string>
     <string name="subscriptions_export_unsuccessful">Nemožno exportovať odbery</string>
-    <string name="import_youtube_instructions">Import odberov služby YouTube pomocou exportovaného zoznamu 
-\n 
-\n1. Prejdite na túto adresu URL: %1$s 
-\n2. Po výzve sa prihláste do svojho účtu 
-\n3. Sťahovanie by malo začať (to je exportovaný zoznam)</string>
+    <string name="import_youtube_instructions">Import odberov služby YouTube pomocou Google takeout:
+\n
+\n1. Prejdite na túto adresu URL: %1$s
+\n2. Po výzve sa prihláste do svojho účtu
+\n3. Kliknite na \"Zahrnuté sú všetky údaj služby YouTube\", tam kliknite na \"Zrušiť výber\", zaškrtnite \"odbery\" a potom kliknite na OK
+\n4. Kliknite na \"Ďaľší krok\" a potom na \"Vytvoriť export\"
+\n5. Po chvíli sa objaví tlačidlo s nápisom \"Stiahnuť\"
+\n6. Stiahnutý súbor otvorte a extraktujte .json súbor (nachádza sa v \"/Takeout/YouTube a YouTube Music/odbery/\"). Tento súbor importujte do NewPipe.</string>
     <string name="import_soundcloud_instructions">Importovať SoundCloud profil zadaním URL adresy alebo vášho ID:
 \n
 \n1. Prepnite režim na \"desktop\" (web nie je dostupný pre mobilné zariadenia)
@@ -606,8 +611,8 @@
     <string name="albums">Albumy</string>
     <string name="restricted_video">Vekovo obmedzené video.
 \n
-\nPre zobrazenie videa povoľte \"Vekovo obmedzený obsah\" v nastaveniach.</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube v obmedzenom režime</string>
+\nPre zobrazenie videa povoľte \"%1$s\" v nastaveniach.</string>
+    <string name="youtube_restricted_mode_enabled_title">Zapnúť \"Obmedzený režim YouTube\"</string>
     <string name="video_detail_by">%s</string>
     <string name="channel_created_by">Vytvoril %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Minuatúrny avatar kanála</string>
@@ -642,4 +647,14 @@
     <string name="notification_action_0_title">Akčné tlačidlo jedna</string>
     <string name="notification_scale_to_square_image_summary">Zmeniť pomer strán videa zobrazovaného v miniatúre z 16:9 na 1:1 (čo môže spôsobovať skreslenie)</string>
     <string name="notification_scale_to_square_image_title">Zmenšiť pomer strán miniatúry na 1: 1</string>
+    <string name="show_memory_leaks">Zobraziť memory leaks</string>
+    <string name="enqueued">Zaradené do poradia</string>
+    <string name="enqueue_stream">Zaradiť do poradia</string>
+    <string name="clear_cookie_summary">Vymazať cookies, ktoré NewPipe ukladá, keď vyriešite reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA cookies boli vymazané</string>
+    <string name="clear_cookie_title">Vymazať cookies reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Obmedzený režim\", ktorý skrýva potenciálny obsah pre dospelých.</string>
+    <string name="show_age_restricted_content_summary">Zobraziť obsah, ktorý je možno nevhodný pre deti, pretože má vekovú hranicu (napríklad 18+).</string>
+    <string name="notification_colorize_summary">Nechajte Android, aby prispôsobil farbu upozornenia podľa hlavnej farby v miniatúre (nemusí to fungovať na všetkých zariadeniach)</string>
+    <string name="notification_colorize_title">Farby upozornení</string>
 </resources>

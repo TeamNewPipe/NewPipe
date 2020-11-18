@@ -164,7 +164,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
 
     @Override
     public void onAudioSessionId(final EventTime eventTime, final int audioSessionId) {
-        if (!PlayerHelper.isUsingDSP(context)) {
+        if (!PlayerHelper.isUsingDSP()) {
             return;
         }
 

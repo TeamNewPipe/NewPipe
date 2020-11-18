@@ -55,7 +55,7 @@
     <string name="content_not_available">Contenu indisponible</string>
     <string name="error_snackbar_message">Désolé, quelque chose s\'est mal passé.</string>
     <string name="content">Contenu</string>
-    <string name="show_age_restricted_content_title">Contenu avec limite d’âge</string>
+    <string name="show_age_restricted_content_title">Afficher le contenu avec limite d’âge</string>
     <string name="duration_live">En direct</string>
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">Impossible de déchiffrer la signature URL de la vidéo</string>
@@ -73,9 +73,9 @@
     <string name="audio">Audio</string>
     <string name="retry">Réessayer</string>
     <string name="storage_permission_denied">Veuillez d’abord accorder l’accès au stockage</string>
-    <string name="main_bg_subtitle">Appuyer sur \"Rechercher\" pour commencer</string>
+    <string name="main_bg_subtitle">Appuyez sur la loupe pour commencer
+\n</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
-    <string name="video_is_age_restricted">Affiche les vidéos soumises à une limite d’âge. Modifier cette option est possible depuis les paramètres.</string>
     <string name="user_report">Rapport utilisateur</string>
     <string name="error_snackbar_action">Signaler</string>
     <string name="could_not_setup_download_menu">Impossible de configurer le menu de téléchargement</string>
@@ -125,6 +125,8 @@
     <string name="show_higher_resolutions_title">Afficher des définitions plus élevées</string>
     <string name="show_higher_resolutions_summary">Seuls certains appareils peuvent lire les vidéos 2K et 4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
+    <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
+    <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
     <string name="settings_category_popup_title">Flottant</string>
     <string name="filter">Filtre</string>
     <string name="refresh">Rafraîchir</string>
@@ -159,7 +161,7 @@
     <string name="charset_letters_and_digits">Lettres et chiffres</string>
     <string name="title_activity_about">À propos de NewPipe</string>
     <string name="copyright" formatted="true">© %1$s par %2$s sous %3$s</string>
-    <string name="contribution_encouragement">Que ce soit pour des idées de traductions, de changements de design, de nettoyage de code ou de gros changements de code, une aide est toujours la bienvenue. Plus on en fera, meilleur il deviendra !</string>
+    <string name="contribution_encouragement">Que ce soit pour des idées de traductions, de changements de design, de nettoyage de code ou de gros changements de code, une aide est toujours la bienvenue. Plus on en fera meilleur il sera !</string>
     <string name="subscription_change_failed">Impossible de modifier l’abonnement</string>
     <string name="subscription_update_failed">Impossible d’actualiser l’abonnement</string>
     <string name="resume_on_audio_focus_gain_summary">Continuer la lecture après les interruptions (ex. : appels téléphoniques)</string>
@@ -332,11 +334,14 @@
     <string name="previous_export">Exportation précédente</string>
     <string name="subscriptions_import_unsuccessful">Impossible d’importer les abonnements</string>
     <string name="subscriptions_export_unsuccessful">Impossible d’exporter les abonnements</string>
-    <string name="import_youtube_instructions">Veuillez importer vos abonnements YouTube en téléchargeant le fichier d’exportation.
-\n 
-\n1. Suivez ce lien : %1$s.
-\n2. Connectez-vous à votre compte.
-\n3. Un téléchargement va démarrer (celui du fichier d’exportation).</string>
+    <string name="import_youtube_instructions">Importez vos abonnements YouTube depuis Google Takeout :
+\n
+\n1. Suivez ce lien : %1$s
+\n2. Connectez-vous à votre compte
+\n3. Cliquez sur \"Toutes les données Youtube sont incluses\", puis sur \"Tout désélectionner\", puis sélectionnez uniquement \"abonnements\" et cliquez sur \"OK\"
+\n4. Cliquez sur \"Étape suivante\" et ensuite sur \"Créer une exportation\"
+\n5. Cliquez sur le bouton \"Télécharger\" après qu\'il apparaisse et
+\n6. À partir du fichier zip téléchargé, extrayez le fichier .json (généralement sous \"YouTube et YouTube Music/subscriptions/subscriptions.json\") et importez-le ici.</string>
     <string name="import_soundcloud_instructions">Veuillez importer un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant.
 \n 
 \n1. Activez le « mode bureau » dans votre navigateur Web (le site n’est pas disponible pour les appareils mobiles).
@@ -587,9 +592,9 @@
     <string name="more_than_100_videos">100+ vidéos</string>
     <string name="artists">Artistes</string>
     <string name="songs">Chansons</string>
-    <string name="restricted_video">Cette vidéo est bloquée à cause de la limite d\'âge.
+    <string name="restricted_video">Cette vidéo dispose d\'une limite d\'âge.
 \n
-\nActivez « Contenu avec limite d\'âge » dans les paramètres, rubrique « Contenu » si vous voulez la voir.</string>
+\nActivez « %1$s » dans les paramètres si vous voulez la voir.</string>
     <string name="remove_watched">Supprimer les vidéos vues</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui, et des vidéos partiellement regardées</string>
     <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
@@ -600,7 +605,7 @@
     <string name="channel_created_by">Créé par %s</string>
     <string name="show_original_time_ago_summary">Les textes originaux des services vont être visibles dans les items</string>
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
-    <string name="youtube_restricted_mode_enabled_title">Mode restreint de YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Afficher les abonnements sans groupes uniquement</string>
     <string name="playlist_page_summary">Page des listes de lecture</string>
     <string name="no_playlist_bookmarked_yet">Aucune liste de lecture encore enregistrée</string>
@@ -632,4 +637,14 @@
     <string name="notification_action_0_title">Premier bouton d\'action</string>
     <string name="notification_scale_to_square_image_summary">Mettre à l\'échelle la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1 (peut provoquer des déformations)</string>
     <string name="notification_scale_to_square_image_title">Dimensionner la miniature au format 1:1</string>
+    <string name="show_memory_leaks">Afficher les fuites de mémoire</string>
+    <string name="enqueued">Ajouté à la file d\'attente</string>
+    <string name="enqueue_stream">Ajouter à la file d\'attente</string>
+    <string name="clear_cookie_summary">Effacer les cookies que NewPipe garde lorsque vous résolvez un reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Les cookies reCAPTCHA ont été effacés</string>
+    <string name="clear_cookie_title">Effacer les cookies reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube dispose d\'un « Mode restreint » qui cache le contenu potentiellement inapproprié.</string>
+    <string name="show_age_restricted_content_summary">Le contenu de cette émission n\'est peut-être pas approprié pour les enfants à cause d\'une limite d\'âge (18 +).</string>
+    <string name="notification_colorize_title">Notification colorée</string>
+    <string name="notification_colorize_summary">Demander à Android de personnaliser la couleur de la notification en fonction de la couleur principale de la miniature (noter que cela n’est pas disponible sur tous les appareils)</string>
 </resources>

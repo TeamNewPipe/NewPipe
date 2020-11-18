@@ -55,6 +55,8 @@
     <string name="light_theme_title">வெளிர்</string>
     <string name="dark_theme_title">அடர்</string>
     <string name="black_theme_title">கருப்பு</string>
+    <string name="popup_remember_size_pos_title">திரைமேல் அளவையும் இடத்தையும் நினைவுகொள்</string>
+    <string name="popup_remember_size_pos_summary">திரைமேல் நிலையின் கடைசி அளவையும் இடத்தையும் நினைவுகொள்</string>
     <string name="download_thumbnail_title">வில்லைப்படத்தைக் காண்பி</string>
     <string name="thumbnail_cache_wipe_complete_notice">பட பதுக்ககம் அழிக்கப்பட்டது</string>
     <string name="metadata_cache_wipe_title">மேல்நிலைத்தரவின் பதுக்ககம் அழிக்கப்பட்டது</string>
@@ -122,7 +124,6 @@
     <string name="show_age_restricted_content_title">வயது வரம்புக்கு உட்பட்டது</string>
     <string name="auto_queue_title">அடுத்த தாரையில் தானாக சேர்</string>
     <string name="background_player_append">பின்னணி இயக்கியின் வரிசையில் சேர்க்கப்பட்டது</string>
-    <string name="video_is_age_restricted">அமைப்புகள் மூலம் வயது வரையறுக்கப்பட்ட வீடியோக்கலை காணலாம்.</string>
     <string name="error_report_title">பிழை அறிக்கை</string>
     <string name="channel">சேனல்</string>
     <string name="channels">சேனல்கள்</string>

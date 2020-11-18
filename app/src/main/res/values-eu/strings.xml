@@ -26,7 +26,7 @@
     <string name="show_next_and_similar_title">Erakutsi \'hurrengo\' eta \'antzeko\' bideoak</string>
     <string name="unsupported_url">URLak ez du euskarririk</string>
     <string name="content_language_title">Edukiaren hizkuntz lehenetsia</string>
-    <string name="settings_category_video_audio_title">Bideoa eta Audioa</string>
+    <string name="settings_category_video_audio_title">Bideoa eta audioa</string>
     <string name="list_thumbnail_view_description">Bideoaren aurreikuspen argazkitxoa</string>
     <string name="detail_thumbnail_view_description">Erreproduzitu bideoa, iraupena:</string>
     <string name="detail_uploader_thumbnail_view_description">Igotzailearen abatarraren iruditxoa</string>
@@ -39,7 +39,8 @@
     <string name="use_external_video_player_title">Erabili kanpo bideo-erreproduzigailua</string>
     <string name="use_external_audio_player_title">Erabili kanpo audio-erreproduzigailua</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
-    <string name="main_bg_subtitle">Sakatu \"Bilatu\" hasteko</string>
+    <string name="main_bg_subtitle">\"Bilatu\" sakatu hasteko
+\n</string>
     <string name="download_path_audio_title">Audioa deskargatzeko karpeta</string>
     <string name="download_path_audio_dialog_title">Aukeratu audio fitxategiak deskargatzeko karpeta</string>
     <string name="download_path_audio_summary">Deskargatutako audio fitxategiak hemen gordetzen dira</string>
@@ -59,6 +60,8 @@
     <string name="default_video_format_title">Hobetsitako bideo-formatua</string>
     <string name="theme_title">Gaia</string>
     <string name="black_theme_title">Beltza</string>
+    <string name="popup_remember_size_pos_title">Gogoratu laster-leihoaren tamaina eta posizioa</string>
+    <string name="popup_remember_size_pos_summary">Gogoratu laster-leihoaren azken tamaina eta posizioa</string>
     <string name="player_gesture_controls_title">Erreproduzigailuaren keinu bidezko kontrola</string>
     <string name="player_gesture_controls_summary">Erabili keinuak erreproduzigailuaren distira eta bolumena kontrolatzeko</string>
     <string name="show_search_suggestions_title">Bilaketa-iradokizunak</string>
@@ -67,8 +70,7 @@
     <string name="settings_category_other_title">Besteak</string>
     <string name="popup_playing_toast">Laster-leiho moduan erreproduzitzen</string>
     <string name="content">Edukia</string>
-    <string name="show_age_restricted_content_title">Adinez mugatutako edukia</string>
-    <string name="video_is_age_restricted">Erakutsi adinez mugatutako bideoa. Ezarpenetan aldaketak egin daitezke gero.</string>
+    <string name="show_age_restricted_content_title">Adinez mugatutako edukia erakutsi</string>
     <string name="duration_live">Zuzenean</string>
     <string name="downloads">Deskargak</string>
     <string name="downloads_title">Deskargak</string>
@@ -97,11 +99,11 @@
     <string name="app_ui_crash">Aplikazioa/interfazea kraskatu da</string>
     <string name="sorry_string">Hori ez litzateke gertatu behar.</string>
     <string name="error_report_button_text">Eman errore honen berri e-posta bidez</string>
-    <string name="error_snackbar_message">Erroreak gertatu dira.</string>
+    <string name="error_snackbar_message">Barkatu, zerbait gaizki atera da.</string>
     <string name="error_snackbar_action">Salatu</string>
     <string name="what_device_headline">Informazioa:</string>
     <string name="what_happened_headline">Zer gertatu da:</string>
-    <string name="info_labels">Zer:\\nEskaria:\\nEdukiaren hizkuntza:\\nZerbitzua:\\nGMT Ordua:\\nPaketea:\\nBertsioa:\\nSE bertsioa:</string>
+    <string name="info_labels">Zer:\\nEskaria:\\nEdukiaren hizkuntza:\\nEdukiaren herrialdea:\\nAplikazioaren hizkuntza:\\nZerbitzua:\\nGMT Ordua:\\nPaketea:\\nBertsioa:\\nSE bertsioa:</string>
     <string name="your_comment">Zure iruzkina (Ingelesez):</string>
     <string name="error_details_headline">Xehetasunak:</string>
     <string name="report_error">Salatu errorea</string>
@@ -176,7 +178,7 @@
     <string name="notification_channel_name">NewPipe jakinarazpena</string>
     <string name="settings_category_player_title">Erreproduzigailua</string>
     <string name="settings_category_player_behavior_title">Portaera</string>
-    <string name="settings_category_history_title">Historia eta cachea</string>
+    <string name="settings_category_history_title">Historia eta cache-a</string>
     <string name="playlist">Erreprodukzio-zerrenda</string>
     <string name="undo">Desegin</string>
     <string name="notification_channel_description">Atzeko planoko eta laster-leihoko NewPipe erreproduzigailuen jakinarazpenak</string>
@@ -245,7 +247,7 @@
     <string name="hold_to_append">Mantendu ilaran jartzeko</string>
     <string name="start_here_on_main">Hasi hemen erreproduzitzen</string>
     <string name="start_here_on_background">Hasi erreproduzitzen bigarren planoan</string>
-    <string name="start_here_on_popup">Hasi erreproduzitzen laster-leihoan</string>
+    <string name="start_here_on_popup">Laster-leihoan erreproduzitzen hasi</string>
     <string name="drawer_open">Ireki tiradera</string>
     <string name="drawer_close">Itxi tiradera</string>
     <string name="no_player_found_toast">Ez da jarioen erreproduzigailurik aurkitu (VLC instalatu dezakezu).</string>
@@ -419,7 +421,7 @@
     <string name="grid">Sareta</string>
     <string name="auto">Automatikoa</string>
     <string name="switch_view">Aldatu ikuspegia</string>
-    <string name="app_update_notification_content_title">NewPipe eguneraketa eskuragarri!</string>
+    <string name="app_update_notification_content_title">NewPipe-ren eguneraketa eskuragarri dago!</string>
     <string name="app_update_notification_content_text">Sakatu deskargatzeko</string>
     <string name="missions_header_finished">Amaituta</string>
     <string name="missions_header_pending">Zain</string>
@@ -589,5 +591,55 @@
     <string name="songs">Abestiak</string>
     <string name="restricted_video">Bideo hau adinez mugatua dago.
 \n
-\nIkusi nahi baduzu, gaitu ezazu \"Adinez mugatutako edukia\" ezarpenetan.</string>
+\nIkusi nahi baduzu, piztu ezazu \"%1$s\" ezarpenetan.</string>
+    <string name="video_detail_by">Egilea: %s</string>
+    <string name="playlist_page_summary">Erreprodukzio zerrendaren orria</string>
+    <string name="channel_created_by">%s-k sortua</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Kanalaren avatar-earen miniatura</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Erakutsi agrupatuta ez dauden harpidetzak bakarrik</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Bai, partzialki ikusitako bideoak ere bai</string>
+    <string name="remove_watched_popup_warning">Jada ikusi eta gero erreprodukzio zerrendara gehitu diren bideoak ezabatuak izango dira.
+\nJarraitu nahi duzu\? Ekintza hau ezin da desegin!</string>
+    <string name="remove_watched_popup_title">Ikusitako bideoak ezabatu\?</string>
+    <string name="remove_watched">Ikusitako bideoak ezabatu</string>
+    <string name="never">Inoiz ez</string>
+    <string name="wifi_only">Bakarrik WiFi-arekin</string>
+    <string name="autoplay_summary">Erreprodukzioa automatikoki hasi — %s</string>
+    <string name="show_memory_leaks">Erakutsi memoria galerak</string>
+    <string name="title_activity_play_queue">Ilara erreproduzitu</string>
+    <string name="no_playlist_bookmarked_yet">Oraindik ez dago erreprodukzio-zerrenda laster-markarik</string>
+    <string name="select_a_playlist">Playlist bat aukeratu</string>
+    <string name="error_report_open_github_notice">Mesedez, egiaztatu jada zure arazoarekin diskusiorik sortuta badagoen. Sarrera duplikatuak daudenean, arazoa ebazteko erabili dezakegun denbora galtzen ari gara.</string>
+    <string name="copy_for_github">Formatodun erreportea kopiatu</string>
+    <string name="error_report_open_issue_button_text">GitHub-en erreportatu</string>
+    <string name="clear_cookie_summary">reCAPTCHA bat egiten duzunean NewPipe-k gordetzen dituen kookiak ezabatu</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA kookiak garbitu dira</string>
+    <string name="clear_cookie_title">Ezabatu reCAPTCHA-ren kookiak</string>
+    <string name="show_age_restricted_content_summary">Adinez mugatuta dagoen eta haurrentzako desegokia izan daitezkeen edukia erakutsi (+18 adibidez).</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube-ren \"Modu Murriztua\" helduentzako edukia izan daitekeen edukia ezkutatzen du.</string>
+    <string name="youtube_restricted_mode_enabled_title">Piztu YouTube-ren \"Modu Murriztua\"</string>
+    <string name="settings_category_notification_title">Jakinarazpena</string>
+    <string name="unsupported_url_dialog_message">Ezin izan da URL-a ezagutu. Beste aplikazio batekin ireki\?</string>
+    <string name="auto_queue_toggle">Auto-ilara</string>
+    <string name="clear_queue_confirmation_description">Erreprodukzio ilara aktiboa ordezkatuko da</string>
+    <string name="clear_queue_confirmation_summary">Erreproduzitzaile batetik beste batera aldatzeak ilara ordezkatu dezake</string>
+    <string name="clear_queue_confirmation_title">Konfirmazioa eskatu ilaratik ezabatu baino lehenago</string>
+    <string name="notification_action_nothing">Ezer ez</string>
+    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_action_shuffle">Aleatorio</string>
+    <string name="notification_actions_at_most_three">Gehienez hiru ekintza aukera ditzakezu jakinarazpenean erakusteko!</string>
+    <string name="notification_action_repeat">Errepikatu</string>
+    <string name="notification_action_4_title">Bostgarren ekintzaren botoia</string>
+    <string name="notification_action_3_title">Laugarren ekintzaren botoia</string>
+    <string name="notification_action_2_title">Hirugarren ekintzaren botoia</string>
+    <string name="notification_action_1_title">Bigarren ekintzaren botoia</string>
+    <string name="notification_action_0_title">Lehenego ekintzaren botoia</string>
+    <string name="notification_scale_to_square_image_summary">Eskalatu jakinarazpenetan erakusten den bideo miniaturaren formatu-ratioa 16:9tik 1:1era (distortsioak sor ditzake)</string>
+    <string name="notification_scale_to_square_image_title">Miniatura 1:1 formatu-ratiora eskalatu</string>
+    <string name="search_showing_result_for">%s bilaketaren erantzunak erakusten</string>
+    <string name="enqueued">Ilaran jarri da</string>
+    <string name="enqueue_stream">Jarri ilaran</string>
+    <string name="show_original_time_ago_summary">Zerbitzuen jatorrizko testuak transmisioko elementuetan ikusgai egongo dira</string>
+    <string name="show_original_time_ago_title">Erakutsi «orain dela» jatorrizko denbora elementuetan</string>
+    <string name="notification_actions_summary">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Hautatu horietako hiru gehienez jakinarazpen trinkoan erakusteko eskuineko kontrol laukiak erabiliz.</string>
 </resources>

@@ -58,6 +58,8 @@
     <string name="light_theme_title">Светла</string>
     <string name="dark_theme_title">Темна</string>
     <string name="black_theme_title">Црна</string>
+    <string name="popup_remember_size_pos_title">Запамти го местото и големината на малиот прозорец</string>
+    <string name="popup_remember_size_pos_summary">Запамти ја последната големина и место на прозорчето</string>
     <string name="use_inexact_seek_title">Брзо, непрецизно премотување</string>
     <string name="use_inexact_seek_summary">Со непрецизното премотување се пребарува побрзо, но со намалена презицност.</string>
     <string name="download_thumbnail_title">Прочитај мали видео-сликички</string>
@@ -100,7 +102,6 @@
     <string name="popup_playing_append">Ставено на листа, за пуштање во прозорче</string>
     <string name="content">Содржина</string>
     <string name="show_age_restricted_content_title">Покажи видеа со граница на возрастта</string>
-    <string name="video_is_age_restricted">Видео за возрасни. Можете да дозволите вакви видеа преку Поставки.</string>
     <string name="duration_live">во живо</string>
     <string name="downloads">Превземања</string>
     <string name="downloads_title">Превземања</string>

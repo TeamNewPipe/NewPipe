@@ -82,7 +82,6 @@
     <string name="downloads_title">ডাউনলোডগুলি</string>
     <string name="downloads">ডাউনলোডগুলি</string>
     <string name="duration_live">লাইভ</string>
-    <string name="video_is_age_restricted">ভিডিওটিকে বয়স সীমিত করা হয়েছে। প্রথমে সেটিংসে বয়স সীমাবদ্ধ ভিডিওগুলি সক্ষম করো।</string>
     <string name="show_age_restricted_content_title">বয়স সীমাবদ্ধ কন্টেন্ট দেখাও</string>
     <string name="content">কন্টেন্ট</string>
     <string name="popup_playing_toast">পপআপ মোডে চলছে</string>
@@ -119,6 +118,8 @@
     <string name="seek_duration_title">দ্রুত-ফরওয়ার্ড/-পুনরায় সন্ধান সময়কাল</string>
     <string name="use_inexact_seek_summary">অনির্দিষ্ট সন্ধান প্লেয়ারকে আরো দ্রুত গতিতে সন্ধান করার সুবিধা দেয়, কিন্তু এটি সম্পূর্ণ নির্ভুল নাও হতে পারে ৷ ৫, ১৫ ও ২৫ সেকেন্ডের জন্য এটা কাজ করবে না ৷</string>
     <string name="use_inexact_seek_title">দ্রুত টানা ব্যাবহার করুন</string>
+    <string name="popup_remember_size_pos_summary">শেষ আকার এবং পপআপ সেট অবস্থান মনে রাখো</string>
+    <string name="popup_remember_size_pos_title">পপআপ আকার এবং অবস্থান মনে রাখো</string>
     <string name="black_theme_title">কালো</string>
     <string name="dark_theme_title">অন্ধকার</string>
     <string name="light_theme_title">উজ্জ্বল</string>

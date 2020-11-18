@@ -84,7 +84,8 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_player_behavior_title">
+        android:title="@string/settings_category_player_behavior_title"
+        app:iconSpaceReserved="false">
 
         <ListPreference
             android:defaultValue="@string/preferred_open_action_default"
@@ -139,6 +140,13 @@
             android:key="@string/brightness_gesture_control_key"
             android:summary="@string/brightness_gesture_control_summary"
             android:title="@string/brightness_gesture_control_title"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="@string/popup_remember_size_pos_key"
+            android:summary="@string/popup_remember_size_pos_summary"
+            android:title="@string/popup_remember_size_pos_title"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat

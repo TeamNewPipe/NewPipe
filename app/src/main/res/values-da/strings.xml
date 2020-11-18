@@ -61,6 +61,8 @@
     <string name="light_theme_title">Lyst</string>
     <string name="dark_theme_title">Mørkt</string>
     <string name="black_theme_title">Sort</string>
+    <string name="popup_remember_size_pos_title">Husk størrelse og placering af pop op</string>
+    <string name="popup_remember_size_pos_summary">Husk sidste størrelse og placering af pop op-afspiller</string>
     <string name="use_inexact_seek_title">Brug hurtig og upræcis søgning</string>
     <string name="use_inexact_seek_summary">Upræcis søgning lader afspilleren finde placeringer hurtigere, men mindre præcist</string>
     <string name="download_thumbnail_title">Indlæs miniaturebilleder</string>
@@ -108,7 +110,6 @@
     <string name="popup_playing_append">Føjet til pop op-afspilningskøen</string>
     <string name="content">Indhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrænset indhold</string>
-    <string name="video_is_age_restricted">Vis aldersbegrænsede videoer. Du kan tillade denne type videoer under Indstillinger.</string>
     <string name="duration_live">LIVE</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>

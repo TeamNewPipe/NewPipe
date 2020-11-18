@@ -58,6 +58,8 @@
     <string name="light_theme_title">Светлая</string>
     <string name="dark_theme_title">Цёмная</string>
     <string name="black_theme_title">Чорная</string>
+    <string name="popup_remember_size_pos_title">Аднавіць акно</string>
+    <string name="popup_remember_size_pos_summary">Запамінаць памер і становішча ўсплываючага акна</string>
     <string name="use_inexact_seek_title">Хуткі пошук пазіцыі</string>
     <string name="use_inexact_seek_summary">Недакладны пошук дазваляе плэеру шукаць пазіцыю хутчэй, але менш дакладна</string>
     <string name="download_thumbnail_title">Загружаць мініяцюры</string>
@@ -100,7 +102,6 @@
     <string name="popup_playing_append">Дададзена ў чаргу ў акне</string>
     <string name="content">Кантэнт</string>
     <string name="show_age_restricted_content_title">Кантэнт 18+</string>
-    <string name="video_is_age_restricted">Відэа з узроставымі абмежаваннямі. Дазволіць падобны кантэнт можна ў \"Наладах\".</string>
     <string name="duration_live">Трансляцыя</string>
     <string name="downloads">Загрузкі</string>
     <string name="downloads_title">Загрузкі</string>
