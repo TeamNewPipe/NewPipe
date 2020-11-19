@@ -3,7 +3,6 @@ package org.schabi.newpipe.settings;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -134,7 +133,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         addPreferencesFromResource(R.xml.content_settings);
 
         final Preference importDataPreference = findPreference(getString(R.string.import_data));
-        importDataPreference.setOnPreferenceClickListener((Preference p) -> {
+        importDataPreference.setOnPreferenceClickListener(p -> {
             final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
@@ -145,7 +144,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         });
 
         final Preference exportDataPreference = findPreference(getString(R.string.export_data));
-        exportDataPreference.setOnPreferenceClickListener((Preference p) -> {
+        exportDataPreference.setOnPreferenceClickListener(p -> {
             final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
@@ -199,9 +198,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage(R.string.override_current_data)
                         .setPositiveButton(getString(R.string.finish),
-                                (DialogInterface d, int id) -> importDatabase(path))
+                                (d, id) -> importDatabase(path))
                         .setNegativeButton(android.R.string.cancel,
-                                (DialogInterface d, int id) -> d.cancel());
+                                (d, id) -> d.cancel());
                 builder.create().show();
             }
         }

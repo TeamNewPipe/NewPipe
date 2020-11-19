@@ -116,7 +116,7 @@ public abstract class Tab {
             return true;
         }
 
-        return obj instanceof Tab && obj.getClass().equals(this.getClass())
+        return obj instanceof Tab && obj.getClass() == this.getClass()
                 && ((Tab) obj).getTabId() == this.getTabId();
     }
 

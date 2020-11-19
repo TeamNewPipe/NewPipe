@@ -1545,8 +1545,7 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null) {
             return PlaybackParameters.DEFAULT;
         }
-        final PlaybackParameters parameters = simpleExoPlayer.getPlaybackParameters();
-        return parameters == null ? PlaybackParameters.DEFAULT : parameters;
+        return simpleExoPlayer.getPlaybackParameters();
     }
 
     /**

@@ -519,7 +519,7 @@ public class RouterActivity extends AppCompatActivity {
         disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull StreamInfo result) -> {
+                .subscribe(result -> {
                     final List<VideoStream> sortedVideoStreams = ListHelper
                             .getSortedStreamVideosList(this, result.getVideoStreams(),
                                     result.getVideoOnlyStreams(), false);
@@ -534,7 +534,7 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
                     downloadDialog.requireDialog().setOnDismissListener(dialog -> finish());
-                }, (@NonNull Throwable throwable) ->
+                }, throwable ->
                         showUnsupportedUrlDialog(currentUrl)));
     }
 

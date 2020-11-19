@@ -337,7 +337,7 @@ public class VideoPlayerImpl extends VideoPlayer
             view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
                     (float) minimumLength / captionRatioInverse);
         }
-        view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
+        view.setApplyEmbeddedStyles(captionStyle == CaptionStyleCompat.DEFAULT);
         view.setStyle(captionStyle);
     }
 
