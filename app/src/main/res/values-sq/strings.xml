@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Shtyp \"Kërko\" për të filluar</string>
+    <string name="main_bg_subtitle">Shtyp \"Kërko\" për të filluar
+\n</string>
     <string name="view_count_text">%1$s shikime</string>
     <string name="upload_date_text">Publikuar më %1$s</string>
     <string name="install">Instalo</string>
@@ -520,8 +521,8 @@
     <string name="duration_live">Në kohë reale</string>
     <string name="restricted_video">Kjo video ka kufizime moshe.
 \n
-\nAktivizoni \"Përmbajtje me moshë të kufizuar\" tek aranzhimet nëse doni ta shihni.</string>
-    <string name="show_age_restricted_content_title">Përmbajtje me moshë të kufizuar</string>
+\nAktivizoni \"%1$s\" tek aranzhimet nëse doni ta shihni.</string>
+    <string name="show_age_restricted_content_title">Shfaq përmbajtjet me moshë të kufizuar</string>
     <string name="popup_playing_append">U radhit në luajtësin popup</string>
     <string name="background_player_append">U radhit në luajtësin në sfond</string>
     <string name="popup_playing_toast">Duke luajtur në modalitetin popup</string>
@@ -596,7 +597,7 @@
     <string name="remove_watched">Hiq të parat</string>
     <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do shihen në produktet e luajtshme</string>
     <string name="show_original_time_ago_title">Shfaq titullin origjinal \"kohë më parë\" në objekte</string>
-    <string name="youtube_restricted_mode_enabled_title">Modaliteti i censuruar i NewPipe</string>
+    <string name="youtube_restricted_mode_enabled_title">Aktivizo modalitetin e kufizuar të YouTube</string>
     <string name="detail_sub_channel_thumbnail_view_description">Pamja statike e avatarit të kanalit</string>
     <string name="video_detail_by">Nga %s</string>
     <string name="channel_created_by">Krijuar nga %s</string>
@@ -631,4 +632,8 @@
     <string name="notification_action_0_title">Butoni i parë i veprimit</string>
     <string name="notification_scale_to_square_image_summary">Shkallëzoje pamjen miniaturë të videos së treguar në njoftim nga aspekti 16:9 në 1:1 (mund të shfaqë deformime)</string>
     <string name="notification_scale_to_square_image_title">Shkallëzoje pamjen miniaturë në aspektin 1:1</string>
+    <string name="show_memory_leaks">Shfaq rrjedhjet e memories</string>
+    <string name="recaptcha_cookies_cleared">Biskotat reCAPTCHA janë pastruar</string>
+    <string name="clear_cookie_title">Pastroni biskotat reCAPTCHA</string>
+    <string name="notification_colorize_title">Ngjyros njoftimin</string>
 </resources>
