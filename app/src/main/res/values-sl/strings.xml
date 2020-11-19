@@ -358,4 +358,12 @@ odpiranje v pojavnem načinu</string>
     <string name="tab_new">Nov Zavihek</string>
     <string name="unsubscribe">Odjava</string>
     <string name="no_player_found_toast">Predvajalnika pretoka ni mogoče najti (namestite lahko VLC program za predvajanje).</string>
+    <string name="background_player">Predvajalnik v ozadju</string>
+    <string name="import_settings">Želite uvoziti tudi nastavite\?</string>
+    <string name="search_history_deleted">Zgodovina brskanja izbrisana.</string>
+    <string name="delete_search_history_alert">Izbrišem vso zgodovino brskanja\?</string>
+    <string name="clear_search_history_title">Izbriši zgodovino brskanja</string>
+    <string name="clear_cookie_summary">Izbriši piškotke, ki jih NewPipe shrani, ko rešite reCAPTCHA</string>
+    <string name="clear_cookie_title">Izbrišite piškodke reCAPTCHA</string>
+    <string name="enable_playback_resume_title">Nadaljuj s predvajanjem</string>
 </resources>
