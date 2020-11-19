@@ -316,7 +316,7 @@
     <string name="top_50">Τοπ 50</string>
     <string name="new_and_hot">Καινούρια και δημοφιλή</string>
     <string name="preferred_open_action_settings_title">Προτιμώμενη ενέργεια κοινοποίησης</string>
-    <string name="preferred_open_action_settings_summary">Προεπιλεγμένη ενέργεια για το άνοιγμα περιεχομένου — %s</string>
+    <string name="preferred_open_action_settings_summary">Προεπιλεγμένη ενέργεια κοινοποίησης περιεχομένου — %s</string>
     <string name="video_player">Συσκευή αναπαραγωγής βίντεο</string>
     <string name="background_player">Αναπαραγωγή παρασκηνίου</string>
     <string name="popup_player">Αναπαραγωγή σε αναδυόμενο παράθυρο</string>
@@ -355,11 +355,14 @@
     <string name="previous_export">Προηγούμενη εξαγωγή</string>
     <string name="subscriptions_import_unsuccessful">Δεν ήταν δυνατή η εισαγωγή των εγγραφών</string>
     <string name="subscriptions_export_unsuccessful">Δεν ήταν δυνατή η εξαγωγή των εγγραφών</string>
-    <string name="import_youtube_instructions">Κάντε εισαγωγή των εγγραφών σας στο YouTube κατεβάζοντας το εξής αρχείο:
+    <string name="import_youtube_instructions">Κάντε εισαγωγή των εγγραφών σας στο YouTube από το Google takeout:
 \n
 \n1. Πλοηγηθείτε στο: %1$s
-\n2. Εισέλθετε στο λογαριασμό σας, όταν σας ζητηθεί
-\n3. Η λήψη του αρχείου των εγγραφών σας θα ξεκινήσει</string>
+\n2. Εισέλθετε στο λογαριασμό σας, όταν σας ζητηθεί.
+\n3. Πατήστε το \"Περιλαμβάνονται όλα τα δεδομένα του YouTube\", στη συνέχεια \"Κατάργηση επιλογής όλων\" και επιλέξτε μόνο το \"συνδρομές\" και \"ΟΚ\".
+\n4. Πατήστε \"Επόμενο βήμα\" και μετά \"Δημιουργία εξαγωγής\".
+\n5. Πατήστε \"Λήψη\" όταν εμφανιστεί.
+\n6. Από το ληφθέν αρχείο zip εξάγετε το αρχείο \"συνδρομές.json\" και εισάγετε το εδώ.</string>
     <string name="import_soundcloud_instructions">Για να εισάγετε τον λογαριασμό SoundCloud σας, πληκτρολογήστε τον σύνδεσμο ή το ID σας:
 \n
 \n1. Ενεργοποιήστε τη λειτουργία \"Desktop mode\" στον φυλλομετρητή σας (καθώς η ιστοσελίδα δεν είναι διαθέσιμη για κινητά)
@@ -639,4 +642,5 @@
     <string name="show_original_time_ago_title">Εμφάνιση αυθεντικού παρελθόντος χρόνου στα αντικείμενα</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="notification_colorize_title">Χρωματισμός ειδοποιήσεων</string>
+    <string name="notification_colorize_summary">Επιτρέπει στο Android να τροποποιήσει το χρώμα της ειδοποίησης, σύμφωνα με το κύριο χρώμα του εικονιδίου (δεν διατίθεται σε όλες τις συσκευές)</string>
 </resources>
