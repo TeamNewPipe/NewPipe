@@ -205,6 +205,8 @@ dependencies {
     implementation "androidx.room:room-rxjava2:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
 
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
     implementation "com.xwray:groupie:${groupieVersion}"
     implementation "com.xwray:groupie-kotlin-android-extensions:${groupieVersion}"
 
