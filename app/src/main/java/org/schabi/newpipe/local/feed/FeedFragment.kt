@@ -174,34 +174,33 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     // /////////////////////////////////////////////////////////////////////////
 
     override fun showLoading() {
-        animateView(refresh_root_view, false, 0)
-        animateView(items_list, false, 0)
+        animateView(refresh_root_view, true, 0)
+        animateView(items_list, true, 0)
 
-        animateView(loading_progress_bar, true, 200)
-        animateView(loading_progress_text, true, 200)
+        /*animateView(loading_progress_bar, true, 200)
+        animateView(loading_progress_text, true, 200)*/
 
-        empty_state_view?.let { animateView(it, false, 0) }
+        //empty_state_view?.let { animateView(it, false, 0) }
         animateView(error_panel, false, 0)
     }
 
     override fun hideLoading() {
         animateView(refresh_root_view, true, 200)
         animateView(items_list, true, 300)
+        /*animateView(loading_progress_bar, false, 0)
+        animateView(loading_progress_text, false, 0)*/
 
-        animateView(loading_progress_bar, false, 0)
-        animateView(loading_progress_text, false, 0)
-
-        empty_state_view?.let { animateView(it, false, 0) }
+        //empty_state_view?.let { animateView(it, false, 0) }
         animateView(error_panel, false, 0)
         swipeRefreshLayout.isRefreshing = false
     }
 
     override fun showEmptyState() {
-        animateView(refresh_root_view, true, 200)
-        animateView(items_list, false, 0)
+        /*animateView(refresh_root_view, true, 200)
+        animateView(items_list, false, 0)*/
 
-        animateView(loading_progress_bar, false, 0)
-        animateView(loading_progress_text, false, 0)
+        //animateView(loading_progress_bar, false, 0)
+        //animateView(loading_progress_text, false, 0)
 
         empty_state_view?.let { animateView(it, true, 800) }
         animateView(error_panel, false, 0)
@@ -280,6 +279,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     private fun handleErrorState(errorState: FeedState.ErrorState): Boolean {
         hideLoading()
+        swipeRefreshLayout.isRefreshing=false
         errorState.error?.let {
             onError(errorState.error)
             return true
