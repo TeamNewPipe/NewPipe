@@ -22,6 +22,9 @@ import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_
 public class StreamStateEntity {
     public static final String STREAM_STATE_TABLE = "stream_state";
     public static final String JOIN_STREAM_ID = "stream_id";
+    // This additional field is required for the SQL query because 'stream_id' is used
+    // for some other joins already
+    public static final String JOIN_STREAM_ID_ALIAS = "stream_id_alias";
     public static final String STREAM_PROGRESS_TIME = "progress_time";
 
     /**
