@@ -109,7 +109,7 @@ public final class FocusAwareSeekBar extends AppCompatSeekBar {
         }
     }
 
-    private final class NestedListener implements OnSeekBarChangeListener {
+    private static final class NestedListener implements OnSeekBarChangeListener {
         private final OnSeekBarChangeListener delegate;
 
         boolean isSeeking;

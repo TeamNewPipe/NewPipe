@@ -23,7 +23,7 @@ public class License implements Parcelable, Serializable {
     };
     private final String abbreviation;
     private final String name;
-    private String filename;
+    private final String filename;
 
     public License(final String name, final String abbreviation, final String filename) {
         if (name == null) {

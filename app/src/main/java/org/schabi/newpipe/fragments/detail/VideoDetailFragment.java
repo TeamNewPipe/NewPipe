@@ -19,7 +19,6 @@ import android.view.ViewTreeObserver;
 import androidx.core.text.HtmlCompat;
 import androidx.preference.PreferenceManager;
 import android.provider.Settings;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.util.DisplayMetrics;
@@ -731,7 +730,7 @@ public final class VideoDetailFragment
     }
 
     private View.OnTouchListener getOnControlsTouchListener() {
-        return (View view, MotionEvent motionEvent) -> {
+        return (view, motionEvent) -> {
             if (!PreferenceManager.getDefaultSharedPreferences(activity)
                     .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
                 return false;
@@ -948,7 +947,7 @@ public final class VideoDetailFragment
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull final StreamInfo result) -> {
+                .subscribe(result -> {
                     isLoading.set(false);
                     hideMainPlayer();
                     if (result.getAgeLimit() != NO_AGE_LIMIT && !prefs.getBoolean(
@@ -969,7 +968,7 @@ public final class VideoDetailFragment
                             openVideoPlayer();
                         }
                     }
-                }, (@NonNull final Throwable throwable) -> {
+                }, throwable -> {
                     isLoading.set(false);
                     onError(throwable);
                 });
@@ -1140,7 +1139,7 @@ public final class VideoDetailFragment
 
         PlayQueue queue = playQueue;
         // Size can be 0 because queue removes bad stream automatically when error occurs
-        if (queue == null || queue.size() == 0) {
+        if (queue == null || queue.isEmpty()) {
             queue = new SinglePlayQueue(currentInfo);
         }
 
@@ -1224,12 +1223,12 @@ public final class VideoDetailFragment
 
         if (description.getType() == Description.HTML) {
             disposables.add(Single.just(description.getContent())
-                    .map((@NonNull final String descriptionText) ->
+                    .map(descriptionText ->
                             HtmlCompat.fromHtml(descriptionText,
                                     HtmlCompat.FROM_HTML_MODE_LEGACY))
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe((@NonNull final Spanned spanned) -> {
+                    .subscribe(spanned -> {
                         videoDescriptionView.setText(spanned);
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));
@@ -1346,19 +1345,24 @@ public final class VideoDetailFragment
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(final Context context, final Intent intent) {
-                if (intent.getAction().equals(ACTION_SHOW_MAIN_PLAYER)) {
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                } else if (intent.getAction().equals(ACTION_HIDE_MAIN_PLAYER)) {
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                } else if (intent.getAction().equals(ACTION_PLAYER_STARTED)) {
-                    // If the state is not hidden we don't need to show the mini player
-                    if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
-                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    }
-                    // Rebound to the service if it was closed via notification or mini player
-                    if (!PlayerHolder.bound) {
-                        PlayerHolder.startService(App.getApp(), false, VideoDetailFragment.this);
-                    }
+                switch (intent.getAction()) {
+                    case ACTION_SHOW_MAIN_PLAYER:
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        break;
+                    case ACTION_HIDE_MAIN_PLAYER:
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                        break;
+                    case ACTION_PLAYER_STARTED:
+                        // If the state is not hidden we don't need to show the mini player
+                        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
+                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        }
+                        // Rebound to the service if it was closed via notification or mini player
+                        if (!PlayerHolder.bound) {
+                            PlayerHolder.startService(
+                                    App.getApp(), false, VideoDetailFragment.this);
+                        }
+                        break;
                 }
             }
         };

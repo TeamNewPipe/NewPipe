@@ -157,7 +157,7 @@ public final class AnimationUtils {
                     + "colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]");
         }
 
-        final int[][] empty = new int[][]{new int[0]};
+        final int[][] empty = {new int[0]};
         final ValueAnimator viewPropertyAnimator = ValueAnimator
                 .ofObject(new ArgbEvaluator(), colorStart, colorEnd);
         viewPropertyAnimator.setInterpolator(new FastOutSlowInInterpolator());

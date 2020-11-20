@@ -371,7 +371,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         };
     }
 
-    public class HFHolder extends RecyclerView.ViewHolder {
+    public static class HFHolder extends RecyclerView.ViewHolder {
         public View view;
 
         HFHolder(final View v) {

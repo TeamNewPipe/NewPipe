@@ -686,7 +686,7 @@ public class DownloadManager {
         }
     }
 
-    public class MissionItem {
+    public static class MissionItem {
         public int special;
         public Mission mission;
 

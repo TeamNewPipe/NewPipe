@@ -50,8 +50,8 @@ public final class DownloaderImpl extends Downloader {
     public static final String YOUTUBE_DOMAIN = "youtube.com";
 
     private static DownloaderImpl instance;
-    private Map<String, String> mCookies;
-    private OkHttpClient client;
+    private final Map<String, String> mCookies;
+    private final OkHttpClient client;
 
     private DownloaderImpl(final OkHttpClient.Builder builder) {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {

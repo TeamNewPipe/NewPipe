@@ -31,7 +31,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInfo>
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String INFO_KEY = "related_info_key";
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
     private RelatedStreamInfo relatedStreamInfo;
 
     /*//////////////////////////////////////////////////////////////////////////

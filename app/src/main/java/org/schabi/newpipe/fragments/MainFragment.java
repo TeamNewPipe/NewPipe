@@ -43,7 +43,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private SelectedTabsPagerAdapter pagerAdapter;
     private ScrollableTabLayout tabLayout;
 
-    private List<Tab> tabsList = new ArrayList<>();
+    private final List<Tab> tabsList = new ArrayList<>();
     private TabsManager tabsManager;
 
     private boolean hasTabsChanged = false;
