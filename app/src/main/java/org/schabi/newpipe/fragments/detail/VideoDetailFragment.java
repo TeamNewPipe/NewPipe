@@ -274,7 +274,9 @@ public final class VideoDetailFragment
             // If the video is playing but orientation changed
             // let's make the video in fullscreen again
             checkLandscape();
-        } else if (player.isFullscreen() && !player.isVerticalVideo()) {
+        } else if (player.isFullscreen() && !player.isVerticalVideo()
+                // Tablet UI has orientation-independent fullscreen
+                && !DeviceUtils.isTablet(activity)) {
             // Device is in portrait orientation after rotation but UI is in fullscreen.
             // Return back to non-fullscreen state
             player.toggleFullscreen();
