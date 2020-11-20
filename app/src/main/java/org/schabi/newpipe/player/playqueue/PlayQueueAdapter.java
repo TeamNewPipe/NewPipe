@@ -215,7 +215,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    public class HFHolder extends RecyclerView.ViewHolder {
+    public static class HFHolder extends RecyclerView.ViewHolder {
         public View view;
 
         public HFHolder(final View v) {

@@ -123,7 +123,7 @@ public class MediaSourceManager {
     @NonNull
     private ManagedMediaSourcePlaylist playlist;
 
-    private Handler removeMediaSourceHandler = new Handler();
+    private final Handler removeMediaSourceHandler = new Handler();
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {

@@ -897,7 +897,7 @@ public class Mp4FromDashWriter {
         return buffer.array();
     }
 
-    class TablesInfo {
+    static class TablesInfo {
         int stts;
         int stsc;
         int[] stscBEntries;

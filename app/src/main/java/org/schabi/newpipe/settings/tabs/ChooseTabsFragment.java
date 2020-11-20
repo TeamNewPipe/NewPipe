@@ -334,7 +334,7 @@ public class ChooseTabsFragment extends Fragment {
     private class SelectedTabsAdapter
             extends RecyclerView.Adapter<ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder> {
         private final LayoutInflater inflater;
-        private ItemTouchHelper itemTouchHelper;
+        private final ItemTouchHelper itemTouchHelper;
 
         SelectedTabsAdapter(final Context context, final ItemTouchHelper itemTouchHelper) {
             this.itemTouchHelper = itemTouchHelper;
@@ -367,9 +367,9 @@ public class ChooseTabsFragment extends Fragment {
         }
 
         class TabViewHolder extends RecyclerView.ViewHolder {
-            private AppCompatImageView tabIconView;
-            private TextView tabNameView;
-            private ImageView handle;
+            private final AppCompatImageView tabIconView;
+            private final TextView tabNameView;
+            private final ImageView handle;
 
             TabViewHolder(final View itemView) {
                 super(itemView);

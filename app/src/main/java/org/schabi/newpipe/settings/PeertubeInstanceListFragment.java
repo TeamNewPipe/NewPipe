@@ -53,7 +53,7 @@ import io.reactivex.schedulers.Schedulers;
 public class PeertubeInstanceListFragment extends Fragment {
     private static final int MENU_ITEM_RESTORE_ID = 123456;
 
-    private List<PeertubeInstance> instanceList = new ArrayList<>();
+    private final List<PeertubeInstance> instanceList = new ArrayList<>();
     private PeertubeInstance selectedInstance;
     private String savedInstanceListKey;
     private InstanceListAdapter instanceListAdapter;
@@ -344,7 +344,7 @@ public class PeertubeInstanceListFragment extends Fragment {
     private class InstanceListAdapter
             extends RecyclerView.Adapter<InstanceListAdapter.TabViewHolder> {
         private final LayoutInflater inflater;
-        private ItemTouchHelper itemTouchHelper;
+        private final ItemTouchHelper itemTouchHelper;
         private RadioButton lastChecked;
 
         InstanceListAdapter(final Context context, final ItemTouchHelper itemTouchHelper) {
@@ -377,11 +377,11 @@ public class PeertubeInstanceListFragment extends Fragment {
         }
 
         class TabViewHolder extends RecyclerView.ViewHolder {
-            private AppCompatImageView instanceIconView;
-            private TextView instanceNameView;
-            private TextView instanceUrlView;
-            private RadioButton instanceRB;
-            private ImageView handle;
+            private final AppCompatImageView instanceIconView;
+            private final TextView instanceNameView;
+            private final TextView instanceUrlView;
+            private final RadioButton instanceRB;
+            private final ImageView handle;
 
             TabViewHolder(final View itemView) {
                 super(itemView);

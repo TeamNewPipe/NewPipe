@@ -337,7 +337,7 @@ public class VideoPlayerImpl extends VideoPlayer
             view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
                     (float) minimumLength / captionRatioInverse);
         }
-        view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
+        view.setApplyEmbeddedStyles(captionStyle == CaptionStyleCompat.DEFAULT);
         view.setStyle(captionStyle);
     }
 
@@ -671,9 +671,13 @@ public class VideoPlayerImpl extends VideoPlayer
         super.onUpdateProgress(currentProgress, duration, bufferPercent);
         updateProgress(currentProgress, duration, bufferPercent);
 
+        final boolean showThumbnail =
+                sharedPreferences.getBoolean(
+                        context.getString(R.string.show_thumbnail_key),
+                        true);
         // setMetadata only updates the metadata when any of the metadata keys are null
-        mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(), getThumbnail(),
-                duration);
+        mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(),
+                showThumbnail ? getThumbnail() : null, duration);
     }
 
     @Override
@@ -1626,10 +1630,13 @@ public class VideoPlayerImpl extends VideoPlayer
 
         updateScreenSize();
 
+        final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(service);
         final float defaultSize = service.getResources().getDimension(R.dimen.popup_default_width);
         final SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(service);
-        popupWidth = sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize);
+        popupWidth = popupRememberSizeAndPos
+                ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize)
+                : defaultSize;
         popupHeight = getMinimumVideoHeight(popupWidth);
 
         popupLayoutParams = new WindowManager.LayoutParams(
@@ -1643,8 +1650,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
         final int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
         final int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
-        popupLayoutParams.x = sharedPreferences.getInt(POPUP_SAVED_X, centerX);
-        popupLayoutParams.y = sharedPreferences.getInt(POPUP_SAVED_Y, centerY);
+        popupLayoutParams.x = popupRememberSizeAndPos
+                ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
+        popupLayoutParams.y = popupRememberSizeAndPos
+                ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
 
         checkPopupPositionBounds();
 

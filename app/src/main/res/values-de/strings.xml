@@ -128,7 +128,9 @@
     <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 2K/4K abspielen</string>
     <string name="controls_background_title">Hintergrund</string>
     <string name="controls_popup_title">Pop-up</string>
+    <string name="popup_remember_size_pos_title">Pop-up Eigenschaften merken</string>
     <string name="use_external_video_player_summary">Entfernt Tonspur bei manchen Auflösungen</string>
+    <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Helligkeit und Lautstärke mittels Gesten einstellen</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
@@ -342,11 +344,14 @@
     <string name="enable_leak_canary_summary">Die Überwachung von Speicherlecks kann dazu führen, dass die App beim Heap-Dumping nicht mehr reagiert</string>
     <string name="enable_disposed_exceptions_title">Fehler außerhalb des Lebenszyklus melden</string>
     <string name="enable_disposed_exceptions_summary">Erzwingen der Meldung unzustellbarer Rx-Ausnahmen außerhalb des Lebenszyklus von Fragmenten oder Aktivitäten nach der Entsorgung</string>
-    <string name="import_youtube_instructions">Importiere YouTube-Abonnements, indem du die Exportdatei herunterlädst: 
-\n 
-\n1. Gehe zu dieser URL: %1$s 
-\n2. Melde dich an, falls du dazu aufgefordert wirst. 
-\n3. Der Ladevorgang sollte beginnen (das ist die Exportdatei)</string>
+    <string name="import_youtube_instructions">Importiere YouTube-Abonnements aus dem Google Takeout:
+\n
+\n1. Gehe zu dieser URL: %1$s
+\n2. Melde dich an, falls du dazu aufgefordert wirst
+\n3. Klicke auf \"Alle Daten enthalten\", dann auf \"Alle abwählen\", wähle dann nur \"Abonnements\" und klicke auf \"OK\"
+\n4. Klicke auf \"Nächster Schritt\" und dann auf \"Export erstellen\"
+\n5. Klicke auf die Schaltfläche \"Download\", nachdem sie erscheint und
+\n6. Entpacke aus dem heruntergeladenen Takeout-Zip die .json-Datei (normalerweise unter \"YouTube und YouTube Music/subscriptions/subscriptions.json\") und importiere sie hier.</string>
     <string name="import_soundcloud_instructions">Importiere ein SoundCloud-Profil, indem die URL oder deine ID eingegeben wird:
 \n
 \n1. Aktiviere den Desktop-Modus in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar)
@@ -640,4 +645,6 @@
     <string name="clear_cookie_title">reCAPTCHA-Cookies löschen</string>
     <string name="show_age_restricted_content_summary">Zeige Inhalt, der möglicherweise unpassend für Kinder ist, da er eine Altersbeschränkung (wie z.B. 18+) hat.</string>
     <string name="enqueue_stream">Wiedergabe einreihen</string>
+    <string name="notification_colorize_summary">Android kann die Farbe der Benachrichtigung entsprechend der Hauptfarbe in der Miniaturansicht anpassen (beachte, dass dies nicht auf allen Geräten verfügbar ist)</string>
+    <string name="notification_colorize_title">Benachrichtigung farblich anpassen</string>
 </resources>

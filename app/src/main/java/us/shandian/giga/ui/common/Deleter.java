@@ -27,12 +27,12 @@ public class Deleter {
     private ArrayList<Mission> items;
     private boolean running = true;
 
-    private Context mContext;
-    private MissionAdapter mAdapter;
-    private DownloadManager mDownloadManager;
-    private MissionIterator mIterator;
-    private Handler mHandler;
-    private View mView;
+    private final Context mContext;
+    private final MissionAdapter mAdapter;
+    private final DownloadManager mDownloadManager;
+    private final MissionIterator mIterator;
+    private final Handler mHandler;
+    private final View mView;
 
     private final Runnable rShow;
     private final Runnable rNext;

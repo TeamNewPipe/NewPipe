@@ -192,11 +192,14 @@
     <string name="default_content_country_title">País padrão para conteúdo</string>
     <string name="app_description">Aplicação livre de reprodução de emissões para Android.</string>
     <string name="content_language_title">Idioma padrão para conteúdo</string>
-    <string name="import_youtube_instructions">Importe subscrições do YouTube descarregando o ficheiro de exportação:
+    <string name="import_youtube_instructions">Importar subscrições do YouTube do Google Takeout:
 \n
-\n1. Aceda a este URL: %1$s
-\n2. Inicie a sessão
-\n3. A descarga será iniciada (esse é o ficheiro de exportação)</string>
+\n1. Vá para este URL: %1$s
+\n2. Faça o login quando solicitado
+\n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", depois selecione apenas \"subscrições\" e clique em \"OK\".
+\n4. Clique em \"Próximo passo\" e depois em \"Criar exportação\".
+\n5. Clique no botão \"Descarregar\" após aparecer e
+\n6. A partir do zip do takeout descarregado extraia o ficheiro .json (normalmente em \"YouTube e YouTube Music/subscriptions/subscriptions.json\") e importe-o aqui.</string>
     <string name="minimize_on_exit_background_description">Ativar reprodutor em segundo plano</string>
     <string name="later">Mais tarde</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
@@ -449,6 +452,7 @@
     <string name="search_history_deleted">Histórico de pesquisa removido.</string>
     <string name="clear_search_history_title">Limpar histórico de pesquisas</string>
     <string name="msg_error">Erro</string>
+    <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
     <string name="download_path_summary">Os ficheiros de vídeo transferidos são armazenados aqui</string>
     <string name="switch_to_main">Mudar para principal</string>
     <string name="msg_popup_permission">Esta permissão é necessária
@@ -619,6 +623,7 @@
     <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
     <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
     <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
+    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do popup</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_buffering">Processamento...</string>
     <string name="notification_action_shuffle">Baralhar</string>
@@ -640,4 +645,6 @@
     <string name="clear_cookie_title">Limpar cookies reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">O YouTube fornece um \"Modo Restrito\" que oculta conteúdo potencialmente para adultos.</string>
     <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente impróprio para crianças porque tem um limite de idade (como 18+).</string>
+    <string name="notification_colorize_summary">Fazer com que o Android personalize a cor da notificação de acordo com a cor principal na miniatura (note que esta não está disponível em todos os aparelhos)</string>
+    <string name="notification_colorize_title">Colorir a notificação</string>
 </resources>

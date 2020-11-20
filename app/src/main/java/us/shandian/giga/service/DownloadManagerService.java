@@ -109,7 +109,7 @@ public class DownloadManagerService extends Service {
 
     private int downloadFailedNotificationID = DOWNLOADS_NOTIFICATION_ID + 1;
     private Builder downloadFailedNotification = null;
-    private SparseArray<DownloadMission> mFailedDownloads = new SparseArray<>(5);
+    private final SparseArray<DownloadMission> mFailedDownloads = new SparseArray<>(5);
 
     private Bitmap icLauncher;
     private Bitmap icDownloadDone;

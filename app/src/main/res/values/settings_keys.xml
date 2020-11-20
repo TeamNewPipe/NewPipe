@@ -222,6 +222,8 @@
     <string name="feed_update_threshold_key" translatable="false">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value" translatable="false">300</string>
 
+    <string name="show_thumbnail_key" translatable="false">show_thumbnail_key</string>
+
     <!-- Values will be localized in runtime -->
     <string-array name="feed_update_threshold_options" translatable="false">
         <item>@string/feed_update_threshold_option_always_update</item>
@@ -1048,7 +1050,6 @@
         <item>lt</item>
         <item>mk</item>
         <item>ms</item>
-        <item>nap</item>
         <item>nb-no</item>
         <item>ne</item>
         <item>nl</item>
@@ -1072,8 +1073,10 @@
         <item>te</item>
         <item>th</item>
         <item>tr</item>
+        <item>tzm</item>
         <item>uk</item>
         <item>ur</item>
+        <item>uz</item>
         <item>vi</item>
         <item>zh-cn</item>
         <item>zh-hk</item>
@@ -1124,7 +1127,6 @@
         <item>Lietuvių kalba</item>
         <item>македонски јазик</item>
         <item>Bahasa Melayu</item>
-        <item>napulitano</item>
         <item>Norsk bokmål</item>
         <item>Nनेपाली</item>
         <item>Nederlands (NL)</item>
@@ -1148,8 +1150,10 @@
         <item>తెలుగు</item>
         <item>ไทย</item>
         <item>Türkçe</item>
+        <item>Tamaziɣt</item>
         <item>українська мова</item>
         <item>اردو</item>
+        <item>O‘zbek</item>
         <item>Tiếng Việt</item>
         <item>简体中文</item>
         <item>繁體中文（廣東話）</item>

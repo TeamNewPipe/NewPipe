@@ -397,6 +397,8 @@
     <string name="seek_duration_title">ഫാസ്റ്റ്-ഫോർവേർഡ്/റീവൈൻഡ് സമയദൈർഘ്യം</string>
     <string name="use_inexact_seek_title">Inexact seek ഉപയോഗിക്കുക</string>
     <string name="use_inexact_seek_summary">കുറഞ്ഞ കൃത്യതയോടെ സീക് ചെയ്യാൻ Inexact seek സഹായിക്കുന്നു. 5/15/25 സെക്കൻഡ് സീക്‌ ഈ മോഡിൽ പ്രവർത്തിക്കുകയില്ല.</string>
+    <string name="popup_remember_size_pos_summary">പോപ്പപ്പിന്റെ അവസാന വലുപ്പവും സ്ഥാനവും ഓർത്തിരിക്കുക</string>
+    <string name="popup_remember_size_pos_title">പോപ്പപ്പ് വലുപ്പവും സ്ഥാനവും ഓർത്തിരിക്കുക</string>
     <string name="black_theme_title">കട്ട ഇരുട്ട് തീം</string>
     <string name="dark_theme_title">ഡാർക്ക് തീം</string>
     <string name="light_theme_title">ലൈറ്റ് തീം</string>

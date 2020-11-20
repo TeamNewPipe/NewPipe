@@ -129,6 +129,8 @@
     <string name="clear">Bersihkan</string>
     <string name="filter">Filter</string>
     <string name="use_external_video_player_summary">Menghapus audio pada beberapa resolusi</string>
+    <string name="popup_remember_size_pos_title">Ingat properti popup</string>
+    <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Ubah ukuran</string>
     <string name="player_gesture_controls_title">Kontrol gestur pemutar</string>
@@ -343,11 +345,14 @@
     <string name="previous_export">Ekspor sebelumnya</string>
     <string name="subscriptions_import_unsuccessful">Tidak bisa mengimpor langganan</string>
     <string name="subscriptions_export_unsuccessful">Tidak bisa mengekspor langganan</string>
-    <string name="import_youtube_instructions">Impor langganan YouTube dengan mengunduh berkas yang diekspor:
+    <string name="import_youtube_instructions">Impor langganan YouTube dari Google takeout:
 \n
-\n1. Kunjungi URL ini: %1$s
+\n1. Buka URL ini: %1$s
 \n2. Masuk ketika ditanya
-\n3. Unduhan akan dimulai (itulah berkas ekspornya)</string>
+\n3. Klik \"Semua data termasuk\", lalu pada \"Batal pilih semua\", lalu pilih hanya \"langganan\" dan klik \"OK\"
+\n4. Klik \"Langkah berikutnya\" dan kemudian pada \"Buat ekspor\"
+\n5. Klik tombol \"Unduh\" setelah muncul dan
+\n6. Dari download takeout zip ekstrak file .json (biasanya di bawah \"YouTube dan YouTube Music / subscriptions /subscriptions.json\") dan impor di sini.</string>
     <string name="import_soundcloud_instructions">Impor profil SoundCloud dengan mengetik URL atau ID anda: 
 \n 
 \n1. Aktifkan \"mode desktop\" di peramban web (situs tidak tersedia untuk perangkat seluler)
@@ -630,4 +635,6 @@
     <string name="clear_cookie_title">Hapus kuki reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube menyediakan \"Mode Terbatas\" yang menyembunyikan video konten dewasa.</string>
     <string name="show_age_restricted_content_summary">Menampilkan konten yang mungkin tidak cocok untuk anak-anak karena memiliki batasan umur (seperti 18+).</string>
+    <string name="notification_colorize_summary">Minta Android menyesuaikan warna notifikasi sesuai dengan warna utama di thumbnail (perhatikan bahwa ini tidak tersedia di semua perangkat)</string>
+    <string name="notification_colorize_title">Warnai notifikasi</string>
 </resources>

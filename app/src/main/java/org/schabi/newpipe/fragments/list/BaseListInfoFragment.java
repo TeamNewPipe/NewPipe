@@ -204,7 +204,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         name = result.getName();
         setTitle(name);
 
-        if (infoListAdapter.getItemsList().size() == 0) {
+        if (infoListAdapter.getItemsList().isEmpty()) {
             if (result.getRelatedItems().size() > 0) {
                 infoListAdapter.addInfoItemList(result.getRelatedItems());
                 showListFooter(hasMoreItems());

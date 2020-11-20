@@ -31,8 +31,8 @@ public class OggFromWebMWriter implements Closeable {
     private boolean done = false;
     private boolean parsed = false;
 
-    private SharpStream source;
-    private SharpStream output;
+    private final SharpStream source;
+    private final SharpStream output;
 
     private int sequenceCount = 0;
     private final int streamId;

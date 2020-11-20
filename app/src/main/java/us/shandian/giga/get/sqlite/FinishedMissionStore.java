@@ -68,7 +68,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
                     " UNIQUE(" + KEY_TIMESTAMP + ", " + KEY_PATH + "));";
 
 
-    private Context context;
+    private final Context context;
 
     public FinishedMissionStore(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

@@ -154,7 +154,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     public static void reportError(final Context context, final CrashReportData report,
                                    final ErrorInfo errorInfo) {
-        final String[] el = new String[]{report.getString(ReportField.STACK_TRACE)};
+        final String[] el = {report.getString(ReportField.STACK_TRACE)};
 
         final Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);
@@ -216,15 +216,15 @@ public class ErrorActivity extends AppCompatActivity {
         addGuruMeditation();
         currentTimeStamp = getCurrentTimeStamp();
 
-        reportEmailButton.setOnClickListener((View v) ->
+        reportEmailButton.setOnClickListener(v ->
                 openPrivacyPolicyDialog(this, "EMAIL"));
 
-        copyButton.setOnClickListener((View v) -> {
+        copyButton.setOnClickListener(v -> {
             ShareUtils.copyToClipboard(this, buildMarkdown());
             Toast.makeText(this, R.string.msg_copied, Toast.LENGTH_SHORT).show();
         });
 
-        reportGithubButton.setOnClickListener((View v) ->
+        reportGithubButton.setOnClickListener(v ->
                 openPrivacyPolicyDialog(this, "GITHUB"));
 
 

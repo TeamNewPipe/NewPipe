@@ -129,6 +129,8 @@
     <string name="clear">Limpar</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_background_title">Segundo plano</string>
+    <string name="popup_remember_size_pos_title">Lembrar propriedades do popup</string>
+    <string name="popup_remember_size_pos_summary">Lembra do último tamanho e posição usado no popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Remove o som em algumas resoluções</string>
@@ -324,11 +326,14 @@
     <string name="previous_export">Exportação anterior</string>
     <string name="subscriptions_import_unsuccessful">Não foi possível importar inscrições</string>
     <string name="subscriptions_export_unsuccessful">Não foi possível exportar inscrições</string>
-    <string name="import_youtube_instructions">Importe inscrições do YouTube baixando o arquivo de exportação:
+    <string name="import_youtube_instructions">Importe inscrições do YouTubedo pelo Google takeout:
 \n
 \n1. Acesse este link: %1$s
 \n2. Logue quando solicitado
-\n3. O download do arquivo de exportação iniciará</string>
+\n3. Clique em \"Todos os dados incluídos\", em seguida, em \"Desmarque todos\", em seguida, selecione apenas \"assinaturas\" e clique em \"OK\"
+\n4. Clique em \"Próximo passo\" e, em seguida, em \"Criar exportação\"
+\n5. Clique no botão \"Baixar\" depois de aparecer e
+\n6. A partir do arquivo zip baixado, retire o arquivo .json (geralmente em \"YouTube e YouTube Music/assinaturas/assinaturas.json\") e importe aqui.</string>
     <string name="import_soundcloud_instructions">Importe um perfil do SoundCloud digitando o URL ou seu ID:
 \n
 \n1. Ative o \"modo desktop\" no navegador (o site está indisponível em celulares) 
@@ -640,4 +645,6 @@
     <string name="recaptcha_cookies_cleared">Os cookies de reCAPTCHA foram apagados</string>
     <string name="youtube_restricted_mode_enabled_summary">O YouTube oferece um \"Modo Restrito\" que oculta conteúdo potencialmente adulto.</string>
     <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente inadequado para crianças porque tem um limite de idade (como +18).</string>
+    <string name="notification_colorize_summary">Permite o Android personalizar a cor da notificação de acordo com a cor principal da miniatura (note que isso não está disponível em todos os dispositivos)</string>
+    <string name="notification_colorize_title">Colorir notificação</string>
 </resources>

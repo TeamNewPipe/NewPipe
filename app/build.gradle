@@ -13,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 956
-        versionName "0.20.2"
+        versionCode 957
+        versionName "0.20.3"
 
         multiDexEnabled true
 
@@ -176,7 +176,7 @@ dependencies {
 
     // NewPipe dependencies
     // You can use a local version by uncommenting a few lines in settings.gradle
-    implementation 'com.github.Stypox:NewPipeExtractor:501ec30152642ad49ce0a1825410d200942d174c'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:6701b0fe718f6bdc385221341fa473e8aaab560e'
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
 
     implementation "org.jsoup:jsoup:1.13.1"
@@ -204,6 +204,8 @@ dependencies {
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
     implementation "androidx.room:room-rxjava2:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     implementation "com.xwray:groupie:${groupieVersion}"
     implementation "com.xwray:groupie-kotlin-android-extensions:${groupieVersion}"

@@ -1,0 +1,10 @@
+• Unification des différentes listes de lectures spécifiques
+• Action à deux doigts pour fermer le lecteur
+• Suppression des cookies reCAPTCHA possible
+• Option pour ne pas coloriser les notifs.
+• Amélioration de l'ouverture de la page d'une vidéo
+• Amélioration du temps de chargement des vidéos
+• Correction des vidéos avec une limite d'âge
+• Sauvegarde de la position du lecteur pop-up
+• Corrections de bugs
+• Mise à jour des traductions

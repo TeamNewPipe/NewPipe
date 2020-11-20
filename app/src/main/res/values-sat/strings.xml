@@ -24,4 +24,15 @@
     <string name="subscribe_button_title">ᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ</string>
     <string name="unsubscribe">ᱟᱹᱱᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ</string>
     <string name="subscribed_button_title">ᱥᱟᱹᱵᱥᱠᱨᱭᱤᱵᱽ ᱮᱱᱟ</string>
+    <string name="subscription_change_failed">ᱥᱟᱹᱵᱥᱠᱨᱭᱤᱯᱥᱚᱱ ᱵᱚᱫᱚᱞ ᱵᱟᱭ ᱜᱟᱱᱟᱜᱽ ᱠᱟᱱᱟ</string>
+    <string name="channel_unsubscribed">ᱪᱟᱱᱱᱮᱹᱞ ᱟᱹᱱᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ ᱮᱱᱟ</string>
+    <string name="popup_mode_share_menu_title">ᱯᱚᱯᱟᱹᱯ ᱢᱳᱰ</string>
+    <string name="use_external_audio_player_title">ᱵᱟᱦᱨᱮ ᱟᱹᱰᱤᱭᱚ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱮᱵᱽᱦᱟᱨ ᱢᱮᱸ</string>
+    <string name="tab_new">ᱱᱟᱶᱟ ᱴᱮᱵ</string>
+    <string name="tab_bookmarks">ᱵᱩᱻᱠᱢᱟᱨᱠ ᱯᱞᱮᱞᱤᱥᱴ ᱠᱚ</string>
+    <string name="tab_subscriptions">ᱥᱟᱹᱵᱥᱠᱨᱤᱯᱥᱚᱱ ᱠᱚ</string>
+    <string name="tab_main">ᱢᱩᱞ</string>
+    <string name="show_info">ᱤᱱᱯᱷᱚ ᱫᱮᱠᱷᱟᱣ ᱢᱮᱸ</string>
+    <string name="subscription_update_failed">ᱥᱟᱹᱵᱥᱠᱨᱤᱯᱥᱚᱱ ᱵᱟᱝ ᱟᱹᱯᱰᱮᱴ ᱜᱟᱱᱚᱜᱽ ᱱᱟᱠᱟ</string>
+    <string name="use_external_video_player_summary">ᱥᱟᱲᱮ ᱠᱚ ᱛᱤᱱᱟᱹᱝ ᱜᱟᱱ ᱨᱤᱡᱚᱞᱭᱩᱥᱚᱱ ᱠᱚ ᱴᱷᱮᱱ ᱚᱪᱚᱜᱽ ᱟᱭ</string>
 </resources>

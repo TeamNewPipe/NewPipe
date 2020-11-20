@@ -54,6 +54,8 @@
     <string name="light_theme_title">Svijetla</string>
     <string name="dark_theme_title">Tamna</string>
     <string name="black_theme_title">Crna</string>
+    <string name="popup_remember_size_pos_title">Zapamti veličinu i poziciju skočnog prozora</string>
+    <string name="popup_remember_size_pos_summary">Zapamti posljednju veličinu i poziciju skočnog prozora</string>
     <string name="player_gesture_controls_title">Kontroliranje reproduktora gestama</string>
     <string name="player_gesture_controls_summary">Koristi geste za kontrolu svjetline i glasnoće reproduktora</string>
     <string name="show_search_suggestions_title">Prijedlozi pri traženju</string>
@@ -631,4 +633,6 @@
     <string name="error_report_open_github_notice">Provjeri je li tvoj problem već postoji. Dupla pojava problema krade nam vrijeme koje bismo mogli utrošiti na ispravljanje same greške.</string>
     <string name="notification_actions_summary">Za uređivanje obavijesti radnji, dodirni ih. Označi do tri radnje za kompaktni prikaz obavijesti.</string>
     <string name="new_seek_duration_toast">Zbog ograničenja ExoPlayera, trajanje traženja postavljeno je na %d s</string>
+    <string name="notification_colorize_summary">Neka Android prilagodi boju obavijesti prema glavnoj boji minijature (ovo nije dostupno na svim uređajima)</string>
+    <string name="notification_colorize_title">Oboji obavijest</string>
 </resources>

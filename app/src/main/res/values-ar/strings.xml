@@ -90,6 +90,8 @@
     <string name="show_higher_resolutions_title">عرض أعلى جودة</string>
     <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل مقاطع الفيديو 2K/4K</string>
     <string name="default_video_format_title">تنسيق الفيديو الافتراضي</string>
+    <string name="popup_remember_size_pos_title">تذكر خصائص النوافذ المنبثقة</string>
+    <string name="popup_remember_size_pos_summary">تذكر آخر مكان و حجم للنافذة المنبثقة</string>
     <string name="player_gesture_controls_title">اعدادات إيماءة المشغل</string>
     <string name="player_gesture_controls_summary">استخدم الإيماءات للتحكم في سطوع وصوت المشغل</string>
     <string name="show_search_suggestions_title">اقتراحات البحث</string>
@@ -362,11 +364,14 @@
     <string name="previous_export">نسخة احتياطية</string>
     <string name="subscriptions_import_unsuccessful">تعذر استيراد الاشتراكات</string>
     <string name="subscriptions_export_unsuccessful">لا يمكن تصدير الاشتراكات</string>
-    <string name="import_youtube_instructions">استيراد اشتراكات YouTube عن طريق تنزيل ملف التصدير: 
-\n 
-\n1. انتقل إلى عنوان URL هذا: %1$s 
-\n2. تسجيل الدخول عندما يطلب منك
-\n3. يجب أن يبدأ التنزيل (وهذا ملف التصدير)</string>
+    <string name="import_youtube_instructions">استيراد اشتراكات YouTube من Google Takeout
+\n
+\n1. انتقل إلى عنوان URL هذا : %1$s
+\n2. تسجيل الدخول عندما يُطلب منك ذلك
+\n3. انقر على \"جميع البيانات المدرجة\" ، ثم على \"إلغاء تحديد الكل\" ، ثم حدد \"الاشتراكات\" فقط وانقر على \"موافق\"
+\n4. انقر على \"الخطوة التالية\" ثم على \"إنشاء تصدير\"
+\n5. انقر فوق الزر \"تنزيل\" بعد ظهوره و
+\n6. من الملف المضغوط الذي تم تنزيله ، استخرج ملف .json (عادةً ضمن \"YouTube و YouTube)Music/subscriptions/subscriptions.json\") واستورده</string>
     <string name="import_soundcloud_instructions">قم باستيراد ملف تعريف SoundCloud عن طريق كتابة عنوان URL أو معرفك: 
 \n 
 \n1. تمكين \"وضع سطح المكتب\" في متصفح الويب (الموقع غير متاح للأجهزة المحمولة) 
@@ -680,4 +685,6 @@
     <string name="show_memory_leaks">إظهار تسرب الذاكرة</string>
     <string name="enqueued">قائمة الانتظار</string>
     <string name="enqueue_stream">قائمة الانتظار</string>
+    <string name="notification_colorize_summary">اجعل أندرويد يخصص لون الإشعار وفقا للون الرئيسي في الصورة المصغرة (لاحظ أن هذا غير متوفر على جميع الأجهزة</string>
+    <string name="notification_colorize_title">تلوين الاشعارات</string>
 </resources>

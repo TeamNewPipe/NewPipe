@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="import_youtube_instructions">Importa sas iscritziones iscarrighende su documentu de esportatzione:
+    <string name="import_youtube_instructions">Importa sas iscritziones dae Google takeout:
 \n
 \n 1. Bae a custu URL: %1$s
 \n 2. Intra cando ti l\'ant a pedire
-\n 3. Diat dèpere incumintzare un\'iscarrigamentu (cussu est su documentu de esportatzione)</string>
+\n 3. Incarca in \"Totu sos datos incluidos\", a pustis in \"Boga sa seletzione a totus\" e a pustis galu ischerta petzi \"iscritziones\" e incarca \"AB\"
+\n4. Incarca in \"Passu imbeniente\" e a pustis in \"Crea un\'esportatzione\"
+\n5. Cando aparit, incarca in su butone \"Iscarrigamentu\" e
+\n6. Dae s\'archìviu zip iscarrigadu estrai su documentu .json (de sòlitu tenet su nùmene\"\"YouTube and YouTube Music/subscriptions/subscriptions.json\") e importa·lu inoghe.</string>
     <string name="subscriptions_export_unsuccessful">Esportatzione de s\'iscritzione fallida</string>
     <string name="subscriptions_import_unsuccessful">Importatzione de s\'iscritzione fallida</string>
     <string name="previous_export">Esportatzione anteposta</string>
@@ -548,6 +551,7 @@
     <string name="seek_duration_title">Longària de s\'avantzamentu e de sa torrada in segus lestros</string>
     <string name="use_inexact_seek_summary">Su moimentu inesatu permitit a su riproduidore de si mòere cara a una positzione in manera prus lestra ma prus pagu pretzisa. Su de si mòere de 5, 15 o 25 segundos non funtzionat, cun custa optzione.</string>
     <string name="use_inexact_seek_title">Imprea su moimentu inesatu lestru</string>
+    <string name="popup_remember_size_pos_title">Ammenta sas propriedades de sa ventanedda</string>
     <string name="black_theme_title">Nieddu</string>
     <string name="dark_theme_title">Iscuru</string>
     <string name="light_theme_title">Craru</string>
@@ -640,4 +644,7 @@
     <string name="clear_cookie_title">Isbòida sos testimòngios reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube frunit una \"Modalidade cun restritziones\" chi cuat sos cuntenudos chi diant pòdere èssere pro adultos.</string>
     <string name="show_age_restricted_content_summary">Ammustra sos cuntenutos chi diant pòdere no èssere adatos pro sos pitzinnos ca tenent unu lìmite de edade (che a 18+).</string>
+    <string name="notification_colorize_summary">Pedi a Android de personalizare su colore de sa notìfica sighende su colore printzipale de sa miniadura (ammenta·ti chi custu no est a disponimentu pro totu sos dispositivos)</string>
+    <string name="notification_colorize_title">Colora sas notìficas</string>
+    <string name="popup_remember_size_pos_summary">Ammenta s\'ùrtima mannària e sa positzione in sa ventanedda</string>
 </resources>
