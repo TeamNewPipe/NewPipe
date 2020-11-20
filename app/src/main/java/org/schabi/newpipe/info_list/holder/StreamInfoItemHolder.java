@@ -95,7 +95,7 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
     private String getFormattedRelativeUploadDate(final StreamInfoItem infoItem) {
         if (infoItem.getUploadDate() != null) {
             String formattedRelativeTime = Localization
-                    .relativeTime(infoItem.getUploadDate().date());
+                    .relativeTime(infoItem.getUploadDate().offsetDateTime());
 
             if (DEBUG && PreferenceManager.getDefaultSharedPreferences(itemBuilder.getContext())
                     .getBoolean(itemBuilder.getContext()

@@ -30,6 +30,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -312,12 +313,12 @@ public final class Localization {
         prettyTime.removeUnit(Decade.class);
     }
 
-    private static PrettyTime getPrettyTime() {
-        return prettyTime;
+    public static String relativeTime(final OffsetDateTime offsetDateTime) {
+        return relativeTime(GregorianCalendar.from(offsetDateTime.toZonedDateTime()));
     }
 
     public static String relativeTime(final Calendar calendarTime) {
-        return getPrettyTime().formatUnrounded(calendarTime);
+        return prettyTime.formatUnrounded(calendarTime);
     }
 
     private static void changeAppLanguage(final Locale loc, final Resources res) {
