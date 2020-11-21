@@ -176,6 +176,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     override fun showLoading() {
         animateView(refresh_root_view, true, 0)
         animateView(items_list, true, 0)
+        swipeRefreshLayout.isRefreshing=true
 
         /*animateView(loading_progress_bar, true, 200)
         animateView(loading_progress_text, true, 200)*/
@@ -204,9 +205,11 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
         empty_state_view?.let { animateView(it, true, 800) }
         animateView(error_panel, false, 0)
+        swipeRefreshLayout.isRefreshing = false
     }
 
     override fun showError(message: String, showRetryButton: Boolean) {
+        swipeRefreshLayout.isRefreshing = false
         infoListAdapter.clearStreamItemList()
         animateView(refresh_root_view, false, 120)
         animateView(items_list, false, 120)
