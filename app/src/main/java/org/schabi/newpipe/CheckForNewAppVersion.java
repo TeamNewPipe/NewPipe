@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -36,10 +37,9 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
-import io.reactivex.Observable;
+import io.reactivex.Maybe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.disposables.Disposables;
 import io.reactivex.schedulers.Schedulers;
 
 public final class CheckForNewAppVersion {
@@ -174,54 +174,51 @@ public final class CheckForNewAppVersion {
         return getCertificateSHA1Fingerprint(app).equals(GITHUB_APK_SHA1);
     }
 
-    @NonNull
+    @Nullable
     public static Disposable checkNewVersion(@NonNull final App app) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
         // Check if user has enabled/disabled update checking
         // and if the current apk is a github one or not.
-        if (!prefs.getBoolean(app.getString(R.string.update_app_key), true)
-                || !isGithubApk(app)) {
-            return Disposables.empty();
+        if (!prefs.getBoolean(app.getString(R.string.update_app_key), true) || !isGithubApk(app)) {
+            return null;
         }
 
-        return Observable.fromCallable(() -> {
-            if (!isConnected(app)) {
-                return null;
-            }
+        return Maybe
+                .fromCallable(() -> {
+                    if (!isConnected(app)) {
+                        return null;
+                    }
 
-            // Make a network request to get latest NewPipe data.
-            try {
-                return DownloaderImpl.getInstance().get(NEWPIPE_API_URL).responseBody();
-            } catch (IOException | ReCaptchaException e) {
-                // connectivity problems, do not alarm user and fail silently
-                if (DEBUG) {
-                    Log.w(TAG, Log.getStackTraceString(e));
-                }
-            }
-
-            return null;
-        })
+                    // Make a network request to get latest NewPipe data.
+                    try {
+                        return DownloaderImpl.getInstance().get(NEWPIPE_API_URL).responseBody();
+                    } catch (IOException | ReCaptchaException e) {
+                        // connectivity problems, do not alarm user and fail silently
+                        if (DEBUG) {
+                            Log.w(TAG, Log.getStackTraceString(e));
+                        }
+                        return null;
+                    }
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
                     // Parse the json from the response.
-                    if (response != null) {
-                        try {
-                            final JsonObject githubStableObject = JsonParser.object().from(response)
-                                    .getObject("flavors").getObject("github").getObject("stable");
+                    try {
+                        final JsonObject githubStableObject = JsonParser.object().from(response)
+                                .getObject("flavors").getObject("github").getObject("stable");
 
-                            final String versionName = githubStableObject.getString("version");
-                            final int versionCode = githubStableObject.getInt("version_code");
-                            final String apkLocationUrl = githubStableObject.getString("apk");
+                        final String versionName = githubStableObject.getString("version");
+                        final int versionCode = githubStableObject.getInt("version_code");
+                        final String apkLocationUrl = githubStableObject.getString("apk");
 
-                            compareAppVersionAndShowNotification(app, versionName, apkLocationUrl,
-                                    versionCode);
-                        } catch (final JsonParserException e) {
-                            // connectivity problems, do not alarm user and fail silently
-                            if (DEBUG) {
-                                Log.w(TAG, Log.getStackTraceString(e));
-                            }
+                        compareAppVersionAndShowNotification(app, versionName, apkLocationUrl,
+                                versionCode);
+                    } catch (final JsonParserException e) {
+                        // connectivity problems, do not alarm user and fail silently
+                        if (DEBUG) {
+                            Log.w(TAG, Log.getStackTraceString(e));
                         }
                     }
                 });
