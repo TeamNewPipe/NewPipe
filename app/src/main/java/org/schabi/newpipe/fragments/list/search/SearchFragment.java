@@ -49,6 +49,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
@@ -248,7 +249,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         } catch (final Exception e) {
             ErrorActivity.reportError(getActivity(), e, requireActivity().getClass(),
                     requireActivity().findViewById(android.R.id.content),
-                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                    ErrorInfo.make(UserAction.UI_ERROR,
                             "",
                             "", R.string.general_error));
         }

@@ -17,7 +17,7 @@ import java.util.Queue;
 public abstract class PlaylistDialog extends DialogFragment implements StateSaver.WriteRead {
     private List<StreamEntity> streamEntities;
 
-    private StateSaver.SavedState savedState;
+    private org.schabi.newpipe.util.SavedState savedState;
 
     protected void setInfo(final List<StreamEntity> entities) {
         this.streamEntities = entities;

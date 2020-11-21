@@ -23,6 +23,7 @@ import com.grack.nanojson.JsonParserException;
 
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 
 import java.io.ByteArrayInputStream;
@@ -67,7 +68,7 @@ public final class CheckForNewAppVersion {
             packageInfo = pm.getPackageInfo(packageName, flags);
         } catch (final PackageManager.NameNotFoundException e) {
             ErrorActivity.reportError(application, e, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Could not find package info", R.string.app_ui_crash));
         }
 
@@ -82,7 +83,7 @@ public final class CheckForNewAppVersion {
             c = (X509Certificate) cf.generateCertificate(input);
         } catch (final CertificateException e) {
             ErrorActivity.reportError(application, e, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Certificate error", R.string.app_ui_crash));
         }
 
@@ -94,7 +95,7 @@ public final class CheckForNewAppVersion {
             hexString = byte2HexFormatted(publicKey);
         } catch (NoSuchAlgorithmException | CertificateEncodingException e) {
             ErrorActivity.reportError(application, e, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Could not retrieve SHA1 key", R.string.app_ui_crash));
         }
 

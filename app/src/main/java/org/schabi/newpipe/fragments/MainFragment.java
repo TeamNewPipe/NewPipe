@@ -27,6 +27,7 @@ import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
@@ -242,7 +243,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             }
 
             if (throwable != null) {
-                ErrorActivity.reportError(context, throwable, null, null, ErrorActivity.ErrorInfo
+                ErrorActivity.reportError(context, throwable, null, null, ErrorInfo
                         .make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
                 return new BlankFragment();
             }
