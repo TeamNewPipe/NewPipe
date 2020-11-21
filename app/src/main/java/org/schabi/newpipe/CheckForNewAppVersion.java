@@ -58,48 +58,43 @@ public final class CheckForNewAppVersion {
      * @param application The application
      * @return String with the apk's SHA1 fingeprint in hexadecimal
      */
+    @NonNull
     private static String getCertificateSHA1Fingerprint(@NonNull final Application application) {
-        final PackageManager pm = application.getPackageManager();
-        final String packageName = application.getPackageName();
-        final int flags = PackageManager.GET_SIGNATURES;
-        PackageInfo packageInfo = null;
-
+        final PackageInfo packageInfo;
         try {
-            packageInfo = pm.getPackageInfo(packageName, flags);
+            packageInfo = application.getPackageManager().getPackageInfo(
+                    application.getPackageName(), PackageManager.GET_SIGNATURES);
         } catch (final PackageManager.NameNotFoundException e) {
             ErrorActivity.reportError(application, e, null, null,
                     ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Could not find package info", R.string.app_ui_crash));
+            return "";
         }
 
-        final Signature[] signatures = packageInfo.signatures;
-        final byte[] cert = signatures[0].toByteArray();
-        final InputStream input = new ByteArrayInputStream(cert);
-
-        X509Certificate c = null;
-
+        final X509Certificate c;
         try {
+            final Signature[] signatures = packageInfo.signatures;
+            final byte[] cert = signatures[0].toByteArray();
+            final InputStream input = new ByteArrayInputStream(cert);
             final CertificateFactory cf = CertificateFactory.getInstance("X509");
             c = (X509Certificate) cf.generateCertificate(input);
         } catch (final CertificateException e) {
             ErrorActivity.reportError(application, e, null, null,
                     ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Certificate error", R.string.app_ui_crash));
+            return "";
         }
-
-        String hexString = null;
 
         try {
             final MessageDigest md = MessageDigest.getInstance("SHA1");
             final byte[] publicKey = md.digest(c.getEncoded());
-            hexString = byte2HexFormatted(publicKey);
+            return byte2HexFormatted(publicKey);
         } catch (NoSuchAlgorithmException | CertificateEncodingException e) {
             ErrorActivity.reportError(application, e, null, null,
                     ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Could not retrieve SHA1 key", R.string.app_ui_crash));
+            return "";
         }
-
-        return hexString;
     }
 
     private static String byte2HexFormatted(final byte[] arr) {
@@ -164,10 +159,10 @@ public final class CheckForNewAppVersion {
     }
 
     private static boolean isConnected(@NonNull final App app) {
-        final ConnectivityManager cm = ContextCompat.getSystemService(app,
-                ConnectivityManager.class);
-        return cm.getActiveNetworkInfo() != null
-                && cm.getActiveNetworkInfo().isConnected();
+        final ConnectivityManager connectivityManager =
+                ContextCompat.getSystemService(app, ConnectivityManager.class);
+        return connectivityManager != null && connectivityManager.getActiveNetworkInfo() != null
+                && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
     public static boolean isGithubApk(@NonNull final App app) {
