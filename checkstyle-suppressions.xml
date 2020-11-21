@@ -15,6 +15,10 @@
       files="ListHelper.java"
       lines="281,313"/>
 
+  <suppress checks="EmptyBlock"
+      files="ContentSettingsFragment.java"
+      lines="244,245"/>
+
   <!-- org.schabi.newpipe.streams -->
   <suppress checks="LineLength"
       files="WebMWriter.java"

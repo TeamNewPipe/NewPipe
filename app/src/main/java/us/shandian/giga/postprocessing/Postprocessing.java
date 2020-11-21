@@ -108,7 +108,6 @@ public abstract class Postprocessing implements Serializable {
     public void run(DownloadMission target) throws IOException {
         this.mission = target;
 
-        CircularFileWriter out = null;
         int result;
         long finalLength = -1;
 
@@ -151,30 +150,32 @@ public abstract class Postprocessing implements Serializable {
                         return -1;
                     };
 
-                    out = new CircularFileWriter(mission.storage.getStream(), tempFile, checker);
-                    out.onProgress = (long position) -> mission.done = position;
+                    try (CircularFileWriter out = new CircularFileWriter(
+                            mission.storage.getStream(), tempFile, checker)) {
+                        out.onProgress = (long position) -> mission.done = position;
 
-                    out.onWriteError = (err) -> {
-                        mission.psState = 3;
-                        mission.notifyError(ERROR_POSTPROCESSING_HOLD, err);
+                        out.onWriteError = err -> {
+                            mission.psState = 3;
+                            mission.notifyError(ERROR_POSTPROCESSING_HOLD, err);
 
-                        try {
-                            synchronized (this) {
-                                while (mission.psState == 3)
-                                    wait();
+                            try {
+                                synchronized (this) {
+                                    while (mission.psState == 3)
+                                        wait();
+                                }
+                            } catch (InterruptedException e) {
+                                // nothing to do
+                                Log.e(getClass().getSimpleName(), "got InterruptedException");
                             }
-                        } catch (InterruptedException e) {
-                            // nothing to do
-                            Log.e(this.getClass().getSimpleName(), "got InterruptedException");
-                        }
 
-                        return mission.errCode == ERROR_NOTHING;
-                    };
+                            return mission.errCode == ERROR_NOTHING;
+                        };
 
-                    result = process(out, sources);
+                        result = process(out, sources);
 
-                    if (result == OK_RESULT)
-                        finalLength = out.finalizeFile();
+                        if (result == OK_RESULT)
+                            finalLength = out.finalizeFile();
+                    }
                 } else {
                     result = OK_RESULT;
                 }
@@ -183,9 +184,6 @@ public abstract class Postprocessing implements Serializable {
                     if (source != null && !source.isClosed()) {
                         source.close();
                     }
-                }
-                if (out != null) {
-                    out.close();
                 }
                 if (tempFile != null) {
                     //noinspection ResultOfMethodCallIgnored
