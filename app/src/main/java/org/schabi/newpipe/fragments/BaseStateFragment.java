@@ -35,6 +35,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -47,6 +48,8 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     private View emptyStateView;
     @Nullable
     private ProgressBar loadingProgressBar;
+
+    private Disposable errorDisposable;
 
     protected View errorPanelRoot;
     private Button errorButtonRetry;
@@ -62,6 +65,14 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     public void onPause() {
         super.onPause();
         wasLoading.set(isLoading.get());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (errorDisposable != null) {
+            errorDisposable.dispose();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -83,7 +94,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     @Override
     protected void initListeners() {
         super.initListeners();
-        RxView.clicks(errorButtonRetry)
+        errorDisposable = RxView.clicks(errorButtonRetry)
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(o -> onRetryButtonClicked());
