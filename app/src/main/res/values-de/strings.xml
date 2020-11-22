@@ -647,4 +647,6 @@
     <string name="enqueue_stream">Wiedergabe einreihen</string>
     <string name="notification_colorize_summary">Android kann die Farbe der Benachrichtigung entsprechend der Hauptfarbe in der Miniaturansicht anpassen (beachte, dass dies nicht auf allen Geräten verfügbar ist)</string>
     <string name="notification_colorize_title">Benachrichtigung farblich anpassen</string>
+    <string name="show_thumbnail_summary">Vorschaubild auf dem Sperrbildschirm als Hintergrund und innerhalb von Benachrichtigungen anzeigen</string>
+    <string name="show_thumbnail_title">Vorschaubild anzeigen</string>
 </resources>
