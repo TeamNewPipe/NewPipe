@@ -649,4 +649,6 @@
     <string name="show_age_restricted_content_summary">Le contenu de cette émission n\'est peut-être pas approprié pour les enfants à cause d\'une limite d\'âge (18 +).</string>
     <string name="notification_colorize_title">Notification colorée</string>
     <string name="notification_colorize_summary">Demander à Android de personnaliser la couleur de la notification en fonction de la couleur principale de la miniature (noter que cela n’est pas disponible sur tous les appareils)</string>
+    <string name="show_thumbnail_title">Afficher la miniature</string>
+    <string name="show_thumbnail_summary">Afficher la minitature en arrière-plan de l\'écran de verrouillage et dans les notifications</string>
 </resources>
