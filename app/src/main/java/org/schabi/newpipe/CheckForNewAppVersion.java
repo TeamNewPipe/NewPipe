@@ -22,13 +22,11 @@ import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
 
-import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -186,15 +184,7 @@ public final class CheckForNewAppVersion {
                     }
 
                     // Make a network request to get latest NewPipe data.
-                    try {
-                        return DownloaderImpl.getInstance().get(NEWPIPE_API_URL).responseBody();
-                    } catch (IOException | ReCaptchaException e) {
-                        // connectivity problems, do not alarm user and fail silently
-                        if (DEBUG) {
-                            Log.w(TAG, Log.getStackTraceString(e));
-                        }
-                        return null;
-                    }
+                    return DownloaderImpl.getInstance().get(NEWPIPE_API_URL).responseBody();
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -218,15 +208,14 @@ public final class CheckForNewAppVersion {
                             } catch (final JsonParserException e) {
                                 // connectivity problems, do not alarm user and fail silently
                                 if (DEBUG) {
-                                    Log.w(TAG, Log.getStackTraceString(e));
+                                    Log.w(TAG, "Could not get NewPipe API: invalid json", e);
                                 }
                             }
                         },
-                        throwable -> {
+                        e -> {
                             // connectivity problems, do not alarm user and fail silently
                             if (DEBUG) {
-                                Log.i(TAG, "Could not get NewPipe API: network problem");
-                                Log.i(TAG, Log.getStackTraceString(throwable));
+                                Log.w(TAG, "Could not get NewPipe API: network problem", e);
                             }
                         });
     }
