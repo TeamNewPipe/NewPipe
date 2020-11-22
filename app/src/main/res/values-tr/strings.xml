@@ -642,6 +642,4 @@
     <string name="clear_cookie_title">reCAPTCHA çerezlerini temizle</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube, olası yetişkin içeriği gizleyen \"Kısıtlı Mod\" sağlamaktadır.</string>
     <string name="show_age_restricted_content_summary">Yaş kısıtı (18+ gibi) nedeniyle çocuklara uygun olmayabilecek içeriği göster.</string>
-    <string name="notification_colorize_summary"></string>
-    <string name="notification_colorize_title"></string>
 </resources>
