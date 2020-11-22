@@ -157,7 +157,7 @@
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s مشترك</item>
-        <item quantity="one">%s مشترك</item>
+        <item quantity="one">%s مشتركين</item>
         <item quantity="two">%s مشتركين</item>
         <item quantity="few">%s مشتركين</item>
         <item quantity="many">%s مشتركين</item>
@@ -233,8 +233,8 @@
     <string name="title_activity_recaptcha">تحدي الكابتشا</string>
     <string name="hold_to_append">ضغط مطول للإدراج الى قائمة الانتظار</string>
     <plurals name="views">
-        <item quantity="zero">%s مشاهدة</item>
-        <item quantity="one">%s مشاهد</item>
+        <item quantity="zero">%s مشاهد</item>
+        <item quantity="one">%s مشاهدة</item>
         <item quantity="two">%s مشاهدة</item>
         <item quantity="few">%s مشاهدة</item>
         <item quantity="many">%s مشاهدة</item>
@@ -687,4 +687,6 @@
     <string name="enqueue_stream">قائمة الانتظار</string>
     <string name="notification_colorize_summary">اجعل أندرويد يخصص لون الإشعار وفقا للون الرئيسي في الصورة المصغرة (لاحظ أن هذا غير متوفر على جميع الأجهزة</string>
     <string name="notification_colorize_title">تلوين الاشعارات</string>
+    <string name="show_thumbnail_summary">إظهار الصورة المصغرة على شاشة القفل كخلفية وإخطارات داخلية</string>
+    <string name="show_thumbnail_title">إظهار الصورة المصغرة</string>
 </resources>
