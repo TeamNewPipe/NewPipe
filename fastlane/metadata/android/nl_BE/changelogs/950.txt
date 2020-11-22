@@ -1,0 +1,4 @@
+Deze release bevat drie kleine fixes:
+• Toegang tot opslag op Android 10+ opgelost
+• Openen van kiosk's opgelost
+• Duurtijd verwerking van lange video's opgelost

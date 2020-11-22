@@ -1,0 +1,16 @@
+Novo
+Pesquisa p/ subscrição no feed de grupo
+Filtro no feed de grupo p/ apenas subscrições isoladas
+Lista de reprod. na pg principal
+Avanço/recuo rapido no reprod. de pano de fundo e pop-up
+Sugestão de pesquisa: quis dizer...
+
+Melhorado
+Solte a app de escrita de metadados nos arquivos multiplexados
+N/ remover da lista transmissões c/ erro
+Barra de estado e ferramentas: cores correspondentes
+
+Corrigido
+Dessinc A/V por erros cumulativos de pt flutuante
+[PeerTube] Gestão de comentários apagados
+...

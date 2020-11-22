@@ -1,0 +1,1 @@
+In deze release werd de versie van de YouTube website geüpdatete. De oude versie van de website zal buiten gebruik gesteld worden in maart waardoor je verplicht bent om NewPipe te upgraden.

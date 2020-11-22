@@ -74,9 +74,9 @@
     <string name="default_popup_resolution_title">विडियो पॉपअप का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="show_higher_resolutions_title">उच्च रिज़ॉल्यूशन दिखाएं</string>
     <string name="show_higher_resolutions_summary">केवल कुछ ही यंत्र है जो 2K/4K विडियो चला सकते हैं</string>
-    <string name="play_with_kodi_title">Kodi से चलाये</string>
+    <string name="play_with_kodi_title">Kodi से चलायें</string>
     <string name="kore_not_found">Kore एप्प नहीं मिली, इसे इनस्टॉल करें\?</string>
-    <string name="show_play_with_kodi_title">\"Kodi से चलाये\" वाला विकल्प दिखाए</string>
+    <string name="show_play_with_kodi_title">\"Kodi से चलायें\" वाला विकल्प दिखाएँ</string>
     <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर के माध्यम से वीडियो चलाने के लिए एक विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो का फॉर्मेट</string>
     <string name="default_video_format_title">डिफ़ॉल्ट विडियो का फॉर्मेट</string>
@@ -186,9 +186,9 @@
         <item quantity="other">%s वीडियो</item>
     </plurals>
     <string name="start">शुरू</string>
-    <string name="pause">रोके</string>
+    <string name="pause">रोकें</string>
     <string name="view">चलाये</string>
-    <string name="delete">मिटाए</string>
+    <string name="delete">मिटाएँ</string>
     <string name="checksum">checksum</string>
     <string name="add">नया मिशन</string>
     <string name="finish">ठीक है</string>
@@ -200,7 +200,7 @@
     <string name="msg_url_malform">URL सही नहीं है या फिर हो सकता है इन्टरनेट उपलब्ध नहीं है</string>
     <string name="msg_running">न्यूपाइप डाउनलोड हो रहा है</string>
     <string name="msg_running_detail">विवरण देखने के लिए दबाये</string>
-    <string name="msg_wait">कृपया इंतज़ार करे…</string>
+    <string name="msg_wait">कृपया प्रतीक्षा करें…</string>
     <string name="msg_copied">क्लिपबोर्ड पर कॉपी हो गया है</string>
     <string name="no_available_dir">कृपया बाद में सेटिंग्स में डाउनलोड स्थान चुने</string>
     <string name="msg_popup_permission">पॉपअप के तरीके में खोलने के लिए अनुमति की जरुरत है</string>
@@ -242,7 +242,7 @@
     <string name="tab_bookmarks">बुकमार्क किये गए प्लेलिस्टस</string>
     <string name="controls_add_to_playlist_title">में जोड़े</string>
     <string name="default_content_country_title">डिफ़ॉल्ट देश का विषय</string>
-    <string name="service_title">सर्विस</string>
+    <string name="service_title">सेवा</string>
     <string name="always">हमेशा के लिए</string>
     <string name="just_once">सिर्फ एक बार के लिए</string>
     <string name="toggle_orientation">टॉगल ओरिएंटेशन</string>
@@ -369,7 +369,7 @@
     <string name="playback_speed_control">चलाने की गति के नियंत्रण</string>
     <string name="playback_tempo">गति</string>
     <string name="playback_pitch">ऊंचाई</string>
-    <string name="unhook_checkbox">अनलिंक (बिगाड़ सकता है)</string>
+    <string name="unhook_checkbox">अनहुक (बिगाड़ सकता है)</string>
     <string name="skip_silence_checkbox">खामोशी के समय तेज़ी से आगे बढ़े</string>
     <string name="playback_step">कदम</string>
     <string name="playback_reset">रिसेट</string>
@@ -397,7 +397,7 @@
     <string name="app_update_notification_channel_description">नए NewPipe अपडेट की अधिसूचना</string>
     <string name="download_to_sdcard_error_title">एक्सटर्नल स्टोरेज अनुपलब्ध</string>
     <string name="download_to_sdcard_error_message">SD कार्ड पर डाउनलोड करना संभव नहीं।डाउनलोड स्थान पुनः चुने\?</string>
-    <string name="restore_defaults">सामान्य चुनाव पर लौटे</string>
+    <string name="restore_defaults">सामान्य चुनाव पर लौटें</string>
     <string name="restore_defaults_confirmation">क्या आप सामान्य चुनाव पर लौटना चाहते है\?</string>
     <string name="subscribers_count_not_available">अभिदाता संख्या अनुपलब्ध</string>
     <string name="main_page_content_summary">मुख्य पृष्ठ पर कौन से टैब दिखाए जाते हैं</string>
@@ -436,7 +436,7 @@
     <string name="pause_downloads_on_mobile_desc">मोबाइल डाटा का इस्तेमाल करते समय उपयोगी है, परन्तु कुछ डौन्लोडस रोके नहीं जा सकते है</string>
     <string name="events">घटनायें</string>
     <string name="conferences">सम्मेलनों</string>
-    <string name="show_comments_title">टिप्पणियाँ दिखाए</string>
+    <string name="show_comments_title">टिप्पणियाँ दिखाएं</string>
     <string name="show_comments_summary">टिप्पणियाँ न देखने के लिए बंद करे</string>
     <string name="autoplay_title">ऑटोप्ले</string>
     <string name="no_comments">कोई टिपण्णी नहीं</string>
@@ -522,4 +522,9 @@
     <string name="channel_created_by">%s के द्वारा बनाया गया</string>
     <string name="playlist_page_summary">प्लेलिस्ट पृष्ठ</string>
     <string name="search_showing_result_for">परिणाम दिखा रहे हैं : %s</string>
+    <string name="recaptcha_done_button">हो गया</string>
+    <string name="artists">कलाकार</string>
+    <string name="songs">गाने</string>
+    <string name="never">कभी नहीं</string>
+    <string name="help">सहायता</string>
 </resources>

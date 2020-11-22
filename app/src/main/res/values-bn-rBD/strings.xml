@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
+    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন
+\n</string>
     <string name="view_count_text">%1$s জন দেখছে</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চাও\?</string>
@@ -140,7 +141,7 @@
     <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>
     <string name="controls_download_desc">স্ট্রিম ফাইল ডাউনলোড করুন।</string>
     <string name="show_info">তথ্য দেখুন</string>
-    <string name="fragment_feed_title">কি নতুন</string>
+    <string name="fragment_feed_title">নতুন যা কিছু</string>
     <string name="controls_add_to_playlist_title">যুক্ত করুন</string>
     <string name="enable_search_history_title">খোজ ইতিহাস</string>
     <string name="enable_watch_history_title">ইতিহাস</string>
@@ -361,4 +362,38 @@
     <string name="notification_action_0_title">প্রথম ক্রিয়া বোতাম</string>
     <string name="notification_scale_to_square_image_title">থাম্বনেলে ১:১ অনুপাতে করো</string>
     <string name="import_export_title">আমদানি/রপ্তানি</string>
+    <string name="systems_language">সিস্টেম ডিফল্ট</string>
+    <string name="toast_no_player">এ ফাইলটি চালানোর জন্য কোন অ্য়াপ ইন্সটল নেই</string>
+    <string name="bookmark_playlist">প্লেলিস্ট বুকমার্ক করুন</string>
+    <string name="feed_page_summary">ফিড পৃষ্ঠা</string>
+    <string name="feed_use_dedicated_fetch_method_title">"যখন পর্যাপ্ত  নিবেদিত ফিড থেকে ডাটা সংগ্রহ করুন"</string>
+    <string name="feed_update_threshold_option_always_update">সবসময় হালনগাদ করুন</string>
+    <string name="feed_update_threshold_summary">শেষ হালনাগাদের পর একটি সাবস্ক্রিপশনের আগের সময় সেকেলে বিবেচিত — %s</string>
+    <string name="feed_update_threshold_title">ফিড হালনাগাদ প্রবেশস্থল</string>
+    <string name="settings_category_feed_title">ফিড</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">শুধুমাত্র আনগ্রুপড সাবস্ক্রিপশনসমূহ দেখান</string>
+    <string name="feed_group_dialog_delete_message">আপনি কি এ গ্রুপটি মুছতে চান\?</string>
+    <string name="feed_group_dialog_empty_name">খালি গ্রুপ নেম</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d নির্বাচিত</item>
+        <item quantity="other">%d সমূহ নির্বাচিত</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">কোন সাবস্ক্রিপশন নির্বাচন হয়নি</string>
+    <string name="feed_group_dialog_select_subscriptions">সাবস্ক্রিপশন নির্বাচন করুন</string>
+    <string name="feed_processing_message">ফিড প্রসেস হচ্ছে…</string>
+    <string name="feed_subscription_not_loaded_count">লোড হয়নি: %d</string>
+    <string name="feed_oldest_subscription_update">ফিড শেষে হালনাগাদ করা হয়েছে: %s</string>
+    <string name="feed_groups_header_title">চ্যানেল গ্রুপ</string>
+    <plurals name="days">
+        <item quantity="one">%d দিন</item>
+        <item quantity="other">"%d   দিন"</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d ঘন্টা</item>
+        <item quantity="other">"%d  ঘন্টা"</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d মিনিট</item>
+        <item quantity="other">%d মিনিট</item>
+    </plurals>
 </resources>

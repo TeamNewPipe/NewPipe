@@ -552,7 +552,7 @@
     </plurals>
     <!-- feed -->
     <string name="fragment_feed_title">Nouveautés</string>
-    <string name="feed_groups_header_title">Groupes d\'abonnements</string>
+    <string name="feed_groups_header_title">Groupes de chaînes</string>
     <string name="feed_oldest_subscription_update">Dernière mise à jour du flux : %s</string>
     <string name="feed_subscription_not_loaded_count">Pas chargés : %d</string>
     <string name="feed_notification_loading">Chargement du flux…</string>
@@ -564,7 +564,7 @@
         <item quantity="other">%d sélectionnés</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nom de groupe vide</string>
-    <string name="feed_group_dialog_delete_message">Voulez-vous supprimer ce groupe ?</string>
+    <string name="feed_group_dialog_delete_message">Voulez-vous supprimer ce groupe \?</string>
     <string name="feed_create_new_group_button_title">Nouveau</string>
     <string name="settings_category_feed_title">Flux</string>
     <string name="feed_update_threshold_title">Seuil de mise à jour du flux</string>
@@ -586,7 +586,9 @@
 \n
 \nDonc le choix se résume à ce que vous préférez : la rapidité ou des informations précises.</string>
     <string name="help">Aide</string>
-    <string name="content_not_supported">Ce contenu n\'est pas encore supporté par NewPipe.\n\nIl le sera peut-être dans une version future.</string>
+    <string name="content_not_supported">Ce contenu n’est pas encore pris en charge par NewPipe.
+\n
+\nNous espérons qu’il le sera dans une future version.</string>
     <string name="albums">Albums</string>
     <string name="infinite_videos">∞ vidéos</string>
     <string name="more_than_100_videos">100+ vidéos</string>
@@ -598,7 +600,7 @@
     <string name="remove_watched">Supprimer les vidéos vues</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui, et des vidéos partiellement regardées</string>
     <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
-\nVous êtes sûr \? C\'est irréversible !</string>
+\nÊtes-vous sûr \? C’est irréversible !</string>
     <string name="remove_watched_popup_title">Supprimer les vidéos regardées \?</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniature de la chaine</string>
     <string name="video_detail_by">De %s</string>
@@ -606,7 +608,7 @@
     <string name="show_original_time_ago_summary">Les textes originaux des services vont être visibles dans les items</string>
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
     <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Afficher les abonnements sans groupes uniquement</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Afficher uniquement les abonnements non groupés</string>
     <string name="playlist_page_summary">Page des listes de lecture</string>
     <string name="no_playlist_bookmarked_yet">Aucune liste de lecture encore enregistrée</string>
     <string name="select_a_playlist">Sélectionner une liste de lecture</string>

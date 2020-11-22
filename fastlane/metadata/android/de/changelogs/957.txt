@@ -1,0 +1,10 @@
+• Vereinheitlichung spezifischer Warteschlangenaktionen
+• Zweifinger-Geste zum Schließen des Players
+• reCAPTCHA-Cookies können gelöscht werden
+• Option um Benachrichtigung nicht einzufärben
+• Verbesserung der Videodetails
+• YouTube Videos beschleunigen und Fehlerbehebung bei altersbeschränkten Videos
+• Fehlerbehebung beim Vor- und Zurückspulen
+• Listen werden beim Verschieben von Miniaturansichten nicht mehr umsortiert
+• Popup-Einstellungen werden immer gemerkt
+• Santali-Sprache hinzugefügt

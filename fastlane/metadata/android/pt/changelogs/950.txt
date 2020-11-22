@@ -1,4 +1,4 @@
-Este lançamento traz três pequenas correções:
+Esta versão traz três pequenas correções:
 - Acesso de armazenamento no Adroid 10+ corrigido
-- Quiosques de abertura corrigido
-- Análise de duração vídeos longos corrigido
+- Quiosques de abertura corrigidos
+- Análise de duração vídeos longos corrigida
