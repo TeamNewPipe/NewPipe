@@ -198,24 +198,36 @@ public final class CheckForNewAppVersion {
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> {
-                    // Parse the json from the response.
-                    try {
-                        final JsonObject githubStableObject = JsonParser.object().from(response)
-                                .getObject("flavors").getObject("github").getObject("stable");
+                .subscribe(
+                        response -> {
+                            // Parse the json from the response.
+                            try {
+                                final JsonObject githubStableObject = JsonParser.object()
+                                        .from(response).getObject("flavors").getObject("github")
+                                        .getObject("stable");
 
-                        final String versionName = githubStableObject.getString("version");
-                        final int versionCode = githubStableObject.getInt("version_code");
-                        final String apkLocationUrl = githubStableObject.getString("apk");
+                                final String versionName = githubStableObject
+                                        .getString("version");
+                                final int versionCode = githubStableObject
+                                        .getInt("version_code");
+                                final String apkLocationUrl = githubStableObject
+                                        .getString("apk");
 
-                        compareAppVersionAndShowNotification(app, versionName, apkLocationUrl,
-                                versionCode);
-                    } catch (final JsonParserException e) {
-                        // connectivity problems, do not alarm user and fail silently
-                        if (DEBUG) {
-                            Log.w(TAG, Log.getStackTraceString(e));
-                        }
-                    }
-                });
+                                compareAppVersionAndShowNotification(app, versionName,
+                                        apkLocationUrl, versionCode);
+                            } catch (final JsonParserException e) {
+                                // connectivity problems, do not alarm user and fail silently
+                                if (DEBUG) {
+                                    Log.w(TAG, Log.getStackTraceString(e));
+                                }
+                            }
+                        },
+                        throwable -> {
+                            // connectivity problems, do not alarm user and fail silently
+                            if (DEBUG) {
+                                Log.i(TAG, "Could not get NewPipe API: network problem");
+                                Log.i(TAG, Log.getStackTraceString(throwable));
+                            }
+                        });
     }
 }
