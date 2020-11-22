@@ -53,10 +53,10 @@ public final class CheckForNewAppVersion {
     private static final String NEWPIPE_API_URL = "https://newpipe.schabi.org/api/data.json";
 
     /**
-     * Method to get the apk's SHA1 key. See https://stackoverflow.com/questions/9293019/#22506133.
+     * Method to get the APK's SHA1 key. See https://stackoverflow.com/questions/9293019/#22506133.
      *
      * @param application The application
-     * @return String with the apk's SHA1 fingeprint in hexadecimal
+     * @return String with the APK's SHA1 fingerprint in hexadecimal
      */
     private static String getCertificateSHA1Fingerprint(@NonNull final Application application) {
         final PackageManager pm = application.getPackageManager();

@@ -128,9 +128,9 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
         fetchReactor = null;
     }
 
-    private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infos) {
+    private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infoItems) {
         final List<PlayQueueItem> result = new ArrayList<>();
-        for (final InfoItem stream : infos) {
+        for (final InfoItem stream : infoItems) {
             if (stream instanceof StreamInfoItem) {
                 result.add(new PlayQueueItem((StreamInfoItem) stream));
             }

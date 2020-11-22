@@ -9,7 +9,7 @@ public interface ImportExportEventListener {
     void onSizeReceived(int size);
 
     /**
-     * Called everytime an item has been parsed/resolved.
+     * Called every time an item has been parsed/resolved.
      *
      * @param itemName the name of the subscription item
      */
