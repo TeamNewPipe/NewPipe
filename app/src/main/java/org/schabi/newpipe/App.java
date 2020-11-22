@@ -8,6 +8,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.multidex.MultiDexApplication;
 import androidx.preference.PreferenceManager;
 
@@ -67,7 +68,7 @@ public class App extends MultiDexApplication {
     protected static final String TAG = App.class.toString();
     private static App app;
 
-    private Disposable disposable = null;
+    @Nullable private Disposable disposable = null;
 
     @NonNull
     public static App getApp() {
