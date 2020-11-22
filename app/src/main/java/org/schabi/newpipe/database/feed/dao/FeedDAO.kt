@@ -6,19 +6,20 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import io.reactivex.Flowable
-import java.time.OffsetDateTime
+import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
+import java.time.OffsetDateTime
 
 @Dao
 abstract class FeedDAO {
     @Query("DELETE FROM feed")
     abstract fun deleteAll(): Int
 
-    @Query("""
+    @Query(
+        """
         SELECT s.* FROM streams s
 
         INNER JOIN feed f
@@ -27,10 +28,12 @@ abstract class FeedDAO {
         ORDER BY s.upload_date IS NULL DESC, s.upload_date DESC, s.uploader ASC
 
         LIMIT 500
-        """)
+        """
+    )
     abstract fun getAllStreams(): Flowable<List<StreamEntity>>
 
-    @Query("""
+    @Query(
+        """
         SELECT s.* FROM streams s
 
         INNER JOIN feed f
@@ -46,10 +49,12 @@ abstract class FeedDAO {
 
         ORDER BY s.upload_date IS NULL DESC, s.upload_date DESC, s.uploader ASC
         LIMIT 500
-        """)
+        """
+    )
     abstract fun getAllStreamsFromGroup(groupId: Long): Flowable<List<StreamEntity>>
 
-    @Query("""
+    @Query(
+        """
         DELETE FROM feed WHERE
 
         feed.stream_id IN (
@@ -60,10 +65,12 @@ abstract class FeedDAO {
 
             WHERE s.upload_date < :offsetDateTime
         )
-        """)
+        """
+    )
     abstract fun unlinkStreamsOlderThan(offsetDateTime: OffsetDateTime)
 
-    @Query("""
+    @Query(
+        """
         DELETE FROM feed
         
         WHERE feed.subscription_id = :subscriptionId
@@ -76,7 +83,8 @@ abstract class FeedDAO {
 
             WHERE s.stream_type = "LIVE_STREAM" OR s.stream_type = "AUDIO_LIVE_STREAM"
         )
-        """)
+        """
+    )
     abstract fun unlinkOldLivestreams(subscriptionId: Long)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -100,12 +108,14 @@ abstract class FeedDAO {
         }
     }
 
-    @Query("""
+    @Query(
+        """
         SELECT MIN(lu.last_updated) FROM feed_last_updated lu
 
         INNER JOIN feed_group_subscription_join fgs
         ON fgs.subscription_id = lu.subscription_id AND fgs.group_id = :groupId
-        """)
+        """
+    )
     abstract fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime>>
 
     @Query("SELECT MIN(last_updated) FROM feed_last_updated")
@@ -114,7 +124,8 @@ abstract class FeedDAO {
     @Query("SELECT COUNT(*) FROM feed_last_updated WHERE last_updated IS NULL")
     abstract fun notLoadedCount(): Flowable<Long>
 
-    @Query("""
+    @Query(
+        """
         SELECT COUNT(*) FROM subscriptions s
         
         INNER JOIN feed_group_subscription_join fgs
@@ -124,20 +135,24 @@ abstract class FeedDAO {
         ON s.uid = lu.subscription_id 
 
         WHERE lu.last_updated IS NULL
-        """)
+        """
+    )
     abstract fun notLoadedCountForGroup(groupId: Long): Flowable<Long>
 
-    @Query("""
+    @Query(
+        """
         SELECT s.* FROM subscriptions s
 
         LEFT JOIN feed_last_updated lu
         ON s.uid = lu.subscription_id 
 
         WHERE lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold
-        """)
+        """
+    )
     abstract fun getAllOutdated(outdatedThreshold: OffsetDateTime): Flowable<List<SubscriptionEntity>>
 
-    @Query("""
+    @Query(
+        """
         SELECT s.* FROM subscriptions s
 
         INNER JOIN feed_group_subscription_join fgs
@@ -147,6 +162,7 @@ abstract class FeedDAO {
         ON s.uid = lu.subscription_id
 
         WHERE lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold
-        """)
+        """
+    )
     abstract fun getAllOutdatedForGroup(groupId: Long, outdatedThreshold: OffsetDateTime): Flowable<List<SubscriptionEntity>>
 }

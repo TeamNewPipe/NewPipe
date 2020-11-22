@@ -20,7 +20,7 @@ data class FeedGroupReorderItem(
     val dragCallback: ItemTouchHelper
 ) : Item() {
     constructor (feedGroupEntity: FeedGroupEntity, dragCallback: ItemTouchHelper) :
-            this(feedGroupEntity.uid, feedGroupEntity.name, feedGroupEntity.icon, dragCallback)
+        this(feedGroupEntity.uid, feedGroupEntity.name, feedGroupEntity.icon, dragCallback)
 
     override fun getId(): Long {
         return when (groupId) {

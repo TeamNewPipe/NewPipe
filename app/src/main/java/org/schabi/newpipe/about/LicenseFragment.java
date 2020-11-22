@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 /**
  * Fragment containing the software licenses.

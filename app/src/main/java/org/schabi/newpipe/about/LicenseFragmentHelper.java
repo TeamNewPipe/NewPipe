@@ -16,11 +16,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.disposables.Disposables;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -55,7 +54,7 @@ public final class LicenseFragmentHelper {
     }
 
     /**
-     * @param context
+     * @param context the Android context
      * @return String which is a CSS stylesheet according to the context's theme
      */
     private static String getLicenseStylesheet(@NonNull final Context context) {
@@ -86,7 +85,7 @@ public final class LicenseFragmentHelper {
 
     static Disposable showLicense(@Nullable final Context context, @NonNull final License license) {
         if (context == null) {
-            return Disposables.empty();
+            return Disposable.empty();
         }
 
         return Observable.fromCallable(() -> getFormattedLicense(context, license))

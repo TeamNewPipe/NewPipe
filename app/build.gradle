@@ -89,20 +89,20 @@ android {
 
 ext {
     icepickVersion = '3.2.0'
-    checkstyleVersion = '8.36.2'
+    checkstyleVersion = '8.37'
     stethoVersion = '1.5.1'
-    leakCanaryVersion = '2.2'
+    leakCanaryVersion = '2.5'
     exoPlayerVersion = '2.11.8'
     androidxLifecycleVersion = '2.2.0'
-    androidxRoomVersion = '2.2.5'
-    groupieVersion = '2.8.0'
-    markwonVersion = '4.3.1'
+    androidxRoomVersion = '2.3.0-alpha03'
+    groupieVersion = '2.8.1'
+    markwonVersion = '4.6.0'
     googleAutoServiceVersion = '1.0-rc7'
 }
 
 configurations {
     checkstyle
-//    ktlint
+    ktlint
 }
 
 checkstyle {
@@ -130,79 +130,81 @@ task runCheckstyle(type: Checkstyle) {
     }
 }
 
-//task runKtlint(type: JavaExec) {
-//    main = "com.pinterest.ktlint.Main"
-//    classpath = configurations.ktlint
-//    args "src/**/*.kt"
-//}
-//
-//task formatKtlint(type: JavaExec) {
-//    main = "com.pinterest.ktlint.Main"
-//    classpath = configurations.ktlint
-//    args "-F", "src/**/*.kt"
-//}
+def outputDir = "${project.buildDir}/reports/ktlint/"
+def inputFiles = project.fileTree(dir: "src", include: "**/*.kt")
+
+task runKtlint(type: JavaExec) {
+    inputs.files(inputFiles)
+    outputs.dir(outputDir)
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+}
+
+task formatKtlint(type: JavaExec) {
+    inputs.files(inputFiles)
+    outputs.dir(outputDir)
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
 
 afterEvaluate {
-    preDebugBuild.dependsOn runCheckstyle //, runKtlint
+    preDebugBuild.dependsOn formatKtlint, runCheckstyle, runKtlint
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
 
     implementation "frankiesardo:icepick:${icepickVersion}"
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
-//    ktlint "com.pinterest:ktlint:0.35.0"
+    ktlint "com.pinterest:ktlint:0.39.0"
 
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
     implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
+    implementation "com.squareup.leakcanary:plumber-android:${leakCanaryVersion}"
 
     implementation "androidx.multidex:multidex:2.0.1"
 
-    testImplementation 'junit:junit:4.13.1'
-    testImplementation 'org.mockito:mockito-core:3.3.3'
-
-    androidTestImplementation "androidx.test.ext:junit:1.1.1"
-    androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0", {
-        exclude module: 'support-annotations'
-    }
-
     // NewPipe dependencies
     // You can use a local version by uncommenting a few lines in settings.gradle
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:6701b0fe718f6bdc385221341fa473e8aaab560e'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:650f0920fea535e08728d895d7b21f19c740817c'
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
 
     implementation "org.jsoup:jsoup:1.13.1"
 
+    //noinspection GradleDependency --> do not update okhttp to keep supporting Android 4.4 users
     implementation "com.squareup.okhttp3:okhttp:3.12.12"
 
     implementation "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"
     implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
 
-    implementation "com.google.android.material:material:1.1.0"
+    implementation "com.google.android.material:material:1.2.1"
 
     compileOnly "com.google.auto.service:auto-service-annotations:${googleAutoServiceVersion}"
     kapt "com.google.auto.service:auto-service:${googleAutoServiceVersion}"
 
-    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.appcompat:appcompat:1.2.0"
     implementation "androidx.preference:preference:1.1.1"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
-    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 
     implementation "androidx.lifecycle:lifecycle-livedata:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel:${androidxLifecycleVersion}"
 
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
-    implementation "androidx.room:room-rxjava2:${androidxRoomVersion}"
+    implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
@@ -218,13 +220,22 @@ dependencies {
 
     implementation "com.nononsenseapps:filepicker:4.2.1"
 
-    implementation "ch.acra:acra-core:5.5.0"
+    implementation "ch.acra:acra-core:5.7.0"
 
-    implementation "io.reactivex.rxjava2:rxjava:2.2.19"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
-    implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
+    implementation "io.reactivex.rxjava3:rxjava:3.0.7"
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
+    implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
     implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
+
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.mockito:mockito-core:3.6.0'
+
+    androidTestImplementation "androidx.test.ext:junit:1.1.2"
+    androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0", {
+        exclude module: 'support-annotations'
+    }
 }
 
 static String getGitWorkingBranch() {

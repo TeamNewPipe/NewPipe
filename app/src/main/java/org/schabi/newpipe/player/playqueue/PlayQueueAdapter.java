@@ -20,8 +20,8 @@ import org.schabi.newpipe.util.FallbackViewHolder;
 
 import java.util.List;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Created by Christian Schabesberger on 01.08.16.

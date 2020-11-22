@@ -49,8 +49,10 @@ class FeedImportExportItem(
 
         expandIconListener?.let { viewHolder.import_export_options.removeListener(it) }
         expandIconListener = CollapsibleView.StateListener { newState ->
-            AnimationUtils.animateRotation(viewHolder.import_export_expand_icon,
-                    250, if (newState == CollapsibleView.COLLAPSED) 0 else 180)
+            AnimationUtils.animateRotation(
+                viewHolder.import_export_expand_icon,
+                250, if (newState == CollapsibleView.COLLAPSED) 0 else 180
+            )
         }
 
         viewHolder.import_export_options.currentState = if (isExpanded) CollapsibleView.EXPANDED else CollapsibleView.COLLAPSED
@@ -85,8 +87,10 @@ class FeedImportExportItem(
     }
 
     private fun setupImportFromItems(listHolder: ViewGroup) {
-        val previousBackupItem = addItemView(listHolder.context.getString(R.string.previous_export),
-                ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_backup), listHolder)
+        val previousBackupItem = addItemView(
+            listHolder.context.getString(R.string.previous_export),
+            ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_backup), listHolder
+        )
         previousBackupItem.setOnClickListener { onImportPreviousSelected() }
 
         val iconColor = if (ThemeHelper.isLightThemeSelected(listHolder.context)) Color.BLACK else Color.WHITE
@@ -112,8 +116,10 @@ class FeedImportExportItem(
     }
 
     private fun setupExportToItems(listHolder: ViewGroup) {
-        val previousBackupItem = addItemView(listHolder.context.getString(R.string.file),
-                ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_save), listHolder)
+        val previousBackupItem = addItemView(
+            listHolder.context.getString(R.string.file),
+            ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_save), listHolder
+        )
         previousBackupItem.setOnClickListener { onExportSelected() }
     }
 }

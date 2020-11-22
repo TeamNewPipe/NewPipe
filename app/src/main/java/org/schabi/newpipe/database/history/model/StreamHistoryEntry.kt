@@ -2,8 +2,8 @@ package org.schabi.newpipe.database.history.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
-import java.time.OffsetDateTime
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import java.time.OffsetDateTime
 
 data class StreamHistoryEntry(
     @Embedded
@@ -25,6 +25,6 @@ data class StreamHistoryEntry(
 
     fun hasEqualValues(other: StreamHistoryEntry): Boolean {
         return this.streamEntity.uid == other.streamEntity.uid && streamId == other.streamId &&
-                accessDate.isEqual(other.accessDate)
+            accessDate.isEqual(other.accessDate)
     }
 }

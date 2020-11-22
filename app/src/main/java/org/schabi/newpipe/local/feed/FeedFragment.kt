@@ -37,7 +37,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import icepick.State
-import java.util.Calendar
 import kotlinx.android.synthetic.main.error_retry.error_button_retry
 import kotlinx.android.synthetic.main.error_retry.error_message_view
 import kotlinx.android.synthetic.main.fragment_feed.empty_state_view
@@ -55,6 +54,7 @@ import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.report.UserAction
 import org.schabi.newpipe.util.AnimationUtils.animateView
 import org.schabi.newpipe.util.Localization
+import java.util.Calendar
 
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private lateinit var viewModel: FeedViewModel
@@ -76,7 +76,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         super.onCreate(savedInstanceState)
 
         groupId = arguments?.getLong(KEY_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID)
-                ?: FeedGroupEntity.GROUP_ALL_ID
+            ?: FeedGroupEntity.GROUP_ALL_ID
         groupName = arguments?.getString(KEY_GROUP_NAME) ?: ""
     }
 
@@ -144,15 +144,15 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
             }
 
             AlertDialog.Builder(requireContext())
-                    .setMessage(R.string.feed_use_dedicated_fetch_method_help_text)
-                    .setNeutralButton(enableDisableButtonText) { _, _ ->
-                        sharedPreferences.edit {
-                            putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), !usingDedicatedMethod)
-                        }
+                .setMessage(R.string.feed_use_dedicated_fetch_method_help_text)
+                .setNeutralButton(enableDisableButtonText) { _, _ ->
+                    sharedPreferences.edit {
+                        putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), !usingDedicatedMethod)
                     }
-                    .setPositiveButton(resources.getString(R.string.finish), null)
-                    .create()
-                    .show()
+                }
+                .setPositiveButton(resources.getString(R.string.finish), null)
+                .create()
+                .show()
             return true
         }
 
@@ -234,7 +234,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         showLoading()
 
         val isIndeterminate = progressState.currentProgress == -1 &&
-                progressState.maxProgress == -1
+            progressState.maxProgress == -1
 
         if (!isIndeterminate) {
             loading_progress_text.text = "${progressState.currentProgress}/${progressState.maxProgress}"
@@ -245,7 +245,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         }
 
         loading_progress_bar.isIndeterminate = isIndeterminate ||
-                (progressState.maxProgress > 0 && progressState.currentProgress == 0)
+            (progressState.maxProgress > 0 && progressState.currentProgress == 0)
         loading_progress_bar.progress = progressState.currentProgress
 
         loading_progress_bar.max = progressState.maxProgress
@@ -267,8 +267,10 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         }
 
         if (loadedState.itemsErrors.isNotEmpty()) {
-            showSnackBarError(loadedState.itemsErrors, UserAction.REQUESTED_FEED,
-                    "none", "Loading feed", R.string.general_error)
+            showSnackBarError(
+                loadedState.itemsErrors, UserAction.REQUESTED_FEED,
+                "none", "Loading feed", R.string.general_error
+            )
         }
 
         if (loadedState.items.isEmpty()) {
@@ -311,9 +313,11 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     override fun hasMoreItems() = false
 
     private fun triggerUpdate() {
-        getActivity()?.startService(Intent(requireContext(), FeedLoadService::class.java).apply {
-            putExtra(FeedLoadService.EXTRA_GROUP_ID, groupId)
-        })
+        getActivity()?.startService(
+            Intent(requireContext(), FeedLoadService::class.java).apply {
+                putExtra(FeedLoadService.EXTRA_GROUP_ID, groupId)
+            }
+        )
         listState = null
     }
 

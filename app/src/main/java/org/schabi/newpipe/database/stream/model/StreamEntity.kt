@@ -5,8 +5,6 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import java.io.Serializable
-import java.time.OffsetDateTime
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_SERVICE_ID
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_TABLE
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_URL
@@ -15,11 +13,14 @@ import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
+import java.io.Serializable
+import java.time.OffsetDateTime
 
-@Entity(tableName = STREAM_TABLE,
-        indices = [
-            Index(value = [STREAM_SERVICE_ID, STREAM_URL], unique = true)
-        ]
+@Entity(
+    tableName = STREAM_TABLE,
+    indices = [
+        Index(value = [STREAM_SERVICE_ID, STREAM_URL], unique = true)
+    ]
 )
 data class StreamEntity(
     @PrimaryKey(autoGenerate = true)
@@ -61,27 +62,27 @@ data class StreamEntity(
 ) : Serializable {
     @Ignore
     constructor(item: StreamInfoItem) : this(
-            serviceId = item.serviceId, url = item.url, title = item.name,
-            streamType = item.streamType, duration = item.duration, uploader = item.uploaderName,
-            thumbnailUrl = item.thumbnailUrl, viewCount = item.viewCount,
-            textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.offsetDateTime(),
-            isUploadDateApproximation = item.uploadDate?.isApproximation
+        serviceId = item.serviceId, url = item.url, title = item.name,
+        streamType = item.streamType, duration = item.duration, uploader = item.uploaderName,
+        thumbnailUrl = item.thumbnailUrl, viewCount = item.viewCount,
+        textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.offsetDateTime(),
+        isUploadDateApproximation = item.uploadDate?.isApproximation
     )
 
     @Ignore
     constructor(info: StreamInfo) : this(
-            serviceId = info.serviceId, url = info.url, title = info.name,
-            streamType = info.streamType, duration = info.duration, uploader = info.uploaderName,
-            thumbnailUrl = info.thumbnailUrl, viewCount = info.viewCount,
-            textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.offsetDateTime(),
-            isUploadDateApproximation = info.uploadDate?.isApproximation
+        serviceId = info.serviceId, url = info.url, title = info.name,
+        streamType = info.streamType, duration = info.duration, uploader = info.uploaderName,
+        thumbnailUrl = info.thumbnailUrl, viewCount = info.viewCount,
+        textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.offsetDateTime(),
+        isUploadDateApproximation = info.uploadDate?.isApproximation
     )
 
     @Ignore
     constructor(item: PlayQueueItem) : this(
-            serviceId = item.serviceId, url = item.url, title = item.title,
-            streamType = item.streamType, duration = item.duration, uploader = item.uploader,
-            thumbnailUrl = item.thumbnailUrl
+        serviceId = item.serviceId, url = item.url, title = item.title,
+        streamType = item.streamType, duration = item.duration, uploader = item.uploader,
+        thumbnailUrl = item.thumbnailUrl
     )
 
     fun toStreamInfoItem(): StreamInfoItem {
