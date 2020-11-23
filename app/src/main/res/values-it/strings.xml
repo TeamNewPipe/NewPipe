@@ -647,4 +647,6 @@
     <string name="show_age_restricted_content_summary">Mostra contenuti che hanno un limite di età (es. 18+). Potrebbero essere inadatti ai bambini.</string>
     <string name="notification_colorize_summary">Lascia che Android modifichi il colore della notifica, secondo il colore principale della copertina (funzione non disponibile per tutti i dispositivi)</string>
     <string name="notification_colorize_title">Colora notifica</string>
+    <string name="show_thumbnail_summary">Mostra le copertine come sfondo della schermata di blocco e all\'interno delle notifiche</string>
+    <string name="show_thumbnail_title">Mostra Copertina</string>
 </resources>
