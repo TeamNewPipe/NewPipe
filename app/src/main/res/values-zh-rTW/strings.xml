@@ -637,4 +637,6 @@
     <string name="show_age_restricted_content_summary">顯示可能不適於兒童的內容（因為其有年齡限制，如18歲以上等）。</string>
     <string name="notification_colorize_summary">讓 Android 根據縮圖中的主要色彩來自訂通知的顏色（請注意，此功能不是在所有裝置上都能正常運作）</string>
     <string name="notification_colorize_title">彩色通知</string>
+    <string name="show_thumbnail_summary">在鎖定畫面上顯示縮圖作為背景與內部通知</string>
+    <string name="show_thumbnail_title">顯示縮圖</string>
 </resources>
