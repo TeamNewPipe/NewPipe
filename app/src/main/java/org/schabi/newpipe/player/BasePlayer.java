@@ -292,11 +292,14 @@ public abstract class BasePlayer implements
 
             return;
         }
-
-        final PlaybackParameters savedParameters = retrievePlaybackParametersFromPreferences();
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        final PlaybackParameters savedParameters =
+                retrievePlaybackParametersFromPreferences(preferences);
         final float playbackSpeed = savedParameters.speed;
         final float playbackPitch = savedParameters.pitch;
-        final boolean playbackSkipSilence = savedParameters.skipSilence;
+        final boolean playbackSkipSilence = preferences.getBoolean(
+                context.getString(R.string.playback_skip_silence_key), getPlaybackSkipSilence());
 
         final boolean samePlayQueue = playQueue != null && playQueue.equals(queue);
 
@@ -381,17 +384,14 @@ public abstract class BasePlayer implements
         }
     }
 
-    private PlaybackParameters retrievePlaybackParametersFromPreferences() {
-        final SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(context);
-
+    private PlaybackParameters retrievePlaybackParametersFromPreferences(
+            final SharedPreferences preferences) {
         final float speed = preferences.getFloat(
                 context.getString(R.string.playback_speed_key), getPlaybackSpeed());
         final float pitch = preferences.getFloat(
                 context.getString(R.string.playback_pitch_key), getPlaybackPitch());
-        final boolean skipSilence = preferences.getBoolean(
-                context.getString(R.string.playback_skip_silence_key), getPlaybackSkipSilence());
-        return new PlaybackParameters(speed, pitch, skipSilence);
+
+        return new PlaybackParameters(speed, pitch);
     }
 
     protected void initPlayback(@NonNull final PlayQueue queue,
@@ -1538,7 +1538,8 @@ public abstract class BasePlayer implements
     }
 
     public boolean getPlaybackSkipSilence() {
-        return getPlaybackParameters().skipSilence;
+        return simpleExoPlayer != null
+                && simpleExoPlayer.getAudioComponent().getSkipSilenceEnabled();
     }
 
     public PlaybackParameters getPlaybackParameters() {
@@ -1563,7 +1564,8 @@ public abstract class BasePlayer implements
 
         savePlaybackParametersToPreferences(roundedSpeed, roundedPitch, skipSilence);
         simpleExoPlayer.setPlaybackParameters(
-                new PlaybackParameters(roundedSpeed, roundedPitch, skipSilence));
+                new PlaybackParameters(roundedSpeed, roundedPitch));
+        simpleExoPlayer.getAudioComponent().setSkipSilenceEnabled(skipSilence);
     }
 
     private void savePlaybackParametersToPreferences(final float speed, final float pitch,

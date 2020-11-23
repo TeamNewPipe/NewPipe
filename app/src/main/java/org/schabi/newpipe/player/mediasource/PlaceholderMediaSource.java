@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.mediasource;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.BaseMediaSource;
 import com.google.android.exoplayer2.source.MediaPeriod;
 import com.google.android.exoplayer2.upstream.Allocator;
@@ -11,6 +12,7 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 public class PlaceholderMediaSource extends BaseMediaSource implements ManagedMediaSource {
+
     // Do nothing, so this will stall the playback
     @Override
     public void maybeThrowSourceInfoRefreshError() { }
@@ -39,5 +41,13 @@ public class PlaceholderMediaSource extends BaseMediaSource implements ManagedMe
     @Override
     public boolean isStreamEqual(@NonNull final PlayQueueItem stream) {
         return false;
+    }
+
+    /**
+     * Returns the {@link MediaItem} whose media is provided by the source.
+     */
+    @Override
+    public MediaItem getMediaItem() {
+        return null;
     }
 }
