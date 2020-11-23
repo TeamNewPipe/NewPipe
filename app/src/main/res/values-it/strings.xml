@@ -121,7 +121,7 @@
     <string name="use_external_video_player_summary">L\'audio potrebbe non essere disponibile per alcune risoluzioni</string>
     <string name="controls_background_title">In sottofondo</string>
     <string name="controls_popup_title">Popup</string>
-    <string name="default_popup_resolution_title">Risoluzione predefinita popup</string>
+    <string name="default_popup_resolution_title">Risoluzione predefinita lettore popup</string>
     <string name="show_higher_resolutions_title">Mostra altre risoluzioni</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato video predefinito</string>
@@ -137,8 +137,8 @@
     <string name="clear">Cancella</string>
     <string name="popup_resizing_indicator_title">Ridimensionamento</string>
     <string name="best_resolution">Risoluzione migliore</string>
-    <string name="msg_popup_permission">Questo permesso è necessario 
-\nper utilizzare il lettore Popup</string>
+    <string name="msg_popup_permission">Questo permesso è necessario
+\nper utilizzare il lettore popup</string>
     <string name="action_settings">Impostazioni</string>
     <string name="action_about">Informazioni</string>
     <string name="title_licenses">Licenze di terze parti</string>
@@ -224,7 +224,7 @@
     <string name="show_hold_to_append_title">Mostra suggerimento «Tieni premuto per accodare»</string>
     <string name="show_hold_to_append_summary">Nei dettagli dei video, mostra un suggerimento alla pressione dei pulsanti per la riproduzione popup o in sottofondo</string>
     <string name="background_player_append">Accodato in sottofondo</string>
-    <string name="popup_playing_append">Accodato in popup</string>
+    <string name="popup_playing_append">Accodato nel lettore popup</string>
     <string name="play_all">Riproduci tutto</string>
     <string name="player_stream_failure">Impossibile riprodurre questo flusso</string>
     <string name="player_unrecoverable_failure">Si è verificato un errore irreversibile del lettore multimediale</string>
@@ -234,7 +234,7 @@
     <string name="play_queue_audio_settings">Impostazioni audio</string>
     <string name="hold_to_append">Tieni premuto per accodare</string>
     <string name="unknown_content">[Sconosciuto]</string>
-    <string name="start_here_on_main">Inizia la riproduzione qui</string>
+    <string name="start_here_on_main">Avvia la riproduzione qui</string>
     <string name="start_here_on_background">Riproduci in sottofondo</string>
     <string name="start_here_on_popup">Riproduci nel lettore popup</string>
     <string name="donation_title">Dona</string>
@@ -245,8 +245,8 @@
     <string name="default_content_country_title">Paese predefinito per i contenuti</string>
     <string name="toggle_orientation">Cambia orientamento</string>
     <string name="switch_to_background">Passa in sottofondo</string>
-    <string name="switch_to_popup">Passa a popup</string>
-    <string name="switch_to_main">Passa a principale</string>
+    <string name="switch_to_popup">Passa alla modalità popup</string>
+    <string name="switch_to_main">Passa al lettore principale</string>
     <string name="service_title">Servizio</string>
     <string name="drawer_open">Apri il menu</string>
     <string name="drawer_close">Chiudi il menu</string>
@@ -264,8 +264,8 @@
     <string name="preferred_player_fetcher_notification_message">Caricamento del contenuto richiesto</string>
     <string name="import_data_title">Importa database</string>
     <string name="export_data_title">Esporta database</string>
-    <string name="import_data_summary">Sovrascrive cronologia e iscrizioni</string>
-    <string name="export_data_summary">Esporta cronologia, iscrizioni e playlist</string>
+    <string name="import_data_summary">Sovrascrive la cronologia e le iscrizioni attuali</string>
+    <string name="export_data_summary">Esporta la cronologia, le iscrizioni e le playlist</string>
     <string name="export_complete_toast">Esportazione completa</string>
     <string name="import_complete_toast">Importazione completa</string>
     <string name="no_valid_zip_file">Nessun file ZIP valido</string>
@@ -286,18 +286,18 @@
     <string name="title_last_played">Ultima riproduzione</string>
     <string name="title_most_played">I più riprodotti</string>
     <string name="always_ask_open_action">Chiedi ogni volta</string>
-    <string name="create_playlist">Nuova Playlist</string>
+    <string name="create_playlist">Nuova playlist</string>
     <string name="delete_playlist">Elimina</string>
     <string name="rename_playlist">Rinomina</string>
     <string name="name">Nome</string>
-    <string name="append_playlist">Aggiungi a Playlist</string>
-    <string name="set_as_playlist_thumbnail">Imposta come Copertina Playlist</string>
-    <string name="bookmark_playlist">Salva Playlist</string>
-    <string name="unbookmark_playlist">Rimuovi Playlist</string>
+    <string name="append_playlist">Aggiungi a playlist</string>
+    <string name="set_as_playlist_thumbnail">Imposta come copertina della playlist</string>
+    <string name="bookmark_playlist">Salva playlist</string>
+    <string name="unbookmark_playlist">Rimuovi playlist</string>
     <string name="delete_playlist_prompt">Eliminare la playlist\?</string>
     <string name="playlist_creation_success">Playlist creata</string>
-    <string name="playlist_add_stream_success">Aggiunto alla Playlist</string>
-    <string name="playlist_thumbnail_change_success">Copertina playlist cambiata.</string>
+    <string name="playlist_add_stream_success">Aggiunto alla playlist</string>
+    <string name="playlist_thumbnail_change_success">Copertina della playlist cambiata.</string>
     <string name="playlist_delete_failure">Impossibile eliminare la playlist.</string>
     <string name="caption_none">Nessun sottotitolo</string>
     <string name="resize_fit">Rientrato</string>
@@ -349,7 +349,7 @@
 \nVuoi continuare?</string>
     <string name="download_thumbnail_title">Carica copertine</string>
     <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle copertine, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Cache immagini svuotata</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Cache delle immagini svuotata</string>
     <string name="metadata_cache_wipe_title">Pulisci cache metadati</string>
     <string name="metadata_cache_wipe_summary">Elimina i dati delle pagine web memorizzati nella cache</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadati svuotata</string>
@@ -648,5 +648,5 @@
     <string name="notification_colorize_summary">Lascia che Android modifichi il colore della notifica, secondo il colore principale della copertina (funzione non disponibile per tutti i dispositivi)</string>
     <string name="notification_colorize_title">Colora notifica</string>
     <string name="show_thumbnail_summary">Mostra le copertine come sfondo della schermata di blocco e all\'interno delle notifiche</string>
-    <string name="show_thumbnail_title">Mostra Copertina</string>
+    <string name="show_thumbnail_title">Mostra copertina</string>
 </resources>
