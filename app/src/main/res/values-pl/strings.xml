@@ -657,4 +657,6 @@
     <string name="show_age_restricted_content_summary">Pokaż treści nieodpowiednie dla dzieci, ponieważ mają ograniczenia wiekowe (np. 18+).</string>
     <string name="notification_colorize_summary">Niech Android dostosuje kolor powiadomienia zgodnie z głównym kolorem na miniaturze (nie jest to dostępne na wszystkich urządzeniach)</string>
     <string name="notification_colorize_title">Pokolorowanie powiadomienia</string>
+    <string name="show_thumbnail_summary">Pokazuj miniaturkę na ekranie blokady jako tło oraz wewnątrz powiadomień</string>
+    <string name="show_thumbnail_title">Pokaż miniaturkę</string>
 </resources>
