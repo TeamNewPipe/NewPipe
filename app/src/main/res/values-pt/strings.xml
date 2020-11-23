@@ -647,4 +647,6 @@
     <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente impróprio para crianças porque tem um limite de idade (como 18+).</string>
     <string name="notification_colorize_summary">Fazer com que o Android personalize a cor da notificação de acordo com a cor principal na miniatura (esta opção não está disponível em todos os dispositivos)</string>
     <string name="notification_colorize_title">Colorir notificação</string>
+    <string name="show_thumbnail_summary">Mostrar miniaturas no ecrã de bloqueio como fundo e como notificação</string>
+    <string name="show_thumbnail_title">Mostrar miniatura</string>
 </resources>
