@@ -645,4 +645,6 @@
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="notification_colorize_title">Χρωματισμός ειδοποιήσεων</string>
     <string name="notification_colorize_summary">Επιτρέπει στο Android να τροποποιήσει το χρώμα της ειδοποίησης, σύμφωνα με το κύριο χρώμα του εικονιδίου (δεν διατίθεται σε όλες τις συσκευές)</string>
+    <string name="show_thumbnail_summary">Εμφάνιση των εικονιδίων στην οθόνη κλειδώματος, ως φόντο και στις ειδοποιήσεις</string>
+    <string name="show_thumbnail_title">Εμφάνιση</string>
 </resources>
