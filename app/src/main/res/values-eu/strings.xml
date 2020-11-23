@@ -39,7 +39,7 @@
     <string name="use_external_video_player_title">Erabili kanpo bideo-erreproduzigailua</string>
     <string name="use_external_audio_player_title">Erabili kanpo audio-erreproduzigailua</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
-    <string name="main_bg_subtitle">\"Bilatu\" sakatu hasteko
+    <string name="main_bg_subtitle">Sakatu \"Bilatu\" hasteko
 \n</string>
     <string name="download_path_audio_title">Audioa deskargatzeko karpeta</string>
     <string name="download_path_audio_dialog_title">Aukeratu audio fitxategiak deskargatzeko karpeta</string>
@@ -647,4 +647,6 @@
     <string name="notification_actions_summary">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Hautatu horietako hiru gehienez jakinarazpen trinkoan erakusteko eskuineko kontrol laukiak erabiliz.</string>
     <string name="notification_colorize_summary">Androidek miniaturako kolore nagusiaren arabera jakinarazpenaren kolorea pertsonalizatzea baimendu (kontuan izan ez dagoela gailu guztietan erabilgarri)</string>
     <string name="notification_colorize_title">Koloreztatu jakinarazpena</string>
+    <string name="show_thumbnail_summary">Erakutsi miniatura blokeo pantailan atzeko planoko eta barruko jakinarazpen bezala</string>
+    <string name="show_thumbnail_title">Erakutsi miniatura</string>
 </resources>
