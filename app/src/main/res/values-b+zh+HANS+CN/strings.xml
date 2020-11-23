@@ -638,4 +638,6 @@
     <string name="show_age_restricted_content_summary">展示可能不适合儿童观看的内容，因为它有年龄限制(比如18岁以上)。</string>
     <string name="notification_colorize_summary">让安卓系统根据视频缩略图的主色彩自定义通知的颜色（注意，该特性并非在所有设备上都可用）</string>
     <string name="notification_colorize_title">对通知着色</string>
+    <string name="show_thumbnail_summary">在锁定屏幕上显示缩略图为背景和内部通知</string>
+    <string name="show_thumbnail_title">显示缩略图</string>
 </resources>
