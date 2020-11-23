@@ -15,7 +15,7 @@ public class CircularFileWriter extends SharpStream {
     private final static int NOTIFY_BYTES_INTERVAL = 64 * 1024;// 64 KiB
     private final static int THRESHOLD_AUX_LENGTH = 15 * 1024 * 1024;// 15 MiB
 
-    private OffsetChecker callback;
+    private final OffsetChecker callback;
 
     public ProgressReport onProgress;
     public WriteErrorHandle onWriteError;

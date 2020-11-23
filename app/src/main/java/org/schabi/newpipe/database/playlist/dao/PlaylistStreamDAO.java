@@ -11,7 +11,7 @@ import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 
 import static org.schabi.newpipe.database.playlist.PlaylistMetadataEntry.PLAYLIST_STREAM_COUNT;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_ID;
@@ -24,6 +24,9 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JO
 import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.JOIN_STREAM_ID_ALIAS;
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_TIME;
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
 
 @Dao
 public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity> {
@@ -58,6 +61,13 @@ public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity
 
             // then merge with the stream metadata
             + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
+
+            + " LEFT JOIN "
+            + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
+            +  STREAM_PROGRESS_TIME
+            + " FROM " + STREAM_STATE_TABLE + " )"
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS
+
             + " ORDER BY " + JOIN_INDEX + " ASC")
     public abstract Flowable<List<PlaylistStreamEntry>> getOrderedStreamsOf(long playlistId);
 

@@ -36,8 +36,10 @@ class ChannelItem(
         viewHolder.itemAdditionalDetails.text = getDetailLine(viewHolder.root.context)
         if (itemVersion == ItemVersion.NORMAL) viewHolder.itemChannelDescriptionView.text = infoItem.description
 
-        ImageLoader.getInstance().displayImage(infoItem.thumbnailUrl, viewHolder.itemThumbnailView,
-                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS)
+        ImageLoader.getInstance().displayImage(
+            infoItem.thumbnailUrl, viewHolder.itemThumbnailView,
+            ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS
+        )
 
         gesturesListener?.run {
             viewHolder.containerView.setOnClickListener { selected(infoItem) }

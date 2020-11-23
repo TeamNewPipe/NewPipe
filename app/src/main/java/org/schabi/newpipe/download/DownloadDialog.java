@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -34,6 +33,7 @@ import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -49,6 +49,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -69,7 +70,7 @@ import java.util.Locale;
 
 import icepick.Icepick;
 import icepick.State;
-import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import us.shandian.giga.get.MissionRecoveryInfo;
 import us.shandian.giga.io.StoredDirectoryHelper;
 import us.shandian.giga.io.StoredFileHelper;
@@ -602,7 +603,7 @@ public class DownloadDialog extends DialogFragment
                 Collections.singletonList(e),
                 null,
                 null,
-                ErrorActivity.ErrorInfo
+                ErrorInfo
                         .make(UserAction.SOMETHING_ELSE, "-", "-", R.string.general_error)
         );
     }

@@ -222,6 +222,8 @@
     <string name="feed_update_threshold_key" translatable="false">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value" translatable="false">300</string>
 
+    <string name="show_thumbnail_key" translatable="false">show_thumbnail_key</string>
+
     <!-- Values will be localized in runtime -->
     <string-array name="feed_update_threshold_options" translatable="false">
         <item>@string/feed_update_threshold_option_always_update</item>

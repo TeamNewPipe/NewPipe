@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,6 +25,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,16 +44,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class PeertubeInstanceListFragment extends Fragment {
     private static final int MENU_ITEM_RESTORE_ID = 123456;
 
-    private List<PeertubeInstance> instanceList = new ArrayList<>();
+    private final List<PeertubeInstance> instanceList = new ArrayList<>();
     private PeertubeInstance selectedInstance;
     private String savedInstanceListKey;
     private InstanceListAdapter instanceListAdapter;
@@ -344,7 +344,7 @@ public class PeertubeInstanceListFragment extends Fragment {
     private class InstanceListAdapter
             extends RecyclerView.Adapter<InstanceListAdapter.TabViewHolder> {
         private final LayoutInflater inflater;
-        private ItemTouchHelper itemTouchHelper;
+        private final ItemTouchHelper itemTouchHelper;
         private RadioButton lastChecked;
 
         InstanceListAdapter(final Context context, final ItemTouchHelper itemTouchHelper) {
@@ -377,11 +377,11 @@ public class PeertubeInstanceListFragment extends Fragment {
         }
 
         class TabViewHolder extends RecyclerView.ViewHolder {
-            private AppCompatImageView instanceIconView;
-            private TextView instanceNameView;
-            private TextView instanceUrlView;
-            private RadioButton instanceRB;
-            private ImageView handle;
+            private final AppCompatImageView instanceIconView;
+            private final TextView instanceNameView;
+            private final TextView instanceUrlView;
+            private final RadioButton instanceRB;
+            private final ImageView handle;
 
             TabViewHolder(final View itemView) {
                 super(itemView);

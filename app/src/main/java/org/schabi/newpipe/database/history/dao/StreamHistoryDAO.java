@@ -10,7 +10,7 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.JOIN_STREAM_ID;
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_ACCESS_DATE;
@@ -20,6 +20,9 @@ import static org.schabi.newpipe.database.stream.StreamStatisticsEntry.STREAM_LA
 import static org.schabi.newpipe.database.stream.StreamStatisticsEntry.STREAM_WATCH_COUNT;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.JOIN_STREAM_ID_ALIAS;
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_TIME;
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
 
 @Dao
 public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity> {
@@ -73,6 +76,12 @@ public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity
             + "  SUM(" + STREAM_REPEAT_COUNT + ") AS " + STREAM_WATCH_COUNT
             + " FROM " + STREAM_HISTORY_TABLE + " GROUP BY " + JOIN_STREAM_ID + ")"
 
-            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID)
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
+
+            + " LEFT JOIN "
+            + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
+            +  STREAM_PROGRESS_TIME
+            + " FROM " + STREAM_STATE_TABLE + " )"
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS)
     public abstract Flowable<List<StreamStatisticsEntry>> getStatistics();
 }

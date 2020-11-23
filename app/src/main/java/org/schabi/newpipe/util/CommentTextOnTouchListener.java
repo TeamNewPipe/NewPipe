@@ -23,9 +23,9 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CommentTextOnTouchListener implements View.OnTouchListener {
     public static final CommentTextOnTouchListener INSTANCE = new CommentTextOnTouchListener();

@@ -31,7 +31,7 @@
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_other_title">Остало</string>
     <string name="list_thumbnail_view_description">Сличица видео прегледа</string>
-    <string name="detail_thumbnail_view_description">Сличица видео прегледа</string>
+    <string name="detail_thumbnail_view_description">Пусти видео, трајање:</string>
     <string name="detail_uploader_thumbnail_view_description">Сличица аватара отпремаоца</string>
     <string name="detail_dislikes_img_view_description">Несвиђања</string>
     <string name="detail_likes_img_view_description">Свиђања</string>
@@ -58,13 +58,13 @@
     <string name="content">Садржај</string>
     <string name="show_age_restricted_content_title">Прикажи старосно-ограничени садржај</string>
     <string name="could_not_setup_download_menu">Не могу да поставим мени преузимања</string>
-    <string name="live_streams_not_supported">Ово је ТОК УЖИВО, ово још није подржано.</string>
+    <string name="live_streams_not_supported">Преноси уживо још увек нису подржани</string>
     <string name="light_parsing_error">Не могу да рашчланим веб-сајт у целости</string>
     <string name="could_not_get_stream">Не могу да добавим ниједан ток</string>
     <string name="sorry_string">Нажалост, то не би требало да се деси.</string>
-    <string name="error_report_button_text">Пријавите грешку е-поштом</string>
+    <string name="error_report_button_text">Пријавите ову грешку е-поштом</string>
     <string name="error_snackbar_message">Нажалост, десиле су се неке грешке.</string>
-    <string name="error_snackbar_action">ПРИЈАВИ</string>
+    <string name="error_snackbar_action">Пријава</string>
     <string name="what_device_headline">Подаци:</string>
     <string name="what_happened_headline">Шта се десило:</string>
     <string name="your_comment">Ваш коментар (на енглеском):</string>
@@ -72,11 +72,12 @@
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
     <string name="retry">Покушај поново</string>
-    <string name="storage_permission_denied">Дозвола за приступ складишту је одбијена</string>
+    <string name="storage_permission_denied">Прво одобрите приступ складишту</string>
     <string name="report_error">Пријавите грешку</string>
     <string name="user_report">Извештај корисника</string>
     <string name="duration_live">уживо</string>
-    <string name="main_bg_subtitle">Тапните на претрагу за почетак</string>
+    <string name="main_bg_subtitle">Додирните \"Претражи\" да бисте започели
+\n</string>
     <string name="autoplay_by_calling_app_title">Аутопуштање</string>
     <string name="autoplay_by_calling_app_summary">Пушта видео по позиву друге апликације</string>
     <string name="start">Почни</string>
@@ -102,7 +103,7 @@
     <string name="error_report_title">Извештај о грешци</string>
     <string name="could_not_load_image">Не могох да учитам слику</string>
     <string name="app_ui_crash">Апликација/УИ је краховала</string>
-    <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nУслуга:\\nГМТ време:\\nПакет:\\nИздање:\\nИздање ОС-а:\\nГлоб. ИП распон:</string>
+    <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nЗемља садржаја:\\nЈезик апликације:\\nУслуга:\\nГМТ време:\\nПакет:\\nИздање:\\nИздање ОС-а:</string>
     <string name="title_activity_recaptcha">reCAPTCHA стопка</string>
     <string name="recaptcha_request_toast">Решите reCAPTCHA стопку</string>
     <string name="black_theme_title">Црна</string>
@@ -115,7 +116,7 @@
     <string name="later">Касније</string>
     <string name="open_in_popup_mode">Отвори у искачућем режиму</string>
     <string name="msg_popup_permission">Ова дозвола је потребна за
-отварање у искачућем режиму</string>
+\nотварање у искачућем режиму</string>
     <string name="popup_mode_share_menu_title">Режим прозорчета</string>
     <string name="popup_playing_toast">Пуштање у режиму прозорчета</string>
     <string name="disabled">Искључено</string>
@@ -132,7 +133,7 @@
     <string name="popup_remember_size_pos_title">Упамти величину и позицију искачућег прозора</string>
     <string name="popup_remember_size_pos_summary">Памти последњу величину и позицију искачућег прозорчета</string>
     <string name="player_gesture_controls_title">Контроле прејера потезом</string>
-    <string name="player_gesture_controls_summary">Користите потезе за управљање осветљајем у јачином звука</string>
+    <string name="player_gesture_controls_summary">Користите покрете како би контролисали осветљеност и јачину звука плејера</string>
     <string name="show_search_suggestions_title">Предлози у претрази</string>
     <string name="show_search_suggestions_summary">Приказује предлоге током претраге</string>
     <string name="settings_category_popup_title">Искачући прозор</string>
@@ -144,9 +145,9 @@
     <string name="fragment_feed_title">Шта је ново</string>
     <string name="enable_search_history_title">Историјат претраге</string>
     <string name="enable_search_history_summary">Уписуј појмове претраге локално</string>
-    <string name="enable_watch_history_title">Историјат</string>
+    <string name="enable_watch_history_title">Историја гледања</string>
     <string name="enable_watch_history_summary">Чувај историјат гледања</string>
-    <string name="resume_on_audio_focus_gain_title">Настави по дохвату фокуса</string>
+    <string name="resume_on_audio_focus_gain_title">Настави са репродукцијом</string>
     <string name="best_resolution">Најбоља резолуција</string>
     <string name="settings_category_downloads_title">Преузми</string>
     <string name="title_activity_about">О програму</string>
@@ -167,13 +168,13 @@
     <string name="action_history">Историјат</string>
     <string name="history_empty">Историјат је празан</string>
     <string name="history_cleared">Историјат очишћен</string>
-    <string name="resume_on_audio_focus_gain_summary">Настави пуштање након прекида (нпр. позива)</string>
+    <string name="resume_on_audio_focus_gain_summary">Настави репродукцију након прекида (нпр. позива)</string>
     <string name="settings_file_charset_title">Дозвољени знакови у називима</string>
     <string name="charset_letters_and_digits">Слова и бројке</string>
     <string name="copyright" formatted="true">© %1$s од %2$s под %3$s</string>
     <string name="error_unable_to_load_license">Не могу да учитам лиценцу</string>
     <string name="channel_unsubscribed">Одјављен са канала</string>
-    <string name="subscription_change_failed">Не могу да изменим претплату</string>
+    <string name="subscription_change_failed">Није могуће променити претплату</string>
     <string name="subscription_update_failed">Није могуће ажурирати претплату</string>
     <string name="settings_category_player_title">Плејер</string>
     <string name="settings_category_player_behavior_title">Понашање</string>
@@ -246,14 +247,14 @@
     <string name="unknown_content">[непознато]</string>
     <string name="show_hold_to_append_title">Прикажи поруку \"задржи ради стављања у ред\"</string>
     <string name="donation_title">Донирај</string>
-    <string name="donation_encouragement">ЊуПајп развијају волонтери у своје слободно време како би вама пружили најбоље искуство. Сада је време да им узвратите како би они могли да наставе са побољшавањем ЊуПајпа док уживају пијући кафу!</string>
+    <string name="donation_encouragement">ЊуПајп су развили волонтери који своје слободно време проводе доносећи вам најбоље корисничко искуство. Узвратите како бисте помогли програмерима да ЊуПајп учине чак и бољим док уживају у шољи кафе.</string>
     <string name="give_back">Узврати</string>
     <string name="website_title">Вебсајт</string>
-    <string name="website_encouragement">Да бисте добили више информација и најновије вести о ЊуПајпу посетите наш вебсајт.</string>
+    <string name="website_encouragement">За више информација и новости посетите ЊуПајпов вебсајт.</string>
     <string name="hold_to_append">Задржи за стављање у ред</string>
     <string name="start_here_on_main">Пусти одавде</string>
     <string name="use_inexact_seek_title">Користи брзо, али непрецизно премотавање</string>
-    <string name="use_inexact_seek_summary">Омогућава плејеру да брже долази до позиције уз смањену прецизност</string>
+    <string name="use_inexact_seek_summary">Непрецизно премотавање омогућава плејеру да брже долази до позиције уз смањену прецизност. Премотавање за 5, 15 или 25 секунди са овом опцијом не ради.</string>
     <string name="download_thumbnail_title">Учитавање слика</string>
     <string name="download_thumbnail_summary">Искључите како се не би преузимале слике, чиме ћете смањити количину пренетог саобраћаја и потрошњу меморије. Промена ове опције ће уклонити слике из радне и трајне меморије.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Очишћен кеш са сликама</string>

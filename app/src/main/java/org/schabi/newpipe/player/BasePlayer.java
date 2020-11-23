@@ -27,13 +27,13 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -83,17 +83,16 @@ import org.schabi.newpipe.util.VideoSegment;
 import java.io.IOException;
 import java.util.Set;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.disposables.SerialDisposable;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.SerialDisposable;
 
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
-import static io.reactivex.android.schedulers.AndroidSchedulers.mainThread;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
@@ -846,8 +845,9 @@ public abstract class BasePlayer implements
     }
 
     private Disposable getProgressReactor() {
-        return Observable.interval(PROGRESS_LOOP_INTERVAL_MILLIS, MILLISECONDS, mainThread())
-                .observeOn(mainThread())
+        return Observable.interval(PROGRESS_LOOP_INTERVAL_MILLIS, MILLISECONDS,
+                AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> triggerProgressUpdate(),
                         error -> Log.e(TAG, "Progress update failure: ", error));
     }
@@ -1512,7 +1512,7 @@ public abstract class BasePlayer implements
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
             final Disposable stateSaver = recordManager.saveStreamState(info, progress)
-                    .observeOn(mainThread())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .doOnError((e) -> {
                         if (DEBUG) {
                             e.printStackTrace();
@@ -1532,7 +1532,7 @@ public abstract class BasePlayer implements
         if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
             final Disposable stateSaver = queueItem.getStream()
                     .flatMapCompletable(info -> recordManager.saveStreamState(info, 0))
-                    .observeOn(mainThread())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .doOnError((e) -> {
                         if (DEBUG) {
                             e.printStackTrace();
@@ -1738,8 +1738,7 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null) {
             return PlaybackParameters.DEFAULT;
         }
-        final PlaybackParameters parameters = simpleExoPlayer.getPlaybackParameters();
-        return parameters == null ? PlaybackParameters.DEFAULT : parameters;
+        return simpleExoPlayer.getPlaybackParameters();
     }
 
     /**

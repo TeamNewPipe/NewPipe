@@ -22,8 +22,6 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -36,7 +34,6 @@ import org.schabi.newpipe.MainActivity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
@@ -108,7 +105,6 @@ public final class StateSaver {
                     + "writeRead = [" + writeRead + "]");
         }
 
-        FileInputStream fileInputStream = null;
         try {
             Queue<Object> savedObjects
                     = STATE_OBJECTS_HOLDER.remove(savedState.getPrefixFileSaved());
@@ -129,10 +125,12 @@ public final class StateSaver {
                 return null;
             }
 
-            fileInputStream = new FileInputStream(file);
-            final ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
-            //noinspection unchecked
-            savedObjects = (Queue<Object>) inputStream.readObject();
+            try (FileInputStream fileInputStream = new FileInputStream(file);
+                 ObjectInputStream inputStream = new ObjectInputStream(fileInputStream)) {
+                //noinspection unchecked
+                savedObjects = (Queue<Object>) inputStream.readObject();
+            }
+
             if (savedObjects != null) {
                 writeRead.readFrom(savedObjects);
             }
@@ -140,13 +138,6 @@ public final class StateSaver {
             return savedState;
         } catch (final Exception e) {
             Log.e(TAG, "Failed to restore state", e);
-        } finally {
-            if (fileInputStream != null) {
-                try {
-                    fileInputStream.close();
-                } catch (final IOException ignored) {
-                }
-            }
         }
         return null;
     }
@@ -229,7 +220,6 @@ public final class StateSaver {
             }
         }
 
-        FileOutputStream fileOutputStream = null;
         try {
             File cacheDir = new File(cacheDirPath);
             if (!cacheDir.exists()) {
@@ -260,19 +250,14 @@ public final class StateSaver {
                 }
             }
 
-            fileOutputStream = new FileOutputStream(file);
-            final ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
-            outputStream.writeObject(savedObjects);
+            try (FileOutputStream fileOutputStream = new FileOutputStream(file);
+                 ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream)) {
+                outputStream.writeObject(savedObjects);
+            }
 
             return new SavedState(prefixFileName, file.getAbsolutePath());
         } catch (final Exception e) {
             Log.e(TAG, "Failed to save state", e);
-        } finally {
-            if (fileOutputStream != null) {
-                try {
-                    fileOutputStream.close();
-                } catch (final IOException ignored) { }
-            }
         }
         return null;
     }
@@ -288,7 +273,7 @@ public final class StateSaver {
             Log.d(TAG, "onDestroy() called with: savedState = [" + savedState + "]");
         }
 
-        if (savedState != null && !TextUtils.isEmpty(savedState.getPathFileSaved())) {
+        if (savedState != null && !savedState.getPathFileSaved().isEmpty()) {
             STATE_OBJECTS_HOLDER.remove(savedState.getPrefixFileSaved());
             try {
                 //noinspection ResultOfMethodCallIgnored
@@ -348,75 +333,4 @@ public final class StateSaver {
          */
         void readFrom(@NonNull Queue<Object> savedObjects) throws Exception;
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Inner
-    //////////////////////////////////////////////////////////////////////////*/
-
-    /**
-     * Information about the saved state on the disk.
-     */
-    public static class SavedState implements Parcelable {
-        @SuppressWarnings("unused")
-        public static final Parcelable.Creator<SavedState> CREATOR
-                = new Parcelable.Creator<SavedState>() {
-            @Override
-            public SavedState createFromParcel(final Parcel in) {
-                return new SavedState(in);
-            }
-
-            @Override
-            public SavedState[] newArray(final int size) {
-                return new SavedState[size];
-            }
-        };
-        private final String prefixFileSaved;
-        private final String pathFileSaved;
-
-        public SavedState(final String prefixFileSaved, final String pathFileSaved) {
-            this.prefixFileSaved = prefixFileSaved;
-            this.pathFileSaved = pathFileSaved;
-        }
-
-        protected SavedState(final Parcel in) {
-            prefixFileSaved = in.readString();
-            pathFileSaved = in.readString();
-        }
-
-        @Override
-        public String toString() {
-            return getPrefixFileSaved() + " > " + getPathFileSaved();
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(final Parcel dest, final int flags) {
-            dest.writeString(prefixFileSaved);
-            dest.writeString(pathFileSaved);
-        }
-
-        /**
-         * Get the prefix of the saved file.
-         *
-         * @return the file prefix
-         */
-        public String getPrefixFileSaved() {
-            return prefixFileSaved;
-        }
-
-        /**
-         * Get the path to the saved file.
-         *
-         * @return the path to the saved file
-         */
-        public String getPathFileSaved() {
-            return pathFileSaved;
-        }
-    }
-
-
 }

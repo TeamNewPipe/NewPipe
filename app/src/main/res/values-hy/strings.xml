@@ -94,4 +94,14 @@
         <item quantity="one">%d րոպե</item>
         <item quantity="other">%d րոպե</item>
     </plurals>
+    <string name="feed_groups_header_title">Ալիքների խմբեր</string>
+    <string name="app_update_notification_content_title">NewPipe֊ի նոր թարմացում է հասանելի</string>
+    <string name="list">Ցանկ</string>
+    <string name="never">Երբեք</string>
+    <string name="minimize_on_exit_none_description">Ոչինչ</string>
+    <string name="accept">Համաձայնել</string>
+    <string name="decline">Մերժել</string>
+    <string name="playback_step">Քայլ</string>
+    <string name="playback_tempo">Տեմպ</string>
+    <string name="download">Բեռնել</string>
 </resources>

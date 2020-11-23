@@ -8,6 +8,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.multidex.MultiDexApplication;
 import androidx.preference.PreferenceManager;
 
@@ -22,6 +23,7 @@ import org.acra.config.CoreConfigurationBuilder;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ExceptionUtils;
@@ -36,13 +38,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import io.reactivex.disposables.Disposable;
-import io.reactivex.exceptions.CompositeException;
-import io.reactivex.exceptions.MissingBackpressureException;
-import io.reactivex.exceptions.OnErrorNotImplementedException;
-import io.reactivex.exceptions.UndeliverableException;
-import io.reactivex.functions.Consumer;
-import io.reactivex.plugins.RxJavaPlugins;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.exceptions.CompositeException;
+import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
+import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
+import io.reactivex.rxjava3.exceptions.UndeliverableException;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
@@ -66,7 +68,7 @@ public class App extends MultiDexApplication {
     protected static final String TAG = App.class.toString();
     private static App app;
 
-    private Disposable disposable = null;
+    @Nullable private Disposable disposable = null;
 
     @NonNull
     public static App getApp() {
@@ -226,7 +228,7 @@ public class App extends MultiDexApplication {
                     ace,
                     null,
                     null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "Could not initialize ACRA crash report", R.string.app_ui_crash));
         }
     }

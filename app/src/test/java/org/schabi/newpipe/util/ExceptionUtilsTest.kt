@@ -1,14 +1,14 @@
 package org.schabi.newpipe.util
 
-import java.io.IOException
-import java.io.InterruptedIOException
-import java.net.SocketException
-import javax.net.ssl.SSLException
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.schabi.newpipe.util.ExceptionUtils.Companion.hasAssignableCause
 import org.schabi.newpipe.util.ExceptionUtils.Companion.hasExactCause
+import java.io.IOException
+import java.io.InterruptedIOException
+import java.net.SocketException
+import javax.net.ssl.SSLException
 
 class ExceptionUtilsTest {
     @Test fun `assignable causes`() {

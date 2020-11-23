@@ -30,14 +30,14 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.reactivex.Observable;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.internal.subscriptions.EmptySubscription;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.internal.subscriptions.EmptySubscription;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.MediaSourceResolutionException;
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.StreamInfoLoadException;
@@ -123,7 +123,7 @@ public class MediaSourceManager {
     @NonNull
     private ManagedMediaSourcePlaylist playlist;
 
-    private Handler removeMediaSourceHandler = new Handler();
+    private final Handler removeMediaSourceHandler = new Handler();
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {

@@ -1,0 +1,14 @@
+Novità e miglioramenti:
+- Opzione per nascondere la miniatura nella notifica e sul blocco schermo
+- Trascina verso il basso per ricaricare il feed
+- Migliori prestazioni nelle liste locali
+
+Bug sistemati:
+- Crash all'avvio e dopo il ripristino dalla RAM
+- Se solo un gesto tra luminosità e volume è abilitato, esso può essere usato dovunque sullo schermo 
+- [YouTube] Sistemate le playlist lunghe
+
+Altro:
+- Pulizia generale del codice
+- Aggiornamento delle dipendenze
+- Aggiornamento delle traduzioni

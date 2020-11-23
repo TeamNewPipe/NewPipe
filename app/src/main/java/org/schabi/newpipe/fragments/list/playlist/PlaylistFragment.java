@@ -51,12 +51,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.reactivex.Flowable;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.disposables.Disposables;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -460,7 +459,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     .doFinally(() -> playlistEntity = null)
                     .subscribe(ignored -> { /* Do nothing */ }, this::onError);
         } else {
-            action = Disposables.empty();
+            action = Disposable.empty();
         }
 
         disposables.add(action);

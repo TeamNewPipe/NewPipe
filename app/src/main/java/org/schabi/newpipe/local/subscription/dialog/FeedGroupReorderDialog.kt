@@ -16,7 +16,6 @@ import com.xwray.groupie.TouchCallback
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.Icepick
 import icepick.State
-import java.util.Collections
 import kotlinx.android.synthetic.main.dialog_feed_group_reorder.confirm_button
 import kotlinx.android.synthetic.main.dialog_feed_group_reorder.feed_groups_list
 import org.schabi.newpipe.R
@@ -25,6 +24,7 @@ import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewMo
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.SuccessEvent
 import org.schabi.newpipe.local.subscription.item.FeedGroupReorderItem
 import org.schabi.newpipe.util.ThemeHelper
+import java.util.Collections
 
 class FeedGroupReorderDialog : DialogFragment() {
     private lateinit var viewModel: FeedGroupReorderDialogViewModel
@@ -51,12 +51,15 @@ class FeedGroupReorderDialog : DialogFragment() {
 
         viewModel = ViewModelProvider(this).get(FeedGroupReorderDialogViewModel::class.java)
         viewModel.groupsLiveData.observe(viewLifecycleOwner, Observer(::handleGroups))
-        viewModel.dialogEventLiveData.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                ProcessingEvent -> disableInput()
-                SuccessEvent -> dismiss()
+        viewModel.dialogEventLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                when (it) {
+                    ProcessingEvent -> disableInput()
+                    SuccessEvent -> dismiss()
+                }
             }
-        })
+        )
 
         feed_groups_list.layoutManager = LinearLayoutManager(requireContext())
         feed_groups_list.adapter = groupAdapter

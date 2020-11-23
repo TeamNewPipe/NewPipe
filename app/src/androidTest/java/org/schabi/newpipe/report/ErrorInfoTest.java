@@ -8,7 +8,6 @@ import androidx.test.filters.LargeTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.report.ErrorActivity.ErrorInfo;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,10 +28,10 @@ public class ErrorInfoTest {
         parcel.setDataPosition(0);
         final ErrorInfo infoFromParcel = ErrorInfo.CREATOR.createFromParcel(parcel);
 
-        assertEquals(UserAction.USER_REPORT, infoFromParcel.userAction);
-        assertEquals("youtube", infoFromParcel.serviceName);
-        assertEquals("request", infoFromParcel.request);
-        assertEquals(R.string.general_error, infoFromParcel.message);
+        assertEquals(UserAction.USER_REPORT, infoFromParcel.getUserAction());
+        assertEquals("youtube", infoFromParcel.getServiceName());
+        assertEquals("request", infoFromParcel.getRequest());
+        assertEquals(R.string.general_error, infoFromParcel.getMessage());
 
         parcel.recycle();
     }

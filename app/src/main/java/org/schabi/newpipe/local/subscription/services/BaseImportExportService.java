@@ -37,6 +37,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExceptionUtils;
 
@@ -45,11 +46,11 @@ import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import io.reactivex.Flowable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Function;
-import io.reactivex.processors.PublishProcessor;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.processors.PublishProcessor;
 
 public abstract class BaseImportExportService extends Service {
     protected final String TAG = this.getClass().getSimpleName();
@@ -119,7 +120,7 @@ public abstract class BaseImportExportService extends Service {
         startForeground(getNotificationId(), notificationBuilder.build());
 
         final Function<Flowable<String>, Publisher<String>> throttleAfterFirstEmission = flow ->
-                flow.limit(1).concatWith(flow.skip(1)
+                flow.take(1).concatWith(flow.skip(1)
                         .throttleLast(NOTIFICATION_SAMPLING_PERIOD, TimeUnit.MILLISECONDS));
 
         disposables.add(notificationUpdater
@@ -153,7 +154,7 @@ public abstract class BaseImportExportService extends Service {
     protected void stopAndReportError(@Nullable final Throwable error, final String request) {
         stopService();
 
-        final ErrorActivity.ErrorInfo errorInfo = ErrorActivity.ErrorInfo
+        final ErrorInfo errorInfo = ErrorInfo
                 .make(UserAction.SUBSCRIPTION, "unknown", request, R.string.general_error);
         ErrorActivity.reportError(this, error != null ? Collections.singletonList(error)
                         : Collections.emptyList(), null, null, errorInfo);

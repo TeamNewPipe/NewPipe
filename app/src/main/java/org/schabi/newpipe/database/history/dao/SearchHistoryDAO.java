@@ -8,7 +8,7 @@ import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 
 import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.CREATION_DATE;
 import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.ID;

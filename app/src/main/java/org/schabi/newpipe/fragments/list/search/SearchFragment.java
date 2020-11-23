@@ -49,6 +49,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
@@ -67,13 +68,13 @@ import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static java.util.Arrays.asList;
@@ -248,7 +249,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         } catch (final Exception e) {
             ErrorActivity.reportError(getActivity(), e, requireActivity().getClass(),
                     requireActivity().findViewById(android.R.id.content),
-                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                    ErrorInfo.make(UserAction.UI_ERROR,
                             "",
                             "", R.string.general_error));
         }
@@ -256,7 +257,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (!TextUtils.isEmpty(searchString)) {
             if (wasLoading.getAndSet(false)) {
                 search(searchString, contentFilter, sortFilter);
-            } else if (infoListAdapter.getItemsList().size() == 0) {
+            } else if (infoListAdapter.getItemsList().isEmpty()) {
                 if (savedState == null) {
                     search(searchString, contentFilter, sortFilter);
                 } else if (!isLoading.get() && !wasSearchFocused) {
@@ -708,7 +709,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         final Observable<String> observable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
-                .startWith(searchString != null
+                .startWithItem(searchString != null
                         ? searchString
                         : "")
                 .filter(ss -> isSuggestionsEnabled);
@@ -977,7 +978,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         lastSearchedString = searchString;
         nextPage = result.getNextPage();
 
-        if (infoListAdapter.getItemsList().size() == 0) {
+        if (infoListAdapter.getItemsList().isEmpty()) {
             if (!result.getRelatedItems().isEmpty()) {
                 infoListAdapter.addInfoItemList(result.getRelatedItems());
             } else {

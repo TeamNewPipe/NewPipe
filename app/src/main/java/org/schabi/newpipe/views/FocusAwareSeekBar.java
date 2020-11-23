@@ -107,7 +107,7 @@ public final class FocusAwareSeekBar extends MarkableSeekBar {
         }
     }
 
-    private final class NestedListener implements OnSeekBarChangeListener {
+    private static final class NestedListener implements OnSeekBarChangeListener {
         private final OnSeekBarChangeListener delegate;
 
         boolean isSeeking;

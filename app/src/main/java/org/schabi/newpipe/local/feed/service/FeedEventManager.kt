@@ -1,15 +1,15 @@
 package org.schabi.newpipe.local.feed.service
 
 import androidx.annotation.StringRes
-import io.reactivex.Flowable
-import io.reactivex.processors.BehaviorProcessor
-import java.util.concurrent.atomic.AtomicBoolean
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.processors.BehaviorProcessor
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
+import java.util.concurrent.atomic.AtomicBoolean
 
 object FeedEventManager {
     private var processor: BehaviorProcessor<Event> = BehaviorProcessor.create()
     private var ignoreUpstream = AtomicBoolean()
-    private var eventsFlowable = processor.startWith(IdleEvent)
+    private var eventsFlowable = processor.startWithItem(IdleEvent)
 
     fun postEvent(event: Event) {
         processor.onNext(event)

@@ -31,7 +31,7 @@ public class StoredDirectoryHelper {
 
     private Context context;
 
-    private String tag;
+    private final String tag;
 
     public StoredDirectoryHelper(@NonNull Context context, @NonNull Uri path, String tag) throws IOException {
         this.tag = tag;
@@ -82,7 +82,7 @@ public class StoredDirectoryHelper {
                     docTree.getUri(), DocumentsContract.getDocumentId(docTree.getUri())
             );
 
-            String[] projection = new String[]{COLUMN_DISPLAY_NAME};
+            String[] projection = {COLUMN_DISPLAY_NAME};
             String selection = "(LOWER(" + COLUMN_DISPLAY_NAME + ") LIKE ?%";
             ContentResolver cr = context.getContentResolver();
 

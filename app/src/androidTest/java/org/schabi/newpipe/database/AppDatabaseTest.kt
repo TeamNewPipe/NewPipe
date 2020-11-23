@@ -31,49 +31,62 @@ class AppDatabaseTest {
     }
 
     @get:Rule
-    val testHelper = MigrationTestHelper(InstrumentationRegistry.getInstrumentation(),
-            AppDatabase::class.java.canonicalName, FrameworkSQLiteOpenHelperFactory())
+    val testHelper = MigrationTestHelper(
+        InstrumentationRegistry.getInstrumentation(),
+        AppDatabase::class.java.canonicalName, FrameworkSQLiteOpenHelperFactory()
+    )
 
     @Test
     fun migrateDatabaseFrom2to3() {
         val databaseInV2 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_2)
 
         databaseInV2.run {
-            insert("streams", SQLiteDatabase.CONFLICT_FAIL, ContentValues().apply {
-                // put("uid", null)
-                put("service_id", DEFAULT_SERVICE_ID)
-                put("url", DEFAULT_URL)
-                put("title", DEFAULT_TITLE)
-                put("stream_type", DEFAULT_TYPE.name)
-                put("duration", DEFAULT_DURATION)
-                put("uploader", DEFAULT_UPLOADER_NAME)
-                put("thumbnail_url", DEFAULT_THUMBNAIL)
-            })
-            insert("streams", SQLiteDatabase.CONFLICT_FAIL, ContentValues().apply {
-                // put("uid", null)
-                put("service_id", DEFAULT_SECOND_SERVICE_ID)
-                put("url", DEFAULT_SECOND_URL)
-                // put("title", null)
-                // put("stream_type", null)
-                // put("duration", null)
-                // put("uploader", null)
-                // put("thumbnail_url", null)
-            })
-            insert("streams", SQLiteDatabase.CONFLICT_FAIL, ContentValues().apply {
-                // put("uid", null)
-                put("service_id", DEFAULT_SERVICE_ID)
-                // put("url", null)
-                // put("title", null)
-                // put("stream_type", null)
-                // put("duration", null)
-                // put("uploader", null)
-                // put("thumbnail_url", null)
-            })
+            insert(
+                "streams", SQLiteDatabase.CONFLICT_FAIL,
+                ContentValues().apply {
+                    // put("uid", null)
+                    put("service_id", DEFAULT_SERVICE_ID)
+                    put("url", DEFAULT_URL)
+                    put("title", DEFAULT_TITLE)
+                    put("stream_type", DEFAULT_TYPE.name)
+                    put("duration", DEFAULT_DURATION)
+                    put("uploader", DEFAULT_UPLOADER_NAME)
+                    put("thumbnail_url", DEFAULT_THUMBNAIL)
+                }
+            )
+            insert(
+                "streams", SQLiteDatabase.CONFLICT_FAIL,
+                ContentValues().apply {
+                    // put("uid", null)
+                    put("service_id", DEFAULT_SECOND_SERVICE_ID)
+                    put("url", DEFAULT_SECOND_URL)
+                    // put("title", null)
+                    // put("stream_type", null)
+                    // put("duration", null)
+                    // put("uploader", null)
+                    // put("thumbnail_url", null)
+                }
+            )
+            insert(
+                "streams", SQLiteDatabase.CONFLICT_FAIL,
+                ContentValues().apply {
+                    // put("uid", null)
+                    put("service_id", DEFAULT_SERVICE_ID)
+                    // put("url", null)
+                    // put("title", null)
+                    // put("stream_type", null)
+                    // put("duration", null)
+                    // put("uploader", null)
+                    // put("thumbnail_url", null)
+                }
+            )
             close()
         }
 
-        testHelper.runMigrationsAndValidate(AppDatabase.DATABASE_NAME, Migrations.DB_VER_3,
-                true, Migrations.MIGRATION_2_3)
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME, Migrations.DB_VER_3,
+            true, Migrations.MIGRATION_2_3
+        )
 
         val migratedDatabaseV3 = getMigratedDatabase()
         val listFromDB = migratedDatabaseV3.streamDAO().all.blockingFirst()
@@ -110,9 +123,11 @@ class AppDatabaseTest {
     }
 
     private fun getMigratedDatabase(): AppDatabase {
-        val database: AppDatabase = Room.databaseBuilder(ApplicationProvider.getApplicationContext(),
-                AppDatabase::class.java, AppDatabase.DATABASE_NAME)
-                .build()
+        val database: AppDatabase = Room.databaseBuilder(
+            ApplicationProvider.getApplicationContext(),
+            AppDatabase::class.java, AppDatabase.DATABASE_NAME
+        )
+            .build()
         testHelper.closeWhenFinished(database)
         return database
     }

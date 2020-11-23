@@ -3,7 +3,6 @@ package org.schabi.newpipe.settings;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -28,6 +27,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
@@ -141,7 +141,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         addPreferencesFromResource(R.xml.content_settings);
 
         final Preference importDataPreference = findPreference(getString(R.string.import_data));
-        importDataPreference.setOnPreferenceClickListener((Preference p) -> {
+        importDataPreference.setOnPreferenceClickListener(p -> {
             final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
@@ -152,7 +152,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         });
 
         final Preference exportDataPreference = findPreference(getString(R.string.export_data));
-        exportDataPreference.setOnPreferenceClickListener((Preference p) -> {
+        exportDataPreference.setOnPreferenceClickListener(p -> {
             final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
@@ -259,9 +259,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage(R.string.override_current_data)
                         .setPositiveButton(getString(R.string.finish),
-                                (DialogInterface d, int id) -> importDatabase(path))
+                                (d, id) -> importDatabase(path))
                         .setNegativeButton(android.R.string.cancel,
-                                (DialogInterface d, int id) -> d.cancel());
+                                (d, id) -> d.cancel());
                 builder.create().show();
             }
         }
@@ -272,15 +272,14 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             //checkpoint before export
             NewPipeDatabase.checkpoint();
 
-            final ZipOutputStream outZip = new ZipOutputStream(
-                    new BufferedOutputStream(
-                            new FileOutputStream(path)));
-            ZipHelper.addFileToZip(outZip, newpipeDb.getPath(), "newpipe.db");
+            try (ZipOutputStream outZip = new ZipOutputStream(new BufferedOutputStream(
+                            new FileOutputStream(path)))) {
+                ZipHelper.addFileToZip(outZip, newpipeDb.getPath(), "newpipe.db");
 
-            saveSharedPreferencesToFile(newpipeSettings);
-            ZipHelper.addFileToZip(outZip, newpipeSettings.getPath(), "newpipe.settings");
-
-            outZip.close();
+                saveSharedPreferencesToFile(newpipeSettings);
+                ZipHelper.addFileToZip(outZip, newpipeSettings.getPath(),
+                        "newpipe.settings");
+            }
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT)
                     .show();
@@ -290,41 +289,24 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     private void saveSharedPreferencesToFile(final File dst) {
-        ObjectOutputStream output = null;
-        try {
-            output = new ObjectOutputStream(new FileOutputStream(dst));
+        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(dst))) {
             final SharedPreferences pref
                     = PreferenceManager.getDefaultSharedPreferences(requireContext());
             output.writeObject(pref.getAll());
-
+            output.flush();
         } catch (final IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (output != null) {
-                    output.flush();
-                    output.close();
-                }
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
         }
     }
 
     private void importDatabase(final String filePath) {
         // check if file is supported
-        ZipFile zipFile = null;
         try {
-            zipFile = new ZipFile(filePath);
+            new ZipFile(filePath);
         } catch (final IOException ioe) {
             Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
                     .show();
             return;
-        } finally {
-            try {
-                zipFile.close();
-            } catch (final Exception ignored) {
-            }
         }
 
         try {
@@ -372,9 +354,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     private void loadSharedPreferences(final File src) {
-        ObjectInputStream input = null;
-        try {
-            input = new ObjectInputStream(new FileInputStream(src));
+        try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(src))) {
             final SharedPreferences.Editor prefEdit = PreferenceManager
                     .getDefaultSharedPreferences(requireContext()).edit();
             prefEdit.clear();
@@ -398,14 +378,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             prefEdit.commit();
         } catch (final IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (input != null) {
-                    input.close();
-                }
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
         }
     }
 
@@ -438,7 +410,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         ErrorActivity.reportError(activity, e,
                 activity.getClass(),
                 null,
-                ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                ErrorInfo.make(UserAction.UI_ERROR,
                         "none", "", R.string.app_ui_crash));
     }
 }

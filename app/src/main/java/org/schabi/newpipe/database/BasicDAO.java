@@ -9,7 +9,7 @@ import androidx.room.Update;
 import java.util.Collection;
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 
 @Dao
 public interface BasicDAO<Entity> {

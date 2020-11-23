@@ -3,7 +3,6 @@ package org.schabi.newpipe.fragments.list.videos;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +12,7 @@ import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -25,13 +25,13 @@ import org.schabi.newpipe.util.RelatedStreamInfo;
 
 import java.io.Serializable;
 
-import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInfo>
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String INFO_KEY = "related_info_key";
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
     private RelatedStreamInfo relatedStreamInfo;
 
     /*//////////////////////////////////////////////////////////////////////////

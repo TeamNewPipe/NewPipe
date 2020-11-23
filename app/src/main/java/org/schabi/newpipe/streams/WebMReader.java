@@ -49,7 +49,7 @@ public class WebMReader {
         Audio/*2*/, Video/*1*/, Other
     }
 
-    private DataReader stream;
+    private final DataReader stream;
     private Segment segment;
     private WebMTrack[] tracks;
     private int selectedTrack;
@@ -397,19 +397,19 @@ public class WebMReader {
         return obj;
     }
 
-    class Element {
+    static class Element {
         int type;
         long offset;
         long contentSize;
         long size;
     }
 
-    public class Info {
+    public static class Info {
         public long timecodeScale;
         public long duration;
     }
 
-    public class WebMTrack {
+    public static class WebMTrack {
         public long trackNumber;
         protected int trackType;
         public String codecId;
@@ -454,7 +454,7 @@ public class WebMReader {
         }
     }
 
-    public class SimpleBlock {
+    public static class SimpleBlock {
         public InputStream data;
         public boolean createdFromBlock;
 

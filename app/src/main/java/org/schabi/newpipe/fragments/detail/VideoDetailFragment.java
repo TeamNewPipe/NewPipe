@@ -15,11 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.ViewTreeObserver;
-import androidx.core.text.HtmlCompat;
-import androidx.preference.PreferenceManager;
 import android.provider.Settings;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.util.DisplayMetrics;
@@ -28,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -46,7 +43,9 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -93,6 +92,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -116,11 +116,11 @@ import java.util.concurrent.TimeUnit;
 import icepick.State;
 import io.noties.markwon.Markwon;
 import io.noties.markwon.linkify.LinkifyPlugin;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
@@ -731,7 +731,7 @@ public final class VideoDetailFragment
     }
 
     private View.OnTouchListener getOnControlsTouchListener() {
-        return (View view, MotionEvent motionEvent) -> {
+        return (view, motionEvent) -> {
             if (!PreferenceManager.getDefaultSharedPreferences(activity)
                     .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
                 return false;
@@ -948,7 +948,7 @@ public final class VideoDetailFragment
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull final StreamInfo result) -> {
+                .subscribe(result -> {
                     isLoading.set(false);
                     hideMainPlayer();
                     if (result.getAgeLimit() != NO_AGE_LIMIT && !prefs.getBoolean(
@@ -969,7 +969,7 @@ public final class VideoDetailFragment
                             openVideoPlayer();
                         }
                     }
-                }, (@NonNull final Throwable throwable) -> {
+                }, throwable -> {
                     isLoading.set(false);
                     onError(throwable);
                 });
@@ -1140,7 +1140,7 @@ public final class VideoDetailFragment
 
         PlayQueue queue = playQueue;
         // Size can be 0 because queue removes bad stream automatically when error occurs
-        if (queue == null || queue.size() == 0) {
+        if (queue == null || queue.isEmpty()) {
             queue = new SinglePlayQueue(currentInfo);
         }
 
@@ -1224,12 +1224,12 @@ public final class VideoDetailFragment
 
         if (description.getType() == Description.HTML) {
             disposables.add(Single.just(description.getContent())
-                    .map((@NonNull final String descriptionText) ->
+                    .map(descriptionText ->
                             HtmlCompat.fromHtml(descriptionText,
                                     HtmlCompat.FROM_HTML_MODE_LEGACY))
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe((@NonNull final Spanned spanned) -> {
+                    .subscribe(spanned -> {
                         videoDescriptionView.setText(spanned);
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));
@@ -1346,19 +1346,24 @@ public final class VideoDetailFragment
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(final Context context, final Intent intent) {
-                if (intent.getAction().equals(ACTION_SHOW_MAIN_PLAYER)) {
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                } else if (intent.getAction().equals(ACTION_HIDE_MAIN_PLAYER)) {
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                } else if (intent.getAction().equals(ACTION_PLAYER_STARTED)) {
-                    // If the state is not hidden we don't need to show the mini player
-                    if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
-                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    }
-                    // Rebound to the service if it was closed via notification or mini player
-                    if (!PlayerHolder.bound) {
-                        PlayerHolder.startService(App.getApp(), false, VideoDetailFragment.this);
-                    }
+                switch (intent.getAction()) {
+                    case ACTION_SHOW_MAIN_PLAYER:
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        break;
+                    case ACTION_HIDE_MAIN_PLAYER:
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                        break;
+                    case ACTION_PLAYER_STARTED:
+                        // If the state is not hidden we don't need to show the mini player
+                        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
+                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        }
+                        // Rebound to the service if it was closed via notification or mini player
+                        if (!PlayerHolder.bound) {
+                            PlayerHolder.startService(
+                                    App.getApp(), false, VideoDetailFragment.this);
+                        }
+                        break;
                 }
             }
         };
@@ -1626,7 +1631,7 @@ public final class VideoDetailFragment
 
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         } catch (final Exception e) {
-            final ErrorActivity.ErrorInfo info = ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+            final ErrorInfo info = ErrorInfo.make(UserAction.UI_ERROR,
                     ServiceList.all()
                             .get(currentInfo
                                     .getServiceId())

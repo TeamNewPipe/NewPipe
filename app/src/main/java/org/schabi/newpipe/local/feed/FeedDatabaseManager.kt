@@ -2,14 +2,11 @@ package org.schabi.newpipe.local.feed
 
 import android.content.Context
 import android.util.Log
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Maybe
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import java.time.LocalDate
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.feed.model.FeedEntity
@@ -19,6 +16,9 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
+import java.time.LocalDate
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
 class FeedDatabaseManager(context: Context) {
     private val database = NewPipeDatabase.getInstance(context)
@@ -31,7 +31,7 @@ class FeedDatabaseManager(context: Context) {
          * Only items that are newer than this will be saved.
          */
         val FEED_OLDEST_ALLOWED_DATE: OffsetDateTime = LocalDate.now().minusWeeks(13)
-                .atStartOfDay().atOffset(ZoneOffset.UTC)
+            .atStartOfDay().atOffset(ZoneOffset.UTC)
     }
 
     fun groups() = feedGroupTable.getAll()
@@ -44,9 +44,9 @@ class FeedDatabaseManager(context: Context) {
             else -> feedTable.getAllStreamsFromGroup(groupId)
         }
 
-        return streams.map<List<StreamInfoItem>> {
+        return streams.map {
             val items = ArrayList<StreamInfoItem>(it.size)
-            it.mapTo(items) { it.toStreamInfoItem() }
+            it.mapTo(items) { stream -> stream.toStreamInfoItem() }
             return@map items
         }
     }
@@ -61,10 +61,10 @@ class FeedDatabaseManager(context: Context) {
     }
 
     fun outdatedSubscriptionsForGroup(groupId: Long = FeedGroupEntity.GROUP_ALL_ID, outdatedThreshold: OffsetDateTime) =
-            feedTable.getAllOutdatedForGroup(groupId, outdatedThreshold)
+        feedTable.getAllOutdatedForGroup(groupId, outdatedThreshold)
 
     fun markAsOutdated(subscriptionId: Long) = feedTable
-            .setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId, null))
+        .setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId, null))
 
     fun upsertAll(
         subscriptionId: Long,
@@ -92,8 +92,12 @@ class FeedDatabaseManager(context: Context) {
             feedTable.insertAll(feedEntities)
         }
 
-        feedTable.setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId,
-                OffsetDateTime.now(ZoneOffset.UTC)))
+        feedTable.setLastUpdatedForSubscription(
+            FeedLastUpdatedEntity(
+                subscriptionId,
+                OffsetDateTime.now(ZoneOffset.UTC)
+            )
+        )
     }
 
     fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE) {
@@ -113,38 +117,38 @@ class FeedDatabaseManager(context: Context) {
 
     fun subscriptionIdsForGroup(groupId: Long): Flowable<List<Long>> {
         return feedGroupTable.getSubscriptionIdsFor(groupId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun updateSubscriptionsForGroup(groupId: Long, subscriptionIds: List<Long>): Completable {
         return Completable.fromCallable { feedGroupTable.updateSubscriptionsForGroup(groupId, subscriptionIds) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun createGroup(name: String, icon: FeedGroupIcon): Maybe<Long> {
         return Maybe.fromCallable { feedGroupTable.insert(FeedGroupEntity(0, name, icon)) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun getGroup(groupId: Long): Maybe<FeedGroupEntity> {
         return feedGroupTable.getGroup(groupId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun updateGroup(feedGroupEntity: FeedGroupEntity): Completable {
         return Completable.fromCallable { feedGroupTable.update(feedGroupEntity) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun deleteGroup(groupId: Long): Completable {
         return Completable.fromCallable { feedGroupTable.delete(groupId) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun updateGroupsOrder(groupIdList: List<Long>): Completable {
@@ -152,8 +156,8 @@ class FeedDatabaseManager(context: Context) {
         val orderMap = groupIdList.associateBy({ it }, { index++ })
 
         return Completable.fromCallable { feedGroupTable.updateOrder(orderMap) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime>> {

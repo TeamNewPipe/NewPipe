@@ -347,11 +347,14 @@
     <string name="previous_export">Aurreko esportazioa</string>
     <string name="subscriptions_import_unsuccessful">Ezin izan dira harpidetzak inportatu</string>
     <string name="subscriptions_export_unsuccessful">Ezin izan dira harpidetzak esportatu</string>
-    <string name="import_youtube_instructions">Inporttu YouTube harpidetzak esportazio fitxategia deskargatuz:
+    <string name="import_youtube_instructions">Inportatu YouTube harpidetzak Google takeoutetik:
 \n
 \n1. Joan URL honetara: %1$s
 \n2. Hasi saioa eskatzen zaizunean
-\n3. Esportazio fitxategiaren deskarga hasi beharko litzateke</string>
+\n3. Hautatu \"Datu guztiak barne\", gero \"Kendu hautapen guztiak\", eta hautatu \"harpidetzak\" soilik eta egin klik \"Ados\" botoian
+\n4. Egin klik \"Hurrengo pausua\"-n eta \"Sortu esportazioa\"
+\n5. Egin klik \"Deskargatu\" botoian agertzen denean eta
+\n6. Erauzi .json fitxategia deskargatutako takeout zip-etik (normalean \"Youtube eta Youtube Music/harpidetzak/harpidetzak.json\") eta inportatu ezazu hemen.</string>
     <string name="import_soundcloud_instructions">Inportatu SoundCloud profila URL-a edo zure ID-a idatziz:
 \n
 \n1. Gaitu \"mahaigain modua\" web nabigatzailean (gunea ez dabil mugikorretan)
@@ -642,4 +645,6 @@
     <string name="show_original_time_ago_summary">Zerbitzuen jatorrizko testuak transmisioko elementuetan ikusgai egongo dira</string>
     <string name="show_original_time_ago_title">Erakutsi «orain dela» jatorrizko denbora elementuetan</string>
     <string name="notification_actions_summary">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Hautatu horietako hiru gehienez jakinarazpen trinkoan erakusteko eskuineko kontrol laukiak erabiliz.</string>
+    <string name="notification_colorize_summary">Androidek miniaturako kolore nagusiaren arabera jakinarazpenaren kolorea pertsonalizatzea baimendu (kontuan izan ez dagoela gailu guztietan erabilgarri)</string>
+    <string name="notification_colorize_title">Koloreztatu jakinarazpena</string>
 </resources>
