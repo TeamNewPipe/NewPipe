@@ -643,8 +643,8 @@
     <string name="clear_cookie_summary">Poista evästeet, jotka NewPipe tallentaa, kun ratkaiset reCAPTCHA:n</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-evästeet on poistettu</string>
     <string name="clear_cookie_title">Poista reCAPTCHA-evästeet</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube tarjoaa ”Rajoitetun tilan”, joka piilottaa aikuisviihdesisällön.</string>
-    <string name="show_age_restricted_content_summary">Näytä mahdollisesti lapsille sopimaton sisältö, jolla on ikäraja (esim. 18+).</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube tarjoaa ”Rajoitetun tilan”, joka piilottaa aikuisviihdesisällön</string>
+    <string name="show_age_restricted_content_summary">Näytä mahdollisesti lapsille sopimaton sisältö, jolla on ikäraja (esim. 18+)</string>
     <string name="notification_colorize_summary">Anna Androidin muokata ilmoituksen väriä esikatselukuvan päävärin mukaan (tämä ei ole mahdollista kaikilla laitteilla)</string>
     <string name="notification_colorize_title">Käytä värejä ilmoituksessa</string>
 </resources>
