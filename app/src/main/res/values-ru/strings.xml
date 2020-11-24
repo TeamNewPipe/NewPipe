@@ -107,7 +107,7 @@
     <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
-    <string name="popup_remember_size_pos_title">Запомнить параметры всплывающего окна</string>
+    <string name="popup_remember_size_pos_title">Помнить параметры окна</string>
     <string name="player_gesture_controls_summary">Изменять яркость и громкость жестами</string>
     <string name="settings_category_popup_title">Всплывающее окно</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
