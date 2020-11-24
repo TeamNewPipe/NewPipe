@@ -618,8 +618,8 @@
     <string name="clear_cookie_summary">reCAPTCHA bat egiten duzunean NewPipe-k gordetzen dituen kookiak ezabatu</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA kookiak garbitu dira</string>
     <string name="clear_cookie_title">Ezabatu reCAPTCHA-ren kookiak</string>
-    <string name="show_age_restricted_content_summary">Adinez mugatuta dagoen eta haurrentzako desegokia izan daitezkeen edukia erakutsi (+18 adibidez).</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube-ren \"Modu Murriztua\" helduentzako edukia izan daitekeen edukia ezkutatzen du.</string>
+    <string name="show_age_restricted_content_summary">Adinez mugatuta dagoen eta haurrentzako desegokia izan daitezkeen edukia erakutsi (+18 adibidez)</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube-ren \"Modu Murriztua\" helduentzako edukia izan daitekeen edukia ezkutatzen du</string>
     <string name="youtube_restricted_mode_enabled_title">Piztu YouTube-ren \"Modu Murriztua\"</string>
     <string name="settings_category_notification_title">Jakinarazpena</string>
     <string name="unsupported_url_dialog_message">Ezin izan da URL-a ezagutu. Beste aplikazio batekin ireki\?</string>
