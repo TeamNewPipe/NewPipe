@@ -641,13 +641,13 @@
     <string name="notification_action_0_title">Botón de primera acción</string>
     <string name="notification_scale_to_square_image_summary">Escalar la miniatura del vídeo mostrada en la notificación de relación de aspecto 16:9 a 1:1 (puede ocasionar distorsiones)</string>
     <string name="clear_cookie_summary">Vaciar las cookies que NewPipe guarda al resolver un reCAPTCHA</string>
-    <string name="show_age_restricted_content_summary">Mostrar contenido inapropiado para niños porque tiene un limite de edad (como 18+).</string>
+    <string name="show_age_restricted_content_summary">Mostrar contenido inapropiado para niños porque tiene un limite de edad (como 18+)</string>
     <string name="show_memory_leaks">Mostrar pérdidas de memoria</string>
     <string name="enqueued">Añadido a la cola</string>
     <string name="enqueue_stream">Añadir a la cola</string>
     <string name="recaptcha_cookies_cleared">Las cookies reCAPTCHA han sido limpiadas</string>
     <string name="clear_cookie_title">Limpiar las cookies reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube provee un «Modo restringido», el cual oculta contenido potencialmente sólo apto para adultos.</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube provee un «Modo restringido», el cual oculta contenido potencialmente sólo apto para adultos</string>
     <string name="notification_colorize_title">Ajustar color de notificación</string>
     <string name="notification_colorize_summary">Permitir a Android personalizar el color de la notificación con el color principal de la imagen (ten en cuenta que esta opción no funciona en todos los dispositivos)</string>
     <string name="show_thumbnail_summary">Mostrar miniatura como fondo de pantalla de bloqueo y dentro de notificaciones</string>
