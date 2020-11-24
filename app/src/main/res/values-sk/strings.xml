@@ -653,8 +653,8 @@
     <string name="clear_cookie_summary">Vymazať cookies, ktoré NewPipe ukladá, keď vyriešite reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies boli vymazané</string>
     <string name="clear_cookie_title">Vymazať cookies reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Obmedzený režim\", ktorý skrýva potenciálny obsah pre dospelých.</string>
-    <string name="show_age_restricted_content_summary">Zobraziť obsah, ktorý je možno nevhodný pre deti, pretože má vekovú hranicu (napríklad 18+).</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Obmedzený režim\", ktorý skrýva potenciálny obsah pre dospelých</string>
+    <string name="show_age_restricted_content_summary">Zobraziť obsah, ktorý je možno nevhodný pre deti, pretože má vekovú hranicu (napríklad 18+)</string>
     <string name="notification_colorize_summary">Nechajte Android, aby prispôsobil farbu upozornenia podľa hlavnej farby v miniatúre (nemusí to fungovať na všetkých zariadeniach)</string>
     <string name="notification_colorize_title">Farby upozornení</string>
     <string name="show_thumbnail_title">Zobrazovať miniatúru</string>
