@@ -663,8 +663,8 @@
     <string name="clear_cookie_summary">לנקות עוגיות שנשמרות על ידי NewPipe בעת פתרון reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">העוגיות של ה־reCAPTCHA נמחקו</string>
     <string name="clear_cookie_title">פינוי עוגיות reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">פלטפורמת YouTube מספקת „מצב מוגבל” שמסתיר תוכן שעשוי להתאים למבוגרים בלבד.</string>
-    <string name="show_age_restricted_content_summary">הצגת תוכן שעלול להיות בלתי הולם לילדים עקב מגבלת גיל (כגון 18+).</string>
+    <string name="youtube_restricted_mode_enabled_summary">פלטפורמת YouTube מספקת „מצב מוגבל” שמסתיר תוכן שעשוי להתאים למבוגרים בלבד</string>
+    <string name="show_age_restricted_content_summary">הצגת תוכן שעלול להיות בלתי הולם לילדים עקב מגבלת גיל (כגון 18+)</string>
     <string name="notification_colorize_summary">לאפשר ל־Android להתאים את צבע ההתראה בהתאם לצבע העיקרי של התמונה הממוזערת (לא זמין בכל המכשירים)</string>
     <string name="notification_colorize_title">צביעת ההתראה</string>
     <string name="show_thumbnail_summary">הצגת תמונה ממוזערת על מסך הנעילה כרקע ובתוך ההתראות</string>
