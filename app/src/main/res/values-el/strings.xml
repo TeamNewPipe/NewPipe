@@ -633,8 +633,8 @@
     <string name="clear_cookie_summary">Εκκαθάριση των cookies που αποθηκεύει η εφαρμογή όταν λύνετε ένα reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Τα reCAPTCHA cookies εκκαθαρίστηκαν</string>
     <string name="clear_cookie_title">Εκκαθάριση reCAPTCHA cookies</string>
-    <string name="youtube_restricted_mode_enabled_summary">Το YouTube διαθέτει \"Περιορισμένη Λειτουργία\" η οποία κρύβει πιθανώς ακατάλληλο περιεχόμενο.</string>
-    <string name="show_age_restricted_content_summary">Εμφάνιση πιθανώς ακατάλληλου περιεχομένου (18+).</string>
+    <string name="youtube_restricted_mode_enabled_summary">Το YouTube διαθέτει \"Περιορισμένη Λειτουργία\" η οποία κρύβει πιθανώς ακατάλληλο περιεχόμενο</string>
+    <string name="show_age_restricted_content_summary">Εμφάνιση πιθανώς ακατάλληλου περιεχομένου (18+)</string>
     <string name="peertube_instance_add_exists">Το instance υπάρχει ήδη</string>
     <string name="peertube_instance_add_fail">Αδυναμία πιστοποίησης του instance</string>
     <string name="peertube_instance_add_help">Προσθέστε την URL του instance</string>
