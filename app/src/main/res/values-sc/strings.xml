@@ -642,8 +642,8 @@
     <string name="clear_cookie_summary">Iscantzella sos testimòngios chi NewPipe sarvat cando risolves unu reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">As isboidadu sos testimòngios reCAPTCHA</string>
     <string name="clear_cookie_title">Isbòida sos testimòngios reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube frunit una \"Modalidade cun restritziones\" chi cuat sos cuntenudos chi diant pòdere èssere pro adultos.</string>
-    <string name="show_age_restricted_content_summary">Ammustra sos cuntenutos chi diant pòdere no èssere adatos pro sos pitzinnos ca tenent unu lìmite de edade (che a 18+).</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube frunit una \"Modalidade cun restritziones\" chi cuat sos cuntenudos chi diant pòdere èssere pro adultos</string>
+    <string name="show_age_restricted_content_summary">Ammustra sos cuntenutos chi diant pòdere no èssere adatos pro sos pitzinnos ca tenent unu lìmite de edade (che a 18+)</string>
     <string name="notification_colorize_summary">Pedi a Android de personalizare su colore de sa notìfica sighende su colore printzipale de sa miniadura (ammenta·ti chi custu no est a disponimentu pro totu sos dispositivos)</string>
     <string name="notification_colorize_title">Colora sas notìficas</string>
     <string name="popup_remember_size_pos_summary">Ammenta s\'ùrtima mannària e sa positzione in sa ventanedda</string>
