@@ -1,0 +1,9 @@
+Yaxshilangan
+
+• Yuklangan sana va translatsiya katakchalari bo'yicha ko'rishlar soni qo'shildi
+• tortmachaning sarlavhasi tartibini takomillashtirish
+
+Ruxsat etilgan
+
+• Ruxsat etilgan tugma tugmasi API 19 da ishdan chiqishiga olib keladi
+• Uzoq 1080p 60fps uzunlikdagi videolarni yuklab olish to'g'rilandi
