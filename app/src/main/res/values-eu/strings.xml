@@ -628,7 +628,7 @@
     <string name="clear_queue_confirmation_summary">Erreproduzitzaile batetik beste batera aldatzeak ilara ordezkatu dezake</string>
     <string name="clear_queue_confirmation_title">Konfirmazioa eskatu ilaratik ezabatu baino lehenago</string>
     <string name="notification_action_nothing">Ezer ez</string>
-    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_action_buffering">Buferreratzen</string>
     <string name="notification_action_shuffle">Aleatorio</string>
     <string name="notification_actions_at_most_three">Gehienez hiru ekintza aukera ditzakezu jakinarazpenean erakusteko!</string>
     <string name="notification_action_repeat">Errepikatu</string>
