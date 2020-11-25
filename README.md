@@ -20,7 +20,7 @@
 
 <b>WARNING: THIS IS A BETA VERSION, THEREFORE YOU MAY ENCOUNTER BUGS. IF YOU DO, OPEN AN ISSUE VIA OUR GITHUB REPOSITORY.</b>
 
-<b>PUTTING NEWPIPE OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR TERMS OF CONDITIONS.</b>
+<b>PUTTING NEWPIPE OR ANY FORK OF IT INTO THE GOOGLE PLAY STORE VIOLATES THEIR TERMS AND CONDITIONS.</b>
 
 ## Screenshots
 
@@ -87,7 +87,7 @@ When a change to the NewPipe code occurs (due to either adding features or bug f
  3. Download the APK from [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases) and install it as soon as we publish a release.
  4. Update via F-droid. This is the slowest method of getting updates, as F-Droid must recognize changes, build the APK itself, sign it, then push the update to users.
 
-We recommend method 2 for most users. APKs installed using method 2 or 3 are compatible with each other, but not with those installed using method 4. This is due to the same signing key (ours) being using for 2 and 3, but a different signing key (F-Droid's) being used for 4. Building a debug APK using method 1 excludes a key entirely. Signing keys help ensure that a user isn't tricked into installing a malicious update to an app.
+We recommend method 2 for most users. APKs installed using method 2 or 3 are compatible with each other, but not with those installed using method 4. This is due to the same signing key (ours) being used for 2 and 3, but a different signing key (F-Droid's) being used for 4. Building a debug APK using method 1 excludes a key entirely. Signing keys help ensure that a user isn't tricked into installing a malicious update to an app.
 
 In the meanwhile, if you want to switch sources for some reason (e.g. NewPipe's core functionality was broken and F-Droid doesn't have the update yet), we recommend following this procedure:
 1. Back up your data via Settings > Content > Export Database so you keep your history, subscriptions, and playlists
