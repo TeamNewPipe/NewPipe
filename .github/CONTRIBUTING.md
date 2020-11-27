@@ -15,11 +15,8 @@ You'll see exactly what is sent, be able to add your comments, and then send it.
 * **Can you fix it**? If you are an Android/Java developer, you are always welcome to fix an issue or implement a feature yourself. PRs welcome! See [Code contribution](#code-contribution) for more info.
 * **Is it in English**? Issues in other languages will be ignored unless someone translates them.
 * **Is it one issue**? Multiple issues require multiple reports, that can be linked to track their statuses.
-* **The template** Fill it out, everyone wins. Your issue has a chance of getting fixed.
+* **The template**: Fill it out, everyone wins. Your issue has a chance of getting fixed.
 
-## Join the developer team
-* Help rid NewPipe of bugs by sending an e-mail to <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a> saying you want to join, mentioning what you want to help with.
-You may be asked to register at our [Sentry](https://sentry.schabi.org) instance.
 
 ## Translation
 
@@ -28,7 +25,8 @@ You may be asked to register at our [Sentry](https://sentry.schabi.org) instance
 
 ## Code contribution
 
-* Add a feature or change one by opening an issue describing your change. This gives the team and community a chance to give feedback before you spend time on something already underway,what shhould be done differently, or avoided.
+* If you want to help out with an existing bug report or feature request, leave a comment on that issue saying you want to try your hand at it.
+* If there is no existing issue for what you want to work on, open a new one describing your changes. This gives the team and the community a chance to give feedback before you spend time on something that is already in development, should be done differently, or should be avoided completely.
 * Stick to NewPipe's style conventions of [checkStyle](https://github.com/checkstyle/checkstyle). It runs each time you build the project.
 * Do not bring non-free software (e.g. binary blobs) into the project. Make sure you do not introduce Google
   libraries.
@@ -45,6 +43,4 @@ You may be asked to register at our [Sentry](https://sentry.schabi.org) instance
 
 * The [#newpipe](irc:irc.freenode.net/newpipe) channel on freenode has the core team and other developers in it. [Click here for webchat](https://webchat.freenode.net/?channels=newpipe)!
 * You can also use a Matrix account to join the Newpipe channel at [#freenode_#newpipe:matrix.org](https://matrix.to/#/#freenode_#newpipe:matrix.org).
-* If you want to get in touch with the core team or one of our other contributors you can send an e-mail to
-  <a href="mailto:tnp@newpipe.schabi.org">tnp@newpipe.schabi.org</a>. Please do not send issue reports, they will be ignored and remain unanswered! Use the GitHub issue tracker described above, unless you are using the built-in crash reporter.
 * Post suggestions, changes, ideas etc. on GitHub or IRC.
