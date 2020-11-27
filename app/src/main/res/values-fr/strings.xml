@@ -640,8 +640,8 @@
     <string name="notification_scale_to_square_image_summary">Mettre à l\'échelle la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1 (peut provoquer des déformations)</string>
     <string name="notification_scale_to_square_image_title">Dimensionner la miniature au format 1:1</string>
     <string name="show_memory_leaks">Afficher les fuites de mémoire</string>
-    <string name="enqueued">Ajouté à la file d\'attente</string>
-    <string name="enqueue_stream">Ajouter à la file d\'attente</string>
+    <string name="enqueued">Ajouté à la file d’attente</string>
+    <string name="enqueue_stream">Ajouter à la file d’attente</string>
     <string name="clear_cookie_summary">Effacer les cookies que NewPipe garde lorsque vous résolvez un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Les cookies reCAPTCHA ont été effacés</string>
     <string name="clear_cookie_title">Effacer les cookies reCAPTCHA</string>
@@ -650,5 +650,5 @@
     <string name="notification_colorize_title">Notification colorée</string>
     <string name="notification_colorize_summary">Demander à Android de personnaliser la couleur de la notification en fonction de la couleur principale de la miniature (noter que cela n’est pas disponible sur tous les appareils)</string>
     <string name="show_thumbnail_title">Afficher la miniature</string>
-    <string name="show_thumbnail_summary">Afficher la minitature en arrière-plan de l\'écran de verrouillage et dans les notifications</string>
+    <string name="show_thumbnail_summary">Afficher la miniature en arrière-plan de l’écran de verrouillage et dans les notifications</string>
 </resources>
