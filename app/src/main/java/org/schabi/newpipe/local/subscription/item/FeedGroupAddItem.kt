@@ -1,10 +1,12 @@
 package org.schabi.newpipe.local.subscription.item
 
-import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
-import com.xwray.groupie.kotlinandroidextensions.Item
+import android.view.View
+import com.xwray.groupie.viewbinding.BindableItem
 import org.schabi.newpipe.R
+import org.schabi.newpipe.databinding.FeedGroupAddNewItemBinding
 
-class FeedGroupAddItem : Item() {
+class FeedGroupAddItem : BindableItem<FeedGroupAddNewItemBinding>() {
     override fun getLayout(): Int = R.layout.feed_group_add_new_item
-    override fun bind(viewHolder: GroupieViewHolder, position: Int) {}
+    override fun bind(viewBinding: FeedGroupAddNewItemBinding, position: Int) {}
+    override fun initializeViewBinding(view: View) = FeedGroupAddNewItemBinding.bind(view)
 }
