@@ -17,7 +17,6 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.preference.PreferenceManager
@@ -27,12 +26,13 @@ import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.Section
-import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import com.xwray.groupie.viewbinding.GroupieViewHolder
 import icepick.State
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.databinding.DialogTitleBinding
+import org.schabi.newpipe.databinding.FeedItemCarouselBinding
 import org.schabi.newpipe.databinding.FragmentSubscriptionBinding
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.fragments.BaseStateFragment
@@ -79,7 +79,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     private var subscriptionBroadcastReceiver: BroadcastReceiver? = null
 
-    private val groupAdapter = GroupAdapter<GroupieViewHolder>()
+    private val groupAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
     private val feedGroupsSection = Section()
     private var feedGroupsCarousel: FeedGroupCarouselItem? = null
     private lateinit var importExportItem: FeedImportExportItem
@@ -234,7 +234,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     private fun setupInitialLayout() {
         Section().apply {
-            val carouselAdapter = GroupAdapter<GroupieViewHolder>()
+            val carouselAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
 
             carouselAdapter.add(FeedGroupCardItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
             carouselAdapter.add(feedGroupsSection)
@@ -288,15 +288,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         binding.itemsList.adapter = groupAdapter
 
         viewModel = ViewModelProvider(this).get(SubscriptionViewModel::class.java)
-        viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { it?.let(this::handleResult) })
-        viewModel.feedGroupsLiveData.observe(viewLifecycleOwner, Observer { it?.let(this::handleFeedGroups) })
+        viewModel.stateLiveData.observe(viewLifecycleOwner, { it?.let(this::handleResult) })
+        viewModel.feedGroupsLiveData.observe(viewLifecycleOwner, { it?.let(this::handleFeedGroups) })
     }
 
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
-        val commands = arrayOf(
-            getString(R.string.share),
-            getString(R.string.unsubscribe)
-        )
+        val commands = arrayOf(getString(R.string.share), getString(R.string.unsubscribe))
 
         val actions = DialogInterface.OnClickListener { _, i ->
             when (i) {
@@ -439,11 +436,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         return when (listMode) {
             getString(R.string.list_view_mode_auto_key) -> {
                 val configuration = resources.configuration
-
-                (
-                    configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
-                        configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
-                    )
+                configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                        && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
             }
             getString(R.string.list_view_mode_grid_key) -> true
             else -> false
