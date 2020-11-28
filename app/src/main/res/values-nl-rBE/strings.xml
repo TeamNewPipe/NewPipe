@@ -607,9 +607,9 @@
     <string name="restricted_video">Deze video heeft een leeftijdsbeperking.
 \n
 \nSchakel \"%1$s\" in bij de instellingen als u die wilt zien.</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"beperkte modes\" aan, dit verbergt mogelijk materiaal voor volwassenen.</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"beperkte modes\" aan, dit verbergt mogelijk materiaal voor volwassenen</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube \"beperkte modus\" aanzetten</string>
-    <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+).</string>
+    <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+)</string>
     <string name="settings_category_notification_title">Melding</string>
     <string name="peertube_instance_add_exists">Kanaal bestaat al</string>
     <string name="peertube_instance_add_https_only">Alleen HTTPS URL\'s worden ondersteund</string>

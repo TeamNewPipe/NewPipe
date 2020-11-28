@@ -2,10 +2,12 @@ Neu und verbessert:
 • Einstellung, kein Vorschaubild auf dem Lockscreen anzuzeigen, wurde hinzugefügt
 • Feeds durch Gesten aktualisieren
 • Verbesserte Performance beim laden von lokalen Listen
+
 Behoben:
 • Absturz beim Starten von NewPipe ohne Internetverbindung
 • Absturz beim Wiederherstellen von NewPipe aus dem Arbeitsspeicher
 • [YouTube] Lange Wiedergabelisten
+
 Anderes:
 • Code Verbesserungen und mehrere interne Verbesserungen
 • Bibliotheken wurden aktualisiert

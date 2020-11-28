@@ -6,7 +6,7 @@
     <string name="open_in_browser">Abrir nun restolador web</string>
     <string name="share">Compartir</string>
     <string name="settings">Axustes</string>
-    <string name="did_you_mean">¿Quixesti dicir %1$s\?</string>
+    <string name="did_you_mean">¿Quixesti dicir «%1$s»\?</string>
     <string name="use_external_video_player_title">Usar un reproductor esternu de videu</string>
     <string name="use_external_audio_player_title">Usar un reproductor esternu d\'audiu</string>
     <string name="default_resolution_title">Resolución predeterminada</string>
@@ -22,7 +22,7 @@
     <string name="settings_category_video_audio_title">Videu y audiu</string>
     <string name="settings_category_appearance_title">Aspeutu</string>
     <string name="content">Conteníu</string>
-    <string name="show_age_restricted_content_title">Conteníu torgáu pola edá</string>
+    <string name="show_age_restricted_content_title">Amosar el conteníu torgáu pola edá</string>
     <string name="duration_live">En direuto</string>
     <string name="general_error">Fallu</string>
     <string name="could_not_load_thumbnails">Nun pudieron cargase toles miniatures</string>
@@ -31,7 +31,7 @@
     <string name="live_streams_not_supported">Entá nun se sofiten los fluxos en direuto</string>
     <string name="could_not_get_stream">Nun pudo consiguise dengún fluxu</string>
     <string name="sorry_string">Perdona pero eso nun debió asoceder.</string>
-    <string name="error_snackbar_message">Perdona pero asocedió dalgún fallu.</string>
+    <string name="error_snackbar_message">Perdona mas asocedió daqué malo.</string>
     <string name="what_device_headline">Información:</string>
     <string name="error_details_headline">Detalles:</string>
     <string name="detail_likes_img_view_description">Préstames</string>
@@ -128,7 +128,7 @@
     <string name="new_and_hot">Novedaes</string>
     <string name="unknown_content">[Desconozse]</string>
     <string name="start_here_on_background">Reproducir en segundu planu</string>
-    <string name="start_here_on_popup"></string>
+    <string name="start_here_on_popup"/>
     <string name="donation_title">Donación</string>
     <string name="donation_encouragement"/>
     <string name="give_back">Donar</string>

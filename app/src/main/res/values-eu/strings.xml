@@ -39,7 +39,7 @@
     <string name="use_external_video_player_title">Erabili kanpo bideo-erreproduzigailua</string>
     <string name="use_external_audio_player_title">Erabili kanpo audio-erreproduzigailua</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
-    <string name="main_bg_subtitle">\"Bilatu\" sakatu hasteko
+    <string name="main_bg_subtitle">Sakatu \"Bilatu\" hasteko
 \n</string>
     <string name="download_path_audio_title">Audioa deskargatzeko karpeta</string>
     <string name="download_path_audio_dialog_title">Aukeratu audio fitxategiak deskargatzeko karpeta</string>
@@ -618,8 +618,8 @@
     <string name="clear_cookie_summary">reCAPTCHA bat egiten duzunean NewPipe-k gordetzen dituen kookiak ezabatu</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA kookiak garbitu dira</string>
     <string name="clear_cookie_title">Ezabatu reCAPTCHA-ren kookiak</string>
-    <string name="show_age_restricted_content_summary">Adinez mugatuta dagoen eta haurrentzako desegokia izan daitezkeen edukia erakutsi (+18 adibidez).</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube-ren \"Modu Murriztua\" helduentzako edukia izan daitekeen edukia ezkutatzen du.</string>
+    <string name="show_age_restricted_content_summary">Adinez mugatuta dagoen eta haurrentzako desegokia izan daitezkeen edukia erakutsi (+18 adibidez)</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube-ren \"Modu Murriztua\" helduentzako edukia izan daitekeen edukia ezkutatzen du</string>
     <string name="youtube_restricted_mode_enabled_title">Piztu YouTube-ren \"Modu Murriztua\"</string>
     <string name="settings_category_notification_title">Jakinarazpena</string>
     <string name="unsupported_url_dialog_message">Ezin izan da URL-a ezagutu. Beste aplikazio batekin ireki\?</string>
@@ -628,7 +628,7 @@
     <string name="clear_queue_confirmation_summary">Erreproduzitzaile batetik beste batera aldatzeak ilara ordezkatu dezake</string>
     <string name="clear_queue_confirmation_title">Konfirmazioa eskatu ilaratik ezabatu baino lehenago</string>
     <string name="notification_action_nothing">Ezer ez</string>
-    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_action_buffering">Buferreratzen</string>
     <string name="notification_action_shuffle">Aleatorio</string>
     <string name="notification_actions_at_most_three">Gehienez hiru ekintza aukera ditzakezu jakinarazpenean erakusteko!</string>
     <string name="notification_action_repeat">Errepikatu</string>
@@ -647,4 +647,6 @@
     <string name="notification_actions_summary">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Hautatu horietako hiru gehienez jakinarazpen trinkoan erakusteko eskuineko kontrol laukiak erabiliz.</string>
     <string name="notification_colorize_summary">Androidek miniaturako kolore nagusiaren arabera jakinarazpenaren kolorea pertsonalizatzea baimendu (kontuan izan ez dagoela gailu guztietan erabilgarri)</string>
     <string name="notification_colorize_title">Koloreztatu jakinarazpena</string>
+    <string name="show_thumbnail_summary">Erakutsi miniatura blokeo pantailan atzeko planoko eta barruko jakinarazpen bezala</string>
+    <string name="show_thumbnail_title">Erakutsi miniatura</string>
 </resources>
