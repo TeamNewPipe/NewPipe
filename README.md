@@ -7,5 +7,6 @@ When the next version of NewPipe is released, see the [Releases](https://github.
 ## Will this ever be officially merged into the NewPipe?
 Nope. See [here](https://newpipe.schabi.org/blog/pinned/newpipe-and-online-advertising/) for more information.
 
-## Screenshots
-TODO: fill in
+## Preview
+![01](.github/images/preview01.gif) 
+![02](.github/images/preview02.gif)
