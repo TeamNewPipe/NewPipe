@@ -34,12 +34,10 @@ class HeaderWithMenuItem(
         viewBinding.headerTitle.text = title
         viewBinding.headerMenuItem.setImageResource(itemIcon)
 
-        val listener: OnClickListener? =
-                onClickListener?.let { OnClickListener { onClickListener.invoke() } }
+        val listener = onClickListener?.let { OnClickListener { onClickListener.invoke() } }
         viewBinding.root.setOnClickListener(listener)
 
-        val menuItemListener: OnClickListener? =
-                menuItemOnClickListener?.let { OnClickListener { menuItemOnClickListener.invoke() } }
+        val menuItemListener = menuItemOnClickListener?.let { OnClickListener { menuItemOnClickListener.invoke() } }
         viewBinding.headerMenuItem.setOnClickListener(menuItemListener)
         updateMenuItemVisibility(viewBinding)
     }

@@ -436,8 +436,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         return when (listMode) {
             getString(R.string.list_view_mode_auto_key) -> {
                 val configuration = resources.configuration
-                configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                        && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
+                configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                    configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
             }
             getString(R.string.list_view_mode_grid_key) -> true
             else -> false
