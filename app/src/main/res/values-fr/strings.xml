@@ -53,7 +53,7 @@
     <string name="general_error">Erreur</string>
     <string name="parsing_error">Impossible d’analyser le site web</string>
     <string name="content_not_available">Contenu indisponible</string>
-    <string name="error_snackbar_message">Désolé, quelque chose s\'est mal passé.</string>
+    <string name="error_snackbar_message">Désolé, quelque chose s’est mal passé.</string>
     <string name="content">Contenu</string>
     <string name="show_age_restricted_content_title">Afficher le contenu avec limite d’âge</string>
     <string name="duration_live">En direct</string>
@@ -334,14 +334,14 @@
     <string name="previous_export">Exportation précédente</string>
     <string name="subscriptions_import_unsuccessful">Impossible d’importer les abonnements</string>
     <string name="subscriptions_export_unsuccessful">Impossible d’exporter les abonnements</string>
-    <string name="import_youtube_instructions">Importez vos abonnements YouTube depuis Google Takeout :
+    <string name="import_youtube_instructions">Importez vos abonnements YouTube depuis Google Takeout :
 \n
 \n1. Suivez ce lien : %1$s
 \n2. Connectez-vous à votre compte
-\n3. Cliquez sur \"Toutes les données Youtube sont incluses\", puis sur \"Tout désélectionner\", puis sélectionnez uniquement \"abonnements\" et cliquez sur \"OK\"
-\n4. Cliquez sur \"Étape suivante\" et ensuite sur \"Créer une exportation\"
-\n5. Cliquez sur le bouton \"Télécharger\" après qu\'il apparaisse et
-\n6. À partir du fichier zip téléchargé, extrayez le fichier .json (généralement sous \"YouTube et YouTube Music/subscriptions/subscriptions.json\") et importez-le ici.</string>
+\n3. Cliquez sur « Toutes les données YouTube sont incluses », puis sur « Tout désélectionner », puis sélectionnez uniquement « abonnements » et cliquez sur « OK »
+\n4. Cliquez sur « Étape suivante » et ensuite sur « Créer une exportation »
+\n5. Cliquez sur le bouton « Télécharger » après qu’il apparaisse et
+\n6. À partir du fichier ZIP téléchargé, extrayez le fichier JSON (généralement sous « YouTube et YouTube Music/subscriptions/subscriptions.json ») et importez-le ici.</string>
     <string name="import_soundcloud_instructions">Veuillez importer un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant.
 \n 
 \n1. Activez le « mode bureau » dans votre navigateur Web (le site n’est pas disponible pour les appareils mobiles).
@@ -594,9 +594,9 @@
     <string name="more_than_100_videos">100+ vidéos</string>
     <string name="artists">Artistes</string>
     <string name="songs">Chansons</string>
-    <string name="restricted_video">Cette vidéo dispose d\'une limite d\'âge.
+    <string name="restricted_video">Cette vidéo dispose d’une limite d’âge.
 \n
-\nActivez « %1$s » dans les paramètres si vous voulez la voir.</string>
+\nActivez « %1$s » dans les paramètres si vous voulez la voir.</string>
     <string name="remove_watched">Supprimer les vidéos vues</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui, et des vidéos partiellement regardées</string>
     <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
@@ -607,7 +607,7 @@
     <string name="channel_created_by">Créé par %s</string>
     <string name="show_original_time_ago_summary">Les textes originaux des services vont être visibles dans les items</string>
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
-    <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Afficher uniquement les abonnements non groupés</string>
     <string name="playlist_page_summary">Page des listes de lecture</string>
     <string name="no_playlist_bookmarked_yet">Aucune liste de lecture encore enregistrée</string>
@@ -616,12 +616,12 @@
     <string name="error_report_open_issue_button_text">Signaler sur GitHub</string>
     <string name="copy_for_github">Copier le rapport formaté</string>
     <string name="search_showing_result_for">Affichage des résultats pour : %s</string>
-    <string name="clear_queue_confirmation_summary">Changer d\'un lecteur à un autre pourrait remplacer votre liste de lecture</string>
+    <string name="clear_queue_confirmation_summary">Basculer d’un lecteur à un autre peut remplacer votre liste de lecture</string>
     <string name="never">Jamais</string>
     <string name="wifi_only">Uniquement en Wi-Fi</string>
     <string name="autoplay_summary">Démarrer la lecture automatiquement — %s</string>
     <string name="title_activity_play_queue">Liste de lecture</string>
-    <string name="unsupported_url_dialog_message">Impossible de reconnaitre l\'URL fourni. Voulez vous l\'ouvrir avec une autre appli \?</string>
+    <string name="unsupported_url_dialog_message">Impossible de reconnaitre l’URL fournie. Voulez-vous l’ouvrir avec une autre application \?</string>
     <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
     <string name="clear_queue_confirmation_title">Confirmer av. de suppr. la liste de lecture</string>
@@ -631,24 +631,24 @@
     <string name="notification_action_shuffle">Lire aléatoirement</string>
     <string name="notification_action_repeat">Répéter</string>
     <string name="notification_actions_at_most_three">Vous pouvez sélectionner au maximum trois actions à faire figurer dans la notification compacte !</string>
-    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus. Sélectionnez jusqu\'à trois d\'entre elles pour les faire apparaitre dans la notification compacte en utilisant les cases à cocher à droite.</string>
-    <string name="notification_action_4_title">Cinquième bouton d\'action</string>
-    <string name="notification_action_3_title">Quatrième bouton d\'action</string>
-    <string name="notification_action_2_title">Troisième bouton d\'action</string>
-    <string name="notification_action_1_title">Deuxième bouton d\'action</string>
-    <string name="notification_action_0_title">Premier bouton d\'action</string>
-    <string name="notification_scale_to_square_image_summary">Mettre à l\'échelle la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1 (peut provoquer des déformations)</string>
+    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus. Sélectionnez jusqu’à trois d’entre elles pour les faire apparaitre dans la notification compacte en utilisant les cases à cocher à droite.</string>
+    <string name="notification_action_4_title">Cinquième bouton d’action</string>
+    <string name="notification_action_3_title">Quatrième bouton d’action</string>
+    <string name="notification_action_2_title">Troisième bouton d’action</string>
+    <string name="notification_action_1_title">Deuxième bouton d’action</string>
+    <string name="notification_action_0_title">Premier bouton d’action</string>
+    <string name="notification_scale_to_square_image_summary">Scale la miniature de la vidéo affichée dans la notification du rapport de forme 16:9 au 1:1 (peut provoquer des déformations)</string>
     <string name="notification_scale_to_square_image_title">Dimensionner la miniature au format 1:1</string>
     <string name="show_memory_leaks">Afficher les fuites de mémoire</string>
-    <string name="enqueued">Ajouté à la file d\'attente</string>
-    <string name="enqueue_stream">Ajouter à la file d\'attente</string>
+    <string name="enqueued">Ajouté à la file d’attente</string>
+    <string name="enqueue_stream">Ajouter à la file d’attente</string>
     <string name="clear_cookie_summary">Effacer les cookies que NewPipe garde lorsque vous résolvez un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Les cookies reCAPTCHA ont été effacés</string>
     <string name="clear_cookie_title">Effacer les cookies reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube dispose d\'un « Mode restreint » qui cache le contenu potentiellement inapproprié.</string>
-    <string name="show_age_restricted_content_summary">Le contenu de cette émission n\'est peut-être pas approprié pour les enfants à cause d\'une limite d\'âge (18 +).</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube dispose d’un « Mode restreint » qui cache le contenu potentiellement inapproprié</string>
+    <string name="show_age_restricted_content_summary">Affiche du contenu probablement inapproprié pour les enfants</string>
     <string name="notification_colorize_title">Notification colorée</string>
     <string name="notification_colorize_summary">Demander à Android de personnaliser la couleur de la notification en fonction de la couleur principale de la miniature (noter que cela n’est pas disponible sur tous les appareils)</string>
     <string name="show_thumbnail_title">Afficher la miniature</string>
-    <string name="show_thumbnail_summary">Afficher la minitature en arrière-plan de l\'écran de verrouillage et dans les notifications</string>
+    <string name="show_thumbnail_summary">Afficher la miniature en arrière-plan de l’écran de verrouillage et dans les notifications</string>
 </resources>

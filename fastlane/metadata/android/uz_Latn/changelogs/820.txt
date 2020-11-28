@@ -1,0 +1,1 @@
+YouTube-ni yaroqsiz holga keltiradigan regex parolini hal qilish funktsiyasi nomi aniqlandi.

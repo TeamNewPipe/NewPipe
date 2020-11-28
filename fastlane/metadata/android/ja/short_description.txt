@@ -1,1 +1,1 @@
-Android のフリーで軽量な YouTube フロントエンドアプリ。
+Androidのフリーで軽量なYouTubeアプリ。
