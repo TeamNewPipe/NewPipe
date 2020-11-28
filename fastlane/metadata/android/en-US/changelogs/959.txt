@@ -1,0 +1,3 @@
+Fixed endless loop of crashes after opening the error reporter.
+Updated list of PeerTube instances which can be opened automatically by NewPipe.
+Updated translations.
