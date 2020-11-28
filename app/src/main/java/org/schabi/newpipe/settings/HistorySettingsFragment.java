@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
+import org.jetbrains.annotations.NotNull;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -34,9 +35,9 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
     private CompositeDisposable disposables;
 
     @Override
-    public void onAttach(@NonNull final Context context) {
+    public void onAttach(@NotNull @NonNull final Context context) {
         super.onAttach(context);
-        App.getApp().getAppComponent().inject(this);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
     }
 
     @Override

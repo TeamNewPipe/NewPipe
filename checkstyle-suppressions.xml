@@ -17,7 +17,7 @@
 
   <suppress checks="EmptyBlock"
       files="ContentSettingsFragment.java"
-      lines="256,257"/>
+      lines="252,253"/>
 
   <!-- org.schabi.newpipe.streams -->
   <suppress checks="LineLength"

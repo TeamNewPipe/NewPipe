@@ -61,7 +61,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     @Override
     public void onAttach(final Context context) {
         super.onAttach(context);
-        App.getApp().getAppComponent().inject(this);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
     }
 
     @Override

@@ -64,6 +64,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import icepick.Icepick;
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -90,6 +92,10 @@ public class RouterActivity extends AppCompatActivity {
      */
     private static final String REGEX_REMOVE_FROM_URL = "[\\p{Z}\\p{P}]";
     protected final CompositeDisposable disposables = new CompositeDisposable();
+
+    @Inject
+    SharedPreferences sharedPreferences;
+
     @State
     protected int currentServiceId = -1;
     @State
@@ -105,6 +111,7 @@ public class RouterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.getApp().getAppComponent().inject(this);
         Icepick.restoreInstanceState(this, savedInstanceState);
 
         if (TextUtils.isEmpty(currentUrl)) {
@@ -193,9 +200,7 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     protected void onSuccess() {
-        final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        final String selectedChoiceKey = preferences
+        final String selectedChoiceKey = sharedPreferences
                 .getString(getString(R.string.preferred_open_action_key),
                         getString(R.string.preferred_open_action_default));
 
@@ -226,9 +231,9 @@ public class RouterActivity extends AppCompatActivity {
         } else if (selectedChoiceKey.equals(downloadKey)) {
             handleChoice(downloadKey);
         } else {
-            final boolean isExtVideoEnabled = preferences.getBoolean(
+            final boolean isExtVideoEnabled = sharedPreferences.getBoolean(
                     getString(R.string.use_external_video_player_key), false);
-            final boolean isExtAudioEnabled = preferences.getBoolean(
+            final boolean isExtAudioEnabled = sharedPreferences.getBoolean(
                     getString(R.string.use_external_audio_player_key), false);
             final boolean isVideoPlayerSelected = selectedChoiceKey.equals(videoPlayerKey)
                     || selectedChoiceKey.equals(popupPlayerKey);
@@ -263,7 +268,6 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void showDialog(final List<AdapterChoiceItem> choices) {
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final Context themeWrapperContext = getThemeWrapperContext();
 
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
@@ -280,7 +284,7 @@ public class RouterActivity extends AppCompatActivity {
 
             // open future streams always like this one, because "always" button was used by user
             if (which == DialogInterface.BUTTON_POSITIVE) {
-                preferences.edit()
+                sharedPreferences.edit()
                         .putString(getString(R.string.preferred_open_action_key), choice.key)
                         .apply();
             }
@@ -337,7 +341,7 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         if (selectedRadioPosition == -1) {
-            final String lastSelectedPlayer = preferences.getString(
+            final String lastSelectedPlayer = sharedPreferences.getString(
                     getString(R.string.preferred_open_action_last_selected_key), null);
             if (!TextUtils.isEmpty(lastSelectedPlayer)) {
                 for (int i = 0; i < choices.size(); i++) {
@@ -371,11 +375,9 @@ public class RouterActivity extends AppCompatActivity {
         final List<StreamingService.ServiceInfo.MediaCapability> capabilities
                 = service.getServiceInfo().getMediaCapabilities();
 
-        final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        final boolean isExtVideoEnabled = preferences.getBoolean(
+        final boolean isExtVideoEnabled = sharedPreferences.getBoolean(
                 getString(R.string.use_external_video_player_key), false);
-        final boolean isExtAudioEnabled = preferences.getBoolean(
+        final boolean isExtAudioEnabled = sharedPreferences.getBoolean(
                 getString(R.string.use_external_audio_player_key), false);
 
         final AdapterChoiceItem videoPlayer = new AdapterChoiceItem(
@@ -468,7 +470,7 @@ public class RouterActivity extends AppCompatActivity {
         final List<String> validChoicesList = Arrays.asList(getResources()
                 .getStringArray(R.array.preferred_open_action_values_list));
         if (validChoicesList.contains(selectedChoiceKey)) {
-            PreferenceManager.getDefaultSharedPreferences(this).edit()
+            sharedPreferences.edit()
                     .putString(getString(
                             R.string.preferred_open_action_last_selected_key), selectedChoiceKey)
                     .apply();

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.preference.Preference;
@@ -59,7 +60,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         prefStorageAsk = findPreference(downloadStorageAsk);
 
         updatePreferencesSummary();
-        updatePathPickers(!defaultPreferences.getBoolean(downloadStorageAsk, false));
+        updatePathPickers(!sharedPreferences.getBoolean(downloadStorageAsk, false));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             prefStorageAsk.setSummary(R.string.downloads_storage_ask_summary);
@@ -82,7 +83,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
         ctx = context;
     }
@@ -103,7 +104,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
     private void showPathInSummary(final String prefKey, @StringRes final int defaultString,
                                    final Preference target) {
-        String rawUri = defaultPreferences.getString(prefKey, null);
+        String rawUri = sharedPreferences.getString(prefKey, null);
         if (rawUri == null || rawUri.isEmpty()) {
             target.setSummary(getString(defaultString));
             return;
@@ -132,7 +133,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private boolean hasInvalidPath(final String prefKey) {
-        final String value = defaultPreferences.getString(prefKey, null);
+        final String value = sharedPreferences.getString(prefKey, null);
         return value == null || value.isEmpty();
     }
 
@@ -251,7 +252,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             throw new NullPointerException("getContext()");
         }
 
-        forgetSAFTree(context, defaultPreferences.getString(key, ""));
+        forgetSAFTree(context, sharedPreferences.getString(key, ""));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
                 && !FilePickerActivityHelper.isOwnFileUri(context, uri)) {
@@ -284,7 +285,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             uri = Uri.fromFile(target);
         }
 
-        defaultPreferences.edit().putString(key, uri.toString()).apply();
+        sharedPreferences.edit().putString(key, uri.toString()).apply();
         updatePreferencesSummary();
     }
 }

@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Environment
@@ -20,7 +21,6 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nononsenseapps.filepicker.Utils
 import com.xwray.groupie.Group
@@ -77,6 +77,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
     lateinit var subscriptionManager: SubscriptionManager
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     private val viewModel by viewModels<SubscriptionViewModel> { viewModelFactory }
 
@@ -436,17 +438,16 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     // TODO: Move these out of this class, as it can be reused
 
     private fun shouldUseGridLayout(): Boolean {
-        val listMode = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value))
-
-        return when (listMode) {
+        return when (
+            sharedPreferences.getString(
+                getString(R.string.list_view_mode_key),
+                getString(R.string.list_view_mode_value)
+            )
+        ) {
             getString(R.string.list_view_mode_auto_key) -> {
                 val configuration = resources.configuration
-
-                (
-                    configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
-                        configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
-                    )
+                configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                    configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
             }
             getString(R.string.list_view_mode_grid_key) -> true
             else -> false

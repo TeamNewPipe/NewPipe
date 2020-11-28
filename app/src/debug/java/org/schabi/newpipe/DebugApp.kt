@@ -1,12 +1,12 @@
 package org.schabi.newpipe
 
-import androidx.preference.PreferenceManager
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import leakcanary.AppWatcher
 import leakcanary.LeakCanary
 import okhttp3.OkHttpClient
 import org.schabi.newpipe.extractor.downloader.Downloader
+import org.schabi.newpipe.ktx.defaultSharedPreferences
 
 class DebugApp : App() {
     override fun onCreate() {
@@ -16,13 +16,8 @@ class DebugApp : App() {
         // Give each object 10 seconds to be GC'ed, before LeakCanary gets nosy on it
         AppWatcher.config = AppWatcher.config.copy(watchDurationMillis = 10000)
         LeakCanary.config = LeakCanary.config.copy(
-            dumpHeap = PreferenceManager
-                .getDefaultSharedPreferences(this).getBoolean(
-                    getString(
-                        R.string.allow_heap_dumping_key
-                    ),
-                    false
-                )
+            dumpHeap = defaultSharedPreferences
+                .getBoolean(getString(R.string.allow_heap_dumping_key), false)
         )
     }
 
@@ -55,7 +50,6 @@ class DebugApp : App() {
     }
 
     override fun isDisposedRxExceptionsReported(): Boolean {
-        return PreferenceManager.getDefaultSharedPreferences(this)
-            .getBoolean(getString(R.string.allow_disposed_exceptions_key), false)
+        return defaultSharedPreferences.getBoolean(getString(R.string.allow_disposed_exceptions_key), false)
     }
 }

@@ -25,12 +25,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Notification
@@ -90,9 +90,11 @@ class FeedLoadService : Service() {
     }
 
     @Inject
+    lateinit var feedDatabaseManager: FeedDatabaseManager
+    @Inject
     lateinit var subscriptionManager: SubscriptionManager
     @Inject
-    lateinit var feedDatabaseManager: FeedDatabaseManager
+    lateinit var sharedPreferences: SharedPreferences
 
     private var loadingSubscription: Subscription? = null
 
@@ -125,14 +127,17 @@ class FeedLoadService : Service() {
 
         setupNotification()
         setupBroadcastReceiver()
-        val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val groupId = intent.getLongExtra(EXTRA_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID)
-        val useFeedExtractor = defaultSharedPreferences
-            .getBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
+        val useFeedExtractor = sharedPreferences.getBoolean(
+            getString(R.string.feed_use_dedicated_fetch_method_key),
+            false
+        )
 
-        val thresholdOutdatedSecondsString = defaultSharedPreferences
-            .getString(getString(R.string.feed_update_threshold_key), getString(R.string.feed_update_threshold_default_value))
+        val thresholdOutdatedSecondsString = sharedPreferences.getString(
+            getString(R.string.feed_update_threshold_key),
+            getString(R.string.feed_update_threshold_default_value)
+        )
         val thresholdOutdatedSeconds = thresholdOutdatedSecondsString!!.toInt()
 
         startLoading(groupId, useFeedExtractor, thresholdOutdatedSeconds)

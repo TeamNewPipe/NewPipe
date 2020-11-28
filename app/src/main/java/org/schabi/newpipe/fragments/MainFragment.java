@@ -1,9 +1,9 @@
 package org.schabi.newpipe.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +23,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -39,7 +40,12 @@ import org.schabi.newpipe.views.ScrollableTabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
+    @Inject
+    SharedPreferences sharedPreferences;
+
     private ViewPager viewPager;
     private SelectedTabsPagerAdapter pagerAdapter;
     private ScrollableTabLayout tabLayout;
@@ -55,6 +61,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
+    }
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -74,9 +86,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         });
 
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
-        previousYoutubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
+        previousYoutubeRestrictedModeEnabled = sharedPreferences
+                .getBoolean(youtubeRestrictedModeEnabledKey, false);
     }
 
     @Override
@@ -105,9 +116,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onResume() {
         super.onResume();
 
-        final boolean youtubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
+        final boolean youtubeRestrictedModeEnabled = sharedPreferences
+                .getBoolean(youtubeRestrictedModeEnabledKey, false);
         if (previousYoutubeRestrictedModeEnabled != youtubeRestrictedModeEnabled) {
             previousYoutubeRestrictedModeEnabled = youtubeRestrictedModeEnabled;
             setupTabs();

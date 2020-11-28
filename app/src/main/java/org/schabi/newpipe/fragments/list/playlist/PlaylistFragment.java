@@ -101,7 +101,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     @Override
     public void onAttach(final Context context) {
-        App.getApp().getAppComponent().inject(this);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
         super.onAttach(context);
     }
 

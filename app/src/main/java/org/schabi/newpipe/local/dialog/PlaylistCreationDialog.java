@@ -45,7 +45,7 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
     @Override
     public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
-        App.getApp().getAppComponent().inject(this);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
     }
 
     @NonNull

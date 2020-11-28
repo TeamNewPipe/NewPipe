@@ -2,8 +2,8 @@ package org.schabi.newpipe.player.helper;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,8 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.SliderStrategy;
+
+import javax.inject.Inject;
 
 import static org.schabi.newpipe.player.BasePlayer.DEBUG;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
@@ -58,6 +61,9 @@ public class PlaybackParameterDialog extends DialogFragment {
     private final SliderStrategy strategy = new SliderStrategy.Quadratic(
             MINIMUM_PLAYBACK_VALUE, MAXIMUM_PLAYBACK_VALUE,
             /*centerAt=*/1.00f, /*sliderGranularity=*/10000);
+
+    @Inject
+    SharedPreferences sharedPreferences;
 
     @Nullable
     private Callback callback;
@@ -111,8 +117,9 @@ public class PlaybackParameterDialog extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
         if (context instanceof Callback) {
             callback = (Callback) context;
         } else if (callback == null) {
@@ -239,14 +246,12 @@ public class PlaybackParameterDialog extends DialogFragment {
         unhookingCheckbox = rootView.findViewById(R.id.unhookCheckbox);
         if (unhookingCheckbox != null) {
             // restore whether pitch and tempo are unhooked or not
-            unhookingCheckbox.setChecked(PreferenceManager
-                    .getDefaultSharedPreferences(requireContext())
+            unhookingCheckbox.setChecked(sharedPreferences
                     .getBoolean(getString(R.string.playback_unhook_key), true));
 
             unhookingCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
                 // save whether pitch and tempo are unhooked or not
-                PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        .edit()
+                sharedPreferences.edit()
                         .putBoolean(getString(R.string.playback_unhook_key), isChecked)
                         .apply();
 

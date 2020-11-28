@@ -20,7 +20,7 @@ public class MainSettingsFragment extends BasePreferenceFragment {
             final Preference update = findPreference(getString(R.string.update_pref_screen_key));
             getPreferenceScreen().removePreference(update);
 
-            defaultPreferences.edit().putBoolean(getString(R.string.update_app_key), false).apply();
+            sharedPreferences.edit().putBoolean(getString(R.string.update_app_key), false).apply();
         }
     }
 }

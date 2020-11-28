@@ -35,7 +35,6 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.preference.PreferenceManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import icepick.State
 import kotlinx.android.synthetic.main.error_retry.*
@@ -71,7 +70,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     }
 
     override fun onAttach(context: Context) {
-        App.getApp().appComponent.inject(this)
+        App.getApp().appComponent.fragmentComponent().create().inject(this)
         super.onAttach(context)
     }
 
@@ -139,8 +138,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_item_feed_help) {
-            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-
             val usingDedicatedMethod = sharedPreferences.getBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
             val enableDisableButtonText = when {
                 usingDedicatedMethod -> R.string.feed_use_dedicated_fetch_method_disable_button

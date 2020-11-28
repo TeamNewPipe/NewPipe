@@ -20,12 +20,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
-import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+
+import javax.inject.Inject;
 
 /*
  * Created by beneth <bmauduit@beneth.fr> on 06.12.16.
@@ -53,6 +54,9 @@ public class ReCaptchaActivity extends AppCompatActivity {
     public static final String YT_URL = "https://www.youtube.com";
     public static final String RECAPTCHA_COOKIES_KEY = "recaptcha_cookies";
 
+    @Inject
+    SharedPreferences sharedPreferences;
+
     private WebView webView;
     private String foundCookies = "";
 
@@ -60,6 +64,8 @@ public class ReCaptchaActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
+        App.getApp().getAppComponent().inject(this);
+
         setContentView(R.layout.activity_recaptcha);
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -163,10 +169,8 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
         if (!foundCookies.isEmpty()) {
             // save cookies to preferences
-            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
-                    getApplicationContext());
             final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
-            prefs.edit().putString(key, foundCookies).apply();
+            sharedPreferences.edit().putString(key, foundCookies).apply();
 
             // give cookies to Downloader class
             DownloaderImpl.getInstance().setCookie(RECAPTCHA_COOKIES_KEY, foundCookies);

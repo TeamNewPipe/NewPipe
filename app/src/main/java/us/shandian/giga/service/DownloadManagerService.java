@@ -24,9 +24,6 @@ import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcelable;
-
-import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.util.SparseArray;
 import android.widget.Toast;
@@ -36,7 +33,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
+import androidx.core.content.ContextCompat;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.player.helper.LockManager;
@@ -44,6 +43,8 @@ import org.schabi.newpipe.player.helper.LockManager;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.MissionRecoveryInfo;
@@ -83,6 +84,9 @@ public class DownloadManagerService extends Service {
     private static final String ACTION_RESET_DOWNLOAD_FINISHED = APPLICATION_ID + ".reset_download_finished";
     private static final String ACTION_OPEN_DOWNLOADS_FINISHED = APPLICATION_ID + ".open_downloads_finished";
 
+    @Inject
+    SharedPreferences mPrefs;
+
     private DownloadManagerBinder mBinder;
     private DownloadManager mManager;
     private Notification mNotification;
@@ -101,7 +105,6 @@ public class DownloadManagerService extends Service {
     private BroadcastReceiver mNetworkStateListener = null;
     private ConnectivityManager.NetworkCallback mNetworkStateListenerL = null;
 
-    private SharedPreferences mPrefs = null;
     private final OnSharedPreferenceChangeListener mPrefChangeListener = this::handlePreferenceChange;
 
     private boolean mLockAcquired = false;
@@ -129,6 +132,7 @@ public class DownloadManagerService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        App.getApp().getAppComponent().inject(this);
 
         if (DEBUG) {
             Log.d(TAG, "onCreate");
@@ -136,8 +140,6 @@ public class DownloadManagerService extends Service {
 
         mBinder = new DownloadManagerBinder();
         mHandler = new Handler(this::handleMessage);
-
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         mManager = new DownloadManager(this, mHandler, loadMainVideoStorage(), loadMainAudioStorage());
 

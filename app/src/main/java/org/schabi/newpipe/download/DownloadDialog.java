@@ -33,10 +33,10 @@ import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.DialogFragment;
-import androidx.preference.PreferenceManager;
 
 import com.nononsenseapps.filepicker.Utils;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
@@ -68,6 +68,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import icepick.Icepick;
 import icepick.State;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -87,6 +89,9 @@ public class DownloadDialog extends DialogFragment
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
+
+    @Inject
+    SharedPreferences prefs;
 
     @State
     StreamInfo currentInfo;
@@ -121,8 +126,6 @@ public class DownloadDialog extends DialogFragment
     private RadioGroup radioStreamsGroup;
     private TextView threadsCountTextView;
     private SeekBar threadsSeekBar;
-
-    private SharedPreferences prefs;
 
     public static DownloadDialog newInstance(final StreamInfo info) {
         final DownloadDialog dialog = new DownloadDialog();
@@ -204,8 +207,6 @@ public class DownloadDialog extends DialogFragment
             return;
         }
 
-        context = getContext();
-
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
         Icepick.restoreInstanceState(this, savedInstanceState);
 
@@ -264,6 +265,13 @@ public class DownloadDialog extends DialogFragment
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onAttach(@NonNull final Context ctx) {
+        super.onAttach(ctx);
+        context = ctx;
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
+    }
+
+    @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         if (DEBUG) {
@@ -295,8 +303,6 @@ public class DownloadDialog extends DialogFragment
 
         initToolbar(view.findViewById(R.id.toolbar));
         setupDownloadOptions();
-
-        prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
         final int threads = prefs.getInt(getString(R.string.default_download_threads), 3);
         threadsCountTextView.setText(String.valueOf(threads));
@@ -517,7 +523,6 @@ public class DownloadDialog extends DialogFragment
         videoButton.setVisibility(isVideoStreamsAvailable ? View.VISIBLE : View.GONE);
         subtitleButton.setVisibility(isSubtitleStreamsAvailable ? View.VISIBLE : View.GONE);
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         final String defaultMedia = prefs.getString(getString(R.string.last_used_download_type),
                     getString(R.string.last_download_type_video_key));
 

@@ -40,7 +40,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
 
     @Override
     public void onAttach(final Context context) {
-        App.getApp().getAppComponent().inject(this);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
         super.onAttach(context);
     }
 
@@ -54,9 +54,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

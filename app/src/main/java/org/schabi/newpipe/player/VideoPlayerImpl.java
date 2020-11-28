@@ -61,7 +61,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewCompat;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -196,7 +195,6 @@ public class VideoPlayerImpl extends VideoPlayer
     private PlayerServiceEventListener fragmentListener;
     private PlayerEventListener activityListener;
     private GestureDetector gestureDetector;
-    private final SharedPreferences defaultPreferences;
     private ContentObserver settingsContentObserver;
     @NonNull
     private final AudioPlaybackResolver resolver;
@@ -268,12 +266,12 @@ public class VideoPlayerImpl extends VideoPlayer
         NavigationHelper.sendPlayerStartedEvent(service);
     }
 
-    VideoPlayerImpl(final MainPlayer service, @NonNull final HistoryRecordManager recordManager) {
-        super("MainPlayer" + TAG, service, recordManager);
+    VideoPlayerImpl(final MainPlayer service, @NonNull final HistoryRecordManager recordManager,
+                    @NonNull final SharedPreferences sharedPreferences) {
+        super("MainPlayer" + TAG, service, recordManager, sharedPreferences);
         this.service = service;
         this.shouldUpdateOnProgress = true;
         this.windowManager = ContextCompat.getSystemService(service, WindowManager.class);
-        this.defaultPreferences = PreferenceManager.getDefaultSharedPreferences(service);
         this.resolver = new AudioPlaybackResolver(context, dataSource);
     }
 
@@ -921,13 +919,13 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void showHideKodiButton() {
-        final boolean kodiEnabled = defaultPreferences.getBoolean(
+        final boolean kodiEnabled = sharedPreferences.getBoolean(
                 service.getString(R.string.show_play_with_kodi_key), false);
         // show kodi button if it supports the current service and it is enabled in settings
         final boolean showKodiButton = playQueue != null && playQueue.getItem() != null
                 && KoreUtil.isServiceSupportedByKore(playQueue.getItem().getServiceId())
-                && PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+                && sharedPreferences.getBoolean(context.getString(R.string.show_play_with_kodi_key),
+                false);
         playWithKodi.setVisibility(videoPlayerSelected() && kodiEnabled && showKodiButton
                 ? View.VISIBLE : View.GONE);
     }
@@ -1027,13 +1025,13 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void storeResizeMode(final @AspectRatioFrameLayout.ResizeMode int resizeMode) {
-        defaultPreferences.edit()
+        sharedPreferences.edit()
                 .putInt(service.getString(R.string.last_resize_mode), resizeMode)
                 .apply();
     }
 
     private void restoreResizeMode() {
-        setResizeMode(defaultPreferences.getInt(
+        setResizeMode(sharedPreferences.getInt(
                 service.getString(R.string.last_resize_mode),
                 AspectRatioFrameLayout.RESIZE_MODE_FIT));
     }
@@ -1633,8 +1631,6 @@ public class VideoPlayerImpl extends VideoPlayer
 
         final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(service);
         final float defaultSize = service.getResources().getDimension(R.dimen.popup_default_width);
-        final SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(service);
         popupWidth = popupRememberSizeAndPos
                 ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize)
                 : defaultSize;
@@ -1757,11 +1753,11 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     public void savePositionAndSize() {
-        final SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(service);
-        sharedPreferences.edit().putInt(POPUP_SAVED_X, popupLayoutParams.x).apply();
-        sharedPreferences.edit().putInt(POPUP_SAVED_Y, popupLayoutParams.y).apply();
-        sharedPreferences.edit().putFloat(POPUP_SAVED_WIDTH, popupLayoutParams.width).apply();
+        sharedPreferences.edit()
+                .putInt(POPUP_SAVED_X, popupLayoutParams.x)
+                .putInt(POPUP_SAVED_Y, popupLayoutParams.y)
+                .putFloat(POPUP_SAVED_WIDTH, popupLayoutParams.width)
+                .apply();
     }
 
     private float getMinimumVideoHeight(final float width) {

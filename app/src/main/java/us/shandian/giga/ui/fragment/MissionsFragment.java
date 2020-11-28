@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
-import androidx.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nononsenseapps.filepicker.Utils;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -34,6 +34,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
 import java.io.IOException;
+
+import javax.inject.Inject;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.io.StoredFileHelper;
@@ -47,7 +49,9 @@ public class MissionsFragment extends Fragment {
     private static final int SPAN_SIZE = 2;
     private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
 
-    private SharedPreferences mPrefs;
+    @Inject
+    SharedPreferences mPrefs;
+
     private boolean mLinear;
     private MenuItem mSwitch;
     private MenuItem mClear = null;
@@ -67,7 +71,6 @@ public class MissionsFragment extends Fragment {
     private DownloadMission unsafeMissionTarget = null;
 
     private final ServiceConnection mConnection = new ServiceConnection() {
-
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
             mBinder = (DownloadManagerBinder) binder;
@@ -89,15 +92,23 @@ public class MissionsFragment extends Fragment {
         public void onServiceDisconnected(ComponentName name) {
             // What to do?
         }
-
-
     };
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
+
+        // Bug: in api< 23 this is never called
+        // so mActivity=null
+        // so app crashes with null-pointer exception
+        mContext = context;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.missions, container, false);
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity());
         mLinear = mPrefs.getBoolean("linear", false);
 
         // Bind the service
@@ -127,32 +138,6 @@ public class MissionsFragment extends Fragment {
 
         return v;
     }
-
-    /**
-     * Added in API level 23.
-     */
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        // Bug: in api< 23 this is never called
-        // so mActivity=null
-        // so app crashes with null-pointer exception
-        mContext = context;
-    }
-
-    /**
-     * deprecated in API level 23,
-     * but must remain to allow compatibility with api<23
-     */
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
-
-        mContext = activity;
-    }
-
 
     @Override
     public void onDestroy() {

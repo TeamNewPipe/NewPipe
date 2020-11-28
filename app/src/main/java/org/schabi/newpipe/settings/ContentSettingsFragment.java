@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceManager;
 
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -73,7 +72,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
-        App.getApp().getAppComponent().inject(this);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
     }
 
     @Override
@@ -86,14 +85,14 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredLocalization(requireContext());
         initialSelectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
-        initialLanguage = PreferenceManager
-                .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
+        initialLanguage = sharedPreferences.getString("app_language_key", "en");
 
         final Preference clearCookiePref = findPreference(getString(R.string.clear_cookie_key));
 
         clearCookiePref.setOnPreferenceClickListener(preference -> {
-            defaultPreferences.edit()
-                    .putString(getString(R.string.recaptcha_cookies_key), "").apply();
+            sharedPreferences.edit()
+                    .putString(getString(R.string.recaptcha_cookies_key), "")
+                    .apply();
             DownloaderImpl.getInstance().setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, "");
             Toast.makeText(getActivity(), R.string.recaptcha_cookies_cleared,
                     Toast.LENGTH_SHORT).show();
@@ -101,7 +100,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
-        if (defaultPreferences.getString(getString(R.string.recaptcha_cookies_key), "").isEmpty()) {
+        if (sharedPreferences.getString(getString(R.string.recaptcha_cookies_key), "").isEmpty()) {
             clearCookiePref.setVisible(false);
         }
     }
@@ -176,8 +175,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredLocalization(requireContext());
         final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
-        final String selectedLanguage = PreferenceManager
-                .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
+        final String selectedLanguage = sharedPreferences.getString("app_language_key", "en");
 
         if (!selectedLocalization.equals(initialSelectedLocalization)
                 || !selectedContentCountry.equals(initialSelectedContentCountry)
@@ -242,9 +240,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private void saveSharedPreferencesToFile(final File dst) {
         try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(dst))) {
-            final SharedPreferences pref
-                    = PreferenceManager.getDefaultSharedPreferences(requireContext());
-            output.writeObject(pref.getAll());
+            output.writeObject(sharedPreferences.getAll());
             output.flush();
         } catch (final IOException e) {
             e.printStackTrace();
@@ -306,8 +302,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private void loadSharedPreferences(final File src) {
         try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(src))) {
-            final SharedPreferences.Editor prefEdit = PreferenceManager
-                    .getDefaultSharedPreferences(requireContext()).edit();
+            final SharedPreferences.Editor prefEdit = sharedPreferences.edit();
             prefEdit.clear();
             final Map<String, ?> entries = (Map<String, ?>) input.readObject();
             for (final Map.Entry<String, ?> entry : entries.entrySet()) {

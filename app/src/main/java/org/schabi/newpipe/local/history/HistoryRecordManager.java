@@ -22,7 +22,6 @@ import android.app.Application;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
@@ -73,13 +72,14 @@ public class HistoryRecordManager {
                                 @NonNull final StreamDAO streamTable,
                                 @NonNull final StreamHistoryDAO streamHistoryTable,
                                 @NonNull final SearchHistoryDAO searchHistoryTable,
-                                @NonNull final StreamStateDAO streamStateTable) {
+                                @NonNull final StreamStateDAO streamStateTable,
+                                @NonNull final SharedPreferences sharedPreferences) {
         this.database = database;
         this.streamTable = streamTable;
         this.streamHistoryTable = streamHistoryTable;
         this.searchHistoryTable = searchHistoryTable;
         this.streamStateTable = streamStateTable;
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
+        this.sharedPreferences = sharedPreferences;
         searchHistoryKey = application.getString(R.string.enable_search_history_key);
         streamHistoryKey = application.getString(R.string.enable_watch_history_key);
     }

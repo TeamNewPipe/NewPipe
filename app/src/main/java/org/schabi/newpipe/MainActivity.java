@@ -54,7 +54,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
@@ -90,11 +89,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+
+    @Inject
+    SharedPreferences sharedPreferences;
 
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
@@ -137,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
+        App.getApp().getAppComponent().inject(this);
+
         setContentView(R.layout.activity_main);
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
@@ -490,8 +496,6 @@ public class MainActivity extends AppCompatActivity {
             ErrorActivity.reportUiError(this, e);
         }
 
-        final SharedPreferences sharedPreferences
-                = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) {
                 Log.d(TAG, "Theme has changed, recreating activity...");

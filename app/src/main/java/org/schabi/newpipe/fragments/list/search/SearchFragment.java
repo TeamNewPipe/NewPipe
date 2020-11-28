@@ -3,7 +3,6 @@ package org.schabi.newpipe.fragments.list.search;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -30,7 +29,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -185,13 +183,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public void onAttach(final Context context) {
-        App.getApp().getAppComponent().inject(this);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
         super.onAttach(context);
 
         suggestionListAdapter = new SuggestionListAdapter(activity);
-        final SharedPreferences preferences
-                = PreferenceManager.getDefaultSharedPreferences(activity);
-        final boolean isSearchHistoryEnabled = preferences
+        final boolean isSearchHistoryEnabled = sharedPreferences
                 .getBoolean(getString(R.string.enable_search_history_key), true);
         suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
     }
@@ -200,9 +196,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final SharedPreferences preferences
-                = PreferenceManager.getDefaultSharedPreferences(activity);
-        isSuggestionsEnabled = preferences
+        isSuggestionsEnabled = sharedPreferences
                 .getBoolean(getString(R.string.show_search_suggestions_key), true);
     }
 

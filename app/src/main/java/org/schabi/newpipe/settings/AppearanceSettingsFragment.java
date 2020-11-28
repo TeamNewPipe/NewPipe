@@ -25,8 +25,8 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
             = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(final Preference preference, final Object newValue) {
-            defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
-            defaultPreferences.edit()
+            sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
+            sharedPreferences.edit()
                     .putString(getString(R.string.theme_key), newValue.toString()).apply();
 
             if (!newValue.equals(startThemeKey) && getActivity() != null) {
@@ -43,7 +43,7 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final String themeKey = getString(R.string.theme_key);
-        startThemeKey = defaultPreferences
+        startThemeKey = sharedPreferences
                 .getString(themeKey, getString(R.string.default_theme_value));
         findPreference(themeKey).setOnPreferenceChangeListener(themePreferenceChange);
 

@@ -11,7 +11,6 @@ import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +41,8 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
 
     @Inject
     protected HistoryRecordManager recordManager;
+    @Inject
+    protected SharedPreferences sharedPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -62,15 +63,13 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .registerOnSharedPreferenceChangeListener(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .unregisterOnSharedPreferenceChangeListener(this);
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -255,16 +254,14 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     }
 
     @Override
-    public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
-                                          final String key) {
+    public void onSharedPreferenceChanged(final SharedPreferences preferences, final String key) {
         if (key.equals(getString(R.string.list_view_mode_key))) {
             updateFlags |= LIST_MODE_UPDATE_FLAG;
         }
     }
 
     protected boolean isGridLayout() {
-        final String listMode = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.list_view_mode_key),
+        final String listMode = sharedPreferences.getString(getString(R.string.list_view_mode_key),
                         getString(R.string.list_view_mode_value));
         if ("auto".equals(listMode)) {
             final Configuration configuration = getResources().getConfiguration();

@@ -1,27 +1,31 @@
 package org.schabi.newpipe.settings;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceFragmentCompat;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import javax.inject.Inject;
 
 public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
     protected final boolean DEBUG = MainActivity.DEBUG;
 
-    SharedPreferences defaultPreferences;
+    @Inject
+    SharedPreferences sharedPreferences;
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(requireActivity());
-        super.onCreate(savedInstanceState);
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        App.getApp().getAppComponent().fragmentComponent().create().inject(this);
     }
 
     @Override
