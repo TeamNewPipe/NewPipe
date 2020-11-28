@@ -632,4 +632,8 @@
     <string name="clear_cookie_title">reCAPTCHA の Cookie を消去</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA の Cookie が消去されました</string>
     <string name="show_memory_leaks">メモリリークを表示</string>
+    <string name="show_thumbnail_summary">ロックスクリーンの背景と通知にサムネイルを表示する</string>
+    <string name="show_thumbnail_title">サムネイルを表示する</string>
+    <string name="notification_colorize_title">通知をカラーにする</string>
+    <string name="notification_colorize_summary">サムネイルのメインカラーを元に、通知をカラーにします(全てのデバイスで動作するとは限りません)</string>
 </resources>
