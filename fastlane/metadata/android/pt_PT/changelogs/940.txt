@@ -1,0 +1,16 @@
+Novo
+• Suporte para comentários SoundCloud
+• Modo restrito - YouTub
+• Mostrar detalhes do canal interligado - PeerTube
+
+Melhorado
+• Mostar botão Kore apenas nos serviços suportados
+• Bloquear gestos que começam nas barras de navegção ou estado
+• Cor de fundo dos botões Tentar e Subscrever baseada na cor do serviço
+
+Corrigido
+• Bloqueio da evolução de transferência
+• Botão abrir browser
+• Erro ao abri videos "não é possível reproduzir..."
+
+e outros
