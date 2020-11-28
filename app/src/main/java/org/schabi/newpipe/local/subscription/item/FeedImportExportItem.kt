@@ -7,14 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
-import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
-import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.feed_import_export_group.export_to_options
-import kotlinx.android.synthetic.main.feed_import_export_group.import_export
-import kotlinx.android.synthetic.main.feed_import_export_group.import_export_expand_icon
-import kotlinx.android.synthetic.main.feed_import_export_group.import_export_options
-import kotlinx.android.synthetic.main.feed_import_export_group.import_from_options
+import com.xwray.groupie.viewbinding.BindableItem
+import com.xwray.groupie.viewbinding.GroupieViewHolder
 import org.schabi.newpipe.R
+import org.schabi.newpipe.databinding.FeedImportExportGroupBinding
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
 import org.schabi.newpipe.ktx.animateRotation
@@ -27,49 +23,51 @@ class FeedImportExportItem(
     val onImportFromServiceSelected: (Int) -> Unit,
     val onExportSelected: () -> Unit,
     var isExpanded: Boolean = false
-) : Item() {
+) : BindableItem<FeedImportExportGroupBinding>() {
     companion object {
         const val REFRESH_EXPANDED_STATUS = 123
     }
 
-    override fun bind(viewHolder: GroupieViewHolder, position: Int, payloads: MutableList<Any>) {
+    override fun bind(viewBinding: FeedImportExportGroupBinding, position: Int, payloads: MutableList<Any>) {
         if (payloads.contains(REFRESH_EXPANDED_STATUS)) {
-            viewHolder.import_export_options.apply { if (isExpanded) expand() else collapse() }
+            viewBinding.importExportOptions.apply { if (isExpanded) expand() else collapse() }
             return
         }
 
-        super.bind(viewHolder, position, payloads)
+        super.bind(viewBinding, position, payloads)
     }
 
     override fun getLayout(): Int = R.layout.feed_import_export_group
 
-    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        if (viewHolder.import_from_options.childCount == 0) setupImportFromItems(viewHolder.import_from_options)
-        if (viewHolder.export_to_options.childCount == 0) setupExportToItems(viewHolder.export_to_options)
+    override fun bind(viewBinding: FeedImportExportGroupBinding, position: Int) {
+        if (viewBinding.importFromOptions.childCount == 0) setupImportFromItems(viewBinding.importFromOptions)
+        if (viewBinding.exportToOptions.childCount == 0) setupExportToItems(viewBinding.exportToOptions)
 
-        expandIconListener?.let { viewHolder.import_export_options.removeListener(it) }
+        expandIconListener?.let { viewBinding.importExportOptions.removeListener(it) }
         expandIconListener = CollapsibleView.StateListener { newState ->
-            viewHolder.import_export_expand_icon.animateRotation(
+            viewBinding.importExportExpandIcon.animateRotation(
                 250, if (newState == CollapsibleView.COLLAPSED) 0 else 180
             )
         }
 
-        viewHolder.import_export_options.currentState = if (isExpanded) CollapsibleView.EXPANDED else CollapsibleView.COLLAPSED
-        viewHolder.import_export_expand_icon.rotation = if (isExpanded) 180F else 0F
-        viewHolder.import_export_options.ready()
+        viewBinding.importExportOptions.currentState = if (isExpanded) CollapsibleView.EXPANDED else CollapsibleView.COLLAPSED
+        viewBinding.importExportExpandIcon.rotation = if (isExpanded) 180F else 0F
+        viewBinding.importExportOptions.ready()
 
-        viewHolder.import_export_options.addListener(expandIconListener)
-        viewHolder.import_export.setOnClickListener {
-            viewHolder.import_export_options.switchState()
-            isExpanded = viewHolder.import_export_options.currentState == CollapsibleView.EXPANDED
+        viewBinding.importExportOptions.addListener(expandIconListener)
+        viewBinding.importExport.setOnClickListener {
+            viewBinding.importExportOptions.switchState()
+            isExpanded = viewBinding.importExportOptions.currentState == CollapsibleView.EXPANDED
         }
     }
 
-    override fun unbind(viewHolder: GroupieViewHolder) {
+    override fun unbind(viewHolder: GroupieViewHolder<FeedImportExportGroupBinding>) {
         super.unbind(viewHolder)
-        expandIconListener?.let { viewHolder.import_export_options.removeListener(it) }
+        expandIconListener?.let { viewHolder.binding.importExportOptions.removeListener(it) }
         expandIconListener = null
     }
+
+    override fun initializeViewBinding(view: View) = FeedImportExportGroupBinding.bind(view)
 
     private var expandIconListener: CollapsibleView.StateListener? = null
 
@@ -117,7 +115,8 @@ class FeedImportExportItem(
     private fun setupExportToItems(listHolder: ViewGroup) {
         val previousBackupItem = addItemView(
             listHolder.context.getString(R.string.file),
-            ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_save), listHolder
+            ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_save),
+            listHolder
         )
         previousBackupItem.setOnClickListener { onExportSelected() }
     }
