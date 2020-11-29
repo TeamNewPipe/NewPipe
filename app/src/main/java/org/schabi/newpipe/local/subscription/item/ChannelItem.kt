@@ -1,13 +1,11 @@
 package org.schabi.newpipe.local.subscription.item
 
 import android.content.Context
+import android.widget.ImageView
+import android.widget.TextView
 import com.nostra13.universalimageloader.core.ImageLoader
-import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
-import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.list_channel_item.itemAdditionalDetails
-import kotlinx.android.synthetic.main.list_channel_item.itemChannelDescriptionView
-import kotlinx.android.synthetic.main.list_channel_item.itemThumbnailView
-import kotlinx.android.synthetic.main.list_channel_item.itemTitleView
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.util.ImageDisplayConstants
@@ -19,8 +17,7 @@ class ChannelItem(
     private val subscriptionId: Long = -1L,
     var itemVersion: ItemVersion = ItemVersion.NORMAL,
     var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
-) : Item() {
-
+) : Item<GroupieViewHolder>() {
     override fun getId(): Long = if (subscriptionId == -1L) super.getId() else subscriptionId
 
     enum class ItemVersion { NORMAL, MINI, GRID }
@@ -32,18 +29,25 @@ class ChannelItem(
     }
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        viewHolder.itemTitleView.text = infoItem.name
-        viewHolder.itemAdditionalDetails.text = getDetailLine(viewHolder.root.context)
-        if (itemVersion == ItemVersion.NORMAL) viewHolder.itemChannelDescriptionView.text = infoItem.description
+        val itemTitleView = viewHolder.root.findViewById<TextView>(R.id.itemTitleView)
+        val itemAdditionalDetails = viewHolder.root.findViewById<TextView>(R.id.itemAdditionalDetails)
+        val itemChannelDescriptionView = viewHolder.root.findViewById<TextView>(R.id.itemChannelDescriptionView)
+        val itemThumbnailView = viewHolder.root.findViewById<ImageView>(R.id.itemThumbnailView)
+
+        itemTitleView.text = infoItem.name
+        itemAdditionalDetails.text = getDetailLine(viewHolder.root.context)
+        if (itemVersion == ItemVersion.NORMAL) {
+            itemChannelDescriptionView.text = infoItem.description
+        }
 
         ImageLoader.getInstance().displayImage(
-            infoItem.thumbnailUrl, viewHolder.itemThumbnailView,
+            infoItem.thumbnailUrl, itemThumbnailView,
             ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS
         )
 
         gesturesListener?.run {
-            viewHolder.containerView.setOnClickListener { selected(infoItem) }
-            viewHolder.containerView.setOnLongClickListener { held(infoItem); true }
+            viewHolder.root.setOnClickListener { selected(infoItem) }
+            viewHolder.root.setOnLongClickListener { held(infoItem); true }
         }
     }
 
