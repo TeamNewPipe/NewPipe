@@ -1,16 +1,15 @@
 Novo
-Pesquisa p/ subscrição no feed de grupo
-Filtro no feed de grupo p/ apenas subscrições isoladas
-Lista de reprod. na pg principal
-Avanço/recuo rapido no reprod. de pano de fundo e pop-up
-Sugestão de pesquisa: quis dizer...
+• Pesquisa de selecionador de assinaturas
+• Filtro ao diálogo do grupo de feed
+• Ficha de lista de reprodução à página principal
+• Avanço/retrocesso rápido na fila de fundo/pop-up de jogadores
+• Mostrar sugestão de pesquisa: quis dizer & a mostrar resultado para
 
 Melhorado
-Solte a app de escrita de metadados nos arquivos multiplexados
-N/ remover da lista transmissões c/ erro
-Barra de estado e ferramentas: cores correspondentes
+• Não escrever metadados de apps em ficheiros muxed
+• Não remover fluxos falhados da fila
+• A cor da barra de estado corresponde à da de ferramentas
 
-Corrigido
-Dessinc A/V por erros cumulativos de pt flutuante
-[PeerTube] Gestão de comentários apagados
-...
+Fixo
+• Desync de áudio/vídeo
+• [PeerTube] Gerir comentários apagados
