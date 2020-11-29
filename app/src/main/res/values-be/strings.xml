@@ -496,4 +496,10 @@
     <string name="peertube_instance_url_title">Інстанцыі PeerTube</string>
     <string name="download_choose_new_path">Змяніце папкі загрузкі, каб змены ўступілі ў сілу</string>
     <string name="search_showing_result_for">Вынікі для: %s</string>
+    <string name="notification_scale_to_square_image_title">Мініяцюра відэа ў 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Мініяцюра відэа ў апавяшчэнні з 16:9 да 1:1 (магчымі скажэнні)</string>
+    <string name="notification_action_3_title">Кнопка чацвёртага дзеяння</string>
+    <string name="notification_action_2_title">Кнопка трэцяга дзеяння</string>
+    <string name="notification_action_1_title">Кнопка другога дзеяння</string>
+    <string name="notification_action_0_title">Кнопка першага дзеяння</string>
 </resources>
