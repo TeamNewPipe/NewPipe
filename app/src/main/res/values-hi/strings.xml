@@ -309,7 +309,7 @@
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle त्रुटियों की रिपोर्ट करें</string>
     <string name="download_thumbnail_title">छायाप्रारुप लोड करें</string>
     <string name="use_inexact_seek_title">तेजी से अचूक तलाश का प्रयोग करें</string>
-    <string name="use_inexact_seek_summary">अचूक खोज प्लेयर को कम परिशुद्धता के साथ तेजी से पदों की तलाश करने की अनुमति देता है</string>
+    <string name="use_inexact_seek_summary">अचूक खोज प्लेयर को कम परिशुद्धता के साथ तेजी से पदों की तलाश करने की अनुमति देता है|</string>
     <string name="download_thumbnail_summary">थंबनेल लोड करने, डेटा और मेमोरी उपयोग को रोकने के लिए बंद करें। इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों को बदलता है|</string>
     <string name="thumbnail_cache_wipe_complete_notice">छवि कैश मिटा दिया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा वाइप करें</string>
@@ -527,4 +527,35 @@
     <string name="songs">गाने</string>
     <string name="never">कभी नहीं</string>
     <string name="help">सहायता</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA कुकीज़ को साफ़ कर दिए गए हैं</string>
+    <string name="clear_cookie_title">ReCAPTCHA कुकीज़ साफ़ करें</string>
+    <string name="albums">एल्बम</string>
+    <string name="videos_string">वीडियो</string>
+    <string name="restricted_video">यह वीडियो उम्र प्रतिबंधित है।
+\n
+\nयदि आप इसे देखना चाहते हैं तो सेटिंग में \"%1$s\" चालू करें।</string>
+    <string name="youtube_restricted_mode_enabled_summary">यूट्यूब एक \"प्रतिबंधित मोड\" प्रदान करता है जो संभावित रूप से परिपक्व सामग्री को छुपाता है</string>
+    <string name="youtube_restricted_mode_enabled_title">यूट्यूब का \"प्रतिबंधित मोड\" चालू करें</string>
+    <string name="show_age_restricted_content_summary">बच्चों के लिए अनुपयुक्त सामग्री दिखाएं क्योंकि इसकी आयु सीमा है (जैसे 18)</string>
+    <string name="settings_category_notification_title">अधिसूचना</string>
+    <string name="peertube_instance_add_https_only">केवल हटितीपीस यूआरएल समर्थित हैं</string>
+    <string name="unsupported_url_dialog_message">यूआरएल को नहीं पहचान पाये। दूसरे ऐप से खोलें\?</string>
+    <string name="auto_queue_toggle">ऑटो कतार</string>
+    <string name="clear_queue_confirmation_title">कतार को साफ़ करने से पहले पुष्टि के लिए पूछें</string>
+    <string name="seek_duration_title">फास्ट-फ़ॉरवर्ड /- रिवाइंड</string>
+    <string name="notification_colorize_summary">एंड्रॉइड को थंबनेल में मुख्य रंग के अनुसार अधिसूचना के रंग को अनुकूलित करने दें (ध्यान दें कि यह सभी फोन पर उपलब्ध नहीं है)</string>
+    <string name="notification_colorize_title">अधिसूचना को रंग दें</string>
+    <string name="notification_action_nothing">कुछ नहीं</string>
+    <string name="notification_action_buffering">बफरिंग</string>
+    <string name="notification_action_shuffle">फेरबदल करे</string>
+    <string name="notification_action_repeat">दोहराएं</string>
+    <string name="notification_actions_at_most_three">कॉम्पैक्ट अधिसूचना में दिखाने के लिए आप अधिकतम तीन क्रियाओं का चयन कर सकते हैं!</string>
+    <string name="notification_actions_summary">इस पर टैप करके नीचे दी गई प्रत्येक सूचना को संपादित करें। दाईं ओर चेकबॉक्स का उपयोग करके कॉम्पैक्ट अधिसूचना में दिखाए जाने के लिए उनमें से तीन तक का चयन करें।</string>
+    <string name="notification_action_4_title">पांचवा एक्शन बटन</string>
+    <string name="notification_action_3_title">चौथा एक्शन बटन</string>
+    <string name="notification_action_2_title">तीसरा एक्शन बटन</string>
+    <string name="notification_action_1_title">दूसरा एक्शन बटन</string>
+    <string name="notification_action_0_title">पहला एक्शन बटन</string>
+    <string name="notification_scale_to_square_image_summary">अधिसूचना में दिखाए गए वीडियो थंबनेल को 16: 9 से 1: 1 के अनुपात में दिखाया गया है (विकृतियों का परिचय दे सकता है)</string>
+    <string name="notification_scale_to_square_image_title">वीडियो छवि को 1:1 के आस्पेक्ट अनुपात मैं देखें</string>
 </resources>
