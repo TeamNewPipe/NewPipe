@@ -5,7 +5,7 @@ import androidx.annotation.StringRes
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class ErrorInfo private constructor(
+class ErrorInfo(
     val userAction: UserAction?,
     val serviceName: String,
     val request: String,

@@ -1,1 +1,1 @@
-壹個輕量級的自由Android YouTube客戶端。
+自由的輕量級 Android YouTube 前端。

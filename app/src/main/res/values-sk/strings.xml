@@ -307,7 +307,7 @@
     <string name="resize_fill">Vyplniť</string>
     <string name="resize_zoom">Zväčšiť</string>
     <string name="use_inexact_seek_title">Používať rýchly posun</string>
-    <string name="use_inexact_seek_summary">Rýchly posun umožňuje prejsť na novú pozíciu rýchlejšie, ale s menšou presnosťou. Posúvanie o 5,15 alebo 25 sekúnd s týmto nastavením nefunguje.</string>
+    <string name="use_inexact_seek_summary">Rýchly posun umožňuje prejsť na novú pozíciu rýchlejšie, ale s menšou presnosťou. Posúvanie o 5, 15 alebo 25 sekúnd s týmto nastavením nefunguje.</string>
     <string name="download_thumbnail_title">Načítanie miniatúr</string>
     <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení spôsobuje vyčistenie vyrovnávacej pamäte.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Vyrovnávacia pamäť obrázkov vymazaná</string>
@@ -653,8 +653,10 @@
     <string name="clear_cookie_summary">Vymazať cookies, ktoré NewPipe ukladá, keď vyriešite reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies boli vymazané</string>
     <string name="clear_cookie_title">Vymazať cookies reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Obmedzený režim\", ktorý skrýva potenciálny obsah pre dospelých.</string>
-    <string name="show_age_restricted_content_summary">Zobraziť obsah, ktorý je možno nevhodný pre deti, pretože má vekovú hranicu (napríklad 18+).</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Obmedzený režim\", ktorý skrýva potenciálny obsah pre dospelých</string>
+    <string name="show_age_restricted_content_summary">Zobraziť obsah, ktorý je možno nevhodný pre deti, pretože má vekovú hranicu (napríklad 18+)</string>
     <string name="notification_colorize_summary">Nechajte Android, aby prispôsobil farbu upozornenia podľa hlavnej farby v miniatúre (nemusí to fungovať na všetkých zariadeniach)</string>
     <string name="notification_colorize_title">Farby upozornení</string>
+    <string name="show_thumbnail_title">Zobrazovať miniatúru</string>
+    <string name="show_thumbnail_summary">Zobrazovať miniatúru pri uzamknutej obrazovke a v upozorneniach</string>
 </resources>

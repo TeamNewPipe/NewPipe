@@ -633,8 +633,8 @@
     <string name="clear_cookie_summary">Εκκαθάριση των cookies που αποθηκεύει η εφαρμογή όταν λύνετε ένα reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Τα reCAPTCHA cookies εκκαθαρίστηκαν</string>
     <string name="clear_cookie_title">Εκκαθάριση reCAPTCHA cookies</string>
-    <string name="youtube_restricted_mode_enabled_summary">Το YouTube διαθέτει \"Περιορισμένη Λειτουργία\" η οποία κρύβει πιθανώς ακατάλληλο περιεχόμενο.</string>
-    <string name="show_age_restricted_content_summary">Εμφάνιση πιθανώς ακατάλληλου περιεχομένου (18+).</string>
+    <string name="youtube_restricted_mode_enabled_summary">Το YouTube διαθέτει \"Περιορισμένη Λειτουργία\" η οποία κρύβει πιθανώς ακατάλληλο περιεχόμενο</string>
+    <string name="show_age_restricted_content_summary">Εμφάνιση πιθανώς ακατάλληλου περιεχομένου (18+)</string>
     <string name="peertube_instance_add_exists">Το instance υπάρχει ήδη</string>
     <string name="peertube_instance_add_fail">Αδυναμία πιστοποίησης του instance</string>
     <string name="peertube_instance_add_help">Προσθέστε την URL του instance</string>
@@ -645,4 +645,6 @@
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="notification_colorize_title">Χρωματισμός ειδοποιήσεων</string>
     <string name="notification_colorize_summary">Επιτρέπει στο Android να τροποποιήσει το χρώμα της ειδοποίησης, σύμφωνα με το κύριο χρώμα του εικονιδίου (δεν διατίθεται σε όλες τις συσκευές)</string>
+    <string name="show_thumbnail_summary">Εμφάνιση των εικονιδίων στην οθόνη κλειδώματος, ως φόντο και στις ειδοποιήσεις</string>
+    <string name="show_thumbnail_title">Εμφάνιση</string>
 </resources>

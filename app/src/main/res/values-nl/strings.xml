@@ -643,8 +643,8 @@
     <string name="clear_cookie_summary">Verwijder cookies die NewPipe opslaat wanneer u een reCAPTCHA oplost</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies zijn verwijderd</string>
     <string name="clear_cookie_title">Verwijder reCAPTCHA cookies</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"beperkte modes\" aan, dit verbergt mogelijk materiaal voor volwassenen.</string>
-    <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+).</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"beperkte modes\" aan, dit verbergt mogelijk materiaal voor volwassenen</string>
+    <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+)</string>
     <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
     <string name="notification_colorize_title">Notificatie kleur aanpassen</string>
 </resources>

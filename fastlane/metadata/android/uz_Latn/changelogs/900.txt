@@ -1,0 +1,13 @@
+Yangi
+• Obunalar va saralangan tasmalar
+• Pleerlarda ovozni o'chirish tugmasi
+
+Yaxshilangan
+• NewPipe-da music.youtube.com va media.ccc.de havolalarini ochishga ruxsat
+• Tashqi ko'rinishdan tarkibga ikkita sozlamani o'zgartirish
+• 5, 15, 25 soniyali qidirish variantlarini yashirish, agar noaniq izlash yoqilgan bo'lsa
+
+Ruxsat etilgan
+• Android P-da ma'lumotlar bazasini zaxiralash
+• yuklab olingan faylni ulashishda xato
+• YouTube-dan ekstraksiya qilishda muammo va boshqalar ...

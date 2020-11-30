@@ -1,0 +1,15 @@
+Berria eta hobetua:
+• Blokeo pantailan miniatura ezkutatzeko aukera berriro gehitu da
+• Tiratu jarioa freskatzeko
+• Errendimendu hobea zerrendak eskuratzerakoan
+
+Konponduta:
+• Hutsegitea NewPipe RAMetik kendu ondoren abiaraztean
+• Hutsegitea abiaraztean konexiorik ez dagoenean
+• Distira eta bolumen-keinuen ezarpenak errespetatzen dira
+• [YouTube] Erreprodukzio zerrenda luzeak konponduta
+
+Bestelakoak:
+• Kodearen garbiketa eta barne hobekuntzak
+• Menpekotasunen eguneraketa
+• Itzulpenen eguneraketa
