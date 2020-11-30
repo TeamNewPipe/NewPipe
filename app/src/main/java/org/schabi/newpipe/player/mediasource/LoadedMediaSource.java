@@ -114,7 +114,7 @@ public class LoadedMediaSource implements ManagedMediaSource {
      */
     @Override
     public MediaItem getMediaItem() {
-        return MediaItem.fromUri(stream.getUrl());
+        return source.getMediaItem();
     }
 
     @Override
