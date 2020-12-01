@@ -637,4 +637,6 @@
     <string name="show_age_restricted_content_summary">Menampilkan konten yang mungkin tidak cocok untuk anak-anak karena memiliki batasan umur (seperti 18+)</string>
     <string name="notification_colorize_summary">Minta Android menyesuaikan warna notifikasi sesuai dengan warna utama di thumbnail (perhatikan bahwa ini tidak tersedia di semua perangkat)</string>
     <string name="notification_colorize_title">Warnai notifikasi</string>
+    <string name="show_thumbnail_summary">Tampilkan thumbnail pada layar penguncian sebagai latar dan di dalam notifikasi</string>
+    <string name="show_thumbnail_title">Tampilkan thumbnail</string>
 </resources>

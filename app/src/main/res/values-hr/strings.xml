@@ -616,9 +616,9 @@
     <string name="restricted_video">Ovaj video je dobno ograničen.
 \n
 \nZa prikaz sadržaja uključi „%1$s” u postavkama.</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube nudi postavku „Ograničeni način rada”, čime se skriva sadržaj za odrasle.</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube nudi postavku „Ograničeni način rada”, čime se skriva sadržaj za odrasle</string>
     <string name="youtube_restricted_mode_enabled_title">Uključi YouTube postavku „Ograničeni način rada”</string>
-    <string name="show_age_restricted_content_summary">Prikaži sadržaj koji nije prikladan za određenu dob (kategorija 18).</string>
+    <string name="show_age_restricted_content_summary">Prikaži sadržaj koji vjerojatno nije prikladan za djecu, jer je dobno ograničen (kategorija 18)</string>
     <string name="peertube_instance_add_exists">Primjerak već postoji</string>
     <string name="peertube_instance_add_fail">Neuspjela provjera primjerka</string>
     <string name="peertube_instance_add_help">Upiši URL primjerka</string>
@@ -635,4 +635,10 @@
     <string name="new_seek_duration_toast">Zbog ograničenja ExoPlayera, trajanje traženja postavljeno je na %d s</string>
     <string name="notification_colorize_summary">Neka Android prilagodi boju obavijesti prema glavnoj boji minijature (ovo nije dostupno na svim uređajima)</string>
     <string name="notification_colorize_title">Oboji obavijest</string>
+    <string name="content_not_supported">NewPipe još ne podržava ovaj sadržaj.
+\n
+\nNadamo se da će biti podržan u budućoj verziji.</string>
+    <string name="show_thumbnail_summary">Prikaži minijaturu kao pozadinu pri zaključanom ekranu i unutar obavijesti</string>
+    <string name="show_thumbnail_title">Prikaži minijaturu</string>
+    <string name="show_original_time_ago_title">Prikaži izvorno vrijeme elemenata</string>
 </resources>

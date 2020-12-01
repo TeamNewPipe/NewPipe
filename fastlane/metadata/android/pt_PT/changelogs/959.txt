@@ -1,0 +1,3 @@
+O loop infinito de falhas corrigido após a abertura do repórter de erro.
+Lista atualizada de instâncias do PeerTube que podem ser abertas automaticamente pelo NewPipe.
+Traduções atualizadas.

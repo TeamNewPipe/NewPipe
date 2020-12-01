@@ -101,14 +101,14 @@
     <string name="msg_copied">Panoya kopyalandı</string>
     <string name="no_available_dir">Lütfen daha sonra ayarlardan uygun bir indirme dizini belirleyin</string>
     <string name="could_not_setup_download_menu">İndirme menüsü ayarlanamadı</string>
-    <string name="open_in_popup_mode">Açılır pencere modunda aç</string>
-    <string name="popup_mode_share_menu_title">Açılır pencere modu</string>
+    <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
+    <string name="popup_mode_share_menu_title">Açılır pencere kipi</string>
     <string name="default_popup_resolution_title">Varsayılan açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Yüksek çözünürlükleri göster</string>
     <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K videoları oynatabilir</string>
     <string name="default_video_format_title">Varsayılan video biçimi</string>
     <string name="black_theme_title">Siyah</string>
-    <string name="popup_playing_toast">Açılır pencere modunda oynatılıyor</string>
+    <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
     <string name="all">Tümü</string>
     <string name="channel">Kanal</string>
     <string name="yes">Evet</string>
@@ -120,7 +120,7 @@
     <string name="short_thousand">b</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="msg_popup_permission">Bu izin, açılır pencere modunda
+    <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
 \naçmak için gereklidir</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
     <string name="recaptcha_request_toast">reCAPTCHA formu istendi</string>
@@ -325,14 +325,17 @@
     <string name="previous_export">Önceki dışa aktarım</string>
     <string name="subscriptions_import_unsuccessful">Abonelikler içe aktarılamadı</string>
     <string name="subscriptions_export_unsuccessful">Abonelikler dışa aktarılamadı</string>
-    <string name="import_youtube_instructions">Dışa aktarım dosyasını indirerek YouTube aboneliklerinizi içe aktarın: 
-\n 
-\n1. Şu adrese gidin: %1$s 
-\n2. Sorulduğunda hesabınıza giriş yapın 
-\n3. İndirme başlamalı (bu, dışa aktarma dosyasıdır)</string>
+    <string name="import_youtube_instructions">Google Takeout\'tan YouTube aboneliklerini içe aktar:
+\n
+\n1. Şu adrese gidin: %1$s
+\n2. Sorulduğunda hesabınıza giriş yapın
+\n3. \"Tüm veriler dahil\"e ve sonrasında \"Hiçbirini seçme\"ye tıklayın, ardından yalnızca \"abonelikler\"i seçin ve \"Tamam\"a tıklayın
+\n4. \"Sonraki adım\"a ve ardından \"Dışa aktar\"a tıklayın
+\n5. Göründüğünde \"İndir\" düğmesini tıklayın
+\n6. İndirilen zip dosyasından .json dosyasını çıkarın (genellikle \"YouTube and YouTube Music/subscriptions/subscriptions.json\") ve buradan içe aktarın.</string>
     <string name="import_soundcloud_instructions">URL\'yi veya ID\'nizi yazarak SoundCloud profilini içe aktarın:
 \n
-\n1. Web tarayıcısında \"masaüstü modu\" etkinleştirin (site, mobil aygıtlar için uygun değildir)
+\n1. Web tarayıcısında \"masaüstü kipi\" etkinleştirin (site, mobil aygıtlar için uygun değildir)
 \n2. Şu adrese gidin: %1$s
 \n3. Sorulduğunda giriş yapın
 \n4. Yönlendirildiğiniz profil URL\'sini kopyalayın.</string>
@@ -410,7 +413,7 @@
     <string name="selection">Seçim</string>
     <string name="updates_setting_title">Güncellemeler</string>
     <string name="updates_setting_description">Yeni bir sürüm mevcut olduğunda uygulama güncellemesi için bir bildirim göster</string>
-    <string name="list_view_mode">Liste görünümü modu</string>
+    <string name="list_view_mode">Liste görünümü kipi</string>
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
     <string name="auto">Otomatik</string>
@@ -568,8 +571,8 @@
     <string name="feed_update_threshold_option_always_update">Her zaman güncelle</string>
     <string name="feed_use_dedicated_fetch_method_title">Uygunken özel akıştan edinin</string>
     <string name="feed_use_dedicated_fetch_method_summary">Bazı servislerde kullanılabilir, genellikle daha hızlıdır ancak kısıtlı sayıda öge ve eksik bilgi (örn. süre, öge türü, canlı durumu olmaksızın) getirilebilir.</string>
-    <string name="feed_use_dedicated_fetch_method_enable_button">Hızlı modu etkinleştir</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">Hızlı modu devre dışı bırak</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Hızlı kipi etkinleştir</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Hızlı kipi devre dışı bırak</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Akışın çok yavaş yüklendiğini mi düşünüyorsunuz\? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz).
 \n
 \nNewPipe iki akış yükleme yordamı sunar:
@@ -599,7 +602,7 @@
     <string name="remove_watched">İzleneni kaldır</string>
     <string name="show_original_time_ago_summary">Akış ögelerinde hizmetlerden alınan özgün metinler görünecektir</string>
     <string name="show_original_time_ago_title">Ögelerde özgün \'… önce\'yi göster</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube\'un \"Kısıtlı Mod\"unu aç</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube\'un \"Kısıtlı Kip\"ini aç</string>
     <string name="video_detail_by">%s tarafından</string>
     <string name="channel_created_by">%s tarafından oluşturuldu</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar küçük resmi</string>
@@ -640,7 +643,7 @@
     <string name="clear_cookie_summary">reCAPTCHA çözdüğünüzde NewPipe\'ın sakladığı çerezleri temizle</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA çerezleri temizlendi</string>
     <string name="clear_cookie_title">reCAPTCHA çerezlerini temizle</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube, olası yetişkin içeriği gizleyen \"Kısıtlı Mod\" sağlamaktadır</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube, olası yetişkin içeriği gizleyen \"Kısıtlı Kip\" sağlamaktadır</string>
     <string name="show_age_restricted_content_summary">Yaş kısıtı (18+ gibi) nedeniyle çocuklara uygun olmayabilecek içeriği göster</string>
     <string name="show_thumbnail_summary">Küçük resmi kilit ekranında arka plan olarak ve bildirimlerin içinde göster</string>
     <string name="show_thumbnail_title">Küçük resmi göster</string>

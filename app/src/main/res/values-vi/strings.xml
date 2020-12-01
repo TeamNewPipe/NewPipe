@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Nhấn \"Tìm kiếm\" để bắt đầu</string>
+    <string name="main_bg_subtitle">Nhấn \"Tìm kiếm\" để tìm kiếm video
+\n</string>
     <string name="view_count_text">%1$s lượt xem</string>
     <string name="upload_date_text">Đăng vào %1$s</string>
     <string name="no_player_found">Không tìm thấy trình phát. Cài đặt VLC\?</string>
@@ -58,7 +59,7 @@
     <string name="background_player_playing_toast">Phát ở chế độ nền</string>
     <string name="popup_playing_toast">Phát ở chế độ popup</string>
     <string name="content">Nội dung</string>
-    <string name="show_age_restricted_content_title">Cho phép nội dung có giới hạn độ tuổi</string>
+    <string name="show_age_restricted_content_title">Cho phép và hiển thị nội dung có giới hạn độ tuổi</string>
     <string name="duration_live">Trực tiếp</string>
     <string name="downloads">Tải xuống</string>
     <string name="downloads_title">Tải xuống</string>
@@ -359,7 +360,8 @@
 \n
 \n1. Truy cập URL này: %1$s
 \n2. Đăng nhập khi được yêu cầu
-\n3. Một tệp sẽ được tải về (đó là tệp xuất)</string>
+\n3. Một tệp sẽ được tải về (đó là tệp xuất)
+\n4. Làm theo yêu cầu như màn hình và tải xuống file .json và cho nó vào đây để hoàn tất</string>
     <string name="import_soundcloud_instructions">Nhập hồ sơ SoundCloud bằng cách nhập URL hoặc ID của bạn:
 \n
 \n1. Bật \"chế độ màn hình\" trong trình duyệt web (trang web không khả dụng cho thiết bị di động)
@@ -541,8 +543,8 @@
     <string name="videos_string">Video</string>
     <string name="restricted_video">Video này bị giới hạn độ tuổi.
 \n
-\nBật \"Nội dung giới hạn độ tuổi\" trong cài đặt nếu bạn muốn xem video này.</string>
-    <string name="youtube_restricted_mode_enabled_title">Chế độ giới hạn YouTube</string>
+\nBật \"Cho phép nội dung giới hạn độ tuổi\" trong cài đặt nếu bạn muốn xem video này.</string>
+    <string name="youtube_restricted_mode_enabled_title">hế độ giới hạn YouTube</string>
     <string name="peertube_instance_add_https_only">Chỉ URL HTTPS được hỗ trợ</string>
     <string name="peertube_instance_url_summary">Chọn thực thể PeerTube ưa thích</string>
     <string name="peertube_instance_url_title">Thực thể PeerTube</string>
@@ -623,4 +625,16 @@
     <string name="notification_scale_to_square_image_summary">Thu nhỏ ảnh thumbnail trong thông báo từ tỉ lệ 16:9 xuống 1:1 (có thể gây méo ảnh)</string>
     <string name="notification_scale_to_square_image_title">Thu nhỏ ảnh thumbnail theo tỉ lệ 1:1</string>
     <string name="search_showing_result_for">Hiện kết quả cho: %s</string>
+    <string name="enqueue_stream">Hàng</string>
+    <string name="show_age_restricted_content_summary">Hiển thị nội dung không an toàn cho trẻ em vì có giới hạn độ tuổi (+18)</string>
+    <string name="show_thumbnail_summary">Hiển thị hình thu nhỏ trong màn hình khoá dưới dạng nền và đặt trong thanh thông báo</string>
+    <string name="show_thumbnail_title">Xem hình thu nhỏ</string>
+    <string name="show_memory_leaks">Kiểm tra bộ</string>
+    <string name="enqueued">Hàng</string>
+    <string name="clear_cookie_summary">Xoá Cookie mà NewPipe lưu trữ sau khi bạn vượt</string>
+    <string name="recaptcha_cookies_cleared">Cookie đã được</string>
+    <string name="clear_cookie_title">Xoá bỏ Cookie của</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube cung cấp \"Chế độ hạn chế\" để ẩn nội dung người lớn</string>
+    <string name="notification_colorize_summary">Yêu cầu Android tùy chỉnh màu của thông báo theo màu chính của video, có thể không khả dụng trong vài thiết bị</string>
+    <string name="notification_colorize_title">àu thông báo</string>
 </resources>
