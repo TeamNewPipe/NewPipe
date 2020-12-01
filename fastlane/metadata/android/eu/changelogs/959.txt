@@ -1,0 +1,3 @@
+Akatsen txostena ireki ostean zeuden hutsegite amaigabeak konpondu dira.
+NewPipekin automatikoki ireki daitezkeen PeerTube instantziak eguneratu dira.
+Itzulpenak eguneratuta.
