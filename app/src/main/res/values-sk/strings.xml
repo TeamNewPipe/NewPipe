@@ -231,8 +231,8 @@
     <string name="switch_to_main">Prepnúť na Video</string>
     <string name="import_data_title">Importovať databázu</string>
     <string name="export_data_title">Exportovať databázu</string>
-    <string name="import_data_summary">Prepíše aktuálnu históriu pozretí a odberov</string>
-    <string name="export_data_summary">Exportovať históriu, odbery a zoznamy skladieb</string>
+    <string name="import_data_summary">Prepíše aktuálnu históriu, odbery, zoznamy skladieb a (voliteľne aj) nastavenia</string>
+    <string name="export_data_summary">Exportovať históriu, odbery, zoznamy skladieb a nastavenia</string>
     <string name="player_stream_failure">Nepodarilo sa prehrať tento stream</string>
     <string name="player_unrecoverable_failure">Pri prehrávaní došlo k chybe a nemožno pokračovať</string>
     <string name="player_recoverable_failure">Zotavovanie po chybe v prehrávaní</string>
