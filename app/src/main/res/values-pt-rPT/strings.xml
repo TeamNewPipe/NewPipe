@@ -398,7 +398,7 @@
     <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
     <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas PeerTube</string>
     <string name="import_export_title">Importar/exportar</string>
-    <string name="export_data_summary">Exportar histórico, subscrições e listas de reprodução</string>
+    <string name="export_data_summary">Exportar histórico, assinaturas, listas de reprodução e configurações</string>
     <string name="best_resolution">Melhor resolução</string>
     <string name="select_a_channel">Selecione um canal</string>
     <string name="choose_browser">Escolher navegador</string>
@@ -471,7 +471,7 @@
     <string name="missions_header_pending">Pendente</string>
     <string name="import_complete_toast">Importado</string>
     <string name="auto">Automático</string>
-    <string name="import_data_summary">Substitui o histórico e as subscrições atuais</string>
+    <string name="import_data_summary">Substitui o seu histórico actual, subscrições, listas de reprodução e (opcionalmente) definições</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="short_thousand">k</string>
     <string name="err_dir_create">Não foi possível criar a pasta \'%1$s\'</string>
