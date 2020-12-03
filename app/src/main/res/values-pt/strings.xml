@@ -16,8 +16,8 @@
     <string name="screen_rotation">rotação</string>
     <string name="use_external_video_player_title">Utilizar reprodutor de vídeo externo</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
-    <string name="download_path_title">Pasta para os vídeos</string>
-    <string name="download_path_summary">Os ficheiros de vídeo descarregados serão armazenados aqui</string>
+    <string name="download_path_title">Pasta para os ficheiros de vídeo</string>
+    <string name="download_path_summary">Os ficheiros de vídeo descarregados serão guardados aqui</string>
     <string name="download_path_dialog_title">Escolha a pasta para colocar os ficheiros de vídeo</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
@@ -46,7 +46,7 @@
     <string name="use_tor_title">Utilizar Tor</string>
     <string name="use_tor_summary">(Experimental) Forçar tráfego via Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>
     <string name="download_path_audio_title">Pasta para ficheiros de áudio</string>
-    <string name="download_path_audio_summary">Os ficheiros de áudio descarregados serão armazenados aqui</string>
+    <string name="download_path_audio_summary">Os ficheiros de áudio descarregados serão guardados aqui</string>
     <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>
     <string name="err_dir_create">Não foi possível criar a pasta \'%1$s\'</string>
     <string name="info_dir_created">Pasta \'%1$s\' criada com sucesso</string>
@@ -165,8 +165,8 @@
     <string name="fragment_feed_title">Novidades</string>
     <string name="enable_search_history_title">Histórico de pesquisa</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
-    <string name="enable_watch_history_title">Ver histórico</string>
-    <string name="enable_watch_history_summary">Manter histórico dos vídeos vistos</string>
+    <string name="enable_watch_history_title">Histórico de visualizações</string>
+    <string name="enable_watch_history_summary">Manter histórico dos vídeos visualizados</string>
     <string name="resume_on_audio_focus_gain_title">Continuar reprodução</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reprodução após interrupções (ex. chamadas)</string>
     <string name="settings_category_player_title">Reprodutor</string>
