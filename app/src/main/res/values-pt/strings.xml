@@ -237,8 +237,8 @@
     <string name="toggle_orientation">Alternar orientação</string>
     <string name="import_data_title">Importar base de dados</string>
     <string name="export_data_title">Exportar base de dados</string>
-    <string name="import_data_summary">Substitui o seu histórico actual, subscrições, listas de reprodução e (opcionalmente) definições</string>
-    <string name="export_data_summary">Exportar histórico, assinaturas, listas de reprodução e configurações</string>
+    <string name="import_data_summary">Substitui o seu histórico, subscrições, listas de reprodução e (opcionalmente) definições</string>
+    <string name="export_data_summary">Exportar histórico, subscrições, listas de reprodução e definições</string>
     <string name="background_player_append">Na fila do reprodutor em segundo plano</string>
     <string name="popup_playing_append">Na fila do reprodutor popup</string>
     <string name="switch_to_background">Mudar para segundo plano</string>
@@ -417,7 +417,7 @@
     <string name="selection">Seleção</string>
     <string name="updates_setting_title">Atualizações</string>
     <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
-    <string name="list_view_mode">Modo de vista em lista</string>
+    <string name="list_view_mode">Modo de exibição</string>
     <string name="list">Lista</string>
     <string name="grid">Grelha</string>
     <string name="auto">Automático</string>
