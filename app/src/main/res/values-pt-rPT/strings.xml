@@ -50,7 +50,7 @@
     <string name="new_seek_duration_toast">Devido às restrições de ExoPlayer, a duração da pesquisa foi definida para %d segundos</string>
     <string name="overwrite">Sobrescrever</string>
     <string name="mute">Sem som</string>
-    <string name="enable_watch_history_title">Ver histórico</string>
+    <string name="enable_watch_history_title">Histórico de visualizações</string>
     <plurals name="views">
         <item quantity="one">%s visualização</item>
         <item quantity="other">%s visualizações</item>
