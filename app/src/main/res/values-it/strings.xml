@@ -264,7 +264,7 @@
     <string name="preferred_player_fetcher_notification_message">Caricamento del contenuto richiesto</string>
     <string name="import_data_title">Importa database</string>
     <string name="export_data_title">Esporta database</string>
-    <string name="import_data_summary">Sovrascrive la cronologia, gli abbonamenti, le playlist e (facoltativamente) le impostazioni correnti</string>
+    <string name="import_data_summary">Sovrascrive la cronologia, le iscrizioni, le playlist e (facoltativamente) le impostazioni correnti</string>
     <string name="export_data_summary">Esporta cronologia, iscrizioni, playlist e impostazioni</string>
     <string name="export_complete_toast">Esportazione completa</string>
     <string name="import_complete_toast">Importazione completa</string>
