@@ -282,8 +282,8 @@
     <string name="file">Файл</string>
     <string name="import_data_title">Импорт данных</string>
     <string name="export_data_title">Экспорт данных</string>
-    <string name="import_data_summary">Текущие подписки, плейлисты и история будут заменены</string>
-    <string name="export_data_summary">Экспорт подписок, плейлистов и истории</string>
+    <string name="import_data_summary">Текущие подписки, плейлисты, история и (опционально) настройки будут заменены</string>
+    <string name="export_data_summary">Экспорт подписок, плейлистов, истории и настроек</string>
     <string name="invalid_directory">Папка не существует</string>
     <string name="invalid_source">Папка или источник контента не существуют</string>
     <string name="invalid_file">Файл не существует или нет разрешения на его чтение или запись</string>
