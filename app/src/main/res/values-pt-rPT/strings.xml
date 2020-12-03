@@ -108,7 +108,7 @@
     <string name="artists">Artistas</string>
     <string name="error_connect_host">Não foi possível ligar ao servidor</string>
     <string name="show_play_with_kodi_summary">Mostrar uma opção para reproduzir o vídeo no Kodi</string>
-    <string name="list_view_mode">Modo de vista em lista</string>
+    <string name="list_view_mode">Modo de exibição</string>
     <string name="use_inexact_seek_summary">A pesquisa inexata permite que esta seja mais rápida mas reduz a precisão. Procurar por 5, 15 ou 25 segundos não funciona corretamente.</string>
     <string name="permission_display_over_apps">Permitir sobreposição a outras aplicações</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
@@ -121,7 +121,7 @@
     <string name="error_report_open_issue_button_text">Reportar no GitHub</string>
     <string name="detail_likes_img_view_description">Gosto</string>
     <string name="history_disabled">O histórico está desativado</string>
-    <string name="download_path_title">Pasta para os vídeos</string>
+    <string name="download_path_title">Pasta para os ficheiros de vídeo</string>
     <string name="subtitle_activity_recaptcha">Prima \"Feito\" ao resolver</string>
     <string name="feed_notification_loading">A carregar…</string>
     <string name="play_audio">Áudio</string>
@@ -398,7 +398,7 @@
     <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
     <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas PeerTube</string>
     <string name="import_export_title">Importar/exportar</string>
-    <string name="export_data_summary">Exportar histórico, assinaturas, listas de reprodução e configurações</string>
+    <string name="export_data_summary">Exportar histórico, subscrições, listas de reprodução e definições</string>
     <string name="best_resolution">Melhor resolução</string>
     <string name="select_a_channel">Selecione um canal</string>
     <string name="choose_browser">Escolher navegador</string>
@@ -453,7 +453,7 @@
     <string name="clear_search_history_title">Limpar histórico de pesquisas</string>
     <string name="msg_error">Erro</string>
     <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
-    <string name="download_path_summary">Os ficheiros de vídeo descarregados serão armazenados aqui</string>
+    <string name="download_path_summary">Os ficheiros de vídeo descarregados serão guardados aqui</string>
     <string name="switch_to_main">Mudar para principal</string>
     <string name="msg_popup_permission">Esta permissão é necessária
 \npara o modo popup</string>
@@ -471,7 +471,7 @@
     <string name="missions_header_pending">Pendente</string>
     <string name="import_complete_toast">Importado</string>
     <string name="auto">Automático</string>
-    <string name="import_data_summary">Substitui o seu histórico actual, subscrições, listas de reprodução e (opcionalmente) definições</string>
+    <string name="import_data_summary">Substitui o seu histórico, subscrições, listas de reprodução e (opcionalmente) definições</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="short_thousand">k</string>
     <string name="err_dir_create">Não foi possível criar a pasta \'%1$s\'</string>
@@ -538,7 +538,7 @@
     <string name="settings_file_replacement_character_title">Carácter de substituição</string>
     <string name="video">Vídeo</string>
     <string name="no_streams_available_download">Não existem vídeos para descarregar</string>
-    <string name="download_path_audio_summary">Os ficheiros de áudio descarregados serão armazenados aqui</string>
+    <string name="download_path_audio_summary">Os ficheiros de áudio descarregados serão guardados aqui</string>
     <string name="videos_string">Vídeos</string>
     <string name="metadata_cache_wipe_complete_notice">Meta-dados em cache limpos</string>
     <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes:\" da janela popup</string>
