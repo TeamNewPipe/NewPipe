@@ -176,7 +176,7 @@
     <string name="playlist">プレイリスト</string>
     <string name="undo">元に戻す</string>
     <string name="play_all">すべて再生</string>
-    <string name="notification_channel_name">NewPipeの通知</string>
+    <string name="notification_channel_name">NewPipe の通知</string>
     <string name="unknown_content">[不明]</string>
     <string name="player_stream_failure">動画の再生ができませんでした</string>
     <string name="player_unrecoverable_failure">回復不能な再生エラーが発生しました</string>
@@ -228,8 +228,8 @@
     <string name="just_once">一度だけ</string>
     <string name="import_data_title">データベースをインポート</string>
     <string name="export_data_title">データベースをエクスポート</string>
-    <string name="import_data_summary">既存の履歴、登録リスト、プレイリストおよび（任意の）設定は上書きされます</string>
-    <string name="export_data_summary">履歴、登録リスト、プレイリストおよび設定をエクスポートします</string>
+    <string name="import_data_summary">既存の再生履歴、登録チャンネル一覧、プレイリストおよび（任意の）設定は上書きされます</string>
+    <string name="export_data_summary">再生履歴、登録チャンネル一覧、プレイリストおよび設定をエクスポートします</string>
     <string name="player_recoverable_failure">再生エラーからの回復中</string>
     <string name="external_player_unsupported_link_type">外部プレイヤーは、これらのタイプのリンクをサポートしていません</string>
     <string name="invalid_url_toast">無効なURL</string>
@@ -341,7 +341,7 @@
     <string name="controls_add_to_playlist_title">プレイリスト</string>
     <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示</string>
     <string name="tracks">トラック</string>
-    <string name="notification_channel_description">NewPipeのバックグラウンドおよびポップアッププレイヤーの通知</string>
+    <string name="notification_channel_description">NewPipe のバックグラウンドおよびポップアッププレイヤーの通知</string>
     <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押ししてキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
