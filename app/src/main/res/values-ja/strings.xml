@@ -228,8 +228,8 @@
     <string name="just_once">一度だけ</string>
     <string name="import_data_title">データベースをインポート</string>
     <string name="export_data_title">データベースをエクスポート</string>
-    <string name="import_data_summary">既存の履歴と登録リストは上書きされます</string>
-    <string name="export_data_summary">履歴や登録リスト、プレイリストをエクスポートします</string>
+    <string name="import_data_summary">既存の履歴、登録リスト、プレイリストおよび（任意の）設定は上書きされます</string>
+    <string name="export_data_summary">履歴、登録リスト、プレイリストおよび設定をエクスポートします</string>
     <string name="player_recoverable_failure">再生エラーからの回復中</string>
     <string name="external_player_unsupported_link_type">外部プレイヤーは、これらのタイプのリンクをサポートしていません</string>
     <string name="invalid_url_toast">無効なURL</string>
