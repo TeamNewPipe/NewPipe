@@ -93,7 +93,7 @@
     <string name="msg_server_unsupported">このサーバーには対応していません</string>
     <string name="msg_exists">ファイルが既に存在します</string>
     <string name="msg_url_malform">URL の形式が正しくないか､通信が利用できません</string>
-    <string name="msg_running">NewPipeで保存中</string>
+    <string name="msg_running">NewPipe ダウンロード中</string>
     <string name="msg_running_detail">タップして詳細を表示</string>
     <string name="msg_wait">お待ちください…</string>
     <string name="msg_copied">クリップボードにコピーしました</string>
@@ -324,11 +324,11 @@
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
     <string name="invalid_source">このファイル/コンテンツはありません</string>
     <plurals name="subscribers">
-        <item quantity="other">%s人が登録しています</item>
+        <item quantity="other">チャンネル登録者数 %s人</item>
     </plurals>
     <string name="no_views">再生なし</string>
     <plurals name="views">
-        <item quantity="other">再生回数 %s再生</item>
+        <item quantity="other">再生回数 %s回</item>
     </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
