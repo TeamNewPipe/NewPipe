@@ -1,11 +1,13 @@
 package org.schabi.newpipe.util;
 
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+
 import android.net.Uri;
 import android.widget.Toast;
 
@@ -30,13 +32,18 @@ public final class ShareUtils {
         final String defaultBrowserPackageName = getDefaultBrowserPackageName(context);
 
         if (defaultBrowserPackageName.equals("android")) {
-            // no browser set as default
+            // no browser set as default (doesn't work on some devices)
             openInDefaultApp(context, url);
         } else {
-            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    .setPackage(defaultBrowserPackageName)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+            try {
+                final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        .setPackage(defaultBrowserPackageName)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            } catch (final ActivityNotFoundException e) {
+                // not a browser but an app chooser because of OEMs changes
+                openInDefaultApp(context, url);
+            }
         }
     }
 
@@ -58,10 +65,11 @@ public final class ShareUtils {
     /**
      * Get the default browser package name.
      * <p>
-     * If no browser is set as default, it will return "android"
+     * If no browser is set as default, it will return "android".
+     * Note: This doesn't return it on some devices because some OEMs changed the app chooser.
      *
      * @param context the context to use
-     * @return the package name of the default browser, or "android" if there's no default
+     * @return the package name of the default browser, or the app chooser if there's no default
      */
     private static String getDefaultBrowserPackageName(final Context context) {
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"))
