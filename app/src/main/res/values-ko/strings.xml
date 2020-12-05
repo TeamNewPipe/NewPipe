@@ -550,4 +550,31 @@
     <string name="search_showing_result_for">%s에 대한 검색 결과</string>
     <string name="notification_action_shuffle">셔플</string>
     <string name="notification_action_repeat">연속 재생</string>
+    <string name="playlist_page_summary">재생목록 페이지</string>
+    <string name="show_thumbnail_title">썸네일 보기</string>
+    <string name="feed_group_dialog_empty_name">그룹 이름이 없음</string>
+    <plurals name="days">
+        <item quantity="other">%d 일</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="other">%d 시간</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="other">%d 분</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="other">%d 초</item>
+    </plurals>
+    <string name="remove_watched_popup_title">시청 기록을 지우겠습니까\?</string>
+    <string name="remove_watched">시청 기록 지우기</string>
+    <string name="title_activity_play_queue">재생목록 실행</string>
+    <string name="settings_category_notification_title">알림</string>
+    <string name="unsupported_url_dialog_message">URL을 인식할 수 없습니다. 다른 앱으로 여시겠습니까\?</string>
+    <string name="clear_queue_confirmation_title">스트림을 비우기 전 확인을 요청합니다.</string>
+    <string name="notification_colorize_summary">안드로이드에서 썸네일의 색상에 따라 알림 색상을 조절합니다. (지원되지 않는 기기가 있을 수 있습니다.)</string>
+    <string name="notification_action_buffering">버퍼링</string>
+    <string name="notification_action_4_title">다섯번째 버튼</string>
+    <string name="notification_action_3_title">네번째 버튼</string>
+    <string name="notification_action_2_title">세번째 버튼</string>
+    <string name="notification_action_1_title">두번째 버튼</string>
 </resources>
