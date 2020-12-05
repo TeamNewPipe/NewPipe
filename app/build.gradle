@@ -18,7 +18,7 @@ android {
 
         multiDexEnabled true
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "org.schabi.newpipe.NewPipeTestRunner"
         vectorDrawables.useSupportLibrary = true
 
         javaCompileOptions {
@@ -242,6 +242,8 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0", {
         exclude module: 'support-annotations'
     }
+
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
 }
 
 static String getGitWorkingBranch() {
