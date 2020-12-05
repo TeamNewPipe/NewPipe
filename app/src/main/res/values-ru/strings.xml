@@ -153,7 +153,7 @@
     <string name="app_description">Свободное и легковесное потоковое воспроизведение для Android.</string>
     <string name="view_on_github">Открыть на GitHub</string>
     <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
-    <string name="copyright" formatted="true">© %1$s %2$s 🞄 %3$s</string>
+    <string name="copyright" formatted="true">© %1$s • %2$s • %3$s</string>
     <string name="contribution_title">Помощь проекту</string>
     <string name="subscribe_button_title">Подписаться</string>
     <string name="subscription_change_failed">Не удалось изменить подписку</string>
