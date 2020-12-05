@@ -577,4 +577,5 @@
     <string name="notification_action_3_title">네번째 버튼</string>
     <string name="notification_action_2_title">세번째 버튼</string>
     <string name="notification_action_1_title">두번째 버튼</string>
+    <string name="permission_display_over_apps">다른 앱 위에 표시되는 권한 부여</string>
 </resources>
