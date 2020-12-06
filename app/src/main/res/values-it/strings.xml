@@ -126,7 +126,7 @@
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato video predefinito</string>
     <string name="popup_remember_size_pos_title">Ricorda proprietà lettore popup</string>
-    <string name="popup_remember_size_pos_summary">Ricorda dimensione e posizione della finestra Popup</string>
+    <string name="popup_remember_size_pos_summary">Ricorda dimensione e posizione del lettore popup</string>
     <string name="player_gesture_controls_title">Controllo gesti lettore multimediale</string>
     <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume del lettore multimediale</string>
     <string name="show_search_suggestions_title">Suggerimenti di ricerca</string>
