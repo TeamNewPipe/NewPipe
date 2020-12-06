@@ -4,12 +4,12 @@
   "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 <suppressions>
   <suppress checks="FinalParameters"
-    files="LocalItemListAdapter.java"
-    lines="221,293"/>
+      files="LocalItemListAdapter.java"
+      lines="221,293"/>
 
   <suppress checks="FinalParameters"
-    files="InfoListAdapter.java"
-    lines="253,325"/>
+      files="InfoListAdapter.java"
+      lines="253,325"/>
 
   <suppress checks="FinalParameters"
       files="ListHelper.java"
@@ -25,8 +25,13 @@
       lines="156,158"/>
 
   <suppress checks="FileLength"
-            files="VideoPlayerImpl.java"/>
+      files="VideoPlayerImpl.java"/>
 
   <suppress checks="FileLength"
-            files="VideoDetailFragment.java"/>
+      files="VideoDetailFragment.java"/>
+
+  <!-- org.schabi.newpipe.util -->
+  <suppress checks="LineLength"
+      files="ShareUtils.java"
+      lines="113"/>
 </suppressions>

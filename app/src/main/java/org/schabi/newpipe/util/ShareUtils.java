@@ -1,5 +1,6 @@
 package org.schabi.newpipe.util;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -9,8 +10,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 
 import android.net.Uri;
+import android.os.Build;
 import android.widget.Toast;
 
+import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
@@ -56,17 +59,28 @@ public final class ShareUtils {
      * @param url     the url to browse
      */
     private static void openInDefaultApp(final Context context, final String url) {
-        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        context.startActivity(Intent.createChooser(
-                intent, context.getString(R.string.share_dialog_title))
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        try {
+            final Intent viewintent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            final Intent intent = new Intent(Intent.ACTION_CHOOSER);
+            intent.setPackage("android");
+            intent.putExtra(Intent.EXTRA_INTENT, viewintent);
+            intent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.open_with));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (final ActivityNotFoundException e) {
+            // falling back to OEM's chooser if Android's system chooser was removed by the OEM
+            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(Intent.createChooser(
+                    intent, context.getString(R.string.share_dialog_title))
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
     }
 
     /**
      * Get the default browser package name.
      * <p>
      * If no browser is set as default, it will return "android".
-     * Note: This doesn't return it on some devices because some OEMs changed the app chooser.
+     * Note: it doesn't return "android" on some devices because some OEMs changed the app chooser.
      *
      * @param context the context to use
      * @return the package name of the default browser, or the app chooser if there's no default
@@ -87,13 +101,24 @@ public final class ShareUtils {
      * @param url     the url to share
      */
     public static void shareUrl(final Context context, final String subject, final String url) {
-        final Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        intent.putExtra(Intent.EXTRA_TEXT, url);
-        context.startActivity(Intent.createChooser(
-                intent, context.getString(R.string.share_dialog_title))
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        final Intent shareIntent = ShareCompat.IntentBuilder.from((Activity) context)
+                .setType("text/plain")
+                .setSubject(subject)
+                .setText(url)
+                .getIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+        final Intent intent = new Intent(Intent.ACTION_CHOOSER);
+        intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
+        intent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.share_dialog_title));
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            intent.addFlags(Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
+        }
+
+        context.startActivity(intent);
     }
 
     /**
