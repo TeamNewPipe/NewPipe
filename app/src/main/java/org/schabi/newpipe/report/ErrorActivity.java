@@ -257,11 +257,7 @@ public class ErrorActivity extends AppCompatActivity {
                 goToReturnActivity();
                 break;
             case R.id.menu_item_share_error:
-                final Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, buildJson());
-                intent.setType("text/plain");
-                startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
+                ShareUtils.shareUrl(this, getString(R.string.error_report_title), buildJson());
                 break;
         }
         return false;
@@ -398,7 +394,7 @@ public class ErrorActivity extends AppCompatActivity {
             htmlErrorReport
                     .append("## Exception")
                     .append("\n* __User Action:__ ")
-                        .append(getUserActionString(errorInfo.getUserAction()))
+                    .append(getUserActionString(errorInfo.getUserAction()))
                     .append("\n* __Request:__ ").append(errorInfo.getRequest())
                     .append("\n* __Content Country:__ ").append(getContentCountryString())
                     .append("\n* __Content Language:__ ").append(getContentLanguageString())
