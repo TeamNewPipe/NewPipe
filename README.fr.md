@@ -1,7 +1,7 @@
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Lecteur multimédia libre et léger pour Android.</h4>
-<p align="center"><a href="https://f-droid.org/fr/packages/org.schabi.newpipe/"><img src="https://gitlab.com/fdroid/artwork/-/raw/master/badge/get-it-on-fr-fr.png"></a></p> 
+<p align="center"><a href="https://f-droid.org/fr/packages/org.schabi.newpipe/"><img src="https://gitlab.com/fdroid/artwork/-/raw/master/badge/get-it-on-fr-fr.png" width="172px"></a></p> 
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
