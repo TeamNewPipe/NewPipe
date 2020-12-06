@@ -12,7 +12,7 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bounties Bountysource"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#Captures%20d'écran">Captures d'écran</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Fonctionnalités</a> &bull; <a href="#updates">Mises à jour</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donate">Donner</a> &bull; <a href="#license">Licence</a></p>
+<p align="center"><a href="#Captures-décran">Captures d'écran</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#mises-à-jour">Mises à jour</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donner">Donner</a> &bull; <a href="#licence">Licence</a></p>
 <p align="center"><a href="https://newpipe.net">Site web</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presse</a></p>
 <hr>
 
@@ -79,7 +79,7 @@ NewPipe supporte plusieurs services. Notre [documentation](https://teamnewpipe.g
 * media.ccc.de \[beta\]
 * PeerTube \[beta\]
 
-## Mise à jour
+## Mises à jour
 
 Lorsque des modifications sont effectués au code de NewPipe (soit grâce à de nouvelles nouveautés, soit à cause de corrections de bugs), une mise à jour finira par être disponible. Le format de version est x.xx.x . Pour obtenir les nouvelles versions, vous pouvez :
  1. Compiler l'application et créer un fichier APK vous-même. C'est la méthode la plus rapide, mais est plus compliquée, par conséquent nous vous conseillons d'utiliser une des autres méthodes.
@@ -105,7 +105,7 @@ Si vous aimeriez contribuer, veuiller regarder nos [notes de contribution](.gith
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="État de la traduction" />
 </a>
 
-## Donate
+## Donner
 Si vous aimez NewPipe, nous serions heureux de recevoir un don. Vous pouvez soit donner avec des bitcoin ou via Bountysource ou Liberapay. Pour plus d'informations, veuillez visiter notre [site web](https://newpipe.net/donate).
 
 <table>
@@ -131,7 +131,7 @@ Si vous aimez NewPipe, nous serions heureux de recevoir un don. Vous pouvez soit
 Le projet NewPipe cherche a fournir une expérience anonyme et privée pour les services multimédias en ligne.
 Par conséquent, notre appli ne collecte rien sans votre consentement. La poliique de confidentialité de NewPipe explique en détail quelles données sont envoyées et conservées lorsque vous signaler une erreur, ou commentez sur notre blog. Vous pouvez trouver ce document [ici](https://newpipe.net/legal/privacy/).
 
-## License
+## Licence
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
 NewPipe est un logiciel libre ; vous pouvez le redistribuer ou le modifier suivant les termes de 
