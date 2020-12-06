@@ -269,7 +269,7 @@
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
     <string name="import_data_summary">يلغي السجل الحالي والاشتراكات وقوائم التشغيل والإعدادات (اختياريًا)</string>
-    <string name="export_data_summary">تصدير السجل، الإشتراكات وقوائم التشغيل</string>
+    <string name="export_data_summary">تصدير قوائم تشغيل, الاشتراكات, والإعدادات</string>
     <string name="show_info">عرض المعلومات</string>
     <string name="controls_add_to_playlist_title">إضافة إلى</string>
     <string name="settings_category_debug_title">تحليل</string>
