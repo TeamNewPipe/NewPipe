@@ -132,7 +132,7 @@
     <string name="use_external_video_player_summary">Entfernt Tonspur bei manchen Auflösungen</string>
     <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
-    <string name="player_gesture_controls_summary">Helligkeit und Lautstärke mittels Gesten einstellen</string>
+    <string name="player_gesture_controls_summary">Gesten verwenden, um die Helligkeit und Lautstärke einzustellen</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
     <string name="show_search_suggestions_summary">Beim Suchen Vorschläge anzeigen</string>
     <string name="settings_category_popup_title">Pop-up</string>
@@ -402,9 +402,9 @@
     <string name="tab_new">Neuer Tab</string>
     <string name="tab_choose">Tab wählen</string>
     <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
-    <string name="volume_gesture_control_summary">Verwende Gesten um die Abspielerlautstärke einzustellen</string>
+    <string name="volume_gesture_control_summary">Gesten verwenden, um die Lautstärke einzustellen</string>
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
-    <string name="brightness_gesture_control_summary">Player-Helligkeit über Gesten steuern</string>
+    <string name="brightness_gesture_control_summary">Gesten verwenden, um die Helligkeit einzustellen</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
     <string name="file_deleted">Datei gelöscht</string>
     <string name="app_update_notification_channel_name">App-Update-Benachrichtigung</string>
