@@ -266,8 +266,8 @@
     <string name="preferred_player_fetcher_notification_message">Gewünschten Inhalt laden</string>
     <string name="import_data_title">Datenbank importieren</string>
     <string name="export_data_title">Datenbank exportieren</string>
-    <string name="import_data_summary">Überschreibt deinen aktuellen Verlauf und deine Abonnements</string>
-    <string name="export_data_summary">Verlauf, Abonnements und Wiedergabelisten exportieren</string>
+    <string name="import_data_summary">Überschreibt deinen aktuellen Verlauf, Abonnements, Wiedergabelisten und (optionale) Einstellungen</string>
+    <string name="export_data_summary">Export von Verlauf, Abonnements, Wiedergabelisten und Einstellungen</string>
     <string name="no_valid_zip_file">Keine gültige ZIP-Datei</string>
     <string name="could_not_import_all_files">Warnung: Nicht alle Dateien konnten importiert werden.</string>
     <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
