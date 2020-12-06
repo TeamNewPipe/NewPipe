@@ -369,8 +369,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void enhancePeertubeMenu(final StreamingService s, final MenuItem menuItem) {
-        final PeertubeInstance currentInstace = PeertubeHelper.getCurrentInstance();
-        menuItem.setTitle(currentInstace.getName() + (ServiceHelper.isBeta(s) ? " (beta)" : ""));
+        final PeertubeInstance currentInstance = PeertubeHelper.getCurrentInstance();
+        menuItem.setTitle(currentInstance.getName() + (ServiceHelper.isBeta(s) ? " (beta)" : ""));
         final Spinner spinner = (Spinner) LayoutInflater.from(this)
                 .inflate(R.layout.instance_spinner_layout, null);
         final List<PeertubeInstance> instances = PeertubeHelper.getInstanceList(this);
@@ -378,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
         int defaultSelect = 0;
         for (final PeertubeInstance instance : instances) {
             items.add(instance.getName());
-            if (instance.getUrl().equals(currentInstace.getUrl())) {
+            if (instance.getUrl().equals(currentInstance.getUrl())) {
                 defaultSelect = items.size() - 1;
             }
         }
