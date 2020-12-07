@@ -9,7 +9,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import kotlin.jvm.Throws
 
-class PlaylistStreamEntry(
+data class PlaylistStreamEntry(
     @Embedded
     val streamEntity: StreamEntity,
 
@@ -35,21 +35,5 @@ class PlaylistStreamEntry(
 
     override fun getLocalItemType(): LocalItem.LocalItemType {
         return LocalItem.LocalItemType.PLAYLIST_STREAM_ITEM
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (other == null || other !is PlaylistStreamEntry || streamEntity != other.streamEntity ||
-                progressTime != other.progressTime || streamId != other.streamId || joinIndex != other.joinIndex
-        ) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = streamEntity.hashCode()
-        result = 31 * result + progressTime.hashCode()
-        result = 31 * result + streamId.hashCode()
-        result = 31 * result + joinIndex
-        return result
     }
 }
