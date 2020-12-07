@@ -684,7 +684,7 @@ public abstract class BasePlayer implements
 
     public void onMuteUnmuteButtonClicked() {
         if (DEBUG) {
-            Log.d(TAG, "onMuteUnmuteButtonClicled() called");
+            Log.d(TAG, "onMuteUnmuteButtonClicked() called");
         }
         simpleExoPlayer.setVolume(isMuted() ? 1 : 0);
     }
