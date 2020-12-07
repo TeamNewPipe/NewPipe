@@ -29,9 +29,4 @@
 
   <suppress checks="FileLength"
       files="VideoDetailFragment.java"/>
-
-  <!-- org.schabi.newpipe.util -->
-  <suppress checks="LineLength"
-      files="ShareUtils.java"
-      lines="113"/>
 </suppressions>

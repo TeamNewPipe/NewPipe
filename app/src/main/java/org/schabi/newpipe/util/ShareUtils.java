@@ -1,6 +1,5 @@
 package org.schabi.newpipe.util;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -10,10 +9,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 
 import android.net.Uri;
-import android.os.Build;
 import android.widget.Toast;
 
-import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
@@ -60,10 +57,10 @@ public final class ShareUtils {
      */
     private static void openInDefaultApp(final Context context, final String url) {
         try {
-            final Intent viewintent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            final Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             final Intent intent = new Intent(Intent.ACTION_CHOOSER);
             intent.setPackage("android");
-            intent.putExtra(Intent.EXTRA_INTENT, viewintent);
+            intent.putExtra(Intent.EXTRA_INTENT, viewIntent);
             intent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.open_with));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -71,7 +68,7 @@ public final class ShareUtils {
             // falling back to OEM's chooser if Android's system chooser was removed by the OEM
             final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(Intent.createChooser(
-                    intent, context.getString(R.string.share_dialog_title))
+                    intent, context.getString(R.string.open_with))
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
@@ -101,24 +98,28 @@ public final class ShareUtils {
      * @param url     the url to share
      */
     public static void shareUrl(final Context context, final String subject, final String url) {
-        final Intent shareIntent = ShareCompat.IntentBuilder.from((Activity) context)
-                .setType("text/plain")
-                .setSubject(subject)
-                .setText(url)
-                .getIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        try {
+            final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, url);
 
-        final Intent intent = new Intent(Intent.ACTION_CHOOSER);
-        intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
-        intent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.share_dialog_title));
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+            final Intent intent = new Intent(Intent.ACTION_CHOOSER);
+            intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
+            intent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.share_dialog_title));
+            intent.setPackage("android");
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (final ActivityNotFoundException e) {
+            // falling back to OEM's chooser if Android's system chooser was removed by the OEM
+            final Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            intent.putExtra(Intent.EXTRA_TEXT, url);
+            context.startActivity(Intent.createChooser(
+                    intent, context.getString(R.string.share_dialog_title))
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            intent.addFlags(Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
-        }
-
-        context.startActivity(intent);
     }
 
     /**
