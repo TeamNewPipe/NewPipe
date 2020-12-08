@@ -29,6 +29,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.AttrRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,7 @@ import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.tabs.TabLayout;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -96,6 +98,7 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -147,9 +150,11 @@ public final class VideoDetailFragment
     private static final String RELATED_TAB_TAG = "NEXT VIDEO";
     private static final String DESCRIPTION_TAB_TAG = "DESCRIPTION TAB";
 
+    // tabs
     private boolean showRelatedStreams;
     private boolean showComments;
     private String selectedTabTag;
+    @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
 
     private int updateFlags = 0;
 
@@ -493,7 +498,7 @@ public final class VideoDetailFragment
                 openVideoPlayer();
                 break;
             case R.id.detail_title_root_layout:
-                toggleTitleAndDescription();
+                toggleTitleAndSecondaryControls();
                 break;
             case R.id.overlay_thumbnail:
             case R.id.overlay_metadata_layout:
@@ -564,7 +569,7 @@ public final class VideoDetailFragment
         return true;
     }
 
-    private void toggleTitleAndDescription() {
+    private void toggleTitleAndSecondaryControls() {
         if (binding.detailSecondaryControlPanel.getVisibility() == View.GONE) {
             binding.detailVideoTitleView.setMaxLines(10);
             binding.detailToggleDescriptionView.setImageResource(
@@ -907,19 +912,23 @@ public final class VideoDetailFragment
             selectedTabTag = pageAdapter.getItemTitle(binding.viewPager.getCurrentItem());
         }
         pageAdapter.clearAllItems();
+        tabIcons.clear();
 
         if (shouldShowComments()) {
             pageAdapter.addFragment(
                     CommentsFragment.getInstance(serviceId, url, title), COMMENTS_TAB_TAG);
+            tabIcons.add(R.drawable.ic_comment_white_24dp);
         }
 
         if (showRelatedStreams && binding.relatedStreamsLayout == null) {
             //temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
+            tabIcons.add(R.drawable.ic_art_track_white_24dp);
         }
 
-        //temp empty fragment. will be updated in handleResult
+        // temp empty fragment. will be updated in handleResult
         pageAdapter.addFragment(new Fragment(), DESCRIPTION_TAB_TAG);
+        tabIcons.add(R.drawable.ic_description_white_24dp);
         pageAdapter.notifyDataSetUpdate();
 
         if (pageAdapter.getCount() < 2) {
@@ -930,7 +939,43 @@ public final class VideoDetailFragment
                 binding.viewPager.setCurrentItem(position);
             }
             binding.tabLayout.setVisibility(View.VISIBLE);
+            updateTabIcons();
         }
+    }
+
+    /**
+     * To be called whenever {@link #pageAdapter} is modified, since that triggers a refresh in
+     * {@link FragmentVideoDetailBinding#tabLayout} resetting all tab's icons. This reads icons from
+     * {@link #tabIcons}, which are set in {@link #initTabs()}
+     */
+    private void updateTabIcons() {
+        for (int i = 0; i < tabIcons.size(); ++i) {
+            final TabLayout.Tab tab = binding.tabLayout.getTabAt(i);
+            if (tab != null) {
+                tab.setIcon(tabIcons.get(i));
+            }
+        }
+    }
+
+    private void updateTabs(@NonNull final StreamInfo info) {
+        if (showRelatedStreams) {
+            if (binding.relatedStreamsLayout == null) { // phone
+                pageAdapter.updateItem(RELATED_TAB_TAG,
+                        RelatedVideosFragment.getInstance(info));
+            } else { // tablet
+                getChildFragmentManager().beginTransaction()
+                        .replace(R.id.relatedStreamsLayout,
+                                RelatedVideosFragment.getInstance(info))
+                        .commitAllowingStateLoss();
+                binding.relatedStreamsLayout.setVisibility(
+                        player != null && player.isFullscreen() ? View.GONE : View.VISIBLE);
+            }
+        }
+
+        pageAdapter.updateItem(DESCRIPTION_TAB_TAG,
+                new DescriptionFragment(info));
+        pageAdapter.notifyDataSetUpdate();
+        updateTabIcons();
     }
 
     private boolean shouldShowComments() {
@@ -1339,22 +1384,7 @@ public final class VideoDetailFragment
         currentInfo = info;
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue);
 
-        if (showRelatedStreams) {
-            if (binding.relatedStreamsLayout == null) { //phone
-                pageAdapter.updateItem(RELATED_TAB_TAG,
-                        RelatedVideosFragment.getInstance(info));
-            } else { //tablet
-                getChildFragmentManager().beginTransaction()
-                        .replace(R.id.relatedStreamsLayout,
-                                RelatedVideosFragment.getInstance(info))
-                        .commitAllowingStateLoss();
-                binding.relatedStreamsLayout.setVisibility(
-                        player != null && player.isFullscreen() ? View.GONE : View.VISIBLE);
-            }
-        }
-        pageAdapter.updateItem(DESCRIPTION_TAB_TAG,
-                new DescriptionFragment(info));
-        pageAdapter.notifyDataSetUpdate();
+        updateTabs(info);
 
         animate(binding.detailThumbnailPlayButton, true, 200);
         binding.detailVideoTitleView.setText(title);
