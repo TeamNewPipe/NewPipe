@@ -103,7 +103,9 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.SponsorBlockUtils;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.VideoSegment;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 import org.schabi.newpipe.views.LargeTextMovementMethod;
 
@@ -192,6 +194,7 @@ public final class VideoDetailFragment
     private int selectedVideoStreamIndex = -1;
     private BottomSheetBehavior<FrameLayout> bottomSheetBehavior;
     private BroadcastReceiver broadcastReceiver;
+    private VideoSegment[] videoSegments;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -262,6 +265,8 @@ public final class VideoDetailFragment
                                    final MainPlayer connectedPlayerService,
                                    final boolean playAfterConnect) {
         player = connectedPlayer;
+        player.setVideoSegments(videoSegments);
+
         playerService = connectedPlayerService;
 
         // It will do nothing if the player is not in fullscreen mode
@@ -945,7 +950,43 @@ public final class VideoDetailFragment
 
     private void runWorker(final boolean forceLoad, final boolean addToBackStack) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+
+        final String apiUrl = prefs.getString(getContext()
+                .getString(R.string.sponsor_block_api_url_key), null);
+        final boolean isSponsorBlockEnabled = prefs.getBoolean(getContext()
+                .getString(R.string.sponsor_block_enable_key), false);
+        final boolean includeSponsorCategory = prefs.getBoolean(getContext()
+                        .getString(R.string.sponsor_block_category_sponsor_key), false);
+        final boolean includeIntroCategory = prefs.getBoolean(getContext()
+                .getString(R.string.sponsor_block_category_intro_key), false);
+        final boolean includeOutroCategory = prefs.getBoolean(getContext()
+                .getString(R.string.sponsor_block_category_outro_key), false);
+        final boolean includeInteractionCategory = prefs.getBoolean(getContext()
+                .getString(R.string.sponsor_block_category_interaction_key), false);
+        final boolean includeSelfPromoCategory = prefs.getBoolean(getContext()
+                .getString(R.string.sponsor_block_category_self_promo_key), false);
+        final boolean includeMusicCategory = prefs.getBoolean(getContext()
+                .getString(R.string.sponsor_block_category_non_music_key), false);
+
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
+                .flatMap(streamInfo -> Single.fromCallable(() -> {
+                    if (isSponsorBlockEnabled
+                            && streamInfo.getUrl().startsWith("https://www.youtube.com")
+                            && apiUrl != null
+                            && !apiUrl.isEmpty()) {
+                        this.videoSegments = SponsorBlockUtils.getYouTubeVideoSegments(
+                                apiUrl,
+                                streamInfo.getId(),
+                                includeSponsorCategory,
+                                includeIntroCategory,
+                                includeOutroCategory,
+                                includeInteractionCategory,
+                                includeSelfPromoCategory,
+                                includeMusicCategory);
+                    }
+
+                    return streamInfo;
+                }))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {

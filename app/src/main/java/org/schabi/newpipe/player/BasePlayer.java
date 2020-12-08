@@ -59,7 +59,6 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.SponsorBlockApiTask;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
@@ -118,6 +117,7 @@ public abstract class BasePlayer implements
     @NonNull
     protected final SharedPreferences mPrefs;
 
+    private boolean wereSponsorsMarked;
     private VideoSegment[] videoSegments;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1211,65 +1211,11 @@ public abstract class BasePlayer implements
                 context.getString(R.string.sponsor_block_whitelist_key), null);
 
         if (uploaderWhitelist != null && uploaderWhitelist.contains(info.getUploaderName())) {
-            sponsorBlockMode = SponsorBlockMode.IGNORE;
+            setSponsorBlockMode(SponsorBlockMode.IGNORE);
         } else {
-            sponsorBlockMode = isSponsorBlockEnabled
+            setSponsorBlockMode(isSponsorBlockEnabled
                     ? SponsorBlockMode.ENABLED
-                    : SponsorBlockMode.DISABLED;
-        }
-
-        if (info.getUrl().startsWith("https://www.youtube.com")) {
-            final String apiUrl = mPrefs
-                    .getString(context.getString(R.string.sponsor_block_api_url_key), null);
-
-            if (apiUrl != null && !apiUrl.isEmpty() && isSponsorBlockEnabled) {
-                try {
-                   final boolean includeSponsorCategory =
-                            mPrefs.getBoolean(
-                                    context.getString(
-                                            R.string.sponsor_block_category_sponsor_key),
-                                    false);
-
-                   final boolean includeIntroCategory =
-                            mPrefs.getBoolean(
-                                    context.getString(
-                                            R.string.sponsor_block_category_intro_key),
-                                    false);
-
-                   final boolean includeOutroCategory =
-                            mPrefs.getBoolean(
-                                    context.getString(
-                                            R.string.sponsor_block_category_outro_key),
-                                    false);
-
-                    final boolean includeInteractionCategory =
-                            mPrefs.getBoolean(
-                                    context.getString(
-                                            R.string.sponsor_block_category_interaction_key),
-                                    false);
-                    final boolean includeSelfPromoCategory =
-                            mPrefs.getBoolean(
-                                    context.getString(
-                                            R.string.sponsor_block_category_self_promo_key),
-                                    false);
-                    final boolean includeMusicCategory =
-                            mPrefs.getBoolean(
-                                    context.getString(
-                                            R.string.sponsor_block_category_non_music_key),
-                                    false);
-
-                    videoSegments = new SponsorBlockApiTask(apiUrl)
-                            .getYouTubeVideoSegments(info.getId(),
-                                    includeSponsorCategory,
-                                    includeIntroCategory,
-                                    includeOutroCategory,
-                                    includeInteractionCategory,
-                                    includeSelfPromoCategory,
-                                    includeMusicCategory);
-                } catch (final Exception e) {
-                    Log.e("SPONSOR_BLOCK", "Error getting YouTube video segments.", e);
-                }
-            }
+                    : SponsorBlockMode.DISABLED);
         }
     }
 
@@ -1821,5 +1767,16 @@ public abstract class BasePlayer implements
 
     public VideoSegment[] getVideoSegments() {
         return videoSegments;
+    }
+
+    public void setVideoSegments(final VideoSegment[] videoSegments) {
+        // use a flag to ignore null values later (i.e. when the video goes fullscreen)
+        // TODO: there's probably a better way to deal with stuff like that
+        if (wereSponsorsMarked) {
+            return;
+        }
+
+        this.videoSegments = videoSegments;
+        wereSponsorsMarked = true;
     }
 }
