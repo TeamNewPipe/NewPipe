@@ -1,4 +1,4 @@
-package org.schabi.newpipe.report
+package org.schabi.newpipe.error
 
 import android.os.Parcelable
 import androidx.annotation.StringRes

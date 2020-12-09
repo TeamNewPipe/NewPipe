@@ -1,4 +1,4 @@
-package org.schabi.newpipe.report;
+package org.schabi.newpipe.error;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -39,8 +39,8 @@ import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
@@ -487,9 +487,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             }
         }
 
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
         if (subscribeButtonMonitor != null) {
             subscribeButtonMonitor.dispose();
         }

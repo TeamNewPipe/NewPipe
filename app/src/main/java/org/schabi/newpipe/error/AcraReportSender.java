@@ -1,21 +1,18 @@
-package org.schabi.newpipe.report;
+package org.schabi.newpipe.error;
 
 import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.google.auto.service.AutoService;
-
-import org.acra.config.CoreConfiguration;
+import org.acra.data.CrashReportData;
 import org.acra.sender.ReportSender;
-import org.acra.sender.ReportSenderFactory;
-import org.schabi.newpipe.App;
+import org.schabi.newpipe.R;
 
 /*
- * Created by Christian Schabesberger on 13.09.16.
+ * Created by Christian Schabesberger  on 13.09.16.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * AcraReportSenderFactory.java is part of NewPipe.
+ * AcraReportSender.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,14 +28,12 @@ import org.schabi.newpipe.App;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * Used by ACRA in {@link App}.initAcra() as the factory for report senders.
- */
-@AutoService(ReportSenderFactory.class)
-public class AcraReportSenderFactory implements ReportSenderFactory {
-    @NonNull
-    public ReportSender create(@NonNull final Context context,
-                               @NonNull final CoreConfiguration config) {
-        return new AcraReportSender();
+public class AcraReportSender implements ReportSender {
+
+    @Override
+    public void send(@NonNull final Context context, @NonNull final CrashReportData report) {
+        ErrorActivity.reportError(context, report,
+                ErrorInfo.make(UserAction.UI_ERROR, "none",
+                        "App crash, UI failure", R.string.app_ui_crash));
     }
 }

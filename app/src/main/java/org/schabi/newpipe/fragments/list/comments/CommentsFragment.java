@@ -16,7 +16,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.ViewUtils;
-import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import io.reactivex.rxjava3.core.Single;

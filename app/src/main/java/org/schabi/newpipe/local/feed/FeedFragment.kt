@@ -38,10 +38,10 @@ import icepick.State
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.databinding.FragmentFeedBinding
+import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.fragments.list.BaseListFragment
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.local.feed.service.FeedLoadService
-import org.schabi.newpipe.report.UserAction
 import org.schabi.newpipe.util.Localization
 import java.util.Calendar
 

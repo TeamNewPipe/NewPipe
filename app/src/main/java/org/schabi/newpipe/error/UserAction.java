@@ -1,4 +1,4 @@
-package org.schabi.newpipe.report;
+package org.schabi.newpipe.error;
 
 /**
  * The user actions that can cause an error.
