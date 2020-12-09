@@ -132,7 +132,7 @@
     <string name="use_external_video_player_summary">Entfernt Tonspur bei manchen Auflösungen</string>
     <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
-    <string name="player_gesture_controls_summary">Helligkeit und Lautstärke mittels Gesten einstellen</string>
+    <string name="player_gesture_controls_summary">Gesten verwenden, um die Helligkeit und Lautstärke einzustellen</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
     <string name="show_search_suggestions_summary">Beim Suchen Vorschläge anzeigen</string>
     <string name="settings_category_popup_title">Pop-up</string>
@@ -266,8 +266,8 @@
     <string name="preferred_player_fetcher_notification_message">Gewünschten Inhalt laden</string>
     <string name="import_data_title">Datenbank importieren</string>
     <string name="export_data_title">Datenbank exportieren</string>
-    <string name="import_data_summary">Überschreibt deinen aktuellen Verlauf und deine Abonnements</string>
-    <string name="export_data_summary">Verlauf, Abonnements und Wiedergabelisten exportieren</string>
+    <string name="import_data_summary">Überschreibt deinen aktuellen Verlauf, Abonnements, Wiedergabelisten und (optionale) Einstellungen</string>
+    <string name="export_data_summary">Export von Verlauf, Abonnements, Wiedergabelisten und Einstellungen</string>
     <string name="no_valid_zip_file">Keine gültige ZIP-Datei</string>
     <string name="could_not_import_all_files">Warnung: Nicht alle Dateien konnten importiert werden.</string>
     <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
@@ -402,9 +402,9 @@
     <string name="tab_new">Neuer Tab</string>
     <string name="tab_choose">Tab wählen</string>
     <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
-    <string name="volume_gesture_control_summary">Verwende Gesten um die Abspielerlautstärke einzustellen</string>
+    <string name="volume_gesture_control_summary">Gesten verwenden, um die Lautstärke einzustellen</string>
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
-    <string name="brightness_gesture_control_summary">Player-Helligkeit über Gesten steuern</string>
+    <string name="brightness_gesture_control_summary">Gesten verwenden, um die Helligkeit einzustellen</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
     <string name="file_deleted">Datei gelöscht</string>
     <string name="app_update_notification_channel_name">App-Update-Benachrichtigung</string>
@@ -643,7 +643,7 @@
     <string name="clear_cookie_summary">Lösche Cookies, die NewPipe speichert, wenn du ein reCAPTCHA löst</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-Cookies wurden gelöscht</string>
     <string name="clear_cookie_title">reCAPTCHA-Cookies löschen</string>
-    <string name="show_age_restricted_content_summary">Zeige Inhalt, der möglicherweise unpassend für Kinder ist, da er eine Altersbeschränkung (wie z.B. 18+) hat</string>
+    <string name="show_age_restricted_content_summary">Zeige altersbeschränkte Inhalte (bspw. 18+), welche möglicherweise unpassend für Kinder sein könnten</string>
     <string name="enqueue_stream">Wiedergabe einreihen</string>
     <string name="notification_colorize_summary">Android kann die Farbe der Benachrichtigung entsprechend der Hauptfarbe in der Miniaturansicht anpassen (beachte, dass dies nicht auf allen Geräten verfügbar ist)</string>
     <string name="notification_colorize_title">Benachrichtigung farblich anpassen</string>

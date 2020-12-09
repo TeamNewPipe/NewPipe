@@ -55,7 +55,7 @@
     <string name="autoplay_by_calling_app_title">Automatisk avspilling</string>
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
-    <string name="show_age_restricted_content_title">Aldersbegrenset innhold</string>
+    <string name="show_age_restricted_content_title">Vis aldersbegrenset innhold</string>
     <string name="general_error">Feil</string>
     <string name="could_not_load_thumbnails">Kunne ikke laste inn alle miniatyrbilder</string>
     <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>
@@ -225,7 +225,7 @@
     <string name="play_queue_audio_settings">Lydinnstillinger</string>
     <string name="hold_to_append">Hold for å legge i kø</string>
     <string name="show_hold_to_append_title">Vis \"Hold for å legge til\" -tips</string>
-    <string name="show_hold_to_append_summary">Vis tips når bakgrunnen eller oppsprettsknappen i videoens «Detaljer:» trykkes</string>
+    <string name="show_hold_to_append_summary">Vis tips når det trykkes på bakgrunnen eller oppsprettsknappen i videoens «Detaljer:»</string>
     <string name="background_player_append">Lagt i kø for bakgrunnsavspiller</string>
     <string name="popup_playing_append">Lagt i kø for oppsprettsspiller</string>
     <string name="unknown_content">[Ukjent]</string>
@@ -265,7 +265,7 @@
     <string name="import_data_title">Importer database</string>
     <string name="export_data_title">Eksporter database</string>
     <string name="import_data_summary">Overstyrer din nåværende historikk og abonnementsliste</string>
-    <string name="export_data_summary">Eksporter historikk, abonnementer og spillelister</string>
+    <string name="export_data_summary">Eksporter historikk, abonnementer, spillelister og innstillinger</string>
     <string name="export_complete_toast">Eksportert</string>
     <string name="import_complete_toast">Importert</string>
     <string name="no_valid_zip_file">Ingen gyldig ZIP-fil</string>
@@ -357,7 +357,10 @@
 \n
 \n1. Gå til denne nettadressen: %1$s
 \n2. Logg inn når forespurt
-\n3. En nedlasting av eksportfilen bør starte</string>
+\n3. En nedlasting av eksportfilen bør starte
+\n4. Klikk på «Neste steg» og så på «Opprett eksport»
+\n5. Klikk på «Last ned»-knappen etter den vises, og
+\n6. Fra nedlastet takeout.zip, pakk ut .json-filen (vanligvis under «YouTube og YouTube Music/subscriptions/subscriptions.json» og importer den her.</string>
     <string name="import_soundcloud_instructions">Importer en SoundCloud-profil ved å skrive enten nettadressen eller din ID:
 \n
 \n1. Skru på \"skrivebordsmodus\" i en nettleser ( siden er ikke tilgjengelig for mobile enheter)
@@ -644,4 +647,6 @@
     <string name="show_age_restricted_content_summary">Vis innhold som muligens er upassende for barn, siden det har aldersgrense (som 18+).</string>
     <string name="notification_colorize_summary">Få Android til å tilpasse merknadens farge i henhold til hovedfargen på miniatyrbildet (merk at dette ikke støttes på alle enheter)</string>
     <string name="notification_colorize_title">Fargelegg merknad</string>
+    <string name="show_thumbnail_summary">Vis miniatyrbilde på låseskjerm som bakgrunn og i merknader</string>
+    <string name="show_thumbnail_title">Vis miniatyrbilde</string>
 </resources>

@@ -1,0 +1,3 @@
+Corrigimos um loop interminável de crash depois de abrir o reportar erro.
+Atualizado lista de instâncias do PeerTube que podem ser abertas automaticamente pelo NewPipe.
+Traduções atualizadas.

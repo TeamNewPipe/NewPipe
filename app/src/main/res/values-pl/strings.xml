@@ -269,8 +269,8 @@
     <string name="switch_to_main">Odtwarzaj na pierwszym planie</string>
     <string name="import_data_title">Importuj dane</string>
     <string name="export_data_title">Eksportuj dane</string>
-    <string name="import_data_summary">Zastępuje Twoją bieżącą historię i subskrypcje</string>
-    <string name="export_data_summary">Eksportuje bieżącą historię, subskrypcje i playlisty</string>
+    <string name="import_data_summary">Zastępuje Twoją bieżącą historię, subskrypcje, playlisty i (opcjonalnie) ustawienia</string>
+    <string name="export_data_summary">Eksportuje bieżącą historię, subskrypcje, playlisty i ustawienia</string>
     <string name="detail_drag_description">Przeciągnij, aby zmienić kolejność</string>
     <string name="create">Utwórz</string>
     <string name="delete_one">Usuń bieżący</string>

@@ -1,0 +1,7 @@
+Migliorato
+• Salvare e ripristinare se intonazione e tempo sono sganciati o meno
+• Supporta il ritaglio del display nel lettore
+• Visualizzazione rotonda e numero di iscritti
+• YouTube ottimizzato per utilizzare meno dati
+
+In questa versione sono stati corretti più di 15 errori relativi a YouTube.

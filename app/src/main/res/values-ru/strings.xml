@@ -26,7 +26,7 @@
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="download_dialog_title">Скачать</string>
     <string name="unsupported_url">URL не поддерживается</string>
-    <string name="show_next_and_similar_title">\"Следующее\" и похожие видео</string>
+    <string name="show_next_and_similar_title">Показать похожие видео</string>
     <string name="content_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
@@ -153,7 +153,7 @@
     <string name="app_description">Свободное и легковесное потоковое воспроизведение для Android.</string>
     <string name="view_on_github">Открыть на GitHub</string>
     <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
-    <string name="copyright" formatted="true">© %1$s %2$s под лицензией %3$s</string>
+    <string name="copyright" formatted="true">© %1$s • %2$s • %3$s</string>
     <string name="contribution_title">Помощь проекту</string>
     <string name="subscribe_button_title">Подписаться</string>
     <string name="subscription_change_failed">Не удалось изменить подписку</string>
@@ -162,7 +162,7 @@
     <string name="tab_subscriptions">Подписки</string>
     <string name="fragment_feed_title">Что нового</string>
     <string name="enable_search_history_title">История поиска</string>
-    <string name="enable_search_history_summary">Хранить запросы поиска локально</string>
+    <string name="enable_search_history_summary">Хранить запросы поиска (локально)</string>
     <string name="enable_watch_history_title">История просмотров</string>
     <string name="enable_playback_resume_title">Продолжать воспроизведение</string>
     <string name="enable_playback_resume_summary">Восстанавливать последнюю позицию</string>
@@ -282,8 +282,8 @@
     <string name="file">Файл</string>
     <string name="import_data_title">Импорт данных</string>
     <string name="export_data_title">Экспорт данных</string>
-    <string name="import_data_summary">Текущие подписки, плейлисты и история будут заменены</string>
-    <string name="export_data_summary">Экспорт подписок, плейлистов и истории</string>
+    <string name="import_data_summary">Текущие подписки, плейлисты, история и (опционально) настройки будут заменены</string>
+    <string name="export_data_summary">Экспорт подписок, плейлистов, истории и настроек</string>
     <string name="invalid_directory">Папка не существует</string>
     <string name="invalid_source">Папка или источник контента не существуют</string>
     <string name="invalid_file">Файл не существует или нет разрешения на его чтение или запись</string>
@@ -383,7 +383,7 @@
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
     <string name="privacy_policy_title">Конфиденциальность</string>
-    <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Поэтому приложение не собирает никаких данных без вашего согласия.
+    <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Приложение не собирает никаких данных без вашего согласия.
 \nПолитика конфиденциальности NewPipe подробно объясняет, какие данные отправляются и хранятся при отправке отчёта о сбоях.</string>
     <string name="read_privacy_policy">Прочитать политику</string>
     <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности NewPipe. Пожалуйста, внимательно ознакомьтесь с ней.
@@ -580,19 +580,19 @@
     <string name="feed_update_threshold_option_always_update">Обновлять всегда</string>
     <string name="feed_group_dialog_empty_selection">Подписки не выбраны</string>
     <string name="feed_groups_header_title">Группы каналов</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Если обновление подписок кажется вам слишком медленным, попробуйте быстрый режим (включите в настройках или кнопкой внизу).
+    <string name="feed_use_dedicated_fetch_method_help_text">Если подписки обновляются слишком медленно, попробуйте быстрый режим (включите в настройках или кнопкой внизу).
 \n
-\nNewPipe позволяет обновлять подписки двумя способами:
-\n• получение канала целиком, медленное, но с полными сведениями;
-\n• обновление по RSS, быстрое, но с потерей сведений.
+\nNewPipe может обновлять подписки двумя способами:
+\n• получение канала целиком, медленное, с полными сведениями;
+\n• обновление по RSS, быстрое, с потерей сведений.
 \n
-\nПри быстром обновлении теряются длительность элемента и его тип (нельзя определить, трансляция это или обычное видео), могут быть получены не все элементы канала.
+\nПри быстром обновлении теряются длительность элемента и его тип (трансляция или обычное видео), могут быть получены не все элементы канала.
 \n
-\nYouTube является примером такого сервиса, допуская быстрое обновление по RSS.
+\nКак пример, YouTube поддерживает быстрое обновление.
 \n
 \nВыбор за вами: скорость или точность.</string>
     <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, но может возвращать не всё содержимое канала и не содержать часть сведений (длительность, тип элемента, статус трансляции)</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, но может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
@@ -640,7 +640,7 @@
     <string name="notification_action_shuffle">Перемешать</string>
     <string name="notification_action_repeat">Повтор</string>
     <string name="notification_actions_at_most_three">В компактном уведомлении доступно не более трёх действий!</string>
-    <string name="notification_actions_summary">Действия можно отредактировать, нажав на них. Отметьте не более трёх для отображения в компактном уведомлении</string>
+    <string name="notification_actions_summary">Действия можно изменить, нажав на них. Отметьте не более трёх для отображения в компактном уведомлении</string>
     <string name="notification_action_4_title">Пятое действие</string>
     <string name="notification_action_3_title">Четвёртое действие</string>
     <string name="notification_action_2_title">Третье действие</string>

@@ -265,8 +265,8 @@
     <string name="preferred_player_fetcher_notification_message">Cargando contenido solicitado</string>
     <string name="import_data_title">Importar base de datos</string>
     <string name="export_data_title">Exportar base de datos</string>
-    <string name="import_data_summary">Anula su historial actual y suscripciones</string>
-    <string name="export_data_summary">Exportar historial, suscripciones y listas de reproducción</string>
+    <string name="import_data_summary">Anula su historial actual, suscripciones, listas de reproducción y (opcionalmente) ajustes</string>
+    <string name="export_data_summary">Exportar historial, suscripciones, listas de reproducción y ajustes</string>
     <string name="export_complete_toast">Exportado</string>
     <string name="import_complete_toast">Importado</string>
     <string name="no_valid_zip_file">Archivo ZIP no válido</string>

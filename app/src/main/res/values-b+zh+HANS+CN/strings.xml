@@ -303,8 +303,8 @@
     <string name="preferred_player_fetcher_notification_message">正在加载请求的内容</string>
     <string name="import_data_title">导入数据库</string>
     <string name="export_data_title">导出数据库</string>
-    <string name="import_data_summary">覆盖当前历史记录和订阅</string>
-    <string name="export_data_summary">导出历史记录、订阅和播放列表</string>
+    <string name="import_data_summary">覆盖您的当前播放历史、订阅、播放列表和(可选)设置</string>
+    <string name="export_data_summary">导出历史记录、订阅、播放列表和设置</string>
     <string name="export_complete_toast">导出成功</string>
     <string name="import_complete_toast">导入成功</string>
     <string name="no_valid_zip_file">没有有效的ZIP文件</string>

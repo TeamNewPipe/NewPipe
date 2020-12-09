@@ -93,7 +93,7 @@
     <string name="msg_server_unsupported">このサーバーには対応していません</string>
     <string name="msg_exists">ファイルが既に存在します</string>
     <string name="msg_url_malform">URL の形式が正しくないか､通信が利用できません</string>
-    <string name="msg_running">NewPipeで保存中</string>
+    <string name="msg_running">NewPipe ダウンロード中</string>
     <string name="msg_running_detail">タップして詳細を表示</string>
     <string name="msg_wait">お待ちください…</string>
     <string name="msg_copied">クリップボードにコピーしました</string>
@@ -176,7 +176,7 @@
     <string name="playlist">プレイリスト</string>
     <string name="undo">元に戻す</string>
     <string name="play_all">すべて再生</string>
-    <string name="notification_channel_name">NewPipeの通知</string>
+    <string name="notification_channel_name">NewPipe の通知</string>
     <string name="unknown_content">[不明]</string>
     <string name="player_stream_failure">動画の再生ができませんでした</string>
     <string name="player_unrecoverable_failure">回復不能な再生エラーが発生しました</string>
@@ -228,8 +228,8 @@
     <string name="just_once">一度だけ</string>
     <string name="import_data_title">データベースをインポート</string>
     <string name="export_data_title">データベースをエクスポート</string>
-    <string name="import_data_summary">既存の履歴と登録リストは上書きされます</string>
-    <string name="export_data_summary">履歴や登録リスト、プレイリストをエクスポートします</string>
+    <string name="import_data_summary">既存の再生履歴、登録チャンネル一覧、プレイリストおよび（任意の）設定は上書きされます</string>
+    <string name="export_data_summary">再生履歴、登録チャンネル一覧、プレイリストおよび設定をエクスポートします</string>
     <string name="player_recoverable_failure">再生エラーからの回復中</string>
     <string name="external_player_unsupported_link_type">外部プレイヤーは、これらのタイプのリンクをサポートしていません</string>
     <string name="invalid_url_toast">無効なURL</string>
@@ -324,11 +324,11 @@
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
     <string name="invalid_source">このファイル/コンテンツはありません</string>
     <plurals name="subscribers">
-        <item quantity="other">%s人が登録しています</item>
+        <item quantity="other">チャンネル登録者数 %s人</item>
     </plurals>
     <string name="no_views">再生なし</string>
     <plurals name="views">
-        <item quantity="other">再生回数 %s再生</item>
+        <item quantity="other">再生回数 %s回</item>
     </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
@@ -341,7 +341,7 @@
     <string name="controls_add_to_playlist_title">プレイリスト</string>
     <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示</string>
     <string name="tracks">トラック</string>
-    <string name="notification_channel_description">NewPipeのバックグラウンドおよびポップアッププレイヤーの通知</string>
+    <string name="notification_channel_description">NewPipe のバックグラウンドおよびポップアッププレイヤーの通知</string>
     <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押ししてキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>

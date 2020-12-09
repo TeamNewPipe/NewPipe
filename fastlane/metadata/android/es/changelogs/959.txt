@@ -1,0 +1,3 @@
+Arreglado un bucle interminable de caídas después de abrir el reportador de errores.
+Lista actualizada de instancias de PeerTube que pueden ser abiertas automáticamente por NewPipe.
+Traducciones actualizadas.

@@ -443,8 +443,8 @@
     <string name="delete_view_history_alert">Cheres iscantzellare totu sa cronologia de sos pompiados\?</string>
     <string name="clear_views_history_summary">Iscantzellat sa cronologia de sos cuntenutos riproduidos e sas positziones de riprodutzione</string>
     <string name="clear_views_history_title">Isbòida sa cronologia de sos pompiados</string>
-    <string name="export_data_summary">Esporta sa cronologia, sos abbonamentos e sas iscalitas</string>
-    <string name="import_data_summary">Subraiscriet sa cronologia e sos abbonamentos atuales tuos</string>
+    <string name="export_data_summary">Esporta sa cronologia, sos abbonamentos, sas iscalitas e sas impostatziones</string>
+    <string name="import_data_summary">Subraiscriet sa cronologia, sos abbonamentos, sas iscalita e (optzionalmente) sas impostatziones tuas atuales</string>
     <string name="export_data_title">Esporta sa base de datos</string>
     <string name="import_data_title">Importa sa base de datos</string>
     <string name="switch_to_main">Cola a sa modalidade printzipale</string>
