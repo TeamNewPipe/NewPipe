@@ -1,0 +1,4 @@
+• Ayarlarda veri tabanı dışa aktarma seçeneğinin açıklaması iyileştirildi.
+• YouTube yorumlarının ayrıştırılması düzeltildi.
+• media.ccc.de hizmetinin görünen adı düzeltildi.
+• Çeviriler güncellendi.
