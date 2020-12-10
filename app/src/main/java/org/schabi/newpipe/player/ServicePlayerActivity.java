@@ -618,7 +618,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             progressLiveSync.setClickable(!player.isLiveEdge());
         }
 
-        // this will make shure progressCurrentTime has the same width as progressEndTime
+        // this will make sure progressCurrentTime has the same width as progressEndTime
         final ViewGroup.LayoutParams endTimeParams = progressEndTime.getLayoutParams();
         final ViewGroup.LayoutParams currentTimeParams = progressCurrentTime.getLayoutParams();
         currentTimeParams.width = progressEndTime.getWidth();

@@ -263,8 +263,8 @@
     <string name="preferred_player_fetcher_notification_message">Chargement du contenu demandé</string>
     <string name="import_data_title">Importer la base de données</string>
     <string name="export_data_title">Exporter la base de données</string>
-    <string name="import_data_summary">Remplace votre historique et vos abonnements actuels</string>
-    <string name="export_data_summary">Exporte l’historique, les abonnements et les listes de lecture</string>
+    <string name="import_data_summary">Remplace votre historique, vos abonnements, vos listes de lecture et (en option) vos paramètres</string>
+    <string name="export_data_summary">Exporte l’historique, les abonnements, les listes de lecture et les paramètres</string>
     <string name="export_complete_toast">Exporté</string>
     <string name="import_complete_toast">Importé</string>
     <string name="no_valid_zip_file">Fichier ZIP non valide</string>

@@ -13,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 959
-        versionName "0.20.5"
+        versionCode 960
+        versionName "0.20.6"
 
         multiDexEnabled true
 
@@ -175,7 +175,7 @@ dependencies {
 
     // NewPipe dependencies
     // You can use a local version by uncommenting a few lines in settings.gradle
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:175df679e05b24b6094570d719cc11f8dfc17c68'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:b3835bd616ab28b861c83dcefd56e1754c6d20be'
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
 
     implementation "org.jsoup:jsoup:1.13.1"

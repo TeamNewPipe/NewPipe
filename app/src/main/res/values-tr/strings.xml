@@ -260,8 +260,8 @@
     <string name="preferred_player_fetcher_notification_message">İstenen içerik yükleniyor</string>
     <string name="import_data_title">Veri tabanını içe aktar</string>
     <string name="export_data_title">Veri tabanını dışa aktar</string>
-    <string name="import_data_summary">Geçerli geçmişinizi ve aboneliklerinizi geçersiz kılar</string>
-    <string name="export_data_summary">Geçmişi, abonelikleri ve oynatma listelerini dışa aktar</string>
+    <string name="import_data_summary">Geçerli geçmişinizi, aboneliklerinizi, oynatma listelerinizi ve (isteğe bağlı olarak) ayarlarınızı geçersiz kılar</string>
+    <string name="export_data_summary">Geçmişi, abonelikleri, oynatma listelerini ve ayarları dışa aktar</string>
     <string name="export_complete_toast">Dışa aktarıldı</string>
     <string name="import_complete_toast">İçe aktarıldı</string>
     <string name="no_valid_zip_file">Geçerli ZIP dosyası yok</string>

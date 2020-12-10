@@ -459,4 +459,8 @@
     <string name="clear_playback_states_title">Lejátszási pozíciók törlése</string>
     <string name="search_showing_result_for">Találatok a következőre: %s</string>
     <string name="notification_scale_to_square_image_title">Bélyegkép méretezése 1:1 arányra</string>
+    <string name="notification_colorize_title">Értesítés színezése</string>
+    <string name="notification_action_nothing">Semmi</string>
+    <string name="notification_action_shuffle">Keverés</string>
+    <string name="notification_action_repeat">Ismétlés</string>
 </resources>

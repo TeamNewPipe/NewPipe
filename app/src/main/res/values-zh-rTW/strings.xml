@@ -228,8 +228,8 @@
     <string name="website_title">網站</string>
     <string name="import_data_title">匯入資料庫</string>
     <string name="export_data_title">匯出資料庫</string>
-    <string name="import_data_summary">覆蓋您目前的歷史記錄和訂閱</string>
-    <string name="export_data_summary">匯出歷史記錄、訂閱和播放清單</string>
+    <string name="import_data_summary">覆蓋您目前的歷史記錄、訂閱與（可選的）設定</string>
+    <string name="export_data_summary">匯出歷史記錄、訂閱、播放清單與設定</string>
     <string name="give_back">回饋</string>
     <string name="website_encouragement">如欲了解更多有關 NewPipe 的資訊和新聞，請造訪我們的網站。</string>
     <string name="main_page_content">首頁內容</string>
