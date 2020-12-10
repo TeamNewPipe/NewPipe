@@ -264,8 +264,8 @@
     <string name="preferred_player_fetcher_notification_message">Bezig met laden van gevraagde inhoud</string>
     <string name="import_data_title">Databank importeren</string>
     <string name="export_data_title">Databank exporteren</string>
-    <string name="import_data_summary">Dit overschrijft je huidige geschiedenis en abonnementen</string>
-    <string name="export_data_summary">Exporteer geschiedenis, abonnementen en afspeellijsten</string>
+    <string name="import_data_summary">Dit overschrijft je huidige geschiedenis, abonnementen, afspeellijsten en (optionele) settings</string>
+    <string name="export_data_summary">Exporteer geschiedenis, abonnementen, afspeellijsten en settings</string>
     <string name="export_complete_toast">Geëxporteerd</string>
     <string name="import_complete_toast">Geïmporteerd</string>
     <string name="no_valid_zip_file">Geen geldig ZIP-bestand</string>
@@ -647,4 +647,6 @@
     <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+)</string>
     <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
     <string name="notification_colorize_title">Notificatie kleur aanpassen</string>
+    <string name="show_thumbnail_summary">Toon miniatuurafbeelding op het vergrendelscherm als achtergrond en binnen meldingen</string>
+    <string name="show_thumbnail_title">Toon miniatuurafbeelding</string>
 </resources>
