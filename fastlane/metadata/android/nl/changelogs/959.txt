@@ -1,0 +1,3 @@
+Probleem opgelost met oneindige reeks van crashes na het openen van de foutrapportage.
+Lijst met PeerTube instanties die automatisch kunnen worden geopend door NewPipe bijgewerkt.
+Vertalingen bijgewerkt.
