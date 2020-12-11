@@ -4,7 +4,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.time.LocalDate
 import java.time.OffsetDateTime
-import java.time.ZoneId
 import java.time.ZoneOffset
 import java.util.Calendar
 import java.util.TimeZone
@@ -12,8 +11,7 @@ import java.util.TimeZone
 class OffsetDateTimeToCalendarTest {
     @Test
     fun testRelativeTimeWithCurrentOffsetDateTime() {
-        val calendar = LocalDate.of(2020, 1, 1).atStartOfDay().atOffset(ZoneOffset.UTC)
-                .toCalendar()
+        val calendar = LocalDate.of(2020, 1, 1).atStartOfDay().atOffset(ZoneOffset.UTC).toCalendar()
 
         assertEquals(2020, calendar[Calendar.YEAR])
         assertEquals(0, calendar[Calendar.MONTH])

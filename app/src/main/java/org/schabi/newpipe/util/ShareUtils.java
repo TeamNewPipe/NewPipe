@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-
 import android.net.Uri;
 import android.widget.Toast;
 
@@ -31,7 +30,9 @@ public final class ShareUtils {
     public static void openUrlInBrowser(final Context context, final String url) {
         final String defaultBrowserPackageName = getDefaultBrowserPackageName(context);
 
-        if (defaultBrowserPackageName.equals("android")) {
+        if (defaultBrowserPackageName.equals("android")
+            || defaultBrowserPackageName.equals("com.huawei.android.internal.app")
+            || defaultBrowserPackageName.equals("com.zui.resolver")) {
             // no browser set as default (doesn't work on some devices)
             openInDefaultApp(context, url);
         } else {
