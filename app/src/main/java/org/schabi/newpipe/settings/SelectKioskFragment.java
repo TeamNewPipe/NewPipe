@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,8 +18,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.error.ErrorActivity;
-import org.schabi.newpipe.error.ErrorInfo;
-import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -83,7 +80,7 @@ public class SelectKioskFragment extends DialogFragment {
         try {
             selectKioskAdapter = new SelectKioskAdapter();
         } catch (final Exception e) {
-            onError(e);
+            ErrorActivity.reportUiError(getActivity(), null, "Selecting kiosk", e);
         }
         recyclerView.setAdapter(selectKioskAdapter);
 
@@ -107,16 +104,6 @@ public class SelectKioskFragment extends DialogFragment {
             onSelectedListener.onKioskSelected(entry.serviceId, entry.kioskId, entry.kioskName);
         }
         dismiss();
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Error
-    //////////////////////////////////////////////////////////////////////////*/
-
-    protected void onError(final Throwable e) {
-        final Activity activity = getActivity();
-        ErrorActivity.reportError(activity, e, activity.getClass(), null, ErrorInfo
-                .make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

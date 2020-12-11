@@ -31,7 +31,7 @@ public class ErrorInfoTest {
         assertEquals(UserAction.USER_REPORT, infoFromParcel.getUserAction());
         assertEquals("youtube", infoFromParcel.getServiceName());
         assertEquals("request", infoFromParcel.getRequest());
-        assertEquals(R.string.general_error, infoFromParcel.getMessage());
+        assertEquals(R.string.general_error, infoFromParcel.getMessageStringId());
 
         parcel.recycle();
     }

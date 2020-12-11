@@ -203,19 +203,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     }
 
     @Override
-    public void showError(final String message, final boolean showRetryButton) {
-        super.showError(message, showRetryButton);
-        showListFooter(false);
-
-        if (itemsList != null) {
-            animate(itemsList, false, 200);
-        }
-        if (headerRootBinding != null) {
-            animate(headerRootBinding.getRoot(), false, 200);
-        }
-    }
-
-    @Override
     public void showEmptyState() {
         super.showEmptyState();
         showListFooter(false);
@@ -249,9 +236,18 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     }
 
     @Override
-    protected boolean onError(final Throwable exception) {
+    public void handleError() {
+        super.handleError();
         resetFragment();
-        return super.onError(exception);
+
+        showListFooter(false);
+
+        if (itemsList != null) {
+            animate(itemsList, false, 200);
+        }
+        if (headerRootBinding != null) {
+            animate(headerRootBinding.getRoot(), false, 200);
+        }
     }
 
     @Override

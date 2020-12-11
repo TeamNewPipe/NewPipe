@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             setupDrawer();
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(this, e);
+            ErrorActivity.reportUiError(this, null, "Setting up drawer", e);
         }
 
         if (DeviceUtils.isTv(this)) {
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     tabSelected(item);
                 } catch (final Exception e) {
-                    ErrorActivity.reportUiError(this, e);
+                    ErrorActivity.reportUiError(this, null, "Selecting main page tab", e);
                 }
                 break;
             case R.id.menu_options_about_group:
@@ -340,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 showTabs();
             } catch (final Exception e) {
-                ErrorActivity.reportUiError(this, e);
+                ErrorActivity.reportUiError(this, null, "Showing main page tabs", e);
             }
         }
     }
@@ -487,7 +487,7 @@ public class MainActivity extends AppCompatActivity {
             drawerHeaderBinding.drawerHeaderActionButton.setContentDescription(
                     getString(R.string.drawer_header_description) + selectedServiceName);
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(this, e);
+            ErrorActivity.reportUiError(this, null, "Setting up service toggle", e);
         }
 
         final SharedPreferences sharedPreferences
@@ -799,7 +799,7 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.gotoMainFragment(getSupportFragmentManager());
             }
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(this, e);
+            ErrorActivity.reportUiError(this, null, "Handling intent", e);
         }
     }
 

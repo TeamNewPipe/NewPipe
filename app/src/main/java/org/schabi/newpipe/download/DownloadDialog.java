@@ -591,17 +591,6 @@ public class DownloadDialog extends DialogFragment
                 .show();
     }
 
-    private void showErrorActivity(final Exception e) {
-        ErrorActivity.reportError(
-                context,
-                Collections.singletonList(e),
-                null,
-                null,
-                ErrorInfo
-                        .make(UserAction.SOMETHING_ELSE, "-", "-", R.string.general_error)
-        );
-    }
-
     private void prepareSelectedDownload() {
         final StoredDirectoryHelper mainStorage;
         final MediaFormat format;
@@ -705,7 +694,8 @@ public class DownloadDialog extends DialogFragment
                         mainStorage.getTag());
             }
         } catch (final Exception e) {
-            showErrorActivity(e);
+            ErrorActivity.reportError(context, null, null,
+                    new ErrorInfo(e, UserAction.DOWNLOAD_FAILED, "Getting storage"));
             return;
         }
 

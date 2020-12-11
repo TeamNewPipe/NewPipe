@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
@@ -25,10 +24,8 @@ import com.google.android.material.tabs.TabLayout;
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentMainBinding;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.error.ErrorActivity;
-import org.schabi.newpipe.error.ErrorInfo;
-import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -128,7 +125,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         if (DEBUG) {
             Log.d(TAG, "onCreateOptionsMenu() called with: "
@@ -144,15 +142,14 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                try {
-                    NavigationHelper.openSearchFragment(getFM(),
-                            ServiceHelper.getSelectedServiceId(activity), "");
-                } catch (final Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
-                }
-                return true;
+        if (item.getItemId() == R.id.action_search) {
+            try {
+                NavigationHelper.openSearchFragment(getFM(),
+                        ServiceHelper.getSelectedServiceId(activity), "");
+            } catch (final Exception e) {
+                ErrorActivity.reportUiError(getActivity(), null, "Opening search fragment", e);
+            }
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -241,8 +238,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             }
 
             if (throwable != null) {
-                ErrorActivity.reportError(context, throwable, null, null, ErrorInfo
-                        .make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
+                ErrorActivity.reportUiError(context, null, "Getting fragment item", throwable);
                 return new BlankFragment();
             }
 
@@ -254,7 +250,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
 
         @Override
-        public int getItemPosition(final Object object) {
+        public int getItemPosition(@NonNull final Object object) {
             // Causes adapter to reload all Fragments when
             // notifyDataSetChanged is called
             return POSITION_NONE;

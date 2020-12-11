@@ -47,6 +47,10 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         return instance;
     }
 
+    public RelatedVideosFragment() {
+        super(UserAction.REQUESTED_STREAM);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -125,41 +129,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         }
         ViewUtils.slideUp(requireView(), 120, 96, 0.06f);
 
-        if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(), UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
-        }
-
         disposables.clear();
-    }
-
-    @Override
-    public void handleNextItems(final ListExtractor.InfoItemsPage result) {
-        super.handleNextItems(result);
-
-        if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(),
-                    UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(serviceId),
-                    "Get next page of: " + url,
-                    R.string.general_error);
-        }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // OnError
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    protected boolean onError(final Throwable exception) {
-        if (super.onError(exception)) {
-            return true;
-        }
-
-        hideLoading();
-        showSnackBarError(exception, UserAction.REQUESTED_STREAM,
-                NewPipe.getNameOfService(serviceId), url, R.string.general_error);
-        return true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

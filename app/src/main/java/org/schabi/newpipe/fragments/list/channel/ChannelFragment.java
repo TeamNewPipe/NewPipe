@@ -16,7 +16,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewbinding.ViewBinding;
 
@@ -27,20 +26,19 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.databinding.ChannelHeaderBinding;
 import org.schabi.newpipe.databinding.FragmentChannelBinding;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.error.ErrorActivity;
-import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
@@ -89,6 +87,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         final ChannelFragment instance = new ChannelFragment();
         instance.setInitialData(serviceId, url, name);
         return instance;
+    }
+
+    public ChannelFragment() {
+        super(UserAction.REQUESTED_CHANNEL);
     }
 
     @Override
@@ -217,9 +219,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     private void monitorSubscription(final ChannelInfo info) {
         final Consumer<Throwable> onError = (Throwable throwable) -> {
             animate(headerBinding.channelSubscribeButton, false, 100);
-            showSnackBarError(throwable, UserAction.SUBSCRIPTION,
-                    NewPipe.getNameOfService(currentInfo.getServiceId()),
-                    "Get subscription status", 0);
+            showSnackBarError(new ErrorInfo(throwable, UserAction.SUBSCRIPTION_GET,
+                    "Get subscription status", currentInfo));
         };
 
         final Observable<List<SubscriptionEntity>> observable = subscriptionManager
@@ -269,11 +270,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         };
 
         final Consumer<Throwable> onError = (@NonNull Throwable throwable) ->
-                onUnrecoverableError(throwable,
-                        UserAction.SUBSCRIPTION,
-                        NewPipe.getNameOfService(info.getServiceId()),
-                        "Updating Subscription for " + info.getUrl(),
-                        R.string.subscription_update_failed);
+                showSnackBarError(new ErrorInfo(throwable, UserAction.SUBSCRIPTION_UPDATE,
+                        "Updating subscription for " + info.getUrl(), info));
 
         disposables.add(subscriptionManager.updateChannelInfo(info)
                 .subscribeOn(Schedulers.io())
@@ -290,11 +288,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         };
 
         final Consumer<Throwable> onError = (@NonNull Throwable throwable) ->
-                onUnrecoverableError(throwable,
-                        UserAction.SUBSCRIPTION,
-                        NewPipe.getNameOfService(currentInfo.getServiceId()),
-                        "Subscription Change",
-                        R.string.subscription_change_failed);
+                showSnackBarError(new ErrorInfo(throwable, UserAction.SUBSCRIPTION_CHANGE,
+                        "Changing subscription for " + currentInfo.getUrl(), currentInfo));
 
         /* Emit clicks from main thread unto io thread */
         return RxView.clicks(subscribeButton)
@@ -408,7 +403,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                                 currentInfo.getParentChannelUrl(),
                                 currentInfo.getParentChannelName());
                     } catch (final Exception e) {
-                        ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                        ErrorActivity.reportUiError(getActivity(), null, "Opening channel fragment", e);
                     }
                 } else if (DEBUG) {
                     Log.i(TAG, "Can't open parent channel because we got no channel URL");
@@ -469,21 +464,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
         playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
 
-        final List<Throwable> errors = new ArrayList<>(result.getErrors());
-        if (!errors.isEmpty()) {
-
-            // handling ContentNotSupportedException not to show the error but an appropriate string
-            // so that crashes won't be sent uselessly and the user will understand what happened
-            errors.removeIf(throwable -> {
-                if (throwable instanceof ContentNotSupportedException) {
-                    showContentNotSupported();
-                }
-                return throwable instanceof ContentNotSupportedException;
-            });
-
-            if (!errors.isEmpty()) {
-                showSnackBarError(errors, UserAction.REQUESTED_CHANNEL,
-                        NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
+        for (final Throwable throwable : result.getErrors()) {
+            if (throwable instanceof ContentNotSupportedException) {
+                showContentNotSupported();
             }
         }
 
@@ -535,38 +518,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         }
         return new ChannelPlayQueue(currentInfo.getServiceId(), currentInfo.getUrl(),
                 currentInfo.getNextPage(), streamItems, index);
-    }
-
-    @Override
-    public void handleNextItems(final ListExtractor.InfoItemsPage result) {
-        super.handleNextItems(result);
-
-        if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(),
-                    UserAction.REQUESTED_CHANNEL,
-                    NewPipe.getNameOfService(serviceId),
-                    "Get next page of: " + url,
-                    R.string.general_error);
-        }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // OnError
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    protected boolean onError(final Throwable exception) {
-        if (super.onError(exception)) {
-            return true;
-        }
-
-        final int errorId = exception instanceof ExtractionException
-                ? R.string.parsing_error : R.string.general_error;
-
-        onUnrecoverableError(exception, UserAction.REQUESTED_CHANNEL,
-                NewPipe.getNameOfService(serviceId), url, errorId);
-
-        return true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

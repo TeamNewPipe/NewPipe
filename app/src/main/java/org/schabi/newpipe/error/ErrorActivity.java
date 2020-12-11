@@ -23,9 +23,6 @@ import androidx.core.app.NavUtils;
 import com.google.android.material.snackbar.Snackbar;
 import com.grack.nanojson.JsonWriter;
 
-import org.acra.ReportField;
-import org.acra.data.CrashReportData;
-import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -34,14 +31,9 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
-import java.util.Vector;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -70,7 +62,6 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String TAG = ErrorActivity.class.toString();
     // BUNDLE TAGS
     public static final String ERROR_INFO = "error_info";
-    public static final String ERROR_LIST = "error_list";
 
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT
@@ -79,98 +70,66 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String ERROR_GITHUB_ISSUE_URL
             = "https://github.com/TeamNewPipe/NewPipe/issues";
 
-    private String[] errorList;
+    public static final DateTimeFormatter CURRENT_TIMESTAMP_FORMATTER
+            = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+
+    /**
+     * Singleton:
+     * Used to send data between certain Activity/Services within the same process.
+     * This can be considered as an ugly hack inside the Android universe.
+     **/
+    @Nullable private static Class savedReturnActivity = null;
+
     private ErrorInfo errorInfo;
-    private Class returnActivity;
     private String currentTimeStamp;
 
     private ActivityErrorBinding activityErrorBinding;
 
-    public static void reportUiError(final AppCompatActivity activity, final Throwable el) {
-        reportError(activity, el, activity.getClass(), null, ErrorInfo.make(UserAction.UI_ERROR,
-                "none", "", R.string.app_ui_crash));
+    public static void reportUiError(final Context context,
+                                     @Nullable final View rootView,
+                                     final String request,
+                                     final Throwable throwable) {
+        reportError(context, (context instanceof Activity ? context.getClass() : null), rootView,
+                new ErrorInfo(throwable, UserAction.UI_ERROR, request));
     }
 
-    public static void reportError(final Context context, final List<Throwable> el,
-                                   final Class returnActivity, final View rootView,
+    public static void reportError(final Context context,
+                                   final Class returnActivity,
+                                   @Nullable final View rootView,
                                    final ErrorInfo errorInfo) {
         if (rootView != null) {
-            Snackbar.make(rootView, R.string.error_snackbar_message, 3 * 1000)
+            Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
                     .setActionTextColor(Color.YELLOW)
                     .setAction(context.getString(R.string.error_snackbar_action).toUpperCase(), v ->
-                            startErrorActivity(returnActivity, context, errorInfo, el)).show();
+                            startErrorActivity(returnActivity, context, errorInfo)).show();
         } else {
-            startErrorActivity(returnActivity, context, errorInfo, el);
+            startErrorActivity(returnActivity, context, errorInfo);
         }
-    }
-
-    private static void startErrorActivity(final Class returnActivity, final Context context,
-                                           final ErrorInfo errorInfo, final List<Throwable> el) {
-        final ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
-        ac.setReturnActivity(returnActivity);
-        final Intent intent = new Intent(context, ErrorActivity.class);
-        intent.putExtra(ERROR_INFO, errorInfo);
-        intent.putExtra(ERROR_LIST, elToSl(el));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-    }
-
-    public static void reportError(final Context context, final Throwable e,
-                                   final Class returnActivity, final View rootView,
-                                   final ErrorInfo errorInfo) {
-        List<Throwable> el = null;
-        if (e != null) {
-            el = new Vector<>();
-            el.add(e);
-        }
-        reportError(context, el, returnActivity, rootView, errorInfo);
     }
 
     // async call
-    public static void reportError(final Handler handler, final Context context,
-                                   final Throwable e, final Class returnActivity,
-                                   final View rootView, final ErrorInfo errorInfo) {
-
-        List<Throwable> el = null;
-        if (e != null) {
-            el = new Vector<>();
-            el.add(e);
-        }
-        reportError(handler, context, el, returnActivity, rootView, errorInfo);
-    }
-
-    // async call
-    public static void reportError(final Handler handler, final Context context,
-                                   final List<Throwable> el, final Class returnActivity,
-                                   final View rootView, final ErrorInfo errorInfo) {
-        handler.post(() -> reportError(context, el, returnActivity, rootView, errorInfo));
-    }
-
-    public static void reportError(final Context context, final CrashReportData report,
+    public static void reportError(final Handler handler,
+                                   final Context context,
+                                   final Class returnActivity,
+                                   final View rootView,
                                    final ErrorInfo errorInfo) {
-        final String[] el = {report.getString(ReportField.STACK_TRACE)};
+        handler.post(() -> reportError(context, returnActivity, rootView, errorInfo));
+    }
 
+
+    ////////////////////////////////////////////////////////////////////////
+    // UTILS
+    ////////////////////////////////////////////////////////////////////////
+
+    private static void startErrorActivity(@Nullable final Class returnActivity,
+                                           final Context context,
+                                           final ErrorInfo errorInfo) {
+        savedReturnActivity = returnActivity;
         final Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);
-        intent.putExtra(ERROR_LIST, el);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
-    }
-
-    private static String getStackTrace(final Throwable throwable) {
-        final StringWriter sw = new StringWriter();
-        final PrintWriter pw = new PrintWriter(sw, true);
-        throwable.printStackTrace(pw);
-        return sw.getBuffer().toString();
-    }
-
-    // errorList to StringList
-    private static String[] elToSl(final List<Throwable> stackTraces) {
-        final String[] out = new String[stackTraces.size()];
-        for (int i = 0; i < stackTraces.size(); i++) {
-            out[i] = getStackTrace(stackTraces.get(i));
-        }
-        return out;
     }
 
     @Override
@@ -193,38 +152,28 @@ public class ErrorActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        final ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
-        returnActivity = ac.getReturnActivity();
         errorInfo = intent.getParcelableExtra(ERROR_INFO);
-        errorList = intent.getStringArrayExtra(ERROR_LIST);
 
         // important add guru meditation
         addGuruMeditation();
-        currentTimeStamp = getCurrentTimeStamp();
+        currentTimeStamp = CURRENT_TIMESTAMP_FORMATTER.format(LocalDateTime.now());
 
         activityErrorBinding.errorReportEmailButton.setOnClickListener(v ->
                 openPrivacyPolicyDialog(this, "EMAIL"));
 
-        activityErrorBinding.errorReportCopyButton.setOnClickListener(v -> {
-                ShareUtils.copyToClipboard(this, buildMarkdown());
-        });
+        activityErrorBinding.errorReportCopyButton.setOnClickListener(v ->
+                ShareUtils.copyToClipboard(this, buildMarkdown()));
 
         activityErrorBinding.errorReportGitHubButton.setOnClickListener(v ->
                 openPrivacyPolicyDialog(this, "GITHUB"));
 
         // normal bugreport
         buildInfo(errorInfo);
-        if (errorInfo.getMessage() != 0) {
-            activityErrorBinding.errorMessageView.setText(errorInfo.getMessage());
-        } else {
-            activityErrorBinding.errorMessageView.setVisibility(View.GONE);
-            activityErrorBinding.messageWhatHappenedView.setVisibility(View.GONE);
-        }
-
-        activityErrorBinding.errorView.setText(formErrorText(errorList));
+        activityErrorBinding.errorMessageView.setText(errorInfo.getMessageStringId());
+        activityErrorBinding.errorView.setText(formErrorText(errorInfo.getStackTraces()));
 
         // print stack trace once again for debugging:
-        for (final String e : errorList) {
+        for (final String e : errorInfo.getStackTraces()) {
             Log.e(TAG, e);
         }
     }
@@ -239,15 +188,14 @@ public class ErrorActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         final int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home:
-                goToReturnActivity();
-                break;
-            case R.id.menu_item_share_error:
-                ShareUtils.shareText(this, getString(R.string.error_report_title), buildJson());
-                break;
+        if (id == android.R.id.home) {
+            goToReturnActivity();
+        } else if (id == R.id.menu_item_share_error) {
+            ShareUtils.shareText(this, getString(R.string.error_report_title), buildJson());
+        } else {
+            return false;
         }
-        return false;
+        return true;
     }
 
     private void openPrivacyPolicyDialog(final Context context, final String action) {
@@ -311,7 +259,7 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private void goToReturnActivity() {
-        final Class<? extends Activity> checkedReturnActivity = getReturnActivity(returnActivity);
+        final Class<? extends Activity> checkedReturnActivity = getReturnActivity(savedReturnActivity);
         if (checkedReturnActivity == null) {
             super.onBackPressed();
         } else {
@@ -355,7 +303,7 @@ public class ErrorActivity extends AppCompatActivity {
                     .value("version", BuildConfig.VERSION_NAME)
                     .value("os", getOsString())
                     .value("time", currentTimeStamp)
-                    .array("exceptions", Arrays.asList(errorList))
+                    .array("exceptions", Arrays.asList(errorInfo.getStackTraces()))
                     .value("user_comment", activityErrorBinding.errorCommentBox.getText()
                             .toString())
                     .end()
@@ -393,27 +341,27 @@ public class ErrorActivity extends AppCompatActivity {
 
             // Collapse all logs to a single paragraph when there are more than one
             // to keep the GitHub issue clean.
-            if (errorList.length > 1) {
+            if (errorInfo.getStackTraces().length > 1) {
                 htmlErrorReport
                         .append("<details><summary><b>Exceptions (")
-                        .append(errorList.length)
+                        .append(errorInfo.getStackTraces().length)
                         .append(")</b></summary><p>\n");
             }
 
             // add the logs
-            for (int i = 0; i < errorList.length; i++) {
+            for (int i = 0; i < errorInfo.getStackTraces().length; i++) {
                 htmlErrorReport.append("<details><summary><b>Crash log ");
-                if (errorList.length > 1) {
+                if (errorInfo.getStackTraces().length > 1) {
                     htmlErrorReport.append(i + 1);
                 }
                 htmlErrorReport.append("</b>")
                         .append("</summary><p>\n")
-                        .append("\n```\n").append(errorList[i]).append("\n```\n")
+                        .append("\n```\n").append(errorInfo.getStackTraces()[i]).append("\n```\n")
                         .append("</details>\n");
             }
 
             // make sure to close everything
-            if (errorList.length > 1) {
+            if (errorInfo.getStackTraces().length > 1) {
                 htmlErrorReport.append("</p></details>\n");
             }
             htmlErrorReport.append("<hr>\n");
@@ -466,11 +414,4 @@ public class ErrorActivity extends AppCompatActivity {
         //super.onBackPressed();
         goToReturnActivity();
     }
-
-    public String getCurrentTimeStamp() {
-        final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        df.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return df.format(new Date());
-    }
-
 }

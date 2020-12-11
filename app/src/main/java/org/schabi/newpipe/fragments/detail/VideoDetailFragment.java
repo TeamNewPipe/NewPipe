@@ -37,7 +37,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -64,9 +63,7 @@ import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -526,7 +523,7 @@ public final class VideoDetailFragment
             NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
                     subChannelUrl, subChannelName);
         } catch (final Exception e) {
-            ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+            ErrorActivity.reportUiError(getActivity(), null, "Opening channel fragment", e);
         }
     }
 
@@ -684,13 +681,12 @@ public final class VideoDetailFragment
         binding.detailThumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
 
         if (!isEmpty(info.getThumbnailUrl())) {
-            final String infoServiceName = NewPipe.getNameOfService(info.getServiceId());
             final ImageLoadingListener onFailListener = new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingFailed(final String imageUri, final View view,
                                             final FailReason failReason) {
-                    showSnackBarError(failReason.getCause(), UserAction.LOAD_IMAGE,
-                            infoServiceName, imageUri, R.string.could_not_load_thumbnails);
+                    showSnackBarError(new ErrorInfo(failReason.getCause(), UserAction.LOAD_IMAGE,
+                            imageUri, info));
                 }
             };
 
@@ -906,10 +902,8 @@ public final class VideoDetailFragment
                             openVideoPlayer();
                         }
                     }
-                }, throwable -> {
-                    isLoading.set(false);
-                    onError(throwable);
-                });
+                }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
+                        url == null ? "no url" : url, serviceId)));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1327,8 +1321,8 @@ public final class VideoDetailFragment
     }
 
     @Override
-    public void showError(final String message, final boolean showRetryButton) {
-        super.showError(message, showRetryButton);
+    public void handleError() {
+        super.handleError();
         setErrorImage(R.drawable.not_available_monkey);
 
         if (binding.relatedStreamsLayout != null) { // hide related streams for tablets
@@ -1341,8 +1335,8 @@ public final class VideoDetailFragment
     }
 
     private void hideAgeRestrictedContent() {
-        showError(getString(R.string.restricted_video,
-                getString(R.string.show_age_restricted_content_title)), false);
+        showTextError(getString(R.string.restricted_video,
+                getString(R.string.show_age_restricted_content_title)));
     }
 
     private void setupBroadcastReceiver() {
@@ -1548,11 +1542,8 @@ public final class VideoDetailFragment
         }
 
         if (!info.getErrors().isEmpty()) {
-            showSnackBarError(info.getErrors(),
-                    UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(info.getServiceId()),
-                    info.getUrl(),
-                    0);
+            showSnackBarError(new ErrorInfo(info.getErrors(),
+                    UserAction.REQUESTED_STREAM, info.getUrl(), info));
         }
 
         binding.detailControlsDownload.setVisibility(info.getStreamType() == StreamType.LIVE_STREAM
@@ -1592,6 +1583,10 @@ public final class VideoDetailFragment
     }
 
     public void openDownloadDialog() {
+        if (currentInfo == null) {
+            return;
+        }
+
         try {
             final DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
             downloadDialog.setVideoStreams(sortedVideoStreams);
@@ -1601,42 +1596,16 @@ public final class VideoDetailFragment
 
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         } catch (final Exception e) {
-            final ErrorInfo info = ErrorInfo.make(UserAction.UI_ERROR,
-                    ServiceList.all()
-                            .get(currentInfo
-                                    .getServiceId())
-                            .getServiceInfo()
-                            .getName(), "",
-                    R.string.could_not_setup_download_menu);
-
-            ErrorActivity.reportError(activity,
-                    e,
-                    activity.getClass(),
-                    activity.findViewById(android.R.id.content), info);
+            ErrorActivity.reportError(activity, activity.getClass(),
+                    activity.findViewById(android.R.id.content),
+                    new ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG, "Showing download dialog",
+                            currentInfo));
         }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Stream Results
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    protected boolean onError(final Throwable exception) {
-        if (super.onError(exception)) {
-            return true;
-        }
-
-        final int errorId = exception instanceof YoutubeStreamExtractor.DeobfuscateException
-                ? R.string.youtube_signature_deobfuscation_error
-                : exception instanceof ExtractionException
-                ? R.string.parsing_error
-                : R.string.general_error;
-
-        onUnrecoverableError(exception, UserAction.REQUESTED_STREAM,
-                NewPipe.getNameOfService(serviceId), url, errorId);
-
-        return true;
-    }
 
     private void updateProgressInfo(@NonNull final StreamInfo info) {
         if (positionSubscriber != null) {

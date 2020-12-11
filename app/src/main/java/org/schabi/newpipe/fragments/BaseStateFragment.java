@@ -1,48 +1,25 @@
 package org.schabi.newpipe.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-
-import com.jakewharton.rxbinding4.view.RxView;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
-import org.schabi.newpipe.error.ReCaptchaActivity;
-import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException;
-import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
-import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
-import org.schabi.newpipe.extractor.exceptions.GeographicRestrictionException;
-import org.schabi.newpipe.extractor.exceptions.PaidContentException;
-import org.schabi.newpipe.extractor.exceptions.PrivateContentException;
-import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
-import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException;
-import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException;
-import org.schabi.newpipe.ktx.ExceptionUtils;
+import org.schabi.newpipe.error.ErrorPanelHelper;
 import org.schabi.newpipe.util.InfoCache;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 
@@ -55,12 +32,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     private View emptyStateView;
     @Nullable
     private ProgressBar loadingProgressBar;
-
-    private Disposable errorDisposable;
-
-    protected View errorPanelRoot;
-    private Button errorButtonRetry;
-    private TextView errorTextView;
+    private ErrorPanelHelper errorPanelHelper;
 
     @Override
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
@@ -77,9 +49,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (errorDisposable != null) {
-            errorDisposable.dispose();
-        }
+        errorPanelHelper.dispose();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -89,22 +59,9 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-
         emptyStateView = rootView.findViewById(R.id.empty_state_view);
         loadingProgressBar = rootView.findViewById(R.id.loading_progress_bar);
-
-        errorPanelRoot = rootView.findViewById(R.id.error_panel);
-        errorButtonRetry = rootView.findViewById(R.id.error_button_retry);
-        errorTextView = rootView.findViewById(R.id.error_message_view);
-    }
-
-    @Override
-    protected void initListeners() {
-        super.initListeners();
-        errorDisposable = RxView.clicks(errorButtonRetry)
-                .debounce(300, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(o -> onRetryButtonClicked());
+        errorPanelHelper = new ErrorPanelHelper(this, rootView, this::onRetryButtonClicked);
     }
 
     protected void onRetryButtonClicked() {
@@ -143,7 +100,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (loadingProgressBar != null) {
             animate(loadingProgressBar, true, 400);
         }
-        animate(errorPanelRoot, false, 150);
+        errorPanelHelper.hide();
     }
 
     @Override
@@ -154,10 +111,9 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (loadingProgressBar != null) {
             animate(loadingProgressBar, false, 0);
         }
-        animate(errorPanelRoot, false, 150);
+        errorPanelHelper.hide();
     }
 
-    @Override
     public void showEmptyState() {
         isLoading.set(false);
         if (emptyStateView != null) {
@@ -166,26 +122,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (loadingProgressBar != null) {
             animate(loadingProgressBar, false, 0);
         }
-        animate(errorPanelRoot, false, 150);
-    }
-
-    @Override
-    public void showError(final String message, final boolean showRetryButton) {
-        if (DEBUG) {
-            Log.d(TAG, "showError() called with: "
-                    + "message = [" + message + "], showRetryButton = [" + showRetryButton + "]");
-        }
-        isLoading.set(false);
-        InfoCache.getInstance().clearCache();
-        hideLoading();
-
-        errorTextView.setText(message);
-        if (showRetryButton) {
-            animate(errorButtonRetry, true, 600);
-        } else {
-            animate(errorButtonRetry, false, 0);
-        }
-        animate(errorPanelRoot, true, 300);
+        errorPanelHelper.hide();
     }
 
     @Override
@@ -196,138 +133,70 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         hideLoading();
     }
 
+    @Override
+    public void handleError() {
+        isLoading.set(false);
+        InfoCache.getInstance().clearCache();
+        hideLoading();
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Error handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    /**
-     * Default implementation handles some general exceptions.
-     *
-     * @param exception The exception that should be handled
-     * @return If the exception was handled
-     */
-    protected boolean onError(final Throwable exception) {
-        if (DEBUG) {
-            Log.d(TAG, "onError() called with: exception = [" + exception + "]");
-        }
-        isLoading.set(false);
+    public final void showError(final ErrorInfo errorInfo) {
+        handleError();
 
         if (isDetached() || isRemoving()) {
             if (DEBUG) {
-                Log.w(TAG, "onError() is detached or removing = [" + exception + "]");
+                Log.w(TAG, "showError() is detached or removing = [" + errorInfo + "]");
             }
-            return true;
+            return;
         }
 
-        if (ExceptionUtils.isInterruptedCaused(exception)) {
+        errorPanelHelper.showError(errorInfo);
+    }
+
+    public final void showTextError(final @NonNull String errorString) {
+        handleError();
+
+        if (isDetached() || isRemoving()) {
             if (DEBUG) {
-                Log.w(TAG, "onError() isInterruptedCaused! = [" + exception + "]");
+                Log.w(TAG, "showTextError() is detached or removing = [" + errorString + "]");
             }
-            return true;
+            return;
         }
 
-        if (exception instanceof ReCaptchaException) {
-            onReCaptchaException((ReCaptchaException) exception);
-            return true;
-        } else if (ExceptionUtils.isNetworkRelated(exception)) {
-            showError(getString(R.string.network_error), true);
-            return true;
-        } else if (exception instanceof AgeRestrictedContentException) {
-            showError(getString(R.string.restricted_video_no_stream), false);
-            return true;
-        } else if (exception instanceof GeographicRestrictionException) {
-            showError(getString(R.string.georestricted_content), false);
-            return true;
-        } else if (exception instanceof PaidContentException) {
-            showError(getString(R.string.paid_content), false);
-            return true;
-        } else if (exception instanceof PrivateContentException) {
-            showError(getString(R.string.private_content), false);
-            return true;
-        } else if (exception instanceof SoundCloudGoPlusContentException) {
-            showError(getString(R.string.soundcloud_go_plus_content), false);
-            return true;
-        } else if (exception instanceof YoutubeMusicPremiumContentException) {
-            showError(getString(R.string.youtube_music_premium_content), false);
-            return true;
-        } else if (exception instanceof ContentNotAvailableException) {
-            showError(getString(R.string.content_not_available), false);
-            return true;
-        } else if (exception instanceof ContentNotSupportedException) {
-            showError(getString(R.string.content_not_supported), false);
-            return true;
-        }
-
-        return false;
+        errorPanelHelper.showTextError(errorString);
     }
 
-    public void onReCaptchaException(final ReCaptchaException exception) {
-        if (DEBUG) {
-            Log.d(TAG, "onReCaptchaException() called");
-        }
-        Toast.makeText(activity, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
-        // Starting ReCaptcha Challenge Activity
-        final Intent intent = new Intent(activity, ReCaptchaActivity.class);
-        intent.putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA, exception.getUrl());
-        startActivityForResult(intent, ReCaptchaActivity.RECAPTCHA_REQUEST);
-
-        showError(getString(R.string.recaptcha_request_toast), false);
+    public final void hideErrorPanel() {
+        errorPanelHelper.hide();
     }
 
-    public void onUnrecoverableError(final Throwable exception, final UserAction userAction,
-                                     final String serviceName, final String request,
-                                     @StringRes final int errorId) {
-        onUnrecoverableError(Collections.singletonList(exception), userAction, serviceName,
-                request, errorId);
-    }
-
-    public void onUnrecoverableError(final List<Throwable> exception, final UserAction userAction,
-                                     final String serviceName, final String request,
-                                     @StringRes final int errorId) {
-        if (DEBUG) {
-            Log.d(TAG, "onUnrecoverableError() called with: exception = [" + exception + "]");
-        }
-
-        ErrorActivity.reportError(getContext(), exception, MainActivity.class, null,
-                ErrorInfo.make(userAction, serviceName == null ? "none" : serviceName,
-                        request == null ? "none" : request, errorId));
-    }
-
-    public void showSnackBarError(final Throwable exception, final UserAction userAction,
-                                  final String serviceName, final String request,
-                                  @StringRes final int errorId) {
-        showSnackBarError(Collections.singletonList(exception), userAction, serviceName, request,
-                errorId);
+    public final boolean isErrorPanelVisible() {
+        return errorPanelHelper.isVisible();
     }
 
     /**
      * Show a SnackBar and only call
-     * {@link ErrorActivity#reportError(Context, List, Class, View, ErrorInfo)}
+     * {@link ErrorActivity#reportError(Context, Class, View, ErrorInfo)}
      * IF we a find a valid view (otherwise the error screen appears).
      *
-     * @param exception List of the exceptions to show
-     * @param userAction The user action that caused the exception
-     * @param serviceName The service where the exception happened
-     * @param request The page that was requested
-     * @param errorId The ID of the error
+     * @param errorInfo The error information
      */
-    public void showSnackBarError(final List<Throwable> exception, final UserAction userAction,
-                                  final String serviceName, final String request,
-                                  @StringRes final int errorId) {
+    public void showSnackBarError(final ErrorInfo errorInfo) {
         if (DEBUG) {
-            Log.d(TAG, "showSnackBarError() called with: "
-                    + "exception = [" + exception + "], userAction = [" + userAction + "], "
-                    + "request = [" + request + "], errorId = [" + errorId + "]");
+            Log.d(TAG, "showSnackBarError() called with: errorInfo = [" + errorInfo + "]");
         }
         View rootView = activity != null ? activity.findViewById(android.R.id.content) : null;
-        if (rootView == null && getView() != null) {
+        if (rootView == null) {
             rootView = getView();
         }
         if (rootView == null) {
             return;
         }
 
-        ErrorActivity.reportError(getContext(), exception, MainActivity.class, rootView,
-                ErrorInfo.make(userAction, serviceName, request, errorId));
+        ErrorActivity.reportError(requireContext(), MainActivity.class, rootView, errorInfo);
     }
 }

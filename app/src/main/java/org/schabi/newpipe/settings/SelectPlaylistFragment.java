@@ -115,8 +115,8 @@ public class SelectPlaylistFragment extends DialogFragment {
 
     protected void onError(final Throwable e) {
         final Activity activity = requireActivity();
-        ErrorActivity.reportError(activity, e, activity.getClass(), null, ErrorInfo
-                .make(UserAction.UI_ERROR, "none", "load_playlists", R.string.app_ui_crash));
+        ErrorActivity.reportError(activity, activity.getClass(), null, new ErrorInfo(e,
+                UserAction.UI_ERROR, "Loading playlists"));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -171,15 +171,15 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         if (TextUtils.isEmpty(item.getUploaderUrl())) {
             return;
         }
+        final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
         try {
-            final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
             NavigationHelper.openChannelFragment(
                     activity.getSupportFragmentManager(),
                     item.getServiceId(),
                     item.getUploaderUrl(),
                     item.getUploaderName());
         } catch (final Exception e) {
-            ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
+            ErrorActivity.reportUiError(activity, null, "Opening channel fragment", e);
         }
     }
 

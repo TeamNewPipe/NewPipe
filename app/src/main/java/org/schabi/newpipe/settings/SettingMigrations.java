@@ -95,15 +95,13 @@ public final class SettingMigrations {
             } catch (final Exception e) {
                 // save the version with the last successful migration and report the error
                 sp.edit().putInt(lastPrefVersionKey, currentVersion).apply();
-                final ErrorInfo errorInfo = ErrorInfo.make(
+                ErrorActivity.reportError(context, SettingMigrations.class, null, new ErrorInfo(
+                        e,
                         UserAction.PREFERENCES_MIGRATION,
-                        "none",
                         "Migrating preferences from version " + lastPrefVersion + " to "
                                 + VERSION + ". "
-                                + "Error at " + currentVersion  + " => " + ++currentVersion,
-                        0
-                );
-                ErrorActivity.reportError(context, e, SettingMigrations.class, null, errorInfo);
+                                + "Error at " + currentVersion  + " => " + ++currentVersion
+                ));
                 return;
             }
         }

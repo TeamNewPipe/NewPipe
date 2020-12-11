@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -82,6 +83,10 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         return instance;
     }
 
+    public KioskFragment() {
+        super(UserAction.REQUESTED_KIOSK);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -102,9 +107,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
             try {
                 setTitle(kioskTranslatedName);
             } catch (final Exception e) {
-                onUnrecoverableError(e, UserAction.UI_ERROR,
-                        "none",
-                        "none", R.string.app_ui_crash);
+                showSnackBarError(new ErrorInfo(e, UserAction.UI_ERROR, "Setting kiosk title"));
             }
         }
     }
@@ -169,22 +172,5 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
         name = kioskTranslatedName;
         setTitle(kioskTranslatedName);
-
-        if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(),
-                    UserAction.REQUESTED_KIOSK,
-                    NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
-        }
-    }
-
-    @Override
-    public void handleNextItems(final ListExtractor.InfoItemsPage result) {
-        super.handleNextItems(result);
-
-        if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(),
-                    UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId),
-                    "Get next page of: " + url, 0);
-        }
     }
 }

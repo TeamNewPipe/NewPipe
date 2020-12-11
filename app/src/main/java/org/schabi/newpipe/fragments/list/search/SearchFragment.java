@@ -47,7 +47,6 @@ import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.services.peertube.linkHandler.PeertubeSearchQueryHandlerFactory;
@@ -258,11 +257,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         try {
             service = NewPipe.getService(serviceId);
         } catch (final Exception e) {
-            ErrorActivity.reportError(getActivity(), e, requireActivity().getClass(),
+            ErrorActivity.reportUiError(getActivity(),
                     requireActivity().findViewById(android.R.id.content),
-                    ErrorInfo.make(UserAction.UI_ERROR,
-                            "",
-                            "", R.string.general_error));
+                    "Getting service for id " + serviceId, e);
         }
 
         if (!TextUtils.isEmpty(searchString)) {
@@ -413,7 +410,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 searchEditText.setText("");
                 showKeyboardSearch();
             }
-            animate(errorPanelRoot, false, 200);
+            hideErrorPanel();
         }
     }
 
@@ -540,7 +537,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (DEBUG) {
                 Log.d(TAG, "onClick() called with: v = [" + v + "]");
             }
-            if (isSuggestionsEnabled && errorPanelRoot.getVisibility() != View.VISIBLE) {
+            if (isSuggestionsEnabled && !isErrorPanelVisible()) {
                 showSuggestionsPanel();
             }
             if (DeviceUtils.isTv(getContext())) {
@@ -553,8 +550,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 Log.d(TAG, "onFocusChange() called with: "
                         + "v = [" + v + "], hasFocus = [" + hasFocus + "]");
             }
-            if (isSuggestionsEnabled && hasFocus
-                    && errorPanelRoot.getVisibility() != View.VISIBLE) {
+            if (isSuggestionsEnabled && hasFocus && !isErrorPanelVisible()) {
                 showSuggestionsPanel();
             }
         });
@@ -704,9 +700,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             .subscribe(
                                     howManyDeleted -> suggestionPublisher
                                             .onNext(searchEditText.getText().toString()),
-                                    throwable -> showSnackBarError(throwable,
-                                            UserAction.DELETE_FROM_HISTORY, "none",
-                                            "Deleting item failed", R.string.general_error));
+                                    throwable -> showSnackBarError(new ErrorInfo(throwable,
+                                            UserAction.DELETE_FROM_HISTORY,
+                                            "Deleting item failed")));
                     disposables.add(onDelete);
                 })
                 .show();
@@ -763,8 +759,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             .suggestionsFor(serviceId, query)
                             .onErrorReturn(throwable -> {
                                 if (!ExceptionUtils.isNetworkRelated(throwable)) {
-                                    showSnackBarError(throwable, UserAction.GET_SUGGESTIONS,
-                                            NewPipe.getNameOfService(serviceId), searchString, 0);
+                                    showSnackBarError(new ErrorInfo(throwable,
+                                            UserAction.GET_SUGGESTIONS, searchString, serviceId));
                                 }
                                 return new ArrayList<>();
                             })
@@ -800,7 +796,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     if (listNotification.isOnNext()) {
                         handleSuggestions(listNotification.getValue());
                     } else if (listNotification.isOnError()) {
-                        onSuggestionError(listNotification.getError());
+                        showError(new ErrorInfo(listNotification.getError(),
+                                UserAction.GET_SUGGESTIONS, searchString, serviceId));
                     }
                 });
     }
@@ -832,8 +829,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                         .subscribe(intent -> {
                             getFM().popBackStackImmediate();
                             activity.startActivity(intent);
-                        }, throwable ->
-                                showError(getString(R.string.unsupported_url), false)));
+                        }, throwable -> showTextError(getString(R.string.unsupported_url))));
                 return;
             }
         } catch (final Exception ignored) {
@@ -849,10 +845,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        ignored -> {
-                        },
-                        error -> showSnackBarError(error, UserAction.SEARCHED,
-                                NewPipe.getNameOfService(serviceId), theSearchString, 0)
+                        ignored -> {},
+                        throwable -> showSnackBarError(new ErrorInfo(throwable, UserAction.SEARCHED,
+                                theSearchString, serviceId))
                 ));
         suggestionPublisher.onNext(theSearchString);
         startLoading(false);
@@ -872,7 +867,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
-                .subscribe(this::handleResult, this::onError);
+                .subscribe(this::handleResult, this::onItemError);
 
     }
 
@@ -895,7 +890,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
-                .subscribe(this::handleNextItems, this::onError);
+                .subscribe(this::handleNextItems, this::onItemError);
     }
 
     @Override
@@ -907,6 +902,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     protected void onItemSelected(final InfoItem selectedItem) {
         super.onItemSelected(selectedItem);
         hideKeyboardSearch();
+    }
+
+    private void onItemError(final Throwable exception) {
+        if (exception instanceof SearchExtractor.NothingFoundException) {
+            infoListAdapter.clearStreamItemList();
+            showEmptyState();
+        } else {
+            showError(new ErrorInfo(exception, UserAction.SEARCHED, searchString, serviceId));
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -945,24 +949,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchBinding.suggestionsList.smoothScrollToPosition(0);
         searchBinding.suggestionsList.post(() -> suggestionListAdapter.setItems(suggestions));
 
-        if (suggestionsPanelVisible && errorPanelRoot.getVisibility() == View.VISIBLE) {
+        if (suggestionsPanelVisible && isErrorPanelVisible()) {
             hideLoading();
         }
-    }
-
-    public void onSuggestionError(final Throwable exception) {
-        if (DEBUG) {
-            Log.d(TAG, "onSuggestionError() called with: exception = [" + exception + "]");
-        }
-        if (super.onError(exception)) {
-            return;
-        }
-
-        final int errorId = exception instanceof ParsingException
-                ? R.string.parsing_error
-                : R.string.general_error;
-        onUnrecoverableError(exception, UserAction.GET_SUGGESTIONS,
-                NewPipe.getNameOfService(serviceId), searchString, errorId);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -975,13 +964,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         showListFooter(false);
     }
 
-    @Override
-    public void showError(final String message, final boolean showRetryButton) {
-        super.showError(message, showRetryButton);
-        hideSuggestionsPanel();
-        hideKeyboardSearch();
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Search Results
     //////////////////////////////////////////////////////////////////////////*/
@@ -992,8 +974,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (!exceptions.isEmpty()
                 && !(exceptions.size() == 1
                 && exceptions.get(0) instanceof SearchExtractor.NothingFoundException)) {
-            showSnackBarError(result.getErrors(), UserAction.SEARCHED,
-                    NewPipe.getNameOfService(serviceId), searchString, 0);
+            showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
+                    searchString, serviceId));
         }
 
         searchSuggestion = result.getSearchSuggestion();
@@ -1061,33 +1043,20 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         nextPage = result.getNextPage();
 
         if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(), UserAction.SEARCHED,
-                    NewPipe.getNameOfService(serviceId),
+            showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
                     "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
                             + "pageIds: " + nextPage.getIds() + ", "
-                            + "pageCookies: " + nextPage.getCookies(), 0);
+                            + "pageCookies: " + nextPage.getCookies(),
+                    serviceId));
         }
         super.handleNextItems(result);
     }
 
     @Override
-    protected boolean onError(final Throwable exception) {
-        if (super.onError(exception)) {
-            return true;
-        }
-
-        if (exception instanceof SearchExtractor.NothingFoundException) {
-            infoListAdapter.clearStreamItemList();
-            showEmptyState();
-        } else {
-            final int errorId = exception instanceof ParsingException
-                    ? R.string.parsing_error
-                    : R.string.general_error;
-            onUnrecoverableError(exception, UserAction.SEARCHED,
-                    NewPipe.getNameOfService(serviceId), searchString, errorId);
-        }
-
-        return true;
+    public void handleError() {
+        super.handleError();
+        hideSuggestionsPanel();
+        hideKeyboardSearch();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1113,9 +1082,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .subscribe(
                         howManyDeleted -> suggestionPublisher
                                 .onNext(searchEditText.getText().toString()),
-                        throwable -> showSnackBarError(throwable,
-                                UserAction.DELETE_FROM_HISTORY, "none",
-                                "Deleting item failed", R.string.general_error));
+                        throwable -> showSnackBarError(new ErrorInfo(throwable,
+                                UserAction.DELETE_FROM_HISTORY, "Deleting item failed")));
         disposables.add(onDelete);
     }
 }

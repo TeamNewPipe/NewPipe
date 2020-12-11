@@ -225,14 +225,10 @@ public class App extends MultiDexApplication {
                     .setBuildConfigClass(BuildConfig.class)
                     .build();
             ACRA.init(this, acraConfig);
-        } catch (final ACRAConfigurationException ace) {
-            ace.printStackTrace();
-            ErrorActivity.reportError(this,
-                    ace,
-                    null,
-                    null,
-                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Could not initialize ACRA crash report", R.string.app_ui_crash));
+        } catch (final ACRAConfigurationException exception) {
+            exception.printStackTrace();
+            ErrorActivity.reportError(this, null, null, new ErrorInfo(exception,
+                    UserAction.SOMETHING_ELSE, "Could not initialize ACRA crash report"));
         }
     }
 
