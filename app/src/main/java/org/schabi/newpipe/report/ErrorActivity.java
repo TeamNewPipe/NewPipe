@@ -394,7 +394,7 @@ public class ErrorActivity extends AppCompatActivity {
             htmlErrorReport
                     .append("## Exception")
                     .append("\n* __User Action:__ ")
-                    .append(getUserActionString(errorInfo.getUserAction()))
+                        .append(getUserActionString(errorInfo.getUserAction()))
                     .append("\n* __Request:__ ").append(errorInfo.getRequest())
                     .append("\n* __Content Country:__ ").append(getContentCountryString())
                     .append("\n* __Content Language:__ ").append(getContentLanguageString())
