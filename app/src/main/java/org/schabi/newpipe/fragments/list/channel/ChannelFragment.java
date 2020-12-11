@@ -403,7 +403,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                                 currentInfo.getParentChannelUrl(),
                                 currentInfo.getParentChannelName());
                     } catch (final Exception e) {
-                        ErrorActivity.reportUiError(getActivity(), null, "Opening channel fragment", e);
+                        ErrorActivity.reportUiError(getActivity(), null,
+                                "Opening channel fragment", e);
                     }
                 } else if (DEBUG) {
                     Log.i(TAG, "Can't open parent channel because we got no channel URL");

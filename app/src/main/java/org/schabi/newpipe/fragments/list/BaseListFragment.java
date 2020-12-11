@@ -306,7 +306,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                             selectedItem.getUrl(),
                             selectedItem.getName());
                 } catch (final Exception e) {
-                    ErrorActivity.reportUiError(getActivity(), null, "Opening playlist fragment", e);
+                    ErrorActivity.reportUiError(getActivity(), null,
+                            "Opening playlist fragment", e);
                 }
             }
         });

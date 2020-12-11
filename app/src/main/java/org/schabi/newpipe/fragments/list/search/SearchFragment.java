@@ -845,7 +845,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        ignored -> {},
+                        ignored -> { },
                         throwable -> showSnackBarError(new ErrorInfo(throwable, UserAction.SEARCHED,
                                 theSearchString, serviceId))
                 ));

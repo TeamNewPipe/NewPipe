@@ -286,7 +286,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                         NavigationHelper.openChannelFragment(getFM(), result.getServiceId(),
                                 result.getUploaderUrl(), result.getUploaderName());
                     } catch (final Exception e) {
-                        ErrorActivity.reportUiError(getActivity(), null, "Opening channel fragment", e);
+                        ErrorActivity.reportUiError(getActivity(), null,
+                                "Opening channel fragment", e);
                     }
                 });
             }

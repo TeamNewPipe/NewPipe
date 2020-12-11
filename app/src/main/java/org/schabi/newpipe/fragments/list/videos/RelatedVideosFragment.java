@@ -16,12 +16,11 @@ import androidx.viewbinding.ViewBinding;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.RelatedStreamsHeaderBinding;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.ViewUtils;
-import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.RelatedStreamInfo;
 
 import java.io.Serializable;
@@ -160,11 +159,9 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     protected void onRestoreInstanceState(@NonNull final Bundle savedState) {
         super.onRestoreInstanceState(savedState);
-        if (savedState != null) {
-            final Serializable serializable = savedState.getSerializable(INFO_KEY);
-            if (serializable instanceof RelatedStreamInfo) {
-                this.relatedStreamInfo = (RelatedStreamInfo) serializable;
-            }
+        final Serializable serializable = savedState.getSerializable(INFO_KEY);
+        if (serializable instanceof RelatedStreamInfo) {
+            this.relatedStreamInfo = (RelatedStreamInfo) serializable;
         }
     }
 

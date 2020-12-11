@@ -155,7 +155,7 @@ task formatKtlint(type: JavaExec) {
 }
 
 afterEvaluate {
-    //preDebugBuild.dependsOn formatKtlint, runCheckstyle, runKtlint
+    preDebugBuild.dependsOn formatKtlint, runCheckstyle, runKtlint
 }
 
 dependencies {

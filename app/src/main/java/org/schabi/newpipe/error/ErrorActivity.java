@@ -259,7 +259,8 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private void goToReturnActivity() {
-        final Class<? extends Activity> checkedReturnActivity = getReturnActivity(savedReturnActivity);
+        final Class<? extends Activity> checkedReturnActivity =
+                getReturnActivity(savedReturnActivity);
         if (checkedReturnActivity == null) {
             super.onBackPressed();
         } else {

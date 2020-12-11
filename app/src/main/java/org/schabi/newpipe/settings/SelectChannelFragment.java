@@ -162,7 +162,8 @@ public class SelectChannelFragment extends DialogFragment {
 
             @Override
             public void onError(@NonNull final Throwable exception) {
-                ErrorActivity.reportUiError(requireContext(), null, "Loading subscription", exception);
+                ErrorActivity.reportUiError(requireContext(), null,
+                        "Loading subscription", exception);
             }
 
             @Override

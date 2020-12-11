@@ -28,9 +28,9 @@ import org.schabi.newpipe.ktx.isNetworkRelated
 import java.util.concurrent.TimeUnit
 
 class ErrorPanelHelper(
-        private val fragment: Fragment,
-        rootView: View,
-        onRetry: Runnable
+    private val fragment: Fragment,
+    rootView: View,
+    onRetry: Runnable
 ) {
     private val context: Context = rootView.context!!
     private val errorPanelRoot: View = rootView.findViewById(R.id.error_panel)
@@ -62,22 +62,23 @@ class ErrorPanelHelper(
             errorButtonAction.setOnClickListener {
                 // Starting ReCaptcha Challenge Activity
                 val intent = Intent(context, ReCaptchaActivity::class.java)
-                intent.putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA,
-                        (errorInfo.throwable as ReCaptchaException).url)
+                intent.putExtra(
+                    ReCaptchaActivity.RECAPTCHA_URL_EXTRA,
+                    (errorInfo.throwable as ReCaptchaException).url
+                )
                 fragment.startActivityForResult(intent, ReCaptchaActivity.RECAPTCHA_REQUEST)
                 errorButtonAction.setOnClickListener(null)
             }
             errorTextView.setText(R.string.recaptcha_request_toast)
             errorButtonRetry.isVisible = true
-
         } else {
             errorButtonAction.setText(R.string.error_snackbar_action)
             errorButtonAction.setOnClickListener {
                 ErrorActivity.reportError(
-                        context,
-                        MainActivity::class.java,
-                        null,
-                        errorInfo
+                    context,
+                    MainActivity::class.java,
+                    null,
+                    errorInfo
                 )
             }
 

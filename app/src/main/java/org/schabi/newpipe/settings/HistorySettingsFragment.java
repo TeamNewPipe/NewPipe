@@ -10,10 +10,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.InfoCache;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -91,7 +91,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         return recordManager.removeOrphanedRecords()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        howManyDeleted -> {},
+                        howManyDeleted -> { },
                         throwable -> ErrorActivity.reportError(context, SettingsActivity.class,
                                 null, new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Clear orphaned records")));
