@@ -35,6 +35,7 @@ import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.VideoSegment;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -252,6 +253,10 @@ public final class MainPlayer extends Service {
                 windowManager.removeViewImmediate(getView());
             }
         }
+    }
+
+    public void setVideoSegments(final VideoSegment[] videoSegments) {
+        playerImpl.setVideoSegments(videoSegments);
     }
 
 

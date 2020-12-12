@@ -634,6 +634,7 @@ public abstract class VideoPlayer extends BasePlayer
         }
 
         final MarkableSeekBar markableSeekBar = (MarkableSeekBar) playbackSeekBar;
+        markableSeekBar.seekBarMarkers.clear();
 
         for (final VideoSegment segment : segments) {
             final Integer color = parseSegmentCategory(segment.category);

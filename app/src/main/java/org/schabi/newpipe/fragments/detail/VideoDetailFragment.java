@@ -265,7 +265,6 @@ public final class VideoDetailFragment
                                    final MainPlayer connectedPlayerService,
                                    final boolean playAfterConnect) {
         player = connectedPlayer;
-        player.setVideoSegments(videoSegments);
 
         playerService = connectedPlayerService;
 
@@ -1156,6 +1155,7 @@ public final class VideoDetailFragment
             playerService.getView().setVisibility(View.GONE);
         }
         addVideoPlayerView();
+        playerService.setVideoSegments(videoSegments);
 
         final Intent playerIntent = NavigationHelper
                 .getPlayerIntent(requireContext(), MainPlayer.class, queue, true, autoPlayEnabled);

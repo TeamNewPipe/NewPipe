@@ -117,7 +117,6 @@ public abstract class BasePlayer implements
     @NonNull
     protected final SharedPreferences mPrefs;
 
-    private boolean wereSponsorsMarked;
     private VideoSegment[] videoSegments;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1770,13 +1769,6 @@ public abstract class BasePlayer implements
     }
 
     public void setVideoSegments(final VideoSegment[] videoSegments) {
-        // use a flag to ignore null values later (i.e. when the video goes fullscreen)
-        // TODO: there's probably a better way to deal with stuff like that
-        if (wereSponsorsMarked) {
-            return;
-        }
-
         this.videoSegments = videoSegments;
-        wereSponsorsMarked = true;
     }
 }
