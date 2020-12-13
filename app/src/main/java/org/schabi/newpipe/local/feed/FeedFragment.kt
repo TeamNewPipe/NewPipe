@@ -117,10 +117,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         }
     }
 
-    // /////////////////////////////////////////////////////////////////////////
-    // Menu
-    // /////////////////////////////////////////////////////////////////////////
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         activity.supportActionBar?.setTitle(R.string.fragment_feed_title)
@@ -169,40 +165,20 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         activity?.supportActionBar?.subtitle = null
     }
 
-    // /////////////////////////////////////////////////////////////////////////
-    // Handling
-    // /////////////////////////////////////////////////////////////////////////
-
     override fun showLoading() {
         animateView(refresh_root_view, true, 0)
-        animateView(items_list, true, 0)
         swipeRefreshLayout.isRefreshing=true
-
-        /*animateView(loading_progress_bar, true, 200)
-        animateView(loading_progress_text, true, 200)*/
-
-        //empty_state_view?.let { animateView(it, false, 0) }
         animateView(error_panel, false, 0)
     }
 
     override fun hideLoading() {
         animateView(refresh_root_view, true, 200)
         animateView(items_list, true, 300)
-        /*animateView(loading_progress_bar, false, 0)
-        animateView(loading_progress_text, false, 0)*/
-
-        //empty_state_view?.let { animateView(it, false, 0) }
         animateView(error_panel, false, 0)
         swipeRefreshLayout.isRefreshing = false
     }
 
     override fun showEmptyState() {
-        /*animateView(refresh_root_view, true, 200)
-        animateView(items_list, false, 0)*/
-
-        //animateView(loading_progress_bar, false, 0)
-        //animateView(loading_progress_text, false, 0)
-
         empty_state_view?.let { animateView(it, true, 800) }
         animateView(error_panel, false, 0)
         swipeRefreshLayout.isRefreshing = false
@@ -282,7 +258,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     private fun handleErrorState(errorState: FeedState.ErrorState): Boolean {
         hideLoading()
-        swipeRefreshLayout.isRefreshing=false
         errorState.error?.let {
             onError(errorState.error)
             return true
@@ -303,10 +278,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
         refresh_text?.text = getString(R.string.feed_oldest_subscription_update, oldestSubscriptionUpdateText)
     }
-
-    // /////////////////////////////////////////////////////////////////////////
-    // Load Service Handling
-    // /////////////////////////////////////////////////////////////////////////
 
     override fun doInitialLoadLogic() {}
     override fun reloadContent() = triggerUpdate()
