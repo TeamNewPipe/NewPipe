@@ -15,7 +15,7 @@ val Throwable.isInterruptedCaused: Boolean
  * @return if throwable is related to network issues, or one of its causes is.
  */
 val Throwable.isNetworkRelated: Boolean
-    get() = hasAssignableCause(IOException::class.java)
+    get() = hasAssignableCause<IOException>()
 
 /**
  * Calls [hasCause] with the `checkSubtypes` parameter set to false.
@@ -23,9 +23,19 @@ val Throwable.isNetworkRelated: Boolean
 fun Throwable.hasExactCause(vararg causesToCheck: Class<*>) = hasCause(false, *causesToCheck)
 
 /**
+ * Calls [hasCause] with a reified [Throwable] type.
+ */
+inline fun <reified T : Throwable> Throwable.hasExactCause() = hasExactCause(T::class.java)
+
+/**
  * Calls [hasCause] with the `checkSubtypes` parameter set to true.
  */
 fun Throwable?.hasAssignableCause(vararg causesToCheck: Class<*>) = hasCause(true, *causesToCheck)
+
+/**
+ * Calls [hasCause] with a reified [Throwable] type.
+ */
+inline fun <reified T : Throwable> Throwable?.hasAssignableCause() = hasAssignableCause(T::class.java)
 
 /**
  * Check if the throwable has some cause from the causes to check, or is itself in it.
