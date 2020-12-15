@@ -364,6 +364,7 @@
 
     <!-- Extras -->
     <string name="disable_tablet_ui_key" translatable="false">disable_tablet_ui</string>
+    <string name="disable_tv_ui_key" translatable="false">disable_tv_ui</string>
 
     <!-- Localizations   -->
     <string name="default_localization_key" translatable="false">system</string>

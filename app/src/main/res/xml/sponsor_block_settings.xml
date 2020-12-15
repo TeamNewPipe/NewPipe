@@ -2,22 +2,18 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/sponsor_block">
-    <PreferenceCategory
-        android:layout="@layout/settings_category_header_layout"
-        android:title="@string/sponsor_block_information">
 
-        <Preference
-            app:iconSpaceReserved="false"
-            android:key="@string/sponsor_block_home_page_key"
-            android:summary="@string/sponsor_block_home_page_summary"
-            android:title="@string/sponsor_block_home_page_title"/>
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="@string/sponsor_block_home_page_key"
+        android:summary="@string/sponsor_block_home_page_summary"
+        android:title="@string/sponsor_block_home_page_title"/>
 
-        <Preference
-            app:iconSpaceReserved="false"
-            android:key="@string/sponsor_block_privacy_key"
-            android:summary="@string/sponsor_block_privacy_summary"
-            android:title="@string/sponsor_block_privacy_title"/>
-    </PreferenceCategory>
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="@string/sponsor_block_privacy_key"
+        android:summary="@string/sponsor_block_privacy_summary"
+        android:title="@string/sponsor_block_privacy_title"/>
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"

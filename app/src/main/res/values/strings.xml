@@ -707,7 +707,6 @@
     <string name="show_thumbnail_summary">Show thumbnail on lock screen as background and inside notifications</string>
     <!-- SponsorBlock -->
     <string name="sponsor_block">SponsorBlock</string>
-    <string name="sponsor_block_information">Information</string>
     <string name="sponsor_block_home_page_title">View Website</string>
     <string name="sponsor_block_home_page_summary">View the official SponsorBlock website.</string>
     <string name="sponsor_block_enable_title">Skip Sponsors</string>
@@ -742,7 +741,10 @@
     <string name="sponsor_block_reset_colors_toast">Colors reset.</string>
     <!-- Extras -->
     <string name="extras">Extras</string>
+    <string name="extras_todo_summary">Tweaks, workarounds, and other miscellaneous settings belong here.</string>
     <string name="experimental_settings">Experimental Settings</string>
     <string name="disable_tablet_ui_title">Disable Tablet UI</string>
-    <string name="disable_tablet_ui_summary">Ignore tablet layouts. This is intended for workarounds related to specific scenarios.</string>
+    <string name="disable_tablet_ui_summary">Ignore tablet layouts. This is intended for specific workarounds. You may need to restart the app to see the effects.</string>
+    <string name="disable_tv_ui_title">Disable TV UI</string>
+    <string name="disable_tv_ui_summary">Ignore TV layouts. This is intended for specific workarounds. You may need to restart the app to see the effects.</string>
 </resources>

@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/extras">
 
+    <Preference
+        app:iconSpaceReserved="false"
+        android:selectable="false"
+        android:persistent="false"
+        android:summary="@string/extras_todo_summary"/>
+
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/experimental_settings">
@@ -13,5 +19,12 @@
             android:key="@string/disable_tablet_ui_key"
             android:summary="@string/disable_tablet_ui_summary"
             android:title="@string/disable_tablet_ui_title"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
+            android:key="@string/disable_tv_ui_key"
+            android:summary="@string/disable_tv_ui_summary"
+            android:title="@string/disable_tv_ui_title"/>
     </PreferenceCategory>
 </PreferenceScreen>

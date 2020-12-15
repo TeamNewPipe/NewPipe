@@ -25,6 +25,13 @@ public final class DeviceUtils {
     }
 
     public static boolean isTv(final Context context) {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        if (prefs.getBoolean(context
+                .getString(R.string.disable_tv_ui_key), false)) {
+            return false;
+        }
+
         if (isTV != null) {
             return isTV;
         }
