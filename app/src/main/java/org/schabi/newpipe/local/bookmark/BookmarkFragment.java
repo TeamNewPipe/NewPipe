@@ -16,9 +16,7 @@ import androidx.fragment.app.FragmentManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
@@ -31,6 +29,8 @@ import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -41,12 +41,14 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 @AndroidEntryPoint
 public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
+    @Inject
+    RemotePlaylistManager remotePlaylistManager;
+
     @State
     protected Parcelable itemsListState;
 
     private Subscription databaseSubscription;
     private CompositeDisposable disposables = new CompositeDisposable();
-    private RemotePlaylistManager remotePlaylistManager;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -58,8 +60,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         if (activity == null) {
             return;
         }
-        final AppDatabase database = NewPipeDatabase.getInstance(activity);
-        remotePlaylistManager = new RemotePlaylistManager(database);
         disposables = new CompositeDisposable();
     }
 

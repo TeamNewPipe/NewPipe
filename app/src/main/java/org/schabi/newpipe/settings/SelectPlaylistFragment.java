@@ -17,9 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
@@ -50,6 +48,8 @@ public class SelectPlaylistFragment extends DialogFragment {
 
     @Inject
     LocalPlaylistManager localPlaylistManager;
+    @Inject
+    RemotePlaylistManager remotePlaylistManager;
 
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
@@ -102,9 +102,6 @@ public class SelectPlaylistFragment extends DialogFragment {
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
-
-        final AppDatabase database = NewPipeDatabase.getInstance(requireContext());
-        final RemotePlaylistManager remotePlaylistManager = new RemotePlaylistManager(database);
 
         disposable = Flowable.combineLatest(localPlaylistManager.getPlaylists(),
                 remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)

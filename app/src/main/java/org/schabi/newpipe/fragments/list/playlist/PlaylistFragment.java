@@ -20,7 +20,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -52,6 +51,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javax.inject.Inject;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -65,11 +66,13 @@ import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
 
 @AndroidEntryPoint
 public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
+    @Inject
+    RemotePlaylistManager remotePlaylistManager;
+
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
     private AtomicBoolean isBookmarkButtonReady;
 
-    private RemotePlaylistManager remotePlaylistManager;
     private PlaylistRemoteEntity playlistEntity;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -105,8 +108,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         super.onCreate(savedInstanceState);
         disposables = new CompositeDisposable();
         isBookmarkButtonReady = new AtomicBoolean(false);
-        remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase
-                .getInstance(requireContext()));
     }
 
     @Override

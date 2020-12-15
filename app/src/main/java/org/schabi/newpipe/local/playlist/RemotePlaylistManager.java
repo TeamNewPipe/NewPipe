@@ -1,22 +1,27 @@
 package org.schabi.newpipe.local.playlist;
 
-import org.schabi.newpipe.database.AppDatabase;
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.database.playlist.dao.PlaylistRemoteDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+@Singleton
 public class RemotePlaylistManager {
-
     private final PlaylistRemoteDAO playlistRemoteTable;
 
-    public RemotePlaylistManager(final AppDatabase db) {
-        playlistRemoteTable = db.playlistRemoteDAO();
+    @Inject
+    public RemotePlaylistManager(@NonNull final PlaylistRemoteDAO playlistRemoteTable) {
+        this.playlistRemoteTable = playlistRemoteTable;
     }
 
     public Flowable<List<PlaylistRemoteEntity>> getPlaylists() {
