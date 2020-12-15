@@ -101,4 +101,9 @@ public class MarkableSeekBar extends AppCompatSeekBar {
 
         super.setProgressDrawable(layerDrawable);
     }
+
+    public void clearMarkers() {
+        seekBarMarkers.clear();
+        super.setProgressDrawable(originalProgressDrawable);
+    }
 }

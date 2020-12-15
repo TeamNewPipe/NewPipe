@@ -623,18 +623,18 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     private void markSegments() {
-        final VideoSegment[] segments = getVideoSegments();
-
-        if (segments == null || segments.length == 0) {
-            return;
-        }
-
         if (!(playbackSeekBar instanceof MarkableSeekBar)) {
             return;
         }
 
         final MarkableSeekBar markableSeekBar = (MarkableSeekBar) playbackSeekBar;
-        markableSeekBar.seekBarMarkers.clear();
+        markableSeekBar.clearMarkers();
+
+        final VideoSegment[] segments = getVideoSegments();
+
+        if (segments == null || segments.length == 0) {
+            return;
+        }
 
         for (final VideoSegment segment : segments) {
             final Integer color = parseSegmentCategory(segment.category);
