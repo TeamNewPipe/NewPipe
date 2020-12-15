@@ -882,26 +882,19 @@ public class VideoPlayerImpl extends VideoPlayer
                 return true;
             }
 
-            final Set<String> uploaderWhitelist =
-                    mPrefs.getStringSet(
-                            context.getString(R.string.sponsor_block_whitelist_key),
-                            new HashSet<>());
+            final Set<String> uploaderWhitelist = new HashSet<>(mPrefs.getStringSet(
+                    context.getString(R.string.sponsor_block_whitelist_key),
+                    new HashSet<>()));
 
             final String toastText;
 
             if (getSponsorBlockMode() == SponsorBlockMode.IGNORE) {
-                if (uploaderWhitelist != null) {
-                    uploaderWhitelist.remove(currentMetadata.getMetadata().getUploaderName());
-                }
-
+                uploaderWhitelist.remove(currentMetadata.getMetadata().getUploaderName());
                 setSponsorBlockMode(SponsorBlockMode.ENABLED);
                 toastText = context
                         .getString(R.string.sponsor_block_uploader_removed_from_whitelist_toast);
             } else {
-                if (uploaderWhitelist != null) {
-                    uploaderWhitelist.add(currentMetadata.getMetadata().getUploaderName());
-                }
-
+                uploaderWhitelist.add(currentMetadata.getMetadata().getUploaderName());
                 setSponsorBlockMode(SponsorBlockMode.IGNORE);
                 toastText = context
                         .getString(R.string.sponsor_block_uploader_added_to_whitelist_toast);
@@ -910,7 +903,7 @@ public class VideoPlayerImpl extends VideoPlayer
             mPrefs.edit()
                     .putStringSet(
                             context.getString(R.string.sponsor_block_whitelist_key),
-                            uploaderWhitelist)
+                            new HashSet<>(uploaderWhitelist))
                     .apply();
 
             setBlockSponsorsButton(blockSponsorsButton);
