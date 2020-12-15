@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/sponsor_block">
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_information">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="@string/sponsor_block_home_page_key"
+            android:summary="@string/sponsor_block_home_page_summary"
+            android:title="@string/sponsor_block_home_page_title"/>
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="@string/sponsor_block_privacy_key"
+            android:summary="@string/sponsor_block_privacy_summary"
+            android:title="@string/sponsor_block_privacy_title"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings">
+
+        <org.schabi.newpipe.settings.custom.SponsorBlockApiUrlPreference
+            app:iconSpaceReserved="false"
+            android:key="@string/sponsor_block_api_url_key"
+            android:summary="@string/sponsor_block_api_url_summary"
+            android:title="@string/sponsor_block_api_url_title"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_api_url_key"
+            android:defaultValue="false"
+            android:key="@string/sponsor_block_enable_key"
+            android:summary="@string/sponsor_block_enable_summary"
+            android:title="@string/sponsor_block_enable_title"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:dependency="@string/sponsor_block_api_url_key"
+            android:key="@string/sponsor_block_notifications_key"
+            android:summary="@string/sponsor_block_notifications_summary"
+            android:title="@string/sponsor_block_notifications_title"/>
+
+        <PreferenceScreen
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_api_url_key"
+            android:fragment="org.schabi.newpipe.settings.SponsorBlockCategoriesSettingsFragment"
+            android:key="@string/sponsor_block_categories_key"
+            android:title="@string/settings_category_sponsor_block_categories_title"
+            android:summary="@string/settings_category_sponsor_block_categories_summary"/>
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="@string/sponsor_block_clear_whitelist_key"
+            android:summary="@string/sponsor_block_clear_whitelist_summary"
+            android:title="@string/sponsor_block_clear_whitelist_title"/>
+    </PreferenceCategory>
+</PreferenceScreen>

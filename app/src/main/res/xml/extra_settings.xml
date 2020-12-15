@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/extras">
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/experimental_settings">
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
+            android:key="@string/disable_tablet_ui_key"
+            android:summary="@string/disable_tablet_ui_summary"
+            android:title="@string/disable_tablet_ui_title"/>
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -4,11 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_sponsor_block_categories_title">
 
-    <Preference
-        app:iconSpaceReserved="false"
-        android:key="@string/sponsor_block_category_reset_key"
-        android:title="@string/settings_category_sponsor_block_categories_reset_colors_title"/>
-
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_sponsor_block_category_sponsor_title">
@@ -153,4 +148,12 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="@string/sponsor_block_category_reset_key"
+            android:title="@string/settings_category_sponsor_block_categories_reset_colors_title"/>
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -194,6 +194,7 @@
     <string name="albums">Albums</string>
     <string name="artists">Artists</string>
     <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
     <string name="filter">Filter</string>
@@ -705,6 +706,8 @@
     <string name="show_thumbnail_title">Show thumbnail</string>
     <string name="show_thumbnail_summary">Show thumbnail on lock screen as background and inside notifications</string>
     <!-- SponsorBlock -->
+    <string name="sponsor_block">SponsorBlock</string>
+    <string name="sponsor_block_information">Information</string>
     <string name="sponsor_block_home_page_title">View Website</string>
     <string name="sponsor_block_home_page_summary">View the official SponsorBlock website.</string>
     <string name="sponsor_block_enable_title">Skip Sponsors</string>
@@ -734,4 +737,12 @@
     <string name="sponsor_block_whitelist_cleared_toast">Whitelist cleared</string>
     <string name="sponsor_block_uploader_added_to_whitelist_toast">Uploader added to whitelist</string>
     <string name="sponsor_block_uploader_removed_from_whitelist_toast">Uploader removed from whitelist</string>
+    <string name="sponsor_block_confirm_clear_whitelist">Are you sure you want to clear the whitelist?</string>
+    <string name="sponsor_block_confirm_reset_colors">Are you sure you want to reset the category colors?</string>
+    <string name="sponsor_block_reset_colors_toast">Colors reset.</string>
+    <!-- Extras -->
+    <string name="extras">Extras</string>
+    <string name="experimental_settings">Experimental Settings</string>
+    <string name="disable_tablet_ui_title">Disable Tablet UI</string>
+    <string name="disable_tablet_ui_summary">Ignore tablet layouts. This is intended for workarounds related to specific scenarios.</string>
 </resources>

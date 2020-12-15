@@ -48,6 +48,18 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.SponsorBlockSettingsFragment"
+        android:icon="?attr/ic_sponsor_block_enable"
+        android:title="@string/sponsor_block"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.ExtraSettingsFragment"
+        android:icon="?attr/ic_asterisk"
+        android:title="@string/extras"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.DebugSettingsFragment"
         android:icon="?attr/ic_bug_report"
         android:key="@string/debug_pref_screen_key"
