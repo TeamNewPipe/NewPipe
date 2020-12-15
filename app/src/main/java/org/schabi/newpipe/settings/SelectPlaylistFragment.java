@@ -33,16 +33,23 @@ import org.schabi.newpipe.report.UserAction;
 import java.util.List;
 import java.util.Vector;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
+@AndroidEntryPoint
 public class SelectPlaylistFragment extends DialogFragment {
     /**
      * This contains the base display options for images.
      */
     private static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS
             = new DisplayImageOptions.Builder().cacheInMemory(true).build();
+
+    @Inject
+    LocalPlaylistManager localPlaylistManager;
 
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
@@ -97,7 +104,6 @@ public class SelectPlaylistFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
         final AppDatabase database = NewPipeDatabase.getInstance(requireContext());
-        final LocalPlaylistManager localPlaylistManager = new LocalPlaylistManager(database);
         final RemotePlaylistManager remotePlaylistManager = new RemotePlaylistManager(database);
 
         disposable = Flowable.combineLatest(localPlaylistManager.getPlaylists(),

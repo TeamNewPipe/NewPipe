@@ -18,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.ListViewContract;
+import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
+
+import javax.inject.Inject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -35,6 +38,9 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  */
 public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, SharedPreferences.OnSharedPreferenceChangeListener {
+    @Inject
+    protected LocalPlaylistManager localPlaylistManager;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/

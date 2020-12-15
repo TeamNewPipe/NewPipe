@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
@@ -54,6 +53,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
@@ -64,6 +64,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
+@AndroidEntryPoint
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
@@ -86,7 +87,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private ItemTouchHelper itemTouchHelper;
 
-    private LocalPlaylistManager playlistManager;
     private Subscription databaseSubscription;
 
     private PublishSubject<Long> debouncedSaveSignal;
@@ -112,7 +112,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
         debouncedSaveSignal = PublishSubject.create();
 
         disposables = new CompositeDisposable();
@@ -240,7 +239,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         isLoadingComplete.set(false);
         isModified.set(false);
 
-        playlistManager.getPlaylistStreams(playlistId)
+        localPlaylistManager.getPlaylistStreams(playlistId)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistObserver());
@@ -308,7 +307,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         debouncedSaveSignal = null;
-        playlistManager = null;
+        localPlaylistManager = null;
         disposables = null;
 
         isLoadingComplete = null;
@@ -388,7 +387,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         isRemovingWatched = true;
         showLoading();
 
-        disposables.add(playlistManager.getPlaylistStreams(playlistId)
+        disposables.add(localPlaylistManager.getPlaylistStreams(playlistId)
                 .subscribeOn(Schedulers.io())
                 .map((List<PlaylistStreamEntry> playlist) -> {
                     // Playlist data
@@ -419,7 +418,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             if (indexInHistory < 0) {
                                 notWatchedItems.add(playlistItem);
                             } else if (!thumbnailVideoRemoved
-                                    && playlistManager.getPlaylistThumbnail(playlistId)
+                                    && localPlaylistManager.getPlaylistThumbnail(playlistId)
                                     .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
                                 thumbnailVideoRemoved = true;
                             }
@@ -437,7 +436,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             if (indexInHistory < 0 ||  hasState) {
                                 notWatchedItems.add(playlistItem);
                             } else if (!thumbnailVideoRemoved
-                                    && playlistManager.getPlaylistThumbnail(playlistId)
+                                    && localPlaylistManager.getPlaylistThumbnail(playlistId)
                                     .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
                                 thumbnailVideoRemoved = true;
                             }
@@ -562,7 +561,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void changePlaylistName(final String title) {
-        if (playlistManager == null) {
+        if (localPlaylistManager == null) {
             return;
         }
 
@@ -574,14 +573,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     + "with new title=[" + title + "] items");
         }
 
-        final Disposable disposable = playlistManager.renamePlaylist(playlistId, title)
+        final Disposable disposable = localPlaylistManager.renamePlaylist(playlistId, title)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(longs -> { /*Do nothing on success*/ }, this::onError);
         disposables.add(disposable);
     }
 
     private void changeThumbnailUrl(final String thumbnailUrl) {
-        if (playlistManager == null) {
+        if (localPlaylistManager == null) {
             return;
         }
 
@@ -594,7 +593,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     + "with new thumbnail url=[" + thumbnailUrl + "]");
         }
 
-        final Disposable disposable = playlistManager
+        final Disposable disposable = localPlaylistManager
                 .changePlaylistThumbnail(playlistId, thumbnailUrl)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignore -> successToast.show(), this::onError);
@@ -620,7 +619,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         itemListAdapter.removeItem(item);
-        if (playlistManager.getPlaylistThumbnail(playlistId)
+        if (localPlaylistManager.getPlaylistThumbnail(playlistId)
                 .equals(item.getStreamEntity().getThumbnailUrl())) {
             updateThumbnailUrl();
         }
@@ -650,7 +649,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void saveImmediate() {
-        if (playlistManager == null || itemListAdapter == null) {
+        if (localPlaylistManager == null || itemListAdapter == null) {
             return;
         }
 
@@ -675,7 +674,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     + "with [" + streamIds.size() + "] items");
         }
 
-        final Disposable disposable = playlistManager.updateJoin(playlistId, streamIds)
+        final Disposable disposable = localPlaylistManager.updateJoin(playlistId, streamIds)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> {

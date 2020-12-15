@@ -28,12 +28,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
+@AndroidEntryPoint
 public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
+
+    @Inject
+    LocalPlaylistManager localPlaylistManager;
 
     private RecyclerView playlistRecyclerView;
     private LocalItemListAdapter playlistAdapter;
@@ -97,9 +104,6 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final LocalPlaylistManager playlistManager =
-                new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
-
         playlistAdapter = new LocalItemListAdapter(getActivity());
         playlistAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
@@ -107,7 +111,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                 if (!(selectedItem instanceof PlaylistMetadataEntry) || getStreams() == null) {
                     return;
                 }
-                onPlaylistSelected(playlistManager, (PlaylistMetadataEntry) selectedItem,
+                onPlaylistSelected(localPlaylistManager, (PlaylistMetadataEntry) selectedItem,
                         getStreams());
             }
         });
@@ -119,7 +123,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         final View newPlaylistButton = view.findViewById(R.id.newPlaylist);
         newPlaylistButton.setOnClickListener(ignored -> openCreatePlaylistDialog());
 
-        playlistDisposables.add(playlistManager.getPlaylists()
+        playlistDisposables.add(localPlaylistManager.getPlaylists()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onPlaylistsReceived));
     }
