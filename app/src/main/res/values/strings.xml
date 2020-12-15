@@ -195,6 +195,9 @@
     <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
     <string name="app_update_notification_channel_name">App Update Notification</string>
     <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
+    <string name="hash_channel_id" translatable="false">newpipeHash</string>
+    <string name="hash_channel_name">Video Hash Notification</string>
+    <string name="hash_channel_description">Notifications for video hashing progress</string>
     <string name="unknown_content">[Unknown]</string>
     <string name="toggle_orientation">Toggle Orientation</string>
     <string name="switch_to_background">Switch to Background</string>
@@ -347,6 +350,7 @@
     <string name="msg_url_malform">Malformed URL or Internet not available</string>
     <string name="msg_running">NewPipe Downloading</string>
     <string name="msg_running_detail">Tap for details</string>
+    <string name="msg_calculating_hash">Calculating hash</string>
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
     <string name="no_available_dir">Please define a download folder later in settings</string>
