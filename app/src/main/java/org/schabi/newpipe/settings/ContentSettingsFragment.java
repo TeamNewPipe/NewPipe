@@ -31,25 +31,23 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_IMPORT_PATH = 8945;
     private static final int REQUEST_EXPORT_PATH = 30945;
+
+    private ContentSettingsManager manager;
 
     private File databasesDir;
     private File newpipeDb;
@@ -130,6 +128,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         newpipeSettings = new File(homeDir, "/databases/newpipe.settings");
         newpipeSettings.delete();
+
+        manager = new ContentSettingsManager(homeDir);
 
         addPreferencesFromResource(R.xml.content_settings);
 
@@ -212,30 +212,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             //checkpoint before export
             NewPipeDatabase.checkpoint();
 
-            try (ZipOutputStream outZip = new ZipOutputStream(new BufferedOutputStream(
-                            new FileOutputStream(path)))) {
-                ZipHelper.addFileToZip(outZip, newpipeDb.getPath(), "newpipe.db");
+            final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(requireContext());
+            manager.exportDatabase(preferences, path);
 
-                saveSharedPreferencesToFile(newpipeSettings);
-                ZipHelper.addFileToZip(outZip, newpipeSettings.getPath(),
-                        "newpipe.settings");
-            }
-
-            Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT)
-                    .show();
+            Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
             onError(e);
-        }
-    }
-
-    private void saveSharedPreferencesToFile(final File dst) {
-        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(dst))) {
-            final SharedPreferences pref
-                    = PreferenceManager.getDefaultSharedPreferences(requireContext());
-            output.writeObject(pref.getAll());
-            output.flush();
-        } catch (final IOException e) {
-            e.printStackTrace();
         }
     }
 
