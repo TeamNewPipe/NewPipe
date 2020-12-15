@@ -1,5 +1,6 @@
 package org.schabi.newpipe.database;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
@@ -43,23 +44,33 @@ import static org.schabi.newpipe.database.Migrations.DB_VER_3;
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "newpipe.db";
 
+    @NonNull
     public abstract SearchHistoryDAO searchHistoryDAO();
 
+    @NonNull
     public abstract StreamDAO streamDAO();
 
+    @NonNull
     public abstract StreamHistoryDAO streamHistoryDAO();
 
+    @NonNull
     public abstract StreamStateDAO streamStateDAO();
 
+    @NonNull
     public abstract PlaylistDAO playlistDAO();
 
+    @NonNull
     public abstract PlaylistStreamDAO playlistStreamDAO();
 
+    @NonNull
     public abstract PlaylistRemoteDAO playlistRemoteDAO();
 
+    @NonNull
     public abstract FeedDAO feedDAO();
 
+    @NonNull
     public abstract FeedGroupDAO feedGroupDAO();
 
+    @NonNull
     public abstract SubscriptionDAO subscriptionDAO();
 }

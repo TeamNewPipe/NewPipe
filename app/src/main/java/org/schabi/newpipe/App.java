@@ -38,6 +38,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import dagger.hilt.android.HiltAndroidApp;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
@@ -63,7 +64,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+@HiltAndroidApp
 public class App extends MultiDexApplication {
     protected static final String TAG = App.class.toString();
     private static App app;
