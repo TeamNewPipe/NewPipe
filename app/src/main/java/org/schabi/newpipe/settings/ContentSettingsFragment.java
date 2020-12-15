@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceManager;
 
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -73,8 +72,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredLocalization(requireContext());
         initialSelectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
-        initialLanguage = PreferenceManager
-                .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
+        initialLanguage = defaultPreferences.getString("app_language_key", "en");
 
         final Preference clearCookiePref = findPreference(getString(R.string.clear_cookie_key));
 
@@ -164,8 +162,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredLocalization(requireContext());
         final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
-        final String selectedLanguage = PreferenceManager
-                .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
+        final String selectedLanguage = defaultPreferences.getString("app_language_key", "en");
 
         if (!selectedLocalization.equals(initialSelectedLocalization)
                 || !selectedContentCountry.equals(initialSelectedContentCountry)
@@ -212,9 +209,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             //checkpoint before export
             NewPipeDatabase.checkpoint();
 
-            final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(requireContext());
-            manager.exportDatabase(preferences, path);
+            manager.exportDatabase(defaultPreferences, path);
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
@@ -277,8 +272,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private void loadSharedPreferences(final File src) {
         try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(src))) {
-            final SharedPreferences.Editor prefEdit = PreferenceManager
-                    .getDefaultSharedPreferences(requireContext()).edit();
+            final SharedPreferences.Editor prefEdit = defaultPreferences.edit();
             prefEdit.clear();
             final Map<String, ?> entries = (Map<String, ?>) input.readObject();
             for (final Map.Entry<String, ?> entry : entries.entrySet()) {

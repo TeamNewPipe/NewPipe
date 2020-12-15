@@ -10,7 +10,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.multidex.MultiDexApplication;
-import androidx.preference.PreferenceManager;
 
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -37,6 +36,8 @@ import java.net.SocketException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.HiltAndroidApp;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -70,6 +71,9 @@ public class App extends MultiDexApplication {
     private static App app;
 
     @Nullable private Disposable disposable = null;
+
+    @Inject
+    SharedPreferences sharedPreferences;
 
     @NonNull
     public static App getApp() {
@@ -125,10 +129,9 @@ public class App extends MultiDexApplication {
     }
 
     protected void setCookiesToDownloader(final DownloaderImpl downloader) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
-                getApplicationContext());
         final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
-        downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, prefs.getString(key, ""));
+        downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, sharedPreferences
+                .getString(key, ""));
         downloader.updateYoutubeRestrictedModeCookies(getApplicationContext());
     }
 

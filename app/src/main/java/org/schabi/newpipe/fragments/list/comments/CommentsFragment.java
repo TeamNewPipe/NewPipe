@@ -52,9 +52,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -91,9 +89,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
                     NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
     }
 
     @Override

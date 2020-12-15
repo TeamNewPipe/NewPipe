@@ -195,7 +195,6 @@ public class VideoPlayerImpl extends VideoPlayer
     private PlayerServiceEventListener fragmentListener;
     private PlayerEventListener activityListener;
     private GestureDetector gestureDetector;
-    private final SharedPreferences defaultPreferences;
     private ContentObserver settingsContentObserver;
     @NonNull
     private final AudioPlaybackResolver resolver;
@@ -267,12 +266,11 @@ public class VideoPlayerImpl extends VideoPlayer
         NavigationHelper.sendPlayerStartedEvent(service);
     }
 
-    VideoPlayerImpl(final MainPlayer service) {
-        super("MainPlayer" + TAG, service);
+    VideoPlayerImpl(final MainPlayer service, @NonNull final SharedPreferences sharedPreferences) {
+        super("MainPlayer" + TAG, service, sharedPreferences);
         this.service = service;
         this.shouldUpdateOnProgress = true;
         this.windowManager = ContextCompat.getSystemService(service, WindowManager.class);
-        this.defaultPreferences = PreferenceManager.getDefaultSharedPreferences(service);
         this.resolver = new AudioPlaybackResolver(context, dataSource);
     }
 
@@ -920,7 +918,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void showHideKodiButton() {
-        final boolean kodiEnabled = defaultPreferences.getBoolean(
+        final boolean kodiEnabled = sharedPreferences.getBoolean(
                 service.getString(R.string.show_play_with_kodi_key), false);
         // show kodi button if it supports the current service and it is enabled in settings
         final boolean showKodiButton = playQueue != null && playQueue.getItem() != null
@@ -1026,14 +1024,13 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void storeResizeMode(final @AspectRatioFrameLayout.ResizeMode int resizeMode) {
-        defaultPreferences.edit()
+        sharedPreferences.edit()
                 .putInt(service.getString(R.string.last_resize_mode), resizeMode)
                 .apply();
     }
 
     private void restoreResizeMode() {
-        setResizeMode(defaultPreferences.getInt(
-                service.getString(R.string.last_resize_mode),
+        setResizeMode(sharedPreferences.getInt(service.getString(R.string.last_resize_mode),
                 AspectRatioFrameLayout.RESIZE_MODE_FIT));
     }
 

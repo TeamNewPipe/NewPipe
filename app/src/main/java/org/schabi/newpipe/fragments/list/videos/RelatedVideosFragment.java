@@ -12,7 +12,6 @@ import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -66,9 +65,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
     }
 
     protected View getListHeader() {
@@ -77,13 +74,14 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
                     .inflate(R.layout.related_streams_header, itemsList, false);
             autoplaySwitch = headerRootLayout.findViewById(R.id.autoplay_switch);
 
-            final SharedPreferences pref = PreferenceManager
-                    .getDefaultSharedPreferences(requireContext());
-            final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
+            final boolean autoplay = sharedPreferences
+                    .getBoolean(getString(R.string.auto_queue_key), false);
             autoplaySwitch.setChecked(autoplay);
             autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
-                    PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
-                            .putBoolean(getString(R.string.auto_queue_key), b).apply());
+                    sharedPreferences.edit()
+                            .putBoolean(getString(R.string.auto_queue_key), b)
+                            .apply()
+            );
             return headerRootLayout;
         } else {
             return null;
@@ -199,9 +197,8 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String s) {
-        final SharedPreferences pref =
-                PreferenceManager.getDefaultSharedPreferences(requireContext());
-        final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
+        final boolean autoplay = sharedPreferences.getBoolean(getString(R.string.auto_queue_key),
+                false);
         if (autoplaySwitch != null) {
             autoplaySwitch.setChecked(autoplay);
         }

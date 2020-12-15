@@ -3,7 +3,6 @@ package org.schabi.newpipe.fragments;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -74,9 +73,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         });
 
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
-        previousYoutubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
+        previousYoutubeRestrictedModeEnabled = sharedPreferences
+                .getBoolean(youtubeRestrictedModeEnabledKey, false);
     }
 
     @Override
@@ -105,9 +103,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onResume() {
         super.onResume();
 
-        final boolean youtubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
+        final boolean youtubeRestrictedModeEnabled = sharedPreferences
+                .getBoolean(youtubeRestrictedModeEnabledKey, false);
         if (previousYoutubeRestrictedModeEnabled != youtubeRestrictedModeEnabled) {
             previousYoutubeRestrictedModeEnabled = youtubeRestrictedModeEnabled;
             setupTabs();

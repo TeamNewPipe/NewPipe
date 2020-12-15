@@ -1,6 +1,7 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,14 +13,22 @@ import androidx.fragment.app.FragmentManager;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import icepick.Icepick;
 import icepick.State;
 import leakcanary.AppWatcher;
 
+@AndroidEntryPoint
 public abstract class BaseFragment extends Fragment {
     public static final ImageLoader IMAGE_LOADER = ImageLoader.getInstance();
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
     protected final boolean DEBUG = MainActivity.DEBUG;
+
+    @Inject
+    protected SharedPreferences sharedPreferences;
+
     protected AppCompatActivity activity;
     //These values are used for controlling fragments when they are part of the frontpage
     @State

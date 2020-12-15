@@ -25,6 +25,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import icepick.State;
 import io.reactivex.rxjava3.core.Single;
 
@@ -54,6 +55,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  * </p>
  */
 
+@AndroidEntryPoint
 public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     @State
     String kioskId = "";

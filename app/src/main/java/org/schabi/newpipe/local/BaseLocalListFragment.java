@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,7 +35,6 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  */
 public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, SharedPreferences.OnSharedPreferenceChangeListener {
-
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -56,15 +54,13 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .registerOnSharedPreferenceChangeListener(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .unregisterOnSharedPreferenceChangeListener(this);
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -257,9 +253,8 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     }
 
     protected boolean isGridLayout() {
-        final String listMode = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.list_view_mode_key),
-                        getString(R.string.list_view_mode_value));
+        final String listMode = sharedPreferences.getString(getString(R.string.list_view_mode_key),
+                getString(R.string.list_view_mode_value));
         if ("auto".equals(listMode)) {
             final Configuration configuration = getResources().getConfiguration();
             return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE

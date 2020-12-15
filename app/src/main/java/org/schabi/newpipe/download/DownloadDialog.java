@@ -33,7 +33,6 @@ import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.DialogFragment;
-import androidx.preference.PreferenceManager;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -68,6 +67,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import icepick.Icepick;
 import icepick.State;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -82,11 +84,15 @@ import us.shandian.giga.service.MissionState;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
+@AndroidEntryPoint
 public class DownloadDialog extends DialogFragment
         implements RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
+
+    @Inject
+    SharedPreferences prefs;
 
     @State
     StreamInfo currentInfo;
@@ -121,8 +127,6 @@ public class DownloadDialog extends DialogFragment
     private RadioGroup radioStreamsGroup;
     private TextView threadsCountTextView;
     private SeekBar threadsSeekBar;
-
-    private SharedPreferences prefs;
 
     public static DownloadDialog newInstance(final StreamInfo info) {
         final DownloadDialog dialog = new DownloadDialog();
@@ -295,8 +299,6 @@ public class DownloadDialog extends DialogFragment
 
         initToolbar(view.findViewById(R.id.toolbar));
         setupDownloadOptions();
-
-        prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
         final int threads = prefs.getInt(getString(R.string.default_download_threads), 3);
         threadsCountTextView.setText(String.valueOf(threads));
@@ -517,7 +519,6 @@ public class DownloadDialog extends DialogFragment
         videoButton.setVisibility(isVideoStreamsAvailable ? View.VISIBLE : View.GONE);
         subtitleButton.setVisibility(isSubtitleStreamsAvailable ? View.VISIBLE : View.GONE);
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         final String defaultMedia = prefs.getString(getString(R.string.last_used_download_type),
                     getString(R.string.last_download_type_video_key));
 

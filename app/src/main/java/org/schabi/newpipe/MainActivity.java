@@ -55,7 +55,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
@@ -91,11 +90,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+
+    private static final int ITEM_ID_SUBSCRIPTIONS = -1;
+    private static final int ITEM_ID_FEED = -2;
+    private static final int ITEM_ID_BOOKMARKS = -3;
+    private static final int ITEM_ID_DOWNLOADS = -4;
+    private static final int ITEM_ID_HISTORY = -5;
+    private static final int ITEM_ID_SETTINGS = 0;
+    private static final int ITEM_ID_ABOUT = 1;
+
+    private static final int ORDER = 0;
+
+    @Inject
+    SharedPreferences sharedPreferences;
 
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
@@ -108,16 +125,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView serviceArrow;
 
     private BroadcastReceiver broadcastReceiver;
-
-    private static final int ITEM_ID_SUBSCRIPTIONS = -1;
-    private static final int ITEM_ID_FEED = -2;
-    private static final int ITEM_ID_BOOKMARKS = -3;
-    private static final int ITEM_ID_DOWNLOADS = -4;
-    private static final int ITEM_ID_HISTORY = -5;
-    private static final int ITEM_ID_SETTINGS = 0;
-    private static final int ITEM_ID_ABOUT = 1;
-
-    private static final int ORDER = 0;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -491,8 +498,6 @@ public class MainActivity extends AppCompatActivity {
             ErrorActivity.reportUiError(this, e);
         }
 
-        final SharedPreferences sharedPreferences
-                = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) {
                 Log.d(TAG, "Theme has changed, recreating activity...");

@@ -45,7 +45,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -113,6 +112,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import icepick.State;
 import io.noties.markwon.Markwon;
 import io.noties.markwon.linkify.LinkifyPlugin;
@@ -129,6 +129,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfi
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
+@AndroidEntryPoint
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
         implements BackPressable,
@@ -328,17 +329,16 @@ public final class VideoDetailFragment
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getBoolean(getString(R.string.show_next_video_key), true);
+        showRelatedStreams = sharedPreferences.getBoolean(getString(R.string.show_next_video_key),
+                true);
 
-        showComments = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getBoolean(getString(R.string.show_comments_key), true);
+        showComments = sharedPreferences.getBoolean(getString(R.string.show_comments_key),
+                true);
 
-        selectedTabTag = PreferenceManager.getDefaultSharedPreferences(activity)
+        selectedTabTag = sharedPreferences
                 .getString(getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG);
 
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .registerOnSharedPreferenceChangeListener(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         setupBroadcastReceiver();
 
@@ -368,8 +368,7 @@ public final class VideoDetailFragment
             currentWorker.dispose();
         }
         restoreDefaultBrightness();
-        PreferenceManager.getDefaultSharedPreferences(requireContext())
-                .edit()
+        sharedPreferences.edit()
                 .putString(getString(R.string.stream_info_selected_tab_key),
                         pageAdapter.getItemTitle(viewPager.getCurrentItem()))
                 .apply();
@@ -423,8 +422,7 @@ public final class VideoDetailFragment
             PlayerHolder.removeListener();
         }
 
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .unregisterOnSharedPreferenceChangeListener(this);
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
         activity.unregisterReceiver(broadcastReceiver);
         activity.getContentResolver().unregisterContentObserver(settingsContentObserver);
 
@@ -732,8 +730,8 @@ public final class VideoDetailFragment
 
     private View.OnTouchListener getOnControlsTouchListener() {
         return (view, motionEvent) -> {
-            if (!PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
+            if (!sharedPreferences.getBoolean(getString(R.string.show_hold_to_append_key),
+                    true)) {
                 return false;
             }
 
@@ -944,14 +942,13 @@ public final class VideoDetailFragment
     }
 
     private void runWorker(final boolean forceLoad, final boolean addToBackStack) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
                     isLoading.set(false);
                     hideMainPlayer();
-                    if (result.getAgeLimit() != NO_AGE_LIMIT && !prefs.getBoolean(
+                    if (result.getAgeLimit() != NO_AGE_LIMIT && !sharedPreferences.getBoolean(
                             getString(R.string.show_age_restricted_content), false)) {
                         hideAgeRestrictedContent();
                     } else {
@@ -1031,8 +1028,7 @@ public final class VideoDetailFragment
         final AudioStream audioStream = currentInfo.getAudioStreams()
                 .get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
 
-        final boolean useExternalAudioPlayer = PreferenceManager
-                .getDefaultSharedPreferences(activity)
+        final boolean useExternalAudioPlayer = sharedPreferences
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
         //  If a user watched video inside fullscreen mode and than chose another player
@@ -1075,8 +1071,8 @@ public final class VideoDetailFragment
     }
 
     public void openVideoPlayer() {
-        if (PreferenceManager.getDefaultSharedPreferences(activity)
-                .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
+        if (sharedPreferences.getBoolean(getString(R.string.use_external_video_player_key),
+                false)) {
             showExternalPlaybackDialog();
         } else {
             replaceQueueIfUserConfirms(this::openMainPlayer);
@@ -1170,8 +1166,8 @@ public final class VideoDetailFragment
     }
 
     private boolean isExternalPlayerEnabled() {
-        return PreferenceManager.getDefaultSharedPreferences(requireContext())
-                .getBoolean(getString(R.string.use_external_video_player_key), false);
+        return sharedPreferences.getBoolean(getString(R.string.use_external_video_player_key),
+                false);
     }
 
     // This method overrides default behaviour when setAutoPlay() is called.
@@ -1672,11 +1668,11 @@ public final class VideoDetailFragment
         if (positionSubscriber != null) {
             positionSubscriber.dispose();
         }
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        final boolean playbackResumeEnabled = prefs
+        final boolean playbackResumeEnabled = sharedPreferences
                 .getBoolean(activity.getString(R.string.enable_watch_history_key), true)
-                && prefs.getBoolean(activity.getString(R.string.enable_playback_resume_key), true);
-        final boolean showPlaybackPosition = prefs.getBoolean(
+                && sharedPreferences.getBoolean(activity
+                .getString(R.string.enable_playback_resume_key), true);
+        final boolean showPlaybackPosition = sharedPreferences.getBoolean(
                 activity.getString(R.string.enable_playback_state_lists_key), true);
         if (!playbackResumeEnabled) {
             if (playQueue == null || playQueue.getStreams().isEmpty()

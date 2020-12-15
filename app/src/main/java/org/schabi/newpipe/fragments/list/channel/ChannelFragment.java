@@ -53,6 +53,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -67,6 +68,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateBackgroundColor;
 import static org.schabi.newpipe.util.AnimationUtils.animateTextColor;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
+@AndroidEntryPoint
 public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         implements View.OnClickListener {
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;

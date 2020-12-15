@@ -28,7 +28,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.FragmentManager;
-import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.Info;
@@ -64,6 +63,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import icepick.Icepick;
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -81,6 +83,7 @@ import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
 /**
  * Get the url from the intent and open it in the chosen preferred player.
  */
+@AndroidEntryPoint
 public class RouterActivity extends AppCompatActivity {
     public static final String INTERNAL_ROUTE_KEY = "internalRoute";
     /**
@@ -90,6 +93,10 @@ public class RouterActivity extends AppCompatActivity {
      */
     private static final String REGEX_REMOVE_FROM_URL = "[\\p{Z}\\p{P}]";
     protected final CompositeDisposable disposables = new CompositeDisposable();
+
+    @Inject
+    SharedPreferences preferences;
+
     @State
     protected int currentServiceId = -1;
     @State
@@ -193,8 +200,6 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     protected void onSuccess() {
-        final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
         final String selectedChoiceKey = preferences
                 .getString(getString(R.string.preferred_open_action_key),
                         getString(R.string.preferred_open_action_default));
@@ -263,7 +268,6 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void showDialog(final List<AdapterChoiceItem> choices) {
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final Context themeWrapperContext = getThemeWrapperContext();
 
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
@@ -371,8 +375,6 @@ public class RouterActivity extends AppCompatActivity {
         final List<StreamingService.ServiceInfo.MediaCapability> capabilities
                 = service.getServiceInfo().getMediaCapabilities();
 
-        final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
         final boolean isExtVideoEnabled = preferences.getBoolean(
                 getString(R.string.use_external_video_player_key), false);
         final boolean isExtAudioEnabled = preferences.getBoolean(
@@ -468,7 +470,7 @@ public class RouterActivity extends AppCompatActivity {
         final List<String> validChoicesList = Arrays.asList(getResources()
                 .getStringArray(R.array.preferred_open_action_values_list));
         if (validChoicesList.contains(selectedChoiceKey)) {
-            PreferenceManager.getDefaultSharedPreferences(this).edit()
+            preferences.edit()
                     .putString(getString(
                             R.string.preferred_open_action_last_selected_key), selectedChoiceKey)
                     .apply();
@@ -586,10 +588,14 @@ public class RouterActivity extends AppCompatActivity {
         }
     }
 
+    @AndroidEntryPoint
     public static class FetcherService extends IntentService {
-
         public static final String KEY_CHOICE = "key_choice";
         private static final int ID = 456;
+
+        @Inject
+        SharedPreferences preferences;
+
         private Disposable fetcher;
 
         public FetcherService() {
@@ -658,8 +664,6 @@ public class RouterActivity extends AppCompatActivity {
                 final String backgroundPlayerKey = getString(R.string.background_player_key);
                 final String popupPlayerKey = getString(R.string.popup_player_key);
 
-                final SharedPreferences preferences = PreferenceManager
-                        .getDefaultSharedPreferences(this);
                 final boolean isExtVideoEnabled = preferences.getBoolean(
                         getString(R.string.use_external_video_player_key), false);
                 final boolean isExtAudioEnabled = preferences.getBoolean(

@@ -52,6 +52,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
@@ -62,6 +63,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
 
+@AndroidEntryPoint
 public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;

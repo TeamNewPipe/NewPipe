@@ -22,6 +22,7 @@ package org.schabi.newpipe.player;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.DisplayMetrics;
@@ -36,6 +37,10 @@ import androidx.core.content.ContextCompat;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 
@@ -44,9 +49,13 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
  *
  * @author mauriciocolli
  */
+@AndroidEntryPoint
 public final class MainPlayer extends Service {
     private static final String TAG = "MainPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
+
+    @Inject
+    SharedPreferences sharedPreferences;
 
     private VideoPlayerImpl playerImpl;
     private WindowManager windowManager;
@@ -103,7 +112,7 @@ public final class MainPlayer extends Service {
     private void createView() {
         final View layout = View.inflate(this, R.layout.player, null);
 
-        playerImpl = new VideoPlayerImpl(this);
+        playerImpl = new VideoPlayerImpl(this, sharedPreferences);
         playerImpl.setup(layout);
         playerImpl.shouldUpdateOnProgress = true;
 

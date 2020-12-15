@@ -33,7 +33,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -199,8 +198,10 @@ public abstract class BasePlayer implements
 
     protected int currentState = STATE_PREFLIGHT;
 
-    public BasePlayer(@NonNull final Context context) {
+    public BasePlayer(@NonNull final Context context,
+                      @NonNull final SharedPreferences sharedPreferences) {
         this.context = context;
+        this.sharedPreferences = sharedPreferences;
 
         this.broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -212,7 +213,6 @@ public abstract class BasePlayer implements
         setupBroadcastReceiver(intentFilter);
 
         this.recordManager = new HistoryRecordManager(context);
-        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         this.progressUpdateReactor = new SerialDisposable();
         this.databaseUpdateReactor = new CompositeDisposable();
@@ -382,14 +382,11 @@ public abstract class BasePlayer implements
     }
 
     private PlaybackParameters retrievePlaybackParametersFromPreferences() {
-        final SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(context);
-
-        final float speed = preferences.getFloat(
+        final float speed = sharedPreferences.getFloat(
                 context.getString(R.string.playback_speed_key), getPlaybackSpeed());
-        final float pitch = preferences.getFloat(
+        final float pitch = sharedPreferences.getFloat(
                 context.getString(R.string.playback_pitch_key), getPlaybackPitch());
-        final boolean skipSilence = preferences.getBoolean(
+        final boolean skipSilence = sharedPreferences.getBoolean(
                 context.getString(R.string.playback_skip_silence_key), getPlaybackSkipSilence());
         return new PlaybackParameters(speed, pitch, skipSilence);
     }
@@ -1189,10 +1186,9 @@ public abstract class BasePlayer implements
     }
 
     private int getSeekDuration() {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String key = context.getString(R.string.seek_duration_key);
-        final String value = prefs
-                .getString(key, context.getString(R.string.seek_duration_default_value));
+        final String value = sharedPreferences.getString(key,
+                context.getString(R.string.seek_duration_default_value));
         return Integer.parseInt(value);
     }
 
@@ -1316,11 +1312,11 @@ public abstract class BasePlayer implements
         if (DEBUG) {
             Log.d(TAG, "savePlaybackState() called");
         }
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
+        if (sharedPreferences.getBoolean(context.getString(R.string.enable_watch_history_key),
+                true)) {
             final Disposable stateSaver = recordManager.saveStreamState(info, progress)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnError((e) -> {
+                    .doOnError(e -> {
                         if (DEBUG) {
                             e.printStackTrace();
                         }
@@ -1335,12 +1331,12 @@ public abstract class BasePlayer implements
         if (queueItem == null) {
             return;
         }
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
+        if (sharedPreferences.getBoolean(context.getString(R.string.enable_watch_history_key),
+                true)) {
             final Disposable stateSaver = queueItem.getStream()
                     .flatMapCompletable(info -> recordManager.saveStreamState(info, 0))
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnError((e) -> {
+                    .doOnError(e -> {
                         if (DEBUG) {
                             e.printStackTrace();
                         }
@@ -1568,8 +1564,7 @@ public abstract class BasePlayer implements
 
     private void savePlaybackParametersToPreferences(final float speed, final float pitch,
                                                      final boolean skipSilence) {
-        PreferenceManager.getDefaultSharedPreferences(context)
-                .edit()
+        sharedPreferences.edit()
                 .putFloat(context.getString(R.string.playback_speed_key), speed)
                 .putFloat(context.getString(R.string.playback_pitch_key), pitch)
                 .putBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence)
@@ -1621,8 +1616,8 @@ public abstract class BasePlayer implements
     }
 
     private boolean isPlaybackResumeEnabled() {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)
-                && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true);
+        return sharedPreferences.getBoolean(context.getString(R.string.enable_watch_history_key),
+                true) && sharedPreferences
+                .getBoolean(context.getString(R.string.enable_playback_resume_key), true);
     }
 }

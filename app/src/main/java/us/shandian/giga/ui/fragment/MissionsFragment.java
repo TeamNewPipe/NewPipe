@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
-import androidx.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +34,9 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.io.File;
 import java.io.IOException;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
@@ -42,12 +44,14 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.ui.adapter.MissionAdapter;
 
+@AndroidEntryPoint
 public class MissionsFragment extends Fragment {
-
     private static final int SPAN_SIZE = 2;
     private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
 
-    private SharedPreferences mPrefs;
+    @Inject
+    SharedPreferences mPrefs;
+
     private boolean mLinear;
     private MenuItem mSwitch;
     private MenuItem mClear = null;
@@ -97,7 +101,6 @@ public class MissionsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.missions, container, false);
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity());
         mLinear = mPrefs.getBoolean("linear", false);
 
         // Bind the service

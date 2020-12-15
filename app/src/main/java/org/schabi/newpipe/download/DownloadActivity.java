@@ -17,13 +17,14 @@ import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.MissionsFragment;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
+@AndroidEntryPoint
 public class DownloadActivity extends AppCompatActivity {
-
     private static final String MISSIONS_FRAGMENT_TAG = "fragment_tag";
 
     @Override

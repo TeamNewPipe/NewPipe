@@ -14,7 +14,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,6 +47,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, StateSaver.WriteRead,
         SharedPreferences.OnSharedPreferenceChangeListener {
     private static final int LIST_MODE_UPDATE_FLAG = 0x32;
+
     protected org.schabi.newpipe.util.SavedState savedState;
 
     private boolean useDefaultStateSaving = true;
@@ -75,16 +75,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .registerOnSharedPreferenceChangeListener(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -93,8 +87,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         if (useDefaultStateSaving) {
             StateSaver.onDestroy(savedState);
         }
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .unregisterOnSharedPreferenceChangeListener(this);
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -443,9 +436,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     }
 
     protected boolean isGridLayout() {
-        final String listMode = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.list_view_mode_key),
-                        getString(R.string.list_view_mode_value));
+        final String listMode = sharedPreferences.getString(getString(R.string.list_view_mode_key),
+                getString(R.string.list_view_mode_value));
         if ("auto".equals(listMode)) {
             final Configuration configuration = getResources().getConfiguration();
             return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE

@@ -48,11 +48,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
+@AndroidEntryPoint
 public class StatisticsPlaylistFragment
         extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void> {
     private final CompositeDisposable disposables = new CompositeDisposable();
