@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -140,7 +141,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         if (redraw) {
-            recreate();
+            ActivityCompat.recreate(this);
             redraw = false;
         }
     }
