@@ -15,9 +15,9 @@ class ContentSettingsManager(
     private val newpipeSettings: File
 ) {
 
-    constructor(homeDir: String) : this(
-        File("$homeDir/databases/newpipe.db"),
-        File("$homeDir/databases/newpipe.settings")
+    constructor(homeDir: File) : this(
+        File(homeDir, "databases/newpipe.db"),
+        File(homeDir, "databases/newpipe.settings")
     )
 
     /**
