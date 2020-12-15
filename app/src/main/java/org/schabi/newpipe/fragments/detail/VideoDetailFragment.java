@@ -112,6 +112,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import icepick.State;
 import io.noties.markwon.Markwon;
@@ -159,6 +161,9 @@ public final class VideoDetailFragment
     private static final String COMMENTS_TAB_TAG = "COMMENTS";
     private static final String RELATED_TAB_TAG = "NEXT VIDEO";
     private static final String EMPTY_TAB_TAG = "EMPTY TAB";
+
+    @Inject
+    HistoryRecordManager recordManager;
 
     private boolean showRelatedStreams;
     private boolean showComments;
@@ -1157,7 +1162,6 @@ public final class VideoDetailFragment
         NavigationHelper.playOnExternalPlayer(context, currentInfo.getName(),
                 currentInfo.getSubChannelName(), selectedStream);
 
-        final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
         disposables.add(recordManager.onViewed(info).onErrorComplete()
                 .subscribe(
                         ignored -> { /* successful */ },
@@ -1695,7 +1699,6 @@ public final class VideoDetailFragment
             }
             return;
         }
-        final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
 
         // TODO: Separate concerns when updating database data.
         //  (move the updating part to when the loading happens)

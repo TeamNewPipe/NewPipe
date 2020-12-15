@@ -81,6 +81,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerGestureListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
@@ -266,8 +267,10 @@ public class VideoPlayerImpl extends VideoPlayer
         NavigationHelper.sendPlayerStartedEvent(service);
     }
 
-    VideoPlayerImpl(final MainPlayer service, @NonNull final SharedPreferences sharedPreferences) {
-        super("MainPlayer" + TAG, service, sharedPreferences);
+    VideoPlayerImpl(@NonNull final MainPlayer service,
+                    @NonNull final SharedPreferences sharedPreferences,
+                    @NonNull final HistoryRecordManager historyRecordManager) {
+        super("MainPlayer" + TAG, service, sharedPreferences, historyRecordManager);
         this.service = service;
         this.shouldUpdateOnProgress = true;
         this.windowManager = ContextCompat.getSystemService(service, WindowManager.class);

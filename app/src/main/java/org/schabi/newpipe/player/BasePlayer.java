@@ -176,7 +176,7 @@ public abstract class BasePlayer implements
     @NonNull
     protected final IntentFilter intentFilter;
     @NonNull
-    protected final HistoryRecordManager recordManager;
+    protected final HistoryRecordManager historyRecordManager;
     @NonNull
     protected final SharedPreferences sharedPreferences;
     @NonNull
@@ -199,9 +199,11 @@ public abstract class BasePlayer implements
     protected int currentState = STATE_PREFLIGHT;
 
     public BasePlayer(@NonNull final Context context,
-                      @NonNull final SharedPreferences sharedPreferences) {
+                      @NonNull final SharedPreferences sharedPreferences,
+                      @NonNull final HistoryRecordManager historyRecordManager) {
         this.context = context;
         this.sharedPreferences = sharedPreferences;
+        this.historyRecordManager = historyRecordManager;
 
         this.broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -211,8 +213,6 @@ public abstract class BasePlayer implements
         };
         this.intentFilter = new IntentFilter();
         setupBroadcastReceiver(intentFilter);
-
-        this.recordManager = new HistoryRecordManager(context);
 
         this.progressUpdateReactor = new SerialDisposable();
         this.databaseUpdateReactor = new CompositeDisposable();
@@ -346,7 +346,7 @@ public abstract class BasePlayer implements
                 && !samePlayQueue) {
             final PlayQueueItem item = queue.getItem();
             if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
-                stateLoader = recordManager.loadStreamState(item)
+                stateLoader = historyRecordManager.loadStreamState(item)
                         .observeOn(AndroidSchedulers.mainThread())
                         // Do not place initPlayback() in doFinally() because
                         // it restarts playback after destroy()
@@ -1287,7 +1287,7 @@ public abstract class BasePlayer implements
             return;
         }
         final StreamInfo currentInfo = currentMetadata.getMetadata();
-        final Disposable viewRegister = recordManager.onViewed(currentInfo).onErrorComplete()
+        final Disposable viewRegister = historyRecordManager.onViewed(currentInfo).onErrorComplete()
                 .subscribe(
                         ignored -> { /* successful */ },
                         error -> Log.e(TAG, "Player onViewed() failure: ", error)
@@ -1314,7 +1314,7 @@ public abstract class BasePlayer implements
         }
         if (sharedPreferences.getBoolean(context.getString(R.string.enable_watch_history_key),
                 true)) {
-            final Disposable stateSaver = recordManager.saveStreamState(info, progress)
+            final Disposable stateSaver = historyRecordManager.saveStreamState(info, progress)
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnError(e -> {
                         if (DEBUG) {
@@ -1334,7 +1334,7 @@ public abstract class BasePlayer implements
         if (sharedPreferences.getBoolean(context.getString(R.string.enable_watch_history_key),
                 true)) {
             final Disposable stateSaver = queueItem.getStream()
-                    .flatMapCompletable(info -> recordManager.saveStreamState(info, 0))
+                    .flatMapCompletable(info -> historyRecordManager.saveStreamState(info, 0))
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnError(e -> {
                         if (DEBUG) {

@@ -69,7 +69,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
-    private final HistoryRecordManager recordManager;
+    private final HistoryRecordManager historyRecordManager;
     private final DateTimeFormatter dateTimeFormatter;
 
     private boolean showFooter = false;
@@ -77,8 +77,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private View header = null;
     private View footer = null;
 
-    public LocalItemListAdapter(final Context context) {
-        recordManager = new HistoryRecordManager(context);
+    public LocalItemListAdapter(@NonNull final Context context,
+                                @NonNull final HistoryRecordManager historyRecordManager) {
+        this.historyRecordManager = historyRecordManager;
         localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
         dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
@@ -304,7 +305,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
 
             ((LocalItemHolder) holder)
-                    .updateFromItem(localItems.get(position), recordManager, dateTimeFormatter);
+                    .updateFromItem(localItems.get(position), historyRecordManager,
+                            dateTimeFormatter);
         } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
             ((HeaderFooterHolder) holder).view = header;
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
@@ -320,10 +322,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             for (final Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
                     ((LocalItemHolder) holder).updateState(localItems
-                            .get(header == null ? position : position - 1), recordManager);
+                            .get(header == null ? position : position - 1), historyRecordManager);
                 } else if (payload instanceof Boolean) {
                     ((LocalItemHolder) holder).updateState(localItems
-                            .get(header == null ? position : position - 1), recordManager);
+                            .get(header == null ? position : position - 1), historyRecordManager);
                 }
             }
         } else {

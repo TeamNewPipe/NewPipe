@@ -22,9 +22,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.LocalItem;
@@ -50,12 +48,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+@Singleton
 public class HistoryRecordManager {
     private final AppDatabase database;
     private final StreamDAO streamTable;
@@ -66,15 +69,18 @@ public class HistoryRecordManager {
     private final String searchHistoryKey;
     private final String streamHistoryKey;
 
-    public HistoryRecordManager(final Context context) {
-        database = NewPipeDatabase.getInstance(context);
+    @Inject
+    public HistoryRecordManager(@ApplicationContext @NonNull final Context appContext,
+                                @NonNull final AppDatabase database,
+                                @NonNull final SharedPreferences sharedPreferences) {
+        this.database = database;
         streamTable = database.streamDAO();
         streamHistoryTable = database.streamHistoryDAO();
         searchHistoryTable = database.searchHistoryDAO();
         streamStateTable = database.streamStateDAO();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        searchHistoryKey = context.getString(R.string.enable_search_history_key);
-        streamHistoryKey = context.getString(R.string.enable_watch_history_key);
+        this.sharedPreferences = sharedPreferences;
+        searchHistoryKey = appContext.getString(R.string.enable_search_history_key);
+        streamHistoryKey = appContext.getString(R.string.enable_watch_history_key);
     }
 
     ///////////////////////////////////////////////////////

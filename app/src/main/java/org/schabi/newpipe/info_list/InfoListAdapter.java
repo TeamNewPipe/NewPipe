@@ -76,7 +76,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<InfoItem> infoItemList;
-    private final HistoryRecordManager recordManager;
+    private final HistoryRecordManager historyRecordManager;
 
     private boolean useMiniVariant = false;
     private boolean useGridVariant = false;
@@ -84,8 +84,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View header = null;
     private View footer = null;
 
-    public InfoListAdapter(final Context context) {
-        this.recordManager = new HistoryRecordManager(context);
+    public InfoListAdapter(@NonNull final Context context,
+                           @NonNull final HistoryRecordManager historyRecordManager) {
+        this.historyRecordManager = historyRecordManager;
         infoItemBuilder = new InfoItemBuilder(context);
         infoItemList = new ArrayList<>();
     }
@@ -334,7 +335,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 position--;
             }
 
-            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), recordManager);
+            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position),
+                    historyRecordManager);
         } else if (holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
         } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset()
@@ -350,10 +352,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             for (final Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
                     ((InfoItemHolder) holder).updateState(infoItemList
-                            .get(header == null ? position : position - 1), recordManager);
+                            .get(header == null ? position : position - 1), historyRecordManager);
                 } else if (payload instanceof Boolean) {
                     ((InfoItemHolder) holder).updateState(infoItemList
-                            .get(header == null ? position : position - 1), recordManager);
+                            .get(header == null ? position : position - 1), historyRecordManager);
                 }
             }
         } else {

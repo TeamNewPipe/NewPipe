@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.ListViewContract;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 
 import javax.inject.Inject;
@@ -38,6 +39,8 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  */
 public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, SharedPreferences.OnSharedPreferenceChangeListener {
+    @Inject
+    protected HistoryRecordManager historyRecordManager;
     @Inject
     protected LocalPlaylistManager localPlaylistManager;
 
@@ -115,7 +118,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        itemListAdapter = new LocalItemListAdapter(activity);
+        itemListAdapter = new LocalItemListAdapter(activity, historyRecordManager);
 
         final boolean useGrid = isGridLayout();
         itemsList = rootView.findViewById(R.id.items_list);

@@ -20,6 +20,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.LocalItemListAdapter;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -41,6 +42,8 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
     @Inject
     LocalPlaylistManager localPlaylistManager;
+    @Inject
+    HistoryRecordManager historyRecordManager;
 
     private RecyclerView playlistRecyclerView;
     private LocalItemListAdapter playlistAdapter;
@@ -104,7 +107,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        playlistAdapter = new LocalItemListAdapter(getActivity());
+        playlistAdapter = new LocalItemListAdapter(requireContext(), historyRecordManager);
         playlistAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(final LocalItem selectedItem) {

@@ -14,16 +14,20 @@ import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.InfoCache;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public class HistorySettingsFragment extends BasePreferenceFragment {
+    @Inject
+    HistoryRecordManager recordManager;
+
     private String cacheWipeKey;
     private String viewsHistoryClearKey;
     private String playbackStatesClearKey;
     private String searchHistoryClearKey;
-    private HistoryRecordManager recordManager;
     private CompositeDisposable disposables;
 
     @Override
@@ -33,7 +37,6 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         viewsHistoryClearKey = getString(R.string.clear_views_history_key);
         playbackStatesClearKey = getString(R.string.clear_playback_states_key);
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
-        recordManager = new HistoryRecordManager(getActivity());
         disposables = new CompositeDisposable();
     }
 

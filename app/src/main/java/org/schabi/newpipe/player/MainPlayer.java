@@ -35,6 +35,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import javax.inject.Inject;
@@ -56,6 +57,8 @@ public final class MainPlayer extends Service {
 
     @Inject
     SharedPreferences sharedPreferences;
+    @Inject
+    HistoryRecordManager historyRecordManager;
 
     private VideoPlayerImpl playerImpl;
     private WindowManager windowManager;
@@ -112,7 +115,7 @@ public final class MainPlayer extends Service {
     private void createView() {
         final View layout = View.inflate(this, R.layout.player, null);
 
-        playerImpl = new VideoPlayerImpl(this, sharedPreferences);
+        playerImpl = new VideoPlayerImpl(this, sharedPreferences, historyRecordManager);
         playerImpl.setup(layout);
         playerImpl.shouldUpdateOnProgress = true;
 

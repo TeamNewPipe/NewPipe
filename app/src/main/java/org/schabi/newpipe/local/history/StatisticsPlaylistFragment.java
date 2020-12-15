@@ -70,7 +70,6 @@ public class StatisticsPlaylistFragment
     private TextView sortButtonText;
     /* Used for independent events */
     private Subscription databaseSubscription;
-    private HistoryRecordManager recordManager;
 
     private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
         final Comparator<StreamStatisticsEntry> comparator;
@@ -91,12 +90,6 @@ public class StatisticsPlaylistFragment
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
     ///////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        recordManager = new HistoryRecordManager(getContext());
-    }
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
@@ -177,7 +170,8 @@ public class StatisticsPlaylistFragment
                         .setTitle(R.string.delete_view_history_alert)
                         .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                         .setPositiveButton(R.string.delete, ((dialog, which) -> {
-                            final Disposable onDelete = recordManager.deleteWholeStreamHistory()
+                            final Disposable onDelete = historyRecordManager
+                                    .deleteWholeStreamHistory()
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
                                             howManyDeleted -> Toast.makeText(getContext(),
@@ -192,7 +186,8 @@ public class StatisticsPlaylistFragment
                                                             "Delete view history",
                                                             R.string.general_error)));
 
-                            final Disposable onClearOrphans = recordManager.removeOrphanedRecords()
+                            final Disposable onClearOrphans = historyRecordManager
+                                    .removeOrphanedRecords()
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
                                             howManyDeleted -> {
@@ -224,7 +219,7 @@ public class StatisticsPlaylistFragment
     @Override
     public void startLoading(final boolean forceLoad) {
         super.startLoading(forceLoad);
-        recordManager.getStreamStatistics()
+        historyRecordManager.getStreamStatistics()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getHistoryObserver());
     }
@@ -265,7 +260,7 @@ public class StatisticsPlaylistFragment
     @Override
     public void onDestroy() {
         super.onDestroy();
-        recordManager = null;
+        historyRecordManager = null;
         itemsListState = null;
     }
 
@@ -431,7 +426,7 @@ public class StatisticsPlaylistFragment
         final LocalItem infoItem = itemListAdapter.getItemsList().get(index);
         if (infoItem instanceof StreamStatisticsEntry) {
             final StreamStatisticsEntry entry = (StreamStatisticsEntry) infoItem;
-            final Disposable onDelete = recordManager
+            final Disposable onDelete = historyRecordManager
                     .deleteStreamHistoryAndState(entry.getStreamId())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(

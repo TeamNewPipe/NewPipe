@@ -45,7 +45,6 @@ import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
@@ -142,7 +141,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     private SuggestionListAdapter suggestionListAdapter;
-    private HistoryRecordManager historyRecordManager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -192,8 +190,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         final boolean isSearchHistoryEnabled = sharedPreferences
                 .getBoolean(getString(R.string.enable_search_history_key), true);
         suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
-
-        historyRecordManager = new HistoryRecordManager(context);
     }
 
     @Override
