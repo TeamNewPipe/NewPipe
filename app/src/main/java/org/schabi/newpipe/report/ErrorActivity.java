@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -207,8 +206,7 @@ public class ErrorActivity extends AppCompatActivity {
                 openPrivacyPolicyDialog(this, "EMAIL"));
 
         activityErrorBinding.errorReportCopyButton.setOnClickListener(v -> {
-            ShareUtils.copyToClipboard(this, buildMarkdown());
-            Toast.makeText(this, R.string.msg_copied, Toast.LENGTH_SHORT).show();
+                ShareUtils.copyToClipboard(this, buildMarkdown());
         });
 
         activityErrorBinding.errorReportGitHubButton.setOnClickListener(v ->
@@ -246,11 +244,7 @@ public class ErrorActivity extends AppCompatActivity {
                 goToReturnActivity();
                 break;
             case R.id.menu_item_share_error:
-                final Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, buildJson());
-                intent.setType("text/plain");
-                startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
+                ShareUtils.shareUrl(this, getString(R.string.error_report_title), buildJson());
                 break;
         }
         return false;
@@ -273,10 +267,10 @@ public class ErrorActivity extends AppCompatActivity {
                                 .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
                                 .putExtra(Intent.EXTRA_TEXT, buildJson());
                         if (i.resolveActivity(getPackageManager()) != null) {
-                            startActivity(i);
+                            ShareUtils.openContentInApp(context, i);
                         }
                     } else if (action.equals("GITHUB")) { // open the NewPipe issue page on GitHub
-                        ShareUtils.openUrlInBrowser(this, ERROR_GITHUB_ISSUE_URL);
+                        ShareUtils.openUrlInBrowser(this, ERROR_GITHUB_ISSUE_URL, false);
                     }
 
                 })

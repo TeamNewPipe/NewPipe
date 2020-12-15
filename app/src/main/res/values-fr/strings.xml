@@ -651,4 +651,5 @@
     <string name="notification_colorize_summary">Demander à Android de personnaliser la couleur de la notification en fonction de la couleur principale de la miniature (noter que cela n’est pas disponible sur tous les appareils)</string>
     <string name="show_thumbnail_title">Afficher la miniature</string>
     <string name="show_thumbnail_summary">Utiliser la miniature pour l\'arrière-plan de l’écran de verrouillage et les notifications</string>
+    <string name="open_with">Ouvrir avec</string>
 </resources>

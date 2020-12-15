@@ -1,8 +1,6 @@
 package org.schabi.newpipe.fragments.list.channel;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -188,8 +186,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     private void openRssFeed() {
         final ChannelInfo info = currentInfo;
         if (info != null) {
-            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(info.getFeedUrl()));
-            startActivity(intent);
+            ShareUtils.openUrlInBrowser(requireContext(), info.getFeedUrl(), false);
         }
     }
 

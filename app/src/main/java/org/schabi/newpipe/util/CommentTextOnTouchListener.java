@@ -69,7 +69,8 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
                             handled = handleUrl(v.getContext(), (URLSpan) link[0]);
                         }
                         if (!handled) {
-                            link[0].onClick(widget);
+                            ShareUtils.openUrlInBrowser(v.getContext(),
+                                    ((URLSpan) link[0]).getURL(), false);
                         }
                     } else if (action == MotionEvent.ACTION_DOWN) {
                         Selection.setSelection(buffer,
