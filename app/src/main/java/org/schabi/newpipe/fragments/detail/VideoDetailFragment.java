@@ -16,7 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -63,6 +63,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -122,8 +123,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
@@ -217,6 +220,10 @@ public final class VideoDetailFragment
     private TextView appendControlsDetail;
     private TextView detailDurationView;
     private TextView detailPositionView;
+
+    private LinearLayout detailMetadataInfo;
+    private View detailMetadataInfoSeparator;
+    private TextView detailMetadataInfoText;
 
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
@@ -508,8 +515,8 @@ public final class VideoDetailFragment
                 }
                 break;
             case R.id.detail_uploader_root_layout:
-                if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
-                    if (!TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
+                if (isEmpty(currentInfo.getSubChannelUrl())) {
+                    if (!isEmpty(currentInfo.getUploaderUrl())) {
                         openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
                     }
 
@@ -583,7 +590,7 @@ public final class VideoDetailFragment
                 }
                 break;
             case R.id.detail_uploader_root_layout:
-                if (TextUtils.isEmpty(currentInfo.getSubChannelUrl())) {
+                if (isEmpty(currentInfo.getSubChannelUrl())) {
                     Log.w(TAG,
                             "Can't open parent channel because we got no parent channel URL");
                 } else {
@@ -643,6 +650,10 @@ public final class VideoDetailFragment
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
         detailDurationView = rootView.findViewById(R.id.detail_duration_view);
         detailPositionView = rootView.findViewById(R.id.detail_position_view);
+
+        detailMetadataInfo = rootView.findViewById(R.id.detail_metadata_info);
+        detailMetadataInfoSeparator = rootView.findViewById(R.id.detail_metadata_info_separator);
+        detailMetadataInfoText = rootView.findViewById(R.id.detail_metadata_info_text);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
@@ -748,7 +759,7 @@ public final class VideoDetailFragment
     private void initThumbnailViews(@NonNull final StreamInfo info) {
         thumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
 
-        if (!TextUtils.isEmpty(info.getThumbnailUrl())) {
+        if (!isEmpty(info.getThumbnailUrl())) {
             final String infoServiceName = NewPipe.getNameOfService(info.getServiceId());
             final ImageLoadingListener onFailListener = new SimpleImageLoadingListener() {
                 @Override
@@ -763,12 +774,12 @@ public final class VideoDetailFragment
                     ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, onFailListener);
         }
 
-        if (!TextUtils.isEmpty(info.getSubChannelAvatarUrl())) {
+        if (!isEmpty(info.getSubChannelAvatarUrl())) {
             IMAGE_LOADER.displayImage(info.getSubChannelAvatarUrl(), subChannelThumb,
                     ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
 
-        if (!TextUtils.isEmpty(info.getUploaderAvatarUrl())) {
+        if (!isEmpty(info.getUploaderAvatarUrl())) {
             IMAGE_LOADER.displayImage(info.getUploaderAvatarUrl(), uploaderThumb,
                     ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
@@ -1217,7 +1228,7 @@ public final class VideoDetailFragment
     }
 
     private void prepareDescription(final Description description) {
-        if (description == null || TextUtils.isEmpty(description.getContent())
+        if (description == null || isEmpty(description.getContent())
                 || description == Description.emptyDescription) {
             return;
         }
@@ -1244,6 +1255,42 @@ public final class VideoDetailFragment
             videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
             videoDescriptionView.setText(description.getContent(), TextView.BufferType.SPANNABLE);
             videoDescriptionView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setMetaInfo(final StreamInfo info) {
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(
+                requireContext());
+        final boolean showMetaInfo = sp.getBoolean(
+                requireContext().getString(R.string.show_meta_info_key), true);
+        if (info.getMetaInfo().isEmpty() || !showMetaInfo) {
+            detailMetadataInfo.setVisibility(View.GONE);
+            detailMetadataInfoSeparator.setVisibility(View.GONE);
+        } else {
+            final List<MetaInfo> metaIfs = info.getMetaInfo();
+            final StringBuilder stringBuilder = new StringBuilder();
+            for (final MetaInfo mi: metaIfs) {
+                if (!isNullOrEmpty(mi.getTitle())) {
+                    stringBuilder.append("<h2>").append(mi.getTitle()).append("</h2>");
+                }
+                stringBuilder.append(mi.getContent().getContent());
+                for (int i = 0; i < mi.getUrls().size(); i++) {
+                    stringBuilder
+                            .append(" <a href=\"").append(mi.getUrls().get(i)).append("\">")
+                                .append(mi.getUrlTexts().get(i))
+                            .append("</a>");
+                    if (i < mi.getUrls().size() - 1 && mi.getUrls().size() > 1) {
+                        // append line break to all but the last URL if there are multiple URLs
+                        stringBuilder.append("<br>");
+                    }
+                }
+            }
+
+            detailMetadataInfoSeparator.setVisibility(View.VISIBLE);
+            detailMetadataInfoText.setText(HtmlCompat.fromHtml(
+                    stringBuilder.toString(), HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING));
+            detailMetadataInfoText.setMovementMethod(LinkMovementMethod.getInstance());
+            detailMetadataInfo.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1462,9 +1509,9 @@ public final class VideoDetailFragment
         animateView(thumbnailPlayButton, true, 200);
         videoTitleTextView.setText(title);
 
-        if (!TextUtils.isEmpty(info.getSubChannelName())) {
+        if (!isEmpty(info.getSubChannelName())) {
             displayBothUploaderAndSubChannel(info);
-        } else if (!TextUtils.isEmpty(info.getUploaderName())) {
+        } else if (!isEmpty(info.getUploaderName())) {
             displayUploaderAsSubChannel(info);
         } else {
             uploaderTextView.setVisibility(View.GONE);
@@ -1559,6 +1606,8 @@ public final class VideoDetailFragment
         prepareDescription(info.getDescription());
         updateProgressInfo(info);
         initThumbnailViews(info);
+        setMetaInfo(info);
+
 
         if (player == null || player.isPlayerStopped()) {
             updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
@@ -1610,7 +1659,7 @@ public final class VideoDetailFragment
 
         subChannelThumb.setVisibility(View.VISIBLE);
 
-        if (!TextUtils.isEmpty(info.getUploaderName())) {
+        if (!isEmpty(info.getUploaderName())) {
             uploaderTextView.setText(
                     String.format(getString(R.string.video_detail_by), info.getUploaderName()));
             uploaderTextView.setVisibility(View.VISIBLE);
@@ -2305,10 +2354,10 @@ public final class VideoDetailFragment
     private void updateOverlayData(@Nullable final String overlayTitle,
                                    @Nullable final String uploader,
                                    @Nullable final String thumbnailUrl) {
-        overlayTitleTextView.setText(TextUtils.isEmpty(overlayTitle) ? "" : overlayTitle);
-        overlayChannelTextView.setText(TextUtils.isEmpty(uploader) ? "" : uploader);
+        overlayTitleTextView.setText(isEmpty(title) ? "" : title);
+        overlayChannelTextView.setText(isEmpty(uploader) ? "" : uploader);
         overlayThumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
-        if (!TextUtils.isEmpty(thumbnailUrl)) {
+        if (!isEmpty(thumbnailUrl)) {
             IMAGE_LOADER.displayImage(thumbnailUrl, overlayThumbnailImageView,
                     ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, null);
         }

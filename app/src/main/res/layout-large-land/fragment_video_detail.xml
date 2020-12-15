@@ -507,6 +507,38 @@
                         </LinearLayout>
 
                         <View
+                            android:id="@+id/detail_metadata_info_separator"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="?attr/separator_color" />
+
+                        <LinearLayout
+                            android:id="@+id/detail_metadata_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                app:srcCompat="?attr/ic_info_outline" />
+
+                            <TextView
+                                android:id="@+id/detail_metadata_info_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                tools:text="Stream meta info with link"/>
+                        </LinearLayout>
+
+                        <View
                             android:layout_width="match_parent"
                             android:layout_height="1px"
                             android:layout_marginLeft="8dp"

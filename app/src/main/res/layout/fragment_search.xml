@@ -11,15 +11,25 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/error_panel"
         android:background="?attr/selectableItemBackground"
-        android:padding="10dp"
+        android:padding="12dp"
         android:textSize="@dimen/search_suggestion_text_size"
         tools:text="Showing results for lorem ipsum dolor sit amet consectetur adipisci elit" />
+
+    <TextView
+        android:id="@+id/search_meta_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/correct_suggestion"
+        android:padding="12dp"
+        android:textSize="@dimen/search_suggestion_text_size"
+        tools:text="Get the latest information from the WHO about coronavirus." />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/correct_suggestion"
+        android:layout_below="@+id/search_meta_info"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/list_stream_item" />
