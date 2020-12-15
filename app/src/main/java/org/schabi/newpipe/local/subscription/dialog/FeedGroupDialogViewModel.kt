@@ -1,6 +1,5 @@
 package org.schabi.newpipe.local.subscription.dialog
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.functions.BiFunction
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -18,15 +16,12 @@ import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 
 class FeedGroupDialogViewModel(
-    applicationContext: Context,
     private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     initialQuery: String = "",
-    initialShowOnlyUngrouped: Boolean = false
+    initialShowOnlyUngrouped: Boolean = false,
+    private val feedDatabaseManager: FeedDatabaseManager,
+    private val subscriptionManager: SubscriptionManager
 ) : ViewModel() {
-
-    private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
-    private var subscriptionManager = SubscriptionManager(applicationContext)
-
     private var filterSubscriptions = BehaviorProcessor.create<String>()
     private var toggleShowOnlyUngrouped = BehaviorProcessor.create<Boolean>()
 
@@ -34,7 +29,7 @@ class FeedGroupDialogViewModel(
         .combineLatest(
             filterSubscriptions.startWithItem(initialQuery),
             toggleShowOnlyUngrouped.startWithItem(initialShowOnlyUngrouped),
-            BiFunction { t1: String, t2: Boolean -> Filter(t1, t2) }
+            { t1: String, t2: Boolean -> Filter(t1, t2) }
         )
         .distinctUntilChanged()
         .switchMap { (query, showOnlyUngrouped) ->
@@ -57,7 +52,7 @@ class FeedGroupDialogViewModel(
     private var subscriptionsDisposable = Flowable
         .combineLatest(
             subscriptionsFlowable, feedDatabaseManager.subscriptionIdsForGroup(groupId),
-            BiFunction { t1: List<PickerSubscriptionItem>, t2: List<Long> -> t1 to t2.toSet() }
+            { t1: List<PickerSubscriptionItem>, t2: List<Long> -> t1 to t2.toSet() }
         )
         .subscribeOn(Schedulers.io())
         .subscribe(mutableSubscriptionsLiveData::postValue)
@@ -119,16 +114,16 @@ class FeedGroupDialogViewModel(
     data class Filter(val query: String, val showOnlyUngrouped: Boolean)
 
     class Factory(
-        private val context: Context,
         private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
         private val initialQuery: String = "",
-        private val initialShowOnlyUngrouped: Boolean = false
+        private val initialShowOnlyUngrouped: Boolean = false,
+        private val feedDatabaseManager: FeedDatabaseManager,
+        private val subscriptionManager: SubscriptionManager
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return FeedGroupDialogViewModel(
-                context.applicationContext,
-                groupId, initialQuery, initialShowOnlyUngrouped
+                groupId, initialQuery, initialShowOnlyUngrouped, feedDatabaseManager, subscriptionManager
             ) as T
         }
     }

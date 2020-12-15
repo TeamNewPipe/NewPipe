@@ -22,6 +22,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import dagger.hilt.android.AndroidEntryPoint
 import icepick.Icepick
 import icepick.State
 import kotlinx.android.synthetic.main.dialog_feed_group_create.*
@@ -29,7 +30,9 @@ import kotlinx.android.synthetic.main.toolbar_search_layout.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.fragments.BackPressable
+import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
+import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.DeleteScreen
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.IconPickerScreen
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.InitialScreen
@@ -42,9 +45,16 @@ import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.ThemeHelper
 import java.io.Serializable
+import javax.inject.Inject
 import kotlin.collections.contains
 
+@AndroidEntryPoint
 class FeedGroupDialog : DialogFragment(), BackPressable {
+    @Inject
+    lateinit var feedDatabaseManager: FeedDatabaseManager
+    @Inject
+    lateinit var subscriptionManager: SubscriptionManager
+
     private lateinit var viewModel: FeedGroupDialogViewModel
     private var groupId: Long = NO_GROUP_SELECTED
     private var groupIcon: FeedGroupIcon? = null
@@ -119,8 +129,8 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         viewModel = ViewModelProvider(
             this,
             FeedGroupDialogViewModel.Factory(
-                requireContext(),
-                groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped
+                groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped,
+                feedDatabaseManager, subscriptionManager
             )
         ).get(FeedGroupDialogViewModel::class.java)
 

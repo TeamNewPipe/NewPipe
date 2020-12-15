@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.list.channel;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +26,7 @@ import androidx.core.content.ContextCompat;
 import com.jakewharton.rxbinding4.view.RxView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -52,6 +52,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -79,7 +81,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private SubscriptionManager subscriptionManager;
+    @Inject
+    SubscriptionManager subscriptionManager;
+    @Inject
+    SubscriptionDAO subscriptionTable;
+
     private View headerRootLayout;
     private ImageView headerChannelBanner;
     private ImageView headerAvatarView;
@@ -117,12 +123,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onAttach(final Context context) {
-        super.onAttach(context);
-        subscriptionManager = new SubscriptionManager(activity);
-    }
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
@@ -249,8 +249,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                     "Get subscription status", 0);
         };
 
-        final Observable<List<SubscriptionEntity>> observable = subscriptionManager
-                .subscriptionTable()
+        final Observable<List<SubscriptionEntity>> observable = subscriptionTable
                 .getSubscriptionFlowable(info.getServiceId(), info.getUrl())
                 .toObservable();
 

@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.subscription
 
 import android.app.Application
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,10 +13,11 @@ import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
 import java.util.concurrent.TimeUnit
 
-class SubscriptionViewModel(application: Application) : AndroidViewModel(application) {
-    private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(application)
-    private var subscriptionManager = SubscriptionManager(application)
-
+class SubscriptionViewModel @ViewModelInject constructor(
+    application: Application,
+    feedDatabaseManager: FeedDatabaseManager,
+    subscriptionManager: SubscriptionManager
+) : AndroidViewModel(application) {
     private val mutableStateLiveData = MutableLiveData<SubscriptionState>()
     private val mutableFeedGroupsLiveData = MutableLiveData<List<Group>>()
     val stateLiveData: LiveData<SubscriptionState> = mutableStateLiveData

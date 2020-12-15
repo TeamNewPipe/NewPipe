@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.subscription.dialog
 
 import android.app.Application
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,9 +11,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 
-class FeedGroupReorderDialogViewModel(application: Application) : AndroidViewModel(application) {
-    private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(application)
-
+class FeedGroupReorderDialogViewModel @ViewModelInject constructor(
+    application: Application,
+    private var feedDatabaseManager: FeedDatabaseManager
+) : AndroidViewModel(application) {
     private val mutableGroupsLiveData = MutableLiveData<List<FeedGroupEntity>>()
     private val mutableDialogEventLiveData = MutableLiveData<DialogEvent>()
     val groupsLiveData: LiveData<List<FeedGroupEntity>> = mutableGroupsLiveData

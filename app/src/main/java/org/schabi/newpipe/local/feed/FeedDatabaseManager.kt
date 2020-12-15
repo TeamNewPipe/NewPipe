@@ -1,6 +1,5 @@
 package org.schabi.newpipe.local.feed
 
-import android.content.Context
 import android.util.Log
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
@@ -8,10 +7,13 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.MainActivity.DEBUG
-import org.schabi.newpipe.NewPipeDatabase
+import org.schabi.newpipe.database.AppDatabase
+import org.schabi.newpipe.database.feed.dao.FeedDAO
+import org.schabi.newpipe.database.feed.dao.FeedGroupDAO
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
+import org.schabi.newpipe.database.stream.dao.StreamDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -19,13 +21,16 @@ import org.schabi.newpipe.local.subscription.FeedGroupIcon
 import java.time.LocalDate
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class FeedDatabaseManager(context: Context) {
-    private val database = NewPipeDatabase.getInstance(context)
-    private val feedTable = database.feedDAO()
-    private val feedGroupTable = database.feedGroupDAO()
-    private val streamTable = database.streamDAO()
-
+@Singleton
+class FeedDatabaseManager @Inject constructor(
+    private val database: AppDatabase,
+    private val feedTable: FeedDAO,
+    private val feedGroupTable: FeedGroupDAO,
+    private val streamTable: StreamDAO
+) {
     companion object {
         /**
          * Only items that are newer than this will be saved.

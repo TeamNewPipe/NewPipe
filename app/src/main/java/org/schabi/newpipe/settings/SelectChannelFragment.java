@@ -29,6 +29,9 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.List;
 import java.util.Vector;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -55,13 +58,16 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  * </p>
  */
-
+@AndroidEntryPoint
 public class SelectChannelFragment extends DialogFragment {
     /**
      * This contains the base display options for images.
      */
     private static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS
             = new DisplayImageOptions.Builder().cacheInMemory(true).build();
+
+    @Inject
+    SubscriptionManager subscriptionManager;
 
     private final ImageLoader imageLoader = ImageLoader.getInstance();
 
@@ -107,8 +113,6 @@ public class SelectChannelFragment extends DialogFragment {
         recyclerView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
 
-
-        final SubscriptionManager subscriptionManager = new SubscriptionManager(getContext());
         subscriptionManager.subscriptions().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

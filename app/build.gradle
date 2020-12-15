@@ -94,6 +94,7 @@ ext {
     stethoVersion = '1.5.1'
     leakCanaryVersion = '2.5'
     exoPlayerVersion = '2.11.8'
+    androidxHiltVersion = '1.0.0-alpha02'
     androidxLifecycleVersion = '2.2.0'
     androidxRoomVersion = '2.3.0-alpha03'
     groupieVersion = '2.8.1'
@@ -232,6 +233,10 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     annotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$androidxHiltVersion"
+    kapt "androidx.hilt:hilt-compiler:$androidxHiltVersion"
+    annotationProcessor "androidx.hilt:hilt-compiler:$androidxHiltVersion"
 
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.mockito:mockito-core:3.6.0'

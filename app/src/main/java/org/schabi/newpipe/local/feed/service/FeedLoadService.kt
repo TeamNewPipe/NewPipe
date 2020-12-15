@@ -31,6 +31,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.preference.PreferenceManager
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Notification
@@ -62,7 +63,9 @@ import java.time.ZoneOffset
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FeedLoadService : Service() {
     companion object {
         private val TAG = FeedLoadService::class.java.simpleName
@@ -87,10 +90,12 @@ class FeedLoadService : Service() {
         const val EXTRA_GROUP_ID: String = "FeedLoadService.EXTRA_GROUP_ID"
     }
 
-    private var loadingSubscription: Subscription? = null
-    private lateinit var subscriptionManager: SubscriptionManager
+    @Inject
+    lateinit var feedDatabaseManager: FeedDatabaseManager
+    @Inject
+    lateinit var subscriptionManager: SubscriptionManager
 
-    private lateinit var feedDatabaseManager: FeedDatabaseManager
+    private var loadingSubscription: Subscription? = null
     private lateinit var feedResultsHolder: ResultsHolder
 
     private var disposables = CompositeDisposable()
@@ -99,12 +104,6 @@ class FeedLoadService : Service() {
     // /////////////////////////////////////////////////////////////////////////
     // Lifecycle
     // /////////////////////////////////////////////////////////////////////////
-
-    override fun onCreate() {
-        super.onCreate()
-        subscriptionManager = SubscriptionManager(this)
-        feedDatabaseManager = FeedDatabaseManager(this)
-    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (DEBUG) {

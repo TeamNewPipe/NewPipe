@@ -55,9 +55,13 @@ import org.schabi.newpipe.report.UserAction
 import org.schabi.newpipe.util.AnimationUtils.animateView
 import org.schabi.newpipe.util.Localization
 import java.util.Calendar
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
+    @Inject
+    lateinit var feedDatabaseManager: FeedDatabaseManager
+
     private lateinit var viewModel: FeedViewModel
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     @State
@@ -89,7 +93,8 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         super.onViewCreated(rootView, savedInstanceState)
         swipeRefreshLayout = requireView().findViewById(R.id.swiperefresh)
         swipeRefreshLayout.setOnRefreshListener { reloadContent() }
-        viewModel = ViewModelProvider(this, FeedViewModel.Factory(requireContext(), groupId)).get(FeedViewModel::class.java)
+        viewModel = ViewModelProvider(this, FeedViewModel.Factory(groupId, feedDatabaseManager))
+            .get(FeedViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { it?.let(::handleResult) })
     }
 

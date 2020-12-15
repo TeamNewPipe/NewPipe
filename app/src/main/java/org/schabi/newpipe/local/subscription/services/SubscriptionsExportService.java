@@ -105,7 +105,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
     private void startExport() {
         showToast(R.string.export_ongoing);
 
-        subscriptionManager.subscriptionTable().getAll().take(1)
+        subscriptionTable.getAll().take(1)
                 .map(subscriptionEntities -> {
                     final List<SubscriptionItem> result
                             = new ArrayList<>(subscriptionEntities.size());

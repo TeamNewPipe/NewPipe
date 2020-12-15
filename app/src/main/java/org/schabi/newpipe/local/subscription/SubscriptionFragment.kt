@@ -27,6 +27,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import dagger.hilt.android.AndroidEntryPoint
 import icepick.State
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.dialog_title.view.itemAdditionalDetails
@@ -66,12 +67,16 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 import kotlin.math.floor
 import kotlin.math.max
 
+@AndroidEntryPoint
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
+    @Inject
+    lateinit var subscriptionManager: SubscriptionManager
+
     private lateinit var viewModel: SubscriptionViewModel
-    private lateinit var subscriptionManager: SubscriptionManager
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     private var subscriptionBroadcastReceiver: BroadcastReceiver? = null
@@ -111,11 +116,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         if (activity != null && isVisibleToUser) {
             setTitle(activity.getString(R.string.tab_subscriptions))
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        subscriptionManager = SubscriptionManager(requireContext())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
