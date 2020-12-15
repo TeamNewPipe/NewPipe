@@ -26,7 +26,7 @@ public class ErrorInfoTest {
         final Parcel parcel = Parcel.obtain();
         info.writeToParcel(parcel, 0);
         parcel.setDataPosition(0);
-        final ErrorInfo infoFromParcel = ErrorInfo.CREATOR.createFromParcel(parcel);
+        final ErrorInfo infoFromParcel = (ErrorInfo) ErrorInfo.CREATOR.createFromParcel(parcel);
 
         assertEquals(UserAction.USER_REPORT, infoFromParcel.getUserAction());
         assertEquals("youtube", infoFromParcel.getServiceName());

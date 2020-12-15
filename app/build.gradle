@@ -19,7 +19,7 @@ android {
 
         multiDexEnabled true
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "org.schabi.newpipe.NewPipeTestRunner"
         vectorDrawables.useSupportLibrary = true
 
         javaCompileOptions {
@@ -85,6 +85,10 @@ android {
 
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+
+    hilt {
+        enableTransformForLocalTests = true
     }
 }
 
@@ -246,6 +250,9 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0", {
         exclude module: 'support-annotations'
     }
+
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hiltVersion"
 }
 
 static String getGitWorkingBranch() {
