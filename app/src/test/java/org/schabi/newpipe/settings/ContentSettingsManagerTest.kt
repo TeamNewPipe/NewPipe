@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import org.junit.Assert
 import org.junit.Assume
 import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
@@ -22,24 +23,27 @@ class ContentSettingsManagerTest {
     @RunWith(MockitoJUnitRunner::class)
     class ExportTest {
 
-        private lateinit var preferences: SharedPreferences
-        private lateinit var newpipeDb: File
-        private lateinit var newpipeSettings: File
+        companion object {
+            private lateinit var newpipeDb: File
+            private lateinit var newpipeSettings: File
 
-        @Before
-        fun beforeClass() {
+            @JvmStatic
+            @BeforeClass
+            fun setupFiles() {
+                val dbPath = ExportTest::class.java.classLoader?.getResource("settings/newpipe.db")?.file
+                val settingsPath = ExportTest::class.java.classLoader?.getResource("settings/newpipe.settings")?.path
+                Assume.assumeNotNull(dbPath)
+                Assume.assumeNotNull(settingsPath)
 
-            val dbPath = javaClass.classLoader?.getResource("settings/newpipe.db")?.file
-            val settingsPath = javaClass.classLoader?.getResource("settings/newpipe.settings")?.path
-            Assume.assumeNotNull(dbPath)
-            Assume.assumeNotNull(settingsPath)
-
-            newpipeDb = File(dbPath!!)
-            newpipeSettings = File(settingsPath!!)
+                newpipeDb = File(dbPath!!)
+                newpipeSettings = File(settingsPath!!)
+            }
         }
 
+        private lateinit var preferences: SharedPreferences
+
         @Before
-        fun before() {
+        fun setupMocks() {
             preferences = Mockito.mock(SharedPreferences::class.java, Mockito.withSettings().stubOnly())
         }
 
