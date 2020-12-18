@@ -14,7 +14,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 960
-        versionName "0.20.6"
+        versionName "0.20.6_r3"
 
         multiDexEnabled true
 

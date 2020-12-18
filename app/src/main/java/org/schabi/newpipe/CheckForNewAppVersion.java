@@ -4,9 +4,6 @@ import android.app.Application;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
@@ -22,18 +19,7 @@ import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
 
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
+import org.schabi.newpipe.util.Version;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Maybe;
@@ -41,79 +27,13 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class CheckForNewAppVersion {
-    private CheckForNewAppVersion() { }
+    private CheckForNewAppVersion() {
+    }
 
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = CheckForNewAppVersion.class.getSimpleName();
-
-    private static final String GITHUB_APK_SHA1
-            = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
-    private static final String NEWPIPE_API_URL = "https://newpipe.schabi.org/api/data.json";
-
-    /**
-     * Method to get the APK's SHA1 key. See https://stackoverflow.com/questions/9293019/#22506133.
-     *
-     * @param application The application
-     * @return String with the APK's SHA1 fingerprint in hexadecimal
-     */
-    @NonNull
-    private static String getCertificateSHA1Fingerprint(@NonNull final Application application) {
-        final PackageInfo packageInfo;
-        try {
-            packageInfo = application.getPackageManager().getPackageInfo(
-                    application.getPackageName(), PackageManager.GET_SIGNATURES);
-        } catch (final PackageManager.NameNotFoundException e) {
-            ErrorActivity.reportError(application, e, null, null,
-                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Could not find package info", R.string.app_ui_crash));
-            return "";
-        }
-
-        final X509Certificate c;
-        try {
-            final Signature[] signatures = packageInfo.signatures;
-            final byte[] cert = signatures[0].toByteArray();
-            final InputStream input = new ByteArrayInputStream(cert);
-            final CertificateFactory cf = CertificateFactory.getInstance("X509");
-            c = (X509Certificate) cf.generateCertificate(input);
-        } catch (final CertificateException e) {
-            ErrorActivity.reportError(application, e, null, null,
-                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Certificate error", R.string.app_ui_crash));
-            return "";
-        }
-
-        try {
-            final MessageDigest md = MessageDigest.getInstance("SHA1");
-            final byte[] publicKey = md.digest(c.getEncoded());
-            return byte2HexFormatted(publicKey);
-        } catch (NoSuchAlgorithmException | CertificateEncodingException e) {
-            ErrorActivity.reportError(application, e, null, null,
-                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Could not retrieve SHA1 key", R.string.app_ui_crash));
-            return "";
-        }
-    }
-
-    private static String byte2HexFormatted(final byte[] arr) {
-        final StringBuilder str = new StringBuilder(arr.length * 2);
-
-        for (int i = 0; i < arr.length; i++) {
-            String h = Integer.toHexString(arr[i]);
-            final int l = h.length();
-            if (l == 1) {
-                h = "0" + h;
-            }
-            if (l > 2) {
-                h = h.substring(l - 2, l);
-            }
-            str.append(h.toUpperCase());
-            if (i < (arr.length - 1)) {
-                str.append(':');
-            }
-        }
-        return str.toString();
-    }
+    private static final String API_URL =
+            "https://api.github.com/repos/polymorphicshade/NewPipe/releases/latest";
 
     /**
      * Method to compare the current and latest available app version.
@@ -122,38 +42,39 @@ public final class CheckForNewAppVersion {
      * @param application    The application
      * @param versionName    Name of new version
      * @param apkLocationUrl Url with the new apk
-     * @param versionCode    Code of new version
      */
     private static void compareAppVersionAndShowNotification(@NonNull final Application application,
                                                              final String versionName,
-                                                             final String apkLocationUrl,
-                                                             final int versionCode) {
-        final int notificationId = 2000;
+                                                             final String apkLocationUrl) {
+        final Version sourceVersion = Version.fromString(BuildConfig.VERSION_NAME);
+        final Version targetVersion = Version.fromString(versionName);
 
-        if (BuildConfig.VERSION_CODE < versionCode) {
-            // A pending intent to open the apk location url in the browser.
-            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
-            final PendingIntent pendingIntent
-                    = PendingIntent.getActivity(application, 0, intent, 0);
-
-            final String channelId = application
-                    .getString(R.string.app_update_notification_channel_id);
-            final NotificationCompat.Builder notificationBuilder
-                    = new NotificationCompat.Builder(application, channelId)
-                    .setSmallIcon(R.drawable.ic_newpipe_update)
-                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true)
-                    .setContentTitle(application
-                            .getString(R.string.app_update_notification_content_title))
-                    .setContentText(application
-                            .getString(R.string.app_update_notification_content_text)
-                            + " " + versionName);
-
-            final NotificationManagerCompat notificationManager
-                    = NotificationManagerCompat.from(application);
-            notificationManager.notify(notificationId, notificationBuilder.build());
+        // abort if source version is the same or newer than target version
+        if (sourceVersion.compareTo(targetVersion) >= 0) {
+            return;
         }
+
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
+        final PendingIntent pendingIntent
+                = PendingIntent.getActivity(application, 0, intent, 0);
+
+        final String channelId = application
+                .getString(R.string.app_update_notification_channel_id);
+        final NotificationCompat.Builder notificationBuilder
+                = new NotificationCompat.Builder(application, channelId)
+                .setSmallIcon(R.drawable.ic_newpipe_update)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setContentTitle(application
+                        .getString(R.string.app_update_notification_content_title))
+                .setContentText(application
+                        .getString(R.string.app_update_notification_content_text)
+                        + " " + versionName);
+
+        final NotificationManagerCompat notificationManager
+                = NotificationManagerCompat.from(application);
+        notificationManager.notify(2000, notificationBuilder.build());
     }
 
     private static boolean isConnected(@NonNull final App app) {
@@ -163,17 +84,13 @@ public final class CheckForNewAppVersion {
                 && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
-    public static boolean isGithubApk(@NonNull final App app) {
-        return getCertificateSHA1Fingerprint(app).equals(GITHUB_APK_SHA1);
-    }
-
     @Nullable
     public static Disposable checkNewVersion(@NonNull final App app) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
         // Check if user has enabled/disabled update checking
         // and if the current apk is a github one or not.
-        if (!prefs.getBoolean(app.getString(R.string.update_app_key), true) || !isGithubApk(app)) {
+        if (!prefs.getBoolean(app.getString(R.string.update_app_key), true)) {
             return null;
         }
 
@@ -184,7 +101,7 @@ public final class CheckForNewAppVersion {
                     }
 
                     // Make a network request to get latest NewPipe data.
-                    return DownloaderImpl.getInstance().get(NEWPIPE_API_URL).responseBody();
+                    return DownloaderImpl.getInstance().get(API_URL).responseBody();
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -192,30 +109,29 @@ public final class CheckForNewAppVersion {
                         response -> {
                             // Parse the json from the response.
                             try {
-                                final JsonObject githubStableObject = JsonParser.object()
-                                        .from(response).getObject("flavors").getObject("github")
-                                        .getObject("stable");
+                                // assuming the first result is the latest one
+                                final JsonObject jObj = JsonParser.object().from(response);
 
-                                final String versionName = githubStableObject
-                                        .getString("version");
-                                final int versionCode = githubStableObject
-                                        .getInt("version_code");
-                                final String apkLocationUrl = githubStableObject
-                                        .getString("apk");
+                                final String versionName = jObj.getString("tag_name");
+
+                                final String apkLocationUrl = jObj
+                                        .getArray("assets")
+                                        .getObject(0)
+                                        .getString("browser_download_url");
 
                                 compareAppVersionAndShowNotification(app, versionName,
-                                        apkLocationUrl, versionCode);
+                                        apkLocationUrl);
                             } catch (final JsonParserException e) {
                                 // connectivity problems, do not alarm user and fail silently
                                 if (DEBUG) {
-                                    Log.w(TAG, "Could not get NewPipe API: invalid json", e);
+                                    Log.w(TAG, "Could not get Github API: invalid json", e);
                                 }
                             }
                         },
                         e -> {
                             // connectivity problems, do not alarm user and fail silently
                             if (DEBUG) {
-                                Log.w(TAG, "Could not get NewPipe API: network problem", e);
+                                Log.w(TAG, "Could not get Github API: network problem", e);
                             }
                         });
     }
