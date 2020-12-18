@@ -83,6 +83,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         // enable Javascript
         final WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setUserAgentString(DownloaderImpl.USER_AGENT);
 
         webView.setWebViewClient(new WebViewClient() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -120,8 +121,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         webView.clearHistory();
         final android.webkit.CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cookieManager.removeAllCookies(aBoolean -> {
-            });
+            cookieManager.removeAllCookies(value -> { });
         } else {
             cookieManager.removeAllCookie();
         }
@@ -150,14 +150,11 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        final int id = item.getItemId();
-        switch (id) {
-            case R.id.menu_item_done:
-                saveCookiesAndFinish();
-                return true;
-            default:
-                return false;
+        if (item.getItemId() == R.id.menu_item_done) {
+            saveCookiesAndFinish();
+            return true;
         }
+        return false;
     }
 
     private void saveCookiesAndFinish() {
