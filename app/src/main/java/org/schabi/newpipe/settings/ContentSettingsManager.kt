@@ -19,19 +19,19 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
     @Throws(Exception::class)
     fun exportDatabase(preferences: SharedPreferences, outputPath: String) {
         ZipOutputStream(BufferedOutputStream(FileOutputStream(outputPath)))
-                .use { outZip ->
-                    ZipHelper.addFileToZip(outZip, fileLocator.db.path, "newpipe.db")
+            .use { outZip ->
+                ZipHelper.addFileToZip(outZip, fileLocator.db.path, "newpipe.db")
 
-                    try {
-                        ObjectOutputStream(FileOutputStream(fileLocator.settings)).use { output ->
-                            output.writeObject(preferences.all)
-                            output.flush()
-                        }
-                    } catch (e: IOException) {
-                        e.printStackTrace()
+                try {
+                    ObjectOutputStream(FileOutputStream(fileLocator.settings)).use { output ->
+                        output.writeObject(preferences.all)
+                        output.flush()
                     }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
 
-                    ZipHelper.addFileToZip(outZip, fileLocator.settings.path, "newpipe.settings")
+                ZipHelper.addFileToZip(outZip, fileLocator.settings.path, "newpipe.settings")
             }
     }
 
@@ -61,7 +61,7 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
 
     fun extractSettings(filePath: String): Boolean {
         return ZipHelper
-                .extractFileFromZip(filePath, fileLocator.settings.path, "newpipe.settings")
+            .extractFileFromZip(filePath, fileLocator.settings.path, "newpipe.settings")
     }
 
     fun loadSharedPreferences(preferences: SharedPreferences) {
@@ -70,6 +70,7 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
 
             ObjectInputStream(FileInputStream(fileLocator.settings)).use { input ->
                 preferenceEditor.clear()
+                @Suppress("UNCHECKED_CAST")
                 val entries = input.readObject() as Map<String, *>
                 for ((key, value) in entries) {
                     when (value) {

@@ -10,9 +10,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import org.mockito.Mockito.anyString
 import org.mockito.Mockito.anyBoolean
 import org.mockito.Mockito.anyInt
+import org.mockito.Mockito.anyString
 import org.mockito.Mockito.atLeastOnce
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.withSettings
