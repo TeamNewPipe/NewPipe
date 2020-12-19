@@ -57,7 +57,7 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
         return success
     }
 
-    fun containSettings(filePath: String): Boolean {
+    fun extractSettings(filePath: String): Boolean {
         return ZipHelper
                 .extractFileFromZip(filePath, fileLocator.settings.path, "newpipe.settings")
     }

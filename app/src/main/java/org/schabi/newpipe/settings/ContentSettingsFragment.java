@@ -32,14 +32,9 @@ import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Map;
-import java.util.zip.ZipFile;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -241,7 +236,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             }
 
             //If settings file exist, ask if it should be imported.
-            if (manager.containSettings(filePath)) {
+            if (manager.extractSettings(filePath)) {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle(R.string.import_settings);
 
