@@ -40,14 +40,7 @@ import icepick.State
 import java.util.Calendar
 import kotlinx.android.synthetic.main.error_retry.error_button_retry
 import kotlinx.android.synthetic.main.error_retry.error_message_view
-import kotlinx.android.synthetic.main.fragment_feed.empty_state_view
-import kotlinx.android.synthetic.main.fragment_feed.error_panel
-import kotlinx.android.synthetic.main.fragment_feed.items_list
-import kotlinx.android.synthetic.main.fragment_feed.loading_progress_bar
-import kotlinx.android.synthetic.main.fragment_feed.loading_progress_text
-import kotlinx.android.synthetic.main.fragment_feed.refresh_root_view
-import kotlinx.android.synthetic.main.fragment_feed.refresh_subtitle_text
-import kotlinx.android.synthetic.main.fragment_feed.refresh_text
+import kotlinx.android.synthetic.main.fragment_feed.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.fragments.list.BaseListFragment
@@ -176,16 +169,19 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         animateView(items_list, true, 300)
         animateView(error_panel, false, 0)
         swipeRefreshLayout.isRefreshing = false
+        video_fetch_progress_text.visibility = View.GONE
     }
 
     override fun showEmptyState() {
         empty_state_view?.let { animateView(it, true, 800) }
         animateView(error_panel, false, 0)
         swipeRefreshLayout.isRefreshing = false
+        video_fetch_progress_text.visibility = View.GONE
     }
 
     override fun showError(message: String, showRetryButton: Boolean) {
         swipeRefreshLayout.isRefreshing = false
+        video_fetch_progress_text.visibility = View.GONE
         infoListAdapter.clearStreamItemList()
         animateView(refresh_root_view, false, 120)
         animateView(items_list, false, 120)
@@ -216,10 +212,15 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
         if (!isIndeterminate) {
             loading_progress_text.text = "${progressState.currentProgress}/${progressState.maxProgress}"
+            video_fetch_progress_text.visibility = View.VISIBLE
+            video_fetch_progress_text.text = "Fetching videos "+ " ${progressState.currentProgress}/${progressState.maxProgress}"
         } else if (progressState.progressMessage > 0) {
             loading_progress_text?.setText(progressState.progressMessage)
+            video_fetch_progress_text.visibility = View.VISIBLE
+            video_fetch_progress_text.text =" ${progressState.currentProgress}/${progressState.maxProgress}"
         } else {
             loading_progress_text?.text = "∞/∞"
+            video_fetch_progress_text.visibility = View.GONE
         }
 
         loading_progress_bar.isIndeterminate = isIndeterminate ||
