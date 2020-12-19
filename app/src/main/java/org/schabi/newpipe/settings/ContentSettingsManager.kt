@@ -45,9 +45,8 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
      * @return Whether the directory exists afterwards.
      */
     fun ensureDbDirectoryExists(): Boolean {
-        return !fileLocator.dbDir.exists() && !fileLocator.dbDir.mkdir()
+        return fileLocator.dbDir.exists() || fileLocator.dbDir.mkdir()
     }
-
 
     fun extractDb(filePath: String): Boolean {
         val success = ZipHelper.extractFileFromZip(filePath, fileLocator.db.path, "newpipe.db")

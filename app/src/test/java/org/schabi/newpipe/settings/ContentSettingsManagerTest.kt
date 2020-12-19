@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Assume
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -83,6 +84,25 @@ class ContentSettingsManagerTest {
         ContentSettingsManager(fileLocator).deleteSettingsFile()
 
         assertFalse(settings.exists())
+    }
+
+    @Test
+    fun `Ensuring db directory existence must work`() {
+        val dir = Files.createTempDirectory("newpipe_").toFile()
+        Assume.assumeTrue(dir.delete())
+        `when`(fileLocator.dbDir).thenReturn(dir)
+
+        ContentSettingsManager(fileLocator).ensureDbDirectoryExists()
+        assertTrue(dir.exists())
+    }
+
+    @Test
+    fun `Ensuring db directory existence must work when the directory already exists`() {
+        val dir = Files.createTempDirectory("newpipe_").toFile()
+        `when`(fileLocator.dbDir).thenReturn(dir)
+
+        ContentSettingsManager(fileLocator).ensureDbDirectoryExists()
+        assertTrue(dir.exists())
     }
 
     @Test
