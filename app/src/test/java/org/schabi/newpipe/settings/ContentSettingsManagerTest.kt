@@ -19,14 +19,14 @@ import org.mockito.Mockito.atLeastOnce
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.withSettings
 import org.mockito.junit.MockitoJUnitRunner
-import org.schabi.newpipe.settings.ContentSettingsManagerTest.ExportTest
+import org.schabi.newpipe.settings.ContentSettingsManagerTest.*
 import java.io.File
 import java.io.ObjectInputStream
 import java.nio.file.Files
 import java.util.zip.ZipFile
 
 @RunWith(Suite::class)
-@Suite.SuiteClasses(ExportTest::class)
+@Suite.SuiteClasses(ExportTest::class, ImportTest::class)
 class ContentSettingsManagerTest {
 
     @RunWith(MockitoJUnitRunner::class)
@@ -73,23 +73,24 @@ class ContentSettingsManagerTest {
 
             val zipFile = ZipFile(output.absoluteFile)
             val entries = zipFile.entries().toList()
-            Assert.assertEquals(2, entries.size)
+            assertEquals(2, entries.size)
 
             zipFile.getInputStream(entries.first { it.name == "newpipe.db" }).use { actual ->
                 newpipeDb.inputStream().use { expected ->
-                    Assert.assertEquals(expected.reader().readText(), actual.reader().readText())
+                    assertEquals(expected.reader().readText(), actual.reader().readText())
                 }
             }
 
             zipFile.getInputStream(entries.first { it.name == "newpipe.settings" }).use { actual ->
                 val actualPreferences = ObjectInputStream(actual).readObject()
-                Assert.assertEquals(expectedPreferences, actualPreferences)
+                assertEquals(expectedPreferences, actualPreferences)
             }
         }
     }
 
     @RunWith(MockitoJUnitRunner::class)
     class ImportTest {
+
         companion object {
             private lateinit var fileLocator: NewPipeFileLocator
             private lateinit var zip: File

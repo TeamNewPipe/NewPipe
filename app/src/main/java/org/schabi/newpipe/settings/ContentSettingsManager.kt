@@ -46,9 +46,7 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
     }
 
 
-    fun extractDb(
-            filePath: String,
-    ): Boolean {
+    fun extractDb(filePath: String): Boolean {
         val success = ZipHelper.extractFileFromZip(filePath, fileLocator.db.path, "newpipe.db")
         if (success) {
             fileLocator.dbJournal.delete()
@@ -59,16 +57,12 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
         return success
     }
 
-    fun containSettings(
-            filePath: String,
-    ): Boolean {
+    fun containSettings(filePath: String): Boolean {
         return ZipHelper
                 .extractFileFromZip(filePath, fileLocator.settings.path, "newpipe.settings")
     }
 
-    fun loadSharedPreferences(
-            preferences: SharedPreferences,
-    ) {
+    fun loadSharedPreferences(preferences: SharedPreferences) {
         try {
             val preferenceEditor = preferences.edit()
 
