@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
+import com.nononsenseapps.filepicker.NewFolderFragment
 import org.junit.Assert
 import org.junit.Assume
 import org.junit.Before
@@ -24,6 +25,7 @@ class ContentSettingsManagerTest {
     class ExportTest {
 
         companion object {
+            private lateinit var fileLocator: NewPipeFileLocator
             private lateinit var newpipeDb: File
             private lateinit var newpipeSettings: File
 
@@ -37,6 +39,10 @@ class ContentSettingsManagerTest {
 
                 newpipeDb = File(dbPath!!)
                 newpipeSettings = File(settingsPath!!)
+
+                fileLocator = Mockito.mock(NewPipeFileLocator::class.java, Mockito.withSettings().stubOnly())
+                `when`(fileLocator.db).thenReturn(newpipeDb)
+                `when`(fileLocator.settings).thenReturn(newpipeSettings)
             }
         }
 
@@ -52,7 +58,7 @@ class ContentSettingsManagerTest {
             val expectedPreferences = mapOf("such pref" to "much wow")
             `when`(preferences.all).thenReturn(expectedPreferences)
 
-            val manager = ContentSettingsManager(newpipeDb, newpipeSettings)
+            val manager = ContentSettingsManager(fileLocator)
 
             val output = File.createTempFile("newpipe_", "")
             manager.exportDatabase(preferences, output.absolutePath)

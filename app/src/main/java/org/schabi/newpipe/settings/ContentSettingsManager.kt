@@ -21,7 +21,7 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
     fun exportDatabase(preferences: SharedPreferences, outputPath: String) {
         ZipOutputStream(BufferedOutputStream(FileOutputStream(outputPath)))
                 .use { outZip ->
-                    ZipHelper.addFileToZip(outZip, fileLocator.dbDir.path, "newpipe.db")
+                    ZipHelper.addFileToZip(outZip, fileLocator.db.path, "newpipe.db")
 
                     try {
                         ObjectOutputStream(FileOutputStream(fileLocator.settings)).use { output ->
