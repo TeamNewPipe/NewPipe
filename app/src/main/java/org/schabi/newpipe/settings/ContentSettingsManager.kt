@@ -8,7 +8,6 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
-import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
 
 class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
@@ -34,6 +33,10 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
 
                     ZipHelper.addFileToZip(outZip, fileLocator.settings.path, "newpipe.settings")
             }
+    }
+
+    fun deleteSettingsFile() {
+        fileLocator.settings.delete()
     }
 
     /**

@@ -44,13 +44,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private ContentSettingsManager manager;
 
-    private File databasesDir;
-    private File newpipeDb;
-    private File newpipeDbJournal;
-    private File newpipeDbShm;
-    private File newpipeDbWal;
-    private File newpipeSettings;
-
     private String thumbnailLoadToggleKey;
     private String youtubeRestrictedModeEnabledKey;
 
@@ -115,16 +108,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         final File homeDir = ContextCompat.getDataDir(requireContext());
-        databasesDir = new File(homeDir, "/databases");
-        newpipeDb = new File(homeDir, "/databases/newpipe.db");
-        newpipeDbJournal = new File(homeDir, "/databases/newpipe.db-journal");
-        newpipeDbShm = new File(homeDir, "/databases/newpipe.db-shm");
-        newpipeDbWal = new File(homeDir, "/databases/newpipe.db-wal");
-
-        newpipeSettings = new File(homeDir, "/databases/newpipe.settings");
-        newpipeSettings.delete();
-
         manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
+        manager.deleteSettingsFile();
 
         addPreferencesFromResource(R.xml.content_settings);
 

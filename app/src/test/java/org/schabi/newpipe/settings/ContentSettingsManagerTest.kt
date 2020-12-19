@@ -66,6 +66,26 @@ class ContentSettingsManagerTest {
     }
 
     @Test
+    fun `Settings file must be deleted`() {
+        val settings = File.createTempFile("newpipe_", "")
+        `when`(fileLocator.settings).thenReturn(settings)
+
+        ContentSettingsManager(fileLocator).deleteSettingsFile()
+
+        assertFalse(settings.exists())
+    }
+
+    @Test
+    fun `Deleting settings file must do nothing if none exist`() {
+        val settings = File("non_existent")
+        `when`(fileLocator.settings).thenReturn(settings)
+
+        ContentSettingsManager(fileLocator).deleteSettingsFile()
+
+        assertFalse(settings.exists())
+    }
+
+    @Test
     fun `The database must be extracted from the zip file`() {
         val db = File.createTempFile("newpipe_", "")
         val dbJournal = File.createTempFile("newpipe_", "")
