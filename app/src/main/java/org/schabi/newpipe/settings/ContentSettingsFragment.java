@@ -129,7 +129,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         newpipeSettings = new File(homeDir, "/databases/newpipe.settings");
         newpipeSettings.delete();
 
-        manager = new ContentSettingsManager(homeDir);
+        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
 
         addPreferencesFromResource(R.xml.content_settings);
 

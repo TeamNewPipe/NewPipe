@@ -1,10 +1,8 @@
 package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
 import org.schabi.newpipe.util.ZipHelper
 import java.io.BufferedOutputStream
-import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
@@ -13,23 +11,7 @@ import java.io.ObjectOutputStream
 import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
 
-class ContentSettingsManager(
-        private val databasesDir: File,
-        private val newpipeDb: File,
-        private val newpipeDbJournal: File,
-        private var newpipeDbShm: File,
-        private val newpipeDbWal: File,
-        private val newpipeSettings: File,
-) {
-
-    constructor(homeDir: File) : this(
-            File(homeDir, "/databases"),
-            File(homeDir, "/databases/newpipe.db"),
-            File(homeDir, "/databases/newpipe.db-journal"),
-            File(homeDir, "/databases/newpipe.db-shm"),
-            File(homeDir, "/databases/newpipe.db-wal"),
-            File(homeDir, "/databases/newpipe.settings")
-    )
+class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
 
     /**
      * Exports given [SharedPreferences] to the file in given outputPath.
@@ -38,19 +20,19 @@ class ContentSettingsManager(
     @Throws(Exception::class)
     fun exportDatabase(preferences: SharedPreferences, outputPath: String) {
         ZipOutputStream(BufferedOutputStream(FileOutputStream(outputPath)))
-            .use { outZip ->
-                ZipHelper.addFileToZip(outZip, newpipeDb.path, "newpipe.db")
+                .use { outZip ->
+                    ZipHelper.addFileToZip(outZip, fileLocator.dbDir.path, "newpipe.db")
 
-                try {
-                    ObjectOutputStream(FileOutputStream(newpipeSettings)).use { output ->
-                        output.writeObject(preferences.all)
-                        output.flush()
+                    try {
+                        ObjectOutputStream(FileOutputStream(fileLocator.settings)).use { output ->
+                            output.writeObject(preferences.all)
+                            output.flush()
+                        }
+                    } catch (e: IOException) {
+                        e.printStackTrace()
                     }
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
 
-                ZipHelper.addFileToZip(outZip, newpipeSettings.path, "newpipe.settings")
+                    ZipHelper.addFileToZip(outZip, fileLocator.settings.path, "newpipe.settings")
             }
     }
 
@@ -70,30 +52,37 @@ class ContentSettingsManager(
      * @return Whether the directory exists afterwards.
      */
     fun ensureDbDirectoryExists(): Boolean {
-        return !databasesDir.exists() && !databasesDir.mkdir()
+        return !fileLocator.dbDir.exists() && !fileLocator.dbDir.mkdir()
     }
 
-    fun extractDb(filePath: String): Boolean {
-        val success = ZipHelper.extractFileFromZip(filePath, newpipeDb.path, "newpipe.db")
+
+    fun extractDb(
+            filePath: String,
+    ): Boolean {
+        val success = ZipHelper.extractFileFromZip(filePath, fileLocator.db.path, "newpipe.db")
         if (success) {
-            newpipeDbJournal.delete()
-            newpipeDbWal.delete()
-            newpipeDbShm.delete()
+            fileLocator.dbJournal.delete()
+            fileLocator.dbWal.delete()
+            fileLocator.dbShm.delete()
         }
 
         return success
     }
 
-    fun containSettings(filePath: String): Boolean {
+    fun containSettings(
+            filePath: String,
+    ): Boolean {
         return ZipHelper
-                .extractFileFromZip(filePath, newpipeSettings.path, "newpipe.settings")
+                .extractFileFromZip(filePath, fileLocator.settings.path, "newpipe.settings")
     }
 
-    fun loadSharedPreferences(preferences: SharedPreferences) {
+    fun loadSharedPreferences(
+            preferences: SharedPreferences,
+    ) {
         try {
             val preferenceEditor = preferences.edit()
 
-            ObjectInputStream(FileInputStream(newpipeSettings)).use { input ->
+            ObjectInputStream(FileInputStream(fileLocator.settings)).use { input ->
                 preferenceEditor.clear()
                 val entries = input.readObject() as Map<String, *>
                 for ((key, value) in entries) {
@@ -123,5 +112,4 @@ class ContentSettingsManager(
             e.printStackTrace()
         }
     }
-
 }
