@@ -36,16 +36,6 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
             }
     }
 
-    fun isValidZipFile(filePath: String): Boolean {
-        try {
-            ZipFile(filePath).use {
-                return@isValidZipFile true
-            }
-        } catch (ioe: IOException) {
-            return false
-        }
-    }
-
     /**
      * Tries to create database directory if it does not exist.
      *

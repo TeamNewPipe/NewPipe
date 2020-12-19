@@ -4,7 +4,9 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
@@ -97,6 +99,14 @@ public final class ZipHelper {
                 }
             }
             return found;
+        }
+    }
+
+    public static boolean isValidZipFile(final String filePath) {
+        try (ZipFile ignored = new ZipFile(filePath)) {
+            return true;
+        } catch (final IOException ioe) {
+            return false;
         }
     }
 }

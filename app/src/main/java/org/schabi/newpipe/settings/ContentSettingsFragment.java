@@ -224,7 +224,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private void importDatabase(final String filePath) {
         // check if file is supported
-        if (!manager.isValidZipFile(filePath)) {
+        if (!ZipHelper.isValidZipFile(filePath)) {
             Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
                 .show();
             return;
