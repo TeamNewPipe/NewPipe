@@ -213,11 +213,11 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         if (!isIndeterminate) {
             loading_progress_text.text = "${progressState.currentProgress}/${progressState.maxProgress}"
             video_fetch_progress_text.visibility = View.VISIBLE
-            video_fetch_progress_text.text = "Fetching videos "+ " ${progressState.currentProgress}/${progressState.maxProgress}"
+            video_fetch_progress_text.text = getString(R.string.fetching_videos)+ " ${progressState.currentProgress}/${progressState.maxProgress}"
         } else if (progressState.progressMessage > 0) {
             loading_progress_text?.setText(progressState.progressMessage)
             video_fetch_progress_text.visibility = View.VISIBLE
-            video_fetch_progress_text.text =" ${progressState.currentProgress}/${progressState.maxProgress}"
+            video_fetch_progress_text.text = getString(R.string.fetching_videos)+" ${progressState.currentProgress}/${progressState.maxProgress}"
         } else {
             loading_progress_text?.text = "∞/∞"
             video_fetch_progress_text.visibility = View.GONE
