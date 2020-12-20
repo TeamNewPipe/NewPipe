@@ -9,7 +9,6 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -80,8 +79,8 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static java.util.Arrays.asList;
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 
 public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.InfoItemsPage<?>>
         implements BackPressable {
@@ -160,6 +159,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     private TextView correctSuggestion;
     private TextView metaInfoTextView;
+    private View metaInfoSeparator;
 
     private View suggestionsPanel;
     private boolean suggestionsPanelVisible = false;
@@ -276,7 +276,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         handleSearchSuggestion();
 
-        handleMetaInfo();
+        showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
+                    metaInfoTextView, metaInfoSeparator);
 
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
@@ -362,7 +363,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
 
         correctSuggestion = rootView.findViewById(R.id.correct_suggestion);
-        metaInfoTextView = rootView.findViewById(R.id.search_meta_info);
+        metaInfoTextView = rootView.findViewById(R.id.search_meta_info_text_view);
+        metaInfoSeparator = rootView.findViewById(R.id.search_meta_info_separator);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -988,7 +990,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         metaInfo = result.getMetaInfo().toArray(metaInfo);
 
         handleSearchSuggestion();
-        handleMetaInfo();
+
+        showMetaInfoInTextView(result.getMetaInfo(), metaInfoTextView, metaInfoSeparator);
 
         lastSearchedString = searchString;
         nextPage = result.getNextPage();
@@ -1033,39 +1036,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             });
 
             correctSuggestion.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void handleMetaInfo() {
-        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(
-                requireContext());
-        final boolean showMetaInfo = sp.getBoolean(
-                requireContext().getString(R.string.show_meta_info_key), true);
-        if (metaInfo == null || metaInfo.length == 0 || !showMetaInfo) {
-            metaInfoTextView.setVisibility(View.GONE);
-        } else {
-            final StringBuilder stringBuilder = new StringBuilder();
-            for (final MetaInfo mi: metaInfo) {
-                if (!isNullOrEmpty(mi.getTitle())) {
-                    stringBuilder.append("<h2>").append(mi.getTitle()).append("</h2>");
-                }
-                stringBuilder.append(mi.getContent().getContent());
-                for (int i = 0; i < mi.getUrls().size(); i++) {
-                    stringBuilder
-                            .append(" <a href=\"").append(mi.getUrls().get(i)).append("\">")
-                                .append(mi.getUrlTexts().get(i))
-                            .append("</a>");
-                    if (i < mi.getUrls().size() - 1 && mi.getUrls().size() > 1) {
-                        // append line break to all but the last URL if there are multiple URLs
-                        stringBuilder.append("<br>");
-                    }
-                }
-            }
-
-            metaInfoTextView.setText(HtmlCompat.fromHtml(
-                    stringBuilder.toString(), HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING));
-            metaInfoTextView.setMovementMethod(LinkMovementMethod.getInstance());
-            metaInfoTextView.setVisibility(View.VISIBLE);
         }
     }
 

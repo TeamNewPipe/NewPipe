@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -63,7 +62,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -126,11 +124,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
@@ -221,9 +219,8 @@ public final class VideoDetailFragment
     private TextView detailDurationView;
     private TextView detailPositionView;
 
-    private LinearLayout detailMetadataInfo;
-    private View detailMetadataInfoSeparator;
-    private TextView detailMetadataInfoText;
+    private View detailMetaInfoSeparator;
+    private TextView detailMetaInfoTextView;
 
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
@@ -651,9 +648,8 @@ public final class VideoDetailFragment
         detailDurationView = rootView.findViewById(R.id.detail_duration_view);
         detailPositionView = rootView.findViewById(R.id.detail_position_view);
 
-        detailMetadataInfo = rootView.findViewById(R.id.detail_metadata_info);
-        detailMetadataInfoSeparator = rootView.findViewById(R.id.detail_metadata_info_separator);
-        detailMetadataInfoText = rootView.findViewById(R.id.detail_metadata_info_text);
+        detailMetaInfoSeparator = rootView.findViewById(R.id.detail_meta_info_separator);
+        detailMetaInfoTextView = rootView.findViewById(R.id.detail_meta_info_text_view);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
@@ -1258,42 +1254,6 @@ public final class VideoDetailFragment
         }
     }
 
-    private void setMetaInfo(final StreamInfo info) {
-        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(
-                requireContext());
-        final boolean showMetaInfo = sp.getBoolean(
-                requireContext().getString(R.string.show_meta_info_key), true);
-        if (info.getMetaInfo().isEmpty() || !showMetaInfo) {
-            detailMetadataInfo.setVisibility(View.GONE);
-            detailMetadataInfoSeparator.setVisibility(View.GONE);
-        } else {
-            final List<MetaInfo> metaIfs = info.getMetaInfo();
-            final StringBuilder stringBuilder = new StringBuilder();
-            for (final MetaInfo mi: metaIfs) {
-                if (!isNullOrEmpty(mi.getTitle())) {
-                    stringBuilder.append("<h2>").append(mi.getTitle()).append("</h2>");
-                }
-                stringBuilder.append(mi.getContent().getContent());
-                for (int i = 0; i < mi.getUrls().size(); i++) {
-                    stringBuilder
-                            .append(" <a href=\"").append(mi.getUrls().get(i)).append("\">")
-                                .append(mi.getUrlTexts().get(i))
-                            .append("</a>");
-                    if (i < mi.getUrls().size() - 1 && mi.getUrls().size() > 1) {
-                        // append line break to all but the last URL if there are multiple URLs
-                        stringBuilder.append("<br>");
-                    }
-                }
-            }
-
-            detailMetadataInfoSeparator.setVisibility(View.VISIBLE);
-            detailMetadataInfoText.setText(HtmlCompat.fromHtml(
-                    stringBuilder.toString(), HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING));
-            detailMetadataInfoText.setMovementMethod(LinkMovementMethod.getInstance());
-            detailMetadataInfo.setVisibility(View.VISIBLE);
-        }
-    }
-
     private final ViewTreeObserver.OnPreDrawListener preDrawListener =
             new ViewTreeObserver.OnPreDrawListener() {
                 @Override
@@ -1606,7 +1566,7 @@ public final class VideoDetailFragment
         prepareDescription(info.getDescription());
         updateProgressInfo(info);
         initThumbnailViews(info);
-        setMetaInfo(info);
+        showMetaInfoInTextView(info.getMetaInfo(), detailMetaInfoTextView, detailMetaInfoSeparator);
 
 
         if (player == null || player.isPlayerStopped()) {

@@ -16,20 +16,29 @@
         tools:text="Showing results for lorem ipsum dolor sit amet consectetur adipisci elit" />
 
     <TextView
-        android:id="@+id/search_meta_info"
+        android:id="@+id/search_meta_info_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/correct_suggestion"
+        android:gravity="center"
         android:padding="12dp"
-        android:textSize="@dimen/search_suggestion_text_size"
+        android:textSize="@dimen/video_item_detail_description_text_size"
         tools:text="Get the latest information from the WHO about coronavirus." />
 
+    <View
+        android:id="@+id/search_meta_info_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/search_meta_info_text_view"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="?attr/separator_color" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search_meta_info"
+        android:layout_below="@+id/search_meta_info_separator"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/list_stream_item" />
