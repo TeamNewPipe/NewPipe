@@ -98,7 +98,7 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
 1. 당신의 기록, 구독, 그리고 재생목록을 유지할 수 있도록 Settings > Content > Export Database 를 통해 데이터를 백업하십시오.
 2. NewPipe를 삭제하십시오.
 3. 새로운 소스에서 APK를 다운로드하고 이것을 설치하십시오.
-4. Step 1의 Settings > Content > Export Database 을 통해 데이터를 불러오십시오.
+4. Step 1의 Settings > Content > Import Database 을 통해 데이터를 불러오십시오.
 
 ## Contribution
 당신이 아이디어, 번역, 디자인 변경, 코드 정리, 또는 정말 큰 코드 수정에 대한 의견이 있다면, 도움은 항상 환영합니다.
