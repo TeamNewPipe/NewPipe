@@ -166,7 +166,7 @@ dependencies {
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
-    ktlint "com.pinterest:ktlint:0.39.0"
+    ktlint "com.pinterest:ktlint:0.40.0"
 
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
