@@ -243,7 +243,7 @@ public class PlayerGestureListener
                 animateView(playerImpl.getClosingOverlay(), false, 0);
 
                 if (!playerImpl.isPopupClosing) {
-                    animateView(playerImpl.getCloseOverlayButton(), false, 200);
+                    animateView(playerImpl.getCloseButton(), false, 200);
                 }
             }
         }

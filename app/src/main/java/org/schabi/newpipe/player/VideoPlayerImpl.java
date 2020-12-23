@@ -39,6 +39,7 @@ import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,11 +74,11 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.PlayerBinding;
+import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
@@ -172,8 +173,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private WindowManager.LayoutParams popupLayoutParams;
     public WindowManager windowManager;
 
-    private View closeOverlayView;
-    private FloatingActionButton closeOverlayButton;
+    private PlayerPopupCloseOverlayBinding closeOverlayBinding;
 
     public boolean isPopupClosing = false;
 
@@ -1341,10 +1341,10 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private int distanceFromCloseButton(final MotionEvent popupMotionEvent) {
-        final int closeOverlayButtonX = closeOverlayButton.getLeft()
-                + closeOverlayButton.getWidth() / 2;
-        final int closeOverlayButtonY = closeOverlayButton.getTop()
-                + closeOverlayButton.getHeight() / 2;
+        final int closeOverlayButtonX = closeOverlayBinding.closeButton.getLeft()
+                + closeOverlayBinding.closeButton.getWidth() / 2;
+        final int closeOverlayButtonY = closeOverlayBinding.closeButton.getTop()
+                + closeOverlayBinding.closeButton.getHeight() / 2;
 
         final float fingerX = popupLayoutParams.x + popupMotionEvent.getX();
         final float fingerY = popupLayoutParams.y + popupMotionEvent.getY();
@@ -1354,7 +1354,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private float getClosingRadius() {
-        final int buttonRadius = closeOverlayButton.getWidth() / 2;
+        final int buttonRadius = closeOverlayBinding.closeButton.getWidth() / 2;
         // 20% wider than the button itself
         return buttonRadius * 1.2f;
     }
@@ -1641,12 +1641,11 @@ public class VideoPlayerImpl extends VideoPlayer
         }
 
         // closeOverlayView is already added to windowManager
-        if (closeOverlayView != null) {
+        if (closeOverlayBinding != null) {
             return;
         }
 
-        closeOverlayView = View.inflate(service, R.layout.player_popup_close_overlay, null);
-        closeOverlayButton = closeOverlayView.findViewById(R.id.closeButton);
+        closeOverlayBinding = PlayerPopupCloseOverlayBinding.inflate(LayoutInflater.from(service));
 
         final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
@@ -1661,8 +1660,8 @@ public class VideoPlayerImpl extends VideoPlayer
         closeOverlayLayoutParams.softInputMode =
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
 
-        closeOverlayButton.setVisibility(View.GONE);
-        windowManager.addView(closeOverlayView, closeOverlayLayoutParams);
+        closeOverlayBinding.closeButton.setVisibility(View.GONE);
+        windowManager.addView(closeOverlayBinding.getRoot(), closeOverlayLayoutParams);
     }
 
     private void initVideoPlayer() {
@@ -1835,22 +1834,23 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     public void removePopupFromView() {
-        final boolean isCloseOverlayHasParent = closeOverlayView != null
-                && closeOverlayView.getParent() != null;
+        final boolean isCloseOverlayHasParent = closeOverlayBinding != null
+                && closeOverlayBinding.getRoot().getParent() != null;
         if (popupHasParent()) {
             windowManager.removeView(getRootView());
         }
         if (isCloseOverlayHasParent) {
-            windowManager.removeView(closeOverlayView);
+            windowManager.removeView(closeOverlayBinding.getRoot());
         }
     }
 
     private void animateOverlayAndFinishService() {
-        final int targetTranslationY = (int) (closeOverlayButton.getRootView().getHeight()
-                - closeOverlayButton.getY());
+        final int targetTranslationY =
+                (int) (closeOverlayBinding.closeButton.getRootView().getHeight()
+                        - closeOverlayBinding.closeButton.getY());
 
-        closeOverlayButton.animate().setListener(null).cancel();
-        closeOverlayButton.animate()
+        closeOverlayBinding.closeButton.animate().setListener(null).cancel();
+        closeOverlayBinding.closeButton.animate()
                 .setInterpolator(new AnticipateInterpolator())
                 .translationY(targetTranslationY)
                 .setDuration(400)
@@ -1866,8 +1866,8 @@ public class VideoPlayerImpl extends VideoPlayer
                     }
 
                     private void end() {
-                        windowManager.removeView(closeOverlayView);
-                        closeOverlayView = null;
+                        windowManager.removeView(closeOverlayBinding.getRoot());
+                        closeOverlayBinding = null;
 
                         service.onDestroy();
                     }
@@ -2062,8 +2062,8 @@ public class VideoPlayerImpl extends VideoPlayer
         popupHeight = height;
     }
 
-    public View getCloseOverlayButton() {
-        return closeOverlayButton;
+    public View getCloseButton() {
+        return closeOverlayBinding.closeButton;
     }
 
     public View getClosingOverlay() {
