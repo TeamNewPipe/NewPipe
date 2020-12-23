@@ -57,7 +57,7 @@ import java.util.Locale;
 
 public final class Localization {
 
-    private static final String DOT_SEPARATOR = " • ";
+    public static final String DOT_SEPARATOR = " • ";
     private static PrettyTime prettyTime;
 
     private Localization() { }

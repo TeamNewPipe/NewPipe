@@ -492,6 +492,23 @@
                     </LinearLayout>
 
                     <View
+                        android:id="@+id/detail_meta_info_separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="?attr/separator_color" />
+
+                    <TextView
+                        android:id="@+id/detail_meta_info_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:textSize="@dimen/video_item_detail_description_text_size"
+                        tools:text="Stream meta info with link" />
+
+                    <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
                         android:layout_marginLeft="8dp"
