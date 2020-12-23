@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
@@ -140,9 +141,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
     }
 
     private FinishedMission getMissionFromCursor(Cursor cursor) {
-        if (cursor == null) throw new NullPointerException("cursor is null");
-
-        String kind = cursor.getString(cursor.getColumnIndex(KEY_KIND));
+        String kind = Objects.requireNonNull(cursor).getString(cursor.getColumnIndex(KEY_KIND));
         if (kind == null || kind.isEmpty()) kind = "?";
 
         String path = cursor.getString(cursor.getColumnIndexOrThrow(KEY_PATH));
@@ -186,15 +185,13 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
     }
 
     public void addFinishedMission(DownloadMission downloadMission) {
-        if (downloadMission == null) throw new NullPointerException("downloadMission is null");
+        ContentValues values = getValuesOfMission(Objects.requireNonNull(downloadMission));
         SQLiteDatabase database = getWritableDatabase();
-        ContentValues values = getValuesOfMission(downloadMission);
         database.insert(FINISHED_TABLE_NAME, null, values);
     }
 
     public void deleteMission(Mission mission) {
-        if (mission == null) throw new NullPointerException("mission is null");
-        String ts = String.valueOf(mission.timestamp);
+        String ts = String.valueOf(Objects.requireNonNull(mission).timestamp);
 
         SQLiteDatabase database = getWritableDatabase();
 
@@ -212,9 +209,8 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
     }
 
     public void updateMission(Mission mission) {
-        if (mission == null) throw new NullPointerException("mission is null");
+        ContentValues values = getValuesOfMission(Objects.requireNonNull(mission));
         SQLiteDatabase database = getWritableDatabase();
-        ContentValues values = getValuesOfMission(mission);
         String ts = String.valueOf(mission.timestamp);
 
         int rowsAffected;
