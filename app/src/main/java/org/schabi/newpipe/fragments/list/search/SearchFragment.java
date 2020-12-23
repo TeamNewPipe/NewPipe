@@ -45,6 +45,8 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
+import org.schabi.newpipe.extractor.services.peertube.linkHandler.PeertubeSearchQueryHandlerFactory;
+import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeSearchQueryHandlerFactory;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -419,12 +421,18 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         boolean isFirstItem = true;
         final Context c = getContext();
         for (final String filter : service.getSearchQHFactory().getAvailableContentFilter()) {
-            if (filter.equals("music_songs")) {
+            if (filter.equals(YoutubeSearchQueryHandlerFactory.MUSIC_SONGS)) {
                 final MenuItem musicItem = menu.add(2,
                         itemId++,
                         0,
                         "YouTube Music");
                 musicItem.setEnabled(false);
+            } else if (filter.equals(PeertubeSearchQueryHandlerFactory.SEPIA_VIDEOS)) {
+                final MenuItem sepiaItem = menu.add(2,
+                        itemId++,
+                        0,
+                        "Sepia Search");
+                sepiaItem.setEnabled(false);
             }
             menuItemToFilterName.put(itemId, filter);
             final MenuItem item = menu.add(1,
