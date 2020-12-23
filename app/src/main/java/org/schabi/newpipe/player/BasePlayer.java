@@ -225,13 +225,6 @@ public abstract class BasePlayer implements
         this.renderFactory = new DefaultRenderersFactory(context);
     }
 
-    public void setup() {
-        if (simpleExoPlayer == null) {
-            initPlayer(true);
-        }
-        initListeners();
-    }
-
     public void initPlayer(final boolean playOnReady) {
         if (DEBUG) {
             Log.d(TAG, "initPlayer() called with: playOnReady = [" + playOnReady + "]");

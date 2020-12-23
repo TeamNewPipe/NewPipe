@@ -26,6 +26,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -33,8 +34,8 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.App;
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
@@ -102,10 +103,10 @@ public final class MainPlayer extends Service {
     }
 
     private void createView() {
-        final View layout = View.inflate(this, R.layout.player, null);
+        final PlayerBinding binding = PlayerBinding.inflate(LayoutInflater.from(this));
 
         playerImpl = new VideoPlayerImpl(this);
-        playerImpl.setup(layout);
+        playerImpl.setup(binding);
         playerImpl.shouldUpdateOnProgress = true;
 
         NotificationUtil.getInstance().createNotificationAndStartForeground(playerImpl, this);
