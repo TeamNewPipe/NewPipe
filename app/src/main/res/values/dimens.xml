@@ -100,7 +100,7 @@
     <!-- Playlist View Dimensions-->
     <dimen name="playlist_item_thumbnail_stream_count_width">60dp</dimen>
     <dimen name="playlist_ctrl_height">50dp</dimen>
-    <dimen name="playlist_ctrl_seperator_margin">10dp</dimen>
+    <dimen name="playlist_ctrl_separator_margin">10dp</dimen>
     <!-- Text Size -->
     <dimen name="playlist_item_title_text_size">14sp</dimen>
     <dimen name="playlist_detail_title_text_size">16sp</dimen>
