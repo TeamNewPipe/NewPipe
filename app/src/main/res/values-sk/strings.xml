@@ -658,5 +658,8 @@
     <string name="notification_colorize_summary">Nechajte Android, aby prispôsobil farbu upozornenia podľa hlavnej farby v miniatúre (nemusí to fungovať na všetkých zariadeniach)</string>
     <string name="notification_colorize_title">Farby upozornení</string>
     <string name="show_thumbnail_title">Zobrazovať miniatúru</string>
-    <string name="show_thumbnail_summary">Zobrazovať miniatúru pri uzamknutej obrazovke a v upozorneniach</string>
+    <string name="show_thumbnail_summary">Používať miniatúru ako pozadie pri uzamknutej obrazovke a v upozorneniach</string>
+    <string name="msg_calculating_hash">Počítanie hash</string>
+    <string name="hash_channel_description">Upozornenie pri generovaní hash z názu videa</string>
+    <string name="hash_channel_name">Oznámenie o hashovaní videa</string>
 </resources>

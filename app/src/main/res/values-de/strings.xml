@@ -647,6 +647,9 @@
     <string name="enqueue_stream">In Wiedergabe einreihen</string>
     <string name="notification_colorize_summary">Android kann die Farbe der Benachrichtigung entsprechend der Hauptfarbe in der Miniaturansicht anpassen (beachte, dass dies nicht auf allen Geräten verfügbar ist)</string>
     <string name="notification_colorize_title">Benachrichtigung farblich anpassen</string>
-    <string name="show_thumbnail_summary">Vorschaubild auf dem Sperrbildschirm als Hintergrund und innerhalb von Benachrichtigungen anzeigen</string>
+    <string name="show_thumbnail_summary">Vorschaubild für Sperrbildschirmhintergrund und Benachrichtigungen verwenden</string>
     <string name="show_thumbnail_title">Vorschaubild anzeigen</string>
+    <string name="msg_calculating_hash">Hash wird berechnet</string>
+    <string name="hash_channel_description">Benachrichtigungen für den Video-hashing Fortschritt</string>
+    <string name="hash_channel_name">Video Hash Benachrichtigung</string>
 </resources>

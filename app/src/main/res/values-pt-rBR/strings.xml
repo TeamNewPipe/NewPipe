@@ -647,6 +647,9 @@
     <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente inadequado para crianças porque tem um limite de idade (como +18)</string>
     <string name="notification_colorize_summary">Permite o Android personalizar a cor da notificação de acordo com a cor principal da miniatura (note que isso não está disponível em todos os dispositivos)</string>
     <string name="notification_colorize_title">Colorir notificação</string>
-    <string name="show_thumbnail_summary">Mostrar miniaturas como fundo da tela de bloqueio e nas notificações</string>
+    <string name="show_thumbnail_summary">Usar miniatura para o plano de fundo da tela de bloqueio e as notificações</string>
     <string name="show_thumbnail_title">Mostrar miniatura</string>
+    <string name="msg_calculating_hash">Calculando hash</string>
+    <string name="hash_channel_description">Notificações para o progresso do hash do vídeo</string>
+    <string name="hash_channel_name">Notificação de Hash do Vídeo</string>
 </resources>

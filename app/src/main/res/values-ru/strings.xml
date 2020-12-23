@@ -83,7 +83,7 @@
     <string name="live_streams_not_supported">Трансляции пока не поддерживаются</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
     <string name="app_ui_crash">Приложение/UI завершило работу</string>
-    <string name="sorry_string">Простите, это не должно было произойти.</string>
+    <string name="sorry_string">Никогда такого не было, и вот опять.</string>
     <string name="error_report_button_text">Отправить отчёт по e-mail</string>
     <string name="error_snackbar_message">Извините, что-то пошло не так.</string>
     <string name="error_snackbar_action">Отчёт</string>
@@ -592,7 +592,7 @@
 \n
 \nВыбор за вами: скорость или точность.</string>
     <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, но может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
@@ -658,6 +658,9 @@
     <string name="clear_cookie_summary">Удалить сохранённые при решении reCAPTCHA куки</string>
     <string name="notification_colorize_summary">Окрашивать уведомление основным цветом миниатюры. Поддерживается не всеми устройствами</string>
     <string name="notification_colorize_title">Цветное уведомление</string>
-    <string name="show_thumbnail_summary">Отображать миниатюру в уведомлении и на экране блокировки</string>
+    <string name="show_thumbnail_summary">Использовать миниатюру для фона уведомлений и экрана блокировки</string>
     <string name="show_thumbnail_title">Показать миниатюру</string>
+    <string name="hash_channel_description">Показать уведомление при хэшировании видео</string>
+    <string name="hash_channel_name">Уведомление о хэшировании</string>
+    <string name="msg_calculating_hash">Вычисляется хэш</string>
 </resources>

@@ -108,7 +108,7 @@
     <string name="default_popup_resolution_title">Προεπιλεγμένη ανάλυση αναδυόμενου παραθύρου</string>
     <string name="show_higher_resolutions_title">Εμφάνιση υψηλότερων αναλύσεων</string>
     <string name="default_video_format_title">Προεπιλεγμένη μορφή βίντεο</string>
-    <string name="popup_remember_size_pos_title">Ενθύμιση τις ιδιότητες του αναδυόμενου παραθύρου</string>
+    <string name="popup_remember_size_pos_title">Ενθύμιση ιδιοτήτωναναδυόμενου παραθύρου</string>
     <string name="popup_remember_size_pos_summary">Ενθύμιση του τελευταίου μεγέθους και θέσης του παραθύρου</string>
     <string name="use_inexact_seek_title">Χρήση γρήγορης ανακριβούς αναζήτησης</string>
     <string name="use_inexact_seek_summary">Η μην ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια. Δε λειτουργεί για διαστήματα των 5, 15 ή 25 δευτερολέπτων.</string>
@@ -168,8 +168,8 @@
     <string name="switch_to_main">Αλλαγή σε Κύριο</string>
     <string name="import_data_title">Εισαγωγή βάσης δεδομένων</string>
     <string name="export_data_title">Εξαγωγή βάσης δεδομένων</string>
-    <string name="import_data_summary">Παρακάμπτει το τρέχον ιστορικό και τις εγγραφές σας</string>
-    <string name="export_data_summary">Εξαγωγή ιστορικού, εγγραφών και λιστών αναπαραγωγής</string>
+    <string name="import_data_summary">Παρακάμπτει το τρέχον ιστορικό, εγγραφές, λίστες αναπαραγωγής και (προαιρετικά) σας</string>
+    <string name="export_data_summary">Εξαγωγή ιστορικού, εγγραφών, λιστών αναπαραγωγής και</string>
     <string name="clear_views_history_title">Εκκαθάριση ιστορικού προβολής</string>
     <string name="clear_views_history_summary">Διαγράφει το ιστορικό των αναπαραχθέντων ροών και των θέσεων αναπαραγωγής</string>
     <string name="delete_view_history_alert">Διαγραφή ολόκληρου του ιστορικού προβολής;</string>
@@ -592,7 +592,7 @@
         <item quantity="other">%d επιλέχθηκαν</item>
     </plurals>
     <string name="feed_subscription_not_loaded_count">Δεν φορτώθηκε: %d</string>
-    <string name="feed_groups_header_title">Οι ομάδες του καναλιού</string>
+    <string name="feed_groups_header_title">Ομάδες καναλιών</string>
     <plurals name="days">
         <item quantity="one">%d ημέρα</item>
         <item quantity="other">%d ημέρες</item>
@@ -645,6 +645,9 @@
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="notification_colorize_title">Χρωματισμός ειδοποιήσεων</string>
     <string name="notification_colorize_summary">Επιτρέπει στο Android να τροποποιήσει το χρώμα της ειδοποίησης, σύμφωνα με το κύριο χρώμα του εικονιδίου (δεν διατίθεται σε όλες τις συσκευές)</string>
-    <string name="show_thumbnail_summary">Εμφάνιση των εικονιδίων στην οθόνη κλειδώματος, ως φόντο και στις ειδοποιήσεις</string>
+    <string name="show_thumbnail_summary">Χρήση των εικονιδίων στην οθόνη κλειδώματοςως φόντο και στις ειδοποιήσεις</string>
     <string name="show_thumbnail_title">Εμφάνιση</string>
+    <string name="msg_calculating_hash">Υπολογισμός hash</string>
+    <string name="hash_channel_description">Ειδοποιήσεις για πρόοδο βίντεο hashing</string>
+    <string name="hash_channel_name">Ειδοποίηση βίντεο hash</string>
 </resources>

@@ -35,8 +35,8 @@
         android:id="@+id/anchorLeft"
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/playlist_ctrl_seperator_margin"
-        android:layout_marginBottom="@dimen/playlist_ctrl_seperator_margin"
+        android:layout_marginTop="@dimen/playlist_ctrl_separator_margin"
+        android:layout_marginBottom="@dimen/playlist_ctrl_separator_margin"
         android:background="?attr/colorAccent"
         android:clickable="false" />
 
@@ -63,8 +63,8 @@
         android:id="@+id/anchorRight"
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/playlist_ctrl_seperator_margin"
-        android:layout_marginBottom="@dimen/playlist_ctrl_seperator_margin"
+        android:layout_marginTop="@dimen/playlist_ctrl_separator_margin"
+        android:layout_marginBottom="@dimen/playlist_ctrl_separator_margin"
         android:background="?attr/colorAccent"
         android:clickable="false" />
 

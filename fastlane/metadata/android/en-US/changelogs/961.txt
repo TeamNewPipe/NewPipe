@@ -1,0 +1,12 @@
+• [YouTube] Mix support
+• [YouTube] Display info about public broadcasters and Covid-19
+• [media.ccc.de] Added recent videos
+• Added Somali translation
+
+• Many internal improvements
+
+• Fixed sharing videos from within the player
+• Fixed blank ReCaptcha webview
+• Fixed crash which occurred when removing a stream from a list
+• [PeerTube] Fixed related streams
+• [YouTube] Fixed YouTube Music search

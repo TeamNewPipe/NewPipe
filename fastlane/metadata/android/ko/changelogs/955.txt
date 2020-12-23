@@ -1,0 +1,3 @@
+[Youtube] 일부 사용자의 검색 수정
+[Youtube] 복호화의 예외 수정
+[SoundCloud] 이제 URL이 올바르게 분석됩니다

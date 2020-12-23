@@ -657,6 +657,6 @@
     <string name="show_age_restricted_content_summary">Zobrazit obsah, i když je patrně nevhodný pro děti, protože odkazuje na věkové omezení (např. 18+)</string>
     <string name="notification_colorize_summary">Nechte Android přizpůsobit barvu oznámení podle hlavní barvy v miniatuře (není k dispozici na všech zařízeních)</string>
     <string name="notification_colorize_title">Barevné notifikace</string>
-    <string name="show_thumbnail_summary">Zobrazit miniaturu na zamknuté obrazovce jako pozadí a v oznámeních</string>
+    <string name="show_thumbnail_summary">Použít miniaturu pro pozadí zamknuté obrazovky a oznámení</string>
     <string name="show_thumbnail_title">Zobrazit miniaturu</string>
 </resources>

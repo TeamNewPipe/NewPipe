@@ -1,0 +1,3 @@
+[YouTube] 修正搜尋（部分使用者出現的問題）
+[YouTube] 修正隨機的解密例外狀況
+[SoundCloud] 以斜槓結尾的 URL 現已正確剖析
