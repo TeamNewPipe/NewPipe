@@ -647,6 +647,9 @@
     <string name="notification_colorize_summary">Pedi a Android de personalizare su colore de sa notìfica sighende su colore printzipale de sa miniadura (ammenta·ti chi custu no est a disponimentu pro totu sos dispositivos)</string>
     <string name="notification_colorize_title">Colora sas notìficas</string>
     <string name="popup_remember_size_pos_summary">Ammenta s\'ùrtima mannària e sa positzione in sa ventanedda</string>
-    <string name="show_thumbnail_summary">Ammustra sa miniatura in s\'ischermada de blocu e in intro de sas notìficas</string>
+    <string name="show_thumbnail_summary">Imprea sa miniatura siat comente isfundu de s\'ischermada de blocu e siat in sas notìficas</string>
     <string name="show_thumbnail_title">Ammustra sa miniatura</string>
+    <string name="msg_calculating_hash">Carculende s\'hash</string>
+    <string name="hash_channel_description">Notìficas pro su protzessu de hashàgiu de su vìdeu</string>
+    <string name="hash_channel_name">Notìfica de hash de su vìdeu</string>
 </resources>

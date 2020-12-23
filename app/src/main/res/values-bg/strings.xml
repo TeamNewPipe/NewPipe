@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Докоснете търсачката, за да започнете</string>
+    <string name="main_bg_subtitle">Докоснете търсачката, за да започнете
+\n</string>
     <string name="view_count_text">%1$s гледания</string>
     <string name="upload_date_text">Публикувано на %1$s</string>
     <string name="no_player_found">Не е намерен стрийм плейър. Желаете ли да инсталирате VLC?</string>
@@ -12,12 +13,12 @@
     <string name="download">Изтегли</string>
     <string name="search">Търси</string>
     <string name="settings">Настройки</string>
-    <string name="did_you_mean">Може би имахте в предвид: %1$s\?</string>
+    <string name="did_you_mean">Може би имахте предвид „%1$s“\?</string>
     <string name="share_dialog_title">Сподели с</string>
     <string name="choose_browser">Избери браузър</string>
     <string name="screen_rotation">ориентация</string>
     <string name="use_external_video_player_title">Използвай външен видео плейър</string>
-    <string name="use_external_video_player_summary">Премахва аудио при НЯКОИ резолюции</string>
+    <string name="use_external_video_player_summary">Премахва аудиото при някои резолюции</string>
     <string name="use_external_audio_player_title">Използвай външен аудио плейър</string>
     <string name="popup_mode_share_menu_title">NewPipe в прозорец</string>
     <string name="subscribe_button_title">Абониране</string>
@@ -34,13 +35,13 @@
     <string name="download_path_dialog_title">Въведете път за съхранение на изтеглените видеота</string>
     <string name="download_path_audio_title">Директория за изтегляне на аудио</string>
     <string name="download_path_audio_summary">Папка за съхранение на изтеглено аудио</string>
-    <string name="download_path_audio_dialog_title">Въведете път за съхранение на изтеглено аудио</string>
+    <string name="download_path_audio_dialog_title">Въведете папка за изтегляния на аудио файлове</string>
     <string name="autoplay_by_calling_app_title">Автоматично възпроизвеждане</string>
     <string name="autoplay_by_calling_app_summary">Въпроизвежда видео, когато NewPipe е повикан от друго приложение</string>
     <string name="default_resolution_title">Резолюция по подразбиране</string>
     <string name="default_popup_resolution_title">Резолюция по подразбиране на прозореца</string>
     <string name="show_higher_resolutions_title">Покажи по-високи резолюции</string>
-    <string name="show_higher_resolutions_summary">Само някои устройства поддържат възпроизвеждане на 2K/4K клипове</string>
+    <string name="show_higher_resolutions_summary">Само някои устройства могат да възпроизвеждат 2K/4K видео</string>
     <string name="play_with_kodi_title">Въпроизвеждане с Kodi</string>
     <string name="kore_not_found">Приложението „Kore“ не е намерено. Желаете ли да го инсталирате?</string>
     <string name="show_play_with_kodi_title">Покажи „Възпроизвеждане с Kodi“</string>
@@ -408,4 +409,16 @@
     <string name="enable_playback_resume_title">Продължи възпроизвеждане</string>
     <string name="settings_category_clear_data_title">Изтрии данни</string>
     <string name="search_showing_result_for">Показване на резултати за: %s</string>
+    <string name="no_comments">Няма коментари</string>
+    <plurals name="listening">
+        <item quantity="one">%s слушател</item>
+        <item quantity="other">%s слушатели</item>
+    </plurals>
+    <string name="no_one_listening">Няма слушатели</string>
+    <plurals name="watching">
+        <item quantity="one">%s зрител</item>
+        <item quantity="other">%s зрители</item>
+    </plurals>
+    <string name="no_one_watching">Няма зрители</string>
+    <string name="clear_playback_states_summary">Изтрива всички позиции на възпроизвеждане</string>
 </resources>

@@ -1,1 +1,1 @@
-Um frontend gratuito e leve do YouTube para o Android.
+Um reprodutor Youtube para Android.

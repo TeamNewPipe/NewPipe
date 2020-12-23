@@ -156,7 +156,7 @@
     <string name="pause">Tauota</string>
     <string name="view">Toista</string>
     <string name="delete">Poista</string>
-    <string name="checksum">Tarkistus-suma</string>
+    <string name="checksum">Tarkistussumma</string>
     <string name="add">Uusi tehtävä</string>
     <string name="finish">OK</string>
     <string name="msg_name">Tiedostonimi</string>
@@ -272,8 +272,8 @@
     <string name="switch_to_main">Vaihda normaalitoistoon</string>
     <string name="import_data_title">Tuo tietokanta</string>
     <string name="export_data_title">Vie tietokanta</string>
-    <string name="import_data_summary">Kirjoittaa yli tämänhetkisen historian ja tilaukset</string>
-    <string name="export_data_summary">Vie historia, tilaukset tai soittolistat</string>
+    <string name="import_data_summary">Ylikirjoittaa tämänhetkisen historian, tilaukset, soittolistat ja (vaihtoehtoisesti) asetukset</string>
+    <string name="export_data_summary">Vie historia, tilaukset, soittolistat ja asetukset</string>
     <string name="clear_views_history_title">Poista katseluhistoria</string>
     <string name="clear_views_history_summary">Poistaa toistohistorian ja toistokohdat</string>
     <string name="delete_view_history_alert">Poista koko katseluhistoria\?</string>
@@ -647,4 +647,7 @@
     <string name="show_age_restricted_content_summary">Näytä mahdollisesti lapsille sopimaton sisältö, jolla on ikäraja (esim. 18+)</string>
     <string name="notification_colorize_summary">Anna Androidin muokata ilmoituksen väriä esikatselukuvan päävärin mukaan (tämä ei ole mahdollista kaikilla laitteilla)</string>
     <string name="notification_colorize_title">Käytä värejä ilmoituksessa</string>
+    <string name="show_thumbnail_summary">Käytä esikatselukuvaa lukitusruudun ja ilmoitusten taustakuvana</string>
+    <string name="show_thumbnail_title">Näytä esikatselukuva</string>
+    <string name="msg_calculating_hash">Lasketaan</string>
 </resources>

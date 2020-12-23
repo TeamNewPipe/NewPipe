@@ -278,8 +278,8 @@
     <string name="file">Fitxategia</string>
     <string name="import_data_title">Inportatu datu-basea</string>
     <string name="export_data_title">Esportatu datu-basea</string>
-    <string name="import_data_summary">Zure uneko historiala eta harpidetzak gainidazten ditu</string>
-    <string name="export_data_summary">Esportatu historiala, harpidetzak eta erreprodukzio-zerrendak</string>
+    <string name="import_data_summary">Zure uneko historiala, harpidetzak eta (aukeran) ezarpenak gainidazten ditu</string>
+    <string name="export_data_summary">Esportatu historiala, harpidetzak, erreprodukzio-zerrendak eta ezarpenak</string>
     <string name="clear_views_history_title">Garbitu ikusitakoaren historiala</string>
     <string name="clear_views_history_summary">Jotako jarioen historiala eta erreprodukzio puntuak ezabatzen ditu</string>
     <string name="delete_view_history_alert">Ezabatu ikusitakoaren historia osoa\?</string>
@@ -647,6 +647,9 @@
     <string name="notification_actions_summary">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Hautatu horietako hiru gehienez jakinarazpen trinkoan erakusteko eskuineko kontrol laukiak erabiliz.</string>
     <string name="notification_colorize_summary">Androidek miniaturako kolore nagusiaren arabera jakinarazpenaren kolorea pertsonalizatzea baimendu (kontuan izan ez dagoela gailu guztietan erabilgarri)</string>
     <string name="notification_colorize_title">Koloreztatu jakinarazpena</string>
-    <string name="show_thumbnail_summary">Erakutsi miniatura blokeo pantailan atzeko planoko eta barruko jakinarazpen bezala</string>
+    <string name="show_thumbnail_summary">Erabili miniatura blokeo pantaila eta jakinarazpenentzako</string>
     <string name="show_thumbnail_title">Erakutsi miniatura</string>
+    <string name="hash_channel_description">Jakinarazpenak bideoen hashing egoerarako</string>
+    <string name="hash_channel_name">Bideo hash jakinarazpena</string>
+    <string name="msg_calculating_hash">Hash-a kalkulatzen</string>
 </resources>
