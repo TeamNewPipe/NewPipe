@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Націсніце \"Пошук\", каб пачаць</string>
+    <string name="main_bg_subtitle">Націсніце \"Пошук\", каб пачаць
+\n</string>
     <string name="view_count_text">%1$s праглядаў</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы плэер не знойдзены. Усталяваць VLC?</string>
@@ -36,11 +37,11 @@
     <string name="controls_popup_title">У акне</string>
     <string name="controls_add_to_playlist_title">Дадаць да</string>
     <string name="download_path_title">Каталог для спампаванага відэа</string>
-    <string name="download_path_summary">Папка для захоўвання загружаных відэа</string>
-    <string name="download_path_dialog_title">Увядзіце шлях да папкі для загрузкі відэа</string>
+    <string name="download_path_summary">Папка для спампаванга відэа</string>
+    <string name="download_path_dialog_title">Увядзіце шлях да папкі для спампавання відэа</string>
     <string name="download_path_audio_title">Тэчка загрузкі аўдыё</string>
-    <string name="download_path_audio_summary">Сюды захоўваецца загружанае аўдыё</string>
-    <string name="download_path_audio_dialog_title">Увядзіце шлях да папкі для загрузкі аўдыё</string>
+    <string name="download_path_audio_summary">Папка для спампаванага аўдыя</string>
+    <string name="download_path_audio_dialog_title">Увядзіце шлях да папкі для спампавання аўдыя</string>
     <string name="autoplay_by_calling_app_title">Аўтапрайграванне</string>
     <string name="autoplay_by_calling_app_summary">Прайграваць відэа пры выкліку NewPipe з іншага прыкладання</string>
     <string name="default_resolution_title">Разрознянне па змаўчанні</string>
@@ -61,7 +62,7 @@
     <string name="popup_remember_size_pos_title">Аднавіць акно</string>
     <string name="popup_remember_size_pos_summary">Запамінаць памер і становішча ўсплываючага акна</string>
     <string name="use_inexact_seek_title">Хуткі пошук пазіцыі</string>
-    <string name="use_inexact_seek_summary">Недакладны пошук дазваляе плэеру шукаць пазіцыю хутчэй, але менш дакладна</string>
+    <string name="use_inexact_seek_summary">Недакладны пошук дазваляе плэеру шукаць пазіцыю хутчэй, але менш дакладна. Не працуе для перамоткі на 5, 15 ці 25 секунд</string>
     <string name="download_thumbnail_title">Загружаць мініяцюры</string>
     <string name="download_thumbnail_summary">Адключыце, каб не загружаць мініяцюры і зэканоміць трафік і памяць. Змена налады ачысьціць кэш малюнкаў</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш малюнкаў ачышчаны</string>
@@ -556,4 +557,7 @@
     <string name="notification_action_repeat">Паўтор</string>
     <string name="notification_action_4_title">Кнопка пятага дзеяння</string>
     <string name="settings_category_notification_title">Паведамленні</string>
+    <string name="notification_colorize_summary">Афарбоўваць апавяшчэнне асноўным колерам мініяцюры. Падтрымваецца не ўсімі прыладамі</string>
+    <string name="notification_actions_at_most_three">У кампактным апавяшчэнні дасяжна не больш за тры дзеянні!</string>
+    <string name="notification_actions_summary">Дзеянні можна змяніць, націснуўшы на іх. Адзначце не больш за трох для адлюстравання ў кампактным апавяшчэнні</string>
 </resources>

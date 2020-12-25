@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".report.ErrorActivity">
 
-    <include layout="@layout/toolbar_layout" />
+    <include
+        layout="@layout/toolbar_layout"
+        android:id="@+id/toolbar_layout"/>
 
     <ScrollView
         android:id="@+id/scrollView"

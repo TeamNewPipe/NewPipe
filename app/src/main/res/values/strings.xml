@@ -93,6 +93,8 @@
     <string name="show_comments_title">Show comments</string>
     <string name="show_comments_summary">Turn off to hide comments</string>
     <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
+    <string name="show_meta_info_title">Show meta info</string>
+    <string name="show_meta_info_summary">Turn off to hide meta info boxes with additional information about the stream creator, stream content or a search request.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
@@ -195,6 +197,9 @@
     <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
     <string name="app_update_notification_channel_name">App Update Notification</string>
     <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
+    <string name="hash_channel_id" translatable="false">newpipeHash</string>
+    <string name="hash_channel_name">Video Hash Notification</string>
+    <string name="hash_channel_description">Notifications for video hashing progress</string>
     <string name="unknown_content">[Unknown]</string>
     <string name="toggle_orientation">Toggle Orientation</string>
     <string name="switch_to_background">Switch to Background</string>
@@ -347,6 +352,7 @@
     <string name="msg_url_malform">Malformed URL or Internet not available</string>
     <string name="msg_running">NewPipe Downloading</string>
     <string name="msg_running_detail">Tap for details</string>
+    <string name="msg_calculating_hash">Calculating hash</string>
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
     <string name="no_available_dir">Please define a download folder later in settings</string>
@@ -387,14 +393,14 @@
     <string name="view_on_github">View on GitHub</string>
     <string name="donation_title">Donate</string>
     <string name="donation_encouragement">NewPipe is developed by volunteers spending their free time bringing you the best user experience. Give back to help developers make NewPipe even better while they enjoy a cup of coffee.</string>
-    <string name="donation_url" translatable="false">https://newpipe.schabi.org/donate</string>
+    <string name="donation_url" translatable="false">https://newpipe.net/donate</string>
     <string name="give_back">Give back</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
-    <string name="website_url" translatable="false">https://newpipe.schabi.org/</string>
+    <string name="website_url" translatable="false">https://newpipe.net/</string>
     <string name="privacy_policy_title">NewPipe\'s Privacy Policy</string>
     <string name="privacy_policy_encouragement">The NewPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nNewPipe\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
-    <string name="privacy_policy_url" translatable="false">https://newpipe.schabi.org/legal/privacy/</string>
+    <string name="privacy_policy_url" translatable="false">https://newpipe.net/legal/privacy/</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">NewPipe\'s License</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
@@ -684,5 +690,5 @@
     <string name="video_detail_by">By %s</string>
     <string name="playlist_page_summary">Playlist page</string>
     <string name="show_thumbnail_title">Show thumbnail</string>
-    <string name="show_thumbnail_summary">Show thumbnail on lock screen as background and inside notifications</string>
+    <string name="show_thumbnail_summary">Use thumbnail for both lock screen background and notifications</string>
 </resources>

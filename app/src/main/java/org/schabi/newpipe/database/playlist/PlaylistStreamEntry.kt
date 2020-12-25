@@ -9,7 +9,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import kotlin.jvm.Throws
 
-class PlaylistStreamEntry(
+data class PlaylistStreamEntry(
     @Embedded
     val streamEntity: StreamEntity,
 

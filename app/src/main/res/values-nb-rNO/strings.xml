@@ -649,4 +649,7 @@
     <string name="notification_colorize_title">Fargelegg merknad</string>
     <string name="show_thumbnail_summary">Vis miniatyrbilde på låseskjerm som bakgrunn og i merknader</string>
     <string name="show_thumbnail_title">Vis miniatyrbilde</string>
+    <string name="msg_calculating_hash">Regner ut sjekksum</string>
+    <string name="hash_channel_description">Merknad for videosjekksummeringsframdrift</string>
+    <string name="hash_channel_name">Videosjekksumsmerknad</string>
 </resources>

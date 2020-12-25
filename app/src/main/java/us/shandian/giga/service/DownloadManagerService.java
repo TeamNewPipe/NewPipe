@@ -25,6 +25,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcelable;
 
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 import android.util.Log;
@@ -235,7 +236,7 @@ public class DownloadManagerService extends Service {
             Log.d(TAG, "Destroying");
         }
 
-        stopForeground(true);
+        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
 
         if (mNotificationManager != null && downloadDoneNotification != null) {
             downloadDoneNotification.setDeleteIntent(null);// prevent NewPipe running when is killed, cleared from recent, etc
@@ -363,7 +364,7 @@ public class DownloadManagerService extends Service {
         if (state) {
             startForeground(FOREGROUND_NOTIFICATION_ID, mNotification);
         } else {
-            stopForeground(true);
+            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
         }
 
         manageLock(state);

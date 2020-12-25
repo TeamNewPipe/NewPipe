@@ -2,12 +2,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/video_item_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/windowBackground">
 
     <LinearLayout
-        android:id="@+id/video_item_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"
@@ -505,6 +505,23 @@
                                 app:drawableTopCompat="?attr/ic_file_download" />
 
                         </LinearLayout>
+
+                        <View
+                            android:id="@+id/detail_meta_info_separator"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:background="?attr/separator_color" />
+
+                        <TextView
+                            android:id="@+id/detail_meta_info_text_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="12dp"
+                            android:textSize="@dimen/video_item_detail_description_text_size"
+                            tools:text="Stream meta info with link" />
 
                         <View
                             android:layout_width="match_parent"

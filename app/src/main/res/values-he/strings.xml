@@ -667,6 +667,9 @@
     <string name="show_age_restricted_content_summary">הצגת תוכן שעלול להיות בלתי הולם לילדים עקב מגבלת גיל (כגון 18+)</string>
     <string name="notification_colorize_summary">לאפשר ל־Android להתאים את צבע ההתראה בהתאם לצבע העיקרי של התמונה הממוזערת (לא זמין בכל המכשירים)</string>
     <string name="notification_colorize_title">צביעת ההתראה</string>
-    <string name="show_thumbnail_summary">הצגת תמונה ממוזערת על מסך הנעילה כרקע ובתוך ההתראות</string>
+    <string name="show_thumbnail_summary">להשתמש בתמונה ממוזערת גם כרקע מסך הנעילה וגם בהתראות</string>
     <string name="show_thumbnail_title">הצגת תמונה ממוזערת</string>
+    <string name="msg_calculating_hash">הגיבוב</string>
+    <string name="hash_channel_description">התראות על תהליכי גיבוב</string>
+    <string name="hash_channel_name">התראת גיבוב סרטון</string>
 </resources>

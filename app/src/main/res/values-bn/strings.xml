@@ -437,7 +437,7 @@
     <string name="import_file_title">ফাইল আমদানি করো</string>
     <string name="export_to">রপ্তানি করো</string>
     <string name="import_from">আমদানি করো</string>
-    <string name="bookmark_playlist">বুকমার্ক প্লেলিস্ট</string>
+    <string name="bookmark_playlist">প্লেলিস্ট বুকমার্ক করো</string>
     <string name="preferred_player_fetcher_notification_title">তথ্য আনা হচ্ছে…</string>
     <string name="popup_player">পপআপ প্লেয়ার</string>
     <string name="background_player">পটভূমি প্লেয়ার</string>
@@ -476,4 +476,17 @@
     <string name="systems_language">সিস্টেম ডিফল্ট</string>
     <string name="downloads_storage_use_saf_title">সাফ ব্যবহার করো</string>
     <string name="notification_colorize_title">বিজ্ঞপ্তি রঙিন করো</string>
+    <plurals name="days">
+        <item quantity="one">%d দিন</item>
+        <item quantity="other">%d দিন</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d ঘন্টা</item>
+        <item quantity="other">%d ঘন্টা</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d মিনিট</item>
+        <item quantity="other">%d মিনিট</item>
+    </plurals>
+    <string name="max_retry_msg">সর্বোচ্চ চেয্টা</string>
 </resources>

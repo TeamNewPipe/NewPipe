@@ -197,6 +197,7 @@
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
     <string name="show_next_video_key" translatable="false">show_next_video</string>
     <string name="show_comments_key" translatable="false">show_comments</string>
+    <string name="show_meta_info_key" translatable="false">show_meta_info</string>
     <string name="stream_info_selected_tab_key" translatable="false">stream_info_selected_tab</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
     <string name="content_language_key" translatable="false">content_language</string>
@@ -1066,6 +1067,7 @@
         <item>sc</item>
         <item>sk</item>
         <item>sl</item>
+        <item>so</item>
         <item>sq</item>
         <item>sr</item>
         <item>sv</item>
@@ -1143,6 +1145,7 @@
         <item>sardu</item>
         <item>Slovenčina</item>
         <item>Slovenščina</item>
+        <item>Af Soomaali</item>
         <item>Shqip</item>
         <item>Српски</item>
         <item>Svenska</item>

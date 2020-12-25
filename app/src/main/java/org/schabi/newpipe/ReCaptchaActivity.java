@@ -8,20 +8,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.CookieManager;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 import androidx.preference.PreferenceManager;
+import androidx.webkit.WebViewClientCompat;
 
+import org.schabi.newpipe.databinding.ActivityRecaptchaBinding;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.UnsupportedEncodingException;
@@ -53,46 +51,37 @@ public class ReCaptchaActivity extends AppCompatActivity {
     public static final String YT_URL = "https://www.youtube.com";
     public static final String RECAPTCHA_COOKIES_KEY = "recaptcha_cookies";
 
-    private WebView webView;
+    public static String sanitizeRecaptchaUrl(@Nullable final String url) {
+        if (url == null || url.trim().isEmpty()) {
+            return YT_URL; // YouTube is the most likely service to have thrown a recaptcha
+        } else {
+            // remove "pbj=1" parameter from YouYube urls, as it makes the page JSON and not HTML
+            return url.replace("&pbj=1", "").replace("pbj=1&", "").replace("?pbj=1", "");
+        }
+    }
+
+    private ActivityRecaptchaBinding recaptchaBinding;
     private String foundCookies = "";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recaptcha);
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        String url = getIntent().getStringExtra(RECAPTCHA_URL_EXTRA);
-        if (url == null || url.isEmpty()) {
-            url = YT_URL;
-        }
+        recaptchaBinding = ActivityRecaptchaBinding.inflate(getLayoutInflater());
+        setContentView(recaptchaBinding.getRoot());
+        setSupportActionBar(recaptchaBinding.toolbar);
 
+        final String url = sanitizeRecaptchaUrl(getIntent().getStringExtra(RECAPTCHA_URL_EXTRA));
         // set return to Cancel by default
         setResult(RESULT_CANCELED);
 
-
-        webView = findViewById(R.id.reCaptchaWebView);
-
         // enable Javascript
-        final WebSettings webSettings = webView.getSettings();
+        final WebSettings webSettings = recaptchaBinding.reCaptchaWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setUserAgentString(DownloaderImpl.USER_AGENT);
 
-        webView.setWebViewClient(new WebViewClient() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public boolean shouldOverrideUrlLoading(final WebView view,
-                                                    final WebResourceRequest request) {
-                final String url = request.getUrl().toString();
-                if (MainActivity.DEBUG) {
-                    Log.d(TAG, "shouldOverrideUrlLoading: request.url=" + url);
-                }
-
-                handleCookiesFromUrl(url);
-                return false;
-            }
-
+        recaptchaBinding.reCaptchaWebView.setWebViewClient(new WebViewClientCompat() {
             @Override
             public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
                 if (MainActivity.DEBUG) {
@@ -111,17 +100,16 @@ public class ReCaptchaActivity extends AppCompatActivity {
         });
 
         // cleaning cache, history and cookies from webView
-        webView.clearCache(true);
-        webView.clearHistory();
-        final android.webkit.CookieManager cookieManager = CookieManager.getInstance();
+        recaptchaBinding.reCaptchaWebView.clearCache(true);
+        recaptchaBinding.reCaptchaWebView.clearHistory();
+        final CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cookieManager.removeAllCookies(aBoolean -> {
-            });
+            cookieManager.removeAllCookies(value -> { });
         } else {
             cookieManager.removeAllCookie();
         }
 
-        webView.loadUrl(url);
+        recaptchaBinding.reCaptchaWebView.loadUrl(url);
     }
 
     @Override
@@ -145,18 +133,16 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        final int id = item.getItemId();
-        switch (id) {
-            case R.id.menu_item_done:
-                saveCookiesAndFinish();
-                return true;
-            default:
-                return false;
+        if (item.getItemId() == R.id.menu_item_done) {
+            saveCookiesAndFinish();
+            return true;
         }
+        return false;
     }
 
     private void saveCookiesAndFinish() {
-        handleCookiesFromUrl(webView.getUrl()); // try to get cookies of unclosed page
+        // try to get cookies of unclosed page
+        handleCookiesFromUrl(recaptchaBinding.reCaptchaWebView.getUrl());
         if (MainActivity.DEBUG) {
             Log.d(TAG, "saveCookiesAndFinish: foundCookies=" + foundCookies);
         }

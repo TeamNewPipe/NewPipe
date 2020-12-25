@@ -1,7 +1,7 @@
 package us.shandian.giga.ui.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,6 +26,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DiffUtil;
@@ -91,6 +93,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private static final String DEFAULT_MIME_TYPE = "*/*";
     private static final String UNDEFINED_ETA = "--:--";
 
+    private static final int HASH_NOTIFICATION_ID = 123790;
 
     static {
         ALGORITHMS.put(R.id.md5, "MD5");
@@ -678,28 +681,28 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 return true;
             case R.id.md5:
             case R.id.sha1:
-                ProgressDialog progressDialog = null;
-                if (mContext != null) {
-                    // Create dialog
-                    progressDialog = new ProgressDialog(mContext);
-                    progressDialog.setCancelable(false);
-                    progressDialog.setMessage(mContext.getString(R.string.msg_wait));
-                    progressDialog.show();
-                }
-                final ProgressDialog finalProgressDialog = progressDialog;
+                final NotificationManager notificationManager
+                        = ContextCompat.getSystemService(mContext, NotificationManager.class);
+                final NotificationCompat.Builder progressNotificationBuilder
+                        = new NotificationCompat.Builder(mContext,
+                        mContext.getString(R.string.hash_channel_id))
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                        .setContentTitle(mContext.getString(R.string.msg_calculating_hash))
+                        .setContentText(mContext.getString(R.string.msg_wait))
+                        .setProgress(0, 0, true)
+                        .setOngoing(true);
+
+                notificationManager.notify(HASH_NOTIFICATION_ID, progressNotificationBuilder
+                        .build());
                 final StoredFileHelper storage = h.item.mission.storage;
                 compositeDisposable.add(
                         Observable.fromCallable(() -> Utility.checksum(storage, ALGORITHMS.get(id)))
                                 .subscribeOn(Schedulers.computation())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(result -> {
-                                    if (finalProgressDialog != null) {
-                                        Utility.copyToClipboard(finalProgressDialog.getContext(),
-                                                result);
-                                        if (mContext != null) {
-                                            finalProgressDialog.dismiss();
-                                        }
-                                    }
+                                    Utility.copyToClipboard(mContext, result);
+                                    notificationManager.cancel(HASH_NOTIFICATION_ID);
                                 })
                 );
                 return true;

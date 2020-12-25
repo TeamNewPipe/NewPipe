@@ -48,7 +48,7 @@ public final class CheckForNewAppVersion {
 
     private static final String GITHUB_APK_SHA1
             = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
-    private static final String NEWPIPE_API_URL = "https://newpipe.schabi.org/api/data.json";
+    private static final String NEWPIPE_API_URL = "https://newpipe.net/api/data.json";
 
     /**
      * Method to get the APK's SHA1 key. See https://stackoverflow.com/questions/9293019/#22506133.

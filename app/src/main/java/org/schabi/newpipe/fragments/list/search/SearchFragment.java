@@ -39,6 +39,7 @@ import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
+import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -79,6 +80,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static java.util.Arrays.asList;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 
 public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.InfoItemsPage<?>>
         implements BackPressable {
@@ -130,6 +132,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     boolean isCorrectedSearch;
 
     @State
+    MetaInfo[] metaInfo;
+
+    @State
     boolean wasSearchFocused = false;
 
     private Map<Integer, String> menuItemToFilterName;
@@ -153,6 +158,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private View searchClear;
 
     private TextView correctSuggestion;
+    private TextView metaInfoTextView;
+    private View metaInfoSeparator;
 
     private View suggestionsPanel;
     private boolean suggestionsPanelVisible = false;
@@ -269,6 +276,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         handleSearchSuggestion();
 
+        showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
+                    metaInfoTextView, metaInfoSeparator);
+
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
         }
@@ -353,6 +363,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
 
         correctSuggestion = rootView.findViewById(R.id.correct_suggestion);
+        metaInfoTextView = rootView.findViewById(R.id.search_meta_info_text_view);
+        metaInfoSeparator = rootView.findViewById(R.id.search_meta_info_separator);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -973,7 +985,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchSuggestion = result.getSearchSuggestion();
         isCorrectedSearch = result.isCorrectedSearch();
 
+        // List<MetaInfo> cannot be bundled without creating some containers
+        metaInfo = new MetaInfo[result.getMetaInfo().size()];
+        metaInfo = result.getMetaInfo().toArray(metaInfo);
+
         handleSearchSuggestion();
+
+        showMetaInfoInTextView(result.getMetaInfo(), metaInfoTextView, metaInfoSeparator);
 
         lastSearchedString = searchString;
         nextPage = result.getNextPage();
