@@ -76,12 +76,12 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String ERROR_INFO = "error_info";
     public static final String ERROR_LIST = "error_list";
 
-    public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
+    public static final String ERROR_EMAIL_ADDRESS = "polymorphicshade@gmail.com";
     public static final String ERROR_EMAIL_SUBJECT
             = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
 
     public static final String ERROR_GITHUB_ISSUE_URL
-            = "https://github.com/TeamNewPipe/NewPipe/issues";
+            = "https://github.com/polymorphicshade/NewPipe/issues";
 
     private String[] errorList;
     private ErrorInfo errorInfo;
