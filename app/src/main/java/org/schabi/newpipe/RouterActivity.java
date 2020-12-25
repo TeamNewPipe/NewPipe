@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -26,10 +25,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.ServiceCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
+import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
+import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -267,9 +269,8 @@ public class RouterActivity extends AppCompatActivity {
         final Context themeWrapperContext = getThemeWrapperContext();
 
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
-        final LinearLayout rootLayout = (LinearLayout) inflater.inflate(
-                R.layout.single_choice_dialog_view, null, false);
-        final RadioGroup radioGroup = rootLayout.findViewById(android.R.id.list);
+        final RadioGroup radioGroup = SingleChoiceDialogViewBinding.inflate(getLayoutInflater())
+                .list;
 
         final DialogInterface.OnClickListener dialogButtonsClickListener = (dialog, which) -> {
             final int indexOfChild = radioGroup.indexOfChild(
@@ -322,8 +323,7 @@ public class RouterActivity extends AppCompatActivity {
 
         int id = 12345;
         for (final AdapterChoiceItem item : choices) {
-            final RadioButton radioButton
-                    = (RadioButton) inflater.inflate(R.layout.list_radio_icon_item, null);
+            final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater).getRoot();
             radioButton.setText(item.description);
             TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(radioButton,
                     AppCompatResources.getDrawable(getApplicationContext(), item.icon),
@@ -696,7 +696,7 @@ public class RouterActivity extends AppCompatActivity {
         @Override
         public void onDestroy() {
             super.onDestroy();
-            stopForeground(true);
+            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
             if (fetcher != null) {
                 fetcher.dispose();
             }

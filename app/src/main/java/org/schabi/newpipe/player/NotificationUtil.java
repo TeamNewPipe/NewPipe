@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.MainActivity;
@@ -188,7 +189,7 @@ public final class NotificationUtil {
     }
 
     void cancelNotificationAndStopForeground(final Service service) {
-        service.stopForeground(true);
+        ServiceCompat.stopForeground(service, ServiceCompat.STOP_FOREGROUND_REMOVE);
 
         if (notificationManager != null) {
             notificationManager.cancel(NOTIFICATION_ID);

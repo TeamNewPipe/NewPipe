@@ -242,8 +242,9 @@ public class App extends MultiDexApplication {
         String name = getString(R.string.notification_channel_name);
         String description = getString(R.string.notification_channel_description);
 
-        // Keep this below DEFAULT to avoid making noise on every notification update
-        final int importance = NotificationManager.IMPORTANCE_LOW;
+        // Keep this below DEFAULT to avoid making noise on every notification update for the main
+        // and update channels
+        int importance = NotificationManager.IMPORTANCE_LOW;
 
         final NotificationChannel mainChannel = new NotificationChannel(id, name, importance);
         mainChannel.setDescription(description);
@@ -255,9 +256,17 @@ public class App extends MultiDexApplication {
         final NotificationChannel appUpdateChannel = new NotificationChannel(id, name, importance);
         appUpdateChannel.setDescription(description);
 
+        id = getString(R.string.hash_channel_id);
+        name = getString(R.string.hash_channel_name);
+        description = getString(R.string.hash_channel_description);
+        importance = NotificationManager.IMPORTANCE_HIGH;
+
+        final NotificationChannel hashChannel = new NotificationChannel(id, name, importance);
+        hashChannel.setDescription(description);
+
         final NotificationManager notificationManager = getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannels(Arrays.asList(mainChannel,
-                appUpdateChannel));
+                appUpdateChannel, hashChannel));
     }
 
     protected boolean isDisposedRxExceptionsReported() {

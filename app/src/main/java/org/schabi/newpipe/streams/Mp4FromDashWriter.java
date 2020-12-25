@@ -483,7 +483,7 @@ public class Mp4FromDashWriter {
 
         // stsc_table_entry = [first_chunk, samples_per_chunk, sample_description_index]
         tables.stscBEntries = new int[tables.stsc * 3];
-        tables.stco = remainChunkOffset + 1; // total entrys in chunk offset box
+        tables.stco = remainChunkOffset + 1; // total entries in chunk offset box
 
         tables.stscBEntries[index++] = 1;
         tables.stscBEntries[index++] = firstCount;

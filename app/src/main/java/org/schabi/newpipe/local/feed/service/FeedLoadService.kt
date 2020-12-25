@@ -30,6 +30,7 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.ServiceCompat
 import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -147,7 +148,7 @@ class FeedLoadService : Service() {
 
     private fun stopService() {
         disposeAll()
-        stopForeground(true)
+        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
         notificationManager.cancel(NOTIFICATION_ID)
         stopSelf()
     }

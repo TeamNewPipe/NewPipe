@@ -227,20 +227,18 @@
                 <data android:host="invidio.us" />
                 <data android:host="dev.invidio.us" />
                 <data android:host="www.invidio.us" />
+                <data android:host="vid.encryptionin.space" />
                 <data android:host="invidious.snopyta.org" />
-                <data android:host="fi.invidious.snopyta.org" />
                 <data android:host="yewtu.be" />
-                <data android:host="invidious.ggc-project.de" />
-                <data android:host="yt.maisputain.ovh" />
-                <data android:host="invidious.13ad.de" />
-                <data android:host="invidious.toot.koeln" />
+                <data android:host="tube.connect.cafe" />
+                <data android:host="invidious.zapashcanon.fr" />
+                <data android:host="invidious.kavin.rocks" />
+                <data android:host="invidious.tube" />
+                <data android:host="invidious.site" />
+                <data android:host="invidious.xyz" />
+                <data android:host="vid.mint.lgbt" />
+                <data android:host="invidiou.site" />
                 <data android:host="invidious.fdn.fr" />
-                <data android:host="watch.nettohikari.com" />
-                <data android:host="invidious.snwmds.net" />
-                <data android:host="invidious.snwmds.org" />
-                <data android:host="invidious.snwmds.com" />
-                <data android:host="invidious.sunsetravens.com" />
-                <data android:host="invidious.gachirangers.com" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
@@ -268,7 +266,7 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
 
-            <!-- MediaCCC filter -->
+            <!-- media.ccc.de filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />

@@ -105,7 +105,7 @@
     <string name="msg_server_unsupported">Nicht unterstützter Server</string>
     <string name="could_not_load_image">Konnte Bild nicht laden</string>
     <string name="app_ui_crash">App/UI abgestürzt</string>
-    <string name="msg_threads">Threads</string>
+    <string name="msg_threads">Themen</string>
     <string name="msg_running">NewPipe lädt herunter</string>
     <string name="msg_running_detail">Für Details antippen</string>
     <string name="msg_url_malform">Ungültige URL oder Internet nicht verfügbar</string>
@@ -317,7 +317,7 @@
 \nMöchtest du fortfahren\?</string>
     <string name="download_thumbnail_title">Vorschaubilder laden</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bilder-Cache gelöscht</string>
-    <string name="metadata_cache_wipe_title">Zwischengespeicherte Metadaten löschen</string>
+    <string name="metadata_cache_wipe_title">Zwischengespeicherte (Metadaten) löschen</string>
     <string name="metadata_cache_wipe_summary">Alle zwischengespeicherten Website-Daten entfernen</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Debug</string>
@@ -636,7 +636,7 @@
     <string name="auto_queue_toggle">Automatische Warteschlange</string>
     <string name="clear_queue_confirmation_summary">Den Player zu wechseln könnte deine Warteschlange überschreiben</string>
     <string name="clear_queue_confirmation_title">Bestätige das Leeren der Warteschlange</string>
-    <string name="clear_queue_confirmation_description">Die aktive Wiedergabeliste wird ersetzt werden</string>
+    <string name="clear_queue_confirmation_description">Die aktive Player-Warteschlange wird ersetzt</string>
     <string name="enqueued">Eingereiht</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube bietet einen „Eingeschränkten Modus“, der potenzielle Inhalte für Erwachsene ausblendet</string>
     <string name="show_memory_leaks">Speicherlecks anzeigen</string>
@@ -644,9 +644,12 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA-Cookies wurden gelöscht</string>
     <string name="clear_cookie_title">reCAPTCHA-Cookies löschen</string>
     <string name="show_age_restricted_content_summary">Zeige altersbeschränkte Inhalte (bspw. 18+), welche möglicherweise unpassend für Kinder sein könnten</string>
-    <string name="enqueue_stream">Wiedergabe einreihen</string>
+    <string name="enqueue_stream">In Wiedergabe einreihen</string>
     <string name="notification_colorize_summary">Android kann die Farbe der Benachrichtigung entsprechend der Hauptfarbe in der Miniaturansicht anpassen (beachte, dass dies nicht auf allen Geräten verfügbar ist)</string>
     <string name="notification_colorize_title">Benachrichtigung farblich anpassen</string>
-    <string name="show_thumbnail_summary">Vorschaubild auf dem Sperrbildschirm als Hintergrund und innerhalb von Benachrichtigungen anzeigen</string>
+    <string name="show_thumbnail_summary">Vorschaubild für Sperrbildschirmhintergrund und Benachrichtigungen verwenden</string>
     <string name="show_thumbnail_title">Vorschaubild anzeigen</string>
+    <string name="msg_calculating_hash">Hash wird berechnet</string>
+    <string name="hash_channel_description">Benachrichtigungen für den Video-hashing Fortschritt</string>
+    <string name="hash_channel_name">Video Hash Benachrichtigung</string>
 </resources>

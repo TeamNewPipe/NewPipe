@@ -14,15 +14,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -34,6 +30,7 @@ import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.ActivityErrorBinding;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -87,7 +84,8 @@ public class ErrorActivity extends AppCompatActivity {
     private ErrorInfo errorInfo;
     private Class returnActivity;
     private String currentTimeStamp;
-    private EditText userCommentBox;
+
+    private ActivityErrorBinding activityErrorBinding;
 
     public static void reportUiError(final AppCompatActivity activity, final Throwable el) {
         reportError(activity, el, activity.getClass(), null, ErrorInfo.make(UserAction.UI_ERROR,
@@ -181,12 +179,13 @@ public class ErrorActivity extends AppCompatActivity {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
-        setContentView(R.layout.activity_error);
+
+        activityErrorBinding = ActivityErrorBinding.inflate(getLayoutInflater());
+        setContentView(activityErrorBinding.getRoot());
 
         final Intent intent = getIntent();
 
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(activityErrorBinding.toolbarLayout.toolbar);
 
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -194,15 +193,6 @@ public class ErrorActivity extends AppCompatActivity {
             actionBar.setTitle(R.string.error_report_title);
             actionBar.setDisplayShowTitleEnabled(true);
         }
-
-        final Button reportEmailButton = findViewById(R.id.errorReportEmailButton);
-        final Button copyButton = findViewById(R.id.errorReportCopyButton);
-        final Button reportGithubButton = findViewById(R.id.errorReportGitHubButton);
-
-        userCommentBox = findViewById(R.id.errorCommentBox);
-        final TextView errorView = findViewById(R.id.errorView);
-        final TextView infoView = findViewById(R.id.errorInfosView);
-        final TextView errorMessageView = findViewById(R.id.errorMessageView);
 
         final ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
         returnActivity = ac.getReturnActivity();
@@ -213,28 +203,27 @@ public class ErrorActivity extends AppCompatActivity {
         addGuruMeditation();
         currentTimeStamp = getCurrentTimeStamp();
 
-        reportEmailButton.setOnClickListener(v ->
+        activityErrorBinding.errorReportEmailButton.setOnClickListener(v ->
                 openPrivacyPolicyDialog(this, "EMAIL"));
 
-        copyButton.setOnClickListener(v -> {
+        activityErrorBinding.errorReportCopyButton.setOnClickListener(v -> {
             ShareUtils.copyToClipboard(this, buildMarkdown());
             Toast.makeText(this, R.string.msg_copied, Toast.LENGTH_SHORT).show();
         });
 
-        reportGithubButton.setOnClickListener(v ->
+        activityErrorBinding.errorReportGitHubButton.setOnClickListener(v ->
                 openPrivacyPolicyDialog(this, "GITHUB"));
-
 
         // normal bugreport
         buildInfo(errorInfo);
         if (errorInfo.getMessage() != 0) {
-            errorMessageView.setText(errorInfo.getMessage());
+            activityErrorBinding.errorMessageView.setText(errorInfo.getMessage());
         } else {
-            errorMessageView.setVisibility(View.GONE);
-            findViewById(R.id.messageWhatHappenedView).setVisibility(View.GONE);
+            activityErrorBinding.errorMessageView.setVisibility(View.GONE);
+            activityErrorBinding.messageWhatHappenedView.setVisibility(View.GONE);
         }
 
-        errorView.setText(formErrorText(errorList));
+        activityErrorBinding.errorView.setText(formErrorText(errorList));
 
         // print stack trace once again for debugging:
         for (final String e : errorList) {
@@ -339,11 +328,10 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private void buildInfo(final ErrorInfo info) {
-        final TextView infoLabelView = findViewById(R.id.errorInfoLabelsView);
-        final TextView infoView = findViewById(R.id.errorInfosView);
         String text = "";
 
-        infoLabelView.setText(getString(R.string.info_labels).replace("\\n", "\n"));
+        activityErrorBinding.errorInfoLabelsView.setText(getString(R.string.info_labels)
+                .replace("\\n", "\n"));
 
         text += getUserActionString(info.getUserAction()) + "\n"
                 + info.getRequest() + "\n"
@@ -356,7 +344,7 @@ public class ErrorActivity extends AppCompatActivity {
                 + BuildConfig.VERSION_NAME + "\n"
                 + getOsString();
 
-        infoView.setText(text);
+        activityErrorBinding.errorInfosView.setText(text);
     }
 
     private String buildJson() {
@@ -374,7 +362,8 @@ public class ErrorActivity extends AppCompatActivity {
                     .value("os", getOsString())
                     .value("time", currentTimeStamp)
                     .array("exceptions", Arrays.asList(errorList))
-                    .value("user_comment", userCommentBox.getText().toString())
+                    .value("user_comment", activityErrorBinding.errorCommentBox.getText()
+                            .toString())
                     .end()
                     .done();
         } catch (final Throwable e) {
@@ -389,7 +378,7 @@ public class ErrorActivity extends AppCompatActivity {
         try {
             final StringBuilder htmlErrorReport = new StringBuilder();
 
-            final String userComment = userCommentBox.getText().toString();
+            final String userComment = activityErrorBinding.errorCommentBox.getText().toString();
             if (!userComment.isEmpty()) {
                 htmlErrorReport.append(userComment).append("\n");
             }
@@ -473,10 +462,9 @@ public class ErrorActivity extends AppCompatActivity {
 
     private void addGuruMeditation() {
         //just an easter egg
-        final TextView sorryView = findViewById(R.id.errorSorryView);
-        String text = sorryView.getText().toString();
+        String text = activityErrorBinding.errorSorryView.getText().toString();
         text += "\n" + getString(R.string.guru_meditation);
-        sorryView.setText(text);
+        activityErrorBinding.errorSorryView.setText(text);
     }
 
     @Override
