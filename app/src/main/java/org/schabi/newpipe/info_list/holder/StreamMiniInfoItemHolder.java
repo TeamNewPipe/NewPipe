@@ -70,7 +70,8 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             } else {
                 itemProgressView.setVisibility(View.GONE);
             }
-        } else if (item.getStreamType() == StreamType.LIVE_STREAM) {
+        } else if (item.getStreamType() == StreamType.LIVE_STREAM
+                || item.getStreamType() == StreamType.AUDIO_LIVE_STREAM) {
             itemDurationView.setText(R.string.duration_live);
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.live_duration_background_color));

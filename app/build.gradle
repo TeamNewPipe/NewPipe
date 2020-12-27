@@ -179,7 +179,7 @@ dependencies {
 
     // NewPipe dependencies
     // You can use a local version by uncommenting a few lines in settings.gradle
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:674f2227f3a1ca11cbc9101a9d6211ad7babd42a'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:b4e191397117447364d137791ec4b1ca3672d75b'
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
 
     implementation "org.jsoup:jsoup:1.13.1"

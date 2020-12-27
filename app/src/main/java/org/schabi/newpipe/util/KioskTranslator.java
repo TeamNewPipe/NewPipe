@@ -46,6 +46,8 @@ public final class KioskTranslator {
                 return c.getString(R.string.conferences);
             case "recent":
                 return c.getString(R.string.recent);
+            case "live":
+                return c.getString(R.string.duration_live);
             default:
                 return kioskId;
         }
@@ -65,6 +67,8 @@ public final class KioskTranslator {
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_recent);
             case "Most liked":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_thumb_up);
+            case "live":
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_live_tv);
             default:
                 return 0;
         }
