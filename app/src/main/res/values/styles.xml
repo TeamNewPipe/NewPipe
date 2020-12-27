@@ -48,6 +48,7 @@
         <item name="ic_kiosk_local">@drawable/ic_home_black_24dp</item>
         <item name="ic_kiosk_recent">@drawable/ic_add_circle_outline_black_24dp</item>
         <item name="ic_channel">@drawable/ic_tv_black_24dp</item>
+        <item name="ic_live_tv">@drawable/ic_live_tv_black_24dp</item>
         <item name="ic_bookmark">@drawable/ic_bookmark_black_24dp</item>
         <item name="ic_playlist_add">@drawable/ic_playlist_add_black_24dp</item>
         <item name="ic_playlist_check">@drawable/ic_playlist_add_check_black_24dp</item>
@@ -156,6 +157,7 @@
         <item name="ic_kiosk_local">@drawable/ic_home_white_24dp</item>
         <item name="ic_kiosk_recent">@drawable/ic_add_circle_outline_white_24dp</item>
         <item name="ic_channel">@drawable/ic_tv_white_24dp</item>
+        <item name="ic_live_tv">@drawable/ic_live_tv_white_24dp</item>
         <item name="ic_bookmark">@drawable/ic_bookmark_white_24dp</item>
         <item name="ic_playlist_add">@drawable/ic_playlist_add_white_24dp</item>
         <item name="ic_playlist_check">@drawable/ic_playlist_add_check_white_24dp</item>
