@@ -711,6 +711,7 @@
     <string name="playlist_page_summary">Playlist page</string>
     <string name="show_thumbnail_title">Show thumbnail</string>
     <string name="show_thumbnail_summary">Use thumbnail for both lock screen background and notifications</string>
+    <string name="recent">Recent</string>
     <!-- SponsorBlock -->
     <string name="sponsor_block">SponsorBlock</string>
     <string name="sponsor_block_home_page_title">View Website</string>
