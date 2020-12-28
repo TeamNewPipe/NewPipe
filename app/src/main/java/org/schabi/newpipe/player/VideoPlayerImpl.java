@@ -1071,11 +1071,25 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void animatePlayButtons(final boolean show, final int duration) {
         animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
-        if (playQueue.getIndex() > 0 || !show) {
-            animateView(playPreviousButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+
+        boolean showQueueButtons = show;
+        if (playQueue == null) {
+            showQueueButtons = false;
         }
-        if (playQueue.getIndex() + 1 < playQueue.getStreams().size() || !show) {
-            animateView(playNextButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+
+        if (!showQueueButtons || playQueue.getIndex() > 0) {
+            animateView(
+                playPreviousButton,
+                AnimationUtils.Type.SCALE_AND_ALPHA,
+                showQueueButtons,
+                duration);
+        }
+        if (!showQueueButtons || playQueue.getIndex() + 1 < playQueue.getStreams().size()) {
+            animateView(
+                playNextButton,
+                AnimationUtils.Type.SCALE_AND_ALPHA,
+                showQueueButtons,
+                duration);
         }
 
     }
