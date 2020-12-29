@@ -574,24 +574,24 @@
 
                 </LinearLayout>
             </RelativeLayout>
-
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:paddingBottom="48dp"/>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                app:tabIconTint="?attr/colorAccent"
-                app:tabGravity="fill" />
-
-        </androidx.viewpager.widget.ViewPager>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            app:tabIconTint="?attr/colorAccent"
+            app:tabBackground="?attr/windowBackground"
+            app:tabGravity="fill"
+            app:elevation="16dp"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
