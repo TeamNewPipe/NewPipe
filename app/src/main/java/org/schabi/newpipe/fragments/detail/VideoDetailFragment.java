@@ -2048,6 +2048,10 @@ public final class VideoDetailFragment
             // Apply system brightness when the player is not in fullscreen
             restoreDefaultBrightness();
         } else {
+            // Do not restore if user has disabled brightness gesture
+            if (!PlayerHelper.isBrightnessGestureEnabled(activity)) {
+                return;
+            }
             // Restore already saved brightness level
             final float brightnessLevel = PlayerHelper.getScreenBrightness(activity);
             if (brightnessLevel == lp.screenBrightness) {
