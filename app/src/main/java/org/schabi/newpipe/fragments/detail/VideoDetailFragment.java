@@ -130,8 +130,6 @@ public final class VideoDetailFragment
         OnKeyDownListener {
     public static final String KEY_SWITCHING_PLAYERS = "switching_players";
 
-    private static final int RELATED_STREAMS_UPDATE_FLAG = 0x1;
-    private static final int COMMENTS_UPDATE_FLAG = 0x2;
     private static final float MAX_OVERLAY_ALPHA = 0.9f;
     private static final float MAX_PLAYER_HEIGHT = 0.7f;
 
@@ -151,12 +149,12 @@ public final class VideoDetailFragment
     private static final String DESCRIPTION_TAB_TAG = "DESCRIPTION TAB";
 
     // tabs
-    private boolean showRelatedStreams;
     private boolean showComments;
+    private boolean showRelatedStreams;
+    private boolean showDescription;
     private String selectedTabTag;
     @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
-
-    private int updateFlags = 0;
+    private boolean tabSettingsChanged = false;
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -275,17 +273,13 @@ public final class VideoDetailFragment
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getBoolean(getString(R.string.show_next_video_key), true);
-
-        showComments = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getBoolean(getString(R.string.show_comments_key), true);
-
-        selectedTabTag = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG);
-
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .registerOnSharedPreferenceChangeListener(this);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        showComments = prefs.getBoolean(getString(R.string.show_comments_key), true);
+        showRelatedStreams = prefs.getBoolean(getString(R.string.show_next_video_key), true);
+        showDescription = prefs.getBoolean(getString(R.string.show_description_key), true);
+        selectedTabTag = prefs.getString(
+                getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG);
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
         setupBroadcastReceiver();
 
@@ -330,17 +324,12 @@ public final class VideoDetailFragment
 
         setupBrightness();
 
-        if (updateFlags != 0) {
-            if (!isLoading.get() && currentInfo != null) {
-                if ((updateFlags & RELATED_STREAMS_UPDATE_FLAG) != 0) {
-                    startLoading(false);
-                }
-                if ((updateFlags & COMMENTS_UPDATE_FLAG) != 0) {
-                    startLoading(false);
-                }
+        if (tabSettingsChanged) {
+            tabSettingsChanged = false;
+            initTabs();
+            if (currentInfo != null) {
+                updateTabs(currentInfo);
             }
-
-            updateFlags = 0;
         }
 
         // Check if it was loading when the fragment was stopped/paused
@@ -415,12 +404,15 @@ public final class VideoDetailFragment
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String key) {
-        if (key.equals(getString(R.string.show_next_video_key))) {
-            showRelatedStreams = sharedPreferences.getBoolean(key, true);
-            updateFlags |= RELATED_STREAMS_UPDATE_FLAG;
-        } else if (key.equals(getString(R.string.show_comments_key))) {
+        if (key.equals(getString(R.string.show_comments_key))) {
             showComments = sharedPreferences.getBoolean(key, true);
-            updateFlags |= COMMENTS_UPDATE_FLAG;
+            tabSettingsChanged = true;
+        } else if (key.equals(getString(R.string.show_next_video_key))) {
+            showRelatedStreams = sharedPreferences.getBoolean(key, true);
+            tabSettingsChanged = true;
+        } else if (key.equals(getString(R.string.show_description_key))) {
+            showComments = sharedPreferences.getBoolean(key, true);
+            tabSettingsChanged = true;
         }
     }
 
@@ -926,9 +918,11 @@ public final class VideoDetailFragment
             tabIcons.add(R.drawable.ic_art_track_white_24dp);
         }
 
-        // temp empty fragment. will be updated in handleResult
-        pageAdapter.addFragment(new Fragment(), DESCRIPTION_TAB_TAG);
-        tabIcons.add(R.drawable.ic_description_white_24dp);
+        if (showDescription) {
+            // temp empty fragment. will be updated in handleResult
+            pageAdapter.addFragment(new Fragment(), DESCRIPTION_TAB_TAG);
+            tabIcons.add(R.drawable.ic_description_white_24dp);
+        }
         pageAdapter.notifyDataSetUpdate();
 
         if (pageAdapter.getCount() < 2) {
@@ -972,8 +966,11 @@ public final class VideoDetailFragment
             }
         }
 
-        pageAdapter.updateItem(DESCRIPTION_TAB_TAG,
-                new DescriptionFragment(info));
+        if (showDescription) {
+            pageAdapter.updateItem(DESCRIPTION_TAB_TAG,
+                    new DescriptionFragment(info));
+        }
+
         pageAdapter.notifyDataSetUpdate();
         updateTabIcons();
     }
