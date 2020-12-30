@@ -360,11 +360,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                     StreamDialogEntry.share
             ));
         }
-        final boolean enableKodiEntry = KoreUtil.isServiceSupportedByKore(item.getServiceId())
-                && PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
-        if (enableKodiEntry) {
-            entries.add(StreamDialogEntry.play_on_kodi);
+        if (KoreUtil.shouldShowPlayWithKodi(context, item)) {
+            entries.add(StreamDialogEntry.play_with_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 

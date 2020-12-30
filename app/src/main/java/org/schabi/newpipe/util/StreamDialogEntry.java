@@ -71,7 +71,7 @@ public enum StreamDialogEntry {
         }
     }),
 
-    play_on_kodi(R.string.play_with_kodi_title, (fragment, item) -> {
+    play_with_kodi(R.string.play_with_kodi_title, (fragment, item) -> {
         final Uri videoUrl = Uri.parse(item.getUrl());
         try {
             NavigationHelper.playWithKore(fragment.getContext(), videoUrl);

@@ -20,7 +20,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -783,11 +782,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.share
             ));
         }
-        final boolean enableKodiEntry = KoreUtil.isServiceSupportedByKore(infoItem.getServiceId())
-                && PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
-        if (enableKodiEntry) {
-            entries.add(StreamDialogEntry.play_on_kodi);
+        if (KoreUtil.shouldShowPlayWithKodi(context, infoItem)) {
+            entries.add(StreamDialogEntry.play_with_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 

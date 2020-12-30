@@ -17,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.preference.PreferenceManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -176,11 +175,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     StreamDialogEntry.share
             ));
         }
-        final boolean enableKodiEntry = KoreUtil.isServiceSupportedByKore(item.getServiceId())
-                && PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
-        if (enableKodiEntry) {
-            entries.add(StreamDialogEntry.play_on_kodi);
+        if (KoreUtil.shouldShowPlayWithKodi(context, item)) {
+            entries.add(StreamDialogEntry.play_with_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 
