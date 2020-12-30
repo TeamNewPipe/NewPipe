@@ -31,6 +31,7 @@ import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
@@ -358,6 +359,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
+        }
+        final boolean enableKodiEntry = KoreUtil.isServiceSupportedByKore(item.getServiceId())
+                && PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+        if (enableKodiEntry) {
+            entries.add(StreamDialogEntry.play_on_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 

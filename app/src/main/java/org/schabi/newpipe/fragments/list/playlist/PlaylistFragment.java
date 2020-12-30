@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.preference.PreferenceManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -42,6 +43,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
@@ -173,6 +175,12 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
+        }
+        final boolean enableKodiEntry = KoreUtil.isServiceSupportedByKore(item.getServiceId())
+                && PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+        if (enableKodiEntry) {
+            entries.add(StreamDialogEntry.play_on_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 

@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
+import android.net.Uri;
 
 import androidx.fragment.app.Fragment;
 
@@ -67,6 +68,15 @@ public enum StreamDialogEntry {
                 () -> PlaylistCreationDialog.newInstance(d)
                         .show(fragment.getFragmentManager(), "StreamDialogEntry@create_playlist")
             );
+        }
+    }),
+
+    play_on_kodi(R.string.play_with_kodi_title, (fragment, item) -> {
+        final Uri videoUrl = Uri.parse(item.getUrl());
+        try {
+            NavigationHelper.playWithKore(fragment.getContext(), videoUrl);
+        } catch (final Exception e) {
+            KoreUtil.showInstallKoreDialog(fragment.getActivity());
         }
     }),
 

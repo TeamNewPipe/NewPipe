@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +42,7 @@ import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -780,6 +782,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
+        }
+        final boolean enableKodiEntry = KoreUtil.isServiceSupportedByKore(infoItem.getServiceId())
+                && PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+        if (enableKodiEntry) {
+            entries.add(StreamDialogEntry.play_on_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 

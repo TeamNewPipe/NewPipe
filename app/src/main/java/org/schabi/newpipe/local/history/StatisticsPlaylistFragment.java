@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -37,6 +38,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StreamDialogEntry;
@@ -412,6 +414,12 @@ public class StatisticsPlaylistFragment
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
+        }
+        final boolean enableKodiEntry = KoreUtil.isServiceSupportedByKore(infoItem.getServiceId())
+                && PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+        if (enableKodiEntry) {
+            entries.add(StreamDialogEntry.play_on_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 
