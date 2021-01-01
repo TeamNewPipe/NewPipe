@@ -146,15 +146,15 @@ public final class VideoDetailFragment
     private static final float MAX_PLAYER_HEIGHT = 0.7f;
 
     public static final String ACTION_SHOW_MAIN_PLAYER =
-            "org.schabi.newpipe.VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER";
+            App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER";
     public static final String ACTION_HIDE_MAIN_PLAYER =
-            "org.schabi.newpipe.VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
+            App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
     public static final String ACTION_PLAYER_STARTED =
-            "org.schabi.newpipe.VideoDetailFragment.ACTION_PLAYER_STARTED";
+            App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_PLAYER_STARTED";
     public static final String ACTION_VIDEO_FRAGMENT_RESUMED =
-            "org.schabi.newpipe.VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED";
+            App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED";
     public static final String ACTION_VIDEO_FRAGMENT_STOPPED =
-            "org.schabi.newpipe.VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED";
+            App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED";
 
     private static final String COMMENTS_TAB_TAG = "COMMENTS";
     private static final String RELATED_TAB_TAG = "NEXT VIDEO";
@@ -498,10 +498,10 @@ public final class VideoDetailFragment
 
                     final PlaylistAppendDialog d = PlaylistAppendDialog.fromStreamInfo(currentInfo);
                     disposables.add(
-                        PlaylistAppendDialog.onPlaylistFound(getContext(),
-                            () -> d.show(getFM(), TAG),
-                            () -> PlaylistCreationDialog.newInstance(d).show(getFM(), TAG)
-                        )
+                            PlaylistAppendDialog.onPlaylistFound(getContext(),
+                                    () -> d.show(getFM(), TAG),
+                                    () -> PlaylistCreationDialog.newInstance(d).show(getFM(), TAG)
+                            )
                     );
                 }
                 break;
