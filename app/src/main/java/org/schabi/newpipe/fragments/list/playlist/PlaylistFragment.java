@@ -175,7 +175,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     StreamDialogEntry.share
             ));
         }
-        if (KoreUtil.shouldShowPlayWithKodi(context, item)) {
+        if (KoreUtil.shouldShowPlayWithKodi(context, item.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);

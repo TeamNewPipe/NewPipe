@@ -932,9 +932,7 @@ public class VideoPlayerImpl extends VideoPlayer
                 service.getString(R.string.show_play_with_kodi_key), false);
         // show kodi button if it supports the current service and it is enabled in settings
         final boolean showKodiButton = playQueue != null && playQueue.getItem() != null
-                && KoreUtil.isServiceSupportedByKore(playQueue.getItem().getServiceId())
-                && PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
+                && KoreUtil.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId());
         playWithKodi.setVisibility(videoPlayerSelected() && kodiEnabled && showKodiButton
                 ? View.VISIBLE : View.GONE);
     }

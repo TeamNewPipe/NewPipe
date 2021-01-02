@@ -414,7 +414,7 @@ public class StatisticsPlaylistFragment
                     StreamDialogEntry.share
             ));
         }
-        if (KoreUtil.shouldShowPlayWithKodi(context, infoItem)) {
+        if (KoreUtil.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);

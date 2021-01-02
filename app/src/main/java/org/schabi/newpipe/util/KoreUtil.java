@@ -1,6 +1,5 @@
 package org.schabi.newpipe.util;
 
-
 import android.content.Context;
 
 import androidx.appcompat.app.AlertDialog;
@@ -8,7 +7,6 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
 public final class KoreUtil {
     private KoreUtil() { }
@@ -18,8 +16,8 @@ public final class KoreUtil {
                 || serviceId == ServiceList.SoundCloud.getServiceId());
     }
 
-    public static boolean shouldShowPlayWithKodi(final Context context, final StreamInfoItem item) {
-        return isServiceSupportedByKore(item.getServiceId())
+    public static boolean shouldShowPlayWithKodi(final Context context, final int serviceId) {
+        return isServiceSupportedByKore(serviceId)
                 && PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.show_play_with_kodi_key), false);
     }
