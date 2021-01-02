@@ -19,6 +19,7 @@ import org.schabi.newpipe.util.ShareUtils;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
@@ -35,12 +36,9 @@ public class LicenseFragment extends Fragment {
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public static LicenseFragment newInstance(final SoftwareComponent[] softwareComponents) {
-        if (softwareComponents == null) {
-            throw new NullPointerException("softwareComponents is null");
-        }
-        final LicenseFragment fragment = new LicenseFragment();
         final Bundle bundle = new Bundle();
-        bundle.putParcelableArray(ARG_COMPONENTS, softwareComponents);
+        bundle.putParcelableArray(ARG_COMPONENTS, Objects.requireNonNull(softwareComponents));
+        final LicenseFragment fragment = new LicenseFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
