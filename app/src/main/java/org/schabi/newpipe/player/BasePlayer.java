@@ -19,6 +19,12 @@
 
 package org.schabi.newpipe.player;
 
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -30,11 +36,9 @@ import android.media.AudioManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
-
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -53,7 +57,12 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.SerialDisposable;
+import java.io.IOException;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -74,20 +83,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.SerializedCache;
-
-import java.io.IOException;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.disposables.SerialDisposable;
-
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * Base for the players, joining the common properties.
@@ -342,37 +337,36 @@ public abstract class BasePlayer implements
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
-                && isPlaybackResumeEnabled()
-                && !samePlayQueue) {
-            final PlayQueueItem item = queue.getItem();
-            if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
-                stateLoader = recordManager.loadStreamState(item)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        // Do not place initPlayback() in doFinally() because
-                        // it restarts playback after destroy()
-                        //.doFinally()
-                        .subscribe(
-                                state -> {
-                                    queue.setRecovery(queue.getIndex(), state.getProgressTime());
-                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
-                                            playbackSkipSilence, playWhenReady, isMuted);
-                                },
-                                error -> {
-                                    if (DEBUG) {
-                                        error.printStackTrace();
-                                    }
-                                    // In case any error we can start playback without history
-                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
-                                            playbackSkipSilence, playWhenReady, isMuted);
-                                },
-                                () -> {
-                                    // Completed but not found in history
+            && isPlaybackResumeEnabled()
+            && !samePlayQueue
+            && !queue.isEmpty()
+            && queue.getItem().getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
+            stateLoader = recordManager.loadStreamState(queue.getItem())
+                .observeOn(AndroidSchedulers.mainThread())
+                // Do not place initPlayback() in doFinally() because
+                // it restarts playback after destroy()
+                //.doFinally()
+                .subscribe(
+                    state -> {
+                        queue.setRecovery(queue.getIndex(), state.getProgressTime());
+                        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
+                            playbackSkipSilence, playWhenReady, isMuted);
+                    },
+                    error -> {
+                        if (DEBUG) {
+                            error.printStackTrace();
+                        }
+                        // In case any error we can start playback without history
+                        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
+                            playbackSkipSilence, playWhenReady, isMuted);
+                    },
+                    () -> {
+                        // Completed but not found in history
                                     initPlayback(queue, repeatMode, playbackSpeed, playbackPitch,
                                             playbackSkipSilence, playWhenReady, isMuted);
                                 }
                         );
                 databaseUpdateReactor.add(stateLoader);
-            }
         } else {
             // Good to go...
             // In a case of equal PlayQueues we can re-init old one but only when it is disposed

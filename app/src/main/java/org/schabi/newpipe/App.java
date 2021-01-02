@@ -67,8 +67,10 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 public class App extends MultiDexApplication {
     protected static final String TAG = App.class.toString();
     private static App app;
+    public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
 
-    @Nullable private Disposable disposable = null;
+    @Nullable
+    private Disposable disposable = null;
 
     @NonNull
     public static App getApp() {
