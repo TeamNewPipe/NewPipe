@@ -1,0 +1,19 @@
+name: Template action cron job
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  close-issues:
+    name: "Close issues that don't follow a template"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: mhmdanas/action-template@v0.2.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          type: close
+          days-until-close: 4

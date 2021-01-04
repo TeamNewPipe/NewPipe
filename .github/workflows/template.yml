@@ -1,0 +1,18 @@
+name: Template action
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  comment-on-issue:
+    name: "Comment on labeled issue"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: mhmdanas/action-template@v0.2.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          type: comment
+          days-until-close: 4
