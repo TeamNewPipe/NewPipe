@@ -505,6 +505,11 @@ public class VideoPlayerImpl extends VideoPlayer
         switch (keyCode) {
             default:
                 break;
+            case KeyEvent.KEYCODE_SPACE:
+                if (isFullscreen) {
+                    onPlayPause();
+                }
+                break;
             case KeyEvent.KEYCODE_BACK:
                 if (DeviceUtils.isTv(service) && isControlsVisible()) {
                     hideControls(0, 0);
