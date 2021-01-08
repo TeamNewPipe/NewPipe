@@ -1,8 +1,15 @@
 package org.schabi.newpipe.player.helper;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PixelFormat;
+import android.os.Build;
 import android.provider.Settings;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.accessibility.CaptioningManager;
 
 import androidx.annotation.IntDef;
@@ -11,11 +18,14 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player.RepeatMode;
 import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout.ResizeMode;
 import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.schabi.newpipe.R;
@@ -27,6 +37,8 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.utils.Utils;
+import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
@@ -41,13 +53,16 @@ import java.util.Formatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL;
-import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
-import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
+import static org.schabi.newpipe.player.Player.IDLE_WINDOW_FLAGS;
+import static org.schabi.newpipe.player.Player.PLAYER_TYPE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
@@ -69,6 +84,15 @@ public final class PlayerHelper {
         int AUTOPLAY_TYPE_ALWAYS = 0;
         int AUTOPLAY_TYPE_WIFI = 1;
         int AUTOPLAY_TYPE_NEVER = 2;
+    }
+
+    @Retention(SOURCE)
+    @IntDef({MINIMIZE_ON_EXIT_MODE_NONE, MINIMIZE_ON_EXIT_MODE_BACKGROUND,
+            MINIMIZE_ON_EXIT_MODE_POPUP})
+    public @interface MinimizeMode {
+        int MINIMIZE_ON_EXIT_MODE_NONE = 0;
+        int MINIMIZE_ON_EXIT_MODE_BACKGROUND = 1;
+        int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
     }
 
     private PlayerHelper() { }
@@ -121,14 +145,16 @@ public final class PlayerHelper {
 
     @NonNull
     public static String resizeTypeOf(@NonNull final Context context,
-                                      @AspectRatioFrameLayout.ResizeMode final int resizeMode) {
+                                      @ResizeMode final int resizeMode) {
         switch (resizeMode) {
-            case RESIZE_MODE_FIT:
+            case AspectRatioFrameLayout.RESIZE_MODE_FIT:
                 return context.getResources().getString(R.string.resize_fit);
-            case RESIZE_MODE_FILL:
+            case AspectRatioFrameLayout.RESIZE_MODE_FILL:
                 return context.getResources().getString(R.string.resize_fill);
-            case RESIZE_MODE_ZOOM:
+            case AspectRatioFrameLayout.RESIZE_MODE_ZOOM:
                 return context.getResources().getString(R.string.resize_zoom);
+            case AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT:
+            case AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH:
             default:
                 throw new IllegalArgumentException("Unrecognized resize mode: " + resizeMode);
         }
@@ -199,23 +225,23 @@ public final class PlayerHelper {
     ////////////////////////////////////////////////////////////////////////////
 
     public static boolean isResumeAfterAudioFocusGain(@NonNull final Context context) {
-        return isResumeAfterAudioFocusGain(context, false);
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.resume_on_audio_focus_gain_key), false);
     }
 
     public static boolean isVolumeGestureEnabled(@NonNull final Context context) {
-        return isVolumeGestureEnabled(context, true);
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.volume_gesture_control_key), true);
     }
 
     public static boolean isBrightnessGestureEnabled(@NonNull final Context context) {
-        return isBrightnessGestureEnabled(context, true);
-    }
-
-    public static boolean isRememberingPopupDimensions(@NonNull final Context context) {
-        return isRememberingPopupDimensions(context, true);
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.brightness_gesture_control_key), true);
     }
 
     public static boolean isAutoQueueEnabled(@NonNull final Context context) {
-        return isAutoQueueEnabled(context, false);
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.auto_queue_key), false);
     }
 
     public static boolean isClearingQueueConfirmationRequired(@NonNull final Context context) {
@@ -229,7 +255,8 @@ public final class PlayerHelper {
         final String popupAction = context.getString(R.string.minimize_on_exit_popup_key);
         final String backgroundAction = context.getString(R.string.minimize_on_exit_background_key);
 
-        final String action = getMinimizeOnExitAction(context, defaultAction);
+        final String action = getPreferences(context)
+                .getString(context.getString(R.string.minimize_on_exit_key), defaultAction);
         if (action.equals(popupAction)) {
             return MINIMIZE_ON_EXIT_MODE_POPUP;
         } else if (action.equals(backgroundAction)) {
@@ -239,9 +266,23 @@ public final class PlayerHelper {
         }
     }
 
+    public static boolean isMinimizeOnExitToPopup(@NonNull final Context context) {
+        return getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_POPUP;
+    }
+
+    public static boolean isMinimizeOnExitToBackground(@NonNull final Context context) {
+        return getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_BACKGROUND;
+    }
+
+    public static boolean isMinimizeOnExitDisabled(@NonNull final Context context) {
+        return getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_NONE;
+    }
+
     @AutoplayType
     public static int getAutoplayType(@NonNull final Context context) {
-        final String type = getAutoplayType(context, context.getString(R.string.autoplay_wifi_key));
+        final String type = getPreferences(context).getString(
+                context.getString(R.string.autoplay_key),
+                context.getString(R.string.autoplay_wifi_key));
         if (type.equals(context.getString(R.string.autoplay_always_key))) {
             return AUTOPLAY_TYPE_ALWAYS;
         } else if (type.equals(context.getString(R.string.autoplay_never_key))) {
@@ -350,14 +391,32 @@ public final class PlayerHelper {
         return captioningManager.getFontScale();
     }
 
+    /**
+     * @param context the Android context
+     * @return the screen brightness to use. A value less than 0 (the default) means to use the
+     *         preferred screen brightness
+     */
     public static float getScreenBrightness(@NonNull final Context context) {
-        //a value of less than 0, the default, means to use the preferred screen brightness
-        return getScreenBrightness(context, -1);
+        final SharedPreferences sp = getPreferences(context);
+        final long timestamp =
+                sp.getLong(context.getString(R.string.screen_brightness_timestamp_key), 0);
+        // Hypothesis: 4h covers a viewing block, e.g. evening.
+        // External lightning conditions will change in the next
+        // viewing block so we fall back to the default brightness
+        if ((System.currentTimeMillis() - timestamp) > TimeUnit.HOURS.toMillis(4)) {
+            return -1;
+        } else {
+            return sp.getFloat(context.getString(R.string.screen_brightness_key), -1);
+        }
     }
 
     public static void setScreenBrightness(@NonNull final Context context,
-                                           final float setScreenBrightness) {
-        setScreenBrightness(context, setScreenBrightness, System.currentTimeMillis());
+                                           final float screenBrightness) {
+        getPreferences(context).edit()
+                .putFloat(context.getString(R.string.screen_brightness_key), screenBrightness)
+                .putLong(context.getString(R.string.screen_brightness_timestamp_key),
+                        System.currentTimeMillis())
+                .apply();
     }
 
     public static boolean globalScreenOrientationLocked(final Context context) {
@@ -376,73 +435,9 @@ public final class PlayerHelper {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    private static boolean isResumeAfterAudioFocusGain(@NonNull final Context context,
-                                                       final boolean b) {
-        return getPreferences(context)
-                .getBoolean(context.getString(R.string.resume_on_audio_focus_gain_key), b);
-    }
-
-    private static boolean isVolumeGestureEnabled(@NonNull final Context context,
-                                                  final boolean b) {
-        return getPreferences(context)
-                .getBoolean(context.getString(R.string.volume_gesture_control_key), b);
-    }
-
-    private static boolean isBrightnessGestureEnabled(@NonNull final Context context,
-                                                      final boolean b) {
-        return getPreferences(context)
-                .getBoolean(context.getString(R.string.brightness_gesture_control_key), b);
-    }
-
-    private static boolean isRememberingPopupDimensions(@NonNull final Context context,
-                                                        final boolean b) {
-        return getPreferences(context)
-                .getBoolean(context.getString(R.string.popup_remember_size_pos_key), b);
-    }
-
     private static boolean isUsingInexactSeek(@NonNull final Context context) {
         return getPreferences(context)
                 .getBoolean(context.getString(R.string.use_inexact_seek_key), false);
-    }
-
-    private static boolean isAutoQueueEnabled(@NonNull final Context context, final boolean b) {
-        return getPreferences(context).getBoolean(context.getString(R.string.auto_queue_key), b);
-    }
-
-    private static void setScreenBrightness(@NonNull final Context context,
-                                            final float screenBrightness, final long timestamp) {
-        final SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putFloat(context.getString(R.string.screen_brightness_key), screenBrightness);
-        editor.putLong(context.getString(R.string.screen_brightness_timestamp_key), timestamp);
-        editor.apply();
-    }
-
-    private static float getScreenBrightness(@NonNull final Context context,
-                                             final float screenBrightness) {
-        final SharedPreferences sp = getPreferences(context);
-        final long timestamp = sp
-                .getLong(context.getString(R.string.screen_brightness_timestamp_key), 0);
-        // Hypothesis: 4h covers a viewing block, e.g. evening.
-        // External lightning conditions will change in the next
-        // viewing block so we fall back to the default brightness
-        if ((System.currentTimeMillis() - timestamp) > TimeUnit.HOURS.toMillis(4)) {
-            return screenBrightness;
-        } else {
-            return sp
-                    .getFloat(context.getString(R.string.screen_brightness_key), screenBrightness);
-        }
-    }
-
-    private static String getMinimizeOnExitAction(@NonNull final Context context,
-                                                  final String key) {
-        return getPreferences(context)
-                .getString(context.getString(R.string.minimize_on_exit_key), key);
-    }
-
-    private static String getAutoplayType(@NonNull final Context context,
-                                                  final String key) {
-        return getPreferences(context).getString(context.getString(R.string.autoplay_key),
-                key);
     }
 
     private static SinglePlayQueue getAutoQueuedSinglePlayQueue(
@@ -452,12 +447,168 @@ public final class PlayerHelper {
         return singlePlayQueue;
     }
 
-    @Retention(SOURCE)
-    @IntDef({MINIMIZE_ON_EXIT_MODE_NONE, MINIMIZE_ON_EXIT_MODE_BACKGROUND,
-            MINIMIZE_ON_EXIT_MODE_POPUP})
-    public @interface MinimizeMode {
-        int MINIMIZE_ON_EXIT_MODE_NONE = 0;
-        int MINIMIZE_ON_EXIT_MODE_BACKGROUND = 1;
-        int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Utils used by player
+    ////////////////////////////////////////////////////////////////////////////
+
+    public static MainPlayer.PlayerType retrievePlayerTypeFromIntent(final Intent intent) {
+        // If you want to open popup from the app just include Constants.POPUP_ONLY into an extra
+        return MainPlayer.PlayerType.values()[
+                intent.getIntExtra(PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal())];
+    }
+
+    public static boolean isPlaybackResumeEnabled(final Player player) {
+        return player.getPrefs().getBoolean(
+                player.getContext().getString(R.string.enable_watch_history_key), true)
+                && player.getPrefs().getBoolean(
+                player.getContext().getString(R.string.enable_playback_resume_key), true);
+    }
+
+    @RepeatMode
+    public static int nextRepeatMode(@RepeatMode final int repeatMode) {
+        switch (repeatMode) {
+            case REPEAT_MODE_OFF:
+                return REPEAT_MODE_ONE;
+            case REPEAT_MODE_ONE:
+                return REPEAT_MODE_ALL;
+            case REPEAT_MODE_ALL: default:
+                return REPEAT_MODE_OFF;
+        }
+    }
+
+    @ResizeMode
+    public static int retrieveResizeModeFromPrefs(final Player player) {
+        return player.getPrefs().getInt(player.getContext().getString(R.string.last_resize_mode),
+                AspectRatioFrameLayout.RESIZE_MODE_FIT);
+    }
+
+    @SuppressLint("SwitchIntDef") // only fit, fill and zoom are supported by NewPipe
+    @ResizeMode
+    public static int nextResizeModeAndSaveToPrefs(final Player player,
+                                                   @ResizeMode final int resizeMode) {
+        final int newResizeMode;
+        switch (resizeMode) {
+            case AspectRatioFrameLayout.RESIZE_MODE_FIT:
+                newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                break;
+            case AspectRatioFrameLayout.RESIZE_MODE_FILL:
+                newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                break;
+            case AspectRatioFrameLayout.RESIZE_MODE_ZOOM:
+            default:
+                newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                break;
+        }
+
+        player.getPrefs().edit().putInt(
+                player.getContext().getString(R.string.last_resize_mode), resizeMode).apply();
+        return newResizeMode;
+    }
+
+    public static PlaybackParameters retrievePlaybackParametersFromPrefs(final Player player) {
+        final float speed = player.getPrefs().getFloat(player.getContext().getString(
+                R.string.playback_speed_key), player.getPlaybackSpeed());
+        final float pitch = player.getPrefs().getFloat(player.getContext().getString(
+                R.string.playback_pitch_key), player.getPlaybackPitch());
+        final boolean skipSilence = player.getPrefs().getBoolean(player.getContext().getString(
+                R.string.playback_skip_silence_key), player.getPlaybackSkipSilence());
+        return new PlaybackParameters(speed, pitch, skipSilence);
+    }
+
+    public static void savePlaybackParametersToPrefs(final Player player,
+                                                     final float speed,
+                                                     final float pitch,
+                                                     final boolean skipSilence) {
+        player.getPrefs().edit()
+                .putFloat(player.getContext().getString(R.string.playback_speed_key), speed)
+                .putFloat(player.getContext().getString(R.string.playback_pitch_key), pitch)
+                .putBoolean(player.getContext().getString(R.string.playback_skip_silence_key),
+                        skipSilence)
+                .apply();
+    }
+
+    /**
+     * @param player {@code screenWidth} and {@code screenHeight} must have been initialized
+     * @return the popup starting layout params
+     */
+    @SuppressLint("RtlHardcoded")
+    public static WindowManager.LayoutParams retrievePopupLayoutParamsFromPrefs(
+            final Player player) {
+        final boolean popupRememberSizeAndPos = player.getPrefs().getBoolean(
+                player.getContext().getString(R.string.popup_remember_size_pos_key), true);
+        final float defaultSize =
+                player.getContext().getResources().getDimension(R.dimen.popup_default_width);
+        final float popupWidth = popupRememberSizeAndPos
+                ? player.getPrefs().getFloat(player.getContext().getString(
+                        R.string.popup_saved_width_key), defaultSize)
+                : defaultSize;
+        final float popupHeight = getMinimumVideoHeight(popupWidth);
+
+        final WindowManager.LayoutParams popupLayoutParams = new WindowManager.LayoutParams(
+                (int) popupWidth, (int) popupHeight,
+                popupLayoutParamType(),
+                IDLE_WINDOW_FLAGS,
+                PixelFormat.TRANSLUCENT);
+        popupLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
+        popupLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
+
+        final int centerX = (int) (player.getScreenWidth() / 2f - popupWidth / 2f);
+        final int centerY = (int) (player.getScreenHeight() / 2f - popupHeight / 2f);
+        popupLayoutParams.x = popupRememberSizeAndPos
+                ? player.getPrefs().getInt(player.getContext().getString(
+                        R.string.popup_saved_x_key), centerX) : centerX;
+        popupLayoutParams.y = popupRememberSizeAndPos
+                ? player.getPrefs().getInt(player.getContext().getString(
+                        R.string.popup_saved_y_key), centerY) : centerY;
+
+        return popupLayoutParams;
+    }
+
+    public static void savePopupPositionAndSizeToPrefs(final Player player) {
+        if (player.getPopupLayoutParams() != null) {
+            player.getPrefs().edit()
+                    .putFloat(player.getContext().getString(R.string.popup_saved_width_key),
+                            player.getPopupLayoutParams().width)
+                    .putInt(player.getContext().getString(R.string.popup_saved_x_key),
+                            player.getPopupLayoutParams().x)
+                    .putInt(player.getContext().getString(R.string.popup_saved_y_key),
+                            player.getPopupLayoutParams().y)
+                    .apply();
+        }
+    }
+
+    public static float getMinimumVideoHeight(final float width) {
+        return width / (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
+    }
+
+    @SuppressLint("RtlHardcoded")
+    public static WindowManager.LayoutParams buildCloseOverlayLayoutParams() {
+        final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
+
+        final WindowManager.LayoutParams closeOverlayLayoutParams = new WindowManager.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,
+                popupLayoutParamType(),
+                flags,
+                PixelFormat.TRANSLUCENT);
+
+        closeOverlayLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
+        closeOverlayLayoutParams.softInputMode =
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
+        return closeOverlayLayoutParams;
+    }
+
+    public static int popupLayoutParamType() {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.O
+                ? WindowManager.LayoutParams.TYPE_PHONE
+                : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+    }
+
+    public static int retrieveSeekDurationFromPreferences(final Player player) {
+        return Integer.parseInt(Objects.requireNonNull(player.getPrefs().getString(
+                player.getContext().getString(R.string.seek_duration_key),
+                player.getContext().getString(R.string.seek_duration_default_value))));
     }
 }

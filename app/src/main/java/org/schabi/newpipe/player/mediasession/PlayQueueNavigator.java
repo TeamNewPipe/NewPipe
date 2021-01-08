@@ -65,18 +65,18 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
 
     @Override
     public void onSkipToPrevious(final Player player, final ControlDispatcher controlDispatcher) {
-        callback.onSkipToPrevious();
+        callback.playPrevious();
     }
 
     @Override
     public void onSkipToQueueItem(final Player player, final ControlDispatcher controlDispatcher,
                                   final long id) {
-        callback.onSkipToIndex((int) id);
+        callback.playItemAtIndex((int) id);
     }
 
     @Override
     public void onSkipToNext(final Player player, final ControlDispatcher controlDispatcher) {
-        callback.onSkipToNext();
+        callback.playNext();
     }
 
     private void publishFloatingQueueWindow() {

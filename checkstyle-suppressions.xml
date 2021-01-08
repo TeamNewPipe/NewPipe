@@ -25,7 +25,7 @@
       lines="156,158"/>
 
   <suppress checks="FileLength"
-            files="VideoPlayerImpl.java"/>
+            files="Player.java"/>
 
   <suppress checks="FileLength"
             files="VideoDetailFragment.java"/>

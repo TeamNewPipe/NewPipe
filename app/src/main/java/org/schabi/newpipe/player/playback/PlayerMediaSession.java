@@ -5,33 +5,33 @@ import android.os.Bundle;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 
-import org.schabi.newpipe.player.BasePlayer;
+import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
-public class BasePlayerMediaSession implements MediaSessionCallback {
-    private final BasePlayer player;
+public class PlayerMediaSession implements MediaSessionCallback {
+    private final Player player;
 
-    public BasePlayerMediaSession(final BasePlayer player) {
+    public PlayerMediaSession(final Player player) {
         this.player = player;
     }
 
     @Override
-    public void onSkipToPrevious() {
-        player.onPlayPrevious();
+    public void playPrevious() {
+        player.playPrevious();
     }
 
     @Override
-    public void onSkipToNext() {
-        player.onPlayNext();
+    public void playNext() {
+        player.playNext();
     }
 
     @Override
-    public void onSkipToIndex(final int index) {
+    public void playItemAtIndex(final int index) {
         if (player.getPlayQueue() == null) {
             return;
         }
-        player.onSelected(player.getPlayQueue().getItem(index));
+        player.selectQueueItem(player.getPlayQueue().getItem(index));
     }
 
     @Override
@@ -52,11 +52,14 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
 
     @Override
     public MediaDescriptionCompat getQueueMetadata(final int index) {
-        if (player.getPlayQueue() == null || player.getPlayQueue().getItem(index) == null) {
+        if (player.getPlayQueue() == null) {
+            return null;
+        }
+        final PlayQueueItem item = player.getPlayQueue().getItem(index);
+        if (item == null) {
             return null;
         }
 
-        final PlayQueueItem item = player.getPlayQueue().getItem(index);
         final MediaDescriptionCompat.Builder descriptionBuilder
                 = new MediaDescriptionCompat.Builder()
                 .setMediaId(String.valueOf(index))
@@ -83,12 +86,12 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
     }
 
     @Override
-    public void onPlay() {
-        player.onPlay();
+    public void play() {
+        player.play();
     }
 
     @Override
-    public void onPause() {
-        player.onPause();
+    public void pause() {
+        player.pause();
     }
 }

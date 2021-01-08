@@ -26,15 +26,15 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
     @Override
     public void startPlayerListener() {
-        if (player instanceof VideoPlayerImpl) {
-            ((VideoPlayerImpl) player).setActivityListener(this);
+        if (player != null) {
+            player.setActivityListener(this);
         }
     }
 
     @Override
     public void stopPlayerListener() {
-        if (player instanceof VideoPlayerImpl) {
-            ((VideoPlayerImpl) player).removeActivityListener(this);
+        if (player != null) {
+            player.removeActivityListener(this);
         }
     }
 
@@ -45,13 +45,11 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
     @Override
     public void setupMenu(final Menu menu) {
-        if (player == null) {
-            return;
+        if (player != null) {
+            menu.findItem(R.id.action_switch_popup)
+                    .setVisible(!player.popupPlayerSelected());
+            menu.findItem(R.id.action_switch_background)
+                    .setVisible(!player.audioPlayerSelected());
         }
-
-        menu.findItem(R.id.action_switch_popup)
-                .setVisible(!((VideoPlayerImpl) player).popupPlayerSelected());
-        menu.findItem(R.id.action_switch_background)
-                .setVisible(!((VideoPlayerImpl) player).audioPlayerSelected());
     }
 }
