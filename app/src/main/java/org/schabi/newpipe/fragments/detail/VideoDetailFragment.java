@@ -523,7 +523,7 @@ public final class VideoDetailFragment
             NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
                     subChannelUrl, subChannelName);
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(getActivity(), null, "Opening channel fragment", e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
         }
     }
 
@@ -1596,8 +1596,7 @@ public final class VideoDetailFragment
 
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         } catch (final Exception e) {
-            ErrorActivity.reportError(activity, activity.getClass(),
-                    activity.findViewById(android.R.id.content),
+            ErrorActivity.reportErrorInSnackbar(activity,
                     new ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG, "Showing download dialog",
                             currentInfo));
         }

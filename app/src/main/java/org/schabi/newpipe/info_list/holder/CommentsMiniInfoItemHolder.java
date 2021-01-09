@@ -179,7 +179,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                     item.getUploaderUrl(),
                     item.getUploaderName());
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(activity, null, "Opening channel fragment", e);
+            ErrorActivity.reportUiErrorInSnackbar(activity, "Opening channel fragment", e);
         }
     }
 

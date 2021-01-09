@@ -257,8 +257,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         try {
             service = NewPipe.getService(serviceId);
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(getActivity(),
-                    requireActivity().findViewById(android.R.id.content),
+            ErrorActivity.reportUiErrorInSnackbar(this,
                     "Getting service for id " + serviceId, e);
         }
 

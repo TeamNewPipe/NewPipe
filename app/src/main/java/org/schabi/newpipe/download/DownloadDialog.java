@@ -693,7 +693,7 @@ public class DownloadDialog extends DialogFragment
                         mainStorage.getTag());
             }
         } catch (final Exception e) {
-            ErrorActivity.reportError(context, null, null,
+            ErrorActivity.reportErrorInSnackbar(this,
                     new ErrorInfo(e, UserAction.DOWNLOAD_FAILED, "Getting storage"));
             return;
         }

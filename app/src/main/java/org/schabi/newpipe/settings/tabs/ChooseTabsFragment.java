@@ -183,7 +183,7 @@ public class ChooseTabsFragment extends Fragment {
         final Tab.Type type = typeFrom(tabId);
 
         if (type == null) {
-            ErrorActivity.reportError(requireContext(), null, null,
+            ErrorActivity.reportErrorInSnackbar(this,
                     new ErrorInfo(new IllegalStateException("Tab id not found: " + tabId),
                             UserAction.SOMETHING_ELSE, "Choosing tabs on settings"));
             return;

@@ -586,7 +586,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             service = ErrorInfo.SERVICE_NONE;
         }
 
-        ErrorActivity.reportError(mContext, null, null,
+        ErrorActivity.reportError(mContext,
                 new ErrorInfo(ErrorInfo.Companion.throwableToStringList(mission.errObject), action,
                         service, request.toString(), reason, null));
     }

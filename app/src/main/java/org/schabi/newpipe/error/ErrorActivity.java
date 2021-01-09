@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +17,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.grack.nanojson.JsonWriter;
@@ -74,63 +73,66 @@ public class ErrorActivity extends AppCompatActivity {
             = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 
-    /**
-     * Singleton:
-     * Used to send data between certain Activity/Services within the same process.
-     * This can be considered as an ugly hack inside the Android universe.
-     **/
-    @Nullable private static Class savedReturnActivity = null;
-
     private ErrorInfo errorInfo;
     private String currentTimeStamp;
 
     private ActivityErrorBinding activityErrorBinding;
 
-    public static void reportUiError(final Context context,
-                                     @Nullable final View rootView,
-                                     final String request,
-                                     final Throwable throwable) {
-        reportError(context, (context instanceof Activity ? context.getClass() : null), rootView,
-                new ErrorInfo(throwable, UserAction.UI_ERROR, request));
-    }
-
-    public static void reportError(final Context context,
-                                   final Class returnActivity,
-                                   @Nullable final View rootView,
-                                   final ErrorInfo errorInfo) {
-        if (rootView != null) {
-            Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
-                    .setActionTextColor(Color.YELLOW)
-                    .setAction(context.getString(R.string.error_snackbar_action).toUpperCase(), v ->
-                            startErrorActivity(returnActivity, context, errorInfo)).show();
-        } else {
-            startErrorActivity(returnActivity, context, errorInfo);
-        }
-    }
-
-    // async call
-    public static void reportError(final Handler handler,
-                                   final Context context,
-                                   final Class returnActivity,
-                                   final View rootView,
-                                   final ErrorInfo errorInfo) {
-        handler.post(() -> reportError(context, returnActivity, rootView, errorInfo));
-    }
-
-
-    ////////////////////////////////////////////////////////////////////////
-    // UTILS
-    ////////////////////////////////////////////////////////////////////////
-
-    private static void startErrorActivity(@Nullable final Class returnActivity,
-                                           final Context context,
-                                           final ErrorInfo errorInfo) {
-        savedReturnActivity = returnActivity;
+    public static void reportError(final Context context, final ErrorInfo errorInfo) {
         final Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
+    public static void reportErrorInSnackbar(final Context context, final ErrorInfo errorInfo) {
+        final View rootView = context instanceof Activity
+                ? ((Activity) context).findViewById(android.R.id.content) : null;
+        reportErrorInSnackbar(context, rootView, errorInfo);
+    }
+
+    public static void reportErrorInSnackbar(final Fragment fragment, final ErrorInfo errorInfo) {
+        View rootView = fragment.getView();
+        if (rootView == null && fragment.getActivity() != null) {
+            rootView = fragment.getActivity().findViewById(android.R.id.content);
+        }
+        reportErrorInSnackbar(fragment.requireContext(), rootView, errorInfo);
+    }
+
+    public static void reportUiErrorInSnackbar(final Context context,
+                                               final String request,
+                                               final Throwable throwable) {
+        reportErrorInSnackbar(context, new ErrorInfo(throwable, UserAction.UI_ERROR, request));
+    }
+
+    public static void reportUiErrorInSnackbar(final Fragment fragment,
+                                               final String request,
+                                               final Throwable throwable) {
+        reportErrorInSnackbar(fragment, new ErrorInfo(throwable, UserAction.UI_ERROR, request));
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////
+    // Utils
+    ////////////////////////////////////////////////////////////////////////
+
+    private static void reportErrorInSnackbar(final Context context,
+                                              @Nullable final View rootView,
+                                              final ErrorInfo errorInfo) {
+        if (rootView != null) {
+            Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
+                    .setActionTextColor(Color.YELLOW)
+                    .setAction(context.getString(R.string.error_snackbar_action).toUpperCase(), v ->
+                            reportError(context, errorInfo)).show();
+        } else {
+            reportError(context, errorInfo);
+        }
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////
+    // Activity lifecycle
+    ////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -189,7 +191,7 @@ public class ErrorActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(final MenuItem item) {
         final int id = item.getItemId();
         if (id == android.R.id.home) {
-            goToReturnActivity();
+            onBackPressed();
         } else if (id == R.id.menu_item_share_error) {
             ShareUtils.shareText(this, getString(R.string.error_report_title), buildJson());
         } else {
@@ -256,18 +258,6 @@ public class ErrorActivity extends AppCompatActivity {
             }
         }
         return checkedReturnActivity;
-    }
-
-    private void goToReturnActivity() {
-        final Class<? extends Activity> checkedReturnActivity =
-                getReturnActivity(savedReturnActivity);
-        if (checkedReturnActivity == null) {
-            super.onBackPressed();
-        } else {
-            final Intent intent = new Intent(this, checkedReturnActivity);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            NavUtils.navigateUpTo(this, intent);
-        }
     }
 
     private void buildInfo(final ErrorInfo info) {
@@ -408,11 +398,5 @@ public class ErrorActivity extends AppCompatActivity {
         String text = activityErrorBinding.errorSorryView.getText().toString();
         text += "\n" + getString(R.string.guru_meditation);
         activityErrorBinding.errorSorryView.setText(text);
-    }
-
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-        goToReturnActivity();
     }
 }

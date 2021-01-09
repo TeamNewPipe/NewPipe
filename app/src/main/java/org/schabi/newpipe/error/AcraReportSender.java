@@ -33,7 +33,7 @@ public class AcraReportSender implements ReportSender {
 
     @Override
     public void send(@NonNull final Context context, @NonNull final CrashReportData report) {
-        ErrorActivity.reportError(context, null, null, new ErrorInfo(
+        ErrorActivity.reportError(context, new ErrorInfo(
                 new String[]{report.getString(ReportField.STACK_TRACE)},
                 UserAction.UI_ERROR,
                 ErrorInfo.SERVICE_NONE,

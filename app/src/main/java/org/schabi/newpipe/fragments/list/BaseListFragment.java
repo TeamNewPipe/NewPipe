@@ -291,7 +291,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                             selectedItem.getUrl(),
                             selectedItem.getName());
                 } catch (final Exception e) {
-                    ErrorActivity.reportUiError(getActivity(), null, "Opening channel fragment", e);
+                    ErrorActivity.reportUiErrorInSnackbar(
+                            BaseListFragment.this, "Opening channel fragment", e);
                 }
             }
         });
@@ -306,7 +307,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                             selectedItem.getUrl(),
                             selectedItem.getName());
                 } catch (final Exception e) {
-                    ErrorActivity.reportUiError(getActivity(), null,
+                    ErrorActivity.reportUiErrorInSnackbar(BaseListFragment.this,
                             "Opening playlist fragment", e);
                 }
             }

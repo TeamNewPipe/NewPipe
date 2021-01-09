@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.BaseFragment;
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -157,7 +155,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         errorPanelHelper.showError(errorInfo);
     }
 
-    public final void showTextError(final @NonNull String errorString) {
+    public final void showTextError(@NonNull final String errorString) {
         handleError();
 
         if (isDetached() || isRemoving()) {
@@ -180,7 +178,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
 
     /**
      * Show a SnackBar and only call
-     * {@link ErrorActivity#reportError(Context, Class, View, ErrorInfo)}
+     * {@link ErrorActivity.reportErrorInSnackbar(androidx.fragment.app.Fragment, ErrorInfo)}
      * IF we a find a valid view (otherwise the error screen appears).
      *
      * @param errorInfo The error information
@@ -189,14 +187,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (DEBUG) {
             Log.d(TAG, "showSnackBarError() called with: errorInfo = [" + errorInfo + "]");
         }
-        View rootView = activity != null ? activity.findViewById(android.R.id.content) : null;
-        if (rootView == null) {
-            rootView = getView();
-        }
-        if (rootView == null) {
-            return;
-        }
-
-        ErrorActivity.reportError(requireContext(), MainActivity.class, rootView, errorInfo);
+        ErrorActivity.reportErrorInSnackbar(this, errorInfo);
     }
 }

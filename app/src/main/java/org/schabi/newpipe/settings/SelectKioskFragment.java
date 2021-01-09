@@ -80,7 +80,7 @@ public class SelectKioskFragment extends DialogFragment {
         try {
             selectKioskAdapter = new SelectKioskAdapter();
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(getActivity(), null, "Selecting kiosk", e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Selecting kiosk", e);
         }
         recyclerView.setAdapter(selectKioskAdapter);
 

@@ -153,7 +153,7 @@ public abstract class BaseImportExportService extends Service {
 
     protected void stopAndReportError(final Throwable throwable, final String request) {
         stopService();
-        ErrorActivity.reportError(this, null, null, new ErrorInfo(
+        ErrorActivity.reportError(this, new ErrorInfo(
                 throwable, UserAction.SUBSCRIPTION_IMPORT_EXPORT, request));
     }
 

@@ -147,7 +147,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 NavigationHelper.openSearchFragment(getFM(),
                         ServiceHelper.getSelectedServiceId(activity), "");
             } catch (final Exception e) {
-                ErrorActivity.reportUiError(getActivity(), null, "Opening search fragment", e);
+                ErrorActivity.reportUiErrorInSnackbar(this, "Opening search fragment", e);
             }
             return true;
         }
@@ -238,7 +238,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             }
 
             if (throwable != null) {
-                ErrorActivity.reportUiError(context, null, "Getting fragment item", throwable);
+                ErrorActivity.reportUiErrorInSnackbar(context, "Getting fragment item", throwable);
                 return new BlankFragment();
             }
 

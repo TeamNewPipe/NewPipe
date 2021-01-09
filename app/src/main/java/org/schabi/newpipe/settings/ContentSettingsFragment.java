@@ -196,7 +196,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(getActivity(), null, "Exporting database", e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Exporting database", e);
         }
     }
 
@@ -241,7 +241,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 System.exit(0);
             }
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(getActivity(), null, "Importing database", e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
         }
     }
 }

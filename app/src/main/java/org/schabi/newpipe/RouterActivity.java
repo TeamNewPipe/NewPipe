@@ -219,7 +219,7 @@ public class RouterActivity extends AppCompatActivity {
             // unfortunately we cannot tell if the error is really caused by an unsupported url
             ((RouterActivity) context).showUnsupportedUrlDialog(errorInfo.getRequest());
         } else {
-            ErrorActivity.reportError(context, MainActivity.class, null, errorInfo);
+            ErrorActivity.reportError(context, errorInfo);
         }
 
         if (context instanceof RouterActivity) {

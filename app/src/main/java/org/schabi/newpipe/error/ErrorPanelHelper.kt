@@ -74,12 +74,7 @@ class ErrorPanelHelper(
         } else {
             errorButtonAction.setText(R.string.error_snackbar_action)
             errorButtonAction.setOnClickListener {
-                ErrorActivity.reportError(
-                    context,
-                    MainActivity::class.java,
-                    null,
-                    errorInfo
-                )
+                ErrorActivity.reportError(context, errorInfo)
             }
 
             // hide retry button by default, then show only if not unavailable/unsupported content

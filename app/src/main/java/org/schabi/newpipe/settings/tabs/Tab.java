@@ -483,7 +483,7 @@ public abstract class Tab {
                 final StreamingService service = NewPipe.getService(kioskServiceId);
                 kioskId = service.getKioskList().getDefaultKioskId();
             } catch (final ExtractionException e) {
-                ErrorActivity.reportError(context, null, null, new ErrorInfo(e,
+                ErrorActivity.reportErrorInSnackbar(context, new ErrorInfo(e,
                         UserAction.REQUESTED_KIOSK, "Loading default kiosk for selected service"));
             }
             return kioskId;
