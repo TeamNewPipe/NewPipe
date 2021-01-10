@@ -48,6 +48,7 @@ public final class ServiceHelper {
             case "all":
                 return c.getString(R.string.all);
             case "videos":
+            case "sepia_videos":
             case "music_videos":
                 return c.getString(R.string.videos_string);
             case "channels":
