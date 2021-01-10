@@ -13,8 +13,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 960
-        versionName "0.20.6"
+        versionCode 962
+        versionName "0.20.8"
 
         multiDexEnabled true
 
@@ -179,7 +179,7 @@ dependencies {
 
     // NewPipe dependencies
     // You can use a local version by uncommenting a few lines in settings.gradle
-    implementation 'com.github.B0pol:NewPipeExtractor:3ae924a7f18d5ee5b4aa0bd13d7179922cc094fa'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:deb9af7bf53b3f8fd9d32322adae02df78d985ea'
     implementation "com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
 
     implementation "org.jsoup:jsoup:1.13.1"
@@ -203,6 +203,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    implementation 'androidx.media:media:1.2.1'
     implementation 'androidx.webkit:webkit:1.4.0'
 
     implementation "androidx.lifecycle:lifecycle-livedata:${androidxLifecycleVersion}"

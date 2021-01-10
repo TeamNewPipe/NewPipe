@@ -266,7 +266,7 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
 
-            <!-- MediaCCC filter -->
+            <!-- media.ccc.de filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
@@ -318,6 +318,8 @@
             android:name=".RouterActivity$FetcherService"
             android:exported="false" />
 
+        <!-- opting out of sending metrics to Google in Android System WebView -->
+        <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
         <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
         <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
         <meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>

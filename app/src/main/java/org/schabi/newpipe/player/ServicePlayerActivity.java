@@ -638,12 +638,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case BasePlayer.STATE_COMPLETED:
                 queueControlBinding.controlPlayPause.setClickable(true);
                 queueControlBinding.controlPlayPause.setVisibility(View.VISIBLE);
-                queueControlBinding.progressBar.setVisibility(View.GONE);
+                queueControlBinding.controlProgressBar.setVisibility(View.GONE);
                 break;
             default:
                 queueControlBinding.controlPlayPause.setClickable(false);
                 queueControlBinding.controlPlayPause.setVisibility(View.INVISIBLE);
-                queueControlBinding.progressBar.setVisibility(View.VISIBLE);
+                queueControlBinding.controlProgressBar.setVisibility(View.VISIBLE);
                 break;
         }
     }
