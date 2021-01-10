@@ -12,7 +12,7 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Kuwa Bountysource "><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#screenshots">Sawir-shaashadeed</a> &bull; <a href="#description">Faahfaahin</a> &bull; <a href="#features">Waxtarka</a> &bull; <a href="#updates">Cusboonaysiin</a> &bull; <a href="#contribution">Kusoo Kordhin</a> &bull; <a href="#donate">Ugu Deeq</a> &bull; <a href="#license">Laysinka</a></p>
+<p align="center"><a href="#screenshots">Sawir-shaashadeed</a> &bull; <a href="#description">Faahfaahin</a> &bull; <a href="#features">Waxqabadka</a> &bull; <a href="#updates">Cusboonaysiin</a> &bull; <a href="#contribution">Kusoo Kordhin</a> &bull; <a href="#donate">Ugu Deeq</a> &bull; <a href="#license">Laysinka</a></p>
 <p align="center"><a href="https://newpipe.net">Website-ka</a> &bull; <a href="https://newpipe.net/blog/">Maqaalada</a> &bull; <a href="https://newpipe.net/FAQ/">Su'aalaha Aalaa La-iswaydiiyo</a> &bull; <a href="https://newpipe.net/press/">Warbaahinta</a></p>
 <hr>
 
@@ -41,7 +41,7 @@
 
 NewPipe ma isticmalo nidaamka wada shaqaynta Google, ama API-ga YouTube. Kaliya website-yada ayaa la furaa si xogta loo baahanyahay loogala soo dhex baxo, App-kan waxaa lagu isticmaali karaa aaladaha aysa ku jirin Adeegyada Google. Sidoo kale, uma baahnid akoon YouTube ah si aad u isticmaasho NewPipe, kaasoo ah barnaamij bilaash ah.
 
-### Waxtarka
+### Waxqabadka
 
 * Raadi muuqaalo
 * Soo bandhiga faahfaahin guud oo muuqaalada ku saabsan
