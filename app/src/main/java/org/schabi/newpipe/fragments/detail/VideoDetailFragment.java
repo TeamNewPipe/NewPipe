@@ -1889,10 +1889,8 @@ public final class VideoDetailFragment
 
         if (fullscreen) {
             hideSystemUiIfNeeded();
-            viewPager.setVisibility(View.GONE);
         } else {
             showSystemUi();
-            viewPager.setVisibility(View.VISIBLE);
         }
 
         if (relatedStreamsLayout != null) {
