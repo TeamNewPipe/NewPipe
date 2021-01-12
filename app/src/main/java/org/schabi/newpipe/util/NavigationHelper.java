@@ -46,7 +46,7 @@ import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
-import org.schabi.newpipe.player.BackgroundPlayerActivity;
+import org.schabi.newpipe.player.PlayQueueActivity;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -530,7 +530,7 @@ public final class NavigationHelper {
     }
 
     public static Intent getPlayQueueActivityIntent(final Context context) {
-        final Intent intent = new Intent(context, BackgroundPlayerActivity.class);
+        final Intent intent = new Intent(context, PlayQueueActivity.class);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
