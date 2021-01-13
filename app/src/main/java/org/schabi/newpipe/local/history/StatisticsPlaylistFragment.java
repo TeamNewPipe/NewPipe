@@ -37,6 +37,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StreamDialogEntry;
@@ -412,6 +413,9 @@ public class StatisticsPlaylistFragment
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
+        }
+        if (KoreUtil.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
+            entries.add(StreamDialogEntry.play_with_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 

@@ -41,6 +41,7 @@ import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -780,6 +781,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
+        }
+        if (KoreUtil.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
+            entries.add(StreamDialogEntry.play_with_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 
