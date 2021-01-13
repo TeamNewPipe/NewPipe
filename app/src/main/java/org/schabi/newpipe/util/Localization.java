@@ -9,19 +9,10 @@ import android.icu.text.CompactDecimalFormat;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
-
-import org.ocpsoft.prettytime.PrettyTime;
-import org.ocpsoft.prettytime.units.Decade;
-import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.localization.ContentCountry;
-import org.schabi.newpipe.ktx.OffsetDateTimeKt;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
@@ -33,6 +24,12 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import org.ocpsoft.prettytime.PrettyTime;
+import org.ocpsoft.prettytime.units.Decade;
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.ListExtractor;
+import org.schabi.newpipe.extractor.localization.ContentCountry;
+import org.schabi.newpipe.ktx.OffsetDateTimeKt;
 
 
 /*
@@ -61,10 +58,6 @@ public final class Localization {
     private static PrettyTime prettyTime;
 
     private Localization() { }
-
-    public static void init(final Context context) {
-        initPrettyTime(context);
-    }
 
     @NonNull
     public static String concatenateStrings(final String... strings) {
@@ -307,10 +300,14 @@ public final class Localization {
     // Pretty Time
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static void initPrettyTime(final Context context) {
-        prettyTime = new PrettyTime(getAppLocale(context));
+    public static void initPrettyTime(final PrettyTime time) {
+        prettyTime = time;
         // Do not use decades as YouTube doesn't either.
         prettyTime.removeUnit(Decade.class);
+    }
+
+    public static PrettyTime resolvePrettyTime(final Context context) {
+        return new PrettyTime(getAppLocale(context));
     }
 
     public static String relativeTime(final OffsetDateTime offsetDateTime) {
