@@ -39,6 +39,7 @@ import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,10 +74,11 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.PlayerBinding;
+import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
@@ -145,44 +147,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private static final float MAX_GESTURE_LENGTH = 0.75f;
 
-    private TextView titleTextView;
-    private TextView channelTextView;
-    private RelativeLayout volumeRelativeLayout;
-    private ProgressBar volumeProgressBar;
-    private ImageView volumeImageView;
-    private RelativeLayout brightnessRelativeLayout;
-    private ProgressBar brightnessProgressBar;
-    private ImageView brightnessImageView;
-    private TextView resizingIndicator;
-    private ImageButton queueButton;
-    private ImageButton repeatButton;
-    private ImageButton shuffleButton;
-    private ImageButton playWithKodi;
-    private ImageButton openInBrowser;
-    private ImageButton fullscreenButton;
-    private ImageButton playerCloseButton;
-    private ImageButton screenRotationButton;
-    private ImageButton muteButton;
-
-    private ImageButton playPauseButton;
-    private ImageButton playPreviousButton;
-    private ImageButton playNextButton;
-
-    private RelativeLayout queueLayout;
-    private ImageButton itemsListCloseButton;
-    private RecyclerView itemsList;
     private ItemTouchHelper itemTouchHelper;
-
-    private RelativeLayout playerOverlays;
 
     private boolean queueVisible;
     private MainPlayer.PlayerType playerType = MainPlayer.PlayerType.VIDEO;
-
-    private ImageButton moreOptionsButton;
-    private ImageButton shareButton;
-
-    private View primaryControls;
-    private View secondaryControls;
 
     private int maxGestureLength;
 
@@ -205,9 +173,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private WindowManager.LayoutParams popupLayoutParams;
     public WindowManager windowManager;
 
-    private View closingOverlayView;
-    private View closeOverlayView;
-    private FloatingActionButton closeOverlayButton;
+    private PlayerPopupCloseOverlayBinding closeOverlayBinding;
 
     public boolean isPopupClosing = false;
 
@@ -251,13 +217,13 @@ public class VideoPlayerImpl extends VideoPlayer
             getRootView().setVisibility(View.VISIBLE);
             initPopup();
             initPopupCloseOverlay();
-            playPauseButton.requestFocus();
+            binding.playPauseButton.requestFocus();
         } else {
             getRootView().setVisibility(View.VISIBLE);
             initVideoPlayer();
             onQueueClosed();
             // Android TV: without it focus will frame the whole player
-            playPauseButton.requestFocus();
+            binding.playPauseButton.requestFocus();
 
             if (simpleExoPlayer.getPlayWhenReady()) {
                 onPlay();
@@ -279,49 +245,14 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    public void initViews(final View view) {
-        super.initViews(view);
-        this.titleTextView = view.findViewById(R.id.titleTextView);
-        this.channelTextView = view.findViewById(R.id.channelTextView);
-        this.volumeRelativeLayout = view.findViewById(R.id.volumeRelativeLayout);
-        this.volumeProgressBar = view.findViewById(R.id.volumeProgressBar);
-        this.volumeImageView = view.findViewById(R.id.volumeImageView);
-        this.brightnessRelativeLayout = view.findViewById(R.id.brightnessRelativeLayout);
-        this.brightnessProgressBar = view.findViewById(R.id.brightnessProgressBar);
-        this.brightnessImageView = view.findViewById(R.id.brightnessImageView);
-        this.resizingIndicator = view.findViewById(R.id.resizing_indicator);
-        this.queueButton = view.findViewById(R.id.queueButton);
-        this.repeatButton = view.findViewById(R.id.repeatButton);
-        this.shuffleButton = view.findViewById(R.id.shuffleButton);
-        this.playWithKodi = view.findViewById(R.id.playWithKodi);
-        this.openInBrowser = view.findViewById(R.id.openInBrowser);
-        this.fullscreenButton = view.findViewById(R.id.fullScreenButton);
-        this.screenRotationButton = view.findViewById(R.id.screenRotationButton);
-        this.playerCloseButton = view.findViewById(R.id.playerCloseButton);
-        this.muteButton = view.findViewById(R.id.switchMute);
+    public void initViews(@NonNull final PlayerBinding binding) {
+        super.initViews(binding);
 
-        this.playPauseButton = view.findViewById(R.id.playPauseButton);
-        this.playPreviousButton = view.findViewById(R.id.playPreviousButton);
-        this.playNextButton = view.findViewById(R.id.playNextButton);
-
-        this.moreOptionsButton = view.findViewById(R.id.moreOptionsButton);
-        this.primaryControls = view.findViewById(R.id.primaryControls);
-        this.secondaryControls = view.findViewById(R.id.secondaryControls);
-        this.shareButton = view.findViewById(R.id.share);
-
-        this.queueLayout = view.findViewById(R.id.playQueuePanel);
-        this.itemsListCloseButton = view.findViewById(R.id.playQueueClose);
-        this.itemsList = view.findViewById(R.id.playQueue);
-
-        this.playerOverlays = view.findViewById(R.id.player_overlays);
-
-        closingOverlayView = view.findViewById(R.id.closingOverlay);
-
-        titleTextView.setSelected(true);
-        channelTextView.setSelected(true);
+        binding.titleTextView.setSelected(true);
+        binding.channelTextView.setSelected(true);
 
         // Prevent hiding of bottom sheet via swipe inside queue
-        this.itemsList.setNestedScrollingEnabled(false);
+        binding.playQueue.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -349,58 +280,60 @@ public class VideoPlayerImpl extends VideoPlayer
      */
     private void setupElementsVisibility() {
         if (popupPlayerSelected()) {
-            fullscreenButton.setVisibility(View.VISIBLE);
-            screenRotationButton.setVisibility(View.GONE);
-            getResizeView().setVisibility(View.GONE);
-            getRootView().findViewById(R.id.metadataView).setVisibility(View.GONE);
-            queueButton.setVisibility(View.GONE);
-            moreOptionsButton.setVisibility(View.GONE);
-            getTopControlsRoot().setOrientation(LinearLayout.HORIZONTAL);
-            primaryControls.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
-            secondaryControls.setAlpha(1.0f);
-            secondaryControls.setVisibility(View.VISIBLE);
-            secondaryControls.setTranslationY(0);
-            shareButton.setVisibility(View.GONE);
-            playWithKodi.setVisibility(View.GONE);
-            openInBrowser.setVisibility(View.GONE);
-            muteButton.setVisibility(View.GONE);
-            playerCloseButton.setVisibility(View.GONE);
-            getTopControlsRoot().bringToFront();
-            getTopControlsRoot().setClickable(false);
-            getTopControlsRoot().setFocusable(false);
-            getBottomControlsRoot().bringToFront();
+            binding.fullScreenButton.setVisibility(View.VISIBLE);
+            binding.screenRotationButton.setVisibility(View.GONE);
+            binding.resizeTextView.setVisibility(View.GONE);
+            binding.metadataView.setVisibility(View.GONE);
+            binding.queueButton.setVisibility(View.GONE);
+            binding.moreOptionsButton.setVisibility(View.GONE);
+            binding.topControls.setOrientation(LinearLayout.HORIZONTAL);
+            binding.primaryControls.getLayoutParams().width =
+                    LinearLayout.LayoutParams.WRAP_CONTENT;
+            binding.secondaryControls.setAlpha(1.0f);
+            binding.secondaryControls.setVisibility(View.VISIBLE);
+            binding.secondaryControls.setTranslationY(0);
+            binding.share.setVisibility(View.GONE);
+            binding.playWithKodi.setVisibility(View.GONE);
+            binding.openInBrowser.setVisibility(View.GONE);
+            binding.switchMute.setVisibility(View.GONE);
+            binding.playerCloseButton.setVisibility(View.GONE);
+            binding.topControls.bringToFront();
+            binding.topControls.setClickable(false);
+            binding.topControls.setFocusable(false);
+            binding.bottomControls.bringToFront();
             onQueueClosed();
         } else {
-            fullscreenButton.setVisibility(View.GONE);
+            binding.fullScreenButton.setVisibility(View.GONE);
             setupScreenRotationButton();
-            getResizeView().setVisibility(View.VISIBLE);
-            getRootView().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
-            moreOptionsButton.setVisibility(View.VISIBLE);
-            getTopControlsRoot().setOrientation(LinearLayout.VERTICAL);
-            primaryControls.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
-            secondaryControls.setVisibility(View.INVISIBLE);
-            moreOptionsButton.setImageDrawable(AppCompatResources.getDrawable(service,
+            binding.resizeTextView.setVisibility(View.VISIBLE);
+            binding.metadataView.setVisibility(View.VISIBLE);
+            binding.moreOptionsButton.setVisibility(View.VISIBLE);
+            binding.topControls.setOrientation(LinearLayout.VERTICAL);
+            binding.primaryControls.getLayoutParams().width =
+                    LinearLayout.LayoutParams.MATCH_PARENT;
+            binding.secondaryControls.setVisibility(View.INVISIBLE);
+            binding.moreOptionsButton.setImageDrawable(AppCompatResources.getDrawable(service,
                     R.drawable.ic_expand_more_white_24dp));
-            shareButton.setVisibility(View.VISIBLE);
+            binding.share.setVisibility(View.VISIBLE);
             showHideKodiButton();
-            openInBrowser.setVisibility(View.VISIBLE);
-            muteButton.setVisibility(View.VISIBLE);
-            playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
+            binding.openInBrowser.setVisibility(View.VISIBLE);
+            binding.switchMute.setVisibility(View.VISIBLE);
+            binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
             // Top controls have a large minHeight which is allows to drag the player
             // down in fullscreen mode (just larger area to make easy to locate by finger)
-            getTopControlsRoot().setClickable(true);
-            getTopControlsRoot().setFocusable(true);
+            binding.topControls.setClickable(true);
+            binding.topControls.setFocusable(true);
         }
         if (!isFullscreen()) {
-            titleTextView.setVisibility(View.GONE);
-            channelTextView.setVisibility(View.GONE);
+            binding.titleTextView.setVisibility(View.GONE);
+            binding.channelTextView.setVisibility(View.GONE);
         } else {
-            titleTextView.setVisibility(View.VISIBLE);
-            channelTextView.setVisibility(View.VISIBLE);
+            binding.titleTextView.setVisibility(View.VISIBLE);
+            binding.channelTextView.setVisibility(View.VISIBLE);
         }
-        setMuteButton(muteButton, isMuted());
+        setMuteButton(binding.switchMute, isMuted());
 
-        animateRotation(moreOptionsButton, DEFAULT_CONTROLS_DURATION, 0);
+        animateRotation(binding.moreOptionsButton, DEFAULT_CONTROLS_DURATION, 0);
     }
 
     /**
@@ -413,15 +346,15 @@ public class VideoPlayerImpl extends VideoPlayer
                     .getDimensionPixelSize(R.dimen.player_popup_controls_padding);
             final int buttonsPadding = service.getResources()
                     .getDimensionPixelSize(R.dimen.player_popup_buttons_padding);
-            getTopControlsRoot().setPaddingRelative(controlsPadding, 0, controlsPadding, 0);
-            getBottomControlsRoot().setPaddingRelative(controlsPadding, 0, controlsPadding, 0);
-            getQualityTextView().setPadding(
-                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getPlaybackSpeedTextView().setPadding(
-                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getCaptionTextView().setPadding(
-                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getPlaybackSpeedTextView().setMinimumWidth(0);
+            binding.topControls.setPaddingRelative(controlsPadding, 0, controlsPadding, 0);
+            binding.bottomControls.setPaddingRelative(controlsPadding, 0, controlsPadding, 0);
+            binding.qualityTextView.setPadding(buttonsPadding, buttonsPadding, buttonsPadding,
+                    buttonsPadding);
+            binding.playbackSpeed.setPadding(buttonsPadding, buttonsPadding, buttonsPadding,
+                    buttonsPadding);
+            binding.captionTextView.setPadding(buttonsPadding, buttonsPadding, buttonsPadding,
+                    buttonsPadding);
+            binding.playbackSpeed.setMinimumWidth(0);
         } else if (videoPlayerSelected()) {
             final int buttonsMinWidth = service.getResources()
                     .getDimensionPixelSize(R.dimen.player_main_buttons_min_width);
@@ -431,16 +364,16 @@ public class VideoPlayerImpl extends VideoPlayer
                     .getDimensionPixelSize(R.dimen.player_main_controls_padding);
             final int buttonsPadding = service.getResources()
                     .getDimensionPixelSize(R.dimen.player_main_buttons_padding);
-            getTopControlsRoot().setPaddingRelative(
-                    controlsPadding, playerTopPadding, controlsPadding, 0);
-            getBottomControlsRoot().setPaddingRelative(controlsPadding, 0, controlsPadding, 0);
-            getQualityTextView().setPadding(
-                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getPlaybackSpeedTextView().setPadding(
-                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
-            getPlaybackSpeedTextView().setMinimumWidth(buttonsMinWidth);
-            getCaptionTextView().setPadding(
-                    buttonsPadding, buttonsPadding, buttonsPadding, buttonsPadding);
+            binding.topControls.setPaddingRelative(controlsPadding, playerTopPadding,
+                    controlsPadding, 0);
+            binding.bottomControls.setPaddingRelative(controlsPadding, 0, controlsPadding, 0);
+            binding.qualityTextView.setPadding(buttonsPadding, buttonsPadding, buttonsPadding,
+                    buttonsPadding);
+            binding.playbackSpeed.setPadding(buttonsPadding, buttonsPadding, buttonsPadding,
+                    buttonsPadding);
+            binding.playbackSpeed.setMinimumWidth(buttonsMinWidth);
+            binding.captionTextView.setPadding(buttonsPadding, buttonsPadding, buttonsPadding,
+                    buttonsPadding);
         }
     }
 
@@ -452,23 +385,23 @@ public class VideoPlayerImpl extends VideoPlayer
         gestureDetector = new GestureDetector(context, listener);
         getRootView().setOnTouchListener(listener);
 
-        queueButton.setOnClickListener(this);
-        repeatButton.setOnClickListener(this);
-        shuffleButton.setOnClickListener(this);
+        binding.queueButton.setOnClickListener(this);
+        binding.repeatButton.setOnClickListener(this);
+        binding.shuffleButton.setOnClickListener(this);
 
-        playPauseButton.setOnClickListener(this);
-        playPreviousButton.setOnClickListener(this);
-        playNextButton.setOnClickListener(this);
+        binding.playPauseButton.setOnClickListener(this);
+        binding.playPreviousButton.setOnClickListener(this);
+        binding.playNextButton.setOnClickListener(this);
 
-        moreOptionsButton.setOnClickListener(this);
-        moreOptionsButton.setOnLongClickListener(this);
-        shareButton.setOnClickListener(this);
-        fullscreenButton.setOnClickListener(this);
-        screenRotationButton.setOnClickListener(this);
-        playWithKodi.setOnClickListener(this);
-        openInBrowser.setOnClickListener(this);
-        playerCloseButton.setOnClickListener(this);
-        muteButton.setOnClickListener(this);
+        binding.moreOptionsButton.setOnClickListener(this);
+        binding.moreOptionsButton.setOnLongClickListener(this);
+        binding.share.setOnClickListener(this);
+        binding.fullScreenButton.setOnClickListener(this);
+        binding.screenRotationButton.setOnClickListener(this);
+        binding.playWithKodi.setOnClickListener(this);
+        binding.openInBrowser.setOnClickListener(this);
+        binding.playerCloseButton.setOnClickListener(this);
+        binding.switchMute.setOnClickListener(this);
 
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
@@ -481,24 +414,25 @@ public class VideoPlayerImpl extends VideoPlayer
                 settingsContentObserver);
         getRootView().addOnLayoutChangeListener(this);
 
-        ViewCompat.setOnApplyWindowInsetsListener(queueLayout, (view, windowInsets) -> {
-            final DisplayCutoutCompat cutout = windowInsets.getDisplayCutout();
-            if (cutout != null) {
-                view.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
-                        cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
-            }
-            return windowInsets;
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(binding.playQueuePanel,
+                (view, windowInsets) -> {
+                    final DisplayCutoutCompat cutout = windowInsets.getDisplayCutout();
+                    if (cutout != null) {
+                        view.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
+                                cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
+                    }
+                    return windowInsets;
+                });
 
         // PlaybackControlRoot already consumed window insets but we should pass them to
         // player_overlays too. Without it they will be off-centered
-        getControlsRoot().addOnLayoutChangeListener((v, left, top, right, bottom,
-                                                     oldLeft, oldTop, oldRight, oldBottom) ->
-                playerOverlays.setPadding(
-                        v.getPaddingLeft(),
-                        v.getPaddingTop(),
-                        v.getPaddingRight(),
-                        v.getPaddingBottom()));
+        binding.playbackControlRoot.addOnLayoutChangeListener(
+                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) ->
+                        binding.playerOverlays.setPadding(
+                                v.getPaddingLeft(),
+                                v.getPaddingTop(),
+                                v.getPaddingRight(),
+                                v.getPaddingBottom()));
     }
 
     public boolean onKeyDown(final int keyCode) {
@@ -521,7 +455,7 @@ public class VideoPlayerImpl extends VideoPlayer
             case KeyEvent.KEYCODE_DPAD_DOWN:
             case KeyEvent.KEYCODE_DPAD_RIGHT:
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                if (getRootView().hasFocus() && !getControlsRoot().hasFocus()) {
+                if (getRootView().hasFocus() && !binding.playbackControlRoot.hasFocus()) {
                     // do not interfere with focus in playlist etc.
                     return false;
                 }
@@ -532,7 +466,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
                 if (!isControlsVisible()) {
                     if (!queueVisible) {
-                        playPauseButton.requestFocus();
+                        binding.playPauseButton.requestFocus();
                     }
                     showControlsThenHide();
                     showSystemUIPartially();
@@ -548,13 +482,12 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public AppCompatActivity getParentActivity() {
         // ! instanceof ViewGroup means that view was added via windowManager for Popup
-        if (getRootView() == null
-                || getRootView().getParent() == null
-                || !(getRootView().getParent() instanceof ViewGroup)) {
+        if (binding == null || binding.getRoot().getParent() == null
+                || !(binding.getRoot().getParent() instanceof ViewGroup)) {
             return null;
         }
 
-        final ViewGroup parent = (ViewGroup) getRootView().getParent();
+        final ViewGroup parent = (ViewGroup) binding.getRoot().getParent();
         return (AppCompatActivity) parent.getContext();
     }
 
@@ -644,13 +577,14 @@ public class VideoPlayerImpl extends VideoPlayer
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
     }
 
+    @Override
     protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
         super.onMetadataChanged(tag);
 
         showHideKodiButton();
 
-        titleTextView.setText(tag.getMetadata().getName());
-        channelTextView.setText(tag.getMetadata().getUploaderName());
+        binding.titleTextView.setText(tag.getMetadata().getName());
+        binding.channelTextView.setText(tag.getMetadata().getUploaderName());
 
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
         updateMetadata();
@@ -668,7 +602,7 @@ public class VideoPlayerImpl extends VideoPlayer
     public void onMuteUnmuteButtonClicked() {
         super.onMuteUnmuteButtonClicked();
         updatePlayback();
-        setMuteButton(muteButton, isMuted());
+        setMuteButton(binding.switchMute, isMuted());
     }
 
     @Override
@@ -747,7 +681,7 @@ public class VideoPlayerImpl extends VideoPlayer
         if (!isFullscreen) {
             // Apply window insets because Android will not do it when orientation changes
             // from landscape to portrait (open vertical video to reproduce)
-            getControlsRoot().setPadding(0, 0, 0, 0);
+            getPlaybackControlRoot().setPadding(0, 0, 0, 0);
         } else {
             // Android needs tens milliseconds to send new insets but a user is able to see
             // how controls changes it's position from `0` to `nav bar height` padding.
@@ -757,13 +691,14 @@ public class VideoPlayerImpl extends VideoPlayer
         fragmentListener.onFullscreenStateChanged(isFullscreen());
 
         if (!isFullscreen()) {
-            titleTextView.setVisibility(View.GONE);
-            channelTextView.setVisibility(View.GONE);
-            playerCloseButton.setVisibility(videoPlayerSelected() ? View.VISIBLE : View.GONE);
+            binding.titleTextView.setVisibility(View.GONE);
+            binding.channelTextView.setVisibility(View.GONE);
+            binding.playerCloseButton.setVisibility(videoPlayerSelected()
+                    ? View.VISIBLE : View.GONE);
         } else {
-            titleTextView.setVisibility(View.VISIBLE);
-            channelTextView.setVisibility(View.VISIBLE);
-            playerCloseButton.setVisibility(View.GONE);
+            binding.titleTextView.setVisibility(View.VISIBLE);
+            binding.channelTextView.setVisibility(View.VISIBLE);
+            binding.playerCloseButton.setVisibility(View.GONE);
         }
         setupScreenRotationButton();
     }
@@ -771,34 +706,34 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onClick(final View v) {
         super.onClick(v);
-        if (v.getId() == playPauseButton.getId()) {
+        if (v.getId() == binding.playPauseButton.getId()) {
             onPlayPause();
-        } else if (v.getId() == playPreviousButton.getId()) {
+        } else if (v.getId() == binding.playPreviousButton.getId()) {
             onPlayPrevious();
-        } else if (v.getId() == playNextButton.getId()) {
+        } else if (v.getId() == binding.playNextButton.getId()) {
             onPlayNext();
-        } else if (v.getId() == queueButton.getId()) {
+        } else if (v.getId() == binding.queueButton.getId()) {
             onQueueClicked();
             return;
-        } else if (v.getId() == repeatButton.getId()) {
+        } else if (v.getId() == binding.repeatButton.getId()) {
             onRepeatClicked();
             return;
-        } else if (v.getId() == shuffleButton.getId()) {
+        } else if (v.getId() == binding.shuffleButton.getId()) {
             onShuffleClicked();
             return;
-        } else if (v.getId() == moreOptionsButton.getId()) {
+        } else if (v.getId() == binding.moreOptionsButton.getId()) {
             onMoreOptionsClicked();
-        } else if (v.getId() == shareButton.getId()) {
+        } else if (v.getId() == binding.share.getId()) {
             onShareClicked();
-        } else if (v.getId() == playWithKodi.getId()) {
+        } else if (v.getId() == binding.playWithKodi.getId()) {
             onPlayWithKodiClicked();
-        } else if (v.getId() == openInBrowser.getId()) {
+        } else if (v.getId() == binding.openInBrowser.getId()) {
             onOpenInBrowserClicked();
-        } else if (v.getId() == fullscreenButton.getId()) {
+        } else if (v.getId() == binding.fullScreenButton.getId()) {
             setRecovery();
             NavigationHelper.playOnMainPlayer(context, getPlayQueue(), true);
             return;
-        } else if (v.getId() == screenRotationButton.getId()) {
+        } else if (v.getId() == binding.screenRotationButton.getId()) {
             // Only if it's not a vertical video or vertical video but in landscape with locked
             // orientation a screen orientation can be changed automatically
             if (!isVerticalVideo
@@ -807,32 +742,34 @@ public class VideoPlayerImpl extends VideoPlayer
             } else {
                 toggleFullscreen();
             }
-        } else if (v.getId() == muteButton.getId()) {
+        } else if (v.getId() == binding.switchMute.getId()) {
             onMuteUnmuteButtonClicked();
-        } else if (v.getId() == playerCloseButton.getId()) {
+        } else if (v.getId() == binding.playerCloseButton.getId()) {
             service.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
         }
 
         if (getCurrentState() != STATE_COMPLETED) {
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
             showHideShadow(true, DEFAULT_CONTROLS_DURATION, 0);
-            animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
-                if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                    if (v.getId() == playPauseButton.getId()
-                            // Hide controls in fullscreen immediately
-                            || (v.getId() == screenRotationButton.getId() && isFullscreen)) {
-                        hideControls(0, 0);
-                    } else {
-                        hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                    }
-                }
-            });
+            animateView(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION, 0,
+                    () -> {
+                        if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
+                            if (v.getId() == binding.playPauseButton.getId()
+                                    // Hide controls in fullscreen immediately
+                                    || (v.getId() == binding.screenRotationButton.getId()
+                                    && isFullscreen)) {
+                                hideControls(0, 0);
+                            } else {
+                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                            }
+                        }
+                    });
         }
     }
 
     @Override
     public boolean onLongClick(final View v) {
-        if (v.getId() == moreOptionsButton.getId() && isFullscreen()) {
+        if (v.getId() == binding.moreOptionsButton.getId() && isFullscreen()) {
             fragmentListener.onMoreOptionsLongClicked();
             hideControls(0, 0);
             hideSystemUIIfNeeded();
@@ -848,11 +785,11 @@ public class VideoPlayerImpl extends VideoPlayer
         updatePlaybackButtons();
 
         hideControls(0, 0);
-        queueLayout.requestFocus();
-        animateView(queueLayout, SLIDE_AND_ALPHA, true,
+        binding.playQueuePanel.requestFocus();
+        animateView(binding.playQueuePanel, SLIDE_AND_ALPHA, true,
                 DEFAULT_CONTROLS_DURATION);
 
-        itemsList.scrollToPosition(playQueue.getIndex());
+        binding.playQueue.scrollToPosition(playQueue.getIndex());
     }
 
     public void onQueueClosed() {
@@ -860,14 +797,15 @@ public class VideoPlayerImpl extends VideoPlayer
             return;
         }
 
-        animateView(queueLayout, SLIDE_AND_ALPHA, false,
+        animateView(binding.playQueuePanel, SLIDE_AND_ALPHA, false,
                 DEFAULT_CONTROLS_DURATION, 0, () -> {
                     // Even when queueLayout is GONE it receives touch events
                     // and ruins normal behavior of the app. This line fixes it
-                    queueLayout.setTranslationY(-queueLayout.getHeight() * 5);
+                    binding.playQueuePanel
+                            .setTranslationY(-binding.playQueuePanel.getHeight() * 5);
                 });
         queueVisible = false;
-        playPauseButton.requestFocus();
+        binding.playPauseButton.requestFocus();
     }
 
     private void onMoreOptionsClicked() {
@@ -875,18 +813,19 @@ public class VideoPlayerImpl extends VideoPlayer
             Log.d(TAG, "onMoreOptionsClicked() called");
         }
 
-        final boolean isMoreControlsVisible = secondaryControls.getVisibility() == View.VISIBLE;
+        final boolean isMoreControlsVisible =
+                binding.secondaryControls.getVisibility() == View.VISIBLE;
 
-        animateRotation(moreOptionsButton, DEFAULT_CONTROLS_DURATION,
+        animateRotation(binding.moreOptionsButton, DEFAULT_CONTROLS_DURATION,
                 isMoreControlsVisible ? 0 : 180);
-        animateView(secondaryControls, SLIDE_AND_ALPHA, !isMoreControlsVisible,
+        animateView(binding.secondaryControls, SLIDE_AND_ALPHA, !isMoreControlsVisible,
                 DEFAULT_CONTROLS_DURATION, 0,
                 () -> {
                     // Fix for a ripple effect on background drawable.
                     // When view returns from GONE state it takes more milliseconds than returning
                     // from INVISIBLE state. And the delay makes ripple background end to fast
                     if (isMoreControlsVisible) {
-                        secondaryControls.setVisibility(View.INVISIBLE);
+                        binding.secondaryControls.setVisibility(View.INVISIBLE);
                     }
                 });
         showControls(DEFAULT_CONTROLS_DURATION);
@@ -896,7 +835,7 @@ public class VideoPlayerImpl extends VideoPlayer
         // share video at the current time (youtube.com/watch?v=ID&t=SECONDS)
         // Timestamp doesn't make sense in a live stream so drop it
 
-        final int ts = getPlaybackSeekBar().getProgress() / 1000;
+        final int ts = playbackSeekBar.getProgress() / 1000;
         final MediaSourceTag metadata = getCurrentMetadata();
         String videoUrl = getVideoUrl();
         if (!isLive() && ts >= 0 && metadata != null
@@ -938,18 +877,18 @@ public class VideoPlayerImpl extends VideoPlayer
         // show kodi button if it supports the current service and it is enabled in settings
         final boolean showKodiButton = playQueue != null && playQueue.getItem() != null
                 && KoreUtil.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId());
-        playWithKodi.setVisibility(videoPlayerSelected() && kodiEnabled && showKodiButton
-                ? View.VISIBLE : View.GONE);
+        binding.playWithKodi.setVisibility(videoPlayerSelected() && kodiEnabled
+                && showKodiButton ? View.VISIBLE : View.GONE);
     }
 
     private void setupScreenRotationButton() {
         final boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(service);
         final boolean showButton = videoPlayerSelected()
                 && (orientationLocked || isVerticalVideo || DeviceUtils.isTablet(service));
-        screenRotationButton.setVisibility(showButton ? View.VISIBLE : View.GONE);
-        screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(service, isFullscreen()
-                ? R.drawable.ic_fullscreen_exit_white_24dp
-                : R.drawable.ic_fullscreen_white_24dp));
+        binding.screenRotationButton.setVisibility(showButton ? View.VISIBLE : View.GONE);
+        binding.screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(service,
+                isFullscreen() ? R.drawable.ic_fullscreen_exit_white_24dp
+                        : R.drawable.ic_fullscreen_white_24dp));
     }
 
     private void prepareOrientation() {
@@ -1009,11 +948,12 @@ public class VideoPlayerImpl extends VideoPlayer
                 Log.d(TAG, "maxGestureLength = " + maxGestureLength);
             }
 
-            volumeProgressBar.setMax(maxGestureLength);
-            brightnessProgressBar.setMax(maxGestureLength);
+            binding.volumeProgressBar.setMax(maxGestureLength);
+            binding.brightnessProgressBar.setMax(maxGestureLength);
 
             setInitialGestureValues();
-            queueLayout.getLayoutParams().height = height - queueLayout.getTop();
+            binding.playQueuePanel.getLayoutParams().height = height
+                    - binding.playQueuePanel.getTop();
         }
     }
 
@@ -1073,7 +1013,8 @@ public class VideoPlayerImpl extends VideoPlayer
         //////////////////////////////////////////////////////////////////////////*/
 
     private void animatePlayButtons(final boolean show, final int duration) {
-        animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+        animateView(binding.playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, show,
+                duration);
 
         boolean showQueueButtons = show;
         if (playQueue == null) {
@@ -1082,19 +1023,18 @@ public class VideoPlayerImpl extends VideoPlayer
 
         if (!showQueueButtons || playQueue.getIndex() > 0) {
             animateView(
-                playPreviousButton,
+                binding.playPreviousButton,
                 AnimationUtils.Type.SCALE_AND_ALPHA,
                 showQueueButtons,
                 duration);
         }
         if (!showQueueButtons || playQueue.getIndex() + 1 < playQueue.getStreams().size()) {
             animateView(
-                playNextButton,
+                binding.playNextButton,
                 AnimationUtils.Type.SCALE_AND_ALPHA,
                 showQueueButtons,
                 duration);
         }
-
     }
 
     @Override
@@ -1106,7 +1046,7 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onBlocked() {
         super.onBlocked();
-        playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+        binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
         animatePlayButtons(false, 100);
         getRootView().setKeepScreenOn(false);
 
@@ -1126,13 +1066,14 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onPlaying() {
         super.onPlaying();
-        animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
-            animatePlayButtons(true, 200);
-            if (!queueVisible) {
-                playPauseButton.requestFocus();
-            }
-        });
+        animateView(binding.playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false,
+                80, 0, () -> {
+                    binding.playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
+                    animatePlayButtons(true, 200);
+                    if (!queueVisible) {
+                        binding.playPauseButton.requestFocus();
+                    }
+                });
 
         updateWindowFlags(ONGOING_PLAYBACK_WINDOW_FLAGS);
         checkLandscape();
@@ -1144,13 +1085,15 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onPaused() {
         super.onPaused();
-        animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
-            playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
-            animatePlayButtons(true, 200);
-            if (!queueVisible) {
-                playPauseButton.requestFocus();
-            }
-        });
+        animateView(binding.playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA,
+                false, 80, 0, () -> {
+                    binding.playPauseButton
+                            .setImageResource(R.drawable.ic_play_arrow_white_24dp);
+                    animatePlayButtons(true, 200);
+                    if (!queueVisible) {
+                        binding.playPauseButton.requestFocus();
+                    }
+                });
 
         updateWindowFlags(IDLE_WINDOW_FLAGS);
 
@@ -1177,10 +1120,11 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public void onCompleted() {
-        animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, () -> {
-            playPauseButton.setImageResource(R.drawable.ic_replay_white_24dp);
-            animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
-        });
+        animateView(binding.playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false,
+                0, 0, () -> {
+                    binding.playPauseButton.setImageResource(R.drawable.ic_replay_white_24dp);
+                    animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
+                });
 
         getRootView().setKeepScreenOn(false);
         updateWindowFlags(IDLE_WINDOW_FLAGS);
@@ -1355,8 +1299,8 @@ public class VideoPlayerImpl extends VideoPlayer
         if (getAudioReactor() != null) {
             final float currentVolumeNormalized = (float) getAudioReactor()
                     .getVolume() / getAudioReactor().getMaxVolume();
-            volumeProgressBar.setProgress(
-                    (int) (volumeProgressBar.getMax() * currentVolumeNormalized));
+            binding.volumeProgressBar.setProgress(
+                    (int) (binding.volumeProgressBar.getMax() * currentVolumeNormalized));
         }
     }
 
@@ -1397,10 +1341,10 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private int distanceFromCloseButton(final MotionEvent popupMotionEvent) {
-        final int closeOverlayButtonX = closeOverlayButton.getLeft()
-                + closeOverlayButton.getWidth() / 2;
-        final int closeOverlayButtonY = closeOverlayButton.getTop()
-                + closeOverlayButton.getHeight() / 2;
+        final int closeOverlayButtonX = closeOverlayBinding.closeButton.getLeft()
+                + closeOverlayBinding.closeButton.getWidth() / 2;
+        final int closeOverlayButtonY = closeOverlayBinding.closeButton.getTop()
+                + closeOverlayBinding.closeButton.getHeight() / 2;
 
         final float fingerX = popupLayoutParams.x + popupMotionEvent.getX();
         final float fingerY = popupLayoutParams.y + popupMotionEvent.getY();
@@ -1410,7 +1354,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private float getClosingRadius() {
-        final int buttonRadius = closeOverlayButton.getWidth() / 2;
+        final int buttonRadius = closeOverlayBinding.closeButton.getWidth() / 2;
         // 20% wider than the button itself
         return buttonRadius * 1.2f;
     }
@@ -1453,14 +1397,15 @@ public class VideoPlayerImpl extends VideoPlayer
         getControlsVisibilityHandler().removeCallbacksAndMessages(null);
         getControlsVisibilityHandler().postDelayed(() -> {
                     showHideShadow(false, duration, 0);
-                    animateView(getControlsRoot(), false, duration, 0, this::hideSystemUIIfNeeded);
+                    animateView(binding.playbackControlRoot, false, duration, 0,
+                            this::hideSystemUIIfNeeded);
                 }, delay
         );
     }
 
     @Override
     public void safeHideControls(final long duration, final long delay) {
-        if (getControlsRoot().isInTouchMode()) {
+        if (binding.playbackControlRoot.isInTouchMode()) {
             hideControls(duration, delay);
         }
     }
@@ -1474,12 +1419,12 @@ public class VideoPlayerImpl extends VideoPlayer
         final boolean showNext = playQueue.getIndex() + 1 != playQueue.getStreams().size();
         final boolean showQueue = playQueue.getStreams().size() > 1 && !popupPlayerSelected();
 
-        playPreviousButton.setVisibility(showPrev ? View.VISIBLE : View.INVISIBLE);
-        playPreviousButton.setAlpha(showPrev ? 1.0f : 0.0f);
-        playNextButton.setVisibility(showNext ? View.VISIBLE : View.INVISIBLE);
-        playNextButton.setAlpha(showNext ? 1.0f : 0.0f);
-        queueButton.setVisibility(showQueue ? View.VISIBLE : View.GONE);
-        queueButton.setAlpha(showQueue ? 1.0f : 0.0f);
+        binding.playPreviousButton.setVisibility(showPrev ? View.VISIBLE : View.INVISIBLE);
+        binding.playPreviousButton.setAlpha(showPrev ? 1.0f : 0.0f);
+        binding.playNextButton.setVisibility(showNext ? View.VISIBLE : View.INVISIBLE);
+        binding.playNextButton.setAlpha(showNext ? 1.0f : 0.0f);
+        binding.queueButton.setVisibility(showQueue ? View.VISIBLE : View.GONE);
+        binding.queueButton.setAlpha(showQueue ? 1.0f : 0.0f);
     }
 
     private void showSystemUIPartially() {
@@ -1524,15 +1469,12 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void updatePlaybackButtons() {
-        if (repeatButton == null
-                || shuffleButton == null
-                || simpleExoPlayer == null
-                || playQueue == null) {
+        if (binding == null || simpleExoPlayer == null || playQueue == null) {
             return;
         }
 
-        setRepeatModeButton(repeatButton, getRepeatMode());
-        setShuffleButton(shuffleButton, playQueue.isShuffled());
+        setRepeatModeButton(binding.repeatButton, getRepeatMode());
+        setShuffleButton(binding.shuffleButton, playQueue.isShuffled());
     }
 
     public void checkLandscape() {
@@ -1553,19 +1495,19 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void buildQueue() {
-        itemsList.setAdapter(playQueueAdapter);
-        itemsList.setClickable(true);
-        itemsList.setLongClickable(true);
+        binding.playQueue.setAdapter(playQueueAdapter);
+        binding.playQueue.setClickable(true);
+        binding.playQueue.setLongClickable(true);
 
-        itemsList.clearOnScrollListeners();
-        itemsList.addOnScrollListener(getQueueScrollListener());
+        binding.playQueue.clearOnScrollListeners();
+        binding.playQueue.addOnScrollListener(getQueueScrollListener());
 
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
-        itemTouchHelper.attachToRecyclerView(itemsList);
+        itemTouchHelper.attachToRecyclerView(binding.playQueue);
 
         playQueueAdapter.setSelectedListener(getOnSelectedListener());
 
-        itemsListCloseButton.setOnClickListener(view -> onQueueClosed());
+        binding.playQueueClose.setOnClickListener(view -> onQueueClosed());
     }
 
     public void useVideoSource(final boolean video) {
@@ -1589,8 +1531,8 @@ public class VideoPlayerImpl extends VideoPlayer
             public void onScrolledDown(final RecyclerView recyclerView) {
                 if (playQueue != null && !playQueue.isComplete()) {
                     playQueue.fetch();
-                } else if (itemsList != null) {
-                    itemsList.clearOnScrollListeners();
+                } else if (binding != null) {
+                    binding.playQueue.clearOnScrollListeners();
                 }
             }
         };
@@ -1682,8 +1624,8 @@ public class VideoPlayerImpl extends VideoPlayer
 
         checkPopupPositionBounds();
 
-        getLoadingPanel().setMinimumWidth(popupLayoutParams.width);
-        getLoadingPanel().setMinimumHeight(popupLayoutParams.height);
+        binding.loadingPanel.setMinimumWidth(popupLayoutParams.width);
+        binding.loadingPanel.setMinimumHeight(popupLayoutParams.height);
 
         service.removeViewFromParent();
         windowManager.addView(getRootView(), popupLayoutParams);
@@ -1699,12 +1641,11 @@ public class VideoPlayerImpl extends VideoPlayer
         }
 
         // closeOverlayView is already added to windowManager
-        if (closeOverlayView != null) {
+        if (closeOverlayBinding != null) {
             return;
         }
 
-        closeOverlayView = View.inflate(service, R.layout.player_popup_close_overlay, null);
-        closeOverlayButton = closeOverlayView.findViewById(R.id.closeButton);
+        closeOverlayBinding = PlayerPopupCloseOverlayBinding.inflate(LayoutInflater.from(service));
 
         final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
@@ -1719,8 +1660,8 @@ public class VideoPlayerImpl extends VideoPlayer
         closeOverlayLayoutParams.softInputMode =
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
 
-        closeOverlayButton.setVisibility(View.GONE);
-        windowManager.addView(closeOverlayView, closeOverlayLayoutParams);
+        closeOverlayBinding.closeButton.setVisibility(View.GONE);
+        windowManager.addView(closeOverlayBinding.getRoot(), closeOverlayLayoutParams);
     }
 
     private void initVideoPlayer() {
@@ -1893,22 +1834,23 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     public void removePopupFromView() {
-        final boolean isCloseOverlayHasParent = closeOverlayView != null
-                && closeOverlayView.getParent() != null;
+        final boolean isCloseOverlayHasParent = closeOverlayBinding != null
+                && closeOverlayBinding.getRoot().getParent() != null;
         if (popupHasParent()) {
             windowManager.removeView(getRootView());
         }
         if (isCloseOverlayHasParent) {
-            windowManager.removeView(closeOverlayView);
+            windowManager.removeView(closeOverlayBinding.getRoot());
         }
     }
 
     private void animateOverlayAndFinishService() {
-        final int targetTranslationY = (int) (closeOverlayButton.getRootView().getHeight()
-                - closeOverlayButton.getY());
+        final int targetTranslationY =
+                (int) (closeOverlayBinding.closeButton.getRootView().getHeight()
+                        - closeOverlayBinding.closeButton.getY());
 
-        closeOverlayButton.animate().setListener(null).cancel();
-        closeOverlayButton.animate()
+        closeOverlayBinding.closeButton.animate().setListener(null).cancel();
+        closeOverlayBinding.closeButton.animate()
                 .setInterpolator(new AnticipateInterpolator())
                 .translationY(targetTranslationY)
                 .setDuration(400)
@@ -1924,8 +1866,8 @@ public class VideoPlayerImpl extends VideoPlayer
                     }
 
                     private void end() {
-                        windowManager.removeView(closeOverlayView);
-                        closeOverlayView = null;
+                        windowManager.removeView(closeOverlayBinding.getRoot());
+                        closeOverlayBinding = null;
 
                         service.onDestroy();
                     }
@@ -1933,10 +1875,9 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private boolean popupHasParent() {
-        final View root = getRootView();
-        return root != null
-                && root.getLayoutParams() instanceof WindowManager.LayoutParams
-                && root.getParent() != null;
+        return binding != null
+                && binding.getRoot().getLayoutParams() instanceof WindowManager.LayoutParams
+                && binding.getRoot().getParent() != null;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -1949,9 +1890,9 @@ public class VideoPlayerImpl extends VideoPlayer
         // Apply window insets because Android will not do it when orientation changes
         // from landscape to portrait
         if (!isFullscreen) {
-            getControlsRoot().setPadding(0, 0, 0, 0);
+            binding.playbackControlRoot.setPadding(0, 0, 0, 0);
         }
-        queueLayout.setPadding(0, 0, 0, 0);
+        binding.playQueuePanel.setPadding(0, 0, 0, 0);
         updateQueue();
         updateMetadata();
         updatePlayback();
@@ -2050,31 +1991,31 @@ public class VideoPlayerImpl extends VideoPlayer
     ///////////////////////////////////////////////////////////////////////////
 
     public RelativeLayout getVolumeRelativeLayout() {
-        return volumeRelativeLayout;
+        return binding.volumeRelativeLayout;
     }
 
     public ProgressBar getVolumeProgressBar() {
-        return volumeProgressBar;
+        return binding.volumeProgressBar;
     }
 
     public ImageView getVolumeImageView() {
-        return volumeImageView;
+        return binding.volumeImageView;
     }
 
     public RelativeLayout getBrightnessRelativeLayout() {
-        return brightnessRelativeLayout;
+        return binding.brightnessRelativeLayout;
     }
 
     public ProgressBar getBrightnessProgressBar() {
-        return brightnessProgressBar;
+        return binding.brightnessProgressBar;
     }
 
     public ImageView getBrightnessImageView() {
-        return brightnessImageView;
+        return binding.brightnessImageView;
     }
 
     public ImageButton getPlayPauseButton() {
-        return playPauseButton;
+        return binding.playPauseButton;
     }
 
     public int getMaxGestureLength() {
@@ -2082,7 +2023,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     public TextView getResizingIndicator() {
-        return resizingIndicator;
+        return binding.resizingIndicator;
     }
 
     public GestureDetector getGestureDetector() {
@@ -2121,12 +2062,12 @@ public class VideoPlayerImpl extends VideoPlayer
         popupHeight = height;
     }
 
-    public View getCloseOverlayButton() {
-        return closeOverlayButton;
+    public View getCloseButton() {
+        return closeOverlayBinding.closeButton;
     }
 
-    public View getClosingOverlayView() {
-        return closingOverlayView;
+    public View getClosingOverlay() {
+        return binding.closingOverlay;
     }
 
     public boolean isVerticalVideo() {

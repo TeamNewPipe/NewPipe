@@ -371,7 +371,7 @@ abstract class BasePlayerGestureListener(
         }
 
         if (!isMovingInPopup) {
-            AnimationUtils.animateView(playerImpl.closeOverlayButton, true, 200)
+            AnimationUtils.animateView(playerImpl.closeButton, true, 200)
         }
 
         isMovingInPopup = true

@@ -123,7 +123,7 @@ public class PlayerGestureListener
             }
 
         } else /* MainPlayer.PlayerType.POPUP */ {
-            final View closingOverlayView = playerImpl.getClosingOverlayView();
+            final View closingOverlayView = playerImpl.getClosingOverlay();
             if (playerImpl.isInsideClosingRadius(movingEvent)) {
                 if (closingOverlayView.getVisibility() == View.GONE) {
                     animateView(closingOverlayView, true, 250);
@@ -240,10 +240,10 @@ public class PlayerGestureListener
             if (playerImpl.isInsideClosingRadius(event)) {
                 playerImpl.closePopup();
             } else {
-                animateView(playerImpl.getClosingOverlayView(), false, 0);
+                animateView(playerImpl.getClosingOverlay(), false, 0);
 
                 if (!playerImpl.isPopupClosing) {
-                    animateView(playerImpl.getCloseOverlayButton(), false, 200);
+                    animateView(playerImpl.getCloseButton(), false, 200);
                 }
             }
         }
