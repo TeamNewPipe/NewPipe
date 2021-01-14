@@ -14,20 +14,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.viewbinding.ViewBinding;
 
 import com.jakewharton.rxbinding4.view.RxView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+import org.schabi.newpipe.databinding.ChannelHeaderBinding;
+import org.schabi.newpipe.databinding.FragmentChannelBinding;
+import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -78,22 +79,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     private SubscriptionManager subscriptionManager;
-    private View headerRootLayout;
-    private ImageView headerChannelBanner;
-    private ImageView headerAvatarView;
-    private TextView headerTitleView;
-    private ImageView headerSubChannelAvatarView;
-    private TextView headerSubChannelTitleView;
-    private TextView headerSubscribersTextView;
-    private Button headerSubscribeButton;
-    private View playlistCtrl;
-    private LinearLayout headerPlayAllButton;
-    private LinearLayout headerPopupButton;
-    private LinearLayout headerBackgroundButton;
+
+    private FragmentChannelBinding channelBinding;
+    private ChannelHeaderBinding headerBinding;
+    private PlaylistControlBinding playlistControlBinding;
+
     private MenuItem menuRssButton;
-    private TextView contentNotSupportedTextView;
-    private TextView kaomojiTextView;
-    private TextView noVideosTextView;
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -132,53 +123,45 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     @Override
     public void onViewCreated(final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
-        contentNotSupportedTextView = rootView.findViewById(R.id.error_content_not_supported);
-        kaomojiTextView = rootView.findViewById(R.id.channel_kaomoji);
-        noVideosTextView = rootView.findViewById(R.id.channel_no_videos);
+        channelBinding = FragmentChannelBinding.bind(rootView);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
         if (subscribeButtonMonitor != null) {
             subscribeButtonMonitor.dispose();
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        channelBinding = null;
+        headerBinding = null;
+        playlistControlBinding = null;
+        super.onDestroyView();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected View getListHeader() {
-        headerRootLayout = activity.getLayoutInflater()
-                .inflate(R.layout.channel_header, itemsList, false);
-        headerChannelBanner = headerRootLayout.findViewById(R.id.channel_banner_image);
-        headerAvatarView = headerRootLayout.findViewById(R.id.channel_avatar_view);
-        headerTitleView = headerRootLayout.findViewById(R.id.channel_title_view);
-        headerSubscribersTextView = headerRootLayout.findViewById(R.id.channel_subscriber_view);
-        headerSubscribeButton = headerRootLayout.findViewById(R.id.channel_subscribe_button);
-        playlistCtrl = headerRootLayout.findViewById(R.id.playlist_control);
-        headerSubChannelAvatarView =
-                headerRootLayout.findViewById(R.id.sub_channel_avatar_view);
-        headerSubChannelTitleView =
-                headerRootLayout.findViewById(R.id.sub_channel_title_view);
+    @Override
+    protected ViewBinding getListHeader() {
+        headerBinding = ChannelHeaderBinding
+                .inflate(activity.getLayoutInflater(), itemsList, false);
+        playlistControlBinding = headerBinding.playlistControl;
 
-        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
-        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
-        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
-
-        return headerRootLayout;
+        return headerBinding;
     }
 
     @Override
     protected void initListeners() {
         super.initListeners();
 
-        headerSubChannelTitleView.setOnClickListener(this);
-        headerSubChannelAvatarView.setOnClickListener(this);
+        headerBinding.subChannelTitleView.setOnClickListener(this);
+        headerBinding.subChannelAvatarView.setOnClickListener(this);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -241,7 +224,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     private void monitorSubscription(final ChannelInfo info) {
         final Consumer<Throwable> onError = (Throwable throwable) -> {
-            animateView(headerSubscribeButton, false, 100);
+            animateView(headerBinding.channelSubscribeButton, false, 100);
             showSnackBarError(throwable, UserAction.SUBSCRIPTION,
                     NewPipe.getNameOfService(currentInfo.getServiceId()),
                     "Get subscription status", 0);
@@ -351,15 +334,15 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                         info.getAvatarUrl(),
                         info.getDescription(),
                         info.getSubscriberCount());
-                subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton,
-                        mapOnSubscribe(channel, info));
+                subscribeButtonMonitor = monitorSubscribeButton(
+                        headerBinding.channelSubscribeButton, mapOnSubscribe(channel, info));
             } else {
                 if (DEBUG) {
                     Log.d(TAG, "Found subscription to this channel!");
                 }
                 final SubscriptionEntity subscription = subscriptionEntities.get(0);
-                subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton,
-                        mapOnUnsubscribe(subscription));
+                subscribeButtonMonitor = monitorSubscribeButton(
+                        headerBinding.channelSubscribeButton, mapOnUnsubscribe(subscription));
             }
         };
     }
@@ -370,7 +353,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                     + "isSubscribed = [" + isSubscribed + "]");
         }
 
-        final boolean isButtonVisible = headerSubscribeButton.getVisibility() == View.VISIBLE;
+        final boolean isButtonVisible = headerBinding.channelSubscribeButton.getVisibility()
+                == View.VISIBLE;
         final int backgroundDuration = isButtonVisible ? 300 : 0;
         final int textDuration = isButtonVisible ? 200 : 0;
 
@@ -382,18 +366,21 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         final int subscribedText = ContextCompat.getColor(activity, R.color.subscribed_text_color);
 
         if (!isSubscribed) {
-            headerSubscribeButton.setText(R.string.subscribe_button_title);
-            animateBackgroundColor(headerSubscribeButton, backgroundDuration, subscribedBackground,
-                    subscribeBackground);
-            animateTextColor(headerSubscribeButton, textDuration, subscribedText, subscribeText);
+            headerBinding.channelSubscribeButton.setText(R.string.subscribe_button_title);
+            animateBackgroundColor(headerBinding.channelSubscribeButton, backgroundDuration,
+                    subscribedBackground, subscribeBackground);
+            animateTextColor(headerBinding.channelSubscribeButton, textDuration, subscribedText,
+                    subscribeText);
         } else {
-            headerSubscribeButton.setText(R.string.subscribed_button_title);
-            animateBackgroundColor(headerSubscribeButton, backgroundDuration, subscribeBackground,
-                    subscribedBackground);
-            animateTextColor(headerSubscribeButton, textDuration, subscribeText, subscribedText);
+            headerBinding.channelSubscribeButton.setText(R.string.subscribed_button_title);
+            animateBackgroundColor(headerBinding.channelSubscribeButton, backgroundDuration,
+                    subscribeBackground, subscribedBackground);
+            animateTextColor(headerBinding.channelSubscribeButton, textDuration, subscribeText,
+                    subscribedText);
         }
 
-        animateView(headerSubscribeButton, AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA, true, 100);
+        animateView(headerBinding.channelSubscribeButton, AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA,
+                true, 100);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -446,48 +433,49 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     public void showLoading() {
         super.showLoading();
 
-        IMAGE_LOADER.cancelDisplayTask(headerChannelBanner);
-        IMAGE_LOADER.cancelDisplayTask(headerAvatarView);
-        IMAGE_LOADER.cancelDisplayTask(headerSubChannelAvatarView);
-        animateView(headerSubscribeButton, false, 100);
+        IMAGE_LOADER.cancelDisplayTask(headerBinding.channelBannerImage);
+        IMAGE_LOADER.cancelDisplayTask(headerBinding.channelAvatarView);
+        IMAGE_LOADER.cancelDisplayTask(headerBinding.subChannelAvatarView);
+        animateView(headerBinding.channelSubscribeButton, false, 100);
     }
 
     @Override
     public void handleResult(@NonNull final ChannelInfo result) {
         super.handleResult(result);
 
-        headerRootLayout.setVisibility(View.VISIBLE);
-        IMAGE_LOADER.displayImage(result.getBannerUrl(), headerChannelBanner,
+        headerBinding.getRoot().setVisibility(View.VISIBLE);
+        IMAGE_LOADER.displayImage(result.getBannerUrl(), headerBinding.channelBannerImage,
                 ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
-        IMAGE_LOADER.displayImage(result.getAvatarUrl(), headerAvatarView,
+        IMAGE_LOADER.displayImage(result.getAvatarUrl(), headerBinding.channelAvatarView,
                 ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
-        IMAGE_LOADER.displayImage(result.getParentChannelAvatarUrl(), headerSubChannelAvatarView,
+        IMAGE_LOADER.displayImage(result.getParentChannelAvatarUrl(),
+                headerBinding.subChannelAvatarView,
                 ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
 
-        headerSubscribersTextView.setVisibility(View.VISIBLE);
+        headerBinding.channelSubscriberView.setVisibility(View.VISIBLE);
         if (result.getSubscriberCount() >= 0) {
-            headerSubscribersTextView.setText(Localization
+            headerBinding.channelSubscriberView.setText(Localization
                     .shortSubscriberCount(activity, result.getSubscriberCount()));
         } else {
-            headerSubscribersTextView.setText(R.string.subscribers_count_not_available);
+            headerBinding.channelSubscriberView.setText(R.string.subscribers_count_not_available);
         }
 
         if (!TextUtils.isEmpty(currentInfo.getParentChannelName())) {
-            headerSubChannelTitleView.setText(String.format(
+            headerBinding.subChannelTitleView.setText(String.format(
                             getString(R.string.channel_created_by),
                             currentInfo.getParentChannelName())
             );
-            headerSubChannelTitleView.setVisibility(View.VISIBLE);
-            headerSubChannelAvatarView.setVisibility(View.VISIBLE);
+            headerBinding.subChannelTitleView.setVisibility(View.VISIBLE);
+            headerBinding.subChannelAvatarView.setVisibility(View.VISIBLE);
         } else {
-            headerSubChannelTitleView.setVisibility(View.GONE);
+            headerBinding.subChannelTitleView.setVisibility(View.GONE);
         }
 
         if (menuRssButton != null) {
             menuRssButton.setVisible(!TextUtils.isEmpty(result.getFeedUrl()));
         }
 
-        playlistCtrl.setVisibility(View.VISIBLE);
+        playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
 
         final List<Throwable> errors = new ArrayList<>(result.getErrors());
         if (!errors.isEmpty()) {
@@ -516,29 +504,32 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         updateSubscription(result);
         monitorSubscription(result);
 
-        headerPlayAllButton.setOnClickListener(view -> NavigationHelper
-                .playOnMainPlayer(activity, getPlayQueue()));
-        headerPopupButton.setOnClickListener(view -> NavigationHelper
-                .playOnPopupPlayer(activity, getPlayQueue(), false));
-        headerBackgroundButton.setOnClickListener(view -> NavigationHelper
-                .playOnBackgroundPlayer(activity, getPlayQueue(), false));
+        playlistControlBinding.playlistCtrlPlayAllButton
+                .setOnClickListener(view -> NavigationHelper
+                        .playOnMainPlayer(activity, getPlayQueue()));
+        playlistControlBinding.playlistCtrlPlayPopupButton
+                .setOnClickListener(view -> NavigationHelper
+                        .playOnPopupPlayer(activity, getPlayQueue(), false));
+        playlistControlBinding.playlistCtrlPlayBgButton
+                .setOnClickListener(view -> NavigationHelper
+                        .playOnBackgroundPlayer(activity, getPlayQueue(), false));
 
-        headerPopupButton.setOnLongClickListener(view -> {
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
             return true;
         });
 
-        headerBackgroundButton.setOnLongClickListener(view -> {
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
             return true;
         });
     }
 
     private void showContentNotSupported() {
-        contentNotSupportedTextView.setVisibility(View.VISIBLE);
-        kaomojiTextView.setText("(︶︹︺)");
-        kaomojiTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
-        noVideosTextView.setVisibility(View.GONE);
+        channelBinding.errorContentNotSupported.setVisibility(View.VISIBLE);
+        channelBinding.channelKaomoji.setText("(︶︹︺)");
+        channelBinding.channelKaomoji.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
+        channelBinding.channelNoVideos.setVisibility(View.GONE);
     }
 
     private PlayQueue getPlayQueue() {
@@ -596,7 +587,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     public void setTitle(final String title) {
         super.setTitle(title);
         if (!useAsFrontPage) {
-            headerTitleView.setText(title);
+            headerBinding.channelTitleView.setText(title);
         }
     }
 }

@@ -37,6 +37,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
+import org.schabi.newpipe.databinding.FragmentSearchBinding;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.MetaInfo;
@@ -155,6 +156,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
+    private FragmentSearchBinding searchBinding;
+
     private View searchToolbarContainer;
     private EditText searchEditText;
     private View searchClear;
@@ -165,7 +168,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     private View suggestionsPanel;
     private boolean suggestionsPanelVisible = false;
-    private RecyclerView suggestionsRecyclerView;
 
     /*////////////////////////////////////////////////////////////////////////*/
 
@@ -301,6 +303,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "onDestroyView() called");
         }
         unsetSearchListeners();
+
+        searchBinding = null;
         super.onDestroyView();
     }
 
@@ -337,9 +341,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        suggestionsPanel = rootView.findViewById(R.id.suggestions_panel);
-        suggestionsRecyclerView = rootView.findViewById(R.id.suggestions_list);
-        suggestionsRecyclerView.setAdapter(suggestionListAdapter);
+        searchBinding = FragmentSearchBinding.bind(rootView);
+
+        searchBinding.suggestionsList.setAdapter(suggestionListAdapter);
         new ItemTouchHelper(new ItemTouchHelper.Callback() {
             @Override
             public int getMovementFlags(@NonNull final RecyclerView recyclerView,
@@ -358,7 +362,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, final int i) {
                 onSuggestionItemSwiped(viewHolder);
             }
-        }).attachToRecyclerView(suggestionsRecyclerView);
+        }).attachToRecyclerView(searchBinding.suggestionsList);
 
         searchToolbarContainer = activity.findViewById(R.id.toolbar_search_container);
         searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
@@ -523,7 +527,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 return;
             }
 
-            correctSuggestion.setVisibility(View.GONE);
+            searchBinding.correctSuggestion.setVisibility(View.GONE);
 
             searchEditText.setText("");
             suggestionListAdapter.setItems(new ArrayList<>());
@@ -640,7 +644,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "showSuggestionsPanel() called");
         }
         suggestionsPanelVisible = true;
-        animateView(suggestionsPanel, AnimationUtils.Type.LIGHT_SLIDE_AND_ALPHA, true, 200);
+        animateView(searchBinding.suggestionsPanel, AnimationUtils.Type.LIGHT_SLIDE_AND_ALPHA,
+                true, 200);
     }
 
     private void hideSuggestionsPanel() {
@@ -648,7 +653,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "hideSuggestionsPanel() called");
         }
         suggestionsPanelVisible = false;
-        animateView(suggestionsPanel, AnimationUtils.Type.LIGHT_SLIDE_AND_ALPHA, false, 200);
+        animateView(searchBinding.suggestionsPanel, AnimationUtils.Type.LIGHT_SLIDE_AND_ALPHA,
+                false, 200);
     }
 
     private void showKeyboardSearch() {
@@ -936,8 +942,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "handleSuggestions() called with: suggestions = [" + suggestions + "]");
         }
-        suggestionsRecyclerView.smoothScrollToPosition(0);
-        suggestionsRecyclerView.post(() -> suggestionListAdapter.setItems(suggestions));
+        searchBinding.suggestionsList.smoothScrollToPosition(0);
+        searchBinding.suggestionsList.post(() -> suggestionListAdapter.setItems(suggestions));
 
         if (suggestionsPanelVisible && errorPanelRoot.getVisibility() == View.VISIBLE) {
             hideLoading();
@@ -1019,7 +1025,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     private void handleSearchSuggestion() {
         if (TextUtils.isEmpty(searchSuggestion)) {
-            correctSuggestion.setVisibility(View.GONE);
+            searchBinding.correctSuggestion.setVisibility(View.GONE);
         } else {
             final String helperText = getString(isCorrectedSearch
                     ? R.string.search_showing_result_for
@@ -1028,22 +1034,23 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             final String highlightedSearchSuggestion =
                     "<b><i>" + Html.escapeHtml(searchSuggestion) + "</i></b>";
             final String text = String.format(helperText, highlightedSearchSuggestion);
-            correctSuggestion.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
+            searchBinding.correctSuggestion.setText(HtmlCompat.fromHtml(text,
+                    HtmlCompat.FROM_HTML_MODE_LEGACY));
 
-            correctSuggestion.setOnClickListener(v -> {
-                correctSuggestion.setVisibility(View.GONE);
+            searchBinding.correctSuggestion.setOnClickListener(v -> {
+                searchBinding.correctSuggestion.setVisibility(View.GONE);
                 search(searchSuggestion, contentFilter, sortFilter);
                 searchEditText.setText(searchSuggestion);
             });
 
-            correctSuggestion.setOnLongClickListener(v -> {
+            searchBinding.correctSuggestion.setOnLongClickListener(v -> {
                 searchEditText.setText(searchSuggestion);
                 searchEditText.setSelection(searchSuggestion.length());
                 showKeyboardSearch();
                 return true;
             });
 
-            correctSuggestion.setVisibility(View.VISIBLE);
+            searchBinding.correctSuggestion.setVisibility(View.VISIBLE);
         }
     }
 

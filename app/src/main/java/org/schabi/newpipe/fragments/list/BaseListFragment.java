@@ -12,13 +12,16 @@ import android.view.MenuInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -215,12 +218,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected View getListHeader() {
+    @Nullable
+    protected ViewBinding getListHeader() {
         return null;
     }
 
-    protected View getListFooter() {
-        return activity.getLayoutInflater().inflate(R.layout.pignate_footer, itemsList, false);
+    protected ViewBinding getListFooter() {
+        return PignateFooterBinding.inflate(activity.getLayoutInflater(), itemsList, false);
     }
 
     protected RecyclerView.LayoutManager getListLayoutManager() {
@@ -247,8 +251,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
         infoListAdapter.setUseGridVariant(useGrid);
-        infoListAdapter.setFooter(getListFooter());
-        infoListAdapter.setHeader(getListHeader());
+        infoListAdapter.setFooter(getListFooter().getRoot());
+
+        final ViewBinding listHeader = getListHeader();
+        if (listHeader != null) {
+            infoListAdapter.setHeader(listHeader.getRoot());
+        }
 
         itemsList.setAdapter(infoListAdapter);
     }
