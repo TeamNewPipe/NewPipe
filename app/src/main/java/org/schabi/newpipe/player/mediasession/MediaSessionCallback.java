@@ -3,11 +3,11 @@ package org.schabi.newpipe.player.mediasession;
 import android.support.v4.media.MediaDescriptionCompat;
 
 public interface MediaSessionCallback {
-    void onSkipToPrevious();
+    void playPrevious();
 
-    void onSkipToNext();
+    void playNext();
 
-    void onSkipToIndex(int index);
+    void playItemAtIndex(int index);
 
     int getCurrentPlayingIndex();
 
@@ -15,7 +15,7 @@ public interface MediaSessionCallback {
 
     MediaDescriptionCompat getQueueMetadata(int index);
 
-    void onPlay();
+    void play();
 
-    void onPause();
+    void pause();
 }

@@ -49,7 +49,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
@@ -80,9 +79,8 @@ import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.player.BasePlayer;
+import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.MainPlayer;
-import org.schabi.newpipe.player.VideoPlayerImpl;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -255,14 +253,14 @@ public final class VideoDetailFragment
 
     private ContentObserver settingsContentObserver;
     private MainPlayer playerService;
-    private VideoPlayerImpl player;
+    private Player player;
 
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
     //////////////////////////////////////////////////////////////////////////*/
     @Override
-    public void onServiceConnected(final VideoPlayerImpl connectedPlayer,
+    public void onServiceConnected(final Player connectedPlayer,
                                    final MainPlayer connectedPlayerService,
                                    final boolean playAfterConnect) {
         player = connectedPlayer;
@@ -539,7 +537,7 @@ public final class VideoDetailFragment
                 break;
             case R.id.overlay_play_pause_button:
                 if (playerIsNotStopped()) {
-                    player.onPlayPause();
+                    player.playPause();
                     player.hideControls(0, 0);
                     showSystemUi();
                 } else {
@@ -805,7 +803,7 @@ public final class VideoDetailFragment
         // If we are in fullscreen mode just exit from it via first back press
         if (player != null && player.isFullscreen()) {
             if (!DeviceUtils.isTablet(activity)) {
-                player.onPause();
+                player.pause();
             }
             restoreDefaultOrientation();
             setAutoPlay(false);
@@ -850,7 +848,7 @@ public final class VideoDetailFragment
 
         final PlayQueueItem playQueueItem = item.getPlayQueue().getItem();
         // Update title, url, uploader from the last item in the stack (it's current now)
-        final boolean isPlayerStopped = player == null || player.isPlayerStopped();
+        final boolean isPlayerStopped = player == null || player.isStopped();
         if (playQueueItem != null && isPlayerStopped) {
             updateOverlayData(playQueueItem.getTitle(),
                     playQueueItem.getUploader(), playQueueItem.getThumbnailUrl());
@@ -1569,7 +1567,7 @@ public final class VideoDetailFragment
         showMetaInfoInTextView(info.getMetaInfo(), detailMetaInfoTextView, detailMetaInfoSeparator);
 
 
-        if (player == null || player.isPlayerStopped()) {
+        if (player == null || player.isStopped()) {
             updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
         }
 
@@ -1797,7 +1795,7 @@ public final class VideoDetailFragment
         setOverlayPlayPauseImage(player != null && player.isPlaying());
 
         switch (state) {
-            case BasePlayer.STATE_PLAYING:
+            case Player.STATE_PLAYING:
                 if (positionView.getAlpha() != 1.0f
                         && player.getPlayQueue() != null
                         && player.getPlayQueue().getItem() != null
@@ -1814,7 +1812,7 @@ public final class VideoDetailFragment
                                  final int duration,
                                  final int bufferPercent) {
         // Progress updates every second even if media is paused. It's useless until playing
-        if (!player.getPlayer().isPlaying() || playQueue == null) {
+        if (!player.isPlaying() || playQueue == null) {
             return;
         }
 
@@ -1891,10 +1889,8 @@ public final class VideoDetailFragment
 
         if (fullscreen) {
             hideSystemUiIfNeeded();
-            viewPager.setVisibility(View.GONE);
         } else {
             showSystemUi();
-            viewPager.setVisibility(View.VISIBLE);
         }
 
         if (relatedStreamsLayout != null) {
@@ -2020,9 +2016,7 @@ public final class VideoDetailFragment
     }
 
     private boolean playerIsNotStopped() {
-        return player != null
-                && player.getPlayer() != null
-                && player.getPlayer().getPlaybackState() != Player.STATE_IDLE;
+        return player != null && !player.isStopped();
     }
 
     private void restoreDefaultBrightness() {
@@ -2073,7 +2067,7 @@ public final class VideoDetailFragment
         player.checkLandscape();
         // Let's give a user time to look at video information page if video is not playing
         if (globalScreenOrientationLocked(activity) && !player.isPlaying()) {
-            player.onPlay();
+            player.play();
         }
     }
 
@@ -2287,7 +2281,7 @@ public final class VideoDetailFragment
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
                         if (player != null) {
-                            player.onQueueClosed();
+                            player.closeQueue();
                         }
                         setOverlayLook(appBarLayout, behavior, 0);
                         break;

@@ -16,13 +16,11 @@ import android.widget.PopupMenu;
 import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ActivityPlayerQueueControlBinding;
@@ -49,19 +47,21 @@ import java.util.List;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
-public abstract class ServicePlayerActivity extends AppCompatActivity
+public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
         View.OnClickListener, PlaybackParameterDialog.Callback {
+
+    private static final String TAG = PlayQueueActivity.class.getSimpleName();
+
     private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
-    protected BasePlayer player;
+    protected Player player;
 
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
 
     private boolean seeking;
-    private boolean redraw;
 
     ////////////////////////////////////////////////////////////////////////////
     // Views
@@ -72,24 +72,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private ItemTouchHelper itemTouchHelper;
 
     private Menu menu;
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Abstracts
-    ////////////////////////////////////////////////////////////////////////////
-
-    public abstract String getTag();
-
-    public abstract String getSupportActionTitle();
-
-    public abstract Intent getBindIntent();
-
-    public abstract void startPlayerListener();
-
-    public abstract void stopPlayerListener();
-
-    public abstract int getPlayerOptionMenuResource();
-
-    public abstract void setupMenu(Menu m);
 
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
@@ -107,7 +89,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         setSupportActionBar(queueControlBinding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(getSupportActionTitle());
+            getSupportActionBar().setTitle(R.string.title_activity_play_queue);
         }
 
         serviceConnection = getServiceConnection();
@@ -115,27 +97,24 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (redraw) {
-            ActivityCompat.recreate(this);
-            redraw = false;
-        }
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(final Menu m) {
         this.menu = m;
         getMenuInflater().inflate(R.menu.menu_play_queue, m);
-        getMenuInflater().inflate(getPlayerOptionMenuResource(), m);
+        getMenuInflater().inflate(R.menu.menu_play_queue_bg, m);
         onMaybeMuteChanged();
+        onPlaybackParameterChanged(player.getPlaybackParameters());
         return true;
     }
 
     // Allow to setup visibility of menuItems
     @Override
     public boolean onPrepareOptionsMenu(final Menu m) {
-        setupMenu(m);
+        if (player != null) {
+            menu.findItem(R.id.action_switch_popup)
+                    .setVisible(!player.popupPlayerSelected());
+            menu.findItem(R.id.action_switch_background)
+                    .setVisible(!player.audioPlayerSelected());
+        }
         return super.onPrepareOptionsMenu(m);
     }
 
@@ -167,14 +146,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case R.id.action_switch_popup:
                 if (PermissionHelper.isPopupEnabled(this)) {
                     this.player.setRecovery();
-                    NavigationHelper.playOnPopupPlayer(this, player.playQueue, true);
+                    NavigationHelper.playOnPopupPlayer(this, player.getPlayQueue(), true);
                 } else {
                     PermissionHelper.showPopupEnablementToast(this);
                 }
                 return true;
             case R.id.action_switch_background:
                 this.player.setRecovery();
-                NavigationHelper.playOnBackgroundPlayer(this, player.playQueue, true);
+                NavigationHelper.playOnBackgroundPlayer(this, player.getPlayQueue(), true);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -191,7 +170,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private void bind() {
-        final boolean success = bindService(getBindIntent(), serviceConnection, BIND_AUTO_CREATE);
+        final Intent bindIntent = new Intent(this, MainPlayer.class);
+        final boolean success = bindService(bindIntent, serviceConnection, BIND_AUTO_CREATE);
         if (!success) {
             unbindService(serviceConnection);
         }
@@ -202,7 +182,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (serviceBound) {
             unbindService(serviceConnection);
             serviceBound = false;
-            stopPlayerListener();
+            if (player != null) {
+                player.removeActivityListener(this);
+            }
 
             if (player != null && player.getPlayQueueAdapter() != null) {
                 player.getPlayQueueAdapter().unsetSelectedListener();
@@ -221,12 +203,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         return new ServiceConnection() {
             @Override
             public void onServiceDisconnected(final ComponentName name) {
-                Log.d(getTag(), "Player service is disconnected");
+                Log.d(TAG, "Player service is disconnected");
             }
 
             @Override
             public void onServiceConnected(final ComponentName name, final IBinder service) {
-                Log.d(getTag(), "Player service is connected");
+                Log.d(TAG, "Player service is connected");
 
                 if (service instanceof PlayerServiceBinder) {
                     player = ((PlayerServiceBinder) service).getPlayerInstance();
@@ -235,12 +217,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 }
 
                 if (player == null || player.getPlayQueue() == null
-                        || player.getPlayQueueAdapter() == null || player.getPlayer() == null) {
+                        || player.getPlayQueueAdapter() == null || player.exoPlayerIsNull()) {
                     unbind();
                     finish();
                 } else {
                     buildComponents();
-                    startPlayerListener();
+                    if (player != null) {
+                        player.setActivityListener(PlayQueueActivity.this);
+                    }
                 }
             }
         };
@@ -375,7 +359,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             @Override
             public void selected(final PlayQueueItem item, final View view) {
                 if (player != null) {
-                    player.onSelected(item);
+                    player.selectQueueItem(item);
                 }
             }
 
@@ -436,15 +420,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (view.getId() == queueControlBinding.controlRepeat.getId()) {
             player.onRepeatClicked();
         } else if (view.getId() == queueControlBinding.controlBackward.getId()) {
-            player.onPlayPrevious();
+            player.playPrevious();
         } else if (view.getId() == queueControlBinding.controlFastRewind.getId()) {
-            player.onFastRewind();
+            player.fastRewind();
         } else if (view.getId() == queueControlBinding.controlPlayPause.getId()) {
-            player.onPlayPause();
+            player.playPause();
         } else if (view.getId() == queueControlBinding.controlFastForward.getId()) {
-            player.onFastForward();
+            player.fastForward();
         } else if (view.getId() == queueControlBinding.controlForward.getId()) {
-            player.onPlayNext();
+            player.playNext();
         } else if (view.getId() == queueControlBinding.controlShuffle.getId()) {
             player.onShuffleClicked();
         } else if (view.getId() == queueControlBinding.metadata.getId()) {
@@ -463,7 +447,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             return;
         }
         PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch(),
-                player.getPlaybackSkipSilence(), this).show(getSupportFragmentManager(), getTag());
+                player.getPlaybackSkipSilence(), this).show(getSupportFragmentManager(), TAG);
     }
 
     @Override
@@ -517,10 +501,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         final PlaylistAppendDialog d = PlaylistAppendDialog.fromPlayQueueItems(playlist);
 
         PlaylistAppendDialog.onPlaylistFound(getApplicationContext(),
-            () -> d.show(getSupportFragmentManager(), getTag()),
-            () -> PlaylistCreationDialog.newInstance(d)
-                    .show(getSupportFragmentManager(), getTag()
-        ));
+            () -> d.show(getSupportFragmentManager(), TAG),
+            () -> PlaylistCreationDialog.newInstance(d).show(getSupportFragmentManager(), TAG));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -616,15 +598,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void onStateChanged(final int state) {
         switch (state) {
-            case BasePlayer.STATE_PAUSED:
+            case Player.STATE_PAUSED:
                 queueControlBinding.controlPlayPause
                         .setImageResource(R.drawable.ic_play_arrow_white_24dp);
                 break;
-            case BasePlayer.STATE_PLAYING:
+            case Player.STATE_PLAYING:
                 queueControlBinding.controlPlayPause
                         .setImageResource(R.drawable.ic_pause_white_24dp);
                 break;
-            case BasePlayer.STATE_COMPLETED:
+            case Player.STATE_COMPLETED:
                 queueControlBinding.controlPlayPause
                         .setImageResource(R.drawable.ic_replay_white_24dp);
                 break;
@@ -633,9 +615,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         }
 
         switch (state) {
-            case BasePlayer.STATE_PAUSED:
-            case BasePlayer.STATE_PLAYING:
-            case BasePlayer.STATE_COMPLETED:
+            case Player.STATE_PAUSED:
+            case Player.STATE_PLAYING:
+            case Player.STATE_COMPLETED:
                 queueControlBinding.controlPlayPause.setClickable(true);
                 queueControlBinding.controlPlayPause.setVisibility(View.VISIBLE);
                 queueControlBinding.controlProgressBar.setVisibility(View.GONE);
@@ -650,15 +632,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void onPlayModeChanged(final int repeatMode, final boolean shuffled) {
         switch (repeatMode) {
-            case Player.REPEAT_MODE_OFF:
+            case com.google.android.exoplayer2.Player.REPEAT_MODE_OFF:
                 queueControlBinding.controlRepeat
                         .setImageResource(R.drawable.exo_controls_repeat_off);
                 break;
-            case Player.REPEAT_MODE_ONE:
+            case com.google.android.exoplayer2.Player.REPEAT_MODE_ONE:
                 queueControlBinding.controlRepeat
                         .setImageResource(R.drawable.exo_controls_repeat_one);
                 break;
-            case Player.REPEAT_MODE_ALL:
+            case com.google.android.exoplayer2.Player.REPEAT_MODE_ALL:
                 queueControlBinding.controlRepeat
                         .setImageResource(R.drawable.exo_controls_repeat_all);
                 break;
@@ -700,9 +682,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             // using rootView.getContext() because getApplicationContext() didn't work
             final Context context = queueControlBinding.getRoot().getContext();
             item.setIcon(ThemeHelper.resolveResourceIdFromAttr(context,
-                    player.isMuted()
-                            ? R.attr.ic_volume_off
-                            : R.attr.ic_volume_up));
+                    player.isMuted() ? R.attr.ic_volume_off : R.attr.ic_volume_up));
         }
     }
 }

@@ -46,10 +46,9 @@ import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
-import org.schabi.newpipe.player.BackgroundPlayerActivity;
-import org.schabi.newpipe.player.BasePlayer;
+import org.schabi.newpipe.player.PlayQueueActivity;
+import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.MainPlayer;
-import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -78,11 +77,11 @@ public final class NavigationHelper {
         if (playQueue != null) {
             final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
             if (cacheKey != null) {
-                intent.putExtra(VideoPlayer.PLAY_QUEUE_KEY, cacheKey);
+                intent.putExtra(Player.PLAY_QUEUE_KEY, cacheKey);
             }
         }
-        intent.putExtra(VideoPlayer.RESUME_PLAYBACK, resumePlayback);
-        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_VIDEO);
+        intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
+        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
 
         return intent;
     }
@@ -94,7 +93,7 @@ public final class NavigationHelper {
                                              final boolean resumePlayback,
                                              final boolean playWhenReady) {
         return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
-                .putExtra(BasePlayer.PLAY_WHEN_READY, playWhenReady);
+                .putExtra(Player.PLAY_WHEN_READY, playWhenReady);
     }
 
     @NonNull
@@ -104,8 +103,8 @@ public final class NavigationHelper {
                                                     final boolean selectOnAppend,
                                                     final boolean resumePlayback) {
         return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
-                .putExtra(BasePlayer.APPEND_ONLY, true)
-                .putExtra(BasePlayer.SELECT_ON_APPEND, selectOnAppend);
+                .putExtra(Player.APPEND_ONLY, true)
+                .putExtra(Player.SELECT_ON_APPEND, selectOnAppend);
     }
 
     public static void playOnMainPlayer(final AppCompatActivity activity,
@@ -135,7 +134,7 @@ public final class NavigationHelper {
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
-        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
+        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -145,7 +144,7 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
                 .show();
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
-        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
+        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -162,7 +161,7 @@ public final class NavigationHelper {
         final Intent intent = getPlayerEnqueueIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
 
-        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_VIDEO);
+        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -182,7 +181,7 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
-        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_POPUP);
+        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -198,7 +197,7 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
-        intent.putExtra(VideoPlayer.PLAYER_TYPE, VideoPlayer.PLAYER_TYPE_AUDIO);
+        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -493,7 +492,7 @@ public final class NavigationHelper {
         if (playQueue != null) {
             final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
             if (cacheKey != null) {
-                intent.putExtra(VideoPlayer.PLAY_QUEUE_KEY, cacheKey);
+                intent.putExtra(Player.PLAY_QUEUE_KEY, cacheKey);
             }
         }
         context.startActivity(intent);
@@ -531,7 +530,7 @@ public final class NavigationHelper {
     }
 
     public static Intent getPlayQueueActivityIntent(final Context context) {
-        final Intent intent = new Intent(context, BackgroundPlayerActivity.class);
+        final Intent intent = new Intent(context, PlayQueueActivity.class);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
