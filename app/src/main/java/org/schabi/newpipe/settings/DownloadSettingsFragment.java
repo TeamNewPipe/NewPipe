@@ -9,10 +9,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
-import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -57,7 +58,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         prefPathAudio = findPreference(downloadPathAudioPreference);
         prefStorageAsk = findPreference(downloadStorageAsk);
 
-        final SwitchPreference prefUseSaf = findPreference(storageUseSafPreference);
+        final SwitchPreferenceCompat prefUseSaf = findPreference(storageUseSafPreference);
         prefUseSaf.setDefaultValue(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
         prefUseSaf.setChecked(NewPipeSettings.useStorageAccessFramework(ctx));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
@@ -84,7 +85,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
         ctx = context;
     }
