@@ -156,11 +156,10 @@
                         android:gravity="center"
                         android:minWidth="0dp"
                         android:padding="@dimen/player_main_buttons_padding"
-                        android:text="720p"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
-                        android:visibility="visible"
-                        tools:ignore="HardcodedText,RtlHardcoded" />
+                        tools:ignore="HardcodedText,RtlHardcoded"
+                        tools:text="720p" />
 
                     <TextView
                         android:id="@+id/playbackSpeed"
@@ -350,7 +349,7 @@
                     tools:text="1:06:29" />
 
 
-                <androidx.appcompat.widget.AppCompatSeekBar
+                <org.schabi.newpipe.views.FocusAwareSeekBar
                     android:id="@+id/playbackSeekBar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="0dp"
