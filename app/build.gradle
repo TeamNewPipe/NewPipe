@@ -102,6 +102,7 @@ ext {
     groupieVersion = '2.8.1'
     markwonVersion = '4.6.0'
     googleAutoServiceVersion = '1.0-rc7'
+    mockitoVersion = '3.6.0'
 }
 
 configurations {
@@ -235,7 +236,8 @@ dependencies {
     implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
 
     testImplementation 'junit:junit:4.13.1'
-    testImplementation 'org.mockito:mockito-core:3.6.0'
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
 
     androidTestImplementation "androidx.test.ext:junit:1.1.2"
     androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
