@@ -620,6 +620,7 @@ public final class VideoDetailFragment
         binding.detailUploaderRootLayout.setOnClickListener(this);
         binding.detailUploaderRootLayout.setOnLongClickListener(this);
         binding.detailThumbnailRootLayout.setOnClickListener(this);
+
         binding.detailControlsBackground.setOnClickListener(this);
         binding.detailControlsBackground.setOnLongClickListener(this);
         binding.detailControlsPopup.setOnClickListener(this);
@@ -630,7 +631,8 @@ public final class VideoDetailFragment
         binding.detailControlsShare.setOnClickListener(this);
         binding.detailControlsOpenInBrowser.setOnClickListener(this);
         binding.detailControlsPlayWithKodi.setOnClickListener(this);
-        showHideKodiButton();
+        binding.detailControlsPlayWithKodi.setVisibility(KoreUtil.shouldShowPlayWithKodi(
+                requireContext(), serviceId) ? View.VISIBLE : View.GONE);
 
         binding.overlayThumbnail.setOnClickListener(this);
         binding.overlayThumbnail.setOnLongClickListener(this);
@@ -705,12 +707,6 @@ public final class VideoDetailFragment
                     binding.detailUploaderThumbnailView,
                     ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
-    }
-
-    private void showHideKodiButton() {
-        // show kodi button if it supports the current service and it is enabled in settings
-        binding.detailControlsPlayWithKodi.setVisibility(KoreUtil.shouldShowPlayWithKodi(
-                requireContext(), serviceId) ? View.VISIBLE : View.GONE);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -979,7 +975,7 @@ public final class VideoDetailFragment
             if (binding.relatedStreamsLayout == null) { // phone
                 pageAdapter.updateItem(RELATED_TAB_TAG,
                         RelatedVideosFragment.getInstance(info));
-            } else { // tablet
+            } else { // tablet + TV
                 getChildFragmentManager().beginTransaction()
                         .replace(R.id.relatedStreamsLayout,
                                 RelatedVideosFragment.getInstance(info))
