@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.ContentObserver;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -19,6 +21,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -157,6 +160,7 @@ public final class VideoDetailFragment
     @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
     @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
+    private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -575,6 +579,7 @@ public final class VideoDetailFragment
                     ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
             binding.detailSecondaryControlPanel.setVisibility(View.GONE);
         }
+        updateTabLayoutVisibility();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -637,6 +642,14 @@ public final class VideoDetailFragment
 
         binding.detailControlsBackground.setOnTouchListener(getOnControlsTouchListener());
         binding.detailControlsPopup.setOnTouchListener(getOnControlsTouchListener());
+
+        binding.appBarLayout.addOnOffsetChangedListener((layout, verticalOffset) -> {
+            // prevent useless updates to tab layout visibility if nothing changed
+            if (verticalOffset != lastAppBarVerticalOffset) {
+                lastAppBarVerticalOffset = verticalOffset;
+                updateTabLayoutVisibility();
+            }
+        });
 
         setupBottomPlayer();
         if (!PlayerHolder.bound) {
@@ -901,6 +914,10 @@ public final class VideoDetailFragment
                 });
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Tabs
+    //////////////////////////////////////////////////////////////////////////*/
+
     private void initTabs() {
         if (pageAdapter.getCount() != 0) {
             selectedTabTag = pageAdapter.getItemTitle(binding.viewPager.getCurrentItem());
@@ -931,16 +948,14 @@ public final class VideoDetailFragment
         }
         pageAdapter.notifyDataSetUpdate();
 
-        if (pageAdapter.getCount() < 2) {
-            binding.tabLayout.setVisibility(View.GONE);
-        } else {
+        if (pageAdapter.getCount() >= 2) {
             final int position = pageAdapter.getItemPositionByTitle(selectedTabTag);
             if (position != -1) {
                 binding.viewPager.setCurrentItem(position);
             }
-            binding.tabLayout.setVisibility(View.VISIBLE);
             updateTabIconsAndContentDescriptions();
         }
+        updateTabLayoutVisibility();
     }
 
     /**
@@ -994,8 +1009,40 @@ public final class VideoDetailFragment
         }
     }
 
+    public void updateTabLayoutVisibility() {
+        if (pageAdapter.getCount() < 2) {
+            binding.tabLayout.setVisibility(View.GONE);
+        } else {
+            binding.tabLayout.post(() -> {
+                if (getContext() != null) {
+                    final Rect pagerHitRect = new Rect();
+                    binding.viewPager.getHitRect(pagerHitRect);
+
+                    final Point displaySize = new Point();
+                    Objects.requireNonNull(ContextCompat.getSystemService(getContext(),
+                            WindowManager.class)).getDefaultDisplay().getSize(displaySize);
+
+                    final int viewPagerVisibleHeight = displaySize.y - pagerHitRect.top;
+                    // see TabLayout.DEFAULT_HEIGHT
+                    final float tabLayoutHeight = TypedValue.applyDimension(
+                            TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics());
+
+                    if (viewPagerVisibleHeight > tabLayoutHeight * 2) {
+                        // no translation at all when viewPagerVisibleHeight > tabLayout.height * 3
+                        binding.tabLayout.setTranslationY(
+                                Math.max(0, tabLayoutHeight * 3 - viewPagerVisibleHeight));
+                        binding.tabLayout.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.tabLayout.setVisibility(View.GONE);
+                    }
+                }
+            });
+        }
+    }
+
     public void scrollToTop() {
         binding.appBarLayout.setExpanded(true, true);
+        updateTabLayoutVisibility();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
