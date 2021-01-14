@@ -692,4 +692,5 @@
     <string name="show_thumbnail_title">Show thumbnail</string>
     <string name="show_thumbnail_summary">Use thumbnail for both lock screen background and notifications</string>
     <string name="recent">Recent</string>
+    <string name="chapters">Chapters</string>
 </resources>

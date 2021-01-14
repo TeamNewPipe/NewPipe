@@ -2283,7 +2283,7 @@ public final class VideoDetailFragment
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
                         if (player != null) {
-                            player.closeQueue();
+                            player.closeItemsList();
                         }
                         setOverlayLook(appBarLayout, behavior, 0);
                         break;
