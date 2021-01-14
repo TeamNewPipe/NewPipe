@@ -33,6 +33,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -154,6 +155,7 @@ public final class VideoDetailFragment
     private boolean showDescription;
     private String selectedTabTag;
     @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
+    @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
 
     @State
@@ -905,23 +907,27 @@ public final class VideoDetailFragment
         }
         pageAdapter.clearAllItems();
         tabIcons.clear();
+        tabContentDescriptions.clear();
 
         if (shouldShowComments()) {
             pageAdapter.addFragment(
                     CommentsFragment.getInstance(serviceId, url, title), COMMENTS_TAB_TAG);
             tabIcons.add(R.drawable.ic_comment_white_24dp);
+            tabContentDescriptions.add(R.string.comments_tab_description);
         }
 
         if (showRelatedStreams && binding.relatedStreamsLayout == null) {
             //temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
             tabIcons.add(R.drawable.ic_art_track_white_24dp);
+            tabContentDescriptions.add(R.string.related_streams_tab_description);
         }
 
         if (showDescription) {
             // temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new Fragment(), DESCRIPTION_TAB_TAG);
             tabIcons.add(R.drawable.ic_description_white_24dp);
+            tabContentDescriptions.add(R.string.description_tab_description);
         }
         pageAdapter.notifyDataSetUpdate();
 
@@ -933,20 +939,22 @@ public final class VideoDetailFragment
                 binding.viewPager.setCurrentItem(position);
             }
             binding.tabLayout.setVisibility(View.VISIBLE);
-            updateTabIcons();
+            updateTabIconsAndContentDescriptions();
         }
     }
 
     /**
      * To be called whenever {@link #pageAdapter} is modified, since that triggers a refresh in
-     * {@link FragmentVideoDetailBinding#tabLayout} resetting all tab's icons. This reads icons from
-     * {@link #tabIcons}, which are set in {@link #initTabs()}
+     * {@link FragmentVideoDetailBinding#tabLayout} resetting all tab's icons and content
+     * descriptions. This reads icons from {@link #tabIcons} and content descriptions from
+     * {@link #tabContentDescriptions}, which are all set in {@link #initTabs()}.
      */
-    private void updateTabIcons() {
+    private void updateTabIconsAndContentDescriptions() {
         for (int i = 0; i < tabIcons.size(); ++i) {
             final TabLayout.Tab tab = binding.tabLayout.getTabAt(i);
             if (tab != null) {
                 tab.setIcon(tabIcons.get(i));
+                tab.setContentDescription(tabContentDescriptions.get(i));
             }
         }
     }
@@ -972,7 +980,7 @@ public final class VideoDetailFragment
         }
 
         pageAdapter.notifyDataSetUpdate();
-        updateTabIcons();
+        updateTabIconsAndContentDescriptions();
     }
 
     private boolean shouldShowComments() {

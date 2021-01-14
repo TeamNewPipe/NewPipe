@@ -281,6 +281,9 @@
     <string name="detail_uploader_thumbnail_view_description">Uploader\'s avatar thumbnail</string>
     <string name="detail_likes_img_view_description">Likes</string>
     <string name="detail_dislikes_img_view_description">Dislikes</string>
+    <string name="comments_tab_description">Comments</string>
+    <string name="related_streams_tab_description">Related streams</string>
+    <string name="description_tab_description">Description</string>
     <string name="use_tor_title">Use Tor</string>
     <string name="use_tor_summary">(Experimental) Force download traffic through Tor for increased privacy (streaming videos not yet supported).</string>
     <string name="report_error">Report error</string>
