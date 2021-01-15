@@ -17,7 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
@@ -73,7 +73,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private var _binding: FragmentSubscriptionBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: SubscriptionViewModel
+    private val viewModel by viewModels<SubscriptionViewModel>()
     private lateinit var subscriptionManager: SubscriptionManager
     private val disposables: CompositeDisposable = CompositeDisposable()
 
@@ -288,7 +288,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
         binding.itemsList.adapter = groupAdapter
 
-        viewModel = ViewModelProvider(this).get(SubscriptionViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(this::handleResult) }
         viewModel.feedGroupsLiveData.observe(viewLifecycleOwner) { it?.let(this::handleFeedGroups) }
     }

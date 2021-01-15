@@ -32,7 +32,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.preference.PreferenceManager
 import icepick.State
 import org.schabi.newpipe.R
@@ -51,7 +51,8 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private var _feedBinding: FragmentFeedBinding? = null
     private val feedBinding get() = _feedBinding!!
 
-    private lateinit var viewModel: FeedViewModel
+    private val viewModel by viewModels<FeedViewModel> { FeedViewModel.Factory(requireContext(), groupId) }
+
     @State
     @JvmField
     var listState: Parcelable? = null
@@ -82,7 +83,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         _feedBinding = FragmentFeedBinding.bind(rootView)
         super.onViewCreated(rootView, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, FeedViewModel.Factory(requireContext(), groupId)).get(FeedViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
     }
 

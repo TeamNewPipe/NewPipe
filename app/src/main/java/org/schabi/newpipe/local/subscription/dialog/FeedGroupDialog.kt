@@ -17,8 +17,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.ImageViewCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
@@ -53,7 +52,13 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     private var _searchLayoutBinding: ToolbarSearchLayoutBinding? = null
     private val searchLayoutBinding get() = _searchLayoutBinding!!
 
-    private lateinit var viewModel: FeedGroupDialogViewModel
+    private val viewModel by viewModels<FeedGroupDialogViewModel> {
+        FeedGroupDialogViewModel.Factory(
+            requireContext(),
+            groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped
+        )
+    }
+
     private var groupId: Long = NO_GROUP_SELECTED
     private var groupIcon: FeedGroupIcon? = null
     private var groupSortOrder: Long = -1
@@ -134,30 +139,16 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             ImageViewCompat.setImageTintList(searchLayoutBinding.toolbarSearchClearIcon, contrastColor)
         }
 
-        viewModel = ViewModelProvider(
-            this,
-            FeedGroupDialogViewModel.Factory(
-                requireContext(),
-                groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped
-            )
-        ).get(FeedGroupDialogViewModel::class.java)
-
-        viewModel.groupLiveData.observe(viewLifecycleOwner, Observer(::handleGroup))
-        viewModel.subscriptionsLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                setupSubscriptionPicker(it.first, it.second)
+        viewModel.groupLiveData.observe(viewLifecycleOwner) { handleGroup(it) }
+        viewModel.subscriptionsLiveData.observe(viewLifecycleOwner) {
+            setupSubscriptionPicker(it.first, it.second)
+        }
+        viewModel.dialogEventLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                ProcessingEvent -> disableInput()
+                SuccessEvent -> dismiss()
             }
-        )
-        viewModel.dialogEventLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                when (it) {
-                    ProcessingEvent -> disableInput()
-                    SuccessEvent -> dismiss()
-                }
-            }
-        )
+        }
 
         subscriptionGroupAdapter = GroupAdapter<GroupieViewHolder>().apply {
             add(subscriptionMainSection)

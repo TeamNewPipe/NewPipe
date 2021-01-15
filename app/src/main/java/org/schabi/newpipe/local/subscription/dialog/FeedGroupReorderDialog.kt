@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,7 +32,7 @@ class FeedGroupReorderDialog : DialogFragment() {
     private var _binding: DialogFeedGroupReorderBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: FeedGroupReorderDialogViewModel
+    private val viewModel by viewModels<FeedGroupReorderDialogViewModel>()
 
     @State
     @JvmField
@@ -56,17 +55,13 @@ class FeedGroupReorderDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = DialogFeedGroupReorderBinding.bind(view)
 
-        viewModel = ViewModelProvider(this).get(FeedGroupReorderDialogViewModel::class.java)
-        viewModel.groupsLiveData.observe(viewLifecycleOwner, Observer(::handleGroups))
-        viewModel.dialogEventLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                when (it) {
-                    ProcessingEvent -> disableInput()
-                    SuccessEvent -> dismiss()
-                }
+        viewModel.groupsLiveData.observe(viewLifecycleOwner) { handleGroups(it) }
+        viewModel.dialogEventLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                ProcessingEvent -> disableInput()
+                SuccessEvent -> dismiss()
             }
-        )
+        }
 
         binding.feedGroupsList.layoutManager = LinearLayoutManager(requireContext())
         binding.feedGroupsList.adapter = groupAdapter
