@@ -364,7 +364,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         //mContext.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-            ShareUtils.openContentInApp(mContext, intent);
+            ShareUtils.openIntentInApp(mContext, intent);
         } else {
             Toast.makeText(mContext, R.string.toast_no_player, Toast.LENGTH_LONG).show();
         }

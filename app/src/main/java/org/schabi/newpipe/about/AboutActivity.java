@@ -146,16 +146,13 @@ public class AboutActivity extends AppCompatActivity {
             aboutBinding.appVersion.setText(BuildConfig.VERSION_NAME);
 
             aboutBinding.githubLink.setOnClickListener(nv ->
-                    openUrlInBrowser(context, context.getString(R.string.github_url),
-                            false));
+                    openUrlInBrowser(context, context.getString(R.string.github_url), false));
 
             aboutBinding.donationLink.setOnClickListener(v ->
-                    openUrlInBrowser(context, context.getString(R.string.donation_url),
-                            false));
+                    openUrlInBrowser(context, context.getString(R.string.donation_url), false));
 
             aboutBinding.websiteLink.setOnClickListener(nv ->
-                    openUrlInBrowser(context, context.getString(R.string.website_url),
-                            false));
+                    openUrlInBrowser(context, context.getString(R.string.website_url), false));
 
             aboutBinding.privacyPolicyLink.setOnClickListener(v ->
                     openUrlInBrowser(context, context.getString(R.string.privacy_policy_url),

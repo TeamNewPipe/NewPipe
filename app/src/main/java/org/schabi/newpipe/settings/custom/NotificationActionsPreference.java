@@ -15,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -22,13 +23,15 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
-import java.util.List;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.NotificationConstants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
+
+import java.util.List;
 
 public class NotificationActionsPreference extends Preference {
 

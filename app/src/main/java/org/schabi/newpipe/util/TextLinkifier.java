@@ -14,15 +14,15 @@ import androidx.core.text.HtmlCompat;
 import io.noties.markwon.Markwon;
 import io.noties.markwon.linkify.LinkifyPlugin;
 
-public final class LinkHelper {
-    private LinkHelper() {
+public final class TextLinkifier {
+    private TextLinkifier() {
     }
 
     /**
      * Create web links for contents with an HTML description.
      * <p>
      * This will call
-     * {@link LinkHelper#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView)}
+     * {@link TextLinkifier#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView)}
      * after linked the URLs with {@link HtmlCompat#fromHtml(String, int)}.
      *
      * @param context        the context to use
@@ -43,7 +43,7 @@ public final class LinkHelper {
      * Create web links for contents with a plain text description.
      * <p>
      * This will call
-     * {@link LinkHelper#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView)}
+     * {@link TextLinkifier#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView)}
      * after linked the URLs with {@link TextView#setAutoLinkMask(int)} and
      * {@link TextView#setText(CharSequence, TextView.BufferType)}.
      *
@@ -63,7 +63,7 @@ public final class LinkHelper {
      * Create web links for contents with a markdown description.
      * <p>
      * This will call
-     * {@link LinkHelper#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView)}
+     * {@link TextLinkifier#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView)}
      * after creating an {@link Markwon} object and using
      * {@link Markwon#setMarkdown(TextView, String)}.
      *
@@ -84,7 +84,7 @@ public final class LinkHelper {
      * <p>
      * Instead of using an ACTION_VIEW intent in the description of a content, this method will
      * parse the CharSequence and replace all current web links with
-     * {@link ShareUtils#openUrlInBrowser(Context, String, Boolean)}.
+     * {@link ShareUtils#openUrlInBrowser(Context, String, boolean)}.
      * <p>
      * This method is required in order to intercept links and maybe, show a confirmation dialog
      * before opening a web link.
@@ -105,6 +105,7 @@ public final class LinkHelper {
                     ShareUtils.openUrlInBrowser(context, span.getURL(), false);
                 }
             };
+
             textBlockLinked.setSpan(clickableSpan, textBlockLinked.getSpanStart(span),
                     textBlockLinked.getSpanEnd(span), textBlockLinked.getSpanFlags(span));
             textBlockLinked.removeSpan(span);

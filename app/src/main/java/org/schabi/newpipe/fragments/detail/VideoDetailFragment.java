@@ -95,12 +95,12 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
-import org.schabi.newpipe.util.LinkHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.TextLinkifier;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 import org.schabi.newpipe.views.LargeTextMovementMethod;
@@ -1230,16 +1230,16 @@ public final class VideoDetailFragment
         }
 
         if (description.getType() == Description.HTML) {
-            LinkHelper.createLinksFromHtmlBlock(requireContext(), description.getContent(),
+            TextLinkifier.createLinksFromHtmlBlock(requireContext(), description.getContent(),
                     videoDescriptionView, HtmlCompat.FROM_HTML_MODE_LEGACY);
             videoDescriptionView.setVisibility(View.VISIBLE);
         } else if (description.getType() == Description.MARKDOWN) {
-            LinkHelper.createLinksFromMarkdownText(requireContext(), description.getContent(),
+            TextLinkifier.createLinksFromMarkdownText(requireContext(), description.getContent(),
                     videoDescriptionView);
             videoDescriptionView.setVisibility(View.VISIBLE);
         } else {
             //== Description.PLAIN_TEXT
-            LinkHelper.createLinksFromPlainText(requireContext(), description.getContent(),
+            TextLinkifier.createLinksFromPlainText(requireContext(), description.getContent(),
                     videoDescriptionView);
             videoDescriptionView.setVisibility(View.VISIBLE);
         }

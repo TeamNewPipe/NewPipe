@@ -365,7 +365,7 @@ public final class ExtractorHelper {
                 }
             }
 
-            LinkHelper.createLinksFromHtmlBlock(context, stringBuilder.toString(),
+            TextLinkifier.createLinksFromHtmlBlock(context, stringBuilder.toString(),
                     metaInfoTextView, HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING);
             metaInfoTextView.setMovementMethod(LinkMovementMethod.getInstance());
             metaInfoTextView.setVisibility(View.VISIBLE);

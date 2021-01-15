@@ -300,7 +300,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
         val actions = DialogInterface.OnClickListener { _, i ->
             when (i) {
-                0 -> ShareUtils.shareUrl(requireContext(), selectedItem.name, selectedItem.url)
+                0 -> ShareUtils.shareText(requireContext(), selectedItem.name, selectedItem.url)
                 1 -> deleteChannel(selectedItem)
             }
         }

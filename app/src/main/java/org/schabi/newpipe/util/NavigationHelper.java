@@ -2,7 +2,6 @@ package org.schabi.newpipe.util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -46,9 +45,9 @@ import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
+import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.PlayQueueActivity;
 import org.schabi.newpipe.player.Player;
-import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -56,6 +55,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
+
+import static org.schabi.newpipe.util.ShareUtils.installApp;
 
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
@@ -246,7 +247,7 @@ public final class NavigationHelper {
 
     public static void resolveActivityOrAskToInstall(final Context context, final Intent intent) {
         if (intent.resolveActivity(context.getPackageManager()) != null) {
-            ShareUtils.openContentInApp(context, intent);
+            ShareUtils.openIntentInApp(context, intent);
         } else {
             if (context instanceof Activity) {
                 new AlertDialog.Builder(context)
@@ -564,17 +565,6 @@ public final class NavigationHelper {
         }
 
         return getOpenIntent(context, url, service.getServiceId(), linkType);
-    }
-
-    private static void installApp(final Context context, final String packageName) {
-        try {
-            // Try market:// scheme
-            ShareUtils.openUrlInBrowser(context, "market://details?id=" + packageName, false);
-        } catch (final ActivityNotFoundException e) {
-            // Fall back to google play URL (don't worry F-Droid can handle it :)
-            ShareUtils.openUrlInBrowser(context,
-                    "https://play.google.com/store/apps/details?id=" + packageName, false);
-        }
     }
 
     /**

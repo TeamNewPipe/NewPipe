@@ -244,7 +244,7 @@ public class ErrorActivity extends AppCompatActivity {
                 goToReturnActivity();
                 break;
             case R.id.menu_item_share_error:
-                ShareUtils.shareUrl(this, getString(R.string.error_report_title), buildJson());
+                ShareUtils.shareText(this, getString(R.string.error_report_title), buildJson());
                 break;
         }
         return false;
@@ -267,7 +267,7 @@ public class ErrorActivity extends AppCompatActivity {
                                 .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
                                 .putExtra(Intent.EXTRA_TEXT, buildJson());
                         if (i.resolveActivity(getPackageManager()) != null) {
-                            ShareUtils.openContentInApp(context, i);
+                            ShareUtils.openIntentInApp(context, i);
                         }
                     } else if (action.equals("GITHUB")) { // open the NewPipe issue page on GitHub
                         ShareUtils.openUrlInBrowser(this, ERROR_GITHUB_ISSUE_URL, false);
