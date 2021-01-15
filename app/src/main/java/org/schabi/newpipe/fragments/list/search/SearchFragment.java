@@ -280,8 +280,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         handleSearchSuggestion();
 
-        showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
-                    metaInfoTextView, metaInfoSeparator);
+        disposables.add(showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
+                    metaInfoTextView, metaInfoSeparator));
 
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
@@ -1002,10 +1002,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         // List<MetaInfo> cannot be bundled without creating some containers
         metaInfo = new MetaInfo[result.getMetaInfo().size()];
         metaInfo = result.getMetaInfo().toArray(metaInfo);
+        disposables.add(showMetaInfoInTextView(result.getMetaInfo(), metaInfoTextView,
+                metaInfoSeparator));
 
         handleSearchSuggestion();
-
-        showMetaInfoInTextView(result.getMetaInfo(), metaInfoTextView, metaInfoSeparator);
 
         lastSearchedString = searchString;
         nextPage = result.getNextPage();

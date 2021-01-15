@@ -6,15 +6,23 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
 
 import io.noties.markwon.Markwon;
 import io.noties.markwon.linkify.LinkifyPlugin;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class TextLinkifier {
+    public static final String TAG = TextLinkifier.class.getSimpleName();
+
     private TextLinkifier() {
     }
 
@@ -23,20 +31,21 @@ public final class TextLinkifier {
      * <p>
      * This will call
      * {@link TextLinkifier#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView)}
-     * after linked the URLs with {@link HtmlCompat#fromHtml(String, int)}.
+     * after having linked the URLs with {@link HtmlCompat#fromHtml(String, int)}.
      *
      * @param context        the context to use
      * @param htmlBlock      the htmlBlock to be linked
      * @param textView       the TextView to set the htmlBlock linked
      * @param htmlCompatFlag the int flag to be set when {@link HtmlCompat#fromHtml(String, int)}
      *                       will be called
+     * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
-    public static void createLinksFromHtmlBlock(final Context context,
-                                                final String htmlBlock,
-                                                final TextView textView,
-                                                final int htmlCompatFlag) {
-        changeIntentsOfDescriptionLinks(context, HtmlCompat.fromHtml(htmlBlock, htmlCompatFlag),
-                textView);
+    public static Disposable createLinksFromHtmlBlock(final Context context,
+                                                      final String htmlBlock,
+                                                      final TextView textView,
+                                                      final int htmlCompatFlag) {
+        return changeIntentsOfDescriptionLinks(context,
+                HtmlCompat.fromHtml(htmlBlock, htmlCompatFlag), textView);
     }
 
     /**
@@ -44,19 +53,20 @@ public final class TextLinkifier {
      * <p>
      * This will call
      * {@link TextLinkifier#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView)}
-     * after linked the URLs with {@link TextView#setAutoLinkMask(int)} and
+     * after having linked the URLs with {@link TextView#setAutoLinkMask(int)} and
      * {@link TextView#setText(CharSequence, TextView.BufferType)}.
      *
      * @param context        the context to use
      * @param plainTextBlock the block of plain text to be linked
      * @param textView       the TextView to set the plain text block linked
+     * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
-    public static void createLinksFromPlainText(final Context context,
-                                                final String plainTextBlock,
-                                                final TextView textView) {
+    public static Disposable createLinksFromPlainText(final Context context,
+                                                      final String plainTextBlock,
+                                                      final TextView textView) {
         textView.setAutoLinkMask(Linkify.WEB_URLS);
         textView.setText(plainTextBlock, TextView.BufferType.SPANNABLE);
-        changeIntentsOfDescriptionLinks(context, textView.getText(), textView);
+        return changeIntentsOfDescriptionLinks(context, textView.getText(), textView);
     }
 
     /**
@@ -70,48 +80,66 @@ public final class TextLinkifier {
      * @param context       the context to use
      * @param markdownBlock the block of markdown text to be linked
      * @param textView      the TextView to set the plain text block linked
+     * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
-    public static void createLinksFromMarkdownText(final Context context,
-                                                   final String markdownBlock,
-                                                   final TextView textView) {
+    public static Disposable createLinksFromMarkdownText(final Context context,
+                                                         final String markdownBlock,
+                                                         final TextView textView) {
         final Markwon markwon = Markwon.builder(context).usePlugin(LinkifyPlugin.create()).build();
         markwon.setMarkdown(textView, markdownBlock);
-        changeIntentsOfDescriptionLinks(context, textView.getText(), textView);
+        return changeIntentsOfDescriptionLinks(context, textView.getText(), textView);
     }
 
     /**
      * Change links generated by libraries in the description of a content to a custom link action.
      * <p>
-     * Instead of using an ACTION_VIEW intent in the description of a content, this method will
-     * parse the CharSequence and replace all current web links with
-     * {@link ShareUtils#openUrlInBrowser(Context, String, boolean)}.
+     * Instead of using an {@link android.content.Intent#ACTION_VIEW} intent in the description of a
+     * content, this method will parse the {@link CharSequence} and replace all current web links
+     * with {@link ShareUtils#openUrlInBrowser(Context, String, boolean)}.
      * <p>
-     * This method is required in order to intercept links and maybe, show a confirmation dialog
+     * This method is required in order to intercept links and e.g. show a confirmation dialog
      * before opening a web link.
      *
      * @param context  the context to use
      * @param chars    the CharSequence to be parsed
      * @param textView the TextView in which the converted CharSequence will be applied
+     * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
-    private static void changeIntentsOfDescriptionLinks(final Context context,
-                                                        final CharSequence chars,
-                                                        final TextView textView) {
-        final SpannableStringBuilder textBlockLinked = new SpannableStringBuilder(chars);
-        final URLSpan[] urls = textBlockLinked.getSpans(0, chars.length(), URLSpan.class);
+    private static Disposable changeIntentsOfDescriptionLinks(final Context context,
+                                                              final CharSequence chars,
+                                                              final TextView textView) {
+        return Single.fromCallable(() -> {
+            final SpannableStringBuilder textBlockLinked = new SpannableStringBuilder(chars);
+            final URLSpan[] urls = textBlockLinked.getSpans(0, chars.length(), URLSpan.class);
 
-        for (final URLSpan span : urls) {
-            final ClickableSpan clickableSpan = new ClickableSpan() {
-                public void onClick(final View view) {
-                    ShareUtils.openUrlInBrowser(context, span.getURL(), false);
-                }
-            };
+            for (final URLSpan span : urls) {
+                final ClickableSpan clickableSpan = new ClickableSpan() {
+                    public void onClick(@NonNull final View view) {
+                        ShareUtils.openUrlInBrowser(context, span.getURL(), false);
+                    }
+                };
 
-            textBlockLinked.setSpan(clickableSpan, textBlockLinked.getSpanStart(span),
-                    textBlockLinked.getSpanEnd(span), textBlockLinked.getSpanFlags(span));
-            textBlockLinked.removeSpan(span);
-        }
+                textBlockLinked.setSpan(clickableSpan, textBlockLinked.getSpanStart(span),
+                        textBlockLinked.getSpanEnd(span), textBlockLinked.getSpanFlags(span));
+                textBlockLinked.removeSpan(span);
+            }
 
-        textView.setText(textBlockLinked);
+            return textBlockLinked;
+        }).subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        textBlockLinked -> setTextViewCharSequence(textView, textBlockLinked),
+                        throwable -> {
+                            Log.e(TAG, "Unable to linkify text", throwable);
+                            // this should never happen, but if it does, just fallback to it
+                            setTextViewCharSequence(textView, chars);
+                        });
+    }
+
+    private static void setTextViewCharSequence(final TextView textView,
+                                                final CharSequence charSequence) {
+        textView.setText(charSequence);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+        textView.setVisibility(View.VISIBLE);
     }
 }

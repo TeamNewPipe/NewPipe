@@ -22,7 +22,6 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -68,6 +67,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
@@ -325,10 +325,11 @@ public final class ExtractorHelper {
      * @param metaInfos a list of meta information, can be null or empty
      * @param metaInfoTextView the text view in which to show the formatted HTML
      * @param metaInfoSeparator another view to be shown or hidden accordingly to the text view
+     * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
-    public static void showMetaInfoInTextView(@Nullable final List<MetaInfo> metaInfos,
-                                              final TextView metaInfoTextView,
-                                              final View metaInfoSeparator) {
+    public static Disposable showMetaInfoInTextView(@Nullable final List<MetaInfo> metaInfos,
+                                                    final TextView metaInfoTextView,
+                                                    final View metaInfoSeparator) {
         final Context context = metaInfoTextView.getContext();
         final boolean showMetaInfo = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.show_meta_info_key), true);
@@ -336,6 +337,7 @@ public final class ExtractorHelper {
         if (!showMetaInfo || metaInfos == null || metaInfos.isEmpty()) {
             metaInfoTextView.setVisibility(View.GONE);
             metaInfoSeparator.setVisibility(View.GONE);
+            return Disposable.empty();
 
         } else {
             final StringBuilder stringBuilder = new StringBuilder();
@@ -365,11 +367,9 @@ public final class ExtractorHelper {
                 }
             }
 
-            TextLinkifier.createLinksFromHtmlBlock(context, stringBuilder.toString(),
-                    metaInfoTextView, HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING);
-            metaInfoTextView.setMovementMethod(LinkMovementMethod.getInstance());
-            metaInfoTextView.setVisibility(View.VISIBLE);
             metaInfoSeparator.setVisibility(View.VISIBLE);
+            return TextLinkifier.createLinksFromHtmlBlock(context, stringBuilder.toString(),
+                    metaInfoTextView, HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING);
         }
     }
 

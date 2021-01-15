@@ -1229,19 +1229,20 @@ public final class VideoDetailFragment
             return;
         }
 
-        if (description.getType() == Description.HTML) {
-            TextLinkifier.createLinksFromHtmlBlock(requireContext(), description.getContent(),
-                    videoDescriptionView, HtmlCompat.FROM_HTML_MODE_LEGACY);
-            videoDescriptionView.setVisibility(View.VISIBLE);
-        } else if (description.getType() == Description.MARKDOWN) {
-            TextLinkifier.createLinksFromMarkdownText(requireContext(), description.getContent(),
-                    videoDescriptionView);
-            videoDescriptionView.setVisibility(View.VISIBLE);
-        } else {
-            //== Description.PLAIN_TEXT
-            TextLinkifier.createLinksFromPlainText(requireContext(), description.getContent(),
-                    videoDescriptionView);
-            videoDescriptionView.setVisibility(View.VISIBLE);
+        switch (description.getType()) {
+            case Description.HTML:
+                disposables.add(TextLinkifier.createLinksFromHtmlBlock(requireContext(),
+                        description.getContent(), videoDescriptionView,
+                        HtmlCompat.FROM_HTML_MODE_LEGACY));
+                break;
+            case Description.MARKDOWN:
+                disposables.add(TextLinkifier.createLinksFromMarkdownText(requireContext(),
+                        description.getContent(), videoDescriptionView));
+                break;
+            case Description.PLAIN_TEXT: default:
+                disposables.add(TextLinkifier.createLinksFromPlainText(requireContext(),
+                        description.getContent(), videoDescriptionView));
+                break;
         }
     }
 
@@ -1557,8 +1558,8 @@ public final class VideoDetailFragment
         prepareDescription(info.getDescription());
         updateProgressInfo(info);
         initThumbnailViews(info);
-        showMetaInfoInTextView(info.getMetaInfo(), detailMetaInfoTextView, detailMetaInfoSeparator);
-
+        disposables.add(showMetaInfoInTextView(info.getMetaInfo(), detailMetaInfoTextView,
+                detailMetaInfoSeparator));
 
         if (player == null || player.isStopped()) {
             updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
