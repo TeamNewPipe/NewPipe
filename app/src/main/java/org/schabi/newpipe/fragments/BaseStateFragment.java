@@ -30,7 +30,11 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     private View emptyStateView;
     @Nullable
     private ProgressBar loadingProgressBar;
+
     private ErrorPanelHelper errorPanelHelper;
+    @Nullable
+    @State
+    protected ErrorInfo lastPanelError = null;
 
     @Override
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
@@ -42,6 +46,14 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     public void onPause() {
         super.onPause();
         wasLoading.set(isLoading.get());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (lastPanelError != null) {
+            showError(lastPanelError);
+        }
     }
 
     @Override
@@ -98,7 +110,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (loadingProgressBar != null) {
             animate(loadingProgressBar, true, 400);
         }
-        errorPanelHelper.hide();
+        hideErrorPanel();
     }
 
     @Override
@@ -109,7 +121,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (loadingProgressBar != null) {
             animate(loadingProgressBar, false, 0);
         }
-        errorPanelHelper.hide();
+        hideErrorPanel();
     }
 
     public void showEmptyState() {
@@ -120,7 +132,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (loadingProgressBar != null) {
             animate(loadingProgressBar, false, 0);
         }
-        errorPanelHelper.hide();
+        hideErrorPanel();
     }
 
     @Override
@@ -158,6 +170,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         }
 
         errorPanelHelper.showError(errorInfo);
+        lastPanelError = errorInfo;
     }
 
     public final void showTextError(@NonNull final String errorString) {
@@ -175,6 +188,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
 
     public final void hideErrorPanel() {
         errorPanelHelper.hide();
+        lastPanelError = null;
     }
 
     public final boolean isErrorPanelVisible() {

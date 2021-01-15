@@ -256,13 +256,19 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     "Getting service for id " + serviceId, e);
         }
 
+        if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
+            initSuggestionObserver();
+        }
+
         if (!TextUtils.isEmpty(searchString)) {
             if (wasLoading.getAndSet(false)) {
                 search(searchString, contentFilter, sortFilter);
+                return;
             } else if (infoListAdapter.getItemsList().isEmpty()) {
                 if (savedState == null) {
                     search(searchString, contentFilter, sortFilter);
-                } else if (!isLoading.get() && !wasSearchFocused) {
+                    return;
+                } else if (!isLoading.get() && !wasSearchFocused && lastPanelError == null) {
                     infoListAdapter.clearStreamItemList();
                     showEmptyState();
                 }
@@ -273,10 +279,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         disposables.add(showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
                     searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator));
-
-        if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
-            initSuggestionObserver();
-        }
 
         if (TextUtils.isEmpty(searchString) || wasSearchFocused) {
             showKeyboardSearch();
@@ -719,14 +721,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             suggestionDisposable.dispose();
         }
 
-        final Observable<String> observable = suggestionPublisher
+        suggestionDisposable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
                 .startWithItem(searchString != null
                         ? searchString
                         : "")
-                .filter(ss -> isSuggestionsEnabled);
-
-        suggestionDisposable = observable
+                .filter(ss -> isSuggestionsEnabled)
                 .switchMap(query -> {
                     final Flowable<List<SearchHistoryEntry>> flowable = historyRecordManager
                             .getRelatedSearches(query, 3, 25);
