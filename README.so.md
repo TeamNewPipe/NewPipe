@@ -16,7 +16,7 @@
 <p align="center"><a href="https://newpipe.net">Website-ka</a> &bull; <a href="https://newpipe.net/blog/">Maqaalada</a> &bull; <a href="https://newpipe.net/FAQ/">Su'aalaha Aalaa La-iswaydiiyo</a> &bull; <a href="https://newpipe.net/press/">Warbaahinta</a></p>
 <hr>
 
-*Ku akhri luuqad kale: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt.br.md).*
+*Ku akhri luuqad kale: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_br.md).*
 
 <b>DIGNIIN: MIDKAN [NOOCA APP-KA EE HADDA] WALI TIJAABO AYUU KU JIRAA (BETA), SIDAA DARTEED CILLADO AYAAD LA KULMI KARTAA. HADAAD LA KULANTO , KA FUR ARIN SHARAXAYA QAYBTANADA GITHUB-KA.</b>
 
