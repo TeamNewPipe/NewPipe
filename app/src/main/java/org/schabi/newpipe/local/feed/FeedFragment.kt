@@ -251,7 +251,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         }
 
         feedBinding.loadingProgressBar.isIndeterminate = isIndeterminate ||
-                (progressState.maxProgress > 0 && progressState.currentProgress == 0)
+            (progressState.maxProgress > 0 && progressState.currentProgress == 0)
         feedBinding.loadingProgressBar.progress = progressState.currentProgress
 
         feedBinding.loadingProgressBar.max = progressState.maxProgress
@@ -269,8 +269,10 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         val loadedCount = loadedState.notLoadedCount > 0
         feedBinding.refreshSubtitleText.isVisible = loadedCount
         if (loadedCount) {
-            feedBinding.refreshSubtitleText.text = getString(R.string.feed_subscription_not_loaded_count,
-                    loadedState.notLoadedCount)
+            feedBinding.refreshSubtitleText.text = getString(
+                R.string.feed_subscription_not_loaded_count,
+                loadedState.notLoadedCount
+            )
         }
 
         if (loadedState.itemsErrors.isNotEmpty()) {

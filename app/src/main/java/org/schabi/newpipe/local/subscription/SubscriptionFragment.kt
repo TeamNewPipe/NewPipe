@@ -311,10 +311,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         dialogTitleBinding.itemAdditionalDetails.visibility = View.GONE
 
         AlertDialog.Builder(requireContext())
-                .setCustomTitle(dialogTitleBinding.root)
-                .setItems(commands, actions)
-                .create()
-                .show()
+            .setCustomTitle(dialogTitleBinding.root)
+            .setItems(commands, actions)
+            .create()
+            .show()
     }
 
     private fun deleteChannel(selectedItem: ChannelInfoItem) {
