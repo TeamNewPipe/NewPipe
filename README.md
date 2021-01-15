@@ -82,7 +82,7 @@ NewPipe supports multiple services. Our [docs](https://teamnewpipe.github.io/doc
 * media.ccc.de \[beta\]
 * PeerTube instances \[beta\]
 
-<!-- Hidden span to keep old links compatible -->
+<!-- Hidden span to keep old links compatible. -->
 <span id="updates"></span>
 
 ## Installation
