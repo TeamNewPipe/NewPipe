@@ -246,10 +246,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
 
         // revoke permissions on the old save path (required for SAF only)
-        final Context context = getContext();
-        if (context == null) {
-            throw new NullPointerException("getContext()");
-        }
+        final Context context = requireContext();
 
         forgetSAFTree(context, defaultPreferences.getString(key, ""));
 

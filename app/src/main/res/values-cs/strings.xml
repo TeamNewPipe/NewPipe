@@ -258,8 +258,8 @@
     <string name="just_once">Pouze jednou</string>
     <string name="import_data_title">Importovat databázi</string>
     <string name="export_data_title">Exportovat databázi</string>
-    <string name="import_data_summary">Přepíše vaši dosavadní historii a odběry</string>
-    <string name="export_data_summary">Exportuje historii, odběry a playlisty</string>
+    <string name="import_data_summary">Přepíše Vaši dosavadní historii, odběry, playlisty a (volitelně) nastavení</string>
+    <string name="export_data_summary">Exportuje historii, odběry, playlisty a nastavení</string>
     <string name="external_player_unsupported_link_type">Externí přehrávače nepodporují tyto druhy odkazů</string>
     <string name="invalid_url_toast">Neplatná URL</string>
     <string name="video_streams_empty">Nenalezeny žádné video streamy</string>
@@ -657,6 +657,6 @@
     <string name="show_age_restricted_content_summary">Zobrazit obsah, i když je patrně nevhodný pro děti, protože odkazuje na věkové omezení (např. 18+)</string>
     <string name="notification_colorize_summary">Nechte Android přizpůsobit barvu oznámení podle hlavní barvy v miniatuře (není k dispozici na všech zařízeních)</string>
     <string name="notification_colorize_title">Barevné notifikace</string>
-    <string name="show_thumbnail_summary">Zobrazit miniaturu na zamknuté obrazovce jako pozadí a v oznámeních</string>
+    <string name="show_thumbnail_summary">Použít miniaturu pro pozadí zamknuté obrazovky a oznámení</string>
     <string name="show_thumbnail_title">Zobrazit miniaturu</string>
 </resources>

@@ -268,7 +268,7 @@
     <string name="thumbnail_cache_wipe_complete_notice">תמונות מטמון נמחקו</string>
     <string name="metadata_cache_wipe_title">ניקוי מטמון נתוני העל</string>
     <string name="metadata_cache_wipe_complete_notice">מטמון נתוני העל התרוקן</string>
-    <string name="export_data_summary">ייצוא היסטוריה, מינויים ורשימות נגינה</string>
+    <string name="export_data_summary">ייצוא היסטוריה, מינויים, רשימות נגינה והגדרות</string>
     <string name="clear_views_history_title">מחיקת היסטוריית הצפייה</string>
     <string name="watch_history_deleted">היסטוריית הצפייה נמחקה.</string>
     <string name="clear_search_history_title">מחיקת היסטוריית החיפוש</string>
@@ -336,7 +336,7 @@
     <string name="auto_queue_summary">להמשיך תור נגינה סופית (בלתי מחזורית) על ידי הוספת תזרים קשור</string>
     <string name="toggle_orientation">החלפת כיווניות</string>
     <string name="switch_to_main">העברה לראשי</string>
-    <string name="import_data_summary">משכתב את ההיסטוריה והמינויים הנוכחיים שלך</string>
+    <string name="import_data_summary">משכתב את ההיסטוריה, המינויים ו(אולי גם) את ההגדרות הנוכחיים שלך</string>
     <string name="clear_views_history_summary">מחיקת היסטוריית התזרימים שהתנגנו ומיקומי הנגינה</string>
     <string name="channels">ערוצים</string>
     <string name="playlists">רשימות נגינה</string>
@@ -667,6 +667,9 @@
     <string name="show_age_restricted_content_summary">הצגת תוכן שעלול להיות בלתי הולם לילדים עקב מגבלת גיל (כגון 18+)</string>
     <string name="notification_colorize_summary">לאפשר ל־Android להתאים את צבע ההתראה בהתאם לצבע העיקרי של התמונה הממוזערת (לא זמין בכל המכשירים)</string>
     <string name="notification_colorize_title">צביעת ההתראה</string>
-    <string name="show_thumbnail_summary">הצגת תמונה ממוזערת על מסך הנעילה כרקע ובתוך ההתראות</string>
+    <string name="show_thumbnail_summary">להשתמש בתמונה ממוזערת גם כרקע מסך הנעילה וגם בהתראות</string>
     <string name="show_thumbnail_title">הצגת תמונה ממוזערת</string>
+    <string name="msg_calculating_hash">הגיבוב</string>
+    <string name="hash_channel_description">התראות על תהליכי גיבוב</string>
+    <string name="hash_channel_name">התראת גיבוב סרטון</string>
 </resources>

@@ -30,6 +30,7 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.ServiceCompat
 import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -42,19 +43,20 @@ import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
+import org.schabi.newpipe.App
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ProgressEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.SuccessResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
 import org.schabi.newpipe.local.subscription.SubscriptionManager
-import org.schabi.newpipe.util.ExceptionUtils
 import org.schabi.newpipe.util.ExtractorHelper
 import java.io.IOException
 import java.time.OffsetDateTime
@@ -67,7 +69,7 @@ class FeedLoadService : Service() {
     companion object {
         private val TAG = FeedLoadService::class.java.simpleName
         private const val NOTIFICATION_ID = 7293450
-        private const val ACTION_CANCEL = "org.schabi.newpipe.local.feed.service.FeedLoadService.CANCEL"
+        private const val ACTION_CANCEL = App.PACKAGE_NAME + ".local.feed.service.FeedLoadService.CANCEL"
 
         /**
          * How often the notification will be updated.
@@ -147,7 +149,7 @@ class FeedLoadService : Service() {
 
     private fun stopService() {
         disposeAll()
-        stopForeground(true)
+        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
         notificationManager.cancel(NOTIFICATION_ID)
         stopSelf()
     }
@@ -342,7 +344,7 @@ class FeedLoadService : Service() {
 
                     error is IOException -> throw error
                     cause is IOException -> throw cause
-                    ExceptionUtils.isNetworkRelated(error) -> throw IOException(error)
+                    error.isNetworkRelated -> throw IOException(error)
                 }
             }
         }

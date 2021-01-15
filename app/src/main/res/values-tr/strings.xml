@@ -260,8 +260,8 @@
     <string name="preferred_player_fetcher_notification_message">İstenen içerik yükleniyor</string>
     <string name="import_data_title">Veri tabanını içe aktar</string>
     <string name="export_data_title">Veri tabanını dışa aktar</string>
-    <string name="import_data_summary">Geçerli geçmişinizi ve aboneliklerinizi geçersiz kılar</string>
-    <string name="export_data_summary">Geçmişi, abonelikleri ve oynatma listelerini dışa aktar</string>
+    <string name="import_data_summary">Geçerli geçmişinizi, aboneliklerinizi, oynatma listelerinizi ve (isteğe bağlı olarak) ayarlarınızı geçersiz kılar</string>
+    <string name="export_data_summary">Geçmişi, abonelikleri, oynatma listelerini ve ayarları dışa aktar</string>
     <string name="export_complete_toast">Dışa aktarıldı</string>
     <string name="import_complete_toast">İçe aktarıldı</string>
     <string name="no_valid_zip_file">Geçerli ZIP dosyası yok</string>
@@ -645,8 +645,11 @@
     <string name="clear_cookie_title">reCAPTCHA çerezlerini temizle</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube, olası yetişkin içeriği gizleyen \"Kısıtlı Kip\" sağlamaktadır</string>
     <string name="show_age_restricted_content_summary">Yaş kısıtı (18+ gibi) nedeniyle çocuklara uygun olmayabilecek içeriği göster</string>
-    <string name="show_thumbnail_summary">Küçük resmi kilit ekranında arka plan olarak ve bildirimlerin içinde göster</string>
+    <string name="show_thumbnail_summary">Hem kilit ekranı arka planı hem de bildirimler için küçük resmi kullan</string>
     <string name="show_thumbnail_title">Küçük resmi göster</string>
     <string name="notification_colorize_summary">Android\'in bildirim rengini küçük resimdeki ana renge göre özelleştirmesini sağlayın (bunun tüm aygıtlarda kullanılamadığını unutmayın)</string>
     <string name="notification_colorize_title">Bildirimi renklendir</string>
+    <string name="msg_calculating_hash">Dosya özeti hesaplanıyor</string>
+    <string name="hash_channel_description">Video dosya özetleme süreci için bildirimler</string>
+    <string name="hash_channel_name">Video Dosya Özeti Bildirimi</string>
 </resources>

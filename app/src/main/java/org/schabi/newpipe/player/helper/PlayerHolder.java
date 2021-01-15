@@ -16,7 +16,7 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.MainPlayer;
-import org.schabi.newpipe.player.VideoPlayerImpl;
+import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -33,7 +33,7 @@ public final class PlayerHolder {
     private static ServiceConnection serviceConnection;
     public static boolean bound;
     private static MainPlayer playerService;
-    private static VideoPlayerImpl player;
+    private static Player player;
 
     /**
      * Returns the current {@link MainPlayer.PlayerType} of the {@link MainPlayer} service,

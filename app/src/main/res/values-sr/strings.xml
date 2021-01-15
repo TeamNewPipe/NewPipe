@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s приказа</string>
     <string name="upload_date_text">Објављен %1$s</string>
-    <string name="no_player_found">Нема плејера токова. Инсталирати ВЛЦ\?</string>
+    <string name="no_player_found">Нема плејера токова. Желите ли да инсталирате ВЛЦ\?</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Одустани</string>
     <string name="open_in_browser">Отвори у прегледачу</string>

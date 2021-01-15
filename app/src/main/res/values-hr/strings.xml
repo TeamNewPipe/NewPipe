@@ -148,7 +148,7 @@
     <string name="msg_running_detail">Dodirni za detalje</string>
     <string name="msg_wait">Molimo pričekajte…</string>
     <string name="msg_copied">Kopirano u međuspremnik</string>
-    <string name="no_available_dir">Kasnije odredite mapu za preuzimanje u postavkama</string>
+    <string name="no_available_dir">Molimo kasnije u postavkama odaberite mapu za preuzimanje</string>
     <string name="msg_popup_permission">Ova dozvola je potrebna za
 \notvaranje skočnog prozora</string>
     <string name="title_activity_recaptcha">reCAPTCHA zadatak</string>
@@ -290,15 +290,15 @@
     <string name="switch_to_main">Prijeđi na glavni</string>
     <string name="import_data_title">Uvoz baze podataka</string>
     <string name="export_data_title">Izvoz baze podataka</string>
-    <string name="import_data_summary">Poništava vašu trenutnu povijest i pretplate</string>
-    <string name="export_data_summary">Izvezi povijest, pretplate i playliste</string>
-    <string name="clear_views_history_title">Očisti povijest gledanja</string>
+    <string name="import_data_summary">Poništava vašu trenutačnu povijest, pretplate, playliste i (opcionalno) postavke</string>
+    <string name="export_data_summary">Izvezi povijest, pretplate, playliste i postavke</string>
+    <string name="clear_views_history_title">Izbriši povijest gledanja</string>
     <string name="clear_views_history_summary">Briše povijest reproduciranih streamova i pozicije reprodukcije</string>
-    <string name="delete_view_history_alert">Obriši cijelu povijest gledanja\?</string>
-    <string name="watch_history_deleted">Povijest gledanja izbrisana.</string>
-    <string name="clear_search_history_title">Obriši povijest pretraživanja</string>
-    <string name="delete_search_history_alert">Obriši cijelu povijest pretraživanja\?</string>
-    <string name="search_history_deleted">Povijest pretraživanja obrisana.</string>
+    <string name="delete_view_history_alert">Izbrisati cijelu povijest gledanja\?</string>
+    <string name="watch_history_deleted">Povijest gledanja je izbrisana.</string>
+    <string name="clear_search_history_title">Izbriši povijest pretraživanja</string>
+    <string name="delete_search_history_alert">Izbrisati cijelu povijest pretraživanja\?</string>
+    <string name="search_history_deleted">Povijest pretraživanja je izbrisana.</string>
     <string name="invalid_url_toast">Neispravan URL</string>
     <string name="invalid_directory">Nema takve mape</string>
     <string name="file_name_empty_error">Naziv datoteke ne može biti prazan</string>
@@ -335,11 +335,14 @@
     <string name="previous_export">Prethodni izvozi</string>
     <string name="subscriptions_import_unsuccessful">Nije moguće uvesti pretplatnike</string>
     <string name="subscriptions_export_unsuccessful">Nije moguće izvesti pretplatnike</string>
-    <string name="import_youtube_instructions">Uvezite YouTube pretplatnike preuzimanjem izvozne datoteke: 
-\n 
-\n1. Idite na ovaj URL: %1$s 
-\n2. Ulogirajte se 
-\n3. Preuzimanje bi trebalo početi (to je izvozna datoteka)</string>
+    <string name="import_youtube_instructions">Uvezite YouTube pretplatnike preuzimanjem izvozne datoteke Google-a:
+\n
+\n1. Idite na ovaj URL: %1$s
+\n2. Prijavite se
+\n3. Kliknite \"Uključeni svi podaci\", zatim \"Poništi odabir svih\", a zatim odaberite samo \"pretplate\" i kliknite \"U redu\"
+\n4. Kliknite na \"Nastavi\", a zatim \"Stvori izvoz\"
+\n5. Kliknite na \"Preuzmi\"
+\n6. Preuzmite zip datoteku i izvucite json datoteku (pod \"YouTube and YouTube Music/subscriptions/subscriptions.json\") pa uvezite je ovdje</string>
     <string name="import_soundcloud_instructions_hint">vašID, soundcloud.com/vašID</string>
     <string name="import_network_expensive_warning">Uzmite u obzir da ova operacija može uzrokovat veliku potrošnju prometa.
 \n
@@ -477,9 +480,9 @@
     <string name="start_downloads">Započni preuzimanja</string>
     <string name="pause_downloads">Zaustavi preuzimanja</string>
     <string name="downloads_storage_ask_title">Pitaj gdje preuzeti</string>
-    <string name="clear_playback_states_title">Obriši poziciju reprodukcije</string>
-    <string name="clear_playback_states_summary">Obriši sve pozicije reprodukcije</string>
-    <string name="delete_playback_states_alert">Obriši sve pozicije reprodukcije\?</string>
+    <string name="clear_playback_states_title">Izbriši poziciju reprodukcije</string>
+    <string name="clear_playback_states_summary">Izbriši sve pozicije reprodukcije</string>
+    <string name="delete_playback_states_alert">Izbrisati sve pozicije reprodukcije\?</string>
     <string name="no_one_watching">Nitko ne gleda</string>
     <string name="no_one_listening">Nitko ne sluša</string>
     <string name="localization_changes_requires_app_restart">Jezik će se promjeniti nakon ponovnog pokretanja aplikacije.</string>
@@ -487,7 +490,7 @@
     <string name="peertube_instance_add_https_only">Podržani su samo HTTP URL-ovi</string>
     <string name="local">Lokalno</string>
     <string name="recently_added">Nedavno dodano</string>
-    <string name="playlist_no_uploader">Automatski generirana (nije pronađen nijedan autor)</string>
+    <string name="playlist_no_uploader">Autogenerirano (prenositelj nedefiniran)</string>
     <string name="clear_download_history">Očisti povijest preuzimanja</string>
     <string name="delete_downloaded_files">Izbriši preuzete datoteke</string>
     <string name="deleted_downloads">Obrisano %1$d preuzimanja</string>
@@ -552,7 +555,7 @@
     <string name="download_choose_new_path">Promijenite mape za preuzimanje kako bi stupile na snagu</string>
     <string name="search_showing_result_for">Prikazuju se rezultati za: %s</string>
     <string name="unsupported_url_dialog_message">Nije moguće prepoznati URL. Želite li otvoriti u drugoj aplikaciji\?</string>
-    <string name="notification_scale_to_square_image_title">Promijeni omjer minijature na 1:1</string>
+    <string name="notification_scale_to_square_image_title">Smanjiti omjer minijatura na 1:1</string>
     <string name="notification_action_buffering">Učitavanje u predmemoriju</string>
     <string name="enable_queue_limit_desc">Istovremeno se pokreće jedno preuzimanje</string>
     <string name="enqueued">Dodano u popis izvođenja</string>
@@ -641,4 +644,22 @@
     <string name="show_thumbnail_summary">Prikaži minijaturu kao pozadinu pri zaključanom ekranu i unutar obavijesti</string>
     <string name="show_thumbnail_title">Prikaži minijaturu</string>
     <string name="show_original_time_ago_title">Prikaži izvorno vrijeme elemenata</string>
+    <string name="downloads_storage_use_saf_summary">„Okvir za pristup spremištu” omogućuje preuzimanje na SD karticu.
+\nNeki uređaji nisu kompatibilni</string>
+    <string name="show_original_time_ago_summary">Izvorni tekstovi usluga bit će vidljivi u elementima prijenosa</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Dostupno je u nekim uslugama. Obično je puno brže, ali može vratiti ograničenu količinu predmeta i često nepotpune podatke (npr. bez trajanja, vrste predmeta, bez stanja uživo).</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Mislite li da je učitavanje feeda prespor\? Ako je to slučaj, pokušajte omogućiti brzo učitavanje (možete ga promijeniti u postavkama ili pritiskom na donji gumb).
+\n
+\nNewPipe nudi dvije strategije ulaganja feeda:
+\n• Dohvaćanje cijelog pretplatničkog kanala, koji je spor, ali cjelovit.
+\n• Korištenje namjenske krajnje točke usluge, koja je brza, ali obično nije potpuna.
+\n
+\nRazlika je u tome što brzom obično nedostaju neke informacije, poput trajanja ili vrste stavke (ne može razlikovati videozapise uživo od uobičajenih), a možda će vratiti i manje predmeta.
+\n
+\nYouTube je primjer usluge koja nudi ovaj brzi način sa svojim RSS feedom.
+\n
+\nDakle, izbor se svodi na ono što više volite: brzinu ili precizne informacije.</string>
+    <string name="msg_calculating_hash">Izračunavanje šifriranja</string>
+    <string name="hash_channel_name">Obavijest šifriranja videa</string>
+    <string name="hash_channel_description">Obavijesti o napretku šifriranja videa</string>
 </resources>

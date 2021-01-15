@@ -85,6 +85,13 @@
         android:title="@string/show_comments_title"
         app:iconSpaceReserved="false" />
 
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/show_meta_info_key"
+        android:summary="@string/show_meta_info_summary"
+        android:title="@string/show_meta_info_title"
+        app:iconSpaceReserved="false" />
+
     <Preference
         android:key="@string/import_data"
         android:summary="@string/import_data_summary"

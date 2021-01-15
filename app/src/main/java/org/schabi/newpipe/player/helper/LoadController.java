@@ -26,12 +26,12 @@ public class LoadController implements LoadControl {
     }
 
     private LoadController(final int initialPlaybackBufferMs,
-                           final int minimumPlaybackbufferMs,
+                           final int minimumPlaybackBufferMs,
                            final int optimalPlaybackBufferMs) {
         this.initialPlaybackBufferUs = initialPlaybackBufferMs * 1000;
 
         final DefaultLoadControl.Builder builder = new DefaultLoadControl.Builder();
-        builder.setBufferDurationsMs(minimumPlaybackbufferMs, optimalPlaybackBufferMs,
+        builder.setBufferDurationsMs(minimumPlaybackBufferMs, optimalPlaybackBufferMs,
                 initialPlaybackBufferMs, initialPlaybackBufferMs);
         internalLoadControl = builder.createDefaultLoadControl();
     }

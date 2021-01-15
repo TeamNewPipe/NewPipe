@@ -51,20 +51,20 @@
         <item name="colorAccent">@color/dark_peertube_accent_color</item>
     </style>
 
-    <!-- Media.ccc -->
-    <style name="LightTheme.MediaCCC" parent="LightTheme">
+    <!-- media.ccc.de -->
+    <style name="LightTheme.media.ccc.de" parent="LightTheme">
         <item name="colorPrimary">@color/light_media_ccc_primary_color</item>
         <item name="colorPrimaryDark">@color/light_media_ccc_statusbar_color</item>
         <item name="colorAccent">@color/light_media_ccc_accent_color</item>
     </style>
 
-    <style name="DarkTheme.MediaCCC" parent="DarkTheme">
+    <style name="DarkTheme.media.ccc.de" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
         <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
     </style>
 
-    <style name="BlackTheme.MediaCCC" parent="BlackTheme">
+    <style name="BlackTheme.media.ccc.de" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
         <item name="colorAccent">@color/dark_media_ccc_accent_color</item>

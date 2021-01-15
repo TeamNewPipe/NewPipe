@@ -205,7 +205,7 @@ public class ListHelperTest {
         assertEquals(MediaFormat.M4A, stream.getFormat());
 
         // Adding a new format and bitrate. Adding another stream will have no impact since
-        // it's not a prefered format.
+        // it's not a preferred format.
         testList.add(new AudioStream("", MediaFormat.WEBMA, /**/ 192));
         stream = testList.get(ListHelper.getHighestQualityAudioIndex(MediaFormat.MP3, testList));
         assertEquals(192, stream.average_bitrate);

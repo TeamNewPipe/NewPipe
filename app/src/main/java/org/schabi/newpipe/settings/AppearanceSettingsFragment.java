@@ -8,6 +8,7 @@ import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
@@ -31,7 +32,7 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
 
             if (!newValue.equals(startThemeKey) && getActivity() != null) {
                 // If it's not the current theme
-                getActivity().recreate();
+                ActivityCompat.recreate(requireActivity());
             }
 
             return false;

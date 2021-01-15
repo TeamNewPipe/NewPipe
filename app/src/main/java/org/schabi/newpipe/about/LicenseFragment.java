@@ -7,18 +7,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.FragmentLicensesBinding;
+import org.schabi.newpipe.databinding.ItemSoftwareComponentBinding;
 import org.schabi.newpipe.util.ShareUtils;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
@@ -35,12 +37,9 @@ public class LicenseFragment extends Fragment {
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public static LicenseFragment newInstance(final SoftwareComponent[] softwareComponents) {
-        if (softwareComponents == null) {
-            throw new NullPointerException("softwareComponents is null");
-        }
-        final LicenseFragment fragment = new LicenseFragment();
         final Bundle bundle = new Bundle();
-        bundle.putParcelableArray(ARG_COMPONENTS, softwareComponents);
+        bundle.putParcelableArray(ARG_COMPONENTS, Objects.requireNonNull(softwareComponents));
+        final LicenseFragment fragment = new LicenseFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -69,43 +68,42 @@ public class LicenseFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container,
+    public View onCreateView(@NonNull final LayoutInflater inflater,
+                             @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_licenses, container, false);
-        final ViewGroup softwareComponentsView = rootView.findViewById(R.id.software_components);
+        final FragmentLicensesBinding binding = FragmentLicensesBinding
+                .inflate(inflater, container, false);
 
-        final View licenseLink = rootView.findViewById(R.id.app_read_license);
-        licenseLink.setOnClickListener(v -> {
+        binding.appReadLicense.setOnClickListener(v -> {
             activeLicense = StandardLicenses.GPL3;
             compositeDisposable.add(LicenseFragmentHelper.showLicense(getActivity(),
                     StandardLicenses.GPL3));
         });
 
         for (final SoftwareComponent component : softwareComponents) {
-            final View componentView = inflater
-                    .inflate(R.layout.item_software_component, container, false);
-            final TextView softwareName = componentView.findViewById(R.id.name);
-            final TextView copyright = componentView.findViewById(R.id.copyright);
-            softwareName.setText(component.getName());
-            copyright.setText(getString(R.string.copyright,
+            final ItemSoftwareComponentBinding componentBinding = ItemSoftwareComponentBinding
+                    .inflate(inflater, container, false);
+            componentBinding.name.setText(component.getName());
+            componentBinding.copyright.setText(getString(R.string.copyright,
                     component.getYears(),
                     component.getCopyrightOwner(),
                     component.getLicense().getAbbreviation()));
 
-            componentView.setTag(component);
-            componentView.setOnClickListener(v -> {
+            final View root = componentBinding.getRoot();
+            root.setTag(component);
+            root.setOnClickListener(v -> {
                 activeLicense = component.getLicense();
                 compositeDisposable.add(LicenseFragmentHelper.showLicense(getActivity(),
                         component.getLicense()));
             });
-            softwareComponentsView.addView(componentView);
-            registerForContextMenu(componentView);
+            binding.softwareComponents.addView(root);
+            registerForContextMenu(root);
         }
         if (activeLicense != null) {
             compositeDisposable.add(LicenseFragmentHelper.showLicense(getActivity(),
                     activeLicense));
         }
-        return rootView;
+        return binding.getRoot();
     }
 
     @Override

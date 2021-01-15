@@ -263,8 +263,8 @@
     <string name="preferred_player_fetcher_notification_message">Chargement du contenu demandé</string>
     <string name="import_data_title">Importer la base de données</string>
     <string name="export_data_title">Exporter la base de données</string>
-    <string name="import_data_summary">Remplace votre historique et vos abonnements actuels</string>
-    <string name="export_data_summary">Exporte l’historique, les abonnements et les listes de lecture</string>
+    <string name="import_data_summary">Remplace votre historique, vos abonnements, vos listes de lecture et (en option) vos paramètres</string>
+    <string name="export_data_summary">Exporte l’historique, les abonnements, les listes de lecture et les paramètres</string>
     <string name="export_complete_toast">Exporté</string>
     <string name="import_complete_toast">Importé</string>
     <string name="no_valid_zip_file">Fichier ZIP non valide</string>
@@ -650,5 +650,5 @@
     <string name="notification_colorize_title">Notification colorée</string>
     <string name="notification_colorize_summary">Demander à Android de personnaliser la couleur de la notification en fonction de la couleur principale de la miniature (noter que cela n’est pas disponible sur tous les appareils)</string>
     <string name="show_thumbnail_title">Afficher la miniature</string>
-    <string name="show_thumbnail_summary">Afficher la miniature en arrière-plan de l’écran de verrouillage et dans les notifications</string>
+    <string name="show_thumbnail_summary">Utiliser la miniature pour l\'arrière-plan de l’écran de verrouillage et les notifications</string>
 </resources>

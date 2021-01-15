@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.MainActivity;
@@ -42,7 +43,7 @@ import static org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE;
  */
 public final class NotificationUtil {
     private static final String TAG = NotificationUtil.class.getSimpleName();
-    private static final boolean DEBUG = BasePlayer.DEBUG;
+    private static final boolean DEBUG = Player.DEBUG;
     private static final int NOTIFICATION_ID = 123789;
 
     @Nullable private static NotificationUtil instance = null;
@@ -75,7 +76,7 @@ public final class NotificationUtil {
      * @param forceRecreate whether to force the recreation of the notification even if it already
      *                      exists
      */
-    synchronized void createNotificationIfNeededAndUpdate(final VideoPlayerImpl player,
+    synchronized void createNotificationIfNeededAndUpdate(final Player player,
                                                           final boolean forceRecreate) {
         if (forceRecreate || notificationBuilder == null) {
             notificationBuilder = createNotification(player);
@@ -84,14 +85,14 @@ public final class NotificationUtil {
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
 
-    private synchronized NotificationCompat.Builder createNotification(
-            final VideoPlayerImpl player) {
+    private synchronized NotificationCompat.Builder createNotification(final Player player) {
         if (DEBUG) {
             Log.d(TAG, "createNotification()");
         }
-        notificationManager = NotificationManagerCompat.from(player.context);
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(player.context,
-                player.context.getString(R.string.notification_channel_id));
+        notificationManager = NotificationManagerCompat.from(player.getContext());
+        final NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(player.getContext(),
+                player.getContext().getString(R.string.notification_channel_id));
 
         initializeNotificationSlots(player);
 
@@ -106,25 +107,25 @@ public final class NotificationUtil {
 
         // build the compact slot indices array (need code to convert from Integer... because Java)
         final List<Integer> compactSlotList = NotificationConstants.getCompactSlotsFromPreferences(
-                player.context, player.sharedPreferences, nonNothingSlotCount);
+                player.getContext(), player.getPrefs(), nonNothingSlotCount);
         final int[] compactSlots = new int[compactSlotList.size()];
         for (int i = 0; i < compactSlotList.size(); i++) {
             compactSlots[i] = compactSlotList.get(i);
         }
 
         builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                    .setMediaSession(player.mediaSessionManager.getSessionToken())
+                    .setMediaSession(player.getMediaSessionManager().getSessionToken())
                     .setShowActionsInCompactView(compactSlots))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
                 .setShowWhen(false)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                .setColor(ContextCompat.getColor(player.context, R.color.dark_background_color))
-                .setColorized(player.sharedPreferences.getBoolean(
-                        player.context.getString(R.string.notification_colorize_key),
-                        true))
-                .setDeleteIntent(PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
+                .setColor(ContextCompat.getColor(player.getContext(),
+                        R.color.dark_background_color))
+                .setColorized(player.getPrefs().getBoolean(
+                        player.getContext().getString(R.string.notification_colorize_key), true))
+                .setDeleteIntent(PendingIntent.getBroadcast(player.getContext(), NOTIFICATION_ID,
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
 
         return builder;
@@ -134,20 +135,20 @@ public final class NotificationUtil {
      * Updates the notification builder and the button icons depending on the playback state.
      * @param player the player currently open, to take data from
      */
-    private synchronized void updateNotification(final VideoPlayerImpl player) {
+    private synchronized void updateNotification(final Player player) {
         if (DEBUG) {
             Log.d(TAG, "updateNotification()");
         }
 
         // also update content intent, in case the user switched players
-        notificationBuilder.setContentIntent(PendingIntent.getActivity(player.context,
+        notificationBuilder.setContentIntent(PendingIntent.getActivity(player.getContext(),
                 NOTIFICATION_ID, getIntentForNotification(player), FLAG_UPDATE_CURRENT));
         notificationBuilder.setContentTitle(player.getVideoTitle());
         notificationBuilder.setContentText(player.getUploaderName());
         notificationBuilder.setTicker(player.getVideoTitle());
         updateActions(notificationBuilder, player);
-        final boolean showThumbnail = player.sharedPreferences.getBoolean(
-                player.context.getString(R.string.show_thumbnail_key), true);
+        final boolean showThumbnail = player.getPrefs().getBoolean(
+                player.getContext().getString(R.string.show_thumbnail_key), true);
         if (showThumbnail) {
             setLargeIcon(notificationBuilder, player);
         }
@@ -173,7 +174,7 @@ public final class NotificationUtil {
     }
 
 
-    void createNotificationAndStartForeground(final VideoPlayerImpl player, final Service service) {
+    void createNotificationAndStartForeground(final Player player, final Service service) {
         if (notificationBuilder == null) {
             notificationBuilder = createNotification(player);
         }
@@ -188,7 +189,7 @@ public final class NotificationUtil {
     }
 
     void cancelNotificationAndStopForeground(final Service service) {
-        service.stopForeground(true);
+        ServiceCompat.stopForeground(service, ServiceCompat.STOP_FOREGROUND_REMOVE);
 
         if (notificationManager != null) {
             notificationManager.cancel(NOTIFICATION_ID);
@@ -202,17 +203,16 @@ public final class NotificationUtil {
     // ACTIONS
     /////////////////////////////////////////////////////
 
-    private void initializeNotificationSlots(final VideoPlayerImpl player) {
+    private void initializeNotificationSlots(final Player player) {
         for (int i = 0; i < 5; ++i) {
-            notificationSlots[i] = player.sharedPreferences.getInt(
-                    player.context.getString(NotificationConstants.SLOT_PREF_KEYS[i]),
+            notificationSlots[i] = player.getPrefs().getInt(
+                    player.getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
                     NotificationConstants.SLOT_DEFAULTS[i]);
         }
     }
 
     @SuppressLint("RestrictedApi")
-    private void updateActions(final NotificationCompat.Builder builder,
-                               final VideoPlayerImpl player) {
+    private void updateActions(final NotificationCompat.Builder builder, final Player player) {
         builder.mActions.clear();
         for (int i = 0; i < 5; ++i) {
             addAction(builder, player, notificationSlots[i]);
@@ -220,7 +220,7 @@ public final class NotificationUtil {
     }
 
     private void addAction(final NotificationCompat.Builder builder,
-                           final VideoPlayerImpl player,
+                           final Player player,
                            @NotificationConstants.Action final int slot) {
         final NotificationCompat.Action action = getAction(player, slot);
         if (action != null) {
@@ -230,7 +230,7 @@ public final class NotificationUtil {
 
     @Nullable
     private NotificationCompat.Action getAction(
-            final VideoPlayerImpl player,
+            final Player player,
             @NotificationConstants.Action final int selectedAction) {
         final int baseActionIcon = NotificationConstants.ACTION_ICONS[selectedAction];
         switch (selectedAction) {
@@ -251,7 +251,7 @@ public final class NotificationUtil {
                         R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD);
 
             case NotificationConstants.SMART_REWIND_PREVIOUS:
-                if (player.playQueue != null && player.playQueue.size() > 1) {
+                if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
                     return getAction(player, R.drawable.exo_notification_previous,
                             R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS);
                 } else {
@@ -260,7 +260,7 @@ public final class NotificationUtil {
                 }
 
             case NotificationConstants.SMART_FORWARD_NEXT:
-                if (player.playQueue != null && player.playQueue.size() > 1) {
+                if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
                     return getAction(player, R.drawable.exo_notification_next,
                             R.string.exo_controls_next_description, ACTION_PLAY_NEXT);
                 } else {
@@ -269,23 +269,23 @@ public final class NotificationUtil {
                 }
 
             case NotificationConstants.PLAY_PAUSE_BUFFERING:
-                if (player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
-                        || player.getCurrentState() == BasePlayer.STATE_BLOCKED
-                        || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
+                if (player.getCurrentState() == Player.STATE_PREFLIGHT
+                        || player.getCurrentState() == Player.STATE_BLOCKED
+                        || player.getCurrentState() == Player.STATE_BUFFERING) {
                     // null intent -> show hourglass icon that does nothing when clicked
                     return new NotificationCompat.Action(R.drawable.ic_hourglass_top_white_24dp_png,
-                            player.context.getString(R.string.notification_action_buffering),
+                            player.getContext().getString(R.string.notification_action_buffering),
                             null);
                 }
 
             case NotificationConstants.PLAY_PAUSE:
-                if (player.getCurrentState() == BasePlayer.STATE_COMPLETED) {
+                if (player.getCurrentState() == Player.STATE_COMPLETED) {
                     return getAction(player, R.drawable.ic_replay_white_24dp_png,
                             R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
                 } else if (player.isPlaying()
-                        || player.getCurrentState() == BasePlayer.STATE_PREFLIGHT
-                        || player.getCurrentState() == BasePlayer.STATE_BLOCKED
-                        || player.getCurrentState() == BasePlayer.STATE_BUFFERING) {
+                        || player.getCurrentState() == Player.STATE_PREFLIGHT
+                        || player.getCurrentState() == Player.STATE_BLOCKED
+                        || player.getCurrentState() == Player.STATE_BUFFERING) {
                     return getAction(player, R.drawable.exo_notification_pause,
                             R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
                 } else {
@@ -306,7 +306,7 @@ public final class NotificationUtil {
                 }
 
             case NotificationConstants.SHUFFLE:
-                if (player.playQueue != null && player.playQueue.isShuffled()) {
+                if (player.getPlayQueue() != null && player.getPlayQueue().isShuffled()) {
                     return getAction(player, R.drawable.exo_controls_shuffle_on,
                             R.string.exo_controls_shuffle_on_description, ACTION_SHUFFLE);
                 } else {
@@ -325,23 +325,23 @@ public final class NotificationUtil {
         }
     }
 
-    private NotificationCompat.Action getAction(final VideoPlayerImpl player,
+    private NotificationCompat.Action getAction(final Player player,
                                                 @DrawableRes final int drawable,
                                                 @StringRes final int title,
                                                 final String intentAction) {
-        return new NotificationCompat.Action(drawable, player.context.getString(title),
-                PendingIntent.getBroadcast(player.context, NOTIFICATION_ID,
+        return new NotificationCompat.Action(drawable, player.getContext().getString(title),
+                PendingIntent.getBroadcast(player.getContext(), NOTIFICATION_ID,
                         new Intent(intentAction), FLAG_UPDATE_CURRENT));
     }
 
-    private Intent getIntentForNotification(final VideoPlayerImpl player) {
+    private Intent getIntentForNotification(final Player player) {
         if (player.audioPlayerSelected() || player.popupPlayerSelected()) {
             // Means we play in popup or audio only. Let's show the play queue
-            return NavigationHelper.getPlayQueueActivityIntent(player.context);
+            return NavigationHelper.getPlayQueueActivityIntent(player.getContext());
         } else {
             // We are playing in fragment. Don't open another activity just show fragment. That's it
             final Intent intent = NavigationHelper.getPlayerIntent(
-                    player.context, MainActivity.class, null, true);
+                    player.getContext(), MainActivity.class, null, true);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setAction(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -354,10 +354,9 @@ public final class NotificationUtil {
     // BITMAP
     /////////////////////////////////////////////////////
 
-    private void setLargeIcon(final NotificationCompat.Builder builder,
-                              final VideoPlayerImpl player) {
-        final boolean scaleImageToSquareAspectRatio = player.sharedPreferences.getBoolean(
-                player.context.getString(R.string.scale_to_square_image_in_notifications_key),
+    private void setLargeIcon(final NotificationCompat.Builder builder, final Player player) {
+        final boolean scaleImageToSquareAspectRatio = player.getPrefs().getBoolean(
+                player.getContext().getString(R.string.scale_to_square_image_in_notifications_key),
                 false);
         if (scaleImageToSquareAspectRatio) {
             builder.setLargeIcon(getBitmapWithSquareAspectRatio(player.getThumbnail()));

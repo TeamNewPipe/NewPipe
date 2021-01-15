@@ -262,8 +262,8 @@
     <string name="preferred_player_fetcher_notification_message">Carregando conteúdo solicitado</string>
     <string name="import_data_title">Importar base de dados</string>
     <string name="export_data_title">Exportar base de dados</string>
-    <string name="import_data_summary">Substitui seu histórico e inscrições atuai</string>
-    <string name="export_data_summary">Exporte histórico, inscrições e playlists</string>
+    <string name="import_data_summary">Substitui seu histórico atual, inscrições, playlists e (opcionalmente) configurações</string>
+    <string name="export_data_summary">Exporte histórico, inscrições, playlists e configurações</string>
     <string name="export_complete_toast">Exportado</string>
     <string name="import_complete_toast">Importado</string>
     <string name="no_valid_zip_file">Não há nenhum arquivo ZIP válido</string>
@@ -596,7 +596,7 @@
 \n
 \nAtive \"%1$s\" nas configurações se quiser vê-lo.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e vídeos parcialmente vistos</string>
-    <string name="remove_watched_popup_warning">Vídeos vistos antes e depois de adicionar à lista de reprodução serão removidos. 
+    <string name="remove_watched_popup_warning">Vídeos vistos antes e depois de adicionar à playlists serão removidos.
 \nTem certeza\? Isto não pode ser desfeito!</string>
     <string name="remove_watched_popup_title">Remover vídeos vistos\?</string>
     <string name="remove_watched">Remover vistos</string>
@@ -647,6 +647,9 @@
     <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente inadequado para crianças porque tem um limite de idade (como +18)</string>
     <string name="notification_colorize_summary">Permite o Android personalizar a cor da notificação de acordo com a cor principal da miniatura (note que isso não está disponível em todos os dispositivos)</string>
     <string name="notification_colorize_title">Colorir notificação</string>
-    <string name="show_thumbnail_summary">Mostrar miniaturas como fundo da tela de bloqueio e nas notificações</string>
+    <string name="show_thumbnail_summary">Usar miniatura para o plano de fundo da tela de bloqueio e as notificações</string>
     <string name="show_thumbnail_title">Mostrar miniatura</string>
+    <string name="msg_calculating_hash">Calculando hash</string>
+    <string name="hash_channel_description">Notificações para o progresso do hash do vídeo</string>
+    <string name="hash_channel_name">Notificação de Hash do Vídeo</string>
 </resources>

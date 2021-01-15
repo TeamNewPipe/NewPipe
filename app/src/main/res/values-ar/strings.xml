@@ -47,13 +47,13 @@
     <string name="unsupported_url">رابط غير مدعوم</string>
     <string name="use_external_audio_player_title">استخدام مشغل صوت خارجي</string>
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
-    <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
+    <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية (تشغيل الفيديو المباشر غير مدعوم حتى الأن).</string>
     <string name="use_tor_title">استخدام تور</string>
     <string name="view_count_text">%1$s مشاهدة</string>
     <string name="content_not_available">محتوى غير متوفر</string>
-    <string name="could_not_load_thumbnails">تعذرت عملية تحميل كافة صور المعاينة</string>
+    <string name="could_not_load_thumbnails">تعذر تحميل كافة الصور المصغرة</string>
     <string name="general_error">خطأ</string>
-    <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
+    <string name="parsing_error">تعذر تحليل الموقع</string>
     <string name="youtube_signature_deobfuscation_error">تعذر فك تشفير توقيع رابط الفيديو</string>
     <string name="main_bg_subtitle">اضغط على \"بحث\" للبدء
 \n</string>
@@ -102,7 +102,7 @@
     <string name="resume_on_audio_focus_gain_title">استئناف التشغيل</string>
     <string name="resume_on_audio_focus_gain_summary">متابعة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
     <string name="show_hold_to_append_title">إظهار التلميحات \"اضغط للتجاهل\"</string>
-    <string name="show_hold_to_append_summary">عرض تلميح عند الضغط على الخلفية أو الزر المنبثق في الفيديو \"التفاصيل:\"</string>
+    <string name="show_hold_to_append_summary">عرض تلميح على صفحة التفاصيل عند استخدام وضع مشغل الخلفية أو النافذة المنبثقة</string>
     <string name="settings_category_player_title">المشغل</string>
     <string name="settings_category_player_behavior_title">السلوك</string>
     <string name="settings_category_popup_title">الوضع المنبثق</string>
@@ -127,10 +127,10 @@
     <string name="notification_channel_description">تنبيهات مشغل NewPipe للخلفية والنوافذ المنبثقة</string>
     <string name="unknown_content">[غير معروف]</string>
     <string name="light_parsing_error">لا يمكن تحليل الموقع بشكل كلي</string>
-    <string name="could_not_setup_download_menu">تعذرت عملية إعداد قائمة التنزيل</string>
-    <string name="live_streams_not_supported">البث المباشر غير مدعوم حتى الآن</string>
+    <string name="could_not_setup_download_menu">تعذر إعداد قائمة التنزيل</string>
+    <string name="live_streams_not_supported">البثوث المباشرة ليست مدعومةً بعد</string>
     <string name="could_not_get_stream">تعذر الحصول على أي بث</string>
-    <string name="could_not_load_image">تعذرت عملية تحميل الصورة</string>
+    <string name="could_not_load_image">تعذر تحميل الصورة</string>
     <string name="app_ui_crash">تعطل التطبيق / واجهة المستخدم</string>
     <string name="player_stream_failure">لا يمكن تشغيل هذا البث</string>
     <string name="player_unrecoverable_failure">حدث خطأ للمشغل غير قابل للاسترداد</string>
@@ -223,11 +223,11 @@
     <string name="select_a_channel">اختر قناة</string>
     <string name="no_channel_subscribed_yet">لم يتم الاشتراك في أي قناة بعد</string>
     <string name="trending">الشائعة</string>
-    <string name="top_50">أفضل 50</string>
+    <string name="top_50">أفضل ٥٠</string>
     <string name="new_and_hot">جديد وساخن</string>
     <string name="play_queue_remove">حذف</string>
     <string name="play_queue_stream_detail">التفاصيل</string>
-    <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
+    <string name="play_queue_audio_settings">إعدادات الصوت</string>
     <string name="start_here_on_main">تشغيل هنا</string>
     <string name="start_here_on_popup">بدأ التشغيل في نافذة منبثقة</string>
     <string name="title_activity_recaptcha">تحدي الكابتشا</string>
@@ -268,8 +268,8 @@
     <string name="no_player_found_toast">لم يتم العثور على مشغل بث (يمكنك تثبيت VLC لتشغيله).</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
-    <string name="import_data_summary">يتجاوز السجل والاشتراكات الحالية</string>
-    <string name="export_data_summary">تصدير السجل، الإشتراكات وقوائم التشغيل</string>
+    <string name="import_data_summary">يلغي السجل الحالي والاشتراكات وقوائم التشغيل والإعدادات (اختياريًا)</string>
+    <string name="export_data_summary">تصدير قوائم تشغيل, الاشتراكات, والإعدادات</string>
     <string name="show_info">عرض المعلومات</string>
     <string name="controls_add_to_playlist_title">إضافة إلى</string>
     <string name="settings_category_debug_title">تحليل</string>
@@ -282,19 +282,19 @@
     <string name="dismiss">إلغاء</string>
     <string name="rename">إعادة التسمية</string>
     <string name="export_complete_toast">تمت عملية التصدير</string>
-    <string name="import_complete_toast">إكتَملَت عملية الإستيراد</string>
-    <string name="could_not_import_all_files">تنبيه : تعذرت عملية استيراد كافة الملفات.</string>
+    <string name="import_complete_toast">تمَّت عملية الإستيراد</string>
+    <string name="could_not_import_all_files">تنبيه: تعذر استيراد كافة الملفات.</string>
     <string name="drawer_header_action_paceholder_text">سوف يظهر شيء هنا قريبا ;D</string>
     <string name="video_player">مشغل الفيديو</string>
     <string name="always_ask_open_action">السؤال دائماً</string>
-    <string name="preferred_player_fetcher_notification_title">الحصول على المعلومات …</string>
+    <string name="preferred_player_fetcher_notification_title">الحصول على المعلومات…</string>
     <string name="preferred_player_fetcher_notification_message">تحميل المحتوى المطلوب</string>
     <string name="create_playlist">إنشاء قائمة تشغيل جديدة</string>
     <string name="delete_playlist">حذف قائمة التشغيل</string>
     <string name="rename_playlist">إعادة تسمية</string>
     <string name="name">التسمية</string>
     <string name="append_playlist">إضافة إلى قائمة تشغيل</string>
-    <string name="delete_playlist_prompt">هل تريد حذف قائمة التشغيل هذه ؟</string>
+    <string name="delete_playlist_prompt">هل تريد حذف قائمة التشغيل هذه؟</string>
     <string name="playlist_creation_success">تم إنشاء قائمة التشغيل</string>
     <string name="playlist_add_stream_success">تمت إضافتها إلى قائمة التشغيل</string>
     <string name="playlist_delete_failure">لا يمكن حذف قائمة التشغيل.</string>
@@ -308,7 +308,7 @@
     <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
     <string name="file">الملف</string>
     <string name="invalid_directory">لا يوجد مثل هذا المجلد</string>
-    <string name="file_name_empty_error">لا يمكن أن يكون اسم الملف فارغا</string>
+    <string name="file_name_empty_error">لا يمكن أن يكون اسم الملف فارغًا</string>
     <string name="error_occurred_detail">طرأ هناك خطأ: %1$s</string>
     <string name="no_valid_zip_file">ملف مضغوط ZIP غير صالح</string>
     <string name="unbookmark_playlist">إزالة الفواصل المرجعية</string>
@@ -327,7 +327,7 @@
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
     <string name="auto_queue_title">وضع البث القادم تلقائيا في قائمة الإنتظار</string>
-    <string name="auto_queue_summary">استمر في إنهاء قائمة انتظار التشغيل (الغير المتكررة) من خلال إلحاق بث ذي صلة</string>
+    <string name="auto_queue_summary">استمر في إنهاء قائمة انتظار التشغيل (الغير المتكررة) من خلال إلحاق التدفق المرتبط</string>
     <string name="set_as_playlist_thumbnail">إضافة صورة مصغرة إلى قائمة التشغيل</string>
     <string name="bookmark_playlist">تفضيل قائمة التشغيل</string>
     <string name="playlist_thumbnail_change_success">تم تغيير الصورة المصغرة لقائمة التشغيل.</string>
@@ -338,12 +338,12 @@
     <string name="enable_disposed_exceptions_title">تقرير الأخطاء خارج دورة الحياة</string>
     <string name="enable_disposed_exceptions_summary">فرض الإبلاغ عن استثناءات Rx غير القابلة للتسليم خارج دورة حياة الجزء أو النشاط بعد التخلص منها</string>
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
-    <string name="clear_views_history_summary">حذف محفوظات التدفقات التي تم تشغيلها ومواقف التشغيل</string>
-    <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل\?</string>
+    <string name="clear_views_history_summary">حذف محفوظات البثوث التي تم تشغيلها ومواقف التشغيل</string>
+    <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل؟</string>
     <string name="watch_history_deleted">تم حذف سجل المشاهدة.</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
     <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية</string>
-    <string name="delete_search_history_alert">حذف سِجل البحث بالكامل\?</string>
+    <string name="delete_search_history_alert">حذف سِجل البحث بالكامل؟</string>
     <string name="search_history_deleted">تم حذف سجل البحث.</string>
     <string name="external_player_unsupported_link_type">المشغل الخارجي لا يدعم هذه الأنواع من الروابط</string>
     <string name="invalid_source">لا يوجد مثل هذا الملف/مصدر المحتوى</string>
@@ -460,15 +460,15 @@
     <string name="error_ssl_exception">فشل الاتصال الآمن</string>
     <string name="error_unknown_host">تعذر العثور على الخادم</string>
     <string name="error_connect_host">لا يمكن الاتصال بالخادم</string>
-    <string name="error_http_no_content">الخادم لايقوم بإرسال البيانات</string>
+    <string name="error_http_no_content">الخادم لا يقوم بإرسال البيانات</string>
     <string name="error_http_unsupported_range">الخادم لا يقبل التنزيل المتعدد، إعادة المحاولة مع @string/msg_threads = 1</string>
     <string name="error_http_not_found">غير موجود</string>
     <string name="error_postprocessing_failed">فشلت المعالجة الاولية</string>
     <string name="stop">توقف</string>
-    <string name="max_retry_msg">أقصى عدد للمحاولات</string>
-    <string name="max_retry_desc">الحد الأقصى لعدد محاولات قبل إلغاء التحميل</string>
+    <string name="max_retry_msg">عدد المحاولات الأقصى</string>
+    <string name="max_retry_desc">الحد الأقصى لعدد المحاولات قبل إلغاء التحميل</string>
     <string name="pause_downloads_on_mobile">المقاطعة على الشبكات المقيسة</string>
-    <string name="pause_downloads_on_mobile_desc">مفيد عند التبديل إلى بيانات الجوال ، على الرغم من أنه لا يمكن تعليق بعض التنزيلات</string>
+    <string name="pause_downloads_on_mobile_desc">مفيد عند التبديل إلى بيانات الجوال، ولكن لا يمكن تعليق بعض التنزيلات</string>
     <string name="show_comments_title">إظهار التعليقات</string>
     <string name="show_comments_summary">عطّله لإخفاء التعليقات</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
@@ -498,7 +498,7 @@
     <string name="downloads_storage_ask_summary">سيُطلب منك مكان حفظ كل تنزيل</string>
     <string name="downloads_storage_ask_summary_kitkat">سيطلب منك مكان حفظ كل تنزيل.
 \nاختر SAF إذا كنت تريد التنزيل على بطاقة SD خارجية</string>
-    <string name="downloads_storage_use_saf_title">استخدام آمن</string>
+    <string name="downloads_storage_use_saf_title">استخدام SAF</string>
     <string name="downloads_storage_use_saf_summary">يسمح \"إطار الوصول إلى التخزين\" بالتنزيل على بطاقة SD خارجية.
 \nبعض الأجهزة غير متوافقة</string>
     <string name="clear_playback_states_title">حذف مواقف التشغيل</string>
@@ -535,16 +535,16 @@
     <string name="peertube_instance_add_https_only">يتم دعم عناوين URL HTTPS فقط</string>
     <string name="peertube_instance_add_exists">مثيل الخادم موجود بالفعل</string>
     <string name="local">محلي</string>
-    <string name="recently_added">أضيف مؤخرا</string>
-    <string name="most_liked">الأكثر إعجابا</string>
+    <string name="recently_added">أُضيف مؤخرًا</string>
+    <string name="most_liked">الأكثر إعجابًا</string>
     <string name="playlist_no_uploader">تم إنشاؤه-تلقائيًا (لم يتم العثور على برنامج تحميل)</string>
     <string name="recovering">استرد</string>
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
     <string name="choose_instance_prompt">اختيار مثيل</string>
     <string name="peertube_instance_url_help">ابحث عن مثيلات الخوادم التي تناسبك على %s</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
-    <string name="delete_downloaded_files">حذف الملفات التي تم تنزيلها</string>
-    <string name="deleted_downloads">التنزيلات %1$d المحذوفة</string>
+    <string name="delete_downloaded_files">حذف الملفات المحملة</string>
+    <string name="deleted_downloads">تم حذف %1$d من التحميلات</string>
     <string name="permission_display_over_apps">إعطاء إذن لعرضه على التطبيقات الأخرى</string>
     <string name="app_language_title">لغة التطبيق</string>
     <string name="systems_language">النظام الافتراضي</string>
@@ -572,14 +572,14 @@
 \nلذا فإن الاختيار يتلخص في ما تفضله: السرعة أو المعلومات الدقيقة.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">تعطيل الوضع السريع</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">تمكين الوضع السريع</string>
-    <string name="feed_use_dedicated_fetch_method_summary">متوفر في بعض الخدمات ، وعادة ما يكون أسرع بكثير ولكن قد يُرجع كمية محدودة من العناصر وغالبًا معلومات غير مكتملة (على سبيل المثال ، بدون مدة أو نوع عنصر أو حالة مباشرة).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">متوفر في بعض الخدمات، وعادةً ما يكون أسرع بكثير ولكن قد يُرجع كمية محدودة من العناصر وغالبًا ما تكون معلومات غير مكتملة (مثلًا بدون مدة أو نوع عنصر أو حالة مباشرة).</string>
     <string name="feed_use_dedicated_fetch_method_title">جلب من تغذية مخصصة عندما تكون متاحة</string>
-    <string name="feed_update_threshold_option_always_update">تحديث دائما</string>
+    <string name="feed_update_threshold_option_always_update">تحديث دائمًا</string>
     <string name="feed_update_threshold_summary">الوقت بعد التحديث الأخير قبل اعتبار الاشتراك قديمًا — %s</string>
     <string name="feed_update_threshold_title">عتبة تحديث التغذية</string>
     <string name="settings_category_feed_title">تغذية</string>
     <string name="feed_create_new_group_button_title">جديد</string>
-    <string name="feed_group_dialog_delete_message">هل تريد حذف هذه المجموعة\?</string>
+    <string name="feed_group_dialog_delete_message">هل تريد حذف هذه المجموعة؟</string>
     <string name="feed_group_dialog_empty_name">اسم المجموعة فارغ</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="zero">%d تحديد</item>
@@ -637,9 +637,9 @@
 \nقم بتشغيل \"%1$s\" في الإعدادات إذا كنت تريد رؤيته.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
     <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل.
-\nهل أنت واثق؟ هذا لا يمكن التراجع عنها!</string>
+\nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
     <string name="remove_watched_popup_title">إزالة مقاطع الفيديو التي تمت مشاهدتها؟</string>
-    <string name="remove_watched">إزالة ماتمت مشاهدته</string>
+    <string name="remove_watched">إزالة ما تمت مشاهدته</string>
     <string name="show_original_time_ago_summary">ستكون النصوص الأصلية من الخدمات مرئية في عناصر البث</string>
     <string name="show_original_time_ago_title">عرض الوقت الأصلي على العناصر</string>
     <string name="youtube_restricted_mode_enabled_title">شغيل \"وضع تقييد المحتوى\" في يوتيوب</string>
@@ -649,7 +649,7 @@
     <string name="playlist_page_summary">صفحة قائمة التشغيل</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">إظهار الاشتراكات غير المجمعة فقط</string>
     <string name="no_playlist_bookmarked_yet">لا توجد إشارات مرجعية لقائمة التشغيل حتى الآن</string>
-    <string name="select_a_playlist">حدد قائمة تشغيل</string>
+    <string name="select_a_playlist">اختر قائمة تشغيل</string>
     <string name="error_report_open_github_notice">يرجى التحقق مما إذا كانت هناك مشكلة في مناقشة تعطلك بالفعل. عند إنشاء تذاكر مكررة ، ستأخذ وقتًا منا يمكن أن نقضيه في إصلاح الخطأ الفعلي.</string>
     <string name="error_report_open_issue_button_text">تقرير على جيثب</string>
     <string name="copy_for_github">نسخ تقرير منسق</string>

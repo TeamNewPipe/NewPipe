@@ -1,0 +1,12 @@
+- [YouTube] Mix支持
+- [YouTube]显示关于公共广播和Covid-19的信息
+- [media.cc.de] 添加了「最近的视频」。
+- 新增 索马里语翻译
+
+- 大量内部改进
+
+- 修正 在播放器内分享视频时出错
+- 修正 ReCaptcha网页视图一片空白
+- 修正 在列表中删除视频时崩溃
+- [PeerTube]修复 相关视频播放
+- [YouTube] 修正 YouTube音乐搜索

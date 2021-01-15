@@ -1,0 +1,4 @@
+• Forbedret beskrivelse av innstilling for eksport av database i innstillingene.
+• Fikset tolking av YouTube-kommentarer.
+• Fikset visningsnavn for media.ccc.de service.
+• Oppdaterte oversettelser.

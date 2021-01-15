@@ -31,15 +31,16 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.ServiceCompat;
 
 import org.reactivestreams.Publisher;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
+import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.ExceptionUtils;
 
 import java.io.FileNotFoundException;
 import java.util.Collections;
@@ -162,7 +163,7 @@ public abstract class BaseImportExportService extends Service {
 
     protected void postErrorResult(final String title, final String text) {
         disposeAll();
-        stopForeground(true);
+        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
         stopSelf();
 
         if (title == null) {

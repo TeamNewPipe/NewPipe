@@ -7,12 +7,12 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.SettingsLayoutBinding;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
@@ -51,10 +51,12 @@ public class SettingsActivity extends AppCompatActivity
         setTheme(ThemeHelper.getSettingsThemeStyle(this));
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceBundle);
-        setContentView(R.layout.settings_layout);
 
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        final SettingsLayoutBinding settingsLayoutBinding =
+                SettingsLayoutBinding.inflate(getLayoutInflater());
+        setContentView(settingsLayoutBinding.getRoot());
+
+        setSupportActionBar(settingsLayoutBinding.toolbarLayout.toolbar);
 
         if (savedInstanceBundle == null) {
             getSupportFragmentManager().beginTransaction()

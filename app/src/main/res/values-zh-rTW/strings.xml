@@ -93,7 +93,7 @@
     <string name="light_parsing_error">無法完全解析網站</string>
     <string name="content_not_available">內容無法使用</string>
     <string name="could_not_setup_download_menu">無法設定下載選單</string>
-    <string name="live_streams_not_supported">尚未支援現場串流</string>
+    <string name="live_streams_not_supported">尚未支援直播串流</string>
     <string name="could_not_get_stream">無法取得串流</string>
     <string name="could_not_load_image">無法載入圖片</string>
     <string name="app_ui_crash">應用程式或界面已停止運作</string>
@@ -121,9 +121,9 @@
     <string name="delete">刪除</string>
     <string name="checksum">檢查碼</string>
     <string name="add">新任務</string>
-    <string name="finish">好</string>
+    <string name="finish">確定</string>
     <string name="msg_name">檔案名稱</string>
-    <string name="msg_threads">連線數</string>
+    <string name="msg_threads">執行緒數目</string>
     <string name="msg_error">錯誤</string>
     <string name="msg_server_unsupported">不支援的伺服器</string>
     <string name="msg_exists">檔案已存在</string>
@@ -149,7 +149,7 @@
     <string name="fragment_feed_title">新鮮事</string>
     <string name="enable_search_history_title">搜尋紀錄</string>
     <string name="enable_search_history_summary">在本機儲存搜尋紀錄</string>
-    <string name="enable_watch_history_title">檢視歷史</string>
+    <string name="enable_watch_history_title">觀看紀錄</string>
     <string name="enable_watch_history_summary">記錄觀看過的影片</string>
     <string name="resume_on_audio_focus_gain_title">恢復播放</string>
     <string name="resume_on_audio_focus_gain_summary">在干擾結束後繼續播放（例如有來電）</string>
@@ -228,8 +228,8 @@
     <string name="website_title">網站</string>
     <string name="import_data_title">匯入資料庫</string>
     <string name="export_data_title">匯出資料庫</string>
-    <string name="import_data_summary">覆蓋您目前的歷史記錄和訂閱</string>
-    <string name="export_data_summary">匯出歷史記錄、訂閱和播放清單</string>
+    <string name="import_data_summary">覆蓋您目前的歷史記錄、訂閱與（可選的）設定</string>
+    <string name="export_data_summary">匯出歷史記錄、訂閱、播放清單與設定</string>
     <string name="give_back">回饋</string>
     <string name="website_encouragement">如欲了解更多有關 NewPipe 的資訊和新聞，請造訪我們的網站。</string>
     <string name="main_page_content">首頁內容</string>
@@ -329,7 +329,7 @@
 \n2. 當被提示時登入帳號
 \n3. 點擊「包含所有資料」，然後「取消選取全部」，然後僅選取「訂閱」並點擊「確定」
 \n4. 點擊「下一步」然後「建立匯出」
-\n5. 在「下載」按鈕出現後點擊它，然後
+\n5. 在「下載」按鈕出現後點擊它；然後
 \n6. 從已下載的 takeout zip 解壓縮 .json 檔（通常會在「YouTube 與 YouTube Music/subscriptions/subscriptions.json」）然後匯入它。</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。 
@@ -388,7 +388,7 @@
     <string name="playback_reset">重設</string>
     <string name="channels">頻道</string>
     <string name="playlists">播放清單</string>
-    <string name="tracks">軌</string>
+    <string name="tracks">曲目</string>
     <string name="users">使用者</string>
     <string name="unsubscribe">取消訂閱</string>
     <string name="tab_new">新分頁</string>
@@ -418,25 +418,25 @@
     <string name="switch_view">切換檢視</string>
     <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
     <string name="app_update_notification_content_text">輕觸以下載</string>
-    <string name="missions_header_finished">結束</string>
-    <string name="missions_header_pending">有待</string>
+    <string name="missions_header_finished">已完成</string>
+    <string name="missions_header_pending">有待處理</string>
     <string name="paused">已暫停</string>
     <string name="queued">已排入佇列</string>
     <string name="post_processing">正在後處理</string>
     <string name="enqueue">佇列</string>
     <string name="permission_denied">動作被系統拒絕</string>
     <string name="download_failed">下載失敗</string>
-    <string name="download_finished">下載已結束</string>
-    <string name="download_finished_more">%s 個下載已結束</string>
+    <string name="download_finished">下載已完成</string>
+    <string name="download_finished_more">%s 個下載已完成</string>
     <string name="generate_unique_name">生成獨特的名稱</string>
     <string name="overwrite">覆寫</string>
     <string name="overwrite_finished_warning">已有此名稱的已下載檔案</string>
-    <string name="download_already_running">已有此名稱的當案的下載正在進行</string>
+    <string name="download_already_running">已有進行中的下載與此同名</string>
     <string name="show_error">顯示錯誤</string>
     <string name="label_code">代碼</string>
     <string name="error_file_creation">無法建立檔案</string>
     <string name="error_path_creation">無法建立目的地資料夾</string>
-    <string name="error_permission_denied">被系統拒絕的權限</string>
+    <string name="error_permission_denied">權限被系統拒絕</string>
     <string name="error_ssl_exception">無法建立安全連線</string>
     <string name="error_unknown_host">找不到伺服器</string>
     <string name="error_connect_host">無法連線到伺服器</string>
@@ -451,7 +451,7 @@
     <string name="pause_downloads_on_mobile_desc">在切換到行動數據時很有用（雖然某些下載無法暫停）</string>
     <string name="events">事件</string>
     <string name="conferences">會議</string>
-    <string name="error_timeout">連接超時</string>
+    <string name="error_timeout">連線已逾時</string>
     <string name="show_comments_title">顯示留言</string>
     <string name="show_comments_summary">關閉以隱藏留言</string>
     <string name="autoplay_title">自動播放</string>
@@ -467,17 +467,17 @@
     <string name="missing_file">檔案已移動或已刪除</string>
     <string name="overwrite_unrelated_warning">與此同名的檔案已存在</string>
     <string name="overwrite_failed">無法覆寫檔案</string>
-    <string name="download_already_pending">有同名的擱置中下載</string>
+    <string name="download_already_pending">已有擱置中的下載與此同名</string>
     <string name="error_postprocessing_stopped">NewPipe 在處理檔案時被關閉</string>
     <string name="error_insufficient_storage">裝置上沒有剩餘的空間</string>
     <string name="error_progress_lost">進度遺失，因為檔案已被刪除</string>
-    <string name="confirm_prompt">您想要清除您的下載歷史紀錄或刪除所有已下載的檔案嗎？</string>
+    <string name="confirm_prompt">您想要清除您的下載歷史紀錄，還是刪除所有已下載的檔案？</string>
     <string name="enable_queue_limit">限制下載佇列</string>
     <string name="enable_queue_limit_desc">一次執行一個下載</string>
     <string name="start_downloads">開始下載</string>
     <string name="pause_downloads">暫停下載</string>
     <string name="downloads_storage_ask_title">詢問要下載到哪裡</string>
-    <string name="downloads_storage_ask_summary">每次下載您都會被詢問要下載到哪裡</string>
+    <string name="downloads_storage_ask_summary">每次下載都詢問要下載到哪裡</string>
     <string name="downloads_storage_ask_summary_kitkat">每次下載您都會被詢問要下載到哪裡。
 \n如果您想要下載到外部的 SD 卡的話，請選擇 SAF</string>
     <string name="downloads_storage_use_saf_title">使用 SAF</string>
@@ -489,7 +489,7 @@
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
     <plurals name="videos">
-        <item quantity="other">%s 影片</item>
+        <item quantity="other">%s 部影片</item>
     </plurals>
     <string name="default_kiosk_page_summary">預設 Kiosk</string>
     <string name="no_one_watching">沒有人在看</string>
@@ -515,7 +515,7 @@
     <string name="most_liked">最喜歡</string>
     <string name="playlist_no_uploader">自動生成（未找到上傳者）</string>
     <string name="recovering">正在恢復</string>
-    <string name="error_download_resource_gone">無法復原此下載</string>
+    <string name="error_download_resource_gone">無法恢復此下載</string>
     <string name="choose_instance_prompt">選擇一個站臺</string>
     <string name="clear_download_history">清除下載歷史紀錄</string>
     <string name="delete_downloaded_files">刪除已下載的檔案</string>
@@ -582,11 +582,11 @@
     <string name="artists">藝術家</string>
     <string name="albums">專輯</string>
     <string name="songs">歌曲</string>
-    <string name="restricted_video">此影片有年鈴限制。
+    <string name="restricted_video">此影片設有年齡限制。
 \n
 \n如果您想要觀看，請在設定中開啟「%1$s」。</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">是的，以及部份觀看的影片</string>
-    <string name="remove_watched_popup_warning">在新增到播放清單前後的影片將被移除。
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">是的，包括已部份觀看的影片</string>
+    <string name="remove_watched_popup_warning">在新增到播放清單前和後已觀看的影片將被移除。
 \n您確定嗎？此動作無法復原！</string>
     <string name="remove_watched_popup_title">移除已觀看的影片？</string>
     <string name="remove_watched">移除已觀看</string>
@@ -637,6 +637,9 @@
     <string name="show_age_restricted_content_summary">顯示可能不適於兒童的內容（因為其有年齡限制，如18歲以上等）</string>
     <string name="notification_colorize_summary">讓 Android 根據縮圖中的主要色彩來自訂通知的顏色（請注意，此功能不是在所有裝置上都能正常運作）</string>
     <string name="notification_colorize_title">彩色通知</string>
-    <string name="show_thumbnail_summary">在鎖定畫面上顯示縮圖作為背景與內部通知</string>
+    <string name="show_thumbnail_summary">於鎖定畫面背景與通知使用縮圖</string>
     <string name="show_thumbnail_title">顯示縮圖</string>
+    <string name="msg_calculating_hash">正在計算雜湊</string>
+    <string name="hash_channel_description">影片雜湊流程通知</string>
+    <string name="hash_channel_name">影片雜湊通知</string>
 </resources>

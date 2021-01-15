@@ -9,18 +9,10 @@ import android.icu.text.CompactDecimalFormat;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
-
-import org.ocpsoft.prettytime.PrettyTime;
-import org.ocpsoft.prettytime.units.Decade;
-import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.localization.ContentCountry;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
@@ -30,9 +22,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import org.ocpsoft.prettytime.PrettyTime;
+import org.ocpsoft.prettytime.units.Decade;
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.ListExtractor;
+import org.schabi.newpipe.extractor.localization.ContentCountry;
+import org.schabi.newpipe.ktx.OffsetDateTimeKt;
 
 
 /*
@@ -57,14 +54,10 @@ import java.util.Locale;
 
 public final class Localization {
 
-    private static final String DOT_SEPARATOR = " • ";
+    public static final String DOT_SEPARATOR = " • ";
     private static PrettyTime prettyTime;
 
     private Localization() { }
-
-    public static void init(final Context context) {
-        initPrettyTime(context);
-    }
 
     @NonNull
     public static String concatenateStrings(final String... strings) {
@@ -307,14 +300,18 @@ public final class Localization {
     // Pretty Time
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static void initPrettyTime(final Context context) {
-        prettyTime = new PrettyTime(getAppLocale(context));
+    public static void initPrettyTime(final PrettyTime time) {
+        prettyTime = time;
         // Do not use decades as YouTube doesn't either.
         prettyTime.removeUnit(Decade.class);
     }
 
+    public static PrettyTime resolvePrettyTime(final Context context) {
+        return new PrettyTime(getAppLocale(context));
+    }
+
     public static String relativeTime(final OffsetDateTime offsetDateTime) {
-        return relativeTime(GregorianCalendar.from(offsetDateTime.toZonedDateTime()));
+        return relativeTime(OffsetDateTimeKt.toCalendar(offsetDateTime));
     }
 
     public static String relativeTime(final Calendar calendarTime) {
@@ -353,5 +350,20 @@ public final class Localization {
 
     private static double round(final double value, final int places) {
         return new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    /**
+     * Workaround to match normalized captions like english to English or deutsch to Deutsch.
+     * @param list the list to search into
+     * @param toFind the string to look for
+     * @return whether the string was found or not
+     */
+    public static boolean containsCaseInsensitive(final List<String> list, final String toFind) {
+        for (final String i : list) {
+            if (i.equalsIgnoreCase(toFind)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

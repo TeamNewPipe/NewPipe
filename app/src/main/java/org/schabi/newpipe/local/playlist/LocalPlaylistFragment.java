@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -32,6 +32,8 @@ import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
+import org.schabi.newpipe.databinding.LocalPlaylistHeaderBinding;
+import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
@@ -41,6 +43,7 @@ import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -76,13 +79,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @State
     Parcelable itemsListState;
 
-    private View headerRootLayout;
-    private TextView headerTitleView;
-    private TextView headerStreamCount;
-    private View playlistControl;
-    private View headerPlayAllButton;
-    private View headerPopupButton;
-    private View headerBackgroundButton;
+    private LocalPlaylistHeaderBinding headerBinding;
+    private PlaylistControlBinding playlistControlBinding;
 
     private ItemTouchHelper itemTouchHelper;
 
@@ -136,8 +134,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void setTitle(final String title) {
         super.setTitle(title);
 
-        if (headerTitleView != null) {
-            headerTitleView.setText(title);
+        if (headerBinding != null) {
+            headerBinding.playlistTitleView.setText(title);
         }
     }
 
@@ -148,28 +146,21 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
-    protected View getListHeader() {
-        headerRootLayout = activity.getLayoutInflater()
-                .inflate(R.layout.local_playlist_header, itemsList, false);
+    protected ViewBinding getListHeader() {
+        headerBinding = LocalPlaylistHeaderBinding.inflate(activity.getLayoutInflater(), itemsList,
+                false);
+        playlistControlBinding = headerBinding.playlistControl;
 
-        headerTitleView = headerRootLayout.findViewById(R.id.playlist_title_view);
-        headerTitleView.setSelected(true);
+        headerBinding.playlistTitleView.setSelected(true);
 
-        headerStreamCount = headerRootLayout.findViewById(R.id.playlist_stream_count);
-
-        playlistControl = headerRootLayout.findViewById(R.id.playlist_control);
-        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
-        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
-        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
-
-        return headerRootLayout;
+        return headerBinding;
     }
 
     @Override
     protected void initListeners() {
         super.initListeners();
 
-        headerTitleView.setOnClickListener(view -> createRenameDialog());
+        headerBinding.playlistTitleView.setOnClickListener(view -> createRenameDialog());
 
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
@@ -209,22 +200,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void showLoading() {
         super.showLoading();
-        if (headerRootLayout != null) {
-            animateView(headerRootLayout, false, 200);
-        }
-        if (playlistControl != null) {
-            animateView(playlistControl, false, 200);
+        if (headerBinding != null) {
+            animateView(headerBinding.getRoot(), false, 200);
+            animateView(playlistControlBinding.getRoot(), false, 200);
         }
     }
 
     @Override
     public void hideLoading() {
         super.hideLoading();
-        if (headerRootLayout != null) {
-            animateView(headerRootLayout, true, 200);
-        }
-        if (playlistControl != null) {
-            animateView(playlistControl, true, 200);
+        if (headerBinding != null) {
+            animateView(headerBinding.getRoot(), true, 200);
+            animateView(playlistControlBinding.getRoot(), true, 200);
         }
     }
 
@@ -276,14 +263,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (itemListAdapter != null) {
             itemListAdapter.unsetSelectedListener();
         }
-        if (headerBackgroundButton != null) {
-            headerBackgroundButton.setOnClickListener(null);
-        }
-        if (headerPlayAllButton != null) {
-            headerPlayAllButton.setOnClickListener(null);
-        }
-        if (headerPopupButton != null) {
-            headerPopupButton.setOnClickListener(null);
+        if (playlistControlBinding != null) {
+            playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(null);
+            playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(null);
+            playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(null);
+
+            headerBinding = null;
+            playlistControlBinding = null;
         }
 
         if (databaseSubscription != null) {
@@ -493,19 +479,19 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         setVideoCount(itemListAdapter.getItemsList().size());
 
-        headerPlayAllButton.setOnClickListener(view ->
+        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
-        headerPopupButton.setOnClickListener(view ->
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
-        headerBackgroundButton.setOnClickListener(view ->
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
 
-        headerPopupButton.setOnLongClickListener(view -> {
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
             return true;
         });
 
-        headerBackgroundButton.setOnLongClickListener(view -> {
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
             return true;
         });
@@ -781,6 +767,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.share
             ));
         }
+        if (KoreUtil.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
+            entries.add(StreamDialogEntry.play_with_kodi);
+        }
         StreamDialogEntry.setEnabledEntries(entries);
 
         StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItemDuplicate) ->
@@ -802,8 +791,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void setVideoCount(final long count) {
-        if (activity != null && headerStreamCount != null) {
-            headerStreamCount.setText(Localization.localizeStreamCount(activity, count));
+        if (activity != null && headerBinding != null) {
+            headerBinding.playlistStreamCount.setText(Localization
+                    .localizeStreamCount(activity, count));
         }
     }
 

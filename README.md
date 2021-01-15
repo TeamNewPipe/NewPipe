@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.schabi.org"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">A libre lightweight streaming frontend for Android.</h4>
 
@@ -8,17 +8,17 @@
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://travis-ci.org/TeamNewPipe/NewPipe" alt="Build Status"><img src="https://travis-ci.org/TeamNewPipe/NewPipe.svg"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="http://webchat.freenode.net/?channels=%23newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#installation">Installation</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donate">Donate</a> &bull; <a href="#license">License</a></p>
-<p align="center"><a href="https://newpipe.schabi.org">Website</a> &bull; <a href="https://newpipe.schabi.org/blog/">Blog</a> &bull; <a href="https://newpipe.schabi.org/FAQ/">FAQ</a> &bull; <a href="https://newpipe.schabi.org/press/">Press</a></p>
+<p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*Read this in other languages: [English](README.md), [한국어](README.ko.md).*
+*Read this in other languages: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt.br.md).*
 
 <b>WARNING: THIS IS A BETA VERSION, THEREFORE YOU MAY ENCOUNTER BUGS. IF YOU DO, OPEN AN ISSUE VIA OUR GITHUB REPOSITORY.</b>
 
@@ -111,7 +111,7 @@ If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTI
 </a>
 
 ## Donate
-If you like NewPipe we'd be happy about a donation. You can either send bitcoin or donate via Bountysource or Liberapay. For further info on donating to NewPipe, please visit our [website](https://newpipe.schabi.org/donate).
+If you like NewPipe we'd be happy about a donation. You can either send bitcoin or donate via Bountysource or Liberapay. For further info on donating to NewPipe, please visit our [website](https://newpipe.net/donate).
 
 <table>
   <tr>
@@ -134,7 +134,7 @@ If you like NewPipe we'd be happy about a donation. You can either send bitcoin 
 ## Privacy Policy
 
 The NewPipe project aims to provide a private, anonymous experience for using media web services.
-Therefore, the app does not collect any data without your consent. NewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report, or comment in our blog. You can find the document [here](https://newpipe.schabi.org/legal/privacy/).
+Therefore, the app does not collect any data without your consent. NewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report, or comment in our blog. You can find the document [here](https://newpipe.net/legal/privacy/).
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  

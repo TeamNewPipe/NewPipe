@@ -17,7 +17,7 @@
 
   <suppress checks="EmptyBlock"
       files="ContentSettingsFragment.java"
-      lines="244,245"/>
+      lines="227,245"/>
 
   <!-- org.schabi.newpipe.streams -->
   <suppress checks="LineLength"
@@ -25,7 +25,7 @@
       lines="156,158"/>
 
   <suppress checks="FileLength"
-            files="VideoPlayerImpl.java"/>
+            files="Player.java"/>
 
   <suppress checks="FileLength"
             files="VideoDetailFragment.java"/>

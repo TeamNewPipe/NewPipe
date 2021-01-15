@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.schabi.org"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">A libre lightweight streaming frontend for Android.</h4>
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> 
@@ -6,17 +6,17 @@
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://travis-ci.org/TeamNewPipe/NewPipe" alt="Build Status"><img src="https://travis-ci.org/TeamNewPipe/NewPipe.svg"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="http://webchat.freenode.net/?channels=%23newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#updates">Updates</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donate">Donate</a> &bull; <a href="#license">License</a></p>
-<p align="center"><a href="https://newpipe.schabi.org">Website</a> &bull; <a href="https://newpipe.schabi.org/blog/">Blog</a> &bull; <a href="https://newpipe.schabi.org/FAQ/">FAQ</a> &bull; <a href="https://newpipe.schabi.org/press/">Press</a></p>
+<p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*Read this in other languages: [English](README.md), [한국어](README.ko.md).*
+*Read this in other languages: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt.br.md).*
 
 <b>경고: 이 버전은 베타 버전이므로, 버그가 발생할 수도 있습니다. 만약 버그가 발생하였다면, 우리의 GITHUB 저장소에서 ISSUE를 열람하여 주십시오.</b>
 
@@ -86,7 +86,7 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
  1. 직접 디버그 APK를 생성할 수 있습니다. 이 방법은 당신의 기기에서 새로운 기능을 얻을 수 있는 가장 빠른 방법이지만, 꽤 많이 복잡합니다.
  따라서 우리는 다른 방법들 중 하나를 사용하는 것을 추천합니다.
  2. 우리의 커스텀 저장소를 F-Droid에 추가하고 우리가 릴리즈를 게시하는 대로 저곳에서 릴리즈를 설치할 수 있습니다. 
- 이에 대한 설명서는 이곳에서 확인할 수 있습니다: https://newpipe.schabi.org/FAQ/tutorials/install-add-fdroid-repo/
+ 이에 대한 설명서는 이곳에서 확인할 수 있습니다: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
  3. 우리가 릴리즈를 게시하는 대로 [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases)에서 APK를 다운받고 이것을 설치할 수 있습니다.
  4. F-Droid를 통해 업데이트 할 수 있습니다. F-Droid는 변화를 인식하고, 스스로 APK를 생성하고, 이것에 서명하고, 사용자들에서 업데이트를 전달해야만 하기 때문에,
  이것은 업데이트를 받는 가장 느린 방법입니다.
@@ -98,7 +98,7 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
 1. 당신의 기록, 구독, 그리고 재생목록을 유지할 수 있도록 Settings > Content > Export Database 를 통해 데이터를 백업하십시오.
 2. NewPipe를 삭제하십시오.
 3. 새로운 소스에서 APK를 다운로드하고 이것을 설치하십시오.
-4. Step 1의 Settings > Content > Export Database 을 통해 데이터를 불러오십시오.
+4. Step 1의 Settings > Content > Import Database 을 통해 데이터를 불러오십시오.
 
 ## Contribution
 당신이 아이디어, 번역, 디자인 변경, 코드 정리, 또는 정말 큰 코드 수정에 대한 의견이 있다면, 도움은 항상 환영합니다.
@@ -111,7 +111,7 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
 </a>
 
 ## Donate
-만약 NewPipe가 마음에 들었다면, 우리는 기부에 대해 기꺼이 환영합니다. bitcoin을 보내거나, Bountysource 또는 Liberapay를 통해 기부할 수 있습니다. NewPipe에 기부하는 것에 대한 자세한 정보를 원한다면, 우리의 [웹사이트](https://newpipe.schabi.org/donate)를 방문하여 주십시오.
+만약 NewPipe가 마음에 들었다면, 우리는 기부에 대해 기꺼이 환영합니다. bitcoin을 보내거나, Bountysource 또는 Liberapay를 통해 기부할 수 있습니다. NewPipe에 기부하는 것에 대한 자세한 정보를 원한다면, 우리의 [웹사이트](https://newpipe.net/donate)를 방문하여 주십시오.
 
 <table>
   <tr>
@@ -134,7 +134,7 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
 ## Privacy Policy
 
 NewPipe 프로젝트는 미디어 웹 서비스를 사용하는 것에 대한 사적의, 익명의 경험을 제공하는 것을 목표로 하고 있습니다.
-그러므로, 앱은 당신의 동의 없이 어떤 데이터도 수집하지 않습니다. NewPipe의 개인정보보호정책은 당신이 충돌 리포트를 보내거나, 또는 우리의 블로그에 글을 남길 때 어떤 데이터가 보내지고 저장되는지에 대해 상세히 설명합니다. 이 문서는 [여기](https://newpipe.schabi.org/legal/privacy/)에서 확인할 수 있습니다.
+그러므로, 앱은 당신의 동의 없이 어떤 데이터도 수집하지 않습니다. NewPipe의 개인정보보호정책은 당신이 충돌 리포트를 보내거나, 또는 우리의 블로그에 글을 남길 때 어떤 데이터가 보내지고 저장되는지에 대해 상세히 설명합니다. 이 문서는 [여기](https://newpipe.net/legal/privacy/)에서 확인할 수 있습니다.
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
