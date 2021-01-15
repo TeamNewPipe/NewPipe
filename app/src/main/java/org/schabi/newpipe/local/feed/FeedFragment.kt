@@ -42,6 +42,7 @@ import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.fragments.list.BaseListFragment
 import org.schabi.newpipe.ktx.animate
+import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.util.Localization
 import java.util.Calendar
@@ -106,7 +107,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     override fun initListeners() {
         super.initListeners()
         feedBinding.refreshRootView.setOnClickListener { reloadContent() }
-        feedBinding.swiperefresh.setOnRefreshListener { reloadContent() }
+        feedBinding.swipeRefreshLayout.setOnRefreshListener { reloadContent() }
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -172,23 +173,25 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     override fun showLoading() {
         super.showLoading()
+        feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
         feedBinding.refreshRootView.animate(false, 0)
-        feedBinding.itemsList.animate(false, 0)
         feedBinding.loadingProgressText.animate(true, 200)
+        feedBinding.swipeRefreshLayout.isRefreshing = true
     }
 
     override fun hideLoading() {
         super.hideLoading()
         feedBinding.refreshRootView.animate(true, 200)
         feedBinding.loadingProgressText.animate(false, 0)
-        feedBinding.swiperefresh.isRefreshing = false
+        feedBinding.swipeRefreshLayout.isRefreshing = false
     }
 
     override fun showEmptyState() {
         super.showEmptyState()
+        feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
         feedBinding.refreshRootView.animate(true, 200)
-        feedBinding.itemsList.animate(false, 0)
         feedBinding.loadingProgressText.animate(false, 0)
+        feedBinding.swipeRefreshLayout.isRefreshing = false
     }
 
     override fun handleResult(result: FeedState) {
@@ -204,9 +207,10 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     override fun handleError() {
         super.handleError()
         infoListAdapter.clearStreamItemList()
-        feedBinding.refreshRootView.animate(false, 200)
-        feedBinding.itemsList.animate(false, 200)
-        feedBinding.loadingProgressText.animate(false, 200)
+        feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
+        feedBinding.refreshRootView.animate(false, 0)
+        feedBinding.loadingProgressText.animate(false, 0)
+        feedBinding.swipeRefreshLayout.isRefreshing = false
     }
 
     private fun handleProgressState(progressState: FeedState.ProgressState) {
