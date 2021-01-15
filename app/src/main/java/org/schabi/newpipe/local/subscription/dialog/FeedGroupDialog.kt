@@ -368,7 +368,8 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         val selectedCount = this.selectedSubscriptions.size
         val selectedCountText = resources.getQuantityString(
             R.plurals.feed_group_dialog_selection_count,
-            selectedCount, selectedCount)
+            selectedCount, selectedCount
+        )
         feedGroupCreateBinding.selectedSubscriptionCountView.text = selectedCountText
         feedGroupCreateBinding.subscriptionsHeaderInfo.text = selectedCountText
     }
@@ -423,10 +424,12 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         feedGroupCreateBinding.separator.onlyVisibleIn(SubscriptionsPickerScreen, IconPickerScreen)
         feedGroupCreateBinding.cancelButton.onlyVisibleIn(InitialScreen, DeleteScreen)
 
-        feedGroupCreateBinding.confirmButton.setText(when {
-            currentScreen == InitialScreen && groupId == NO_GROUP_SELECTED -> R.string.create
-            else -> android.R.string.ok
-        })
+        feedGroupCreateBinding.confirmButton.setText(
+            when {
+                currentScreen == InitialScreen && groupId == NO_GROUP_SELECTED -> R.string.create
+                else -> android.R.string.ok
+            }
+        )
 
         feedGroupCreateBinding.deleteButton.isGone = currentScreen != InitialScreen || groupId == NO_GROUP_SELECTED
 
@@ -471,27 +474,35 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
     private fun showKeyboardSearch() {
         if (searchLayoutBinding.toolbarSearchEditText.requestFocus()) {
-            inputMethodManager.showSoftInput(searchLayoutBinding.toolbarSearchEditText,
-                    InputMethodManager.SHOW_IMPLICIT)
+            inputMethodManager.showSoftInput(
+                searchLayoutBinding.toolbarSearchEditText,
+                InputMethodManager.SHOW_IMPLICIT
+            )
         }
     }
 
     private fun hideKeyboardSearch() {
-        inputMethodManager.hideSoftInputFromWindow(searchLayoutBinding.toolbarSearchEditText.windowToken,
-            InputMethodManager.RESULT_UNCHANGED_SHOWN)
+        inputMethodManager.hideSoftInputFromWindow(
+            searchLayoutBinding.toolbarSearchEditText.windowToken,
+            InputMethodManager.RESULT_UNCHANGED_SHOWN
+        )
         searchLayoutBinding.toolbarSearchEditText.clearFocus()
     }
 
     private fun showKeyboard() {
         if (feedGroupCreateBinding.groupNameInput.requestFocus()) {
-            inputMethodManager.showSoftInput(feedGroupCreateBinding.groupNameInput,
-                    InputMethodManager.SHOW_IMPLICIT)
+            inputMethodManager.showSoftInput(
+                feedGroupCreateBinding.groupNameInput,
+                InputMethodManager.SHOW_IMPLICIT
+            )
         }
     }
 
     private fun hideKeyboard() {
-        inputMethodManager.hideSoftInputFromWindow(feedGroupCreateBinding.groupNameInput.windowToken,
-            InputMethodManager.RESULT_UNCHANGED_SHOWN)
+        inputMethodManager.hideSoftInputFromWindow(
+            feedGroupCreateBinding.groupNameInput.windowToken,
+            InputMethodManager.RESULT_UNCHANGED_SHOWN
+        )
         feedGroupCreateBinding.groupNameInput.clearFocus()
     }
 
