@@ -60,6 +60,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
 
 public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
@@ -264,7 +265,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     public void showLoading() {
         super.showLoading();
         animate(headerBinding.getRoot(), false, 200);
-        animate(itemsList, false, 100);
+        animateHideRecyclerViewAllowingScrolling(itemsList);
 
         IMAGE_LOADER.cancelDisplayTask(headerBinding.uploaderAvatarView);
         animate(headerBinding.uploaderLayout, false, 200);

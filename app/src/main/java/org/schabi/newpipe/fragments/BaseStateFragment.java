@@ -1,9 +1,11 @@
 package org.schabi.newpipe.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -135,7 +137,12 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     public void handleError() {
         isLoading.set(false);
         InfoCache.getInstance().clearCache();
-        hideLoading();
+        if (emptyStateView != null) {
+            animateView(emptyStateView, false, 150);
+        }
+        if (loadingProgressBar != null) {
+            animateView(loadingProgressBar, false, 0);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -178,7 +185,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
 
     /**
      * Show a SnackBar and only call
-     * {@link ErrorActivity.reportErrorInSnackbar(androidx.fragment.app.Fragment, ErrorInfo)}
+     * {@link ErrorActivity#reportErrorInSnackbar(androidx.fragment.app.Fragment, ErrorInfo)}
      * IF we a find a valid view (otherwise the error screen appears).
      *
      * @param errorInfo The error information

@@ -41,7 +41,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -71,6 +70,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
 import org.schabi.newpipe.ktx.AnimationType;
@@ -926,17 +926,21 @@ public final class VideoDetailFragment
         }
 
         if (showRelatedStreams && binding.relatedStreamsLayout == null) {
-            //temp empty fragment. will be updated in handleResult
-            pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
+            // temp empty fragment. will be updated in handleResult
+            pageAdapter.addFragment(new EmptyFragment(false), RELATED_TAB_TAG);
             tabIcons.add(R.drawable.ic_art_track_white_24dp);
             tabContentDescriptions.add(R.string.related_streams_tab_description);
         }
 
         if (showDescription) {
             // temp empty fragment. will be updated in handleResult
-            pageAdapter.addFragment(new Fragment(), DESCRIPTION_TAB_TAG);
+            pageAdapter.addFragment(new EmptyFragment(false), DESCRIPTION_TAB_TAG);
             tabIcons.add(R.drawable.ic_description_white_24dp);
             tabContentDescriptions.add(R.string.description_tab_description);
+        }
+
+        if (pageAdapter.getCount() == 0) {
+            pageAdapter.addFragment(new EmptyFragment(true), EMPTY_TAB_TAG);
         }
         pageAdapter.notifyDataSetUpdate();
 

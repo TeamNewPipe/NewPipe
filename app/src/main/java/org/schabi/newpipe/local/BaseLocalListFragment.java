@@ -24,6 +24,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.ListViewContract;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
 /**
  * This fragment is design to be used with persistent data such as
@@ -184,7 +185,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void showLoading() {
         super.showLoading();
         if (itemsList != null) {
-            animate(itemsList, false, 200);
+            animateHideRecyclerViewAllowingScrolling(itemsList);
         }
         if (headerRootBinding != null) {
             animate(headerRootBinding.getRoot(), false, 200);
@@ -243,7 +244,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         showListFooter(false);
 
         if (itemsList != null) {
-            animate(itemsList, false, 200);
+            animateHideRecyclerViewAllowingScrolling(itemsList);
         }
         if (headerRootBinding != null) {
             animate(headerRootBinding.getRoot(), false, 200);

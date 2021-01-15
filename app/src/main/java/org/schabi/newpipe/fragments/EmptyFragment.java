@@ -11,9 +11,18 @@ import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 
 public class EmptyFragment extends BaseFragment {
+    final boolean showMessage;
+
+    public EmptyFragment(final boolean showMessage) {
+        this.showMessage = showMessage;
+    }
+
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_empty, container, false);
+        final View view = inflater.inflate(R.layout.fragment_empty, container, false);
+        view.findViewById(R.id.empty_state_view).setVisibility(
+                showMessage ? View.VISIBLE : View.GONE);
+        return view;
     }
 }
