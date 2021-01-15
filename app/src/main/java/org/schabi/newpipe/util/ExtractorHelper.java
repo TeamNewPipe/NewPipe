@@ -274,10 +274,9 @@ public final class ExtractorHelper {
                                                     final TextView metaInfoTextView,
                                                     final View metaInfoSeparator) {
         final Context context = metaInfoTextView.getContext();
-        final boolean showMetaInfo = PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.show_meta_info_key), true);
-
-        if (!showMetaInfo || metaInfos == null || metaInfos.isEmpty()) {
+        if (metaInfos == null || metaInfos.isEmpty()
+                || !PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                        context.getString(R.string.show_meta_info_key), true)) {
             metaInfoTextView.setVisibility(View.GONE);
             metaInfoSeparator.setVisibility(View.GONE);
             return Disposable.empty();

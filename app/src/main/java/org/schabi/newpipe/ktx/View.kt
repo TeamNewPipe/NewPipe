@@ -35,11 +35,11 @@ inline var View.backgroundTintListCompat: ColorStateList?
  */
 @JvmOverloads
 fun View.animate(
-        enterOrExit: Boolean,
-        duration: Long,
-        animationType: AnimationType = AnimationType.ALPHA,
-        delay: Long = 0,
-        execOnEnd: Runnable? = null
+    enterOrExit: Boolean,
+    duration: Long,
+    animationType: AnimationType = AnimationType.ALPHA,
+    delay: Long = 0,
+    execOnEnd: Runnable? = null
 ) {
     if (MainActivity.DEBUG) {
         val id = try {
@@ -48,8 +48,8 @@ fun View.animate(
             id.toString()
         }
         val msg = String.format(
-                "%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s", enterOrExit,
-                javaClass.simpleName, id, animationType, duration, delay, execOnEnd
+            "%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s", enterOrExit,
+            javaClass.simpleName, id, animationType, duration, delay, execOnEnd
         )
         Log.d(TAG, "animate(): $msg")
     }
@@ -93,10 +93,10 @@ fun View.animate(
 fun View.animateBackgroundColor(duration: Long, @ColorInt colorStart: Int, @ColorInt colorEnd: Int) {
     if (MainActivity.DEBUG) {
         Log.d(
-                TAG,
-                "animateBackgroundColor() called with: " +
-                        "view = [" + this + "], duration = [" + duration + "], " +
-                        "colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]"
+            TAG,
+            "animateBackgroundColor() called with: " +
+                "view = [" + this + "], duration = [" + duration + "], " +
+                "colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]"
         )
     }
     val empty = arrayOf(IntArray(0))
@@ -121,9 +121,9 @@ fun View.animateBackgroundColor(duration: Long, @ColorInt colorStart: Int, @Colo
 fun View.animateHeight(duration: Long, targetHeight: Int): ValueAnimator {
     if (MainActivity.DEBUG) {
         Log.d(
-                TAG,
-                "animateHeight: duration = [" + duration + "], " +
-                        "from " + height + " to → " + targetHeight + " in: " + this
+            TAG,
+            "animateHeight: duration = [" + duration + "], " +
+                "from " + height + " to → " + targetHeight + " in: " + this
         )
     }
     val animator = ValueAnimator.ofFloat(height.toFloat(), targetHeight.toFloat())
@@ -152,9 +152,9 @@ fun View.animateHeight(duration: Long, targetHeight: Int): ValueAnimator {
 fun View.animateRotation(duration: Long, targetRotation: Int) {
     if (MainActivity.DEBUG) {
         Log.d(
-                TAG,
-                "animateRotation: duration = [" + duration + "], " +
-                        "from " + rotation + " to → " + targetRotation + " in: " + this
+            TAG,
+            "animateRotation: duration = [" + duration + "], " +
+                "from " + rotation + " to → " + targetRotation + " in: " + this
         )
     }
     animate().setListener(null).cancel()
@@ -318,7 +318,6 @@ fun View.slideUp(duration: Long, delay: Long, @FloatRange(from = 0.0, to = 1.0) 
         .setInterpolator(FastOutSlowInInterpolator())
         .start()
 }
-
 
 /**
  * Instead of hiding normally using [animate], which would make

@@ -161,11 +161,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private EditText searchEditText;
     private View searchClear;
 
-    private TextView correctSuggestion;
-    private TextView metaInfoTextView;
-    private View metaInfoSeparator;
-
-    private View suggestionsPanel;
     private boolean suggestionsPanelVisible = false;
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -277,7 +272,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         handleSearchSuggestion();
 
         disposables.add(showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
-                    metaInfoTextView, metaInfoSeparator));
+                    searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator));
 
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
@@ -363,10 +358,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchToolbarContainer = activity.findViewById(R.id.toolbar_search_container);
         searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
         searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
-
-        correctSuggestion = rootView.findViewById(R.id.correct_suggestion);
-        metaInfoTextView = rootView.findViewById(R.id.search_meta_info_text_view);
-        metaInfoSeparator = rootView.findViewById(R.id.search_meta_info_separator);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -839,6 +830,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         this.searchString = theSearchString;
         infoListAdapter.clearStreamItemList();
         hideSuggestionsPanel();
+        showMetaInfoInTextView(null, searchBinding.searchMetaInfoTextView,
+                searchBinding.searchMetaInfoSeparator);
         hideKeyboardSearch();
 
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
@@ -983,8 +976,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         // List<MetaInfo> cannot be bundled without creating some containers
         metaInfo = new MetaInfo[result.getMetaInfo().size()];
         metaInfo = result.getMetaInfo().toArray(metaInfo);
-        disposables.add(showMetaInfoInTextView(result.getMetaInfo(), metaInfoTextView,
-                metaInfoSeparator));
+        disposables.add(showMetaInfoInTextView(result.getMetaInfo(),
+                searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator));
 
         handleSearchSuggestion();
 

@@ -148,6 +148,7 @@ public final class VideoDetailFragment
     private static final String COMMENTS_TAB_TAG = "COMMENTS";
     private static final String RELATED_TAB_TAG = "NEXT VIDEO";
     private static final String DESCRIPTION_TAB_TAG = "DESCRIPTION TAB";
+    private static final String EMPTY_TAB_TAG = "EMPTY TAB";
 
     // tabs
     private boolean showComments;

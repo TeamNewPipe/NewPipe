@@ -1,11 +1,9 @@
 package org.schabi.newpipe.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -138,10 +136,10 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         isLoading.set(false);
         InfoCache.getInstance().clearCache();
         if (emptyStateView != null) {
-            animateView(emptyStateView, false, 150);
+            animate(emptyStateView, false, 150);
         }
         if (loadingProgressBar != null) {
-            animateView(loadingProgressBar, false, 0);
+            animate(loadingProgressBar, false, 0);
         }
     }
 
