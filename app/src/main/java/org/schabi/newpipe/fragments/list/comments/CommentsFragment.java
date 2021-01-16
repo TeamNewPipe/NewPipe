@@ -16,8 +16,8 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import io.reactivex.rxjava3.core.Single;
@@ -84,16 +84,14 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     public void handleResult(@NonNull final CommentsInfo result) {
         super.handleResult(result);
 
-        AnimationUtils.slideUp(requireView(), 120, 150, 0.06f);
+        ViewUtils.slideUp(requireView(), 120, 150, 0.06f);
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_COMMENTS,
                     NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
     }
 
     @Override

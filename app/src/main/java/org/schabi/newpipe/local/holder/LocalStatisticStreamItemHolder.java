@@ -12,9 +12,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.views.AnimatedProgressBar;
@@ -148,10 +148,10 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
             } else {
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
                         .toSeconds(item.getProgressTime()));
-                AnimationUtils.animateView(itemProgressView, true, 500);
+                ViewUtils.animate(itemProgressView, true, 500);
             }
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {
-            AnimationUtils.animateView(itemProgressView, false, 500);
+            ViewUtils.animate(itemProgressView, false, 500);
         }
     }
 }

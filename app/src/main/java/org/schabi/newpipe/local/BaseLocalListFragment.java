@@ -24,7 +24,7 @@ import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.ListViewContract;
 
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
 
 /**
  * This fragment is design to be used with persistent data such as
@@ -185,10 +185,10 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void showLoading() {
         super.showLoading();
         if (itemsList != null) {
-            animateView(itemsList, false, 200);
+            animate(itemsList, false, 200);
         }
         if (headerRootBinding != null) {
-            animateView(headerRootBinding.getRoot(), false, 200);
+            animate(headerRootBinding.getRoot(), false, 200);
         }
     }
 
@@ -196,10 +196,10 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void hideLoading() {
         super.hideLoading();
         if (itemsList != null) {
-            animateView(itemsList, true, 200);
+            animate(itemsList, true, 200);
         }
         if (headerRootBinding != null) {
-            animateView(headerRootBinding.getRoot(), true, 200);
+            animate(headerRootBinding.getRoot(), true, 200);
         }
     }
 
@@ -209,10 +209,10 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         showListFooter(false);
 
         if (itemsList != null) {
-            animateView(itemsList, false, 200);
+            animate(itemsList, false, 200);
         }
         if (headerRootBinding != null) {
-            animateView(headerRootBinding.getRoot(), false, 200);
+            animate(headerRootBinding.getRoot(), false, 200);
         }
     }
 

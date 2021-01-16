@@ -42,9 +42,9 @@ import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.databinding.ErrorRetryBinding
 import org.schabi.newpipe.databinding.FragmentFeedBinding
 import org.schabi.newpipe.fragments.list.BaseListFragment
+import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.report.UserAction
-import org.schabi.newpipe.util.AnimationUtils.animateView
 import org.schabi.newpipe.util.Localization
 import java.util.Calendar
 
@@ -180,50 +180,50 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     // /////////////////////////////////////////////////////////////////////////
 
     override fun showLoading() {
-        animateView(feedBinding.refreshRootView, false, 0)
-        animateView(feedBinding.itemsList, false, 0)
+        feedBinding.refreshRootView.animate(false, 0)
+        feedBinding.itemsList.animate(false, 0)
 
-        animateView(feedBinding.loadingProgressBar, true, 200)
-        animateView(feedBinding.loadingProgressText, true, 200)
+        feedBinding.loadingProgressBar.animate(true, 200)
+        feedBinding.loadingProgressText.animate(true, 200)
 
-        animateView(feedBinding.emptyStateView.root, false, 0)
-        animateView(errorBinding.root, false, 0)
+        feedBinding.emptyStateView.root.animate(false, 0)
+        errorBinding.root.animate(false, 0)
     }
 
     override fun hideLoading() {
-        animateView(feedBinding.refreshRootView, true, 200)
-        animateView(feedBinding.itemsList, true, 300)
+        feedBinding.refreshRootView.animate(true, 200)
+        feedBinding.itemsList.animate(true, 300)
 
-        animateView(feedBinding.loadingProgressBar, false, 0)
-        animateView(feedBinding.loadingProgressText, false, 0)
+        feedBinding.loadingProgressBar.animate(false, 0)
+        feedBinding.loadingProgressText.animate(false, 0)
 
-        animateView(feedBinding.emptyStateView.root, false, 0)
-        animateView(errorBinding.root, false, 0)
+        feedBinding.emptyStateView.root.animate(false, 0)
+        errorBinding.root.animate(false, 0)
         feedBinding.swiperefresh.isRefreshing = false
     }
 
     override fun showEmptyState() {
-        animateView(feedBinding.refreshRootView, true, 200)
-        animateView(feedBinding.itemsList, false, 0)
+        feedBinding.refreshRootView.animate(true, 200)
+        feedBinding.itemsList.animate(false, 0)
 
-        animateView(feedBinding.loadingProgressBar, false, 0)
-        animateView(feedBinding.loadingProgressText, false, 0)
+        feedBinding.loadingProgressBar.animate(false, 0)
+        feedBinding.loadingProgressText.animate(false, 0)
 
-        animateView(feedBinding.emptyStateView.root, true, 800)
-        animateView(errorBinding.root, false, 0)
+        feedBinding.emptyStateView.root.animate(true, 800)
+        errorBinding.root.animate(false, 0)
     }
 
     override fun showError(message: String, showRetryButton: Boolean) {
         infoListAdapter.clearStreamItemList()
-        animateView(feedBinding.refreshRootView, false, 120)
-        animateView(feedBinding.itemsList, false, 120)
+        feedBinding.refreshRootView.animate(false, 120)
+        feedBinding.itemsList.animate(false, 120)
 
-        animateView(feedBinding.loadingProgressBar, false, 120)
-        animateView(feedBinding.loadingProgressText, false, 120)
+        feedBinding.loadingProgressBar.animate(false, 120)
+        feedBinding.loadingProgressText.animate(false, 120)
 
         errorBinding.errorMessageView.text = message
-        animateView(errorBinding.errorButtonRetry, showRetryButton, if (showRetryButton) 600 else 0)
-        animateView(errorBinding.root, true, 300)
+        errorBinding.errorButtonRetry.animate(showRetryButton, if (showRetryButton) 600 else 0)
+        errorBinding.root.animate(true, 300)
     }
 
     override fun handleResult(result: FeedState) {

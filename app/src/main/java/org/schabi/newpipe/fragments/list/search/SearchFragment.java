@@ -51,12 +51,12 @@ import org.schabi.newpipe.extractor.services.peertube.linkHandler.PeertubeSearch
 import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeSearchQueryHandlerFactory;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
+import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -82,7 +82,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static java.util.Arrays.asList;
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 
 public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.InfoItemsPage<?>>
@@ -413,7 +413,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 searchEditText.setText("");
                 showKeyboardSearch();
             }
-            animateView(errorPanelRoot, false, 200);
+            animate(errorPanelRoot, false, 200);
         }
     }
 
@@ -644,8 +644,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "showSuggestionsPanel() called");
         }
         suggestionsPanelVisible = true;
-        animateView(searchBinding.suggestionsPanel, AnimationUtils.Type.LIGHT_SLIDE_AND_ALPHA,
-                true, 200);
+        animate(searchBinding.suggestionsPanel, true, 200,
+                AnimationType.LIGHT_SLIDE_AND_ALPHA);
     }
 
     private void hideSuggestionsPanel() {
@@ -653,8 +653,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "hideSuggestionsPanel() called");
         }
         suggestionsPanelVisible = false;
-        animateView(searchBinding.suggestionsPanel, AnimationUtils.Type.LIGHT_SLIDE_AND_ALPHA,
-                false, 200);
+        animate(searchBinding.suggestionsPanel, false, 200,
+                AnimationType.LIGHT_SLIDE_AND_ALPHA);
     }
 
     private void showKeyboardSearch() {

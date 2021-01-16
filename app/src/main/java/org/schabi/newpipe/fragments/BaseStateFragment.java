@@ -37,7 +37,7 @@ import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
 
 public abstract class BaseStateFragment<I> extends BaseFragment implements ViewContract<I> {
     @State
@@ -131,35 +131,35 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     @Override
     public void showLoading() {
         if (emptyStateView != null) {
-            animateView(emptyStateView, false, 150);
+            animate(emptyStateView, false, 150);
         }
         if (loadingProgressBar != null) {
-            animateView(loadingProgressBar, true, 400);
+            animate(loadingProgressBar, true, 400);
         }
-        animateView(errorPanelRoot, false, 150);
+        animate(errorPanelRoot, false, 150);
     }
 
     @Override
     public void hideLoading() {
         if (emptyStateView != null) {
-            animateView(emptyStateView, false, 150);
+            animate(emptyStateView, false, 150);
         }
         if (loadingProgressBar != null) {
-            animateView(loadingProgressBar, false, 0);
+            animate(loadingProgressBar, false, 0);
         }
-        animateView(errorPanelRoot, false, 150);
+        animate(errorPanelRoot, false, 150);
     }
 
     @Override
     public void showEmptyState() {
         isLoading.set(false);
         if (emptyStateView != null) {
-            animateView(emptyStateView, true, 200);
+            animate(emptyStateView, true, 200);
         }
         if (loadingProgressBar != null) {
-            animateView(loadingProgressBar, false, 0);
+            animate(loadingProgressBar, false, 0);
         }
-        animateView(errorPanelRoot, false, 150);
+        animate(errorPanelRoot, false, 150);
     }
 
     @Override
@@ -174,11 +174,11 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
 
         errorTextView.setText(message);
         if (showRetryButton) {
-            animateView(errorButtonRetry, true, 600);
+            animate(errorButtonRetry, true, 600);
         } else {
-            animateView(errorButtonRetry, false, 0);
+            animate(errorButtonRetry, false, 0);
         }
-        animateView(errorPanelRoot, true, 300);
+        animate(errorPanelRoot, true, 300);
     }
 
     @Override

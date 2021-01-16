@@ -9,8 +9,8 @@ import kotlinx.android.synthetic.main.picker_subscription_item.*
 import kotlinx.android.synthetic.main.picker_subscription_item.view.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import org.schabi.newpipe.util.AnimationUtils
-import org.schabi.newpipe.util.AnimationUtils.animateView
+import org.schabi.newpipe.ktx.AnimationType
+import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.util.ImageDisplayConstants
 
 data class PickerSubscriptionItem(
@@ -41,9 +41,6 @@ data class PickerSubscriptionItem(
 
     fun updateSelected(containerView: View, isSelected: Boolean) {
         this.isSelected = isSelected
-        animateView(
-            containerView.selected_highlight,
-            AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA, isSelected, 150
-        )
+        containerView.selected_highlight.animate(isSelected, 150, AnimationType.LIGHT_SCALE_AND_ALPHA)
     }
 }
