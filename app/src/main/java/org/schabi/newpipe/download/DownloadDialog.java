@@ -682,12 +682,15 @@ public class DownloadDialog extends DialogFragment
                 throw new RuntimeException("No stream selected");
         }
 
-        if (!askForSavePath && (mainStorage == null || (mainStorage.isDirect()
-                == NewPipeSettings.useStorageAccessFramework(context)))) {
+        if (!askForSavePath
+                && (mainStorage == null
+                || mainStorage.isDirect() == NewPipeSettings.useStorageAccessFramework(context)
+                || mainStorage.isInvalidSafStorage())) {
             // Pick new download folder if one of:
             // - Download folder is not set
             // - Download folder uses SAF while SAF is disabled
             // - Download folder doesn't use SAF while SAF is enabled
+            // - Download folder uses SAF but the user manually revoked access to it
             Toast.makeText(context, getString(R.string.no_dir_yet),
                     Toast.LENGTH_LONG).show();
 
