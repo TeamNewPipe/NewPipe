@@ -699,4 +699,5 @@
     <string name="show_thumbnail_summary">Use thumbnail for both lock screen background and notifications</string>
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
+    <string name="no_app_to_open_intent">No app installed on your device can open this</string>
 </resources>

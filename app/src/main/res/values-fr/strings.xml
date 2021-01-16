@@ -658,4 +658,5 @@
     <string name="hash_channel_name">Notification de hachage vidéo</string>
     <string name="show_meta_info_summary">Désactivez cette option pour masquer les zones de méta-informations contenant des informations supplémentaires sur le créateur du flux, le contenu du flux ou une demande de recherche.</string>
     <string name="show_meta_info_title">Afficher les méta-infos</string>
+    <string name="no_app_to_open_intent">Aucune application installée sur votre appareil ne peut ouvrir ceci</string>
 </resources>
