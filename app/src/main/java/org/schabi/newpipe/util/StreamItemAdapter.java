@@ -12,10 +12,12 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.ktx.TextViewUtils;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -25,6 +27,7 @@ import java.util.concurrent.Callable;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import us.shandian.giga.util.Utility;
 
@@ -40,6 +43,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
 
     private final StreamSizeWrapper<T> streamsWrapper;
     private final SparseArray<SecondaryStreamHelper<U>> secondaryStreams;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper,
                              final SparseArray<SecondaryStreamHelper<U>> secondaryStreams) {
@@ -55,6 +59,10 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
 
     public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper) {
         this(context, streamsWrapper, null);
+    }
+
+    public void clearBackgroundTasks() {
+        compositeDisposable.clear();
     }
 
     public List<T> getAll() {
@@ -142,9 +150,11 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             if (secondary != null) {
                 final long size
                         = secondary.getSizeInBytes() + streamsWrapper.getSizeInBytes(position);
-                sizeView.setText(Utility.formatBytes(size));
+                compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(sizeView,
+                        Utility.formatBytes(size)));
             } else {
-                sizeView.setText(streamsWrapper.getFormattedSize(position));
+                compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(sizeView,
+                        streamsWrapper.getFormattedSize(position)));
             }
             sizeView.setVisibility(View.VISIBLE);
         } else {
@@ -152,20 +162,21 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         }
 
         if (stream instanceof SubtitlesStream) {
-            formatNameView.setText(((SubtitlesStream) stream).getLanguageTag());
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(formatNameView,
+                    ((SubtitlesStream) stream).getLanguageTag()));
         } else {
-            switch (stream.getFormat()) {
-                case WEBMA_OPUS:
-                    // noinspection AndroidLintSetTextI18n
-                    formatNameView.setText("opus");
-                    break;
-                default:
-                    formatNameView.setText(stream.getFormat().getName());
-                    break;
+            final String formatNameText;
+            if (stream.getFormat() == MediaFormat.WEBMA_OPUS) {
+                formatNameText = "opus";
+            } else {
+                formatNameText = stream.getFormat().getName();
             }
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(formatNameView,
+                    formatNameText));
         }
 
-        qualityView.setText(qualityString);
+        compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(qualityView,
+                qualityString));
         woSoundIconView.setVisibility(woSoundIconVisibility);
 
         return convertView;

@@ -39,10 +39,11 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -192,7 +193,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 if (mClear != null) mClear.setVisible(true);
             }
 
-            ((ViewHolderHeader) view).header.setText(str);
+            compositeDisposable.add(TextViewUtils
+                    .computeAndSetPrecomputedText(((ViewHolderHeader) view).header, str));
             return;
         }
 
@@ -202,24 +204,29 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         Utility.FileType type = Utility.getFileType(item.mission.kind, item.mission.storage.getName());
 
         h.icon.setImageResource(Utility.getIconForFileType(type));
-        h.name.setText(item.mission.storage.getName());
+        compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.name,
+                item.mission.storage.getName()));
 
-        h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
+        h.progress.setColors(Utility.getBackgroundForFileType(mContext, type),
+                Utility.getForegroundForFileType(mContext, type));
 
         if (h.item.mission instanceof DownloadMission) {
             DownloadMission mission = (DownloadMission) item.mission;
             String length = Utility.formatBytes(mission.getLength());
             if (mission.running && !mission.isPsRunning()) length += " --.- kB/s";
 
-            h.size.setText(length);
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.size, length));
             h.pause.setTitle(mission.unknownLength ? R.string.stop : R.string.pause);
             updateProgress(h);
             mPendingDownloadsItems.add(h);
         } else {
             h.progress.setMarquee(false);
-            h.status.setText("100%");
             h.progress.setProgress(1.0f);
-            h.size.setText(Utility.formatBytes(item.mission.length));
+            compositeDisposable.addAll(
+                    TextViewUtils.computeAndSetPrecomputedText(h.status, "100%"),
+                    TextViewUtils.computeAndSetPrecomputedText(h.size,
+                            Utility.formatBytes(item.mission.length))
+            );
         }
     }
 
@@ -258,11 +265,14 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         if (hasError) {
             h.progress.setProgress(isNotFinite(progress) ? 1d : progress);
-            h.status.setText(R.string.msg_error);
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.status,
+                    R.string.msg_error));
         } else if (isNotFinite(progress)) {
-            h.status.setText(UNDEFINED_PROGRESS);
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.status,
+                    UNDEFINED_PROGRESS));
         } else {
-            h.status.setText(String.format("%.2f%%", progress * 100));
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.status,
+                    String.format("%.2f%%", progress * 100)));
             h.progress.setProgress(progress);
         }
 
@@ -270,7 +280,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         String sizeStr = Utility.formatBytes(length).concat("  ");
 
         if (mission.isPsFailed() || mission.errCode == ERROR_POSTPROCESSING_HOLD) {
-            h.size.setText(sizeStr);
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.size, sizeStr));
             return;
         } else if (!mission.running) {
             state = mission.enqueued ? R.string.queued : R.string.paused;
@@ -284,13 +294,14 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         if (state != 0) {
             // update state without download speed
-            h.size.setText(sizeStr.concat("(").concat(mContext.getString(state)).concat(")"));
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.size,
+                    sizeStr + "(" + mContext.getString(state) + ")"));
             h.resetSpeedMeasure();
             return;
         }
 
         if (h.lastTimestamp < 0) {
-            h.size.setText(sizeStr);
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.size, sizeStr));
             h.lastTimestamp = now;
             h.lastDone = done;
             return;
@@ -301,7 +312,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         if (h.lastDone > done) {
             h.lastDone = done;
-            h.size.setText(sizeStr);
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.size, sizeStr));
             return;
         }
 
@@ -329,7 +340,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 etaStr = Utility.formatBytes((long) done) + "/" + Utility.stringifySeconds(eta) + "  ";
             }
 
-            h.size.setText(sizeStr.concat(etaStr).concat(speedStr));
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.size,
+                    sizeStr + etaStr + speedStr));
 
             h.lastTimestamp = now;
             h.lastDone = done;
@@ -640,7 +652,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (mission != null) {
             switch (id) {
                 case R.id.start:
-                    h.status.setText(UNDEFINED_PROGRESS);
+                    compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(h.status,
+                            UNDEFINED_PROGRESS));
                     mDownloadManager.resumeMission(mission);
                     return true;
                 case R.id.pause:
@@ -812,8 +825,12 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         mission.errObject = null;
         mission.resetState(true, false, DownloadMission.ERROR_NOTHING);
 
-        h.status.setText(UNDEFINED_PROGRESS);
-        h.size.setText(Utility.formatBytes(mission.getLength()));
+        compositeDisposable.addAll(
+                TextViewUtils.computeAndSetPrecomputedText(h.status, UNDEFINED_PROGRESS),
+                TextViewUtils.computeAndSetPrecomputedText(h.size, Utility
+                        .formatBytes(mission.getLength()))
+        );
+
         h.progress.setMarquee(true);
 
         mDownloadManager.resumeMission(mission);

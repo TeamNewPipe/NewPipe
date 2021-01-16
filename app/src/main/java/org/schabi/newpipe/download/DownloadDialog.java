@@ -349,6 +349,9 @@ public class DownloadDialog extends DialogFragment
     @Override
     public void onDestroy() {
         super.onDestroy();
+        audioStreamsAdapter.clearBackgroundTasks();
+        subtitleStreamsAdapter.clearBackgroundTasks();
+        videoStreamsAdapter.clearBackgroundTasks();
         disposables.clear();
     }
 

@@ -8,14 +8,22 @@ import android.view.View;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class PlayQueueItemBuilder {
     private static final String TAG = PlayQueueItemBuilder.class.toString();
     private OnSelectedListener onItemClickListener;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public PlayQueueItemBuilder(final Context context) {
+    }
+
+    public void clearBackgroundTasks() {
+        compositeDisposable.clear();
     }
 
     public void setOnSelectedListener(final OnSelectedListener listener) {
@@ -24,13 +32,18 @@ public class PlayQueueItemBuilder {
 
     public void buildStreamInfoItem(final PlayQueueItemHolder holder, final PlayQueueItem item) {
         if (!TextUtils.isEmpty(item.getTitle())) {
-            holder.itemVideoTitleView.setText(item.getTitle());
+            compositeDisposable.add(TextViewUtils
+                    .computeAndSetPrecomputedText(holder.itemVideoTitleView, item.getTitle()));
         }
-        holder.itemAdditionalDetailsView.setText(Localization.concatenateStrings(item.getUploader(),
-                NewPipe.getNameOfService(item.getServiceId())));
+        compositeDisposable.add(TextViewUtils
+                .computeAndSetPrecomputedText(holder.itemAdditionalDetailsView,
+                        Localization.concatenateStrings(item.getUploader(),
+                                NewPipe.getNameOfService(item.getServiceId()))));
 
         if (item.getDuration() > 0) {
-            holder.itemDurationView.setText(Localization.getDurationString(item.getDuration()));
+            compositeDisposable.add(TextViewUtils
+                    .computeAndSetPrecomputedText(holder.itemDurationView,
+                            Localization.getDurationString(item.getDuration())));
         } else {
             holder.itemDurationView.setVisibility(View.GONE);
         }

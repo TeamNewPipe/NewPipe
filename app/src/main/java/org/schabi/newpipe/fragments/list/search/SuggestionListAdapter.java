@@ -10,9 +10,12 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.ktx.TextViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class SuggestionListAdapter
         extends RecyclerView.Adapter<SuggestionListAdapter.SuggestionItemHolder> {
@@ -20,9 +23,14 @@ public class SuggestionListAdapter
     private final Context context;
     private OnSuggestionItemSelected listener;
     private boolean showSuggestionHistory = true;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public SuggestionListAdapter(final Context context) {
         this.context = context;
+    }
+
+    public void clearBackgroundTasks() {
+        compositeDisposable.clear();
     }
 
     public void setItems(final List<SuggestionItem> items) {
@@ -97,7 +105,7 @@ public class SuggestionListAdapter
         void onSuggestionItemLongClick(SuggestionItem item);
     }
 
-    public static final class SuggestionItemHolder extends RecyclerView.ViewHolder {
+    public final class SuggestionItemHolder extends RecyclerView.ViewHolder {
         private final TextView itemSuggestionQuery;
         private final ImageView suggestionIcon;
         private final View queryView;
@@ -121,7 +129,8 @@ public class SuggestionListAdapter
 
         private void updateFrom(final SuggestionItem item) {
             suggestionIcon.setImageResource(item.fromHistory ? historyResId : searchResId);
-            itemSuggestionQuery.setText(item.query);
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(itemSuggestionQuery,
+                    item.query));
         }
     }
 }

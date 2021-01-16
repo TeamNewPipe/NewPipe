@@ -318,6 +318,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void onDestroy() {
         super.onDestroy();
+        suggestionListAdapter.clearBackgroundTasks();
         if (searchDisposable != null) {
             searchDisposable.dispose();
         }
