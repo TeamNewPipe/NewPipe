@@ -32,7 +32,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -83,13 +82,13 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     }
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(rootView, savedInstanceState)
+        // super.onViewCreated() calls initListeners() which require the binding to be initialized
         _feedBinding = FragmentFeedBinding.bind(rootView)
         _errorBinding = feedBinding.errorPanel
+        super.onViewCreated(rootView, savedInstanceState)
 
-        feedBinding.swiperefresh.setOnRefreshListener { reloadContent() }
         viewModel = ViewModelProvider(this, FeedViewModel.Factory(requireContext(), groupId)).get(FeedViewModel::class.java)
-        viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { it?.let(::handleResult) })
+        viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
     }
 
     override fun onPause() {
@@ -112,10 +111,8 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     override fun initListeners() {
         super.initListeners()
-        // Using the non-null property may result in a NullPointerException
-        _feedBinding?.refreshRootView?.setOnClickListener {
-            triggerUpdate()
-        }
+        feedBinding.refreshRootView.setOnClickListener { reloadContent() }
+        feedBinding.swiperefresh.setOnRefreshListener { reloadContent() }
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -317,11 +314,10 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     // /////////////////////////////////////////////////////////////////////////
 
     override fun doInitialLoadLogic() {}
-    override fun reloadContent() = triggerUpdate()
     override fun loadMoreItems() {}
     override fun hasMoreItems() = false
 
-    private fun triggerUpdate() {
+    override fun reloadContent() {
         getActivity()?.startService(
             Intent(requireContext(), FeedLoadService::class.java).apply {
                 putExtra(FeedLoadService.EXTRA_GROUP_ID, groupId)

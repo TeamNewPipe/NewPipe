@@ -46,6 +46,6 @@ data class PickerSubscriptionItem(
     fun updateSelected(containerView: View, isSelected: Boolean) {
         this.isSelected = isSelected
         PickerSubscriptionItemBinding.bind(containerView).selectedHighlight
-                .animate(isSelected, 150, AnimationType.LIGHT_SCALE_AND_ALPHA)
+            .animate(isSelected, 150, AnimationType.LIGHT_SCALE_AND_ALPHA)
     }
 }
