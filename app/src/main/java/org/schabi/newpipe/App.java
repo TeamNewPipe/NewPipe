@@ -6,26 +6,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.multidex.MultiDexApplication;
 import androidx.preference.PreferenceManager;
+
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.exceptions.CompositeException;
-import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
-import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
-import io.reactivex.rxjava3.exceptions.UndeliverableException;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.plugins.RxJavaPlugins;
-import java.io.IOException;
-import java.io.InterruptedIOException;
-import java.net.SocketException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
 import org.acra.ACRA;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.CoreConfiguration;
@@ -40,6 +30,21 @@ import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
+
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.net.SocketException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.exceptions.CompositeException;
+import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
+import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
+import io.reactivex.rxjava3.exceptions.UndeliverableException;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>

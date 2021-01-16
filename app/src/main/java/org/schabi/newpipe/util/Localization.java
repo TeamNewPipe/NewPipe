@@ -9,10 +9,19 @@ import android.icu.text.CompactDecimalFormat;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
+
+import org.ocpsoft.prettytime.PrettyTime;
+import org.ocpsoft.prettytime.units.Decade;
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.ListExtractor;
+import org.schabi.newpipe.extractor.localization.ContentCountry;
+import org.schabi.newpipe.ktx.OffsetDateTimeKt;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
@@ -24,12 +33,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import org.ocpsoft.prettytime.PrettyTime;
-import org.ocpsoft.prettytime.units.Decade;
-import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.localization.ContentCountry;
-import org.schabi.newpipe.ktx.OffsetDateTimeKt;
 
 
 /*

@@ -34,8 +34,8 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.App;
+import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;

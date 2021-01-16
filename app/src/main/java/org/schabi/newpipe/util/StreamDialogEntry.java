@@ -81,7 +81,7 @@ public enum StreamDialogEntry {
     }),
 
     share(R.string.share, (fragment, item) ->
-            ShareUtils.shareUrl(fragment.getContext(), item.getName(), item.getUrl()));
+            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl()));
 
 
     ///////////////

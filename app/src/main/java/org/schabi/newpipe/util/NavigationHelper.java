@@ -2,7 +2,6 @@ package org.schabi.newpipe.util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -46,9 +45,9 @@ import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
+import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.PlayQueueActivity;
 import org.schabi.newpipe.player.Player;
-import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -56,6 +55,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
+
+import static org.schabi.newpipe.util.ShareUtils.installApp;
 
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
@@ -246,16 +247,14 @@ public final class NavigationHelper {
 
     public static void resolveActivityOrAskToInstall(final Context context, final Intent intent) {
         if (intent.resolveActivity(context.getPackageManager()) != null) {
-            context.startActivity(intent);
+            ShareUtils.openIntentInApp(context, intent);
         } else {
             if (context instanceof Activity) {
                 new AlertDialog.Builder(context)
                         .setMessage(R.string.no_player_found)
                         .setPositiveButton(R.string.install, (dialog, which) -> {
-                            final Intent i = new Intent();
-                            i.setAction(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(context.getString(R.string.fdroid_vlc_url)));
-                            context.startActivity(i);
+                            ShareUtils.openUrlInBrowser(context,
+                                    context.getString(R.string.fdroid_vlc_url), false);
                         })
                         .setNegativeButton(R.string.cancel, (dialog, which)
                                 -> Log.i("NavigationHelper", "You unlocked a secret unicorn."))
@@ -566,30 +565,6 @@ public final class NavigationHelper {
         }
 
         return getOpenIntent(context, url, service.getServiceId(), linkType);
-    }
-
-    private static Uri openMarketUrl(final String packageName) {
-        return Uri.parse("market://details")
-                .buildUpon()
-                .appendQueryParameter("id", packageName)
-                .build();
-    }
-
-    private static Uri getGooglePlayUrl(final String packageName) {
-        return Uri.parse("https://play.google.com/store/apps/details")
-                .buildUpon()
-                .appendQueryParameter("id", packageName)
-                .build();
-    }
-
-    private static void installApp(final Context context, final String packageName) {
-        try {
-            // Try market:// scheme
-            context.startActivity(new Intent(Intent.ACTION_VIEW, openMarketUrl(packageName)));
-        } catch (final ActivityNotFoundException e) {
-            // Fall back to google play URL (don't worry F-Droid can handle it :)
-            context.startActivity(new Intent(Intent.ACTION_VIEW, getGooglePlayUrl(packageName)));
-        }
     }
 
     /**

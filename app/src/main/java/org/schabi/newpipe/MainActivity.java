@@ -20,8 +20,6 @@
 
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +41,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -53,10 +52,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+
 import org.schabi.newpipe.databinding.ActivityMainBinding;
 import org.schabi.newpipe.databinding.DrawerHeaderBinding;
 import org.schabi.newpipe.databinding.DrawerLayoutBinding;
@@ -88,6 +86,12 @@ import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";

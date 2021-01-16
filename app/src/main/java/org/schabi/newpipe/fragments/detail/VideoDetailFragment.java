@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -101,6 +100,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.TextLinkifier;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 import org.schabi.newpipe.views.LargeTextMovementMethod;
@@ -112,10 +112,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
-import io.noties.markwon.Markwon;
-import io.noties.markwon.linkify.LinkifyPlugin;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -1232,28 +1229,20 @@ public final class VideoDetailFragment
             return;
         }
 
-        if (description.getType() == Description.HTML) {
-            disposables.add(Single.just(description.getContent())
-                    .map(descriptionText ->
-                            HtmlCompat.fromHtml(descriptionText,
-                                    HtmlCompat.FROM_HTML_MODE_LEGACY))
-                    .subscribeOn(Schedulers.computation())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(spanned -> {
-                        videoDescriptionView.setText(spanned);
-                        videoDescriptionView.setVisibility(View.VISIBLE);
-                    }));
-        } else if (description.getType() == Description.MARKDOWN) {
-            final Markwon markwon = Markwon.builder(requireContext())
-                    .usePlugin(LinkifyPlugin.create())
-                    .build();
-            markwon.setMarkdown(videoDescriptionView, description.getContent());
-            videoDescriptionView.setVisibility(View.VISIBLE);
-        } else {
-            //== Description.PLAIN_TEXT
-            videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
-            videoDescriptionView.setText(description.getContent(), TextView.BufferType.SPANNABLE);
-            videoDescriptionView.setVisibility(View.VISIBLE);
+        switch (description.getType()) {
+            case Description.HTML:
+                disposables.add(TextLinkifier.createLinksFromHtmlBlock(requireContext(),
+                        description.getContent(), videoDescriptionView,
+                        HtmlCompat.FROM_HTML_MODE_LEGACY));
+                break;
+            case Description.MARKDOWN:
+                disposables.add(TextLinkifier.createLinksFromMarkdownText(requireContext(),
+                        description.getContent(), videoDescriptionView));
+                break;
+            case Description.PLAIN_TEXT: default:
+                disposables.add(TextLinkifier.createLinksFromPlainText(requireContext(),
+                        description.getContent(), videoDescriptionView));
+                break;
         }
     }
 
@@ -1569,8 +1558,8 @@ public final class VideoDetailFragment
         prepareDescription(info.getDescription());
         updateProgressInfo(info);
         initThumbnailViews(info);
-        showMetaInfoInTextView(info.getMetaInfo(), detailMetaInfoTextView, detailMetaInfoSeparator);
-
+        disposables.add(showMetaInfoInTextView(info.getMetaInfo(), detailMetaInfoTextView,
+                detailMetaInfoSeparator));
 
         if (player == null || player.isStopped()) {
             updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());

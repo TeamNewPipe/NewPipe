@@ -3553,7 +3553,7 @@ public final class Player implements
                 && currentMetadata.getMetadata().getServiceId() == YouTube.getServiceId()) {
             videoUrl += ("&t=" + ts);
         }
-        ShareUtils.shareUrl(context, getVideoTitle(), videoUrl);
+        ShareUtils.shareText(context, getVideoTitle(), videoUrl);
     }
 
     private void onPlayWithKodiClicked() {

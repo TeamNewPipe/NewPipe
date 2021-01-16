@@ -46,6 +46,7 @@ import java.util.List;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+import static org.schabi.newpipe.util.ShareUtils.shareText;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -311,7 +312,7 @@ public final class PlayQueueActivity extends AppCompatActivity
         final MenuItem share = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 3,
                 Menu.NONE, R.string.share);
         share.setOnMenuItemClickListener(menuItem -> {
-            shareUrl(item.getTitle(), item.getUrl());
+            shareText(getApplicationContext(), item.getTitle(), item.getUrl());
             return true;
         });
 
@@ -503,18 +504,6 @@ public final class PlayQueueActivity extends AppCompatActivity
         PlaylistAppendDialog.onPlaylistFound(getApplicationContext(),
             () -> d.show(getSupportFragmentManager(), TAG),
             () -> PlaylistCreationDialog.newInstance(d).show(getSupportFragmentManager(), TAG));
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Share
-    ////////////////////////////////////////////////////////////////////////////
-
-    private void shareUrl(final String subject, final String url) {
-        final Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        intent.putExtra(Intent.EXTRA_TEXT, url);
-        startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
     }
 
     ////////////////////////////////////////////////////////////////////////////
