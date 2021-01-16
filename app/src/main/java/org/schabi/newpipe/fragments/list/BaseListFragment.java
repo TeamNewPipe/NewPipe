@@ -46,7 +46,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Queue;
 
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
 
 public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, StateSaver.WriteRead,
@@ -407,22 +407,16 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void showLoading() {
-        super.showLoading();
-        // animateView(itemsList, false, 400);
-    }
-
-    @Override
     public void hideLoading() {
         super.hideLoading();
-        animateView(itemsList, true, 300);
+        animate(itemsList, true, 300);
     }
 
     @Override
     public void showError(final String message, final boolean showRetryButton) {
         super.showError(message, showRetryButton);
         showListFooter(false);
-        animateView(itemsList, false, 200);
+        animate(itemsList, false, 200);
     }
 
     @Override

@@ -58,14 +58,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
-import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
     // Save the list 10 seconds after the last change occurred
@@ -201,8 +201,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void showLoading() {
         super.showLoading();
         if (headerBinding != null) {
-            animateView(headerBinding.getRoot(), false, 200);
-            animateView(playlistControlBinding.getRoot(), false, 200);
+            animate(headerBinding.getRoot(), false, 200);
+            animate(playlistControlBinding.getRoot(), false, 200);
         }
     }
 
@@ -210,8 +210,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void hideLoading() {
         super.hideLoading();
         if (headerBinding != null) {
-            animateView(headerBinding.getRoot(), true, 200);
-            animateView(playlistControlBinding.getRoot(), true, 200);
+            animate(headerBinding.getRoot(), true, 200);
+            animate(playlistControlBinding.getRoot(), true, 200);
         }
     }
 

@@ -20,8 +20,8 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.RelatedStreamInfo;
 
 import java.io.Serializable;
@@ -123,7 +123,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         if (headerBinding != null) {
             headerBinding.getRoot().setVisibility(View.VISIBLE);
         }
-        AnimationUtils.slideUp(getView(), 120, 96, 0.06f);
+        ViewUtils.slideUp(requireView(), 120, 96, 0.06f);
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_STREAM,

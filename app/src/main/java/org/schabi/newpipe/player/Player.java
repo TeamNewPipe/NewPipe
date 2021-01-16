@@ -92,6 +92,7 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.info_list.StreamSegmentAdapter;
+import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.event.PlayerEventListener;
@@ -116,7 +117,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.KoreUtil;
@@ -150,6 +150,8 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
@@ -176,9 +178,6 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlayerTypeFr
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePopupLayoutParamsFromPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 import static org.schabi.newpipe.player.helper.PlayerHelper.savePlaybackParametersToPrefs;
-import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
-import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
 import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
@@ -1560,8 +1559,8 @@ public final class Player implements
         }
 
         showControls(0);
-        animateView(binding.currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, true,
-                DEFAULT_CONTROLS_DURATION);
+        animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.SCALE_AND_ALPHA);
     }
 
     @Override // seekbar listener
@@ -1576,7 +1575,7 @@ public final class Player implements
         }
 
         binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
-        animateView(binding.currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
+        animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
 
         if (currentState == STATE_PAUSED_SEEK) {
             changeState(STATE_BUFFERING);
@@ -1682,8 +1681,8 @@ public final class Player implements
                 : DPAD_CONTROLS_HIDE_TIME;
 
         showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-        animateView(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION, 0,
-                () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));
+        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.ALPHA, 0, () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));
     }
 
     public void showControls(final long duration) {
@@ -1694,7 +1693,7 @@ public final class Player implements
         showSystemUIPartially();
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
         showHideShadow(true, duration);
-        animateView(binding.playbackControlRoot, true, duration);
+        animate(binding.playbackControlRoot, true, duration);
     }
 
     public void hideControls(final long duration, final long delay) {
@@ -1708,14 +1707,14 @@ public final class Player implements
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
         controlsVisibilityHandler.postDelayed(() -> {
             showHideShadow(false, duration);
-            animateView(binding.playbackControlRoot, false, duration, 0,
-                    this::hideSystemUIIfNeeded);
+            animate(binding.playbackControlRoot, false, duration, AnimationType.ALPHA,
+                    0, this::hideSystemUIIfNeeded);
         }, delay);
     }
 
     private void showHideShadow(final boolean show, final long duration) {
-        animateView(binding.playerTopShadow, show, duration, 0, null);
-        animateView(binding.playerBottomShadow, show, duration, 0, null);
+        animate(binding.playerTopShadow, show, duration, AnimationType.ALPHA, 0, null);
+        animate(binding.playerBottomShadow, show, duration, AnimationType.ALPHA, 0, null);
     }
 
     private void showOrHideButtons() {
@@ -1913,15 +1912,15 @@ public final class Player implements
         }
 
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        animateView(binding.playbackControlRoot, false, DEFAULT_CONTROLS_DURATION);
+        animate(binding.playbackControlRoot, false, DEFAULT_CONTROLS_DURATION);
 
         binding.playbackSeekBar.setEnabled(false);
         binding.playbackSeekBar.getThumb()
                 .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
 
         binding.loadingPanel.setBackgroundColor(Color.BLACK);
-        animateView(binding.loadingPanel, true, 0);
-        animateView(binding.surfaceForeground, true, 100);
+        animate(binding.loadingPanel, true, 0);
+        animate(binding.surfaceForeground, true, 100);
 
         binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
         animatePlayButtons(false, 100);
@@ -1948,9 +1947,9 @@ public final class Player implements
 
         binding.loadingPanel.setVisibility(View.GONE);
 
-        animateView(binding.currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
+        animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
 
-        animateView(binding.playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0,
+        animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
                     binding.playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
                     animatePlayButtons(true, 200);
@@ -1991,7 +1990,7 @@ public final class Player implements
         showControls(400);
         binding.loadingPanel.setVisibility(View.GONE);
 
-        animateView(binding.playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0,
+        animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
                     binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
                     animatePlayButtons(true, 200);
@@ -2029,7 +2028,7 @@ public final class Player implements
             Log.d(TAG, "onCompleted() called");
         }
 
-        animateView(binding.playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0,
+        animate(binding.playPauseButton, false, 0, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
                     binding.playPauseButton.setImageResource(R.drawable.ic_replay_white_24dp);
                     animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
@@ -2051,13 +2050,13 @@ public final class Player implements
         }
 
         showControls(500);
-        animateView(binding.currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
+        animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
         binding.loadingPanel.setVisibility(View.GONE);
-        animateView(binding.surfaceForeground, true, 100);
+        animate(binding.surfaceForeground, true, 100);
     }
 
     private void animatePlayButtons(final boolean show, final int duration) {
-        animateView(binding.playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+        animate(binding.playPauseButton, show, duration, AnimationType.SCALE_AND_ALPHA);
 
         boolean showQueueButtons = show;
         if (playQueue == null) {
@@ -2065,18 +2064,18 @@ public final class Player implements
         }
 
         if (!showQueueButtons || playQueue.getIndex() > 0) {
-            animateView(
+            animate(
                     binding.playPreviousButton,
-                    AnimationUtils.Type.SCALE_AND_ALPHA,
                     showQueueButtons,
-                    duration);
+                    duration,
+                    AnimationType.SCALE_AND_ALPHA);
         }
         if (!showQueueButtons || playQueue.getIndex() + 1 < playQueue.getStreams().size()) {
-            animateView(
+            animate(
                     binding.playNextButton,
-                    AnimationUtils.Type.SCALE_AND_ALPHA,
                     showQueueButtons,
-                    duration);
+                    duration,
+                    AnimationType.SCALE_AND_ALPHA);
         }
     }
     //endregion
@@ -2274,7 +2273,7 @@ public final class Player implements
     @Override
     public void onRenderedFirstFrame() {
         //TODO check if this causes black screen when switching to fullscreen
-        animateView(binding.surfaceForeground, false, DEFAULT_CONTROLS_DURATION);
+        animate(binding.surfaceForeground, false, DEFAULT_CONTROLS_DURATION);
     }
     //endregion
 
@@ -2871,8 +2870,8 @@ public final class Player implements
 
         hideControls(0, 0);
         binding.itemsListPanel.requestFocus();
-        animateView(binding.itemsListPanel, SLIDE_AND_ALPHA, true,
-                DEFAULT_CONTROLS_DURATION);
+        animate(binding.itemsListPanel, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.SLIDE_AND_ALPHA);
 
         binding.itemsList.scrollToPosition(playQueue.getIndex());
     }
@@ -2905,8 +2904,8 @@ public final class Player implements
 
         hideControls(0, 0);
         binding.itemsListPanel.requestFocus();
-        animateView(binding.itemsListPanel, SLIDE_AND_ALPHA, true,
-                DEFAULT_CONTROLS_DURATION);
+        animate(binding.itemsListPanel, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.SLIDE_AND_ALPHA);
 
         final int adapterPosition = getNearestStreamSegmentPosition(simpleExoPlayer
                 .getCurrentPosition());
@@ -2942,8 +2941,8 @@ public final class Player implements
                 itemTouchHelper.attachToRecyclerView(null);
             }
 
-            animateView(binding.itemsListPanel, SLIDE_AND_ALPHA, false,
-                    DEFAULT_CONTROLS_DURATION, 0, () -> {
+            animate(binding.itemsListPanel, false, DEFAULT_CONTROLS_DURATION,
+                    AnimationType.SLIDE_AND_ALPHA, 0, () -> {
                         // Even when queueLayout is GONE it receives touch events
                         // and ruins normal behavior of the app. This line fixes it
                         binding.itemsListPanel.setTranslationY(
@@ -3451,18 +3450,19 @@ public final class Player implements
         if (currentState != STATE_COMPLETED) {
             controlsVisibilityHandler.removeCallbacksAndMessages(null);
             showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-            animateView(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION, 0, () -> {
-                if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
-                    if (v.getId() == binding.playPauseButton.getId()
-                            // Hide controls in fullscreen immediately
-                            || (v.getId() == binding.screenRotationButton.getId()
-                            && isFullscreen)) {
-                        hideControls(0, 0);
-                    } else {
-                        hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                    }
-                }
-            });
+            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                    AnimationType.ALPHA, 0, () -> {
+                        if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
+                            if (v.getId() == binding.playPauseButton.getId()
+                                    // Hide controls in fullscreen immediately
+                                    || (v.getId() == binding.screenRotationButton.getId()
+                                    && isFullscreen)) {
+                                hideControls(0, 0);
+                            } else {
+                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                            }
+                        }
+                    });
         }
     }
 
@@ -3531,9 +3531,8 @@ public final class Player implements
 
         animateRotation(binding.moreOptionsButton, DEFAULT_CONTROLS_DURATION,
                 isMoreControlsVisible ? 0 : 180);
-        animateView(binding.secondaryControls, SLIDE_AND_ALPHA, !isMoreControlsVisible,
-                DEFAULT_CONTROLS_DURATION, 0,
-                () -> {
+        animate(binding.secondaryControls, !isMoreControlsVisible, DEFAULT_CONTROLS_DURATION,
+                AnimationType.SLIDE_AND_ALPHA, 0, () -> {
                     // Fix for a ripple effect on background drawable.
                     // When view returns from GONE state it takes more milliseconds than returning
                     // from INVISIBLE state. And the delay makes ripple background end to fast

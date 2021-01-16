@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.feed_import_export_group.import_from_optio
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
-import org.schabi.newpipe.util.AnimationUtils
+import org.schabi.newpipe.ktx.animateRotation
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.views.CollapsibleView
@@ -49,8 +49,7 @@ class FeedImportExportItem(
 
         expandIconListener?.let { viewHolder.import_export_options.removeListener(it) }
         expandIconListener = CollapsibleView.StateListener { newState ->
-            AnimationUtils.animateRotation(
-                viewHolder.import_export_expand_icon,
+            viewHolder.import_export_expand_icon.animateRotation(
                 250, if (newState == CollapsibleView.COLLAPSED) 0 else 180
             )
         }

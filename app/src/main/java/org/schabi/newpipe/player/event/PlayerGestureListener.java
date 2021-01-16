@@ -17,11 +17,12 @@ import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 
-import static org.schabi.newpipe.player.Player.STATE_PLAYING;
+import static org.schabi.newpipe.ktx.AnimationType.ALPHA;
+import static org.schabi.newpipe.ktx.AnimationType.SCALE_AND_ALPHA;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.player.Player.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.Player.DEFAULT_CONTROLS_HIDE_TIME;
-import static org.schabi.newpipe.util.AnimationUtils.Type.SCALE_AND_ALPHA;
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.player.Player.STATE_PLAYING;
 
 /**
  * GestureListener for the player
@@ -123,11 +124,11 @@ public class PlayerGestureListener
             final View closingOverlayView = player.getClosingOverlayView();
             if (player.isInsideClosingRadius(movingEvent)) {
                 if (closingOverlayView.getVisibility() == View.GONE) {
-                    animateView(closingOverlayView, true, 250);
+                    animate(closingOverlayView, true, 250);
                 }
             } else {
                 if (closingOverlayView.getVisibility() == View.VISIBLE) {
-                    animateView(closingOverlayView, false, 0);
+                    animate(closingOverlayView, false, 0);
                 }
             }
         }
@@ -153,7 +154,7 @@ public class PlayerGestureListener
         );
 
         if (player.getVolumeRelativeLayout().getVisibility() != View.VISIBLE) {
-            animateView(player.getVolumeRelativeLayout(), SCALE_AND_ALPHA, true, 200);
+            animate(player.getVolumeRelativeLayout(), true, 200, SCALE_AND_ALPHA);
         }
         if (player.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
             player.getBrightnessRelativeLayout().setVisibility(View.GONE);
@@ -195,7 +196,7 @@ public class PlayerGestureListener
         );
 
         if (player.getBrightnessRelativeLayout().getVisibility() != View.VISIBLE) {
-            animateView(player.getBrightnessRelativeLayout(), SCALE_AND_ALPHA, true, 200);
+            animate(player.getBrightnessRelativeLayout(), true, 200, SCALE_AND_ALPHA);
         }
         if (player.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
             player.getVolumeRelativeLayout().setVisibility(View.GONE);
@@ -215,21 +216,18 @@ public class PlayerGestureListener
             }
 
             if (player.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
-                animateView(player.getVolumeRelativeLayout(), SCALE_AND_ALPHA,
-                        false, 200, 200);
+                animate(player.getVolumeRelativeLayout(), false, 200, SCALE_AND_ALPHA,
+                        200);
             }
             if (player.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
-                animateView(player.getBrightnessRelativeLayout(), SCALE_AND_ALPHA,
-                        false, 200, 200);
+                animate(player.getBrightnessRelativeLayout(), false, 200, SCALE_AND_ALPHA,
+                        200);
             }
 
             if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
                 player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
         } else {
-            if (player == null) {
-                return;
-            }
             if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
                 player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
@@ -237,10 +235,10 @@ public class PlayerGestureListener
             if (player.isInsideClosingRadius(event)) {
                 player.closePopup();
             } else {
-                animateView(player.getClosingOverlayView(), false, 0);
+                animate(player.getClosingOverlayView(), false, 0);
 
                 if (!player.isPopupClosing()) {
-                    animateView(player.getCloseOverlayButton(), false, 200);
+                    animate(player.getCloseOverlayButton(), false, 200);
                 }
             }
         }
@@ -255,8 +253,8 @@ public class PlayerGestureListener
         player.getLoadingPanel().setVisibility(View.GONE);
 
         player.hideControls(0, 0);
-        animateView(player.getCurrentDisplaySeek(), false, 0, 0);
-        animateView(player.getResizingIndicator(), true, 200, 0);
+        animate(player.getCurrentDisplaySeek(), false, 0, ALPHA, 0);
+        animate(player.getResizingIndicator(), true, 200, ALPHA, 0);
     }
 
     @Override
@@ -264,7 +262,7 @@ public class PlayerGestureListener
         if (DEBUG) {
             Log.d(TAG, "onPopupResizingEnd called");
         }
-        animateView(player.getResizingIndicator(), false, 100, 0);
+        animate(player.getResizingIndicator(), false, 100, ALPHA, 0);
     }
 }
 

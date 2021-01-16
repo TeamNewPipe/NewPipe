@@ -61,7 +61,7 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
 
 public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
@@ -261,19 +261,19 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     @Override
     public void showLoading() {
         super.showLoading();
-        animateView(headerBinding.getRoot(), false, 200);
-        animateView(itemsList, false, 100);
+        animate(headerBinding.getRoot(), false, 200);
+        animate(itemsList, false, 100);
 
         IMAGE_LOADER.cancelDisplayTask(headerBinding.uploaderAvatarView);
-        animateView(headerBinding.uploaderLayout, false, 200);
+        animate(headerBinding.uploaderLayout, false, 200);
     }
 
     @Override
     public void handleResult(@NonNull final PlaylistInfo result) {
         super.handleResult(result);
 
-        animateView(headerBinding.getRoot(), true, 100);
-        animateView(headerBinding.uploaderLayout, true, 300);
+        animate(headerBinding.getRoot(), true, 100);
+        animate(headerBinding.uploaderLayout, true, 300);
         headerBinding.uploaderLayout.setOnClickListener(null);
         // If we have an uploader put them into the UI
         if (!TextUtils.isEmpty(result.getUploaderName())) {
