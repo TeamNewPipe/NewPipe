@@ -467,13 +467,15 @@ public class StoredFileHelper implements Serializable {
         }
     }
 
-    public static Intent getNewPicker(@NonNull final Context ctx, @Nullable final String startPath,
-                                      @Nullable final String filename) {
+    public static Intent getNewPicker(@NonNull final Context ctx,
+                                      @Nullable final String startPath,
+                                      @Nullable final String filename,
+                                      @NonNull final String mimeType) {
         final Intent i;
         if (NewPipeSettings.useStorageAccessFramework(ctx)) {
             i = new Intent(Intent.ACTION_CREATE_DOCUMENT)
                     .putExtra("android.content.extra.SHOW_ADVANCED", true)
-                    .setType("*/*")
+                    .setType(mimeType)
                     .addCategory(Intent.CATEGORY_OPENABLE)
                     .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
                             | StoredDirectoryHelper.PERMISSION_FLAGS);

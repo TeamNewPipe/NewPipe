@@ -717,7 +717,7 @@ public class DownloadDialog extends DialogFragment
             }
 
             startActivityForResult(StoredFileHelper.getNewPicker(context, startPath,
-                    filenameTmp), REQUEST_DOWNLOAD_SAVE_AS);
+                    filenameTmp, mimeTmp), REQUEST_DOWNLOAD_SAVE_AS);
 
             return;
         }

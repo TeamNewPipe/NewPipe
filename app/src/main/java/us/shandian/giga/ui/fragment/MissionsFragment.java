@@ -256,7 +256,7 @@ public class MissionsFragment extends Fragment {
         }
 
         startActivityForResult(StoredFileHelper.getNewPicker(mContext, startPath,
-                mission.storage.getName()), REQUEST_DOWNLOAD_SAVE_AS);
+                mission.storage.getName(), mission.storage.getType()), REQUEST_DOWNLOAD_SAVE_AS);
     }
 
     @Override

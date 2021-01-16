@@ -66,7 +66,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         exportDataPreference.setOnPreferenceClickListener((final Preference p) -> {
             final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
             startActivityForResult(StoredFileHelper.getNewPicker(getContext(), null,
-                    "NewPipeData-" + sdf.format(new Date()) + ".zip"), REQUEST_EXPORT_PATH);
+                    "NewPipeData-" + sdf.format(new Date()) + ".zip", "application/zip"),
+                    REQUEST_EXPORT_PATH);
             return true;
         });
 
