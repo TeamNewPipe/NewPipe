@@ -20,9 +20,5 @@
 <!-- Delete this if it doesn't apply to you. -->
 - 
 
-#### APK testing 
-<!-- Use a new, meaningfully named branch. The name is used as a suffix for the app ID to allow installing and testing multiple versions of NewPipe, e.g. "commentfix", if your PR implements a bugfix for comments. (No names like "patch-0" and "feature-1".)  -->
-debug.zip
-
 #### Due diligence
 - [ ] I read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md).
