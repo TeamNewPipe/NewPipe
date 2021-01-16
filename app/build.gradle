@@ -217,7 +217,7 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     implementation "com.xwray:groupie:${groupieVersion}"
-    implementation "com.xwray:groupie-kotlin-android-extensions:${groupieVersion}"
+    implementation "com.xwray:groupie-viewbinding:${groupieVersion}"
 
     implementation "de.hdodenhof:circleimageview:3.1.0"
     implementation "com.nostra13.universalimageloader:universal-image-loader:1.9.5"
