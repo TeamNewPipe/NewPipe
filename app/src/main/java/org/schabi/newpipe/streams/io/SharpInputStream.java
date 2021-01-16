@@ -5,6 +5,10 @@ import androidx.annotation.NonNull;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Simply wraps a readable {@link SharpStream} allowing it to be used with built-in Java stuff that
+ * supports {@link InputStream}.
+ */
 public class SharpInputStream extends InputStream {
     private final SharpStream stream;
 
