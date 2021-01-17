@@ -3,6 +3,7 @@ package org.schabi.newpipe.local.holder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.database.LocalItem;
@@ -10,6 +11,8 @@ import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 import java.time.format.DateTimeFormatter;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /*
  * Created by Christian Schabesberger on 12.02.17.
@@ -34,14 +37,16 @@ import java.time.format.DateTimeFormatter;
 public abstract class LocalItemHolder extends RecyclerView.ViewHolder {
     protected final LocalItemBuilder itemBuilder;
 
-    public LocalItemHolder(final LocalItemBuilder itemBuilder, final int layoutId,
-                           final ViewGroup parent) {
+    protected LocalItemHolder(final LocalItemBuilder itemBuilder, final int layoutId,
+                              final ViewGroup parent) {
         super(LayoutInflater.from(itemBuilder.getContext()).inflate(layoutId, parent, false));
         this.itemBuilder = itemBuilder;
     }
 
-    public abstract void updateFromItem(LocalItem item, HistoryRecordManager historyRecordManager,
-                                        DateTimeFormatter dateTimeFormatter);
+    @NonNull
+    public abstract Disposable updateFromItem(LocalItem item,
+                                              HistoryRecordManager historyRecordManager,
+                                              DateTimeFormatter dateTimeFormatter);
 
     public void updateState(final LocalItem localItem,
                             final HistoryRecordManager historyRecordManager) { }

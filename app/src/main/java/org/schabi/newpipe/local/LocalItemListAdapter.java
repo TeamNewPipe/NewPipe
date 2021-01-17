@@ -31,6 +31,8 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 /*
  * Created by Christian Schabesberger on 01.08.16.
  *
@@ -71,6 +73,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final ArrayList<LocalItem> localItems;
     private final HistoryRecordManager recordManager;
     private final DateTimeFormatter dateTimeFormatter;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     private boolean showFooter = false;
     private boolean useGridVariant = false;
@@ -83,6 +86,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         localItems = new ArrayList<>();
         dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
                 .withLocale(Localization.getPreferredLocale(context));
+    }
+
+    public void clearBackgroundTasks() {
+        compositeDisposable.clear();
     }
 
     public void setSelectedListener(final OnClickGesture<LocalItem> listener) {
@@ -314,8 +321,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 position--;
             }
 
-            ((LocalItemHolder) holder)
-                    .updateFromItem(localItems.get(position), recordManager, dateTimeFormatter);
+            compositeDisposable.add(((LocalItemHolder) holder)
+                    .updateFromItem(localItems.get(position), recordManager, dateTimeFormatter));
         } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
             ((HeaderFooterHolder) holder).view = header;
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()

@@ -66,13 +66,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(activity)
-                .unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         if (updateFlags != 0) {
@@ -167,9 +160,17 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(activity)
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         itemsList = null;
+        itemListAdapter.clearBackgroundTasks();
         itemListAdapter = null;
     }
 

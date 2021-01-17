@@ -5,13 +5,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -21,6 +24,9 @@ import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -77,28 +83,34 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         return Localization.concatenateStrings(watchCount, uploadDate, serviceName);
     }
 
+    @NonNull
     @Override
-    public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
+    public Disposable updateFromItem(final LocalItem localItem,
+                                     final HistoryRecordManager historyRecordManager,
+                                     final DateTimeFormatter dateTimeFormatter) {
         if (!(localItem instanceof StreamStatisticsEntry)) {
-            return;
+            return Disposable.disposed();
         }
         final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
+        final StreamEntity streamEntity = item.getStreamEntity();
 
-        itemVideoTitleView.setText(item.getStreamEntity().getTitle());
-        itemUploaderView.setText(item.getStreamEntity().getUploader());
+        final CompositeDisposable compositeDisposable = new CompositeDisposable(
+                TextViewUtils.computeAndSetPrecomputedText(itemVideoTitleView,
+                        streamEntity.getTitle()),
+                TextViewUtils.computeAndSetPrecomputedText(itemUploaderView,
+                        streamEntity.getUploader())
+        );
 
         if (item.getStreamEntity().getDuration() > 0) {
-            itemDurationView.
-                    setText(Localization.getDurationString(item.getStreamEntity().getDuration()));
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(itemDurationView,
+                    Localization.getDurationString(streamEntity.getDuration())));
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
             if (item.getProgressMillis() > 0) {
                 itemProgressView.setVisibility(View.VISIBLE);
-                itemProgressView.setMax((int) item.getStreamEntity().getDuration());
+                itemProgressView.setMax((int) streamEntity.getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
                         .toSeconds(item.getProgressMillis()));
             } else {
@@ -110,11 +122,13 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
 
         if (itemAdditionalDetails != null) {
-            itemAdditionalDetails.setText(getStreamInfoDetailLine(item, dateTimeFormatter));
+            compositeDisposable.add(TextViewUtils
+                    .computeAndSetPrecomputedText(itemAdditionalDetails,
+                            getStreamInfoDetailLine(item, dateTimeFormatter)));
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(item.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
+        itemBuilder.displayImage(streamEntity.getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
@@ -130,6 +144,8 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
             }
             return true;
         });
+
+        return compositeDisposable;
     }
 
     @Override

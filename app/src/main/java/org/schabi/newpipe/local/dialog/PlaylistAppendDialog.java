@@ -134,6 +134,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         playlistDisposables.dispose();
         if (playlistAdapter != null) {
             playlistAdapter.unsetSelectedListener();
+            playlistAdapter.clearBackgroundTasks();
         }
 
         playlistDisposables.clear();

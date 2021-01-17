@@ -6,12 +6,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -21,6 +23,9 @@ import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     public final ImageView itemThumbnailView;
@@ -47,23 +52,27 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         this(infoItemBuilder, R.layout.list_stream_playlist_item, parent);
     }
 
+    @NonNull
     @Override
-    public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
+    public Disposable updateFromItem(final LocalItem localItem,
+                                     final HistoryRecordManager historyRecordManager,
+                                     final DateTimeFormatter dateTimeFormatter) {
         if (!(localItem instanceof PlaylistStreamEntry)) {
-            return;
+            return Disposable.disposed();
         }
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
-        itemVideoTitleView.setText(item.getStreamEntity().getTitle());
-        itemAdditionalDetailsView.setText(Localization
-                .concatenateStrings(item.getStreamEntity().getUploader(),
-                        NewPipe.getNameOfService(item.getStreamEntity().getServiceId())));
+        final CompositeDisposable compositeDisposable = new CompositeDisposable(
+                TextViewUtils.computeAndSetPrecomputedText(itemVideoTitleView,
+                        item.getStreamEntity().getTitle()),
+                TextViewUtils.computeAndSetPrecomputedText(itemAdditionalDetailsView,
+                        Localization.concatenateStrings(item.getStreamEntity().getUploader(),
+                                NewPipe.getNameOfService(item.getStreamEntity().getServiceId())))
+        );
 
         if (item.getStreamEntity().getDuration() > 0) {
-            itemDurationView.setText(Localization
-                    .getDurationString(item.getStreamEntity().getDuration()));
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(itemDurationView,
+                    Localization.getDurationString(item.getStreamEntity().getDuration())));
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
@@ -99,6 +108,8 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         });
 
         itemHandleView.setOnTouchListener(getOnTouchListener(item));
+
+        return compositeDisposable;
     }
 
     @Override

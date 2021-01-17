@@ -4,12 +4,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 import java.time.format.DateTimeFormatter;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public abstract class PlaylistItemHolder extends LocalItemHolder {
     public final ImageView itemThumbnailView;
@@ -31,10 +35,11 @@ public abstract class PlaylistItemHolder extends LocalItemHolder {
         this(infoItemBuilder, R.layout.list_playlist_mini_item, parent);
     }
 
+    @NonNull
     @Override
-    public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
+    public Disposable updateFromItem(final LocalItem localItem,
+                                     final HistoryRecordManager historyRecordManager,
+                                     final DateTimeFormatter dateTimeFormatter) {
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
                 itemBuilder.getOnItemSelectedListener().selected(localItem);
@@ -48,5 +53,7 @@ public abstract class PlaylistItemHolder extends LocalItemHolder {
             }
             return true;
         });
+
+        return Disposable.disposed();
     }
 }
