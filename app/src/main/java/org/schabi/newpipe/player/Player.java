@@ -1349,13 +1349,23 @@ public final class Player implements
 
     public void removePopupFromView() {
         if (windowManager != null) {
-            final boolean isCloseOverlayHasParent = closeOverlayBinding != null
-                    && closeOverlayBinding.closeButton.getParent() != null;
-            if (popupHasParent()) {
-                windowManager.removeView(binding.getRoot());
+            // wrap in try-catch since it could sometimes generate errors randomly
+            try {
+                if (popupHasParent()) {
+                    windowManager.removeView(binding.getRoot());
+                }
+            } catch (final IllegalArgumentException e) {
+                Log.w(TAG, "Failed to remove popup from window manager", e);
             }
-            if (isCloseOverlayHasParent) {
-                windowManager.removeView(closeOverlayBinding.getRoot());
+
+            try {
+                final boolean closeOverlayHasParent = closeOverlayBinding != null
+                        && closeOverlayBinding.getRoot().getParent() != null;
+                if (closeOverlayHasParent) {
+                    windowManager.removeView(closeOverlayBinding.getRoot());
+                }
+            } catch (final IllegalArgumentException e) {
+                Log.w(TAG, "Failed to remove popup overlay from window manager", e);
             }
         }
     }
