@@ -180,7 +180,7 @@
                         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
                     <ImageView
-                        android:id="@+id/detail_toggle_description_view"
+                        android:id="@+id/detail_toggle_secondary_controls_view"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="top|end"

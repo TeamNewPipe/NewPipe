@@ -119,6 +119,7 @@ import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
@@ -570,13 +571,13 @@ public final class VideoDetailFragment
     private void toggleTitleAndSecondaryControls() {
         if (binding.detailSecondaryControlPanel.getVisibility() == View.GONE) {
             binding.detailVideoTitleView.setMaxLines(10);
-            binding.detailToggleDescriptionView.setImageResource(
-                    ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_less));
+            animateRotation(binding.detailToggleSecondaryControlsView,
+                    Player.DEFAULT_CONTROLS_DURATION, 180);
             binding.detailSecondaryControlPanel.setVisibility(View.VISIBLE);
         } else {
             binding.detailVideoTitleView.setMaxLines(1);
-            binding.detailToggleDescriptionView.setImageResource(
-                    ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
+            animateRotation(binding.detailToggleSecondaryControlsView,
+                    Player.DEFAULT_CONTROLS_DURATION, 0);
             binding.detailSecondaryControlPanel.setVisibility(View.GONE);
         }
         updateTabLayoutVisibility();
@@ -1406,7 +1407,7 @@ public final class VideoDetailFragment
         binding.detailVideoTitleView.setMaxLines(1);
         animate(binding.detailVideoTitleView, true, 0);
 
-        binding.detailToggleDescriptionView.setVisibility(View.GONE);
+        binding.detailToggleSecondaryControlsView.setVisibility(View.GONE);
         binding.detailTitleRootLayout.setClickable(false);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
@@ -1511,9 +1512,8 @@ public final class VideoDetailFragment
         }
 
         binding.detailTitleRootLayout.setClickable(true);
-        binding.detailToggleDescriptionView.setImageResource(
-                ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_expand_more));
-        binding.detailToggleDescriptionView.setVisibility(View.VISIBLE);
+        binding.detailToggleSecondaryControlsView.setRotation(0);
+        binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
         sortedVideoStreams = ListHelper.getSortedStreamVideosList(
