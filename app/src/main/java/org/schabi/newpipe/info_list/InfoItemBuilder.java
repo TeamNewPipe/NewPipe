@@ -1,28 +1,13 @@
 package org.schabi.newpipe.info_list;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.InfoItemHolder;
-import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.OnClickGesture;
 
 /*
@@ -60,41 +45,6 @@ public class InfoItemBuilder {
 
     public InfoItemBuilder(final Context context) {
         this.context = context;
-    }
-
-    public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
-                          final HistoryRecordManager historyRecordManager) {
-        return buildView(parent, infoItem, historyRecordManager, false);
-    }
-
-    public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
-                          final HistoryRecordManager historyRecordManager,
-                          final boolean useMiniVariant) {
-        final InfoItemHolder holder
-                = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
-        holder.updateFromItem(infoItem, historyRecordManager);
-        return holder.itemView;
-    }
-
-    private InfoItemHolder holderFromInfoType(@NonNull final ViewGroup parent,
-                                              @NonNull final InfoItem.InfoType infoType,
-                                              final boolean useMiniVariant) {
-        switch (infoType) {
-            case STREAM:
-                return useMiniVariant ? new StreamMiniInfoItemHolder(this, parent)
-                        : new StreamInfoItemHolder(this, parent);
-            case CHANNEL:
-                return useMiniVariant ? new ChannelMiniInfoItemHolder(this, parent)
-                        : new ChannelInfoItemHolder(this, parent);
-            case PLAYLIST:
-                return useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent)
-                        : new PlaylistInfoItemHolder(this, parent);
-            case COMMENT:
-                return useMiniVariant ? new CommentsMiniInfoItemHolder(this, parent)
-                        : new CommentsInfoItemHolder(this, parent);
-            default:
-                throw new RuntimeException("InfoType not expected = " + infoType.name());
-        }
     }
 
     public Context getContext() {

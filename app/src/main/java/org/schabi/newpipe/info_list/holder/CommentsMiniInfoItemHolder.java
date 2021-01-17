@@ -1,6 +1,5 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
@@ -17,7 +16,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
+import org.schabi.newpipe.extractor.localization.DateWrapper;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -30,6 +31,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private static final int COMMENT_DEFAULT_LINES = 2;
@@ -39,7 +41,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final int commentHorizontalPadding;
     private final int commentVerticalPadding;
 
-    private SharedPreferences preferences = null;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     private final RelativeLayout itemRoot;
     public final CircleImageView itemThumbnailView;
     private final TextView itemContentView;
@@ -95,15 +98,17 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         this(infoItemBuilder, R.layout.list_comments_mini_item, parent);
     }
 
+    @NonNull
     @Override
-    public void updateFromItem(final InfoItem infoItem,
-                               final HistoryRecordManager historyRecordManager) {
+    public Disposable updateFromItem(final InfoItem infoItem,
+                                     final HistoryRecordManager historyRecordManager) {
         if (!(infoItem instanceof CommentsInfoItem)) {
-            return;
+            return Disposable.disposed();
         }
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
-        preferences = PreferenceManager.getDefaultSharedPreferences(itemBuilder.getContext());
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(itemBuilder.getContext());
 
         itemBuilder.getImageLoader()
                 .displayImage(item.getUploaderAvatarUrl(),
@@ -120,14 +125,14 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                     commentHorizontalPadding, commentVerticalPadding);
         }
 
-
         itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
 
         streamUrl = item.getUrl();
 
         itemContentView.setLines(COMMENT_DEFAULT_LINES);
         commentText = item.getCommentText();
-        itemContentView.setText(commentText);
+        compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(itemContentView,
+                commentText));
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
         if (itemContentView.getLineCount() == 0) {
@@ -136,21 +141,18 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             ellipsize();
         }
 
-        if (item.getLikeCount() >= 0) {
-            itemLikesCountView.setText(
-                    Localization.shortCount(
-                            itemBuilder.getContext(),
-                            item.getLikeCount()));
-        } else {
-            itemLikesCountView.setText("-");
-        }
-
-        if (item.getUploadDate() != null) {
-            itemPublishedTime.setText(Localization.relativeTime(item.getUploadDate()
-                    .offsetDateTime()));
-        } else {
-            itemPublishedTime.setText(item.getTextualUploadDate());
-        }
+        final int likeCount = item.getLikeCount();
+        final String likeCountText = likeCount >= 0
+                ? Localization.shortCount(itemBuilder.getContext(), likeCount)
+                : "-";
+        final DateWrapper uploadDate = item.getUploadDate();
+        final String uploadDateText = uploadDate != null
+                ? Localization.relativeTime(uploadDate.offsetDateTime())
+                : item.getTextualUploadDate();
+        compositeDisposable.addAll(
+                TextViewUtils.computeAndSetPrecomputedText(itemLikesCountView, likeCountText),
+                TextViewUtils.computeAndSetPrecomputedText(itemPublishedTime, uploadDateText)
+        );
 
         itemView.setOnClickListener(view -> {
             toggleEllipsize();
@@ -158,7 +160,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                 itemBuilder.getOnCommentsSelectedListener().selected(item);
             }
         });
-
 
         itemView.setOnLongClickListener(view -> {
             if (DeviceUtils.isTv(itemBuilder.getContext())) {
@@ -168,6 +169,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             }
             return true;
         });
+
+        return compositeDisposable;
     }
 
     private void openCommentAuthor(final CommentsInfoItem item) {
@@ -222,8 +225,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             if (end == -1) {
                 end = Math.max(endOfLastLine - 2, 0);
             }
-            final String newVal = itemContentView.getText().subSequence(0, end) + " …";
-            itemContentView.setText(newVal);
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(itemContentView,
+                    itemContentView.getText().subSequence(0, end) + " …"));
             hasEllipsis = true;
         }
 
@@ -248,13 +251,15 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
     private void expand() {
         itemContentView.setMaxLines(COMMENT_EXPANDED_LINES);
-        itemContentView.setText(commentText);
+        compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(itemContentView,
+                commentText));
         linkify();
         determineLinkFocus();
     }
 
     private void linkify() {
-        Linkify.addLinks(itemContentView, Linkify.WEB_URLS);
-        Linkify.addLinks(itemContentView, PATTERN, null, null, timestampLink);
+        LinkifyCompat.addLinks(itemContentView, Linkify.WEB_URLS);
+        LinkifyCompat.addLinks(itemContentView, PATTERN, null, null,
+                timestampLink);
     }
 }

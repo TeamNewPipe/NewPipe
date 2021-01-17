@@ -3,15 +3,20 @@ package org.schabi.newpipe.info_list.holder;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class ChannelMiniInfoItemHolder extends InfoItemHolder {
     public final CircleImageView itemThumbnailView;
@@ -32,16 +37,20 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
         this(infoItemBuilder, R.layout.list_channel_mini_item, parent);
     }
 
+    @NonNull
     @Override
-    public void updateFromItem(final InfoItem infoItem,
-                               final HistoryRecordManager historyRecordManager) {
+    public Disposable updateFromItem(final InfoItem infoItem,
+                                     final HistoryRecordManager historyRecordManager) {
         if (!(infoItem instanceof ChannelInfoItem)) {
-            return;
+            return Disposable.disposed();
         }
         final ChannelInfoItem item = (ChannelInfoItem) infoItem;
 
-        itemTitleView.setText(item.getName());
-        itemAdditionalDetailView.setText(getDetailLine(item));
+        final CompositeDisposable compositeDisposable = new CompositeDisposable(
+                TextViewUtils.computeAndSetPrecomputedText(itemTitleView, item.getName()),
+                TextViewUtils.computeAndSetPrecomputedText(itemAdditionalDetailView,
+                        getDetailLine(item))
+        );
 
         itemBuilder.getImageLoader()
                 .displayImage(item.getThumbnailUrl(),
@@ -60,6 +69,8 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
             }
             return true;
         });
+
+        return compositeDisposable;
     }
 
     protected String getDetailLine(final ChannelInfoItem item) {

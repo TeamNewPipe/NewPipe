@@ -4,15 +4,20 @@ import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
 
-import androidx.preference.PreferenceManager;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
@@ -53,17 +58,22 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
         itemAdditionalDetails = itemView.findViewById(R.id.itemAdditionalDetails);
     }
 
+    @NonNull
     @Override
-    public void updateFromItem(final InfoItem infoItem,
-                               final HistoryRecordManager historyRecordManager) {
-        super.updateFromItem(infoItem, historyRecordManager);
+    public Disposable updateFromItem(final InfoItem infoItem,
+                                     final HistoryRecordManager historyRecordManager) {
+        final Disposable disposable = super.updateFromItem(infoItem, historyRecordManager);
 
         if (!(infoItem instanceof StreamInfoItem)) {
-            return;
+            return disposable;
         }
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
-        itemAdditionalDetails.setText(getStreamInfoDetailLine(item));
+        return new CompositeDisposable(
+                disposable,
+                TextViewUtils.computeAndSetPrecomputedText(itemAdditionalDetails,
+                        getStreamInfoDetailLine(item))
+        );
     }
 
     private String getStreamInfoDetailLine(final StreamInfoItem infoItem) {

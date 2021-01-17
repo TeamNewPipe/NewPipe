@@ -3,11 +3,14 @@ package org.schabi.newpipe.info_list.holder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /*
  * Created by Christian Schabesberger on 12.02.17.
@@ -32,14 +35,15 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
     protected final InfoItemBuilder itemBuilder;
 
-    public InfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
-                          final ViewGroup parent) {
+    protected InfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
+                             final ViewGroup parent) {
         super(LayoutInflater.from(infoItemBuilder.getContext()).inflate(layoutId, parent, false));
         this.itemBuilder = infoItemBuilder;
     }
 
-    public abstract void updateFromItem(InfoItem infoItem,
-                                        HistoryRecordManager historyRecordManager);
+    @NonNull
+    public abstract Disposable updateFromItem(InfoItem infoItem,
+                                              HistoryRecordManager historyRecordManager);
 
     public void updateState(final InfoItem infoItem,
                             final HistoryRecordManager historyRecordManager) { }

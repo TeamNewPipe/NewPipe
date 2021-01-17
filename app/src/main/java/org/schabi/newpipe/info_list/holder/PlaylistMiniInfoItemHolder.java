@@ -4,13 +4,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
     public final ImageView itemThumbnailView;
@@ -33,18 +39,22 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
         this(infoItemBuilder, R.layout.list_playlist_mini_item, parent);
     }
 
+    @NonNull
     @Override
-    public void updateFromItem(final InfoItem infoItem,
-                               final HistoryRecordManager historyRecordManager) {
+    public Disposable updateFromItem(final InfoItem infoItem,
+                                     final HistoryRecordManager historyRecordManager) {
         if (!(infoItem instanceof PlaylistInfoItem)) {
-            return;
+            return Disposable.disposed();
         }
         final PlaylistInfoItem item = (PlaylistInfoItem) infoItem;
 
-        itemTitleView.setText(item.getName());
-        itemStreamCountView.setText(Localization
-                .localizeStreamCountMini(itemStreamCountView.getContext(), item.getStreamCount()));
-        itemUploaderView.setText(item.getUploaderName());
+        final CompositeDisposable compositeDisposable = new CompositeDisposable(
+                TextViewUtils.computeAndSetPrecomputedText(itemTitleView, item.getName()),
+                TextViewUtils.computeAndSetPrecomputedText(itemStreamCountView,
+                        Localization.localizeStreamCountMini(itemStreamCountView.getContext(),
+                                item.getStreamCount())),
+                TextViewUtils.computeAndSetPrecomputedText(itemUploaderView, item.getUploaderName())
+        );
 
         itemBuilder.getImageLoader()
                 .displayImage(item.getThumbnailUrl(), itemThumbnailView,
@@ -63,5 +73,7 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
             }
             return true;
         });
+
+        return compositeDisposable;
     }
 }

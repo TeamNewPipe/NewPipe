@@ -35,6 +35,8 @@ import org.schabi.newpipe.util.OnClickGesture;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 /*
  * Created by Christian Schabesberger on 01.08.16.
  *
@@ -77,6 +79,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<InfoItem> infoItemList;
     private final HistoryRecordManager recordManager;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     private boolean useMiniVariant = false;
     private boolean useGridVariant = false;
@@ -88,6 +91,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.recordManager = new HistoryRecordManager(context);
         infoItemBuilder = new InfoItemBuilder(context);
         infoItemList = new ArrayList<>();
+    }
+
+    public void clearBackgroundTasks() {
+        compositeDisposable.clear();
     }
 
     public void setOnStreamSelectedListener(final OnClickGesture<StreamInfoItem> listener) {
@@ -334,7 +341,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 position--;
             }
 
-            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), recordManager);
+            compositeDisposable.add(((InfoItemHolder) holder)
+                    .updateFromItem(infoItemList.get(position), recordManager));
         } else if (holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
         } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset()

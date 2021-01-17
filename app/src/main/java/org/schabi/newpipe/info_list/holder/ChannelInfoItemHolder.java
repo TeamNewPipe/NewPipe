@@ -3,12 +3,18 @@ package org.schabi.newpipe.info_list.holder;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /*
  * Created by Christian Schabesberger on 12.02.17.
@@ -38,17 +44,22 @@ public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
         itemChannelDescriptionView = itemView.findViewById(R.id.itemChannelDescriptionView);
     }
 
+    @NonNull
     @Override
-    public void updateFromItem(final InfoItem infoItem,
-                               final HistoryRecordManager historyRecordManager) {
-        super.updateFromItem(infoItem, historyRecordManager);
+    public Disposable updateFromItem(final InfoItem infoItem,
+                                     final HistoryRecordManager historyRecordManager) {
+        final Disposable disposable = super.updateFromItem(infoItem, historyRecordManager);
 
         if (!(infoItem instanceof ChannelInfoItem)) {
-            return;
+            return disposable;
         }
         final ChannelInfoItem item = (ChannelInfoItem) infoItem;
 
-        itemChannelDescriptionView.setText(item.getDescription());
+        return new CompositeDisposable(
+                disposable,
+                TextViewUtils.computeAndSetPrecomputedText(itemChannelDescriptionView,
+                        item.getDescription())
+        );
     }
 
     @Override

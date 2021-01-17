@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
@@ -13,6 +14,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.ktx.TextViewUtils;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -20,6 +22,9 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.util.concurrent.TimeUnit;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class StreamMiniInfoItemHolder extends InfoItemHolder {
     public final ImageView itemThumbnailView;
@@ -43,19 +48,23 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         this(infoItemBuilder, R.layout.list_stream_mini_item, parent);
     }
 
+    @NonNull
     @Override
-    public void updateFromItem(final InfoItem infoItem,
-                               final HistoryRecordManager historyRecordManager) {
+    public Disposable updateFromItem(final InfoItem infoItem,
+                                     final HistoryRecordManager historyRecordManager) {
         if (!(infoItem instanceof StreamInfoItem)) {
-            return;
+            return Disposable.disposed();
         }
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
-        itemVideoTitleView.setText(item.getName());
-        itemUploaderView.setText(item.getUploaderName());
+        final CompositeDisposable compositeDisposable = new CompositeDisposable(
+                TextViewUtils.computeAndSetPrecomputedText(itemVideoTitleView, item.getName()),
+                TextViewUtils.computeAndSetPrecomputedText(itemUploaderView, item.getUploaderName())
+        );
 
         if (item.getDuration() > 0) {
-            itemDurationView.setText(Localization.getDurationString(item.getDuration()));
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(itemDurationView,
+                    Localization.getDurationString(item.getDuration())));
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
@@ -72,7 +81,8 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             }
         } else if (item.getStreamType() == StreamType.LIVE_STREAM
                 || item.getStreamType() == StreamType.AUDIO_LIVE_STREAM) {
-            itemDurationView.setText(R.string.duration_live);
+            compositeDisposable.add(TextViewUtils.computeAndSetPrecomputedText(itemDurationView,
+                    R.string.duration_live));
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.live_duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
@@ -107,6 +117,8 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                 disableLongClick();
                 break;
         }
+
+        return compositeDisposable;
     }
 
     @Override
