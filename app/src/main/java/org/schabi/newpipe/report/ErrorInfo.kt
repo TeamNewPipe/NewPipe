@@ -2,7 +2,7 @@ package org.schabi.newpipe.report
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class ErrorInfo(

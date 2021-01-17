@@ -1,7 +1,7 @@
 package org.schabi.newpipe.about
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class SoftwareComponent

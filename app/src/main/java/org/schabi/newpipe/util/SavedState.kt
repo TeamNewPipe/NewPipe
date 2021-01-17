@@ -1,7 +1,7 @@
 package org.schabi.newpipe.util
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * Information about the saved state on the disk.

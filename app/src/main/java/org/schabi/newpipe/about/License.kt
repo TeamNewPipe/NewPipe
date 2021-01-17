@@ -2,7 +2,7 @@ package org.schabi.newpipe.about
 
 import android.net.Uri
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 
 /**
