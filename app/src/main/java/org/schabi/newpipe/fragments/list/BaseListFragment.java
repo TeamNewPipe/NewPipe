@@ -70,7 +70,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
 
         if (infoListAdapter == null) {
@@ -186,7 +186,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle bundle) {
+    public void onSaveInstanceState(@NonNull final Bundle bundle) {
         super.onSaveInstanceState(bundle);
         if (useDefaultStateSaving) {
             savedState = StateSaver

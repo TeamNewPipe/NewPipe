@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
@@ -56,7 +57,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     private TextView errorTextView;
 
     @Override
-    public void onViewCreated(final View rootView, final Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
         doInitialLoadLogic();
     }

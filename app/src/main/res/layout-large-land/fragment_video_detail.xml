@@ -193,7 +193,7 @@
                             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
                         <ImageView
-                            android:id="@+id/detail_toggle_description_view"
+                            android:id="@+id/detail_toggle_secondary_controls_view"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="top|end"
@@ -426,6 +426,7 @@
                             </RelativeLayout>
                         </RelativeLayout>
 
+                        <!-- CONTROLS -->
                         <LinearLayout
                             android:id="@+id/detail_control_panel"
                             android:layout_width="match_parent"
@@ -433,13 +434,12 @@
                             android:descendantFocusability="afterDescendants"
                             android:focusable="true"
                             android:orientation="horizontal"
-                            android:padding="6dp">
+                            android:padding="@dimen/detail_control_padding">
 
-                            <!-- CONTROLS -->
                             <TextView
                                 android:id="@+id/detail_controls_playlist_append"
-                                android:layout_width="80dp"
-                                android:layout_height="55dp"
+                                android:layout_width="@dimen/detail_control_width"
+                                android:layout_height="@dimen/detail_control_height"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -447,16 +447,15 @@
                                 android:contentDescription="@string/append_playlist"
                                 android:focusable="true"
                                 android:gravity="center"
-                                android:paddingTop="6dp"
-                                android:paddingBottom="6dp"
+                                android:paddingVertical="@dimen/detail_control_padding"
                                 android:text="@string/controls_add_to_playlist_title"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/detail_control_text_size"
                                 app:drawableTopCompat="?attr/ic_playlist_add" />
 
                             <TextView
                                 android:id="@+id/detail_controls_background"
-                                android:layout_width="80dp"
-                                android:layout_height="55dp"
+                                android:layout_width="@dimen/detail_control_width"
+                                android:layout_height="@dimen/detail_control_height"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -464,16 +463,15 @@
                                 android:contentDescription="@string/play_audio"
                                 android:focusable="true"
                                 android:gravity="center"
-                                android:paddingTop="6dp"
-                                android:paddingBottom="6dp"
+                                android:paddingVertical="@dimen/detail_control_padding"
                                 android:text="@string/controls_background_title"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/detail_control_text_size"
                                 app:drawableTopCompat="?attr/ic_headset" />
 
                             <TextView
                                 android:id="@+id/detail_controls_popup"
-                                android:layout_width="80dp"
-                                android:layout_height="55dp"
+                                android:layout_width="@dimen/detail_control_width"
+                                android:layout_height="@dimen/detail_control_height"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -481,16 +479,15 @@
                                 android:contentDescription="@string/open_in_popup_mode"
                                 android:focusable="true"
                                 android:gravity="center"
-                                android:paddingTop="6dp"
-                                android:paddingBottom="6dp"
+                                android:paddingVertical="@dimen/detail_control_padding"
                                 android:text="@string/controls_popup_title"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/detail_control_text_size"
                                 app:drawableTopCompat="?attr/ic_popup" />
 
                             <TextView
                                 android:id="@+id/detail_controls_download"
-                                android:layout_width="80dp"
-                                android:layout_height="55dp"
+                                android:layout_width="@dimen/detail_control_width"
+                                android:layout_height="@dimen/detail_control_height"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -498,11 +495,73 @@
                                 android:contentDescription="@string/controls_download_desc"
                                 android:focusable="true"
                                 android:gravity="center"
-                                android:paddingTop="6dp"
-                                android:paddingBottom="6dp"
+                                android:paddingVertical="@dimen/detail_control_padding"
                                 android:text="@string/download"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/detail_control_text_size"
                                 app:drawableTopCompat="?attr/ic_file_download" />
+
+                        </LinearLayout>
+
+                        <!-- SECONDARY CONTROLS -->
+                        <LinearLayout
+                            android:id="@+id/detail_secondary_control_panel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:descendantFocusability="afterDescendants"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/detail_control_padding"
+                            android:paddingBottom="@dimen/detail_control_padding"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:id="@+id/detail_controls_share"
+                                android:layout_width="@dimen/detail_control_width"
+                                android:layout_height="@dimen/detail_control_height"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:contentDescription="@string/share"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/detail_control_padding"
+                                android:text="@string/share"
+                                android:textSize="@dimen/detail_control_text_size"
+                                app:drawableTopCompat="?attr/ic_share" />
+
+                            <TextView
+                                android:id="@+id/detail_controls_open_in_browser"
+                                android:layout_width="@dimen/detail_control_width"
+                                android:layout_height="@dimen/detail_control_height"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:contentDescription="@string/open_in_browser"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/detail_control_padding"
+                                android:text="@string/open_in_browser"
+                                android:textSize="@dimen/detail_control_text_size"
+                                app:drawableTopCompat="?attr/ic_language" />
+
+                            <TextView
+                                android:id="@+id/detail_controls_play_with_kodi"
+                                android:layout_width="@dimen/detail_control_width"
+                                android:layout_height="@dimen/detail_control_height"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:contentDescription="@string/play_with_kodi_title"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/detail_control_padding"
+                                android:text="@string/play_with_kodi_title"
+                                android:textSize="@dimen/detail_control_text_size"
+                                app:drawableTopCompat="?attr/ic_cast" />
 
                         </LinearLayout>
 
@@ -530,74 +589,26 @@
                             android:layout_marginRight="8dp"
                             android:background="?attr/separator_color" />
 
-                        <!--DESCRIPTIONS-->
-                        <LinearLayout
-                            android:id="@+id/detail_description_root_layout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:descendantFocusability="afterDescendants"
-                            android:focusable="true"
-                            android:orientation="vertical"
-                            android:visibility="gone"
-                            tools:visibility="visible">
-
-                            <TextView
-                                android:id="@+id/detail_upload_date_view"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginRight="12dp"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textSize="@dimen/video_item_detail_upload_date_text_size"
-                                android:textStyle="bold"
-                                tools:text="Published on Oct 2, 2009" />
-
-                            <TextView
-                                android:id="@+id/detail_description_view"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_marginRight="12dp"
-                                android:layout_marginBottom="8dp"
-                                android:focusable="false"
-                                android:nextFocusUp="@+id/detail_control_panel"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textIsSelectable="true"
-                                android:textSize="@dimen/video_item_detail_description_text_size"
-                                tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum." />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1px"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginRight="8dp"
-                                android:background="?attr/separator_color" />
-
-                        </LinearLayout>
-
                     </LinearLayout>
                 </RelativeLayout>
-
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:paddingBottom="48dp"/>
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_gravity="bottom|center"
-                    app:tabBackground="@drawable/tab_selector"
-                    app:tabGravity="center"
-                    app:tabIndicatorHeight="0dp" />
-
-            </androidx.viewpager.widget.ViewPager>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                app:tabIconTint="?attr/colorAccent"
+                app:tabBackground="?attr/windowBackground"
+                app:tabGravity="fill"
+                app:elevation="16dp"/>
 
         </org.schabi.newpipe.views.FocusAwareCoordinator>
 

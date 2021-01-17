@@ -196,7 +196,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
 
         suggestionListAdapter = new SuggestionListAdapter(activity);
@@ -226,7 +226,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     @Override
-    public void onViewCreated(final View rootView, final Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
         showSearchOnStart();
         initSearchListeners();
@@ -390,7 +390,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle bundle) {
+    public void onSaveInstanceState(@NonNull final Bundle bundle) {
         searchString = searchEditText != null
                 ? searchEditText.getText().toString()
                 : searchString;

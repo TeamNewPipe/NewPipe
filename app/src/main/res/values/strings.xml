@@ -91,9 +91,12 @@
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
+    <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
     <string name="show_comments_title">Show comments</string>
     <string name="show_comments_summary">Turn off to hide comments</string>
-    <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
+    <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
+    <string name="show_description_title">Show description</string>
+    <string name="show_description_summary">Turn off to hide video description and additional information</string>
     <string name="show_meta_info_title">Show meta info</string>
     <string name="show_meta_info_summary">Turn off to hide meta info boxes with additional information about the stream creator, stream content or a search request.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
@@ -124,7 +127,6 @@
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phonecalls)</string>
     <string name="download_dialog_title">Download</string>
     <string name="autoplay_title">Autoplay</string>
-    <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
     <string name="unsupported_url">Unsupported URL</string>
@@ -279,6 +281,9 @@
     <string name="detail_uploader_thumbnail_view_description">Uploader\'s avatar thumbnail</string>
     <string name="detail_likes_img_view_description">Likes</string>
     <string name="detail_dislikes_img_view_description">Dislikes</string>
+    <string name="comments_tab_description">Comments</string>
+    <string name="related_streams_tab_description">Related streams</string>
+    <string name="description_tab_description">Description</string>
     <string name="use_tor_title">Use Tor</string>
     <string name="use_tor_summary">(Experimental) Force download traffic through Tor for increased privacy (streaming videos not yet supported).</string>
     <string name="report_error">Report error</string>
