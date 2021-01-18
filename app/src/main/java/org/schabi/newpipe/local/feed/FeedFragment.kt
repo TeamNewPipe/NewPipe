@@ -32,14 +32,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import icepick.State
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
-import org.schabi.newpipe.databinding.ErrorRetryBinding
 import org.schabi.newpipe.databinding.FragmentFeedBinding
 import org.schabi.newpipe.fragments.list.BaseListFragment
 import org.schabi.newpipe.ktx.animate
@@ -51,12 +48,9 @@ import java.util.Calendar
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private var _feedBinding: FragmentFeedBinding? = null
     private val feedBinding get() = _feedBinding!!
-
-    private var _errorBinding: ErrorRetryBinding? = null
-    private val errorBinding get() = _errorBinding!!
+    private val errorBinding get() = _feedBinding!!.errorPanel
 
     private lateinit var viewModel: FeedViewModel
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     @State
     @JvmField
     var listState: Parcelable? = null
@@ -83,18 +77,17 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     }
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(rootView, savedInstanceState)
+        // super.onViewCreated() calls initListeners() which require the binding to be initialized
         _feedBinding = FragmentFeedBinding.bind(rootView)
-        _errorBinding = feedBinding.errorPanel
+        super.onViewCreated(rootView, savedInstanceState)
 
-        feedBinding.swiperefresh.setOnRefreshListener { reloadContent() }
         viewModel = ViewModelProvider(this, FeedViewModel.Factory(requireContext(), groupId)).get(FeedViewModel::class.java)
-        viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { it?.let(::handleResult) })
+        viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
     }
 
     override fun onPause() {
         super.onPause()
-        listState = _feedBinding?.itemsList?.layoutManager?.onSaveInstanceState()
+        listState = feedBinding.itemsList.layoutManager?.onSaveInstanceState()
     }
 
     override fun onResume() {
@@ -112,10 +105,8 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     override fun initListeners() {
         super.initListeners()
-        // Using the non-null property may result in a NullPointerException
-        _feedBinding?.refreshRootView?.setOnClickListener {
-            triggerUpdate()
-        }
+        feedBinding.refreshRootView.setOnClickListener { reloadContent() }
+        feedBinding.swiperefresh.setOnRefreshListener { reloadContent() }
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -242,12 +233,12 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         val isIndeterminate = progressState.currentProgress == -1 &&
             progressState.maxProgress == -1
 
-        if (!isIndeterminate) {
-            feedBinding.loadingProgressText.text = "${progressState.currentProgress}/${progressState.maxProgress}"
+        feedBinding.loadingProgressText.text = if (!isIndeterminate) {
+            "${progressState.currentProgress}/${progressState.maxProgress}"
         } else if (progressState.progressMessage > 0) {
-            _feedBinding?.loadingProgressText?.setText(progressState.progressMessage)
+            progressState.progressMessage.toString()
         } else {
-            _feedBinding?.loadingProgressText?.text = "∞/∞"
+            "∞/∞"
         }
 
         feedBinding.loadingProgressBar.isIndeterminate = isIndeterminate ||
@@ -317,11 +308,10 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     // /////////////////////////////////////////////////////////////////////////
 
     override fun doInitialLoadLogic() {}
-    override fun reloadContent() = triggerUpdate()
     override fun loadMoreItems() {}
     override fun hasMoreItems() = false
 
-    private fun triggerUpdate() {
+    override fun reloadContent() {
         getActivity()?.startService(
             Intent(requireContext(), FeedLoadService::class.java).apply {
                 putExtra(FeedLoadService.EXTRA_GROUP_ID, groupId)
