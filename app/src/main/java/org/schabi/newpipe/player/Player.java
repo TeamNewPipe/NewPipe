@@ -925,7 +925,7 @@ public final class Player implements
             binding.fullScreenButton.setVisibility(View.VISIBLE);
             binding.screenRotationButton.setVisibility(View.GONE);
             binding.resizeTextView.setVisibility(View.GONE);
-            binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.GONE);
+            binding.metadataView.setVisibility(View.GONE);
             binding.queueButton.setVisibility(View.GONE);
             binding.segmentsButton.setVisibility(View.GONE);
             binding.moreOptionsButton.setVisibility(View.GONE);
@@ -949,7 +949,7 @@ public final class Player implements
             binding.fullScreenButton.setVisibility(View.GONE);
             setupScreenRotationButton();
             binding.resizeTextView.setVisibility(View.VISIBLE);
-            binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
+            binding.metadataView.setVisibility(View.VISIBLE);
             binding.moreOptionsButton.setVisibility(View.VISIBLE);
             binding.topControls.setOrientation(LinearLayout.VERTICAL);
             binding.primaryControls.getLayoutParams().width
