@@ -1,11 +1,10 @@
 package org.schabi.newpipe.info_list
 
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
 import com.nostra13.universalimageloader.core.ImageLoader
-import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.Item
+import com.xwray.groupie.viewbinding.BindableItem
 import org.schabi.newpipe.R
+import org.schabi.newpipe.databinding.ItemStreamSegmentBinding
 import org.schabi.newpipe.extractor.stream.StreamSegment
 import org.schabi.newpipe.util.ImageDisplayConstants
 import org.schabi.newpipe.util.Localization
@@ -13,34 +12,34 @@ import org.schabi.newpipe.util.Localization
 class StreamSegmentItem(
     private val item: StreamSegment,
     private val onClick: StreamSegmentAdapter.StreamSegmentListener
-) : Item<GroupieViewHolder>() {
-
+) : BindableItem<ItemStreamSegmentBinding>() {
     companion object {
         const val PAYLOAD_SELECT = 1
     }
 
     var isSelected = false
 
-    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+    override fun initializeViewBinding(view: View) = ItemStreamSegmentBinding.bind(view)
+
+    override fun bind(viewBinding: ItemStreamSegmentBinding, position: Int) {
         item.previewUrl?.let {
             ImageLoader.getInstance().displayImage(
-                it, viewHolder.root.findViewById<ImageView>(R.id.previewImage),
+                it, viewBinding.previewImage,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS
             )
         }
-        viewHolder.root.findViewById<TextView>(R.id.textViewTitle).text = item.title
-        viewHolder.root.findViewById<TextView>(R.id.textViewStartSeconds).text =
-            Localization.getDurationString(item.startTimeSeconds.toLong())
-        viewHolder.root.setOnClickListener { onClick.onItemClick(this, item.startTimeSeconds) }
-        viewHolder.root.isSelected = isSelected
+        viewBinding.textViewTitle.text = item.title
+        viewBinding.textViewStartSeconds.text = Localization.getDurationString(item.startTimeSeconds.toLong())
+        viewBinding.root.setOnClickListener { onClick.onItemClick(this, item.startTimeSeconds) }
+        viewBinding.root.isSelected = isSelected
     }
 
-    override fun bind(viewHolder: GroupieViewHolder, position: Int, payloads: MutableList<Any>) {
+    override fun bind(viewBinding: ItemStreamSegmentBinding, position: Int, payloads: MutableList<Any>) {
         if (payloads.contains(PAYLOAD_SELECT)) {
-            viewHolder.root.isSelected = isSelected
+            viewBinding.root.isSelected = isSelected
             return
         }
-        super.bind(viewHolder, position, payloads)
+        super.bind(viewBinding, position, payloads)
     }
 
     override fun getLayout() = R.layout.item_stream_segment
