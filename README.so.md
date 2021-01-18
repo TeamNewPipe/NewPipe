@@ -1,6 +1,6 @@
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">App bilaash ah oo fudud looguna talagalay in aaladaha nidaamka Android-ka ku shaqeeya wax loogu daawado.</h4>
+<h4 align="center">App bilaash ah oo fudud looguna talagalay in Android-ka wax loogu daawado.</h4>
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> 
 
 <p align="center">
@@ -12,13 +12,13 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Kuwa Bountysource "><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#screenshots">Sawir-shaashadeed</a> &bull; <a href="#description">Faahfaahin</a> &bull; <a href="#features">Waxqabadka</a> &bull; <a href="#updates">Kushubida iyo cusboonaysiinta</a> &bull; <a href="#contribution">Kusoo Kordhin</a> &bull; <a href="#donate">Ugu Deeq</a> &bull; <a href="#license">Laysinka</a></p>
+<p align="center"><a href="#sawir-shaashadeed">Sawir-shaashadeed</a> &bull; <a href="#faahfaahin">Faahfaahin</a> &bull; <a href="#waxqabadka">Waxqabadka</a> &bull; <a href="#kushubida-iyo-cusboonaysiinta">Kushubida iyo cusboonaysiinta</a> &bull; <a href="#kusoo-kordhin">Kusoo Kordhin</a> &bull; <a href="#ugu-deeq">Ugu Deeq</a> &bull; <a href="#laysinka">Laysinka</a></p>
 <p align="center"><a href="https://newpipe.net">Website-ka</a> &bull; <a href="https://newpipe.net/blog/">Maqaalada</a> &bull; <a href="https://newpipe.net/FAQ/">Su'aalaha Aalaa La-iswaydiiyo</a> &bull; <a href="https://newpipe.net/press/">Warbaahinta</a></p>
 <hr>
 
 *Ku akhri luuqad kale: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md).*
 
-<b>DIGNIIN: MIDKAN, NOOCA APP-KA EE HADDA WALI TIJAABO AYUU KU JIRAA, SIDAA DARTEED CILLADO AYAAD LA KULMI KARTAA. HADAAD LA KULANTO , KA FUR ARIN SHARAXAYA QAYBTANADA GITHUB-KA.</b>
+<b>DIGNIIN: MIDKAN, NOOCA APP-KA EE HADDA WALI TIJAABO AYUU KU JIRAA, SIDAA DARTEED CILLADO AYAAD LA KULMI KARTAA. HADAAD LA KULANTO, KA FUR ARIN SHARAXAYA QAYBTANADA ARRIMAHA EE GITHUB-KA.</b>
 
 <b>NEWPIPE AMA KUWA KU SALAYSAN PLAYSTORE-KA IN LA GALIYO WAXAY KA HOR IMANAYSAA SHARCIGA IYO SHURUUDAHA AY LEEYIHIIN.</b>
 
