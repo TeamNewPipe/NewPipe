@@ -1,8 +1,8 @@
 package org.schabi.newpipe.settings.tabs;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,22 +11,19 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.FragmentChooseTabsBinding;
+import org.schabi.newpipe.databinding.ListChooseTabsBinding;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
@@ -50,6 +47,8 @@ public class ChooseTabsFragment extends Fragment {
 
     private final List<Tab> tabList = new ArrayList<>();
     private ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
+
+    private FragmentChooseTabsBinding binding;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -75,17 +74,23 @@ public class ChooseTabsFragment extends Fragment {
     public void onViewCreated(@NonNull final View rootView,
                               @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
+        binding = FragmentChooseTabsBinding.bind(rootView);
 
-        initButton(rootView);
+        initButton();
 
-        final RecyclerView listSelectedTabs = rootView.findViewById(R.id.selectedTabs);
-        listSelectedTabs.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.selectedTabs.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
-        itemTouchHelper.attachToRecyclerView(listSelectedTabs);
+        itemTouchHelper.attachToRecyclerView(binding.selectedTabs);
 
         selectedTabsAdapter = new SelectedTabsAdapter(requireContext(), itemTouchHelper);
-        listSelectedTabs.setAdapter(selectedTabsAdapter);
+        binding.selectedTabs.setAdapter(selectedTabsAdapter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 
     @Override
@@ -106,7 +111,8 @@ public class ChooseTabsFragment extends Fragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         final MenuItem restoreItem = menu.add(Menu.NONE, MENU_ITEM_RESTORE_ID, Menu.NONE,
@@ -154,23 +160,20 @@ public class ChooseTabsFragment extends Fragment {
                 .show();
     }
 
-    private void initButton(final View rootView) {
-        final FloatingActionButton fab = rootView.findViewById(R.id.addTabsButton);
-        fab.setOnClickListener(v -> {
+    private void initButton() {
+        binding.addTabsButton.setOnClickListener(v -> {
             final ChooseTabListItem[] availableTabs = getAvailableTabs(requireContext());
 
             if (availableTabs.length == 0) {
-                //Toast.makeText(requireContext(), "No available tabs", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            final Dialog.OnClickListener actionListener = (dialog, which) -> {
+            final DialogInterface.OnClickListener actionListener = (dialog, which) -> {
                 final ChooseTabListItem selected = availableTabs[which];
                 addTab(selected.tabId);
             };
 
-            new AddTabDialog(requireContext(), availableTabs, actionListener)
-                    .show();
+            new AddTabDialog(requireContext(), availableTabs, actionListener).show();
         });
     }
 
@@ -195,13 +198,13 @@ public class ChooseTabsFragment extends Fragment {
                 final SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
                 selectKioskFragment.setOnSelectedListener((serviceId, kioskId, kioskName) ->
                         addTab(new Tab.KioskTab(serviceId, kioskId)));
-                selectKioskFragment.show(requireFragmentManager(), "select_kiosk");
+                selectKioskFragment.show(getParentFragmentManager(), "select_kiosk");
                 return;
             case CHANNEL:
                 final SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
                 selectChannelFragment.setOnSelectedListener((serviceId, url, name) ->
                         addTab(new Tab.ChannelTab(serviceId, url, name)));
-                selectChannelFragment.show(requireFragmentManager(), "select_channel");
+                selectChannelFragment.show(getParentFragmentManager(), "select_channel");
                 return;
             case PLAYLIST:
                 final SelectPlaylistFragment selectPlaylistFragment = new SelectPlaylistFragment();
@@ -218,7 +221,7 @@ public class ChooseTabsFragment extends Fragment {
                                 addTab(new Tab.PlaylistTab(serviceId, url, name));
                             }
                         });
-                selectPlaylistFragment.show(requireFragmentManager(), "select_playlist");
+                selectPlaylistFragment.show(getParentFragmentManager(), "select_playlist");
                 return;
             default:
                 addTab(type.getTab());
@@ -281,7 +284,7 @@ public class ChooseTabsFragment extends Fragment {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                 ItemTouchHelper.START | ItemTouchHelper.END) {
             @Override
-            public int interpolateOutOfBoundsScroll(final RecyclerView recyclerView,
+            public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
                                                     final int viewSize,
                                                     final int viewSizeOutOfBounds,
                                                     final int totalSize,
@@ -294,9 +297,9 @@ public class ChooseTabsFragment extends Fragment {
             }
 
             @Override
-            public boolean onMove(final RecyclerView recyclerView,
-                                  final RecyclerView.ViewHolder source,
-                                  final RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull final RecyclerView recyclerView,
+                                  @NonNull final RecyclerView.ViewHolder source,
+                                  @NonNull final RecyclerView.ViewHolder target) {
                 if (source.getItemViewType() != target.getItemViewType()
                         || selectedTabsAdapter == null) {
                     return false;
@@ -319,7 +322,8 @@ public class ChooseTabsFragment extends Fragment {
             }
 
             @Override
-            public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
+                                 final int swipeDir) {
                 final int position = viewHolder.getAdapterPosition();
                 tabList.remove(position);
                 selectedTabsAdapter.notifyItemRemoved(position);
@@ -351,8 +355,8 @@ public class ChooseTabsFragment extends Fragment {
         @Override
         public ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder onCreateViewHolder(
                 @NonNull final ViewGroup parent, final int viewType) {
-            final View view = inflater.inflate(R.layout.list_choose_tabs, parent, false);
-            return new ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder(view);
+            return new ChooseTabsFragment.SelectedTabsAdapter
+                    .TabViewHolder(ListChooseTabsBinding.inflate(inflater, parent, false));
         }
 
         @Override
@@ -368,21 +372,16 @@ public class ChooseTabsFragment extends Fragment {
         }
 
         class TabViewHolder extends RecyclerView.ViewHolder {
-            private final AppCompatImageView tabIconView;
-            private final TextView tabNameView;
-            private final ImageView handle;
+            private final ListChooseTabsBinding binding;
 
-            TabViewHolder(final View itemView) {
-                super(itemView);
-
-                tabNameView = itemView.findViewById(R.id.tabName);
-                tabIconView = itemView.findViewById(R.id.tabIcon);
-                handle = itemView.findViewById(R.id.handle);
+            TabViewHolder(final ListChooseTabsBinding binding) {
+                super(binding.getRoot());
+                this.binding = binding;
             }
 
             @SuppressLint("ClickableViewAccessibility")
             void bind(final int position, final TabViewHolder holder) {
-                handle.setOnTouchListener(getOnTouchListener(holder));
+                binding.handle.setOnTouchListener(getOnTouchListener(holder));
 
                 final Tab tab = tabList.get(position);
                 final Tab.Type type = Tab.typeFrom(tab.getTabId());
@@ -419,18 +418,17 @@ public class ChooseTabsFragment extends Fragment {
                         break;
                 }
 
-                tabNameView.setText(tabName);
-                tabIconView.setImageResource(tab.getTabIconRes(requireContext()));
+                binding.tabName.setText(tabName);
+                binding.tabIcon.setImageResource(tab.getTabIconRes(requireContext()));
             }
 
             @SuppressLint("ClickableViewAccessibility")
             private View.OnTouchListener getOnTouchListener(final RecyclerView.ViewHolder item) {
                 return (view, motionEvent) -> {
-                    if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                        if (itemTouchHelper != null && getItemCount() > 1) {
-                            itemTouchHelper.startDrag(item);
-                            return true;
-                        }
+                    if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN
+                            && itemTouchHelper != null && getItemCount() > 1) {
+                        itemTouchHelper.startDrag(item);
+                        return true;
                     }
                     return false;
                 };
