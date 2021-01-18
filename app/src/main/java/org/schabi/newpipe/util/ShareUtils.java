@@ -154,12 +154,12 @@ public final class ShareUtils {
      * If no app is set as default, it will return "android" (not on some devices because some
      * OEMs changed the app chooser).
      * <p>
-     * If no app is installed on user's device to handle the intent, it will return null.
+     * If no app is installed on user's device to handle the intent, it will return an empty string.
      *
      * @param context the context to use
      * @param intent  the intent to get default app
-     * @return the package name of the default app, an empty string if there's no app installed to
-     * handle the intent or the app chooser if there's no default
+     * @return the package name of the default app to open the intent, an empty string if there's no
+     * app installed to handle it or the app chooser if there's no default
      */
     private static String getDefaultAppPackageName(final Context context, final Intent intent) {
         final ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent,
@@ -177,7 +177,7 @@ public final class ShareUtils {
      * If no browser is set as default, it will return "android" (not on some devices because some
      * OEMs changed the app chooser).
      * <p>
-     * If no app is installed on user's device to handle the intent, it will return null.
+     * If no browser is installed on user's device, it will return an empty string.
      * @param context the context to use
      * @return the package name of the default browser, an empty string if there's no browser
      * installed or the app chooser if there's no default
