@@ -10,13 +10,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.databinding.DialogPlaylistsBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.LocalItemListAdapter;
@@ -35,7 +35,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
 
-    private RecyclerView playlistRecyclerView;
+    private DialogPlaylistsBinding binding;
     private LocalItemListAdapter playlistAdapter;
 
     private final CompositeDisposable playlistDisposables = new CompositeDisposable();
@@ -96,6 +96,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding = DialogPlaylistsBinding.bind(view);
 
         final LocalPlaylistManager playlistManager =
                 new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
@@ -112,12 +113,10 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
             }
         });
 
-        playlistRecyclerView = view.findViewById(R.id.playlist_list);
-        playlistRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        playlistRecyclerView.setAdapter(playlistAdapter);
+        binding.playlistList.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.playlistList.setAdapter(playlistAdapter);
 
-        final View newPlaylistButton = view.findViewById(R.id.newPlaylist);
-        newPlaylistButton.setOnClickListener(ignored -> openCreatePlaylistDialog());
+        binding.newPlaylist.setOnClickListener(ignored -> openCreatePlaylistDialog());
 
         playlistDisposables.add(playlistManager.getPlaylists()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -129,6 +128,12 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         playlistDisposables.dispose();
@@ -137,7 +142,6 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         }
 
         playlistDisposables.clear();
-        playlistRecyclerView = null;
         playlistAdapter = null;
     }
 
@@ -155,10 +159,10 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     }
 
     private void onPlaylistsReceived(@NonNull final List<PlaylistMetadataEntry> playlists) {
-        if (playlistAdapter != null && playlistRecyclerView != null) {
+        if (playlistAdapter != null && binding != null) {
             playlistAdapter.clearStreamItemList();
             playlistAdapter.addItems(playlists);
-            playlistRecyclerView.setVisibility(View.VISIBLE);
+            binding.playlistList.setVisibility(View.VISIBLE);
         }
     }
 
