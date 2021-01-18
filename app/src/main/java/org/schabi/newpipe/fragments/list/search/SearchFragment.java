@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.preference.PreferenceManager;
@@ -38,6 +38,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.databinding.FragmentSearchBinding;
+import org.schabi.newpipe.databinding.ToolbarSearchLayoutBinding;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.MetaInfo;
@@ -157,16 +158,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     //////////////////////////////////////////////////////////////////////////*/
 
     private FragmentSearchBinding searchBinding;
+    private ToolbarSearchLayoutBinding searchLayoutBinding;
 
-    private View searchToolbarContainer;
-    private EditText searchEditText;
-    private View searchClear;
-
-    private TextView correctSuggestion;
-    private TextView metaInfoTextView;
-    private View metaInfoSeparator;
-
-    private View suggestionsPanel;
     private boolean suggestionsPanelVisible = false;
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -236,7 +229,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void onPause() {
         super.onPause();
 
-        wasSearchFocused = searchEditText.hasFocus();
+        wasSearchFocused = searchLayoutBinding.toolbarSearchEditText.hasFocus();
 
         if (searchDisposable != null) {
             searchDisposable.dispose();
@@ -281,7 +274,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         handleSearchSuggestion();
 
         disposables.add(showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
-                    metaInfoTextView, metaInfoSeparator));
+                searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator));
 
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
@@ -305,6 +298,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         unsetSearchListeners();
 
         searchBinding = null;
+        searchLayoutBinding = null;
         super.onDestroyView();
     }
 
@@ -364,13 +358,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             }
         }).attachToRecyclerView(searchBinding.suggestionsList);
 
-        searchToolbarContainer = activity.findViewById(R.id.toolbar_search_container);
-        searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
-        searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
-
-        correctSuggestion = rootView.findViewById(R.id.correct_suggestion);
-        metaInfoTextView = rootView.findViewById(R.id.search_meta_info_text_view);
-        metaInfoSeparator = rootView.findViewById(R.id.search_meta_info_separator);
+        searchLayoutBinding = ToolbarSearchLayoutBinding
+                .bind(ActivityCompat.requireViewById(activity, R.id.toolbar_search_container));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -391,8 +380,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public void onSaveInstanceState(@NonNull final Bundle bundle) {
-        searchString = searchEditText != null
-                ? searchEditText.getText().toString()
+        searchString = searchLayoutBinding != null
+                ? searchLayoutBinding.toolbarSearchEditText.getText().toString()
                 : searchString;
         super.onSaveInstanceState(bundle);
     }
@@ -404,13 +393,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void reloadContent() {
         if (!TextUtils.isEmpty(searchString)
-                || (searchEditText != null && !TextUtils.isEmpty(searchEditText.getText()))) {
+                || (searchLayoutBinding != null
+                && !TextUtils.isEmpty(searchLayoutBinding.toolbarSearchEditText.getText()))) {
             search(!TextUtils.isEmpty(searchString)
                     ? searchString
-                    : searchEditText.getText().toString(), this.contentFilter, "");
+                    : searchLayoutBinding.toolbarSearchEditText.getText().toString(),
+                    contentFilter, "");
         } else {
-            if (searchEditText != null) {
-                searchEditText.setText("");
+            if (searchLayoutBinding != null) {
+                searchLayoutBinding.toolbarSearchEditText.setText("");
                 showKeyboardSearch();
             }
             animate(errorPanelRoot, false, 200);
@@ -496,21 +487,22 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     + ", lastSearchedQuery → "
                     + lastSearchedString);
         }
-        searchEditText.setText(searchString);
+        searchLayoutBinding.toolbarSearchEditText.setText(searchString);
 
-        if (TextUtils.isEmpty(searchString) || TextUtils.isEmpty(searchEditText.getText())) {
-            searchToolbarContainer.setTranslationX(100);
-            searchToolbarContainer.setAlpha(0.0f);
-            searchToolbarContainer.setVisibility(View.VISIBLE);
-            searchToolbarContainer.animate()
+        if (TextUtils.isEmpty(searchString)
+                || TextUtils.isEmpty(searchLayoutBinding.toolbarSearchEditText.getText())) {
+            searchLayoutBinding.getRoot().setTranslationX(100);
+            searchLayoutBinding.getRoot().setAlpha(0.0f);
+            searchLayoutBinding.getRoot().setVisibility(View.VISIBLE);
+            searchLayoutBinding.getRoot().animate()
                     .translationX(0)
                     .alpha(1.0f)
                     .setDuration(200)
                     .setInterpolator(new DecelerateInterpolator()).start();
         } else {
-            searchToolbarContainer.setTranslationX(0);
-            searchToolbarContainer.setAlpha(1.0f);
-            searchToolbarContainer.setVisibility(View.VISIBLE);
+            searchLayoutBinding.getRoot().setTranslationX(0);
+            searchLayoutBinding.getRoot().setAlpha(1.0f);
+            searchLayoutBinding.getRoot().setVisibility(View.VISIBLE);
         }
     }
 
@@ -518,25 +510,26 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "initSearchListeners() called");
         }
-        searchClear.setOnClickListener(v -> {
+        searchLayoutBinding.toolbarSearchClear.setOnClickListener(v -> {
             if (DEBUG) {
                 Log.d(TAG, "onClick() called with: v = [" + v + "]");
             }
-            if (TextUtils.isEmpty(searchEditText.getText())) {
+            if (TextUtils.isEmpty(searchLayoutBinding.toolbarSearchEditText.getText())) {
                 NavigationHelper.gotoMainFragment(getFM());
                 return;
             }
 
             searchBinding.correctSuggestion.setVisibility(View.GONE);
 
-            searchEditText.setText("");
+            searchLayoutBinding.toolbarSearchEditText.setText("");
             suggestionListAdapter.setItems(new ArrayList<>());
             showKeyboardSearch();
         });
 
-        TooltipCompat.setTooltipText(searchClear, getString(R.string.clear));
+        TooltipCompat.setTooltipText(searchLayoutBinding.toolbarSearchClear,
+                getString(R.string.clear));
 
-        searchEditText.setOnClickListener(v -> {
+        searchLayoutBinding.toolbarSearchEditText.setOnClickListener(v -> {
             if (DEBUG) {
                 Log.d(TAG, "onClick() called with: v = [" + v + "]");
             }
@@ -548,7 +541,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             }
         });
 
-        searchEditText.setOnFocusChangeListener((View v, boolean hasFocus) -> {
+        searchLayoutBinding.toolbarSearchEditText.setOnFocusChangeListener((v, hasFocus) -> {
             if (DEBUG) {
                 Log.d(TAG, "onFocusChange() called with: "
                         + "v = [" + v + "], hasFocus = [" + hasFocus + "]");
@@ -563,13 +556,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             @Override
             public void onSuggestionItemSelected(final SuggestionItem item) {
                 search(item.query, new String[0], "");
-                searchEditText.setText(item.query);
+                searchLayoutBinding.toolbarSearchEditText.setText(item.query);
             }
 
             @Override
             public void onSuggestionItemInserted(final SuggestionItem item) {
-                searchEditText.setText(item.query);
-                searchEditText.setSelection(searchEditText.getText().length());
+                searchLayoutBinding.toolbarSearchEditText.setText(item.query);
+                searchLayoutBinding.toolbarSearchEditText
+                        .setSelection(searchLayoutBinding.toolbarSearchEditText.getText().length());
             }
 
             @Override
@@ -581,7 +575,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         });
 
         if (textWatcher != null) {
-            searchEditText.removeTextChangedListener(textWatcher);
+            searchLayoutBinding.toolbarSearchEditText.removeTextChangedListener(textWatcher);
         }
         textWatcher = new TextWatcher() {
             @Override
@@ -596,12 +590,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
             @Override
             public void afterTextChanged(final Editable s) {
-                final String newText = searchEditText.getText().toString();
+                final String newText = searchLayoutBinding.toolbarSearchEditText.getText()
+                        .toString();
                 suggestionPublisher.onNext(newText);
             }
         };
-        searchEditText.addTextChangedListener(textWatcher);
-        searchEditText.setOnEditorActionListener(
+        searchLayoutBinding.toolbarSearchEditText.addTextChangedListener(textWatcher);
+        searchLayoutBinding.toolbarSearchEditText.setOnEditorActionListener(
                 (TextView v, int actionId, KeyEvent event) -> {
                     if (DEBUG) {
                         Log.d(TAG, "onEditorAction() called with: v = [" + v + "], "
@@ -612,7 +607,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     } else if (event != null
                             && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                             || event.getAction() == EditorInfo.IME_ACTION_SEARCH)) {
-                        search(searchEditText.getText().toString(), new String[0], "");
+                        search(searchLayoutBinding.toolbarSearchEditText.getText().toString(),
+                                new String[0], "");
                         return true;
                     }
                     return false;
@@ -627,14 +623,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "unsetSearchListeners() called");
         }
-        searchClear.setOnClickListener(null);
-        searchClear.setOnLongClickListener(null);
-        searchEditText.setOnClickListener(null);
-        searchEditText.setOnFocusChangeListener(null);
-        searchEditText.setOnEditorActionListener(null);
+        searchLayoutBinding.toolbarSearchClear.setOnClickListener(null);
+        searchLayoutBinding.toolbarSearchClear.setOnLongClickListener(null);
+        searchLayoutBinding.toolbarSearchEditText.setOnClickListener(null);
+        searchLayoutBinding.toolbarSearchEditText.setOnFocusChangeListener(null);
+        searchLayoutBinding.toolbarSearchEditText.setOnEditorActionListener(null);
 
         if (textWatcher != null) {
-            searchEditText.removeTextChangedListener(textWatcher);
+            searchLayoutBinding.toolbarSearchEditText.removeTextChangedListener(textWatcher);
         }
         textWatcher = null;
     }
@@ -661,14 +657,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "showKeyboardSearch() called");
         }
-        if (searchEditText == null) {
+        if (searchLayoutBinding == null) {
             return;
         }
 
-        if (searchEditText.requestFocus()) {
+        if (searchLayoutBinding.toolbarSearchEditText.requestFocus()) {
             final InputMethodManager imm = ContextCompat.getSystemService(activity,
                     InputMethodManager.class);
-            imm.showSoftInput(searchEditText, InputMethodManager.SHOW_FORCED);
+            imm.showSoftInput(searchLayoutBinding.toolbarSearchEditText,
+                    InputMethodManager.SHOW_FORCED);
         }
     }
 
@@ -676,20 +673,20 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "hideKeyboardSearch() called");
         }
-        if (searchEditText == null) {
+        if (searchLayoutBinding == null) {
             return;
         }
 
         final InputMethodManager imm = ContextCompat.getSystemService(activity,
                 InputMethodManager.class);
-        imm.hideSoftInputFromWindow(searchEditText.getWindowToken(),
+        imm.hideSoftInputFromWindow(searchLayoutBinding.toolbarSearchEditText.getWindowToken(),
                 InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
-        searchEditText.clearFocus();
+        searchLayoutBinding.toolbarSearchEditText.clearFocus();
     }
 
     private void showDeleteSuggestionDialog(final SuggestionItem item) {
-        if (activity == null || historyRecordManager == null || searchEditText == null) {
+        if (activity == null || historyRecordManager == null || searchLayoutBinding == null) {
             return;
         }
         final String query = item.query;
@@ -703,7 +700,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     howManyDeleted -> suggestionPublisher
-                                            .onNext(searchEditText.getText().toString()),
+                                            .onNext(searchLayoutBinding.toolbarSearchEditText
+                                                    .getText().toString()),
                                     throwable -> showSnackBarError(throwable,
                                             UserAction.DELETE_FROM_HISTORY, "none",
                                             "Deleting item failed", R.string.general_error));
@@ -719,7 +717,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 && !isLoading.get()) {
             hideSuggestionsPanel();
             hideKeyboardSearch();
-            searchEditText.setText(lastSearchedString);
+            searchLayoutBinding.toolbarSearchEditText.setText(lastSearchedString);
             return true;
         }
         return false;
@@ -1002,8 +1000,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         // List<MetaInfo> cannot be bundled without creating some containers
         metaInfo = new MetaInfo[result.getMetaInfo().size()];
         metaInfo = result.getMetaInfo().toArray(metaInfo);
-        disposables.add(showMetaInfoInTextView(result.getMetaInfo(), metaInfoTextView,
-                metaInfoSeparator));
+        disposables.add(showMetaInfoInTextView(result.getMetaInfo(),
+                searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator));
 
         handleSearchSuggestion();
 
@@ -1040,12 +1038,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchBinding.correctSuggestion.setOnClickListener(v -> {
                 searchBinding.correctSuggestion.setVisibility(View.GONE);
                 search(searchSuggestion, contentFilter, sortFilter);
-                searchEditText.setText(searchSuggestion);
+                searchLayoutBinding.toolbarSearchEditText.setText(searchSuggestion);
             });
 
             searchBinding.correctSuggestion.setOnLongClickListener(v -> {
-                searchEditText.setText(searchSuggestion);
-                searchEditText.setSelection(searchSuggestion.length());
+                searchLayoutBinding.toolbarSearchEditText.setText(searchSuggestion);
+                searchLayoutBinding.toolbarSearchEditText.setSelection(searchSuggestion.length());
                 showKeyboardSearch();
                 return true;
             });
@@ -1112,7 +1110,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         howManyDeleted -> suggestionPublisher
-                                .onNext(searchEditText.getText().toString()),
+                                .onNext(searchLayoutBinding.toolbarSearchEditText.getText()
+                                        .toString()),
                         throwable -> showSnackBarError(throwable,
                                 UserAction.DELETE_FROM_HISTORY, "none",
                                 "Deleting item failed", R.string.general_error));
