@@ -40,6 +40,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.ListEmptyViewBinding;
+import org.schabi.newpipe.databinding.MissionsHeaderBinding;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
@@ -113,7 +115,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private MenuItem mClear;
     private MenuItem mStartButton;
     private MenuItem mPauseButton;
-    private final View mEmptyMessage;
+    private final ListEmptyViewBinding mEmptyViewBinding;
     private RecoverHelper mRecover;
     private final View mView;
     private final ArrayList<Mission> mHidden;
@@ -124,7 +126,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    public MissionAdapter(Context context, @NonNull DownloadManager downloadManager, View emptyMessage, View root) {
+    public MissionAdapter(@NonNull Context context, @NonNull DownloadManager downloadManager,
+                          @NonNull ListEmptyViewBinding emptyViewBinding, @NonNull View root) {
         mContext = context;
         mDownloadManager = downloadManager;
 
@@ -133,7 +136,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         mHandler = new Handler(context.getMainLooper());
 
-        mEmptyMessage = emptyMessage;
+        mEmptyViewBinding = emptyViewBinding;
 
         mIterator = downloadManager.getIterator();
 
@@ -153,7 +156,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         switch (viewType) {
             case DownloadManager.SPECIAL_PENDING:
             case DownloadManager.SPECIAL_FINISHED:
-                return new ViewHolderHeader(mInflater.inflate(R.layout.missions_header, parent, false));
+                return new ViewHolderHeader(MissionsHeaderBinding.inflate(mInflater, parent, false));
         }
 
         return new ViewHolderItem(mInflater.inflate(mLayout, parent, false));
@@ -193,7 +196,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 if (mClear != null) mClear.setVisible(true);
             }
 
-            ((ViewHolderHeader) view).header.setText(str);
+            ((ViewHolderHeader) view).binding.itemName.setText(str);
             return;
         }
 
@@ -776,7 +779,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
     private void checkEmptyMessageVisibility() {
         int flag = mIterator.getOldListSize() > 0 ? View.GONE : View.VISIBLE;
-        if (mEmptyMessage.getVisibility() != flag) mEmptyMessage.setVisibility(flag);
+        if (mEmptyViewBinding.getRoot().getVisibility() != flag)
+            mEmptyViewBinding.getRoot().setVisibility(flag);
     }
 
     public void checkMasterButtonsVisibility() {
@@ -993,11 +997,11 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     }
 
     static class ViewHolderHeader extends RecyclerView.ViewHolder {
-        TextView header;
+        final MissionsHeaderBinding binding;
 
-        ViewHolderHeader(View view) {
-            super(view);
-            header = itemView.findViewById(R.id.item_name);
+        ViewHolderHeader(final MissionsHeaderBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 

@@ -23,11 +23,11 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.MissionsBinding;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -54,8 +54,8 @@ public class MissionsFragment extends Fragment {
     private MenuItem mStart = null;
     private MenuItem mPause = null;
 
-    private RecyclerView mList;
-    private View mEmpty;
+    private MissionsBinding mMissionsBinding;
+
     private MissionAdapter mAdapter;
     private GridLayoutManager mGridManager;
     private LinearLayoutManager mLinearManager;
@@ -73,7 +73,8 @@ public class MissionsFragment extends Fragment {
             mBinder = (DownloadManagerBinder) binder;
             mBinder.clearDownloadNotifications();
 
-            mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(), mEmpty, getView());
+            mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(),
+                    mMissionsBinding.listEmptyView, requireView());
 
             mAdapter.setRecover(MissionsFragment.this::recoverMission);
 
@@ -89,23 +90,17 @@ public class MissionsFragment extends Fragment {
         public void onServiceDisconnected(ComponentName name) {
             // What to do?
         }
-
-
     };
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.missions, container, false);
+        mMissionsBinding = MissionsBinding.inflate(inflater, container, false);
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity());
         mLinear = mPrefs.getBoolean("linear", false);
 
         // Bind the service
         mContext.bindService(new Intent(mContext, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
-
-        // Views
-        mEmpty = v.findViewById(R.id.list_empty_view);
-        mList = v.findViewById(R.id.mission_recycler);
 
         // Init layouts managers
         mGridManager = new GridLayoutManager(getActivity(), SPAN_SIZE);
@@ -125,38 +120,20 @@ public class MissionsFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        return v;
+        return mMissionsBinding.getRoot();
     }
 
-    /**
-     * Added in API level 23.
-     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        // Bug: in api< 23 this is never called
-        // so mActivity=null
-        // so app crashes with null-pointer exception
         mContext = context;
     }
-
-    /**
-     * deprecated in API level 23,
-     * but must remain to allow compatibility with api<23
-     */
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
-
-        mContext = activity;
-    }
-
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+
         if (mBinder == null || mAdapter == null) return;
 
         mBinder.removeMissionEventListener(mAdapter);
@@ -166,6 +143,8 @@ public class MissionsFragment extends Fragment {
 
         mBinder = null;
         mAdapter = null;
+
+        mMissionsBinding = null;
     }
 
     @Override
@@ -209,19 +188,15 @@ public class MissionsFragment extends Fragment {
     }
 
     private void updateList() {
-        if (mLinear) {
-            mList.setLayoutManager(mLinearManager);
-        } else {
-            mList.setLayoutManager(mGridManager);
-        }
+        mMissionsBinding.missionRecycler.setLayoutManager(mLinear ? mLinearManager : mGridManager);
 
         // destroy all created views in the recycler
-        mList.setAdapter(null);
+        mMissionsBinding.missionRecycler.setAdapter(null);
         mAdapter.notifyDataSetChanged();
 
         // re-attach the adapter in grid/lineal mode
         mAdapter.setLinear(mLinear);
-        mList.setAdapter(mAdapter);
+        mMissionsBinding.missionRecycler.setAdapter(mAdapter);
 
         if (mSwitch != null) {
             mSwitch.setIcon(ThemeHelper.resolveResourceIdFromAttr(
