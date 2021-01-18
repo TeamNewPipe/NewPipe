@@ -1,0 +1,2 @@
+Ajout de vidéos « récentes » au service media.ccc.de.
+Ajout de flux en direct au service media.ccc.de et également à la prise en charge du flux en direct.

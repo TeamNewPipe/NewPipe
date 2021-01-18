@@ -652,4 +652,7 @@
     <string name="msg_calculating_hash">Hash wird berechnet</string>
     <string name="hash_channel_description">Benachrichtigungen für den Video-hashing Fortschritt</string>
     <string name="hash_channel_name">Video Hash Benachrichtigung</string>
+    <string name="recent">Letzte</string>
+    <string name="show_meta_info_title">Metadaten anzeigen</string>
+    <string name="show_meta_info_summary">Deaktivieren Sie diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden.</string>
 </resources>

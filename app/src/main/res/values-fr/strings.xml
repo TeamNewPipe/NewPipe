@@ -652,4 +652,10 @@
     <string name="show_thumbnail_title">Afficher la miniature</string>
     <string name="show_thumbnail_summary">Utiliser la miniature pour l\'arrière-plan de l’écran de verrouillage et les notifications</string>
     <string name="open_with">Ouvrir avec</string>
+    <string name="recent">Récent</string>
+    <string name="msg_calculating_hash">Calcul du hachage</string>
+    <string name="hash_channel_description">Notifications pour la progression du hachage vidéo</string>
+    <string name="hash_channel_name">Notification de hachage vidéo</string>
+    <string name="show_meta_info_summary">Désactivez cette option pour masquer les zones de méta-informations contenant des informations supplémentaires sur le créateur du flux, le contenu du flux ou une demande de recherche.</string>
+    <string name="show_meta_info_title">Afficher les méta-infos</string>
 </resources>

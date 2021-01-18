@@ -640,4 +640,9 @@
     <string name="show_thumbnail_summary">Gunakan thumbnail untuk latar layar penguncian dan notifikasi</string>
     <string name="show_thumbnail_title">Tampilkan thumbnail</string>
     <string name="msg_calculating_hash">Mengkalkulasi hash</string>
+    <string name="recent">Baru-baru ini</string>
+    <string name="show_meta_info_summary">Nonaktifkan untuk menyembunyikan kotak info tentang informasi tambahan tentang kreator, konten stream atau pencarian.</string>
+    <string name="show_meta_info_title">Tampilkan info meta</string>
+    <string name="hash_channel_description">Notifikasi untuk laju pemrosesan hash video</string>
+    <string name="hash_channel_name">Notifikasi Hash Video</string>
 </resources>

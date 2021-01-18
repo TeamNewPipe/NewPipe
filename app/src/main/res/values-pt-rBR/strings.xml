@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="audio">Áudio</string>
-    <string name="youtube_signature_deobfuscation_error">Não foi possível descriptografar assinatura do URL do vídeo</string>
+    <string name="youtube_signature_deobfuscation_error">Não foi possível decodificar assinatura do URL do vídeo</string>
     <string name="your_comment">Seu comentário (em inglês):</string>
     <string name="what_happened_headline">O que ocorreu:</string>
     <string name="what_device_headline">Informação:</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
     <string name="video">Vídeo</string>
-    <string name="autoplay_by_calling_app_summary">Reproduz um vídeo se NewPipe for chamado por outro app</string>
-    <string name="autoplay_by_calling_app_title">Autoreprodução</string>
-    <string name="black_theme_title">Amoled</string>
+    <string name="autoplay_by_calling_app_summary">Reproduz um vídeo quando o NewPipe for chamado por outro app</string>
+    <string name="autoplay_by_calling_app_title">Reprodução automática</string>
+    <string name="black_theme_title">Preto</string>
     <string name="cancel">Cancelar</string>
     <string name="checksum">Checksum</string>
     <string name="choose_browser">Escolher navegador</string>
@@ -18,8 +18,8 @@
     <string name="content_not_available">Conteúdo indisponível</string>
     <string name="could_not_get_stream">Nenhum vídeo pôde ser encontrado</string>
     <string name="could_not_load_image">A imagem não pôde ser carregada</string>
-    <string name="could_not_load_thumbnails">As capas não puderam ser carregadas</string>
-    <string name="dark_theme_title">Noite</string>
+    <string name="could_not_load_thumbnails">As miniaturas não puderam ser carregadas</string>
+    <string name="dark_theme_title">Escuro</string>
     <string name="default_audio_format_title">Formato de áudio padrão</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="delete">Excluir</string>
@@ -37,7 +37,7 @@
     <string name="general_error">Erro</string>
     <string name="info_dir_created">Pasta de download criada \'%1$s\'</string>
     <string name="install">Instalar</string>
-    <string name="light_theme_title">Dia</string>
+    <string name="light_theme_title">Claro</string>
     <string name="msg_error">Erro</string>
     <string name="msg_copied">Copiado para a área de transferência</string>
     <string name="msg_name">Nome do arquivo</string>
@@ -53,18 +53,18 @@
     <string name="report_error">Relatar erro</string>
     <string name="retry">Tentar novamente</string>
     <string name="screen_rotation">Rotação</string>
-    <string name="content_language_title">Idioma de conteúdo padrão</string>
+    <string name="content_language_title">Idioma padrão do conteúdo</string>
     <string name="settings">Configurações</string>
-    <string name="settings_category_appearance_title">Interface</string>
+    <string name="settings_category_appearance_title">Aparência</string>
     <string name="settings_category_other_title">Outros</string>
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
     <string name="share">Compartilhar</string>
     <string name="share_dialog_title">Compartilhar com</string>
     <string name="show_age_restricted_content_title">Mostrar conteúdo com restrição de idade</string>
     <string name="show_next_and_similar_title">Mostrar \'Próximo\' e \'Similares\'</string>
-    <string name="sorry_string">Desculpe, isto não devia ter ocorrido.</string>
+    <string name="sorry_string">Desculpe, isto não devia ter acontecido.</string>
     <string name="start">Iniciar</string>
-    <string name="storage_permission_denied">Permita acesso ao armazenamento primeiramente</string>
+    <string name="storage_permission_denied">Permita acesso ao armazenamento primeiro</string>
     <string name="theme_title">Tema</string>
     <string name="upload_date_text">Publicado em  %1$s</string>
     <string name="unsupported_url">Link não suportado</string>
@@ -78,15 +78,15 @@
     <string name="could_not_setup_download_menu">O menu de download não pôde ser configurado</string>
     <string name="detail_thumbnail_view_description">Reproduzir vídeo, duração:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura do avatar do uploader</string>
-    <string name="download_path_audio_dialog_title">Escolher pasta de download de áudios</string>
-    <string name="download_path_audio_summary">Áudios baixados serão salvos aqui</string>
-    <string name="download_path_audio_title">Pasta de áudios baixados</string>
+    <string name="download_path_audio_dialog_title">Escolher pasta de download para arquivos de áudio</string>
+    <string name="download_path_audio_summary">Áudios baixados são salvos aqui</string>
+    <string name="download_path_audio_title">Pasta de download de áudios</string>
     <string name="download_path_dialog_title">Escolher pasta de download para arquivos de vídeo</string>
     <string name="download_path_summary">Vídeos baixados são salvos aqui</string>
     <string name="download_path_title">Pasta de download de vídeo</string>
     <string name="kore_not_found">Instalar o app Kore\?</string>
     <string name="light_parsing_error">O site não pôde ser analisado totalmente</string>
-    <string name="list_thumbnail_view_description">Capa de visualização do vídeo</string>
+    <string name="list_thumbnail_view_description">Miniatura de visualização do vídeo</string>
     <string name="live_streams_not_supported">Transmissões ao vivo ainda não são suportadas</string>
     <string name="main_bg_subtitle">Toque em \"Buscar\" para iniciar
 \n</string>
@@ -99,18 +99,18 @@
     <string name="play_audio">Áudio</string>
     <string name="play_with_kodi_title">Ver com Kodi</string>
     <string name="search">Buscar</string>
-    <string name="show_play_with_kodi_summary">Exibe opção para ver um vídeo via Kodi media center</string>
+    <string name="show_play_with_kodi_summary">Exibe uma opção para ver um vídeo via Kodi media center</string>
     <string name="use_external_audio_player_title">Usar player de áudio externo</string>
     <string name="use_external_video_player_title">Usar player de vídeo externo</string>
     <string name="use_tor_summary">(Experimental) Força o download de conteúdo através do Tor para maior privacidade (transmissão de vídeos ainda não suportada).</string>
-    <string name="use_tor_title">Usar tor</string>
+    <string name="use_tor_title">Usar Tor</string>
     <string name="user_report">Relatório do usuário</string>
     <string name="show_play_with_kodi_title">Exibir opção \"Ver com Kodi\"</string>
     <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão SO:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
-    <string name="default_popup_resolution_title">Resolução padrão de popup</string>
+    <string name="default_popup_resolution_title">Resolução padrão do popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções maiores</string>
-    <string name="show_higher_resolutions_summary">Poucos aparelhos suportam ver em 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns aparelhos suportam vídeos em 2K/4K</string>
     <string name="default_video_format_title">Formato de vídeo padrão</string>
     <string name="popup_playing_toast">Reproduzindo em modo popup</string>
     <string name="all">Tudo</string>
@@ -120,7 +120,7 @@
     <string name="disabled">Desativado</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Bi</string>
     <string name="msg_popup_permission">Essa permissão é necessária
 \npara abrir em modo popup</string>
     <string name="popup_mode_share_menu_title">Modo popup</string>
@@ -130,11 +130,11 @@
     <string name="controls_popup_title">Popup</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="popup_remember_size_pos_title">Lembrar propriedades do popup</string>
-    <string name="popup_remember_size_pos_summary">Lembra do último tamanho e posição usado no popup</string>
+    <string name="popup_remember_size_pos_summary">Lembra o último tamanho e a posição do popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Remove o som em algumas resoluções</string>
-    <string name="player_gesture_controls_title">Controle de gesto do player</string>
+    <string name="player_gesture_controls_title">Controles de gestos do player</string>
     <string name="player_gesture_controls_summary">Use gestos para mudar volume e brilho do player</string>
     <string name="show_search_suggestions_title">Sugestões de busca</string>
     <string name="show_search_suggestions_summary">Exibe sugestões ao buscar</string>
@@ -163,7 +163,7 @@
     <string name="charset_most_special_characters">Caracteres especiais</string>
     <string name="subscribe_button_title">Inscrever-se</string>
     <string name="subscribed_button_title">Inscrito</string>
-    <string name="channel_unsubscribed">Canal não inscrito</string>
+    <string name="channel_unsubscribed">Desinscrito do canal</string>
     <string name="subscription_change_failed">Não foi possível alterar inscrição</string>
     <string name="subscription_update_failed">Não foi possível atualizar inscrição</string>
     <string name="tab_main">Principal</string>
@@ -174,7 +174,7 @@
     <string name="enable_search_history_title">Histórico de busca</string>
     <string name="enable_search_history_summary">Armazena histórico de busca localmente</string>
     <string name="enable_watch_history_title">Histórico de vídeo</string>
-    <string name="enable_watch_history_summary">Armazena histórico de vídeo</string>
+    <string name="enable_watch_history_summary">Armazena histórico de vídeos</string>
     <string name="title_activity_history">Histórico</string>
     <string name="title_history_search">Buscado</string>
     <string name="title_history_view">Visto</string>
@@ -201,8 +201,8 @@
     </plurals>
     <string name="no_videos">Nenhum vídeo</string>
     <plurals name="videos">
-        <item quantity="one">%s Vídeo</item>
-        <item quantity="other">%s Vídeos</item>
+        <item quantity="one">%s vídeo</item>
+        <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="item_deleted">Item excluído</string>
     <string name="settings_category_player_title">Player</string>
@@ -242,12 +242,12 @@
     <string name="give_back">Retribuir</string>
     <string name="website_title">Site oficial</string>
     <string name="website_encouragement">Visite o site NewPipe para mais informações e novidades.</string>
-    <string name="no_player_found_toast">Não há player de vídeo (pode instalar VLC para vê-lo).</string>
-    <string name="default_content_country_title">País de conteúdo padrão</string>
+    <string name="no_player_found_toast">Não há player de vídeo (você pode instalar o VLC para vê-lo).</string>
+    <string name="default_content_country_title">País padrão do conteúdo</string>
     <string name="service_title">Serviço</string>
     <string name="always">Sempre</string>
     <string name="just_once">Uma vez</string>
-    <string name="toggle_orientation">Alterar orientação</string>
+    <string name="toggle_orientation">Alternar orientação</string>
     <string name="switch_to_background">Mudar para segundo plano</string>
     <string name="switch_to_popup">Mudar para popup</string>
     <string name="switch_to_main">Mudar para principal</string>
@@ -306,13 +306,13 @@
     <string name="enable_leak_canary_summary">A monitoração de vazamento de memória pode tornar o app instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Força relatório de exceções Rx não entregues fora do ciclo de vida do fragmento ou atividade após o descarte</string>
-    <string name="use_inexact_seek_title">Usar avanço rápido</string>
+    <string name="use_inexact_seek_title">Usar avanço rápido (inexato)</string>
     <string name="use_inexact_seek_summary">Avanço inexato permite ao player achar posições mais rápido reduzindo a precisão. Avançar 5, 15 ou 25 segundos não funciona com isto.</string>
     <string name="auto_queue_title">Pôr próximo vídeo na fila automaticamente</string>
     <string name="auto_queue_summary">Continua fila (sem loop) anexando vídeos similares</string>
     <string name="file">Arquivo</string>
-    <string name="invalid_directory">Não há tal pasta</string>
-    <string name="invalid_source">Não existe tal arquivo/fonte do conteúdo</string>
+    <string name="invalid_directory">Pasta não existe</string>
+    <string name="invalid_source">Arquivo/fonte do conteúdo não existe</string>
     <string name="invalid_file">O arquivo não existe ou não há permissão para leitura ou escrita</string>
     <string name="file_name_empty_error">O nome do arquivo não pode estar vazio</string>
     <string name="error_occurred_detail">Um erro ocorreu: %1$s</string>
@@ -344,14 +344,14 @@
     <string name="import_network_expensive_warning">Tenha em mente que esta operação poderá usar bastante a conexão com a internet.
 \n
 \nVocê deseja continuar?</string>
-    <string name="download_thumbnail_title">Carregar capas</string>
+    <string name="download_thumbnail_title">Carregar miniaturas</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpo</string>
     <string name="metadata_cache_wipe_title">Limpar metadados em cache</string>
     <string name="metadata_cache_wipe_summary">Exclui todos os dados em cache de páginas</string>
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados limpo</string>
     <string name="playback_speed_control">Controles de velocidade de reprodução</string>
     <string name="playback_tempo">Ritmo</string>
-    <string name="download_thumbnail_summary">Desative para não carregar capas e economizar em uso de dados e memória. A alteração limpa todo o cache de imagens.</string>
+    <string name="download_thumbnail_summary">Desative para não carregar miniaturas e economizar em uso de dados e memória. A alteração limpa todo o cache de imagens.</string>
     <string name="playback_pitch">Altura</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
@@ -363,7 +363,7 @@
     <string name="caption_setting_description">Mudar tamanho da legenda e estilos de fundo. Requer reiniciar o app para ter efeito.</string>
     <string name="toast_no_player">Sem app instalado para reproduzir este arquivo</string>
     <string name="clear_views_history_title">Excluir histórico de vídeo</string>
-    <string name="clear_views_history_summary">Exclui histórico de vídeo e posições de reprodução</string>
+    <string name="clear_views_history_summary">Exclui o histórico de vídeos e as posições de reprodução</string>
     <string name="delete_view_history_alert">Excluir todo o histórico de vídeo\?</string>
     <string name="watch_history_deleted">Histórico de vídeo limpo.</string>
     <string name="clear_search_history_title">Excluir histórico de busca</string>
@@ -398,9 +398,9 @@
     <string name="unsubscribe">Desinscrever-se</string>
     <string name="tab_new">Nova aba</string>
     <string name="tab_choose">Escolher aba</string>
-    <string name="volume_gesture_control_title">Gestos para volume</string>
+    <string name="volume_gesture_control_title">Gesto para volume</string>
     <string name="volume_gesture_control_summary">Use gestos para mudar volume do player</string>
-    <string name="brightness_gesture_control_title">Gestos para brilho</string>
+    <string name="brightness_gesture_control_title">Gesto para brilho</string>
     <string name="brightness_gesture_control_summary">Use gestos para mudar brilho do player</string>
     <string name="settings_category_debug_title">Depuração</string>
     <string name="settings_category_updates_title">Atualizações</string>
@@ -493,7 +493,7 @@
     <string name="clear_playback_states_summary">Exclui toda as posições de reprodução</string>
     <string name="delete_playback_states_alert">Excluir todas as posições de reprodução\?</string>
     <string name="download_choose_new_path">Mude as pastas de download para ter efeito</string>
-    <string name="drawer_header_description">Alterar serviço, selecionados:</string>
+    <string name="drawer_header_description">Alternar serviço, selecionados:</string>
     <string name="default_kiosk_page_summary">Quiosque Padrão</string>
     <string name="no_one_watching">Ninguém está vendo</string>
     <plurals name="watching">
@@ -511,9 +511,9 @@
     <string name="peertube_instance_url_summary">Escolha suas instâncias PeerTube favoritas</string>
     <string name="peertube_instance_url_help">Procure instâncias que gosta em %s</string>
     <string name="peertube_instance_add_title">Adicionar instância</string>
-    <string name="peertube_instance_add_help">Insira o link aqui</string>
+    <string name="peertube_instance_add_help">Insira o link da instância</string>
     <string name="peertube_instance_add_fail">Erro ao validar a instância</string>
-    <string name="peertube_instance_add_https_only">Apenas HTTPS são suportados</string>
+    <string name="peertube_instance_add_https_only">Apenas links HTTPS são suportados</string>
     <string name="peertube_instance_add_exists">Instância já existe</string>
     <string name="local">Local</string>
     <string name="recently_added">Recentes</string>
@@ -607,7 +607,7 @@
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Capa do avatar do canal</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas inscrições não agrupadas</string>
-    <string name="search_showing_result_for">Mostrando resultados para\? %s</string>
+    <string name="search_showing_result_for">Mostrando resultados para: %s</string>
     <string name="no_playlist_bookmarked_yet">Ainda não há favoritos de playlists</string>
     <string name="playlist_page_summary">Página da playlist</string>
     <string name="select_a_playlist">Selecione uma playlist</string>
@@ -623,7 +623,7 @@
     <string name="clear_queue_confirmation_description">A fila do player ativo será substituída</string>
     <string name="clear_queue_confirmation_summary">Mudar de um player para outro pode substituir sua fila</string>
     <string name="clear_queue_confirmation_title">Solicitar confirmação antes de limpar uma fila</string>
-    <string name="notification_action_shuffle">Embaralhar (Shuffle)</string>
+    <string name="notification_action_shuffle">Aleatório (Shuffle)</string>
     <string name="notification_action_buffering">Buferizando</string>
     <string name="settings_category_notification_title">Notificação</string>
     <string name="notification_action_nothing">Nada</string>
@@ -635,7 +635,7 @@
     <string name="notification_action_2_title">Terceiro botão de ação</string>
     <string name="notification_action_1_title">Segundo botão de ação</string>
     <string name="notification_action_0_title">Primeiro botão de ação</string>
-    <string name="notification_scale_to_square_image_summary">Dimensione a miniatura do vídeo mostrada na notificação de proporção 16:9 para 1:1 (pode apresentar distorções)</string>
+    <string name="notification_scale_to_square_image_summary">Dimensione a miniatura do vídeo mostrada na notificação da proporção 16:9 para 1:1 (pode apresentar distorções)</string>
     <string name="notification_scale_to_square_image_title">Dimensione a miniatura para a proporção de 1:1</string>
     <string name="show_memory_leaks">Mostrar vazamentos de memória</string>
     <string name="enqueued">Na fila</string>
@@ -644,12 +644,15 @@
     <string name="clear_cookie_title">Apagar cookies de reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Os cookies de reCAPTCHA foram apagados</string>
     <string name="youtube_restricted_mode_enabled_summary">O YouTube oferece um \"Modo Restrito\" que oculta conteúdo potencialmente adulto</string>
-    <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente inadequado para crianças porque tem um limite de idade (como +18)</string>
-    <string name="notification_colorize_summary">Permite o Android personalizar a cor da notificação de acordo com a cor principal da miniatura (note que isso não está disponível em todos os dispositivos)</string>
+    <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente inadequado para crianças que tem um limite de idade (como +18)</string>
+    <string name="notification_colorize_summary">Permite que o Android personalize a cor da notificação de acordo com a cor principal da miniatura (note que isso não está disponível em todos os dispositivos)</string>
     <string name="notification_colorize_title">Colorir notificação</string>
     <string name="show_thumbnail_summary">Usar miniatura para o plano de fundo da tela de bloqueio e as notificações</string>
     <string name="show_thumbnail_title">Mostrar miniatura</string>
     <string name="msg_calculating_hash">Calculando hash</string>
     <string name="hash_channel_description">Notificações para o progresso do hash do vídeo</string>
     <string name="hash_channel_name">Notificação de Hash do Vídeo</string>
+    <string name="show_meta_info_summary">Desative para ocultar as caixas de informações meta com informações adicionais sobre o criador, conteúdo do stream ou uma solicitação de pesquisa.</string>
+    <string name="show_meta_info_title">Mostrar informação meta</string>
+    <string name="recent">Recente</string>
 </resources>

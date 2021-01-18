@@ -652,4 +652,7 @@
     <string name="msg_calculating_hash">Dosya özeti hesaplanıyor</string>
     <string name="hash_channel_description">Video dosya özetleme süreci için bildirimler</string>
     <string name="hash_channel_name">Video Dosya Özeti Bildirimi</string>
+    <string name="recent">Son</string>
+    <string name="show_meta_info_summary">Akış yaratıcısı, akış içeriği veya arama isteğiyle ilgili ek bilgiyi gösteren üst bilgi kutularını gizlemek için kapat.</string>
+    <string name="show_meta_info_title">Üst bilgiyi göster</string>
 </resources>

@@ -424,8 +424,8 @@
     <string name="switch_view">Cambia visualizzazione</string>
     <string name="app_update_notification_content_title">Aggiornamento di NewPipe disponibile!</string>
     <string name="app_update_notification_content_text">Premi per scaricare</string>
-    <string name="missions_header_finished">Finito</string>
-    <string name="missions_header_pending">In attesa</string>
+    <string name="missions_header_finished">Completati</string>
+    <string name="missions_header_pending">In corso</string>
     <string name="paused">in pausa</string>
     <string name="queued">accodato</string>
     <string name="post_processing">post-elaborazione</string>
@@ -473,11 +473,11 @@
     <string name="missing_file">File spostato o cancellato</string>
     <string name="overwrite_unrelated_warning">Esiste già un file con questo nome</string>
     <string name="overwrite_failed">impossibile sovrascrivere il file</string>
-    <string name="download_already_pending">C\'è un download in attesa con questo nome</string>
+    <string name="download_already_pending">C\'è un download in corso con questo nome</string>
     <string name="error_postprocessing_stopped">NewPipe è stato chiuso mentre lavorava sul file</string>
     <string name="error_insufficient_storage">Spazio insufficiente sul dispositivo</string>
     <string name="error_progress_lost">Progresso perso poiché il file è stato eliminato</string>
-    <string name="confirm_prompt">Cancellare la cronologia dei download o eliminare tutti i file scaricati\?</string>
+    <string name="confirm_prompt">Vuoi cancellare la cronologia dei download o eliminare tutti i file scaricati\?</string>
     <string name="enable_queue_limit_desc">Sarà avviato un solo dowload per volta</string>
     <string name="start_downloads">Avvia i download</string>
     <string name="pause_downloads">Sospendi i download</string>
@@ -522,7 +522,7 @@
     <string name="recovering">recupero</string>
     <string name="error_download_resource_gone">Impossibile recuperare questo download</string>
     <string name="choose_instance_prompt">Scegli un\'istanza</string>
-    <string name="clear_download_history">Elimina la cronologia dei download</string>
+    <string name="clear_download_history">Elimina cronologia dei download</string>
     <string name="delete_downloaded_files">Elimina file scaricati</string>
     <string name="deleted_downloads">%1$d download eliminati</string>
     <string name="permission_display_over_apps">Consentire la visualizzazione sopra altre applicazioni</string>
@@ -652,4 +652,7 @@
     <string name="msg_calculating_hash">Calcolo dell\'hash</string>
     <string name="hash_channel_name">Notifica Hash Video</string>
     <string name="hash_channel_description">Notifiche per lo stato di avanzamento dell\'hashing video</string>
+    <string name="recent">Recente</string>
+    <string name="show_meta_info_summary">Disattiva per nascondere i riquadri delle meta informazioni con informazioni aggiuntive sul creatore dello streaming, sul contenuto dello streaming o su una richiesta di ricerca.</string>
+    <string name="show_meta_info_title">Mostra meta info</string>
 </resources>

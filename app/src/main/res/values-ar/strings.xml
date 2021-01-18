@@ -9,7 +9,7 @@
     <string name="detail_dislikes_img_view_description">عدم الإعجاب</string>
     <string name="detail_likes_img_view_description">الإعجابات</string>
     <string name="detail_thumbnail_view_description">مدة, تشغيل الفيديو:</string>
-    <string name="detail_uploader_thumbnail_view_description">الصورة المصغرة الشخصية</string>
+    <string name="detail_uploader_thumbnail_view_description">رافع الصورة الرمزية المصغرة</string>
     <string name="did_you_mean">هل تقصد \"%1$s\"؟</string>
     <string name="download">تنزيل</string>
     <string name="download_dialog_title">تنزيل</string>
@@ -55,7 +55,7 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذر تحليل الموقع</string>
     <string name="youtube_signature_deobfuscation_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">اضغط على \"بحث\" للبدء
+    <string name="main_bg_subtitle">انقر \"بحث\" للبدء
 \n</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
@@ -126,7 +126,7 @@
     <string name="notification_channel_name">تنبيهات NewPipe</string>
     <string name="notification_channel_description">تنبيهات مشغل NewPipe للخلفية والنوافذ المنبثقة</string>
     <string name="unknown_content">[غير معروف]</string>
-    <string name="light_parsing_error">لا يمكن تحليل الموقع بشكل كلي</string>
+    <string name="light_parsing_error">تعذر تحليل الموقع بشكل كلي</string>
     <string name="could_not_setup_download_menu">تعذر إعداد قائمة التنزيل</string>
     <string name="live_streams_not_supported">البثوث المباشرة ليست مدعومةً بعد</string>
     <string name="could_not_get_stream">تعذر الحصول على أي بث</string>
@@ -135,19 +135,19 @@
     <string name="player_stream_failure">لا يمكن تشغيل هذا البث</string>
     <string name="player_unrecoverable_failure">حدث خطأ للمشغل غير قابل للاسترداد</string>
     <string name="player_recoverable_failure">استرداد المشغل من الخطأ</string>
-    <string name="sorry_string">عذرا، لا ينبغي أن يحدث ذلك.</string>
+    <string name="sorry_string">عذرًا، لم ينبغِ أن يحدث ذلك.</string>
     <string name="error_report_button_text">الإبلاغ عن هذا الخطأ عبر البريد الإلكتروني</string>
-    <string name="error_snackbar_message">عذرا، هناك خطأ ما.</string>
+    <string name="error_snackbar_message">عذرا، حدث خطأ ما.</string>
     <string name="error_snackbar_action">أبلِغ</string>
     <string name="what_device_headline">معلومات:</string>
     <string name="what_happened_headline">ماذا حدث:</string>
-    <string name="info_labels">ماذا:\\nطلب:\\nلغة المحتوى:\\nبلد المحتوى:\\nلغة التطبيق:\\nالخدمات:\\nتوقيت غرينتش:\\nالحزمة:\\nالإصدار:\\nOS الإصدار:</string>
+    <string name="info_labels">ماذا:\\nطلب:\\nلغة المحتوى:\\nبلد المحتوى:\\nلغة التطبيق:\\nالخدمات:\\nتوقيت جرينتش:\\nالحزمة:\\nالإصدار:\\nOS نسخة:</string>
     <string name="your_comment">تعليقك (باللغة الإنجليزية):</string>
     <string name="error_details_headline">التفاصيل:</string>
     <string name="report_error">الإبلاغ عن خطأ</string>
     <string name="user_report">تقرير المستخدم</string>
     <string name="search_no_results">لم يتم العثور على نتائج</string>
-    <string name="empty_subscription_feed_subtitle">لا شيء هنا غير الصراصير</string>
+    <string name="empty_subscription_feed_subtitle">لا شيء هنا سوى الصراصير</string>
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="storage_permission_denied">ترخيص الوصول إلى التخزين أوّلا</string>
@@ -157,7 +157,7 @@
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s مشترك</item>
-        <item quantity="one">%s مشتركين</item>
+        <item quantity="one">%s l مشارك</item>
         <item quantity="two">%s مشتركين</item>
         <item quantity="few">%s مشتركين</item>
         <item quantity="many">%s مشتركين</item>
@@ -269,13 +269,13 @@
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
     <string name="import_data_summary">يلغي السجل الحالي والاشتراكات وقوائم التشغيل والإعدادات (اختياريًا)</string>
-    <string name="export_data_summary">تصدير قوائم تشغيل, الاشتراكات, والإعدادات</string>
+    <string name="export_data_summary">تصديرالسجل، وقوائم تشغيل، والإعدادات، والاشتراكات</string>
     <string name="show_info">عرض المعلومات</string>
     <string name="controls_add_to_playlist_title">إضافة إلى</string>
     <string name="settings_category_debug_title">تحليل</string>
     <string name="video_streams_empty">لم يتم العثور على أي بث مرئي</string>
     <string name="audio_streams_empty">لم يتم العثور على أي بث صوتي</string>
-    <string name="detail_drag_description">إسحب للقيام بالترتيب</string>
+    <string name="detail_drag_description">اسحب لإعادة ترتيب</string>
     <string name="create">إنشاء</string>
     <string name="delete_one">إحذف واحدة</string>
     <string name="delete_all">حذف الكل</string>
@@ -309,7 +309,7 @@
     <string name="file">الملف</string>
     <string name="invalid_directory">لا يوجد مثل هذا المجلد</string>
     <string name="file_name_empty_error">لا يمكن أن يكون اسم الملف فارغًا</string>
-    <string name="error_occurred_detail">طرأ هناك خطأ: %1$s</string>
+    <string name="error_occurred_detail">حدث خطأٌ ما: %1$s</string>
     <string name="no_valid_zip_file">ملف مضغوط ZIP غير صالح</string>
     <string name="unbookmark_playlist">إزالة الفواصل المرجعية</string>
     <string name="resize_fit">تناسب مع الشاشة</string>
@@ -422,7 +422,7 @@
     <string name="app_update_notification_channel_description">الإخطارات لإصدار NewPipe الجديد</string>
     <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">لا يمكن التنزيل على بطاقة SD الخارجية. هل تريد إعادة تعيين موقع مجلد التنزيل؟</string>
-    <string name="saved_tabs_invalid_json">تعذرت قراءة علامات التبويب المحفوظة, لذا استخدم علامات التبويب الافتراضية</string>
+    <string name="saved_tabs_invalid_json">تعذرت قراءة علامات التبويب المحفوظة، لذا استخدم علامات التبويب الافتراضية</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="restore_defaults_confirmation">هل تريد استعادة الإعدادات الافتراضية؟</string>
     <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
@@ -545,7 +545,7 @@
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
     <string name="delete_downloaded_files">حذف الملفات المحملة</string>
     <string name="deleted_downloads">تم حذف %1$d من التحميلات</string>
-    <string name="permission_display_over_apps">إعطاء إذن لعرضه على التطبيقات الأخرى</string>
+    <string name="permission_display_over_apps">امنح الإذن بالعرض فوق التطبيقات الأخرى</string>
     <string name="app_language_title">لغة التطبيق</string>
     <string name="systems_language">النظام الافتراضي</string>
     <string name="subtitle_activity_recaptcha">اضغط على \"تم\" عند حلها</string>
@@ -650,8 +650,8 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">إظهار الاشتراكات غير المجمعة فقط</string>
     <string name="no_playlist_bookmarked_yet">لا توجد إشارات مرجعية لقائمة التشغيل حتى الآن</string>
     <string name="select_a_playlist">اختر قائمة تشغيل</string>
-    <string name="error_report_open_github_notice">يرجى التحقق مما إذا كانت هناك مشكلة في مناقشة تعطلك بالفعل. عند إنشاء تذاكر مكررة ، ستأخذ وقتًا منا يمكن أن نقضيه في إصلاح الخطأ الفعلي.</string>
-    <string name="error_report_open_issue_button_text">تقرير على جيثب</string>
+    <string name="error_report_open_github_notice">يرجى مراجعة ما إذا توجد بالفعل مشكلة تناقش التحطم الموجود بالفعل.عند إنشاء تذاكر مكررة، فإنك تستغرق منا وقتًا يمكن أن نقضيه في إصلاح الخطأ الفعلي.</string>
+    <string name="error_report_open_issue_button_text">تقرير على GitHub</string>
     <string name="copy_for_github">نسخ تقرير منسق</string>
     <string name="search_showing_result_for">إظهار النتائج ل %s</string>
     <string name="never">أبدا</string>
@@ -687,6 +687,12 @@
     <string name="enqueue_stream">قائمة الانتظار</string>
     <string name="notification_colorize_summary">اجعل أندرويد يخصص لون الإشعار وفقا للّون الرئيسي في الصورة المصغرة (لاحظ أن هذا غير متوفر على جميع الأجهزة)</string>
     <string name="notification_colorize_title">تلوين الاشعارات</string>
-    <string name="show_thumbnail_summary">إظهار الصورة المصغرة على شاشة القفل كخلفية وإخطارات داخلية</string>
+    <string name="show_thumbnail_summary">استخدم الصورة المصغرة لكل من خلفية شاشة القفل والإشعارات</string>
     <string name="show_thumbnail_title">إظهار الصورة المصغرة</string>
+    <string name="show_meta_info_summary">قم بإيقاف التشغيل لإخفاء مربعات المعلومات الوصفية بمعلومات إضافية حول منشئ، البث أو محتوى البث أو طلب البحث.</string>
+    <string name="show_meta_info_title">إظهار معلومات التعريف</string>
+    <string name="recent">الأخيرة</string>
+    <string name="msg_calculating_hash">حساب التجزئة</string>
+    <string name="hash_channel_description">إشعارات لتقدم تجزئة الفيديو</string>
+    <string name="hash_channel_name">إشعار تجزئة الفيديو</string>
 </resources>

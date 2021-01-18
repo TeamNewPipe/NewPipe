@@ -662,4 +662,7 @@
     <string name="msg_calculating_hash">Počítanie hash</string>
     <string name="hash_channel_description">Upozornenie pri generovaní hash z názu videa</string>
     <string name="hash_channel_name">Oznámenie o hashovaní videa</string>
+    <string name="recent">Nedávne</string>
+    <string name="show_meta_info_summary">Vypnite, pokiaľ nechcete zobrazovať meta informácie ako autor streamu, obsah streamu alebo vyhľadávanie.</string>
+    <string name="show_meta_info_title">Zobrazovať meta informácie</string>
 </resources>

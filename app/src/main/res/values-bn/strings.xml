@@ -489,4 +489,5 @@
         <item quantity="other">%d মিনিট</item>
     </plurals>
     <string name="max_retry_msg">সর্বোচ্চ চেয্টা</string>
+    <string name="recent">সাম্প্রতিক</string>
 </resources>

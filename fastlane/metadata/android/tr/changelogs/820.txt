@@ -1,0 +1,1 @@
+Şifre çözme işlevi adının düzenli ifadesinin YouTube'u kullanılamaz duruma getirmesi düzeltildi.

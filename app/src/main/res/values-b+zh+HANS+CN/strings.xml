@@ -647,4 +647,7 @@
     <string name="hash_channel_name">视频哈希值计算通知</string>
     <string name="hash_channel_description">视频正在哈希值计算时显示的通知</string>
     <string name="msg_calculating_hash">计算哈希值中</string>
+    <string name="recent">最近</string>
+    <string name="show_meta_info_summary">隐藏关于视频创建者及内容或搜索请求的额外元信息框。</string>
+    <string name="show_meta_info_title">显示元数据信息</string>
 </resources>

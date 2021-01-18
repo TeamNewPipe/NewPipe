@@ -652,4 +652,7 @@
     <string name="hash_channel_description">Jakinarazpenak bideoen hashing egoerarako</string>
     <string name="hash_channel_name">Bideo hash jakinarazpena</string>
     <string name="msg_calculating_hash">Hash-a kalkulatzen</string>
+    <string name="recent">Azkenak</string>
+    <string name="show_meta_info_summary">Desgaitu jario sortzailearen informazio gehigarria, jarioaren edukia edo bilaketa eskaera duten informazio koadroak ezkutatzeko.</string>
+    <string name="show_meta_info_title">Erakutsi meta informazioa</string>
 </resources>

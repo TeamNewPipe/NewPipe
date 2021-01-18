@@ -1,0 +1,12 @@
+•[YouTube] Dukungan Mix.
+•[YouTube] Menampilkan informasi public broadcasters dan COVID-19
+•[media.cc.de]Menambahkan recent videos
+•Menambahkan translasi Somali
+
+•Peningkatan internal lainnya
+
+•Memperbaiki berbagi video dari pemutar
+•Memperbaiki ReCaptcha webview yang kosong
+•Memperbaiki crash yang terjadi saat menghapus sebuah stream dari daftar
+•[PeerTube]Memperbaiki related streams
+•[YouTube]Memperbaiki pencarian YouTube

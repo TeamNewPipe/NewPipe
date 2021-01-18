@@ -650,4 +650,7 @@
     <string name="show_thumbnail_summary">Käytä esikatselukuvaa lukitusruudun ja ilmoitusten taustakuvana</string>
     <string name="show_thumbnail_title">Näytä esikatselukuva</string>
     <string name="msg_calculating_hash">Lasketaan</string>
+    <string name="show_meta_info_summary">Poista käytöstä piilotakseen metatiedot suoratoiston luojasta, sen sisällöstä tai hakupyynnöstä.</string>
+    <string name="show_meta_info_title">Näytä metatieto</string>
+    <string name="recent">Viimeisimmät</string>
 </resources>

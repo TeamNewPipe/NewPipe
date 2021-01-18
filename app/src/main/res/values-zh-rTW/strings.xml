@@ -642,4 +642,7 @@
     <string name="msg_calculating_hash">正在計算雜湊</string>
     <string name="hash_channel_description">影片雜湊流程通知</string>
     <string name="hash_channel_name">影片雜湊通知</string>
+    <string name="recent">最近</string>
+    <string name="show_meta_info_summary">關閉以隱藏帶有關於串流建立者、串流內容或搜尋請求等額外資料的詮釋資料框。</string>
+    <string name="show_meta_info_title">顯示詮釋資訊</string>
 </resources>

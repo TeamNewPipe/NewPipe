@@ -277,7 +277,7 @@
 \nΗ πολιτική ιδιωτικού απόρρητου του NewPipe εξηγεί λεπτομερώς ποια δεδομένα αποστέλλονται και αποθηκεύονται όταν επιλέγετε να στείλετε μια αναφορά σφαλμάτων.</string>
     <string name="read_privacy_policy">Ανάγνωση της πολιτικής ιδιωτικού απόρρητου</string>
     <string name="app_license_title">Η άδεια του NewPipe</string>
-    <string name="app_license">Το NewPipe είναι copylelft ελεύθερο λογισμικό: Μπορείτε να το χρησιμοποιήσετε, να το μελετήσετε, να το μοιραστείτε και να το βελτιώσετε κατά βούληση. Ειδικότερα, μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό την άδεια GNU General Public Licence όπως αυτή εκδόθηκε από το Free Software Foundation, είτε υπό την έκδοση 3 της Άδειας είτε (προεραιτικά) υπό οποιαδήποτε μεταγενέστερη άδεια.</string>
+    <string name="app_license">Το NewPipe είναι copylelft ελεύθερο λογισμικό: Μπορείτε να το χρησιμοποιήσετε, να το μελετήσετε, να το μοιραστείτε και να το βελτιώσετε κατά βούληση. Ειδικότερα, μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό την άδεια GNU General Public Licence όπως αυτή εκδόθηκε από το Free Software Foundation, είτε υπό την έκδοση 3 της άδειας, είτε (προαιρετικά) υπό οποιαδήποτε μεταγενέστερη άδεια.</string>
     <string name="read_full_license">Ανάγνωση της άδειας</string>
     <string name="title_history_search">Αναζητήθηκαν</string>
     <string name="title_history_view">Προβλήθηκαν</string>
@@ -650,4 +650,7 @@
     <string name="msg_calculating_hash">Υπολογισμός hash</string>
     <string name="hash_channel_description">Ειδοποιήσεις για πρόοδο βίντεο hashing</string>
     <string name="hash_channel_name">Ειδοποίηση βίντεο hash</string>
+    <string name="recent">Πρόσφατα</string>
+    <string name="show_meta_info_summary">Απενεργοποιήστε το για να μην εμφανίζονται μεταδεδομένα με επιπλέον πληροφορίες για το δημιουργό και το περιεχόμενο της ροής ή αίτημα αναζήτησης.</string>
+    <string name="show_meta_info_title">Εμφάνιση μεταδεδομένων</string>
 </resources>

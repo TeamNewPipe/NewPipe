@@ -41,4 +41,14 @@
     <string name="controls_background_title">ᱵᱮᱠᱜᱨᱟᱩᱸᱰ</string>
     <string name="tab_choose">ᱴᱮᱵᱽ ᱪᱚᱭᱚᱱ ᱢᱮᱸ</string>
     <string name="download_path_summary">ᱰᱟᱩᱱᱞᱳᱰ ᱠᱟᱱ ᱣᱤᱰᱤᱭᱚ ᱨᱮᱫ ᱱᱚᱰᱮ ᱫᱚᱦᱚᱜᱼᱟ</string>
+    <string name="show_higher_resolutions_title">ᱡᱟᱹᱥᱛᱤ ᱨᱤᱡᱽᱚᱞᱭᱩᱥᱚᱱ ᱫᱮᱠᱷᱟᱣᱢᱮ</string>
+    <string name="default_popup_resolution_title">ᱢᱩᱞ ᱯᱷᱮᱲᱟᱛ ᱯᱚᱯ-ᱚᱯ ᱨᱤᱡᱽᱚᱞᱭᱩᱥᱚᱱ</string>
+    <string name="default_resolution_title">ᱢᱩᱞ ᱯᱷᱮᱲᱟᱛ ᱨᱮᱡᱽᱚᱞᱭᱩᱥᱚᱱ</string>
+    <string name="autoplay_by_calling_app_summary">ᱚᱞᱜᱟ ᱮᱯ ᱠᱷᱚᱱ NewPipe ᱨᱮ ᱦᱚᱦᱚ ᱡᱷᱚᱜ ᱣᱤᱰᱤᱭᱚ ᱯᱞᱮᱜᱼᱟ</string>
+    <string name="autoplay_by_calling_app_title">ᱚᱴᱚᱯᱞᱮ</string>
+    <string name="download_choose_new_path">ᱵᱚᱫᱚᱞ ᱠᱚ ᱫᱚᱦᱚ ᱞᱟᱹᱜᱤᱫ ᱰᱟᱩᱱᱞᱳᱰ ᱯᱚᱴᱚᱢ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
+    <string name="download_path_audio_dialog_title">ᱥᱟᱫᱮ ᱨᱮᱫᱠᱚ ᱞᱟᱹᱜᱤᱫ ᱰᱟᱩᱱᱞᱳᱰ ᱯᱚᱴᱚᱢ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
+    <string name="download_path_audio_summary">ᱰᱟᱩᱱᱞᱳᱰ ᱟᱠᱟᱱ ᱥᱟᱲᱮ ᱮᱨᱫ ᱠᱚ ᱱᱚᱰᱮ ᱫᱚᱦᱚᱜᱼᱟ</string>
+    <string name="download_path_audio_title">ᱥᱟᱲᱮ ᱰᱟᱩᱱᱞᱳᱰ ᱯᱚᱴᱚᱢ</string>
+    <string name="download_path_dialog_title">ᱣᱤᱰᱤᱭᱚ ᱨᱮᱫᱠᱚ ᱞᱟᱹᱜᱤᱫ ᱰᱟᱩᱱᱞᱳᱰ ᱯᱚᱴᱚᱢ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
 </resources>

@@ -652,4 +652,7 @@
     <string name="msg_calculating_hash">Carculende s\'hash</string>
     <string name="hash_channel_description">Notìficas pro su protzessu de hashàgiu de su vìdeu</string>
     <string name="hash_channel_name">Notìfica de hash de su vìdeu</string>
+    <string name="recent">Reghente</string>
+    <string name="show_meta_info_summary">Istuda·lu pro cuare sas iscatuleddas cun informatziones additzionales in subra de su creadore de su flussu, de su cuntenutu de su flussu o de una rechesta de chirca.</string>
+    <string name="show_meta_info_title">Ammustra informatziones meta</string>
 </resources>

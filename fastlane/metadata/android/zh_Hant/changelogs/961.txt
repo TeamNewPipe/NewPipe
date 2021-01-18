@@ -1,0 +1,12 @@
+• [YouTube] Mix 支援
+• [YouTube] 顯示關於公共廣播公司與 Covid-19 的資訊
+• [media.ccc.de] 新增最近影片
+• 新增索馬利亞語翻譯
+
+• 許多內部改進
+
+• 修復從播放器內部分享影片的問題
+• 修復空白的 ReCaptcha webview
+• 修復了從列表中移除串流時所發生的當機問題
+• [PeerTube] 修復相關串流
+• [YouTube] 修復 YouTube Music 搜尋

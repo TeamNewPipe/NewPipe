@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Alustuseks puuduta otsingut</string>
+    <string name="main_bg_subtitle">Alustamiseks toksa \"Otsi\"
+\n</string>
     <string name="view_count_text">%1$s vaatamist</string>
     <string name="upload_date_text">Avaldatud %1$s</string>
     <string name="no_player_found">Voogesituseks puudub pleier. Kas paigaldada VLC?</string>
@@ -19,9 +20,9 @@
     <string name="choose_browser">Vali veebilehitseja</string>
     <string name="screen_rotation">pööramine</string>
     <string name="use_external_video_player_title">Kasuta välist videopleierit</string>
-    <string name="use_external_video_player_summary">Eemaldab audio SOME lahutustel</string>
+    <string name="use_external_video_player_summary">Eemaldab audio mõnedel lahutustel</string>
     <string name="use_external_audio_player_title">Kasuta välist audiopleierit</string>
-    <string name="popup_mode_share_menu_title">NewPipe hüpikaknarežiim</string>
+    <string name="popup_mode_share_menu_title">Hüpikaknarežiim</string>
     <string name="subscribe_button_title">Telli</string>
     <string name="subscribed_button_title">Tellitud</string>
     <string name="channel_unsubscribed">Kanali tellimus tühistatud</string>
@@ -33,21 +34,21 @@
     <string name="fragment_feed_title">Mis on uut</string>
     <string name="controls_background_title">Taust</string>
     <string name="controls_popup_title">Hüpikaken</string>
-    <string name="controls_add_to_playlist_title">"Lisa "</string>
+    <string name="controls_add_to_playlist_title">Lisa</string>
     <string name="download_path_title">Video allalaadimise kaust</string>
     <string name="download_path_summary">Kaust allalaetud videote hoiustamiseks</string>
-    <string name="download_path_dialog_title">Sisesta videote allalaadimise rada</string>
+    <string name="download_path_dialog_title">Vali alla laaditud videofailide kaust</string>
     <string name="download_path_audio_title">Audio allalaadimise kaust</string>
-    <string name="download_path_audio_summary">Siia salvestatakse alla laaditud audio</string>
-    <string name="download_path_audio_dialog_title">Sisesta audio allalaadimise rada</string>
+    <string name="download_path_audio_summary">Siia salvestatakse alla laaditud audiofailid</string>
+    <string name="download_path_audio_dialog_title">Vali alla laaditud audiofailide kaust</string>
     <string name="autoplay_by_calling_app_title">Automaatesitus</string>
     <string name="autoplay_by_calling_app_summary">Esita video, kui NewPipe käivitub teise rakenduse kaudu</string>
     <string name="default_resolution_title">Vaikelahutus</string>
     <string name="default_popup_resolution_title">Hüpikakna vaikelahutus</string>
     <string name="show_higher_resolutions_title">Kuva kõrgemaid lahutusi</string>
-    <string name="show_higher_resolutions_summary">Kõik seadmed ei toeta 2K/4K videoid</string>
+    <string name="show_higher_resolutions_summary">Ainult mõned seadmed suudavad esitada 2K/4K videoid</string>
     <string name="play_with_kodi_title">Esita Kodi abil</string>
-    <string name="kore_not_found">Kore rakendust ei leitud. Kas paigaldada see?</string>
+    <string name="kore_not_found">Kas paigaldada puuduv Kore rakendus\?</string>
     <string name="show_play_with_kodi_title">Kuva valik \"Esita Kodi abil\"</string>
     <string name="show_play_with_kodi_summary">Kuva valik video esitamiseks Kodi meediakeskuse kaudu</string>
     <string name="play_audio">Heli</string>
@@ -60,7 +61,7 @@
     <string name="popup_remember_size_pos_title">Pea hüpikakna suurus ja asukoht meeles</string>
     <string name="popup_remember_size_pos_summary">Pea hüpikakna viimane suurus ja asukoht meeles</string>
     <string name="use_inexact_seek_title">Kasuta ebatäpset kerimist</string>
-    <string name="use_inexact_seek_summary">Ebatäpne kerimine lubab pleieril otsida asukohta kiiremini täpsuse arvel</string>
+    <string name="use_inexact_seek_summary">Ebatäpne kerimine lubab pleieril otsida asukohta kiiremini täpsuse arvel. Sellega ei tööta 5, 15 või 25 sekundi kaupa kerimine.</string>
     <string name="download_thumbnail_title">Laadi pisipildid</string>
     <string name="download_thumbnail_summary">Lülita välja, et keelata pisipiltide laadimist, andmete salvestamist ja mälu kasutust. Muutmine puhastab vahemälu nii kettal kui ka mälus.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pildid kustutati vahemälust</string>
@@ -68,21 +69,21 @@
     <string name="metadata_cache_wipe_summary">Kustuta veebilehtede andmed vahemälust</string>
     <string name="metadata_cache_wipe_complete_notice">Metaandmed kustutati vahemälust</string>
     <string name="auto_queue_title">Järgmine voog automaatselt järjekorda</string>
-    <string name="auto_queue_summary">Lisa seotud voog automaatselt, kui esitusel on viimane voog mittekorduvast järjekorrast.</string>
+    <string name="auto_queue_summary">Jätka lõpetamise (mitte-kordavat) esitamist lisadest järjekorra lõppu seotud voo</string>
     <string name="player_gesture_controls_title">Pleieri juhtimine viibetega</string>
-    <string name="player_gesture_controls_summary">Kasuta helitugevuse ja ereduse reguleerimiseks viipeid</string>
+    <string name="player_gesture_controls_summary">Kasuta viipeid helitugevuse ja heleduse reguleerimiseks</string>
     <string name="show_search_suggestions_title">Kuva soovitused</string>
     <string name="show_search_suggestions_summary">Kuva otsingu ajal soovitusi</string>
     <string name="enable_search_history_title">Otsinguajalugu</string>
     <string name="enable_search_history_summary">Salvesta otsinguajalugu kohalikult</string>
-    <string name="enable_watch_history_title">Ajalugu ja vahemälu</string>
+    <string name="enable_watch_history_title">Vaatamiste ajalugu</string>
     <string name="enable_watch_history_summary">Jälgi videote vaatamist</string>
-    <string name="resume_on_audio_focus_gain_title">Jätka taasesitust fookuse saamisel</string>
+    <string name="resume_on_audio_focus_gain_title">Jätka taasesitust</string>
     <string name="resume_on_audio_focus_gain_summary">Jätka taasesitust pärast katkestamist (nt. telefonikõne)</string>
     <string name="download_dialog_title">Laadi alla</string>
     <string name="show_next_and_similar_title">Kuva \'järgmine\' ja \'sarnased\' videod</string>
     <string name="show_hold_to_append_title">Kuva vihjet \"lisamiseks hoia\"</string>
-    <string name="show_hold_to_append_summary">Kuva vihje, kui videoandmete lehel vajutatakse tausta või hüpikakna nupule</string>
+    <string name="show_hold_to_append_summary">Kuva vihje, kui videoandmete lehel vajutatakse tausta või hüpikakna nupule \"Täpsemalt:\"</string>
     <string name="unsupported_url">Mitte toetatud URL</string>
     <string name="default_content_country_title">Sisu vaikimisi riik</string>
     <string name="service_title">Teenus</string>
@@ -101,7 +102,7 @@
     <string name="popup_playing_append">Lisati hüpikpleieri järjekorda</string>
     <string name="content">Sisu</string>
     <string name="show_age_restricted_content_title">Vanusepiiranguga sisu</string>
-    <string name="duration_live">OTSE</string>
+    <string name="duration_live">Otse</string>
     <string name="downloads">Allalaadimised</string>
     <string name="downloads_title">Allalaadimised</string>
     <string name="error_report_title">Vea teatamine</string>
@@ -132,7 +133,7 @@
     <string name="import_data_summary">Alistab praeguse ajaloo ja tellimused</string>
     <string name="export_data_summary">Ekspordi ajalugu, tellimused ja pleilistid</string>
     <string name="clear_views_history_title">Puhasta vaatamiste ajalugu</string>
-    <string name="clear_views_history_summary">Kustutab vaadatud voogude ajaloo</string>
+    <string name="clear_views_history_summary">Kustutab vaadatud voogude ajaloo ja taasesituse asukohad</string>
     <string name="delete_view_history_alert">Kas kustutada kogu vaatamiste ajalugu\?</string>
     <string name="watch_history_deleted">Vaatamiste ajalugu kustutati.</string>
     <string name="clear_search_history_title">Kustuta otsinguajalugu</string>
@@ -170,11 +171,11 @@
     <string name="error_snackbar_action">TEATA</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Mis juhtus:</string>
-    <string name="info_labels">Mis:\\nPäring:\\nSisu Keel:\\nTeenus:\\nGMT aeg:\\nPakett:\\nVersioon:\\nOS versioon:</string>
+    <string name="info_labels">Mis:\\nPäring:\\nSisu keel:\\nSisu maa:\\nRakenduse keel:\\nTeenus:\\nGMT aeg:\\nPakett:\\nVersioon:\\nOS versioon:</string>
     <string name="your_comment">Oma kommentaar (inglise keeles):</string>
     <string name="error_details_headline">Üksikasjad:</string>
     <string name="list_thumbnail_view_description">Video eelvaate pisipilt</string>
-    <string name="detail_thumbnail_view_description">Video eelvaate pisipilt</string>
+    <string name="detail_thumbnail_view_description">Esita video, kestus:</string>
     <string name="detail_uploader_thumbnail_view_description">Üleslaadiaja avatari pisipilt</string>
     <string name="detail_likes_img_view_description">Meeldib</string>
     <string name="detail_dislikes_img_view_description">Ei meeldi</string>
@@ -343,9 +344,12 @@
     <string name="subscriptions_export_unsuccessful">Tellimuste eksport nurjus</string>
     <string name="import_youtube_instructions">Impordi YouTube tellimused eksportfaili abil:
 \n
-\n1. Ava URL: %1$s
-\n2. Logi sisse
-\n3. Allalaadimine peaks algama (see on eksportfail)</string>
+\n1. Ava aadress: %1$s
+\n2. Logi sisse, kui seda küsitakse.
+\n3. Klõpsa \"Kõigi andmetega\", vali \"Tühista kõik\", vali ainult \"Tellimused\" ja klõpsa \"OK\".
+\n4. Klõpsa \"Järgmine samm\" ja seejärel \"Loo eksport\".
+\n5. Klõpsa nupul \"Laadi alla\" siis, kui ta ilmub.
+\n6. Alla laaditud väljavõtte ZIP failist paki lahti JSON fail (tavaliselt on see fail \"YouTube ja YouTube Muusika/tellimused/tellimused.json\" või \"YouTube and YouTube Music/subscriptions/subscriptions.json\") ja impordi see siia.</string>
     <string name="import_network_expensive_warning">See toiming võib põhjustada suurt võrguliiklust.
 \n
 \nKas jätkata?</string>
@@ -396,16 +400,16 @@
     <string name="tab_new">Uus vahekaart</string>
     <string name="tab_choose">Vali vahekaart</string>
     <string name="volume_gesture_control_title">Helitugevuse juhtimine viibetega</string>
-    <string name="volume_gesture_control_summary">Kasuta helitugevuse reguleerimiseks viipeid</string>
+    <string name="volume_gesture_control_summary">Kasuta viipeid helitugevuse reguleerimiseks</string>
     <string name="brightness_gesture_control_title">Ereduse reguleerimine viibetega</string>
-    <string name="brightness_gesture_control_summary">Kasuta ereduse reguleerimiseks viipeid</string>
+    <string name="brightness_gesture_control_summary">Kasuta viipeid heleduse reguleerimiseks</string>
     <string name="settings_category_updates_title">Uuendused</string>
     <string name="events">Sündmused</string>
     <string name="file_deleted">Fail kustutati</string>
     <string name="app_update_notification_channel_name">Rakenduse värskenduse teatis</string>
     <string name="app_update_notification_channel_description">NewPipe uuest versioonist teavitamine</string>
     <string name="download_to_sdcard_error_title">Väline andmekandja pole saadaval</string>
-    <string name="download_to_sdcard_error_message">Allalaadimine välisele SD-kaardile ei ole veel võimalik. Kas lähtestada allalaadimiste kataloogi asukoht\?</string>
+    <string name="download_to_sdcard_error_message">Allalaadimine välisele SD-kaardile ei ole võimalik. Kas lähtestada allalaadimiste kataloogi asukoht\?</string>
     <string name="saved_tabs_invalid_json">Tõrge salvestatud vahekaaride lugemisel. Kasutatakse vaikeväärtusi</string>
     <string name="restore_defaults">Taasta vaikeväärtused</string>
     <string name="restore_defaults_confirmation">Kas taastada vaikeväärtused\?</string>

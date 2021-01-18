@@ -672,4 +672,7 @@
     <string name="msg_calculating_hash">הגיבוב</string>
     <string name="hash_channel_description">התראות על תהליכי גיבוב</string>
     <string name="hash_channel_name">התראת גיבוב סרטון</string>
+    <string name="recent">אחרונים</string>
+    <string name="show_meta_info_summary">לכבות את התיבות שמציגות את המידע על יוצרי התזרים, תוכן התזרים או בקשת חיפוש.</string>
+    <string name="show_meta_info_title">הצגת מידע על</string>
 </resources>
