@@ -3,13 +3,13 @@ package org.schabi.newpipe.info_list;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.DialogTitleBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
 public class InfoItemDialog {
@@ -27,23 +27,21 @@ public class InfoItemDialog {
                           @NonNull final DialogInterface.OnClickListener actions,
                           @NonNull final String title,
                           @Nullable final String additionalDetail) {
+        final DialogTitleBinding binding = DialogTitleBinding
+                .inflate(LayoutInflater.from(activity));
+        binding.getRoot().setSelected(true);
 
-        final View bannerView = View.inflate(activity, R.layout.dialog_title, null);
-        bannerView.setSelected(true);
+        binding.itemTitleView.setText(title);
 
-        final TextView titleView = bannerView.findViewById(R.id.itemTitleView);
-        titleView.setText(title);
-
-        final TextView detailsView = bannerView.findViewById(R.id.itemAdditionalDetails);
         if (additionalDetail != null) {
-            detailsView.setText(additionalDetail);
-            detailsView.setVisibility(View.VISIBLE);
+            binding.itemAdditionalDetails.setText(additionalDetail);
+            binding.itemAdditionalDetails.setVisibility(View.VISIBLE);
         } else {
-            detailsView.setVisibility(View.GONE);
+            binding.itemAdditionalDetails.setVisibility(View.GONE);
         }
 
         dialog = new AlertDialog.Builder(activity)
-                .setCustomTitle(bannerView)
+                .setCustomTitle(binding.getRoot())
                 .setItems(commands, actions)
                 .create();
     }
