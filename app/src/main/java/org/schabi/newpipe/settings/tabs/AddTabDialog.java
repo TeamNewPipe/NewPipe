@@ -7,13 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.ListChooseTabsDialogBinding;
 import org.schabi.newpipe.util.ThemeHelper;
 
 public final class AddTabDialog {
@@ -80,19 +79,19 @@ public final class AddTabDialog {
 
         @Override
         public View getView(final int position, final View view, final ViewGroup parent) {
-            View convertView = view;
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.list_choose_tabs_dialog, parent, false);
+            final ListChooseTabsDialogBinding binding;
+            if (view == null) {
+                binding = ListChooseTabsDialogBinding.inflate(inflater, parent, false);
+            } else {
+                binding = ListChooseTabsDialogBinding.bind(view);
             }
 
             final ChooseTabListItem item = getItem(position);
-            final AppCompatImageView tabIconView = convertView.findViewById(R.id.tabIcon);
-            final TextView tabNameView = convertView.findViewById(R.id.tabName);
 
-            tabIconView.setImageResource(item.itemIcon > 0 ? item.itemIcon : fallbackIcon);
-            tabNameView.setText(item.itemName);
+            binding.tabIcon.setImageResource(item.itemIcon > 0 ? item.itemIcon : fallbackIcon);
+            binding.tabName.setText(item.itemName);
 
-            return convertView;
+            return binding.getRoot();
         }
     }
 }
