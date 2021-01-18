@@ -6,12 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.StreamQualityItemBinding;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
@@ -94,16 +93,12 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
 
     private View getCustomView(final int position, final View view, final ViewGroup parent,
                                final boolean isDropdownItem) {
-        View convertView = view;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(
-                    R.layout.stream_quality_item, parent, false);
+        final StreamQualityItemBinding binding;
+        if (view == null) {
+            binding = StreamQualityItemBinding.inflate(LayoutInflater.from(context), parent, false);
+        } else {
+            binding = StreamQualityItemBinding.bind(view);
         }
-
-        final ImageView woSoundIconView = convertView.findViewById(R.id.wo_sound_icon);
-        final TextView formatNameView = convertView.findViewById(R.id.stream_format_name);
-        final TextView qualityView = convertView.findViewById(R.id.stream_quality);
-        final TextView sizeView = convertView.findViewById(R.id.stream_size);
 
         final T stream = getItem(position);
 
@@ -142,33 +137,33 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             if (secondary != null) {
                 final long size
                         = secondary.getSizeInBytes() + streamsWrapper.getSizeInBytes(position);
-                sizeView.setText(Utility.formatBytes(size));
+                binding.streamSize.setText(Utility.formatBytes(size));
             } else {
-                sizeView.setText(streamsWrapper.getFormattedSize(position));
+                binding.streamSize.setText(streamsWrapper.getFormattedSize(position));
             }
-            sizeView.setVisibility(View.VISIBLE);
+            binding.streamSize.setVisibility(View.VISIBLE);
         } else {
-            sizeView.setVisibility(View.GONE);
+            binding.streamSize.setVisibility(View.GONE);
         }
 
         if (stream instanceof SubtitlesStream) {
-            formatNameView.setText(((SubtitlesStream) stream).getLanguageTag());
+            binding.streamFormatName.setText(((SubtitlesStream) stream).getLanguageTag());
         } else {
             switch (stream.getFormat()) {
                 case WEBMA_OPUS:
                     // noinspection AndroidLintSetTextI18n
-                    formatNameView.setText("opus");
+                    binding.streamFormatName.setText("opus");
                     break;
                 default:
-                    formatNameView.setText(stream.getFormat().getName());
+                    binding.streamFormatName.setText(stream.getFormat().getName());
                     break;
             }
         }
 
-        qualityView.setText(qualityString);
-        woSoundIconView.setVisibility(woSoundIconVisibility);
+        binding.streamQuality.setText(qualityString);
+        binding.woSoundIcon.setVisibility(woSoundIconVisibility);
 
-        return convertView;
+        return binding.getRoot();
     }
 
     /**
