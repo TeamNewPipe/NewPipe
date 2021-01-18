@@ -2,15 +2,15 @@ package org.schabi.newpipe.local.subscription.item
 
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.DrawableRes
 import com.xwray.groupie.viewbinding.BindableItem
 import com.xwray.groupie.viewbinding.GroupieViewHolder
 import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.FeedImportExportGroupBinding
+import org.schabi.newpipe.databinding.SubscriptionImportExportItemBinding
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
 import org.schabi.newpipe.ktx.animateRotation
@@ -71,16 +71,14 @@ class FeedImportExportItem(
 
     private var expandIconListener: CollapsibleView.StateListener? = null
 
-    private fun addItemView(title: String, @DrawableRes icon: Int, container: ViewGroup): View {
-        val itemRoot = View.inflate(container.context, R.layout.subscription_import_export_item, null)
-        val titleView = itemRoot.findViewById<TextView>(android.R.id.text1)
-        val iconView = itemRoot.findViewById<ImageView>(android.R.id.icon1)
-
-        titleView.text = title
-        iconView.setImageResource(icon)
-
-        container.addView(itemRoot)
-        return itemRoot
+    private fun addItemView(
+        title: String,
+        @DrawableRes icon: Int,
+        container: ViewGroup
+    ) = SubscriptionImportExportItemBinding.inflate(LayoutInflater.from(container.context)).apply {
+        text1.text = title
+        icon1.setImageResource(icon)
+        container.addView(root)
     }
 
     private fun setupImportFromItems(listHolder: ViewGroup) {
@@ -88,7 +86,7 @@ class FeedImportExportItem(
             listHolder.context.getString(R.string.previous_export),
             ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_backup), listHolder
         )
-        previousBackupItem.setOnClickListener { onImportPreviousSelected() }
+        previousBackupItem.root.setOnClickListener { onImportPreviousSelected() }
 
         val iconColor = if (ThemeHelper.isLightThemeSelected(listHolder.context)) Color.BLACK else Color.WHITE
         val services = listHolder.context.resources.getStringArray(R.array.service_list)
@@ -102,10 +100,9 @@ class FeedImportExportItem(
                 if (supportedSources.isEmpty()) continue
 
                 val itemView = addItemView(serviceName, ServiceHelper.getIcon(service.serviceId), listHolder)
-                val iconView = itemView.findViewById<ImageView>(android.R.id.icon1)
-                iconView.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN)
+                itemView.icon1.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN)
 
-                itemView.setOnClickListener { onImportFromServiceSelected(service.serviceId) }
+                itemView.root.setOnClickListener { onImportFromServiceSelected(service.serviceId) }
             } catch (e: ExtractionException) {
                 throw RuntimeException("Services array contains an entry that it's not a valid service name ($serviceName)", e)
             }
@@ -118,6 +115,6 @@ class FeedImportExportItem(
             ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_save),
             listHolder
         )
-        previousBackupItem.setOnClickListener { onExportSelected() }
+        previousBackupItem.root.setOnClickListener { onExportSelected() }
     }
 }
