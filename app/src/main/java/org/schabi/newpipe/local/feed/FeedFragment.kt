@@ -34,11 +34,9 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import icepick.State
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
-import org.schabi.newpipe.databinding.ErrorRetryBinding
 import org.schabi.newpipe.databinding.FragmentFeedBinding
 import org.schabi.newpipe.fragments.list.BaseListFragment
 import org.schabi.newpipe.ktx.animate
@@ -50,12 +48,9 @@ import java.util.Calendar
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private var _feedBinding: FragmentFeedBinding? = null
     private val feedBinding get() = _feedBinding!!
-
-    private var _errorBinding: ErrorRetryBinding? = null
-    private val errorBinding get() = _errorBinding!!
+    private val errorBinding get() = _feedBinding!!.errorPanel
 
     private lateinit var viewModel: FeedViewModel
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     @State
     @JvmField
     var listState: Parcelable? = null
@@ -84,7 +79,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         // super.onViewCreated() calls initListeners() which require the binding to be initialized
         _feedBinding = FragmentFeedBinding.bind(rootView)
-        _errorBinding = feedBinding.errorPanel
         super.onViewCreated(rootView, savedInstanceState)
 
         viewModel = ViewModelProvider(this, FeedViewModel.Factory(requireContext(), groupId)).get(FeedViewModel::class.java)
@@ -93,7 +87,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     override fun onPause() {
         super.onPause()
-        listState = _feedBinding?.itemsList?.layoutManager?.onSaveInstanceState()
+        listState = feedBinding.itemsList.layoutManager?.onSaveInstanceState()
     }
 
     override fun onResume() {
@@ -239,12 +233,12 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         val isIndeterminate = progressState.currentProgress == -1 &&
             progressState.maxProgress == -1
 
-        if (!isIndeterminate) {
-            feedBinding.loadingProgressText.text = "${progressState.currentProgress}/${progressState.maxProgress}"
+        feedBinding.loadingProgressText.text = if (!isIndeterminate) {
+            "${progressState.currentProgress}/${progressState.maxProgress}"
         } else if (progressState.progressMessage > 0) {
-            _feedBinding?.loadingProgressText?.setText(progressState.progressMessage)
+            progressState.progressMessage.toString()
         } else {
-            _feedBinding?.loadingProgressText?.text = "∞/∞"
+            "∞/∞"
         }
 
         feedBinding.loadingProgressBar.isIndeterminate = isIndeterminate ||
