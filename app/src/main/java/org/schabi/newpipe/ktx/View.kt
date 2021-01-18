@@ -54,7 +54,7 @@ fun View.animate(
         )
         Log.d(TAG, "animate(): $msg")
     }
-    if (isVisible && enterOrExit) {
+    if (isVisible && enterOrExit && alpha == 1f && animationType == AnimationType.ALPHA) {
         if (MainActivity.DEBUG) {
             Log.d(TAG, "animate(): view was already visible > view = [$this]")
         }
@@ -75,8 +75,15 @@ fun View.animate(
     }
     animate().setListener(null).cancel()
     isVisible = true
+
+    val alphaRelativeDuration = if (enterOrExit && alpha < 1.0f) {
+        (duration * (1 - alpha)).toLong()
+    } else {
+        (duration * alpha).toLong()
+    }
+
     when (animationType) {
-        AnimationType.ALPHA -> animateAlpha(enterOrExit, duration, delay, execOnEnd)
+        AnimationType.ALPHA -> animateAlpha(enterOrExit, alphaRelativeDuration, delay, execOnEnd)
         AnimationType.SCALE_AND_ALPHA -> animateScaleAndAlpha(enterOrExit, duration, delay, execOnEnd)
         AnimationType.LIGHT_SCALE_AND_ALPHA -> animateLightScaleAndAlpha(enterOrExit, duration, delay, execOnEnd)
         AnimationType.SLIDE_AND_ALPHA -> animateSlideAndAlpha(enterOrExit, duration, delay, execOnEnd)

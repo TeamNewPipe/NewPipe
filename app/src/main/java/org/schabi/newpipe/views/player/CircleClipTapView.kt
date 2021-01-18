@@ -11,7 +11,7 @@ import org.schabi.newpipe.player.event.DisplayPortion
 class CircleClipTapView(context: Context?, attrs: AttributeSet) : View(context, attrs) {
 
     companion object {
-        const val COLOR_DARK = 0x40000000
+        const val COLOR_DARK = 0x45000000
         const val COLOR_DARK_TRANSPARENT = 0x30000000
         const val COLOR_LIGHT_TRANSPARENT = 0x25EEEEEE
 

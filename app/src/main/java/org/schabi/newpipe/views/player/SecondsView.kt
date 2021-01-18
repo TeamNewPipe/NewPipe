@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.player_seek_seconds_view.view.*
 import org.schabi.newpipe.R
 
-class SecondsView(context: Context?, attrs: AttributeSet?) :
+class SecondsView(context: Context, attrs: AttributeSet?) :
     ConstraintLayout(context, attrs) {
 
     companion object {
@@ -44,7 +44,6 @@ class SecondsView(context: Context?, attrs: AttributeSet?) :
 
     val textView: TextView
         get() = tv_seconds
-
 
     @DrawableRes
     var icon: Int = R.drawable.ic_play_seek_triangle
@@ -87,9 +86,11 @@ class SecondsView(context: Context?, attrs: AttributeSet?) :
             icon_1.alpha = 0f
             icon_2.alpha = 0f
             icon_3.alpha = 0f
-        }, {
+        },
+        {
             icon_1.alpha = it
-        }, {
+        },
+        {
             secondAnimator.start()
         }
     )
@@ -99,9 +100,11 @@ class SecondsView(context: Context?, attrs: AttributeSet?) :
             icon_1.alpha = 1f
             icon_2.alpha = 0f
             icon_3.alpha = 0f
-        }, {
+        },
+        {
             icon_2.alpha = it
-        }, {
+        },
+        {
             thirdAnimator.start()
         }
     )
@@ -111,10 +114,12 @@ class SecondsView(context: Context?, attrs: AttributeSet?) :
             icon_1.alpha = 1f
             icon_2.alpha = 1f
             icon_3.alpha = 0f
-        }, {
+        },
+        {
             icon_1.alpha = 1f - icon_3.alpha
             icon_3.alpha = it
-        }, {
+        },
+        {
             fourthAnimator.start()
         }
     )
@@ -124,9 +129,11 @@ class SecondsView(context: Context?, attrs: AttributeSet?) :
             icon_1.alpha = 0f
             icon_2.alpha = 1f
             icon_3.alpha = 1f
-        }, {
+        },
+        {
             icon_2.alpha = 1f - it
-        }, {
+        },
+        {
             fifthAnimator.start()
         }
     )
@@ -136,16 +143,20 @@ class SecondsView(context: Context?, attrs: AttributeSet?) :
             icon_1.alpha = 0f
             icon_2.alpha = 0f
             icon_3.alpha = 1f
-        }, {
+        },
+        {
             icon_3.alpha = 1f - it
-        }, {
+        },
+        {
             firstAnimator.start()
         }
     )
 
     private inner class CustomValueAnimator(
-        start: () -> Unit, update: (value: Float) -> Unit, end: () -> Unit
-    ): ValueAnimator() {
+        start: () -> Unit,
+        update: (value: Float) -> Unit,
+        end: () -> Unit
+    ) : ValueAnimator() {
 
         init {
             duration = cycleDuration / 5
@@ -164,7 +175,6 @@ class SecondsView(context: Context?, attrs: AttributeSet?) :
                 override fun onAnimationCancel(animation: Animator?) = Unit
 
                 override fun onAnimationRepeat(animation: Animator?) = Unit
-
             })
         }
     }
