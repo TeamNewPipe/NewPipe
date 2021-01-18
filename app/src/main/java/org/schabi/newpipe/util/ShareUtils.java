@@ -6,6 +6,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.widget.Toast;
 
@@ -64,13 +65,18 @@ public final class ShareUtils {
             // No browser set as default (doesn't work on some devices)
             openInDefaultApp(context, intent);
         } else {
-            try {
-                intent.setPackage(defaultPackageName);
-                context.startActivity(intent);
-            } catch (final ActivityNotFoundException e) {
-                // Not a browser but an app chooser because of OEMs changes
-                intent.setPackage(null);
-                openInDefaultApp(context, intent);
+            if (defaultPackageName.isEmpty()) {
+                // No app installed to open a web url
+                Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
+            } else {
+                try {
+                    intent.setPackage(defaultPackageName);
+                    context.startActivity(intent);
+                } catch (final ActivityNotFoundException e) {
+                    // Not a browser but an app chooser because of OEMs changes
+                    intent.setPackage(null);
+                    openInDefaultApp(context, intent);
+                }
             }
         }
     }
@@ -104,19 +110,24 @@ public final class ShareUtils {
      * @param intent  the intent to open
      */
     public static void openIntentInApp(final Context context, final Intent intent) {
-        final String defaultAppPackageName = getDefaultAppPackageName(context, intent);
+        final String defaultPackageName = getDefaultAppPackageName(context, intent);
 
-        if (defaultAppPackageName.equals("android")) {
+        if (defaultPackageName.equals("android")) {
             // No app set as default (doesn't work on some devices)
             openInDefaultApp(context, intent);
         } else {
-            try {
-                intent.setPackage(defaultAppPackageName);
-                context.startActivity(intent);
-            } catch (final ActivityNotFoundException e) {
-                // Not an app to open the intent but an app chooser because of OEMs changes
-                intent.setPackage(null);
-                openInDefaultApp(context, intent);
+            if (defaultPackageName.isEmpty()) {
+                // No app installed to open the intent
+                Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
+            } else {
+                try {
+                    intent.setPackage(defaultPackageName);
+                    context.startActivity(intent);
+                } catch (final ActivityNotFoundException e) {
+                    // Not an app to open the intent but an app chooser because of OEMs changes
+                    intent.setPackage(null);
+                    openInDefaultApp(context, intent);
+                }
             }
         }
     }
@@ -140,33 +151,47 @@ public final class ShareUtils {
     /**
      * Get the default app package name.
      * <p>
-     * If no app is set as default, it will return "android".
+     * If no app is set as default, it will return "android" (not on some devices because some
+     * OEMs changed the app chooser).
      * <p>
-     * Note: it doesn't return "android" on some devices because some OEMs changed the app chooser.
+     * If no app is installed on user's device to handle the intent, it will return an empty string.
      *
      * @param context the context to use
      * @param intent  the intent to get default app
-     * @return the package name of the default app, or the app chooser if there's no default
+     * @return the package name of the default app to open the intent, an empty string if there's no
+     * app installed to handle it or the app chooser if there's no default
      */
     private static String getDefaultAppPackageName(final Context context, final Intent intent) {
-        return context.getPackageManager().resolveActivity(intent,
-                PackageManager.MATCH_DEFAULT_ONLY).activityInfo.packageName;
+        final ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        if (resolveInfo == null) {
+            return "";
+        } else {
+            return resolveInfo.activityInfo.packageName;
+        }
     }
 
     /**
      * Get the default browser package name.
      * <p>
-     * If no browser is set as default, it will return "android"
-     * Note: it doesn't return "android" on some devices because some OEMs changed the app chooser.
-     *
+     * If no browser is set as default, it will return "android" (not on some devices because some
+     * OEMs changed the app chooser).
+     * <p>
+     * If no browser is installed on user's device, it will return an empty string.
      * @param context the context to use
-     * @return the package name of the default browser, or "android" if there's no default
+     * @return the package name of the default browser, an empty string if there's no browser
+     * installed or the app chooser if there's no default
      */
     private static String getDefaultBrowserPackageName(final Context context) {
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"))
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        return context.getPackageManager().resolveActivity(intent,
-                PackageManager.MATCH_DEFAULT_ONLY).activityInfo.packageName;
+        final ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        if (resolveInfo == null) {
+            return "";
+        } else {
+            return resolveInfo.activityInfo.packageName;
+        }
     }
 
     /**
