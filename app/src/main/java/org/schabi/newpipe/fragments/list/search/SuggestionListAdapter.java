@@ -3,15 +3,14 @@ package org.schabi.newpipe.fragments.list.search;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.ItemSearchSuggestionBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,28 +49,30 @@ public class SuggestionListAdapter
         showSuggestionHistory = v;
     }
 
+    @NonNull
     @Override
-    public SuggestionItemHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        return new SuggestionItemHolder(LayoutInflater.from(context)
-                .inflate(R.layout.item_search_suggestion, parent, false));
+    public SuggestionItemHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+                                                   final int viewType) {
+        return new SuggestionItemHolder(ItemSearchSuggestionBinding
+                .inflate(LayoutInflater.from(context), parent, false));
     }
 
     @Override
     public void onBindViewHolder(final SuggestionItemHolder holder, final int position) {
         final SuggestionItem currentItem = getItem(position);
         holder.updateFrom(currentItem);
-        holder.queryView.setOnClickListener(v -> {
+        holder.binding.suggestionSearch.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onSuggestionItemSelected(currentItem);
             }
         });
-        holder.queryView.setOnLongClickListener(v -> {
+        holder.binding.suggestionSearch.setOnLongClickListener(v -> {
             if (listener != null) {
                 listener.onSuggestionItemLongClick(currentItem);
             }
             return true;
         });
-        holder.insertView.setOnClickListener(v -> {
+        holder.binding.suggestionInsert.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onSuggestionItemInserted(currentItem);
             }
@@ -100,25 +101,18 @@ public class SuggestionListAdapter
     }
 
     public static final class SuggestionItemHolder extends RecyclerView.ViewHolder {
-        private final TextView itemSuggestionQuery;
-        private final ImageView suggestionIcon;
-        private final View queryView;
-        private final View insertView;
+        private final ItemSearchSuggestionBinding binding;
 
         // Cache some ids, as they can potentially be constantly updated/recycled
         private final int historyResId;
         private final int searchResId;
 
-        private SuggestionItemHolder(final View rootView) {
-            super(rootView);
-            suggestionIcon = rootView.findViewById(R.id.item_suggestion_icon);
-            itemSuggestionQuery = rootView.findViewById(R.id.item_suggestion_query);
+        private SuggestionItemHolder(final ItemSearchSuggestionBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
 
-            queryView = rootView.findViewById(R.id.suggestion_search);
-            insertView = rootView.findViewById(R.id.suggestion_insert);
-
-            historyResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.ic_history);
-            searchResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.ic_search);
+            historyResId = resolveResourceIdFromAttr(itemView.getContext(), R.attr.ic_history);
+            searchResId = resolveResourceIdFromAttr(itemView.getContext(), R.attr.ic_search);
         }
 
         private static int resolveResourceIdFromAttr(final Context context,
@@ -130,8 +124,9 @@ public class SuggestionListAdapter
         }
 
         private void updateFrom(final SuggestionItem item) {
-            suggestionIcon.setImageResource(item.fromHistory ? historyResId : searchResId);
-            itemSuggestionQuery.setText(item.query);
+            binding.itemSuggestionIcon.setImageResource(item.fromHistory ? historyResId
+                    : searchResId);
+            binding.itemSuggestionQuery.setText(item.query);
         }
     }
 }
