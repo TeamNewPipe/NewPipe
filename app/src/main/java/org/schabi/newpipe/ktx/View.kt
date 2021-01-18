@@ -54,7 +54,7 @@ fun View.animate(
         )
         Log.d(TAG, "animate(): $msg")
     }
-    if (isVisible && enterOrExit && alpha == 1f && animationType == AnimationType.ALPHA) {
+    if (isVisible && enterOrExit) {
         if (MainActivity.DEBUG) {
             Log.d(TAG, "animate(): view was already visible > view = [$this]")
         }

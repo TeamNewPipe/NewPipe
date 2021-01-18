@@ -251,6 +251,7 @@ public final class Player implements
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
     public static final int DPAD_CONTROLS_HIDE_TIME = 7000;  // 7 Seconds
+    public static final int SEEK_OVERLAY_DURATION = 450; // 450 millis
 
     /*//////////////////////////////////////////////////////////////////////////
     // Other constants
@@ -586,10 +587,9 @@ public final class Player implements
     }
 
     private void setupPlayerSeekOverlay() {
-        final int fadeDurations = 450;
         binding.seekOverlay.showCircle(true)
                 .circleBackgroundColorInt(CircleClipTapView.COLOR_DARK_TRANSPARENT)
-                .seekSeconds(retrieveSeekDurationFromPreferences(this) / 1000)
+                .seekSeconds((int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
                 .performListener(new PlayerSeekOverlay.PerformListener() {
 
                     @Override
@@ -605,22 +605,22 @@ public final class Player implements
 
                     @Override
                     public void onAnimationStart() {
-                        animate(binding.seekOverlay, true, fadeDurations);
+                        animate(binding.seekOverlay, true, SEEK_OVERLAY_DURATION);
                         animate(binding.playbackControlsShadow,
-                                !simpleExoPlayer.getPlayWhenReady(), fadeDurations);
-                        animate(binding.playerTopShadow, false, fadeDurations);
-                        animate(binding.playerBottomShadow, false, fadeDurations);
-                        animate(binding.playbackControlRoot, false, fadeDurations);
+                                !simpleExoPlayer.getPlayWhenReady(), SEEK_OVERLAY_DURATION);
+                        animate(binding.playerTopShadow, false, SEEK_OVERLAY_DURATION);
+                        animate(binding.playerBottomShadow, false, SEEK_OVERLAY_DURATION);
+                        animate(binding.playbackControlRoot, false, SEEK_OVERLAY_DURATION);
                         hideSystemUIIfNeeded();
                     }
 
                     @Override
                     public void onAnimationEnd() {
-                        animate(binding.seekOverlay, false, fadeDurations);
+                        animate(binding.seekOverlay, false, SEEK_OVERLAY_DURATION);
                         if (!simpleExoPlayer.getPlayWhenReady()) {
-                            showControls(fadeDurations);
+                            showControls(SEEK_OVERLAY_DURATION);
                         } else {
-                            showHideShadow(false, fadeDurations);
+                            showHideShadow(false, SEEK_OVERLAY_DURATION);
                         }
                     }
 

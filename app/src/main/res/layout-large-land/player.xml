@@ -767,6 +767,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
-        android:alpha="0" /> <!-- Required to make the first appearance fading correctly -->
+        android:alpha="0" /> <!-- Required for the first appearance fading correctly -->
 
 </RelativeLayout>

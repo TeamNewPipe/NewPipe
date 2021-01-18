@@ -5,14 +5,13 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
-import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.player_seek_seconds_view.view.*
 import org.schabi.newpipe.R
 
-class SecondsView(context: Context, attrs: AttributeSet?) :
-    ConstraintLayout(context, attrs) {
+class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs) {
 
     companion object {
         const val ICON_ANIMATION_DURATION = 750L
@@ -58,6 +57,8 @@ class SecondsView(context: Context, attrs: AttributeSet?) :
 
     init {
         LayoutInflater.from(context).inflate(R.layout.player_seek_seconds_view, this, true)
+        orientation = VERTICAL
+        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
     }
 
     fun start() {
