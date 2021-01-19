@@ -733,7 +733,7 @@ public final class Player implements
         if (playQueueAdapter != null) {
             playQueueAdapter.dispose();
         }
-        playQueueAdapter = new PlayQueueAdapter(context, playQueue);
+        playQueueAdapter = new PlayQueueAdapter(playQueue);
         segmentAdapter = new StreamSegmentAdapter(getStreamSegmentListener());
 
         simpleExoPlayer.setVolume(isMuted ? 0 : 1);

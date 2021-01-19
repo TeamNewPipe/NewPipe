@@ -1,6 +1,5 @@
 package org.schabi.newpipe.player.playqueue;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.PlayQueueItemBinding;
 import org.schabi.newpipe.player.playqueue.events.AppendEvent;
 import org.schabi.newpipe.player.playqueue.events.ErrorEvent;
 import org.schabi.newpipe.player.playqueue.events.MoveEvent;
@@ -60,12 +59,12 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private Disposable playQueueReactor;
 
-    public PlayQueueAdapter(final Context context, final PlayQueue playQueue) {
+    public PlayQueueAdapter(final PlayQueue playQueue) {
         if (playQueue.getBroadcastReceiver() == null) {
             throw new IllegalStateException("Play Queue has not been initialized.");
         }
 
-        this.playQueueItemBuilder = new PlayQueueItemBuilder(context);
+        this.playQueueItemBuilder = new PlayQueueItemBuilder();
         this.playQueue = playQueue;
 
         playQueue.getBroadcastReceiver().toObservable().subscribe(getReactor());
@@ -182,14 +181,16 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return ITEM_VIEW_TYPE_ID;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+                                                      final int type) {
         switch (type) {
             case FOOTER_VIEW_TYPE_ID:
                 return new HFHolder(footer);
             case ITEM_VIEW_TYPE_ID:
-                return new PlayQueueItemHolder(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.play_queue_item, parent, false));
+                return new PlayQueueItemHolder(PlayQueueItemBinding
+                        .inflate(LayoutInflater.from(parent.getContext()), parent, false));
             default:
                 Log.e(TAG, "Attempting to create view holder with undefined type: " + type);
                 return new FallbackViewHolder(new View(parent.getContext()));
@@ -197,7 +198,8 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
+                                 final int position) {
         if (holder instanceof PlayQueueItemHolder) {
             final PlayQueueItemHolder itemHolder = (PlayQueueItemHolder) holder;
 
@@ -207,7 +209,8 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             // Check if the current item should be selected/highlighted
             final boolean isSelected = playQueue.getIndex() == position;
-            itemHolder.itemSelected.setVisibility(isSelected ? View.VISIBLE : View.INVISIBLE);
+            itemHolder.binding.itemSelected.setVisibility(isSelected
+                    ? View.VISIBLE : View.INVISIBLE);
             itemHolder.itemView.setSelected(isSelected);
         } else if (holder instanceof HFHolder && position == playQueue.getStreams().size()
                 && footer != null && showFooter) {

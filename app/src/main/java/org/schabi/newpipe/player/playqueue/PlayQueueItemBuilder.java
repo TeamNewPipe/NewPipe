@@ -1,6 +1,5 @@
 package org.schabi.newpipe.player.playqueue;
 
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,7 +14,7 @@ public class PlayQueueItemBuilder {
     private static final String TAG = PlayQueueItemBuilder.class.toString();
     private OnSelectedListener onItemClickListener;
 
-    public PlayQueueItemBuilder(final Context context) {
+    public PlayQueueItemBuilder() {
     }
 
     public void setOnSelectedListener(final OnSelectedListener listener) {
@@ -24,27 +23,29 @@ public class PlayQueueItemBuilder {
 
     public void buildStreamInfoItem(final PlayQueueItemHolder holder, final PlayQueueItem item) {
         if (!TextUtils.isEmpty(item.getTitle())) {
-            holder.itemVideoTitleView.setText(item.getTitle());
+            holder.binding.itemVideoTitleView.setText(item.getTitle());
         }
-        holder.itemAdditionalDetailsView.setText(Localization.concatenateStrings(item.getUploader(),
-                NewPipe.getNameOfService(item.getServiceId())));
+        holder.binding.itemAdditionalDetails
+                .setText(Localization.concatenateStrings(item.getUploader(),
+                        NewPipe.getNameOfService(item.getServiceId())));
 
         if (item.getDuration() > 0) {
-            holder.itemDurationView.setText(Localization.getDurationString(item.getDuration()));
+            holder.binding.itemDurationView
+                    .setText(Localization.getDurationString(item.getDuration()));
         } else {
-            holder.itemDurationView.setVisibility(View.GONE);
+            holder.binding.itemDurationView.setVisibility(View.GONE);
         }
 
-        ImageLoader.getInstance().displayImage(item.getThumbnailUrl(), holder.itemThumbnailView,
-                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
+        ImageLoader.getInstance().displayImage(item.getThumbnailUrl(),
+                holder.binding.itemThumbnailView, ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        holder.itemRoot.setOnClickListener(view -> {
+        holder.binding.itemRoot.setOnClickListener(view -> {
             if (onItemClickListener != null) {
                 onItemClickListener.selected(item, view);
             }
         });
 
-        holder.itemRoot.setOnLongClickListener(view -> {
+        holder.binding.itemRoot.setOnLongClickListener(view -> {
             if (onItemClickListener != null) {
                 onItemClickListener.held(item, view);
                 return true;
@@ -52,7 +53,7 @@ public class PlayQueueItemBuilder {
             return false;
         });
 
-        holder.itemHandle.setOnTouchListener(getOnTouchListener(holder));
+        holder.binding.itemHandle.setOnTouchListener(getOnTouchListener(holder));
     }
 
     private View.OnTouchListener getOnTouchListener(final PlayQueueItemHolder holder) {
