@@ -241,7 +241,7 @@ public final class VideoDetailFragment
                 && isAutoplayEnabled()
                 && player.getParentActivity() == null)) {
             autoPlayEnabled = true; // forcefully start playing
-            openVideoPlayer();
+            openVideoPlayer(true);
         }
     }
 
@@ -499,7 +499,7 @@ public final class VideoDetailFragment
                 break;
             case R.id.detail_thumbnail_root_layout:
                 autoPlayEnabled = true; // forcefully start playing
-                openVideoPlayer();
+                openVideoPlayer(true);
                 break;
             case R.id.detail_title_root_layout:
                 toggleTitleAndSecondaryControls();
@@ -516,7 +516,7 @@ public final class VideoDetailFragment
                     showSystemUi();
                 } else {
                     autoPlayEnabled = true; // forcefully start playing
-                    openVideoPlayer();
+                    openVideoPlayer(false);
                 }
 
                 setOverlayPlayPauseImage(isPlayerAvailable() && player.isPlaying());
@@ -897,8 +897,9 @@ public final class VideoDetailFragment
                                 stack.push(new StackItem(serviceId, url, title, playQueue));
                             }
                         }
+
                         if (isAutoplayEnabled()) {
-                            openVideoPlayer();
+                            openVideoPlayer(true);
                         }
                     }
                 }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
@@ -1103,7 +1104,15 @@ public final class VideoDetailFragment
         }
     }
 
-    public void openVideoPlayer() {
+    public void openVideoPlayer(final boolean directlyFullscreenIfApplicable) {
+        if (directlyFullscreenIfApplicable
+                && PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext())
+                && !isLandscape()
+                && PlayerHelper.globalScreenOrientationLocked(requireContext())) {
+            // open directly in fullscreen TODO does it work for large-land layouts?
+            onScreenRotationButtonClicked();
+        }
+
         if (PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             showExternalPlaybackDialog();
@@ -1145,8 +1154,8 @@ public final class VideoDetailFragment
         }
         addVideoPlayerView();
 
-        final Intent playerIntent = NavigationHelper
-                .getPlayerIntent(requireContext(), MainPlayer.class, queue, true, autoPlayEnabled);
+        final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
+                MainPlayer.class, queue, true, autoPlayEnabled);
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 
@@ -2022,7 +2031,7 @@ public final class VideoDetailFragment
         }
     }
 
-    private boolean isLandscape() {
+    public boolean isLandscape() {
         return getResources().getDisplayMetrics().heightPixels < getResources()
                 .getDisplayMetrics().widthPixels;
     }
