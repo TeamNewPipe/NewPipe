@@ -124,11 +124,11 @@ public class PlayerGestureListener
             final View closingOverlayView = player.getClosingOverlayView();
             if (player.isInsideClosingRadius(movingEvent)) {
                 if (closingOverlayView.getVisibility() == View.GONE) {
-                    animate(closingOverlayView, true, 250);
+                    animate(closingOverlayView, true, 200);
                 }
             } else {
                 if (closingOverlayView.getVisibility() == View.VISIBLE) {
-                    animate(closingOverlayView, false, 0);
+                    animate(closingOverlayView, false, 200);
                 }
             }
         }
@@ -234,12 +234,9 @@ public class PlayerGestureListener
 
             if (player.isInsideClosingRadius(event)) {
                 player.closePopup();
-            } else {
-                animate(player.getClosingOverlayView(), false, 0);
-
-                if (!player.isPopupClosing()) {
-                    animate(player.getCloseOverlayButton(), false, 200);
-                }
+            } else if (!player.isPopupClosing()) {
+                animate(player.getCloseOverlayButton(), false, 200);
+                animate(player.getClosingOverlayView(), false, 200);
             }
         }
     }
