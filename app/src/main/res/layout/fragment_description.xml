@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<org.schabi.newpipe.fragments.detail.DescriptionNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:scrollbars="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:scrollbars="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,9 +15,8 @@
             android:id="@+id/detail_upload_date_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="6dp"
-            android:layout_marginEnd="16dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="@dimen/video_item_detail_upload_date_text_size"
             android:textStyle="bold"
@@ -29,11 +28,10 @@
 
         <TextView
             android:id="@+id/detail_description_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textIsSelectable="true"
@@ -45,4 +43,4 @@
             app:layout_constraintVertical_bias="0.0"
             tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum." />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+</org.schabi.newpipe.fragments.detail.DescriptionNestedScrollView>
