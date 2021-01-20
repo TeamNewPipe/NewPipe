@@ -131,14 +131,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         if (subscribeButtonMonitor != null) {
             subscribeButtonMonitor.dispose();
         }
-    }
-
-    @Override
-    public void onDestroyView() {
         channelBinding = null;
         headerBinding = null;
         playlistControlBinding = null;
-        super.onDestroyView();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
