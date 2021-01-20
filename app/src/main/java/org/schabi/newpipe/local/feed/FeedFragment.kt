@@ -236,7 +236,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         feedBinding.loadingProgressText.text = if (!isIndeterminate) {
             "${progressState.currentProgress}/${progressState.maxProgress}"
         } else if (progressState.progressMessage > 0) {
-            progressState.progressMessage.toString()
+            getString(progressState.progressMessage)
         } else {
             "∞/∞"
         }
