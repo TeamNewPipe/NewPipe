@@ -1,6 +1,6 @@
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">App bilaash ah oo fudud looguna talagalay in aaladaha nidaamka Android-ka ku shaqeeya wax loogu daawado.</h4>
+<h4 align="center">App bilaash ah oo fudud looguna talagalay in Android-ka wax loogu daawado.</h4>
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> 
 
 <p align="center">
@@ -12,15 +12,15 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Kuwa Bountysource "><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#screenshots">Sawir-shaashadeed</a> &bull; <a href="#description">Faahfaahin</a> &bull; <a href="#features">Waxqabadka</a> &bull; <a href="#updates">Cusboonaysiin</a> &bull; <a href="#contribution">Kusoo Kordhin</a> &bull; <a href="#donate">Ugu Deeq</a> &bull; <a href="#license">Laysinka</a></p>
+<p align="center"><a href="#sawir-shaashadeed">Sawir-shaashadeed</a> &bull; <a href="#faahfaahin">Faahfaahin</a> &bull; <a href="#waxqabadka">Waxqabadka</a> &bull; <a href="#kushubida-iyo-cusboonaysiinta">Kushubida iyo cusboonaysiinta</a> &bull; <a href="#kusoo-kordhin">Kusoo Kordhin</a> &bull; <a href="#ugu-deeq">Ugu Deeq</a> &bull; <a href="#laysinka">Laysinka</a></p>
 <p align="center"><a href="https://newpipe.net">Website-ka</a> &bull; <a href="https://newpipe.net/blog/">Maqaalada</a> &bull; <a href="https://newpipe.net/FAQ/">Su'aalaha Aalaa La-iswaydiiyo</a> &bull; <a href="https://newpipe.net/press/">Warbaahinta</a></p>
 <hr>
 
 *Ku akhri luuqad kale: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md).*
 
-<b>DIGNIIN: MIDKAN [NOOCA APP-KA EE HADDA] WALI TIJAABO AYUU KU JIRAA (BETA), SIDAA DARTEED CILLADO AYAAD LA KULMI KARTAA. HADAAD LA KULANTO , KA FUR ARIN SHARAXAYA QAYBTANADA GITHUB-KA.</b>
+<b>DIGNIIN: MIDKAN, NOOCA APP-KA EE HADDA WALI TIJAABO AYUU KU JIRAA, SIDAA DARTEED CILLADO AYAAD LA KULMI KARTAA. HADAAD LA KULANTO, KA FUR ARIN SHARAXAYA QAYBTANADA ARRIMAHA EE GITHUB-KA.</b>
 
-<b>NEWPIPE AMA KUWA KU SALAYSAN PLAYSTORE-KA IN LA GALIYO WAXAY KA HOR IMANAYSAA SHARCIGA IYO SHURUUDAHA AY LEEYIHIIN.</b>
+<b>NEWPIPE AMA KUWA KU SALAYSAN IN PLAYSTORE-KA LA GALIYO WAXAY KA HOR IMANAYSAA SHARCIGA IYO SHURUUDAHA AY LEEYIHIIN.</b>
 
 ## Sawir-shaashadeed
 
@@ -80,7 +80,7 @@ NewPipe wuxuu taageeraa adeegyo badan. [warqadan](https://teamnewpipe.github.io/
 * media.ccc.de \[tijaabo\]
 * PeerTube instances \[tijaabo\]
 
-## Cusboonaysiin
+## Kushubida iyo cusboonaysiinta
 Marka koodhka NewPipe isbadal ku dhaco (wax cusub oo lagusoo kordhiyay ama cilad bixin), ugu dambayn waxaa lasii daayaa mid cusub (Siidayn). Siidaynta qaabkeedu waa x.xx.x . Si aad midka cusub u hesho, waxaad samayn kartaa:
  1. Inaad mid cusub (APK) adigu dhisato. Tani waa mida ugu dagdag badan eed waxyaabaha cusub ku heli karto, laakiin way adagtahay, sidaa darteed waxaan soojeedinaynaa inaad isticmaasho qababka kale.
  2. Ku dar qayb gaar ah xaganaga F-Droid oo xagaas kaga shub isla markay siidayn soobaxdo. Hagitaanka xagan ka eeg: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
@@ -101,7 +101,7 @@ Hadaad hayso fikrado; rogid, qaab badal, nadiifin koodh, ama koodhka ood si wayn
 Hadaad jeceshahay inaad qayb ka noqoto, fiiri [ogaysiisyada kusoo kordhinta](.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
-<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
+<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Heerka turjimaada" />
 </a>
 
 ## Ugu Deeq
