@@ -29,28 +29,28 @@ import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
 
 @Dao
-public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity> {
+public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
     @Override
     @Query("SELECT * FROM " + PLAYLIST_STREAM_JOIN_TABLE)
-    public abstract Flowable<List<PlaylistStreamEntity>> getAll();
+    Flowable<List<PlaylistStreamEntity>> getAll();
 
     @Override
     @Query("DELETE FROM " + PLAYLIST_STREAM_JOIN_TABLE)
-    public abstract int deleteAll();
+    int deleteAll();
 
     @Override
-    public Flowable<List<PlaylistStreamEntity>> listByService(final int serviceId) {
+    default Flowable<List<PlaylistStreamEntity>> listByService(final int serviceId) {
         throw new UnsupportedOperationException();
     }
 
     @Query("DELETE FROM " + PLAYLIST_STREAM_JOIN_TABLE
             + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId")
-    public abstract void deleteBatch(long playlistId);
+    void deleteBatch(long playlistId);
 
     @Query("SELECT COALESCE(MAX(" + JOIN_INDEX + "), -1)"
             + " FROM " + PLAYLIST_STREAM_JOIN_TABLE
             + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId")
-    public abstract Flowable<Integer> getMaximumIndexOf(long playlistId);
+    Flowable<Integer> getMaximumIndexOf(long playlistId);
 
     @Transaction
     @Query("SELECT * FROM " + STREAM_TABLE + " INNER JOIN "
@@ -69,7 +69,7 @@ public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity
             + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS
 
             + " ORDER BY " + JOIN_INDEX + " ASC")
-    public abstract Flowable<List<PlaylistStreamEntry>> getOrderedStreamsOf(long playlistId);
+    Flowable<List<PlaylistStreamEntry>> getOrderedStreamsOf(long playlistId);
 
     @Transaction
     @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", " + PLAYLIST_THUMBNAIL_URL + ", "
@@ -80,5 +80,5 @@ public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity
             + " ON " + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID
             + " GROUP BY " + JOIN_PLAYLIST_ID
             + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
-    public abstract Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
+    Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
 }
