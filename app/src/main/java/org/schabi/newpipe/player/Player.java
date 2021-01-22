@@ -4003,7 +4003,7 @@ public final class Player implements
     }
 
     public View getClosingOverlayView() {
-        return closeOverlayBinding.getRoot();
+        return binding.closingOverlay;
     }
 
     public ProgressBar getVolumeProgressBar() {
