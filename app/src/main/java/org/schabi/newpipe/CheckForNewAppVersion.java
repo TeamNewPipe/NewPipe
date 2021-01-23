@@ -10,22 +10,19 @@ import android.content.pm.Signature;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
-
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
-
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
-
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -34,11 +31,9 @@ import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.ErrorInfo;
+import org.schabi.newpipe.report.UserAction;
 
 public final class CheckForNewAppVersion {
     private CheckForNewAppVersion() { }
@@ -176,6 +171,7 @@ public final class CheckForNewAppVersion {
     @Nullable
     public static Disposable checkNewVersion(@NonNull final App app) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
+        final NewVersionManager manager = new NewVersionManager();
 
         // Check if user has enabled/disabled update checking
         // and if the current apk is a github one or not.
@@ -183,31 +179,48 @@ public final class CheckForNewAppVersion {
             return null;
         }
 
-        return Maybe
-                .fromCallable(() -> {
-                    if (!isConnected(app)) {
-                        return null;
-                    }
+        final long expiry = prefs.getLong(app.getString(R.string.update_expiry_key), 0);
+        if (manager.isExpired(expiry)) {
+            return null;
+        }
 
-                    // Make a network request to get latest NewPipe data.
-                    return DownloaderImpl.getInstance().get(NEWPIPE_API_URL).responseBody();
-                })
+        return Maybe
+            .fromCallable(() -> {
+                if (!isConnected(app)) {
+                    return null;
+                }
+
+                // Make a network request to get latest NewPipe data.
+                return DownloaderImpl.getInstance().get(NEWPIPE_API_URL);
+            })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         response -> {
+                            try {
+                                final long newExpiry = manager
+                                    .coerceExpiry(response.getHeader("expires"));
+                                prefs.edit()
+                                    .putLong(app.getString(R.string.update_expiry_key), newExpiry)
+                                    .apply();
+                            } catch (final Exception e) {
+                                if (DEBUG) {
+                                    Log.w(TAG, "Could not extract and save new expiry date", e);
+                                }
+                            }
+
                             // Parse the json from the response.
                             try {
                                 final JsonObject githubStableObject = JsonParser.object()
-                                        .from(response).getObject("flavors").getObject("github")
-                                        .getObject("stable");
+                                    .from(response.responseBody()).getObject("flavors")
+                                    .getObject("github").getObject("stable");
 
                                 final String versionName = githubStableObject
-                                        .getString("version");
+                                    .getString("version");
                                 final int versionCode = githubStableObject
-                                        .getInt("version_code");
+                                    .getInt("version_code");
                                 final String apkLocationUrl = githubStableObject
-                                        .getString("apk");
+                                    .getString("apk");
 
                                 compareAppVersionAndShowNotification(app, versionName,
                                         apkLocationUrl, versionCode);
