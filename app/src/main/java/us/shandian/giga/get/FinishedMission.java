@@ -13,6 +13,7 @@ public class FinishedMission extends Mission {
         timestamp = mission.timestamp;
         kind = mission.kind;
         storage = mission.storage;
+        segmentsJson = mission.segmentsJson;
     }
 
 }

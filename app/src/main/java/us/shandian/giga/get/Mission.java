@@ -2,6 +2,8 @@ package us.shandian.giga.get;
 
 import androidx.annotation.NonNull;
 
+import org.schabi.newpipe.util.VideoSegment;
+
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -34,6 +36,8 @@ public abstract class Mission implements Serializable {
      * The downloaded file
      */
     public StoredFileHelper storage;
+
+    public String segmentsJson;
 
     public long getTimestamp() {
         return timestamp;

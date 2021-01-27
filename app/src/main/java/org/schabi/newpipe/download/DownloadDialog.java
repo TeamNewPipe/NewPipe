@@ -60,6 +60,7 @@ import org.schabi.newpipe.util.SecondaryStreamHelper;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.VideoSegment;
 
 import java.io.File;
 import java.io.IOException;
@@ -123,6 +124,8 @@ public class DownloadDialog extends DialogFragment
     private SeekBar threadsSeekBar;
 
     private SharedPreferences prefs;
+
+    private VideoSegment[] segments;
 
     public static DownloadDialog newInstance(final StreamInfo info) {
         final DownloadDialog dialog = new DownloadDialog();
@@ -188,6 +191,10 @@ public class DownloadDialog extends DialogFragment
 
     public void setSelectedSubtitleStream(final int ssi) {
         this.selectedSubtitleIndex = ssi;
+    }
+
+    public void setVideoSegments(final VideoSegment[] seg) {
+        this.segments = seg;
     }
 
     @Override
@@ -942,7 +949,8 @@ public class DownloadDialog extends DialogFragment
         }
 
         DownloadManagerService.startMission(context, urls, storage, kind, threads,
-                currentInfo.getUrl(), psName, psArgs, nearLength, recoveryInfo);
+                currentInfo.getUrl(), psName, psArgs, nearLength, recoveryInfo,
+                segments);
 
         dismiss();
     }

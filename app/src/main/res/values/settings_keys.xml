@@ -364,6 +364,7 @@
     <string name="sponsor_block_clear_whitelist_key" translatable="false">sponsor_block_clear_whitelist</string>
 
     <!-- Extras -->
+    <string name="enable_local_player_key" translatable="false">enable_local_player</string>
     <string name="disable_tablet_ui_key" translatable="false">disable_tablet_ui</string>
     <string name="disable_tv_ui_key" translatable="false">disable_tv_ui</string>
 

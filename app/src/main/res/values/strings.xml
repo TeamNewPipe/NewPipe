@@ -360,6 +360,7 @@
     <string name="checksum">Checksum</string>
     <string name="dismiss">Dismiss</string>
     <string name="rename">Rename</string>
+    <string name="open_with">Open With...</string>
     <!-- Fragment -->
     <string name="add">New mission</string>
     <string name="finish">OK</string>
@@ -750,6 +751,8 @@
     <string name="extras">Extras</string>
     <string name="extras_todo_summary">Tweaks, workarounds, and other miscellaneous settings belong here.</string>
     <string name="experimental_settings">Experimental Settings</string>
+    <string name="enable_local_player_title">Enable Local Player (alpha)</string>
+    <string name="enable_local_player_summary">Use a built-in player for local playback. This is still in early development so there will probably be a lot of issues, including conflicts with the existing player.</string>
     <string name="disable_tablet_ui_title">Disable Tablet UI</string>
     <string name="disable_tablet_ui_summary">Ignore tablet layouts. This is intended for specific workarounds. You may need to restart the app to see the effects.</string>
     <string name="disable_tv_ui_title">Disable TV UI</string>

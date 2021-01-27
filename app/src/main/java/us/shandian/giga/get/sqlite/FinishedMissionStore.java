@@ -26,7 +26,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
     // TODO: use NewPipeSQLiteHelper ('s constants) when playlist branch is merged (?)
     private static final String DATABASE_NAME = "downloads.db";
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     /**
      * The table name of download missions (old)
@@ -55,6 +55,8 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
 
     private static final String KEY_PATH = "path";
 
+    private static final String KEY_SEGMENTS = "segments";
+
     /**
      * The statement to create the table
      */
@@ -65,6 +67,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
                     KEY_DONE + " INTEGER NOT NULL, " +
                     KEY_TIMESTAMP + " INTEGER NOT NULL, " +
                     KEY_KIND + " TEXT NOT NULL, " +
+                    KEY_SEGMENTS + " TEXT, " +
                     " UNIQUE(" + KEY_TIMESTAMP + ", " + KEY_PATH + "));";
 
 
@@ -120,6 +123,11 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
 
             cursor.close();
             db.execSQL("DROP TABLE " + MISSIONS_TABLE_NAME_v2);
+            oldVersion++;
+        }
+
+        if (oldVersion == 4) {
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN " + KEY_SEGMENTS + " TEXT;");
         }
     }
 
@@ -136,6 +144,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         values.put(KEY_DONE, downloadMission.length);
         values.put(KEY_TIMESTAMP, downloadMission.timestamp);
         values.put(KEY_KIND, String.valueOf(downloadMission.kind));
+        values.put(KEY_SEGMENTS, downloadMission.segmentsJson);
         return values;
     }
 
@@ -153,6 +162,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         mission.length = cursor.getLong(cursor.getColumnIndexOrThrow(KEY_DONE));
         mission.timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(KEY_TIMESTAMP));
         mission.kind = kind.charAt(0);
+        mission.segmentsJson = cursor.getString(cursor.getColumnIndexOrThrow(KEY_SEGMENTS));
 
         try {
             mission.storage = new StoredFileHelper(context,null, Uri.parse(path), "");

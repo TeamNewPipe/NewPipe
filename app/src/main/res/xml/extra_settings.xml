@@ -16,6 +16,13 @@
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
+            android:key="@string/enable_local_player_key"
+            android:summary="@string/enable_local_player_summary"
+            android:title="@string/enable_local_player_title"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
             android:key="@string/disable_tablet_ui_key"
             android:summary="@string/disable_tablet_ui_summary"
             android:title="@string/disable_tablet_ui_title"/>

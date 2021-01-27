@@ -22,8 +22,8 @@
         android:label="@string/app_name"
         android:logo="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
-        android:theme="@style/OpeningTheme"
         android:resizeableActivity="true"
+        android:theme="@style/OpeningTheme"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
@@ -56,11 +56,9 @@
             android:name=".player.BackgroundPlayerActivity"
             android:label="@string/title_activity_play_queue"
             android:launchMode="singleTask" />
-
         <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/settings" />
-
         <activity
             android:name=".about.AboutActivity"
             android:label="@string/title_activity_about" />
@@ -80,14 +78,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ExitActivity"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-        <activity android:name=".report.ErrorActivity" />
-
-        <!-- giga get related -->
+        <activity android:name=".report.ErrorActivity" /> <!-- giga get related -->
         <activity
             android:name=".download.DownloadActivity"
             android:label="@string/app_name"
@@ -101,10 +96,10 @@
             android:theme="@style/FilePickerThemeDark">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ReCaptchaActivity"
             android:label="@string/recaptcha" />
@@ -262,7 +257,9 @@
             <!-- Share filter -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
 
@@ -280,7 +277,7 @@
                 <data android:host="media.ccc.de" />
                 <!-- video prefix -->
                 <data android:pathPrefix="/v/" />
-                <!-- channel prefix-->
+                <!-- channel prefix -->
                 <data android:pathPrefix="/c/" />
                 <data android:pathPrefix="/b/" />
             </intent-filter>
@@ -296,7 +293,6 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
-
                 <data android:host="framatube.org" />
                 <data android:host="media.assassinate-you.net" />
                 <data android:host="peertube.co.uk" />
@@ -308,20 +304,28 @@
                 <data android:host="video.ploud.fr" />
                 <data android:host="video.lqdn.fr" />
                 <data android:host="skeptikon.fr" />
-
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
                 <data android:pathPrefix="/accounts/" />
                 <data android:pathPrefix="/video-channels/" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".LocalPlayerActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:foregroundServiceType="mediaPlayback" />
+
         <service
             android:name=".RouterActivity$FetcherService"
-            android:exported="false" />
-
-        <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
+            android:exported="false" /> <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
         <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
-        <meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>
-        <!-- Version >= 3.0. DeX Dual Mode support -->
-        <meta-data android:name="com.samsung.android.multidisplay.keep_process_alive" android:value="true"/>
+        <meta-data
+            android:name="com.samsung.android.keepalive.density"
+            android:value="true" /> <!-- Version >= 3.0. DeX Dual Mode support -->
+        <meta-data
+            android:name="com.samsung.android.multidisplay.keep_process_alive"
+            android:value="true" />
     </application>
+
 </manifest>

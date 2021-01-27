@@ -30,6 +30,10 @@
         android:title="@string/delete" />
 
     <item
+        android:id="@+id/open_externally"
+        android:title="@string/open_with" />
+
+    <item
         android:id="@+id/error_message_view"
         android:title="@string/show_error" />
 

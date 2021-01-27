@@ -1,6 +1,8 @@
 package org.schabi.newpipe.util;
 
-public class VideoSegment {
+import java.io.Serializable;
+
+public class VideoSegment implements Serializable {
     public double startTime;
     public double endTime;
     public String category;
