@@ -227,7 +227,7 @@
                 <data android:host="invidio.us" />
                 <data android:host="dev.invidio.us" />
                 <data android:host="www.invidio.us" />
-                <data android:host="vid.encryptionin.space" />
+                <data android:host="redirect.invidious.io" />
                 <data android:host="invidious.snopyta.org" />
                 <data android:host="yewtu.be" />
                 <data android:host="tube.connect.cafe" />
@@ -239,6 +239,10 @@
                 <data android:host="vid.mint.lgbt" />
                 <data android:host="invidiou.site" />
                 <data android:host="invidious.fdn.fr" />
+                <data android:host="invidious.048596.xyz" />
+                <data android:host="invidious.zee.li" />
+                <data android:host="vid.puffyan.us" />
+                <data android:host="ytprivate.com" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
