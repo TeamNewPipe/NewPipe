@@ -251,44 +251,27 @@ public final class PlayerHelper {
 
     @MinimizeMode
     public static int getMinimizeOnExitAction(@NonNull final Context context) {
-        final String defaultAction = context.getString(R.string.minimize_on_exit_none_key);
-        final String popupAction = context.getString(R.string.minimize_on_exit_popup_key);
-        final String backgroundAction = context.getString(R.string.minimize_on_exit_background_key);
-
         final String action = getPreferences(context)
-                .getString(context.getString(R.string.minimize_on_exit_key), defaultAction);
-        if (action.equals(popupAction)) {
+                .getString(context.getString(R.string.minimize_on_exit_key), "");
+        if (action.equals(context.getString(R.string.minimize_on_exit_popup_key))) {
             return MINIMIZE_ON_EXIT_MODE_POPUP;
-        } else if (action.equals(backgroundAction)) {
-            return MINIMIZE_ON_EXIT_MODE_BACKGROUND;
-        } else {
+        } else if (action.equals(context.getString(R.string.minimize_on_exit_none_key))) {
             return MINIMIZE_ON_EXIT_MODE_NONE;
+        } else {
+            return MINIMIZE_ON_EXIT_MODE_BACKGROUND; // default
         }
-    }
-
-    public static boolean isMinimizeOnExitToPopup(@NonNull final Context context) {
-        return getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_POPUP;
-    }
-
-    public static boolean isMinimizeOnExitToBackground(@NonNull final Context context) {
-        return getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_BACKGROUND;
-    }
-
-    public static boolean isMinimizeOnExitDisabled(@NonNull final Context context) {
-        return getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_NONE;
     }
 
     @AutoplayType
     public static int getAutoplayType(@NonNull final Context context) {
         final String type = getPreferences(context).getString(
-                context.getString(R.string.autoplay_key),
-                context.getString(R.string.autoplay_wifi_key));
+                context.getString(R.string.autoplay_key), "");
         if (type.equals(context.getString(R.string.autoplay_always_key))) {
             return AUTOPLAY_TYPE_ALWAYS;
         } else if (type.equals(context.getString(R.string.autoplay_never_key))) {
             return AUTOPLAY_TYPE_NEVER;
         } else {
-            return AUTOPLAY_TYPE_WIFI;
+            return AUTOPLAY_TYPE_WIFI; // default
         }
     }
 
@@ -443,7 +426,7 @@ public final class PlayerHelper {
     private static SinglePlayQueue getAutoQueuedSinglePlayQueue(
             final StreamInfoItem streamInfoItem) {
         final SinglePlayQueue singlePlayQueue = new SinglePlayQueue(streamInfoItem);
-        singlePlayQueue.getItem().setAutoQueued(true);
+        Objects.requireNonNull(singlePlayQueue.getItem()).setAutoQueued(true);
         return singlePlayQueue;
     }
 
