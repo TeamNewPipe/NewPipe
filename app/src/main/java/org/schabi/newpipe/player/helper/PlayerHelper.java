@@ -251,31 +251,15 @@ public final class PlayerHelper {
 
     @MinimizeMode
     public static int getMinimizeOnExitAction(@NonNull final Context context) {
-        final String defaultAction = context.getString(R.string.minimize_on_exit_none_key);
-        final String popupAction = context.getString(R.string.minimize_on_exit_popup_key);
-        final String backgroundAction = context.getString(R.string.minimize_on_exit_background_key);
-
         final String action = getPreferences(context)
-                .getString(context.getString(R.string.minimize_on_exit_key), defaultAction);
-        if (action.equals(popupAction)) {
+                .getString(context.getString(R.string.minimize_on_exit_key), "");
+        if (action.equals(context.getString(R.string.minimize_on_exit_popup_key))) {
             return MINIMIZE_ON_EXIT_MODE_POPUP;
-        } else if (action.equals(backgroundAction)) {
-            return MINIMIZE_ON_EXIT_MODE_BACKGROUND;
-        } else {
+        } else if (action.equals(context.getString(R.string.minimize_on_exit_none_key))) {
             return MINIMIZE_ON_EXIT_MODE_NONE;
+        } else {
+            return MINIMIZE_ON_EXIT_MODE_BACKGROUND; // default
         }
-    }
-
-    public static boolean isMinimizeOnExitToPopup(@NonNull final Context context) {
-        return getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_POPUP;
-    }
-
-    public static boolean isMinimizeOnExitToBackground(@NonNull final Context context) {
-        return getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_BACKGROUND;
-    }
-
-    public static boolean isMinimizeOnExitDisabled(@NonNull final Context context) {
-        return getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_NONE;
     }
 
     @AutoplayType

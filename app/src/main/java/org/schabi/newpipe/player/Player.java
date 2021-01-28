@@ -2012,7 +2012,8 @@ public final class Player implements
         changePopupWindowFlags(IDLE_WINDOW_FLAGS);
 
         // Remove running notification when user does not want minimization to background or popup
-        if (PlayerHelper.isMinimizeOnExitDisabled(context) && videoPlayerSelected()) {
+        if (PlayerHelper.getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_NONE
+                && videoPlayerSelected()) {
             NotificationUtil.getInstance().cancelNotificationAndStopForeground(service);
         } else {
             NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
@@ -3822,11 +3823,14 @@ public final class Player implements
             switch (getMinimizeOnExitAction(context)) {
                 case MINIMIZE_ON_EXIT_MODE_BACKGROUND:
                     useVideoSource(false);
+                    break;
                 case MINIMIZE_ON_EXIT_MODE_POPUP:
                     setRecovery();
                     NavigationHelper.playOnPopupPlayer(getParentActivity(), playQueue, true);
+                    break;
                 case MINIMIZE_ON_EXIT_MODE_NONE: default:
                     pause();
+                    break;
             }
         }
     }
