@@ -265,14 +265,13 @@ public final class PlayerHelper {
     @AutoplayType
     public static int getAutoplayType(@NonNull final Context context) {
         final String type = getPreferences(context).getString(
-                context.getString(R.string.autoplay_key),
-                context.getString(R.string.autoplay_wifi_key));
+                context.getString(R.string.autoplay_key), "");
         if (type.equals(context.getString(R.string.autoplay_always_key))) {
             return AUTOPLAY_TYPE_ALWAYS;
         } else if (type.equals(context.getString(R.string.autoplay_never_key))) {
             return AUTOPLAY_TYPE_NEVER;
         } else {
-            return AUTOPLAY_TYPE_WIFI;
+            return AUTOPLAY_TYPE_WIFI; // default
         }
     }
 
