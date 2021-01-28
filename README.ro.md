@@ -18,7 +18,7 @@
 <p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presă</a></p>
 <hr>
 
-*Read this in other languages: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md)*
+*Citiţi în alte limbi: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md)*
 
 <b>Atenţionare: ACEASTA ESTE O VERSIUNE BETA, AŞA CĂ S-AR PUTE SĂ ÎNTÂLNIŢI ERORI. DACĂ SE ÎNTÂMPLĂ ACEST LUCRU, DESCHIDEŢI UN ISSUE PRIN REPSITORY-UL NOSTRU GITHUB.</b>
 
@@ -41,7 +41,7 @@
 
 ## Descriere
 
-NewPipe nu foloseţte nici-o bibliotecă Google framework sau API-ul Youtube. Website-urile sunt doar analizate pentru a prelua informaţia necesară, aşa că această aplicaţie poate fi folosită pe telefoane fără Serviciile Google instalate. De asemenea, nu aveţi nevoie de un cont Youtube pentru a folosi Newpipe, care este sofware liber şi copylefted.
+NewPipe nu foloseşte nici-o bibliotecă Google framework sau API-ul Youtube. Website-urile sunt doar analizate pentru a prelua informaţia necesară, aşa că această aplicaţie poate fi folosită pe telefoane fără Serviciile Google instalate. De asemenea, nu aveţi nevoie de un cont Youtube pentru a folosi Newpipe, care este sofware liber şi copylefted.
 
 ### Funcţii
 
@@ -133,8 +133,8 @@ Dacă vă place NewPipe, am fi bucuroşi să primim o donaţie. Puteţi să ne t
 
 ## Politica de Confidenţialitate
 
-Proiectul NewPipe aims îşi propune să furnizeze o experienţă privată şi anonimă  pentru utilizarea serviciilor web media.
-Prin urmare, aplicaţia nu colectează niciun fel de informaţii fără acordul dumneavoastră. NewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report, or comment in our blog. You can find the document [here](https://newpipe.net/legal/privacy/).
+Proiectul NewPipe îşi propune să furnizeze o experienţă privată şi anonimă pentru utilizarea serviciilor web media.
+Prin urmare, aplicaţia nu colectează niciun fel de informaţii fără acordul dumneavoastră. Politica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de blocare sau comentați pe blogul nostru. Puteți găsi documentul [aici](https://newpipe.net/legal/privacy/).
 
 ## Licenţă
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
