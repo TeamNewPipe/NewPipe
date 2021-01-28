@@ -426,7 +426,7 @@ public final class PlayerHelper {
     private static SinglePlayQueue getAutoQueuedSinglePlayQueue(
             final StreamInfoItem streamInfoItem) {
         final SinglePlayQueue singlePlayQueue = new SinglePlayQueue(streamInfoItem);
-        singlePlayQueue.getItem().setAutoQueued(true);
+        Objects.requireNonNull(singlePlayQueue.getItem()).setAutoQueued(true);
         return singlePlayQueue;
     }
 
