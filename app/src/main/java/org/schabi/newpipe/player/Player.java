@@ -855,8 +855,7 @@ public final class Player implements
 
     private void initVideoPlayer() {
         // restore last resize mode
-        setResizeMode(prefs.getInt(context.getString(R.string.last_resize_mode),
-                AspectRatioFrameLayout.RESIZE_MODE_FIT));
+        setResizeMode(PlayerHelper.retrieveResizeModeFromPrefs(this));
         binding.getRoot().setLayoutParams(new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
     }
