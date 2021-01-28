@@ -139,6 +139,6 @@ Prin urmare, aplicaţia nu colectează niciun fel de informaţii fără acordul 
 ## Licenţă
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
 
-NewPipe este Software Gratuit: Îl puteţi folosi, utiliza, şi împărtăşi cum doriţi. Mai exact, îl puteți redistribui și / sau modifica în conformitate cu termenii
+NewPipe este Software Gratuit: Îl puteţi folosi şi împărtăşi cum doriţi. Mai exact, îl puteți redistribui și / sau modifica în conformitate cu termenii
 [GNU General Public License](https://www.gnu.org/licenses/gpl.html) aşa cum a fost publicat de Free Software Foundation, fie versiunea 3 a Licenței, fie
 (la alegerea dvs.) orice versiune ulterioară.
