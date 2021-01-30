@@ -180,7 +180,7 @@ public final class CheckForNewAppVersion {
         }
 
         final long expiry = prefs.getLong(app.getString(R.string.update_expiry_key), 0);
-        if (manager.isExpired(expiry)) {
+        if (!manager.isExpired(expiry)) {
             return null;
         }
 
