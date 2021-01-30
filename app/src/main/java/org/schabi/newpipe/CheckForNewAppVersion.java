@@ -179,6 +179,8 @@ public final class CheckForNewAppVersion {
             return null;
         }
 
+        // Check if the last request has happened a certain time ago
+        // to reduce the number of API requests.
         final long expiry = prefs.getLong(app.getString(R.string.update_expiry_key), 0);
         if (!manager.isExpired(expiry)) {
             return null;
@@ -198,6 +200,8 @@ public final class CheckForNewAppVersion {
                 .subscribe(
                         response -> {
                             try {
+                                // Store a timestamp which needs to be exceeded,
+                                // before a new request to the API is made.
                                 final long newExpiry = manager
                                     .coerceExpiry(response.getHeader("expires"));
                                 prefs.edit()
