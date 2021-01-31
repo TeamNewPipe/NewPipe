@@ -342,6 +342,7 @@
     <!-- Updates -->
     <string name="update_app_key" translatable="false">update_app_key</string>
     <string name="update_pref_screen_key" translatable="false">update_pref_screen_key</string>
+    <string name="update_expiry_key" translatable="false">update_expiry_key</string>
 
     <!-- Localizations   -->
     <string name="default_localization_key" translatable="false">system</string>
