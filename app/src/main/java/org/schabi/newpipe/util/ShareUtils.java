@@ -21,21 +21,26 @@ public final class ShareUtils {
     /**
      * Open an Intent to install an app.
      * <p>
-     * This method will first try open to Google Play Store with the market scheme and falls back to
-     * Google Play Store web url if this first cannot be found.
+     * This method tries to open the default app market with the package id passed as the
+     * second param (a system chooser will be opened if there are multiple markets and no default)
+     * and falls back to Google Play Store web URL if no app to handle the market scheme was found.
+     * <p>
+     * It uses {@link ShareUtils#openIntentInApp(Context, Intent)} to open market scheme and
+     * {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} to open Google Play Store web
+     * URL with false for the boolean param.
      *
-     * @param context the context to use
-     * @param packageName the package to be installed
+     * @param context   the context to use
+     * @param packageId the package id of the app to be installed
      */
-    public static void installApp(final Context context, final String packageName) {
-        try {
-            // Try market:// scheme
-            openIntentInApp(context, new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=" + packageName)));
-        } catch (final ActivityNotFoundException e) {
-            // Fall back to Google Play Store Web URL (don't worry, F-Droid can handle it :))
+    public static void installApp(final Context context, final String packageId) {
+        // Try market:// scheme
+        final boolean marketSchemeResult = openIntentInApp(context, new Intent(Intent.ACTION_VIEW,
+                Uri.parse("market://details?id=" + packageId))
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        if (!marketSchemeResult) {
+            // Fall back to Google Play Store Web URL (F-Droid can handle it)
             openUrlInBrowser(context,
-                    "https://play.google.com/store/apps/details?id=" + packageName, false);
+                    "https://play.google.com/store/apps/details?id=" + packageId, false);
         }
     }
 
@@ -43,31 +48,35 @@ public final class ShareUtils {
      * Open the url with the system default browser.
      * <p>
      * If no browser is set as default, fallbacks to
-     * {@link ShareUtils#openInDefaultApp(Context, Intent)}
+     * {@link ShareUtils#openAppChooser(Context, Intent, String)}
      *
      * @param context                the context to use
      * @param url                    the url to browse
      * @param httpDefaultBrowserTest the boolean to set if the test for the default browser will be
      *                               for HTTP protocol or for the created intent
+     * @return true if the URL can be opened or false if it cannot
      */
-    public static void openUrlInBrowser(final Context context, final String url,
-                                        final boolean httpDefaultBrowserTest) {
+    public static boolean openUrlInBrowser(final Context context, final String url,
+                                           final boolean httpDefaultBrowserTest) {
         final String defaultPackageName;
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         if (httpDefaultBrowserTest) {
-            defaultPackageName = getDefaultBrowserPackageName(context);
+            defaultPackageName = getDefaultAppPackageName(context, new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://")).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else {
             defaultPackageName = getDefaultAppPackageName(context, intent);
         }
 
         if (defaultPackageName.equals("android")) {
             // No browser set as default (doesn't work on some devices)
-            openInDefaultApp(context, intent);
+            openAppChooser(context, intent, context.getString(R.string.open_with));
         } else {
             if (defaultPackageName.isEmpty()) {
                 // No app installed to open a web url
                 Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
+                return false;
             } else {
                 try {
                     intent.setPackage(defaultPackageName);
@@ -75,26 +84,29 @@ public final class ShareUtils {
                 } catch (final ActivityNotFoundException e) {
                     // Not a browser but an app chooser because of OEMs changes
                     intent.setPackage(null);
-                    openInDefaultApp(context, intent);
+                    openAppChooser(context, intent, context.getString(R.string.open_with));
                 }
             }
         }
+
+        return true;
     }
 
     /**
      * Open the url with the system default browser.
      * <p>
      * If no browser is set as default, fallbacks to
-     * {@link ShareUtils#openInDefaultApp(Context, Intent)}
+     * {@link ShareUtils#openAppChooser(Context, Intent, String)}
      * <p>
      * This calls {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} with true
      * for the boolean parameter
      *
      * @param context the context to use
      * @param url     the url to browse
+     * @return true if the URL can be opened or false if it cannot be
      **/
-    public static void openUrlInBrowser(final Context context, final String url) {
-        openUrlInBrowser(context, url, true);
+    public static boolean openUrlInBrowser(final Context context, final String url) {
+        return openUrlInBrowser(context, url, true);
     }
 
     /**
@@ -104,21 +116,23 @@ public final class ShareUtils {
      * {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} should be used.
      * <p>
      * If no app is set as default, fallbacks to
-     * {@link ShareUtils#openInDefaultApp(Context, Intent)}
+     * {@link ShareUtils#openAppChooser(Context, Intent, String)}
      *
      * @param context the context to use
      * @param intent  the intent to open
+     * @return true if the intent can be opened or false if it cannot be
      */
-    public static void openIntentInApp(final Context context, final Intent intent) {
+    public static boolean openIntentInApp(final Context context, final Intent intent) {
         final String defaultPackageName = getDefaultAppPackageName(context, intent);
 
         if (defaultPackageName.equals("android")) {
             // No app set as default (doesn't work on some devices)
-            openInDefaultApp(context, intent);
+            openAppChooser(context, intent, context.getString(R.string.open_with));
         } else {
             if (defaultPackageName.isEmpty()) {
                 // No app installed to open the intent
                 Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
+                return false;
             } else {
                 try {
                     intent.setPackage(defaultPackageName);
@@ -126,26 +140,31 @@ public final class ShareUtils {
                 } catch (final ActivityNotFoundException e) {
                     // Not an app to open the intent but an app chooser because of OEMs changes
                     intent.setPackage(null);
-                    openInDefaultApp(context, intent);
+                    openAppChooser(context, intent, context.getString(R.string.open_with));
                 }
             }
         }
+
+        return true;
     }
 
     /**
-     * Open the url in the default app set to open this type of link.
+     * Open the system chooser to launch an intent.
      * <p>
-     * If no app is set as default, it will open a chooser
+     * This method opens an {@link android.content.Intent#ACTION_CHOOSER} of the intent putted
+     * as the viewIntent param. A string for the chooser's title must be passed as the last param.
      *
-     * @param context    the context to use
-     * @param viewIntent the intent to open
+     * @param context              the context to use
+     * @param intent               the intent to open
+     * @param chooserStringTitle   the string of chooser's title
      */
-    private static void openInDefaultApp(final Context context, final Intent viewIntent) {
-        final Intent intent = new Intent(Intent.ACTION_CHOOSER);
-        intent.putExtra(Intent.EXTRA_INTENT, viewIntent);
-        intent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.open_with));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+    private static void openAppChooser(final Context context, final Intent intent,
+                                       final String chooserStringTitle) {
+        final Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
+        chooserIntent.putExtra(Intent.EXTRA_INTENT, intent);
+        chooserIntent.putExtra(Intent.EXTRA_TITLE, chooserStringTitle);
+        chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(chooserIntent);
     }
 
     /**
@@ -158,35 +177,13 @@ public final class ShareUtils {
      *
      * @param context the context to use
      * @param intent  the intent to get default app
-     * @return the package name of the default app to open the intent, an empty string if there's no
-     * app installed to handle it or the app chooser if there's no default
+     * @return the package name of the default app, an empty string if there's no app installed to
+     * handle the intent or the app chooser if there's no default
      */
     private static String getDefaultAppPackageName(final Context context, final Intent intent) {
         final ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent,
                 PackageManager.MATCH_DEFAULT_ONLY);
-        if (resolveInfo == null) {
-            return "";
-        } else {
-            return resolveInfo.activityInfo.packageName;
-        }
-    }
 
-    /**
-     * Get the default browser package name.
-     * <p>
-     * If no browser is set as default, it will return "android" (not on some devices because some
-     * OEMs changed the app chooser).
-     * <p>
-     * If no browser is installed on user's device, it will return an empty string.
-     * @param context the context to use
-     * @return the package name of the default browser, an empty string if there's no browser
-     * installed or the app chooser if there's no default
-     */
-    private static String getDefaultBrowserPackageName(final Context context) {
-        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"))
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        final ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent,
-                PackageManager.MATCH_DEFAULT_ONLY);
         if (resolveInfo == null) {
             return "";
         } else {
@@ -207,11 +204,7 @@ public final class ShareUtils {
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         shareIntent.putExtra(Intent.EXTRA_TEXT, url);
 
-        final Intent intent = new Intent(Intent.ACTION_CHOOSER);
-        intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
-        intent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.share_dialog_title));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        openAppChooser(context, shareIntent, context.getString(R.string.share_dialog_title));
     }
 
     /**
