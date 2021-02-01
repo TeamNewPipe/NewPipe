@@ -499,13 +499,13 @@
     <string name="sponsor_block_home_page_summary">Booqo website-ka rasmiga ah ee SponsorBlock.</string>
     <string name="sponsor_block_enable_title">Ka bood Xaysisiistayaasha</string>
     <string name="sponsor_block_enable_summary">Isticmaal nidaamka wadashaqaynta [API] SponsorBlock Si uu app-ku si iskii ah oga boodo xayisiisyada ku dhex jira muuqaalada. Nidaamkan hadda wuxuu ku shaqeeyaa muuqaalada YouTube kaliya.</string>
-    <string name="sponsor_block_api_url_title">API Url</string>
+    <string name="sponsor_block_api_url_title">Tixraaca wadashaqaynta [API]</string>
     <string name="sponsor_block_api_url_summary">Tixraaca la isticmaali doono marka la hirgalinayo nidaamka wadashaqaynta SponsorBlock. Waa in la fadhiisiyaa tixraacan si uu SponsorBlock u shaqeeyo.</string>
     <string name="sponsor_block_notifications_title">I ogaysii ka boodida</string>
     <string name="sponsor_block_notifications_summary">Tus ogaysiis yar marka xayisiis laga boodo.</string>
     <string name="sponsor_block_privacy_title">Siyaasada Sirdhawrka</string>
     <string name="sponsor_block_privacy_summary">Fur Siyaasada Sirdhawrka SponsorBlock.</string>
-    <string name="sponsor_block_api_url_help_text">Kani waa tixraaca la isticmaali doono that markuu app-ku u baahanyahay inuu ogaado qaybaha muuqaalka ee uu ka boodayo.\n\nWaxaad ku fadhiisin kartaa tixraaca rasmiga ah ee SponsorBlock adoo ku dhufanaya istikhyaarka hoose ee \'Isticmaal ka rasmiga ah\', inkastoo lagugula talinayo inaad akhrido Siyaasada Sir-dhawrka SponsorBlock.</string>
+    <string name="sponsor_block_api_url_help_text">Kani waa tixraaca la isticmaali doono markuu app-ku u baahanyahay inuu ogaado qaybaha muuqaalka ee uu ka boodayo.\n\nWaxaad ku fadhiisin kartaa tixraaca rasmiga ah ee SponsorBlock adoo ku dhufanaya istikhyaarka hoose ee \'Isticmaal ka rasmiga ah\', inkastoo lagugula talinayo inaad akhrido Siyaasada Sir-dhawrka SponsorBlock.</string>
     <string name="sponsor_block_privacy_policy_text">Siyaasada Sirdhawrka SponsorBlock</string>
     <string name="sponsor_block_homepage_url">https://sponsor.ajay.app/</string>
     <string name="sponsor_block_default_api_url">https://sponsor.ajay.app/api/</string>
