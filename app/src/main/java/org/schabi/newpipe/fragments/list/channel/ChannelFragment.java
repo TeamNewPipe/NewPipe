@@ -125,8 +125,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         disposables.clear();
         if (subscribeButtonMonitor != null) {
             subscribeButtonMonitor.dispose();
@@ -487,9 +487,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             }
         }
 
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
         if (subscribeButtonMonitor != null) {
             subscribeButtonMonitor.dispose();
         }

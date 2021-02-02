@@ -88,7 +88,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private Subscription databaseSubscription;
 
     private PublishSubject<Long> debouncedSaveSignal;
-    private CompositeDisposable disposables;
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     /* Has the playlist been fully loaded from db */
     private AtomicBoolean isLoadingComplete;
@@ -112,8 +112,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         super.onCreate(savedInstanceState);
         playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
         debouncedSaveSignal = PublishSubject.create();
-
-        disposables = new CompositeDisposable();
 
         isLoadingComplete = new AtomicBoolean();
         isModified = new AtomicBoolean();
@@ -219,9 +217,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void startLoading(final boolean forceLoad) {
         super.startLoading(forceLoad);
 
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
         disposables.add(getDebouncedSaver());
 
         isLoadingComplete.set(false);
@@ -267,17 +263,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(null);
             playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(null);
             playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(null);
-
-            headerBinding = null;
-            playlistControlBinding = null;
         }
 
         if (databaseSubscription != null) {
             databaseSubscription.cancel();
         }
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
+        headerBinding = null;
+        playlistControlBinding = null;
 
         databaseSubscription = null;
         itemTouchHelper = null;
@@ -289,13 +282,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (debouncedSaveSignal != null) {
             debouncedSaveSignal.onComplete();
         }
-        if (disposables != null) {
-            disposables.dispose();
-        }
+        disposables.dispose();
 
         debouncedSaveSignal = null;
         playlistManager = null;
-        disposables = null;
 
         isLoadingComplete = null;
         isModified = null;

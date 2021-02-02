@@ -65,7 +65,7 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
 
 public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
-    private CompositeDisposable disposables;
+    private final CompositeDisposable disposables = new CompositeDisposable();
     private Subscription bookmarkReactor;
     private AtomicBoolean isBookmarkButtonReady;
 
@@ -94,7 +94,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        disposables = new CompositeDisposable();
         isBookmarkButtonReady = new AtomicBoolean(false);
         remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase
                 .getInstance(requireContext()));
@@ -186,17 +185,15 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     @Override
     public void onDestroyView() {
-        headerBinding = null;
-        playlistControlBinding = null;
-
         super.onDestroyView();
         if (isBookmarkButtonReady != null) {
             isBookmarkButtonReady.set(false);
         }
 
-        if (disposables != null) {
-            disposables.clear();
-        }
+        disposables.clear();
+        headerBinding = null;
+        playlistControlBinding = null;
+
         if (bookmarkReactor != null) {
             bookmarkReactor.cancel();
         }
@@ -208,11 +205,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     public void onDestroy() {
         super.onDestroy();
 
-        if (disposables != null) {
-            disposables.dispose();
-        }
+        disposables.dispose();
 
-        disposables = null;
         remotePlaylistManager = null;
         playlistEntity = null;
         isBookmarkButtonReady = null;

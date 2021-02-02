@@ -355,9 +355,25 @@ public final class VideoDetailFragment
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if (positionSubscriber != null) {
+            positionSubscriber.dispose();
+        }
+        if (currentWorker != null) {
+            currentWorker.dispose();
+        }
+        disposables.clear();
+        positionSubscriber = null;
+        currentWorker = null;
+        bottomSheetBehavior.setBottomSheetCallback(null);
+        binding = null;
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
-        binding = null;
 
         // Stop the service when user leaves the app with double back press
         // if video player is selected. Otherwise unbind
@@ -371,17 +387,6 @@ public final class VideoDetailFragment
                 .unregisterOnSharedPreferenceChangeListener(this);
         activity.unregisterReceiver(broadcastReceiver);
         activity.getContentResolver().unregisterContentObserver(settingsContentObserver);
-
-        if (positionSubscriber != null) {
-            positionSubscriber.dispose();
-        }
-        if (currentWorker != null) {
-            currentWorker.dispose();
-        }
-        disposables.clear();
-        positionSubscriber = null;
-        currentWorker = null;
-        bottomSheetBehavior.setBottomSheetCallback(null);
 
         if (activity.isFinishing()) {
             playQueue = null;

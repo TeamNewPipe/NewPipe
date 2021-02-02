@@ -144,6 +144,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun onDestroy() {
         super.onDestroy()
         disposables.dispose()
+        _binding = null
     }
 
     // ////////////////////////////////////////////////////////////////////////

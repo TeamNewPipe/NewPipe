@@ -64,15 +64,10 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        disposables.clear();
-    }
-
-    @Override
     public void onDestroyView() {
-        headerBinding = null;
         super.onDestroyView();
+        disposables.clear();
+        headerBinding = null;
     }
 
     @Override

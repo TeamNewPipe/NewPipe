@@ -335,15 +335,10 @@ public class DownloadDialog extends DialogFragment
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        disposables.clear();
-    }
-
-    @Override
     public void onDestroyView() {
-        dialogBinding = null;
         super.onDestroyView();
+        disposables.clear();
+        dialogBinding = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

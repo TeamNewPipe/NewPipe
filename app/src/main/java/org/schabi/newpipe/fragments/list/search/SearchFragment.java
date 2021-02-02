@@ -297,14 +297,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
         unsetSearchListeners();
 
-        searchBinding = null;
-        searchLayoutBinding = null;
         super.onDestroyView();
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
         if (searchDisposable != null) {
             searchDisposable.dispose();
         }
@@ -312,6 +306,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             suggestionDisposable.dispose();
         }
         disposables.clear();
+        searchBinding = null;
+        searchLayoutBinding = null;
     }
 
     @Override
