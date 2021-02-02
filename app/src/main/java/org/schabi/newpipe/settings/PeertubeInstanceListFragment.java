@@ -13,28 +13,25 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.FragmentInstanceListBinding;
+import org.schabi.newpipe.databinding.ItemInstanceBinding;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.PeertubeHelper;
@@ -58,10 +55,10 @@ public class PeertubeInstanceListFragment extends Fragment {
     private String savedInstanceListKey;
     private InstanceListAdapter instanceListAdapter;
 
-    private ProgressBar progressBar;
+    private FragmentInstanceListBinding binding;
     private SharedPreferences sharedPreferences;
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -90,26 +87,19 @@ public class PeertubeInstanceListFragment extends Fragment {
                               @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
 
-        initViews(rootView);
-    }
-
-    private void initViews(@NonNull final View rootView) {
-        final TextView instanceHelpTV = rootView.findViewById(R.id.instanceHelpTV);
-        instanceHelpTV.setText(getString(R.string.peertube_instance_url_help,
+        binding = FragmentInstanceListBinding.inflate(getLayoutInflater());
+        binding.instanceHelpTV.setText(getString(R.string.peertube_instance_url_help,
                 getString(R.string.peertube_instance_list_url)));
 
-        initButton(rootView);
+        binding.addInstanceButton.setOnClickListener(v -> showAddItemDialog(requireContext()));
 
-        final RecyclerView listInstances = rootView.findViewById(R.id.instances);
-        listInstances.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.instances.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
-        itemTouchHelper.attachToRecyclerView(listInstances);
+        itemTouchHelper.attachToRecyclerView(binding.instances);
 
         instanceListAdapter = new InstanceListAdapter(requireContext(), itemTouchHelper);
-        listInstances.setAdapter(instanceListAdapter);
-
-        progressBar = rootView.findViewById(R.id.loading_progress_bar);
+        binding.instances.setAdapter(instanceListAdapter);
     }
 
     @Override
@@ -128,10 +118,8 @@ public class PeertubeInstanceListFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposables != null) {
-            disposables.clear();
-        }
-        disposables = null;
+        disposables.clear();
+        binding = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -139,7 +127,8 @@ public class PeertubeInstanceListFragment extends Fragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         final MenuItem restoreItem = menu
@@ -201,12 +190,6 @@ public class PeertubeInstanceListFragment extends Fragment {
                 .show();
     }
 
-    private void initButton(final View rootView) {
-        final FloatingActionButton fab = rootView.findViewById(R.id.addInstanceButton);
-        fab.setOnClickListener(v ->
-                showAddItemDialog(requireContext()));
-    }
-
     private void showAddItemDialog(final Context c) {
         final EditText urlET = new EditText(c);
         urlET.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
@@ -229,17 +212,17 @@ public class PeertubeInstanceListFragment extends Fragment {
         if (cleanUrl == null) {
             return;
         }
-        progressBar.setVisibility(View.VISIBLE);
+        binding.loadingProgressBar.setVisibility(View.VISIBLE);
         final Disposable disposable = Single.fromCallable(() -> {
             final PeertubeInstance instance = new PeertubeInstance(cleanUrl);
             instance.fetchInstanceMetaData();
             return instance;
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe((instance) -> {
-                    progressBar.setVisibility(View.GONE);
+                    binding.loadingProgressBar.setVisibility(View.GONE);
                     add(instance);
                 }, e -> {
-                    progressBar.setVisibility(View.GONE);
+                    binding.loadingProgressBar.setVisibility(View.GONE);
                     Toast.makeText(getActivity(), R.string.peertube_instance_add_fail,
                             Toast.LENGTH_SHORT).show();
                 });
@@ -361,8 +344,8 @@ public class PeertubeInstanceListFragment extends Fragment {
         @Override
         public InstanceListAdapter.TabViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                                                     final int viewType) {
-            final View view = inflater.inflate(R.layout.item_instance, parent, false);
-            return new InstanceListAdapter.TabViewHolder(view);
+            return new InstanceListAdapter.TabViewHolder(ItemInstanceBinding.inflate(inflater,
+                    parent, false));
         }
 
         @Override
@@ -377,47 +360,38 @@ public class PeertubeInstanceListFragment extends Fragment {
         }
 
         class TabViewHolder extends RecyclerView.ViewHolder {
-            private final AppCompatImageView instanceIconView;
-            private final TextView instanceNameView;
-            private final TextView instanceUrlView;
-            private final RadioButton instanceRB;
-            private final ImageView handle;
+            private final ItemInstanceBinding binding;
 
-            TabViewHolder(final View itemView) {
-                super(itemView);
-
-                instanceIconView = itemView.findViewById(R.id.instanceIcon);
-                instanceNameView = itemView.findViewById(R.id.instanceName);
-                instanceUrlView = itemView.findViewById(R.id.instanceUrl);
-                instanceRB = itemView.findViewById(R.id.selectInstanceRB);
-                handle = itemView.findViewById(R.id.handle);
+            TabViewHolder(final ItemInstanceBinding binding) {
+                super(binding.getRoot());
+                this.binding = binding;
             }
 
             @SuppressLint("ClickableViewAccessibility")
             void bind(final int position, final TabViewHolder holder) {
-                handle.setOnTouchListener(getOnTouchListener(holder));
+                binding.handle.setOnTouchListener(getOnTouchListener(holder));
 
                 final PeertubeInstance instance = instanceList.get(position);
-                instanceNameView.setText(instance.getName());
-                instanceUrlView.setText(instance.getUrl());
-                instanceRB.setOnCheckedChangeListener(null);
+                binding.instanceName.setText(instance.getName());
+                binding.instanceUrl.setText(instance.getUrl());
+                binding.selectInstanceRB.setOnCheckedChangeListener(null);
                 if (selectedInstance.getUrl().equals(instance.getUrl())) {
-                    if (lastChecked != null && lastChecked != instanceRB) {
+                    if (lastChecked != null && lastChecked != binding.selectInstanceRB) {
                         lastChecked.setChecked(false);
                     }
-                    instanceRB.setChecked(true);
-                    lastChecked = instanceRB;
+                    binding.selectInstanceRB.setChecked(true);
+                    lastChecked = binding.selectInstanceRB;
                 }
-                instanceRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                binding.selectInstanceRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
                     if (isChecked) {
                         selectInstance(instance);
-                        if (lastChecked != null && lastChecked != instanceRB) {
+                        if (lastChecked != null && lastChecked != binding.selectInstanceRB) {
                             lastChecked.setChecked(false);
                         }
-                        lastChecked = instanceRB;
+                        lastChecked = binding.selectInstanceRB;
                     }
                 });
-                instanceIconView.setImageResource(R.drawable.place_holder_peertube);
+                binding.instanceIcon.setImageResource(R.drawable.place_holder_peertube);
             }
 
             @SuppressLint("ClickableViewAccessibility")
