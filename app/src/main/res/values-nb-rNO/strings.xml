@@ -655,4 +655,12 @@
     <string name="show_meta_info_summary">Slå av for å skjule metainformasjonsbokser med tilleggsinformasjon om strømskaperen, strøminnhold eller en søkeforespørsel.</string>
     <string name="show_meta_info_title">Vis metainfo</string>
     <string name="recent">Nylige</string>
+    <string name="no_app_to_open_intent">Ingen programmer på enheten din kan åpne dette</string>
+    <string name="chapters">Kapitler</string>
+    <string name="description_tab_description">Beskrivelse</string>
+    <string name="related_streams_tab_description">Relaterte strømmer</string>
+    <string name="comments_tab_description">Kommentarer</string>
+    <string name="show_description_summary">Skru av for å skjule videobeskrivelse og ytterligere info</string>
+    <string name="show_description_title">Vis beskrivelse</string>
+    <string name="open_with">Åpne med</string>
 </resources>

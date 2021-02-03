@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Dodirnite pretragu za početak
+    <string name="main_bg_subtitle">Za početak dodirnite \"Pretraži\"
 \n</string>
     <string name="view_count_text">%1$s pregleda</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
@@ -665,4 +665,12 @@
     <string name="recent">Nedavni</string>
     <string name="show_meta_info_summary">Isključi za skrivanje polja metapodataka s dodatnim podacima o autoru streama, sadržaju streama ili zahtjevu za pretraživanje.</string>
     <string name="show_meta_info_title">Prikaži metapodatke</string>
+    <string name="related_streams_tab_description">Slični videozapisi</string>
+    <string name="no_app_to_open_intent">Nijedna aplikacija na vašem uređaju ne može to otvoriti</string>
+    <string name="chapters">Poglavlja videozapisa</string>
+    <string name="description_tab_description">Opis</string>
+    <string name="comments_tab_description">Komentari</string>
+    <string name="show_description_summary">Isključite da biste sakrili opis videozapisa i dodatne informacije</string>
+    <string name="show_description_title">Prikaži opis</string>
+    <string name="open_with">Otvorite uz pomoć aplikacije</string>
 </resources>

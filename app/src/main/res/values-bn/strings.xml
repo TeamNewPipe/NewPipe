@@ -77,7 +77,7 @@
     <string name="read_full_license">লাইসেন্স পড়ুন</string>
     <string name="app_license_title">নিউপাইপ এর লাইসেন্স</string>
     <string name="read_privacy_policy">প্রাইভেসি পলিসি পড়ুন</string>
-    <string name="privacy_policy_title">নিউপাইপ এর প্রাইভেসি পলিসি</string>
+    <string name="privacy_policy_title">নিউপাইপ এর গোপনীয়তা নীতি</string>
     <string name="website_title">ওয়েব সাইট</string>
     <string name="give_back">ফিরিয়ে দিন</string>
     <string name="donation_title">দান করো</string>
@@ -490,4 +490,24 @@
     </plurals>
     <string name="max_retry_msg">সর্বোচ্চ চেয্টা</string>
     <string name="recent">সাম্প্রতিক</string>
+    <string name="peertube_instance_add_exists">ইন্সট্যান্স ইতোমধ্যে বিদ্যমান</string>
+    <string name="default_content_country_title">ডিফল্ট কন্টেন্টের দেশ</string>
+    <string name="related_streams_tab_description">সম্পর্কিত স্ট্রিম</string>
+    <string name="show_description_title">বর্ণনা দেখাও</string>
+    <string name="msg_calculating_hash">হ্যাশ গণনা করা হচ্ছে</string>
+    <string name="show_thumbnail_title">থাম্বনেইল দেখাও</string>
+    <string name="playlist_page_summary">প্লেলিস্ট পৃষ্ঠা</string>
+    <string name="video_detail_by">%s দ্বারা</string>
+    <string name="feed_update_threshold_option_always_update">সবসময় হালনগাদ করো</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d নির্বাচিত</item>
+        <item quantity="other">%d সমূহ নির্বাচিত</item>
+    </plurals>
+    <string name="feed_group_dialog_select_subscriptions">সাবস্ক্রিপশন নির্বাচন করো</string>
+    <string name="feed_processing_message">ফিড প্রক্রিয়া করা হচ্ছে…</string>
+    <string name="feed_groups_header_title">চ্যানেল গ্রুপ</string>
+    <string name="chapters">অধ্যায়</string>
+    <string name="comments_tab_description">মতামত</string>
+    <string name="description_tab_description">বিস্তারিত</string>
+    <string name="open_with">দিয়ে খুলো</string>
 </resources>

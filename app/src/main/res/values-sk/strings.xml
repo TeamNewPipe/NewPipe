@@ -665,4 +665,11 @@
     <string name="recent">Nedávne</string>
     <string name="show_meta_info_summary">Vypnite, pokiaľ nechcete zobrazovať meta informácie ako autor streamu, obsah streamu alebo vyhľadávanie.</string>
     <string name="show_meta_info_title">Zobrazovať meta informácie</string>
+    <string name="chapters">Kapitoly</string>
+    <string name="description_tab_description">Popis</string>
+    <string name="related_streams_tab_description">Súvisiace streamy</string>
+    <string name="comments_tab_description">Komentáre</string>
+    <string name="show_description_summary">Vypnutím skryjete popis videa a ďalšie informácie</string>
+    <string name="show_description_title">Zobraziť popis</string>
+    <string name="open_with">Otvoriť s</string>
 </resources>

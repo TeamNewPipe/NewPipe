@@ -168,8 +168,8 @@
     <string name="switch_to_main">Αλλαγή σε Κύριο</string>
     <string name="import_data_title">Εισαγωγή βάσης δεδομένων</string>
     <string name="export_data_title">Εξαγωγή βάσης δεδομένων</string>
-    <string name="import_data_summary">Παρακάμπτει το τρέχον ιστορικό, εγγραφές, λίστες αναπαραγωγής και (προαιρετικά) σας</string>
-    <string name="export_data_summary">Εξαγωγή ιστορικού, εγγραφών, λιστών αναπαραγωγής και</string>
+    <string name="import_data_summary">Παρακάμπτει το τρέχον ιστορικό, εγγραφές, λίστες αναπαραγωγής και (προαιρετικά) ρυθμίσεις σας</string>
+    <string name="export_data_summary">Εξαγωγή ιστορικού, εγγραφών, λιστών αναπαραγωγής και ρυθμίσεων</string>
     <string name="clear_views_history_title">Εκκαθάριση ιστορικού προβολής</string>
     <string name="clear_views_history_summary">Διαγράφει το ιστορικό των αναπαραχθέντων ροών και των θέσεων αναπαραγωγής</string>
     <string name="delete_view_history_alert">Διαγραφή ολόκληρου του ιστορικού προβολής;</string>
@@ -653,4 +653,12 @@
     <string name="recent">Πρόσφατα</string>
     <string name="show_meta_info_summary">Απενεργοποιήστε το για να μην εμφανίζονται μεταδεδομένα με επιπλέον πληροφορίες για το δημιουργό και το περιεχόμενο της ροής ή αίτημα αναζήτησης.</string>
     <string name="show_meta_info_title">Εμφάνιση μεταδεδομένων</string>
+    <string name="chapters">Κεφάλαια</string>
+    <string name="description_tab_description">Περιγραφή</string>
+    <string name="related_streams_tab_description">Σχετιζόμενες ροές</string>
+    <string name="comments_tab_description">Σχόλια</string>
+    <string name="show_description_summary">Απενεργοποιήστε για απόκρυψη περιγραφής και πρόσθετων πληροφοριών</string>
+    <string name="show_description_title">Εμφάνιση περιγραφής</string>
+    <string name="open_with">Άνοιγμα με</string>
+    <string name="no_app_to_open_intent">Καμία εφαρμογή στη συσκευή σας δεν μπορεί το ανοίξει</string>
 </resources>

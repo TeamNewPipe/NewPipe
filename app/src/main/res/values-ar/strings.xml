@@ -695,4 +695,12 @@
     <string name="msg_calculating_hash">حساب التجزئة</string>
     <string name="hash_channel_description">إشعارات لتقدم تجزئة الفيديو</string>
     <string name="hash_channel_name">إشعار تجزئة الفيديو</string>
+    <string name="no_app_to_open_intent">لا يوجد تطبيق على جهازك يمكنه فتح هذا</string>
+    <string name="chapters">فصول</string>
+    <string name="description_tab_description">وصف</string>
+    <string name="related_streams_tab_description">التيارات ذات الصلة</string>
+    <string name="comments_tab_description">تعليقات</string>
+    <string name="show_description_summary">قم بإيقاف التشغيل لإخفاء وصف الفيديو والمعلومات الإضافية</string>
+    <string name="show_description_title">إظهار الوصف</string>
+    <string name="open_with">فتح مع</string>
 </resources>

@@ -655,4 +655,12 @@
     <string name="recent">Azkenak</string>
     <string name="show_meta_info_summary">Desgaitu jario sortzailearen informazio gehigarria, jarioaren edukia edo bilaketa eskaera duten informazio koadroak ezkutatzeko.</string>
     <string name="show_meta_info_title">Erakutsi meta informazioa</string>
+    <string name="no_app_to_open_intent">Ez dago zure gailuan hau ireki dezakeen aplikaziorik</string>
+    <string name="chapters">Kapituluak</string>
+    <string name="description_tab_description">Deskribapena</string>
+    <string name="related_streams_tab_description">Erlazionatutako jarioak</string>
+    <string name="comments_tab_description">Iruzkinak</string>
+    <string name="show_description_summary">Desaktibatu bideoaren deskribapena eta informazio gehigarria ezkutatzeko</string>
+    <string name="show_description_title">Erakutsi deskribapena</string>
+    <string name="open_with">Ireki honekin...</string>
 </resources>

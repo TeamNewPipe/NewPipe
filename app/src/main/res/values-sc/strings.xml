@@ -655,4 +655,12 @@
     <string name="recent">Reghente</string>
     <string name="show_meta_info_summary">Istuda·lu pro cuare sas iscatuleddas cun informatziones additzionales in subra de su creadore de su flussu, de su cuntenutu de su flussu o de una rechesta de chirca.</string>
     <string name="show_meta_info_title">Ammustra informatziones meta</string>
+    <string name="no_app_to_open_intent">Peruna aplicatzione in su dispositivu tuo podet abèrrere custu</string>
+    <string name="chapters">Capìtulos</string>
+    <string name="description_tab_description">Descritzione</string>
+    <string name="related_streams_tab_description">Flussos ligados</string>
+    <string name="comments_tab_description">Cummentos</string>
+    <string name="show_description_summary">Istuda pro cuare sa descritzione de su vìdeu e sas informatziones additzionales</string>
+    <string name="show_description_title">Ammustra sa descritzione</string>
+    <string name="open_with">Aberi cun</string>
 </resources>

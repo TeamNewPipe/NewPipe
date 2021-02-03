@@ -645,4 +645,12 @@
     <string name="recent">最近</string>
     <string name="show_meta_info_summary">關閉以隱藏帶有關於串流建立者、串流內容或搜尋請求等額外資料的詮釋資料框。</string>
     <string name="show_meta_info_title">顯示詮釋資訊</string>
+    <string name="chapters">章節</string>
+    <string name="description_tab_description">描述</string>
+    <string name="related_streams_tab_description">相關的串流</string>
+    <string name="comments_tab_description">留言</string>
+    <string name="show_description_summary">關閉以隱藏影片描述與其他資訊</string>
+    <string name="show_description_title">顯示描述</string>
+    <string name="open_with">開啟以</string>
+    <string name="no_app_to_open_intent">您裝置上沒有應用程式可以打開這個</string>
 </resources>

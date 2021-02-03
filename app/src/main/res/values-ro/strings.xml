@@ -449,4 +449,228 @@
     <string name="notification_scale_to_square_image_summary">Scalați miniatura video afișată în notificare de la raportul de aspect 16:9 la 1:1 (poate introduce distorsiuni)</string>
     <string name="notification_scale_to_square_image_title">Scalare miniatură la raport aspect 1:1</string>
     <string name="search_showing_result_for">Se arată rezultate pentru:%s</string>
+    <string name="no_app_to_open_intent">Nicio aplicație de pe dispozitiv nu poate deschide această</string>
+    <string name="chapters">Capitole</string>
+    <string name="recent">Recente</string>
+    <string name="show_thumbnail_summary">Utilizați miniatura atât pentru fundalul ecranului de blocare, cât și pentru notificări</string>
+    <string name="show_thumbnail_title">Arată thumbnail-urile</string>
+    <string name="playlist_page_summary">Pagina Playlist-ului</string>
+    <string name="video_detail_by">De %s</string>
+    <string name="channel_created_by">Creat de %s</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Miniatura thumbnail-ului canalului</string>
+    <string name="content_not_supported">Acest conținut nu este încă acceptat de NewPipe.
+\n
+\nSperăm că va fi acceptat într-o versiune viitoare.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Crezi că încărcarea feedului este prea lentă\? Dacă da, încercați să activați încărcarea rapidă (o puteți modifica în setări sau apăsând butonul de mai jos).
+\n
+\nNewPipe oferă două strategii de încărcare a feedului:
+\n• Preluarea întregului canal de abonament, care este lent, dar complet.
+\n• Utilizarea unui punct final de serviciu dedicat, care este rapid, dar de obicei nu este complet.
+\n
+\nDiferența dintre cele două este că cea rapidă de obicei nu are informații, cum ar fi durata sau tipul articolului (nu poate face distincția între videoclipurile live și cele normale) și poate returna mai puține articole.
+\n
+\nYouTube este un exemplu de serviciu care oferă această metodă rapidă cu fluxul său RSS.
+\n
+\nAșadar, alegerea se reduce la ceea ce preferați: viteză sau informații precise.</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Dezactivați modul rapid</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Activați modul rapid</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponibil în unele servicii, este de obicei mult mai rapid, dar poate returna o cantitate limitată de elemente și informații adesea incomplete (de exemplu, fără durată, tip de articol, fără stare live).</string>
+    <string name="feed_use_dedicated_fetch_method_title">Preluare din fluxul dedicat atunci când este disponibil</string>
+    <string name="feed_update_threshold_option_always_update">Actualizați întotdeauna</string>
+    <string name="feed_update_threshold_summary">Timpul după ultima actualizare înainte ca un abonament să fie considerat învechit - %s</string>
+    <string name="feed_update_threshold_title">Prag de actualizare a fluxului</string>
+    <string name="settings_category_feed_title">Flux</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Se afișează numai abonamentele negrupate</string>
+    <string name="feed_create_new_group_button_title">Nou</string>
+    <string name="feed_group_dialog_delete_message">Doriți să ștergeți acest grup\?</string>
+    <string name="feed_group_dialog_empty_name">Numele grupului este gol</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d selectat</item>
+        <item quantity="few">%d selectate</item>
+        <item quantity="other">%d selectate</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Niciun abonament selectat</string>
+    <string name="feed_group_dialog_select_subscriptions">Selectați abonamente</string>
+    <string name="feed_processing_message">Se procesează feedul …</string>
+    <string name="feed_notification_loading">Se încarcă feedul …</string>
+    <string name="feed_subscription_not_loaded_count">Neîncărcat: %d</string>
+    <string name="feed_oldest_subscription_update">Ultima actualizare a fluxului: %s</string>
+    <string name="feed_groups_header_title">Grupuri de canale</string>
+    <plurals name="days">
+        <item quantity="one">%d zi</item>
+        <item quantity="few">%d zile</item>
+        <item quantity="other">%d zile</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d oră</item>
+        <item quantity="few">%d ore</item>
+        <item quantity="other">%d ore</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d secundă</item>
+        <item quantity="few">%d secunde</item>
+        <item quantity="other">%d secunde</item>
+    </plurals>
+    <string name="new_seek_duration_toast">Datorită constrângerilor ExoPlayer, durata de căutare a fost setată la %d secunde</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Da, și videoclipuri vizionate parțial</string>
+    <string name="remove_watched_popup_warning">Videoclipurile care au fost vizionate înainte și după ce au fost adăugate în lista de redare vor fi eliminate.
+\neşti sigur\? Acest lucru nu poate fi anulat!</string>
+    <string name="remove_watched_popup_title">Eliminați videoclipurile vizionate\?</string>
+    <string name="remove_watched">Eliminare cele urmărite</string>
+    <string name="systems_language">Prestabilită de sistem</string>
+    <string name="app_language_title">Limba aplicației</string>
+    <string name="choose_instance_prompt">Alegeți o instanță</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" permite descărcări pe un card SD extern.
+\nUnele dispozitive sunt incompatibile</string>
+    <string name="downloads_storage_use_saf_title">Folosiți SAF</string>
+    <string name="downloads_storage_ask_summary_kitkat">Veți fi întrebat unde pentru a salva fiecare descărcare.
+\nAlegeți SAF dacă doriți să descărcați pe un card SD extern</string>
+    <string name="downloads_storage_ask_summary">Veți fi întrebat unde să salvați fiecare descărcare</string>
+    <string name="downloads_storage_ask_title">Întrebați unde să descărcați</string>
+    <string name="pause_downloads">Întrerupeți descărcările</string>
+    <string name="max_retry_msg">Reîncercări maxime</string>
+    <string name="show_original_time_ago_title">Afișarea timpului inițial în urmă pentru elemente</string>
+    <string name="enable_disposed_exceptions_summary">Raportarea forțată a excepțiilor Rx nelivrabile în afara ciclului de viață al fragmentului sau al activității după eliminare</string>
+    <string name="auto_queue_toggle">Coadă automată</string>
+    <string name="clear_queue_confirmation_description">Lista de redare a playerului activ va fi înlocuită</string>
+    <string name="clear_queue_confirmation_summary">Trecerea de la un player la altul poate înlocui lista de redare</string>
+    <string name="clear_queue_confirmation_title">Solicitați confirmarea înainte de a șterge o listă de redare</string>
+    <plurals name="minutes">
+        <item quantity="one">%d minut</item>
+        <item quantity="few">%d minute</item>
+        <item quantity="other">%d minute</item>
+    </plurals>
+    <string name="start_downloads">Începeți descărcările</string>
+    <string name="enable_queue_limit_desc">O descărcare va rula în același timp</string>
+    <string name="enable_queue_limit">Limitarea cozii de descărcare</string>
+    <string name="close">Închideți</string>
+    <string name="pause_downloads_on_mobile_desc">Util la trecerea la date mobile, deși unele descărcări nu pot fi suspendate</string>
+    <string name="pause_downloads_on_mobile">Întrerupeți pe rețelele măsurate</string>
+    <string name="max_retry_desc">Numărul maxim de încercări înainte de anularea descărcării</string>
+    <string name="stop">Oprește</string>
+    <string name="deleted_downloads">Au fost șterse %1$d descărcări</string>
+    <string name="delete_downloaded_files">Ștergeți fișierele descărcate</string>
+    <string name="confirm_prompt">Doriți să ștergeți istoricul descărcărilor sau să ștergeți toate fișierele descărcate\?</string>
+    <string name="clear_download_history">Șterge istoricul descărcărilor</string>
+    <string name="error_download_resource_gone">Nu se poate recupera această descărcare</string>
+    <string name="error_timeout">Conexiunea a expirat</string>
+    <string name="error_progress_lost">Progres pierdut, deoarece fișierul a fost șters</string>
+    <string name="error_insufficient_storage">Nu a mai rămas spațiu pe dispozitiv</string>
+    <string name="error_postprocessing_stopped">NewPipe a fost închis în timp ce lucra la fișier</string>
+    <string name="error_postprocessing_failed">Post-procesarea a eșuat</string>
+    <string name="error_http_not_found">Nu s-a găsit</string>
+    <string name="error_http_unsupported_range">Serverul nu acceptă descărcări multi-threaded, reîncercați cu @string/msg_threads = 1</string>
+    <string name="error_http_no_content">Serverul nu trimite date</string>
+    <string name="error_connect_host">Nu se poate conecta la server</string>
+    <string name="error_unknown_host">Nu s-a putut găsi server-ul</string>
+    <string name="error_ssl_exception">Nu s-a putut stabili o conexiune sigură</string>
+    <string name="error_permission_denied">Permisiune refuzată de sistem</string>
+    <string name="error_path_creation">Folderul de destinație nu poate fi creat</string>
+    <string name="error_file_creation">Fișierul nu poate fi creat</string>
+    <string name="label_code">Codul</string>
+    <string name="show_error">Afișare eroare</string>
+    <string name="download_already_pending">Există o descărcare în așteptare cu acest nume</string>
+    <string name="download_already_running">Există o descărcare în curs cu acest nume</string>
+    <string name="overwrite_failed">nu poate suprascrie fișierul</string>
+    <string name="overwrite_finished_warning">Există deja un fișier descărcat cu acest nume</string>
+    <string name="overwrite_unrelated_warning">Există deja un fișier cu acest nume</string>
+    <string name="overwrite">Suprascrieți</string>
+    <string name="generate_unique_name">Generați un nume unic</string>
+    <string name="download_finished_more">%s descărcări terminate</string>
+    <string name="download_finished">Descărcare terminată</string>
+    <string name="download_failed">Descărcare eșuată</string>
+    <string name="permission_denied">Acțiune refuzată de sistem</string>
+    <string name="enqueue">Fila de așteptare</string>
+    <string name="recovering">Se recuperează</string>
+    <string name="post_processing">post-procesare</string>
+    <string name="queued">În așteptare</string>
+    <string name="paused">Întrerupt</string>
+    <string name="missions_header_pending">În așteptare</string>
+    <string name="missions_header_finished">Finalizat</string>
+    <string name="app_update_notification_content_text">Atingeți pentru a descărca</string>
+    <string name="app_update_notification_content_title">Actualizare a Newpipe este disponibilă!</string>
+    <string name="switch_view">Schimbați vizualizarea</string>
+    <string name="auto">Automat</string>
+    <string name="grid">Grilă</string>
+    <string name="list">Listă</string>
+    <string name="list_view_mode">Mod vizualizare listă</string>
+    <string name="never">Niciodată</string>
+    <string name="wifi_only">Numai pe Wi-Fi</string>
+    <string name="autoplay_summary">Porniți redarea automat - %s</string>
+    <string name="minimize_on_exit_popup_description">Minimizare la pop-up player</string>
+    <string name="minimize_on_exit_background_description">Minimizați la playerul de fundal</string>
+    <string name="minimize_on_exit_none_description">Niciunul</string>
+    <string name="minimize_on_exit_summary">Acțiune când comutați la altă aplicație de pe playerul video principal — %s</string>
+    <string name="minimize_on_exit_title">Minimalizați la comutarea aplicației</string>
+    <string name="updates_setting_description">Afișați o notificare pentru a solicita actualizarea aplicației atunci când este disponibilă o nouă versiune</string>
+    <string name="updates_setting_title">Actualizări</string>
+    <string name="limit_data_usage_none_description">Fără limită</string>
+    <string name="start_accept_privacy_policy">Pentru a respecta Regulamentul general european privind protecția datelor (GDPR), vă atragem atenția asupra politicii de confidențialitate a NewPipe. Vă rugăm să-l citiți cu atenție.
+\nTrebuie să îl acceptați pentru a ne trimite raportul de eroare.</string>
+    <string name="playback_reset">Resetează</string>
+    <string name="playback_step">Etapă</string>
+    <string name="skip_silence_checkbox">Înaintează rapid în timpul tăcerii</string>
+    <string name="unhook_checkbox">Decuplați (poate provoca distorsiuni)</string>
+    <string name="playback_pitch">Pitch</string>
+    <string name="import_network_expensive_warning">Rețineți că această operațiune poate fi costisitoare în rețea.
+\n
+\nContinuați\?</string>
+    <string name="import_soundcloud_instructions_hint">ID-ul dvs., soundcloud.com/yourid</string>
+    <string name="import_soundcloud_instructions">Importați un profil SoundCloud tastând fie adresa URL, fie ID-ul dvs.:
+\n
+\n1. Activați „modul desktop” într-un browser web (site-ul nu este disponibil pentru dispozitivele mobile)
+\n2. Accesați această adresă URL: %1$s
+\n3. Conectați-vă când vi se solicită
+\n4. Copiați adresa URL a profilului către care ați fost redirecționat.</string>
+    <string name="import_youtube_instructions">Importați abonamente YouTube de la Google Takeout:
+\n
+\n1. Accesați această adresă URL: %1$s
+\n2. Conectați-vă când vi se solicită
+\n3. Faceți clic pe „Toate datele incluse”, apoi pe „Deselectați toate”, apoi selectați doar „abonamente” și faceți clic pe „OK”
+\n4. Faceți clic pe „Pasul următor” și apoi pe „Creați export”
+\n5. Faceți clic pe butonul „Descărcați” după ce apare și
+\n6. Din fișierul zip Takeout descărcat extrageți fișierul .json (de obicei sub „YouTube și YouTube Music / subscriptions / subscriptions.json”) și importați-l aici.</string>
+    <string name="show_original_time_ago_summary">Textele originale de la servicii vor fi vizibile în elementele de flux</string>
+    <string name="enable_disposed_exceptions_title">Raportați erori în afara ciclului de viață</string>
+    <string name="show_memory_leaks">Afișați scurgeri de memorie</string>
+    <string name="enable_leak_canary_summary">Monitorizarea scurgerilor de memorie poate face ca aplicația să nu mai răspundă la descărcarea heap-ului</string>
+    <string name="playlist_no_uploader">Generat automat (nu s-a găsit niciun uploader)</string>
+    <string name="unbookmark_playlist">Eliminați marcajul</string>
+    <string name="unmute">Activați sunetul</string>
+    <string name="mute">Dezactivați sunetul</string>
+    <string name="enqueued">Adăugat în lista de redare</string>
+    <string name="enqueue_stream">Adăugați în lista de redare</string>
+    <string name="title_activity_play_queue">Rulați lista de redare</string>
+    <string name="most_liked">Cele mai apreciate</string>
+    <string name="recently_added">Adăugate recent</string>
+    <string name="local">Local</string>
+    <string name="localization_changes_requires_app_restart">Limba se va schimba odată cu repornirea aplicației.</string>
+    <string name="no_playlist_bookmarked_yet">Nu există încă marcaje în playlist</string>
+    <string name="select_a_playlist">Selectați un playlist</string>
+    <string name="default_kiosk_page_summary">Chioșc implicit</string>
+    <string name="msg_calculating_hash">Se calculează hash-ul</string>
+    <string name="infinite_videos">∞ videoclipuri</string>
+    <string name="more_than_100_videos">Peste 100 de videoclipuri</string>
+    <plurals name="listening">
+        <item quantity="one">%s auditor</item>
+        <item quantity="few">%s auditori</item>
+        <item quantity="other">%s auditori</item>
+    </plurals>
+    <string name="no_one_listening">Nimeni nu ascultă</string>
+    <plurals name="watching">
+        <item quantity="one">%s privește</item>
+        <item quantity="few">%s privesc</item>
+        <item quantity="other">%s privesc</item>
+    </plurals>
+    <string name="no_one_watching">Nimeni nu se uită</string>
+    <string name="drawer_header_description">Comutare serviciu, selectat în prezent:</string>
+    <string name="description_tab_description">Descriere</string>
+    <string name="related_streams_tab_description">Fluxuri corelate</string>
+    <string name="comments_tab_description">Comentarii</string>
+    <string name="error_report_open_github_notice">Vă rugăm să verificați dacă există deja o problemă legată de crash-ul dvs. Când creați bilete duplicat, ne luați timp pe care l-am putea petrece cu remedierea erorii.</string>
+    <string name="copy_for_github">Copiați raportul formatat</string>
+    <string name="show_meta_info_summary">Dezactivați pentru a ascunde casetele de meta-informații cu informații suplimentare despre creatorul fluxului, conținutul fluxului sau o solicitare de căutare.</string>
+    <string name="show_description_summary">Dezactivați pentru a ascunde descrierea videoclipului și informațiile suplimentare</string>
+    <string name="show_description_title">Arătați descrierea</string>
+    <string name="open_with">Deschideți cu</string>
 </resources>

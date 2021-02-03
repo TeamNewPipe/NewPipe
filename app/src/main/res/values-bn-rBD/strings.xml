@@ -158,7 +158,7 @@
     <string name="rename">নাম পরিবর্তন করুন</string>
     <string name="action_settings">সেটিংস</string>
     <string name="action_open_website">ওয়েব সাইট খুলুন</string>
-    <string name="website_title">ওয়েব সাইট</string>
+    <string name="website_title">ওয়েবসাইট</string>
     <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি (প্লে করতে VLC ইন্সটল করতে পারেন)</string>
     <string name="use_external_video_player_summary">কিছু কিছু রেজোলিউশনে অডিও বন্ধ করে দেয়</string>
     <string name="subscribe_button_title">সাবস্ক্রাইব</string>
@@ -254,7 +254,7 @@
     <string name="read_full_license">লাইসেন্স পড়ুন</string>
     <string name="app_license_title">নিউপাইপ এর লাইসেন্স</string>
     <string name="read_privacy_policy">প্রাইভেসি পলিসি পড়ুন</string>
-    <string name="privacy_policy_title">নিউপাইপ এর প্রাইভেসি পলিসি</string>
+    <string name="privacy_policy_title">নিউপাইপ এর গোপনীয়তা নীতি</string>
     <string name="give_back">ফিরিয়ে দিন</string>
     <string name="view_on_github">গিটহাব এ দেখুন</string>
     <string name="error_unable_to_load_license">লাইসেন্স লোড করা যায় নি</string>
@@ -396,4 +396,5 @@
         <item quantity="one">%d মিনিট</item>
         <item quantity="other">%d মিনিট</item>
     </plurals>
+    <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
 </resources>

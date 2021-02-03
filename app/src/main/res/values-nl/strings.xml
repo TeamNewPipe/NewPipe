@@ -26,7 +26,7 @@
     <string name="default_audio_format_title">Standaardaudioformaat</string>
     <string name="download_dialog_title">Downloaden</string>
     <string name="unsupported_url">URL wordt niet ondersteund</string>
-    <string name="show_next_and_similar_title">‘volgende’ en ‘vergelijkbare’ video’s weergeven</string>
+    <string name="show_next_and_similar_title">Toon ‘volgende’ en ‘vergelijkbare’ video’s</string>
     <string name="content_language_title">Standaardtaal voor inhoud</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
@@ -265,7 +265,7 @@
     <string name="import_data_title">Databank importeren</string>
     <string name="export_data_title">Databank exporteren</string>
     <string name="import_data_summary">Dit overschrijft je huidige geschiedenis, abonnementen, afspeellijsten en (optionele) settings</string>
-    <string name="export_data_summary">Exporteer geschiedenis, abonnementen, afspeellijsten en settings</string>
+    <string name="export_data_summary">Exporteer geschiedenis, abonnementen, afspeellijsten en instellingen</string>
     <string name="export_complete_toast">Geëxporteerd</string>
     <string name="import_complete_toast">Geïmporteerd</string>
     <string name="no_valid_zip_file">Geen geldig ZIP-bestand</string>
@@ -655,4 +655,12 @@
     <string name="hash_channel_name">Video Hash Melding</string>
     <string name="show_meta_info_summary">Schakel dit uit om metainformatie vakken te verbergen met aanvullende informatie over de maker van de stream, streaminhoud of een zoekopdracht.</string>
     <string name="show_meta_info_title">Toon meta informatie</string>
+    <string name="description_tab_description">Omschrijving</string>
+    <string name="show_description_title">Toon beschrijving</string>
+    <string name="no_app_to_open_intent">Geen app op je apparaat kan dit openen</string>
+    <string name="chapters">Hoofdstukken</string>
+    <string name="related_streams_tab_description">Gerelateerde streams</string>
+    <string name="comments_tab_description">Commentaar</string>
+    <string name="show_description_summary">Schakel dit uit om video beschrijvingen en additionele informatie te verbergen</string>
+    <string name="open_with">Openen met</string>
 </resources>

@@ -653,4 +653,12 @@
     <string name="show_meta_info_summary">Poista käytöstä piilotakseen metatiedot suoratoiston luojasta, sen sisällöstä tai hakupyynnöstä.</string>
     <string name="show_meta_info_title">Näytä metatieto</string>
     <string name="recent">Viimeisimmät</string>
+    <string name="show_description_title">Näytä kuvaus</string>
+    <string name="open_with">Avaa sovelluksella</string>
+    <string name="show_description_summary">Poista valinta piilottaaksesi videon kuvauksen ja lisätiedot</string>
+    <string name="no_app_to_open_intent">Mikään sovellus laitteessasi ei voi avata tätä</string>
+    <string name="chapters">Jaksot</string>
+    <string name="description_tab_description">Kuvaus</string>
+    <string name="related_streams_tab_description">Samankaltaiset striimit</string>
+    <string name="comments_tab_description">Kommentit</string>
 </resources>

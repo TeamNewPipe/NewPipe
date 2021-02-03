@@ -666,4 +666,12 @@
     <string name="recent">Недавнее</string>
     <string name="show_meta_info_summary">Отключите, чтобы скрыть поля метаданных (автор потока, содержимое потока или поисковый запрос)</string>
     <string name="show_meta_info_title">Показать метаданные</string>
+    <string name="related_streams_tab_description">Похожие потоки</string>
+    <string name="chapters">Главы</string>
+    <string name="description_tab_description">Описание</string>
+    <string name="comments_tab_description">Комментарии</string>
+    <string name="show_description_summary">Отключите, чтобы скрыть описание видео и дополнительные сведения</string>
+    <string name="show_description_title">Показать описание</string>
+    <string name="open_with">Открыть в</string>
+    <string name="no_app_to_open_intent">Подходящее приложение не найдено</string>
 </resources>

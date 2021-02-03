@@ -655,4 +655,12 @@
     <string name="recent">Son</string>
     <string name="show_meta_info_summary">Akış yaratıcısı, akış içeriği veya arama isteğiyle ilgili ek bilgiyi gösteren üst bilgi kutularını gizlemek için kapat.</string>
     <string name="show_meta_info_title">Üst bilgiyi göster</string>
+    <string name="chapters">Bölümler</string>
+    <string name="description_tab_description">Açıklama</string>
+    <string name="related_streams_tab_description">İlgili akışlar</string>
+    <string name="comments_tab_description">Yorumlar</string>
+    <string name="show_description_summary">Video açıklamasını ve ek bilgileri gizlemek için kapatın</string>
+    <string name="show_description_title">Açıklamayı göster</string>
+    <string name="open_with">Birlikte aç</string>
+    <string name="no_app_to_open_intent">Aygıtınızdaki hiçbir uygulama bunu açamıyor</string>
 </resources>
