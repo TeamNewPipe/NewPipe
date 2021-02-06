@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -214,6 +215,19 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         try {
             if (!manager.ensureDbDirectoryExists()) {
                 throw new Exception("Could not create databases dir");
+            }
+
+            if (!manager.isValidBackupFile(filePath)) {
+                final Snackbar snackbar = Snackbar.make(
+                        requireActivity().findViewById(android.R.id.content),
+                        getString(R.string.no_valid_zip_file), Snackbar.LENGTH_LONG);
+                snackbar.setDuration(3000);
+                snackbar.setAction(R.string.show_info, v -> {
+                    snackbar.dismiss();
+                    onError(new Exception("The provided zip was not created by NewPipe."));
+                });
+                snackbar.show();
+                return;
             }
 
             if (!manager.extractDb(filePath)) {
