@@ -116,6 +116,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         final Preference importDataPreference = findPreference(getString(R.string.import_data));
         importDataPreference.setOnPreferenceClickListener(p -> {
             final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_FILTER_EXTENSION, "zip")
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE,
