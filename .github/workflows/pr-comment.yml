@@ -36,13 +36,16 @@ jobs:
             if (!artifacts.length) {
               return core.error(`No artifacts found`);
             }
-            let body = `Download the artifact for this pull request:`;
+            const prefix = '<!-- pr-comment workflow -->';
+            let body = `${prefix}\n\nDownload the artifact for this pull request:`;
             for (const art of artifacts) {
               body += ` [**${art.name}.zip**](https://nightly.link/${owner}/${repo}/actions/artifacts/${art.id}.zip)`;
             }
 
             const {data: comments} = await github.issues.listComments({repo, owner, issue_number});
-            const existing_comment = comments.find((c) => c.user.login === 'github-actions[bot]');
+            const existing_comment = comments.find((c) => {
+              return c.user.login === 'github-actions[bot]' && c.body.startsWith(prefix);
+            });
             if (existing_comment) {
               core.info(`Updating comment ${existing_comment.id}`);
               await github.issues.updateComment({repo, owner, comment_id: existing_comment.id, body});
