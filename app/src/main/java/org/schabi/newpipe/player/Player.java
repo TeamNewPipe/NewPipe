@@ -4049,10 +4049,6 @@ public final class Player implements
         return binding.currentDisplaySeek;
     }
 
-    public TextView getResizingIndicator() {
-        return binding.resizingIndicator;
-    }
-
     @Nullable
     public WindowManager.LayoutParams getPopupLayoutParams() {
         return popupLayoutParams;
