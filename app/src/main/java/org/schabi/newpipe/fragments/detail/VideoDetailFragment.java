@@ -580,6 +580,7 @@ public final class VideoDetailFragment
                     Player.DEFAULT_CONTROLS_DURATION, 0);
             binding.detailSecondaryControlPanel.setVisibility(View.GONE);
         }
+        // view pager height has changed, update the tab layout
         updateTabLayoutVisibility();
     }
 
@@ -650,6 +651,7 @@ public final class VideoDetailFragment
             // prevent useless updates to tab layout visibility if nothing changed
             if (verticalOffset != lastAppBarVerticalOffset) {
                 lastAppBarVerticalOffset = verticalOffset;
+                // the view was scrolled
                 updateTabLayoutVisibility();
             }
         });
@@ -952,6 +954,7 @@ public final class VideoDetailFragment
             }
             updateTabIconsAndContentDescriptions();
         }
+        // the page adapter now contains tabs: show the tab layout
         updateTabLayoutVisibility();
     }
 
@@ -974,12 +977,10 @@ public final class VideoDetailFragment
     private void updateTabs(@NonNull final StreamInfo info) {
         if (showRelatedStreams) {
             if (binding.relatedStreamsLayout == null) { // phone
-                pageAdapter.updateItem(RELATED_TAB_TAG,
-                        RelatedVideosFragment.getInstance(info));
+                pageAdapter.updateItem(RELATED_TAB_TAG, RelatedVideosFragment.getInstance(info));
             } else { // tablet + TV
                 getChildFragmentManager().beginTransaction()
-                        .replace(R.id.relatedStreamsLayout,
-                                RelatedVideosFragment.getInstance(info))
+                        .replace(R.id.relatedStreamsLayout, RelatedVideosFragment.getInstance(info))
                         .commitAllowingStateLoss();
                 binding.relatedStreamsLayout.setVisibility(
                         player != null && player.isFullscreen() ? View.GONE : View.VISIBLE);
@@ -987,10 +988,12 @@ public final class VideoDetailFragment
         }
 
         if (showDescription) {
-            pageAdapter.updateItem(DESCRIPTION_TAB_TAG,
-                    new DescriptionFragment(info));
+            pageAdapter.updateItem(DESCRIPTION_TAB_TAG, new DescriptionFragment(info));
         }
 
+        binding.viewPager.setVisibility(View.VISIBLE);
+        // make sure the tab layout is visible
+        updateTabLayoutVisibility();
         pageAdapter.notifyDataSetUpdate();
         updateTabIconsAndContentDescriptions();
     }
@@ -1007,9 +1010,12 @@ public final class VideoDetailFragment
     }
 
     public void updateTabLayoutVisibility() {
-        if (pageAdapter.getCount() < 2) {
+        if (pageAdapter.getCount() < 2 || binding.viewPager.getVisibility() != View.VISIBLE) {
+            // hide tab layout if there is only one tab or if the view pager is also hidden
             binding.tabLayout.setVisibility(View.GONE);
         } else {
+            // call `post()` to be sure `viewPager.getHitRect()`
+            // is up to date and not being currently recomputed
             binding.tabLayout.post(() -> {
                 if (getContext() != null) {
                     final Rect pagerHitRect = new Rect();
@@ -1020,7 +1026,7 @@ public final class VideoDetailFragment
                             WindowManager.class)).getDefaultDisplay().getSize(displaySize);
 
                     final int viewPagerVisibleHeight = displaySize.y - pagerHitRect.top;
-                    // see TabLayout.DEFAULT_HEIGHT
+                    // see TabLayout.DEFAULT_HEIGHT, which is equal to 48dp
                     final float tabLayoutHeight = TypedValue.applyDimension(
                             TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics());
 
@@ -1030,6 +1036,7 @@ public final class VideoDetailFragment
                                 Math.max(0, tabLayoutHeight * 3 - viewPagerVisibleHeight));
                         binding.tabLayout.setVisibility(View.VISIBLE);
                     } else {
+                        // view pager is not visible enough
                         binding.tabLayout.setVisibility(View.GONE);
                     }
                 }
@@ -1039,6 +1046,7 @@ public final class VideoDetailFragment
 
     public void scrollToTop() {
         binding.appBarLayout.setExpanded(true, true);
+        // notify tab layout of scrolling
         updateTabLayoutVisibility();
     }
 
