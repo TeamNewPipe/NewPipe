@@ -133,7 +133,6 @@
     <string name="popup_remember_size_pos_title">Recordar propiedades del reproductor emergente</string>
     <string name="popup_remember_size_pos_summary">Recordar el último tamaño y posición del reproductor emergente</string>
     <string name="settings_category_popup_title">Emergente</string>
-    <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Quita el audio en algunas resoluciones</string>
     <string name="player_gesture_controls_title">Controles del reproductor por gestos</string>
     <string name="player_gesture_controls_summary">Usar gestos para controlar el brillo y volumen del reproductor</string>

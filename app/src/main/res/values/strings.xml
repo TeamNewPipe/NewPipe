@@ -186,7 +186,6 @@
     <string name="filter">Filter</string>
     <string name="refresh">Refresh</string>
     <string name="clear">Clear</string>
-    <string name="popup_resizing_indicator_title">Resizing</string>
     <string name="best_resolution">Best resolution</string>
     <string name="undo">Undo</string>
     <string name="file_deleted">File deleted</string>

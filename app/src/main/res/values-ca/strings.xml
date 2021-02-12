@@ -280,7 +280,6 @@
     <string name="later">Més tard</string>
     <string name="filter">Filtra</string>
     <string name="refresh">Actualitza</string>
-    <string name="popup_resizing_indicator_title">S\'està redimensionant</string>
     <string name="play_all">Reprodueix-ho tot</string>
     <string name="toggle_orientation">Canvia l\'orientació</string>
     <string name="switch_to_background">Canvia al mode en rerefons</string>

@@ -146,7 +146,6 @@
     <string name="filter">Szűrés</string>
     <string name="refresh">Újratöltés</string>
     <string name="clear">Törlés</string>
-    <string name="popup_resizing_indicator_title">Újraméretezés</string>
     <string name="best_resolution">Legjobb felbontás</string>
     <string name="undo">Visszavonás</string>
     <string name="play_all">Összes lejátszása</string>

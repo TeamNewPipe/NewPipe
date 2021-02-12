@@ -128,7 +128,6 @@
     <string name="filter">ตัวกรอง</string>
     <string name="refresh">เรียกใหม่</string>
     <string name="clear">ล้าง</string>
-    <string name="popup_resizing_indicator_title">กำลังปรับขนาด</string>
     <string name="best_resolution">ความละเอียดที่ดีที่สุด</string>
     <string name="undo">เลิกทำ</string>
     <string name="file_deleted">ลบไฟล์แล้ว</string>

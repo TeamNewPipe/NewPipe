@@ -93,7 +93,6 @@
     <string name="filter">Suodata</string>
     <string name="refresh">Päivitä</string>
     <string name="clear">Pyyhi</string>
-    <string name="popup_resizing_indicator_title">Muutetaan kokoa</string>
     <string name="best_resolution">Paras resoluutio</string>
     <string name="undo">Peru</string>
     <string name="notification_channel_name">NewPipe Ilmoitus</string>

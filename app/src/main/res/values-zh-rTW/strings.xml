@@ -85,7 +85,6 @@
     <string name="refresh">重新整理</string>
     <string name="clear">清除</string>
     <string name="best_resolution">最佳解析度</string>
-    <string name="popup_resizing_indicator_title">調整大小</string>
     <string name="general_error">錯誤</string>
     <string name="could_not_load_thumbnails">無法載入所有縮圖</string>
     <string name="youtube_signature_deobfuscation_error">無法解析影片 URL 簽章</string>

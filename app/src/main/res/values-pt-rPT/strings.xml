@@ -171,7 +171,6 @@
         <item quantity="other">%s a ver</item>
     </plurals>
     <string name="msg_wait">Por favor aguarde…</string>
-    <string name="popup_resizing_indicator_title">Redimensionar</string>
     <string name="app_update_notification_content_text">Toque para descarregar</string>
     <string name="clear">Limpar</string>
     <string name="unsubscribe">Cancelar subscrição</string>

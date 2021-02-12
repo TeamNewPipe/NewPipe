@@ -214,7 +214,6 @@
     <string name="popup_remember_size_pos_title">记住悬浮窗属性</string>
     <string name="popup_remember_size_pos_summary">记住上一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
-    <string name="popup_resizing_indicator_title">调整大小</string>
     <string name="use_external_video_player_summary">在部分分辨率下将没有音频</string>
     <string name="player_gesture_controls_title">手势控制播放器</string>
     <string name="player_gesture_controls_summary">允许使用手势控制亮度和音量</string>

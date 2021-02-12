@@ -139,7 +139,6 @@
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
     <string name="clear">Löschen</string>
-    <string name="popup_resizing_indicator_title">Größenänderung</string>
     <string name="best_resolution">Beste Auflösung</string>
     <string name="action_about">Über</string>
     <string name="title_activity_about">Über NewPipe</string>

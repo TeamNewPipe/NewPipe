@@ -154,7 +154,6 @@
     <string name="filter">Filtr</string>
     <string name="refresh">Obnovit</string>
     <string name="clear">Vyčistit</string>
-    <string name="popup_resizing_indicator_title">Změna velikosti</string>
     <string name="best_resolution">Nejlepší rozlišení</string>
     <string name="undo">Vrátit</string>
     <string name="notification_channel_name">Oznámení NewPipe</string>

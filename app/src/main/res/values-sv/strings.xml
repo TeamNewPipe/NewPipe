@@ -119,7 +119,6 @@
     <string name="background_player_append">Tillagd till bakgrunds-spelar kön</string>
     <string name="popup_playing_append">Tillagd till popup-spelar kön</string>
     <string name="playlist">Spellista</string>
-    <string name="popup_resizing_indicator_title">Storleksändring</string>
     <string name="undo">Ångra</string>
     <string name="play_all">Spela Alla</string>
     <string name="notification_channel_name">NewPipe Avisering</string>

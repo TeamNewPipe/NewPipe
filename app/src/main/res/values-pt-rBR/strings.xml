@@ -132,7 +132,6 @@
     <string name="popup_remember_size_pos_title">Lembrar propriedades do popup</string>
     <string name="popup_remember_size_pos_summary">Lembrar último tamanho e posição do popup</string>
     <string name="settings_category_popup_title">Popup</string>
-    <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Remove o som em algumas resoluções</string>
     <string name="player_gesture_controls_title">Controles de gestos do player</string>
     <string name="player_gesture_controls_summary">Use gestos para mudar volume e brilho do player</string>

@@ -131,7 +131,6 @@
     <string name="filter">Filtre</string>
     <string name="refresh">Rafraîchir</string>
     <string name="clear">Effacer</string>
-    <string name="popup_resizing_indicator_title">Redimensionner</string>
     <string name="short_billion">G</string>
     <string name="use_external_video_player_summary">Le son peut être absent à certaines définitions</string>
     <string name="player_gesture_controls_summary">Utiliser des gestes pour contrôler la luminosité et le volume du lecteur</string>
