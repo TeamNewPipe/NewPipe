@@ -186,7 +186,7 @@ dependencies {
     implementation "org.jsoup:jsoup:1.13.1"
 
     //noinspection GradleDependency --> do not update okhttp to keep supporting Android 4.4 users
-    implementation "com.squareup.okhttp3:okhttp:3.12.12"
+    implementation "com.squareup.okhttp3:okhttp:3.12.13"
 
     implementation "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"
     implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
