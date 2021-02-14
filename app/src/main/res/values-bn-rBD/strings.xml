@@ -321,7 +321,7 @@
     <string name="recaptcha_done_button">হয়েছে</string>
     <string name="events">ইভেন্টগুলো</string>
     <string name="settings_category_updates_title">আপডেট</string>
-    <string name="minimize_on_exit_none_description">না</string>
+    <string name="minimize_on_exit_none_description">কোনটি না</string>
     <string name="accept">স্বীকার করো</string>
     <string name="decline">অস্বীকার করো</string>
     <string name="caption_setting_title">ক্যাপশন</string>

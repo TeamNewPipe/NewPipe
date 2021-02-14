@@ -333,7 +333,7 @@
 \n6. A partir do zip descarregado extraia o ficheiro .json (normalmente em \"YouTube e YouTube Music/subscriptions/subscriptions.json\") e importe-o aqui.</string>
     <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.:
 \n
-\n1. Ative o modo desktop do seu navegador web (o site não está disponível para aparelhos móveis)
+\n1. Ative o modo desktop do seu navegador web (o site não está disponível para dispositivos móveis)
 \n2. Aceda a este URL: %1$s
 \n3. Inicie a sessão
 \n4. Copie o URL do seu perfil.</string>
@@ -606,7 +606,7 @@
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar do canal</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas assinaturas não agrupadas</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas subscrições não agrupadas</string>
     <string name="playlist_page_summary">Página da lista de reprodução</string>
     <string name="no_playlist_bookmarked_yet">Ainda não há listas de reprodução favoritas</string>
     <string name="select_a_playlist">Selecione uma lista de reprodução</string>
@@ -652,10 +652,10 @@
     <string name="msg_calculating_hash">A calcular \'hash\'</string>
     <string name="hash_channel_description">Notificar sobre o progresso das \'hash\' de vídeos</string>
     <string name="hash_channel_name">Notificação \'hash\' do vídeo</string>
-    <string name="recent">Recente</string>
-    <string name="show_meta_info_summary">Desligue para ocultar caixas de informações meta com informações adicionais sobre o criador do fluxo, conteúdo de fluxo ou uma solicitação de pesquisa.</string>
-    <string name="show_meta_info_title">Mostrar informação meta</string>
-    <string name="no_app_to_open_intent">Isto não pode ser aberto por nenhuma app neste aparelho</string>
+    <string name="recent">Recentes</string>
+    <string name="show_meta_info_summary">Desative para ocultar as caixas com informações adicionais acerca do criador, do conteúdo ou de um pedido de pesquisa.</string>
+    <string name="show_meta_info_title">Mostrar meta-informação</string>
+    <string name="no_app_to_open_intent">Não possui qualquer aplicação para abrir este ficheiro</string>
     <string name="chapters">Capítulos</string>
     <string name="description_tab_description">Descrição</string>
     <string name="related_streams_tab_description">Emissões relacionadas</string>
