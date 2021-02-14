@@ -45,7 +45,7 @@ fun View.animate(
         val id = try {
             resources.getResourceEntryName(id)
         } catch (e: Exception) {
-            id.toString() + ""
+            id.toString()
         }
         val msg = String.format(
             "%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s", enterOrExit,
